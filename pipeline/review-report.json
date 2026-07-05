@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-05T13:15:31.935932+00:00",
+  "timestamp": "2026-07-05T14:15:26.452164+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "1b25c10f-c34b-4ebe-be5d-a516e343b38a",
-      "headline": "Anthropic Just Hired the Co-Creator of AlphaFold. It Wants to Discover Drugs, Not Just Chat.",
-      "slug": "anthropic-claude-science-drug-discovery-jumper-ipo-20260705",
+      "id": "d6203b79-4013-48d0-9202-b6f3094ecef7",
+      "headline": "The Bill That Made Immigration Expensive Turns One. Here Is What Indian Families Now Pay",
+      "slug": "one-big-beautiful-bill-anniversary-immigration-fees-indian-h1b-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "laboratory equipment for pharmaceutical research",
-          "reason": "The photo shows lab equipment relevant to drug discovery, matching the story's topic."
+          "what_photo_shows": "US passport and hundred-dollar bills",
+          "reason": "The photo illustrates the financial aspect of immigration costs."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to drug discovery or AI, but is visually appealing."
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of immigration fees or Indian families."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects the Indian pharmaceutical industry and Indian-origin scientists to the topic, making it relevant for the diaspora."
+          "quality": 9,
+          "note": "The article effectively discusses the financial impact of immigration fees on Indian families, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more visuals related to drug discovery or AI to enhance the article's relevance.",
-          "Include quotes or insights from Indian researchers in the field to strengthen the diaspora connection."
+          "Consider using a more relevant image that depicts immigration or Indian families to enhance visual connection.",
+          "Add a brief conclusion summarizing the implications of these fees on Indian families and potential future changes."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,27 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "12a27fde-6806-4459-9c8c-c17a60517339",
-      "headline": "TSMC Is Raising Chip Prices Again. Every Device You Own Will Feel It.",
-      "slug": "tsmc-3nm-price-hike-arizona-expansion-ai-demand-20260705",
+      "id": "c44473c3-32c5-40be-bc5b-a93137e9d15c",
+      "headline": "Two in Three EB-1A Petitions Still Pass. The NIW Is a Different Story",
+      "slug": "niw-eb1a-approval-rates-crash-mukherji-indian-professionals-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
+            "headline": "Trump's Gold Card Has 59 Real Applicants. The Green Card Bac"
+          },
+          {
+            "article_id": "9b6a5c28-5172-4f08-ac19-36ca168b66a6",
+            "headline": "Adjustment of Status Is Now 'Extraordinary.' Your Green Card"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "TSMC's Fab 12B facility in Taiwan",
-          "reason": "The photo shows a TSMC facility, relevant to the chip price story."
+          "what_photo_shows": "US permanent resident card",
+          "reason": "The photo shows a green card, relevant to the immigration story."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +88,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for NRI investors, connecting the topic to the Indian diaspora."
+          "note": "The article discusses immigration pathways specifically relevant to Indian professionals, making it highly relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the price increases will affect everyday devices for consumers.",
-          "Add quotes from industry experts or analysts to enhance credibility and depth."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "299a085a-8b9b-4915-9df5-199819dcfd41",
-      "headline": "An Indian Founder Just Bet $30 Million That Microsoft Office Needs to Be Rebuilt From Scratch",
-      "slug": "bhavin-turakhia-neo-ai-enterprise-microsoft-challenge-20260705",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man holding a phone, smiling",
-          "reason": "The photo plausibly shows Bhavin Turakhia, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Bhavin Turakhia is relevant as he is the subject of the article, but it does not directly illustrate the concept of the new AI-native platform."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by highlighting the achievements of an Indian-origin founder and the implications for Indian tech professionals in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a visual representation of the Neo platform to enhance reader understanding.",
-          "Add quotes or insights from industry experts to provide additional perspectives on the significance of Turakhia's venture."
+          "Consider adding more personal stories or testimonials from Indian professionals who have navigated the EB-1A or NIW processes to enhance relatability.",
+          "Include a brief overview of the implications of the recent court ruling for the broader immigrant community, not just Indian professionals."
         ],
         "verdict": "pass"
       },
