@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-05T02:15:22.169261+00:00",
+  "timestamp": "2026-07-05T05:15:21.396982+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "069ee223-c7bb-4e67-ab92-283a628d7e87",
-      "headline": "Forty Thousand Green Cards for Doctors and Nurses. The Bill That Could Actually Pass",
-      "slug": "healthcare-workforce-resilience-act-40000-green-cards-nurses-20260705",
+      "id": "4ff0f787-c328-429e-8a3b-da2ad7a8702d",
+      "headline": "Nvidia Doesn't Just Want to Sell You GPUs Anymore. It Wants a Cut of Your Revenue, Too.",
+      "slug": "nvidia-revenue-sharing-ai-factory-model-yotta-india-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "fc2c1f90-0962-40c1-8bad-c48313ef6e0f",
+            "headline": "Nvidia Is Tired of Selling Shovels. Now It Wants a Cut of th"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "physician holding a stethoscope",
-          "reason": "The photo shows a physician, relevant to the story about visas for medical professionals."
+          "what_photo_shows": "an older man in a suit",
+          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +36,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts healthcare professionals, which is relevant to the article's topic on green cards for doctors and nurses."
+          "issue": "The image of Jensen Huang is relevant as he is the CEO of Nvidia, but it does not directly illustrate the article's focus on the new revenue-sharing model."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significant contribution of Indian-born healthcare professionals in the US, making it relevant for the Indian diaspora."
+          "note": "The article effectively connects the topic to Indian-origin engineers and startups, highlighting the relevance of Nvidia's model to the Indian tech ecosystem."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from Indian doctors or nurses in the US to enhance the personal connection.",
-          "Add a section discussing the potential impact of the bill on Indian healthcare professionals specifically."
+          "Consider including more visuals or infographics that illustrate the revenue-sharing model for better reader engagement.",
+          "Add quotes or insights from Indian startup founders to enhance the diaspora connection and provide real-world context."
         ],
         "verdict": "pass"
       },
@@ -54,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0f85c0fd-2256-40a2-bf5b-75b9976fa546",
-      "headline": "Sixty-Nine Denaturalisations and Counting. Your US Citizenship May Not Be Permanent",
-      "slug": "doj-denaturalization-surge-69-cases-indian-americans-20260705",
+      "id": "3a98e333-6716-4485-99ef-a845bcf58a70",
+      "headline": "A Ransomware Gang Just Leaked Apple's iPhone 18 Pro Secrets From a Tata Factory. India Is Investigating.",
+      "slug": "tata-electronics-breach-apple-iphone-18-pro-india-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +69,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "naturalization ceremony attendees",
-          "reason": "The photo shows a naturalization ceremony, relevant to the citizenship topic."
+          "what_photo_shows": "smartphone circuit boards in factory",
+          "reason": "The photo subject aligns with the story about leaked iPhone component designs."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the implications of denaturalisation for Indian Americans, making it relevant to the diaspora."
+          "note": "The article effectively connects the breach to the concerns of Indian-origin engineers and NRI investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more recent statistics or examples to enhance the article's relevance.",
-          "Consider adding quotes from more diverse voices within the Indian American community to provide a broader perspective."
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more details on the potential implications for Tata Electronics and the broader Indian manufacturing sector."
         ],
         "verdict": "pass"
       },
