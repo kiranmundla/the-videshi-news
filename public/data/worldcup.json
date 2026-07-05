@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-05T03:58:59Z",
+  "last_updated": "2026-07-05T06:00:11Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -7279,6 +7279,48 @@
       "platform": "facebook",
       "url": "https://www.facebook.com/reel/2238967833513592/",
       "account": "@fifaworldcup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0Wr3rxkuACymHshMvyqzYqN4iXGo9AguwoB9beeL2sQ9RjLtUr2xFTasoLfxBbBBl",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaYIjdoCnGn/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DaYNi-KiS5T/",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaZFfrKjoVZ",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaY4xhtGUuQ",
+      "account": "@fifaworldcup",
+      "caption": "",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaYdXmciFj2",
+      "account": "@fifaworldcup",
+      "caption": "",
       "date": "2026-07-04"
     }
   ],
