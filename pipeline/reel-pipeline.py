@@ -598,11 +598,20 @@ def select_music(article, build_dir):
 # PHASE 7: Build reel (Shotstack)
 # ═══════════════════════════════════════════════════════════════
 def compute_scene_boundaries(scenes, words, voice_duration):
-    """Map scenes to time boundaries using Whisper word timestamps."""
+    """Map scenes to time boundaries using Whisper word timestamps.
+    
+    Normalizes word counting to match Whisper's tokenization:
+    - Hyphens become spaces (per-country -> per country = 2 words)
+    - Punctuation stripped (U.S. -> US = 1 word)
+    - Contractions kept as-is (What's = 1 word)
+    """
+    import re
     boundaries = []
     word_idx = 0
     for scene in scenes:
-        vo_words = scene["voiceover"].split()
+        vo_text = scene["voiceover"].replace("-", " ")
+        vo_words = re.findall(r"[a-zA-Z0-9']+", vo_text)
+        
         start_t = words[word_idx]["start"] if word_idx < len(words) else 0
         end_idx = min(word_idx + len(vo_words), len(words)) - 1
         end_t = words[end_idx]["end"] if end_idx < len(words) else voice_duration
@@ -662,7 +671,7 @@ def build_music_only_reel(scenes, music_url, build_dir):
             f'">{headline}</div>'
             # Voiceover as readable text
             '<div style="'
-            "font-family:'Inter',sans-serif;font-size:38px;font-weight:900;"
+            "font-family:'Inter',sans-serif;font-size:34px;font-weight:900;"
             "color:#FFFFFF;text-align:center;line-height:1.2;"
             "text-shadow:0 0 12px rgba(0,0,0,0.95),0 0 30px rgba(0,0,0,0.8),"
             "3px 3px 6px rgba(0,0,0,0.9),-3px -3px 6px rgba(0,0,0,0.9);"
@@ -670,9 +679,9 @@ def build_music_only_reel(scenes, music_url, build_dir):
             '</div>'
         )
         text_clips.append({
-            "asset": {"type": "html", "html": html, "width": 700, "height": 450},
+            "asset": {"type": "html", "html": html, "width": 580, "height": 450},
             "start": round(start, 2), "length": scene_dur,
-            "fit": "none", "position": "bottom", "offset": {"x": -0.04, "y": 0.22},
+            "fit": "none", "position": "bottom", "offset": {"y": 0.22},
             "transition": {"in": "fade"}
         })
     
@@ -767,10 +776,10 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
                 f'">{text}</div>'
             )
             caption_clips.append({
-                "asset": {"type": "html", "html": html, "width": 700, "height": 120},
+                "asset": {"type": "html", "html": html, "width": 580, "height": 120},
                 "start": round(pill_start, 2),
                 "length": round(max(pill_end - pill_start, 0.3), 2),
-                "fit": "none", "position": "bottom", "offset": {"x": -0.04, "y": 0.20}
+                "fit": "none", "position": "bottom", "offset": {"y": 0.20}
             })
             pill_words = []
     
@@ -788,9 +797,9 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
             f'">{scene["onscreen"]}</div>'
         )
         text_clips.append({
-            "asset": {"type": "html", "html": html, "width": 700, "height": 80},
+            "asset": {"type": "html", "html": html, "width": 580, "height": 80},
             "start": round(s, 2), "length": round(e - s, 2),
-            "fit": "none", "position": "bottom", "offset": {"x": -0.04, "y": 0.26}
+            "fit": "none", "position": "bottom", "offset": {"y": 0.26}
         })
     
     # ── SCENE IMAGES + ENDCARD ──
