@@ -9,7 +9,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8098893b-7842-4915-8058-bd4bf64602ee",
-   "priority": 11
+   "priority": 13
   },
   {
    "subject": "YRF",
@@ -20,26 +20,6 @@
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8098893b-7842-4915-8058-bd4bf64602ee",
    "priority": 10
-  },
-  {
-   "subject": "Air India",
-   "subject_type": "thing",
-   "tags": [
-    "air india"
-   ],
-   "first_seen": "2026-06-19T05:23:04Z",
-   "article_id": "8d1b12e4-60e3-456d-8f40-dbf170910325",
-   "priority": 47
-  },
-  {
-   "subject": "Apple",
-   "subject_type": "thing",
-   "tags": [
-    "apple"
-   ],
-   "first_seen": "2026-06-19T05:23:04Z",
-   "article_id": "735ab1c5-f47c-401c-95c2-015ff88c59cc",
-   "priority": 40
   },
   {
    "subject": "lawsuit",
@@ -292,16 +272,6 @@
    "priority": 2
   },
   {
-   "subject": "tata",
-   "subject_type": "thing",
-   "tags": [
-    "tata"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a68fac35-5191-468c-b60a-35c7395a46d0",
-   "priority": 2
-  },
-  {
    "subject": "Rashmika Mandanna",
    "subject_type": "person",
    "tags": [
@@ -462,16 +432,6 @@
    "priority": 2
   },
   {
-   "subject": "temple",
-   "subject_type": "thing",
-   "tags": [
-    "temple"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "478d12c3-77c8-4741-9119-4732e49d1759",
-   "priority": 2
-  },
-  {
    "subject": "indian link",
    "subject_type": "thing",
    "tags": [
@@ -540,16 +500,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "3b256157-a37a-4fac-9fc7-41f7aa20659b",
    "priority": 2
-  },
-  {
-   "subject": "denaturalization",
-   "subject_type": "thing",
-   "tags": [
-    "denaturalization"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "94c7b504-0ce1-45ee-88dd-11ee0aa2223a",
-   "priority": 3
   },
   {
    "subject": "vinod khosla",
@@ -1472,16 +1422,6 @@
    "priority": 3
   },
   {
-   "subject": "indiaspora",
-   "subject_type": "thing",
-   "tags": [
-    "indiaspora"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "77daa187-59c1-4101-9301-7c29a7aab24f",
-   "priority": 2
-  },
-  {
    "subject": "fortune 500",
    "subject_type": "thing",
    "tags": [
@@ -1496,16 +1436,6 @@
    "subject_type": "thing",
    "tags": [
     "air new zealand"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "51903924-0ac4-4280-9c55-fb3be50dbd44",
-   "priority": 2
-  },
-  {
-   "subject": "new zealand",
-   "subject_type": "thing",
-   "tags": [
-    "new zealand"
    ],
    "first_seen": "2026-06-23T10:29:22Z",
    "article_id": "51903924-0ac4-4280-9c55-fb3be50dbd44",
@@ -1902,16 +1832,6 @@
    "priority": 2
   },
   {
-   "subject": "amazon",
-   "subject_type": "thing",
-   "tags": [
-    "amazon"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "5e2238e4-e719-4f18-8e9f-dd4c0b2c57ac",
-   "priority": 2
-  },
-  {
    "subject": "aws",
    "subject_type": "thing",
    "tags": [
@@ -1992,16 +1912,6 @@
    "priority": 2
   },
   {
-   "subject": "physicians",
-   "subject_type": "thing",
-   "tags": [
-    "physicians"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "db04bb27-e3fa-4bab-ac51-6f4914bcc722",
-   "priority": 2
-  },
-  {
    "subject": "aapi",
    "subject_type": "thing",
    "tags": [
@@ -2079,16 +1989,6 @@
    ],
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "833c92a7-aeec-4b25-8cad-0d4a956c6da2",
-   "priority": 2
-  },
-  {
-   "subject": "gopio",
-   "subject_type": "thing",
-   "tags": [
-    "gopio"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "2a90a9ff-a603-433c-ad7a-cfbca37f2078",
    "priority": 2
   },
   {
@@ -2232,16 +2132,6 @@
    "priority": 2
   },
   {
-   "subject": "ransomware",
-   "subject_type": "thing",
-   "tags": [
-    "ransomware"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "c8a7a6ee-5442-4e06-8bb0-fb146a5fb21e",
-   "priority": 3
-  },
-  {
    "subject": "assam",
    "subject_type": "thing",
    "tags": [
@@ -2299,16 +2189,6 @@
    ],
    "first_seen": "2026-06-26T10:29:23Z",
    "article_id": "4a9ca817-c65b-4c93-b54b-12c27abd583e",
-   "priority": 2
-  },
-  {
-   "subject": "indonesia",
-   "subject_type": "thing",
-   "tags": [
-    "indonesia"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "341a6071-c8a0-4c58-b7f8-5a744bf97053",
    "priority": 2
   },
   {
@@ -2530,16 +2410,6 @@
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "6714a29f-e33c-4be3-9715-8a0487438fb5",
    "priority": 2
-  },
-  {
-   "subject": "china",
-   "subject_type": "thing",
-   "tags": [
-    "china"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "6714a29f-e33c-4be3-9715-8a0487438fb5",
-   "priority": 5
   },
   {
    "subject": "memory chip",
@@ -2832,16 +2702,6 @@
    "priority": 2
   },
   {
-   "subject": "data centers",
-   "subject_type": "thing",
-   "tags": [
-    "data centers"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "6ea6b94e-22a9-435d-9db2-b1b35e350a74",
-   "priority": 2
-  },
-  {
    "subject": "deepmind",
    "subject_type": "thing",
    "tags": [
@@ -2956,16 +2816,6 @@
    "subject_type": "thing",
    "tags": [
     "air suvidha"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "941ce545-94c1-4ebc-a50a-53d7d79060b1",
-   "priority": 3
-  },
-  {
-   "subject": "health",
-   "subject_type": "thing",
-   "tags": [
-    "health"
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "941ce545-94c1-4ebc-a50a-53d7d79060b1",
@@ -3192,16 +3042,6 @@
    "priority": 3
   },
   {
-   "subject": "ICE",
-   "subject_type": "thing",
-   "tags": [
-    "ice"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "4e2985ce-1b58-4a4b-b7f9-6e63fcb07e0f",
-   "priority": 2
-  },
-  {
    "subject": "Indian nationals",
    "subject_type": "thing",
    "tags": [
@@ -3209,16 +3049,6 @@
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "4e2985ce-1b58-4a4b-b7f9-6e63fcb07e0f",
-   "priority": 2
-  },
-  {
-   "subject": "Indian doctors",
-   "subject_type": "thing",
-   "tags": [
-    "indian doctors"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "37ff19af-5892-49a7-af1b-132a7ab6504a",
    "priority": 2
   },
   {
@@ -3889,7 +3719,7 @@
    ],
    "first_seen": "2026-06-29T10:29:23Z",
    "article_id": "cc999a27-003e-4fb6-b047-94b8fd92823a",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "sarvam ai",
@@ -4250,16 +4080,6 @@
    "first_seen": "2026-07-01T10:29:26Z",
    "article_id": "fcfbfe44-7918-40da-9ec6-69ba76576537",
    "priority": 2
-  },
-  {
-   "subject": "social media",
-   "subject_type": "thing",
-   "tags": [
-    "social media"
-   ],
-   "first_seen": "2026-07-01T10:29:26Z",
-   "article_id": "be11e4f2-41e2-4704-9bc9-128fb47c9cc6",
-   "priority": 3
   },
   {
    "subject": "linkedin",
@@ -4692,16 +4512,6 @@
    "priority": 2
   },
   {
-   "subject": "tata communications",
-   "subject_type": "thing",
-   "tags": [
-    "tata communications"
-   ],
-   "first_seen": "2026-07-01T10:29:26Z",
-   "article_id": "a87c6a7a-67d8-4ba0-a84c-3e8cbdd82f3b",
-   "priority": 3
-  },
-  {
    "subject": "tata group",
    "subject_type": "thing",
    "tags": [
@@ -4779,7 +4589,7 @@
    ],
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "05a92b3e-847d-4cc6-bbac-70f6dfba92d2",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "cashfree",
@@ -4889,7 +4699,7 @@
    ],
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "fe7ee192-9a4b-4772-8e51-27ce274ed5e0",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "visa crackdown",
@@ -5199,7 +5009,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "e7b7c692-d1b3-4ed5-9308-9ab35503a6a6",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "due process",
@@ -5219,7 +5029,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "fdaa1f25-a14a-434b-a749-c26942e4a433",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "nonfarm payrolls",
@@ -5339,7 +5149,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "04fe7f14-01a5-4daf-bed5-71b7fa6145da",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "bollywood",
@@ -5489,7 +5299,7 @@
    ],
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "rejection rate",
@@ -5676,16 +5486,6 @@
    "subject_type": "thing",
    "tags": [
     "july 4"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
-   "priority": 3
-  },
-  {
-   "subject": "america 250",
-   "subject_type": "thing",
-   "tags": [
-    "america 250"
    ],
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
@@ -5992,16 +5792,6 @@
    "priority": 2
   },
   {
-   "subject": "per country cap",
-   "subject_type": "thing",
-   "tags": [
-    "per country cap"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
-   "priority": 2
-  },
-  {
    "subject": "eb1",
    "subject_type": "thing",
    "tags": [
@@ -6020,7 +5810,287 @@
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
    "priority": 2
+  },
+  {
+   "subject": "yotta",
+   "subject_type": "thing",
+   "tags": [
+    "yotta"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "4ff0f787-c328-429e-8a3b-da2ad7a8702d",
+   "priority": 3
+  },
+  {
+   "subject": "revenue sharing",
+   "subject_type": "thing",
+   "tags": [
+    "revenue sharing"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "4ff0f787-c328-429e-8a3b-da2ad7a8702d",
+   "priority": 3
+  },
+  {
+   "subject": "indian americans",
+   "subject_type": "thing",
+   "tags": [
+    "indian americans"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "0f85c0fd-2256-40a2-bf5b-75b9976fa546",
+   "priority": 3
+  },
+  {
+   "subject": "nurses",
+   "subject_type": "thing",
+   "tags": [
+    "nurses"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "069ee223-c7bb-4e67-ab92-283a628d7e87",
+   "priority": 3
+  },
+  {
+   "subject": "recapture",
+   "subject_type": "thing",
+   "tags": [
+    "recapture"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "069ee223-c7bb-4e67-ab92-283a628d7e87",
+   "priority": 3
+  },
+  {
+   "subject": "south asian health",
+   "subject_type": "thing",
+   "tags": [
+    "south asian health"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "6715bf92-c61a-4a44-8984-09e752403cfe",
+   "priority": 3
+  },
+  {
+   "subject": "doordarshan",
+   "subject_type": "thing",
+   "tags": [
+    "doordarshan"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
+   "priority": 3
+  },
+  {
+   "subject": "indian television",
+   "subject_type": "thing",
+   "tags": [
+    "indian television"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
+   "priority": 3
+  },
+  {
+   "subject": "cultural preservation",
+   "subject_type": "thing",
+   "tags": [
+    "cultural preservation"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
+   "priority": 3
+  },
+  {
+   "subject": "nri investment",
+   "subject_type": "thing",
+   "tags": [
+    "nri investment"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "2030e478-6729-4adf-aa8e-7d7afa543db5",
+   "priority": 3
+  },
+  {
+   "subject": "climate",
+   "subject_type": "thing",
+   "tags": [
+    "climate"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
+   "priority": 3
+  },
+  {
+   "subject": "sustainability",
+   "subject_type": "thing",
+   "tags": [
+    "sustainability"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
+   "priority": 3
+  },
+  {
+   "subject": "e verify",
+   "subject_type": "thing",
+   "tags": [
+    "e verify"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
+   "priority": 3
+  },
+  {
+   "subject": "indiana",
+   "subject_type": "thing",
+   "tags": [
+    "indiana"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
+   "priority": 3
+  },
+  {
+   "subject": "state enforcement",
+   "subject_type": "thing",
+   "tags": [
+    "state enforcement"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
+   "priority": 3
+  },
+  {
+   "subject": "business compliance",
+   "subject_type": "thing",
+   "tags": [
+    "business compliance"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
+   "priority": 3
+  },
+  {
+   "subject": "trekking",
+   "subject_type": "thing",
+   "tags": [
+    "trekking"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
+   "priority": 3
+  },
+  {
+   "subject": "uttarakhand",
+   "subject_type": "thing",
+   "tags": [
+    "uttarakhand"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
+   "priority": 3
+  },
+  {
+   "subject": "valley of flowers",
+   "subject_type": "thing",
+   "tags": [
+    "valley of flowers"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
+   "priority": 3
+  },
+  {
+   "subject": "scandinavia",
+   "subject_type": "thing",
+   "tags": [
+    "scandinavia"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "7b8c515e-b7b6-4fbe-968b-80317018f55c",
+   "priority": 3
+  },
+  {
+   "subject": "heatwave",
+   "subject_type": "thing",
+   "tags": [
+    "heatwave"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "7b8c515e-b7b6-4fbe-968b-80317018f55c",
+   "priority": 3
+  },
+  {
+   "subject": "bill c12",
+   "subject_type": "thing",
+   "tags": [
+    "bill c12"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "9ccdde07-426e-4e0f-a0c0-e11b04d513be",
+   "priority": 3
+  },
+  {
+   "subject": "study permit",
+   "subject_type": "thing",
+   "tags": [
+    "study permit"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "9ccdde07-426e-4e0f-a0c0-e11b04d513be",
+   "priority": 3
+  },
+  {
+   "subject": "india japan",
+   "subject_type": "thing",
+   "tags": [
+    "india japan"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "c11062dc-2bc8-438a-9082-44fbe97b554f",
+   "priority": 3
+  },
+  {
+   "subject": "india data centers",
+   "subject_type": "thing",
+   "tags": [
+    "india data centers"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "7fb3d430-2104-48c1-a5e2-f0523e386b4c",
+   "priority": 3
+  },
+  {
+   "subject": "july 4th",
+   "subject_type": "thing",
+   "tags": [
+    "july 4th"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "f4be962e-386e-4442-98fe-7aa3c638710a",
+   "priority": 3
+  },
+  {
+   "subject": "indo pacific",
+   "subject_type": "thing",
+   "tags": [
+    "indo pacific"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "82d56a33-6a04-49ea-ac4b-1af0040913c3",
+   "priority": 3
+  },
+  {
+   "subject": "anti indian sentiment",
+   "subject_type": "thing",
+   "tags": [
+    "anti indian sentiment"
+   ],
+   "first_seen": "2026-07-05T10:29:26Z",
+   "article_id": "82d56a33-6a04-49ea-ac4b-1af0040913c3",
+   "priority": 3
   }
  ],
- "_updated": "2026-07-04T10:29:23Z"
+ "_updated": "2026-07-05T10:44:58Z"
 }
