@@ -681,7 +681,7 @@ def build_music_only_reel(scenes, music_url, build_dir):
         text_clips.append({
             "asset": {"type": "html", "html": html, "width": 580, "height": 450},
             "start": round(start, 2), "length": scene_dur,
-            "fit": "none", "position": "bottom", "offset": {"y": 0.22},
+            "fit": "none", "position": "bottom", "offset": {"y": 0.28},
             "transition": {"in": "fade"}
         })
     
@@ -768,8 +768,8 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
             text = " ".join(pill_words)
             html = (
                 '<div style="'
-                "font-family:'Inter',sans-serif;font-size:50px;font-weight:800;"
-                'color:#FFFFFF;text-align:center;white-space:nowrap;'
+                "font-family:'Inter',sans-serif;font-size:40px;font-weight:800;"
+                'color:#FFFFFF;text-align:center;overflow:hidden;text-overflow:ellipsis;'
                 'text-shadow:0 0 8px rgba(0,0,0,0.95),0 0 20px rgba(0,0,0,0.8),'
                 '2px 2px 4px rgba(0,0,0,0.9),-2px -2px 4px rgba(0,0,0,0.9),'
                 '0 3px 6px rgba(0,0,0,0.7);'
@@ -779,7 +779,7 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
                 "asset": {"type": "html", "html": html, "width": 580, "height": 120},
                 "start": round(pill_start, 2),
                 "length": round(max(pill_end - pill_start, 0.3), 2),
-                "fit": "none", "position": "bottom", "offset": {"y": 0.20}
+                "fit": "none", "position": "bottom", "offset": {"y": 0.27}
             })
             pill_words = []
     
@@ -799,7 +799,7 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
         text_clips.append({
             "asset": {"type": "html", "html": html, "width": 580, "height": 80},
             "start": round(s, 2), "length": round(e - s, 2),
-            "fit": "none", "position": "bottom", "offset": {"y": 0.26}
+            "fit": "none", "position": "bottom", "offset": {"y": 0.31}
         })
     
     # ── SCENE IMAGES + ENDCARD ──

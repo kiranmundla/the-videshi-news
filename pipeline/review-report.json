@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-05T18:15:36.825765+00:00",
+  "timestamp": "2026-07-05T20:15:29.118795+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "09a04196-5d77-4a1c-883e-bb462a8169ce",
-      "headline": "Your Mother's Haldi Doodh Is Now a $7 Turmeric Latte",
-      "slug": "your-mothers-haldi-doodh-is-now-a-7-turmeric-latte",
+      "id": "39a8b3b2-ce84-42ef-b7db-93875492e25c",
+      "headline": "Pay $750 and Skip the Line. The State Department Is Selling Faster Visa Appointments",
+      "slug": "state-department-750-expedited-visa-appointment-indian-families-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Fresh turmeric plant",
-          "reason": "The photo shows turmeric, which is relevant to the turmeric latte story."
+          "what_photo_shows": "open passport with visa stamps",
+          "reason": "The photo of a passport with visa stamps is relevant to a story about visa appointments."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's topic about turmeric lattes or haldi doodh."
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of visa appointments or the State Department."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the trend of turmeric lattes to the experiences and sentiments of the NRI community."
+          "note": "The article effectively discusses the impact of the new visa appointment system on Indian families and the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that depicts a turmeric latte or haldi doodh to better match the article's content.",
-          "Consider adding more personal anecdotes or quotes from NRIs to enhance the connection to the diaspora experience."
+          "Consider using an image that directly relates to visa appointments or the U.S. consulate experience.",
+          "Add a section discussing potential reactions from the Indian diaspora regarding the new fee structure."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b72b8ba3-236f-458d-ac2e-95ad6c3b07c6",
-      "headline": "The Chipotle of Indian Food Is No Longer a Punchline",
-      "slug": "the-chipotle-of-indian-food-is-no-longer-a-punchline",
+      "id": "470bf798-b971-4009-bd53-0106577da1d1",
+      "headline": "Your Green Card No Longer Guarantees Re-Entry. The Supreme Court Made Sure of That",
+      "slug": "scotus-blanche-lau-green-card-reentry-risk-indian-americans-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "dbafcf6c-1353-49e3-bf1d-5afd9788a03f",
+            "headline": "Your American-Born Child Is Still American. The Supreme Cour"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian food served on a banana leaf",
-          "reason": "The photo shows Indian food, which is relevant to the story about Indian fast-casual dining."
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the growth of Indian cuisine in America to the experiences and sentiments of the Indian diaspora, highlighting both validation and concerns about cultural authenticity."
+          "note": "The article effectively highlights the implications of the Supreme Court ruling specifically for Indian Americans, connecting it to their frequent travel to India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or anecdotes from diaspora members to enhance the personal connection.",
-          "Add more statistics or data points to strengthen the argument about the growth of Indian cuisine."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2b92f50c-f693-4adc-8a68-bc9ce58b7536",
-      "headline": "From Michelin Stars to Grocery Aisles: Gymkhana Brings Premium Indian Sauces to America",
-      "slug": "from-michelin-stars-to-grocery-aisles-gymkhana-brings-premium-indian-sauces-to-a",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian curry dish with spices",
-          "reason": "The photo shows Indian cuisine, relevant to the story about Indian sauces."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a dish (Brinjal Bhaji) that is not directly related to the sauces being discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the product launch to the experiences and expectations of the NRI community, highlighting a shift towards premium Indian food options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the Gymkhana sauces or a related dish to enhance relevance.",
-          "Add a quote or testimonial from an NRI consumer to strengthen the diaspora connection."
+          "Consider adding quotes from immigration attorneys or affected individuals to provide personal perspectives.",
+          "Include more statistics or data on the number of Indian Americans affected by this ruling to strengthen the argument."
         ],
         "verdict": "pass"
       },
