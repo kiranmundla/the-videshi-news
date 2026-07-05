@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-05T15:15:30.425524+00:00",
+  "timestamp": "2026-07-05T16:15:24.620970+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fa3d0bae-be75-400c-a3a5-54f660aaf532",
-      "headline": "Ounahi Scores Twice. Morocco End Canada's World Cup on the Fourth of July.",
-      "slug": "morocco-3-0-canada-ounahi-brace-world-cup-round-of-16-houston-quarterfinals-nri-2026",
+      "id": "b7eec4a6-4542-475a-9d7b-cd1911be79d8",
+      "headline": "India's Biggest Healthcare IPO Is Coming \u2014 Manipal Health Just Got SEBI's Green Light for a $1.2 Billion Listing",
+      "slug": "manipal-health-ipo-sebi-approval-temasek-india-healthcare-listing-july-nri-investor-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Azzedine Ounahi in Morocco jersey",
-          "reason": "The photo shows Azzedine Ounahi, relevant to the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Shivam Hospital building",
+          "reason": "The photo shows a different hospital name, not Manipal Health."
         },
         "inline_image_mismatches": []
       },
@@ -30,33 +30,35 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup performance of Canada to the Indian diaspora in Canada, highlighting their pride and engagement with the event."
+          "note": "The article effectively connects the IPO to NRI investors, highlighting the relevance of healthcare investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from NRI fans to enhance the diaspora angle.",
-          "Include more context about the significance of the match for Canadian soccer history."
+          "Include a relevant hero image to enhance visual appeal.",
+          "Provide a more detailed analysis of how the IPO might specifically impact NRI investors."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Shivam Hospital building)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b85f4e11-5860-4a19-b006-aede2cff1ca8",
-      "headline": "Bethell's Unbeaten 76 Sinks India at Old Trafford. Bishnoi's 29-Run Over Hands England a 1-0 Series Lead.",
-      "slug": "bethell-76-england-beat-india-2nd-t20i-old-trafford-bishnoi-29-run-over-series-1-0-nri-2026",
+      "id": "39392ca7-25c7-4b36-8ca5-d2ab89f77681",
+      "headline": "An Anti-Inflammatory Diet Can Cut Dementia Risk by Nearly a Third \u2014 Even After Alzheimer's Has Begun in Your Brain",
+      "slug": "anti-inflammatory-diet-dementia-risk-jama-study-alzheimer-biomarkers-south-asian-turmeric-spices-20260705",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricket ground with scoreboard",
-          "reason": "The photo shows a cricket ground, relevant to the cricket match story."
+          "what_photo_shows": "Turmeric powder with a wooden spoon",
+          "reason": "Turmeric is a spice linked to anti-inflammatory diets, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the match outcome to the Indian diaspora, highlighting the emotional impact on fans in various countries."
+          "note": "The article effectively connects the findings of the study to traditional South Asian dietary practices, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the match for the series."
+          "Consider adding more specific examples of anti-inflammatory meals that are popular in South Asian cuisine.",
+          "Include quotes from experts or researchers to enhance credibility and engagement."
         ],
         "verdict": "pass"
       },
