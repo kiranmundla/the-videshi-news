@@ -50,12 +50,19 @@ def update_standings(data):
 
     # Tally from completed matches
     for m in data["matches"]:
-        if m["status"] != "FT" or not m.get("score"):
+        status = m.get("status", "")
+        if not status.startswith("FT") or not m.get("score"):
             continue
-        parts = m["score"].split("-")
+        # Parse score — strip trailing "(AET)", "(pen.)", etc.
+        import re
+        score_clean = re.split(r'\s*\(', m["score"])[0].strip()
+        parts = score_clean.split("-")
         if len(parts) != 2:
             continue
-        hg, ag = int(parts[0].strip()), int(parts[1].strip())
+        try:
+            hg, ag = int(parts[0].strip()), int(parts[1].strip())
+        except ValueError:
+            continue
         ht = code_to_team.get(m["home_code"])
         at = code_to_team.get(m["away_code"])
         if not ht or not at:
@@ -78,14 +85,14 @@ def update_standings(data):
         data["groups"][g].sort(key=lambda t: (t["pts"], t["gf"] - t["ga"], t["gf"]), reverse=True)
 
     # Update stage description
-    total_played = sum(1 for m in data["matches"] if m["status"] == "FT")
+    total_played = sum(1 for m in data["matches"] if m.get("status", "").startswith("FT"))
     total_group = len([m for m in data["matches"] if m.get("group")])
     if total_played == 0:
         data["stage"] = "Group Stage — Kicks off June 11"
     elif total_played < total_group:
         matchdays = set()
         for m in data["matches"]:
-            if m["status"] == "FT":
+            if m.get("status", "").startswith("FT"):
                 matchdays.add(m["date"])
         data["stage"] = f"Group Stage — {total_played} of {total_group} matches played"
     else:
