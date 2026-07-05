@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-05T06:00:11Z",
+  "last_updated": "2026-07-05T07:59:11Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -7322,6 +7322,20 @@
       "account": "@fifaworldcup",
       "caption": "",
       "date": "2026-07-04"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaZFaf7HM7R/",
+      "account": "@fifaworldcup",
+      "caption": "The first day of Round of 16 action draws to a close. 🎬 #FIFAWorldCup",
+      "date": "2026-07-04"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaZy70fClbN",
+      "account": "@fifaworldcup",
+      "caption": "July 4 Matchday Recap",
+      "date": "2026-07-05"
     }
   ],
   "tv": {
