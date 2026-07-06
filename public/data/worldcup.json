@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-06T04:57:00Z",
-  "stage": "Round of 16",
+  "last_updated": "2026-07-06T04:02:02Z",
+  "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -22,12 +22,12 @@
         "code": "MEX",
         "flag": "🇲🇽",
         "rank": 14,
-        "p": 4,
+        "p": 5,
         "w": 4,
         "d": 0,
-        "l": 0,
-        "gf": 8,
-        "ga": 0,
+        "l": 1,
+        "gf": 10,
+        "ga": 3,
         "pts": 12
       },
       {
@@ -89,12 +89,12 @@
         "code": "CAN",
         "flag": "🇨🇦",
         "rank": 30,
-        "p": 4,
+        "p": 5,
         "w": 2,
         "d": 1,
-        "l": 1,
+        "l": 2,
         "gf": 9,
-        "ga": 3,
+        "ga": 6,
         "pts": 7
       },
       {
@@ -126,30 +126,30 @@
     ],
     "C": [
       {
-        "name": "Brazil",
-        "code": "BRA",
-        "flag": "🇧🇷",
-        "rank": 6,
-        "p": 4,
-        "w": 3,
-        "d": 1,
-        "l": 0,
-        "gf": 9,
-        "ga": 2,
-        "pts": 10
-      },
-      {
         "name": "Morocco",
         "code": "MAR",
         "flag": "🇲🇦",
         "rank": 7,
-        "p": 4,
-        "w": 2,
+        "p": 5,
+        "w": 3,
         "d": 2,
         "l": 0,
-        "gf": 7,
+        "gf": 10,
         "ga": 4,
-        "pts": 8
+        "pts": 11
+      },
+      {
+        "name": "Brazil",
+        "code": "BRA",
+        "flag": "🇧🇷",
+        "rank": 6,
+        "p": 5,
+        "w": 3,
+        "d": 1,
+        "l": 1,
+        "gf": 10,
+        "ga": 4,
+        "pts": 10
       },
       {
         "name": "Scotland",
@@ -210,12 +210,12 @@
         "code": "PAR",
         "flag": "🇵🇾",
         "rank": 40,
-        "p": 4,
+        "p": 5,
         "w": 1,
         "d": 2,
-        "l": 1,
+        "l": 2,
         "gf": 3,
-        "ga": 5,
+        "ga": 6,
         "pts": 5
       },
       {
@@ -454,26 +454,26 @@
         "code": "FRA",
         "flag": "🇫🇷",
         "rank": 3,
-        "p": 4,
-        "w": 4,
+        "p": 5,
+        "w": 5,
         "d": 0,
         "l": 0,
-        "gf": 13,
+        "gf": 14,
         "ga": 2,
-        "pts": 12
+        "pts": 15
       },
       {
         "name": "Norway",
         "code": "NOR",
         "flag": "🇳🇴",
         "rank": 31,
-        "p": 4,
-        "w": 3,
+        "p": 5,
+        "w": 4,
         "d": 0,
         "l": 1,
-        "gf": 10,
-        "ga": 8,
-        "pts": 9
+        "gf": 12,
+        "ga": 9,
+        "pts": 12
       },
       {
         "name": "Senegal",
@@ -616,13 +616,13 @@
         "code": "ENG",
         "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
-        "p": 4,
-        "w": 3,
+        "p": 5,
+        "w": 4,
         "d": 1,
         "l": 0,
-        "gf": 8,
-        "ga": 3,
-        "pts": 10
+        "gf": 11,
+        "ga": 5,
+        "pts": 13
       },
       {
         "name": "Croatia",
@@ -7791,6 +7791,20 @@
       "url": "https://www.instagram.com/p/DaYmgLoHNoe/",
       "account": "@fifaworldcup",
       "date": "2026-07-04"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0BGzVkpwffhpyvMPcmMTsKCj3B6e7ULQvru3WYtDUifXDsTJbBxNTCr1QmDo9vmssl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05",
+      "caption": "England advance to the quarterfinals! 🏴󠁧󠁢󠁥󠁮󠁧󠁿 #FIFAWorldCup"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02BVzCqirgiF892DcqmSEUAXHqeDVhGDGBzXhkHh7NZFCHv3uB6qnA6dSdn9trguFbl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05",
+      "caption": "Round of 16 results: Norway 2-1 Brazil, England 3-2 Mexico #FIFAWorldCup"
     }
   ],
   "tv": {
