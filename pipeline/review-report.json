@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-05T21:45:25.265562+00:00",
+  "timestamp": "2026-07-06T00:15:20.251966+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,61 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e541cf0a-b2df-46f4-86a2-e9ab4e947942",
-      "headline": "India's First Private Orbital Rocket Is Ready to Fly. The Launch Window Opens in a Week.",
-      "slug": "skyroot-vikram-1-india-first-private-orbital-rocket-launch-20260705",
+      "id": "cf37aeb3-90f1-4ba4-adb6-6e3f9318cc80",
+      "headline": "Melbourne Spent $1.2 Million to Build Australia's First 'Little India.' Not Everyone Is Celebrating.",
+      "slug": "melbourne-little-india-docklands-cultural-precinct-diaspora-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "UNVERIFIED",
-          "what_photo_shows": "(image unreadable)",
-          "reason": "could not download image: not-an-image"
+          "verdict": "MATCH",
+          "what_photo_shows": "Melbourne's Docklands waterfront",
+          "reason": "The photo shows the Docklands, relevant to the Little India precinct story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of 'Little India' or the Indian community in Melbourne."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the Indian diaspora in Melbourne and their cultural significance, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the Indian community or cultural events in Melbourne to enhance relevance.",
+          "Include quotes or perspectives from members of the Indian diaspora to provide a more personal touch to the narrative."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cffa6f9c-d76e-41d1-a3ac-8e70af9eec69",
+      "headline": "Twenty-Six Thousand Indian Australians Signed Up for a Stadium Reception. Then Came the Death Threat.",
+      "slug": "melbourne-meets-modi-marvel-stadium-death-threat-indian-diaspora-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Marvel Stadium interior",
+          "reason": "The photo shows Marvel Stadium, which is relevant to the event location."
         },
         "inline_image_mismatches": []
       },
@@ -36,22 +79,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the developments in India's private space sector to the diaspora, particularly Indian aerospace engineers abroad."
+          "note": "The article effectively connects the event to the Indian diaspora in Australia, highlighting their sentiments and concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from diaspora engineers to enhance the personal connection.",
-          "Include more details on how the launch will impact the global space market to provide broader context."
+          "Include more quotes or perspectives from attendees to enhance the community angle.",
+          "Provide additional context on the significance of Modi's visit to the Indian diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: image unverified"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_unverified": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
