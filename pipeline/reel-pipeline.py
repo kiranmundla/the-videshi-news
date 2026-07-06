@@ -922,24 +922,28 @@ def build_music_only_reel(scenes, music_url, build_dir):
     print(f"{'='*60}")
     
     scene_dur = 5.0  # seconds per scene (enough to read baked-in text)
+    last_scene_buffer = 1.0  # extra time on last scene before endcard
     total_scenes_dur = len(scenes) * scene_dur
     endcard_dur = 3.5
-    total_dur = total_scenes_dur + endcard_dur
+    total_dur = total_scenes_dur + last_scene_buffer + endcard_dur
     
     # ── SCENE IMAGES (no Ken Burns — images have baked-in text) ──
     scene_clips = []
     for i, scene in enumerate(scenes):
         start = i * scene_dur
+        # Last scene gets extra buffer so it doesn't fade out while viewer is still reading
+        dur = scene_dur + (last_scene_buffer if i == len(scenes) - 1 else 0)
         scene_clips.append({
             "asset": {"type": "image", "src": scene["image_url"]},
-            "start": round(start, 2), "length": scene_dur,
+            "start": round(start, 2), "length": round(dur, 2),
             "fit": "cover", "position": "center",
             "transition": {"in": "fade", "out": "fade"} if i > 0 else {"out": "fade"}
         })
     # Endcard
+    endcard_start = total_scenes_dur + last_scene_buffer
     scene_clips.append({
         "asset": {"type": "image", "src": ENDCARD_URL},
-        "start": round(total_scenes_dur, 2), "length": endcard_dur,
+        "start": round(endcard_start, 2), "length": endcard_dur,
         "fit": "cover", "position": "center", "transition": {"in": "fade"}
     })
     
@@ -949,7 +953,7 @@ def build_music_only_reel(scenes, music_url, build_dir):
     # ── LOGO (native image — transparent PNG, no HTML wrapper) ──
     logo_clip = {
         "asset": {"type": "image", "src": LOGO_URL},
-        "start": 0, "length": round(total_scenes_dur, 2),
+        "start": 0, "length": round(endcard_start, 2),
         "fit": "none", "position": "topLeft",
         "offset": {"x": 0.02, "y": 0.02},
         "scale": 0.06, "opacity": 0.85
@@ -1013,8 +1017,21 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     print(f"PHASE 7b: Building VOICEOVER reel (Shotstack)...")
     print(f"{'='*60}")
     
+    VOICE_END_BUFFER = 1.5  # seconds of last scene visible AFTER voice finishes
+    
     boundaries = compute_scene_boundaries(scenes, words, voice_duration)
     endcard_dur = max(endcard_cta_dur + 1.5, 4.0) if endcard_cta_url else 4.0
+    
+    # Extend last scene to cover voice + breathing room before endcard.
+    # Without this, the last scene ends at the last Whisper word's timestamp,
+    # which is always BEFORE voice_duration. The fade-out transition (~1s)
+    # starts even earlier, making the image disappear while the voice is
+    # still talking. The buffer keeps the last scene visible for 1.5s after
+    # the voice finishes, giving a natural pause before the endcard.
+    if boundaries:
+        boundaries[-1] = (boundaries[-1][0], voice_duration + VOICE_END_BUFFER)
+    
+    endcard_start = voice_duration + VOICE_END_BUFFER
     
     # ── NO CAPTIONS — images have baked-in text, voice carries narration ──
     # Platform auto-captions (YouTube, IG) handle accessibility.
@@ -1034,15 +1051,15 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
         })
     scene_clips.append({
         "asset": {"type": "image", "src": ENDCARD_URL},
-        "start": round(voice_duration, 2), "length": round(endcard_dur, 2),
+        "start": round(endcard_start, 2), "length": round(endcard_dur, 2),
         "fit": "cover", "position": "center", "transition": {"in": "fade"}
     })
     
     # ── LOGO (native image — transparent PNG, no HTML wrapper) ──
-    # Stops at voice_duration so it doesn't appear on endcard (which has its own logo)
+    # Stops at endcard_start so it doesn't appear on endcard (which has its own logo)
     logo_clip = {
         "asset": {"type": "image", "src": LOGO_URL},
-        "start": 0, "length": round(voice_duration, 2),
+        "start": 0, "length": round(endcard_start, 2),
         "fit": "none", "position": "topLeft",
         "offset": {"x": 0.02, "y": 0.02},
         "scale": 0.06, "opacity": 0.85
@@ -1056,7 +1073,7 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     if endcard_cta_url:
         audio_clips.append({
             "asset": {"type": "audio", "src": endcard_cta_url, "volume": 1.0},
-            "start": round(voice_duration + 0.5, 2), "length": round(endcard_cta_dur, 2)
+            "start": round(endcard_start + 0.5, 2), "length": round(endcard_cta_dur, 2)
         })
     
     timeline = {
@@ -1486,7 +1503,6 @@ def process_queue():
             if music_reel_path:
                 music_reel_out = f"{output_dir}/reel-music-{slug_short}.mp4"
                 subprocess.run(["cp", music_reel_path, music_reel_out])
-                # Register in prebuilt_reels
                 _register_reel(music_reel_path, "music", article)
                 print(f"  ✅ Music-only reel: {music_reel_out}")
             
@@ -1765,18 +1781,32 @@ def main():
     
     # Phase 9: Register in prebuilt_reels + distribute
     if qa_all_passed:
-        if music_reel_path:
-            _register_reel(music_reel_path, "music-only", article)
-        if vo_reel_path:
-            _register_reel(vo_reel_path, "voiceover", article)
-        
-        # Direct YouTube upload
+        # For each variant: check existing YT upload → register (upsert) → upload if needed → save ID
         results = {}
-        if not args.skip_distribute:
-            if music_reel_path:
-                results["youtube_music"] = upload_youtube(music_reel_path, article, attribution, "music-only")
-            if vo_reel_path:
-                results["youtube_voice"] = upload_youtube(vo_reel_path, article, attribution, "voiceover")
+        for variant, reel_path_v in [("music-only", music_reel_path), ("voiceover", vo_reel_path)]:
+            if not reel_path_v:
+                continue
+            
+            # Check for existing YouTube upload BEFORE registration (registration deletes old row)
+            existing_yt = _check_yt_exists(article["id"], variant)
+            
+            # Register (upsert — deletes old row, inserts fresh)
+            _register_reel(reel_path_v, variant, article)
+            
+            if args.skip_distribute:
+                continue
+            
+            if existing_yt:
+                # Preserve existing YouTube video ID on the new row
+                _save_yt_video_id(article["id"], variant, existing_yt)
+                print(f"  ⏭️  {variant} already on YouTube: {existing_yt}")
+                results[f"youtube_{variant}"] = existing_yt
+            else:
+                # Upload new
+                yt_url = upload_youtube(reel_path_v, article, attribution, variant)
+                if yt_url:
+                    _save_yt_video_id(article["id"], variant, yt_url)
+                    results[f"youtube_{variant}"] = yt_url
     else:
         results = {}
     
@@ -1797,8 +1827,40 @@ def main():
     print()
 
 
+def _check_yt_exists(article_id, variant_label):
+    """Check if this article+variant already has a YouTube upload. Returns URL or None."""
+    try:
+        r = requests.get(
+            f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article_id}"
+            f"&video_path=like.*reel-{variant_label}.mp4&yt_video_id=not.is.null"
+            f"&select=yt_video_id&limit=1",
+            headers=SB_HEADERS, timeout=10
+        )
+        if r.status_code == 200:
+            rows = r.json()
+            if rows and rows[0].get("yt_video_id"):
+                return f"https://youtube.com/shorts/{rows[0]['yt_video_id']}"
+    except Exception:
+        pass
+    return None
+
+
+def _save_yt_video_id(article_id, variant_label, yt_url):
+    """Save YouTube video ID back to the prebuilt_reels row."""
+    vid = yt_url.rstrip("/").split("/")[-1].split("?")[0]
+    try:
+        requests.patch(
+            f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article_id}"
+            f"&video_path=like.*reel-{variant_label}.mp4",
+            headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+            json={"yt_video_id": vid}, timeout=10
+        )
+    except Exception as e:
+        print(f"  ⚠️ Failed to save yt_video_id: {e}")
+
+
 def _register_reel(reel_path, variant_label, article):
-    """Register a reel in prebuilt_reels for the distributor."""
+    """Register a reel in prebuilt_reels (upsert: replaces existing row for same article+variant)."""
     # Upload reel to Supabase storage
     reel_storage = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
     with open(reel_path, "rb") as f:
@@ -1811,6 +1873,15 @@ def _register_reel(reel_path, variant_label, article):
     
     article_url = f"https://www.thevideshi.com/articles/{article.get('slug', '')}"
     caption = f"🇮🇳 {article['headline']}\n\n📰 {article_url}\n\n#IndianDiaspora #NRI #TheVideshi"
+    
+    # Delete existing row(s) for same article + variant to prevent duplicates.
+    # Match exact filename (reel-{label}.mp4) to avoid cross-variant deletion
+    # (e.g. "music" must not delete "music-only", "voice" must not delete "voiceover").
+    requests.delete(
+        f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article['id']}"
+        f"&video_path=like.*reel-{variant_label}.mp4",
+        headers=SB_HEADERS, timeout=15
+    )
     
     row = {
         "article_id": article["id"],
