@@ -1975,19 +1975,25 @@ def main():
     
     # Phase 9: Register in prebuilt_reels + distribute
     if qa_all_passed:
-        # For each variant: check existing YT upload → register (upsert) → upload if needed → save ID
+        # For each variant: register (upsert) + upload to YouTube (voiceover ONLY — one reel per article on YT)
         results = {}
         for variant, reel_path_v in [("music-only", music_reel_path), ("voiceover", vo_reel_path)]:
             if not reel_path_v:
                 continue
             
             # Check for existing YouTube upload BEFORE registration (registration deletes old row)
+            # Check ANY variant for this article — one article = one YouTube Short
             existing_yt = _check_yt_exists(article["id"], variant)
             
             # Register (upsert — deletes old row, inserts fresh)
             _register_reel(reel_path_v, variant, article)
             
             if args.skip_distribute:
+                continue
+            
+            # Only upload VOICEOVER to YouTube — music-only is for other platforms (IG/Threads/X)
+            if variant != "voiceover":
+                print(f"  ⏭️  {variant} registered (YouTube upload = voiceover only)")
                 continue
             
             if existing_yt:
@@ -2022,18 +2028,21 @@ def main():
 
 
 def _check_yt_exists(article_id, variant_label):
-    """Check if this article+variant already has a YouTube upload. Returns URL or None."""
+    """Check if this article already has a YouTube upload (ANY variant). One article = one YouTube Short."""
     try:
         r = requests.get(
             f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article_id}"
-            f"&video_path=like.*reel-{variant_label}.mp4&yt_video_id=not.is.null"
+            f"&yt_video_id=not.is.null&yt_video_id=neq.dedup-skip"
             f"&select=yt_video_id&limit=1",
             headers=SB_HEADERS, timeout=10
         )
         if r.status_code == 200:
             rows = r.json()
             if rows and rows[0].get("yt_video_id"):
-                return f"https://youtube.com/shorts/{rows[0]['yt_video_id']}"
+                yt_id = rows[0]["yt_video_id"]
+                if yt_id.startswith("http"):
+                    return yt_id
+                return f"https://youtube.com/shorts/{yt_id}"
     except Exception:
         pass
     return None
