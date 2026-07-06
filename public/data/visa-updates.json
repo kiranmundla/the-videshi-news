@@ -1,5 +1,14 @@
 [
   {
+    "id": "b1b2-wait-times-july-2026-surge",
+    "date": "2026-07-06",
+    "label": "Jul 6, 2026",
+    "headline": "US visa wait times hit new highs at Indian consulates \u2014 Mumbai at 10 months, Kolkata nearly doubles to 7 months",
+    "summary": "The State Department's July 2026 wait time data reveals further deterioration across all five Indian consulates. Mumbai B1/B2 waits have hit 300 days (10 months), the longest nationally. New Delhi jumped to 255 days (8.5 months), up from 7.5 months in June. Kolkata \u2014 previously the fastest option at 4 months \u2014 has surged to 210 days (7 months), nearly doubling in weeks. Hyderabad holds at 285 days (9.5 months). Chennai shows no interview availability at all, with only dropbox processing listed. Work visa (H/L/O/P/Q) waits remain 45\u2013105 days depending on the consulate, and student visa (F/M/J) waits are 45\u201360 days. The continued surge comes despite the State Department's $750 premium interview pilot launching July 1, which offers B1/B2 applicants expedited appointments within 10 business days at select posts. Participating locations have not yet been announced for India. With the USCIS signature rule also taking effect July 10 \u2014 potentially causing denials for digital-signature filings \u2014 Indian visa applicants face a convergence of new pressures heading into the second half of 2026.",
+    "severity": "high",
+    "source": "US State Department / travel.state.gov / afnovisaguide.com"
+  },
+  {
     "id": "scotus-birthright-citizenship-upheld",
     "date": "2026-07-01",
     "label": "Jul 1, 2026",
@@ -161,16 +170,6 @@
     "summary": "@USAndIndia posted that screening does not stop once a visa is issued. Holders are continuously monitored for compliance with US laws and immigration rules \u2014 visas will be revoked and holders deported if found in violation. Part of broader enforcement posture alongside expanded social media vetting.",
     "severity": "medium",
     "source": "US Embassy India (@USAndIndia)"
-  },
-  {
-    "id": "gc-return-home-walkback",
-    "date": "2026-05-30",
-    "label": "May 30, 2026",
-    "headline": "DHS walks back Green Card return-home rule \u2014 now case-by-case",
-    "summary": "After backlash to the May 23 directive, DHS clarifies most green card applicants will NOT be required to leave the US. Adjustment of status called 'extraordinary relief' but officers decide case-by-case \u2014 no blanket exit mandate.",
-    "severity": "high",
-    "source": "Dept. of Homeland Security",
-    "url": "/immigration"
   },
   {
     "id": "interview-waiver-eliminated",
