@@ -419,8 +419,20 @@ def load_manual_images(scenes, image_dir, article_id):
     print(f"{'='*60}")
     
     storage_prefix = f"reel-gen/{article_id}"
-    image_files = sorted([f for f in os.listdir(image_dir) 
-                         if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp'))])
+    # Prefer scene-N.jpg files (correctly named) over raw generate_media outputs (.webp etc)
+    import re as _re_img
+    all_imgs = [f for f in os.listdir(image_dir)
+                if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp'))]
+    # scene-0.jpg, scene-1.jpg, ... — sort by numeric index
+    scene_pattern = _re_img.compile(r'^scene-(\d+)\.(jpg|jpeg|png)$', _re_img.IGNORECASE)
+    scene_files = sorted([f for f in all_imgs if scene_pattern.match(f)],
+                         key=lambda f: int(scene_pattern.match(f).group(1)))
+    if len(scene_files) >= len(scenes):
+        image_files = scene_files
+        print(f"  Using {len(image_files)} scene-N files (ignoring {len(all_imgs) - len(scene_files)} other images)")
+    else:
+        image_files = sorted(all_imgs)
+        print(f"  ⚠️ Only {len(scene_files)} scene-N files, falling back to all {len(image_files)} images (alpha sort)")
     
     if len(image_files) < len(scenes):
         print(f"❌ Need {len(scenes)} images, found {len(image_files)}")
@@ -463,9 +475,13 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
         print("  ⚠️ No OpenAI key — skipping vision voiceover")
         return False
 
-    # Build image content blocks for GPT
-    image_files = sorted([f for f in os.listdir(image_dir)
-                          if f.lower().endswith(('.jpg', '.jpeg', '.png'))])[:len(scenes)]
+    # Build image content blocks for GPT — prefer scene-N.jpg files
+    import re as _re_vis
+    _vis_all = [f for f in os.listdir(image_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+    _vis_pat = _re_vis.compile(r'^scene-(\d+)\.(jpg|jpeg|png)$', _re_vis.IGNORECASE)
+    _vis_scene = sorted([f for f in _vis_all if _vis_pat.match(f)],
+                        key=lambda f: int(_vis_pat.match(f).group(1)))
+    image_files = (_vis_scene if len(_vis_scene) >= len(scenes) else sorted(_vis_all))[:len(scenes)]
 
     image_contents = []
     for i, fname in enumerate(image_files):
