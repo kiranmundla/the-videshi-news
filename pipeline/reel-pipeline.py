@@ -406,10 +406,13 @@ def watermark_image(img_path, logo_path=None):
     # Paste with transparency
     img.paste(logo, (padding_x, padding_y), logo)
     
-    # Save back as RGB (for JPEG)
-    out = img.convert("RGB")
-    out.save(img_path, "JPEG", quality=92)
-    return img_path
+    # Save as PNG (lossless) to preserve sharp text/edges in infographic cards
+    png_path = os.path.splitext(img_path)[0] + ".png"
+    img.save(png_path, "PNG")
+    # If original was a different format, update the path
+    if png_path != img_path and os.path.exists(img_path):
+        os.remove(img_path)
+    return png_path
 
 
 def load_manual_images(scenes, image_dir, article_id):
@@ -441,21 +444,23 @@ def load_manual_images(scenes, image_dir, article_id):
     for i, scene in enumerate(scenes):
         img_path = os.path.join(image_dir, image_files[i])
         
-        # Watermark with Videshi logo
-        watermark_image(img_path)
+        # Watermark with Videshi logo (returns PNG path for lossless quality)
+        img_path = watermark_image(img_path)
         
         with open(img_path, "rb") as f:
             img_bytes = f.read()
         
-        storage_path = f"{storage_prefix}/manual-scene-{i}.jpg"
+        ext = os.path.splitext(img_path)[1].lower()
+        content_type = "image/png" if ext == ".png" else "image/jpeg"
+        storage_path = f"{storage_prefix}/manual-scene-{i}{ext}"
         up = requests.post(
             f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
-            headers={**SB_HEADERS, "Content-Type": "image/jpeg", "x-upsert": "true"},
+            headers={**SB_HEADERS, "Content-Type": content_type, "x-upsert": "true"},
             data=img_bytes, timeout=30
         )
         
         scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
-        print(f"  ✅ Scene {i}: {image_files[i]} → watermarked + uploaded")
+        print(f"  ✅ Scene {i}: {image_files[i]} → watermarked + uploaded (PNG)")
     
     return True
 
