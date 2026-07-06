@@ -647,24 +647,151 @@ def select_music(article, build_dir):
 def compute_scene_boundaries(scenes, words, voice_duration):
     """Map scenes to time boundaries using Whisper word timestamps.
     
-    Normalizes word counting to match Whisper's tokenization:
-    - Hyphens become spaces (per-country -> per country = 2 words)
-    - Punctuation stripped (U.S. -> US = 1 word)
-    - Contractions kept as-is (What's = 1 word)
+    Uses proportional allocation: count script words per scene, then
+    allocate Whisper words proportionally. This handles number tokenization
+    differences (script "six to three" = 3 words, Whisper "6" "3" = 2 words)
+    by distributing based on proportion rather than exact count.
     """
     import re
-    boundaries = []
-    word_idx = 0
+    
+    # Count script words per scene
+    scene_word_counts = []
     for scene in scenes:
-        vo_text = scene["voiceover"].replace("-", " ")
-        vo_words = re.findall(r"[a-zA-Z0-9']+", vo_text)
+        vo_text = scene["voiceover"]
+        wc = len(vo_text.split())
+        scene_word_counts.append(wc)
+    
+    total_script_words = sum(scene_word_counts)
+    total_whisper_words = len(words)
+    
+    if total_whisper_words == 0 or total_script_words == 0:
+        # Fallback: even time splits
+        n = len(scenes)
+        return [(i * voice_duration / n, (i + 1) * voice_duration / n) for i in range(n)]
+    
+    # Allocate Whisper words proportionally to each scene
+    boundaries = []
+    whisper_idx = 0
+    for i, wc in enumerate(scene_word_counts):
+        proportion = wc / total_script_words
+        whisper_count = round(proportion * total_whisper_words)
+        # Ensure at least 1 word per scene, and don't exceed total
+        whisper_count = max(1, whisper_count)
+        if i == len(scene_word_counts) - 1:
+            # Last scene gets all remaining words
+            whisper_count = total_whisper_words - whisper_idx
         
-        start_t = words[word_idx]["start"] if word_idx < len(words) else 0
-        end_idx = min(word_idx + len(vo_words), len(words)) - 1
-        end_t = words[end_idx]["end"] if end_idx < len(words) else voice_duration
+        start_idx = whisper_idx
+        end_idx = min(whisper_idx + whisper_count - 1, total_whisper_words - 1)
+        
+        start_t = words[start_idx]["start"] if start_idx < total_whisper_words else 0
+        end_t = words[end_idx]["end"] if end_idx < total_whisper_words else voice_duration
+        
         boundaries.append((start_t, end_t))
-        word_idx = end_idx + 1
+        whisper_idx = end_idx + 1
+    
     return boundaries
+
+
+# ── QA CHECK ──────────────────────────────────────────────────────
+def qa_check_reel(reel_path, variant, voice_duration=None, num_scenes=0):
+    """Run quality checks on a rendered reel. Returns (passed, score, issues).
+    
+    Checks:
+    1. File exists and has reasonable size
+    2. Duration is within target range (20-50s)
+    3. Has video stream at correct resolution
+    4. Has audio stream
+    5. [Voice reels] No long silence gaps (>3s) via ffmpeg silencedetect
+    6. [Voice reels] Audio duration roughly matches video duration
+    """
+    issues = []
+    score = 10
+    
+    # 1. File exists and size
+    if not os.path.exists(reel_path):
+        return False, 0, ["Reel file does not exist"]
+    size_mb = os.path.getsize(reel_path) / 1024 / 1024
+    if size_mb < 0.5:
+        issues.append(f"File too small ({size_mb:.1f}MB) — likely corrupt")
+        score -= 5
+    
+    # 2-4. Probe video
+    try:
+        probe = subprocess.run(
+            ["ffprobe", "-v", "quiet", "-print_format", "json",
+             "-show_format", "-show_streams", reel_path],
+            capture_output=True, text=True, timeout=15
+        )
+        info = json.loads(probe.stdout)
+    except Exception as e:
+        return False, 0, [f"ffprobe failed: {e}"]
+    
+    duration = float(info.get("format", {}).get("duration", 0))
+    
+    # Duration range
+    if duration < 20:
+        issues.append(f"Too short ({duration:.1f}s)")
+        score -= 3
+    elif duration > 50:
+        issues.append(f"Too long ({duration:.1f}s)")
+        score -= 2
+    
+    # Video stream
+    video_streams = [s for s in info.get("streams", []) if s["codec_type"] == "video"]
+    audio_streams = [s for s in info.get("streams", []) if s["codec_type"] == "audio"]
+    
+    if not video_streams:
+        issues.append("No video stream")
+        score -= 5
+    else:
+        w = int(video_streams[0].get("width", 0))
+        h = int(video_streams[0].get("height", 0))
+        if w < 1080 or h < 1920:
+            issues.append(f"Low resolution ({w}x{h})")
+            score -= 1
+    
+    if not audio_streams:
+        issues.append("No audio stream")
+        score -= 3
+    
+    # 5-6. Voice-specific checks
+    if variant == "voice" and voice_duration and voice_duration > 0:
+        # Check audio/video duration mismatch
+        if abs(duration - voice_duration) > 10:
+            issues.append(f"Duration mismatch: video={duration:.1f}s, voice={voice_duration:.1f}s")
+            score -= 2
+        
+        # Silence detection — find gaps >3s
+        try:
+            silence_result = subprocess.run(
+                ["ffmpeg", "-i", reel_path, "-af",
+                 "silencedetect=noise=-40dB:d=3", "-f", "null", "-"],
+                capture_output=True, text=True, timeout=30
+            )
+            silence_lines = [l for l in silence_result.stderr.split("\n")
+                           if "silence_duration" in l]
+            for line in silence_lines:
+                import re
+                dur_match = re.search(r"silence_duration:\s*([\d.]+)", line)
+                if dur_match:
+                    gap_dur = float(dur_match.group(1))
+                    if gap_dur > 3:
+                        issues.append(f"Silence gap of {gap_dur:.1f}s detected in voiceover")
+                        score -= 2
+        except Exception:
+            pass  # silencedetect is best-effort
+    
+    passed = score >= 7 and not any("does not exist" in i or "No video" in i for i in issues)
+    
+    print(f"\n  🔍 QA ({variant}): score={score}/10, {'PASS' if passed else 'FAIL'}")
+    if issues:
+        for issue in issues:
+            print(f"     ⚠️  {issue}")
+    else:
+        print(f"     ✅ All checks passed")
+    
+    return passed, score, issues
 
 
 def build_music_only_reel(scenes, music_url, build_dir):
@@ -673,12 +800,12 @@ def build_music_only_reel(scenes, music_url, build_dir):
     print(f"PHASE 7a: Building MUSIC-ONLY reel (Shotstack)...")
     print(f"{'='*60}")
     
-    scene_dur = 3.5  # seconds per scene
+    scene_dur = 5.0  # seconds per scene (enough to read baked-in text)
     total_scenes_dur = len(scenes) * scene_dur
     endcard_dur = 3.5
     total_dur = total_scenes_dur + endcard_dur
     
-    # ── SCENE IMAGES with zoomIn/slideLeft alternating ──
+    # ── SCENE IMAGES (no Ken Burns — images have baked-in text) ──
     scene_clips = []
     for i, scene in enumerate(scenes):
         start = i * scene_dur
@@ -686,7 +813,6 @@ def build_music_only_reel(scenes, music_url, build_dir):
             "asset": {"type": "image", "src": scene["image_url"]},
             "start": round(start, 2), "length": scene_dur,
             "fit": "cover", "position": "center",
-            "effect": "zoomIn" if i % 2 == 0 else "slideLeft",
             "transition": {"in": "fade", "out": "fade"} if i > 0 else {"out": "fade"}
         })
     # Endcard
@@ -696,41 +822,8 @@ def build_music_only_reel(scenes, music_url, build_dir):
         "fit": "cover", "position": "center", "transition": {"in": "fade"}
     })
     
-    # ── LARGE ON-SCREEN TEXT: bold, centered, data-card style ──
+    # ── No text overlay — images already have text baked in ──
     text_clips = []
-    for i, scene in enumerate(scenes):
-        start = i * scene_dur
-        headline = scene["onscreen"]
-        # Extract any number/stat from voiceover for big display
-        vo = scene["voiceover"]
-        
-        html = (
-            '<div style="'
-            "display:flex;flex-direction:column;align-items:center;justify-content:center;"
-            "width:100%;height:100%;padding:30px 20px;box-sizing:border-box;"
-            '">'
-            # Category label
-            '<div style="'
-            "font-family:'Inter',sans-serif;font-size:22px;font-weight:800;"
-            "color:#D4AF37;text-transform:uppercase;letter-spacing:4px;"
-            "text-shadow:0 0 10px rgba(0,0,0,0.9),2px 2px 5px rgba(0,0,0,0.9);"
-            "margin-bottom:12px;"
-            f'">{headline}</div>'
-            # Voiceover as readable text
-            '<div style="'
-            "font-family:'Inter',sans-serif;font-size:34px;font-weight:900;"
-            "color:#FFFFFF;text-align:center;line-height:1.2;"
-            "text-shadow:0 0 12px rgba(0,0,0,0.95),0 0 30px rgba(0,0,0,0.8),"
-            "3px 3px 6px rgba(0,0,0,0.9),-3px -3px 6px rgba(0,0,0,0.9);"
-            f'">{vo}</div>'
-            '</div>'
-        )
-        text_clips.append({
-            "asset": {"type": "html", "html": html, "width": 580, "height": 450},
-            "start": round(start, 2), "length": scene_dur,
-            "fit": "none", "position": "bottom", "offset": {"y": 0.28},
-            "transition": {"in": "fade"}
-        })
     
     # ── LOGO ──
     logo_html = f'<div><img src="{LOGO_URL}" style="width:48px;height:48px;border-radius:50%;opacity:0.85;" /></div>'
@@ -743,7 +836,6 @@ def build_music_only_reel(scenes, music_url, build_dir):
     timeline = {
         "background": "#000000",
         "tracks": [
-            {"clips": text_clips},
             {"clips": [logo_clip]},
             {"clips": scene_clips},
         ]
@@ -802,17 +894,26 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     boundaries = compute_scene_boundaries(scenes, words, voice_duration)
     endcard_dur = max(endcard_cta_dur + 1.5, 4.0) if endcard_cta_url else 4.0
     
-    # ── CAPTIONS: bottom, transparent, text-shadow only ──
+    # ── CAPTIONS: from SCRIPT text (not Whisper), timed per-scene ──
+    # Each scene's voiceover text is broken into 4-word pills, timed
+    # proportionally within the scene's time boundary. This guarantees
+    # captions always match what's being said.
     caption_clips = []
-    pill_words = []
-    pill_start = 0
-    for i, w in enumerate(words):
-        if not pill_words:
-            pill_start = w["start"]
-        pill_words.append(w["word"])
-        if len(pill_words) >= 4 or i == len(words) - 1:
-            pill_end = w["end"]
-            text = " ".join(pill_words)
+    for i, scene in enumerate(scenes):
+        s, e = boundaries[i]
+        scene_dur = e - s
+        # Split scene voiceover into words
+        scene_words = scene["voiceover"].split()
+        if not scene_words:
+            continue
+        # Group into pills of 4 words
+        pills = []
+        for j in range(0, len(scene_words), 4):
+            pills.append(" ".join(scene_words[j:j+4]))
+        # Time each pill proportionally within the scene
+        pill_dur = scene_dur / len(pills)
+        for j, pill_text in enumerate(pills):
+            pill_start = s + j * pill_dur
             html = (
                 '<div style="'
                 "font-family:'Inter',sans-serif;font-size:40px;font-weight:800;"
@@ -820,36 +921,19 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
                 'text-shadow:0 0 8px rgba(0,0,0,0.95),0 0 20px rgba(0,0,0,0.8),'
                 '2px 2px 4px rgba(0,0,0,0.9),-2px -2px 4px rgba(0,0,0,0.9),'
                 '0 3px 6px rgba(0,0,0,0.7);'
-                f'">{text}</div>'
+                f'">{pill_text}</div>'
             )
             caption_clips.append({
                 "asset": {"type": "html", "html": html, "width": 580, "height": 120},
                 "start": round(pill_start, 2),
-                "length": round(max(pill_end - pill_start, 0.3), 2),
+                "length": round(max(pill_dur, 0.3), 2),
                 "fit": "none", "position": "bottom", "offset": {"y": 0.27}
             })
-            pill_words = []
     
-    # ── HEADLINES: bottom, above captions, gold ──
+    # ── No headline labels — images already have baked-in text ──
     text_clips = []
-    for i, scene in enumerate(scenes):
-        s, e = boundaries[i]
-        html = (
-            '<div style="'
-            "font-family:'Inter',sans-serif;font-size:28px;font-weight:900;"
-            'color:#D4AF37;text-align:center;text-transform:uppercase;'
-            'letter-spacing:3px;'
-            'text-shadow:0 0 10px rgba(0,0,0,0.95),0 0 25px rgba(0,0,0,0.8),'
-            '2px 2px 5px rgba(0,0,0,0.9),-2px -2px 5px rgba(0,0,0,0.9);'
-            f'">{scene["onscreen"]}</div>'
-        )
-        text_clips.append({
-            "asset": {"type": "html", "html": html, "width": 580, "height": 80},
-            "start": round(s, 2), "length": round(e - s, 2),
-            "fit": "none", "position": "bottom", "offset": {"y": 0.31}
-        })
     
-    # ── SCENE IMAGES + ENDCARD ──
+    # ── SCENE IMAGES + ENDCARD (no Ken Burns — images have baked-in text) ──
     scene_clips = []
     for i, scene in enumerate(scenes):
         s, e = boundaries[i]
@@ -857,7 +941,6 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
             "asset": {"type": "image", "src": scene["image_url"]},
             "start": round(s, 2), "length": round(e - s, 2),
             "fit": "cover", "position": "center",
-            "effect": "zoomIn" if i % 2 == 0 else "slideLeft",
             "transition": {"in": "fade", "out": "fade"} if i > 0 else {"out": "fade"}
         })
     scene_clips.append({
@@ -890,7 +973,6 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
         "tracks": [
             {"clips": caption_clips},
             {"clips": [logo_clip]},
-            {"clips": text_clips},
             {"clips": scene_clips},
             {"clips": audio_clips}
         ]
@@ -1545,6 +1627,28 @@ def main():
         scenes, words, vo_url, voice_duration,
         music_url, endcard_cta_url, endcard_cta_dur, build_dir
     )
+    
+    # Phase 7c: QA checks
+    print(f"\n{'='*60}")
+    print(f"PHASE 7c: Quality checks...")
+    print(f"{'='*60}")
+    
+    qa_all_passed = True
+    if music_reel_path:
+        passed, score, issues = qa_check_reel(music_reel_path, "music", num_scenes=len(scenes))
+        if not passed:
+            qa_all_passed = False
+            print(f"  ❌ Music reel FAILED QA (score {score}/10)")
+    
+    if vo_reel_path:
+        passed, score, issues = qa_check_reel(vo_reel_path, "voice", voice_duration=voice_duration, num_scenes=len(scenes))
+        if not passed:
+            qa_all_passed = False
+            print(f"  ❌ Voice reel FAILED QA (score {score}/10)")
+    
+    if not qa_all_passed:
+        print(f"\n  ⚠️  One or more reels failed QA. Skipping registration.")
+        print(f"     Reels are still available in {build_dir} for inspection.")
     
     # Copy outputs
     output_dir = os.path.expanduser("~/workspace/your_files")

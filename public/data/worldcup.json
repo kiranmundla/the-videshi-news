@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-06T02:01:43Z",
+  "last_updated": "2026-07-06T04:57:00Z",
   "stage": "Round of 16",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2011,6 +2011,21 @@
       "away_code": "NOR"
     },
     {
+      "id": 92,
+      "group": "R16",
+      "date": "2026-07-05",
+      "time": "20:00",
+      "tz": "ET",
+      "home": "Mexico",
+      "away": "England",
+      "venue": "Estadio Azteca",
+      "city": "Mexico City",
+      "status": "FT",
+      "score": "2-3",
+      "home_code": "MEX",
+      "away_code": "ENG"
+    },
+    {
       "id": 90,
       "group": "R16",
       "date": "2026-07-04",
@@ -2327,7 +2342,9 @@
           "time": "20:00",
           "tz": "ET",
           "venue": "Estadio Azteca, Mexico City",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "2-3",
+          "winner": "England"
         },
         {
           "match_num": 93,
