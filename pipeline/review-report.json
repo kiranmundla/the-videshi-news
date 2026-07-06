@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-06T18:15:35.253979+00:00",
+  "timestamp": "2026-07-06T20:15:26.875456+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e2926643-2864-4826-b8bb-21d7edbf8189",
-      "headline": "Sold Out in Two Hours: How Indian Mangoes Became America's Most Coveted Summer Fruit",
-      "slug": "sold-out-in-two-hours-how-indian-mangoes-became-americas-most-coveted-summer",
+      "id": "02f07d08-5000-404f-8fc3-e323c51dd96b",
+      "headline": "The Rule That Ends 'Duration of Status' Just Landed at OMB. Indian Students Have Months, Not Years",
+      "slug": "f1-duration-of-status-elimination-omb-final-rule-indian-students-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Box of ripe mangoes",
-          "reason": "The photo shows mangoes, which aligns with the story about Indian mangoes."
+          "what_photo_shows": "Students walking on campus",
+          "reason": "The photo shows students on a university campus, relevant to the student visa story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or students."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the arrival of Indian mangoes to the identity and nostalgia of the Indian diaspora in the U.S."
+          "note": "The article discusses changes in immigration policy that directly affect Indian students, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or anecdotes from Indian Americans about their experiences with mangoes to enhance the personal connection.",
-          "Include more statistics or data on the impact of mango exports on the Indian economy for a broader context."
+          "Consider using an image that depicts students or educational settings to better match the article's focus.",
+          "Add quotes or testimonials from affected Indian students to enhance the personal connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c0fa6d7d-50cb-48a4-9c38-f0a20015976d",
-      "headline": "A Michelin Chef, a Cancer Survivor, and a 7,500-Sq-Ft Love Letter to Old India: Zamindar's Clubhouse Opens in Charlotte",
-      "slug": "a-michelin-chef-a-cancer-survivor-and-a-7500-sq-ft-love-letter-to-old-india",
+      "id": "cc2b53c3-5a91-4914-a58a-3dd6d8a8a5da",
+      "headline": "Your Spouse's Right to Work Is Under Review. DHS Has Had the Proposal for Six Months",
+      "slug": "h4-ead-rescission-omb-review-senate-sjres99-indian-spouses-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "plate of Hyderabadi dum biryani",
-          "reason": "The photo shows a dish relevant to the restaurant's menu."
+          "what_photo_shows": "US Immigration and Customs Enforcement building",
+          "reason": "The photo is relevant to the immigration topic of the story."
         },
         "inline_image_mismatches": []
       },
@@ -74,61 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Hyderabadi Dum Biryani is relevant to the article's topic about an Indian restaurant, but it does not directly match the restaurant's offerings as described."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects to the Indian American community in Charlotte, highlighting the restaurant's significance to the growing South Asian population."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from the chef or founder to enhance the personal connection to the restaurant's story.",
-          "Add a section on the restaurant's impact on the local community or any events planned to engage with the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7078a6c6-338e-4d9e-a078-21bfd460b846",
-      "headline": "From Fullerton to the Westside: How Khan Saab Became SoCal's First Michelin-Recognised Pakistani Restaurant",
-      "slug": "from-fullerton-to-the-westside-how-khan-saab-became-socals-first-michelin",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian dishes on white plates",
-          "reason": "The photo shows Indian dishes, which aligns with the food theme of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly represent the restaurant or its cuisine."
+          "issue": "The image does not directly relate to the topic of immigration or work authorization."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the restaurant's significance to the South Asian diaspora in the U.S."
+          "note": "The article discusses the impact of immigration policy on Indian families, particularly highlighting the challenges faced by Indian women, which is highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image of the restaurant or its dishes to enhance visual appeal.",
-          "Add quotes or testimonials from diners to provide a personal touch and enhance engagement."
+          "Consider using an image that directly represents the theme of immigration or work authorization to enhance relevance.",
+          "Add a section that includes personal stories or testimonials from affected families to deepen the emotional connection with the diaspora audience."
         ],
         "verdict": "pass"
       },
