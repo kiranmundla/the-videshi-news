@@ -1,0 +1,40 @@
+{
+  "article_id": "8eb7ba58-899e-4d29-adc9-3c691026368d",
+  "scenes": [
+    {
+      "voiceover": "Oil just crashed forty-three percent to pre-war levels. And India might be the biggest winner on the planet right now.",
+      "onscreen": "OIL CRASHES 43%",
+      "image_prompt": "Oil price crash chart from $126 to $72, Brent crude collapse visualization"
+    },
+    {
+      "voiceover": "OPEC Plus has pumped eight hundred thousand extra barrels per day since April. The Strait of Hormuz is open again and supply is flooding back.",
+      "onscreen": "OPEC+ FLOODS MARKET",
+      "image_prompt": "OPEC+ oil barrels, Persian Gulf Strait of Hormuz reopening with ships"
+    },
+    {
+      "voiceover": "Here's why this matters. India imports ninety percent of its crude oil. Last year alone, that cost one hundred and eighty billion dollars.",
+      "onscreen": "90% IMPORTED — $180B",
+      "image_prompt": "India map showing oil dependence, 90% imported, $180 billion import cost"
+    },
+    {
+      "voiceover": "Every ten dollar drop in oil saves India fifteen billion dollars a year. Inflation just hit a five-month low.",
+      "onscreen": "$15B ANNUAL SAVINGS",
+      "image_prompt": "Giant $15 billion savings number, oil price drop to savings transformation"
+    },
+    {
+      "voiceover": "The rupee has bounced back from a record low of ninety-seven to ninety-four fifty. It's now the best-performing Asian currency this quarter.",
+      "onscreen": "RUPEE BOUNCES BACK",
+      "image_prompt": "Indian rupee recovery chart from 97 to 94.50, V-shaped currency rebound"
+    },
+    {
+      "voiceover": "And the Nifty fifty has surged fourteen percent since April. Twenty-seven billion dollars in foreign money is flowing back into Indian markets.",
+      "onscreen": "NIFTY 50 SURGES +14%",
+      "image_prompt": "Indian stock market Nifty 50 soaring chart, $27 billion foreign inflows"
+    },
+    {
+      "voiceover": "For thirty-two million Indians abroad, a stronger rupee means your remittances buy more back home. The question is — will the ceasefire hold?",
+      "onscreen": "32M INDIANS BENEFIT",
+      "image_prompt": "Globe showing 32 million diaspora Indians, remittance flows to India"
+    }
+  ]
+}
