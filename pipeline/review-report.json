@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-06T17:15:48.707806+00:00",
+  "timestamp": "2026-07-06T18:15:35.253979+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "beb90bb0-fd4d-4f6f-9c1c-03065ffcae91",
-      "headline": "He Took Eight Stitches to the Eye Mid-Shoot. Now Ram Charan's \u20b9339-Crore Epic Hits Netflix.",
-      "slug": "ram-charan-peddi-netflix-july-9-339-crore-telugu-megastar-ar-rahman-streaming-diaspora-20260706",
+      "id": "e2926643-2864-4826-b8bb-21d7edbf8189",
+      "headline": "Sold Out in Two Hours: How Indian Mangoes Became America's Most Coveted Summer Fruit",
+      "slug": "sold-out-in-two-hours-how-indian-mangoes-became-americas-most-coveted-summer",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man wearing a cap and sunglasses",
-          "reason": "The photo plausibly shows Ram Charan, matching the story topic."
+          "what_photo_shows": "Box of ripe mangoes",
+          "reason": "The photo shows mangoes, which aligns with the story about Indian mangoes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the arrival of Indian mangoes to the identity and nostalgia of the Indian diaspora in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or anecdotes from Indian Americans about their experiences with mangoes to enhance the personal connection.",
+          "Include more statistics or data on the impact of mango exports on the Indian economy for a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0fa6d7d-50cb-48a4-9c38-f0a20015976d",
+      "headline": "A Michelin Chef, a Cancer Survivor, and a 7,500-Sq-Ft Love Letter to Old India: Zamindar's Clubhouse Opens in Charlotte",
+      "slug": "a-michelin-chef-a-cancer-survivor-and-a-7500-sq-ft-love-letter-to-old-india",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "plate of Hyderabadi dum biryani",
+          "reason": "The photo shows a dish relevant to the restaurant's menu."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Ram Charan does not directly relate to the film 'Peddi' or the injury mentioned in the article."
+          "issue": "The image of Hyderabadi Dum Biryani is relevant to the article's topic about an Indian restaurant, but it does not directly match the restaurant's offerings as described."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses how the film's release on Netflix will allow diaspora audiences to engage with it, addressing their previous lack of access."
+          "note": "The article effectively connects to the Indian American community in Charlotte, highlighting the restaurant's significance to the growing South Asian population."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to the film 'Peddi' or the injury incident for better relevance.",
-          "Add more context about the film's themes and its significance to the diaspora audience to enhance engagement."
+          "Include more direct quotes from the chef or founder to enhance the personal connection to the restaurant's story.",
+          "Add a section on the restaurant's impact on the local community or any events planned to engage with the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,70 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3ad94382-5b59-494e-8eaa-d436d14ee821",
-      "headline": "He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway \u2014 and India Pulled It in 48 Hours.",
-      "slug": "diljit-dosanjh-satluj-zee5-banned-india-jaswant-singh-khalra-censorship-diaspora-nri-20260706",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c3ce06ae-d033-4baf-b2a3-2f49d9b52f87",
-            "headline": "A Partition Love Story Opened to Nothing. Three Weeks Later,"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Diljit Dosanjh wearing a turban",
-          "reason": "The photo shows Diljit Dosanjh, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaYHUn7NvuV/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film 'Satluj' or its censorship, making it irrelevant to the article's main topic."
-          },
-          {
-            "url": "https://www.instagram.com/reel/DaZq1M_ujPC/",
-            "problem": "irrelevant",
-            "explanation": "Similar to the previous embed, this Instagram reel does not provide relevant content that enhances the article's discussion about 'Satluj' and its implications."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release and censorship to the experiences and interests of the Punjabi diaspora, particularly in relation to their historical context."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embeds with more relevant content that directly relates to the film or its themes.",
-          "Consider adding quotes or reactions from diaspora audiences to strengthen the connection to NRI readers."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaYHUn7NvuV/",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaZq1M_ujPC/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c0cf0983-0206-4623-ba1d-06bf882b20ee",
-      "headline": "SWISS Launches Bengaluru\u2013Zurich Nonstop \u2014 Europe's Airlines Are All-In on India",
-      "slug": "swiss-bengaluru-zurich-nonstop-europe-india-20260706",
+      "id": "7078a6c6-338e-4d9e-a078-21bfd460b846",
+      "headline": "From Fullerton to the Westside: How Khan Saab Became SoCal's First Michelin-Recognised Pakistani Restaurant",
+      "slug": "from-fullerton-to-the-westside-how-khan-saab-became-socals-first-michelin",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -125,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "SWISS Airbus A330-300 in flight",
-          "reason": "The photo shows the aircraft type mentioned in the story."
+          "what_photo_shows": "Indian dishes on white plates",
+          "reason": "The photo shows Indian dishes, which aligns with the food theme of the story."
         },
         "inline_image_mismatches": []
       },
@@ -134,62 +116,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly represent the restaurant or its cuisine."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the new route for the Indian diaspora, particularly tech professionals in Europe."
+          "quality": 9,
+          "note": "The article effectively connects the restaurant's significance to the South Asian diaspora in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from travelers or industry experts to add a personal touch.",
-          "Provide more context on the significance of the route for the Indian diaspora beyond just tech professionals."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3f147f55-5299-4d02-ba87-439f7e3ad737",
-      "headline": "India's Passport Slips to 125th in Global Ranking \u2014 and NRIs Feel the Pinch",
-      "slug": "india-passport-ranking-125-global-index-nri-20260706",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "India's e-passport cover",
-          "reason": "The photo shows an Indian passport, relevant to the story about passport rankings."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the passport ranking to the experiences of NRIs, highlighting specific challenges they face."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more personal anecdotes or quotes from NRIs to enhance relatability.",
-          "Include a brief comparison with other countries' passport rankings to provide context."
+          "Include a relevant image of the restaurant or its dishes to enhance visual appeal.",
+          "Add quotes or testimonials from diners to provide a personal touch and enhance engagement."
         ],
         "verdict": "pass"
       },
