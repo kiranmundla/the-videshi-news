@@ -506,8 +506,7 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
     body_clean = _re.sub(r'\s+', ' ', body_clean).strip()
 
     num_scenes = len(image_files)
-    min_words = max(100, num_scenes * 15)
-    max_words = num_scenes * 22
+    max_words = 150
 
     system_msg = (
         "You are a voiceover scriptwriter for The Videshi, an Indian diaspora news platform. "
@@ -525,11 +524,13 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
         f"- Is punchy and conversational — like a news anchor, not an essay\n"
         f"- Scene 0 should be a hook question that grabs attention\n"
         f"- Last scene should be a thought-provoking close with diaspora angle\n"
-        f"- Each scene: 15-22 words\n"
-        f"- TOTAL: {min_words}-{max_words} words — this is a HARD MINIMUM. Do NOT write less than {min_words} words.\n"
+        f"- Write as much or as little as each scene NEEDS — a simple hook image might need 8 words, a dense data card might need 25. Match the content.\n"
+        f"- TOTAL: up to {max_words} words maximum across all scenes. Aim for 100-130 words.\n"
         f"- Focus on the Indian diaspora angle — how this affects Indians abroad\n\n"
+        f"Also pick a story_mood for the background music. Choose ONE of: "
+        f"triumphant, celebratory, somber, tense, neutral-news, uplifting, cultural, tech, chill\n\n"
         f"Return ONLY valid JSON:\n"
-        f'{{"voiceovers": ["scene 0 text", "scene 1 text", ...]}}'
+        f'{{"voiceovers": ["scene 0 text", "scene 1 text", ...], "story_mood": "one-of-the-above"}}'
     )
 
     messages_content = [{"type": "text", "text": user_prompt}] + image_contents
@@ -553,14 +554,15 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
 
         if r.status_code != 200:
             print(f"  ❌ GPT-4o vision failed: {r.status_code} {r.text[:200]}")
-            return False
+            return False, None
 
         result = json.loads(r.json()["choices"][0]["message"]["content"])
         voiceovers = result.get("voiceovers", [])
+        story_mood = result.get("story_mood", None)
 
         if len(voiceovers) < len(scenes):
             print(f"  ❌ GPT returned {len(voiceovers)} voiceovers, need {len(scenes)}")
-            return False
+            return False, None
 
         # Update scenes with new voiceover text
         total_words = 0
@@ -573,15 +575,17 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
             print(f"  Scene {i} ({wc}w): {new_vo[:70]}...")
 
         print(f"\n  ✅ Total: {total_words} words (~{total_words * 0.35 + total_words * 0.15:.0f}s)")
+        if story_mood:
+            print(f"  🎵 Story mood: {story_mood}")
 
         if total_words < 90:
             print(f"  ⚠️ Only {total_words} words — below minimum. Keeping anyway (GPT may have been concise)")
 
-        return True
+        return True, story_mood
 
     except Exception as e:
         print(f"  ❌ Vision voiceover failed: {e}")
-        return False
+        return False, None
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -749,7 +753,7 @@ def get_word_timestamps(mp3_path, build_dir):
 # ═══════════════════════════════════════════════════════════════
 # PHASE 6: Music selection
 # ═══════════════════════════════════════════════════════════════
-def select_music(article, build_dir):
+def select_music(article, build_dir, story_mood=None):
     """Select and upload background music."""
     print(f"\n{'='*60}")
     print(f"PHASE 6: Selecting music...")
@@ -761,11 +765,13 @@ def select_music(article, build_dir):
         from music_selector import select_music as _select
         result = _select(
             category=article.get("category", "news"),
+            story_mood=story_mood,
             article_id=article["id"],
             index_path=os.path.join(PIPELINE_DIR, "music", "music-index.json")
         )
         music_path = result["path"]
         attribution = result.get("attribution", "")
+        print(f"  🎵 Mood: {story_mood or '(from category)'} → family: {result.get('family', '?')}")
     except Exception as e:
         print(f"  ⚠️ Music selector failed ({e}), using default")
         # Fallback: pick first available track
@@ -1615,7 +1621,7 @@ def process_queue():
             
             endcard_cta_url, endcard_cta_dur = ensure_endcard_cta()
             words = get_word_timestamps(vo_mp3, build_dir)
-            music_url, attribution = select_music(article, build_dir)
+            music_url, attribution = select_music(article, build_dir, story_mood=story_mood)
             
             # Build music-only reel
             music_reel_path, _ = build_music_only_reel(scenes, music_url, build_dir)
@@ -1810,11 +1816,13 @@ def main():
         return
     
     # Phase 3: Images (auto-generate or manual)
+    story_mood = None
     if args.manual_images:
         load_manual_images(scenes, args.manual_images, article_id)
         # Phase 2b: Regenerate voiceover from actual images using GPT-4o vision
         # This ensures voice matches what's on screen + enforces word count
-        if regenerate_voiceover_from_images(scenes, article, args.manual_images):
+        vo_ok, story_mood = regenerate_voiceover_from_images(scenes, article, args.manual_images)
+        if vo_ok:
             # Save updated scenes with new voiceover
             with open(scenes_cache, "w") as f:
                 json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
