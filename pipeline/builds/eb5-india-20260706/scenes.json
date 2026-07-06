@@ -1,0 +1,40 @@
+{
+  "article_id": "17176930-94e4-4529-bbab-dfea431356ce",
+  "scenes": [
+    {
+      "voiceover": "You put up a million dollars to invest in America. You still can't get a green card.",
+      "onscreen": "MILLION-DOLLAR GAMBLE",
+      "image_prompt": "Hands placing a large stack of US hundred-dollar bills on a dark marble government desk next to an American passport and manila envelope"
+    },
+    {
+      "voiceover": "India's EB-5 investor visa allocation just ran out for the entire fiscal year twenty-twenty-six.",
+      "onscreen": "EB-5 EXHAUSTED",
+      "image_prompt": "Broadcast infographic showing 0 visas left counter for EB-5 India FY 2026"
+    },
+    {
+      "voiceover": "Indians now file twenty-two percent of all EB-5 petitions globally. Second only to China.",
+      "onscreen": "22% OF ALL EB-5",
+      "image_prompt": "Bar chart comparing India 22% and China EB-5 petition shares with world map"
+    },
+    {
+      "voiceover": "Three green card categories are now closed for Indians. Only EB-3 moved forward \u2014 by just two weeks.",
+      "onscreen": "TRIPLE LOCKOUT",
+      "image_prompt": "Four doors labeled EB-1 EB-2 EB-5 chained shut, EB-3 slightly ajar with 2 weeks sign"
+    },
+    {
+      "voiceover": "Families are stuck. Children turning twenty-one risk aging out of their parents' applications forever.",
+      "onscreen": "FAMILIES FROZEN",
+      "image_prompt": "Indian family at table with immigration documents and clock showing 21st birthday deadline"
+    },
+    {
+      "voiceover": "One path stays open. Reserved EB-5 projects in rural and high-unemployment areas are still current.",
+      "onscreen": "RESERVED ROUTE OPEN",
+      "image_prompt": "Aerial rural American farmland with green STILL OPEN banner and rural infrastructure labels"
+    },
+    {
+      "voiceover": "A million dollars. A decade of waiting. That is America's immigration system for Indian investors.",
+      "onscreen": "THE REAL COST",
+      "image_prompt": "Lone figure in silhouette at massive government building entrance with dollar bills in air"
+    }
+  ]
+}

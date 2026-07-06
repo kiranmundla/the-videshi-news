@@ -1,0 +1,71 @@
+ARTICLE: Invest a Million Dollars and Still Wait. India's EB-5 Investor Visa Just Hit a Wall
+ID: 17176930-94e4-4529-bbab-dfea431356ce
+SCENES: 7
+============================================================
+
+Paste each prompt into ChatGPT one at a time.
+Save each image as scene-0.jpg, scene-1.jpg, etc.
+
+────────────────────────────────────────────────────────────
+SCENE 0 — MILLION-DOLLAR GAMBLE
+────────────────────────────────────────────────────────────
+Voiceover: You put up a million dollars to invest in America. You still can't get a green card.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Hands placing a large stack of US hundred-dollar bills on a dark marble government desk next to an American passport and manila envelope
+
+────────────────────────────────────────────────────────────
+SCENE 1 — EB-5 EXHAUSTED
+────────────────────────────────────────────────────────────
+Voiceover: India's EB-5 investor visa allocation just ran out for the entire fiscal year twenty-twenty-six.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Broadcast infographic showing 0 visas left counter for EB-5 India FY 2026
+
+────────────────────────────────────────────────────────────
+SCENE 2 — 22% OF ALL EB-5
+────────────────────────────────────────────────────────────
+Voiceover: Indians now file twenty-two percent of all EB-5 petitions globally. Second only to China.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Bar chart comparing India 22% and China EB-5 petition shares with world map
+
+────────────────────────────────────────────────────────────
+SCENE 3 — TRIPLE LOCKOUT
+────────────────────────────────────────────────────────────
+Voiceover: Three green card categories are now closed for Indians. Only EB-3 moved forward — by just two weeks.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Four doors labeled EB-1 EB-2 EB-5 chained shut, EB-3 slightly ajar with 2 weeks sign
+
+────────────────────────────────────────────────────────────
+SCENE 4 — FAMILIES FROZEN
+────────────────────────────────────────────────────────────
+Voiceover: Families are stuck. Children turning twenty-one risk aging out of their parents' applications forever.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Indian family at table with immigration documents and clock showing 21st birthday deadline
+
+────────────────────────────────────────────────────────────
+SCENE 5 — RESERVED ROUTE OPEN
+────────────────────────────────────────────────────────────
+Voiceover: One path stays open. Reserved EB-5 projects in rural and high-unemployment areas are still current.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Aerial rural American farmland with green STILL OPEN banner and rural infrastructure labels
+
+────────────────────────────────────────────────────────────
+SCENE 6 — THE REAL COST
+────────────────────────────────────────────────────────────
+Voiceover: A million dollars. A decade of waiting. That is America's immigration system for Indian investors.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Lone figure in silhouette at massive government building entrance with dollar bills in air
+
