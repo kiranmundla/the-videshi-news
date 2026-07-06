@@ -1213,14 +1213,37 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     }
     
     # ── AUDIO ──
-    audio_clips = [
+    # Voice + CTA on one track
+    voice_clips = [
         {"asset": {"type": "audio", "src": vo_url, "volume": 1.0},
          "start": 0, "length": round(voice_duration, 2)}
     ]
     if endcard_cta_url:
-        audio_clips.append({
+        voice_clips.append({
             "asset": {"type": "audio", "src": endcard_cta_url, "volume": 1.0},
             "start": round(endcard_start + 0.5, 2), "length": round(endcard_cta_dur, 2)
+        })
+    
+    # Music on a separate track with dynamic volume:
+    #   - During voiceover: ducked low (8%) so voice dominates
+    #   - Buffer + endcard: swells up (25%) for energy into the close
+    music_clips = []
+    if music_url:
+        total_dur = endcard_start + endcard_dur
+        # Ducked music under voiceover (fade in at start)
+        music_clips.append({
+            "asset": {"type": "audio", "src": music_url, "volume": 0.08},
+            "start": 0, "length": round(voice_duration, 2),
+            "transition": {"in": "fade"}
+        })
+        # Swell music for buffer silence + endcard (fade out at end)
+        swell_start = voice_duration
+        swell_length = total_dur - voice_duration
+        music_clips.append({
+            "asset": {"type": "audio", "src": music_url, "volume": 0.25,
+                      "trim": round(voice_duration, 2)},
+            "start": round(swell_start, 2), "length": round(swell_length, 2),
+            "transition": {"out": "fade"}
         })
     
     timeline = {
@@ -1228,11 +1251,11 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
         "tracks": [
             {"clips": [logo_clip]},
             {"clips": scene_clips},
-            {"clips": audio_clips}
+            {"clips": voice_clips},
         ]
     }
-    if music_url:
-        timeline["soundtrack"] = {"src": music_url, "effect": "fadeInFadeOut", "volume": 0.08}
+    if music_clips:
+        timeline["tracks"].append({"clips": music_clips})
     
     payload = {
         "timeline": timeline,
