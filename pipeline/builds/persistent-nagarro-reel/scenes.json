@@ -1,0 +1,40 @@
+{
+  "article_id": "b8afea69-3899-4844-abc3-45e98677faad",
+  "scenes": [
+    {
+      "voiceover": "Can a Pune company buy its way into Europe's AI elite? They just bet one point four billion dollars.",
+      "onscreen": "PUNE → MUNICH: $1.4B BET",
+      "image_prompt": "Digital world map with glowing arc connecting Pune India to Munich Germany, large $1.4 BILLION BET text"
+    },
+    {
+      "voiceover": "Persistent offered eighty-one euros per share for Munich's Nagarro — a staggering one hundred forty per cent premium.",
+      "onscreen": "€81/SHARE — 140% PREMIUM",
+      "image_prompt": "Financial deal announcement with large euro coin showing €81, 140% PREMIUM text, corporate M&A aesthetic"
+    },
+    {
+      "voiceover": "The stock market wasn't impressed. Persistent's shares crashed eleven per cent to a fifteen-month low.",
+      "onscreen": "SHARES: -11%, 15-MONTH LOW",
+      "image_prompt": "Red stock market crash chart with -11% and 15-MONTH LOW text, bearish candlestick elements"
+    },
+    {
+      "voiceover": "What are they buying? Nagarro brings a billion in revenue and eighteen thousand employees, mostly European clients.",
+      "onscreen": "NAGARRO: $1B, 18.5K EMPLOYEES",
+      "image_prompt": "Nagarro corporate profile card with Munich cityscape, $1B REVENUE, 18,500 EMPLOYEES, EUROPEAN ENTERPRISE data"
+    },
+    {
+      "voiceover": "Together they become India's seventh-largest IT firm with two point nine billion in combined revenue.",
+      "onscreen": "$2.9B COMBINED — 7TH LARGEST",
+      "image_prompt": "Merger visualization showing two companies combining, $2.9 BILLION COMBINED REVENUE, INDIA'S 7TH LARGEST IT FIRM"
+    },
+    {
+      "voiceover": "Wall Street can't agree. CLSA says buy at sixty-five twenty. Citi says sell at forty-ninety.",
+      "onscreen": "CLSA: ₹6,520 BUY vs CITI: ₹4,090 SELL",
+      "image_prompt": "Split-screen bull vs bear graphic, CLSA ₹6,520 BUY in green vs CITI ₹4,090 SELL in red"
+    },
+    {
+      "voiceover": "Indian IT doesn't want to be the world's back office anymore. Persistent's bet is for the front room.",
+      "onscreen": "BACK OFFICE → FRONT ROOM",
+      "image_prompt": "Transformation scene showing Indian tech workers moving from cubicles to executive boardroom, BACK OFFICE → FRONT ROOM text"
+    }
+  ]
+}
