@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-06T21:58:24Z",
+  "last_updated": "2026-07-06T23:59:15Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2420,8 +2420,8 @@
           "tz": "ET",
           "venue": "SoFi Stadium, Inglewood, CA",
           "status": "scheduled",
-          "home": "Portugal/Spain",
-          "home_code": "TBD",
+          "home": "Spain",
+          "home_code": "ESP",
           "away": "USA/Belgium",
           "away_code": "TBD"
         },
@@ -8399,6 +8399,42 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DadZgm9tMkx/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02WJZQxoHDFKBLQ3zvAygufsWdPUWYPvPdPiUaKBKfp2U4yVvnrhQzADURo5fe1bDil",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/983868584476656/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1020832760923562/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02881wfBCrxvbETUq5Pb3HW38K81Gx8sst8MFLyBXKySPAsfEtUHPsgTDHxAARUVPl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02RsG3e5V6AsUWkz9gECB8j5GuwXxHad4vwPwmV2gtx2BKcvqXuWZpTVVtsQkyy47Dl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02pXGzyp6W9uH4ZF6K5MWD8FKnUSbTdpkQXhDKUsEN29EHoSE98RFnefxzJw5cQWgdl",
       "account": "@fifaworldcup",
       "date": "2026-07-06"
     }
