@@ -1,0 +1,71 @@
+ARTICLE: The Bill That Made Immigration Expensive Turns One. Here Is What Indian Families Now Pay
+ID: d6203b79-4013-48d0-9202-b6f3094ecef7
+SCENES: 7
+============================================================
+
+Paste each prompt into ChatGPT one at a time.
+Save each image as scene-0.jpg, scene-1.jpg, etc.
+
+────────────────────────────────────────────────────────────
+SCENE 0 — THE REAL COST
+────────────────────────────────────────────────────────────
+Voiceover: What does it actually cost an Indian family to stay in America today?
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Hook — immigration forms with dollar bills and question mark
+
+────────────────────────────────────────────────────────────
+SCENE 1 — $100K H-1B FEE
+────────────────────────────────────────────────────────────
+Voiceover: One hundred thousand dollars. That's the new price tag on a single H-1B petition.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+$100,000 H-1B petition fee reveal with Capitol silhouette
+
+────────────────────────────────────────────────────────────
+SCENE 2 — FEES STACK UP
+────────────────────────────────────────────────────────────
+Voiceover: Add a two-fifty integrity fee per person, a one percent remittance tax, and a quadrupled border fee.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Stacking fee blocks — $250 integrity, 1% remittance, $24 I-94
+
+────────────────────────────────────────────────────────────
+SCENE 3 — FAMILY TOTAL: $100K+
+────────────────────────────────────────────────────────────
+Voiceover: A Bay Area engineer with two dependents now pays over six figures — before even starting a green card.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Itemized family bill showing 3-year H-1B costs exceeding six figures
+
+────────────────────────────────────────────────────────────
+SCENE 4 — $28.9B REVENUE
+────────────────────────────────────────────────────────────
+Voiceover: The government expects twenty-nine billion dollars from visa integrity fees alone — over ten years.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+$28.9 billion projected visa fee revenue 2025-2034 with revenue chart
+
+────────────────────────────────────────────────────────────
+SCENE 5 — IT EXODUS
+────────────────────────────────────────────────────────────
+Voiceover: H-1B workers at India's top IT firms nearly halved — from thirty-four thousand to eighteen thousand.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Before-after bar chart — 34,507 (2017) vs 17,997 (2025) H-1B workers
+
+────────────────────────────────────────────────────────────
+SCENE 6 — THE TIPPING POINT
+────────────────────────────────────────────────────────────
+Voiceover: When the cost of staying outweighs the dream, Bangalore stops being the fallback — it becomes the plan.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Split screen — US visa stress vs vibrant Bangalore GCC office boom
+

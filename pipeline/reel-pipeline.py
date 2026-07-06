@@ -241,6 +241,14 @@ STORYBOARD RULES:
 - Focus on the DIASPORA angle — how this affects Indians abroad
 - On-screen text: 2-5 words, uppercase topic label
 
+**CRITICAL — VOICE-TO-VISUAL SYNC**:
+The voiceover for each scene MUST directly describe or narrate what the viewer will SEE on that scene's card.
+- If scene 3's image shows "Germany: 21 months to PR vs US: 80+ years" then scene 3's voiceover must talk about Germany vs US wait times — NOT about Canada or Australia.
+- If scene 4's image shows Canada Express Entry data, the voiceover must narrate Canada's numbers.
+- Think of it like a news anchor reading what's on the teleprompter while the matching graphic is on screen.
+- Do NOT generate the voiceover as a general narrative and images as separate infographics — they must be locked together scene by scene.
+- The image_prompt and voiceover for each scene describe the SAME fact from the SAME angle.
+
 Return ONLY valid JSON, no markdown."""
 
     r = requests.post(

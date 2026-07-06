@@ -1,0 +1,40 @@
+{
+  "article_id": "d6203b79-4013-48d0-9202-b6f3094ecef7",
+  "scenes": [
+    {
+      "voiceover": "What does it actually cost an Indian family to stay in America today?",
+      "onscreen": "THE REAL COST",
+      "image_prompt": "Hook — immigration forms with dollar bills and question mark"
+    },
+    {
+      "voiceover": "One hundred thousand dollars. That's the new price tag on a single H-1B petition.",
+      "onscreen": "$100K H-1B FEE",
+      "image_prompt": "$100,000 H-1B petition fee reveal with Capitol silhouette"
+    },
+    {
+      "voiceover": "Add a two-fifty integrity fee per person, a one percent remittance tax, and a quadrupled border fee.",
+      "onscreen": "FEES STACK UP",
+      "image_prompt": "Stacking fee blocks — $250 integrity, 1% remittance, $24 I-94"
+    },
+    {
+      "voiceover": "A Bay Area engineer with two dependents now pays over six figures — before even starting a green card.",
+      "onscreen": "FAMILY TOTAL: $100K+",
+      "image_prompt": "Itemized family bill showing 3-year H-1B costs exceeding six figures"
+    },
+    {
+      "voiceover": "The government expects twenty-nine billion dollars from visa integrity fees alone — over ten years.",
+      "onscreen": "$28.9B REVENUE",
+      "image_prompt": "$28.9 billion projected visa fee revenue 2025-2034 with revenue chart"
+    },
+    {
+      "voiceover": "H-1B workers at India's top IT firms nearly halved — from thirty-four thousand to eighteen thousand.",
+      "onscreen": "IT EXODUS",
+      "image_prompt": "Before-after bar chart — 34,507 (2017) vs 17,997 (2025) H-1B workers"
+    },
+    {
+      "voiceover": "When the cost of staying outweighs the dream, Bangalore stops being the fallback — it becomes the plan.",
+      "onscreen": "THE TIPPING POINT",
+      "image_prompt": "Split screen — US visa stress vs vibrant Bangalore GCC office boom"
+    }
+  ]
+}
