@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-06T09:45:15.915500+00:00",
+  "timestamp": "2026-07-06T12:15:22.659656+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,49 +11,90 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d3bc1643-122c-4ce7-a3c3-e61e2f649d87",
-      "headline": "Cocktail 2 Can See \u20b9100 Crore from Here. It Might Never Get There.",
-      "slug": "cocktail-2-box-office-100-crore-struggle-shahid-kapoor-kriti-sanon-rashmika-third-weekend-20260706",
+      "id": "2a895da8-aa4d-453d-8e0b-251a3f3adc9d",
+      "headline": "Eight Michelin Stars, a Whole Foods Aisle, and a Cancer Survivor's Dream: Indian Food's American Moment Is Here",
+      "slug": "indian-cuisine-gymkhana-whole-foods-zamindars-clubhouse-america-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/kritisanon/status/1799291702956271926",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a green jacket",
-          "reason": "The photo plausibly shows Shahid Kapoor, relevant to the story."
+          "what_photo_shows": "Traditional Indian dishes with spices",
+          "reason": "The photo shows Indian dishes, aligning with the story about Indian cuisine."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's themes to the experiences of the Indian diaspora, particularly through references to the original Cocktail's impact."
+          "note": "The article effectively connects the evolution of Indian cuisine in America to the experiences of the Indian diaspora, highlighting both cultural and entrepreneurial aspects."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more recent audience reactions or reviews to provide a broader perspective on the film's reception.",
-          "Include quotes from critics or audience members to enhance the article's engagement and depth."
+          "Consider adding quotes or insights from diaspora community members to enhance the personal connection.",
+          "Include more statistics or data on the growth of Indian cuisine in America to strengthen the argument."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6dd15f3d-9291-4164-be87-41c3978136cc",
+      "headline": "India's Central Bank Is Paying NRIs Up to Seven Per Cent to Park Their Dollars at Home. Here Is the Catch.",
+      "slug": "rbi-fcnrb-nri-dollar-deposit-scheme-seven-percent-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "86139904-91d3-41bd-afdb-362d6407da84",
+            "headline": "India's Central Bank Told Parliament: Don't Legalize Crypto."
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI policies."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by discussing the benefits and implications of the RBI's new scheme for dollar deposits."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a section on potential risks or downsides for NRIs to provide a more balanced view.",
+          "Include quotes or insights from financial experts or NRIs who have utilized the scheme to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
