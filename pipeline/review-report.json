@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-06T15:15:26.604028+00:00",
+  "timestamp": "2026-07-06T16:15:20.557560+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3f06ee38-6975-45da-8ed8-89a79ce5d667",
-      "headline": "India Trail 1-0. Bishnoi's 29-Run Over Still Stings. Trent Bridge on Tuesday Is Do-or-Die.",
-      "slug": "india-england-3rd-t20i-trent-bridge-preview-series-1-0-sooryavanshi-bishnoi-nri-2026",
+      "id": "b4b3b27b-1dd5-4c90-a5c3-1e90aeb72a38",
+      "headline": "India's Private Banks Just Posted Their Strongest Quarter in Over a Year \u2014 and Wall Street Is Raising Its Bets",
+      "slug": "india-private-banks-q1-fy27-hdfc-axis-loan-growth-sensex-rally-nri-investor-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "cffec7ee-99b9-460c-8305-29d5944e212c",
+            "headline": "India's Services Engine Just Hit Its Slowest Speed in 17 Mon"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Trent Bridge cricket ground",
-          "reason": "The photo shows the venue for the cricket match in the story."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the banking story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of the Bombay Stock Exchange is relevant but does not directly depict private banks or their performance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant cricket match involving India, which is relevant to the Indian diaspora, especially cricket fans."
+          "quality": 8,
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from players or coaches to enhance engagement.",
-          "Add a brief historical context of India's performance at Trent Bridge to enrich the narrative."
+          "Consider adding more specific examples of how NRI investors can capitalize on the current banking trends.",
+          "Include a brief overview of the implications of the bond market updates for NRI investors."
         ],
         "verdict": "pass"
       },
@@ -54,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cd2c2050-4109-431e-b0db-a65738434f0f",
-      "headline": "Haaland Scores Twice. Neymar Says Goodbye. Norway End Brazil's World Cup Dream at MetLife.",
-      "slug": "haaland-brace-norway-beat-brazil-2-1-world-cup-round-16-metlife-neymar-farewell-nri-2026",
+      "id": "088867ae-3e75-4aae-ba96-eec02ec8d017",
+      "headline": "Extreme Humid Heat Cuts Brain Blood Flow by a Third and Forces the Heart Into Overdrive \u2014 Here's What That Means for You",
+      "slug": "extreme-humid-heat-brain-blood-flow-heart-strain-south-asian-nri-diaspora-summer-2026-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +69,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Norwegian soccer players celebrating",
-          "reason": "The photo shows Norwegian players, relevant to the story about Norway's World Cup win."
+          "what_photo_shows": "man drinking water outdoors",
+          "reason": "The photo shows a person hydrating in heat, relevant to the story on heat effects."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora by highlighting their presence and expectations at the game."
+          "note": "The article effectively connects the health risks of extreme heat to the South Asian diaspora, particularly highlighting the vulnerabilities of Indian Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from Indian fans to enhance the diaspora perspective.",
-          "Include a brief background on the significance of the match for both Norway and Brazil to provide more context."
+          "Consider adding more specific statistics or studies related to the impact of heat on South Asians to strengthen the diaspora angle.",
+          "Include personal anecdotes or quotes from affected individuals to enhance relatability and engagement."
         ],
         "verdict": "pass"
       },
