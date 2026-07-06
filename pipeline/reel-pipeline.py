@@ -188,20 +188,19 @@ FIRST, decide the visual approach based on the article content:
 Use RICH INFOGRAPHIC-STYLE prompts. These should produce broadcast-quality data cards — the kind you'd see on CNN, Bloomberg, or The Economist's video desk.
 Each image_prompt MUST:
 - Start with: "Create a single vertical 9:16 broadcast-quality infographic card."
-- Describe a SPECIFIC data visualization: a comparison table with colored header rows and highlighted cells, a trend line chart with labeled axes, a horizontal bar chart with color-coded categories, a stat callout with icons, a before/after comparison, a breakdown panel with icon-text pairs
-- Keep each scene visually clean — don't overload a single frame with too many numbers. A viewer should absorb the key takeaway in a few seconds on a phone
+- Describe a SPECIFIC data visualization: a comparison table, trend chart, horizontal bar chart, stat callout with icons, before/after comparison, or breakdown panel
+- Keep each scene visually clean — a viewer should absorb ONE key takeaway in 3-4 seconds on a phone
 - Include the EXACT real numbers, dates, categories, and labels from the article — bake all data INTO the prompt
 - Describe the visual style in detail:
-  * Deep navy/dark blue background with subtle gradient or texture
-  * Bold white title text with colored subtitle (gold or yellow)
+  * BRIGHT, high-contrast background that pops on a phone screen — NOT dark or muddy
+  * Choose colors and mood that fit the story — let the color palette emerge from the topic
+  * Bold headline text with colored subtitle
   * Red or orange highlights for critical/alarming data points
-  * Rounded-corner cards or panels for grouping related info
   * Professional icons next to key points (use descriptive icon concepts like "hourglass icon", "warning icon", "chart icon")
-  * Subtle background imagery where it adds context (e.g. a faded Statue of Liberty for immigration, a faded stock chart for markets) — NOT the main focus, just atmosphere
   * Source attribution at the bottom when citing official data
-  * Scene number badge in the top-left corner (e.g. a red rounded square with the scene number)
-- End with: "Style: broadcast-quality news infographic, CNN/Bloomberg data card aesthetic, rich gradients, professional iconography, bold hierarchy, crisp typography, high production value. Vertical 9:16 phone format."
-- Mix different visualization types across scenes: one data table, one trend chart, one icon-explanation panel, one bar chart, one big stat callout — each scene visually distinct and telling a different part of the story
+  * Leave the TOP-LEFT CORNER CLEAR — no text, badges, or graphics in the upper-left 200x200px area (a real logo will be overlaid there)
+- End with: "Style: broadcast-quality news infographic, data card aesthetic, bright and vibrant, professional iconography, bold hierarchy, crisp typography, high production value. Vertical 9:16 phone format."
+- Mix different visualization types across scenes: each scene visually distinct
 
 Example of a GOOD data-centric prompt:
 "Create a single vertical 9:16 broadcast-quality infographic card. Title: 'JULY 2026 VISA BULLETIN' in bold white, subtitle 'EMPLOYMENT-BASED FINAL ACTION DATES' in gold. Below, a clean data table with a blue header row showing columns: Category, All Chargeability Areas Except India, India. Rows: EB-1 (15MAY23, 15MAY23), EB-2 row highlighted in RED (15JAN23, UNAVAILABLE in bold red text), EB-3 (01JAN13, 01NOV12), EB-3 Other Workers (01NOV20, 01JUN16), EB-5 Unreserved (01APR22, 01JAN22). Deep navy background with subtle American flag texture. U.S. Department of State seal icon next to source attribution 'Source: U.S. Department of State — Visa Bulletin July 2026' at the bottom. Scene number '2' in a red badge top-left corner. Style: broadcast-quality news infographic, CNN/Bloomberg data card aesthetic, rich gradients, professional iconography, bold hierarchy, crisp typography, high production value. Vertical 9:16 phone format."
@@ -267,34 +266,50 @@ Return ONLY valid JSON, no markdown."""
 # PHASE 3: Generate scene images
 # ═══════════════════════════════════════════════════════════════
 def generate_images_api(scenes, article_id, build_dir):
-    """Generate images via OpenAI gpt-image-1 API."""
+    """Generate images via OpenAI gpt-image-1 API, overlay real logo, upload."""
+    import base64
     print(f"\n{'='*60}")
     print(f"PHASE 3: Generating images (OpenAI API)...")
     print(f"{'='*60}")
     
     storage_prefix = f"reel-gen/{article_id}"
     
+    # Brightness/style wrapper for all prompts
+    PROMPT_PREFIX = (
+        "A visually rich broadcast infographic scene for a short-form news reel. "
+        "Bright, vibrant, high-contrast — designed to pop on a small phone screen. "
+        "Light or medium-toned background, not dark. "
+    )
+    PROMPT_SUFFIX = (
+        " Choose colors and visual mood that best fit this story. "
+        "One clear takeaway readable in 3 seconds, not a full infographic poster. "
+        "Leave the top-left corner clear for a logo overlay. 9:16 vertical."
+    )
+    
     for i, scene in enumerate(scenes):
         print(f"  Scene {i}: generating...")
+        
+        raw_prompt = scene.get("image_prompt", scene.get("scene_focus", ""))
+        full_prompt = PROMPT_PREFIX + raw_prompt + PROMPT_SUFFIX
         
         r = requests.post(
             "https://api.openai.com/v1/images/generations",
             headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
             json={
                 "model": "gpt-image-1",
-                "prompt": scene.get("image_prompt", scene.get("scene_focus", "")),
+                "prompt": full_prompt,
                 "n": 1,
                 "size": "1024x1536",  # portrait
                 "quality": "high"
             },
-            timeout=120
+            timeout=180
         )
         
         if r.status_code != 200:
             error_msg = r.text[:200]
             if "safety" in error_msg.lower() or "content_policy" in error_msg.lower():
                 print(f"  ⚠️  Scene {i} blocked by safety filter")
-                print(f"     Prompt: {scene.get('image_prompt', scene.get('scene_focus', ''))[:100]}...")
+                print(f"     Prompt: {raw_prompt[:100]}...")
                 print(f"     → Use --manual-images to provide this scene")
                 scene["image_url"] = None
                 continue
@@ -303,10 +318,9 @@ def generate_images_api(scenes, article_id, build_dir):
                 scene["image_url"] = None
                 continue
         
-        # Download and upload to Supabase
+        # Download image
         img_data_b64 = r.json()["data"][0].get("b64_json")
         if img_data_b64:
-            import base64
             img_bytes = base64.b64decode(img_data_b64)
         else:
             img_url = r.json()["data"][0]["url"]
@@ -317,16 +331,23 @@ def generate_images_api(scenes, article_id, build_dir):
         with open(local_path, "wb") as f:
             f.write(img_bytes)
         
+        # Apply real logo overlay
+        watermark_image(local_path)
+        
+        # Re-read after watermark
+        with open(local_path, "rb") as f:
+            final_bytes = f.read()
+        
         # Upload to Supabase
         storage_path = f"{storage_prefix}/scene-{i}.jpg"
-        up = requests.post(
+        requests.post(
             f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
             headers={**SB_HEADERS, "Content-Type": "image/jpeg", "x-upsert": "true"},
-            data=img_bytes, timeout=30
+            data=final_bytes, timeout=30
         )
         
         scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
-        print(f"  ✅ Scene {i}: uploaded ({len(img_bytes)//1024}KB)")
+        print(f"  ✅ Scene {i}: generated + logo overlay ({len(final_bytes)//1024}KB)")
     
     # Check for missing images
     missing = [i for i, s in enumerate(scenes) if not s.get("image_url")]
@@ -339,11 +360,14 @@ def generate_images_api(scenes, article_id, build_dir):
 
 
 def watermark_image(img_path, logo_path=None):
-    """Add Videshi logo watermark to top-right corner of an image."""
+    """Add real Videshi logo (transparent) to top-left corner of an image."""
     from PIL import Image
     
     if logo_path is None:
-        logo_path = os.path.expanduser("~/workspace/the-videshi-news/public/logo-512.png")
+        # Use the transparent version; fall back to original
+        logo_path = os.path.join(PIPELINE_DIR, "assets", "logo-transparent.png")
+        if not os.path.exists(logo_path):
+            logo_path = os.path.expanduser("~/workspace/the-videshi-news/public/logo-512.png")
     
     if not os.path.exists(logo_path):
         print(f"  ⚠️  Logo not found at {logo_path}, skipping watermark")
@@ -352,22 +376,16 @@ def watermark_image(img_path, logo_path=None):
     img = Image.open(img_path).convert("RGBA")
     logo = Image.open(logo_path).convert("RGBA")
     
-    # Size logo to ~8% of image width
-    logo_size = int(img.width * 0.08)
+    # Size logo to 160px (visible on phone, not overpowering)
+    logo_size = 160
     logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
     
-    # Make semi-transparent (70% opacity)
-    logo_data = logo.getdata()
-    new_data = [(r, g, b, int(a * 0.7)) for r, g, b, a in logo_data]
-    logo.putdata(new_data)
-    
-    # Position: top-right corner with padding
-    padding = int(img.width * 0.03)
-    x = img.width - logo_size - padding
-    y = padding
+    # Position: top-left corner with padding
+    padding_x = 30
+    padding_y = 40
     
     # Paste with transparency
-    img.paste(logo, (x, y), logo)
+    img.paste(logo, (padding_x, padding_y), logo)
     
     # Save back as RGB (for JPEG)
     out = img.convert("RGB")
@@ -1467,13 +1485,14 @@ def main():
         print()
         return
     
-    # Phase 3: Images (manual only)
+    # Phase 3: Images (auto-generate or manual)
     if args.manual_images:
         load_manual_images(scenes, args.manual_images, article_id)
     else:
-        print("\n❌ Image generation requires --manual-images or --prompts-only")
-        print(f"   Run with --prompts-only first, then --manual-images /path/")
-        sys.exit(1)
+        success = generate_images_api(scenes, article_id, build_dir)
+        if not success:
+            print("\n❌ Image generation incomplete. Use --manual-images for failed scenes")
+            sys.exit(1)
     
     # Phase 8: Carousel (can run before reel since it's independent)
     carousel_slides = build_carousel(scenes, build_dir)
