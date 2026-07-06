@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-06T08:15:27.586849+00:00",
+  "timestamp": "2026-07-06T08:45:22.722299+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e7a98190-c8a1-4b9e-9d66-3bfbb1a1f91c",
-      "headline": "Britain, Canada, Germany, Australia. The Countries Lining Up to Take America's Indian Engineers",
-      "slug": "global-talent-exodus-uk-canada-germany-australia-indian-20260706",
+      "id": "12749cf7-0521-4cc0-8779-bba3989987c2",
+      "headline": "NATO's Biggest Summit in Years Starts Tomorrow. India Isn't at the Table \u2014 but It's on Every Agenda.",
+      "slug": "nato-ankara-summit-india-defence-ukraine-iran-nuclear-balancing-act-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "international departures flight board",
-          "reason": "The photo is relevant to international immigration and travel."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Swiss and EU flags outside building",
+          "reason": "The photo shows Swiss and EU flags, not related to NATO or Ankara."
         },
         "inline_image_mismatches": []
       },
@@ -30,33 +30,35 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on immigration and Indian engineers."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the challenges faced by Indian engineers in the US and the opportunities in other countries, which is relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses India's strategic interests in relation to NATO, which is relevant to the Indian diaspora concerned about geopolitical dynamics."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian engineers or immigration to enhance relevance.",
-          "Include more personal stories or testimonials from Indian engineers to strengthen the diaspora connection."
+          "Include a relevant hero image that visually represents the NATO summit or India's role in global geopolitics.",
+          "Provide a clearer connection to how these geopolitical developments specifically impact the Indian diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Swiss and EU flags outside building)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8180daf2-6796-4871-917b-5a470a8cac0a",
-      "headline": "Same Job, One-Fifth the Pay. The Real Cost of Returning to India's GCC Boom",
-      "slug": "gcc-reverse-migration-pay-cliff-blind-survey-20260706",
+      "id": "8eb7ba58-899e-4d29-adc9-3c691026368d",
+      "headline": "Oil Just Fell to Pre-War Levels. For India, the Breathing Room Is Enormous.",
+      "slug": "opec-output-increase-oil-prewar-levels-india-relief-rupee-inflation-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +66,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "software engineers in a tech office",
-          "reason": "The photo shows software engineers, which aligns with the tech professional theme of the story."
+          "what_photo_shows": "an oil refinery at dusk",
+          "reason": "The photo of an oil refinery is relevant to the story about oil prices."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image depicts a professional environment, which aligns with the article's focus on tech workers and job opportunities."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of returning to India for Indian Americans, making it relevant for the diaspora audience."
+          "note": "The article discusses the economic implications of oil prices on India, which is relevant to the Indian diaspora concerned about economic conditions back home."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples or quotes from Indian diaspora professionals to enhance relatability.",
-          "Provide a clearer conclusion summarizing the implications for both returning workers and those considering the move."
+          "Include more direct quotes or perspectives from Indian economists or diaspora members to enhance relatability.",
+          "Add a section on how these oil price changes might affect Indian expatriates living abroad, particularly in terms of remittances."
         ],
         "verdict": "pass"
       },
