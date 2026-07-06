@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-06T13:15:29.764801+00:00",
+  "timestamp": "2026-07-06T13:45:09.810459+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,49 +10,6 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "ca92de70-f476-4e00-a6e1-f61a379d9fbf",
-      "headline": "Wall Street Says the Real AI Money Isn't in the Magnificent Seven. It's in Memory Chips \u2014 and Sanjay Mehrotra's Micron Is Leading.",
-      "slug": "micron-sanjay-mehrotra-ai-memory-chips-infrastructure-20260706",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit smiling",
-          "reason": "The photo plausibly shows Sanjay Mehrotra, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights Sanjay Mehrotra's achievements and their significance to the Indian diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Sanjay Mehrotra or analysts to enhance credibility.",
-          "Include a brief overview of the semiconductor industry in India to provide context for the Gujarat facility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "b8afea69-3899-4844-abc3-45e98677faad",
       "headline": "Persistent Systems Just Made India's Boldest AI Bet \u2014 a $1.4 Billion Gamble on a German Software Firm",
@@ -62,11 +19,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "group of officials in a meeting",
-          "reason": "The photo does not clearly show Anand Deshpande or relate to the acquisition story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -84,53 +36,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to improve the image match score.",
-          "Consider adding quotes or insights from industry experts to enhance the depth of analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (group of officials in a meeting)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "818247e8-9f61-4172-9525-726d7dddcfe1",
-      "headline": "India's IT Giants Walk Into Earnings Week Facing a 'Perfect Storm.' The Numbers Already Look Bleak.",
-      "slug": "india-it-giants-perfect-storm-q1-earnings-tcs-20260706",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data center",
-          "reason": "The photo shows IT infrastructure relevant to the technology story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of IT earnings but is a general technology-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the earnings report to the interests of the Indian American community and discusses implications for NRI investors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more specific image that relates directly to the IT sector or earnings reports.",
-          "Add a brief summary or conclusion that reiterates the key points for NRI investors."
+          "Add a relevant image description to improve the image match score.",
+          "Consider including more direct quotes from industry experts to enhance credibility."
         ],
         "verdict": "pass"
       },
