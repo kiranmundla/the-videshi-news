@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-06T18:01:31Z",
+  "last_updated": "2026-07-06T21:58:24Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2356,7 +2356,9 @@
           "time": "15:00",
           "tz": "ET",
           "venue": "AT&T Stadium, Arlington, TX",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "0-1",
+          "winner": "Spain"
         },
         {
           "match_num": 94,
@@ -8361,6 +8363,42 @@
     {
       "platform": "facebook",
       "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02t7yc5skiRs6xGrWaciGpgantKoNhtqp1XcNiDL56anhg1pvZxVyHUSpm2DVyQDjml",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/Dadzbu8iH76/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/Dad2Z7AC_QS/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/Dad0RsMiFMf/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DadjRMSKIf6/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/Dadg5jRNEAR/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DadZgm9tMkx/",
       "account": "@fifaworldcup",
       "date": "2026-07-06"
     }
