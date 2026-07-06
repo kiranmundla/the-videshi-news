@@ -185,18 +185,26 @@ Each prompt must be completely SELF-CONTAINED with all the context needed to gen
 FIRST, decide the visual approach based on the article content:
 
 **DATA-CENTRIC articles** (immigration policy, visa bulletins, market moves, financial analysis, statistics-heavy stories, policy comparisons):
-Use INFOGRAPHIC-STYLE prompts. These should produce clean data visualizations, NOT photographs.
+Use RICH INFOGRAPHIC-STYLE prompts. These should produce broadcast-quality data cards — the kind you'd see on CNN, Bloomberg, or The Economist's video desk.
 Each image_prompt MUST:
-- Start with: "Create a single vertical 9:16 infographic panel for a news reel."
-- Describe a SPECIFIC data visualization: a comparison table, a trend chart, a stat callout card, a timeline, a bar chart, a before/after comparison, a breakdown diagram
-- Keep each scene visually clean — don't overload a single frame with too many numbers or data points. A viewer should be able to absorb the key takeaway in 3-4 seconds on a phone
+- Start with: "Create a single vertical 9:16 broadcast-quality infographic card."
+- Describe a SPECIFIC data visualization: a comparison table with colored header rows and highlighted cells, a trend line chart with labeled axes, a horizontal bar chart with color-coded categories, a stat callout with icons, a before/after comparison, a breakdown panel with icon-text pairs
+- Keep each scene visually clean — don't overload a single frame with too many numbers. A viewer should absorb the key takeaway in a few seconds on a phone
 - Include the EXACT real numbers, dates, categories, and labels from the article — bake all data INTO the prompt
-- Specify the visual style: clean, modern, dark or navy background, bold colored accents (gold, red, white), large readable typography, professional news-magazine aesthetic
-- End with: "Style: clean data journalism infographic, modern news magazine, bold typography, high contrast, professional layout. Phone-readable at a glance."
-- Mix different visualization types across scenes: one big stat, one chart, one comparison, one breakdown — each scene visually distinct
+- Describe the visual style in detail:
+  * Deep navy/dark blue background with subtle gradient or texture
+  * Bold white title text with colored subtitle (gold or yellow)
+  * Red or orange highlights for critical/alarming data points
+  * Rounded-corner cards or panels for grouping related info
+  * Professional icons next to key points (use descriptive icon concepts like "hourglass icon", "warning icon", "chart icon")
+  * Subtle background imagery where it adds context (e.g. a faded Statue of Liberty for immigration, a faded stock chart for markets) — NOT the main focus, just atmosphere
+  * Source attribution at the bottom when citing official data
+  * Scene number badge in the top-left corner (e.g. a red rounded square with the scene number)
+- End with: "Style: broadcast-quality news infographic, CNN/Bloomberg data card aesthetic, rich gradients, professional iconography, bold hierarchy, crisp typography, high production value. Vertical 9:16 phone format."
+- Mix different visualization types across scenes: one data table, one trend chart, one icon-explanation panel, one bar chart, one big stat callout — each scene visually distinct and telling a different part of the story
 
 Example of a GOOD data-centric prompt:
-"Create a single vertical 9:16 infographic panel for a news reel. A clean comparison table titled 'July 2026 Visa Bulletin' showing Employment-Based Final Action Dates. Columns: Category, All Other Countries, India. Rows: EB-1 (15MAY23 vs 15MAY23), EB-2 (15JAN23 vs UNAVAILABLE in bold red), EB-3 (01JAN13 vs 01NOV12), EB-5 Unreserved (01APR22 vs UNAVAILABLE in red). Dark navy background, white and gold text, red highlight on 'UNAVAILABLE' cells. Source line: 'U.S. Department of State — Visa Bulletin July 2026'. Style: clean data journalism infographic, modern news magazine, bold typography, high contrast, professional layout. Phone-readable at a glance."
+"Create a single vertical 9:16 broadcast-quality infographic card. Title: 'JULY 2026 VISA BULLETIN' in bold white, subtitle 'EMPLOYMENT-BASED FINAL ACTION DATES' in gold. Below, a clean data table with a blue header row showing columns: Category, All Chargeability Areas Except India, India. Rows: EB-1 (15MAY23, 15MAY23), EB-2 row highlighted in RED (15JAN23, UNAVAILABLE in bold red text), EB-3 (01JAN13, 01NOV12), EB-3 Other Workers (01NOV20, 01JUN16), EB-5 Unreserved (01APR22, 01JAN22). Deep navy background with subtle American flag texture. U.S. Department of State seal icon next to source attribution 'Source: U.S. Department of State — Visa Bulletin July 2026' at the bottom. Scene number '2' in a red badge top-left corner. Style: broadcast-quality news infographic, CNN/Bloomberg data card aesthetic, rich gradients, professional iconography, bold hierarchy, crisp typography, high production value. Vertical 9:16 phone format."
 
 **NARRATIVE articles** (human interest, entertainment, travel, profiles, events):
 Use PHOTOGRAPHIC prompts as before.
@@ -207,10 +215,11 @@ Each image_prompt MUST:
 - Specify atmosphere/mood in the description
 - End with: "Style: BBC documentary photography, Reuters editorial realism, ultra realistic, cinematic lighting, professional DSLR, dramatic scale, emotional storytelling. No text. No captions. No logos. No watermarks. No graphics. Single standalone image only."
 
-**HYBRID**: Many articles benefit from MIXING both approaches. For example, open with a dramatic photograph, then show 2-3 data panels, then close with a photograph. Use your judgment based on the article content.
+**HYBRID**: Many articles benefit from MIXING both approaches. For a data-centric article, open with a dramatic hook card (bold headline + subtle background imagery + key impact bullets), then show data panels, then close with a "what this means" or "bigger picture" panel. Use your judgment based on the article content.
 
 ACROSS ALL APPROACHES:
 - Each scene must be visually COMPLETELY DIFFERENT from every other scene
+- Each scene should carry different information and a different visual rendering — do NOT repeat information across scenes
 - Reference CONCRETE details from the article
 
 Example of a BAD prompt:
