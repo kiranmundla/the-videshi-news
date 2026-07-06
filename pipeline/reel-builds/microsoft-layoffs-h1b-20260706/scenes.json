@@ -1,0 +1,40 @@
+{
+  "article_id": "e6e1bc86-6552-4982-8fa2-f5eacc7d037c",
+  "scenes": [
+    {
+      "voiceover": "Microsoft just axed forty-eight hundred jobs. If you're on an H-1B visa, your clock just started ticking.",
+      "onscreen": "4,800 JOBS CUT",
+      "image_prompt": "Microsoft logo with large 4,800 JOBS CUT number, 2.1% of workforce bar"
+    },
+    {
+      "voiceover": "Xbox is taking the biggest hit. Thirty-two hundred gaming roles gone. Four entire studios being sold off or shut down.",
+      "onscreen": "XBOX: 3,200 JOBS GONE",
+      "image_prompt": "Xbox controller breaking apart, 3,200 jobs eliminated, studio names listed"
+    },
+    {
+      "voiceover": "Here's the trade-off. Microsoft stock is down twenty-three percent this year. But they're spending one hundred ninety billion on AI infrastructure.",
+      "onscreen": "STOCK -23% vs $190B AI",
+      "image_prompt": "Split screen stock chart down vs data center spending up, contrasting red and green"
+    },
+    {
+      "voiceover": "For Indian H-1B workers, being laid off means sixty days. Sixty days to find a new sponsor or leave the country.",
+      "onscreen": "60 DAYS TO FIND A SPONSOR",
+      "image_prompt": "Hourglass countdown showing 60 DAYS, H-1B visa fading, urgent amber tones"
+    },
+    {
+      "voiceover": "And it's not just Microsoft. Over fifty-two thousand tech workers lost their jobs in Q1 alone. That's forty percent more than last year.",
+      "onscreen": "52,050 TECH LAYOFFS Q1 2026",
+      "image_prompt": "Bar chart of tech layoffs 52,050 with 40% increase arrow, Microsoft Amazon Meta logos"
+    },
+    {
+      "voiceover": "The cruel irony — Microsoft, Amazon, and Meta are the top H-1B sponsors AND the biggest job cutters. The same companies bringing workers in are pushing them out.",
+      "onscreen": "TOP SPONSORS = TOP CUTTERS",
+      "image_prompt": "Venn diagram showing top H-1B sponsors overlapping with biggest job cutters"
+    },
+    {
+      "voiceover": "If you're an Indian tech worker in America right now, update your LinkedIn, talk to immigration lawyers, and start your green card process today. Don't wait.",
+      "onscreen": "PROTECT YOUR STATUS NOW",
+      "image_prompt": "Professional at crossroads, paths to green card or departure, empowering closing"
+    }
+  ]
+}
