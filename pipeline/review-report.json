@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-06T12:15:22.659656+00:00",
+  "timestamp": "2026-07-06T13:15:29.764801+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2a895da8-aa4d-453d-8e0b-251a3f3adc9d",
-      "headline": "Eight Michelin Stars, a Whole Foods Aisle, and a Cancer Survivor's Dream: Indian Food's American Moment Is Here",
-      "slug": "indian-cuisine-gymkhana-whole-foods-zamindars-clubhouse-america-20260706",
+      "id": "ca92de70-f476-4e00-a6e1-f61a379d9fbf",
+      "headline": "Wall Street Says the Real AI Money Isn't in the Magnificent Seven. It's in Memory Chips \u2014 and Sanjay Mehrotra's Micron Is Leading.",
+      "slug": "micron-sanjay-mehrotra-ai-memory-chips-infrastructure-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Traditional Indian dishes with spices",
-          "reason": "The photo shows Indian dishes, aligning with the story about Indian cuisine."
+          "what_photo_shows": "A man in a suit smiling",
+          "reason": "The photo plausibly shows Sanjay Mehrotra, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the evolution of Indian cuisine in America to the experiences of the Indian diaspora, highlighting both cultural and entrepreneurial aspects."
+          "note": "The article effectively highlights Sanjay Mehrotra's achievements and their significance to the Indian diaspora, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or insights from diaspora community members to enhance the personal connection.",
-          "Include more statistics or data on the growth of Indian cuisine in America to strengthen the argument."
+          "Consider adding more direct quotes from Sanjay Mehrotra or analysts to enhance credibility.",
+          "Include a brief overview of the semiconductor industry in India to provide context for the Gujarat facility."
         ],
         "verdict": "pass"
       },
@@ -54,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6dd15f3d-9291-4164-be87-41c3978136cc",
-      "headline": "India's Central Bank Is Paying NRIs Up to Seven Per Cent to Park Their Dollars at Home. Here Is the Catch.",
-      "slug": "rbi-fcnrb-nri-dollar-deposit-scheme-seven-percent-20260706",
+      "id": "b8afea69-3899-4844-abc3-45e98677faad",
+      "headline": "Persistent Systems Just Made India's Boldest AI Bet \u2014 a $1.4 Billion Gamble on a German Software Firm",
+      "slug": "persistent-systems-nagarro-acquisition-indian-it-ai-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "86139904-91d3-41bd-afdb-362d6407da84",
-            "headline": "India's Central Bank Told Parliament: Don't Legalize Crypto."
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story about RBI policies."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "group of officials in a meeting",
+          "reason": "The photo does not clearly show Anand Deshpande or relate to the acquisition story."
         },
         "inline_image_mismatches": []
       },
@@ -78,19 +73,64 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the benefits and implications of the RBI's new scheme for dollar deposits."
+          "note": "The article effectively connects the acquisition to the interests of Indian Americans in the tech sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a section on potential risks or downsides for NRIs to provide a more balanced view.",
-          "Include quotes or insights from financial experts or NRIs who have utilized the scheme to enhance credibility."
+          "Include a relevant image description to improve the image match score.",
+          "Consider adding quotes or insights from industry experts to enhance the depth of analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (group of officials in a meeting)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "818247e8-9f61-4172-9525-726d7dddcfe1",
+      "headline": "India's IT Giants Walk Into Earnings Week Facing a 'Perfect Storm.' The Numbers Already Look Bleak.",
+      "slug": "india-it-giants-perfect-storm-q1-earnings-tcs-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in a data center",
+          "reason": "The photo shows IT infrastructure relevant to the technology story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of IT earnings but is a general technology-related image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the earnings report to the interests of the Indian American community and discusses implications for NRI investors."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more specific image that relates directly to the IT sector or earnings reports.",
+          "Add a brief summary or conclusion that reiterates the key points for NRI investors."
         ],
         "verdict": "pass"
       },
