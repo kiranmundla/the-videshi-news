@@ -1142,6 +1142,200 @@ def distribute(reel_path, carousel_slides, article, attribution="", skip=False):
 
 
 # ═══════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════
+# QUEUE PROCESSOR — builds reels from admin-page-uploaded images
+# ═══════════════════════════════════════════════════════════════
+def process_queue():
+    """Fetch 'ready' entries from reel_queue, download images, build reels."""
+    print("\n🔄 Processing reel_queue (ready entries)...\n")
+    
+    ready = requests.get(
+        f"{SB_URL}/rest/v1/reel_queue?status=eq.ready&order=created_at.asc&limit=5",
+        headers=SB_HEADERS, timeout=10
+    ).json()
+    
+    if not ready:
+        print("  No ready entries in queue.")
+        return
+    
+    print(f"  Found {len(ready)} ready entries\n")
+    
+    for entry in ready:
+        queue_id = entry["id"]
+        article_id = entry["article_id"]
+        headline = entry["headline"]
+        image_urls = entry.get("image_urls") or []
+        scenes_data = entry.get("scenes") or []
+        
+        # Parse scenes if stored as string
+        if isinstance(scenes_data, str):
+            scenes_data = json.loads(scenes_data)
+        
+        print(f"{'='*60}")
+        print(f"Building: {headline[:60]}...")
+        print(f"  Queue ID:   {queue_id}")
+        print(f"  Article:    {article_id}")
+        print(f"  Images:     {len(image_urls)}")
+        print(f"{'='*60}")
+        
+        if not image_urls or len(image_urls) == 0:
+            print("  ❌ No images uploaded — skipping")
+            requests.patch(
+                f"{SB_URL}/rest/v1/reel_queue?id=eq.{queue_id}",
+                headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                json={"status": "failed", "error_message": "No images uploaded"},
+                timeout=10
+            )
+            continue
+        
+        # Mark as building
+        requests.patch(
+            f"{SB_URL}/rest/v1/reel_queue?id=eq.{queue_id}",
+            headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+            json={"status": "building"}, timeout=10
+        )
+        
+        try:
+            build_dir = f"/tmp/reel-build-queue-{article_id[:8]}"
+            os.makedirs(build_dir, exist_ok=True)
+            
+            # Fetch article
+            article = fetch_article(article_id)
+            
+            # Reconstruct scenes from queue data + image URLs
+            scenes = []
+            for i, sd in enumerate(scenes_data):
+                scene = {
+                    "voiceover": sd.get("voiceover", ""),
+                    "onscreen": sd.get("onscreen", ""),
+                    "image_prompt": sd.get("image_prompt", ""),
+                }
+                # Assign image URL from uploaded images
+                if i < len(image_urls):
+                    img_url = image_urls[i]
+                    # If it's a relative storage path, make it absolute
+                    if not img_url.startswith("http"):
+                        img_url = f"{STORAGE_BASE}/{img_url}"
+                    scene["image_url"] = img_url
+                scenes.append(scene)
+            
+            # Cache scenes
+            scenes_cache = f"{build_dir}/scenes.json"
+            with open(scenes_cache, "w") as f:
+                json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
+            
+            # Download images and apply watermark
+            for i, scene in enumerate(scenes):
+                if "image_url" not in scene:
+                    continue
+                local_path = f"{build_dir}/scene-{i}.jpg"
+                subprocess.run(["curl", "-sS", "-o", local_path, scene["image_url"]], check=True, timeout=30)
+                
+                # Watermark
+                watermarked = watermark_image(local_path)
+                if watermarked:
+                    scene["local_path"] = watermarked
+                else:
+                    scene["local_path"] = local_path
+                
+                # Upload watermarked to Supabase
+                storage_path = f"reel-gen/{article_id}/scene-{i}.jpg"
+                with open(scene["local_path"], "rb") as f:
+                    requests.post(
+                        f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
+                        headers={**SB_HEADERS, "Content-Type": "image/jpeg", "x-upsert": "true"},
+                        data=f.read(), timeout=30
+                    )
+                scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
+                print(f"  ✅ Scene {i} watermarked + uploaded")
+            
+            # TTS
+            vo_mp3_cache = f"{build_dir}/voiceover.mp3"
+            if os.path.exists(vo_mp3_cache) and os.path.getsize(vo_mp3_cache) > 1000:
+                dur = float(subprocess.run(
+                    ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                     "-of", "default=noprint_wrappers=1:nokey=1", vo_mp3_cache],
+                    capture_output=True, text=True
+                ).stdout.strip())
+                storage_path = f"reel-gen/{article_id}/voiceover.mp3"
+                with open(vo_mp3_cache, "rb") as f:
+                    requests.post(
+                        f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
+                        headers={**SB_HEADERS, "Content-Type": "audio/mpeg", "x-upsert": "true"},
+                        data=f.read(), timeout=30
+                    )
+                vo_url = f"{STORAGE_BASE}/{storage_path}"
+                voice_duration = dur
+                vo_mp3 = vo_mp3_cache
+            else:
+                vo_url, voice_duration, vo_mp3 = generate_tts(scenes, article_id, build_dir)
+            
+            endcard_cta_url, endcard_cta_dur = ensure_endcard_cta()
+            words = get_word_timestamps(vo_mp3, build_dir)
+            music_url, attribution = select_music(article, build_dir)
+            
+            # Build music-only reel
+            music_reel_path, _ = build_music_only_reel(scenes, music_url, build_dir)
+            
+            # Build voiceover reel
+            vo_reel_path, _ = build_reel(
+                scenes, words, vo_url, voice_duration,
+                music_url, endcard_cta_url, endcard_cta_dur, build_dir
+            )
+            
+            # Carousel
+            carousel_slides = build_carousel(scenes, build_dir)
+            
+            # Copy outputs
+            output_dir = os.path.expanduser("~/workspace/your_files")
+            slug_short = article.get("slug", article_id[:8])[:50]
+            
+            youtube_music_url = None
+            youtube_voice_url = None
+            
+            if music_reel_path:
+                music_reel_out = f"{output_dir}/reel-music-{slug_short}.mp4"
+                subprocess.run(["cp", music_reel_path, music_reel_out])
+                # Register in prebuilt_reels
+                register_reel(music_reel_path, "music", article)
+                print(f"  ✅ Music-only reel: {music_reel_out}")
+            
+            if vo_reel_path:
+                vo_reel_out = f"{output_dir}/reel-voice-{slug_short}.mp4"
+                subprocess.run(["cp", vo_reel_path, vo_reel_out])
+                register_reel(vo_reel_path, "voice", article)
+                print(f"  ✅ Voiceover reel: {vo_reel_out}")
+            
+            # Update queue entry as complete
+            update_data = {"status": "complete", "error_message": None}
+            if youtube_music_url:
+                update_data["youtube_music_url"] = youtube_music_url
+            if youtube_voice_url:
+                update_data["youtube_voice_url"] = youtube_voice_url
+            
+            requests.patch(
+                f"{SB_URL}/rest/v1/reel_queue?id=eq.{queue_id}",
+                headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                json=update_data, timeout=10
+            )
+            print(f"\n  ✅ Queue entry marked complete\n")
+            
+        except Exception as e:
+            print(f"  ❌ Build failed: {e}")
+            requests.patch(
+                f"{SB_URL}/rest/v1/reel_queue?id=eq.{queue_id}",
+                headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                json={"status": "failed", "error_message": str(e)[:500]},
+                timeout=10
+            )
+            import traceback
+            traceback.print_exc()
+            continue
+    
+    print("\n✅ Queue processing complete")
+
+
+# ═══════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════
 def main():
@@ -1151,8 +1345,14 @@ def main():
     parser.add_argument("--skip-distribute", action="store_true", help="Skip distribution")
     parser.add_argument("--carousel-only", action="store_true", help="Only build carousel (skip reel)")
     parser.add_argument("--prompts-only", action="store_true", help="Stop after generating storyboard prompts (Step 1)")
+    parser.add_argument("--from-queue", action="store_true", help="Build reels from ready reel_queue entries")
     parser.add_argument("--build-dir", help="Build directory (default: /tmp/reel-build-<id>)")
     args = parser.parse_args()
+    
+    # ── FROM-QUEUE MODE: process ready entries from reel_queue ──
+    if args.from_queue:
+        process_queue()
+        return
     
     article_id = args.article_id
     
@@ -1210,7 +1410,49 @@ def main():
     print(f"\n  📋 ChatGPT prompts saved: {prompts_path}")
     
     if args.prompts_only:
-        # Copy prompts to workspace for easy access
+        # Insert into reel_queue for admin page workflow
+        queue_scenes = []
+        for i, scene in enumerate(scenes):
+            queue_scenes.append({
+                "index": i,
+                "onscreen": scene["onscreen"],
+                "voiceover": scene["voiceover"],
+                "image_prompt": scene.get("image_prompt", scene.get("scene_focus", ""))
+            })
+        
+        queue_entry = {
+            "article_id": article_id,
+            "headline": article["headline"],
+            "slug": article.get("slug", ""),
+            "scenes": json.dumps(queue_scenes),
+            "status": "awaiting_images"
+        }
+        
+        # Check if entry already exists for this article
+        existing = requests.get(
+            f"{SB_URL}/rest/v1/reel_queue?article_id=eq.{article_id}&select=id,status",
+            headers=SB_HEADERS, timeout=10
+        ).json()
+        
+        if existing:
+            # Update existing entry (refresh prompts)
+            requests.patch(
+                f"{SB_URL}/rest/v1/reel_queue?id=eq.{existing[0]['id']}",
+                headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                json={"scenes": json.dumps(queue_scenes), "status": "awaiting_images",
+                      "updated_at": "now()"},
+                timeout=10
+            )
+            print(f"\n  📋 Updated reel_queue entry (was: {existing[0]['status']})")
+        else:
+            requests.post(
+                f"{SB_URL}/rest/v1/reel_queue",
+                headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                json=queue_entry, timeout=10
+            )
+            print(f"\n  📋 Added to reel_queue → awaiting_images")
+        
+        # Also copy prompts to workspace for reference
         import shutil
         slug_short = article["slug"][:50] if article.get("slug") else article_id[:8]
         out_prompts = os.path.expanduser(f"~/workspace/your_files/prompts-{slug_short}.txt")
@@ -1220,9 +1462,8 @@ def main():
         print(f"{'='*60}")
         print(f"  Prompts: {out_prompts}")
         print(f"  Scenes:  {len(scenes)}")
-        print(f"\n  Next: paste each prompt into ChatGPT, save images,")
-        print(f"  then run:")
-        print(f"    python3 reel-pipeline.py --article-id {article_id} --manual-images /path/to/images/")
+        print(f"\n  → Entry added to Reel Queue (admin page)")
+        print(f"  → Upload images there, then mark Ready")
         print()
         return
     
@@ -1304,41 +1545,41 @@ def main():
         subprocess.run(["cp", slide, carousel_out])
     
     # Phase 9: Register in prebuilt_reels + distribute
-    def register_reel(reel_path, variant_label, article):
-        """Register a reel in prebuilt_reels for the distributor."""
-        # Upload reel to Supabase storage
-        reel_storage = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
-        with open(reel_path, "rb") as f:
-            requests.post(
-                f"{SB_URL}/storage/v1/object/article-images/{reel_storage}",
-                headers={**SB_HEADERS, "Content-Type": "video/mp4", "x-upsert": "true"},
-                data=f.read(), timeout=120
-            )
-        video_url = f"{STORAGE_BASE}/{reel_storage}"
-        
-        article_url = f"https://www.thevideshi.com/articles/{article.get('slug', '')}"
-        caption = f"🇮🇳 {article['headline']}\n\n📰 {article_url}\n\n#IndianDiaspora #NRI #TheVideshi"
-        
-        row = {
-            "article_id": article["id"],
-            "article_slug": article.get("slug", ""),
-            "headline": article["headline"],
-            "video_path": reel_storage,
-            "video_url": video_url,
-            "caption": caption[:2200],
-            "source": "pipeline",
-            "qa_passed": True,
-            "status": "ready"
-        }
-        r = requests.post(
-            f"{SB_URL}/rest/v1/prebuilt_reels",
-            headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=representation"},
-            json=row, timeout=15
+def register_reel(reel_path, variant_label, article):
+    """Register a reel in prebuilt_reels for the distributor."""
+    # Upload reel to Supabase storage
+    reel_storage = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
+    with open(reel_path, "rb") as f:
+        requests.post(
+            f"{SB_URL}/storage/v1/object/article-images/{reel_storage}",
+            headers={**SB_HEADERS, "Content-Type": "video/mp4", "x-upsert": "true"},
+            data=f.read(), timeout=120
         )
-        if r.status_code in (200, 201):
-            print(f"  ✅ Registered {variant_label} reel in prebuilt_reels")
-        else:
-            print(f"  ⚠️ Registration failed: {r.status_code} {r.text[:200]}")
+    video_url = f"{STORAGE_BASE}/{reel_storage}"
+    
+    article_url = f"https://www.thevideshi.com/articles/{article.get('slug', '')}"
+    caption = f"🇮🇳 {article['headline']}\n\n📰 {article_url}\n\n#IndianDiaspora #NRI #TheVideshi"
+    
+    row = {
+        "article_id": article["id"],
+        "article_slug": article.get("slug", ""),
+        "headline": article["headline"],
+        "video_path": reel_storage,
+        "video_url": video_url,
+        "caption": caption[:2200],
+        "source": "pipeline",
+        "qa_passed": True,
+        "status": "ready"
+    }
+    r = requests.post(
+        f"{SB_URL}/rest/v1/prebuilt_reels",
+        headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=representation"},
+        json=row, timeout=15
+    )
+    if r.status_code in (200, 201):
+        print(f"  ✅ Registered {variant_label} reel in prebuilt_reels")
+    else:
+        print(f"  ⚠️ Registration failed: {r.status_code} {r.text[:200]}")
     
     # Register both reels
     if music_reel_path:
