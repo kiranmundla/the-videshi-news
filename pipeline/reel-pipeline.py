@@ -65,7 +65,7 @@ STORAGE_BASE = f"{SB_URL}/storage/v1/object/public/article-images"
 
 TTS_VOICE = "cb9diBQeYWIGJS9i52kX"  # HeyGen Indian Anchorwoman
 ENDCARD_URL = f"{STORAGE_BASE}/branding/endcard-v2.png"
-LOGO_URL = f"{STORAGE_BASE}/branding/logo-512.png"
+LOGO_URL = f"{STORAGE_BASE}/branding/logo-transparent-512.png"
 LOGO_LOCAL = os.path.join(PIPELINE_DIR, "..", "public", "logo-512.png")
 
 FONT_BOLD = "/usr/share/fonts/truetype/inter/Inter-Bold.ttf"
@@ -199,6 +199,12 @@ Each image_prompt MUST:
   * Professional icons next to key points (use descriptive icon concepts like "hourglass icon", "warning icon", "chart icon")
   * Source attribution at the bottom when citing official data
   * Leave the TOP-LEFT CORNER CLEAR — no text, badges, or graphics in the upper-left 200x200px area (a real logo will be overlaid there)
+  * **YOUTUBE SAFE ZONE** — keep ALL important text, data, and graphics within the center safe zone of the image:
+    - TOP: leave the top ~10% clear (status bar, notch)
+    - BOTTOM: leave the bottom ~25% clear or use only background/atmosphere — NO text, checklists, source citations, or tickers (YouTube's title, channel info, and nav bar cover this area)
+    - RIGHT: leave the rightmost ~15% clear of critical text (like/comment/share buttons)
+    - LEFT: leave the leftmost ~5% clear
+    - In practice for 1080×1920: keep all text/data within roughly x:55-920, y:190-1440
 - End with: "Style: broadcast-quality news infographic, data card aesthetic, bright and vibrant, professional iconography, bold hierarchy, crisp typography, high production value. Vertical 9:16 phone format."
 - Mix different visualization types across scenes: each scene visually distinct
 
@@ -213,6 +219,7 @@ Each image_prompt MUST:
 - Reference CONCRETE details from the article (specific numbers, real places, real concepts, real institutions) — bake the article knowledge INTO the prompt
 - Specify atmosphere/mood in the description
 - End with: "Style: BBC documentary photography, Reuters editorial realism, ultra realistic, cinematic lighting, professional DSLR, dramatic scale, emotional storytelling. No text. No captions. No logos. No watermarks. No graphics. Single standalone image only."
+- Respect the same YOUTUBE SAFE ZONE as data cards — any overlaid text or baked-in title must stay within x:55-920, y:190-1440
 
 **HYBRID**: Many articles benefit from MIXING both approaches. For a data-centric article, open with a dramatic hook card (bold headline + subtle background imagery + key impact bullets), then show data panels, then close with a "what this means" or "bigger picture" panel. Use your judgment based on the article content.
 
@@ -220,6 +227,7 @@ ACROSS ALL APPROACHES:
 - Each scene must be visually COMPLETELY DIFFERENT from every other scene
 - Each scene should carry different information and a different visual rendering — do NOT repeat information across scenes
 - Reference CONCRETE details from the article
+- RESPECT THE YOUTUBE SAFE ZONE on every scene — no important text or data in the top 10%, bottom 25%, right 15%, or left 5% of the frame. Viewers will never see content in those margins.
 
 Example of a BAD prompt:
 "A concerned Indian professional looking at documents, dramatic lighting" — TOO VAGUE, no context, no specifics.
@@ -283,7 +291,10 @@ def generate_images_api(scenes, article_id, build_dir):
     PROMPT_SUFFIX = (
         " Choose colors and visual mood that best fit this story. "
         "One clear takeaway readable in 3 seconds, not a full infographic poster. "
-        "Leave the top-left corner clear for a logo overlay. 9:16 vertical."
+        "Leave the top-left corner clear for a logo overlay. "
+        "IMPORTANT: Keep all text and important graphics within the center safe zone — "
+        "leave the top 10%, bottom 25%, right 15%, and left 5% of the frame clear of text or data "
+        "(these areas are covered by YouTube Shorts UI). 9:16 vertical."
     )
     
     for i, scene in enumerate(scenes):
@@ -825,12 +836,13 @@ def build_music_only_reel(scenes, music_url, build_dir):
     # ── No text overlay — images already have text baked in ──
     text_clips = []
     
-    # ── LOGO ──
-    logo_html = f'<div><img src="{LOGO_URL}" style="width:48px;height:48px;border-radius:50%;opacity:0.85;" /></div>'
+    # ── LOGO (native image — transparent PNG, no HTML wrapper) ──
     logo_clip = {
-        "asset": {"type": "html", "html": logo_html, "width": 80, "height": 80},
+        "asset": {"type": "image", "src": LOGO_URL},
         "start": 0, "length": round(total_scenes_dur, 2),
-        "fit": "none", "position": "topLeft", "offset": {"x": 0.02, "y": -0.02}
+        "fit": "none", "position": "topLeft",
+        "offset": {"x": 0.02, "y": 0.02},
+        "scale": 0.06, "opacity": 0.85
     }
     
     timeline = {
@@ -894,41 +906,8 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     boundaries = compute_scene_boundaries(scenes, words, voice_duration)
     endcard_dur = max(endcard_cta_dur + 1.5, 4.0) if endcard_cta_url else 4.0
     
-    # ── CAPTIONS: from SCRIPT text (not Whisper), timed per-scene ──
-    # Each scene's voiceover text is broken into 4-word pills, timed
-    # proportionally within the scene's time boundary. This guarantees
-    # captions always match what's being said.
-    caption_clips = []
-    for i, scene in enumerate(scenes):
-        s, e = boundaries[i]
-        scene_dur = e - s
-        # Split scene voiceover into words
-        scene_words = scene["voiceover"].split()
-        if not scene_words:
-            continue
-        # Group into pills of 4 words
-        pills = []
-        for j in range(0, len(scene_words), 4):
-            pills.append(" ".join(scene_words[j:j+4]))
-        # Time each pill proportionally within the scene
-        pill_dur = scene_dur / len(pills)
-        for j, pill_text in enumerate(pills):
-            pill_start = s + j * pill_dur
-            html = (
-                '<div style="'
-                "font-family:'Inter',sans-serif;font-size:40px;font-weight:800;"
-                'color:#FFFFFF;text-align:center;overflow:hidden;text-overflow:ellipsis;'
-                'text-shadow:0 0 8px rgba(0,0,0,0.95),0 0 20px rgba(0,0,0,0.8),'
-                '2px 2px 4px rgba(0,0,0,0.9),-2px -2px 4px rgba(0,0,0,0.9),'
-                '0 3px 6px rgba(0,0,0,0.7);'
-                f'">{pill_text}</div>'
-            )
-            caption_clips.append({
-                "asset": {"type": "html", "html": html, "width": 580, "height": 120},
-                "start": round(pill_start, 2),
-                "length": round(max(pill_dur, 0.3), 2),
-                "fit": "none", "position": "bottom", "offset": {"y": 0.27}
-            })
+    # ── NO CAPTIONS — images have baked-in text, voice carries narration ──
+    # Platform auto-captions (YouTube, IG) handle accessibility.
     
     # ── No headline labels — images already have baked-in text ──
     text_clips = []
@@ -949,12 +928,14 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
         "fit": "cover", "position": "center", "transition": {"in": "fade"}
     })
     
-    # ── LOGO ──
-    logo_html = f'<div><img src="{LOGO_URL}" style="width:48px;height:48px;border-radius:50%;opacity:0.85;" /></div>'
+    # ── LOGO (native image — transparent PNG, no HTML wrapper) ──
+    # Stops at voice_duration so it doesn't appear on endcard (which has its own logo)
     logo_clip = {
-        "asset": {"type": "html", "html": logo_html, "width": 80, "height": 80},
+        "asset": {"type": "image", "src": LOGO_URL},
         "start": 0, "length": round(voice_duration, 2),
-        "fit": "none", "position": "topLeft", "offset": {"x": 0.02, "y": -0.02}
+        "fit": "none", "position": "topLeft",
+        "offset": {"x": 0.02, "y": 0.02},
+        "scale": 0.06, "opacity": 0.85
     }
     
     # ── AUDIO ──
@@ -971,14 +952,13 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     timeline = {
         "background": "#000000",
         "tracks": [
-            {"clips": caption_clips},
             {"clips": [logo_clip]},
             {"clips": scene_clips},
             {"clips": audio_clips}
         ]
     }
     if music_url:
-        timeline["soundtrack"] = {"src": music_url, "effect": "fadeInFadeOut", "volume": 0.05}
+        timeline["soundtrack"] = {"src": music_url, "effect": "fadeInFadeOut", "volume": 0.08}
     
     payload = {
         "timeline": timeline,
