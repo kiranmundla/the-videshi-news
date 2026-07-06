@@ -813,6 +813,104 @@ def qa_check_reel(reel_path, variant, voice_duration=None, num_scenes=0):
     return passed, score, issues
 
 
+def qa_visual_check(scenes, build_dir):
+    """Check scene images for safe zone violations and voice-to-visual sync.
+    
+    Uses GPT-4o-mini vision (detail:low) to verify:
+    1. No important text/data in YouTube safe zone margins (top 10%, bottom 25%, right 15%, left 5%)
+    2. Each scene's voiceover matches what's actually shown in the image
+    
+    Returns (passed, issues_list).
+    """
+    print(f"\n  🔍 Visual QA: checking safe zone + voice sync...")
+    
+    if not OPENAI_KEY:
+        print(f"     ⚠️  No OpenAI key — skipping visual QA")
+        return True, []
+    
+    # Load scene images as base64
+    import base64 as b64
+    content = []
+    loaded = 0
+    for i, scene in enumerate(scenes):
+        img_path = f"{build_dir}/scene-{i}.jpg"
+        if not os.path.exists(img_path):
+            # Try alternate names
+            for alt in [f"{build_dir}/carousel_src_{i}.jpg", f"{build_dir}/manual-scene-{i}.jpg"]:
+                if os.path.exists(alt):
+                    img_path = alt
+                    break
+        if not os.path.exists(img_path):
+            continue
+        
+        with open(img_path, "rb") as f:
+            img_b64 = b64.b64encode(f.read()).decode()
+        
+        vo_text = scene.get("voiceover", "")
+        content.append({"type": "text", "text": f"Scene {i} — voiceover: \"{vo_text}\""})
+        content.append({"type": "image_url", "image_url": {
+            "url": f"data:image/jpeg;base64,{img_b64}", "detail": "low"
+        }})
+        loaded += 1
+    
+    if loaded == 0:
+        print(f"     ⚠️  No scene images found — skipping visual QA")
+        return True, []
+    
+    prompt = (
+        "You are a YouTube Shorts quality checker. For each scene image + voiceover pair, check TWO things:\n\n"
+        "1. SAFE ZONE: Is important text/data placed in YouTube's UI overlay zones? "
+        "The top ~10% (status bar), bottom ~25% (title, channel, nav), right ~15% (like/share buttons), "
+        "and left ~5% are covered by YouTube Shorts UI. Flag if any IMPORTANT text or data is in these margins.\n\n"
+        "2. VOICE SYNC: Does the voiceover text match what's visually shown on the card? "
+        "The voice should describe the same fact/data that the viewer sees. "
+        "Flag if the voiceover talks about something different from what the image shows "
+        "(e.g., voice says 'Canada' but image shows Germany data).\n\n"
+        "Return JSON: {\"scenes\": [{\"scene\": 0, \"safe_zone_ok\": true/false, \"safe_zone_issue\": \"...\", "
+        "\"voice_sync_ok\": true/false, \"voice_sync_issue\": \"...\"}]}"
+    )
+    content.insert(0, {"type": "text", "text": prompt})
+    
+    try:
+        r = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "gpt-4o-mini",
+                "messages": [{"role": "user", "content": content}],
+                "temperature": 0,
+                "response_format": {"type": "json_object"},
+                "max_tokens": 800
+            },
+            timeout=30
+        )
+        result = r.json()
+        reply = json.loads(result["choices"][0]["message"]["content"])
+    except Exception as e:
+        print(f"     ⚠️  Visual QA call failed: {e}")
+        return True, []  # don't block on API failure
+    
+    issues = []
+    for s in reply.get("scenes", []):
+        idx = s.get("scene", "?")
+        if not s.get("safe_zone_ok", True):
+            issue = f"Scene {idx} safe zone: {s.get('safe_zone_issue', 'text in margins')}"
+            issues.append(issue)
+            print(f"     ⚠️  {issue}")
+        if not s.get("voice_sync_ok", True):
+            issue = f"Scene {idx} voice sync: {s.get('voice_sync_issue', 'voiceover mismatch')}"
+            issues.append(issue)
+            print(f"     ⚠️  {issue}")
+    
+    passed = len(issues) == 0
+    if passed:
+        print(f"     ✅ All {loaded} scenes pass visual QA")
+    else:
+        print(f"     ❌ {len(issues)} issue(s) found across {loaded} scenes")
+    
+    return passed, issues
+
+
 def build_music_only_reel(scenes, music_url, build_dir):
     """Build music-only Quick Pulse reel (no voiceover, data-card style)."""
     print(f"\n{'='*60}")
@@ -1633,6 +1731,12 @@ def main():
         if not passed:
             qa_all_passed = False
             print(f"  ❌ Voice reel FAILED QA (score {score}/10)")
+    
+    # Visual QA: safe zone + voice sync
+    vis_passed, vis_issues = qa_visual_check(scenes, build_dir)
+    if not vis_passed:
+        qa_all_passed = False
+        print(f"  ❌ Visual QA FAILED — {len(vis_issues)} issue(s)")
     
     if not qa_all_passed:
         print(f"\n  ⚠️  One or more reels failed QA. Skipping registration.")

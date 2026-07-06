@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-06T14:15:22.990248+00:00",
+  "timestamp": "2026-07-06T15:15:26.604028+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4cc2561b-be2f-427e-988f-4124eaa48e32",
-      "headline": "Your Employer Cannot Fix This Either. Social Media Vetting Is Now Corporate America's Problem",
-      "slug": "social-media-vetting-corporate-immigration-crisis-employer-20260706",
+      "id": "3f06ee38-6975-45da-8ed8-89a79ce5d667",
+      "headline": "India Trail 1-0. Bishnoi's 29-Run Over Still Stings. Trent Bridge on Tuesday Is Do-or-Die.",
+      "slug": "india-england-3rd-t20i-trent-bridge-preview-series-1-0-sooryavanshi-bishnoi-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person holding an opened passport",
-          "reason": "The photo aligns with the immigration and visa topic of the story."
+          "what_photo_shows": "Trent Bridge cricket ground",
+          "reason": "The photo shows the venue for the cricket match in the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of immigration and corporate America, but it lacks a direct connection to social media vetting."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of social media vetting on Indian workers, making it highly relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article discusses a significant cricket match involving India, which is relevant to the Indian diaspora, especially cricket fans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or quotes from Indian workers affected by the changes to enhance the personal connection.",
-          "Consider adding a section on potential solutions or advice for employers and employees navigating these challenges."
+          "Include quotes from players or coaches to enhance engagement.",
+          "Add a brief historical context of India's performance at Trent Bridge to enrich the narrative."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "17176930-94e4-4529-bbab-dfea431356ce",
-      "headline": "Invest a Million Dollars and Still Wait. India's EB-5 Investor Visa Just Hit a Wall",
-      "slug": "eb5-india-investor-visa-cap-exhausted-fy2026-20260706",
+      "id": "cd2c2050-4109-431e-b0db-a65738434f0f",
+      "headline": "Haaland Scores Twice. Neymar Says Goodbye. Norway End Brazil's World Cup Dream at MetLife.",
+      "slug": "haaland-brace-norway-beat-brazil-2-1-world-cup-round-16-metlife-neymar-farewell-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Permanent Resident Card",
-          "reason": "The photo shows a Permanent Resident Card, relevant to the EB-5 visa story."
+          "what_photo_shows": "Norwegian soccer players celebrating",
+          "reason": "The photo shows Norwegian players, relevant to the story about Norway's World Cup win."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Green Card is relevant but does not specifically highlight the EB-5 program."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the concerns of Indian investors and their families regarding the EB-5 visa program, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the match to the Indian diaspora by highlighting their presence and expectations at the game."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including specific examples or testimonials from Indian investors affected by the EB-5 visa freeze to enhance relatability.",
-          "Add a section on potential future changes or reforms to the EB-5 program that could impact Indian investors."
+          "Consider adding more quotes from Indian fans to enhance the diaspora perspective.",
+          "Include a brief background on the significance of the match for both Norway and Brazil to provide more context."
         ],
         "verdict": "pass"
       },
