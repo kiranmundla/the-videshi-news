@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-05T23:58:44Z",
+  "last_updated": "2026-07-06T02:01:43Z",
   "stage": "Round of 16",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2009,6 +2009,36 @@
       "score": "1-2",
       "home_code": "BRA",
       "away_code": "NOR"
+    },
+    {
+      "id": 90,
+      "group": "R16",
+      "date": "2026-07-04",
+      "time": "13:00",
+      "tz": "ET",
+      "home": "Canada",
+      "away": "Morocco",
+      "venue": "NRG Stadium",
+      "city": "Houston",
+      "status": "FT",
+      "score": "0-3",
+      "home_code": "CAN",
+      "away_code": "MAR"
+    },
+    {
+      "id": 91,
+      "group": "R16",
+      "date": "2026-07-04",
+      "time": "17:00",
+      "tz": "ET",
+      "home": "Paraguay",
+      "away": "France",
+      "venue": "Lincoln Financial Field",
+      "city": "Philadelphia",
+      "status": "FT",
+      "score": "0-1",
+      "home_code": "PAR",
+      "away_code": "FRA"
     }
   ],
   "knockout": {
@@ -2351,7 +2381,56 @@
     },
     "quarterfinals": {
       "dates": "July 9–11",
-      "matches": 4
+      "matches": [
+        {
+          "match_num": 97,
+          "home": "Morocco",
+          "home_code": "MAR",
+          "away": "France",
+          "away_code": "FRA",
+          "date": "2026-07-09",
+          "time": "15:00",
+          "tz": "ET",
+          "venue": "Gillette Stadium, Foxboro, MA",
+          "status": "scheduled"
+        },
+        {
+          "match_num": 98,
+          "date": "2026-07-11",
+          "time": "20:00",
+          "tz": "ET",
+          "venue": "SoFi Stadium, Inglewood, CA",
+          "status": "scheduled",
+          "home": "Norway",
+          "home_code": "NOR",
+          "away": "Mexico/England",
+          "away_code": "TBD"
+        },
+        {
+          "match_num": 99,
+          "date": "2026-07-10",
+          "time": "15:00",
+          "tz": "ET",
+          "venue": "AT&T Stadium, Arlington, TX",
+          "status": "scheduled",
+          "home": "Portugal/Spain",
+          "home_code": "TBD",
+          "away": "USA/Belgium",
+          "away_code": "TBD"
+        },
+        {
+          "match_num": 100,
+          "date": "2026-07-09",
+          "time": "20:00",
+          "tz": "ET",
+          "venue": "Hard Rock Stadium, Miami, FL",
+          "status": "scheduled",
+          "home": "Argentina/Egypt",
+          "home_code": "TBD",
+          "away": "Switzerland/Colombia",
+          "away_code": "TBD"
+        }
+      ]
     },
     "semifinals": {
       "dates": "July 14–15",
