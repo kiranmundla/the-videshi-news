@@ -1377,13 +1377,13 @@ def process_queue():
                 music_reel_out = f"{output_dir}/reel-music-{slug_short}.mp4"
                 subprocess.run(["cp", music_reel_path, music_reel_out])
                 # Register in prebuilt_reels
-                register_reel(music_reel_path, "music", article)
+                _register_reel(music_reel_path, "music", article)
                 print(f"  ✅ Music-only reel: {music_reel_out}")
             
             if vo_reel_path:
                 vo_reel_out = f"{output_dir}/reel-voice-{slug_short}.mp4"
                 subprocess.run(["cp", vo_reel_path, vo_reel_out])
-                register_reel(vo_reel_path, "voice", article)
+                _register_reel(vo_reel_path, "voice", article)
                 print(f"  ✅ Voiceover reel: {vo_reel_out}")
             
             # Update queue entry as complete
@@ -1648,7 +1648,40 @@ def main():
         subprocess.run(["cp", slide, carousel_out])
     
     # Phase 9: Register in prebuilt_reels + distribute
-def register_reel(reel_path, variant_label, article):
+    if qa_all_passed:
+        if music_reel_path:
+            _register_reel(music_reel_path, "music-only", article)
+        if vo_reel_path:
+            _register_reel(vo_reel_path, "voiceover", article)
+        
+        # Direct YouTube upload
+        results = {}
+        if not args.skip_distribute:
+            if music_reel_path:
+                results["youtube_music"] = upload_youtube(music_reel_path, article, attribution, "music-only")
+            if vo_reel_path:
+                results["youtube_voice"] = upload_youtube(vo_reel_path, article, attribution, "voiceover")
+    else:
+        results = {}
+    
+    # Summary
+    print(f"\n{'='*60}")
+    print(f"✅ PIPELINE COMPLETE — TWO REEL VERSIONS")
+    print(f"{'='*60}")
+    if music_reel_path:
+        print(f"  🎵 Music-only:  {music_reel_out}")
+        print(f"     Render ID:   {music_render_id}")
+    if vo_reel_path:
+        print(f"  🎙️  Voiceover:   {vo_reel_out}")
+        print(f"     Render ID:   {vo_render_id}")
+    print(f"  🖼️  Carousel:    {carousel_out}/ ({len(carousel_slides)} slides)")
+    for platform, url in results.items():
+        if url:
+            print(f"  {platform}: {url}")
+    print()
+
+
+def _register_reel(reel_path, variant_label, article):
     """Register a reel in prebuilt_reels for the distributor."""
     # Upload reel to Supabase storage
     reel_storage = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
@@ -1683,36 +1716,6 @@ def register_reel(reel_path, variant_label, article):
         print(f"  ✅ Registered {variant_label} reel in prebuilt_reels")
     else:
         print(f"  ⚠️ Registration failed: {r.status_code} {r.text[:200]}")
-    
-    # Register both reels
-    if music_reel_path:
-        register_reel(music_reel_path, "music-only", article)
-    if vo_reel_path:
-        register_reel(vo_reel_path, "voiceover", article)
-    
-    # Direct YouTube upload
-    results = {}
-    if not args.skip_distribute:
-        if music_reel_path:
-            results["youtube_music"] = upload_youtube(music_reel_path, article, attribution, "music-only")
-        if vo_reel_path:
-            results["youtube_voice"] = upload_youtube(vo_reel_path, article, attribution, "voiceover")
-    
-    # Summary
-    print(f"\n{'='*60}")
-    print(f"✅ PIPELINE COMPLETE — TWO REEL VERSIONS")
-    print(f"{'='*60}")
-    if music_reel_path:
-        print(f"  🎵 Music-only:  {music_reel_out}")
-        print(f"     Render ID:   {music_render_id}")
-    if vo_reel_path:
-        print(f"  🎙️  Voiceover:   {vo_reel_out}")
-        print(f"     Render ID:   {vo_render_id}")
-    print(f"  🖼️  Carousel:    {carousel_out}/ ({len(carousel_slides)} slides)")
-    for platform, url in results.items():
-        if url:
-            print(f"  {platform}: {url}")
-    print()
 
 
 if __name__ == "__main__":

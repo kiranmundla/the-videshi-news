@@ -1,0 +1,71 @@
+ARTICLE: Nearly 300,000 H-1B Renewals and Counting. The Number Trump's Crackdown Cannot Touch
+ID: ceec8577-f07b-448a-86e0-9136856483eb
+SCENES: 7
+============================================================
+
+Paste each prompt into ChatGPT one at a time.
+Save each image as scene-0.jpg, scene-1.jpg, etc.
+
+────────────────────────────────────────────────────────────
+SCENE 0 — RECORD H-1B RENEWALS
+────────────────────────────────────────────────────────────
+Voiceover: Nearly 300,000 H-1B renewals this year. A record. While the front door gets smaller, the back corridor is booming.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Record 291,542 H-1B continuing-employment approvals counter display
+
+────────────────────────────────────────────────────────────
+SCENE 1 — NO CAP ON RENEWALS
+────────────────────────────────────────────────────────────
+Voiceover: New H-1B slots? Capped at 85,000. But renewals? No cap at all. Employers are keeping every worker they have.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Two doors: narrow capped entry vs wide open uncapped renewals
+
+────────────────────────────────────────────────────────────
+SCENE 2 — 72-75% INDIAN HOLDERS
+────────────────────────────────────────────────────────────
+Voiceover: Indians hold 72 to 75 percent of all H-1B visas. Tech, engineering, consulting — they are the backbone.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Data visualization showing 72-75% Indian H-1B dominance
+
+────────────────────────────────────────────────────────────
+SCENE 3 — HUNDREDS OF MILLIONS
+────────────────────────────────────────────────────────────
+Voiceover: Each extension costs employers 2,000 to 5,000 dollars. Multiply that by 291,000 — hundreds of millions spent just to hold on.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Cost infographic showing $2K-$5K per extension times 291K
+
+────────────────────────────────────────────────────────────
+SCENE 4 — 37-YEAR GREEN CARD WAIT
+────────────────────────────────────────────────────────────
+Voiceover: But here is the trap. Every renewal keeps you working, but none of them advance your green card. The EB-2 wait for Indians? 37 years.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Hourglass showing 37-year EB-2 green card wait for Indians
+
+────────────────────────────────────────────────────────────
+SCENE 5 — 65% COMPANIES LOSING TALENT
+────────────────────────────────────────────────────────────
+Voiceover: 65 percent of US companies say they have lost skilled foreign workers. The system is breaking for everyone.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Data card showing 65% of US companies lost skilled foreign workers
+
+────────────────────────────────────────────────────────────
+SCENE 6 — WORKING BUT NOT BELONGING
+────────────────────────────────────────────────────────────
+Voiceover: Working is possible. Belonging is not. That is the paradox 500,000 Indian professionals live with every day.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Indian professional at crossroads between temporary and permanent status
+
