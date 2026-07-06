@@ -449,6 +449,126 @@ def load_manual_images(scenes, image_dir, article_id):
 
 
 # ═══════════════════════════════════════════════════════════════
+# PHASE 2b: Regenerate voiceover from actual images (GPT-4o vision)
+# ═══════════════════════════════════════════════════════════════
+def regenerate_voiceover_from_images(scenes, article, image_dir):
+    """Use GPT-4o vision to write voiceover that matches the actual scene images."""
+    import base64 as b64mod
+
+    print(f"\n{'='*60}")
+    print(f"PHASE 2b: Generating voiceover from images (GPT-4o vision)...")
+    print(f"{'='*60}")
+
+    if not OPENAI_KEY:
+        print("  ⚠️ No OpenAI key — skipping vision voiceover")
+        return False
+
+    # Build image content blocks for GPT
+    image_files = sorted([f for f in os.listdir(image_dir)
+                          if f.lower().endswith(('.jpg', '.jpeg', '.png'))])[:len(scenes)]
+
+    image_contents = []
+    for i, fname in enumerate(image_files):
+        fpath = os.path.join(image_dir, fname)
+        with open(fpath, "rb") as f:
+            img_b64 = b64mod.b64encode(f.read()).decode()
+        ext = fname.rsplit(".", 1)[-1].lower()
+        mime = "image/jpeg" if ext in ("jpg", "jpeg") else "image/png"
+        image_contents.append({
+            "type": "text",
+            "text": f"--- SCENE {i} IMAGE ---"
+        })
+        image_contents.append({
+            "type": "image_url",
+            "image_url": {"url": f"data:{mime};base64,{img_b64}", "detail": "low"}
+        })
+
+    body_text = article.get("body", "")[:3000]
+    # Strip HTML tags for cleaner context
+    import re as _re
+    body_clean = _re.sub(r'<[^>]+>', ' ', body_text)
+    body_clean = _re.sub(r'\s+', ' ', body_clean).strip()
+
+    num_scenes = len(image_files)
+    min_words = max(100, num_scenes * 15)
+    max_words = num_scenes * 22
+
+    system_msg = (
+        "You are a voiceover scriptwriter for The Videshi, an Indian diaspora news platform. "
+        "You will be given scene images from a short-form news reel and the article text. "
+        "Write a punchy, conversational voiceover script — one segment per scene — that DIRECTLY "
+        "describes what the viewer sees on each image. Like a news anchor narrating the graphics on screen."
+    )
+
+    user_prompt = (
+        f"ARTICLE:\nHeadline: {article['headline']}\n"
+        f"Subheadline: {article.get('subheadline', '')}\n"
+        f"Body: {body_clean}\n\n"
+        f"I'm showing you {num_scenes} scene images from the reel. For each scene, write voiceover text that:\n"
+        f"- DIRECTLY narrates what's visible on that scene's image (numbers, labels, data, subjects)\n"
+        f"- Is punchy and conversational — like a news anchor, not an essay\n"
+        f"- Scene 0 should be a hook question that grabs attention\n"
+        f"- Last scene should be a thought-provoking close with diaspora angle\n"
+        f"- Each scene: 15-22 words\n"
+        f"- TOTAL: {min_words}-{max_words} words — this is a HARD MINIMUM. Do NOT write less than {min_words} words.\n"
+        f"- Focus on the Indian diaspora angle — how this affects Indians abroad\n\n"
+        f"Return ONLY valid JSON:\n"
+        f'{{"voiceovers": ["scene 0 text", "scene 1 text", ...]}}'
+    )
+
+    messages_content = [{"type": "text", "text": user_prompt}] + image_contents
+
+    try:
+        r = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "gpt-4o",
+                "messages": [
+                    {"role": "system", "content": system_msg},
+                    {"role": "user", "content": messages_content}
+                ],
+                "temperature": 0.7,
+                "max_tokens": 1000,
+                "response_format": {"type": "json_object"}
+            },
+            timeout=60
+        )
+
+        if r.status_code != 200:
+            print(f"  ❌ GPT-4o vision failed: {r.status_code} {r.text[:200]}")
+            return False
+
+        result = json.loads(r.json()["choices"][0]["message"]["content"])
+        voiceovers = result.get("voiceovers", [])
+
+        if len(voiceovers) < len(scenes):
+            print(f"  ❌ GPT returned {len(voiceovers)} voiceovers, need {len(scenes)}")
+            return False
+
+        # Update scenes with new voiceover text
+        total_words = 0
+        for i, scene in enumerate(scenes):
+            old_vo = scene.get("voiceover", "")
+            new_vo = voiceovers[i]
+            scene["voiceover"] = new_vo
+            wc = len(new_vo.split())
+            total_words += wc
+            print(f"  Scene {i} ({wc}w): {new_vo[:70]}...")
+
+        print(f"\n  ✅ Total: {total_words} words (~{total_words * 0.35 + total_words * 0.15:.0f}s)")
+
+        if total_words < 90:
+            print(f"  ⚠️ Only {total_words} words — below minimum. Keeping anyway (GPT may have been concise)")
+
+        return True
+
+    except Exception as e:
+        print(f"  ❌ Vision voiceover failed: {e}")
+        return False
+
+
+# ═══════════════════════════════════════════════════════════════
 # PHASE 4: TTS (HeyGen Indian Anchorwoman)
 # ═══════════════════════════════════════════════════════════════
 def generate_tts(scenes, article_id, build_dir):
@@ -1676,6 +1796,17 @@ def main():
     # Phase 3: Images (auto-generate or manual)
     if args.manual_images:
         load_manual_images(scenes, args.manual_images, article_id)
+        # Phase 2b: Regenerate voiceover from actual images using GPT-4o vision
+        # This ensures voice matches what's on screen + enforces word count
+        if regenerate_voiceover_from_images(scenes, article, args.manual_images):
+            # Save updated scenes with new voiceover
+            with open(scenes_cache, "w") as f:
+                json.dump({"article_id": article_id, "scenes": scenes}, f, indent=2)
+            # Clear cached TTS so it regenerates with new voiceover
+            vo_cache = f"{build_dir}/voiceover.mp3"
+            if os.path.exists(vo_cache):
+                os.remove(vo_cache)
+                print("  🔄 Cleared cached TTS (voiceover text changed)")
     else:
         success = generate_images_api(scenes, article_id, build_dir)
         if not success:
