@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-06T16:00:27.867824+00:00",
+  "last_refresh": "2026-07-06T22:00:46.657369+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -1394,6 +1394,41 @@
       "likes": 555438,
       "image_count": 4,
       "scraped_at": "2026-07-06T16:00:25.194278+00:00"
+    },
+    "https://www.instagram.com/reel/Dadg5jRNEAR/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 71021,
+      "image_count": 4,
+      "scraped_at": "2026-07-06T22:00:12.925262+00:00"
+    },
+    "https://www.instagram.com/p/DadfBb8iO_U/": {
+      "account": "fifa",
+      "platform": "instagram",
+      "likes": 309140,
+      "image_count": 4,
+      "scraped_at": "2026-07-06T22:00:20.852364+00:00"
+    },
+    "https://www.threads.com/@fifaworldcup/post/DabWP_cD0oh": {
+      "account": "fifaworldcup",
+      "platform": "threads",
+      "likes": 6840,
+      "image_count": 1,
+      "scraped_at": "2026-07-06T22:00:26.592280+00:00"
+    },
+    "https://www.instagram.com/reel/DabZljGvkw_/": {
+      "account": "champ.zonel",
+      "platform": "instagram",
+      "likes": 52331,
+      "image_count": 4,
+      "scraped_at": "2026-07-06T22:00:34.342703+00:00"
+    },
+    "https://www.instagram.com/p/Dad3s2xCAsN/": {
+      "account": "gianni_infantino",
+      "platform": "instagram",
+      "likes": 5917,
+      "image_count": 4,
+      "scraped_at": "2026-07-06T22:00:43.807790+00:00"
     }
   },
   "images": [
@@ -8604,6 +8639,205 @@
       "account": "fifaworldcup",
       "likes": 555438,
       "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.71878-15/741106304_1772702280838516_6066679134492353722_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=LEZYCS8gW1sQ7kNvwGaboYG&_nc_oc=AdpVj_YnQxmhGBNOgnN_NCoc86R2TKGlIfwbboDv4d67HWehiqCDPmlIKqBeg6E1mQSIJEVc7QhVoh1MYOs9P6j4&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=uKISBU40mU65hGYeu_C7Cw&_nc_ss=7820f&oh=00_AQDpPCff8LL2fcuMLxcLddvaoYcbDqvL7_6zqIwed_2JKw&oe=6A51E244",
+      "post_url": "https://www.instagram.com/reel/Dadg5jRNEAR/",
+      "platform": "instagram",
+      "caption": "71K likes, 1,892 comments - fifaworldcup on July 6, 2026: \"A goal that captured your hearts. \ud83d\udc99\u26bd\ufe0f\nSidny Lopes Cabral is your Hyundai GOTT Round of 32 winner and advances to the final vote.\n#FIFAWorldCup #Hyundai #HyundaiGOTT2026 #GoalOfTheTournament\". ",
+      "scraped_at": "2026-07-06T22:00:12.925036+00:00",
+      "account": "fifaworldcup",
+      "likes": 71021,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.71878-15/736387239_1031576216079732_3694527968829445213_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=y58mYL59wJ8Q7kNvwHl_4CQ&_nc_oc=Adr2Oe7kpUc4iwCEFGjIL8VShn3zoYKAHe4q_i9Lr3rpXZWdI0-Adn37Rd3juS2WR-oUjH5wnm2Lzw_fs_m-5_5l&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=viXS3-KLB6LE6ViL8IyRrA&_nc_ss=7860f&oh=00_AQBwdXFGNbHp9Za3uEMeBtWH008NjYKbadmsgIEirR5UWA&oe=6A520D09",
+      "post_url": "https://www.instagram.com/reel/Dadg5jRNEAR/",
+      "platform": "instagram",
+      "caption": "71K likes, 1,892 comments - fifaworldcup on July 6, 2026: \"A goal that captured your hearts. \ud83d\udc99\u26bd\ufe0f\nSidny Lopes Cabral is your Hyundai GOTT Round of 32 winner and advances to the final vote.\n#FIFAWorldCup #Hyundai #HyundaiGOTT2026 #GoalOfTheTournament\". ",
+      "scraped_at": "2026-07-06T22:00:12.925071+00:00",
+      "account": "fifaworldcup",
+      "likes": 71021,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/733471553_18609167587061984_2801371351638667768_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=rLSx2wh4BeQQ7kNvwGizj3V&_nc_oc=Adq5xcfYz6YJ9-jOCdbi3HzD3svlREPy9rfd8AuFgGAy1DplhpMecZCpuCTd40BQp6B4I3kiNQ3xpOkkAmF2DlC7&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=viXS3-KLB6LE6ViL8IyRrA&_nc_ss=7860f&oh=00_AQDzMy41BoXz-qKSoZuJ873W-q16dYMeHlqOBLBbJuuL3w&oe=6A51DD1A",
+      "post_url": "https://www.instagram.com/reel/Dadg5jRNEAR/",
+      "platform": "instagram",
+      "caption": "71K likes, 1,892 comments - fifaworldcup on July 6, 2026: \"A goal that captured your hearts. \ud83d\udc99\u26bd\ufe0f\nSidny Lopes Cabral is your Hyundai GOTT Round of 32 winner and advances to the final vote.\n#FIFAWorldCup #Hyundai #HyundaiGOTT2026 #GoalOfTheTournament\". ",
+      "scraped_at": "2026-07-06T22:00:12.925077+00:00",
+      "account": "fifaworldcup",
+      "likes": 71021,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/736217006_18608950114061984_7587977649356018210_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=p8I0ARTkm04Q7kNvwEVy4hI&_nc_oc=AdpnX6WhgJOaMKXqfhj6XVRXctMrBpvs5OH2nG47MpGLzETlKf-14hwgEi3mQXSZzgwZdMeLZgEFCn13O_txjYEU&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=viXS3-KLB6LE6ViL8IyRrA&_nc_ss=7860f&oh=00_AQAweFMLpchmDNrw9BqkOlqV-W9la5iqqcXTvxqAQlGEJA&oe=6A51FF64",
+      "post_url": "https://www.instagram.com/reel/Dadg5jRNEAR/",
+      "platform": "instagram",
+      "caption": "71K likes, 1,892 comments - fifaworldcup on July 6, 2026: \"A goal that captured your hearts. \ud83d\udc99\u26bd\ufe0f\nSidny Lopes Cabral is your Hyundai GOTT Round of 32 winner and advances to the final vote.\n#FIFAWorldCup #Hyundai #HyundaiGOTT2026 #GoalOfTheTournament\". ",
+      "scraped_at": "2026-07-06T22:00:12.925082+00:00",
+      "account": "fifaworldcup",
+      "likes": 71021,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/732654682_18101920514593118_414281842492539482_n.jpg?stp=c288.0.864.864a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=D6jFzyv9C1QQ7kNvwGcHbWD&_nc_oc=AdqkN84y6VvaMQo9Sm6cXOD3HfoO8y9wIZ4J_KoWLHs3I1Dx4w9Hqpsd_Moj8Qtg3QzXzYMnr5Cxr7QBhKVw7KxU&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=2ZPYKM2hvB20XIVSpnQKRg&_nc_ss=7860f&oh=00_AQAryPsiwxfQn7-4BoqyjX7auFYEz929H2t9qKF9GUqM9A&oe=6A51EB23",
+      "post_url": "https://www.instagram.com/p/DadfBb8iO_U/",
+      "platform": "instagram",
+      "caption": "310K likes, 2,935 comments - fifa on July 6, 2026: \"Gracias, Mexico City \u2764\ufe0f\ud83c\uddf2\ud83c\uddfd\n\nThe only stadium to have hosted three @FIFAWorldCup opening matches. Historic. \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-06T22:00:20.851892+00:00",
+      "account": "fifa",
+      "likes": 309140,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifa-11c379396666.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 26821
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/721466289_18098064623593118_6750107153801528420_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=p27nnsnGMMcQ7kNvwF6jZKO&_nc_oc=AdqLuUXCBD_gELElaB_hhdOqypcnlPhifsrF6jaV3fnW6zZnTVNzLJBFhzbnOlxxVntPH0JWcXMugXsAjsWoz7gj&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=X8IW6WgbvdzUgYQMiydSLg&_nc_ss=7860f&oh=00_AQA_X_rFLFlQgXeQ-leqQS1frTP0_X_JehTEpfNPoCvouw&oe=6A51E8CB",
+      "post_url": "https://www.instagram.com/p/DadfBb8iO_U/",
+      "platform": "instagram",
+      "caption": "310K likes, 2,935 comments - fifa on July 6, 2026: \"Gracias, Mexico City \u2764\ufe0f\ud83c\uddf2\ud83c\uddfd\n\nThe only stadium to have hosted three @FIFAWorldCup opening matches. Historic. \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-06T22:00:20.851925+00:00",
+      "account": "fifa",
+      "likes": 309140,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/741906571_18101940596593118_3875120832049651182_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=AffWgRHYQ2EQ7kNvwEbCtmI&_nc_oc=Adr95oOZ8v380vgRBKkIzRSC1suIo7dgsE6tPWS9h-L28ALt1YsakUoKUaddDwSssBDR24f8bcWx9rqkQQJifYTY&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=X8IW6WgbvdzUgYQMiydSLg&_nc_ss=7860f&oh=00_AQACvRTBWW2bGQYweKMcE_bjXW5H8ayYcx42xhQ1wGyx3w&oe=6A51FA21",
+      "post_url": "https://www.instagram.com/p/DadfBb8iO_U/",
+      "platform": "instagram",
+      "caption": "310K likes, 2,935 comments - fifa on July 6, 2026: \"Gracias, Mexico City \u2764\ufe0f\ud83c\uddf2\ud83c\uddfd\n\nThe only stadium to have hosted three @FIFAWorldCup opening matches. Historic. \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-06T22:00:20.851930+00:00",
+      "account": "fifa",
+      "likes": 309140,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t39.30808-6/740712275_1981345519222757_3929934459675020413_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=9PPc7ww1yaUQ7kNvwHGp24s&_nc_oc=AdpQ59SWpfHmKr2psbP5LLbP58FPNGeFUQtCoyxBZtnmjlBaIPlT_irJGKq0Yoh0_HpEEEsA-fMULDOUyzTuDTVS&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=X8IW6WgbvdzUgYQMiydSLg&_nc_ss=7860f&oh=00_AQD3WHknkIRlP6NqEroTRMj6VBMN_Prp7M2Kxl4FgzOgsQ&oe=6A51F6DE",
+      "post_url": "https://www.instagram.com/p/DadfBb8iO_U/",
+      "platform": "instagram",
+      "caption": "310K likes, 2,935 comments - fifa on July 6, 2026: \"Gracias, Mexico City \u2764\ufe0f\ud83c\uddf2\ud83c\uddfd\n\nThe only stadium to have hosted three @FIFAWorldCup opening matches. Historic. \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-06T22:00:20.851935+00:00",
+      "account": "fifa",
+      "likes": 309140,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-3.cdninstagram.com/v/t51.2885-19/419919747_1101048211205314_8750065153096599531_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42MTIuYzIifQ&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFaI4qdw-IOiWbPSYB-8Xfwg1OfTndF3h8DvNG2BSq_itu1S1hCGcewfg9jgQDiP3WLqx31GLcAdZxiYuXyg0iI&_nc_ohc=0x5b86e0aGIQ7kNvwFfx4dv&_nc_gid=M4o7d0idAIdNZ-WaoZJu5g&edm=APs17CUBAAAA&ccb=7-5&oh=00_AQCPXh99WHWgtQiZ8M6gmsO0iJ-Xz2DOugS6L02W_26NQg&oe=6A51F333&_nc_sid=10d13b",
+      "post_url": "https://www.threads.com/@fifaworldcup/post/DabWP_cD0oh",
+      "platform": "threads",
+      "caption": "FIFA World Cup (@fifaworldcup) on Threads",
+      "scraped_at": "2026-07-06T22:00:26.592243+00:00",
+      "account": "fifaworldcup",
+      "likes": 6840,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/th-fifaworldcup-4fb503d68acf.jpg",
+      "width": 612,
+      "height": 612,
+      "size_bytes": 21882
+    },
+    {
+      "cdn_url": "https://scontent-mia5-2.cdninstagram.com/v/t51.71878-15/736351195_1488350936642701_5613399894538814008_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=Z_ucr8lEPG4Q7kNvwHn5rte&_nc_oc=Adq3JUGQX1iYax4NuECBnVZue6vqXYb_LAZWlSFz0r3Z8dAzAWznEM-ofs9j4uK3Gps8_55p4HMLp0RtfKaMBnj0&_nc_zt=23&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_gid=nyVWlHDNH9j5S_euZSsuGA&_nc_ss=7860f&oh=00_AQCv-9rAsKTIR0FoAxVuPho2VqFfxRGtMfKi4AY7xp0vVg&oe=6A51F9E4",
+      "post_url": "https://www.instagram.com/reel/DabZljGvkw_/",
+      "platform": "instagram",
+      "caption": "52K likes, 200 comments - champ.zonel on July 5, 2026: \"Nimar scored his first goal at the 2026 World Cup. \ud83c\udde7\ud83c\uddf7\ud83d\udcab#brazil\ud83c\udde7\ud83c\uddf7\". ",
+      "scraped_at": "2026-07-06T22:00:34.342650+00:00",
+      "account": "champ.zonel",
+      "likes": 52331,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia5-2.cdninstagram.com/v/t51.71878-15/733704502_1041696428444085_3702526248467612806_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=0-Es2jcFEHAQ7kNvwGGYk8l&_nc_oc=AdpGQeFi7xYoDlea46GDYv9eSiaOrI8GT_ObsO3EtC6h9xviGtI3HJvg_vCxNbD4IkEOTm8WxpdE-nMq-DlE6Onf&_nc_zt=23&_nc_ht=scontent-mia5-2.cdninstagram.com&_nc_gid=ZoSyF9vyFqMJAQoyml5fMQ&_nc_ss=7860f&oh=00_AQAkwSQtnE-SwJVMYihzOR83H9DAC4ukB5FKrLDTfOKKTg&oe=6A51E3DE",
+      "post_url": "https://www.instagram.com/reel/DabZljGvkw_/",
+      "platform": "instagram",
+      "caption": "52K likes, 200 comments - champ.zonel on July 5, 2026: \"Nimar scored his first goal at the 2026 World Cup. \ud83c\udde7\ud83c\uddf7\ud83d\udcab#brazil\ud83c\udde7\ud83c\uddf7\". ",
+      "scraped_at": "2026-07-06T22:00:34.342678+00:00",
+      "account": "champ.zonel",
+      "likes": 52331,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-champ.zonel-a667daa954dd.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 105341
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.2885-19/10535088_1530547863830951_598261030_a.jpg?_nc_cat=110&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xNTAuQzMifQ%3D%3D&_nc_ohc=wsRbnO2TBxgQ7kNvwEJq0-H&_nc_oc=AdpVhTfq5uWX2ffZbZHgEPhMAQUUml3vC9X4JdjCNNjmxmckyYWWrzF7UkOqMdtiR-dG_adHjVRPvvchZ1nlm_bT&_nc_zt=24&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_ss=7860f&oh=00_AQDSVJvMntWlAFVYYndXII9Obn2lUgk7zREEhhVaJHog0A&oe=6A51FA26",
+      "post_url": "https://www.instagram.com/reel/DabZljGvkw_/",
+      "platform": "instagram",
+      "caption": "52K likes, 200 comments - champ.zonel on July 5, 2026: \"Nimar scored his first goal at the 2026 World Cup. \ud83c\udde7\ud83c\uddf7\ud83d\udcab#brazil\ud83c\udde7\ud83c\uddf7\". ",
+      "scraped_at": "2026-07-06T22:00:34.342684+00:00",
+      "account": "champ.zonel",
+      "likes": 52331,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-2.cdninstagram.com/v/t51.71878-15/736207223_909845192137544_3278391354532720876_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=abaVFXwsUKMQ7kNvwHwYyoA&_nc_oc=AdqKRsjINMgcypKTYJcaw1vJZgeXhX1U7koijsKfhPcyEGM_fxVwG94g4LwKhPAOUxJczz3mT72BvDSVui10br4Z&_nc_zt=23&_nc_ht=scontent-mia3-2.cdninstagram.com&_nc_gid=ZoSyF9vyFqMJAQoyml5fMQ&_nc_ss=7860f&oh=00_AQD63OAxAAa10FZIDI5YB3Mdn9HUgwQzr2p2QE_8VZblWw&oe=6A5210C9",
+      "post_url": "https://www.instagram.com/reel/DabZljGvkw_/",
+      "platform": "instagram",
+      "caption": "52K likes, 200 comments - champ.zonel on July 5, 2026: \"Nimar scored his first goal at the 2026 World Cup. \ud83c\udde7\ud83c\uddf7\ud83d\udcab#brazil\ud83c\udde7\ud83c\uddf7\". ",
+      "scraped_at": "2026-07-06T22:00:34.342688+00:00",
+      "account": "champ.zonel",
+      "likes": 52331,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/736575816_18020601785902645_2555030348543780931_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=XLi5bLm2RlQQ7kNvwFzsw7f&_nc_oc=Ado7zcSk5eOJDoG8nyKsAMjzrUxnRVQayGTHoU7hzlYe8xwjZ85TzyDHnvJcWAsytWla3b7XXgjgElFe3Qnmwdff&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=LwdgGW_sZpLzR6cP_MjTGA&_nc_ss=7860f&oh=00_AQD06ZcRPVmSDF6NAKvntU3ybPjPQDn4SyMXCKJYA0wYfg&oe=6A51E2F2",
+      "post_url": "https://www.instagram.com/p/Dad3s2xCAsN/",
+      "platform": "instagram",
+      "caption": "6,088 likes, 0 comments - gianni_infantino on July 6, 2026: \"An engrossing and dramatic Round of 16 tie between two European heavyweights is settled by a late winner! Congratulations to \ud83c\uddea\ud83c\uddf8 @sefutbol on a fantastic win and well played to \ud83c\uddf5\ud83c\uddf9 @portugal. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-06T22:00:43.807735+00:00",
+      "account": "gianni_infantino",
+      "likes": 5917,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gianni_infantino-605ab44d41a4.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 49334
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.71878-15/731573103_2447627579089951_8929327428124902453_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=IIJ9XlIsewgQ7kNvwFeOMhK&_nc_oc=AdpudRUghikqBaMTy5svrcwIlNnjSzCpncFAPj1f6MZDxwFAoi1pQuLjTKFOjAorXoQRrGT7QuT60muPl_1Qrx48&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=uOlhFtVbCL4QP3MMTihsVQ&_nc_ss=7860f&oh=00_AQCYRDVnPyjRIIbAwl229gAgkXoxuVXaRULhhC-2P-m6Lg&oe=6A51EA42",
+      "post_url": "https://www.instagram.com/p/Dad3s2xCAsN/",
+      "platform": "instagram",
+      "caption": "6,088 likes, 0 comments - gianni_infantino on July 6, 2026: \"An engrossing and dramatic Round of 16 tie between two European heavyweights is settled by a late winner! Congratulations to \ud83c\uddea\ud83c\uddf8 @sefutbol on a fantastic win and well played to \ud83c\uddf5\ud83c\uddf9 @portugal. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-06T22:00:43.807767+00:00",
+      "account": "gianni_infantino",
+      "likes": 5917,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/740944964_18020580476902645_6078270773544720998_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=2AsG4VcWg7QQ7kNvwH6MeFm&_nc_oc=AdqTRJ1xkA7DpkBIdc-zpDJX2sk_O_2lIybelkCKsysLBpfLdlar24dcOhxEWYqpAjfCj-ERmpGeKO5L12s_hiMr&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=uOlhFtVbCL4QP3MMTihsVQ&_nc_ss=7860f&oh=00_AQCnt3yVkL7Bby81nwA5GaUkpSdvgsRCXxOxXdhnAkluuw&oe=6A5200DB",
+      "post_url": "https://www.instagram.com/p/Dad3s2xCAsN/",
+      "platform": "instagram",
+      "caption": "6,088 likes, 0 comments - gianni_infantino on July 6, 2026: \"An engrossing and dramatic Round of 16 tie between two European heavyweights is settled by a late winner! Congratulations to \ud83c\uddea\ud83c\uddf8 @sefutbol on a fantastic win and well played to \ud83c\uddf5\ud83c\uddf9 @portugal. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-06T22:00:43.807773+00:00",
+      "account": "gianni_infantino",
+      "likes": 5917,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/731574639_18020573657902645_7034001032159687587_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=PDA1kZKWYsYQ7kNvwFx7k4j&_nc_oc=AdojZxzv7o7PNyjc9GBdMdF8RsxyEgsRy14WbyWQ62knVdkSUFy4-cofV4vuYlsO_FRw-kX6OsRYydv06pIfXRh2&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=uOlhFtVbCL4QP3MMTihsVQ&_nc_ss=7860f&oh=00_AQAtoa1gUN60Tqc8gTmxmL0bpDkhYArQbntpzpk-Ockiug&oe=6A51F59B",
+      "post_url": "https://www.instagram.com/p/Dad3s2xCAsN/",
+      "platform": "instagram",
+      "caption": "6,088 likes, 0 comments - gianni_infantino on July 6, 2026: \"An engrossing and dramatic Round of 16 tie between two European heavyweights is settled by a late winner! Congratulations to \ud83c\uddea\ud83c\uddf8 @sefutbol on a fantastic win and well played to \ud83c\uddf5\ud83c\uddf9 @portugal. \ud83d\udc4f\n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-06T22:00:43.807777+00:00",
+      "account": "gianni_infantino",
+      "likes": 5917,
+      "trusted": false,
       "permanent_url": null
     }
   ]

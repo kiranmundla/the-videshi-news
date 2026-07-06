@@ -1878,7 +1878,7 @@ def main():
     words = get_word_timestamps(vo_mp3, build_dir)
     
     # Phase 6: Music
-    music_url, attribution = select_music(article, build_dir)
+    music_url, attribution = select_music(article, build_dir, story_mood=story_mood)
     
     # Phase 7a: Build MUSIC-ONLY reel (Quick Pulse)
     music_reel_path, music_render_id = build_music_only_reel(scenes, music_url, build_dir)
