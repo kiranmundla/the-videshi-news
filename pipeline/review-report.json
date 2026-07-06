@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-06T16:45:41.446981+00:00",
+  "timestamp": "2026-07-06T17:15:48.707806+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "790ae639-5118-4728-aaf7-a4be9a131302",
-      "headline": "Hamas Just Dissolved Its Government in Gaza. India Stayed Out of the Peace Plan \u2014 and Has Its Reasons.",
-      "slug": "hamas-dissolves-gaza-government-india-board-of-peace-gulf-diaspora-20260706",
+      "id": "beb90bb0-fd4d-4f6f-9c1c-03065ffcae91",
+      "headline": "He Took Eight Stitches to the Eye Mid-Shoot. Now Ram Charan's \u20b9339-Crore Epic Hits Netflix.",
+      "slug": "ram-charan-peddi-netflix-july-9-339-crore-telugu-megastar-ar-rahman-streaming-diaspora-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,112 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Damaged buildings in Gaza Strip",
-          "reason": "The photo shows conflict damage in Gaza, relevant to the story."
+          "what_photo_shows": "man wearing a cap and sunglasses",
+          "reason": "The photo plausibly shows Ram Charan, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Ram Charan does not directly relate to the film 'Peddi' or the injury mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses how the film's release on Netflix will allow diaspora audiences to engage with it, addressing their previous lack of access."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the film 'Peddi' or the injury incident for better relevance.",
+          "Add more context about the film's themes and its significance to the diaspora audience to enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3ad94382-5b59-494e-8eaa-d436d14ee821",
+      "headline": "He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway \u2014 and India Pulled It in 48 Hours.",
+      "slug": "diljit-dosanjh-satluj-zee5-banned-india-jaswant-singh-khalra-censorship-diaspora-nri-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "c3ce06ae-d033-4baf-b2a3-2f49d9b52f87",
+            "headline": "A Partition Love Story Opened to Nothing. Three Weeks Later,"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Diljit Dosanjh wearing a turban",
+          "reason": "The photo shows Diljit Dosanjh, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaYHUn7NvuV/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film 'Satluj' or its censorship, making it irrelevant to the article's main topic."
+          },
+          {
+            "url": "https://www.instagram.com/reel/DaZq1M_ujPC/",
+            "problem": "irrelevant",
+            "explanation": "Similar to the previous embed, this Instagram reel does not provide relevant content that enhances the article's discussion about 'Satluj' and its implications."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's release and censorship to the experiences and interests of the Punjabi diaspora, particularly in relation to their historical context."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embeds with more relevant content that directly relates to the film or its themes.",
+          "Consider adding quotes or reactions from diaspora audiences to strengthen the connection to NRI readers."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaYHUn7NvuV/",
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaZq1M_ujPC/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0cf0983-0206-4623-ba1d-06bf882b20ee",
+      "headline": "SWISS Launches Bengaluru\u2013Zurich Nonstop \u2014 Europe's Airlines Are All-In on India",
+      "slug": "swiss-bengaluru-zurich-nonstop-europe-india-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "SWISS Airbus A330-300 in flight",
+          "reason": "The photo shows the aircraft type mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +140,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses India's geopolitical stance and its implications for the Indian diaspora in the Gulf, making the connection relevant and insightful."
+          "note": "The article effectively highlights the benefits of the new route for the Indian diaspora, particularly tech professionals in Europe."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the implications of India's stance on the Indian diaspora in the Gulf region.",
-          "Include quotes or perspectives from Indian diaspora members regarding their views on the geopolitical situation."
+          "Include quotes from travelers or industry experts to add a personal touch.",
+          "Provide more context on the significance of the route for the Indian diaspora beyond just tech professionals."
         ],
         "verdict": "pass"
       },
@@ -54,9 +158,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6d9f9d91-eb07-426c-9b38-35adf2a3b203",
-      "headline": "Microsoft Just Cut 4,800 Jobs to Pay for AI. Its 20,000 Indian Employees Are Watching.",
-      "slug": "microsoft-4800-layoffs-xbox-overhaul-ai-spending-indian-tech-workers-20260706",
+      "id": "3f147f55-5299-4d02-ba87-439f7e3ad737",
+      "headline": "India's Passport Slips to 125th in Global Ranking \u2014 and NRIs Feel the Pinch",
+      "slug": "india-passport-ranking-125-global-index-nri-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,51 +168,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Microsoft's Redmond campus aerial view",
-          "reason": "The photo shows Microsoft's campus, relevant to the company layoffs story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Microsoft's campus is relevant but does not directly illustrate the job cuts or AI focus."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of job cuts on Indian employees and the broader implications for Indian tech workers, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or reactions from Indian employees or industry experts to enhance the diaspora connection.",
-          "Add a section on how these layoffs might affect the Indian tech job market specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c698b0ab-684c-4d15-b8fa-5a986cf88e8d",
-      "headline": "Washington Wants to Kill Day 1 CPT. Tens of Thousands of Indian Professionals Have No Plan B.",
-      "slug": "day-1-cpt-crackdown-f1-student-visa-duration-status-indian-professionals-20260706",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "students walking on campus",
-          "reason": "The photo shows university students, relevant to the student-visa story."
+          "what_photo_shows": "India's e-passport cover",
+          "reason": "The photo shows an Indian passport, relevant to the story about passport rankings."
         },
         "inline_image_mismatches": []
       },
@@ -116,19 +177,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or Indian professionals."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian professionals in the US, making it relevant to the diaspora."
+          "note": "The article effectively connects the passport ranking to the experiences of NRIs, highlighting specific challenges they face."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts Indian professionals or immigration themes.",
-          "Add quotes or testimonials from affected individuals to enhance the personal connection to the diaspora."
+          "Consider adding more personal anecdotes or quotes from NRIs to enhance relatability.",
+          "Include a brief comparison with other countries' passport rankings to provide context."
         ],
         "verdict": "pass"
       },
