@@ -1,0 +1,40 @@
+{
+  "article_id": "e7a98190-c8a1-4b9e-9d66-3bfbb1a1f91c",
+  "scenes": [
+    {
+      "voiceover": "Is America really pushing out its best Indian engineers? Four countries say: send them our way.",
+      "onscreen": "TALENT EXODUS",
+      "image_prompt": "Airport departures board showing London, Toronto, Berlin, Sydney with Indian tech professional silhouette"
+    },
+    {
+      "voiceover": "Sixty-five percent of US employers have lost foreign talent this year. EB-2 India is completely shut until September.",
+      "onscreen": "65% EMPLOYERS LOST TALENT",
+      "image_prompt": "Large 65% stat with cracked American flag and fading H-1B visa stamp"
+    },
+    {
+      "voiceover": "Britain's Global Talent visa needs no job offer, no sponsor. Processing? Three weeks. Not three decades.",
+      "onscreen": "UK: 3-WEEK VISA",
+      "image_prompt": "London skyline with Union Jack and UK Global Talent Visa stats"
+    },
+    {
+      "voiceover": "Canada processed over one hundred ten thousand Express Entry invitations last year, targeting tech workers specifically.",
+      "onscreen": "CANADA: 110K INVITATIONS",
+      "image_prompt": "Toronto CN Tower skyline with Express Entry 110,000+ invitations stat"
+    },
+    {
+      "voiceover": "Germany offers permanent residency in twenty-one months. The EB-2 India wait? Eighty-plus years. Do the math.",
+      "onscreen": "21 MONTHS vs 80 YEARS",
+      "image_prompt": "Split screen Germany 21 months PR versus US 80+ year EB-2 wait comparison"
+    },
+    {
+      "voiceover": "Indians hold seventy percent of all H-1B approvals. Amazon alone sponsors nearly five thousand. This is America's engineering backbone.",
+      "onscreen": "70% OF ALL H-1B",
+      "image_prompt": "H-1B statistics dashboard with 70% hero stat and employer bar chart"
+    },
+    {
+      "voiceover": "The question isn't whether Indian engineers will leave America. It's which country gets them first.",
+      "onscreen": "WHERE WILL THEY GO?",
+      "image_prompt": "World map with glowing arrows from US to UK, Canada, Germany, Australia"
+    }
+  ]
+}
