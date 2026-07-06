@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-06T04:02:02Z",
+  "last_updated": "2026-07-06T05:58:50Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2406,29 +2406,17 @@
           "away": "France",
           "away_code": "FRA",
           "date": "2026-07-09",
-          "time": "15:00",
+          "time": "16:00",
           "tz": "ET",
           "venue": "Gillette Stadium, Foxboro, MA",
           "status": "scheduled"
         },
         {
           "match_num": 98,
-          "date": "2026-07-11",
-          "time": "20:00",
-          "tz": "ET",
-          "venue": "SoFi Stadium, Inglewood, CA",
-          "status": "scheduled",
-          "home": "Norway",
-          "home_code": "NOR",
-          "away": "England",
-          "away_code": "ENG"
-        },
-        {
-          "match_num": 99,
           "date": "2026-07-10",
           "time": "15:00",
           "tz": "ET",
-          "venue": "AT&T Stadium, Arlington, TX",
+          "venue": "SoFi Stadium, Inglewood, CA",
           "status": "scheduled",
           "home": "Portugal/Spain",
           "home_code": "TBD",
@@ -2436,11 +2424,23 @@
           "away_code": "TBD"
         },
         {
-          "match_num": 100,
-          "date": "2026-07-09",
-          "time": "20:00",
+          "match_num": 99,
+          "date": "2026-07-11",
+          "time": "17:00",
           "tz": "ET",
-          "venue": "Hard Rock Stadium, Miami, FL",
+          "venue": "Hard Rock Stadium, Miami Gardens, FL",
+          "status": "scheduled",
+          "home": "Norway",
+          "home_code": "NOR",
+          "away": "England",
+          "away_code": "ENG"
+        },
+        {
+          "match_num": 100,
+          "date": "2026-07-11",
+          "time": "21:00",
+          "tz": "ET",
+          "venue": "Arrowhead Stadium, Kansas City, MO",
           "status": "scheduled",
           "home": "Argentina/Egypt",
           "home_code": "TBD",
@@ -7805,6 +7805,18 @@
       "account": "@fifaworldcup",
       "date": "2026-07-05",
       "caption": "Round of 16 results: Norway 2-1 Brazil, England 3-2 Mexico #FIFAWorldCup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DabknT5I66J/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1533860875130115/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-05"
     }
   ],
   "tv": {
