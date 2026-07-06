@@ -1,0 +1,40 @@
+{
+  "article_id": "3ad94382-5b59-494e-8eaa-d436d14ee821",
+  "scenes": [
+    {
+      "voiceover": "What happens when a film is so dangerous, India pulls it in forty-eight hours?",
+      "onscreen": "PULLED IN 48 HOURS",
+      "image_prompt": "Dramatic film reel being shattered with PULLED IN 48 HOURS text, streaming platform screen cracking"
+    },
+    {
+      "voiceover": "Diljit Dosanjh dropped Satluj on ZEE5 with zero promotion. No trailer, no countdown. Just uploaded it.",
+      "onscreen": "STEALTH DROP",
+      "image_prompt": "Smartphone showing Satluj appearing on ZEE5 app, zero promotion labels floating around"
+    },
+    {
+      "voiceover": "It tells the true story of Jaswant Singh Khalra — the activist who exposed thousands of secret police killings in Punjab.",
+      "onscreen": "JASWANT SINGH KHALRA",
+      "image_prompt": "Somber Punjab landscape with unmarked graves, Jaswant Singh Khalra name label, martyred activist silhouette"
+    },
+    {
+      "voiceover": "The censor board demanded one hundred and twenty-seven cuts. Diljit and his director refused every single one.",
+      "onscreen": "127 CUTS REFUSED",
+      "image_prompt": "Giant number 127 with CUTS DEMANDED text, scissors crossed out, censor certificate torn, defiant mood"
+    },
+    {
+      "voiceover": "India pulled the film. But for the diaspora? Satluj is still streaming on ZEE5 Global right now.",
+      "onscreen": "BANNED IN INDIA / STREAMING WORLDWIDE",
+      "image_prompt": "Split world map — India with BANNED stamp, US/UK/Canada/Australia glowing with STILL STREAMING label"
+    },
+    {
+      "voiceover": "Gurdwaras across Punjab are screening it. Diljit told fans: share your copies, this film is yours now.",
+      "onscreen": "SCREENED IN GURDWARAS",
+      "image_prompt": "Gurdwara interior with film screen, community watching, quote bubble: Share it, it's your film now"
+    },
+    {
+      "voiceover": "They silenced Khalra in nineteen ninety-five. Thirty years later, his story reached millions in forty-eight hours.",
+      "onscreen": "SILENCED THEN. HEARD NOW.",
+      "image_prompt": "Timeline from 1995 to 2026, silenced figure at start, millions of phone screens lighting up at end"
+    }
+  ]
+}

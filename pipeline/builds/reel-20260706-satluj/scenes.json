@@ -1,0 +1,47 @@
+{
+  "article_id": "3ad94382-5b59-494e-8eaa-d436d14ee821",
+  "scenes": [
+    {
+      "voiceover": "What happens when a star drops a banned film? Diljit Dosanjh just did it, and chaos ensued!",
+      "onscreen": "BANNED FILM DROPPED",
+      "image_prompt": "Hook - silhouette before cinema screen with BANNED stamp, phone screens glowing",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-0.jpg"
+    },
+    {
+      "voiceover": "Zero promotion, no trailer, no countdown. Satluj dropped on ZEE5 like a surprise bombshell.",
+      "onscreen": "STEALTH RELEASE",
+      "image_prompt": "Stealth release on streaming platform, film appearing suddenly, notification alerts",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-1.jpg"
+    },
+    {
+      "voiceover": "Jaswant Singh Khalra exposed secret cremations in Punjab. His story? Uncovered by this daring film.",
+      "onscreen": "KHALRA'S STORY",
+      "image_prompt": "Documentary style portrait with archival documents, candlelight, records about Khalra",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-2.jpg"
+    },
+    {
+      "voiceover": "Censors demanded 127 cuts. Filmmakers refused every one, holding firm against three years of delay.",
+      "onscreen": "127 CUTS REFUSED",
+      "image_prompt": "Giant red 127 number with scissors and red tape, censorship data card",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-3.jpg"
+    },
+    {
+      "voiceover": "Gone in 48 hours, but gurdwaras stepped up. Communities gather, keeping the story alive.",
+      "onscreen": "GURDWARA SCREENINGS",
+      "image_prompt": "Gurdwara interior with projector, community watching, smartphone with share icon",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-4.jpg"
+    },
+    {
+      "voiceover": "Still streaming for NRIs. From Toronto to Melbourne, ZEE5 delivers Satluj worldwide.",
+      "onscreen": "STILL STREAMING FOR NRIs",
+      "image_prompt": "World map with glowing markers on NYC, London, Toronto, Melbourne, streaming play button",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-5.jpg"
+    },
+    {
+      "voiceover": "Five years to make this film. For the diaspora, it\u2019s not just a movie; it's a movement.",
+      "onscreen": "IT LANDED",
+      "image_prompt": "Lone spotlight on empty stage, film reel unwinding into light, dramatic closing",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/3ad94382-5b59-494e-8eaa-d436d14ee821/manual-scene-6.jpg"
+    }
+  ]
+}

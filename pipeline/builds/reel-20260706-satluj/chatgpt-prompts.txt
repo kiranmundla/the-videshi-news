@@ -1,0 +1,71 @@
+ARTICLE: He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway — and India Pulled It in 48 Hours.
+ID: 3ad94382-5b59-494e-8eaa-d436d14ee821
+SCENES: 7
+============================================================
+
+Paste each prompt into ChatGPT one at a time.
+Save each image as scene-0.jpg, scene-1.jpg, etc.
+
+────────────────────────────────────────────────────────────
+SCENE 0 — BANNED FILM DROPPED
+────────────────────────────────────────────────────────────
+Voiceover: What happens when India's biggest Punjabi star drops a film the censors tried to kill?
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Hook - silhouette before cinema screen with BANNED stamp, phone screens glowing
+
+────────────────────────────────────────────────────────────
+SCENE 1 — STEALTH RELEASE
+────────────────────────────────────────────────────────────
+Voiceover: Diljit Dosanjh released Satluj on ZEE5 with zero promotion. No trailer. No countdown. Just dropped it.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Stealth release on streaming platform, film appearing suddenly, notification alerts
+
+────────────────────────────────────────────────────────────
+SCENE 2 — KHALRA'S STORY
+────────────────────────────────────────────────────────────
+Voiceover: It tells the true story of Jaswant Singh Khalra — a Sikh activist who exposed thousands of secret police cremations in Punjab.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Documentary style portrait with archival documents, candlelight, records about Khalra
+
+────────────────────────────────────────────────────────────
+SCENE 3 — 127 CUTS REFUSED
+────────────────────────────────────────────────────────────
+Voiceover: India's censor board demanded a hundred and twenty-seven cuts. Filmmakers refused them all. Three years, zero compromise.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Giant red 127 number with scissors and red tape, censorship data card
+
+────────────────────────────────────────────────────────────
+SCENE 4 — GURDWARA SCREENINGS
+────────────────────────────────────────────────────────────
+Voiceover: India pulled it in forty-eight hours. But gurdwaras started screening it. Diljit told fans — share your downloads.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Gurdwara interior with projector, community watching, smartphone with share icon
+
+────────────────────────────────────────────────────────────
+SCENE 5 — STILL STREAMING FOR NRIs
+────────────────────────────────────────────────────────────
+Voiceover: For NRIs in New York, London, Toronto — Satluj is still streaming on ZEE5 Global right now.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+World map with glowing markers on NYC, London, Toronto, Melbourne, streaming play button
+
+────────────────────────────────────────────────────────────
+SCENE 6 — IT LANDED
+────────────────────────────────────────────────────────────
+Voiceover: He spent five years making this film. He didn't need it to last on a platform. He needed it to land.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Lone spotlight on empty stage, film reel unwinding into light, dramatic closing
+

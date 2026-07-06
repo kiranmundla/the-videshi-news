@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-06T20:15:26.875456+00:00",
+  "timestamp": "2026-07-06T21:15:30.880618+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "02f07d08-5000-404f-8fc3-e323c51dd96b",
-      "headline": "The Rule That Ends 'Duration of Status' Just Landed at OMB. Indian Students Have Months, Not Years",
-      "slug": "f1-duration-of-status-elimination-omb-final-rule-indian-students-20260706",
+      "id": "f898d4ba-d76d-4519-b0e1-8fc4b471822b",
+      "headline": "Apple Just Locked In Broadcom Through 2031. The Edge AI Race Has Its First Long-Term Bet.",
+      "slug": "apple-broadcom-edge-ai-asic-deal-2031-indian-engineers-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Students walking on campus",
-          "reason": "The photo shows students on a university campus, relevant to the student visa story."
+          "what_photo_shows": "silicon wafer for chip manufacturing",
+          "reason": "The photo is relevant to semiconductor chip manufacturing in the tech story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or students."
+          "issue": "The image does not directly relate to the article's focus on AI and chip design."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses changes in immigration policy that directly affect Indian students, making it highly relevant to the diaspora."
+          "note": "The article effectively highlights the role of Indian engineers in Broadcom's operations, making it relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that depicts students or educational settings to better match the article's focus.",
-          "Add quotes or testimonials from affected Indian students to enhance the personal connection to the diaspora."
+          "Consider using a more relevant image that reflects AI technology or chip design.",
+          "Add a quote or perspective from an Indian engineer to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cc2b53c3-5a91-4914-a58a-3dd6d8a8a5da",
-      "headline": "Your Spouse's Right to Work Is Under Review. DHS Has Had the Proposal for Six Months",
-      "slug": "h4-ead-rescission-omb-review-senate-sjres99-indian-spouses-20260706",
+      "id": "3c20a72e-ad42-44be-918b-6f72d3590f0d",
+      "headline": "SK Hynix Lands on Nasdaq With a $28 Billion War Chest. Sanjay Mehrotra's Micron Just Got Company.",
+      "slug": "sk-hynix-nasdaq-28-billion-listing-micron-mehrotra-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US Immigration and Customs Enforcement building",
-          "reason": "The photo is relevant to the immigration topic of the story."
+          "what_photo_shows": "microprocessor circuit board",
+          "reason": "The photo is relevant to a tech story about semiconductor companies."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +74,61 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or work authorization."
+          "issue": "The image does not directly relate to the specific topic of SK Hynix or the semiconductor industry."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of immigration policy on Indian families, particularly highlighting the challenges faced by Indian women, which is highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the topic to NRI investors and highlights the implications for Indian-American investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or work authorization to enhance relevance.",
-          "Add a section that includes personal stories or testimonials from affected families to deepen the emotional connection with the diaspora audience."
+          "Consider using an image that directly relates to SK Hynix or the semiconductor industry to enhance relevance.",
+          "Expand on the implications for NRI investors to provide more depth on the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e6e1bc86-6552-4982-8fa2-f5eacc7d037c",
+      "headline": "Nadella's Microsoft Cuts 4,800 Jobs. Indian H-1B Workers Have 60 Days to Figure Out What's Next.",
+      "slug": "microsoft-layoffs-4800-xbox-h1b-indian-workers-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Satya Nadella, CEO of Microsoft",
+          "reason": "The photo shows Satya Nadella, relevant to the Microsoft job cuts story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian H-1B workers, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from affected H-1B workers to provide a personal perspective.",
+          "Include more information on how the layoffs might impact the Indian tech community in the US."
         ],
         "verdict": "pass"
       },
