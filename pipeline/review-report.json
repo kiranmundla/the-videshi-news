@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-06T02:15:27.987248+00:00",
+  "timestamp": "2026-07-06T05:15:21.242289+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ed10465e-5992-454c-b461-0df3fcda8f35",
-      "headline": "The Labour Department Is Rewriting the Green Card Playbook. For the First Time in 22 Years",
-      "slug": "dol-perm-overhaul-prevailing-wage-hike-green-card-indian-20260706",
+      "id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
+      "headline": "Wall Street's Hottest New Trade: Betting on India Because It Missed the AI Bubble",
+      "slug": "india-safe-haven-ai-stock-selloff-blackrock-investors-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Frances Perkins Building, U.S. Department of Labor",
-          "reason": "The photo shows the U.S. Department of Labor, relevant to the story on green card policy changes."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo is relevant to a story about Indian equities and markets."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Frances Perkins Building is relevant to the Department of Labor but does not directly illustrate the topic of green card processes."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses changes in immigration policy that directly affect Indian professionals, making it relevant to the diaspora."
+          "note": "The article discusses India's market dynamics, which is relevant to NRIs interested in investment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a more relevant image that directly relates to green card processes or immigration.",
-          "Include quotes or perspectives from Indian professionals affected by these changes to enhance the diaspora connection."
+          "Include more direct quotes from Indian market analysts or fund managers to enhance credibility.",
+          "Add a section on how these market changes might affect Indian diaspora investors specifically."
         ],
         "verdict": "pass"
       },
@@ -54,31 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ceec8577-f07b-448a-86e0-9136856483eb",
-      "headline": "Nearly 300,000 H-1B Renewals and Counting. The Number Trump's Crackdown Cannot Touch",
-      "slug": "h1b-renewals-record-291542-continuing-employment-crackdown-20260706",
+      "id": "01a15cfd-3ae6-4088-962e-083ba237426e",
+      "headline": "Washington Is Quietly Deciding Which AI India Gets to Use. Delhi Is at the Table.",
+      "slug": "us-india-pax-silica-anthropic-ai-access-semiconductor-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
-            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
-          },
-          {
-            "article_id": "54be977b-411e-4a32-a126-eb68b4ce9117",
-            "headline": "The State Department Shut EB-2 India for the Year. One Milli"
-          },
-          {
-            "article_id": "fae798da-570b-4a2a-bd83-25123ccfcedc",
-            "headline": "Eleven Million Cases and Counting. USCIS Cannot Process Its "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+          "what_photo_shows": "man in suit with US flag",
+          "reason": "The photo plausibly shows a US official, fitting the story's context."
         },
         "inline_image_mismatches": []
       },
@@ -87,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of immigration and H-1B visas, but it does not specifically depict H-1B workers or the context of the article."
+          "issue": "The image does not directly relate to AI or the specific negotiations discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding H-1B renewals and the implications for Indian workers in the U.S."
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical discussions to the interests of the Indian diaspora, particularly those in the AI and semiconductor sectors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or quotes from affected individuals to enhance the human interest angle.",
-          "Add a section discussing potential future changes in H-1B policy and their implications for the diaspora."
+          "Consider using a more relevant image that directly represents AI technology or the negotiations discussed.",
+          "Expand on the implications for the Indian diaspora, perhaps by including quotes or perspectives from Indian American professionals in the AI field."
         ],
         "verdict": "pass"
       },
