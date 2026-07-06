@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-06T16:15:20.557560+00:00",
+  "timestamp": "2026-07-06T16:45:41.446981+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b4b3b27b-1dd5-4c90-a5c3-1e90aeb72a38",
-      "headline": "India's Private Banks Just Posted Their Strongest Quarter in Over a Year \u2014 and Wall Street Is Raising Its Bets",
-      "slug": "india-private-banks-q1-fy27-hdfc-axis-loan-growth-sensex-rally-nri-investor-20260706",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "cffec7ee-99b9-460c-8305-29d5944e212c",
-            "headline": "India's Services Engine Just Hit Its Slowest Speed in 17 Mon"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the banking story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the Bombay Stock Exchange is relevant but does not directly depict private banks or their performance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRI investors can capitalize on the current banking trends.",
-          "Include a brief overview of the implications of the bond market updates for NRI investors."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "088867ae-3e75-4aae-ba96-eec02ec8d017",
-      "headline": "Extreme Humid Heat Cuts Brain Blood Flow by a Third and Forces the Heart Into Overdrive \u2014 Here's What That Means for You",
-      "slug": "extreme-humid-heat-brain-blood-flow-heart-strain-south-asian-nri-diaspora-summer-2026-20260706",
+      "id": "790ae639-5118-4728-aaf7-a4be9a131302",
+      "headline": "Hamas Just Dissolved Its Government in Gaza. India Stayed Out of the Peace Plan \u2014 and Has Its Reasons.",
+      "slug": "hamas-dissolves-gaza-government-india-board-of-peace-gulf-diaspora-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man drinking water outdoors",
-          "reason": "The photo shows a person hydrating in heat, relevant to the story on heat effects."
+          "what_photo_shows": "Damaged buildings in Gaza Strip",
+          "reason": "The photo shows conflict damage in Gaza, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +36,99 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the health risks of extreme heat to the South Asian diaspora, particularly highlighting the vulnerabilities of Indian Americans."
+          "note": "The article discusses India's geopolitical stance and its implications for the Indian diaspora in the Gulf, making the connection relevant and insightful."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific statistics or studies related to the impact of heat on South Asians to strengthen the diaspora angle.",
-          "Include personal anecdotes or quotes from affected individuals to enhance relatability and engagement."
+          "Consider adding more context about the implications of India's stance on the Indian diaspora in the Gulf region.",
+          "Include quotes or perspectives from Indian diaspora members regarding their views on the geopolitical situation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6d9f9d91-eb07-426c-9b38-35adf2a3b203",
+      "headline": "Microsoft Just Cut 4,800 Jobs to Pay for AI. Its 20,000 Indian Employees Are Watching.",
+      "slug": "microsoft-4800-layoffs-xbox-overhaul-ai-spending-indian-tech-workers-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Microsoft's Redmond campus aerial view",
+          "reason": "The photo shows Microsoft's campus, relevant to the company layoffs story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of Microsoft's campus is relevant but does not directly illustrate the job cuts or AI focus."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of job cuts on Indian employees and the broader implications for Indian tech workers, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or reactions from Indian employees or industry experts to enhance the diaspora connection.",
+          "Add a section on how these layoffs might affect the Indian tech job market specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c698b0ab-684c-4d15-b8fa-5a986cf88e8d",
+      "headline": "Washington Wants to Kill Day 1 CPT. Tens of Thousands of Indian Professionals Have No Plan B.",
+      "slug": "day-1-cpt-crackdown-f1-student-visa-duration-status-indian-professionals-20260706",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "students walking on campus",
+          "reason": "The photo shows university students, relevant to the student-visa story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of immigration or Indian professionals."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian professionals in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts Indian professionals or immigration themes.",
+          "Add quotes or testimonials from affected individuals to enhance the personal connection to the diaspora."
         ],
         "verdict": "pass"
       },
