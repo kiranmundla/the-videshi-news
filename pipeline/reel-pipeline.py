@@ -350,23 +350,25 @@ def generate_images_api(scenes, article_id, build_dir):
         with open(local_path, "wb") as f:
             f.write(img_bytes)
         
-        # Apply real logo overlay
-        watermark_image(local_path)
+        # Apply safe zone compositing + logo
+        safe_path = enforce_safe_zone(local_path)
         
-        # Re-read after watermark
-        with open(local_path, "rb") as f:
+        # Re-read after processing
+        with open(safe_path, "rb") as f:
             final_bytes = f.read()
         
         # Upload to Supabase
-        storage_path = f"{storage_prefix}/scene-{i}.jpg"
+        ext = os.path.splitext(safe_path)[1].lower()
+        content_type = "image/png" if ext == ".png" else "image/jpeg"
+        storage_path = f"{storage_prefix}/scene-{i}{ext}"
         requests.post(
             f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
-            headers={**SB_HEADERS, "Content-Type": "image/jpeg", "x-upsert": "true"},
+            headers={**SB_HEADERS, "Content-Type": content_type, "x-upsert": "true"},
             data=final_bytes, timeout=30
         )
         
         scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
-        print(f"  ✅ Scene {i}: generated + logo overlay ({len(final_bytes)//1024}KB)")
+        print(f"  ✅ Scene {i}: generated + safe zone + logo ({len(final_bytes)//1024}KB)")
     
     # Check for missing images
     missing = [i for i, s in enumerate(scenes) if not s.get("image_url")]
@@ -378,38 +380,64 @@ def generate_images_api(scenes, article_id, build_dir):
     return True
 
 
-def watermark_image(img_path, logo_path=None):
-    """Add real Videshi logo (transparent) to top-left corner of an image."""
-    from PIL import Image
+def enforce_safe_zone(img_path, logo_path=None):
+    """Enforce YouTube Shorts safe zone via compositing + bake in Videshi logo.
     
+    1. Scale original to fill 1080x1920, blur + darken as background
+    2. Crop safe zone content (900x1350) from center of original
+    3. Composite sharp content over blurred background
+    4. Add Videshi logo top-left inside safe zone
+    5. Save as lossless PNG
+    """
+    from PIL import Image, ImageFilter, ImageEnhance
+    
+    CANVAS_W, CANVAS_H = 1080, 1920
+    SAFE_X, SAFE_Y = 90, 190
+    SAFE_W, SAFE_H = 900, 1350
+    
+    # Logo setup
     if logo_path is None:
-        # Use the transparent version; fall back to original
         logo_path = os.path.join(PIPELINE_DIR, "assets", "logo-transparent.png")
         if not os.path.exists(logo_path):
             logo_path = os.path.expanduser("~/workspace/the-videshi-news/public/logo-512.png")
     
-    if not os.path.exists(logo_path):
-        print(f"  ⚠️  Logo not found at {logo_path}, skipping watermark")
-        return img_path
-    
     img = Image.open(img_path).convert("RGBA")
-    logo = Image.open(logo_path).convert("RGBA")
+    orig_w, orig_h = img.size
     
-    # Size logo to 160px (visible on phone, not overpowering)
-    logo_size = 160
-    logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
+    # ── Background: scale to fill canvas, blur heavily, darken ──
+    scale = max(CANVAS_W / orig_w, CANVAS_H / orig_h)
+    bg = img.resize((int(orig_w * scale), int(orig_h * scale)), Image.LANCZOS)
+    bx = (bg.width - CANVAS_W) // 2
+    by = (bg.height - CANVAS_H) // 2
+    bg = bg.crop((bx, by, bx + CANVAS_W, by + CANVAS_H))
+    bg = bg.filter(ImageFilter.GaussianBlur(radius=20))
+    bg = ImageEnhance.Brightness(bg).enhance(0.4)
     
-    # Position: top-left corner with padding
-    padding_x = 30
-    padding_y = 40
+    # ── Content: extract proportional safe zone from original ──
+    fx = orig_w / CANVAS_W
+    fy = orig_h / CANVAS_H
+    content = img.crop((
+        int(SAFE_X * fx), int(SAFE_Y * fy),
+        int((SAFE_X + SAFE_W) * fx), int((SAFE_Y + SAFE_H) * fy)
+    ))
+    content = content.resize((SAFE_W, SAFE_H), Image.LANCZOS)
     
-    # Paste with transparency
-    img.paste(logo, (padding_x, padding_y), logo)
+    # ── Composite: sharp content over blurred background ──
+    canvas = bg.convert("RGBA")
+    canvas.paste(content, (SAFE_X, SAFE_Y))
     
-    # Save as PNG (lossless) to preserve sharp text/edges in infographic cards
+    # ── Logo: top-left inside safe zone ──
+    if logo_path and os.path.exists(logo_path):
+        logo = Image.open(logo_path).convert("RGBA")
+        logo_size = 120  # slightly smaller than before since safe zone is tighter
+        logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
+        logo_x = SAFE_X + 15   # just inside safe zone left edge
+        logo_y = SAFE_Y + 15   # just inside safe zone top edge
+        canvas.paste(logo, (logo_x, logo_y), logo)
+    
+    # ── Save as lossless PNG ──
     png_path = os.path.splitext(img_path)[0] + ".png"
-    img.save(png_path, "PNG")
-    # If original was a different format, update the path
+    canvas.convert("RGB").save(png_path, "PNG")
     if png_path != img_path and os.path.exists(img_path):
         os.remove(img_path)
     return png_path
@@ -444,8 +472,8 @@ def load_manual_images(scenes, image_dir, article_id):
     for i, scene in enumerate(scenes):
         img_path = os.path.join(image_dir, image_files[i])
         
-        # Watermark with Videshi logo (returns PNG path for lossless quality)
-        img_path = watermark_image(img_path)
+        # Enforce safe zone + add logo (returns PNG path)
+        img_path = enforce_safe_zone(img_path)
         
         with open(img_path, "rb") as f:
             img_bytes = f.read()
@@ -460,7 +488,7 @@ def load_manual_images(scenes, image_dir, article_id):
         )
         
         scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
-        print(f"  ✅ Scene {i}: {image_files[i]} → watermarked + uploaded (PNG)")
+        print(f"  ✅ Scene {i}: {image_files[i]} → safe zone + logo + uploaded (PNG)")
     
     return True
 
@@ -1097,19 +1125,11 @@ def build_music_only_reel(scenes, music_url, build_dir):
     # ── No text overlay — images already have text baked in ──
     text_clips = []
     
-    # ── LOGO (native image — transparent PNG, no HTML wrapper) ──
-    logo_clip = {
-        "asset": {"type": "image", "src": LOGO_URL},
-        "start": 0, "length": round(endcard_start, 2),
-        "fit": "none", "position": "topLeft",
-        "offset": {"x": 0.02, "y": 0.02},
-        "scale": 0.06, "opacity": 0.85
-    }
+    # ── Logo is now baked into each scene image by enforce_safe_zone() ──
     
     timeline = {
         "background": "#000000",
         "tracks": [
-            {"clips": [logo_clip]},
             {"clips": scene_clips},
         ]
     }
@@ -1203,14 +1223,7 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     })
     
     # ── LOGO (native image — transparent PNG, no HTML wrapper) ──
-    # Stops at endcard_start so it doesn't appear on endcard (which has its own logo)
-    logo_clip = {
-        "asset": {"type": "image", "src": LOGO_URL},
-        "start": 0, "length": round(endcard_start, 2),
-        "fit": "none", "position": "topLeft",
-        "offset": {"x": 0.02, "y": 0.02},
-        "scale": 0.06, "opacity": 0.85
-    }
+    # ── Logo is now baked into each scene image by enforce_safe_zone() ──
     
     # ── AUDIO ──
     # Voice + CTA on one track
@@ -1249,7 +1262,6 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     timeline = {
         "background": "#000000",
         "tracks": [
-            {"clips": [logo_clip]},
             {"clips": scene_clips},
             {"clips": voice_clips},
         ]
@@ -1608,19 +1620,18 @@ def process_queue():
                 local_path = f"{build_dir}/scene-{i}.jpg"
                 subprocess.run(["curl", "-sS", "-o", local_path, scene["image_url"]], check=True, timeout=30)
                 
-                # Watermark
-                watermarked = watermark_image(local_path)
-                if watermarked:
-                    scene["local_path"] = watermarked
-                else:
-                    scene["local_path"] = local_path
+                # Safe zone + logo
+                processed = enforce_safe_zone(local_path)
+                scene["local_path"] = processed
                 
-                # Upload watermarked to Supabase
-                storage_path = f"reel-gen/{article_id}/scene-{i}.jpg"
+                # Upload processed to Supabase
+                ext = os.path.splitext(processed)[1].lower()
+                content_type = "image/png" if ext == ".png" else "image/jpeg"
+                storage_path = f"reel-gen/{article_id}/scene-{i}{ext}"
                 with open(scene["local_path"], "rb") as f:
                     requests.post(
                         f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
-                        headers={**SB_HEADERS, "Content-Type": "image/jpeg", "x-upsert": "true"},
+                        headers={**SB_HEADERS, "Content-Type": content_type, "x-upsert": "true"},
                         data=f.read(), timeout=30
                     )
                 scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
