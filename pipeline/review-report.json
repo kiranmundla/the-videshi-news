@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T01:15:38.658756+00:00",
+  "timestamp": "2026-07-07T02:15:19.369007+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c27687ed-5ca2-401f-b8c1-35e96efb33e0",
-      "headline": "Ranveer Singh Turns 41. His Director Called His Performance 'Touched by Divine Grace.'",
-      "slug": "ranveer-singh-41st-birthday-aditya-dhar-dhurandhar-3100-crore-tribute-pralay-20260706",
+      "id": "52e33c52-dec8-43bd-b53a-a5bc75778754",
+      "headline": "USCIS Wants Ten Years of Your Social Media. What Counts as 'Anti-American' Is Still Anyone's Guess",
+      "slug": "uscis-ten-years-social-media-anti-american-undefined-forms-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in ornate outfit at event",
-          "reason": "The photo plausibly shows Ranveer Singh, matching the story topic."
+          "what_photo_shows": "social media app icons on smartphone",
+          "reason": "The photo's subject is relevant to the story about social media and immigration."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of immigration or social media scrutiny."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora through the celebration of a prominent Bollywood actor's birthday, which is relevant to NRIs who follow Indian cinema."
+          "quality": 8,
+          "note": "The article discusses the impact of immigration policies on applicants, including those from India, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from other diaspora members or celebrities to enhance the connection with NRI readers.",
-          "Include a brief section on Ranveer Singh's impact on the global perception of Indian cinema to further engage the diaspora audience."
+          "Include a more relevant image that reflects the theme of immigration or social media scrutiny.",
+          "Add quotes or perspectives from Indian diaspora members affected by these policies to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "165afe5a-11f3-4c22-9e72-bc79215ed78f",
-      "headline": "Alia Bhatt Just Gave the Spy Universe Its First Heroine. The Box Office Isn't Sure What to Do with Her.",
-      "slug": "alpha-alia-bhatt-yrf-spy-universe-opening-weekend-box-office-34-crore-weakest-franchise-debut-20260706",
+      "id": "4c4dc133-2a9c-4880-aaf4-50429414a2ea",
+      "headline": "Four Hundred and Three Days. That Is How Long the First Step of Your Green Card Now Takes",
+      "slug": "perm-labor-certification-403-day-backlog-green-card-indian-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
+            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
+          },
+          {
+            "article_id": "54be977b-411e-4a32-a126-eb68b4ce9117",
+            "headline": "The State Department Shut EB-2 India for the Year. One Milli"
+          },
+          {
+            "article_id": "ceec8577-f07b-448a-86e0-9136856483eb",
+            "headline": "Nearly 300,000 H-1B Renewals and Counting. The Number Trump'"
+          },
+          {
+            "article_id": "4cc2561b-be2f-427e-988f-4124eaa48e32",
+            "headline": "Your Employer Cannot Fix This Either. Social Media Vetting I"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Alia Bhatt at a film premiere",
-          "reason": "The photo shows Alia Bhatt, who is the subject of the story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration topic."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +96,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's performance to diaspora audiences, particularly in North America, highlighting their engagement with the Spy Universe."
+          "note": "The article discusses the green card process, which is highly relevant to the Indian diaspora, particularly those in the tech sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
-          "Include a brief analysis of how this film's performance might influence future female-led projects in Bollywood."
+          "Include more personal anecdotes or quotes from individuals affected by the green card delays to enhance relatability.",
+          "Add a section on potential future changes or advice for applicants navigating the current system."
         ],
         "verdict": "pass"
       },
