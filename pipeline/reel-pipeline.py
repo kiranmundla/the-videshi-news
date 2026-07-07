@@ -1942,13 +1942,13 @@ def process_queue():
             if music_reel_path:
                 music_reel_out = f"{output_dir}/reel-music-{slug_short}.mp4"
                 subprocess.run(["cp", music_reel_path, music_reel_out])
-                _register_reel(music_reel_path, "music", article)
+                _register_reel(music_reel_path, "music", article, carousel_slides=carousel_slides)
                 print(f"  ✅ Music-only reel: {music_reel_out}")
             
             if vo_reel_path:
                 vo_reel_out = f"{output_dir}/reel-voice-{slug_short}.mp4"
                 subprocess.run(["cp", vo_reel_path, vo_reel_out])
-                _register_reel(vo_reel_path, "voice", article)
+                _register_reel(vo_reel_path, "voice", article, carousel_slides=carousel_slides)
                 print(f"  ✅ Voiceover reel: {vo_reel_out}")
             
             # Update queue entry as complete
@@ -2247,7 +2247,7 @@ def main():
             existing_yt = _check_yt_exists(article["id"], variant)
             
             # Register (upsert — deletes old row, inserts fresh)
-            _register_reel(reel_path_v, variant, article)
+            _register_reel(reel_path_v, variant, article, carousel_slides=carousel_slides)
             
             if args.skip_distribute:
                 continue
@@ -2323,7 +2323,7 @@ def _save_yt_video_id(article_id, variant_label, yt_url):
         print(f"  ⚠️ Failed to save yt_video_id: {e}")
 
 
-def _register_reel(reel_path, variant_label, article):
+def _register_reel(reel_path, variant_label, article, carousel_slides=None):
     """Register a reel in prebuilt_reels (upsert: replaces existing row for same article+variant)."""
     # Upload reel to Supabase storage
     reel_storage = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
@@ -2334,6 +2334,29 @@ def _register_reel(reel_path, variant_label, article):
             data=f.read(), timeout=120
         )
     video_url = f"{STORAGE_BASE}/{reel_storage}"
+    
+    # Upload carousel images to Supabase storage
+    carousel_urls = []
+    if carousel_slides:
+        for i, slide_path in enumerate(carousel_slides):
+            if not os.path.exists(slide_path):
+                continue
+            carousel_storage = f"reel-gen/{article['id']}/carousel-{i}.jpg"
+            try:
+                with open(slide_path, "rb") as f:
+                    resp = requests.post(
+                        f"{SB_URL}/storage/v1/object/article-images/{carousel_storage}",
+                        headers={**SB_HEADERS, "Content-Type": "image/jpeg", "x-upsert": "true"},
+                        data=f.read(), timeout=30
+                    )
+                if resp.status_code in (200, 201):
+                    carousel_urls.append(f"{STORAGE_BASE}/{carousel_storage}")
+                else:
+                    print(f"  ⚠️ Carousel {i} upload failed: {resp.status_code}")
+            except Exception as e:
+                print(f"  ⚠️ Carousel {i} upload error: {e}")
+        if carousel_urls:
+            print(f"  📸 Uploaded {len(carousel_urls)} carousel images")
     
     article_url = f"https://www.thevideshi.com/articles/{article.get('slug', '')}"
     caption = f"🇮🇳 {article['headline']}\n\n📰 {article_url}\n\n#IndianDiaspora #NRI #TheVideshi"
@@ -2358,6 +2381,8 @@ def _register_reel(reel_path, variant_label, article):
         "qa_passed": True,
         "status": "ready"
     }
+    if carousel_urls:
+        row["carousel_images"] = carousel_urls
     r = requests.post(
         f"{SB_URL}/rest/v1/prebuilt_reels",
         headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=representation"},
