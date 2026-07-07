@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-07T15:58:58Z",
-  "stage": "Round of 16 — 6 of 8 matches played",
+  "last_updated": "2026-07-07T18:06:15Z",
+  "stage": "Group Stage — 95 of 96 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -359,12 +359,12 @@
         "code": "EGY",
         "flag": "🇪🇬",
         "rank": 29,
-        "p": 4,
+        "p": 5,
         "w": 1,
         "d": 3,
-        "l": 0,
-        "gf": 6,
-        "ga": 4,
+        "l": 1,
+        "gf": 8,
+        "ga": 7,
         "pts": 6
       },
       {
@@ -508,13 +508,13 @@
         "code": "ARG",
         "flag": "🇦🇷",
         "rank": 1,
-        "p": 4,
-        "w": 4,
+        "p": 5,
+        "w": 5,
         "d": 0,
         "l": 0,
-        "gf": 11,
-        "ga": 3,
-        "pts": 12
+        "gf": 14,
+        "ga": 5,
+        "pts": 15
       },
       {
         "name": "Austria",
@@ -2097,8 +2097,8 @@
       "away": "Egypt",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta, GA",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "3-2",
       "home_code": "ARG",
       "away_code": "EGY"
     },
@@ -2446,7 +2446,9 @@
           "time": "12:00",
           "tz": "ET",
           "venue": "Mercedes-Benz Stadium, Atlanta",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "3-2",
+          "winner": "Argentina"
         },
         {
           "match_num": 96,
@@ -2508,8 +2510,8 @@
           "tz": "ET",
           "venue": "Arrowhead Stadium, Kansas City, MO",
           "status": "scheduled",
-          "home": "Argentina/Egypt",
-          "home_code": "TBD",
+          "home": "Argentina",
+          "home_code": "ARG",
           "away": "Switzerland/Colombia",
           "away_code": "TBD"
         }
