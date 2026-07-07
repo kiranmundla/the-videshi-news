@@ -75,40 +75,42 @@ for r in all_reels:
     if r.get('x_posted_at') and r.get('x_tweet_id') not in ('dedup-skip', None):
         x_posted_articles.add(aid)
 
-print(f"  Articles with IG: {len(ig_posted_articles)}, YT: {len(yt_posted_articles)}, Threads: {len(threads_posted_articles)}, X: {len(x_posted_articles)}")
+print(f"  Articles with IG: {len(ig_posted_articles)}, YT: {len(yt_posted_articles)}, Threads: {len(threads_posted_articles)}")
 
-# --- Pick reels to distribute (one per article, up to 3) ---
-# From the fetched batch (latest 10), pick one reel per article needing work
+# --- Pick reels to distribute ---
+# Each reel variant gets its own YouTube upload (both music-only + voiceover).
+# X is handled separately by x-autopost (article text + carousel only, no video).
+# IG/Threads: one video per article (voiceover preferred).
 candidates_resp = requests.get(
     f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&order=created_at.desc&limit=10&select=id,article_id,article_slug,headline,video_url,caption,status,carousel_images,ig_posted_at,yt_posted_at,yt_video_id,threads_posted_at,threads_post_id,x_posted_at,x_tweet_id",
     headers={k: v for k, v in SB_HEADERS.items() if k != 'Prefer'}
 )
 candidates = candidates_resp.json()
 
-seen_articles = set()
+seen_articles_social = set()  # dedup IG/Threads per article (one variant)
 work_queue = []
 for reel in candidates:
     aid = reel['article_id']
-    if aid in seen_articles:
-        continue
     
-    # Figure out what platforms this article still needs
     needs = []
-    if aid not in ig_posted_articles and not reel.get('ig_posted_at'):
-        needs.append('ig')
-    if aid not in yt_posted_articles and not reel.get('yt_posted_at'):
+    # YouTube: every variant gets its own upload (no article-level dedup)
+    if not reel.get('yt_posted_at'):
         needs.append('yt')
-    if aid not in threads_posted_articles and not reel.get('threads_posted_at'):
-        needs.append('threads')
-    if aid not in x_posted_articles and not reel.get('x_posted_at'):
-        needs.append('x')
+    # IG/Threads: one per article
+    if aid not in seen_articles_social:
+        if aid not in ig_posted_articles and not reel.get('ig_posted_at'):
+            needs.append('ig')
+        if aid not in threads_posted_articles and not reel.get('threads_posted_at'):
+            needs.append('threads')
+    # X: NO video reels — handled by x-autopost (article + carousel only)
     
     if needs:
         reel['_needs'] = needs
         work_queue.append(reel)
-        seen_articles.add(aid)
+        if 'ig' in needs or 'threads' in needs:
+            seen_articles_social.add(aid)
     
-    if len(work_queue) >= 3:
+    if len(work_queue) >= 6:
         break
 
 if not work_queue:
@@ -565,7 +567,7 @@ for i, reel in enumerate(work_queue):
     
     # Download video once for platforms that need local file
     local_video = None
-    if 'yt' in reel['_needs'] or 'x' in reel['_needs']:
+    if 'yt' in reel['_needs']:
         print(f"  Downloading video...")
         tmp = tempfile.NamedTemporaryFile(suffix='.mp4', delete=False)
         vr = requests.get(video_url, stream=True)
@@ -576,6 +578,7 @@ for i, reel in enumerate(work_queue):
         print(f"  Downloaded: {os.path.getsize(local_video)} bytes")
     
     # Post to each needed platform
+    # NOTE: X video posting removed — X only gets article text + carousel via x-autopost
     for platform in reel['_needs']:
         try:
             if platform == 'ig':
@@ -587,16 +590,6 @@ for i, reel in enumerate(work_queue):
                 result = post_youtube_video(reel, local_video, headline, caption)
             elif platform == 'threads':
                 result = post_threads(reel, video_url, caption)
-            elif platform == 'x':
-                result = post_x_tweet(reel, local_video, headline, slug)
-                # Also post carousel images as a separate tweet
-                if result.startswith('OK') and reel.get('carousel_images'):
-                    time.sleep(10)
-                    try:
-                        carousel_result = post_x_carousel(reel, headline, slug)
-                        print(f"  [X-CAROUSEL] Result: {carousel_result}")
-                    except Exception as ce:
-                        print(f"  [X-CAROUSEL] ERROR: {ce}")
             
             print(f"  [{platform.upper()}] Result: {result}")
             results.append((reel['headline'][:50], platform, result))
