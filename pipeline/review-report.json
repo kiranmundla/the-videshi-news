@@ -1,85 +1,89 @@
 {
-  "timestamp": "2026-07-07T08:45:28.390931+00:00",
+  "timestamp": "2026-07-07T09:15:36.852330+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "8163c52c-a20d-4e2e-8f96-b4623de3c4be",
-      "headline": "India's IT Giants Are Heading Into a 'Perfect Storm.' Their 200,000 Workers in America Feel It First.",
-      "slug": "indian-it-perfect-storm-ai-disruption-tcs-infosys-q1-earnings-diaspora-20260707",
+      "id": "fe6dc1da-dda1-4877-a518-7df3675fe033",
+      "headline": "Rajkumar Hirani Finally Made a Show. Nobody Can Agree If It's Good.",
+      "slug": "pritam-pedro-rajkumar-hirani-streaming-debut-arshad-warsi-vir-hirani-jiohotstar-review-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "818247e8-9f61-4172-9525-726d7dddcfe1",
-            "headline": "India's IT Giants Walk Into Earnings Week Facing a 'Perfect "
+            "article_id": "6d029168-4f37-46d0-8713-dc890d49b257",
+            "headline": "What to Watch This Week: A Hirani OTT Debut, Ryan Gosling in"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Infosys campus in Bangalore",
-          "reason": "The photo shows the Infosys campus, relevant to the story about Indian IT companies."
+          "what_photo_shows": "Rajkumar Hirani",
+          "reason": "The photo shows Rajkumar Hirani, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 6,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaUznCuRdOF/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to relate directly to the article's subject matter, which focuses on the show 'Pritam and Pedro' and its reviews."
+          },
+          {
+            "url": "https://youtube.com/watch?v=uCjkRVV0-qU",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not provide relevant content related to the article's discussion of the show."
+          }
+        ],
         "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the impact of the IT sector's challenges on Indian professionals in the U.S., making it relevant for the diaspora audience."
+          "quality": 6,
+          "note": "The article discusses a prominent Indian filmmaker and his new project, which may interest the diaspora, but lacks a deeper connection to NRI experiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from industry experts or affected workers to enhance the human element of the story.",
-          "Include more data or statistics on the impact of AI on job roles to provide a clearer picture of the changes in the industry."
+          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the show or its reviews.",
+          "Enhance the diaspora angle by including perspectives or reactions from NRI audiences regarding the show."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Removed irrelevant embed: https://www.instagram.com/p/DaUznCuRdOF/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=uCjkRVV0-qU",
+        "Revised by gemini-2.5-flash (752\u2192840 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7b3cb6e0-0f28-4df4-86b8-1b3a4f875b46",
-      "headline": "The Supreme Court Just Told 300,000 Indian Families Their Children Are American. The Fight Isn't Over.",
-      "slug": "supreme-court-birthright-citizenship-indian-families-14th-amendment-20260707",
+      "id": "07da0417-b4d6-446e-9111-8cee0091f1ba",
+      "headline": "India's Biggest Film Is About to Crash San Diego Comic-Con. The Trailer Drop Will Be Historic.",
+      "slug": "ramayana-san-diego-comic-con-trailer-ranbir-kapoor-hans-zimmer-ar-rahman-global-premiere-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "470bf798-b971-4009-bd53-0106577da1d1",
-            "headline": "Your Green Card No Longer Guarantees Re-Entry. The Supreme C"
-          },
-          {
-            "article_id": "38719118-bb8f-4ce0-a602-696bd7de57d5",
-            "headline": "Your American-Born Child Is Still American. Six Justices Mad"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
+          "what_photo_shows": "Ranbir Kapoor smiling",
+          "reason": "The photo shows Ranbir Kapoor, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -87,21 +91,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the Supreme Court ruling to the experiences of Indian families in the U.S., highlighting their immigration struggles and the implications of the ruling."
+          "note": "The article effectively connects the film's premiere at Comic-Con to the emotional significance for the diaspora, particularly those familiar with the Ramayana."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from affected families to enhance the emotional impact.",
-          "Include a brief overview of the historical context of birthright citizenship to provide readers with a deeper understanding."
+          "Replace the hero image with one that is more relevant to the film or Comic-Con theme.",
+          "Consider adding quotes or reactions from diaspora audiences to enhance the emotional connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
