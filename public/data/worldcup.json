@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-07T01:58:43Z",
-  "stage": "Knockout Stage",
+  "last_updated": "2026-07-07T04:00:33Z",
+  "stage": "Group Stage — 94 of 96 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -184,12 +184,12 @@
         "code": "USA",
         "flag": "🇺🇸",
         "rank": 17,
-        "p": 4,
+        "p": 5,
         "w": 3,
         "d": 0,
-        "l": 1,
-        "gf": 10,
-        "ga": 4,
+        "l": 2,
+        "gf": 11,
+        "ga": 8,
         "pts": 9
       },
       {
@@ -346,13 +346,13 @@
         "code": "BEL",
         "flag": "🇧🇪",
         "rank": 9,
-        "p": 4,
-        "w": 2,
+        "p": 5,
+        "w": 3,
         "d": 2,
         "l": 0,
-        "gf": 9,
-        "ga": 4,
-        "pts": 8
+        "gf": 13,
+        "ga": 5,
+        "pts": 11
       },
       {
         "name": "Egypt",
@@ -400,13 +400,13 @@
         "code": "ESP",
         "flag": "🇪🇸",
         "rank": 2,
-        "p": 4,
-        "w": 3,
+        "p": 5,
+        "w": 4,
         "d": 1,
         "l": 0,
-        "gf": 8,
+        "gf": 9,
         "ga": 0,
-        "pts": 10
+        "pts": 13
       },
       {
         "name": "Cape Verde",
@@ -575,12 +575,12 @@
         "code": "POR",
         "flag": "🇵🇹",
         "rank": 5,
-        "p": 4,
+        "p": 5,
         "w": 2,
         "d": 2,
-        "l": 0,
+        "l": 1,
         "gf": 8,
-        "ga": 2,
+        "ga": 3,
         "pts": 8
       },
       {
@@ -2056,18 +2056,64 @@
       "away_code": "FRA"
     },
     {
+      "id": 93,
+      "group": "R16",
+      "date": "2026-07-06",
+      "time": "15:00",
+      "tz": "ET",
       "home": "Portugal",
       "away": "Spain",
-      "score": "0-1",
+      "venue": "AT&T Stadium",
+      "city": "Arlington, TX",
       "status": "FT",
-      "date": "2026-07-06"
+      "score": "0-1",
+      "home_code": "POR",
+      "away_code": "ESP"
     },
     {
+      "id": 94,
+      "group": "R16",
+      "date": "2026-07-06",
+      "time": "20:00",
+      "tz": "ET",
       "home": "USA",
       "away": "Belgium",
-      "score": "1-4",
+      "venue": "Lumen Field",
+      "city": "Seattle, WA",
       "status": "FT",
-      "date": "2026-07-06"
+      "score": "1-4",
+      "home_code": "USA",
+      "away_code": "BEL"
+    },
+    {
+      "id": 95,
+      "group": "R16",
+      "date": "2026-07-07",
+      "time": "12:00",
+      "tz": "ET",
+      "home": "Argentina",
+      "away": "Egypt",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta, GA",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "ARG",
+      "away_code": "EGY"
+    },
+    {
+      "id": 96,
+      "group": "R16",
+      "date": "2026-07-07",
+      "time": "16:00",
+      "tz": "ET",
+      "home": "Switzerland",
+      "away": "Colombia",
+      "venue": "BC Place",
+      "city": "Vancouver",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "SUI",
+      "away_code": "COL"
     }
   ],
   "knockout": {
@@ -2385,7 +2431,8 @@
           "tz": "ET",
           "venue": "Lumen Field, Seattle",
           "status": "FT",
-          "score": "1-4"
+          "score": "1-4",
+          "winner": "Belgium"
         },
         {
           "match_num": 95,
