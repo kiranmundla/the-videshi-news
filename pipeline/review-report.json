@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T13:15:30.079245+00:00",
+  "timestamp": "2026-07-07T14:15:35.698242+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,18 +11,39 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fbf6b6e8-8f8d-4ad1-a3dd-fd61973b52d3",
-      "headline": "India's AI Startups Can't Buy Enough GPUs. So They're Learning to Build Without Them.",
-      "slug": "india-gpu-shortage-ai-startups-compute-scarcity-20260707",
+      "id": "73ff88d6-068d-48aa-805b-6b6d8ad05875",
+      "headline": "The H-1B Lottery Is No Longer Random. What the Wage-Weighted Selection Means for Indian Workers",
+      "slug": "h1b-wage-weighted-lottery-fy2027-indian-workers-salary-selection-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
+            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
+          },
+          {
+            "article_id": "54be977b-411e-4a32-a126-eb68b4ce9117",
+            "headline": "The State Department Shut EB-2 India for the Year. One Milli"
+          },
+          {
+            "article_id": "ceec8577-f07b-448a-86e0-9136856483eb",
+            "headline": "Nearly 300,000 H-1B Renewals and Counting. The Number Trump'"
+          },
+          {
+            "article_id": "4cc2561b-be2f-427e-988f-4124eaa48e32",
+            "headline": "Your Employer Cannot Fix This Either. Social Media Vetting I"
+          },
+          {
+            "article_id": "4c4dc133-2a9c-4880-aaf4-50429414a2ea",
+            "headline": "Four Hundred and Three Days. That Is How Long the First Step"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo subject is relevant to the story about AI startups and GPU constraints."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration topic."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +52,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to AI or GPUs, but is visually appealing and relevant to technology."
+          "issue": "The image is relevant to the topic of immigration and USCIS but does not directly illustrate the H-1B lottery or the wage-weighted selection process."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI engineers and investors by discussing the implications of GPU shortages on India's AI ecosystem."
+          "quality": 9,
+          "note": "The article effectively discusses the implications of the H-1B lottery changes specifically for Indian workers, making it highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of Indian startups that are innovating in response to the GPU shortage.",
-          "Add quotes or insights from NRI experts to strengthen the diaspora connection."
+          "Consider including more specific examples or testimonials from Indian workers affected by the changes to enhance relatability.",
+          "Add a section discussing potential future implications or responses from Indian IT firms to provide a broader context."
         ],
         "verdict": "pass"
       },
@@ -54,9 +75,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d93e747a-48dc-4df7-b8fd-21c15789894e",
-      "headline": "DeepSeek Is Building Its Own AI Chip. Nvidia and Huawei Should Both Be Worried.",
-      "slug": "deepseek-ai-inference-chip-nvidia-huawei-india-20260707",
+      "id": "017d4dc7-4b82-4fa3-a009-ba9fa1aea4b0",
+      "headline": "One in Four Doctors in Rural America Trained Abroad. The Immigration Crackdown Is Coming for Them Too",
+      "slug": "indian-doctors-rural-america-h1b-fee-healthcare-crisis-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +85,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "close-up of a microchip circuit board",
-          "reason": "The photo subject is relevant to the semiconductor story."
+          "what_photo_shows": "Doctor examining a patient",
+          "reason": "The photo shows a doctor in a clinical setting, relevant to the story about physicians."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +95,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the topic of semiconductors but does not specifically depict AI chips or related technology."
+          "issue": "The image depicts a medical setting, which is relevant to the article's focus on doctors and healthcare, but does not specifically highlight the rural aspect."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI investors and Indian semiconductor professionals, discussing India's position in the global semiconductor landscape."
+          "note": "The article discusses the impact of immigration policies on Indian-origin physicians, directly connecting to the Indian diaspora's concerns about healthcare and immigration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific examples of Indian companies or initiatives in the semiconductor space to strengthen the diaspora angle.",
-          "Add a visual or infographic that illustrates the semiconductor landscape or the comparison between China and India's chip ambitions."
+          "Include more specific examples of how Indian-origin physicians are uniquely affected by immigration policies.",
+          "Consider adding quotes or testimonials from affected physicians to enhance the personal impact of the story."
         ],
         "verdict": "pass"
       },
@@ -97,9 +118,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a2358571-8455-494d-91e5-6d1e216e04c7",
-      "headline": "Nadella, Pichai and Arora Just Bought a Cricket Team at Lord's. They Paid \u00a3145 Million.",
-      "slug": "nadella-pichai-arora-london-spirit-cricket-lords-20260707",
+      "id": "98e9c11f-f052-4c26-a721-78c6cd921da0",
+      "headline": "Eleven Thousand Visas for Six Companies. Indian IT Outsourcers Just Lost 40 Per Cent of Their H-1B Approvals",
+      "slug": "indian-it-outsourcers-h1b-approvals-crash-40-percent-tcs-infosys-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +128,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The Pavilion at Lord's Cricket Ground",
-          "reason": "The photo shows Lord's Cricket Ground, relevant to the cricket team acquisition story."
+          "what_photo_shows": "Software developers in a tech office",
+          "reason": "The photo shows software developers, relevant to the IT outsourcing and visa story."
         },
         "inline_image_mismatches": []
       },
@@ -116,19 +137,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the topic of immigration and visas but does not specifically depict IT professionals or the H-1B visa process."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the acquisition to the interests of NRIs, highlighting the significance of Indian-origin tech leaders in reshaping cricket globally."
+          "note": "The article discusses the impact of H-1B visa changes on Indian IT professionals, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from the tech leaders involved to provide more personal insight into their motivations for the investment.",
-          "Include more context about the significance of cricket in the Indian diaspora to enhance the connection for NRI readers."
+          "Include quotes or perspectives from Indian professionals affected by the visa changes to enhance the human angle.",
+          "Add a section discussing potential future trends or solutions for Indian IT professionals seeking work in the US."
         ],
         "verdict": "pass"
       },
