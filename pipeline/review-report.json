@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T08:15:27.426781+00:00",
+  "timestamp": "2026-07-07T08:45:28.390931+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,71 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "18e459bd-7e9e-4f54-bf67-ab0373e6ed4f",
-      "headline": "Three Bills in Seven Days. Congress Is Coming for Birthright Citizenship Through the Back Door",
-      "slug": "birthright-citizenship-bills-ban-birth-tourism-kavanaugh-loophole-20260707",
+      "id": "8163c52c-a20d-4e2e-8f96-b4623de3c4be",
+      "headline": "India's IT Giants Are Heading Into a 'Perfect Storm.' Their 200,000 Workers in America Feel It First.",
+      "slug": "indian-it-perfect-storm-ai-disruption-tcs-infosys-q1-earnings-diaspora-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "48715c06-d33e-48a8-addd-4c8932daa2c3",
-            "headline": "One Hundred and Thirty Hindu Americans Walked Into Congress "
+            "article_id": "818247e8-9f61-4172-9525-726d7dddcfe1",
+            "headline": "India's IT Giants Walk Into Earnings Week Facing a 'Perfect "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol building",
-          "reason": "The photo of the Capitol is relevant to a story about congressional bills."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the Capitol Building is relevant but does not directly relate to the specific topic of birthright citizenship."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses legislation affecting birthright citizenship, which is a significant issue for Indian American families, making the diaspora angle relevant."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or perspectives from Indian American families affected by these bills to enhance the diaspora connection.",
-          "Consider using a more relevant image that directly relates to the topic of immigration or birthright citizenship."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "38719118-bb8f-4ce0-a602-696bd7de57d5",
-      "headline": "Your American-Born Child Is Still American. Six Justices Made Sure of That",
-      "slug": "scotus-birthright-citizenship-trump-barbara-indian-families-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "470bf798-b971-4009-bd53-0106577da1d1",
-            "headline": "Your Green Card No Longer Guarantees Re-Entry. The Supreme C"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the court case topic."
+          "what_photo_shows": "Infosys campus in Bangalore",
+          "reason": "The photo shows the Infosys campus, relevant to the story about Indian IT companies."
         },
         "inline_image_mismatches": []
       },
@@ -89,13 +41,65 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Supreme Court ruling to the concerns of Indian families on H-1B visas, making it relevant for the diaspora."
+          "note": "The article effectively discusses the impact of the IT sector's challenges on Indian professionals in the U.S., making it relevant for the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from Indian diaspora organizations to enhance the community perspective.",
-          "Include more statistics or data on the impact of the ruling on Indian families to strengthen the argument."
+          "Consider adding more direct quotes from industry experts or affected workers to enhance the human element of the story.",
+          "Include more data or statistics on the impact of AI on job roles to provide a clearer picture of the changes in the industry."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7b3cb6e0-0f28-4df4-86b8-1b3a4f875b46",
+      "headline": "The Supreme Court Just Told 300,000 Indian Families Their Children Are American. The Fight Isn't Over.",
+      "slug": "supreme-court-birthright-citizenship-indian-families-14th-amendment-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "470bf798-b971-4009-bd53-0106577da1d1",
+            "headline": "Your Green Card No Longer Guarantees Re-Entry. The Supreme C"
+          },
+          {
+            "article_id": "38719118-bb8f-4ce0-a602-696bd7de57d5",
+            "headline": "Your American-Born Child Is Still American. Six Justices Mad"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the court ruling story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Supreme Court ruling to the experiences of Indian families in the U.S., highlighting their immigration struggles and the implications of the ruling."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from affected families to enhance the emotional impact.",
+          "Include a brief overview of the historical context of birthright citizenship to provide readers with a deeper understanding."
         ],
         "verdict": "pass"
       },
