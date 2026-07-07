@@ -1053,7 +1053,7 @@ def select_music(article, build_dir, story_mood=None):
     normalized_path = os.path.join(build_dir, "music-normalized.mp3")
     try:
         norm_result = subprocess.run(
-            ["ffmpeg", "-y", "-i", music_path, "-af", "loudnorm=I=-14:TP=-1:LRA=11",
+            ["ffmpeg", "-y", "-i", music_path, "-af", "loudnorm=I=-10:TP=-1:LRA=7",
              "-ar", "44100", "-b:a", "192k", normalized_path],
             capture_output=True, text=True, timeout=60
         )
@@ -1390,7 +1390,7 @@ def build_music_only_reel(scenes, music_url, build_dir):
         ]
     }
     if music_url:
-        timeline["soundtrack"] = {"src": music_url, "effect": "fadeInFadeOut", "volume": 0.30}
+        timeline["soundtrack"] = {"src": music_url, "effect": "fadeInFadeOut", "volume": 0.80}
     
     payload = {
         "timeline": timeline,
@@ -1503,7 +1503,7 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
         # Source tracks average ~-20 dB; need ~0.40 to get music to -28 dB
         # (16 dB below voice at -12 dB — clearly audible as background)
         music_clips.append({
-            "asset": {"type": "audio", "src": music_url, "volume": 0.40},
+            "asset": {"type": "audio", "src": music_url, "volume": 0.60},
             "start": 0, "length": round(voice_duration, 2),
             "transition": {"in": "fade"}
         })
