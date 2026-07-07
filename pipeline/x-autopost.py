@@ -220,43 +220,79 @@ for i, article in enumerate(articles):
     post_text = compose_post(article)
     print(f"  Post length: {len(post_text)} chars")
 
-    # Download image
-    media_id = None
-    image_url = article.get('image_url', '')
-    if image_url:
-        try:
-            img_resp = requests.get(
-                image_url,
-                headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-                timeout=15
-            )
-            img_resp.raise_for_status()
+    # Check for carousel images from prebuilt_reels (up to 4 image slides)
+    media_ids = []
+    try:
+        carousel_resp = requests.get(
+            f'{SUPABASE_URL}/rest/v1/prebuilt_reels',
+            params={
+                'article_id': f'eq.{article["id"]}',
+                'carousel_images': 'not.is.null',
+                'select': 'carousel_images',
+                'limit': '1'
+            },
+            headers=SUPA_HEADERS, timeout=10
+        )
+        carousel_data = carousel_resp.json()
+        if carousel_data and carousel_data[0].get('carousel_images'):
+            all_slides = carousel_data[0]['carousel_images']
+            # Filter to image files only (skip .mp4 animated cards), pick up to 4 data-rich slides
+            image_slides = [u for u in all_slides if u.lower().endswith(('.jpg', '.jpeg', '.png', '.webp'))]
+            # Skip first (hook) and last (CTA) — use the middle data-rich slides
+            if len(image_slides) > 5:
+                image_slides = image_slides[1:-1]  # skip hook + CTA
+            chosen = image_slides[:4]
+            if chosen:
+                print(f"  📸 Found {len(all_slides)} carousel slides, posting {len(chosen)} images")
+                for ci, curl in enumerate(chosen):
+                    try:
+                        cr = requests.get(curl, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15)
+                        cr.raise_for_status()
+                        ext = '.png' if 'png' in cr.headers.get('content-type', '') else '.jpg'
+                        with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
+                            tmp.write(cr.content)
+                            tmp_path = tmp.name
+                        media = api_v1.media_upload(filename=tmp_path)
+                        media_ids.append(media.media_id)
+                        os.unlink(tmp_path)
+                        print(f"    Slide {ci}: media_id={media.media_id}")
+                    except Exception as e:
+                        print(f"    Slide {ci} failed: {e}")
+    except Exception as e:
+        print(f"  Carousel check failed ({e}), falling back to hero image")
 
-            # Determine extension
-            ct = img_resp.headers.get('content-type', '')
-            ext = '.jpg'
-            if 'png' in ct:
-                ext = '.png'
-            elif 'webp' in ct:
-                ext = '.webp'
-
-            with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
-                tmp.write(img_resp.content)
-                tmp_path = tmp.name
-
-            media = api_v1.media_upload(filename=tmp_path)
-            media_id = media.media_id
-            os.unlink(tmp_path)
-            print(f"  Image uploaded: media_id={media_id}")
-        except Exception as e:
-            print(f"  Image failed ({e}), posting without image")
-            media_id = None
+    # Fall back to hero image if no carousel
+    if not media_ids:
+        image_url = article.get('image_url', '')
+        if image_url:
+            try:
+                img_resp = requests.get(
+                    image_url,
+                    headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+                    timeout=15
+                )
+                img_resp.raise_for_status()
+                ct = img_resp.headers.get('content-type', '')
+                ext = '.jpg'
+                if 'png' in ct:
+                    ext = '.png'
+                elif 'webp' in ct:
+                    ext = '.webp'
+                with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
+                    tmp.write(img_resp.content)
+                    tmp_path = tmp.name
+                media = api_v1.media_upload(filename=tmp_path)
+                media_ids.append(media.media_id)
+                os.unlink(tmp_path)
+                print(f"  Hero image uploaded: media_id={media.media_id}")
+            except Exception as e:
+                print(f"  Image failed ({e}), posting without image")
 
     # Post tweet
     try:
         kwargs = {'text': post_text}
-        if media_id:
-            kwargs['media_ids'] = [media_id]
+        if media_ids:
+            kwargs['media_ids'] = media_ids
 
         tweet_resp = client.create_tweet(**kwargs)
         tweet_id = str(tweet_resp.data['id'])

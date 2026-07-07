@@ -1778,9 +1778,9 @@ def distribute(reel_path, carousel_slides, article, attribution="", skip=False):
         if yt_url:
             results["youtube"] = yt_url
     
-    # X (carousel) — check if credits available
-    # TODO: Re-enable when X API credits restored
-    print("  ⏸️  X: credits depleted, skipping")
+    # X (carousel) — handled by videshi-x-autopost cron (posts articles + carousel images)
+    # Reel video distribution to X handled by videshi-distribute-reels cron
+    print("  ℹ️  X: distribution handled by autopost + distribute-reels crons")
     
     # Instagram, Threads, Facebook — check if Meta tokens available
     # TODO: Re-enable when Meta dev account restored
