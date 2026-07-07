@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-06T22:00:46.657369+00:00",
+  "last_refresh": "2026-07-07T04:00:18.613973+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -1429,6 +1429,34 @@
       "likes": 5917,
       "image_count": 4,
       "scraped_at": "2026-07-06T22:00:43.807790+00:00"
+    },
+    "https://www.instagram.com/reel/DacBdErgLEh/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 221954,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T04:00:02.919541+00:00"
+    },
+    "https://www.instagram.com/reel/DaeE5cMpdOB/": {
+      "account": "tsn_official",
+      "platform": "instagram",
+      "likes": 5196,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T04:00:07.844169+00:00"
+    },
+    "https://www.instagram.com/p/Dad4YOpDrE5/": {
+      "account": "sportmts",
+      "platform": "instagram",
+      "likes": 948,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T04:00:12.587772+00:00"
+    },
+    "https://www.instagram.com/p/DaeWOECRmjO/": {
+      "account": "jamaicaobserver",
+      "platform": "instagram",
+      "likes": 652,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T04:00:16.766240+00:00"
     }
   },
   "images": [
@@ -8837,6 +8865,188 @@
       "scraped_at": "2026-07-06T22:00:43.807777+00:00",
       "account": "gianni_infantino",
       "likes": 5917,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/736510833_18608965183061984_7947594189262746308_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=_zTW-tM2P7MQ7kNvwECCNG4&_nc_oc=AdrsmejcGUIJFF2D5KeB_wnmxa_wtT1L0ZpgnkHPYpmQ5ih6s1cT2jMJ_jJsRtwouUZUTBohILMvjDWzYk3faCgE&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=q-f-2aOsHmF2xYetPHlTwQ&_nc_ss=7860f&oh=00_AQAKHqfIpxNumZYJDwiJ7IKpsuad1fUkLlVfp8q5C6udWw&oe=6A523EFE",
+      "post_url": "https://www.instagram.com/reel/DacBdErgLEh/",
+      "platform": "instagram",
+      "caption": "222K likes, 1,331 comments - fifaworldcup on July 5, 2026: \"Bellingham taps it in. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f\n#FIFAWorldCup #TapInFC @visa\". ",
+      "scraped_at": "2026-07-07T04:00:02.919038+00:00",
+      "account": "fifaworldcup",
+      "likes": 221954,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.71878-15/736676237_1004172112368874_8910221538711675085_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=3lUTKf6vStsQ7kNvwFMsgTq&_nc_oc=AdpClJVLB5nOzm5Hn4IdTObd7euGe08t1d8qjZSZp7jgUVe8Y58SxiLQ_So7m2p7aGX62b_BmEIeMw3qRmS7Q8Ys&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=6bYEsVUqrw2SU31KqwhHXg&_nc_ss=7860f&oh=00_AQAf2hygmUaXp5QU0oQjfILlYZqJKQ_yUtAVOwciGkSUOg&oe=6A5258BB",
+      "post_url": "https://www.instagram.com/reel/DacBdErgLEh/",
+      "platform": "instagram",
+      "caption": "222K likes, 1,331 comments - fifaworldcup on July 5, 2026: \"Bellingham taps it in. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f\n#FIFAWorldCup #TapInFC @visa\". ",
+      "scraped_at": "2026-07-07T04:00:02.919070+00:00",
+      "account": "fifaworldcup",
+      "likes": 221954,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldcup-51eec28a6046.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 64586
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/728969437_18609226405061984_5995114041957456399_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=Vzci88LVE2sQ7kNvwFEKXCM&_nc_oc=AdpuFBj11UTv8PbI1gZAy5kGz0cI6delk9dMb_x6czDXydm9-wiaifySRZcEtM1pPAZCL6pFE--e02opKaxiyK03&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=6bYEsVUqrw2SU31KqwhHXg&_nc_ss=7860f&oh=00_AQCZkwhy9jsYNz-qbnjh7gsUrgvdBeqP_1ZZNMpjbchipQ&oe=6A5258BD",
+      "post_url": "https://www.instagram.com/reel/DacBdErgLEh/",
+      "platform": "instagram",
+      "caption": "222K likes, 1,331 comments - fifaworldcup on July 5, 2026: \"Bellingham taps it in. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f\n#FIFAWorldCup #TapInFC @visa\". ",
+      "scraped_at": "2026-07-07T04:00:02.919078+00:00",
+      "account": "fifaworldcup",
+      "likes": 221954,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/735238496_18609226738061984_8454282561284226520_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=xOcwquvZ384Q7kNvwFFHFq9&_nc_oc=AdpY9nPGTR65ORC6oMgwwQhkQP4880FZI_hUEEIHvhnCaL9DwyL4bm4W54mRs2LBkedXLCeb3sheoQeozZtJLiGS&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=6bYEsVUqrw2SU31KqwhHXg&_nc_ss=7860f&oh=00_AQC5uz2QOxGcYbNGaRkSUAxKNjau25DKyvf6hBX6OvAIhA&oe=6A52442B",
+      "post_url": "https://www.instagram.com/reel/DacBdErgLEh/",
+      "platform": "instagram",
+      "caption": "222K likes, 1,331 comments - fifaworldcup on July 5, 2026: \"Bellingham taps it in. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f\n#FIFAWorldCup #TapInFC @visa\". ",
+      "scraped_at": "2026-07-07T04:00:02.919082+00:00",
+      "account": "fifaworldcup",
+      "likes": 221954,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/736314075_18607121485014415_8448047733993540769_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=NZ6PkFoKQDsQ7kNvwFnmXyX&_nc_oc=Adq6wEuJjgLQw0LC120ZCTdpInR9SYk9LvT3LwjMZcj1FCFRLvieceYafDpXcYIPLbDiBVf-krA9wFBmLAD_lu63&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=LcONMemfli8926qqNLyq9g&_nc_ss=7860f&oh=00_AQCQIqA8x7opUBD3nvHC5iMP_pa21qSJ9lBG-vh6mDbhmQ&oe=6A526013",
+      "post_url": "https://www.instagram.com/reel/DaeE5cMpdOB/",
+      "platform": "instagram",
+      "caption": "5,524 likes, 31 comments - tsn_official on July 6, 2026: \"Probably best to leave the \u201cSiuuu\u201d to Ronaldo anyway\". ",
+      "scraped_at": "2026-07-07T04:00:07.843279+00:00",
+      "account": "tsn_official",
+      "likes": 5196,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.71878-15/734863408_3988381674796910_6845463305206304428_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=89QJ7PACqugQ7kNvwGHZc6m&_nc_oc=Ado5W7QIXyrDkLBMhCJmkKnFG12Top_msDYjFxZr33Xx9BJpT1hKsCXf3x0m4Q1nARDph1BhszIcAQhAkYNsfg36&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=lyx6_ylrrmRFa_Zu96s1qA&_nc_ss=7860f&oh=00_AQDDkXIRvhPEV0Bpu45FY4crLq01iQ7MW5bj72MoIfc-xw&oe=6A52649D",
+      "post_url": "https://www.instagram.com/reel/DaeE5cMpdOB/",
+      "platform": "instagram",
+      "caption": "5,524 likes, 31 comments - tsn_official on July 6, 2026: \"Probably best to leave the \u201cSiuuu\u201d to Ronaldo anyway\". ",
+      "scraped_at": "2026-07-07T04:00:07.843309+00:00",
+      "account": "tsn_official",
+      "likes": 5196,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-tsn_official-9b75fc2821aa.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 50558
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/736456392_18607196440014415_5117318351853260345_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=5EXV0_O4x-QQ7kNvwEDdMUN&_nc_oc=Adrrgcfgbz9ifu69ZyCR2P-FHb5pRNVR2SMlx7LobWGFh6uDWAFtgltv05Hp-z3SoT1SdCfSgvco-b6WWAkwNYkv&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=lyx6_ylrrmRFa_Zu96s1qA&_nc_ss=7860f&oh=00_AQDSvk8LvGA-Jns9bgfUv-JmpeG_b7PgWHAzkdIYVCWUag&oe=6A525C86",
+      "post_url": "https://www.instagram.com/reel/DaeE5cMpdOB/",
+      "platform": "instagram",
+      "caption": "5,524 likes, 31 comments - tsn_official on July 6, 2026: \"Probably best to leave the \u201cSiuuu\u201d to Ronaldo anyway\". ",
+      "scraped_at": "2026-07-07T04:00:07.843316+00:00",
+      "account": "tsn_official",
+      "likes": 5196,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/740225757_18607190761014415_1467864276014891343_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=K1ghSFT_FQYQ7kNvwE6NsVh&_nc_oc=AdoEzhVSdVEk0KBEePliAjpr-mFoMknrWHx0d2lVMeFbrZaurfdb7f2RubCcRQKgcuxCP62c-RVdncN1f_GcomZX&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=lyx6_ylrrmRFa_Zu96s1qA&_nc_ss=7860f&oh=00_AQD0TbcbzZAFPrFcIGAPK-fk3N8qorN35klp8Rqc-SSlHw&oe=6A52338B",
+      "post_url": "https://www.instagram.com/reel/DaeE5cMpdOB/",
+      "platform": "instagram",
+      "caption": "5,524 likes, 31 comments - tsn_official on July 6, 2026: \"Probably best to leave the \u201cSiuuu\u201d to Ronaldo anyway\". ",
+      "scraped_at": "2026-07-07T04:00:07.843320+00:00",
+      "account": "tsn_official",
+      "likes": 5196,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/740367897_18481471429098425_609391081356246386_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=KhlKqeTeIQ8Q7kNvwHNjRcP&_nc_oc=AdqPUHZXhKVonH3vppsg_h1FyEy-OkrLE0YpvN0WXMjqETDFVQvYqMTpcbfGl3F9eFg5Pxp5agpu8mW4-4bnZcxy&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=usz4dZnAguI1G5DhnwvBvw&_nc_ss=7860f&oh=00_AQB6O5z45lkJaRMYdxaX5CYm2cZj4QT7sVKS4QY5-3cTsw&oe=6A52305A",
+      "post_url": "https://www.instagram.com/p/Dad4YOpDrE5/",
+      "platform": "instagram",
+      "caption": "952 likes, 4 comments - sportmts on July 6, 2026: \"\u26bd\ufe0f\ud83c\uddf5\ud83c\uddf9\ud83c\uddea\ud83c\uddf8 0:1 Merino 90 + 1\u2019 \ud83d\udc4f\n\n#sportmts \n#fifaworldcup2026\n#worldcup2026\n\nVia @fifa story\". ",
+      "scraped_at": "2026-07-07T04:00:12.587287+00:00",
+      "account": "sportmts",
+      "likes": 948,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/670490278_18465975145098425_8237169366356812487_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=0cElOTztxfgQ7kNvwFp15Qn&_nc_oc=Adqwy7cT2PPzQZaVnoyqHzZxVp1hxBVXlBzHqTe4vXdF1lodDONN0WJ2o0fu6q-U5OBeMsyO4QRajAsKyAbhgTm5&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=OkXKrh5OeOIqXmrRqebxmw&_nc_ss=7860f&oh=00_AQANgUE1vLuuMHpeaodvOrfFjsh2HD0JHodaP5SXmY5nPA&oe=6A5253BF",
+      "post_url": "https://www.instagram.com/p/Dad4YOpDrE5/",
+      "platform": "instagram",
+      "caption": "952 likes, 4 comments - sportmts on July 6, 2026: \"\u26bd\ufe0f\ud83c\uddf5\ud83c\uddf9\ud83c\uddea\ud83c\uddf8 0:1 Merino 90 + 1\u2019 \ud83d\udc4f\n\n#sportmts \n#fifaworldcup2026\n#worldcup2026\n\nVia @fifa story\". ",
+      "scraped_at": "2026-07-07T04:00:12.587318+00:00",
+      "account": "sportmts",
+      "likes": 948,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/619823000_18448081060098425_3396025584729157921_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=7wFcnnTvOiwQ7kNvwEbetZf&_nc_oc=AdoDxzqhpboMvBYLHchIDMIgei6JuRTLsd0RklpQXPXtAnDzli0z019S7hKvX619gmB4wfGbhaXrBfQ_wM5dYMPW&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=OkXKrh5OeOIqXmrRqebxmw&_nc_ss=7860f&oh=00_AQBEUUBeQdEgt9fAEQaw49do4Piy4HbUpoCzLfeb06aNFg&oe=6A5267A5",
+      "post_url": "https://www.instagram.com/p/Dad4YOpDrE5/",
+      "platform": "instagram",
+      "caption": "952 likes, 4 comments - sportmts on July 6, 2026: \"\u26bd\ufe0f\ud83c\uddf5\ud83c\uddf9\ud83c\uddea\ud83c\uddf8 0:1 Merino 90 + 1\u2019 \ud83d\udc4f\n\n#sportmts \n#fifaworldcup2026\n#worldcup2026\n\nVia @fifa story\". ",
+      "scraped_at": "2026-07-07T04:00:12.587325+00:00",
+      "account": "sportmts",
+      "likes": 948,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/626422044_18450683257098425_7252087050103485550_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=m7XJLWaDXPcQ7kNvwH9ce3T&_nc_oc=AdolVoovYzcJpMz_-TXRmL_uvAVXjtTAgPXQxxXUPYoKs9iVpcwzCd4q8rG9KgcymTwCmnd-zLuY2FgmEruW4KWT&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=OkXKrh5OeOIqXmrRqebxmw&_nc_ss=7860f&oh=00_AQCgE94zb9J3cXUHHn_NjsWBlDysx05v2ZpOesZSN1g90A&oe=6A5254FB",
+      "post_url": "https://www.instagram.com/p/Dad4YOpDrE5/",
+      "platform": "instagram",
+      "caption": "952 likes, 4 comments - sportmts on July 6, 2026: \"\u26bd\ufe0f\ud83c\uddf5\ud83c\uddf9\ud83c\uddea\ud83c\uddf8 0:1 Merino 90 + 1\u2019 \ud83d\udc4f\n\n#sportmts \n#fifaworldcup2026\n#worldcup2026\n\nVia @fifa story\". ",
+      "scraped_at": "2026-07-07T04:00:12.587329+00:00",
+      "account": "sportmts",
+      "likes": 948,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.2885-19/11349261_497779567047339_361553639_a.jpg?_nc_cat=102&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xNTAuQzMifQ%3D%3D&_nc_ohc=-Z0J1IkwWIQQ7kNvwHvlZBV&_nc_oc=AdqPNrb3h62rQ3sxrBTQYOm589-daFgXmslsZgdl4GUOYifqDIk7dCx7hF_aSH5RcVukBvovod85s_P14679UO8t&_nc_zt=24&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_ss=7860f&oh=00_AQCBtX6vswSFMpUDqyhbACmPV0dDWRzVYSIcNPaSKsZZxw&oe=6A5255F8",
+      "post_url": "https://www.instagram.com/p/DaeWOECRmjO/",
+      "platform": "instagram",
+      "caption": "675 likes, 115 comments - jamaicaobserver on July 6, 2026: \"\ud83c\udfc1 FULLTIME: USA \ud83c\uddfa\ud83c\uddf8 1-4 Belgium \ud83c\udde7\ud83c\uddea\n\nBelgium produced a dominant second-half display to power past the United States and book their place in the FIFA World Cup 2026 quarter-finals.\n\nA first-half brace from Charles De Ketelaere put the Red Devils in control before Malik Tillman gave the Americans hope. \n\nHowever, Hans Vanaken restored Belgiu",
+      "scraped_at": "2026-07-07T04:00:16.766187+00:00",
+      "account": "jamaicaobserver",
+      "likes": 652,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-15/740733813_18610864501060964_141036909795533823_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=cjMusfCEbXAQ7kNvwHNIsQG&_nc_oc=AdpLAHCweCVr_6RdOr-wKEFUrW3tf_cCU2LbRc7-Nk-uHNZzpEwEvJLFpIaLIejUc5-6M6dGsGuZgAXyrhfG1GcG&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=3jU4aSR0tFXQTO0_lHvhWQ&_nc_ss=7860f&oh=00_AQCnr_JDu6UvcFKYRBRgmiUNR_XOcrX8CnQ6uIoWvpk4aw&oe=6A523C8A",
+      "post_url": "https://www.instagram.com/p/DaeWOECRmjO/",
+      "platform": "instagram",
+      "caption": "675 likes, 115 comments - jamaicaobserver on July 6, 2026: \"\ud83c\udfc1 FULLTIME: USA \ud83c\uddfa\ud83c\uddf8 1-4 Belgium \ud83c\udde7\ud83c\uddea\n\nBelgium produced a dominant second-half display to power past the United States and book their place in the FIFA World Cup 2026 quarter-finals.\n\nA first-half brace from Charles De Ketelaere put the Red Devils in control before Malik Tillman gave the Americans hope. \n\nHowever, Hans Vanaken restored Belgiu",
+      "scraped_at": "2026-07-07T04:00:16.766218+00:00",
+      "account": "jamaicaobserver",
+      "likes": 652,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-2.cdninstagram.com/v/t51.82787-15/734528515_18610843087060964_4470116255718086990_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=oFPrDagn4GkQ7kNvwG_5mOy&_nc_oc=AdpWTIZZaHEYW_qiqcc3p-xjucATwdcDdyd4ihc64IRJq1YV1l7TsjB1HGsbcxfgGzPkLTW5CAaMLFKNN9GBRG7B&_nc_zt=23&_nc_ht=scontent-dfw6-2.cdninstagram.com&_nc_gid=3jU4aSR0tFXQTO0_lHvhWQ&_nc_ss=7860f&oh=00_AQApSBsf-9zVq6FrrK-saQkybFScKpfOYWp_nvuXCp8nCg&oe=6A524CC2",
+      "post_url": "https://www.instagram.com/p/DaeWOECRmjO/",
+      "platform": "instagram",
+      "caption": "675 likes, 115 comments - jamaicaobserver on July 6, 2026: \"\ud83c\udfc1 FULLTIME: USA \ud83c\uddfa\ud83c\uddf8 1-4 Belgium \ud83c\udde7\ud83c\uddea\n\nBelgium produced a dominant second-half display to power past the United States and book their place in the FIFA World Cup 2026 quarter-finals.\n\nA first-half brace from Charles De Ketelaere put the Red Devils in control before Malik Tillman gave the Americans hope. \n\nHowever, Hans Vanaken restored Belgiu",
+      "scraped_at": "2026-07-07T04:00:16.766224+00:00",
+      "account": "jamaicaobserver",
+      "likes": 652,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/741857941_18611040208060964_741925554865900431_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=hQt8Xh9aZm4Q7kNvwGPBWSK&_nc_oc=AdohD6JaO6knex6qmXy2BwMCYUHL2LrBvA-iIp7MR8PW-7rwWInnyJdgajNGmb9bevcEY53omvO7-bkDejcBT5_j&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=3jU4aSR0tFXQTO0_lHvhWQ&_nc_ss=7860f&oh=00_AQA-G0v5_dRb1UqLkcyyX9HoO1ED3lSS3EtklM893sdlOg&oe=6A525983",
+      "post_url": "https://www.instagram.com/p/DaeWOECRmjO/",
+      "platform": "instagram",
+      "caption": "675 likes, 115 comments - jamaicaobserver on July 6, 2026: \"\ud83c\udfc1 FULLTIME: USA \ud83c\uddfa\ud83c\uddf8 1-4 Belgium \ud83c\udde7\ud83c\uddea\n\nBelgium produced a dominant second-half display to power past the United States and book their place in the FIFA World Cup 2026 quarter-finals.\n\nA first-half brace from Charles De Ketelaere put the Red Devils in control before Malik Tillman gave the Americans hope. \n\nHowever, Hans Vanaken restored Belgiu",
+      "scraped_at": "2026-07-07T04:00:16.766229+00:00",
+      "account": "jamaicaobserver",
+      "likes": 652,
       "trusted": false,
       "permanent_url": null
     }
