@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-06T23:59:15Z",
+  "last_updated": "2026-07-07T01:58:43Z",
   "stage": "Knockout Stage",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2054,6 +2054,20 @@
       "score": "0-1",
       "home_code": "PAR",
       "away_code": "FRA"
+    },
+    {
+      "home": "Portugal",
+      "away": "Spain",
+      "score": "0-1",
+      "status": "FT",
+      "date": "2026-07-06"
+    },
+    {
+      "home": "USA",
+      "away": "Belgium",
+      "score": "1-4",
+      "status": "FT",
+      "date": "2026-07-06"
     }
   ],
   "knockout": {
@@ -2370,7 +2384,8 @@
           "time": "20:00",
           "tz": "ET",
           "venue": "Lumen Field, Seattle",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "1-4"
         },
         {
           "match_num": 95,
@@ -2422,8 +2437,8 @@
           "status": "scheduled",
           "home": "Spain",
           "home_code": "ESP",
-          "away": "USA/Belgium",
-          "away_code": "TBD"
+          "away": "Belgium",
+          "away_code": "BEL"
         },
         {
           "match_num": 99,
@@ -8436,6 +8451,12 @@
       "platform": "facebook",
       "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02pXGzyp6W9uH4ZF6K5MWD8FKnUSbTdpkQXhDKUsEN29EHoSE98RFnefxzJw5cQWgdl",
       "account": "@fifaworldcup",
+      "date": "2026-07-06"
+    },
+    {
+      "url": "https://www.instagram.com/reel/Dad9PQThox-/",
+      "platform": "instagram",
+      "source": "@fifaworldcup",
       "date": "2026-07-06"
     }
   ],
