@@ -1,8 +1,8 @@
 {
   "month": "2026-07",
-  "reads": 0,
+  "reads": 5,
   "users": 0,
   "writes": 0,
   "writes_link": 0,
-  "cost": 0
+  "cost": 0.025
 }
