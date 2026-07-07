@@ -455,10 +455,9 @@ def post_x_tweet(reel, video_path, headline, slug):
                 return f"X processing failed: {proc}"
     
     # Tweet
-    link = f"thevideshi.com/articles/{slug}"
-    tweet_text = f"🇮🇳 {headline[:200]}\n\n📰 {link}\n\n#IndianDiaspora #NRI"
+    tweet_text = f"🇮🇳 {headline[:220]}\n\n#IndianDiaspora #NRI #TheVideshi"
     if len(tweet_text) > 280:
-        tweet_text = f"🇮🇳 {headline[:150]}\n\n📰 {link}\n\n#IndianDiaspora #NRI"
+        tweet_text = f"🇮🇳 {headline[:200]}\n\n#IndianDiaspora #NRI"
     
     print(f"  [X] Tweeting ({len(tweet_text)} chars)...")
     tweet_r = client.create_tweet(text=tweet_text, media_ids=[media_id])
@@ -528,10 +527,9 @@ def post_x_carousel(reel, headline, slug):
     if not media_ids:
         return "SKIP (all image uploads failed)"
     
-    link = f"thevideshi.com/articles/{slug}"
-    tweet_text = f"📊 {headline[:200]}\n\n📰 {link}\n\n#IndianDiaspora #NRI #TheVideshi"
+    tweet_text = f"📊 {headline[:220]}\n\n#IndianDiaspora #NRI #TheVideshi"
     if len(tweet_text) > 280:
-        tweet_text = f"📊 {headline[:150]}\n\n📰 {link}\n\n#IndianDiaspora #NRI"
+        tweet_text = f"📊 {headline[:200]}\n\n#IndianDiaspora #NRI"
     
     print(f"  [X-CAROUSEL] Tweeting with {len(media_ids)} images...")
     tweet_r = client.create_tweet(text=tweet_text, media_ids=media_ids)
