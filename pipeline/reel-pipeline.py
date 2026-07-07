@@ -279,10 +279,159 @@ Return ONLY valid JSON, no markdown."""
 
 
 # ═══════════════════════════════════════════════════════════════
+# PHASE 2.5: Evaluate article images for reel blending
+# ═══════════════════════════════════════════════════════════════
+def evaluate_hero_for_blend(article):
+    """Check if the article's hero image is good enough to blend into reel scenes.
+    
+    Returns dict with {usable: bool, img_bytes: bytes, img_path: str, tier: str}
+    or {usable: False} if not suitable.
+    """
+    import base64
+    hero_url = article.get("image_url", "")
+    headline = article.get("headline", "")
+    if not hero_url:
+        return {"usable": False}
+    
+    print(f"\n{'='*60}")
+    print(f"PHASE 2.5: Evaluating hero image for blend...")
+    print(f"{'='*60}")
+    
+    # Download hero image
+    try:
+        r = requests.get(hero_url, timeout=15, headers={
+            "User-Agent": "TheVideshi/1.0 (thevideshi.com)"
+        })
+        if r.status_code != 200:
+            print(f"  ❌ Hero download failed: HTTP {r.status_code}")
+            return {"usable": False}
+        img_bytes = r.content
+        if len(img_bytes) < 5000:
+            print(f"  ❌ Hero too small ({len(img_bytes)} bytes)")
+            return {"usable": False}
+    except Exception as e:
+        print(f"  ❌ Hero download error: {e}")
+        return {"usable": False}
+    
+    # Check dimensions
+    from io import BytesIO
+    img = Image.open(BytesIO(img_bytes))
+    w, h = img.size
+    print(f"  📸 Hero: {w}×{h}")
+    
+    if w < 800 or h < 600:
+        print(f"  ❌ Too low-res for blending (need 800×600+)")
+        return {"usable": False}
+    
+    # Save locally for edits API
+    hero_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "/tmp/hero-blend.png")
+    hero_path = "/tmp/hero-blend.png"
+    img.convert("RGBA").save(hero_path, "PNG")
+    
+    # Quick vision check — is this a recognizable person/subject photo?
+    img_b64 = base64.b64encode(img_bytes).decode()
+    try:
+        check = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "gpt-4o-mini",
+                "messages": [{"role": "user", "content": [
+                    {"type": "text", "text": f"Is this photo a clear, high-quality image of a recognizable person, place, or specific subject relevant to the headline: \"{headline}\"? Answer ONLY with JSON: {{\"usable\": true/false, \"subject\": \"who/what is shown\"}}"},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}", "detail": "low"}}
+                ]}],
+                "temperature": 0,
+                "response_format": {"type": "json_object"}
+            },
+            timeout=30
+        )
+        if check.status_code == 200:
+            result = json.loads(check.json()["choices"][0]["message"]["content"])
+            if not result.get("usable", False):
+                print(f"  ❌ Not suitable for blend: {result.get('subject', 'unclear')}")
+                return {"usable": False}
+            print(f"  ✅ Suitable: {result.get('subject', 'recognized')}")
+        else:
+            print(f"  ⚠️ Vision check failed ({check.status_code}), proceeding anyway")
+    except Exception as e:
+        print(f"  ⚠️ Vision check error: {e}, proceeding anyway")
+    
+    return {"usable": True, "img_bytes": img_bytes, "img_path": hero_path, "w": w, "h": h}
+
+
+def generate_blended_scene(scene_prompt, hero_path, build_dir, scene_idx, article_id):
+    """Generate a scene using OpenAI edits API with the hero image as reference.
+    
+    Returns the local path to the processed image, or None on failure.
+    """
+    import base64
+    
+    print(f"  Scene {scene_idx}: blending with hero image...")
+    
+    BLEND_SUFFIX = (
+        " Choose colors and visual mood that best fit this story. "
+        "One clear takeaway readable in 3 seconds. "
+        "Leave the top-left corner clear for a logo overlay. "
+        "IMPORTANT: Keep all text and important graphics within the center safe zone — "
+        "leave the top 10%, bottom 25%, right 15%, and left 5% of the frame clear of text or data. "
+        "Vertical 9:16."
+    )
+    
+    full_prompt = (
+        "Place the person from this photo into a broadcast news scene. "
+        + scene_prompt + BLEND_SUFFIX
+    )
+    
+    try:
+        with open(hero_path, "rb") as f:
+            r = requests.post(
+                "https://api.openai.com/v1/images/edits",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}"},
+                files={"image": ("photo.png", f, "image/png")},
+                data={
+                    "model": "gpt-image-1",
+                    "prompt": full_prompt,
+                    "size": "1024x1536",
+                    "quality": "high",
+                    "n": 1
+                },
+                timeout=180
+            )
+        
+        if r.status_code != 200:
+            print(f"  ⚠️ Blend failed ({r.status_code}): {r.text[:200]}")
+            return None
+        
+        img_data_b64 = r.json()["data"][0].get("b64_json")
+        if img_data_b64:
+            img_bytes = base64.b64decode(img_data_b64)
+        else:
+            img_url = r.json()["data"][0]["url"]
+            img_bytes = requests.get(img_url, timeout=30).content
+        
+        local_path = f"{build_dir}/scene-{scene_idx}.jpg"
+        with open(local_path, "wb") as f:
+            f.write(img_bytes)
+        
+        # Apply safe zone
+        safe_path = enforce_safe_zone(local_path)
+        print(f"  ✅ Scene {scene_idx}: blended + safe zone ({os.path.getsize(safe_path)//1024}KB)")
+        return safe_path
+        
+    except Exception as e:
+        print(f"  ⚠️ Blend error: {e}")
+        return None
+
+
+# ═══════════════════════════════════════════════════════════════
 # PHASE 3: Generate scene images
 # ═══════════════════════════════════════════════════════════════
-def generate_images_api(scenes, article_id, build_dir):
-    """Generate images via OpenAI gpt-image-1 API, overlay real logo, upload."""
+def generate_images_api(scenes, article_id, build_dir, hero_blend=None):
+    """Generate images via OpenAI gpt-image-1 API, overlay real logo, upload.
+    
+    If hero_blend is provided (from evaluate_hero_for_blend), Scene 0 will
+    use the real hero photo blended into a broadcast scene via the edits API.
+    """
     import base64
     print(f"\n{'='*60}")
     print(f"PHASE 3: Generating images (OpenAI API)...")
@@ -1468,7 +1617,7 @@ Read the full article: {article_url}
             "categoryId": "25",
             "tags": ["Indian diaspora", "NRI", "The Videshi", "diaspora news"]
         },
-        "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}
+        "status": {"privacyStatus": "unlisted", "selfDeclaredMadeForKids": False}
     }
     
     file_size = os.path.getsize(reel_path)

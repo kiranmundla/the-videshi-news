@@ -1,0 +1,40 @@
+{
+  "article_id": "b4b3b27b-1dd5-4c90-a5c3-1e90aeb72a38",
+  "scenes": [
+    {
+      "voiceover": "India's private banks just posted their strongest quarter in over a year. Should NRI investors be paying attention right now?",
+      "onscreen": "STRONGEST QUARTER",
+      "image_prompt": "BSE building illuminated with green arrows and stock tickers"
+    },
+    {
+      "voiceover": "AU Small Finance Bank grew loans by twenty-five point eight percent. Axis Bank hit eighteen point eight. HDFC, India's biggest private lender, posted fifteen point four percent growth.",
+      "onscreen": "LOAN GROWTH SURGE",
+      "image_prompt": "Comparison chart of bank loan growth rates Q1 FY27"
+    },
+    {
+      "voiceover": "The Sensex blew past seventy-eight thousand two hundred. That is four straight winning weeks. The longest streak of twenty twenty-six.",
+      "onscreen": "SENSEX AT 78,285",
+      "image_prompt": "Sensex rally visualization with 78,285 number and upward chart"
+    },
+    {
+      "voiceover": "Foreign investors bought thirteen point five five billion rupees of Indian stocks in a single day. And a record three billion dollars poured into Indian bonds in June alone.",
+      "onscreen": "FOREIGN MONEY FLOODS IN",
+      "image_prompt": "Dollar and rupee symbols flowing into India map"
+    },
+    {
+      "voiceover": "Crude oil has crashed over twenty percent to pre-conflict levels. For India, that means cheaper imports, stronger margins, and breathing room for growth.",
+      "onscreen": "OIL CRASHES 20%",
+      "image_prompt": "Oil barrel tipping over with -20% downward arrow"
+    },
+    {
+      "voiceover": "Delhi just scrapped the twelve point five percent capital gains tax and the twenty percent withholding tax on bond income. The doors are wide open.",
+      "onscreen": "TAXES SCRAPPED",
+      "image_prompt": "Tax rates crossed out with red X marks"
+    },
+    {
+      "voiceover": "Banks are lending. Foreign money is arriving. Taxes are falling. For NRI investors watching from abroad, this is not just a rally. It is a structural shift.",
+      "onscreen": "STRUCTURAL SHIFT",
+      "image_prompt": "Globe showing India connected to US, UK, Canada with golden flow lines"
+    }
+  ]
+}
