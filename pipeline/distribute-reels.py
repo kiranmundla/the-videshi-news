@@ -82,7 +82,7 @@ print(f"  Articles with IG: {len(ig_posted_articles)}, YT: {len(yt_posted_articl
 # X is handled separately by x-autopost (article text + carousel only, no video).
 # IG/Threads: one video per article (voiceover preferred).
 candidates_resp = requests.get(
-    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&order=created_at.desc&limit=10&select=id,article_id,article_slug,headline,video_url,caption,status,carousel_images,ig_posted_at,yt_posted_at,yt_video_id,threads_posted_at,threads_post_id,x_posted_at,x_tweet_id",
+    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&order=created_at.desc&limit=10&select=id,article_id,article_slug,headline,video_url,video_path,caption,status,carousel_images,ig_posted_at,yt_posted_at,yt_video_id,threads_posted_at,threads_post_id,x_posted_at,x_tweet_id",
     headers={k: v for k, v in SB_HEADERS.items() if k != 'Prefer'}
 )
 candidates = candidates_resp.json()
@@ -225,19 +225,30 @@ def post_youtube_video(reel, video_path, headline, caption):
     
     slug = reel.get('article_slug') or ''
     
-    # Check youtube-log.json for slug dedup
+    # Detect variant from video_path
+    vpath = reel.get('video_path') or ''
+    is_voiceover = 'voiceover' in vpath or 'voice' in vpath.split('/')[-1]
+    variant_tag = 'voiceover' if is_voiceover else 'music'
+    
+    # Check youtube-log.json for slug+variant dedup
     yt_log = {}
     if os.path.exists(YT_LOG_PATH):
         with open(YT_LOG_PATH) as f:
             yt_log = json.load(f)
+    dedup_key = f"{slug}:{variant_tag}"
     for vid, info in yt_log.items():
-        if info.get('article_slug') == slug:
+        log_slug = info.get('article_slug', '')
+        log_variant = info.get('variant', '')
+        # Match on slug+variant combo
+        if log_slug == slug and log_variant == variant_tag:
             patch_reel(reel['id'], {'yt_posted_at': now_iso(), 'yt_video_id': f'dedup-log-{vid}'})
-            return f"SKIP (slug already in youtube-log: {vid})"
+            return f"SKIP (slug+variant already in youtube-log: {vid})"
     
     # YouTube hard-limits titles to 100 chars.
-    # Voiceover reels upload as regular Videos (vertical, no letterboxing), no #Shorts tag.
-    title = headline[:100].rstrip() if len(headline) > 100 else headline
+    # Differentiate variants: voiceover gets "🎙️" suffix, music gets "🎵"
+    variant_suffix = " 🎙️" if is_voiceover else " 🎵"
+    max_headline = 100 - len(variant_suffix)
+    title = headline[:max_headline].rstrip() + variant_suffix
     
     # Category-specific hashtags
     caption_lower = caption.lower()
@@ -310,6 +321,7 @@ def post_youtube_video(reel, video_path, headline, caption):
     # Log to youtube-log.json
     yt_log[reel['id']] = {
         'article_slug': slug,
+        'variant': variant_tag,
         'uploaded_at': now_iso(),
         'video_id': video_id,
     }
