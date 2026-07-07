@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-07T19:59:23Z",
-  "stage": "Round of 16 — 95 of 96 matches played",
+  "last_updated": "2026-07-07T23:59:19Z",
+  "stage": "Quarterfinals — 96 of 100 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -76,13 +76,13 @@
         "code": "SUI",
         "flag": "🇨🇭",
         "rank": 19,
-        "p": 4,
+        "p": 5,
         "w": 3,
-        "d": 1,
+        "d": 2,
         "l": 0,
         "gf": 9,
         "ga": 3,
-        "pts": 10
+        "pts": 11
       },
       {
         "name": "Canada",
@@ -562,13 +562,13 @@
         "code": "COL",
         "flag": "🇨🇴",
         "rank": 13,
-        "p": 4,
+        "p": 5,
         "w": 3,
-        "d": 1,
+        "d": 2,
         "l": 0,
         "gf": 5,
         "ga": 1,
-        "pts": 10
+        "pts": 11
       },
       {
         "name": "Portugal",
@@ -2112,10 +2112,70 @@
       "away": "Colombia",
       "venue": "BC Place",
       "city": "Vancouver",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-0 (4-3 pens)",
       "home_code": "SUI",
       "away_code": "COL"
+    },
+    {
+      "id": 97,
+      "group": "QF",
+      "date": "2026-07-09",
+      "time": "16:00",
+      "tz": "ET",
+      "home": "France",
+      "away": "Morocco",
+      "venue": "Gillette Stadium",
+      "city": "Foxborough, MA",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "FRA",
+      "away_code": "MAR"
+    },
+    {
+      "id": 98,
+      "group": "QF",
+      "date": "2026-07-10",
+      "time": "15:00",
+      "tz": "ET",
+      "home": "Spain",
+      "away": "Belgium",
+      "venue": "SoFi Stadium",
+      "city": "Inglewood, CA",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "ESP",
+      "away_code": "BEL"
+    },
+    {
+      "id": 99,
+      "group": "QF",
+      "date": "2026-07-11",
+      "time": "17:00",
+      "tz": "ET",
+      "home": "Norway",
+      "away": "England",
+      "venue": "Hard Rock Stadium",
+      "city": "Miami Gardens, FL",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "NOR",
+      "away_code": "ENG"
+    },
+    {
+      "id": 100,
+      "group": "QF",
+      "date": "2026-07-11",
+      "time": "21:00",
+      "tz": "ET",
+      "home": "Argentina",
+      "away": "Switzerland",
+      "venue": "Arrowhead Stadium",
+      "city": "Kansas City, MO",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "ARG",
+      "away_code": "SUI"
     }
   ],
   "knockout": {
@@ -8963,6 +9023,18 @@
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/Daf3JDwiuM3",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DagQuELCQAk/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DagSrQPitZa/",
       "account": "@fifaworldcup",
       "date": "2026-07-07"
     }
