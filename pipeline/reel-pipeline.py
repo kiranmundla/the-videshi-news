@@ -1471,18 +1471,19 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     if music_url:
         total_dur = endcard_start + endcard_dur
         # Ducked music under voiceover (fade in at start)
-        # 0.20 keeps music present but clearly behind the voice
+        # Source tracks average ~-20 dB; need ~0.40 to get music to -28 dB
+        # (16 dB below voice at -12 dB — clearly audible as background)
         music_clips.append({
-            "asset": {"type": "audio", "src": music_url, "volume": 0.20},
+            "asset": {"type": "audio", "src": music_url, "volume": 0.40},
             "start": 0, "length": round(voice_duration, 2),
             "transition": {"in": "fade"}
         })
         # Swell music for buffer silence + endcard (fade out at end)
-        # 0.50 fills the post-voice silence with energy
+        # 0.80 brings music to ~-22 dB — fills post-voice silence strongly
         swell_start = voice_duration
         swell_length = total_dur - voice_duration
         music_clips.append({
-            "asset": {"type": "audio", "src": music_url, "volume": 0.50,
+            "asset": {"type": "audio", "src": music_url, "volume": 0.80,
                       "trim": round(voice_duration, 2)},
             "start": round(swell_start, 2), "length": round(swell_length, 2),
             "transition": {"out": "fade"}
