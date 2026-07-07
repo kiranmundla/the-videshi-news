@@ -1350,6 +1350,21 @@
       "chill-lifestyle",
       "indian-classical",
       "emotional-inspiring"
+    ],
+    "cinematic": [
+      "cinematic-epic",
+      "anthemic-triumph",
+      "dramatic-dark"
+    ],
+    "dramatic": [
+      "dramatic-dark",
+      "cinematic-epic",
+      "breaking-news"
+    ],
+    "exciting": [
+      "cinematic-epic",
+      "upbeat-celebration",
+      "anthemic-triumph"
     ]
   },
   "licenses": {

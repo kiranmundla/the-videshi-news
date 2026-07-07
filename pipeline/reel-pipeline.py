@@ -1026,6 +1026,7 @@ def select_music(article, build_dir, story_mood=None):
         result = _select(
             category=article.get("category", "news"),
             story_mood=story_mood,
+            target_variant="full",  # Full-length tracks (2-5 min) — 30s cuts are too short for 40-48s reels
             article_id=article["id"],
             index_path=os.path.join(PIPELINE_DIR, "music", "music-index.json")
         )
