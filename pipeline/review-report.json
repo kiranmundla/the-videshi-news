@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T00:15:21.641631+00:00",
+  "timestamp": "2026-07-07T00:45:31.985933+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "41d5e03d-9963-4d0b-b92f-5d4ba9ffb59c",
-      "headline": "America's Fastest-Growing Diaspora Is Getting Old. The Safety Net Barely Exists.",
-      "slug": "diaspora-seniors-aging-crisis-india-home-queens-gopio-20260707",
+      "id": "6bf162df-0241-4ac0-9bdc-0ce53d8338ba",
+      "headline": "America's Cyber Agency Is Using Anthropic's AI to Hunt Bugs in Government Code. India's $108 Billion IT Industry Should Pay Attention.",
+      "slug": "cisa-anthropic-mythos-ai-government-code-audit-indian-it-industry-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "elderly women at a community gathering",
-          "reason": "The photo aligns with the story about elderly community support."
+          "what_photo_shows": "CISA seal",
+          "reason": "The CISA seal is relevant to the story about CISA using AI for code audits."
         },
         "inline_image_mismatches": []
       },
@@ -36,36 +36,36 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the challenges faced by the aging South Asian diaspora in the U.S., making it relevant to NRI readers."
+          "note": "The article discusses the implications of US cybersecurity developments on India's IT industry, making it relevant for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or quotes from diaspora members to enhance personal connection.",
-          "Add a section on potential solutions or initiatives being taken by the community to address these issues."
+          "Include more direct quotes or insights from industry experts to enhance credibility.",
+          "Add a section on how Indian companies are specifically adapting to these changes in AI technology."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "held: no sources"
       ],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c40f3265-8bb3-4706-b995-482e3f53f3e1",
-      "headline": "Vancouver's Indian Summer Festival Returns With 90 Artists, Free Programming, and a Theme That Asks the Diaspora to Listen",
-      "slug": "indian-summer-festival-vancouver-ragas-ruptured-world-20260707",
+      "id": "dbe2e1fc-3c66-43eb-a966-3e94c91a30f5",
+      "headline": "Modi Is in Indonesia With a Missile Deal. Then He'll Face a Million Indians in Melbourne and Anti-Indian Sentiment in New Zealand.",
+      "slug": "modi-indonesia-brahmos-australia-new-zealand-diaspora-tour-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A performer in traditional attire",
-          "reason": "The photo shows a performer at a South Asian cultural event, aligning with the festival theme."
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
         },
         "inline_image_mismatches": []
       },
@@ -73,27 +73,28 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the festival or its theme."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the complexities of South Asian identity in Canada, making it relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects Modi's visit to the Indian diaspora, highlighting cultural ties and the significance of the visit for Indian communities in Australia and Indonesia."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the festival or its theme to enhance relevance.",
-          "Add quotes or testimonials from festival attendees or artists to provide a more personal touch."
+          "Include more direct quotes from diaspora leaders to enhance the connection with the Indian community.",
+          "Add a brief section on how the missile deal might impact regional security dynamics, which could be of interest to the diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "held: image unverified"
       ],
       "revised": false,
       "unpublished": false,
+      "image_unverified": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
