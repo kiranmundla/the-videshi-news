@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-07T04:00:18.613973+00:00",
+  "last_refresh": "2026-07-07T10:00:26.078688+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -1457,6 +1457,27 @@
       "likes": 652,
       "image_count": 4,
       "scraped_at": "2026-07-07T04:00:16.766240+00:00"
+    },
+    "https://www.instagram.com/p/DadMFy1lkR2/": {
+      "account": "nytimes",
+      "platform": "instagram",
+      "likes": 51369,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T10:00:13.035268+00:00"
+    },
+    "https://www.instagram.com/reel/DaeOZ_Bo-37/": {
+      "account": "5i5aik",
+      "platform": "instagram",
+      "likes": 3445,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T10:00:18.020792+00:00"
+    },
+    "https://www.instagram.com/p/DaeZYk8iF2U/": {
+      "account": "gianni_infantino",
+      "platform": "instagram",
+      "likes": 14565,
+      "image_count": 4,
+      "scraped_at": "2026-07-07T10:00:22.562736+00:00"
     }
   },
   "images": [
@@ -9049,6 +9070,150 @@
       "likes": 652,
       "trusted": false,
       "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/734313775_18613081447017035_3775215559589592895_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=gCYolSRdDL8Q7kNvwGTez5y&_nc_oc=Adq5z63y0YlN5c35YCGHdHdHE0kM73kSXu6NXHRv4NRcDYjXZXJnLy7WcuV_RXexfX_dSGTK9W1B7IaRSuNw6FbK&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=-iTHuWRVd547o0aiPK9v9g&_nc_ss=7860f&oh=00_AQDuzPLiMvzLUwW2afJdkNnQXjpKiiUlFlUgJVRrvJiPYQ&oe=6A52AFE5",
+      "post_url": "https://www.instagram.com/p/DadMFy1lkR2/",
+      "platform": "instagram",
+      "caption": "51K likes, 330 comments - nytimes on July 6, 2026: \"Was Sunday the most momentous day of the 2026 World Cup?\n\nBrazil made their earliest exit from the competition since 1990, with Norway\u2019s Erling Haaland scoring with two clinical second-half finishes to put his team into their first World Cup quarter-final. Haaland\u2019s goals saw him pull level with Kylian Mbappe and Lionel Messi at the top of a fasc",
+      "scraped_at": "2026-07-07T10:00:13.034901+00:00",
+      "account": "nytimes",
+      "likes": 51369,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-nytimes-27c0210c7207.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 51641
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/739919994_18367073944239869_3608510643796602761_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=XGkHlhPp-mgQ7kNvwGL200m&_nc_oc=Ado0UHMC_e9Csc1GIygisjwqHJeEd5SwJ8DT1Am0mzxbaxP90WPNFGRxc3ntKNL2ix3jcR81iHAnRTt1zSU9EVPC&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=tKvjnpeV9i-Fo4cDCzndvg&_nc_ss=7860f&oh=00_AQAeYBGna2KC9T6-ecnbUHm9ItN5lql-AbQR1-OUU0VVBg&oe=6A52AC51",
+      "post_url": "https://www.instagram.com/p/DadMFy1lkR2/",
+      "platform": "instagram",
+      "caption": "51K likes, 330 comments - nytimes on July 6, 2026: \"Was Sunday the most momentous day of the 2026 World Cup?\n\nBrazil made their earliest exit from the competition since 1990, with Norway\u2019s Erling Haaland scoring with two clinical second-half finishes to put his team into their first World Cup quarter-final. Haaland\u2019s goals saw him pull level with Kylian Mbappe and Lionel Messi at the top of a fasc",
+      "scraped_at": "2026-07-07T10:00:13.034941+00:00",
+      "account": "nytimes",
+      "likes": 51369,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/740944987_18613186708017035_2921398673596456539_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=tcTXiXgS8scQ7kNvwGua0LU&_nc_oc=AdqKG29o97gCCW5wA9H6BfngbESVTohwu1c15soXKl6EzeBlTlgr-bcS-uHZI9tePqbjbvatA3G212RExOeKBtBu&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=tKvjnpeV9i-Fo4cDCzndvg&_nc_ss=7860f&oh=00_AQAGn3K6ai6Uz2BgKWKVb5b0EHsluMvNrnywHnnfK0QWsA&oe=6A528FEF",
+      "post_url": "https://www.instagram.com/p/DadMFy1lkR2/",
+      "platform": "instagram",
+      "caption": "51K likes, 330 comments - nytimes on July 6, 2026: \"Was Sunday the most momentous day of the 2026 World Cup?\n\nBrazil made their earliest exit from the competition since 1990, with Norway\u2019s Erling Haaland scoring with two clinical second-half finishes to put his team into their first World Cup quarter-final. Haaland\u2019s goals saw him pull level with Kylian Mbappe and Lionel Messi at the top of a fasc",
+      "scraped_at": "2026-07-07T10:00:13.034949+00:00",
+      "account": "nytimes",
+      "likes": 51369,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.71878-15/731131478_1025110906594884_1173368198126336365_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=zN1zz9sJ-JUQ7kNvwGj2IJG&_nc_oc=Adqi4eJ19mdLdzCOFpxpoVBeno04gA3Md9y5wIQcG_zamfX_wuNstUzK6tu4gZHcrRxjGUHFOIZez_uAGO_NiukO&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=tKvjnpeV9i-Fo4cDCzndvg&_nc_ss=7860f&oh=00_AQAjI6wQ9zgBhv5N5cltNvvq_IVqKgNUZ2nMUnh_PahA7Q&oe=6A52B3FF",
+      "post_url": "https://www.instagram.com/p/DadMFy1lkR2/",
+      "platform": "instagram",
+      "caption": "51K likes, 330 comments - nytimes on July 6, 2026: \"Was Sunday the most momentous day of the 2026 World Cup?\n\nBrazil made their earliest exit from the competition since 1990, with Norway\u2019s Erling Haaland scoring with two clinical second-half finishes to put his team into their first World Cup quarter-final. Haaland\u2019s goals saw him pull level with Kylian Mbappe and Lionel Messi at the top of a fasc",
+      "scraped_at": "2026-07-07T10:00:13.034954+00:00",
+      "account": "nytimes",
+      "likes": 51369,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.71878-15/729466884_1326899242952659_5317742795489686131_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=IsJYjxcndQYQ7kNvwGSAQRi&_nc_oc=AdoJcxEryU008M0eHHXU76rwpOA3lWZSNhzvw6A69RVgmewvut2wtlpYpMoW8Y0mCE1n2C06ATfm_BT-Dws8AdHW&_nc_zt=23&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_gid=J3iXsBgCAo8FOX_-PNwUkQ&_nc_ss=7860f&oh=00_AQALdoqWw6MCzxePkdkDEI4RTUg6pIHP5fVqYMttxc3LHQ&oe=6A529062",
+      "post_url": "https://www.instagram.com/reel/DaeOZ_Bo-37/",
+      "platform": "instagram",
+      "caption": "3,461 likes, 25 comments - 5i5aik on July 6, 2026: \"Perfect cross from Saka. Perfect dive from\nJude. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f#fifaworldcup\". ",
+      "scraped_at": "2026-07-07T10:00:18.019947+00:00",
+      "account": "5i5aik",
+      "likes": 3445,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.71878-15/734915062_27318539417806312_4949382708117877580_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=104&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=QNr54RJWW2kQ7kNvwEPB2Al&_nc_oc=AdozpHe8IevNmCsleX9Smp1eEq4YgyuynZ0h7nnXDS7oiCIIwZ3Fm8dXubAGAk3qJQSDYIOKGqyjVZmWsnMvB6oT&_nc_zt=23&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_gid=nSiBB1ujF_MzZGgXVu9qDw&_nc_ss=7860f&oh=00_AQAr_fONzjZyeqUOPpInL4mUr7pH0KtbZY9IpF_QHlveVA&oe=6A52966D",
+      "post_url": "https://www.instagram.com/reel/DaeOZ_Bo-37/",
+      "platform": "instagram",
+      "caption": "3,461 likes, 25 comments - 5i5aik on July 6, 2026: \"Perfect cross from Saka. Perfect dive from\nJude. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f#fifaworldcup\". ",
+      "scraped_at": "2026-07-07T10:00:18.019977+00:00",
+      "account": "5i5aik",
+      "likes": 3445,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-5i5aik-f6f804887ed6.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 32737
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/734516217_18190288435347326_7298401858383983547_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=ZBuq9kRuNpYQ7kNvwE-rI9u&_nc_oc=AdqhAgwtxiIC_MR-8tLI8VqWehxOSTh_xgVGHUiBs94NJ309T1dmSIaT9WCkbGPJ31ojvpK0oKaiw4y79O8TPbvB&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=nSiBB1ujF_MzZGgXVu9qDw&_nc_ss=7860f&oh=00_AQBc8vNM_uqnPYhahAdgfsmg92dUePOgvvNxxZITBT2qag&oe=6A52A210",
+      "post_url": "https://www.instagram.com/reel/DaeOZ_Bo-37/",
+      "platform": "instagram",
+      "caption": "3,461 likes, 25 comments - 5i5aik on July 6, 2026: \"Perfect cross from Saka. Perfect dive from\nJude. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f#fifaworldcup\". ",
+      "scraped_at": "2026-07-07T10:00:18.019983+00:00",
+      "account": "5i5aik",
+      "likes": 3445,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.71878-15/732584129_1655855015492963_3026559904218663071_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=s31mg9UjDnAQ7kNvwH9RyBh&_nc_oc=AdosEPIg7ebfYqrDoSJZseoFVf_95rQxFFePsM-7eLKzlKslx-EmFGFjmIGq24eEfTdeeOy7Sw96UImTnblydaPP&_nc_zt=23&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_gid=nSiBB1ujF_MzZGgXVu9qDw&_nc_ss=7860f&oh=00_AQBXOxGVkbVspsxo5HF4EtaHGnS-zksa3E7MjQK2u_lypA&oe=6A52B303",
+      "post_url": "https://www.instagram.com/reel/DaeOZ_Bo-37/",
+      "platform": "instagram",
+      "caption": "3,461 likes, 25 comments - 5i5aik on July 6, 2026: \"Perfect cross from Saka. Perfect dive from\nJude. \ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f#fifaworldcup\". ",
+      "scraped_at": "2026-07-07T10:00:18.019987+00:00",
+      "account": "5i5aik",
+      "likes": 3445,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/734528437_18020637494902645_3556555849425389154_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=6wSyNEm5TMsQ7kNvwH-b33f&_nc_oc=Adq-K_Oj4wbKBJYOpDQ85M8RvkV25V_ob2S_AjZrPv9MVzF5xXJknWo4Dt2pD7mpWzlwLdGKO3yfflsHdBOouV2C&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=6RmpyxBANQr3xT1FJ6bHCw&_nc_ss=7860f&oh=00_AQB1gB4rcRYvPLLdonfXVULIYkiT8hhI8-gYYyfQuiR9hA&oe=6A52B1E8",
+      "post_url": "https://www.instagram.com/p/DaeZYk8iF2U/",
+      "platform": "instagram",
+      "caption": "15K likes, 0 comments - gianni_infantino on July 6, 2026: \"\ud83c\udde7\ud83c\uddea @belgianreddevils hit their stride in @fwc26seattle with a win over co-hosts \ud83c\uddfa\ud83c\uddf8 @usmnt to confirm their place in the Quarter-Finals. Thank you to both teams for entertaining the sold-out crowd. \ud83d\udc4f \n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-07T10:00:22.562019+00:00",
+      "account": "gianni_infantino",
+      "likes": 14565,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gianni_infantino-6b270da7aa9b.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 55741
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.71878-15/733471408_2427625457735187_7639352936356055959_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=aOSWxBLwmCAQ7kNvwH_E-j-&_nc_oc=Adolh-0FjTgzOmhkt4TM668BidjQlMG0hHUVEQNVI3HUwZpnJD-wtoypWhL4RakuHXDUoq2YRZ10LtQxxiAHE5T-&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=lqWxI3LLWhXT-ze6914TjQ&_nc_ss=7860f&oh=00_AQApXoqDtYMukapXmMB4MCehdpIRq7RPs1pzZHrw_He-Ig&oe=6A529FD5",
+      "post_url": "https://www.instagram.com/p/DaeZYk8iF2U/",
+      "platform": "instagram",
+      "caption": "15K likes, 0 comments - gianni_infantino on July 6, 2026: \"\ud83c\udde7\ud83c\uddea @belgianreddevils hit their stride in @fwc26seattle with a win over co-hosts \ud83c\uddfa\ud83c\uddf8 @usmnt to confirm their place in the Quarter-Finals. Thank you to both teams for entertaining the sold-out crowd. \ud83d\udc4f \n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-07T10:00:22.562052+00:00",
+      "account": "gianni_infantino",
+      "likes": 14565,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/735346615_18020631527902645_3490471826240273468_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=yPcz7A1XFdcQ7kNvwGGfJKx&_nc_oc=AdrGpaJz9O_59UzLuvg1Iu-jibqGSOB7GyJZ7bXFirGgYhE4eX9ME4Jjjl7qs-ukHfhxYToxUTadFpVUIOWSJlF8&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=lqWxI3LLWhXT-ze6914TjQ&_nc_ss=7860f&oh=00_AQDEwRzrRAX5SsqCHxhdjiSjcm8Ey5XioboIWrwXTB8cvw&oe=6A529FD2",
+      "post_url": "https://www.instagram.com/p/DaeZYk8iF2U/",
+      "platform": "instagram",
+      "caption": "15K likes, 0 comments - gianni_infantino on July 6, 2026: \"\ud83c\udde7\ud83c\uddea @belgianreddevils hit their stride in @fwc26seattle with a win over co-hosts \ud83c\uddfa\ud83c\uddf8 @usmnt to confirm their place in the Quarter-Finals. Thank you to both teams for entertaining the sold-out crowd. \ud83d\udc4f \n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-07T10:00:22.562059+00:00",
+      "account": "gianni_infantino",
+      "likes": 14565,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-dfw5-3.cdninstagram.com/v/t51.82787-15/731572767_18020615285902645_5409704407638318787_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=Q-jc-rmiuhkQ7kNvwEQwKdN&_nc_oc=AdrYPTF5tlx6p858IORbLhrRPjSTon_zKfDgdnDgyp_CtpQst-iF-W--467jYswTNLePbfEZ-UntkoBG0oL8JCRx&_nc_zt=23&_nc_ht=scontent-dfw5-3.cdninstagram.com&_nc_gid=lqWxI3LLWhXT-ze6914TjQ&_nc_ss=7860f&oh=00_AQC7yihiMWfCU9g_KwesI92zd8-SKlqQrYQrP-To9epV8w&oe=6A52B85B",
+      "post_url": "https://www.instagram.com/p/DaeZYk8iF2U/",
+      "platform": "instagram",
+      "caption": "15K likes, 0 comments - gianni_infantino on July 6, 2026: \"\ud83c\udde7\ud83c\uddea @belgianreddevils hit their stride in @fwc26seattle with a win over co-hosts \ud83c\uddfa\ud83c\uddf8 @usmnt to confirm their place in the Quarter-Finals. Thank you to both teams for entertaining the sold-out crowd. \ud83d\udc4f \n\n#FootballUnitesTheWorld\". ",
+      "scraped_at": "2026-07-07T10:00:22.562064+00:00",
+      "account": "gianni_infantino",
+      "likes": 14565,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gianni_infantino-64196a0d911c.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 67817
     }
   ]
 }
