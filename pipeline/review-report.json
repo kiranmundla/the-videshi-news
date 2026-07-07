@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-07T17:16:00.709952+00:00",
+  "timestamp": "2026-07-07T18:15:30.611687+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cc8f5499-9b8f-4ded-a0f4-11d267489074",
-      "headline": "The Original Queen Made Kangana a Star. Now Its Sequel Is Being Sued for \u20b9250 Crore.",
-      "slug": "kangana-ranaut-queen-2-phantom-studios-250-crore-lawsuit-bombay-high-court-ip-rights-20260707",
+      "id": "fb333aa1-7ef3-4e92-ab17-a9b8905b9c22",
+      "headline": "From Homeless in Manhattan to Cooking for Its Mayor: Vikas Khanna's Extraordinary Full Circle",
+      "slug": "from-homeless-in-manhattan-to-cooking-for-its-mayor-vikas-khanna-s",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kangana Ranaut at a public event",
-          "reason": "The photo shows Kangana Ranaut, relevant to the story about her film."
+          "what_photo_shows": "smiling man in a black jacket",
+          "reason": "The photo plausibly shows Chef Vikas Khanna, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the legal drama surrounding 'Queen 2' to the original film's significance for diaspora audiences, particularly in relation to themes of identity."
+          "note": "The article effectively connects Vikas Khanna's journey as an immigrant chef to the broader Indian diaspora experience, highlighting cultural significance and bridging traditions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Kangana Ranaut or JioStar representatives for a more balanced perspective.",
-          "Include more context on the impact of the original 'Queen' on the Indian diaspora to strengthen the connection."
+          "Include more direct quotes from Vikas Khanna to enhance the personal connection.",
+          "Add a section discussing the impact of Khanna's work on the Indian diaspora community in the U.S."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d30a97c9-ba7d-4ff3-8efb-c6a71ddfc0ea",
-      "headline": "Kriti Sanon Froze Her Eggs During Mimi. She Just Told the World.",
-      "slug": "kriti-sanon-froze-eggs-mimi-egg-freezing-fertility-revelation-humans-of-bombay-podcast-20260707",
+      "id": "12f4fafd-cc4e-4f6f-baf3-3e3b1599272d",
+      "headline": "Dosas, Biryani, and Bhangra: Toronto's Massive South Asian Street Festival Returns This Weekend",
+      "slug": "dosas-biryani-and-bhangra-toronto-s-massive-south-asian-street-festival-returns",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,101 +64,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kriti Sanon at an event",
-          "reason": "The photo shows Kriti Sanon, matching the story about her."
+          "what_photo_shows": "bowl of crispy pani puri",
+          "reason": "Pani puri is relevant to a South Asian street festival story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the festival to the NRI community, highlighting its significance as a cultural touchstone for South Asians in the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from festival organizers or attendees to enhance the personal connection.",
+          "Include more details about specific performances or food vendors to entice readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e3bd1007-557f-4b63-bb1b-b6ebf74ca217",
+      "headline": "World Biryani Day Revealed India's Best-Kept Secret: The Regional Rice Revolution Coming to a City Near You",
+      "slug": "world-biryani-day-revealed-india-s-best-kept-secret-the-regional-rice",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
           {
-            "url": "https://www.instagram.com/p/DaNY_70AJiE/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to Kriti Sanon's egg freezing revelation or the themes discussed in the article."
+            "article_id": "c0fa6d7d-50cb-48a4-9c38-f0a20015976d",
+            "headline": "A Michelin Chef, a Cancer Survivor, and a 7,500-Sq-Ft Love L"
           }
         ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Kriti Sanon's experience with the challenges faced by NRI women, making it relevant and relatable."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or quote that ties directly to the topic of egg freezing or women's reproductive choices.",
-          "Consider adding more context about the cultural implications of egg freezing in South Asian communities to deepen the discussion."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaNY_70AJiE/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a69716a2-b752-46a7-8b34-f077e7eb3087",
-      "headline": "India's Jet Fuel Just Got Cheaper \u2014 So Why Aren't Airfares Falling?",
-      "slug": "india-jet-fuel-atf-price-cut-airfares-nri-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "aircraft being refueled at airport",
-          "reason": "The photo shows an aircraft being refueled, which is relevant to the story about jet fuel prices."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts an airplane, which is relevant to the topic of air travel, but does not specifically relate to the article's focus on jet fuel prices."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article provides practical advice for NRI travelers regarding airfare and booking strategies, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples of how the fare environment affects NRIs directly.",
-          "Add a section that discusses potential future trends in airfare pricing in relation to jet fuel prices."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "44c4ca71-09aa-42a9-83a6-18ce2dca32fd",
-      "headline": "IndiGo Just Launched a Bare-Bones 'Lite' Fare \u2014 and Air India Followed Suit",
-      "slug": "indigo-lite-air-india-basic-economy-fares-nri-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "IndiGo Airbus A320neo in flight",
-          "reason": "The photo shows an IndiGo aircraft, relevant to the airline story."
+          "what_photo_shows": "plate of Hyderabadi dum biryani",
+          "reason": "The photo shows a regional biryani, relevant to the story about India's regional rice dishes."
         },
         "inline_image_mismatches": []
       },
@@ -168,107 +123,23 @@
         "image_match": {
           "score": 9,
           "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the needs and considerations of NRIs traveling to India, making it relevant for the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how much NRIs could save with the new fare options.",
-          "Include quotes or insights from industry experts or travelers to enhance credibility and engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a81bd48d-e9ae-4037-9eba-00ad396a05f4",
-      "headline": "Air India Express Is Running a Flash Sale on International Flights \u2014 Here's What NRIs Need to Know",
-      "slug": "air-india-express-xplore-more-sale-nri-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Navi Mumbai International Airport interior",
-          "reason": "The photo shows the airport relevant to the new flight route."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Navi Mumbai Airport is relevant but does not directly depict Air India Express or its international flights."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses NRIs by discussing flight options and benefits relevant to their travel needs."
+          "note": "The article effectively connects the regional food movement to the NRI experience, highlighting how diaspora communities are embracing diverse Indian cuisines."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a direct link to the Air India Express sale page for easier access.",
-          "Include a brief comparison of Air India Express with other airlines for context."
+          "Consider adding more specific examples of regional dishes that are gaining popularity in diaspora communities.",
+          "Include quotes or anecdotes from diaspora individuals to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
       ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b7697a23-3e34-4260-aae7-e30ce0d5b121",
-      "headline": "Iran Just Fired Missiles at Three Ships in the Strait of Hormuz. India Lifted Its Emergency Gas Curbs Two Days Ago.",
-      "slug": "iran-fires-missiles-hormuz-tanker-india-energy-ceasefire-threat-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "An LNG tanker at sea",
-          "reason": "The photo shows an LNG tanker, relevant to the story about LNG shipments."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's concerns regarding energy security."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more context about the implications of the missile strikes on the Indian diaspora in the Gulf region.",
-          "Include expert opinions or quotes to enhance the depth of analysis regarding India's energy security."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
