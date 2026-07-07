@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-07T14:15:35.698242+00:00",
+  "timestamp": "2026-07-07T15:15:21.323713+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,73 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "73ff88d6-068d-48aa-805b-6b6d8ad05875",
-      "headline": "The H-1B Lottery Is No Longer Random. What the Wage-Weighted Selection Means for Indian Workers",
-      "slug": "h1b-wage-weighted-lottery-fy2027-indian-workers-salary-selection-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
-            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
-          },
-          {
-            "article_id": "54be977b-411e-4a32-a126-eb68b4ce9117",
-            "headline": "The State Department Shut EB-2 India for the Year. One Milli"
-          },
-          {
-            "article_id": "ceec8577-f07b-448a-86e0-9136856483eb",
-            "headline": "Nearly 300,000 H-1B Renewals and Counting. The Number Trump'"
-          },
-          {
-            "article_id": "4cc2561b-be2f-427e-988f-4124eaa48e32",
-            "headline": "Your Employer Cannot Fix This Either. Social Media Vetting I"
-          },
-          {
-            "article_id": "4c4dc133-2a9c-4880-aaf4-50429414a2ea",
-            "headline": "Four Hundred and Three Days. That Is How Long the First Step"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of immigration and USCIS but does not directly illustrate the H-1B lottery or the wage-weighted selection process."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the implications of the H-1B lottery changes specifically for Indian workers, making it highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific examples or testimonials from Indian workers affected by the changes to enhance relatability.",
-          "Add a section discussing potential future implications or responses from Indian IT firms to provide a broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "017d4dc7-4b82-4fa3-a009-ba9fa1aea4b0",
-      "headline": "One in Four Doctors in Rural America Trained Abroad. The Immigration Crackdown Is Coming for Them Too",
-      "slug": "indian-doctors-rural-america-h1b-fee-healthcare-crisis-20260707",
+      "id": "7564d8f4-824b-4d20-a26c-03a0e794ea6d",
+      "headline": "Twenty Goals. Thirty-Nine Years Old. Messi Faces Salah in Atlanta With a Quarterfinal Spot on the Line.",
+      "slug": "messi-salah-argentina-egypt-world-cup-round-16-atlanta-quarterfinal-bracket-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -85,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Doctor examining a patient",
-          "reason": "The photo shows a doctor in a clinical setting, relevant to the story about physicians."
+          "what_photo_shows": "Lionel Messi in Argentina colors",
+          "reason": "The photo shows Lionel Messi, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -94,62 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a medical setting, which is relevant to the article's focus on doctors and healthcare, but does not specifically highlight the rural aspect."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of immigration policies on Indian-origin physicians, directly connecting to the Indian diaspora's concerns about healthcare and immigration."
+          "quality": 7,
+          "note": "The article connects the World Cup to the Indian diaspora by highlighting the accessibility of matches in North America, where Indian communities are present."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how Indian-origin physicians are uniquely affected by immigration policies.",
-          "Consider adding quotes or testimonials from affected physicians to enhance the personal impact of the story."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "98e9c11f-f052-4c26-a721-78c6cd921da0",
-      "headline": "Eleven Thousand Visas for Six Companies. Indian IT Outsourcers Just Lost 40 Per Cent of Their H-1B Approvals",
-      "slug": "indian-it-outsourcers-h1b-approvals-crash-40-percent-tcs-infosys-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Software developers in a tech office",
-          "reason": "The photo shows software developers, relevant to the IT outsourcing and visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of immigration and visas but does not specifically depict IT professionals or the H-1B visa process."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of H-1B visa changes on Indian IT professionals, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from Indian professionals affected by the visa changes to enhance the human angle.",
-          "Add a section discussing potential future trends or solutions for Indian IT professionals seeking work in the US."
+          "Expand on the diaspora angle by including specific examples of Indian community events or gatherings related to the World Cup.",
+          "Consider adding quotes or reactions from Indian fans to enhance the connection to the diaspora."
         ],
         "verdict": "pass"
       },
