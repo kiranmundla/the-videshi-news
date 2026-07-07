@@ -413,26 +413,29 @@ def enforce_safe_zone(img_path, logo_path=None):
     bg = bg.filter(ImageFilter.GaussianBlur(radius=20))
     bg = ImageEnhance.Brightness(bg).enhance(0.4)
     
-    # ── Content: extract proportional safe zone from original ──
-    fx = orig_w / CANVAS_W
-    fy = orig_h / CANVAS_H
-    content = img.crop((
-        int(SAFE_X * fx), int(SAFE_Y * fy),
-        int((SAFE_X + SAFE_W) * fx), int((SAFE_Y + SAFE_H) * fy)
-    ))
-    content = content.resize((SAFE_W, SAFE_H), Image.LANCZOS)
+    # ── Content: resize-to-fit entire image within safe zone (no cropping) ──
+    # Scale the entire image to fit within SAFE_W×SAFE_H, preserving aspect ratio.
+    # This ensures no text/content at the edges is lost.
+    scale_fit = min(SAFE_W / orig_w, SAFE_H / orig_h)
+    fit_w = int(orig_w * scale_fit)
+    fit_h = int(orig_h * scale_fit)
+    content = img.resize((fit_w, fit_h), Image.LANCZOS)
+    
+    # Center the fitted content within the safe zone
+    content_x = SAFE_X + (SAFE_W - fit_w) // 2
+    content_y = SAFE_Y + (SAFE_H - fit_h) // 2
     
     # ── Composite: sharp content over blurred background ──
     canvas = bg.convert("RGBA")
-    canvas.paste(content, (SAFE_X, SAFE_Y))
+    canvas.paste(content, (content_x, content_y), content)
     
-    # ── Logo: top-left inside safe zone ──
+    # ── Logo: top-left inside content area ──
     if logo_path and os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
         logo_size = 120  # slightly smaller than before since safe zone is tighter
         logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
-        logo_x = SAFE_X + 15   # just inside safe zone left edge
-        logo_y = SAFE_Y + 15   # just inside safe zone top edge
+        logo_x = content_x + 15   # just inside content left edge
+        logo_y = content_y + 15   # just inside content top edge
         canvas.paste(logo, (logo_x, logo_y), logo)
     
     # ── Save as lossless PNG ──
