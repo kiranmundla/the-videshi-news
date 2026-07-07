@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-07T02:15:19.369007+00:00",
+  "timestamp": "2026-07-07T05:16:01.626114+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "52e33c52-dec8-43bd-b53a-a5bc75778754",
-      "headline": "USCIS Wants Ten Years of Your Social Media. What Counts as 'Anti-American' Is Still Anyone's Guess",
-      "slug": "uscis-ten-years-social-media-anti-american-undefined-forms-20260707",
+      "id": "6f7db3a6-b192-4a3b-b42b-b91ab8d3f2a4",
+      "headline": "AI's Biggest Companies Are Giving Away Millions in Free Credits. Indian Founders Are Cashing In.",
+      "slug": "ai-credit-wars-startup-indian-founders-google-openai-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "social media app icons on smartphone",
-          "reason": "The photo's subject is relevant to the story about social media and immigration."
+          "what_photo_shows": "Server rack in data centre",
+          "reason": "The photo shows infrastructure relevant to AI credit wars."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration or social media scrutiny."
+          "score": 7,
+          "issue": "The image is relevant to the topic of AI but lacks specific connection to Indian founders."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of immigration policies on applicants, including those from India, making it relevant to the diaspora."
+          "note": "The article effectively highlights the unique position of Indian founders in the AI landscape, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that reflects the theme of immigration or social media scrutiny.",
-          "Add quotes or perspectives from Indian diaspora members affected by these policies to enhance relatability."
+          "Include more specific examples of Indian founders or startups benefiting from these credits.",
+          "Add a quote or perspective from an Indian founder to enhance the personal connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,35 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4c4dc133-2a9c-4880-aaf4-50429414a2ea",
-      "headline": "Four Hundred and Three Days. That Is How Long the First Step of Your Green Card Now Takes",
-      "slug": "perm-labor-certification-403-day-backlog-green-card-indian-20260707",
+      "id": "89a1a733-5ea5-4244-b5b4-2720250c73da",
+      "headline": "Anthropic Is Worth More Than OpenAI. Its Trillion-Dollar IPO Could Come This Fall.",
+      "slug": "anthropic-965-billion-ipo-claude-code-nri-investors-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c1159a2e-7fae-47ae-8899-452e1bf8061c",
-            "headline": "Ten Thousand Students Flagged. The OPT Pipeline That Built S"
-          },
-          {
-            "article_id": "54be977b-411e-4a32-a126-eb68b4ce9117",
-            "headline": "The State Department Shut EB-2 India for the Year. One Milli"
-          },
-          {
-            "article_id": "ceec8577-f07b-448a-86e0-9136856483eb",
-            "headline": "Nearly 300,000 H-1B Renewals and Counting. The Number Trump'"
-          },
-          {
-            "article_id": "4cc2561b-be2f-427e-988f-4124eaa48e32",
-            "headline": "Your Employer Cannot Fix This Either. Social Media Vetting I"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration topic."
+          "what_photo_shows": "Man speaking at TechCrunch event",
+          "reason": "The photo shows a person at a tech event, relevant to the AI story."
         },
         "inline_image_mismatches": []
       },
@@ -96,13 +79,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the green card process, which is highly relevant to the Indian diaspora, particularly those in the tech sector."
+          "note": "The article effectively highlights the contributions of Indian-origin engineers and the implications of the IPO for NRI investors."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal anecdotes or quotes from individuals affected by the green card delays to enhance relatability.",
-          "Add a section on potential future changes or advice for applicants navigating the current system."
+          "Consider adding more specific examples of Indian engineers or companies that have benefited from the AI boom to strengthen the diaspora angle.",
+          "Include a brief overview of Anthropic's competitors to provide context for its market position."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3f4bbba1-5eef-4879-a39f-13a0728de56f",
+      "headline": "Sam Altman Offered Washington 5% of OpenAI. The Government Wants More.",
+      "slug": "openai-government-stake-gpt56-ai-regulation-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sam Altman in a suit",
+          "reason": "The photo shows Sam Altman, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of AI regulations on Indian professionals in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Sam Altman or other stakeholders to enhance credibility.",
+          "Expand on the potential impact of these regulations on Indian startups to provide a deeper analysis."
         ],
         "verdict": "pass"
       },
