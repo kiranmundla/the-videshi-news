@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-07T16:15:24.282030+00:00",
+  "timestamp": "2026-07-07T16:45:23.216275+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 0,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "97f28667-bfb6-4af9-ab07-1511157d15ac",
-      "headline": "India's Largest Mutual Fund House Is Going Public \u2014 and Abu Dhabi and Singapore's Sovereign Funds Are Already In",
-      "slug": "sbi-funds-management-ipo-adia-gic-sovereign-wealth-india-largest-asset-manager-nri-investor-20260707",
+      "id": "b7697a23-3e34-4260-aae7-e30ce0d5b121",
+      "headline": "Iran Just Fired Missiles at Three Ships in the Strait of Hormuz. India Lifted Its Emergency Gas Curbs Two Days Ago.",
+      "slug": "iran-fires-missiles-hormuz-tanker-india-energy-ceasefire-threat-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,78 +21,35 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "State Bank of India headquarters",
-          "reason": "The photo shows SBI headquarters, relevant to the SBI Funds Management IPO story."
+          "what_photo_shows": "An LNG tanker at sea",
+          "reason": "The photo shows an LNG tanker, relevant to the story about LNG shipments."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses significant financial developments in India that may interest NRIs, particularly those involved in investment and finance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to mutual funds or the financial sector.",
-          "Include quotes or insights from diaspora investors or financial experts to strengthen the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f865052d-757c-46a8-ad90-b3a87832fa14",
-      "headline": "Half of All Americans Now Feel Lonely at Least Once a Week \u2014 and the Diaspora Is Not Immune",
-      "slug": "america-loneliness-epidemic-half-adults-isolated-apa-survey-diaspora-mental-health-20260707",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "solitary figure on a mountain",
-          "reason": "The solitary figure reflects the theme of isolation in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the issue of loneliness to the Indian diaspora, discussing the unique challenges they face."
+          "quality": 7,
+          "note": "The article discusses India's energy supply and its implications for the Indian diaspora, particularly in relation to gas imports."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal anecdotes or quotes from diaspora members to enhance relatability.",
-          "Include potential solutions or resources for combating loneliness within the diaspora community."
+          "Include more direct quotes or reactions from Indian officials regarding the missile attacks to enhance the connection to India.",
+          "Provide a clearer explanation of how the missile attacks could impact Indian consumers or the economy."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gemini-2.5-flash (1024\u21921205 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
