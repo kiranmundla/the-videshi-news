@@ -1221,6 +1221,205 @@
         "15s": "breaking-news-newer-wave-15s.mp3",
         "30s": "breaking-news-newer-wave-30s.mp3"
       }
+    },
+    {
+      "filename": "sb-aphelion.mp3",
+      "category": "cinematic-epic",
+      "mood_tags": [
+        "epic",
+        "cinematic",
+        "building",
+        "orchestral",
+        "synth"
+      ],
+      "energy": 4,
+      "tempo": "moderate",
+      "has_vocals": false,
+      "duration_s": 422,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/aphelion/",
+      "attribution": "'Aphelion' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-starfire.mp3",
+      "category": "cinematic-epic",
+      "mood_tags": [
+        "hopeful",
+        "epic",
+        "orchestral",
+        "sci-fi",
+        "inspiring"
+      ],
+      "energy": 4,
+      "tempo": "moderate",
+      "has_vocals": false,
+      "duration_s": 341,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/starfire/",
+      "attribution": "'Starfire' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-song-of-the-forge.mp3",
+      "category": "cinematic-epic",
+      "mood_tags": [
+        "epic",
+        "dramatic",
+        "driving",
+        "orchestral",
+        "war-march"
+      ],
+      "energy": 5,
+      "tempo": "fast",
+      "has_vocals": false,
+      "duration_s": 205,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/song-of-the-forge/",
+      "attribution": "'Song of the Forge' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-simulacra.mp3",
+      "category": "dramatic-dark",
+      "mood_tags": [
+        "intense",
+        "action",
+        "hybrid",
+        "orchestral",
+        "chase"
+      ],
+      "energy": 5,
+      "tempo": "fast",
+      "has_vocals": false,
+      "duration_s": 234,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/simulacra/",
+      "attribution": "'Simulacra' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-eyes-in-the-void.mp3",
+      "category": "dramatic-dark",
+      "mood_tags": [
+        "dark",
+        "tense",
+        "suspenseful",
+        "gothic",
+        "sinister"
+      ],
+      "energy": 4,
+      "tempo": "moderate",
+      "has_vocals": false,
+      "duration_s": 264,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/eyes-in-the-void/",
+      "attribution": "'Eyes in the Void' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-born-of-the-sky.mp3",
+      "category": "anthemic-triumph",
+      "mood_tags": [
+        "uplifting",
+        "heroic",
+        "triumphant",
+        "orchestral",
+        "bright"
+      ],
+      "energy": 5,
+      "tempo": "fast",
+      "has_vocals": false,
+      "duration_s": 187,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/born-of-the-sky/",
+      "attribution": "'Born of the Sky' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-ride-the-wind.mp3",
+      "category": "anthemic-triumph",
+      "mood_tags": [
+        "adventurous",
+        "bold",
+        "epic",
+        "inspiring",
+        "vocal"
+      ],
+      "energy": 4,
+      "tempo": "moderate",
+      "has_vocals": true,
+      "duration_s": 269,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/ride-the-wind/",
+      "attribution": "'Ride the Wind' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-penumbra.mp3",
+      "category": "emotional-inspiring",
+      "mood_tags": [
+        "emotional",
+        "bittersweet",
+        "strings",
+        "atmospheric",
+        "reflective"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "duration_s": 449,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/penumbra/",
+      "attribution": "'Penumbra' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-convergence.mp3",
+      "category": "emotional-inspiring",
+      "mood_tags": [
+        "emotional",
+        "melancholic",
+        "upbeat",
+        "orchestral"
+      ],
+      "energy": 3,
+      "tempo": "moderate",
+      "has_vocals": false,
+      "duration_s": 219,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/convergence/",
+      "attribution": "'Convergence' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
+    },
+    {
+      "filename": "sb-amberlight.mp3",
+      "category": "emotional-inspiring",
+      "mood_tags": [
+        "nostalgic",
+        "inspirational",
+        "piano",
+        "orchestral",
+        "warm"
+      ],
+      "energy": 2,
+      "tempo": "slow",
+      "has_vocals": false,
+      "duration_s": 282,
+      "license": "CC-BY-4.0",
+      "author": "Scott Buckley",
+      "source_url": "https://www.scottbuckley.com.au/library/amberlight/",
+      "attribution": "'Amberlight' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "variants": {}
     }
   ],
   "categories": {
