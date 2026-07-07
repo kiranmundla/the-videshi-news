@@ -1,15 +1,237 @@
 {
-  "timestamp": "2026-07-07T16:45:23.216275+00:00",
+  "timestamp": "2026-07-07T17:16:00.709952+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 5,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "cc8f5499-9b8f-4ded-a0f4-11d267489074",
+      "headline": "The Original Queen Made Kangana a Star. Now Its Sequel Is Being Sued for \u20b9250 Crore.",
+      "slug": "kangana-ranaut-queen-2-phantom-studios-250-crore-lawsuit-bombay-high-court-ip-rights-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kangana Ranaut at a public event",
+          "reason": "The photo shows Kangana Ranaut, relevant to the story about her film."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the legal drama surrounding 'Queen 2' to the original film's significance for diaspora audiences, particularly in relation to themes of identity."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Kangana Ranaut or JioStar representatives for a more balanced perspective.",
+          "Include more context on the impact of the original 'Queen' on the Indian diaspora to strengthen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d30a97c9-ba7d-4ff3-8efb-c6a71ddfc0ea",
+      "headline": "Kriti Sanon Froze Her Eggs During Mimi. She Just Told the World.",
+      "slug": "kriti-sanon-froze-eggs-mimi-egg-freezing-fertility-revelation-humans-of-bombay-podcast-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kriti Sanon at an event",
+          "reason": "The photo shows Kriti Sanon, matching the story about her."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DaNY_70AJiE/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to Kriti Sanon's egg freezing revelation or the themes discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Kriti Sanon's experience with the challenges faced by NRI women, making it relevant and relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source or quote that ties directly to the topic of egg freezing or women's reproductive choices.",
+          "Consider adding more context about the cultural implications of egg freezing in South Asian communities to deepen the discussion."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DaNY_70AJiE/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a69716a2-b752-46a7-8b34-f077e7eb3087",
+      "headline": "India's Jet Fuel Just Got Cheaper \u2014 So Why Aren't Airfares Falling?",
+      "slug": "india-jet-fuel-atf-price-cut-airfares-nri-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "aircraft being refueled at airport",
+          "reason": "The photo shows an aircraft being refueled, which is relevant to the story about jet fuel prices."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts an airplane, which is relevant to the topic of air travel, but does not specifically relate to the article's focus on jet fuel prices."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides practical advice for NRI travelers regarding airfare and booking strategies, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific examples of how the fare environment affects NRIs directly.",
+          "Add a section that discusses potential future trends in airfare pricing in relation to jet fuel prices."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "44c4ca71-09aa-42a9-83a6-18ce2dca32fd",
+      "headline": "IndiGo Just Launched a Bare-Bones 'Lite' Fare \u2014 and Air India Followed Suit",
+      "slug": "indigo-lite-air-india-basic-economy-fares-nri-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IndiGo Airbus A320neo in flight",
+          "reason": "The photo shows an IndiGo aircraft, relevant to the airline story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the needs and considerations of NRIs traveling to India, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how much NRIs could save with the new fare options.",
+          "Include quotes or insights from industry experts or travelers to enhance credibility and engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a81bd48d-e9ae-4037-9eba-00ad396a05f4",
+      "headline": "Air India Express Is Running a Flash Sale on International Flights \u2014 Here's What NRIs Need to Know",
+      "slug": "air-india-express-xplore-more-sale-nri-20260707",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Navi Mumbai International Airport interior",
+          "reason": "The photo shows the airport relevant to the new flight route."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Navi Mumbai Airport is relevant but does not directly depict Air India Express or its international flights."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses NRIs by discussing flight options and benefits relevant to their travel needs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a direct link to the Air India Express sale page for easier access.",
+          "Include a brief comparison of Air India Express with other airlines for context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "b7697a23-3e34-4260-aae7-e30ce0d5b121",
       "headline": "Iran Just Fired Missiles at Three Ships in the Strait of Hormuz. India Lifted Its Emergency Gas Curbs Two Days Ago.",
@@ -27,29 +249,27 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's energy supply and its implications for the Indian diaspora, particularly in relation to gas imports."
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's concerns regarding energy security."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Indian officials regarding the missile attacks to enhance the connection to India.",
-          "Provide a clearer explanation of how the missile attacks could impact Indian consumers or the economy."
+          "Consider adding more context about the implications of the missile strikes on the Indian diaspora in the Gulf region.",
+          "Include expert opinions or quotes to enhance the depth of analysis regarding India's energy security."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (1024\u21921205 words)"
-      ],
-      "revised": true,
+      "actions_taken": [],
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
