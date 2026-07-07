@@ -666,5 +666,15 @@
     "errors": 0,
     "hero_slug": "h1b-renewals-record-291542-continuing-employment-crackdown-20260706",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-07T13:56:08.827440+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 07, 2026",
+    "subscribers": 4,
+    "sent": 4,
+    "errors": 0,
+    "hero_slug": "openai-government-stake-gpt56-ai-regulation-20260707",
+    "story_count": 5
   }
 ]
