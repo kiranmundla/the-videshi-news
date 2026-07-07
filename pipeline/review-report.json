@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T00:45:31.985933+00:00",
+  "timestamp": "2026-07-07T01:15:38.658756+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6bf162df-0241-4ac0-9bdc-0ce53d8338ba",
-      "headline": "America's Cyber Agency Is Using Anthropic's AI to Hunt Bugs in Government Code. India's $108 Billion IT Industry Should Pay Attention.",
-      "slug": "cisa-anthropic-mythos-ai-government-code-audit-indian-it-industry-20260707",
+      "id": "c27687ed-5ca2-401f-b8c1-35e96efb33e0",
+      "headline": "Ranveer Singh Turns 41. His Director Called His Performance 'Touched by Divine Grace.'",
+      "slug": "ranveer-singh-41st-birthday-aditya-dhar-dhurandhar-3100-crore-tribute-pralay-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "CISA seal",
-          "reason": "The CISA seal is relevant to the story about CISA using AI for code audits."
+          "what_photo_shows": "man in ornate outfit at event",
+          "reason": "The photo plausibly shows Ranveer Singh, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -35,37 +35,37 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of US cybersecurity developments on India's IT industry, making it relevant for NRI readers."
+          "quality": 7,
+          "note": "The article connects to the Indian diaspora through the celebration of a prominent Bollywood actor's birthday, which is relevant to NRIs who follow Indian cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or insights from industry experts to enhance credibility.",
-          "Add a section on how Indian companies are specifically adapting to these changes in AI technology."
+          "Consider adding quotes or reactions from other diaspora members or celebrities to enhance the connection with NRI readers.",
+          "Include a brief section on Ranveer Singh's impact on the global perception of Indian cinema to further engage the diaspora audience."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: no sources"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "dbe2e1fc-3c66-43eb-a966-3e94c91a30f5",
-      "headline": "Modi Is in Indonesia With a Missile Deal. Then He'll Face a Million Indians in Melbourne and Anti-Indian Sentiment in New Zealand.",
-      "slug": "modi-indonesia-brahmos-australia-new-zealand-diaspora-tour-20260707",
+      "id": "165afe5a-11f3-4c22-9e72-bc79215ed78f",
+      "headline": "Alia Bhatt Just Gave the Spy Universe Its First Heroine. The Box Office Isn't Sure What to Do with Her.",
+      "slug": "alpha-alia-bhatt-yrf-spy-universe-opening-weekend-box-office-34-crore-weakest-franchise-debut-20260706",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "UNVERIFIED",
-          "what_photo_shows": "(image unreadable)",
-          "reason": "could not download image: not-an-image"
+          "verdict": "MATCH",
+          "what_photo_shows": "Alia Bhatt at a film premiere",
+          "reason": "The photo shows Alia Bhatt, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,22 +79,21 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Modi's visit to the Indian diaspora, highlighting cultural ties and the significance of the visit for Indian communities in Australia and Indonesia."
+          "note": "The article effectively connects the film's performance to diaspora audiences, particularly in North America, highlighting their engagement with the Spy Universe."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from diaspora leaders to enhance the connection with the Indian community.",
-          "Add a brief section on how the missile deal might impact regional security dynamics, which could be of interest to the diaspora."
+          "Consider adding more quotes or reactions from diaspora audiences to enhance the connection.",
+          "Include a brief analysis of how this film's performance might influence future female-led projects in Bollywood."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: image unverified"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_unverified": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
