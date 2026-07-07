@@ -1,0 +1,40 @@
+{
+  "article_id": "b7eec4a6-4542-475a-9d7b-cd1911be79d8",
+  "scenes": [
+    {
+      "voiceover": "India's biggest healthcare IPO just got the green light. Could a 1.2 billion dollar hospital listing be your next investment?",
+      "onscreen": "BIGGEST HEALTHCARE IPO",
+      "image_prompt": "Hospital at golden hour with $1.2B IPO chart overlay"
+    },
+    {
+      "voiceover": "Manipal Health runs 48 hospitals with over twelve thousand beds across 14 Indian states. That's a massive healthcare empire.",
+      "onscreen": "48 HOSPITALS \u2022 12,631 BEDS",
+      "image_prompt": "Map of India with 14 glowing hospital locations"
+    },
+    {
+      "voiceover": "The IPO aims to raise 1.2 billion dollars, valuing Manipal at 13 billion. That fresh capital will slash their debt and fuel expansion.",
+      "onscreen": "$1.2B RAISE \u2022 $13B VALUATION",
+      "image_prompt": "Financial valuation breakdown with gold text and stock exchange"
+    },
+    {
+      "voiceover": "Singapore's Temasek and global giants TPG and Novo Holdings are backing it. Goldman Sachs and JP Morgan are running the deal.",
+      "onscreen": "TEMASEK \u2022 TPG \u2022 GOLDMAN",
+      "image_prompt": "Global investor backing with Singapore and Mumbai skylines"
+    },
+    {
+      "voiceover": "India's private hospitals are seeing double-digit growth. Rising incomes and insurance expansion are driving a healthcare revolution.",
+      "onscreen": "DOUBLE-DIGIT GROWTH",
+      "image_prompt": "Healthcare growth chart with EKG pattern and hospital stocks rising"
+    },
+    {
+      "voiceover": "But here's the catch. Nearly 50 percent of Manipal's revenue comes from just one state \u2014 Karnataka. That's a concentration risk.",
+      "onscreen": "50% FROM KARNATAKA",
+      "image_prompt": "India map with Karnataka highlighted in amber showing 50% revenue"
+    },
+    {
+      "voiceover": "For NRIs who already fly home for surgeries, this is a chance to invest in the very healthcare system you depend on. Would you?",
+      "onscreen": "INVEST IN WHAT YOU USE",
+      "image_prompt": "NRI family at hospital plus investment portfolio showing healthcare stocks"
+    }
+  ]
+}
