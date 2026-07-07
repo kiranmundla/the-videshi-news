@@ -1,0 +1,40 @@
+{
+  "article_id": "eda3c87a-8fb8-4a36-a33d-b0feae860643",
+  "scenes": [
+    {
+      "voiceover": "What happens when kids from strip-mall dance studios take Carnegie Hall's biggest stage?",
+      "onscreen": "CARNEGIE HALL STAGE",
+      "image_prompt": "Young Indian-American Bharatanatyam dancer center stage at Carnegie Hall's Stern Auditorium"
+    },
+    {
+      "voiceover": "Twelve Indian dance schools just performed Kuchipudi, Bharatanatyam, and Odissi at the Stern Auditorium.",
+      "onscreen": "12 SCHOOLS, 3 CLASSICAL FORMS",
+      "image_prompt": "Infographic: 12 dance schools, Kuchipudi Bharatanatyam Odissi, 2800 seats"
+    },
+    {
+      "voiceover": "These performers weren't flown in from Chennai. They trained in strip-mall studios across Texas and New Jersey.",
+      "onscreen": "FROM STRIP MALLS TO CARNEGIE",
+      "image_prompt": "Split screen: suburban strip mall dance studio vs grand Carnegie Hall facade"
+    },
+    {
+      "voiceover": "Carnegie Hall just announced a ten-million-dollar annual Indian Music Festival launching in twenty twenty-seven.",
+      "onscreen": "$10M INDIAN MUSIC FESTIVAL",
+      "image_prompt": "Bold $10 Million text with Carnegie Hall silhouette, launching May 2027"
+    },
+    {
+      "voiceover": "Five million Indian Americans are watching to see if these ancient traditions can survive in America.",
+      "onscreen": "5 MILLION WATCHING",
+      "image_prompt": "US map with glowing dots showing Indian American population, 5 MILLION text"
+    },
+    {
+      "voiceover": "The gurus who emigrated in the eighties are aging. Their American-born students now teach the next wave.",
+      "onscreen": "THREE GENERATIONS",
+      "image_prompt": "Three generations of Indian dance: elderly guru, middle teacher, young student"
+    },
+    {
+      "voiceover": "When Carnegie Hall calls it world-class art, who decides what survives — the tradition, or the kids keeping it alive?",
+      "onscreen": "WHO CARRIES IT FORWARD?",
+      "image_prompt": "Close-up of young hands in classical dance mudra with Carnegie Hall bokeh background"
+    }
+  ]
+}

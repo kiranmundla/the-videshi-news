@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-07T20:15:29.601992+00:00",
+  "timestamp": "2026-07-07T21:15:35.810698+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "459361f7-9bd4-44ec-9430-2e57db8bffa2",
-      "headline": "The Supreme Court Just Took Away Immigration's Emergency Brake",
-      "slug": "scotus-ends-nationwide-injunctions-immigration-impact-20260707",
+      "id": "bffe7ea2-58d5-4264-8cad-4102baeb151e",
+      "headline": "Samsung Just Posted a 19-Fold Profit Jump. Investors Dumped the Stock Anyway.",
+      "slug": "samsung-19x-profit-ai-boom-peak-nri-investors-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo shows the Supreme Court, relevant to the story about its ruling."
+          "what_photo_shows": "Samsung Electronics headquarters in Suwon",
+          "reason": "The photo shows Samsung headquarters, relevant to the story about Samsung's profit jump."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Supreme Court building is relevant to the article's topic but lacks specific connection to immigration."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for Indian Americans, making it relevant to the diaspora."
+          "note": "The article discusses the implications of Samsung's performance on NRI investors, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more specific examples of how the ruling affects Indian Americans directly.",
-          "Consider including quotes from immigration advocates or experts to enhance credibility."
+          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief overview of how Samsung's performance compares to other global semiconductor companies for broader context."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "25f13df5-42d3-4584-b49a-eb543db491f1",
-      "headline": "The Day 1 CPT Safety Net Is Fraying. Thousands of Indian Tech Workers Have No Plan B",
-      "slug": "day-1-cpt-safety-net-closing-indian-tech-workers-h1b-20260707",
+      "id": "7ac22869-aaca-487f-9b66-fdd5b3784ac4",
+      "headline": "Meta Just Gave 500 Million Indians an AI Image Generator. Here's What Muse Image Does.",
+      "slug": "meta-muse-image-instagram-whatsapp-india-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "students walking on a university campus",
-          "reason": "The photo shows students on a campus, relevant to a student visa story."
+          "what_photo_shows": "social media app icons on smartphone",
+          "reason": "The photo shows app icons relevant to the story about AI in social media apps."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or tech workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of immigration policy changes on Indian tech workers and their families, making it relevant to the diaspora."
+          "note": "The article effectively connects the AI image generator's impact on Indian-American engineers and NRI investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or Indian tech workers.",
-          "Expand on the personal stories or testimonials from affected individuals to enhance emotional engagement."
+          "Consider adding more specific examples of how the AI image generator could impact daily life for Indian users.",
+          "Include quotes or insights from Indian tech leaders to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -97,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "70368926-6210-43f7-8ca0-938d13b76171",
-      "headline": "A Federal Judge Just Told USCIS It Cannot Punish People for Where They Were Born",
-      "slug": "federal-judge-blocks-uscis-nationality-bias-ohio-immigration-20260707",
+      "id": "626a190f-cefc-4f9e-be5d-7c908d88112a",
+      "headline": "Beijing Is Building an Iron Curtain Around Its AI. Indian Startups Should Be Worried.",
+      "slug": "beijing-ai-iron-curtain-india-startups-deepseek-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with immigration stamps",
-          "reason": "The photo is relevant to the immigration topic of the story."
+          "what_photo_shows": "Server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to AI infrastructure."
         },
         "inline_image_mismatches": []
       },
@@ -117,18 +117,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the specific topic of immigration policies or legal rulings."
+          "issue": "The image does not directly relate to AI or the geopolitical context discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for Indian nationals, making it relevant for the diaspora audience."
+          "note": "The article effectively connects the implications of China's AI restrictions to Indian-origin professionals and startups, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a more relevant image that depicts immigration or legal proceedings.",
-          "Expand on the potential implications for Indian nationals to strengthen the diaspora connection."
+          "Consider using a more relevant image that depicts AI technology or geopolitical discussions.",
+          "Add more specific examples of how Indian startups are currently utilizing Chinese AI models to strengthen the argument."
         ],
         "verdict": "pass"
       },

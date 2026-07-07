@@ -1,0 +1,35 @@
+{
+  "article_id": "41d5e03d-9963-4d0b-b92f-5d4ba9ffb59c",
+  "scenes": [
+    {
+      "voiceover": "Your parents moved to America for you. They sit in your living room all day. But who is actually taking care of them?",
+      "onscreen": "WHO TAKES CARE OF THEM?",
+      "image_prompt": "Elderly Indian couple sitting alone in American suburban living room"
+    },
+    {
+      "voiceover": "Indian Americans over sixty-five have doubled in a decade. Four point four million strong — and the safety net barely exists.",
+      "onscreen": "4.4M INDIAN AMERICANS",
+      "image_prompt": "Data infographic showing 4.4M Indian Americans, seniors doubled 2010-2020"
+    },
+    {
+      "voiceover": "Many arrived on dependent visas — no English, no Medicare, no Social Security. No one to talk to. That is not care. That is containment.",
+      "onscreen": "NO SAFETY NET",
+      "image_prompt": "Elderly Indian woman alone watching Hindi TV in American living room"
+    },
+    {
+      "voiceover": "In Queens, India Home serves fifteen hundred seniors a year — with meals, yoga, and an AI-powered food pantry stocked with dal and basmati rice.",
+      "onscreen": "INDIA HOME, QUEENS",
+      "image_prompt": "South Asian seniors sharing meals and doing yoga at India Home community center in Queens"
+    },
+    {
+      "voiceover": "Their children are the sandwich generation — torn between aging parents and growing kids, with cultural guilt pulling from every direction.",
+      "onscreen": "THE SANDWICH GENERATION",
+      "image_prompt": "Split scene showing Indian-American professional at work and elderly parent waiting alone at home"
+    },
+    {
+      "voiceover": "The first generation that made it to America is aging out. The question is whether we will build the answer before they leave the conversation entirely.",
+      "onscreen": "WILL WE BUILD THE ANSWER?",
+      "image_prompt": "Elderly Indian hands held by younger hands with NYC skyline in golden hour background"
+    }
+  ]
+}
