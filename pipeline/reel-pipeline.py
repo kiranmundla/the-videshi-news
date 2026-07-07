@@ -1014,7 +1014,7 @@ def get_word_timestamps(mp3_path, build_dir):
 # PHASE 6: Music selection
 # ═══════════════════════════════════════════════════════════════
 def select_music(article, build_dir, story_mood=None):
-    """Select and upload background music."""
+    """Select, normalize, and upload background music."""
     print(f"\n{'='*60}")
     print(f"PHASE 6: Selecting music...")
     print(f"{'='*60}")
@@ -1045,9 +1045,37 @@ def select_music(article, build_dir, story_mood=None):
             print("  ❌ No music found")
             return None, ""
     
+    # ── Normalize music to 0 dB peak ──
+    # Shotstack's volume param reduces far more aggressively than expected
+    # (source at -13 dB + volume 0.40 → output at -30 dB, not -17 dB).
+    # Normalizing to 0 dB peak means Shotstack volume controls work
+    # from a loud baseline: 0.40 → audible bed, 0.80 → clear swell.
+    normalized_path = os.path.join(build_dir, "music-normalized.mp3")
+    try:
+        norm_result = subprocess.run(
+            ["ffmpeg", "-y", "-i", music_path, "-af", "loudnorm=I=-14:TP=-1:LRA=11",
+             "-ar", "44100", "-b:a", "192k", normalized_path],
+            capture_output=True, text=True, timeout=60
+        )
+        if norm_result.returncode == 0 and os.path.exists(normalized_path):
+            # Verify normalization
+            probe = subprocess.run(
+                ["ffmpeg", "-i", normalized_path, "-af", "volumedetect", "-f", "null", "/dev/null"],
+                capture_output=True, text=True, timeout=30
+            )
+            import re
+            mean_match = re.search(r'mean_volume:\s*([-\d.]+)', probe.stderr)
+            mean_vol = float(mean_match.group(1)) if mean_match else None
+            print(f"  🔊 Normalized: {mean_vol:.1f} dB mean" if mean_vol else "  🔊 Normalized")
+            music_path = normalized_path
+        else:
+            print(f"  ⚠️ Normalization failed, using original track")
+    except Exception as e:
+        print(f"  ⚠️ Normalization error ({e}), using original track")
+    
     # Upload music
     music_name = os.path.basename(music_path)
-    storage_path = f"reel-gen/{article['id']}/music-{music_name}"
+    storage_path = f"reel-gen/{article['id']}/music-normalized.mp3"
     with open(music_path, "rb") as f:
         requests.post(
             f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
@@ -1056,7 +1084,7 @@ def select_music(article, build_dir, story_mood=None):
         )
     
     music_url = f"{STORAGE_BASE}/{storage_path}"
-    print(f"  ✅ {os.path.basename(music_path)}")
+    print(f"  ✅ {os.path.basename(result.get('filename', music_name))}")
     if attribution:
         print(f"     Attribution: {attribution}")
     
