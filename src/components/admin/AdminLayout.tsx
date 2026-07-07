@@ -2,7 +2,7 @@ import { useState, useEffect, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Newspaper, Car, Calendar, Tag, Building2,
-  LogOut, ChevronLeft, Menu, X, BookOpen,
+  LogOut, ChevronLeft, Menu, X, BookOpen, Film, Send,
 } from "lucide-react";
 import { isAdminAuthenticated, adminLogin, adminLogout } from "@/lib/adminAuth";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 const NAV_ITEMS = [
   { to: "/admin", icon: LayoutDashboard, label: "Dashboard" },
   { to: "/admin/articles", icon: Newspaper, label: "Articles" },
+  { to: "/admin/reels", icon: Film, label: "Reels" },
+  { to: "/admin/post-to-x", icon: Send, label: "Post to X" },
   { to: "/admin/cars", icon: Car, label: "Cars" },
   { to: "/admin/events", icon: Calendar, label: "Events" },
   { to: "/admin/classifieds", icon: Tag, label: "Classifieds" },
