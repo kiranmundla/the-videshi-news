@@ -80,7 +80,7 @@ print(f"  Articles with IG: {len(ig_posted_articles)}, YT: {len(yt_posted_articl
 # --- Pick reels to distribute (one per article, up to 3) ---
 # From the fetched batch (latest 10), pick one reel per article needing work
 candidates_resp = requests.get(
-    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&order=created_at.desc&limit=10&select=id,article_id,article_slug,headline,video_url,caption,status,ig_posted_at,yt_posted_at,yt_video_id,threads_posted_at,threads_post_id,x_posted_at,x_tweet_id",
+    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&order=created_at.desc&limit=10&select=id,article_id,article_slug,headline,video_url,caption,status,carousel_images,ig_posted_at,yt_posted_at,yt_video_id,threads_posted_at,threads_post_id,x_posted_at,x_tweet_id",
     headers={k: v for k, v in SB_HEADERS.items() if k != 'Prefer'}
 )
 candidates = candidates_resp.json()
@@ -468,6 +468,89 @@ def post_x_tweet(reel, video_path, headline, slug):
     return f"OK (tweet_id={tweet_id})"
 
 
+def post_x_carousel(reel, headline, slug):
+    """Post carousel images to X as a multi-image tweet."""
+    carousel_images = reel.get('carousel_images') or []
+    # Filter to image files only (skip .mp4 animated cards)
+    image_urls = [u for u in carousel_images if u.lower().endswith(('.jpg', '.jpeg', '.png', '.webp'))]
+    if not image_urls:
+        return "SKIP (no carousel images)"
+    
+    # Skip first (hook) and last (CTA), take up to 4 data-rich slides
+    if len(image_urls) > 5:
+        image_urls = image_urls[1:-1]
+    chosen = image_urls[:4]
+    
+    # Pre-flight spend check
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("x_spend", os.path.join(os.path.dirname(__file__), "x_spend.py"))
+        if spec and spec.loader:
+            xm = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(xm)
+            pct = xm.current_spend_pct()
+            if pct >= 97:
+                return f"SKIP (X spend at {pct:.0f}%)"
+    except Exception:
+        pass
+    
+    import tweepy
+    auth = tweepy.OAuth1UserHandler(
+        tw['TWITTER_CONSUMER_KEY'], tw['TWITTER_CONSUMER_SECRET'],
+        tw['TWITTER_ACCESS_TOKEN'], tw['TWITTER_ACCESS_TOKEN_SECRET']
+    )
+    api_v1 = tweepy.API(auth)
+    client = tweepy.Client(
+        consumer_key=tw['TWITTER_CONSUMER_KEY'],
+        consumer_secret=tw['TWITTER_CONSUMER_SECRET'],
+        access_token=tw['TWITTER_ACCESS_TOKEN'],
+        access_token_secret=tw['TWITTER_ACCESS_TOKEN_SECRET'],
+    )
+    
+    # Upload carousel images
+    media_ids = []
+    print(f"  [X-CAROUSEL] Uploading {len(chosen)} images...")
+    for ci, img_url in enumerate(chosen):
+        try:
+            r = requests.get(img_url, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15)
+            r.raise_for_status()
+            ext = '.png' if 'png' in r.headers.get('content-type', '') else '.jpg'
+            with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
+                tmp.write(r.content)
+                tmp_path = tmp.name
+            media = api_v1.media_upload(filename=tmp_path)
+            media_ids.append(media.media_id)
+            os.unlink(tmp_path)
+            print(f"    Slide {ci}: media_id={media.media_id}")
+        except Exception as e:
+            print(f"    Slide {ci} failed: {e}")
+    
+    if not media_ids:
+        return "SKIP (all image uploads failed)"
+    
+    link = f"thevideshi.com/articles/{slug}"
+    tweet_text = f"📊 {headline[:200]}\n\n📰 {link}\n\n#IndianDiaspora #NRI #TheVideshi"
+    if len(tweet_text) > 280:
+        tweet_text = f"📊 {headline[:150]}\n\n📰 {link}\n\n#IndianDiaspora #NRI"
+    
+    print(f"  [X-CAROUSEL] Tweeting with {len(media_ids)} images...")
+    tweet_r = client.create_tweet(text=tweet_text, media_ids=media_ids)
+    tweet_id = tweet_r.data['id']
+    
+    # Track spend
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("x_spend", os.path.join(os.path.dirname(__file__), "x_spend.py"))
+        if spec and spec.loader:
+            xm = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(xm)
+            xm.add(writes=1)
+    except Exception:
+        pass
+    
+    return f"OK (tweet_id={tweet_id}, {len(media_ids)} images)"
+
+
 # --- Main distribution loop ---
 errors = []
 
@@ -508,6 +591,14 @@ for i, reel in enumerate(work_queue):
                 result = post_threads(reel, video_url, caption)
             elif platform == 'x':
                 result = post_x_tweet(reel, local_video, headline, slug)
+                # Also post carousel images as a separate tweet
+                if result.startswith('OK') and reel.get('carousel_images'):
+                    time.sleep(10)
+                    try:
+                        carousel_result = post_x_carousel(reel, headline, slug)
+                        print(f"  [X-CAROUSEL] Result: {carousel_result}")
+                    except Exception as ce:
+                        print(f"  [X-CAROUSEL] ERROR: {ce}")
             
             print(f"  [{platform.upper()}] Result: {result}")
             results.append((reel['headline'][:50], platform, result))
