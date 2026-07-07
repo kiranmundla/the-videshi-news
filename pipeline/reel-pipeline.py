@@ -282,81 +282,120 @@ Return ONLY valid JSON, no markdown."""
 # PHASE 2.5: Evaluate article images for reel blending
 # ═══════════════════════════════════════════════════════════════
 def evaluate_hero_for_blend(article):
-    """Check if the article's hero image is good enough to blend into reel scenes.
+    """Check if the article's hero + body images are good enough to blend into reel scenes.
     
-    Returns dict with {usable: bool, img_bytes: bytes, img_path: str, tier: str}
-    or {usable: False} if not suitable.
+    Returns dict with {usable: bool, images: [{img_path, subject, source}...]}
+    Images are ordered: hero first, then body images. Each is saved to /tmp.
     """
     import base64
+    from io import BytesIO
+    
     hero_url = article.get("image_url", "")
     headline = article.get("headline", "")
-    if not hero_url:
-        return {"usable": False}
+    body = article.get("body", "") or ""
     
     print(f"\n{'='*60}")
-    print(f"PHASE 2.5: Evaluating hero image for blend...")
+    print(f"PHASE 2.5: Evaluating article images for blend...")
     print(f"{'='*60}")
     
-    # Download hero image
-    try:
-        r = requests.get(hero_url, timeout=15, headers={
-            "User-Agent": "TheVideshi/1.0 (thevideshi.com)"
+    # Collect all candidate URLs: hero + body images
+    candidates = []
+    if hero_url:
+        candidates.append({"url": hero_url, "source": "hero"})
+    
+    # Extract body images
+    body_pattern = r'!\[[^\]]*\]\(([^)]+)\)'
+    body_urls = re.findall(body_pattern, body)
+    body_urls = [u for u in body_urls if any(ext in u.lower() for ext in ['.jpg', '.jpeg', '.png', '.webp', 'image'])]
+    for url in body_urls[:5]:  # up to 5 body images
+        if url != hero_url:  # skip dupes of hero
+            candidates.append({"url": url, "source": "body"})
+    
+    if not candidates:
+        print(f"  ❌ No images found")
+        return {"usable": False, "images": []}
+    
+    usable_images = []
+    
+    for idx, cand in enumerate(candidates):
+        url = cand["url"]
+        source = cand["source"]
+        
+        # Download
+        try:
+            r = requests.get(url, timeout=15, headers={
+                "User-Agent": "TheVideshi/1.0 (thevideshi.com)"
+            })
+            if r.status_code != 200:
+                print(f"  ❌ {source} download failed: HTTP {r.status_code}")
+                continue
+            img_bytes = r.content
+            if len(img_bytes) < 5000:
+                print(f"  ❌ {source} too small ({len(img_bytes)} bytes)")
+                continue
+        except Exception as e:
+            print(f"  ❌ {source} download error: {e}")
+            continue
+        
+        # Check dimensions
+        try:
+            img = Image.open(BytesIO(img_bytes))
+            w, h = img.size
+        except Exception:
+            print(f"  ❌ {source} not a valid image")
+            continue
+        
+        if w < 400 or h < 300:
+            print(f"  ❌ {source} too low-res ({w}×{h})")
+            continue
+        
+        # Save locally for edits API
+        img_path = f"/tmp/blend-{idx}.png"
+        img.convert("RGBA").save(img_path, "PNG")
+        
+        # Quick vision check
+        img_b64 = base64.b64encode(img_bytes).decode()
+        subject = "unknown"
+        try:
+            check = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+                json={
+                    "model": "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": [
+                        {"type": "text", "text": f'Is this a clear, high-quality photo of a recognizable person, place, scene, or specific subject (NOT a generic stock photo, logo, icon, or chart)? Headline: "{headline}". Answer ONLY with JSON: {{"usable": true/false, "subject": "who/what is shown in 5 words max"}}'},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}", "detail": "low"}}
+                    ]}],
+                    "temperature": 0,
+                    "response_format": {"type": "json_object"}
+                },
+                timeout=30
+            )
+            if check.status_code == 200:
+                result = json.loads(check.json()["choices"][0]["message"]["content"])
+                if not result.get("usable", False):
+                    print(f"  ❌ {source} ({w}×{h}): not suitable — {result.get('subject', 'unclear')}")
+                    continue
+                subject = result.get("subject", "recognized")
+                print(f"  ✅ {source} ({w}×{h}): {subject}")
+            else:
+                print(f"  ⚠️ {source} vision check failed, including anyway")
+        except Exception as e:
+            print(f"  ⚠️ {source} vision error: {e}, including anyway")
+        
+        usable_images.append({
+            "img_path": img_path,
+            "subject": subject,
+            "source": source,
+            "w": w, "h": h
         })
-        if r.status_code != 200:
-            print(f"  ❌ Hero download failed: HTTP {r.status_code}")
-            return {"usable": False}
-        img_bytes = r.content
-        if len(img_bytes) < 5000:
-            print(f"  ❌ Hero too small ({len(img_bytes)} bytes)")
-            return {"usable": False}
-    except Exception as e:
-        print(f"  ❌ Hero download error: {e}")
-        return {"usable": False}
     
-    # Check dimensions
-    from io import BytesIO
-    img = Image.open(BytesIO(img_bytes))
-    w, h = img.size
-    print(f"  📸 Hero: {w}×{h}")
+    if usable_images:
+        print(f"  📊 {len(usable_images)} usable image(s) for blending")
+    else:
+        print(f"  📊 No usable images — all scenes will be AI-generated")
     
-    if w < 800 or h < 600:
-        print(f"  ❌ Too low-res for blending (need 800×600+)")
-        return {"usable": False}
-    
-    # Save locally for edits API
-    hero_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "/tmp/hero-blend.png")
-    hero_path = "/tmp/hero-blend.png"
-    img.convert("RGBA").save(hero_path, "PNG")
-    
-    # Quick vision check — is this a recognizable person/subject photo?
-    img_b64 = base64.b64encode(img_bytes).decode()
-    try:
-        check = requests.post(
-            "https://api.openai.com/v1/chat/completions",
-            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
-            json={
-                "model": "gpt-4o-mini",
-                "messages": [{"role": "user", "content": [
-                    {"type": "text", "text": f"Is this photo a clear, high-quality image of a recognizable person, place, or specific subject relevant to the headline: \"{headline}\"? Answer ONLY with JSON: {{\"usable\": true/false, \"subject\": \"who/what is shown\"}}"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{img_b64}", "detail": "low"}}
-                ]}],
-                "temperature": 0,
-                "response_format": {"type": "json_object"}
-            },
-            timeout=30
-        )
-        if check.status_code == 200:
-            result = json.loads(check.json()["choices"][0]["message"]["content"])
-            if not result.get("usable", False):
-                print(f"  ❌ Not suitable for blend: {result.get('subject', 'unclear')}")
-                return {"usable": False}
-            print(f"  ✅ Suitable: {result.get('subject', 'recognized')}")
-        else:
-            print(f"  ⚠️ Vision check failed ({check.status_code}), proceeding anyway")
-    except Exception as e:
-        print(f"  ⚠️ Vision check error: {e}, proceeding anyway")
-    
-    return {"usable": True, "img_bytes": img_bytes, "img_path": hero_path, "w": w, "h": h}
+    return {"usable": len(usable_images) > 0, "images": usable_images}
 
 
 def generate_blended_scene(scene_prompt, hero_path, build_dir, scene_idx, article_id):
@@ -455,6 +494,42 @@ def generate_images_api(scenes, article_id, build_dir, hero_blend=None):
     )
     
     for i, scene in enumerate(scenes):
+        raw_prompt = scene.get("image_prompt", scene.get("scene_focus", ""))
+        
+        # ── Try blending with article images ──
+        # Distribute usable images across scenes: hero for scene 0,
+        # body images for subsequent scenes, cycling if we have more scenes than images.
+        if hero_blend and hero_blend.get("usable") and hero_blend.get("images"):
+            blend_images = hero_blend["images"]
+            # Scene 0 → first image (hero), scene 1 → second image, etc.
+            # If more scenes than images, remaining scenes generate normally.
+            if i < len(blend_images):
+                blend_img = blend_images[i]
+            else:
+                blend_img = None
+            
+            if blend_img:
+                blended_path = generate_blended_scene(
+                    raw_prompt, blend_img["img_path"], build_dir, i, article_id
+                )
+                if blended_path:
+                    with open(blended_path, "rb") as f:
+                        final_bytes = f.read()
+                    ext = os.path.splitext(blended_path)[1].lower()
+                    content_type = "image/png" if ext == ".png" else "image/jpeg"
+                    storage_path = f"{storage_prefix}/scene-{i}{ext}"
+                    requests.post(
+                        f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
+                        headers={**SB_HEADERS, "Content-Type": content_type, "x-upsert": "true"},
+                        data=final_bytes, timeout=30
+                    )
+                    scene["image_url"] = f"{STORAGE_BASE}/{storage_path}"
+                    scene["blended"] = True
+                    print(f"     (blended with {blend_img['source']}: {blend_img['subject']})")
+                    continue
+                else:
+                    print(f"  ⚠️ Blend failed for scene {i}, falling back to generation")
+        
         print(f"  Scene {i}: generating...")
         
         raw_prompt = scene.get("image_prompt", scene.get("scene_focus", ""))
@@ -2025,7 +2100,10 @@ def main():
                 os.remove(vo_cache)
                 print("  🔄 Cleared cached TTS (voiceover text changed)")
     else:
-        success = generate_images_api(scenes, article_id, build_dir)
+        # Phase 2.5: Evaluate hero image for blending
+        hero_blend = evaluate_hero_for_blend(article)
+        
+        success = generate_images_api(scenes, article_id, build_dir, hero_blend=hero_blend)
         if not success:
             print("\n❌ Image generation incomplete. Use --manual-images for failed scenes")
             sys.exit(1)
