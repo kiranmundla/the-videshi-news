@@ -2276,34 +2276,26 @@ def main():
     
     # Phase 9: Register in prebuilt_reels + distribute
     if qa_all_passed:
-        # For each variant: register (upsert) + upload to YouTube (voiceover ONLY — one reel per article on YT)
+        # Register reels in DB. YouTube upload is handled ONLY by distribute-reels.py
+        # to prevent duplicate uploads (reel-pipeline + distribute-reels = double upload).
         results = {}
         for variant, reel_path_v in [("music-only", music_reel_path), ("voiceover", vo_reel_path)]:
             if not reel_path_v:
                 continue
             
-            # Check for existing YouTube upload BEFORE registration (registration deletes old row)
-            # Check ANY variant for this article — one article = one YouTube Short
+            # Preserve existing YouTube video ID across upsert
             existing_yt = _check_yt_exists(article["id"], variant)
             
             # Register (upsert — deletes old row, inserts fresh)
             _register_reel(reel_path_v, variant, article, carousel_slides=carousel_slides)
             
-            if args.skip_distribute:
-                continue
-            
-            # Upload BOTH variants to YouTube (differentiated titles via upload_youtube)
+            # Carry forward existing YT ID so distribute-reels doesn't re-upload
             if existing_yt:
-                # Preserve existing YouTube video ID on the new row
                 _save_yt_video_id(article["id"], variant, existing_yt)
                 print(f"  ⏭️  {variant} already on YouTube: {existing_yt}")
                 results[f"youtube_{variant}"] = existing_yt
             else:
-                # Upload new
-                yt_url = upload_youtube(reel_path_v, article, attribution, variant)
-                if yt_url:
-                    _save_yt_video_id(article["id"], variant, yt_url)
-                    results[f"youtube_{variant}"] = yt_url
+                print(f"  📋 {variant} registered — YouTube upload deferred to distribute-reels")
     else:
         results = {}
     
