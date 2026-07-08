@@ -1,0 +1,40 @@
+{
+  "article_id": "2e518471-32fc-4faa-9e45-2d72f754cacd",
+  "scenes": [
+    {
+      "voiceover": "India just opened its third chip plant in five months. Can it really build five billion chips a year?",
+      "onscreen": "3 PLANTS IN 5 MONTHS",
+      "image_prompt": "Silicon wafers glowing under UV light in a cleanroom, bold text 3 PLANTS IN 5 MONTHS and 5 BILLION CHIPS"
+    },
+    {
+      "voiceover": "PM Modi inaugurated CG Semi's facility in Gujarat — a joint venture with Japan's Renesas and Thailand's Stars.",
+      "onscreen": "CG SEMI × RENESAS",
+      "image_prompt": "Semiconductor factory inauguration with Indian and Japanese flags, CG SEMI x RENESAS partnership"
+    },
+    {
+      "voiceover": "The target? Fifteen million chips every single day — for cars, 5G towers, and IoT devices.",
+      "onscreen": "15 MILLION CHIPS/DAY",
+      "image_prompt": "Data visualization showing 15 million chips daily flowing into automotive, 5G, and IoT sectors"
+    },
+    {
+      "voiceover": "Seventy-five engineers relocated from the US, Korea, and the Philippines. Village women trained in Malaysia to build chips.",
+      "onscreen": "GLOBAL TALENT PIPELINE",
+      "image_prompt": "Split scene of global engineers and Indian women in cleanroom suits, village to factory floor"
+    },
+    {
+      "voiceover": "India now has twelve approved semiconductor projects, with investment commitments of one-point-six lakh crore rupees.",
+      "onscreen": "12 PROJECTS • ₹1.6L CR",
+      "image_prompt": "Map of India with semiconductor icons at locations, stats grid showing 12 projects and investment"
+    },
+    {
+      "voiceover": "Three hundred thousand Indian-origin engineers work at Intel, Qualcomm, and TSMC worldwide. Now India wants them back.",
+      "onscreen": "300K DIASPORA ENGINEERS",
+      "image_prompt": "Engineer silhouettes walking toward India map, tech company logos fading, reverse brain drain"
+    },
+    {
+      "voiceover": "Three plants in five months. India is building its semiconductor future — chip by chip.",
+      "onscreen": "CHIP BY CHIP",
+      "image_prompt": "Futuristic semiconductor wafer reflecting the Indian tricolor, CHIP BY CHIP text"
+    }
+  ]
+}
