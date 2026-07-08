@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-08T18:45:22.982295+00:00",
+  "timestamp": "2026-07-08T20:15:24.049714+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "99b5af3b-d05e-4ec3-b06d-b5673966ea53",
-      "headline": "Messi in Tears After Argentina's Three-Goal Comeback Stuns Egypt in 13 Frantic Minutes",
-      "slug": "messi-argentina-3-2-comeback-egypt-world-cup-round-16-atlanta-romero-fernandez-quarterfinals-nri-2026",
+      "id": "c18d45c9-757f-4e65-80b1-4fb9ade687fe",
+      "headline": "She Opened a Door for One Immigrant. It Cost Her a Career, a Home, and a Year of Silence",
+      "slug": "dugan-sentencing-milwaukee-ice-immigration-enforcement-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "soccer match with Argentina and Egypt",
-          "reason": "The photo shows a soccer match involving Argentina, which aligns with the story topic."
+          "what_photo_shows": "Federal Building and U.S. Courthouse",
+          "reason": "The photo shows the courthouse where the sentencing occurred."
         },
         "inline_image_mismatches": []
       },
@@ -30,33 +30,33 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of a federal building is relevant but does not directly depict the courtroom or the specific incident discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with diaspora fans by highlighting upcoming matches in the US and the significance of Argentina's performance."
+          "note": "The article effectively connects the Dugan case to the broader implications for Indian Americans navigating the immigration system."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or fans to enhance emotional engagement.",
-          "Include a brief analysis of what this comeback means for Argentina's World Cup journey."
+          "Consider including a more direct quote or perspective from Indian Americans affected by immigration policies to enhance the diaspora angle.",
+          "Add a brief section summarizing the potential implications of this case on future immigration policies, particularly for Indian immigrants."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: no sources"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "dab29bc9-c152-4ed7-bac1-ae0e6320f57a",
-      "headline": "Seventy-Six All Out. Archer and Tongue Rip Through India for England's Biggest-Ever T20 Win.",
-      "slug": "india-76-all-out-record-t20i-defeat-england-trent-bridge-tongue-archer-series-2-0-nri-2026",
+      "id": "5a2f7f3d-0485-4a9e-bb95-e92cce2ea6fc",
+      "headline": "An Op-Ed Just Called Indian Doctors a Fraud Risk. Rural America Cannot Afford to Lose Them",
+      "slug": "indian-doctors-fraud-narrative-img-rural-healthcare-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Jofra Archer in England cricket attire",
-          "reason": "The photo shows Jofra Archer, relevant to the cricket story."
+          "what_photo_shows": "Medical professionals in a hospital setting",
+          "reason": "The photo aligns with the topic of doctors and healthcare."
         },
         "inline_image_mismatches": []
       },
@@ -73,24 +73,24 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "image does not feature relevant players"
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of Indian doctors or healthcare."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects well with the diaspora by mentioning Indian fans globally and their emotional investment in the match."
+          "quality": 8,
+          "note": "The article discusses the implications of the op-ed on Indian American physicians, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that features key players from the match, such as Jofra Archer or Josh Tongue, to better match the article's content.",
-          "Add more context about the significance of the match for the Indian diaspora, perhaps by including quotes or reactions from fans."
+          "Consider adding a more relevant image that depicts Indian doctors or healthcare settings.",
+          "Include quotes or perspectives from Indian doctors in the U.S. to enhance the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: no sources"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
