@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-08T00:45:18.802557+00:00",
+  "timestamp": "2026-07-08T01:15:31.709701+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b079541d-0ee6-4177-8436-0aee6e794e6e",
-      "headline": "Adani's Mumbai Airport Duty-Free Shops Were Caught Selling Illegal Nicotine Pouches. The Court Case Could Reshape Airport Regulation Across India.",
-      "slug": "adani-mumbai-airport-duty-free-nicotine-pouches-illegal-drugs-cosmetics-act-20260708",
+      "id": "ded0f8e4-1b3d-4ed8-a75a-dfb7caf63075",
+      "headline": "The Boys Are Back. Dhamaal 4 Drops This Thursday \u2014 and the Trade Expects a Monster Opening.",
+      "slug": "dhamaal-4-ajay-devgn-arshad-warsi-riteish-deshmukh-treasure-hunt-comedy-july-10-box-office-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,32 +21,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "inside Mumbai airport terminal",
-          "reason": "The photo shows the interior of Chhatrapati Shivaji Maharaj International Airport, relevant to the story."
+          "what_photo_shows": "Dhamaal 4 theatrical release poster",
+          "reason": "The poster is relevant to the movie story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DafTmL7u2vd/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its promotional content."
+          },
+          {
+            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified as being the official trailer or related to the film's promotional activities."
+          }
+        ],
         "image_match": {
-          "score": 9,
+          "score": 10,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses a regulatory issue that directly impacts NRI travelers, making it relevant to the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the film's release to NRI audiences, emphasizing its accessibility and entertainment value."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from NRI travelers or experts to enhance the diaspora connection.",
-          "Add a brief section on how similar regulations are handled in other countries for comparative context."
+          "Replace the irrelevant Instagram and YouTube links with more relevant promotional content or trailers.",
+          "Consider adding quotes from the cast or director to enhance the article's depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DafTmL7u2vd/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=IG-eByZdz6Y",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +67,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cc5f797c-2e02-4fc4-8bfd-cc7b1ad640f7",
-      "headline": "Washington Just Struck Iran Again and Killed Its Oil License. India's Brief Energy Relief May Already Be Over.",
-      "slug": "us-strikes-iran-revokes-oil-license-hormuz-ceasefire-india-energy-impact-20260708",
+      "id": "c206c2bf-5f26-47f2-8665-c7b098ccc087",
+      "headline": "Christopher Nolan Has Never Premiered a Film in India. That Changes This Month.",
+      "slug": "christopher-nolan-odyssey-mumbai-india-premiere-matt-damon-tom-holland-imax-record-tickets-20260707",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,32 +77,39 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "oil tankers at sea",
-          "reason": "The photo of oil tankers is relevant to the story about global energy markets and oil trade."
+          "what_photo_shows": "Official poster for The Odyssey (2026)",
+          "reason": "The poster is relevant to the film premiere story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DacT-QCtJlJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the premiere of 'The Odyssey' or Christopher Nolan's visit to India."
+          }
+        ],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the geopolitical topic of US-Iran relations or oil markets."
+          "score": 3,
+          "issue": "The image does not match the article's topic as it is a poster for a different film, 'The Odyssey', which is not the focus of the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the geopolitical situation to the Indian diaspora in the Gulf, highlighting their concerns."
+          "quality": 7,
+          "note": "The article connects well with the diaspora by highlighting the global release and the significance of the premiere for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the geopolitical tensions or oil markets.",
-          "Add more context about how the Indian diaspora is specifically affected by these developments."
+          "Replace the hero image with a relevant image from 'The Odyssey' premiere or Christopher Nolan's visit to India.",
+          "Provide a more relevant social media embed that connects directly to the film or its premiere."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DacT-QCtJlJ/",
         "promoted to published"
       ],
       "revised": false,
