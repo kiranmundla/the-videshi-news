@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-08T01:15:31.709701+00:00",
+  "timestamp": "2026-07-08T02:15:23.730179+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ded0f8e4-1b3d-4ed8-a75a-dfb7caf63075",
-      "headline": "The Boys Are Back. Dhamaal 4 Drops This Thursday \u2014 and the Trade Expects a Monster Opening.",
-      "slug": "dhamaal-4-ajay-devgn-arshad-warsi-riteish-deshmukh-treasure-hunt-comedy-july-10-box-office-20260707",
+      "id": "e51104f0-af6f-4ad1-8ab2-8f9dd2157993",
+      "headline": "Your Company Just Got Acquired. Your Visa Might Not Survive the Deal",
+      "slug": "company-acquired-visa-risk-ma-h1b-immigration-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,45 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Dhamaal 4 theatrical release poster",
-          "reason": "The poster is relevant to the movie story."
+          "what_photo_shows": "business professionals with financial documents",
+          "reason": "The photo shows a corporate deal setting, relevant to the story about company acquisitions."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DafTmL7u2vd/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film or its promotional content."
-          },
-          {
-            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified as being the official trailer or related to the film's promotional activities."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 10,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to the topic of immigration and corporate acquisition, but it lacks specific elements that directly connect to the visa aspect discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's release to NRI audiences, emphasizing its accessibility and entertainment value."
+          "note": "The article effectively addresses the concerns of Indian tech workers in the U.S. regarding visa issues during corporate acquisitions, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with more relevant promotional content or trailers.",
-          "Consider adding quotes from the cast or director to enhance the article's depth."
+          "Include more specific examples or case studies of individuals affected by these visa issues to enhance relatability.",
+          "Consider adding a section on potential solutions or advice for workers facing these challenges."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DafTmL7u2vd/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=IG-eByZdz6Y",
         "promoted to published"
       ],
       "revised": false,
@@ -67,49 +54,54 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c206c2bf-5f26-47f2-8665-c7b098ccc087",
-      "headline": "Christopher Nolan Has Never Premiered a Film in India. That Changes This Month.",
-      "slug": "christopher-nolan-odyssey-mumbai-india-premiere-matt-damon-tom-holland-imax-record-tickets-20260707",
+      "id": "1c0ba8a0-3d16-4f7f-b31a-16f612a337ca",
+      "headline": "Microsoft Just Cut 4,800 Jobs. For Indian H-1B Workers, the 60-Day Clock Starts Again",
+      "slug": "microsoft-4800-layoffs-h1b-indian-workers-60-day-clock-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "6d9f9d91-eb07-426c-9b38-35adf2a3b203",
+            "headline": "Microsoft Just Cut 4,800 Jobs to Pay for AI. Its 20,000 Indi"
+          }
+        ],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/unusual_whales/status/1941523697285128192",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Official poster for The Odyssey (2026)",
-          "reason": "The poster is relevant to the film premiere story."
+          "what_photo_shows": "Microsoft campus in Redmond, Washington",
+          "reason": "The photo shows the Microsoft campus, relevant to the story about Microsoft layoffs."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DacT-QCtJlJ/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the premiere of 'The Odyssey' or Christopher Nolan's visit to India."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's topic as it is a poster for a different film, 'The Odyssey', which is not the focus of the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects well with the diaspora by highlighting the global release and the significance of the premiere for NRIs."
+          "quality": 8,
+          "note": "The article effectively addresses the concerns of Indian H-1B workers, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with a relevant image from 'The Odyssey' premiere or Christopher Nolan's visit to India.",
-          "Provide a more relevant social media embed that connects directly to the film or its premiere."
+          "Consider adding quotes from affected individuals or immigration experts to enhance the human element of the story.",
+          "Include more statistics or data on the impact of layoffs on the Indian tech community specifically."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DacT-QCtJlJ/",
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
