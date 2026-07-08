@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T20:15:24.049714+00:00",
+  "timestamp": "2026-07-08T21:15:28.046973+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c18d45c9-757f-4e65-80b1-4fb9ade687fe",
-      "headline": "She Opened a Door for One Immigrant. It Cost Her a Career, a Home, and a Year of Silence",
-      "slug": "dugan-sentencing-milwaukee-ice-immigration-enforcement-20260708",
+      "id": "0ec6bbdf-6431-4d6f-b820-e7acc19ab6d7",
+      "headline": "An Intel-Backed Chipmaker Just Filed to Go Public. It Thinks the AI Race Ends on Your Wrist, Not in a Data Centre.",
+      "slug": "syntiant-ipo-edge-ai-chip-intel-nasdaq-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Federal Building and U.S. Courthouse",
-          "reason": "The photo shows the courthouse where the sentencing occurred."
+          "what_photo_shows": "AI processor chip",
+          "reason": "The photo shows an AI processor chip relevant to the semiconductor story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of a federal building is relevant but does not directly depict the courtroom or the specific incident discussed."
+          "issue": "The image does not directly relate to the specific topic of AI chips or the company Syntiant."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Dugan case to the broader implications for Indian Americans navigating the immigration system."
+          "note": "The article effectively connects the topic to NRI engineers and investors, highlighting their roles in the semiconductor industry."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more direct quote or perspective from Indian Americans affected by immigration policies to enhance the diaspora angle.",
-          "Add a brief section summarizing the potential implications of this case on future immigration policies, particularly for Indian immigrants."
+          "Consider using a more relevant image that depicts AI chips or technology to enhance visual alignment with the article's content.",
+          "Expand on the implications of Syntiant's technology for the Indian semiconductor market to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5a2f7f3d-0485-4a9e-bb95-e92cce2ea6fc",
-      "headline": "An Op-Ed Just Called Indian Doctors a Fraud Risk. Rural America Cannot Afford to Lose Them",
-      "slug": "indian-doctors-fraud-narrative-img-rural-healthcare-20260708",
+      "id": "4da5d4f3-eced-4e50-9973-e08074e0b2b2",
+      "headline": "India's AI Jobs Just Grew 16 Per Cent While Overall IT Hiring Shrank. The Industry's Two-Speed Future Is Here.",
+      "slug": "india-ai-hiring-boom-it-jobs-shrink-naukri-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Medical professionals in a hospital setting",
-          "reason": "The photo aligns with the topic of doctors and healthcare."
+          "what_photo_shows": "software developers working at computers",
+          "reason": "The photo shows software developers, which aligns with the tech sector focus of the story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +74,61 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of Indian doctors or healthcare."
+          "issue": "The image is relevant to the tech theme but does not specifically represent AI or job growth."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the op-ed on Indian American physicians, making it relevant to the diaspora."
+          "quality": 9,
+          "note": "The article effectively connects the implications of AI job growth in India to the career prospects of Indian-origin tech workers in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a more relevant image that depicts Indian doctors or healthcare settings.",
-          "Include quotes or perspectives from Indian doctors in the U.S. to enhance the diaspora connection."
+          "Consider using an image that more directly represents AI or job growth in the tech sector.",
+          "Add more data or quotes from industry experts to strengthen the analysis of the impact on the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c11f844c-d78d-412a-980d-30ed2fe3f3ed",
+      "headline": "Synopsys Just Killed the Software That Runs Chip Factories. It Wants to Design the Chips Instead.",
+      "slug": "synopsys-kills-fab-software-ai-chip-design-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "semiconductor fabrication equipment",
+          "reason": "The photo subject aligns with the semiconductor story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the semiconductor industry but does not specifically depict chip factories or AI design."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications for Indian engineers and the semiconductor industry in India, making it relevant for the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how Indian engineers are adapting to the shift towards AI chip design.",
+          "Consider adding quotes or insights from industry experts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
