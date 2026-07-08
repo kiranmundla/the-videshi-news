@@ -141,9 +141,25 @@ function formatAuthorFromSources(raw: unknown): string {
 function extractNames(parsed: unknown): string {
   if (Array.isArray(parsed)) {
     const names = parsed
-      .map((s: any) => (typeof s === "string" ? s : s?.name ?? ""))
+      .map((s: any) => {
+        const val = typeof s === "string" ? s : s?.name ?? "";
+        if (!val) return "";
+        // If it looks like a URL, extract a clean domain name
+        if (/^https?:\/\//i.test(val)) {
+          try {
+            const host = new URL(val).hostname.replace(/^www\./, "");
+            // Capitalize nicely: "ianslive.in" → "ianslive.in"
+            return host;
+          } catch {
+            return "";
+          }
+        }
+        return val;
+      })
       .filter(Boolean);
-    return names.length > 0 ? names.join(", ") : "Diaspora Desk";
+    // Dedupe domains (same source may appear multiple times)
+    const unique = [...new Set(names)];
+    return unique.length > 0 ? unique.join(", ") : "Diaspora Desk";
   }
   if (typeof parsed === "object" && parsed !== null && "name" in (parsed as any)) {
     return (parsed as any).name || "Diaspora Desk";
