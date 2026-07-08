@@ -63,35 +63,6 @@
       "family": "upbeat-celebration"
     },
     {
-      "filename": "upbeat-celebration-festival.mp3",
-      "category": "upbeat-celebration",
-      "mood": "festive, energetic, happy, celebratory",
-      "duration_s": 160,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "sports",
-        "entertainment",
-        "festivals"
-      ],
-      "variants": {
-        "15s": "upbeat-celebration-festival-15s.mp3",
-        "30s": "upbeat-celebration-festival-30s.mp3"
-      },
-      "mood_tags": [
-        "festive",
-        "energetic",
-        "happy",
-        "celebratory"
-      ],
-      "energy": 5,
-      "tempo": "upbeat",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "upbeat-celebration"
-    },
-    {
       "filename": "cinematic-epic-hollywood-trailer.mp3",
       "category": "cinematic-epic",
       "mood": "dramatic, building, powerful, cinematic",
@@ -1198,38 +1169,6 @@
         "30s": "cinematic-epic-killers-30s.mp3"
       },
       "family": "cinematic-epic"
-    },
-    {
-      "filename": "breaking-news-investigations.mp3",
-      "category": "breaking-news",
-      "mood": "urgent, investigative, tense, driving, news",
-      "mood_tags": [
-        "urgent",
-        "investigative",
-        "tense",
-        "driving",
-        "news"
-      ],
-      "energy": 4,
-      "tempo": "driving",
-      "has_vocals": false,
-      "duration_s": 94,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "news",
-        "investigative",
-        "markets & finance",
-        "breaking"
-      ],
-      "variants": {
-        "15s": "breaking-news-investigations-15s.mp3",
-        "30s": "breaking-news-investigations-30s.mp3"
-      },
-      "family": "breaking-news"
     },
     {
       "filename": "breaking-news-newer-wave.mp3",
