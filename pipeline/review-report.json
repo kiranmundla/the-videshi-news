@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T12:15:21.648063+00:00",
+  "timestamp": "2026-07-08T13:15:33.422164+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a271cbdf-8124-4fd1-8577-059e031534cb",
-      "headline": "India Just Received a Record $145 Billion From Its Diaspora. For the First Time, America Sent the Most.",
-      "slug": "india-remittance-record-145-billion-america-largest-source-20260708",
+      "id": "1fe19393-30a3-4624-8019-dbee255bbea6",
+      "headline": "Apple Just Lost Its Biggest European Court Battle. India's Antitrust Watchdog Is Taking Notes.",
+      "slug": "apple-eu-dma-court-loss-india-antitrust-cci-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee currency notes",
-          "reason": "The photo of Indian rupees is relevant to a story about remittances to India."
+          "what_photo_shows": "Apple CEO Tim Cook",
+          "reason": "The photo shows Tim Cook, relevant to Apple's court battle."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to remittances or the diaspora theme."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the financial ties and remittance patterns of the Indian diaspora, particularly in the US."
+          "quality": 8,
+          "note": "The article effectively connects the EU ruling to the Indian context, highlighting implications for Indian developers and the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents remittances or the diaspora theme more directly.",
-          "Add a quote or perspective from a member of the diaspora to enhance the personal connection."
+          "Consider adding more direct quotes from Indian developers or industry experts to enhance the diaspora perspective.",
+          "Include a brief overview of the implications for Indian consumers as well, to broaden the article's appeal."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,71 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c391374d-6c3b-46d3-962c-27cf93e4c0c7",
-      "headline": "Three Hundred and Fifty Thousand Indian New Zealanders Are About to Meet a Prime Minister Who Took Forty Years to Arrive",
-      "slug": "nz-indian-diaspora-modi-visit-40-years-350000-20260708",
+      "id": "00d8109f-65ca-401c-8316-e1720882f959",
+      "headline": "China Just Called Anthropic's Claude Code a Security Threat. Alibaba Already Banned It.",
+      "slug": "china-claude-code-backdoor-alibaba-ban-india-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "89a1a733-5ea5-4244-b5b4-2720250c73da",
+            "headline": "Anthropic Is Worth More Than OpenAI. Its Trillion-Dollar IPO"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Auckland skyline with Sky Tower",
-          "reason": "The photo shows Auckland, relevant to the Indian New Zealander diaspora story."
+          "what_photo_shows": "man speaking at an event",
+          "reason": "The photo plausibly shows Dario Amodei, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Dario Amodei is somewhat relevant as he is associated with Anthropic, but it does not directly illustrate the security threat aspect discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the implications of the security threat to Indian developers, making it highly relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the security threat or the implications for Indian developers.",
+          "Add more context or quotes from Indian developers or industry experts to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6dc026f0-224b-4dc2-bf12-9d3f653b2af4",
+      "headline": "Washington Just Cleared GPT-5.6 for the World. Here's What Indian Developers Get on Thursday.",
+      "slug": "openai-gpt56-sol-launch-india-developers-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3f4bbba1-5eef-4879-a39f-13a0728de56f",
+            "headline": "Sam Altman Offered Washington 5% of OpenAI. The Government W"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sam Altman in a meeting",
+          "reason": "The photo shows Sam Altman, relevant to the OpenAI story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +127,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the article's subject matter about the Indian diaspora in New Zealand or the Prime Minister's visit."
+          "issue": "The image features Sam Altman, which is relevant to the topic of AI and OpenAI, but it does not directly relate to the specific launch of GPT-5.6."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of the Indian diaspora in New Zealand and their perspectives on the Prime Minister's visit."
+          "quality": 8,
+          "note": "The article discusses the implications of AI developments for Indian developers and engineers, making it relevant for the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts the Indian community in New Zealand or the Prime Minister's visit.",
-          "Add quotes or anecdotes from more community members to enhance the personal connection to the diaspora experience."
+          "Include more direct quotes or insights from Indian developers to enhance the diaspora connection.",
+          "Consider adding a section on how Indian startups specifically plan to leverage GPT-5.6."
         ],
         "verdict": "pass"
       },
