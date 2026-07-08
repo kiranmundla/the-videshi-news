@@ -1,248 +1,15 @@
 {
-  "timestamp": "2026-07-08T17:16:20.351758+00:00",
+  "timestamp": "2026-07-08T17:45:20.718957+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "4abdcab7-5472-49a7-a097-20a0cb6c6825",
-      "headline": "The Government Says Satluj Bypassed the Censor Board. The Real Story Is Messier.",
-      "slug": "satluj-government-panel-cbfc-bypass-diljit-dosanjh-censorship-ott-freedom-nri-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3ad94382-5b59-494e-8eaa-d436d14ee821",
-            "headline": "He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anywa"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a turban and suit",
-          "reason": "The photo plausibly shows Diljit Dosanjh, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/Daa0OWlvcua/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the film *Satluj* or its controversy."
-          },
-          {
-            "url": "https://www.instagram.com/reel/DaZq1M_ujPC/",
-            "problem": "irrelevant",
-            "explanation": "The second Instagram reel also does not seem to connect to the film's subject matter or the issues discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Diljit Dosanjh is relevant to the article, but it does not depict a scene or context from the film *Satluj*, which could enhance the connection."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's availability to the diaspora, highlighting the significance of the content for NRIs with ties to Punjab."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embeds with content that directly relates to the film or its themes.",
-          "Consider adding a quote or statement from a diaspora viewer to further strengthen the connection to the NRI audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/Daa0OWlvcua/",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaZq1M_ujPC/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "26610d25-7f9d-4a65-9a81-16714e7889b8",
-      "headline": "Spider-Man Just Broke India's Advance Booking Records. But Nolan Got to IMAX First.",
-      "slug": "spider-man-brand-new-day-india-advance-booking-lakh-tickets-imax-lockout-tom-holland-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A close-up portrait of actor Tom Holland.",
-          "reason": "The photo clearly shows Tom Holland, who is the subject of the headline regarding Spider-Man's advance booking records."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Tom Holland does not directly relate to the article's focus on Spider-Man's box office performance and the IMAX situation."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's release to NRI audiences, highlighting the reversal of release patterns and the availability of Hindi-dubbed prints."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to the Spider-Man film or its box office success.",
-          "Add more context or quotes from industry experts to enhance the analysis of the box office competition."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "149b1972-24c6-47dc-abf5-6928afac066a",
-      "headline": "Everyone Wants Indian Tourists \u2014 32.7 Million Trips and $55 Billion Says Why",
-      "slug": "india-outbound-tourism-boom-global-competition-nri-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "passengers at airport departure board",
-          "reason": "The photo aligns with the tourism and travel theme of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the benefits of increased tourism competition to NRIs, highlighting practical advantages such as better travel options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can benefit from the changes in tourism policies.",
-          "Add a concluding section summarizing the implications for both Indian tourists and the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fbbd750e-8dc2-4159-a77a-5046b4ff97ee",
-      "headline": "Thailand Just Cut Visa-Free Stays Back to 30 Days \u2014 What NRIs Need to Know",
-      "slug": "thailand-visa-30-days-india-nri-travel-advisory-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bangkok skyline with Thai architecture",
-          "reason": "The photo shows Bangkok, relevant to a Thailand visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the concerns of NRIs traveling to Thailand, particularly those holding Indian passports."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a brief section on how these changes might affect travel plans for NRIs specifically, such as potential impacts on family visits or business trips.",
-          "Add a comparison with visa policies of other popular destinations for NRIs to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "00c9024f-91c8-45dc-833b-3ef7147d0f1d",
-      "headline": "Air India Is Reviewing Route Restorations \u2014 and Slashing Fuel Surcharges by $80",
-      "slug": "air-india-route-restoration-fuel-surcharge-cut-nri-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air India Airbus A350-941",
-          "reason": "The photo shows an Air India aircraft, relevant to the aviation story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the impact of Air India's changes on NRIs, particularly regarding fuel surcharges and travel routes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from NRI travelers or travel experts to enhance the diaspora perspective.",
-          "Include a brief section on how these changes might affect travel plans for NRIs during peak seasons."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "99b5af3b-d05e-4ec3-b06d-b5673966ea53",
       "headline": "Messi in Tears After Argentina's Three-Goal Comeback Stuns Egypt in 13 Frantic Minutes",
@@ -255,7 +22,7 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "soccer match with Argentina and Egypt",
-          "reason": "The photo shows a soccer match involving Argentina, which aligns with the story topic."
+          "reason": "The photo shows a soccer match involving Argentina, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -274,8 +41,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Egyptian players or fans to provide a more balanced perspective on the match.",
-          "Include more context about the significance of the World Cup for both Argentina and Egypt to enhance the narrative."
+          "Consider adding more quotes from players or fans to enhance emotional engagement.",
+          "Include a brief overview of Argentina's journey in the tournament for context."
         ],
         "verdict": "pass"
       },
@@ -307,7 +74,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Jofra Archer is relevant as he played a key role in the match, but it does not depict the broader context of the match or the Indian team."
+          "issue": "The image of Jofra Archer is relevant as he played a significant role in the match, but it does not directly represent the overall theme of India's collapse."
         },
         "diaspora_angle": {
           "present": true,
@@ -317,7 +84,7 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more quotes from players or analysts to enhance the narrative.",
+          "Consider including more direct quotes from players or analysts to enhance the narrative.",
           "Add a brief historical context about India's performance in T20Is to enrich the analysis."
         ],
         "verdict": "pass"
