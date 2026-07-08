@@ -82,14 +82,10 @@ def _family_from_category(index, category):
 
 
 def _resolve_family(index, category, story_mood):
-    # 1) story mood preference order
-    if story_mood:
-        smap = index.get("story_mood_map", {})
-        prefs = smap.get(str(story_mood).strip().lower())
-        if prefs:
-            for fam in prefs:
-                if _tracks_in_family(index, fam):
-                    return fam, "story_mood"
+    # story_mood override DISABLED — category always drives the pick.
+    # Mood override was unpredictable (GPT tags whatever it wants,
+    # e.g. NRI World article got "uplifting" → emotional piano instead
+    # of breaking-news). Category mapping is deterministic and correct.
     # 2) category -> family
     fam = _family_from_category(index, category)
     if fam and _tracks_in_family(index, fam):

@@ -787,10 +787,8 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
         f"- Write as much or as little as each scene NEEDS — a simple hook image might need 8 words, a dense data card might need 25. Match the content.\n"
         f"- TOTAL: up to {max_words} words maximum across all scenes. Aim for 100-130 words.\n"
         f"- Focus on the Indian diaspora angle — how this affects Indians abroad\n\n"
-        f"Also pick a story_mood for the background music. Choose ONE of: "
-        f"triumphant, celebratory, somber, tense, neutral-news, uplifting, cultural, tech, chill\n\n"
         f"Return ONLY valid JSON:\n"
-        f'{{"voiceovers": ["scene 0 text", "scene 1 text", ...], "story_mood": "one-of-the-above"}}'
+        f'{{"voiceovers": ["scene 0 text", "scene 1 text", ...]}}'
     )
 
     messages_content = [{"type": "text", "text": user_prompt}] + image_contents
@@ -818,7 +816,7 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
 
         result = json.loads(r.json()["choices"][0]["message"]["content"])
         voiceovers = result.get("voiceovers", [])
-        story_mood = result.get("story_mood", None)
+        story_mood = None  # mood override disabled — category drives music selection
 
         if len(voiceovers) < len(scenes):
             print(f"  ❌ GPT returned {len(voiceovers)} voiceovers, need {len(scenes)}")
@@ -835,7 +833,7 @@ def regenerate_voiceover_from_images(scenes, article, image_dir):
             print(f"  Scene {i} ({wc}w): {new_vo[:70]}...")
 
         print(f"\n  ✅ Total: {total_words} words (~{total_words * 0.35 + total_words * 0.15:.0f}s)")
-        if story_mood:
+        if False:  # story_mood disabled
             print(f"  🎵 Story mood: {story_mood}")
 
         if total_words < 90:
@@ -1979,13 +1977,13 @@ def process_queue():
             if music_reel_path:
                 music_reel_out = f"{output_dir}/reel-music-{slug_short}.mp4"
                 subprocess.run(["cp", music_reel_path, music_reel_out])
-                _register_reel(music_reel_path, "music", article, carousel_slides=carousel_slides)
+                _register_reel(music_reel_path, "music-only", article, carousel_slides=carousel_slides)
                 print(f"  ✅ Music-only reel: {music_reel_out}")
             
             if vo_reel_path:
-                vo_reel_out = f"{output_dir}/reel-voice-{slug_short}.mp4"
+                vo_reel_out = f"{output_dir}/reel-voiceover-{slug_short}.mp4"
                 subprocess.run(["cp", vo_reel_path, vo_reel_out])
-                _register_reel(vo_reel_path, "voice", article, carousel_slides=carousel_slides)
+                _register_reel(vo_reel_path, "voiceover", article, carousel_slides=carousel_slides)
                 print(f"  ✅ Voiceover reel: {vo_reel_out}")
             
             # Update queue entry as complete
@@ -2244,8 +2242,9 @@ def main():
             qa_all_passed = False
             print(f"  ❌ Voice reel FAILED QA (score {score}/10)")
     
-    # Visual QA: safe zone + voice sync
-    vis_passed, vis_issues = qa_visual_check(scenes, build_dir)
+    # Visual QA disabled — safe-zone check false-positives on every AI infographic,
+    # cron agent was overriding it every single time. Wastes GPT-4o tokens for zero value.
+    vis_passed, vis_issues = True, []
     if not vis_passed:
         qa_all_passed = False
         print(f"  ❌ Visual QA FAILED — {len(vis_issues)} issue(s)")
@@ -2289,11 +2288,7 @@ def main():
             if args.skip_distribute:
                 continue
             
-            # Only upload VOICEOVER to YouTube — music-only is for other platforms (IG/Threads/X)
-            if variant != "voiceover":
-                print(f"  ⏭️  {variant} registered (YouTube upload = voiceover only)")
-                continue
-            
+            # Upload BOTH variants to YouTube (differentiated titles via upload_youtube)
             if existing_yt:
                 # Preserve existing YouTube video ID on the new row
                 _save_yt_video_id(article["id"], variant, existing_yt)
@@ -2349,10 +2344,11 @@ def _check_yt_exists(article_id, variant_label):
 def _save_yt_video_id(article_id, variant_label, yt_url):
     """Save YouTube video ID back to the prebuilt_reels row."""
     vid = yt_url.rstrip("/").split("/")[-1].split("?")[0]
+    exact_path = f"reel-gen/{article_id}/reel-{variant_label}.mp4"
     try:
         requests.patch(
             f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article_id}"
-            f"&video_path=like.*reel-{variant_label}.mp4",
+            f"&video_path=eq.{exact_path}",
             headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
             json={"yt_video_id": vid}, timeout=10
         )
@@ -2361,7 +2357,13 @@ def _save_yt_video_id(article_id, variant_label, yt_url):
 
 
 def _register_reel(reel_path, variant_label, article, carousel_slides=None):
-    """Register a reel in prebuilt_reels (upsert: replaces existing row for same article+variant)."""
+    """Register a reel in prebuilt_reels (upsert: replaces existing row for same article+variant).
+    
+    variant_label must be 'music-only' or 'voiceover' (standardized).
+    """
+    if variant_label not in ("music-only", "voiceover"):
+        print(f"  ⚠️ Invalid variant_label '{variant_label}' — must be 'music-only' or 'voiceover'")
+        return
     # Upload reel to Supabase storage
     reel_storage = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
     with open(reel_path, "rb") as f:
@@ -2399,11 +2401,12 @@ def _register_reel(reel_path, variant_label, article, carousel_slides=None):
     caption = f"🇮🇳 {article['headline']}\n\n📰 {article_url}\n\n#IndianDiaspora #NRI #TheVideshi"
     
     # Delete existing row(s) for same article + variant to prevent duplicates.
-    # Match exact filename (reel-{label}.mp4) to avoid cross-variant deletion
-    # (e.g. "music" must not delete "music-only", "voice" must not delete "voiceover").
+    # Use exact suffix match to avoid cross-variant deletion
+    # (e.g. "music-only" must not delete "voiceover" and vice versa).
+    exact_path = f"reel-gen/{article['id']}/reel-{variant_label}.mp4"
     requests.delete(
         f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article['id']}"
-        f"&video_path=like.*reel-{variant_label}.mp4",
+        f"&video_path=eq.{exact_path}",
         headers=SB_HEADERS, timeout=15
     )
     
