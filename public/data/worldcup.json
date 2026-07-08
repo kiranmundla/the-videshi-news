@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-07T23:59:19Z",
+  "last_updated": "2026-07-08T01:59:38Z",
   "stage": "Quarterfinals — 96 of 100 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2520,7 +2520,9 @@
           "time": "16:00",
           "tz": "ET",
           "venue": "BC Place, Vancouver",
-          "status": "scheduled"
+          "status": "FT (Pen.)",
+          "score": "0-0 (4-3 pen.)",
+          "winner": "Switzerland"
         }
       ]
     },
@@ -2572,8 +2574,8 @@
           "status": "scheduled",
           "home": "Argentina",
           "home_code": "ARG",
-          "away": "Switzerland/Colombia",
-          "away_code": "TBD"
+          "away": "Switzerland",
+          "away_code": "SUI"
         }
       ]
     },
@@ -9035,6 +9037,48 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DagSrQPitZa/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02XuVqAWCX8fnonfEvqnd5qxbM6hnP9GS8TzArPEn3BZmqdAJEomKShBxuyYkFsJrql",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02XJsvFVb4gLdaGhaptqFT3Q2xMhKMZkHmzqJZ2p5T3XkPCBDruXsp3vcfo1WSss45l",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02yFgfv45egYAkJdPQ6Q19Un3i4YheYP3wka1msH1h4nokt9F4io2ivkDVaRrgNuFBl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02jdmUevSfwrxkzqdwrsx8pCVQ69Fs3jY5fHwTVakSGnFKSx5RSFvJEZm1EhJMA3hRl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0MizwouFGsKNYBkCskMS8PLBKnN6Qn2NrqF5HMkmn4tXHfqAJeBKcwF7Uio6GA7wml",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0v2HF4GDTC5m7VajdwLsVto5RuMLvvnfKeVj5Jn881gazaNx5rxejLAa17hex1snjl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-07"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaeV4xglrsZ",
       "account": "@fifaworldcup",
       "date": "2026-07-07"
     }
