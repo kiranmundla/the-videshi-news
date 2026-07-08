@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T16:15:38.204521+00:00",
+  "timestamp": "2026-07-08T16:45:31.539184+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "fab3f19d-1b9e-44a6-9e16-7c456bfb7aa5",
-      "headline": "Sensex Crashes 1,677 Points as Trump Declares Iran Deal 'Over' \u2014 Oil Surges, Rupee Hits One-Month Low",
-      "slug": "sensex-crash-1677-points-trump-iran-deal-over-oil-surge-rupee-nri-investor-july-20260708",
+      "id": "def6fcfc-9f9a-452f-9c6d-0e2524c2bac0",
+      "headline": "Indian Markets Just Had Their Worst Day in Months. The Rupee Hit a One-Month Low. Every Sector Bled Red.",
+      "slug": "indian-markets-sensex-nifty-crash-rupee-slumps-trump-iran-deal-over-oil-surge-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,13 +21,17 @@
           {
             "article_id": "b4b3b27b-1dd5-4c90-a5c3-1e90aeb72a38",
             "headline": "India's Private Banks Just Posted Their Strongest Quarter in"
+          },
+          {
+            "article_id": "fab3f19d-1b9e-44a6-9e16-7c456bfb7aa5",
+            "headline": "Sensex Crashes 1,677 Points as Trump Declares Iran Deal 'Ove"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Sensex story."
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Indian markets story."
         },
         "inline_image_mismatches": []
       },
@@ -40,57 +44,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of global events on Indian markets, which is relevant to NRIs concerned about economic conditions in India."
+          "quality": 8,
+          "note": "The article effectively connects the market situation to NRI investors, discussing the impact on their investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or insights from Indian diaspora investors to strengthen the connection to NRI readers.",
-          "Add a brief section on how these market changes could affect NRIs financially or in terms of investments."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a8de3a2a-f74c-41dd-ae8b-c26b26b6c5cd",
-      "headline": "A Single 'Polypill' Cut Heart Failure Hospitalizations by 60 Percent in a Landmark Trial \u2014 and It Could Reshape How Millions Manage the Disease",
-      "slug": "polypill-heart-failure-poly-hf-trial-60-percent-fewer-hospitalizations-pandey-south-asian-cardiovascular-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "clinician with ECG, stethoscope, tablets",
-          "reason": "The photo's medical theme aligns with the cardiology story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the implications of the polypill for the South Asian community, making a strong connection to diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from patients or healthcare professionals to provide personal insights.",
-          "Include more statistics or data on heart disease prevalence in the South Asian diaspora to strengthen the argument."
+          "Consider adding more direct quotes from financial analysts or experts to enhance credibility.",
+          "Include a brief overview of potential future market trends or recovery strategies for investors."
         ],
         "verdict": "pass"
       },
@@ -113,7 +74,7 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "soccer match with Argentina and Egypt",
-          "reason": "The photo shows a soccer match involving Argentina, which aligns with the story topic."
+          "reason": "The photo shows a soccer match involving Argentina, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -127,13 +88,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with diaspora fans by highlighting upcoming matches in the U.S. and the significance of Argentina's performance."
+          "note": "The article connects well with diaspora fans by highlighting upcoming matches in the U.S. and the significance of Argentina's victory."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or fans to enhance emotional engagement.",
-          "Include a brief analysis of how this match impacts Argentina's chances in the tournament."
+          "Consider adding quotes from Egyptian players or fans to provide a more balanced perspective on the match.",
+          "Include more context about the significance of this match in World Cup history for a deeper analysis."
         ],
         "verdict": "pass"
       },
@@ -165,18 +126,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Jofra Archer is relevant to the article, but it would be better if it featured Indian players or a broader context of the match."
+          "issue": "The image of Jofra Archer is relevant to the article, but it would be more impactful to have an image related to the match or the Indian team."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the match's outcome to the Indian diaspora, highlighting the emotional impact on fans worldwide."
+          "note": "The article effectively connects the match's outcome to the feelings of the Indian diaspora, highlighting their emotional investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from players or coaches to enhance the narrative.",
-          "Add a brief analysis of what this loss means for India's future in T20 cricket."
+          "Consider including a more relevant image that captures the essence of the match or the Indian team's performance.",
+          "Add quotes or reactions from diaspora fans to enhance the connection with the audience."
         ],
         "verdict": "pass"
       },
