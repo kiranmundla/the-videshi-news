@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T18:15:45.686120+00:00",
+  "timestamp": "2026-07-08T18:45:22.982295+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,135 +10,6 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "2d3f306b-d8c7-4f40-b510-0ce7c963b60b",
-      "headline": "Vada Pav, Misal Pav and a Full Bar: An Indian Family Is Betting Columbus Wants the Real Mumbai Experience",
-      "slug": "bombay-house-columbus-ohio-mumbai-street-food-kondhare-family-opening-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Vada pav with chutney and chili",
-          "reason": "The photo shows vada pav, which is relevant to the story about Mumbai street food."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with the NRI audience by discussing the evolution of Indian dining in the U.S. and the cultural significance of the dishes."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or anecdotes from local Indian community members to enhance the diaspora connection.",
-          "Include more details about the opening date and any special events planned for the launch to engage readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cbdc4481-742f-4112-827d-cdccfc9af68f",
-      "headline": "A Two-Year-Old Indian Restaurant in Small-Town Michigan Is Competing for a World Culinary Award",
-      "slug": "kts-rasoi-st-joseph-michigan-world-culinary-awards-north-america-best-indian-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "plate of Hyderabadi chicken dum biryani",
-          "reason": "The photo shows a dish relevant to the restaurant's cuisine."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the restaurant's nomination to the broader Indian diaspora experience, highlighting the importance of authentic Indian cuisine beyond major cities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from customers or local community members to enhance the narrative.",
-          "Include more details about the voting process and how the diaspora can participate."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5155deb3-58c8-47ce-9dd2-f3c7ba191e7c",
-      "headline": "From Chicago's Michelin List to Hudson Yards: Indienne Brings Progressive Indian Fine Dining to New York",
-      "slug": "indienne-sujan-sarkar-michelin-indian-fine-dining-hudson-yards-new-york-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Elegantly plated Indian fine dining dish",
-          "reason": "The photo shows a fine dining Indian dish, matching the story about Indian fine dining."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not specifically depict Indian cuisine or the restaurant, which could enhance relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the restaurant's significance to the NRI community, highlighting the evolution of Indian cuisine in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a quote from Sujan Sarkar or a customer to add a personal touch.",
-          "Add more details about the ambiance or design of the restaurant to give readers a fuller picture."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "99b5af3b-d05e-4ec3-b06d-b5673966ea53",
       "headline": "Messi in Tears After Argentina's Three-Goal Comeback Stuns Egypt in 13 Frantic Minutes",
@@ -165,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with diaspora fans by highlighting upcoming matches in the U.S. and the significance of Argentina's performance."
+          "note": "The article connects well with diaspora fans by highlighting upcoming matches in the US and the significance of Argentina's performance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or coaches to enhance emotional engagement.",
-          "Include a brief overview of the significance of this match in the context of the World Cup history."
+          "Consider adding more quotes from players or fans to enhance emotional engagement.",
+          "Include a brief analysis of what this comeback means for Argentina's World Cup journey."
         ],
         "verdict": "pass"
       },
@@ -202,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Jofra Archer is relevant to the article, but it would be better if it featured a broader context of the match or included Indian players."
+          "score": 5,
+          "issue": "image does not feature relevant players"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match's outcome to the feelings of Indian fans globally, making it relatable for the diaspora."
+          "quality": 7,
+          "note": "The article connects well with the diaspora by mentioning Indian fans globally and their emotional investment in the match."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or reactions from Indian fans in the diaspora to enhance the emotional connection.",
-          "Add a brief analysis of what this loss means for India's future in T20 cricket, especially in relation to the upcoming World Cup."
+          "Consider using an image that features key players from the match, such as Jofra Archer or Josh Tongue, to better match the article's content.",
+          "Add more context about the significance of the match for the Indian diaspora, perhaps by including quotes or reactions from fans."
         ],
         "verdict": "pass"
       },
