@@ -1037,7 +1037,9 @@ def select_music(article, build_dir, story_mood=None):
         print(f"  ⚠️ Music selector failed ({e}), using default")
         # Fallback: pick first available track
         music_dir = os.path.join(PIPELINE_DIR, "music")
-        tracks = [f for f in os.listdir(music_dir) if f.endswith(".mp3")]
+        # Fallback: pick first full-length track (skip 15s/30s variants)
+        tracks = [f for f in os.listdir(music_dir) 
+                  if f.endswith(".mp3") and "-15s" not in f and "-30s" not in f and "-20s" not in f]
         if tracks:
             music_path = os.path.join(music_dir, tracks[0])
             attribution = ""
@@ -1072,6 +1074,41 @@ def select_music(article, build_dir, story_mood=None):
             print(f"  ⚠️ Normalization failed, using original track")
     except Exception as e:
         print(f"  ⚠️ Normalization error ({e}), using original track")
+    
+    # Safety check: ensure music track is at least 40s (enough for any reel)
+    try:
+        dur_check = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "default=noprint_wrappers=1:nokey=1", music_path],
+            capture_output=True, text=True, timeout=10
+        )
+        music_dur = float(dur_check.stdout.strip())
+        if music_dur < 40:
+            print(f"  ⚠️ Music track too short ({music_dur:.0f}s), finding a longer one...")
+            music_dir = os.path.join(PIPELINE_DIR, "music")
+            full_tracks = [f for f in os.listdir(music_dir) 
+                           if f.endswith(".mp3") and "-15s" not in f and "-30s" not in f and "-20s" not in f]
+            for ft in full_tracks:
+                ft_path = os.path.join(music_dir, ft)
+                ft_dur = float(subprocess.run(
+                    ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                     "-of", "default=noprint_wrappers=1:nokey=1", ft_path],
+                    capture_output=True, text=True, timeout=10
+                ).stdout.strip())
+                if ft_dur >= 40:
+                    music_path = ft_path
+                    print(f"  ✅ Switched to {ft} ({ft_dur:.0f}s)")
+                    # Re-normalize
+                    norm_result = subprocess.run(
+                        ["ffmpeg", "-y", "-i", music_path, "-af", "loudnorm=I=-10:TP=-1:LRA=7",
+                         "-ar", "44100", "-b:a", "192k", normalized_path],
+                        capture_output=True, text=True, timeout=60
+                    )
+                    if norm_result.returncode == 0:
+                        music_path = normalized_path
+                    break
+    except Exception as e:
+        print(f"  ⚠️ Music duration check skipped ({e})")
     
     # Upload music
     music_name = os.path.basename(music_path)

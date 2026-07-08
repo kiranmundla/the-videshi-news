@@ -29,7 +29,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "upbeat-celebration"
     },
     {
       "filename": "upbeat-celebration-celebration.mp3",
@@ -58,7 +59,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "upbeat-celebration"
     },
     {
       "filename": "upbeat-celebration-festival.mp3",
@@ -86,7 +88,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "upbeat-celebration"
     },
     {
       "filename": "cinematic-epic-hollywood-trailer.mp3",
@@ -115,7 +118,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "cinematic-epic"
     },
     {
       "filename": "cinematic-epic-risk.mp3",
@@ -144,7 +148,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "cinematic-epic"
     },
     {
       "filename": "cinematic-epic-total-war-epic-action-cinematic-trailer-main.mp3",
@@ -173,7 +178,8 @@
       "tempo": "driving",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "cinematic-epic"
     },
     {
       "filename": "breaking-news-background.mp3",
@@ -202,7 +208,8 @@
       "tempo": "driving",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "breaking-news"
     },
     {
       "filename": "breaking-news-breaking-news.mp3",
@@ -231,7 +238,8 @@
       "tempo": "driving",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "breaking-news"
     },
     {
       "filename": "pixabay-breaking-full.mp3",
@@ -260,7 +268,8 @@
       "tempo": "driving",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "breaking-news"
     },
     {
       "filename": "tech-corporate-technology.mp3",
@@ -289,7 +298,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "tech-corporate"
     },
     {
       "filename": "tech-corporate-presentation.mp3",
@@ -318,7 +328,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "tech-corporate"
     },
     {
       "filename": "emotional-inspiring-cinematic.mp3",
@@ -347,7 +358,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "emotional-inspiring"
     },
     {
       "filename": "emotional-inspiring-emotional-uplifting.mp3",
@@ -376,7 +388,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "emotional-inspiring"
     },
     {
       "filename": "emotional-inspiring-inspiring-uplifting.mp3",
@@ -405,7 +418,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "emotional-inspiring"
     },
     {
       "filename": "emotional-inspiring-uplifting-piano.mp3",
@@ -435,7 +449,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "emotional-inspiring"
     },
     {
       "filename": "indian-classical-diwali-festival.mp3",
@@ -465,7 +480,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "indian-classical"
     },
     {
       "filename": "indian-classical-free-soul-sitar.mp3",
@@ -494,7 +510,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "indian-classical"
     },
     {
       "filename": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi.mp3",
@@ -523,7 +540,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "indian-classical"
     },
     {
       "filename": "indian-beat.mp3",
@@ -553,7 +571,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "indian-classical"
     },
     {
       "filename": "indian-flute.mp3",
@@ -583,7 +602,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "indian-classical"
     },
     {
       "filename": "indian-lofi-bg.mp3",
@@ -612,7 +632,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "indian-classical"
     },
     {
       "filename": "chill-lifestyle-rain-bliss.mp3",
@@ -641,7 +662,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "chill-lifestyle"
     },
     {
       "filename": "chill-lifestyle-lofi-study.mp3",
@@ -670,7 +692,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "chill-lifestyle"
     },
     {
       "filename": "chill-lifestyle-lifestyle.mp3",
@@ -698,7 +721,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "chill-lifestyle"
     },
     {
       "filename": "chill-lifestyle-sweet-life-luxury-chill.mp3",
@@ -727,7 +751,8 @@
       "tempo": "slow",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "chill-lifestyle"
     },
     {
       "filename": "dramatic-dark-suspense-thriller.mp3",
@@ -757,7 +782,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "dramatic-dark"
     },
     {
       "filename": "pixabay-dramatic-full.mp3",
@@ -787,7 +813,8 @@
       "tempo": "mid",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "dramatic-dark"
     },
     {
       "filename": "pixabay-upbeat-full.mp3",
@@ -817,7 +844,8 @@
       "tempo": "upbeat",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay"
+      "author": "Pixabay",
+      "family": "upbeat-celebration"
     },
     {
       "filename": "tech-corporate-the-show-must-be-go.mp3",
@@ -848,7 +876,8 @@
       "variants": {
         "15s": "tech-corporate-the-show-must-be-go-15s.mp3",
         "30s": "tech-corporate-the-show-must-be-go-30s.mp3"
-      }
+      },
+      "family": "tech-corporate"
     },
     {
       "filename": "tech-corporate-digital-lemonade.mp3",
@@ -879,7 +908,8 @@
       "variants": {
         "15s": "tech-corporate-digital-lemonade-15s.mp3",
         "30s": "tech-corporate-digital-lemonade-30s.mp3"
-      }
+      },
+      "family": "tech-corporate"
     },
     {
       "filename": "tech-corporate-cipher.mp3",
@@ -910,7 +940,8 @@
       "variants": {
         "15s": "tech-corporate-cipher-15s.mp3",
         "30s": "tech-corporate-cipher-30s.mp3"
-      }
+      },
+      "family": "tech-corporate"
     },
     {
       "filename": "dramatic-dark-anxiety.mp3",
@@ -941,7 +972,8 @@
       "variants": {
         "15s": "dramatic-dark-anxiety-15s.mp3",
         "30s": "dramatic-dark-anxiety-30s.mp3"
-      }
+      },
+      "family": "dramatic-dark"
     },
     {
       "filename": "dramatic-dark-darkest-child.mp3",
@@ -972,7 +1004,8 @@
       "variants": {
         "15s": "dramatic-dark-darkest-child-15s.mp3",
         "30s": "dramatic-dark-darkest-child-30s.mp3"
-      }
+      },
+      "family": "dramatic-dark"
     },
     {
       "filename": "anthemic-triumph-rising-tide.mp3",
@@ -1003,7 +1036,8 @@
       "variants": {
         "15s": "anthemic-triumph-rising-tide-15s.mp3",
         "30s": "anthemic-triumph-rising-tide-30s.mp3"
-      }
+      },
+      "family": "anthemic-triumph"
     },
     {
       "filename": "anthemic-triumph-heroic-age.mp3",
@@ -1034,7 +1068,8 @@
       "variants": {
         "15s": "anthemic-triumph-heroic-age-15s.mp3",
         "30s": "anthemic-triumph-heroic-age-30s.mp3"
-      }
+      },
+      "family": "anthemic-triumph"
     },
     {
       "filename": "anthemic-triumph-eternal-hope.mp3",
@@ -1065,7 +1100,8 @@
       "variants": {
         "15s": "anthemic-triumph-eternal-hope-15s.mp3",
         "30s": "anthemic-triumph-eternal-hope-30s.mp3"
-      }
+      },
+      "family": "anthemic-triumph"
     },
     {
       "filename": "anthemic-triumph-exhilarate.mp3",
@@ -1096,7 +1132,8 @@
       "variants": {
         "15s": "anthemic-triumph-exhilarate-15s.mp3",
         "30s": "anthemic-triumph-exhilarate-30s.mp3"
-      }
+      },
+      "family": "anthemic-triumph"
     },
     {
       "filename": "cinematic-epic-crossing-the-chasm.mp3",
@@ -1127,7 +1164,8 @@
       "variants": {
         "15s": "cinematic-epic-crossing-the-chasm-15s.mp3",
         "30s": "cinematic-epic-crossing-the-chasm-30s.mp3"
-      }
+      },
+      "family": "cinematic-epic"
     },
     {
       "filename": "cinematic-epic-killers.mp3",
@@ -1158,7 +1196,8 @@
       "variants": {
         "15s": "cinematic-epic-killers-15s.mp3",
         "30s": "cinematic-epic-killers-30s.mp3"
-      }
+      },
+      "family": "cinematic-epic"
     },
     {
       "filename": "breaking-news-investigations.mp3",
@@ -1189,7 +1228,8 @@
       "variants": {
         "15s": "breaking-news-investigations-15s.mp3",
         "30s": "breaking-news-investigations-30s.mp3"
-      }
+      },
+      "family": "breaking-news"
     },
     {
       "filename": "breaking-news-newer-wave.mp3",
@@ -1220,7 +1260,8 @@
       "variants": {
         "15s": "breaking-news-newer-wave-15s.mp3",
         "30s": "breaking-news-newer-wave-30s.mp3"
-      }
+      },
+      "family": "breaking-news"
     },
     {
       "filename": "sb-aphelion.mp3",
@@ -1240,7 +1281,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/aphelion/",
       "attribution": "'Aphelion' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "cinematic-epic"
     },
     {
       "filename": "sb-starfire.mp3",
@@ -1260,7 +1302,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/starfire/",
       "attribution": "'Starfire' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "cinematic-epic"
     },
     {
       "filename": "sb-song-of-the-forge.mp3",
@@ -1280,7 +1323,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/song-of-the-forge/",
       "attribution": "'Song of the Forge' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "cinematic-epic"
     },
     {
       "filename": "sb-simulacra.mp3",
@@ -1300,7 +1344,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/simulacra/",
       "attribution": "'Simulacra' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "dramatic-dark"
     },
     {
       "filename": "sb-eyes-in-the-void.mp3",
@@ -1320,7 +1365,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/eyes-in-the-void/",
       "attribution": "'Eyes in the Void' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "dramatic-dark"
     },
     {
       "filename": "sb-born-of-the-sky.mp3",
@@ -1340,7 +1386,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/born-of-the-sky/",
       "attribution": "'Born of the Sky' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "anthemic-triumph"
     },
     {
       "filename": "sb-ride-the-wind.mp3",
@@ -1360,7 +1407,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/ride-the-wind/",
       "attribution": "'Ride the Wind' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "anthemic-triumph"
     },
     {
       "filename": "sb-penumbra.mp3",
@@ -1380,7 +1428,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/penumbra/",
       "attribution": "'Penumbra' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "emotional-inspiring"
     },
     {
       "filename": "sb-convergence.mp3",
@@ -1399,7 +1448,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/convergence/",
       "attribution": "'Convergence' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "tech-corporate"
     },
     {
       "filename": "sb-amberlight.mp3",
@@ -1419,7 +1469,8 @@
       "author": "Scott Buckley",
       "source_url": "https://www.scottbuckley.com.au/library/amberlight/",
       "attribution": "'Amberlight' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {}
+      "variants": {},
+      "family": "emotional-inspiring"
     }
   ],
   "categories": {
