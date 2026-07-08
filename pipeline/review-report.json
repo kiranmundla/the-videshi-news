@@ -1,15 +1,108 @@
 {
-  "timestamp": "2026-07-08T08:45:35.965986+00:00",
+  "timestamp": "2026-07-08T09:15:42.673768+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "b0ff2a32-eb2a-4b3a-aba4-b6f8dc6bdb84",
+      "headline": "Yash and Kiara Just Dropped the Hottest Music Video of the Year. Nobody Was Ready.",
+      "slug": "yash-kiara-advani-tabaahi-music-video-toxic-gangster-epic-august-2026-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Yash, Indian actor",
+          "reason": "The photo shows Yash, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Yash does not directly relate to the music video or the article's focus on Kiara Advani and the song 'Tabaahi'."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's global release strategy and Yash's international following to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that features Kiara Advani or is directly related to the music video for better relevance.",
+          "Add more quotes or reactions from the diaspora audience to enhance the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9a88a2f7-7f88-4f49-a60c-70a8c1b86bf3",
+      "headline": "Rajkummar Rao Just Took His Shirt Off at Lord's. The Internet Lost Its Mind.",
+      "slug": "rajkummar-rao-dada-sourav-ganguly-biopic-first-look-lords-birthday-motwane-may-2027-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sourav Ganguly at a press conference",
+          "reason": "The photo shows Sourav Ganguly, relevant to the biopic story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DahMADFpMH1/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to relate directly to the article's focus on Rajkummar Rao's portrayal of Sourav Ganguly."
+          }
+        ],
+        "image_match": {
+          "score": 2,
+          "issue": "The hero image of Sourav Ganguly does not match the article's focus on Rajkummar Rao."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the significance of Ganguly's legacy to the NRI audience, highlighting their emotional ties to cricket."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one featuring Rajkummar Rao or a relevant promotional image from the biopic.",
+          "Consider adding more direct quotes or insights from Rajkummar Rao regarding his preparation for the role to enhance engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DahMADFpMH1/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
       "headline": "Iran Just Fired Missiles at US Bases in Bahrain and Kuwait. Air Raid Sirens Are Sounding Where 1.3 Million Indians Live.",
@@ -18,70 +111,17 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US Navy personnel in Bahrain",
-          "reason": "The photo shows US Navy personnel, relevant to the story about US bases in Bahrain."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image depicts a naval base in Bahrain, which is relevant to the article's topic about US military operations in the region."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article effectively highlights the impact of the geopolitical situation on the Indian diaspora in Bahrain and Kuwait, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Indian officials or community leaders to enhance the diaspora perspective.",
-          "Provide a brief background on the historical context of India-Iran-US relations to give readers a better understanding of the situation."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (779\u2192932 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b3f8a4e5-b817-4e44-a10b-d8cbac6621ec",
-      "headline": "Your H-1B Got Approved. Good Luck Actually Using It",
-      "slug": "h1b-approved-consular-notification-trap-indian-workers-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "39a8b3b2-ce84-42ef-b7db-93875492e25c",
-            "headline": "Pay $750 and Skip the Line. The State Department Is Selling "
-          }
-        ],
         "broken_embeds": [
           {
-            "url": "https://x.com/LockeImmLaw/status/1747806148303035783",
+            "url": "https://x.com/mb_qalibaf/status/1798345678901234567",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C2Q_6b0y23l/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
           }
         ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Embassy in New Delhi",
-          "reason": "The photo shows the U.S. Embassy in New Delhi, relevant to the visa story."
+          "what_photo_shows": "military personnel at Bahrain base",
+          "reason": "The photo shows a location relevant to the story's subject."
         },
         "inline_image_mismatches": []
       },
@@ -94,19 +134,19 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the challenges faced by Indian tech workers, making it relevant to the NRI audience."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of geopolitical tensions on the Indian diaspora in the Gulf, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more statistics or quotes from affected individuals to enhance the emotional impact.",
-          "Add a section on potential solutions or advice for NRIs facing this issue."
+          "Consider adding quotes from Indian nationals in the Gulf to provide personal perspectives on the situation.",
+          "Include more information on how the Indian government is planning to support its citizens in the region during this crisis."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
+        "Removed 1 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
