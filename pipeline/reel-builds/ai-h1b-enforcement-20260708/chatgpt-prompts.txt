@@ -1,0 +1,71 @@
+ARTICLE: An AI Is Now Reading Every H-1B Filing You Ever Made. The Government Just Connected the Dots
+ID: e786f62d-67a7-44cc-a7e4-c666a4ed8cfe
+SCENES: 7
+============================================================
+
+Paste each prompt into ChatGPT one at a time.
+Save each image as scene-0.jpg, scene-1.jpg, etc.
+
+────────────────────────────────────────────────────────────
+SCENE 0 — AI SCANNING YOUR H-1B FILES
+────────────────────────────────────────────────────────────
+Voiceover: An AI is now reading every H-1B filing you've ever made. The government just connected the dots.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+AI eye scanning H-1B immigration forms with surveillance aesthetic
+
+────────────────────────────────────────────────────────────
+SCENE 1 — THREE AGENCIES, ZERO COMMUNICATION
+────────────────────────────────────────────────────────────
+Voiceover: For years, the DOL checked wages, USCIS reviewed petitions, and the State Department stamped visas. None of them talked to each other.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Three separate government agencies in disconnected bubbles with barriers
+
+────────────────────────────────────────────────────────────
+SCENE 2 — PALANTIR AI — ONE RECORD
+────────────────────────────────────────────────────────────
+Voiceover: Now Palantir's AI pulls together every filing into one searchable record. One inconsistency — and you're flagged.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Palantir AI neural network connecting all scattered immigration documents into unified dashboard
+
+────────────────────────────────────────────────────────────
+SCENE 3 — NEW FORM I-129 TRACKS EVERYTHING
+────────────────────────────────────────────────────────────
+Voiceover: The redesigned I-129 now captures your exact skills, experience, and reporting structure — and maps it directly to DOL wage levels.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Form I-129 with detailed data fields connecting to DOL wage level scale showing mismatch
+
+────────────────────────────────────────────────────────────
+SCENE 4 — DHS SITE VISITS EXPLODING
+────────────────────────────────────────────────────────────
+Voiceover: DHS site visits have exploded. Officers now grill supervisors on what you actually do versus what's on paper.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Government official with DHS badge at tech office asking questions with spike graph of visits
+
+────────────────────────────────────────────────────────────
+SCENE 5 — CONSULTING MODEL UNDER SIEGE
+────────────────────────────────────────────────────────────
+Voiceover: TCS, Infosys, Wipro — the consulting model is under siege. Every client site change needs paperwork most never filed.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Indian IT firm logos with risk meters showing high to moderate risk levels
+
+────────────────────────────────────────────────────────────
+SCENE 6 — PROTECT YOURSELF — AI NEVER FORGETS
+────────────────────────────────────────────────────────────
+Voiceover: Review your petition. Make sure your actual work matches what's filed. Because this AI reads every page — and it never forgets.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Worker reviewing H-1B petition with protective shield and digital checklist
+

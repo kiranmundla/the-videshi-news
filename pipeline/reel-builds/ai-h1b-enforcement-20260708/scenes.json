@@ -1,0 +1,47 @@
+{
+  "article_id": "e786f62d-67a7-44cc-a7e4-c666a4ed8cfe",
+  "scenes": [
+    {
+      "voiceover": "Is AI keeping tabs on your H-1B files? Let's find out!",
+      "onscreen": "AI SCANNING YOUR H-1B FILES",
+      "image_prompt": "AI eye scanning H-1B immigration forms with surveillance aesthetic",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-0.png"
+    },
+    {
+      "voiceover": "Three agencies once divided, now united. Communication is key!",
+      "onscreen": "THREE AGENCIES, ZERO COMMUNICATION",
+      "image_prompt": "Three separate government agencies in disconnected bubbles with barriers",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-1.png"
+    },
+    {
+      "voiceover": "Palantir AI ties it all together\u2014one powerful, searchable record.",
+      "onscreen": "PALANTIR AI \u2014 ONE RECORD",
+      "image_prompt": "Palantir AI neural network connecting all scattered immigration documents into unified dashboard",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-2.png"
+    },
+    {
+      "voiceover": "The new I-129 form digs deep into your job details. No room for errors!",
+      "onscreen": "NEW FORM I-129 TRACKS EVERYTHING",
+      "image_prompt": "Form I-129 with detailed data fields connecting to DOL wage level scale showing mismatch",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-3.png"
+    },
+    {
+      "voiceover": "DHS site visits are on the rise. Are you ready for the scrutiny?",
+      "onscreen": "DHS SITE VISITS EXPLODING",
+      "image_prompt": "Government official with DHS badge at tech office asking questions with spike graph of visits",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-4.png"
+    },
+    {
+      "voiceover": "Indian consulting giants like TCS and Infosys face high risks. Brace for impact!",
+      "onscreen": "CONSULTING MODEL UNDER SIEGE",
+      "image_prompt": "Indian IT firm logos with risk meters showing high to moderate risk levels",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-5.png"
+    },
+    {
+      "voiceover": "For the Indian diaspora, vigilance is vital. Remember, AI never forgets!",
+      "onscreen": "PROTECT YOURSELF \u2014 AI NEVER FORGETS",
+      "image_prompt": "Worker reviewing H-1B petition with protective shield and digital checklist",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/e786f62d-67a7-44cc-a7e4-c666a4ed8cfe/manual-scene-6.png"
+    }
+  ]
+}
