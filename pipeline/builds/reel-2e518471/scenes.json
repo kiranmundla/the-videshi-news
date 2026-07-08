@@ -1,0 +1,40 @@
+{
+  "article_id": "2e518471-32fc-4faa-9e45-2d72f754cacd",
+  "scenes": [
+    {
+      "voiceover": "India just launched its third chip plant in five months. Is it becoming a semiconductor superpower?",
+      "onscreen": "3 PLANTS IN 5 MONTHS",
+      "image_prompt": "Silicon wafer close-up with prismatic light, text 3 PLANTS IN 5 MONTHS"
+    },
+    {
+      "voiceover": "This is CG Semi in Gujarat — a joint venture with Japan's Renesas, now making chips for 5G, cars, and telecom.",
+      "onscreen": "CG SEMI — SANAND, GUJARAT",
+      "image_prompt": "Semiconductor OSAT cleanroom facility with workers in bunny suits, CG Semi Renesas joint venture"
+    },
+    {
+      "voiceover": "The target? Five billion chips a year. That's fifteen million rolling off the line every single day.",
+      "onscreen": "5 BILLION CHIPS / YEAR",
+      "image_prompt": "Giant 5 BILLION text with chip production conveyor belt data visualization"
+    },
+    {
+      "voiceover": "Seventy-five engineers moved from the US, Korea, and the Philippines. Rural Indian women trained in Malaysia.",
+      "onscreen": "75 ENGINEERS RELOCATED",
+      "image_prompt": "Global engineers arriving at Indian facility, rural Indian women in cleanroom gear"
+    },
+    {
+      "voiceover": "Twelve semiconductor projects approved. One-point-six lakh crore invested. Three hundred fifteen universities now teaching chip design.",
+      "onscreen": "12 PROJECTS • ₹1.6L CR",
+      "image_prompt": "India semiconductor dashboard map with 12 project pins and investment stats"
+    },
+    {
+      "voiceover": "Three hundred thousand Indian engineers work at Intel, Qualcomm, and TSMC globally. India's building a career path back home.",
+      "onscreen": "300K INDIAN CHIP ENGINEERS",
+      "image_prompt": "Indian-origin engineers at global tech campuses with return arrow to India"
+    },
+    {
+      "voiceover": "Next up: Tata's ninety-one thousand crore wafer fab in Dholera. India stops assembling chips and starts making them.",
+      "onscreen": "TATA DHOLERA — NEXT CHAPTER",
+      "image_prompt": "Futuristic wafer fabrication plant under construction in Dholera, Gujarat sunset"
+    }
+  ]
+}
