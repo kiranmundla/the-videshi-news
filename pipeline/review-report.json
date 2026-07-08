@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T14:45:14.002784+00:00",
+  "timestamp": "2026-07-08T15:45:23.951043+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d9880c50-8318-47fb-b31d-950737d7807e",
-      "headline": "The DOL Just Launched Its Biggest H-1B Fraud Probe. Dozens of Subpoenas Are Already Out",
-      "slug": "dol-inspector-general-h1b-perm-fraud-probe-subpoenas-20260708",
+      "id": "99b5af3b-d05e-4ec3-b06d-b5673966ea53",
+      "headline": "Messi in Tears After Argentina's Three-Goal Comeback Stuns Egypt in 13 Frantic Minutes",
+      "slug": "messi-argentina-3-2-comeback-egypt-world-cup-round-16-atlanta-romero-fernandez-quarterfinals-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Department of Labor building",
-          "reason": "The photo shows the headquarters of the U.S. Department of Labor, relevant to the story about an H-1B fraud probe."
+          "what_photo_shows": "soccer match with Argentina and Egypt",
+          "reason": "The photo shows a soccer match involving Argentina, which aligns with the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -36,18 +36,61 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of the DOL's investigation to the Indian diaspora, particularly those in the IT sector."
+          "note": "The article connects well with diaspora fans by highlighting upcoming matches in the U.S. and the significance of Argentina's performance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from affected individuals within the Indian diaspora to enhance relatability.",
-          "Include more statistics or data on the impact of H-1B visa changes on the Indian community for added depth."
+          "Consider adding more quotes from players or fans to enhance emotional engagement.",
+          "Include a brief analysis of what this comeback means for Argentina's chances in the tournament."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "held: no sources"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dab29bc9-c152-4ed7-bac1-ae0e6320f57a",
+      "headline": "Seventy-Six All Out. Archer and Tongue Rip Through India for England's Biggest-Ever T20 Win.",
+      "slug": "india-76-all-out-record-t20i-defeat-england-trent-bridge-tongue-archer-series-2-0-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Jofra Archer in England cricket attire",
+          "reason": "The photo shows Jofra Archer, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Jofra Archer is relevant as he played a significant role in the match, but it does not directly represent the overall theme of India's collapse."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match's outcome to the emotions of the Indian diaspora, highlighting their engagement and disappointment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more direct quotes from players or analysts to enhance the narrative.",
+          "Add a brief historical context about India's performance in T20Is to enrich the analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: no sources"
       ],
       "revised": false,
       "unpublished": false,
