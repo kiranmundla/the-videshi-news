@@ -1410,6 +1410,74 @@
       "attribution": "'Amberlight' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
       "variants": {},
       "family": "emotional-inspiring"
+    },
+    {
+      "filename": "upbeat-celebration-fun-upbeat-inplus.mp3",
+      "family": "upbeat-celebration",
+      "mood_tags": [
+        "happy",
+        "fun",
+        "uplifting",
+        "bright"
+      ],
+      "energy": 4,
+      "tempo": "fast",
+      "has_vocals": false,
+      "duration_s": 116,
+      "author": "INPLUSMUSIC",
+      "license": "Pixabay License",
+      "source_url": "https://pixabay.com/music/upbeat-fun-upbeat-background-music-311769/"
+    },
+    {
+      "filename": "upbeat-celebration-future-bass-sigma.mp3",
+      "family": "upbeat-celebration",
+      "mood_tags": [
+        "uplifting",
+        "energetic",
+        "smooth",
+        "bright"
+      ],
+      "energy": 4,
+      "tempo": "driving",
+      "has_vocals": false,
+      "duration_s": 123,
+      "author": "SigmaMusicArt",
+      "license": "Pixabay License",
+      "source_url": "https://pixabay.com/music/future-bass-no-copyright-music-537751/"
+    },
+    {
+      "filename": "upbeat-celebration-fun-viacheslav.mp3",
+      "family": "upbeat-celebration",
+      "mood_tags": [
+        "happy",
+        "energetic",
+        "uplifting",
+        "fun"
+      ],
+      "energy": 4,
+      "tempo": "fast",
+      "has_vocals": false,
+      "duration_s": 175,
+      "author": "ViacheslavStarostin",
+      "license": "Pixabay License",
+      "source_url": "https://pixabay.com/music/upbeat-upbeat-fun-music-427230/"
+    },
+    {
+      "filename": "upbeat-celebration-fun-upbeat-mfcc.mp3",
+      "family": "upbeat-celebration",
+      "mood_tags": [
+        "happy",
+        "fun",
+        "uplifting",
+        "laid-back"
+      ],
+      "energy": 4,
+      "tempo": "fast",
+      "has_vocals": false,
+      "duration_s": 99,
+      "author": "MFCC",
+      "license": "Pixabay License",
+      "source_url": "https://pixabay.com/music/upbeat-fun-upbeat-background-music-322877/"
     }
   ],
   "categories": {
