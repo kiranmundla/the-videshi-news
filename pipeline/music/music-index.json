@@ -393,37 +393,6 @@
       "family": "emotional-inspiring"
     },
     {
-      "filename": "emotional-inspiring-uplifting-piano.mp3",
-      "category": "emotional-inspiring",
-      "mood": "emotional, piano, gentle, moving, cinematic",
-      "duration_s": 159,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "human interest",
-        "memorial",
-        "social impact",
-        "inspiring"
-      ],
-      "variants": {
-        "15s": "emotional-inspiring-uplifting-piano-15s.mp3",
-        "30s": "emotional-inspiring-uplifting-piano-30s.mp3"
-      },
-      "mood_tags": [
-        "emotional",
-        "gentle",
-        "moving",
-        "cinematic",
-        "piano"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "emotional-inspiring"
-    },
-    {
       "filename": "indian-classical-diwali-festival.mp3",
       "category": "indian-classical",
       "mood": "festive, cultural, traditional, celebratory",
@@ -1426,7 +1395,8 @@
       "duration_s": 116,
       "author": "INPLUSMUSIC",
       "license": "Pixabay License",
-      "source_url": "https://pixabay.com/music/upbeat-fun-upbeat-background-music-311769/"
+      "source_url": "https://pixabay.com/music/upbeat-fun-upbeat-background-music-311769/",
+      "category": "upbeat-celebration"
     },
     {
       "filename": "upbeat-celebration-future-bass-sigma.mp3",
@@ -1443,7 +1413,8 @@
       "duration_s": 123,
       "author": "SigmaMusicArt",
       "license": "Pixabay License",
-      "source_url": "https://pixabay.com/music/future-bass-no-copyright-music-537751/"
+      "source_url": "https://pixabay.com/music/future-bass-no-copyright-music-537751/",
+      "category": "upbeat-celebration"
     },
     {
       "filename": "upbeat-celebration-fun-viacheslav.mp3",
@@ -1460,7 +1431,8 @@
       "duration_s": 175,
       "author": "ViacheslavStarostin",
       "license": "Pixabay License",
-      "source_url": "https://pixabay.com/music/upbeat-upbeat-fun-music-427230/"
+      "source_url": "https://pixabay.com/music/upbeat-upbeat-fun-music-427230/",
+      "category": "upbeat-celebration"
     },
     {
       "filename": "upbeat-celebration-fun-upbeat-mfcc.mp3",
@@ -1477,7 +1449,8 @@
       "duration_s": 99,
       "author": "MFCC",
       "license": "Pixabay License",
-      "source_url": "https://pixabay.com/music/upbeat-fun-upbeat-background-music-322877/"
+      "source_url": "https://pixabay.com/music/upbeat-fun-upbeat-background-music-322877/",
+      "category": "upbeat-celebration"
     }
   ],
   "categories": {
@@ -1487,7 +1460,9 @@
         "nri world",
         "markets & finance",
         "technology",
-        "immigration"
+        "immigration",
+        "nri-world",
+        "markets-finance"
       ]
     },
     "upbeat-celebration": {
@@ -1514,7 +1489,9 @@
         "human interest",
         "social impact",
         "community",
-        "inspiring"
+        "inspiring",
+        "human-interest",
+        "social-impact"
       ]
     },
     "indian-classical": {
@@ -1527,7 +1504,8 @@
     "chill-lifestyle": {
       "article_categories": [
         "travel",
-        "lifestyle & health"
+        "lifestyle & health",
+        "lifestyle-health"
       ]
     },
     "dramatic-dark": {
