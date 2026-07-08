@@ -141,7 +141,7 @@ def fetch_article(article_id):
     )
     if r.status_code != 200 or not r.json():
         print(f"❌ Article not found: {r.status_code}")
-        sys.exit(1)
+        raise RuntimeError(f"Article not found: {r.status_code}")
     
     article = r.json()[0]
     print(f"  ✅ {article['headline'][:80]}")
@@ -265,7 +265,7 @@ Return ONLY valid JSON, no markdown."""
     
     if r.status_code != 200:
         print(f"❌ Storyboard generation failed: {r.status_code}")
-        sys.exit(1)
+        raise RuntimeError(f"Storyboard generation failed: {r.status_code}")
     
     result = json.loads(r.json()["choices"][0]["message"]["content"])
     scenes = result["scenes"]
@@ -694,7 +694,7 @@ def load_manual_images(scenes, image_dir, article_id):
     
     if len(image_files) < len(scenes):
         print(f"❌ Need {len(scenes)} images, found {len(image_files)}")
-        sys.exit(1)
+        raise RuntimeError(f"Need {len(scenes)} images, found {len(image_files)}")
     
     for i, scene in enumerate(scenes):
         img_path = os.path.join(image_dir, image_files[i])
@@ -1241,7 +1241,7 @@ def qa_check_reel(reel_path, variant, voice_duration=None, num_scenes=0):
         score -= 3
     
     # 5-6. Voice-specific checks
-    if variant == "voice" and voice_duration and voice_duration > 0:
+    if variant == "voiceover" and voice_duration and voice_duration > 0:
         # Check audio/video duration mismatch
         if abs(duration - voice_duration) > 10:
             issues.append(f"Duration mismatch: video={duration:.1f}s, voice={voice_duration:.1f}s")
@@ -1576,7 +1576,7 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
     )
     if r.status_code not in (200, 201):
         print(f"❌ Render failed: {r.status_code} {r.text[:300]}")
-        sys.exit(1)
+        raise RuntimeError(f"Shotstack render failed: {r.status_code}")
     
     render_id = r.json()["response"]["id"]
     total = voice_duration + endcard_dur
@@ -1600,10 +1600,10 @@ def build_reel(scenes, words, vo_url, voice_duration, music_url, endcard_cta_url
             return reel_path, render_id
         elif status == "failed":
             print(f"❌ Render failed")
-            sys.exit(1)
+            raise RuntimeError("Shotstack render failed")
     
     print("❌ Render timed out")
-    sys.exit(1)
+    raise RuntimeError("Shotstack render timed out")
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -2235,13 +2235,13 @@ def main():
     
     qa_all_passed = True
     if music_reel_path:
-        passed, score, issues = qa_check_reel(music_reel_path, "music", num_scenes=len(scenes))
+        passed, score, issues = qa_check_reel(music_reel_path, "music-only", num_scenes=len(scenes))
         if not passed:
             qa_all_passed = False
             print(f"  ❌ Music reel FAILED QA (score {score}/10)")
     
     if vo_reel_path:
-        passed, score, issues = qa_check_reel(vo_reel_path, "voice", voice_duration=voice_duration, num_scenes=len(scenes))
+        passed, score, issues = qa_check_reel(vo_reel_path, "voiceover", voice_duration=voice_duration, num_scenes=len(scenes))
         if not passed:
             qa_all_passed = False
             print(f"  ❌ Voice reel FAILED QA (score {score}/10)")
