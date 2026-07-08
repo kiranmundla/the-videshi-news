@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-08T08:15:40.680014+00:00",
+  "timestamp": "2026-07-08T08:45:35.965986+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6934b4c7-2387-4398-afaa-bfbac3daef0e",
-      "headline": "Canada Just Made Its Pitch to Indian Students. The Numbers Suggest They Are Listening",
-      "slug": "canada-recruits-indian-students-us-f1-visa-collapse-20260708",
+      "id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
+      "headline": "Iran Just Fired Missiles at US Bases in Bahrain and Kuwait. Air Raid Sirens Are Sounding Where 1.3 Million Indians Live.",
+      "slug": "iran-fires-missiles-us-bases-bahrain-kuwait-air-raid-sirens-indian-diaspora-gulf-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,35 +21,35 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "students walking on campus",
-          "reason": "The photo shows students on a university campus, relevant to the story about student visas."
+          "what_photo_shows": "US Navy personnel in Bahrain",
+          "reason": "The photo shows US Navy personnel, relevant to the story about US bases in Bahrain."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of students does relate to the topic of education and immigration, but it lacks a direct connection to Canada specifically."
+          "score": 8,
+          "issue": "The image depicts a naval base in Bahrain, which is relevant to the article's topic about US military operations in the region."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of U.S. immigration policies on Indian students and highlights Canada's opportunities, which is relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article effectively highlights the impact of the geopolitical situation on the Indian diaspora in Bahrain and Kuwait, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding specific testimonials or experiences from Indian students who have chosen Canada over the U.S. to enhance relatability.",
-          "Include more data or statistics on the number of Indian students currently studying in Canada to strengthen the argument."
+          "Include more direct quotes from Indian officials or community leaders to enhance the diaspora perspective.",
+          "Provide a brief background on the historical context of India-Iran-US relations to give readers a better understanding of the situation."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gemini-2.5-flash (779\u2192932 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
@@ -66,7 +66,18 @@
             "headline": "Pay $750 and Skip the Line. The State Department Is Selling "
           }
         ],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/LockeImmLaw/status/1747806148303035783",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C2Q_6b0y23l/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "U.S. Embassy in New Delhi",
@@ -75,31 +86,30 @@
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of the US Embassy in New Delhi is relevant but does not directly illustrate the challenges faced by H-1B workers."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the challenges faced by Indian tech workers, making it relevant to the diaspora audience."
+          "quality": 8,
+          "note": "The article discusses the challenges faced by Indian tech workers, making it relevant to the NRI audience."
         },
-        "factual_flags": [
-          "The article mentions a policy implemented in late 2025, which is in the future relative to the current date."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Update the timeline references to reflect current dates accurately.",
-          "Consider using a more illustrative image that directly relates to H-1B visa challenges."
+          "Include more statistics or quotes from affected individuals to enhance the emotional impact.",
+          "Add a section on potential solutions or advice for NRIs facing this issue."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (992\u21921085 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
