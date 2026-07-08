@@ -89,14 +89,21 @@ def extract_key_content(body_md):
     """Extract clean text from markdown body for summarization."""
     if not body_md:
         return ""
+    import re
     lines = []
     for line in body_md.split('\n'):
         l = line.strip()
         # Skip markdown headers, images, empty lines
         if l.startswith('#') or l.startswith('![') or l.startswith('---'):
             continue
+        # Skip HTML tags and blocks (data cards, divs, etc.)
+        if l.startswith('<') and ('div' in l.lower() or 'span' in l.lower() or 'ul' in l.lower() or 'li' in l.lower() or l.startswith('</')):
+            continue
+        # Strip any remaining inline HTML tags
+        l = re.sub(r'<[^>]+>', '', l)
         # Strip bold/italic markers for cleaner reading
         l = l.replace('**', '').replace('*', '')
+        l = l.strip()
         if l:
             lines.append(l)
     return '\n'.join(lines)
