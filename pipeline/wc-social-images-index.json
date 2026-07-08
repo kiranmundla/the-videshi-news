@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-08T04:00:38.330918+00:00",
+  "last_refresh": "2026-07-08T10:00:49.206288+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -1632,6 +1632,34 @@
       "likes": 2619,
       "image_count": 0,
       "scraped_at": "2026-07-08T04:00:37.830731+00:00"
+    },
+    "https://www.instagram.com/p/DagvfKkAcNP/": {
+      "account": "foxsports",
+      "platform": "instagram",
+      "likes": 8738,
+      "image_count": 4,
+      "scraped_at": "2026-07-08T10:00:30.477127+00:00"
+    },
+    "https://www.threads.com/@fifaworldcup/post/Dag6RJdDMBR": {
+      "account": "fifaworldcup",
+      "platform": "threads",
+      "likes": 94,
+      "image_count": 1,
+      "scraped_at": "2026-07-08T10:00:38.598377+00:00"
+    },
+    "https://www.instagram.com/p/Dadzbu8iH76/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 722761,
+      "image_count": 4,
+      "scraped_at": "2026-07-08T10:00:41.613428+00:00"
+    },
+    "https://www.instagram.com/p/DabW7hwliPU/": {
+      "account": "fulltimedevils",
+      "platform": "instagram",
+      "likes": 5964,
+      "image_count": 4,
+      "scraped_at": "2026-07-08T10:00:45.684247+00:00"
     }
   },
   "images": [
@@ -10372,6 +10400,158 @@
       "account": "fifaworldcup",
       "likes": 10291,
       "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t39.30808-6/741948262_1585506299598509_5511332553070398365_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=6y67ZPblYnsQ7kNvwE18TE-&_nc_oc=Adpae73TPql630laP6xL_sduGJi1gWuzPdthWX-ATQvNlri4rVCs93rLNaRbQpzwGExbQgDCdMmIbN7zMRP9Jr6d&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=EN8_MwiWVJUPDVupb8Blmw&_nc_ss=7820f&oh=00_AQCLEt4k7XiIgpCcS4mu-77jaALj63zpKQSydpBYrMWTNQ&oe=6A53FAEA",
+      "post_url": "https://www.instagram.com/p/DagvfKkAcNP/",
+      "platform": "instagram",
+      "caption": "8,745 likes, 114 comments - foxsports on July 7, 2026: \"France and Argentina have scored the most goals among Quarterfinals teams at the 2026 FIFA World Cup\". ",
+      "scraped_at": "2026-07-08T10:00:30.476721+00:00",
+      "account": "foxsports",
+      "likes": 8738,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-foxsports-e23399dc43df.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 85391
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t39.30808-6/740967243_1585125306303275_784565834722713278_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=lzGavjpYqYIQ7kNvwG1uv5g&_nc_oc=AdrFXasYDFmGzyH0RHK9hsA7g5h6sWrYqhfQcr0fvLsz0X0urgVKtHqlm65Y615BSy8WPi1f4NN1vo8vNpzWnYqo&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=FEP2xjJ8C5WUZr0DwrN1tQ&_nc_ss=7820f&oh=00_AQDmaMILictbrQ-h7rKMX9CUtc8dgkYpYL4hL9vr4WujbA&oe=6A53F698",
+      "post_url": "https://www.instagram.com/p/DagvfKkAcNP/",
+      "platform": "instagram",
+      "caption": "8,745 likes, 114 comments - foxsports on July 7, 2026: \"France and Argentina have scored the most goals among Quarterfinals teams at the 2026 FIFA World Cup\". ",
+      "scraped_at": "2026-07-08T10:00:30.476762+00:00",
+      "account": "foxsports",
+      "likes": 8738,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-15/735034523_18612554164053765_7642065205749413222_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=mu0XQGvpL08Q7kNvwE2yOc8&_nc_oc=AdoGGJNPKeRfJxvhOyTRWUi6gePTahbnY6gZsS1A8mKHoQryeEfITKiMGciDonjUEWBuMxRN4GA7yf_LNRsFlb2F&_nc_zt=23&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_gid=FEP2xjJ8C5WUZr0DwrN1tQ&_nc_ss=7820f&oh=00_AQDMPgeX9tVvRMkXZYs-Avs0rljvx_PoKA_FY1exn-XAxA&oe=6A53FE57",
+      "post_url": "https://www.instagram.com/p/DagvfKkAcNP/",
+      "platform": "instagram",
+      "caption": "8,745 likes, 114 comments - foxsports on July 7, 2026: \"France and Argentina have scored the most goals among Quarterfinals teams at the 2026 FIFA World Cup\". ",
+      "scraped_at": "2026-07-08T10:00:30.476768+00:00",
+      "account": "foxsports",
+      "likes": 8738,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/736320263_18612544627053765_4515933136881975978_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=6ErdwzlAnFMQ7kNvwHXqTzq&_nc_oc=AdpM1nSbp4CE9F2UkEEfqiaND083CXvq-RoTgyRJbrjxIxPZ2sJ34aWfQYfjQa-cCTU2Al8Xiz59yfGocLDLVO2m&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=FEP2xjJ8C5WUZr0DwrN1tQ&_nc_ss=7820f&oh=00_AQCJ-NuEar4QXuNWvz2e_CP6CZEXZqrCjN36WRkDWK_6Dg&oe=6A53FC82",
+      "post_url": "https://www.instagram.com/p/DagvfKkAcNP/",
+      "platform": "instagram",
+      "caption": "8,745 likes, 114 comments - foxsports on July 7, 2026: \"France and Argentina have scored the most goals among Quarterfinals teams at the 2026 FIFA World Cup\". ",
+      "scraped_at": "2026-07-08T10:00:30.476772+00:00",
+      "account": "foxsports",
+      "likes": 8738,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.71878-15/734313837_1344129207789077_7888321743665039188_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=ctAOogDLYTkQ7kNvwHk-m_0&_nc_oc=AdpNVDwrLWcPNZ0ZJ6KZ-zFdp051cKVXoT0KK4AG6rPA6P6c0767fpD3HrqfmIGPsuctqJVt9Dfhe_hwQvTxSPyU&_nc_zt=23&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_gid=7Q57qUozWDIt_oa9Fir37Q&_nc_ss=7820f&oh=00_AQBp98H9RrZwfF-5UF6tKLknk9vxeZgivG0EWmJi9tcsnA&oe=6A53DD42",
+      "post_url": "https://www.threads.com/@fifaworldcup/post/Dag6RJdDMBR",
+      "platform": "threads",
+      "caption": "The moment Vargas became the hero \ud83c\udde8\ud83c\udded\u2b50\n\n@budweiser",
+      "scraped_at": "2026-07-08T10:00:38.598086+00:00",
+      "account": "fifaworldcup",
+      "likes": 94,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-15/730313322_18609166888061984_3909553080854970038_n.jpg?stp=c288.0.864.864a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=rFerHPP1XcUQ7kNvwEhpKcl&_nc_oc=Adr1t_As1F4ZS_fs7eoqEl8L6C0E82s2mjrNNdnZ4lX2_cR6e5jL5JaHdlEeP9aRH50hDbclAKVD2YRB5qX8kIlq&_nc_zt=23&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_gid=Qpw_xBs60QVq97udN6lwWA&_nc_ss=7860f&oh=00_AQAwDuOkAn5KMEcM3VlmNorkQx91wFUWgYtARGoNn2e92A&oe=6A53E1D8",
+      "post_url": "https://www.instagram.com/p/Dadzbu8iH76/",
+      "platform": "instagram",
+      "caption": "723K likes, 14K comments - fifaworldcup on July 6, 2026: \"A late winner to secure a spot in the quarter-finals! \ud83c\uddea\ud83c\uddf8 \n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-08T10:00:41.613376+00:00",
+      "account": "fifaworldcup",
+      "likes": 722761,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldcup-1fb4dfc369de.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 52616
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-15/736235235_18609505951061984_2713528422134762533_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=Ynl_zVqjSbAQ7kNvwEpDgcy&_nc_oc=AdqAvna0Ps9RFnhAQfeZY5ljuMZn3zAG4H71kfkdDCx0e-Rdi3E-t60Zg12iq5AGHxZogERTJh4ATeEqIT267wiv&_nc_zt=23&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_gid=Yl-rh_VT4Msz9ZDZ8FjT8w&_nc_ss=7860f&oh=00_AQB8nStS0ijMaczNYaxPupGhpr_grm_pynMYnD1yVckLww&oe=6A53F9C1",
+      "post_url": "https://www.instagram.com/p/Dadzbu8iH76/",
+      "platform": "instagram",
+      "caption": "723K likes, 14K comments - fifaworldcup on July 6, 2026: \"A late winner to secure a spot in the quarter-finals! \ud83c\uddea\ud83c\uddf8 \n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-08T10:00:41.613408+00:00",
+      "account": "fifaworldcup",
+      "likes": 722761,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-15/736420458_18609501250061984_7906782573745033719_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=peTTOgCn6Q4Q7kNvwG5_ln5&_nc_oc=AdpYNqzd8SFTwpCoOxTNFFQaAmU0-pP2PSJnEdaGEyUIVYk_kX6GdKznsUs5d9YDW5UkVxBFOVkHA8RpIgqQlpk-&_nc_zt=23&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_gid=Yl-rh_VT4Msz9ZDZ8FjT8w&_nc_ss=7860f&oh=00_AQAaV9sjgPEWB5-s28swgKzUVfMMRZOY3q_X4NYSYag8Wg&oe=6A540A3B",
+      "post_url": "https://www.instagram.com/p/Dadzbu8iH76/",
+      "platform": "instagram",
+      "caption": "723K likes, 14K comments - fifaworldcup on July 6, 2026: \"A late winner to secure a spot in the quarter-finals! \ud83c\uddea\ud83c\uddf8 \n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-08T10:00:41.613413+00:00",
+      "account": "fifaworldcup",
+      "likes": 722761,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-3.cdninstagram.com/v/t51.82787-15/730381843_18609478324061984_120653350785154686_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=0ok9ZT5Lux8Q7kNvwEuRbJk&_nc_oc=Adq0rxoaml9IUwHmrjEjpnA1WbbSlZEZrzucFwzxeIKKB51WvB2Yi3OkN3BLlLe6oZ9PXZ9KFNICLL4n9_AFWX34&_nc_zt=23&_nc_ht=scontent-mia3-3.cdninstagram.com&_nc_gid=Yl-rh_VT4Msz9ZDZ8FjT8w&_nc_ss=7860f&oh=00_AQCJV4XemRM14pFPGI8eTYGHVbFRNjprYHEyW7qA0McqiQ&oe=6A53E49A",
+      "post_url": "https://www.instagram.com/p/Dadzbu8iH76/",
+      "platform": "instagram",
+      "caption": "723K likes, 14K comments - fifaworldcup on July 6, 2026: \"A late winner to secure a spot in the quarter-finals! \ud83c\uddea\ud83c\uddf8 \n\n#FIFAWorldCup\". ",
+      "scraped_at": "2026-07-08T10:00:41.613416+00:00",
+      "account": "fifaworldcup",
+      "likes": 722761,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-1.cdninstagram.com/v/t39.30808-6/739252707_1576619947163155_7314437555310834523_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=GrKg2d-LubAQ7kNvwGtdWNv&_nc_oc=AdrISnsaF95l7eKu-Z-btvnGydFEJvgzGUiGcICo8QvdBU162aWpxPp54KTGcbm_rvU8cntYKm1Rh4O0w7lMKSiQ&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_gid=q_WOQsOGn7v37okcqMfJnQ&_nc_ss=7860f&oh=00_AQDhmlULIWwUpofnUamq_WuWE7JUFHdbsDCrxH-ytzKodw&oe=6A53FBF9",
+      "post_url": "https://www.instagram.com/p/DabW7hwliPU/",
+      "platform": "instagram",
+      "caption": "6,019 likes, 70 comments - fulltimedevils on July 5, 2026: \"\u274c\ud83c\udde7\ud83c\uddf7 Matheus Cunha's Brazil are knocked out of the World Cup with a 2-1 defeat to Norway in the Round of 16.\n\nThe United forward won a penalty in the first half - giving his nation a great chance to take the lead - but Bruno Guimaraes' effort was saved by Orjan Nyland.\n\nCunha was substituted after 58 minutes by Carlo Ancelotti, before an E",
+      "scraped_at": "2026-07-08T10:00:45.684191+00:00",
+      "account": "fulltimedevils",
+      "likes": 5964,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fulltimedevils-ba0f11c95010.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 83733
+    },
+    {
+      "cdn_url": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/706900412_18590897266041335_102921701422058152_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=vf_aIxdid18Q7kNvwHeJ3be&_nc_oc=Adp0cPS90ZZ-CQEZ78AHWtPdLd2drC4Ntiai6z0xCQNZs0r871v6Ewm7eg8Djs1pG9mUhPPLRmVDWIE8_9VKySlF&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_gid=xHkFctEyycIDLhjYTRzgYg&_nc_ss=7860f&oh=00_AQBP5TmlTprxuvS2RBpFs-4OB0oHhURvUXhhhaoEC1YDCw&oe=6A53DE11",
+      "post_url": "https://www.instagram.com/p/DabW7hwliPU/",
+      "platform": "instagram",
+      "caption": "6,019 likes, 70 comments - fulltimedevils on July 5, 2026: \"\u274c\ud83c\udde7\ud83c\uddf7 Matheus Cunha's Brazil are knocked out of the World Cup with a 2-1 defeat to Norway in the Round of 16.\n\nThe United forward won a penalty in the first half - giving his nation a great chance to take the lead - but Bruno Guimaraes' effort was saved by Orjan Nyland.\n\nCunha was substituted after 58 minutes by Carlo Ancelotti, before an E",
+      "scraped_at": "2026-07-08T10:00:45.684222+00:00",
+      "account": "fulltimedevils",
+      "likes": 5964,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/703009365_18589459501041335_2730263688428663045_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=YM0q8DfxaR4Q7kNvwEpdOmA&_nc_oc=Adp2oBXO46MGatU6XFjB6_91qCybRIwVSplXGzn_FO13JpMmYoFB2Ec2-GmiqOU5_9cMq9vNoVTqhKt6h7s8bH7V&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_gid=xHkFctEyycIDLhjYTRzgYg&_nc_ss=7860f&oh=00_AQDrkCrqVYDXoxRw3sL7eHXKUIoQxhjQFUiWmEZxSsqdww&oe=6A53F358",
+      "post_url": "https://www.instagram.com/p/DabW7hwliPU/",
+      "platform": "instagram",
+      "caption": "6,019 likes, 70 comments - fulltimedevils on July 5, 2026: \"\u274c\ud83c\udde7\ud83c\uddf7 Matheus Cunha's Brazil are knocked out of the World Cup with a 2-1 defeat to Norway in the Round of 16.\n\nThe United forward won a penalty in the first half - giving his nation a great chance to take the lead - but Bruno Guimaraes' effort was saved by Orjan Nyland.\n\nCunha was substituted after 58 minutes by Carlo Ancelotti, before an E",
+      "scraped_at": "2026-07-08T10:00:45.684227+00:00",
+      "account": "fulltimedevils",
+      "likes": 5964,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-3.cdninstagram.com/v/t51.82787-15/700723670_18588838894041335_837873772834992975_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=3_OxZjtG8IcQ7kNvwEMTjHX&_nc_oc=AdpJC1ikKAt4RHH6D3d4s1zjSTC-UBENPkE9MGPhWiufZn2Aehyy_e8UjgqZB-onJPO76BbK2K2cYUTXxeZx4PQw&_nc_zt=23&_nc_ht=scontent-lga3-3.cdninstagram.com&_nc_gid=xHkFctEyycIDLhjYTRzgYg&_nc_ss=7860f&oh=00_AQD3Bq29jR7Be05AuOw9Hi-PosDQdtNJbimeqss-UlNxwA&oe=6A5409C8",
+      "post_url": "https://www.instagram.com/p/DabW7hwliPU/",
+      "platform": "instagram",
+      "caption": "6,019 likes, 70 comments - fulltimedevils on July 5, 2026: \"\u274c\ud83c\udde7\ud83c\uddf7 Matheus Cunha's Brazil are knocked out of the World Cup with a 2-1 defeat to Norway in the Round of 16.\n\nThe United forward won a penalty in the first half - giving his nation a great chance to take the lead - but Bruno Guimaraes' effort was saved by Orjan Nyland.\n\nCunha was substituted after 58 minutes by Carlo Ancelotti, before an E",
+      "scraped_at": "2026-07-08T10:00:45.684232+00:00",
+      "account": "fulltimedevils",
+      "likes": 5964,
+      "trusted": false,
       "permanent_url": null
     }
   ]
