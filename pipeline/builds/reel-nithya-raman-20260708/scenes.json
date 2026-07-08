@@ -1,0 +1,40 @@
+{
+  "article_id": "6cc014a1-842f-45f4-bf39-700e1978b56d",
+  "scenes": [
+    {
+      "voiceover": "Can a girl from Kerala become the mayor of Los Angeles?",
+      "onscreen": "KERALA → LOS ANGELES",
+      "image_prompt": "Kerala coastline transforming into LA skyline with bold arrow and MAYOR'S RACE 2026 ticker"
+    },
+    {
+      "voiceover": "Nithya Raman left India at six. Harvard. MIT. Urban planning degree in hand.",
+      "onscreen": "HARVARD → MIT → URBAN PLANNING",
+      "image_prompt": "Education timeline infographic showing journey from age 6 to Harvard to MIT"
+    },
+    {
+      "voiceover": "She went back to India — seven years mapping slums in Chennai, fighting for the forgotten.",
+      "onscreen": "7 YEARS IN CHENNAI",
+      "image_prompt": "Chennai map with data markers showing informal settlement mapping work"
+    },
+    {
+      "voiceover": "In LA she found a hundred million going to homelessness — ninety percent spent jailing people, not housing them.",
+      "onscreen": "$100M — 90% JAILING",
+      "image_prompt": "Budget breakdown donut chart showing 90% jailing vs 10% housing of $100M"
+    },
+    {
+      "voiceover": "She unseated a seventeen-year incumbent. First South Asian on the LA City Council, ever.",
+      "onscreen": "FIRST SOUTH ASIAN — LA CITY COUNCIL",
+      "image_prompt": "Political milestone card with LA City Hall and FIRST SOUTH ASIAN achievement"
+    },
+    {
+      "voiceover": "Now she faces Mayor Karen Bass in November. Her pledge: halve tent camps before the twenty-twenty-eight Olympics.",
+      "onscreen": "RAMAN vs BASS — NOV 2026",
+      "image_prompt": "Election matchup graphic with Raman vs Bass and 2028 Olympics pledge"
+    },
+    {
+      "voiceover": "A hundred and twenty thousand Indian Americans call LA home. Could one of them run it?",
+      "onscreen": "120,000 INDIAN AMERICANS IN LA",
+      "image_prompt": "Diaspora statistics card with 120K population, 40% growth, and mayoral question"
+    }
+  ]
+}
