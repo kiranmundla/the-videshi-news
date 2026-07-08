@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T02:15:23.730179+00:00",
+  "timestamp": "2026-07-08T05:15:37.282402+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e51104f0-af6f-4ad1-8ab2-8f9dd2157993",
-      "headline": "Your Company Just Got Acquired. Your Visa Might Not Survive the Deal",
-      "slug": "company-acquired-visa-risk-ma-h1b-immigration-20260708",
+      "id": "e12d41b1-9b29-47ae-b4ca-7d70b6153d5d",
+      "headline": "An AI Agent Just Ran a Full Ransomware Attack on Its Own. The Cybersecurity World Is Rattled.",
+      "slug": "jadepuffer-ai-ransomware-agent-sysdig-cybersecurity-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,62 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "business professionals with financial documents",
-          "reason": "The photo shows a corporate deal setting, relevant to the story about company acquisitions."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the topic of immigration and corporate acquisition, but it lacks specific elements that directly connect to the visa aspect discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian tech workers in the U.S. regarding visa issues during corporate acquisitions, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples or case studies of individuals affected by these visa issues to enhance relatability.",
-          "Consider adding a section on potential solutions or advice for workers facing these challenges."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1c0ba8a0-3d16-4f7f-b31a-16f612a337ca",
-      "headline": "Microsoft Just Cut 4,800 Jobs. For Indian H-1B Workers, the 60-Day Clock Starts Again",
-      "slug": "microsoft-4800-layoffs-h1b-indian-workers-60-day-clock-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6d9f9d91-eb07-426c-9b38-35adf2a3b203",
-            "headline": "Microsoft Just Cut 4,800 Jobs to Pay for AI. Its 20,000 Indi"
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/unusual_whales/status/1941523697285128192",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Microsoft campus in Redmond, Washington",
-          "reason": "The photo shows the Microsoft campus, relevant to the story about Microsoft layoffs."
+          "what_photo_shows": "Code on monitors in dark room",
+          "reason": "The photo aligns with the cybersecurity theme of the story."
         },
         "inline_image_mismatches": []
       },
@@ -90,18 +36,103 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the concerns of Indian H-1B workers, making it relevant to the diaspora."
+          "note": "The article discusses the implications of AI in cybersecurity, particularly in the context of India, making it relevant for the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected individuals or immigration experts to enhance the human element of the story.",
-          "Include more statistics or data on the impact of layoffs on the Indian tech community specifically."
+          "Consider adding more specific examples of how the Indian cybersecurity workforce is adapting to these new threats.",
+          "Include quotes or insights from Indian cybersecurity experts to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6b7b8556-0a72-4de4-aaf6-8af837146f8c",
+      "headline": "HCLTech Just Landed a $1.14 Billion AI Deal With a European Giant. It's the Biggest Win in Three Years.",
+      "slug": "hcltech-114-billion-ai-deal-european-fortune-50-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "HCLTech's Noida SEZ campus",
+          "reason": "The photo shows HCLTech's headquarters, relevant to the story about their AI deal."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the deal for Indian engineers working abroad, which is relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote from an industry expert or analyst to provide additional context.",
+          "Add more details about the potential impact of the deal on HCLTech's competitors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2e518471-32fc-4faa-9e45-2d72f754cacd",
+      "headline": "India Just Switched On Its Third Chip Plant in Five Months. The Target: Five Billion Chips a Year.",
+      "slug": "india-third-chip-plant-cg-semi-sanand-osat-five-billion-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "silicon wafer with semiconductor chips",
+          "reason": "The photo shows semiconductor chips, relevant to the chip plant story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the semiconductor developments in India to the opportunities for Indian-origin engineers abroad, highlighting a relevant diaspora angle."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from diaspora engineers to enhance the personal connection.",
+          "Include more data or examples of how the semiconductor industry impacts the global market to provide a broader context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
