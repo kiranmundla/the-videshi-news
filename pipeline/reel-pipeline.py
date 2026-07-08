@@ -883,11 +883,11 @@ def generate_tts(scenes, article_id, build_dir):
                 time.sleep(3)
             else:
                 print("❌ HeyGen TTS timed out")
-                sys.exit(1)
+                raise RuntimeError("HeyGen TTS timed out after 3 attempts")
     
     if r.status_code != 200:
         print(f"❌ TTS failed: {r.status_code} {r.text[:200]}")
-        sys.exit(1)
+        raise RuntimeError(f"TTS failed: {r.status_code}")
     
     data = r.json().get("data", {})
     audio_url = data.get("audio_url")
@@ -996,7 +996,7 @@ def get_word_timestamps(mp3_path, build_dir):
     
     if r.status_code != 200:
         print(f"❌ Whisper failed: {r.status_code}")
-        sys.exit(1)
+        raise RuntimeError(f"Whisper transcription failed: {r.status_code}")
     
     result = r.json()
     words = result.get("words", [])
@@ -1713,7 +1713,7 @@ def build_carousel(scenes, build_dir):
 # ═══════════════════════════════════════════════════════════════
 # PHASE 9: Distribute
 # ═══════════════════════════════════════════════════════════════
-def upload_youtube(reel_path, article, attribution="", variant="voice"):
+def upload_youtube(reel_path, article, attribution="", variant="voiceover"):
     """Upload reel to YouTube as a Short."""
     print(f"\n  📺 YouTube upload ({variant})...")
     
@@ -1737,7 +1737,11 @@ def upload_youtube(reel_path, article, attribution="", variant="voice"):
     access_token = r.json()["access_token"]
     
     headline = article["headline"]
-    title = headline[:91] + " #Shorts"
+    # Differentiate variant titles for YouTube
+    if variant == "voiceover":
+        title = headline[:89] + " 🎙️ #Shorts"
+    else:
+        title = headline[:89] + " 🎵 #Shorts"
     article_url = f"https://www.thevideshi.com/articles/{article['slug']}"
     
     desc = f"""{headline}
@@ -1756,7 +1760,7 @@ Read the full article: {article_url}
             "categoryId": "25",
             "tags": ["Indian diaspora", "NRI", "The Videshi", "diaspora news"]
         },
-        "status": {"privacyStatus": "unlisted", "selfDeclaredMadeForKids": False}
+        "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}
     }
     
     file_size = os.path.getsize(reel_path)
@@ -1953,7 +1957,7 @@ def process_queue():
             
             endcard_cta_url, endcard_cta_dur = ensure_endcard_cta()
             words = get_word_timestamps(vo_mp3, build_dir)
-            music_url, attribution = select_music(article, build_dir, story_mood=story_mood)
+            music_url, attribution = select_music(article, build_dir, story_mood=None)
             
             # Build music-only reel
             music_reel_path, _ = build_music_only_reel(scenes, music_url, build_dir)
@@ -2321,10 +2325,12 @@ def main():
 
 
 def _check_yt_exists(article_id, variant_label):
-    """Check if this article already has a YouTube upload (ANY variant). One article = one YouTube Short."""
+    """Check if this specific variant already has a YouTube upload."""
+    exact_path = f"reel-gen/{article_id}/reel-{variant_label}.mp4"
     try:
         r = requests.get(
             f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article_id}"
+            f"&video_path=eq.{exact_path}"
             f"&yt_video_id=not.is.null&yt_video_id=neq.dedup-skip"
             f"&select=yt_video_id&limit=1",
             headers=SB_HEADERS, timeout=10
@@ -2342,15 +2348,16 @@ def _check_yt_exists(article_id, variant_label):
 
 
 def _save_yt_video_id(article_id, variant_label, yt_url):
-    """Save YouTube video ID back to the prebuilt_reels row."""
+    """Save YouTube video ID and posted timestamp back to the prebuilt_reels row."""
     vid = yt_url.rstrip("/").split("/")[-1].split("?")[0]
     exact_path = f"reel-gen/{article_id}/reel-{variant_label}.mp4"
     try:
+        import datetime
         requests.patch(
             f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article_id}"
             f"&video_path=eq.{exact_path}",
             headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
-            json={"yt_video_id": vid}, timeout=10
+            json={"yt_video_id": vid, "yt_posted_at": datetime.datetime.utcnow().isoformat() + "Z"}, timeout=10
         )
     except Exception as e:
         print(f"  ⚠️ Failed to save yt_video_id: {e}")

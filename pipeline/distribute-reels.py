@@ -227,8 +227,8 @@ def post_youtube_video(reel, video_path, headline, caption):
     
     # Detect variant from video_path
     vpath = reel.get('video_path') or ''
-    is_voiceover = 'voiceover' in vpath or 'voice' in vpath.split('/')[-1]
-    variant_tag = 'voiceover' if is_voiceover else 'music'
+    is_voiceover = 'voiceover' in vpath
+    variant_tag = 'voiceover' if is_voiceover else 'music-only'
     
     # Check youtube-log.json for slug+variant dedup
     yt_log = {}
