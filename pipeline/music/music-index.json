@@ -63,36 +63,6 @@
       "family": "upbeat-celebration"
     },
     {
-      "filename": "cinematic-epic-hollywood-trailer.mp3",
-      "category": "cinematic-epic",
-      "mood": "dramatic, building, powerful, cinematic",
-      "duration_s": 122,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "news",
-        "documentary",
-        "politics",
-        "long-form"
-      ],
-      "variants": {
-        "15s": "cinematic-epic-hollywood-trailer-15s.mp3",
-        "30s": "cinematic-epic-hollywood-trailer-30s.mp3"
-      },
-      "mood_tags": [
-        "dramatic",
-        "building",
-        "powerful",
-        "cinematic"
-      ],
-      "energy": 4,
-      "tempo": "mid",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "cinematic-epic"
-    },
-    {
       "filename": "cinematic-epic-risk.mp3",
       "category": "cinematic-epic",
       "mood": "tense, dramatic, suspenseful, building",
@@ -117,36 +87,6 @@
       ],
       "energy": 3,
       "tempo": "mid",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "cinematic-epic"
-    },
-    {
-      "filename": "cinematic-epic-total-war-epic-action-cinematic-trailer-main.mp3",
-      "category": "cinematic-epic",
-      "mood": "epic, intense, action, powerful",
-      "duration_s": 71,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "news",
-        "politics",
-        "conflict",
-        "documentary"
-      ],
-      "variants": {
-        "15s": "cinematic-epic-total-war-epic-action-cinematic-trailer-main-15s.mp3",
-        "30s": "cinematic-epic-total-war-epic-action-cinematic-trailer-main-30s.mp3"
-      },
-      "mood_tags": [
-        "epic",
-        "intense",
-        "action",
-        "powerful"
-      ],
-      "energy": 5,
-      "tempo": "driving",
       "has_vocals": false,
       "source_url": "https://pixabay.com/music/",
       "author": "Pixabay",
@@ -303,36 +243,6 @@
       "family": "tech-corporate"
     },
     {
-      "filename": "emotional-inspiring-cinematic.mp3",
-      "category": "emotional-inspiring",
-      "mood": "uplifting, cinematic, hopeful, emotional",
-      "duration_s": 132,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "human interest",
-        "social impact",
-        "inspiring",
-        "documentary"
-      ],
-      "variants": {
-        "15s": "emotional-inspiring-cinematic-15s.mp3",
-        "30s": "emotional-inspiring-cinematic-30s.mp3"
-      },
-      "mood_tags": [
-        "uplifting",
-        "cinematic",
-        "hopeful",
-        "emotional"
-      ],
-      "energy": 3,
-      "tempo": "mid",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "emotional-inspiring"
-    },
-    {
       "filename": "emotional-inspiring-emotional-uplifting.mp3",
       "category": "emotional-inspiring",
       "mood": "emotional, uplifting, warm, moving",
@@ -424,36 +334,6 @@
       "family": "indian-classical"
     },
     {
-      "filename": "indian-classical-free-soul-sitar.mp3",
-      "category": "indian-classical",
-      "mood": "sitar, tabla, flute, meditative, traditional",
-      "duration_s": 265,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "culture",
-        "heritage",
-        "spiritual",
-        "documentary"
-      ],
-      "variants": {
-        "15s": "indian-classical-free-soul-sitar-15s.mp3",
-        "30s": "indian-classical-free-soul-sitar-30s.mp3"
-      },
-      "mood_tags": [
-        "sitar",
-        "meditative",
-        "traditional",
-        "cultural"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "indian-classical"
-    },
-    {
       "filename": "indian-classical-indian-music-with-sitar-tanpura-and-sarangi.mp3",
       "category": "indian-classical",
       "mood": "sitar, tanpura, sarangi, classical, traditional",
@@ -515,67 +395,6 @@
       "family": "indian-classical"
     },
     {
-      "filename": "indian-flute.mp3",
-      "category": "indian-classical",
-      "mood": "peaceful, meditative, flute, serene",
-      "duration_s": 193,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "culture",
-        "heritage",
-        "spiritual",
-        "nature",
-        "documentary"
-      ],
-      "variants": {
-        "15s": "indian-flute-15s.mp3",
-        "30s": "indian-flute-30s.mp3"
-      },
-      "mood_tags": [
-        "peaceful",
-        "meditative",
-        "flute",
-        "serene"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "indian-classical"
-    },
-    {
-      "filename": "indian-lofi-bg.mp3",
-      "category": "indian-classical",
-      "mood": "lofi, chill, indian fusion, ambient",
-      "duration_s": 268,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "lifestyle & health",
-        "food",
-        "travel",
-        "culture"
-      ],
-      "variants": {
-        "15s": "indian-lofi-bg-15s.mp3",
-        "30s": "indian-lofi-bg-30s.mp3"
-      },
-      "mood_tags": [
-        "lofi",
-        "chill",
-        "fusion",
-        "ambient"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "indian-classical"
-    },
-    {
       "filename": "chill-lifestyle-rain-bliss.mp3",
       "category": "chill-lifestyle",
       "mood": "relaxed, chill-hop, mellow, ambient",
@@ -597,36 +416,6 @@
         "mellow",
         "ambient",
         "chill-hop"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "chill-lifestyle"
-    },
-    {
-      "filename": "chill-lifestyle-lofi-study.mp3",
-      "category": "chill-lifestyle",
-      "mood": "calm, peaceful, lofi, chill-hop, study",
-      "duration_s": 147,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "travel",
-        "food",
-        "lifestyle & health",
-        "education"
-      ],
-      "variants": {
-        "15s": "chill-lifestyle-lofi-study-15s.mp3",
-        "30s": "chill-lifestyle-lofi-study-30s.mp3"
-      },
-      "mood_tags": [
-        "calm",
-        "peaceful",
-        "lofi",
-        "study"
       ],
       "energy": 2,
       "tempo": "slow",
@@ -663,67 +452,6 @@
       "source_url": "https://pixabay.com/music/",
       "author": "Pixabay",
       "family": "chill-lifestyle"
-    },
-    {
-      "filename": "chill-lifestyle-sweet-life-luxury-chill.mp3",
-      "category": "chill-lifestyle",
-      "mood": "luxury, smooth, chill, sophisticated",
-      "duration_s": 102,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "travel",
-        "food",
-        "lifestyle & health",
-        "luxury"
-      ],
-      "variants": {
-        "15s": "chill-lifestyle-sweet-life-luxury-chill-15s.mp3",
-        "30s": "chill-lifestyle-sweet-life-luxury-chill-30s.mp3"
-      },
-      "mood_tags": [
-        "luxury",
-        "smooth",
-        "chill",
-        "sophisticated"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "chill-lifestyle"
-    },
-    {
-      "filename": "dramatic-dark-suspense-thriller.mp3",
-      "category": "dramatic-dark",
-      "mood": "dark, suspenseful, tension, thriller",
-      "duration_s": 160,
-      "source": "pixabay",
-      "license": "CC0",
-      "use_for": [
-        "crisis",
-        "tragedy",
-        "conflict",
-        "investigative",
-        "crime"
-      ],
-      "variants": {
-        "15s": "dramatic-dark-suspense-thriller-15s.mp3",
-        "30s": "dramatic-dark-suspense-thriller-30s.mp3"
-      },
-      "mood_tags": [
-        "dark",
-        "suspenseful",
-        "tension",
-        "thriller"
-      ],
-      "energy": 3,
-      "tempo": "mid",
-      "has_vocals": false,
-      "source_url": "https://pixabay.com/music/",
-      "author": "Pixabay",
-      "family": "dramatic-dark"
     },
     {
       "filename": "pixabay-dramatic-full.mp3",
@@ -852,102 +580,6 @@
       "family": "tech-corporate"
     },
     {
-      "filename": "tech-corporate-cipher.mp3",
-      "category": "tech-corporate",
-      "mood": "sleek, driving, mysterious, tech, modern",
-      "mood_tags": [
-        "sleek",
-        "driving",
-        "mysterious",
-        "tech",
-        "modern"
-      ],
-      "energy": 4,
-      "tempo": "driving",
-      "has_vocals": false,
-      "duration_s": 231,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "technology",
-        "markets & finance",
-        "cyber",
-        "innovation"
-      ],
-      "variants": {
-        "15s": "tech-corporate-cipher-15s.mp3",
-        "30s": "tech-corporate-cipher-30s.mp3"
-      },
-      "family": "tech-corporate"
-    },
-    {
-      "filename": "dramatic-dark-anxiety.mp3",
-      "category": "dramatic-dark",
-      "mood": "tense, dark, uneasy, minimal, brooding",
-      "mood_tags": [
-        "tense",
-        "dark",
-        "uneasy",
-        "minimal",
-        "brooding"
-      ],
-      "energy": 3,
-      "tempo": "slow",
-      "has_vocals": false,
-      "duration_s": 111,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "crisis",
-        "investigative",
-        "immigration",
-        "somber"
-      ],
-      "variants": {
-        "15s": "dramatic-dark-anxiety-15s.mp3",
-        "30s": "dramatic-dark-anxiety-30s.mp3"
-      },
-      "family": "dramatic-dark"
-    },
-    {
-      "filename": "dramatic-dark-darkest-child.mp3",
-      "category": "dramatic-dark",
-      "mood": "dark, ominous, serious, brooding, tense",
-      "mood_tags": [
-        "dark",
-        "ominous",
-        "serious",
-        "brooding",
-        "tense"
-      ],
-      "energy": 3,
-      "tempo": "slow",
-      "has_vocals": false,
-      "duration_s": 239,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "crisis",
-        "tragedy",
-        "investigative",
-        "crime"
-      ],
-      "variants": {
-        "15s": "dramatic-dark-darkest-child-15s.mp3",
-        "30s": "dramatic-dark-darkest-child-30s.mp3"
-      },
-      "family": "dramatic-dark"
-    },
-    {
       "filename": "anthemic-triumph-rising-tide.mp3",
       "category": "anthemic-triumph",
       "mood": "soaring, epic, uplifting, triumphant, building",
@@ -976,102 +608,6 @@
       "variants": {
         "15s": "anthemic-triumph-rising-tide-15s.mp3",
         "30s": "anthemic-triumph-rising-tide-30s.mp3"
-      },
-      "family": "anthemic-triumph"
-    },
-    {
-      "filename": "anthemic-triumph-heroic-age.mp3",
-      "category": "anthemic-triumph",
-      "mood": "heroic, triumphant, bold, soaring, grand",
-      "mood_tags": [
-        "heroic",
-        "triumphant",
-        "bold",
-        "soaring",
-        "grand"
-      ],
-      "energy": 5,
-      "tempo": "driving",
-      "has_vocals": false,
-      "duration_s": 97,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "landmark",
-        "sports",
-        "achievement",
-        "victory"
-      ],
-      "variants": {
-        "15s": "anthemic-triumph-heroic-age-15s.mp3",
-        "30s": "anthemic-triumph-heroic-age-30s.mp3"
-      },
-      "family": "anthemic-triumph"
-    },
-    {
-      "filename": "anthemic-triumph-eternal-hope.mp3",
-      "category": "anthemic-triumph",
-      "mood": "hopeful, soaring, inspiring, uplifting, grand",
-      "mood_tags": [
-        "hopeful",
-        "soaring",
-        "inspiring",
-        "uplifting",
-        "grand"
-      ],
-      "energy": 3,
-      "tempo": "mid",
-      "has_vocals": false,
-      "duration_s": 284,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "achievement",
-        "human interest",
-        "milestone",
-        "inspiring"
-      ],
-      "variants": {
-        "15s": "anthemic-triumph-eternal-hope-15s.mp3",
-        "30s": "anthemic-triumph-eternal-hope-30s.mp3"
-      },
-      "family": "anthemic-triumph"
-    },
-    {
-      "filename": "anthemic-triumph-exhilarate.mp3",
-      "category": "anthemic-triumph",
-      "mood": "uplifting, energetic, triumphant, bright, soaring",
-      "mood_tags": [
-        "uplifting",
-        "energetic",
-        "triumphant",
-        "bright",
-        "soaring"
-      ],
-      "energy": 4,
-      "tempo": "upbeat",
-      "has_vocals": false,
-      "duration_s": 146,
-      "source": "incompetech",
-      "license": "CC-BY-4.0",
-      "author": "Kevin MacLeod (incompetech.com)",
-      "source_url": "https://incompetech.com/music/royalty-free/",
-      "attribution": "Music by Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 4.0 (CC BY 4.0)",
-      "use_for": [
-        "landmark",
-        "sports",
-        "achievement",
-        "good news"
-      ],
-      "variants": {
-        "15s": "anthemic-triumph-exhilarate-15s.mp3",
-        "30s": "anthemic-triumph-exhilarate-30s.mp3"
       },
       "family": "anthemic-triumph"
     },
@@ -1172,69 +708,6 @@
       "family": "breaking-news"
     },
     {
-      "filename": "sb-aphelion.mp3",
-      "category": "cinematic-epic",
-      "mood_tags": [
-        "epic",
-        "cinematic",
-        "building",
-        "orchestral",
-        "synth"
-      ],
-      "energy": 4,
-      "tempo": "moderate",
-      "has_vocals": false,
-      "duration_s": 422,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/aphelion/",
-      "attribution": "'Aphelion' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "cinematic-epic"
-    },
-    {
-      "filename": "sb-starfire.mp3",
-      "category": "cinematic-epic",
-      "mood_tags": [
-        "hopeful",
-        "epic",
-        "orchestral",
-        "sci-fi",
-        "inspiring"
-      ],
-      "energy": 4,
-      "tempo": "moderate",
-      "has_vocals": false,
-      "duration_s": 341,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/starfire/",
-      "attribution": "'Starfire' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "cinematic-epic"
-    },
-    {
-      "filename": "sb-song-of-the-forge.mp3",
-      "category": "cinematic-epic",
-      "mood_tags": [
-        "epic",
-        "dramatic",
-        "driving",
-        "orchestral",
-        "war-march"
-      ],
-      "energy": 5,
-      "tempo": "fast",
-      "has_vocals": false,
-      "duration_s": 205,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/song-of-the-forge/",
-      "attribution": "'Song of the Forge' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "cinematic-epic"
-    },
-    {
       "filename": "sb-simulacra.mp3",
       "category": "dramatic-dark",
       "mood_tags": [
@@ -1254,131 +727,6 @@
       "attribution": "'Simulacra' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
       "variants": {},
       "family": "dramatic-dark"
-    },
-    {
-      "filename": "sb-eyes-in-the-void.mp3",
-      "category": "dramatic-dark",
-      "mood_tags": [
-        "dark",
-        "tense",
-        "suspenseful",
-        "gothic",
-        "sinister"
-      ],
-      "energy": 4,
-      "tempo": "moderate",
-      "has_vocals": false,
-      "duration_s": 264,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/eyes-in-the-void/",
-      "attribution": "'Eyes in the Void' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "dramatic-dark"
-    },
-    {
-      "filename": "sb-born-of-the-sky.mp3",
-      "category": "anthemic-triumph",
-      "mood_tags": [
-        "uplifting",
-        "heroic",
-        "triumphant",
-        "orchestral",
-        "bright"
-      ],
-      "energy": 5,
-      "tempo": "fast",
-      "has_vocals": false,
-      "duration_s": 187,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/born-of-the-sky/",
-      "attribution": "'Born of the Sky' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "anthemic-triumph"
-    },
-    {
-      "filename": "sb-ride-the-wind.mp3",
-      "category": "anthemic-triumph",
-      "mood_tags": [
-        "adventurous",
-        "bold",
-        "epic",
-        "inspiring",
-        "vocal"
-      ],
-      "energy": 4,
-      "tempo": "moderate",
-      "has_vocals": true,
-      "duration_s": 269,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/ride-the-wind/",
-      "attribution": "'Ride the Wind' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "anthemic-triumph"
-    },
-    {
-      "filename": "sb-penumbra.mp3",
-      "category": "emotional-inspiring",
-      "mood_tags": [
-        "emotional",
-        "bittersweet",
-        "strings",
-        "atmospheric",
-        "reflective"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "duration_s": 449,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/penumbra/",
-      "attribution": "'Penumbra' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "emotional-inspiring"
-    },
-    {
-      "filename": "sb-convergence.mp3",
-      "category": "emotional-inspiring",
-      "mood_tags": [
-        "emotional",
-        "melancholic",
-        "upbeat",
-        "orchestral"
-      ],
-      "energy": 3,
-      "tempo": "moderate",
-      "has_vocals": false,
-      "duration_s": 219,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/convergence/",
-      "attribution": "'Convergence' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "emotional-inspiring"
-    },
-    {
-      "filename": "sb-amberlight.mp3",
-      "category": "emotional-inspiring",
-      "mood_tags": [
-        "nostalgic",
-        "inspirational",
-        "piano",
-        "orchestral",
-        "warm"
-      ],
-      "energy": 2,
-      "tempo": "slow",
-      "has_vocals": false,
-      "duration_s": 282,
-      "license": "CC-BY-4.0",
-      "author": "Scott Buckley",
-      "source_url": "https://www.scottbuckley.com.au/library/amberlight/",
-      "attribution": "'Amberlight' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-      "variants": {},
-      "family": "emotional-inspiring"
     },
     {
       "filename": "upbeat-celebration-fun-upbeat-inplus.mp3",
