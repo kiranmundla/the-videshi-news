@@ -117,15 +117,6 @@
     "source": "US State Department / AP / Bloomberg Law"
   },
   {
-    "id": "h1b-100k-fee-struck-down",
-    "date": "2026-06-08",
-    "label": "Jun 8, 2026",
-    "headline": "Federal judge strikes down Trump's $100,000 H-1B visa fee \u2014 rules it an unlawful tax",
-    "summary": "U.S. District Judge Leo Sorokin in Boston vacated Trump's $100,000 H-1B visa fee in a lawsuit brought by 20 state attorneys general, ruling it an unauthorized tax Congress never approved. Prior fees were $2K\u2013$5K; only 85 employers had paid the $100K since September. The White House is appealing, citing a conflicting ruling from a D.C. judge who upheld the fee. The fee's fate now hinges on the appeals courts \u2014 but for now, it is vacated in its entirety.",
-    "severity": "high",
-    "source": "U.S. District Court / Reuters / USA TODAY"
-  },
-  {
     "id": "doj-denaturalization-h1b-india",
     "date": "2026-06-08",
     "label": "Jun 8, 2026",
@@ -170,6 +161,15 @@
     "summary": "@USAndIndia posted that screening does not stop once a visa is issued. Holders are continuously monitored for compliance with US laws and immigration rules \u2014 visas will be revoked and holders deported if found in violation. Part of broader enforcement posture alongside expanded social media vetting.",
     "severity": "medium",
     "source": "US Embassy India (@USAndIndia)"
+  },
+  {
+    "id": "uscis-aos-extraordinary-relief",
+    "date": "2026-05-22",
+    "label": "May 22, 2026",
+    "headline": "USCIS declares adjustment of status 'extraordinary relief' \u2014 green card applicants directed to leave US and process at consulates abroad",
+    "summary": "USCIS issued Policy Memorandum PM-602-0199 declaring that adjustment of status (AOS) \u2014 the process by which immigrants apply for green cards from inside the US \u2014 will now be treated as 'extraordinary' discretionary relief granted only in limited cases. The agency directed officers to consider consular processing abroad as the default pathway, stating temporary visa holders 'must return to their home country to apply, except in extraordinary circumstances.' While eligibility rules have not technically changed and dual-intent visa holders (H-1B, L-1) may still file AOS, the memo instructs adjudicators to apply heightened discretionary review \u2014 meaning increased Requests for Evidence, Notices of Intent to Deny, and longer processing times. The policy represents a sharp break from decades of practice where eligible H-1B and L-1 workers routinely adjusted status domestically. For Indian applicants already facing decade-long green card backlogs and 10+ month consular interview waits, being pushed to consular processing could add years of additional delay and force workers to leave their US jobs during the application process. Legal challenges are expected.",
+    "severity": "high",
+    "source": "USCIS PM-602-0199 / Mondaq / Lexology / USA TODAY"
   },
   {
     "id": "interview-waiver-eliminated",
