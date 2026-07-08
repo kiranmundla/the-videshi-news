@@ -1474,43 +1474,35 @@
     }
   ],
   "categories": {
-    "upbeat-celebration": {
-      "description": "Victory, sports wins, festivals, good news",
+    "breaking-news": {
       "article_categories": [
-        "sports",
+        "news",
+        "nri world",
+        "markets & finance",
+        "technology",
+        "immigration"
+      ]
+    },
+    "upbeat-celebration": {
+      "article_categories": [
         "entertainment",
-        "festivals",
-        "lifestyle & health"
+        "festivals"
       ]
     },
     "cinematic-epic": {
-      "description": "Dramatic, building, documentary, powerful stories",
       "article_categories": [
-        "news",
         "politics",
         "documentary",
         "long-form"
       ]
     },
-    "breaking-news": {
-      "description": "Urgent, tension, fast-paced news alerts",
-      "article_categories": [
-        "news",
-        "nri world",
-        "markets & finance"
-      ]
-    },
     "tech-corporate": {
-      "description": "Modern, clean, innovation, professional",
       "article_categories": [
-        "technology",
         "business",
-        "startups",
-        "markets & finance"
+        "startups"
       ]
     },
     "emotional-inspiring": {
-      "description": "Uplifting, human interest, hope, community",
       "article_categories": [
         "human interest",
         "social impact",
@@ -1519,25 +1511,19 @@
       ]
     },
     "indian-classical": {
-      "description": "Sitar, tabla, flute \u2014 cultural, heritage, Bollywood",
       "article_categories": [
-        "entertainment",
         "food",
         "culture",
-        "festivals",
         "bollywood"
       ]
     },
     "chill-lifestyle": {
-      "description": "Relaxed, lofi, food/travel/lifestyle content",
       "article_categories": [
         "travel",
-        "food",
         "lifestyle & health"
       ]
     },
     "dramatic-dark": {
-      "description": "Crisis, tragedy, investigative, conflict",
       "article_categories": [
         "crisis",
         "tragedy",
@@ -1547,12 +1533,8 @@
       ]
     },
     "anthemic-triumph": {
-      "description": "Soaring, epic-but-uplifting victory-scale beds for landmark/milestone stories",
       "article_categories": [
-        "news",
-        "markets & finance",
-        "sports",
-        "technology"
+        "sports"
       ]
     }
   },
@@ -1564,8 +1546,8 @@
     ],
     "celebratory": [
       "upbeat-celebration",
-      "indian-classical",
-      "anthemic-triumph"
+      "anthemic-triumph",
+      "indian-classical"
     ],
     "somber": [
       "dramatic-dark",
@@ -1578,8 +1560,8 @@
     ],
     "neutral-news": [
       "breaking-news",
-      "cinematic-epic",
-      "tech-corporate"
+      "tech-corporate",
+      "cinematic-epic"
     ],
     "uplifting": [
       "emotional-inspiring",
@@ -1592,9 +1574,9 @@
       "emotional-inspiring"
     ],
     "tech": [
+      "breaking-news",
       "tech-corporate",
-      "cinematic-epic",
-      "breaking-news"
+      "cinematic-epic"
     ],
     "chill": [
       "chill-lifestyle",
@@ -1612,9 +1594,9 @@
       "breaking-news"
     ],
     "exciting": [
-      "cinematic-epic",
       "upbeat-celebration",
-      "anthemic-triumph"
+      "anthemic-triumph",
+      "breaking-news"
     ]
   },
   "licenses": {
