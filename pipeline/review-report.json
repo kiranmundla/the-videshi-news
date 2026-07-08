@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-08T13:15:33.422164+00:00",
+  "timestamp": "2026-07-08T14:15:33.121595+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "1fe19393-30a3-4624-8019-dbee255bbea6",
-      "headline": "Apple Just Lost Its Biggest European Court Battle. India's Antitrust Watchdog Is Taking Notes.",
-      "slug": "apple-eu-dma-court-loss-india-antitrust-cci-20260708",
+      "id": "e786f62d-67a7-44cc-a7e4-c666a4ed8cfe",
+      "headline": "An AI Is Now Reading Every H-1B Filing You Ever Made. The Government Just Connected the Dots",
+      "slug": "ai-h1b-enforcement-palantir-project-firewall-compliance-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Apple CEO Tim Cook",
-          "reason": "The photo shows Tim Cook, relevant to Apple's court battle."
+          "what_photo_shows": "silhouette with binary code overlay",
+          "reason": "The image represents AI and data surveillance, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of H-1B filings or immigration enforcement."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the EU ruling to the Indian context, highlighting implications for Indian developers and the diaspora."
+          "quality": 7,
+          "note": "The article discusses H-1B enforcement, which is highly relevant to the Indian diaspora, particularly those in the IT sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian developers or industry experts to enhance the diaspora perspective.",
-          "Include a brief overview of the implications for Indian consumers as well, to broaden the article's appeal."
+          "Consider using a more relevant image that depicts immigration or H-1B workers.",
+          "Add a quote or perspective from an NRI or someone from the Indian diaspora to strengthen the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,98 +54,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "00d8109f-65ca-401c-8316-e1720882f959",
-      "headline": "China Just Called Anthropic's Claude Code a Security Threat. Alibaba Already Banned It.",
-      "slug": "china-claude-code-backdoor-alibaba-ban-india-20260708",
+      "id": "d9880c50-8318-47fb-b31d-950737d7807e",
+      "headline": "The DOL Just Launched Its Biggest H-1B Fraud Probe. Dozens of Subpoenas Are Already Out",
+      "slug": "dol-inspector-general-h1b-perm-fraud-probe-subpoenas-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "89a1a733-5ea5-4244-b5b4-2720250c73da",
-            "headline": "Anthropic Is Worth More Than OpenAI. Its Trillion-Dollar IPO"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man speaking at an event",
-          "reason": "The photo plausibly shows Dario Amodei, relevant to the story."
+          "what_photo_shows": "U.S. Department of Labor building",
+          "reason": "The photo shows the headquarters of the U.S. Department of Labor, relevant to the story about an H-1B fraud probe."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of Dario Amodei is somewhat relevant as he is associated with Anthropic, but it does not directly illustrate the security threat aspect discussed in the article."
+          "score": 8,
+          "issue": "The image of the Department of Labor building is relevant to the article's topic on H-1B fraud investigations."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the security threat to Indian developers, making it highly relevant for the diaspora audience."
+          "quality": 7,
+          "note": "The article discusses H-1B visa programs, which are directly relevant to Indian IT professionals and the diaspora community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the security threat or the implications for Indian developers.",
-          "Add more context or quotes from Indian developers or industry experts to strengthen the diaspora connection."
+          "Include quotes or perspectives from Indian diaspora members affected by H-1B policies to enhance the diaspora angle.",
+          "Provide more context on how these investigations may impact the Indian IT community specifically."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gemini-2.5-flash (904\u21921281 words)"
       ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6dc026f0-224b-4dc2-bf12-9d3f653b2af4",
-      "headline": "Washington Just Cleared GPT-5.6 for the World. Here's What Indian Developers Get on Thursday.",
-      "slug": "openai-gpt56-sol-launch-india-developers-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3f4bbba1-5eef-4879-a39f-13a0728de56f",
-            "headline": "Sam Altman Offered Washington 5% of OpenAI. The Government W"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sam Altman in a meeting",
-          "reason": "The photo shows Sam Altman, relevant to the OpenAI story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Sam Altman, which is relevant to the topic of AI and OpenAI, but it does not directly relate to the specific launch of GPT-5.6."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of AI developments for Indian developers and engineers, making it relevant for the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Indian developers to enhance the diaspora connection.",
-          "Consider adding a section on how Indian startups specifically plan to leverage GPT-5.6."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
