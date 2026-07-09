@@ -1,0 +1,128 @@
+import { Link } from "react-router-dom";
+import { Article, formatShortDate } from "@/lib/articles";
+import HeroImage, { isValidImage } from "@/components/HeroImage";
+
+interface Props {
+  title: string;
+  borderColor: string;
+  categorySlug: string;
+  articles: Article[];
+}
+
+function timeAgo(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const h = Math.floor(diff / 3600000);
+  if (h < 1) return "Just now";
+  if (h < 24) return `${h}h ago`;
+  return formatShortDate(iso);
+}
+
+export default function LeadListSection({ title, borderColor, categorySlug, articles }: Props) {
+  if (articles.length === 0) return null;
+
+  const [lead, ...rest] = articles;
+  const list = rest.slice(0, 3);
+  const hasLeadImage = isValidImage(lead.hero_image_url);
+  const rt = (lead as any).reading_time ?? 5;
+
+  return (
+    <section className="mb-14">
+      <div className="container">
+        {/* Section header */}
+        <div
+          className="flex items-center justify-between mb-5 pb-2.5"
+          style={{ borderBottom: `3px solid ${borderColor}` }}
+        >
+          <h2 className="text-[13px] font-bold tracking-[2px] uppercase" style={{ color: "#0B1D3A" }}>
+            {title}
+          </h2>
+          <Link
+            to={`/${categorySlug}`}
+            className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
+          >
+            See all →
+          </Link>
+        </div>
+
+        {/* Lead + list grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          {/* Lead card */}
+          <Link to={`/articles/${lead.slug}`} className="group block">
+            {hasLeadImage && (
+              <div className="w-full aspect-[16/10] bg-stone-100 overflow-hidden rounded-lg mb-3.5">
+                <HeroImage
+                  src={lead.hero_image_url}
+                  alt={lead.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+                  width="600"
+                  height="375"
+                  style={{ objectPosition: "center 20%" }}
+                />
+              </div>
+            )}
+            <p
+              className="text-[11px] font-bold tracking-[1.2px] uppercase mb-1.5"
+              style={{ color: borderColor }}
+            >
+              {lead.category?.replace("-", " ")}
+            </p>
+            <h3 className="font-serif text-[22px] font-extrabold leading-[1.25] mb-2 group-hover:text-primary transition-colors">
+              {lead.title}
+            </h3>
+            {lead.excerpt && (
+              <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-1.5">
+                {lead.excerpt}
+              </p>
+            )}
+            <p className="text-xs text-muted-foreground">
+              {rt} min read · {timeAgo(lead.published_at)}
+            </p>
+          </Link>
+
+          {/* List stack */}
+          <div className="flex flex-col">
+            {list.map((a, i) => {
+              const img = isValidImage(a.hero_image_url);
+              return (
+                <Link
+                  key={a.id}
+                  to={`/articles/${a.slug}`}
+                  className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-stone-50 transition-colors rounded"
+                  style={{ borderColor: "hsl(var(--rule))" }}
+                >
+                  {img && (
+                    <div className="w-[72px] min-w-[72px] h-[72px] bg-stone-100 rounded overflow-hidden">
+                      <HeroImage
+                        src={a.hero_image_url}
+                        alt={a.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                        width="72"
+                        height="72"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
+                      style={{ color: borderColor }}
+                    >
+                      {a.category?.replace("-", " ")}
+                    </p>
+                    <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                      {a.title}
+                    </h4>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {timeAgo(a.published_at)}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
