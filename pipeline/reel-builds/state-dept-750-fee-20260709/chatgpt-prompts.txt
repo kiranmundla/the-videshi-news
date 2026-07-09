@@ -1,0 +1,71 @@
+ARTICLE: Pay $750 to Skip the Queue. The State Department Just Put a Price on Visa Interviews
+ID: d14a95aa-a5ed-48d6-af9c-2a319a318658
+SCENES: 7
+============================================================
+
+Paste each prompt into ChatGPT one at a time.
+Save each image as scene-0.jpg, scene-1.jpg, etc.
+
+────────────────────────────────────────────────────────────
+SCENE 0 — PAY $750 TO SKIP THE LINE?
+────────────────────────────────────────────────────────────
+Voiceover: Your parents want to visit you in the US. The wait? Over ten months. Unless you pay seven hundred and fifty dollars.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Visa application with $750 stamp, long queue at US consulate
+
+────────────────────────────────────────────────────────────
+SCENE 1 — $750 EXPEDITED INTERVIEW — 10 DAYS
+────────────────────────────────────────────────────────────
+Voiceover: The State Department just launched a pilot. Pay seven-fifty on top of the standard one-eighty-five fee, and you get an interview within ten business days.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Golden VIP fast-pass card showing $750 expedited interview, clock showing 10 days
+
+────────────────────────────────────────────────────────────
+SCENE 2 — INDIA VISA WAIT TIMES: HYDERABAD 2027
+────────────────────────────────────────────────────────────
+Voiceover: Right now, Hyderabad's visa backlog stretches to twenty-twenty-seven. Mumbai, Delhi, Chennai — all months behind. Indian consulates are the worst hit.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Bar chart showing visa wait times at Indian consulates: Hyderabad 2027, Mumbai, Delhi, Chennai
+
+────────────────────────────────────────────────────────────
+SCENE 3 — TOTAL COST: OVER $1,500
+────────────────────────────────────────────────────────────
+Voiceover: But the real cost isn't just seven-fifty. Add the application fee, visa issuance, flights, hotels. You're looking at over fifteen hundred dollars — before you even know if you'll get approved.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Stacked cost breakdown: application $185, expedited $750, travel costs, total over $1500
+
+────────────────────────────────────────────────────────────
+SCENE 4 — NO GUARANTEE. NO REFUND.
+────────────────────────────────────────────────────────────
+Voiceover: And here's the catch. The fee does not guarantee approval. It doesn't speed up processing. And if you miss your appointment? No refund.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Warning infographic: no guaranteed approval, no refund, no faster processing
+
+────────────────────────────────────────────────────────────
+SCENE 5 — 25,000 SLOTS — ENDS DEC 2026
+────────────────────────────────────────────────────────────
+Voiceover: Only twenty-five thousand slots exist — and the pilot ends December thirty-first. The State Department hasn't even announced which consulates will offer it.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Counter showing 25,000 cap, calendar showing pilot ends Dec 31, 2026
+
+────────────────────────────────────────────────────────────
+SCENE 6 — FAST PASS OR TWO-TIER SYSTEM?
+────────────────────────────────────────────────────────────
+Voiceover: So is this a solution for desperate families — or a fast pass that only the wealthy can afford? That's the question every diaspora family is asking right now.
+
+IMAGE PROMPT (paste this into ChatGPT):
+
+Split scene: VIP rope line vs massive crowd queue, inequality of access
+

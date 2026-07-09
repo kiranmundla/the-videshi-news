@@ -69,6 +69,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 25%;
   display: block;
 }
 
@@ -100,6 +101,14 @@
 .v2-ribbon-scroll::-webkit-scrollbar { display: none; }
 .v2-ribbon-portrait { width: 200px; }
 .v2-ribbon-landscape { width: 280px; }
+
+/* ── Hero image cropping — bias toward faces ── */
+/* Applies to all homepage card images so portrait
+   source images show faces instead of feet */
+.v2-imm-card img,
+.v2-ribbon-scroll img {
+  object-position: center 25%;
+}
 
 /* ── Voices section ─────────────────────── */
 .v2-voices-section {

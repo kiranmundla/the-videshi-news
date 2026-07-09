@@ -49,9 +49,7 @@ export default function HeroSection({ lead, side }: Props) {
                   loading="eager"
                   fetchPriority="high"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  
-                  
-                  style={{ objectPosition: "center 20%" }}
+                  style={{ objectPosition: "center 25%" }}
                 />
               </div>
             )}

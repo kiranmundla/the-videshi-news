@@ -1,0 +1,47 @@
+{
+  "article_id": "d14a95aa-a5ed-48d6-af9c-2a319a318658",
+  "scenes": [
+    {
+      "voiceover": "Is paying $750 the new way to skip the visa line?",
+      "onscreen": "PAY $750 TO SKIP THE LINE?",
+      "image_prompt": "Visa application with $750 stamp, long queue at US consulate",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-0.png"
+    },
+    {
+      "voiceover": "Introducing the $750 expedited interview pass \u2014 get yours in just 10 days!",
+      "onscreen": "$750 EXPEDITED INTERVIEW \u2014 10 DAYS",
+      "image_prompt": "Golden VIP fast-pass card showing $750 expedited interview, clock showing 10 days",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-1.png"
+    },
+    {
+      "voiceover": "Look at these wait times in India \u2014 Chennai, Delhi, and beyond \u2014 stretching into 2027!",
+      "onscreen": "INDIA VISA WAIT TIMES: HYDERABAD 2027",
+      "image_prompt": "Bar chart showing visa wait times at Indian consulates: Hyderabad 2027, Mumbai, Delhi, Chennai",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-2.png"
+    },
+    {
+      "voiceover": "Over $1,500 for a visa application? Here's your financial breakdown.",
+      "onscreen": "TOTAL COST: OVER $1,500",
+      "image_prompt": "Stacked cost breakdown: application $185, expedited $750, travel costs, total over $1500",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-3.png"
+    },
+    {
+      "voiceover": "Warning: That $750 fee won't guarantee approval or faster processing.",
+      "onscreen": "NO GUARANTEE. NO REFUND.",
+      "image_prompt": "Warning infographic: no guaranteed approval, no refund, no faster processing",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-4.png"
+    },
+    {
+      "voiceover": "Limited to 25,000 slots until 2026 \u2014 act fast if you want to apply!",
+      "onscreen": "25,000 SLOTS \u2014 ENDS DEC 2026",
+      "image_prompt": "Counter showing 25,000 cap, calendar showing pilot ends Dec 31, 2026",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-5.png"
+    },
+    {
+      "voiceover": "Fast pass or two-tier system? What does this mean for Indians abroad?",
+      "onscreen": "FAST PASS OR TWO-TIER SYSTEM?",
+      "image_prompt": "Split scene: VIP rope line vs massive crowd queue, inequality of access",
+      "image_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/reel-gen/d14a95aa-a5ed-48d6-af9c-2a319a318658/manual-scene-6.png"
+    }
+  ]
+}

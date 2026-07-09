@@ -70,7 +70,7 @@ export default function NewsGrid({
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" style={{ objectPosition: "center 25%" }}
                       
                       
                     />

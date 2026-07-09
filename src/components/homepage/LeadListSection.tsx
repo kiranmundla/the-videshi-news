@@ -55,9 +55,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                   alt={lead.title}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  
-                  
-                  style={{ objectPosition: "center 20%" }}
+                  style={{ objectPosition: "center 25%" }}
                 />
               </div>
             )}
