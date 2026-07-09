@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T00:45:18.152278+00:00",
+  "timestamp": "2026-07-09T01:15:23.312852+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c426d56d-f869-47e0-a855-8495db445231",
-      "headline": "The US Just Charged Lawrence Bishnoi With Ordering the Nijjar Murder. The Indictment Pointedly Clears India's Government.",
-      "slug": "us-charges-bishnoi-nijjar-murder-operation-hard-ball-indian-gangs-20260708",
+      "id": "e61ebf00-8c11-453c-b5bb-6ca7b5cff7cc",
+      "headline": "Her Twins Read the Divorce Papers in German. Her Husband Said, 'I'll Get You a Job Cleaning Supermarkets.' Celina Jaitly Is Done Being Quiet.",
+      "slug": "celina-jaitly-divorce-peter-haag-preity-zinta-twin-sons-german-papers-prenup-sister-nivedita-comeback-nri-diaspora-austria-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Guru Nanak Sikh Gurdwara",
-          "reason": "The gurdwara is relevant to the Nijjar murder story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of organized crime on Indian diaspora communities, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from diaspora community members to enhance relatability.",
-          "Provide a brief background on the Nijjar case for readers unfamiliar with the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "held: no sources"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "95a20d67-bbae-4ece-8be1-e8a4d8f9126e",
-      "headline": "The DOJ Just Threatened to Prosecute Election Officials Over Voter Rolls. Naturalized Indian Americans Could Pay the Price.",
-      "slug": "doj-harmeet-dhillon-voter-purge-noncitizen-indian-americans-midterms-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman in official portrait",
-          "reason": "The photo shows Harmeet Dhillon, relevant to the story."
+          "what_photo_shows": "woman at promotional event",
+          "reason": "The photo plausibly shows Celina Jaitly, matching the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,18 +36,74 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of voter roll purges on naturalized Indian Americans, making it relevant to the diaspora."
+          "note": "The article effectively connects Celina's personal struggles with the broader experience of Indian women in cross-border marriages, making it relatable for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from affected individuals or organizations to enhance the human interest angle.",
-          "Add a section discussing potential solutions or responses from the Indian American community regarding the DOJ's actions."
+          "Consider adding more quotes or perspectives from diaspora women to enhance relatability.",
+          "Include a brief background on Celina Jaitly's career for readers unfamiliar with her."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: no sources"
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0683d6c4-bc68-4b87-9afc-b7db7b6961dc",
+      "headline": "Every Critic Just Said the Same Word About The Odyssey. The Word Is 'Masterpiece.'",
+      "slug": "the-odyssey-nolan-london-premiere-first-reactions-masterpiece-himesh-patel-mvp-heath-ledger-comparison-diaspora-nri-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Christopher Nolan speaking",
+          "reason": "The photo shows Christopher Nolan, relevant to the story about his film."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DacT-QCtJlJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the film or its themes."
+          },
+          {
+            "url": "https://www.instagram.com/p/DahlSXZDZWu/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to connect with the article's focus on 'The Odyssey'."
+          }
+        ],
+        "image_match": {
+          "score": 3,
+          "issue": "The hero image does not match the article's topic about 'The Odyssey'."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article highlights Himesh Patel, a British-Indian actor, emphasizing the significance of representation in Hollywood."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is directly related to 'The Odyssey'.",
+          "Ensure that all embedded social media links are relevant to the film and its themes."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DacT-QCtJlJ/",
+        "Removed irrelevant embed: https://www.instagram.com/p/DahlSXZDZWu/",
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
