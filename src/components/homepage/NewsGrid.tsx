@@ -23,7 +23,6 @@ export default function NewsGrid({
   borderColor,
   categorySlug,
   articles,
-  columns = 3,
 }: Props) {
   if (articles.length === 0) return null;
 
@@ -49,20 +48,15 @@ export default function NewsGrid({
           </Link>
         </div>
 
-        <div
-          className={`grid grid-cols-1 gap-5 ${
-            columns === 3
-              ? "sm:grid-cols-2 md:grid-cols-3"
-              : "sm:grid-cols-2"
-          }`}
-        >
-          {articles.slice(0, columns === 3 ? 3 : 4).map((a) => {
+        <div className="v2-ribbon-scroll-wrap">
+        <div className="v2-ribbon-scroll v2-scroll-thin">
+          {articles.map((a) => {
             const img = isValidImage(a.hero_image_url);
             return (
               <Link
                 key={a.id}
                 to={`/articles/${a.slug}`}
-                className="group block"
+                className="group block flex-shrink-0 v2-ribbon-landscape"
               >
                 {img ? (
                   <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2" style={{ aspectRatio: "16/10" }}>
@@ -70,9 +64,8 @@ export default function NewsGrid({
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" style={{ objectPosition: "center 25%" }}
-                      
-                      
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                      style={{ objectPosition: "center 25%" }}
                     />
                   </div>
                 ) : (
@@ -95,6 +88,7 @@ export default function NewsGrid({
               </Link>
             );
           })}
+        </div>
         </div>
       </div>
     </section>

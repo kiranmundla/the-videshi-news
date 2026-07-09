@@ -417,7 +417,6 @@ export default function IndexV2() {
           categorySlug="sports"
           articles={layout.sports}
           aspectRatio="landscape"
-          cardCount={4}
         />
         <TweetScroll category="sports" />
 
