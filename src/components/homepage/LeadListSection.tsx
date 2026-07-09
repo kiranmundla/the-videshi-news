@@ -49,14 +49,14 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
           {/* Lead card */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
-              <div className="w-full aspect-[16/10] bg-stone-100 overflow-hidden rounded-lg mb-3.5">
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/10" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  width="600"
-                  height="375"
+                  
+                  
                   style={{ objectPosition: "center 20%" }}
                 />
               </div>
@@ -98,8 +98,8 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                         alt={a.title}
                         loading="lazy"
                         className="w-full h-full object-cover"
-                        width="72"
-                        height="72"
+                        
+                        
                       />
                     </div>
                   )}

@@ -42,15 +42,15 @@ export default function HeroSection({ lead, side }: Props) {
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
-              <div className="w-full aspect-[16/10] bg-stone-100 overflow-hidden rounded-lg mb-4">
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-4" style={{ aspectRatio: "16/10" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="eager"
                   fetchPriority="high"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  width="800"
-                  height="500"
+                  
+                  
                   style={{ objectPosition: "center 20%" }}
                 />
               </div>
@@ -90,14 +90,14 @@ export default function HeroSection({ lead, side }: Props) {
                   style={{ borderColor: "hsl(var(--rule))" }}
                 >
                   {img && (
-                    <div className="w-[120px] min-w-[120px] aspect-[4/3] bg-stone-100 rounded overflow-hidden">
+                    <div className="w-[120px] min-w-[120px] bg-stone-100 rounded overflow-hidden" style={{ aspectRatio: "4/3" }}>
                       <HeroImage
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"
                         className="w-full h-full object-cover"
-                        width="120"
-                        height="90"
+                        
+                        
                       />
                     </div>
                   )}

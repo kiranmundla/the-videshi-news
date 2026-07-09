@@ -65,18 +65,18 @@ export default function NewsGrid({
                 className="group block"
               >
                 {img ? (
-                  <div className="w-full aspect-[16/10] bg-stone-100 overflow-hidden rounded-lg mb-2">
+                  <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2" style={{ aspectRatio: "16/10" }}>
                     <HeroImage
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                      width="320"
-                      height="200"
+                      
+                      
                     />
                   </div>
                 ) : (
-                  <div className="w-full aspect-[16/10] bg-stone-100 rounded-lg mb-2 flex items-center justify-center text-muted-foreground/30 text-xs">
+                  <div className="w-full bg-stone-100 rounded-lg mb-2 flex items-center justify-center text-muted-foreground/30 text-xs" style={{ aspectRatio: "16/10" }}>
                     IMAGE
                   </div>
                 )}

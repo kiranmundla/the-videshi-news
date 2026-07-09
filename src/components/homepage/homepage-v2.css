@@ -98,6 +98,8 @@
   padding-bottom: 4px;
 }
 .v2-ribbon-scroll::-webkit-scrollbar { display: none; }
+.v2-ribbon-portrait { width: 200px; }
+.v2-ribbon-landscape { width: 280px; }
 
 /* ── Voices section ─────────────────────── */
 .v2-voices-section {
@@ -133,11 +135,12 @@
   top: 80px;
 }
 
-/* ── Mobile overrides ───────────────────── */
+/* ── Tablet overrides ────────────────────── */
 @media (max-width: 1024px) {
   .v2-imm-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ── Mobile overrides ───────────────────── */
 @media (max-width: 768px) {
   .v2-imm-section { padding: 28px 0; }
   .v2-imm-grid {
@@ -150,13 +153,17 @@
     padding-bottom: 4px;
   }
   .v2-imm-grid::-webkit-scrollbar { display: none; }
-  .v2-imm-grid > * { min-width: 280px; flex-shrink: 0; }
+  .v2-imm-grid > * { min-width: 260px; max-width: 280px; flex-shrink: 0; }
 
   .v2-newsletter-inner { flex-direction: column; gap: 16px; text-align: center; }
 
   .v2-trending-strip-inner { padding: 10px 0; gap: 16px; }
 
   .v2-voices-section { padding: 32px 0; }
+
+  /* Ribbon cards — smaller on mobile */
+  .v2-ribbon-landscape { width: 220px; }
+  .v2-ribbon-portrait { width: 160px; }
 
   .v2-trending-sidebar {
     position: static;

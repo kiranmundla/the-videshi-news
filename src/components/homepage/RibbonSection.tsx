@@ -61,8 +61,7 @@ export default function RibbonSection({
               <Link
                 key={a.id}
                 to={`/articles/${a.slug}`}
-                className="group block flex-shrink-0"
-                style={{ width: isPortrait ? 200 : 280 }}
+                className={`group block flex-shrink-0 ${isPortrait ? 'v2-ribbon-portrait' : 'v2-ribbon-landscape'}`}
               >
                 {img ? (
                   <div
@@ -74,8 +73,6 @@ export default function RibbonSection({
                       alt={a.title}
                       loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                      width={isPortrait ? 200 : 280}
-                      height={isPortrait ? 267 : 175}
                     />
                   </div>
                 ) : (
