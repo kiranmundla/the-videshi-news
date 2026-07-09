@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T19:15:21.935219+00:00",
+  "timestamp": "2026-07-09T20:15:21.607671+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "48f7a2ce-706b-42b7-9b8b-9bd0d13e55f6",
-      "headline": "No Heroine. A Bald Akshay. Priyamani as the Villain. Golmaal FIVE Is Breaking Every Rule the Franchise Ever Had.",
-      "slug": "golmaal-five-akshay-kumar-priyamani-villain-rohit-shetty-sharman-joshi-20th-anniversary-20260709",
+      "id": "9fb56b43-ea7d-4843-bb61-abcc4ce22047",
+      "headline": "The $100,000 H-1B Fee Was Struck Down. Four Days Later, It Was Back",
+      "slug": "100k-h1b-fee-struck-down-reinstated-appeal-circuit-split-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ajay Devgn at a film event",
-          "reason": "Ajay Devgn is relevant to the Golmaal franchise story."
+          "what_photo_shows": "gavel on dollar bills and US flag",
+          "reason": "The image symbolizes justice and immigration costs, aligning with the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image does not directly relate to the H-1B visa topic but is a generic stock photo."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with diaspora audiences by referencing their experiences with the franchise during family gatherings and celebrations."
+          "quality": 9,
+          "note": "The article discusses the implications of the H-1B fee on Indian professionals, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that features the cast of Golmaal FIVE or is more relevant to the film's theme.",
-          "Include more details about the film's production or release to enhance reader engagement."
+          "Consider using a more relevant image that directly relates to the H-1B visa or Indian professionals.",
+          "Add quotes or testimonials from affected Indian professionals to enhance the personal impact of the article."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ab66a587-1401-419b-9184-dcd387a41b80",
-      "headline": "Somebody Said King Costs \u20b9450 Crore. Siddharth Anand Had One Word.",
-      "slug": "srk-king-450-crore-budget-siddharth-anand-false-suhana-khan-christmas-2026-20260709",
+      "id": "9c40dc8d-bd8e-4b63-96d0-e310dacf8146",
+      "headline": "H-1B Renewals Just Hit a Record. The Fine Print Tells a Different Story",
+      "slug": "h1b-renewals-record-high-cap-exempt-not-new-workers-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Shah Rukh Khan at an event",
-          "reason": "The photo shows Shah Rukh Khan, relevant to the story."
+          "what_photo_shows": "hand holding passport with visa stamps",
+          "reason": "The photo is relevant to the topic of visas and immigration."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Shah Rukh Khan but does not directly relate to the film *King*."
+          "issue": "The image does not directly relate to H-1B visas or immigration, but it is a neutral image that does not detract from the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's release strategy to NRI audiences, highlighting the significance of SRK's Christmas releases."
+          "note": "The article effectively addresses the concerns of Indian professionals in the U.S. and discusses the implications of H-1B visa policies on this demographic."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes or insights from Siddharth Anand regarding the budget to enhance credibility.",
-          "Add more context about the film's plot or themes to engage readers further."
+          "Consider using an image that more directly represents the topic of immigration or H-1B visas to enhance relevance.",
+          "Include quotes or perspectives from Indian professionals affected by these policies to add a personal touch."
         ],
         "verdict": "pass"
       },
