@@ -1,0 +1,127 @@
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
+
+interface EventItem {
+  id: string;
+  title: string;
+  date: string;
+  time?: string;
+  venue_name?: string;
+  city?: string;
+  state?: string;
+  category?: string;
+  image_url?: string;
+}
+
+interface Props {
+  events: EventItem[];
+}
+
+function formatEventDate(dateStr: string) {
+  const d = new Date(dateStr + "T00:00:00");
+  const month = d.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+  const day = d.getDate();
+  return { month, day };
+}
+
+export default function EventsStrip({ events }: Props) {
+  // Only show upcoming events
+  const upcoming = useMemo(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    return events
+      .filter((e) => e.date >= today)
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(0, 8);
+  }, [events]);
+
+  if (upcoming.length === 0) return null;
+
+  return (
+    <section className="mb-14">
+      <div className="container">
+        {/* Header */}
+        <div
+          className="flex items-center justify-between mb-5 pb-2.5"
+          style={{ borderBottom: "3px solid #D4A843" }}
+        >
+          <h2
+            className="text-[13px] font-bold tracking-[2px] uppercase"
+            style={{ color: "#0B1D3A" }}
+          >
+            📅 Events
+          </h2>
+          <Link
+            to="/events"
+            className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
+          >
+            See all →
+          </Link>
+        </div>
+
+        {/* Scroll strip */}
+        <div className="v2-events-scroll">
+          {upcoming.map((e) => {
+            const { month, day } = formatEventDate(e.date);
+            return (
+              <Link
+                key={e.id}
+                to={`/events/${e.id}`}
+                className="group flex-shrink-0 bg-white rounded-xl border overflow-hidden transition-transform hover:-translate-y-0.5"
+                style={{
+                  width: 240,
+                  minWidth: 240,
+                  borderColor: "hsl(var(--rule))",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                }}
+              >
+                {/* Date badge */}
+                <div
+                  className="flex items-center gap-3 px-4 py-3"
+                  style={{ borderBottom: "1px solid hsl(var(--rule))" }}
+                >
+                  <div
+                    className="text-center leading-none"
+                    style={{ minWidth: 44 }}
+                  >
+                    <p
+                      className="text-[10px] font-bold tracking-[1px] uppercase"
+                      style={{ color: "#A32D2D" }}
+                    >
+                      {month}
+                    </p>
+                    <p
+                      className="text-[24px] font-extrabold"
+                      style={{ color: "#0B1D3A" }}
+                    >
+                      {day}
+                    </p>
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-serif text-[14px] font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                      {e.title}
+                    </h4>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="px-4 py-2.5">
+                  <p className="text-xs text-muted-foreground line-clamp-1">
+                    {[e.venue_name, e.city, e.state].filter(Boolean).join(", ")}
+                  </p>
+                  {e.category && (
+                    <span
+                      className="text-[10px] font-bold tracking-[1px] uppercase mt-1 inline-block"
+                      style={{ color: "#D4A843" }}
+                    >
+                      {e.category}
+                    </span>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

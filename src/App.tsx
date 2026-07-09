@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import React, { Suspense } from "react";
 
 // ── Keep Index (homepage) eagerly loaded for fastest first paint ──
-import Index from "./pages/Index.tsx";
+import Index from "./pages/IndexV2.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 // ── Loading fallback ──────────────────────────────────────────────
