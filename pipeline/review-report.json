@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T15:46:18.417584+00:00",
+  "timestamp": "2026-07-09T16:15:58.136583+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 3,
+    "pass": 6,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6da9c342-6af7-462b-a969-d911209a883b",
-      "headline": "Nita Ambani Proposes an India-America Health Alliance at AAPI's Sold-Out Tampa Convention. The Diaspora's Physicians Are Listening.",
-      "slug": "nita-ambani-aapi-humanitarian-award-india-america-health-alliance-tamp-20260709",
+      "id": "c4a3f152-6126-4bda-a2b7-3422907f5c8b",
+      "headline": "From Eaton's Factory Floors to a NASDAQ Corner Office: Pratik Trivedi Is CTS Corporation's New Chief Executive",
+      "slug": "pratik-trivedi-cts-corporation-ceo-indian-origin-nasdaq-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,275 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "woman in traditional Indian attire",
-          "reason": "The photo plausibly shows Nita Ambani, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image does not match the article's topic about Nita Ambani and the AAPI convention."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the proposal to the Indian-American community and highlights the impact on both the diaspora and homeland."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to Nita Ambani or the AAPI convention.",
-          "Include quotes or reactions from diaspora physicians to enhance the personal connection to the topic."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ec81f04f-b33a-4596-9e66-571b6d521c79",
-      "headline": "Five Days, Zero Tickets Required: Lincoln Center's India Week Returns With Garba, Comedy, and the Biggest Silent Disco in South Asian New York",
-      "slug": "lincoln-center-india-week-2026-free-events-garba-dj-rekha-comedy-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "people at Lincoln Center fountain",
-          "reason": "The photo shows Lincoln Center, relevant to the event location."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": "The image of Lincoln Center matches the article's topic about India Week at Lincoln Center."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights cultural events that resonate with the Indian diaspora, showcasing familiar art forms and artists."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from attendees or organizers to enhance the personal connection to the events.",
-          "Include more details about how the events cater specifically to the diaspora experience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2292642-5a0a-4027-9850-8f9a00bd61b4",
-      "headline": "TCS Just Beat Estimates and Crossed $2.6 Billion in AI Revenue. Its Order Book Tells a Different Story.",
-      "slug": "tcs-q1-results-ai-revenue-2-6-billion-order-book-shrinks-diaspora-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "N. Chandrasekaran smiling at an event",
-          "reason": "The photo shows N. Chandrasekaran, relevant to the TCS story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "image does not directly relate to TCS or AI revenue"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of TCS's performance to Indian IT workers in the US, discussing hiring trends and immigration issues."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to TCS or AI revenue.",
-          "Expand on the implications of the shrinking order book for the diaspora community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "16e0f17a-6b2d-4c3a-9745-5b7312a4364d",
-      "headline": "The White House Just Launched Its First Major H-1B Fraud Investigation. Seventy-Three Per Cent of Visa Holders Are Indian.",
-      "slug": "vance-dol-h1b-visa-fraud-probe-subpoenas-indian-workers-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit with flag",
-          "reason": "The photo plausibly shows Vice President JD Vance, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of H-1B visa fraud investigations on Indian professionals, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
-          "Include more direct quotes or perspectives from Indian professionals affected by the investigation to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ee751872-f3f5-4bf5-8293-0081926b6a81",
-      "headline": "OpenAI's GPT-Live Can Listen and Talk at the Same Time. India's Voice AI Race Just Accelerated.",
-      "slug": "openai-gpt-live-voice-models-india-developers-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3f4bbba1-5eef-4879-a39f-13a0728de56f",
-            "headline": "Sam Altman Offered Washington 5% of OpenAI. The Government W"
-          },
-          {
-            "article_id": "6dc026f0-224b-4dc2-bf12-9d3f653b2af4",
-            "headline": "Washington Just Cleared GPT-5.6 for the World. Here's What I"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows Sam Altman, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of voice AI or OpenAI's GPT-Live."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the advancements in voice AI to the Indian technology ecosystem and its implications for Indian developers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to voice AI or OpenAI's GPT-Live.",
-          "Expand on the implications of GPT-Live for the Indian diaspora, particularly in terms of how it could impact communication and services for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "43c41fd6-40b1-4736-b122-488d2b768f78",
-      "headline": "SpaceXAI Launches Grok 4.5 on AI's Biggest Day. It Was Trained on Tens of Thousands of Nvidia Chips.",
-      "slug": "spacexai-grok-45-launch-cursor-nvidia-ai-wars-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit",
-          "reason": "The photo plausibly shows Elon Musk, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "image does not directly relate to the article's topic of AI and Grok 4.5"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the relevance of Grok 4.5 for Indian software engineers, making a strong connection to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects AI or Grok 4.5 specifically.",
-          "Add more context or quotes from Indian developers to enhance the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e113d52c-b8dd-4a6f-a771-54b93207e91f",
-      "headline": "TCS Beat Expectations and Hired 9,300 People. Its AI Revenue Just Crossed $2.6 Billion.",
-      "slug": "tcs-q1-fy27-ai-revenue-hiring-beat-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tata Consultancy Services building",
-          "reason": "The photo shows a TCS campus, relevant to the story about TCS."
+          "what_photo_shows": "industrial sensors and components",
+          "reason": "The photo shows products related to CTS Corporation's business."
         },
         "inline_image_mismatches": []
       },
@@ -303,13 +36,284 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects TCS's performance to the concerns of Indian professionals in the US, particularly those on work visas."
+          "note": "The article effectively highlights the significance of Indian-origin executives in American industry, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts or analysts to enhance credibility.",
-          "Include more specific implications for NRIs regarding job security and market trends."
+          "Consider adding quotes from Pratik Trivedi or industry experts to provide more depth.",
+          "Include more context on the impact of Indian-origin executives in the tech and manufacturing sectors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2d3f1d48-2cbc-4701-bbaa-0d55812b1f12",
+      "headline": "Uranium, Half a Billion Dollars, and a Wall of Indian Flags: What Actually Happened When Modi Landed in Melbourne",
+      "slug": "modi-melbourne-uranium-deal-australiansuper-diaspora-marvel-stadium-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Marvel Stadium in Melbourne",
+          "reason": "The photo shows the venue for the 'Melbourne Meets Modi' event, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Marvel Stadium does not directly relate to the headline about Modi's visit and the uranium deal."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the significance of Modi's visit for the Indian diaspora in Australia, discussing both the economic implications and the community's visibility."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to Modi's visit or the uranium deal.",
+          "Add more quotes or perspectives from Indian Australians to enhance the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6940da32-6710-4875-b108-923a29365d9f",
+      "headline": "Aging Far From Home: How Indian-American Seniors Are Building Support Systems That Don't Exist in Mainstream America",
+      "slug": "diaspora-indians-aging-gracefully-gopio-senior-care-india-home-queens-ayurveda-nutrition-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "apartment buildings in Queens",
+          "reason": "The photo shows a neighborhood in Queens, relevant to the story about Indian-American seniors building support systems there."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a street scene in Jackson Heights, which is relevant to the article's focus on Indian-American seniors in that area, but it does not directly represent the elderly population or the support systems discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the unique challenges faced by Indian-American seniors and the community efforts to address these issues, making it highly relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or testimonials from seniors who have benefited from these support systems to add a personal touch.",
+          "Add more statistics or data on the aging Indian-American population to strengthen the article's impact."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "01edcbda-fea9-4e4e-a360-bef090c5551a",
+      "headline": "Your Monsoon Survival Kit: What Every NRI Needs to Know Before Landing in India This Summer",
+      "slug": "monsoon-wellness-guide-nri-india-travel-dengue-water-safety-health-tips-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "rainy urban scene in India",
+          "reason": "The photo depicts a rainy scene, relevant to India's monsoon season."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts rain but lacks a direct connection to the article's focus on health and safety for NRIs."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the specific health concerns of NRIs returning to India during the monsoon season."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents health and safety during the monsoon, such as a family preparing for travel or packing health supplies.",
+          "Add a section on local healthcare resources or emergency contacts for NRIs in India during the monsoon."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4e5dfb2d-b85c-40fa-a57f-bf12a095fa94",
+      "headline": "India's Generic Ozempic Revolution Hits a Wall as Dr. Reddy's Halts Semaglutide Production",
+      "slug": "dr-reddys-semaglutide-supply-halt-generic-ozempic-india-canada-disruption-nri-diabetes-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "semaglutide injection pen",
+          "reason": "The photo shows a semaglutide injection pen, relevant to the story about semaglutide production."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of the production halt on both Indian and Indo-Canadian patients, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from patients or healthcare professionals to provide personal perspectives on the impact of the production halt.",
+          "Include more data or statistics on the prevalence of diabetes and obesity in the diaspora to strengthen the article's argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5ef4dd3b-98ce-4388-bfb4-e6f05fc20c29",
+      "headline": "From Razorpay to the NSE: Inside India's $51 Billion IPO Pipeline That Could Rewrite Market History",
+      "slug": "razorpay-nse-india-51-billion-ipo-pipeline-nri-investor-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "National Stock Exchange building",
+          "reason": "The photo shows the National Stock Exchange, relevant to the IPO story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses major IPOs that may interest NRIs, particularly those involved in finance or investment."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or insights from industry experts to enhance credibility.",
+          "Add a section discussing the implications of these IPOs for NRI investors specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "41bd400d-4daa-4883-9851-7eb888bbc161",
+      "headline": "Foreign Investors Pour $1.5 Billion Into Indian Banks in Biggest Buying Spree Since 2025",
+      "slug": "foreign-investors-pour-1-5-billion-indian-banks-buying-spree-fpi-nri-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b4b3b27b-1dd5-4c90-a5c3-1e90aeb72a38",
+            "headline": "India's Private Banks Just Posted Their Strongest Quarter in"
+          },
+          {
+            "article_id": "fab3f19d-1b9e-44a6-9e16-7c456bfb7aa5",
+            "headline": "Sensex Crashes 1,677 Points as Trump Declares Iran Deal 'Ove"
+          },
+          {
+            "article_id": "def6fcfc-9f9a-452f-9c6d-0e2524c2bac0",
+            "headline": "Indian Markets Just Had Their Worst Day in Months. The Rupee"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the financial developments in India to the interests of NRI investors, discussing implications for their investments."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can take advantage of the current market conditions.",
+          "Include a brief summary of the potential risks for NRI investors in the current economic climate."
         ],
         "verdict": "pass"
       },
