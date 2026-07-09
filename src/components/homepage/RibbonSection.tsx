@@ -8,7 +8,7 @@ interface Props {
   categorySlug: string;
   articles: Article[];
   aspectRatio?: "portrait" | "landscape";
-  cardCount?: number;
+  cardCount?: number | null;
 }
 
 function timeAgo(iso: string): string {
@@ -25,10 +25,10 @@ export default function RibbonSection({
   categorySlug,
   articles,
   aspectRatio = "landscape",
-  cardCount = 4,
+  cardCount,
 }: Props) {
   if (articles.length === 0) return null;
-  const items = articles.slice(0, cardCount);
+  const items = cardCount ? articles.slice(0, cardCount) : articles;
   const isPortrait = aspectRatio === "portrait";
 
   return (
@@ -54,6 +54,7 @@ export default function RibbonSection({
         </div>
 
         {/* Ribbon scroll */}
+        <div className="v2-ribbon-scroll-wrap">
         <div className="v2-ribbon-scroll">
           {items.map((a) => {
             const img = isValidImage(a.hero_image_url);
@@ -98,6 +99,7 @@ export default function RibbonSection({
               </Link>
             );
           })}
+        </div>
         </div>
       </div>
     </section>

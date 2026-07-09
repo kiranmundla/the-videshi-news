@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-09T21:15:34.617600+00:00",
+  "timestamp": "2026-07-09T23:15:27.315292+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "28d5fd40-4bb3-45f7-9e39-ef6d7d30eaa8",
-      "headline": "India Is Building the World's Next Great Data Centre Hub. Nobody Is Allowed to Object.",
-      "slug": "india-data-center-boom-microsoft-google-meta-tax-20260709",
+      "id": "e30bff03-a5ab-4dd0-827f-0cd044bc5b58",
+      "headline": "America's Cricket League Has a Runaway Leader. San Francisco's Unicorns Are the Team to Beat.",
+      "slug": "mlc-2026-season-4-san-francisco-unicorns-standings-mi-new-york-nri-cricket-usa",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows server racks, relevant to the data centre story."
+          "what_photo_shows": "Cricket stadium in the USA",
+          "reason": "The photo shows a cricket venue in the United States, relevant to the story about Major League Cricket."
         },
         "inline_image_mismatches": []
       },
@@ -31,109 +31,106 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a data center environment, which is relevant to the article's topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the data center boom in India to the interests and opportunities for the Indian diaspora, particularly in terms of career mobility and investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRI investors can engage with the data center market in India.",
-          "Add quotes or insights from diaspora members to enhance the personal connection to the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b9684086-c0e1-4eec-97f4-260458f2cd1f",
-      "headline": "Nvidia Built a CPU for AI Agents That Never Sleep. Perplexity Just Signed Up.",
-      "slug": "nvidia-vera-cpu-perplexity-ai-agents-intel-amd-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d93e747a-48dc-4df7-b8fd-21c15789894e",
-            "headline": "DeepSeek Is Building Its Own AI Chip. Nvidia and Huawei Shou"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and glasses",
-          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Jensen Huang is relevant as he is the CEO of Nvidia, but it does not directly illustrate the topic of the Vera CPU."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Nvidia's CPU developments for Indian engineers and NRI investors, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more relevant image that directly relates to the Vera CPU or its applications.",
-          "Expand on the implications for Indian engineers and NRIs to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "208a72da-e43d-488b-94b4-594f2b6509cb",
-      "headline": "Meta Is About to Manufacture Its Own AI Chip. It Took Five Years to Get Here.",
-      "slug": "meta-iris-ai-chip-production-broadcom-tsmc-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "microchips and circuits on a motherboard",
-          "reason": "The photo subject aligns with the tech story about Meta's AI chip."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically depict AI chips or manufacturing."
+          "issue": "The image of Grand Prairie Stadium is relevant as it relates to the venues where the league is played, but it does not directly depict the San Francisco Unicorns."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the topic to the Indian diaspora by discussing employment and investment implications for Indian professionals and investors."
+          "note": "The article effectively connects with the NRI audience by discussing the accessibility of matches and the cultural significance of cricket in the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including a more specific image related to AI chip manufacturing to enhance visual relevance.",
-          "Add quotes or insights from Indian engineers or industry experts to strengthen the diaspora connection."
+          "Consider including a direct image of the San Francisco Unicorns or their matches to enhance visual relevance.",
+          "Add quotes or reactions from players or fans to provide a more personal touch and engage the audience further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cd80589b-632e-48b4-9c99-1a9b59cc9db1",
+      "headline": "212 Years of Lord's. Zero Women's Tests. Until Friday.",
+      "slug": "first-womens-test-lords-england-india-beaumont-retirement-sciver-brunt-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "building with LMC logo",
+          "reason": "The photo does not show Lord's Cricket Ground or anything related to cricket."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of the match to the Indian diaspora in the UK, highlighting their interest and the historical context."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a relevant image description to enhance the image match score.",
+          "Include quotes or perspectives from Indian players or fans to further enrich the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (building with LMC logo)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "41b2ae4a-3259-42e6-93d8-c01d41124910",
+      "headline": "Cricket's Mr. 360 Goes to Baseball. Suryakumar Yadav Named MLB's First Indian Ambassador.",
+      "slug": "suryakumar-yadav-mlb-ambassador-india-cricket-baseball-all-star-philadelphia-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Suryakumar Yadav in cricket jersey",
+          "reason": "The photo shows Suryakumar Yadav, matching the story's subject."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Suryakumar Yadav's role as an ambassador to the interests of the Indian diaspora, highlighting their dual identity and sports culture."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Indian American fans or sports analysts to enhance the diaspora perspective.",
+          "Include more details about how Suryakumar's role will specifically impact Indian audiences and baseball's growth in India."
         ],
         "verdict": "pass"
       },

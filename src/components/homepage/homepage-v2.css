@@ -55,6 +55,20 @@
   border-color: #D4A843;
   color: #D4A843;
 }
+.v2-imm-scroll-wrap {
+  position: relative;
+}
+.v2-imm-scroll-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 4px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, #0B1D3A);
+  pointer-events: none;
+  z-index: 1;
+}
 .v2-imm-scroll {
   display: flex;
   gap: 16px;
@@ -102,6 +116,20 @@
 }
 
 /* ── Ribbon scroll ──────────────────────── */
+.v2-ribbon-scroll-wrap {
+  position: relative;
+}
+.v2-ribbon-scroll-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 4px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, #FAF7F2);
+  pointer-events: none;
+  z-index: 1;
+}
 .v2-ribbon-scroll {
   display: flex;
   gap: 16px;
@@ -209,6 +237,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.v2-social-scroll-wrap {
+  position: relative;
+}
+.v2-social-scroll-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 4px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, #FFF8E7);
+  pointer-events: none;
+  z-index: 1;
 }
 .v2-social-scroll {
   display: flex;

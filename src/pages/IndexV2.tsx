@@ -384,7 +384,6 @@ export default function IndexV2() {
           categorySlug="entertainment"
           articles={layout.entertainment}
           aspectRatio="portrait"
-          cardCount={8}
         />
 
         {/* 12. India News + Trending Sidebar */}
