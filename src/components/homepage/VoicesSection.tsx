@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
+import ScrollWrap from "./ScrollWrap";
 
 /* Voices section — real stories from the diaspora.
    Currently uses placeholder author data since the stories table is empty.
@@ -81,7 +82,7 @@ export default function VoicesSection({ stories }: Props) {
         </p>
 
         {/* Scroll strip */}
-        <div className="v2-voices-scroll v2-scroll-thin">
+        <ScrollWrap className="v2-voices-scroll">
           {items.map((s) => (
             <div
               key={s.id}
@@ -132,7 +133,7 @@ export default function VoicesSection({ stories }: Props) {
               </p>
             </div>
           ))}
-        </div>
+        </ScrollWrap>
       </div>
     </section>
   );

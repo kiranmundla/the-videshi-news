@@ -223,6 +223,7 @@ export default function DiasporaPhotoStrip() {
     <>
       <section style={{ margin: "2rem 0 1rem", position: "relative" }}>
         {/* Section label */}
+        <div className="container">
         <p
           style={{
             fontFamily: "var(--font-sans, sans-serif)",
@@ -231,11 +232,12 @@ export default function DiasporaPhotoStrip() {
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "hsl(var(--muted-foreground))",
-            margin: "0 0 0.75rem 1rem",
+            margin: "0 0 0.75rem 0",
           }}
         >
           Snapshots
         </p>
+        </div>
 
         <style>{`
           .diaspora-scroll-strip::-webkit-scrollbar { display: none; }
@@ -311,7 +313,7 @@ export default function DiasporaPhotoStrip() {
           {/* Horizontal scroll container */}
           <div
             ref={scrollRef}
-            className="diaspora-scroll-strip"
+            className="diaspora-scroll-strip container"
             style={{
               display: "flex",
               gap: "12px",
@@ -320,7 +322,6 @@ export default function DiasporaPhotoStrip() {
               WebkitOverflowScrolling: "touch",
               scrollbarWidth: "none",
               msOverflowStyle: "none",
-              padding: "0 1rem",
             } as React.CSSProperties}
           >
             {photos.map((photo, i) => (
@@ -387,17 +388,19 @@ export default function DiasporaPhotoStrip() {
           </div>
         </div>
 
+        <div className="container">
         <p
           style={{
             fontFamily: "var(--font-sans, sans-serif)",
             fontSize: "10px",
             color: "hsl(var(--muted-foreground))",
             opacity: 0.6,
-            margin: "0.5rem 0 0 1rem",
+            margin: "0.5rem 0 0 0",
           }}
         >
           Photos by Pexels contributors
         </p>
+        </div>
       </section>
 
       {/* Fullscreen lightbox — scroll-snap + pull-down-to-dismiss */}

@@ -4,31 +4,59 @@
    ═══════════════════════════════════════════ */
 
 /* ── Shared scroll strip styling ────────── */
-/* Thin, styled scrollbar for all horizontal scroll strips */
-.v2-scroll-thin {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.15) transparent;
+/* Reusable scroll wrapper with arrow navigation */
+.v2-scroll-wrap {
+  position: relative;
 }
-.v2-scroll-thin::-webkit-scrollbar { height: 6px; }
-.v2-scroll-thin::-webkit-scrollbar-track { background: transparent; }
-.v2-scroll-thin::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.15);
-  border-radius: 3px;
+.v2-scroll-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
-.v2-scroll-thin::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+.v2-scroll-strip::-webkit-scrollbar { display: none; }
 
-/* Dark bg variant (immigration) */
-.v2-scroll-thin-dark {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.2) transparent;
+/* Arrow buttons */
+.v2-scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.95);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: background 0.15s, box-shadow 0.15s;
 }
-.v2-scroll-thin-dark::-webkit-scrollbar { height: 6px; }
-.v2-scroll-thin-dark::-webkit-scrollbar-track { background: transparent; }
-.v2-scroll-thin-dark::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.2);
-  border-radius: 3px;
+.v2-scroll-arrow:hover {
+  background: #fff;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.18);
 }
-.v2-scroll-thin-dark::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.35); }
+.v2-scroll-arrow-left { left: -18px; }
+.v2-scroll-arrow-right { right: -18px; }
+
+/* Dark variant (for navy backgrounds) */
+.v2-scroll-arrow-dark {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+.v2-scroll-arrow-dark:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+@media (max-width: 768px) {
+  .v2-scroll-arrow { display: none; }
+}
 
 /* ── Section spacing — override mb-14 (56px) to 72px ── */
 .v2-main-sections > section.mb-14 {
@@ -82,27 +110,15 @@
   border-color: #D4A843;
   color: #D4A843;
 }
-.v2-imm-scroll-wrap {
-  position: relative;
-}
-.v2-imm-scroll-wrap::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 4px;
-  width: 60px;
-  background: linear-gradient(to right, transparent, #0B1D3A);
-  pointer-events: none;
-  z-index: 1;
-}
 .v2-imm-scroll {
   display: flex;
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.v2-imm-scroll::-webkit-scrollbar { display: none; }
 .v2-imm-card {
   flex: 0 0 300px;
   min-width: 300px;
@@ -141,27 +157,15 @@
 }
 
 /* ── Ribbon scroll ──────────────────────── */
-.v2-ribbon-scroll-wrap {
-  position: relative;
-}
-.v2-ribbon-scroll-wrap::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 4px;
-  width: 60px;
-  background: linear-gradient(to right, transparent, #FAF7F2);
-  pointer-events: none;
-  z-index: 1;
-}
 .v2-ribbon-scroll {
   display: flex;
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.v2-ribbon-scroll::-webkit-scrollbar { display: none; }
 .v2-ribbon-portrait { width: 200px; }
 .v2-ribbon-landscape { width: 280px; }
 
@@ -185,8 +189,10 @@
   gap: 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.v2-voices-scroll::-webkit-scrollbar { display: none; }
 
 /* ── Events section ─────────────────────── */
 .v2-events-scroll {
@@ -194,8 +200,10 @@
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.v2-events-scroll::-webkit-scrollbar { display: none; }
 
 /* ── Trending sidebar (India News) ─────── */
 .v2-trending-sidebar {
@@ -259,27 +267,15 @@
   align-items: center;
   justify-content: center;
 }
-.v2-social-scroll-wrap {
-  position: relative;
-}
-.v2-social-scroll-wrap::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 4px;
-  width: 60px;
-  background: linear-gradient(to right, transparent, #FFF8E7);
-  pointer-events: none;
-  z-index: 1;
-}
 .v2-social-scroll {
   display: flex;
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 8px;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.v2-social-scroll::-webkit-scrollbar { display: none; }
 .v2-social-card {
   flex: 0 0 280px;
   min-width: 280px;

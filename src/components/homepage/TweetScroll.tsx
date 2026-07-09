@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ScrollWrap from "./ScrollWrap";
 
 interface TweetEntry {
   tweet_url: string;
@@ -55,10 +56,9 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
           </span>
         </div>
 
-        {/* Scroll strip with fade edge */}
-        <div className="v2-social-scroll-wrap">
-          <div className="v2-social-scroll v2-scroll-thin">
-            {tweets.map((t) => (
+        {/* Scroll strip with arrows */}
+        <ScrollWrap className="v2-social-scroll">
+          {tweets.map((t) => (
             <a
               key={t.tweet_id}
               href={t.tweet_url}
@@ -112,8 +112,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
               </div>
             </a>
           ))}
-          </div>
-        </div>
+        </ScrollWrap>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import ScrollWrap from "./ScrollWrap";
 
 interface EventItem {
   id: string;
@@ -59,7 +60,7 @@ export default function EventsStrip({ events }: Props) {
         </div>
 
         {/* Scroll strip */}
-        <div className="v2-events-scroll v2-scroll-thin">
+        <ScrollWrap className="v2-events-scroll">
           {upcoming.map((e) => {
             const { month, day } = formatEventDate(e.date);
             return (
@@ -120,7 +121,7 @@ export default function EventsStrip({ events }: Props) {
               </Link>
             );
           })}
-        </div>
+        </ScrollWrap>
       </div>
     </section>
   );

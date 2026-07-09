@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Article, formatShortDate } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
+import ScrollWrap from "./ScrollWrap";
 
 interface Props {
   title: string;
@@ -48,8 +49,7 @@ export default function NewsGrid({
           </Link>
         </div>
 
-        <div className="v2-ribbon-scroll-wrap">
-        <div className="v2-ribbon-scroll v2-scroll-thin">
+        <ScrollWrap className="v2-ribbon-scroll">
           {articles.map((a) => {
             const img = isValidImage(a.hero_image_url);
             return (
@@ -88,8 +88,7 @@ export default function NewsGrid({
               </Link>
             );
           })}
-        </div>
-        </div>
+        </ScrollWrap>
       </div>
     </section>
   );

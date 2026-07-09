@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Article, formatShortDate } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
+import ScrollWrap from "./ScrollWrap";
 
 const IMM_PILLS = ["All", "H-1B", "Green Card", "OPT", "Canada PR", "UK Visas", "Citizenship"];
 
@@ -65,9 +66,8 @@ export default function ImmigrationStrip({ articles }: Props) {
           ))}
         </div>
 
-        {/* Cards — horizontal scroll */}
-        <div className="v2-imm-scroll-wrap">
-        <div className="v2-imm-scroll v2-scroll-thin-dark">
+        {/* Cards — horizontal scroll with arrows */}
+        <ScrollWrap className="v2-imm-scroll" arrowVariant="dark">
           {display.map((a) => {
             const img = isValidImage(a.hero_image_url);
             return (
@@ -108,8 +108,7 @@ export default function ImmigrationStrip({ articles }: Props) {
               </Link>
             );
           })}
-        </div>
-        </div>
+        </ScrollWrap>
       </div>
     </section>
   );
