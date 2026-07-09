@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T01:45:24.172567+00:00",
+  "timestamp": "2026-07-09T02:15:21.745784+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8fa28e3d-c85b-49e8-93ba-0729a5303884",
-      "headline": "She Left Toronto With Nothing. She Came Back to Sing at the World Cup.",
-      "slug": "nora-fatehi-fifa-world-cup-2026-toronto-opening-ceremony-today-show-siir-siir-diaspora-bollywood-global-20260708",
+      "id": "cc78da37-a11a-41dc-bf65-6378b5e698ba",
+      "headline": "They Built Suburbs With Puja Rooms and Spice Kitchens. Now the Houses Sit Empty",
+      "slug": "dallaspuram-housing-crisis-indian-h1b-texas-suburbs-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,64 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "woman in black dress",
-          "reason": "The photo plausibly shows Nora Fatehi, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaQeUCxsJcC/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the main subject of Nora Fatehi's performance at the World Cup."
-          },
-          {
-            "url": "https://www.instagram.com/reel/DZeZbc7suBD/",
-            "problem": "irrelevant",
-            "explanation": "This Instagram reel also does not seem to directly connect to the article's focus on Nora Fatehi's achievements at the World Cup."
-          }
-        ],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Nora Fatehi does not directly relate to the World Cup performance mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Nora Fatehi's achievements to the Indian diaspora, highlighting cultural bridges and representation."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embeds with content that directly relates to Nora Fatehi's World Cup performance.",
-          "Consider using an image that showcases Nora Fatehi during her World Cup performance to better match the article's theme."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaQeUCxsJcC/",
-        "Removed irrelevant embed: https://www.instagram.com/reel/DZeZbc7suBD/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "adf52b25-e46c-48fc-a2f5-a47135442cde",
-      "headline": "Sunny Deol Has Never Made a Netflix Film. Akshaye Khanna Hasn't Faced Him in Thirty Years. That Changes Thursday.",
-      "slug": "ikka-sunny-deol-akshaye-khanna-netflix-courtroom-drama-reunion-july-10-tillotama-shome-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sunny Deol in Ikka film poster",
-          "reason": "The photo shows Sunny Deol, relevant to the story about his Netflix debut."
+          "what_photo_shows": "suburban home with for sale sign",
+          "reason": "The photo aligns with the story about empty suburban homes."
         },
         "inline_image_mismatches": []
       },
@@ -87,18 +31,61 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the article's topic but does not directly represent the film 'Ikka' as it is a poster from a different film."
+          "issue": "The image does not specifically depict a puja room or spice kitchen, which are central to the article's theme."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with NRI readers by highlighting the film's availability on Netflix and mentioning the diaspora's interest in Sunny Deol's work."
+          "quality": 9,
+          "note": "The article effectively discusses the impact of housing market changes on the Indian diaspora, particularly H-1B visa holders."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image directly related to 'Ikka' for better visual representation.",
-          "Add more context about the significance of the film's release for the diaspora audience."
+          "Consider including a relevant image that showcases a puja room or spice kitchen to better align with the article's focus.",
+          "Add quotes or anecdotes from more diverse voices within the Indian community to enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "1727c6c4-9b0c-4e82-99c9-1368dfc11454",
+      "headline": "Forget the H-1B Lottery. Indian Professionals Are Filing Their Own Green Cards at Record Rates",
+      "slug": "eb1a-self-petition-surge-indian-professionals-green-card-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "open passport with visa stamps",
+          "reason": "The photo relates to immigration and visa processes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of green cards or immigration, but it is a generic professional image that could fit the context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the immigration challenges faced by Indian professionals, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents the theme of immigration or green cards.",
+          "Include quotes or anecdotes from Indian professionals who have successfully navigated this process to add a personal touch."
         ],
         "verdict": "pass"
       },
