@@ -1,106 +1,15 @@
 {
-  "timestamp": "2026-07-09T09:15:41.083045+00:00",
+  "timestamp": "2026-07-09T09:45:27.793667+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 2,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "f27e6615-a2b5-4308-8c9e-7cadebf9af29",
-      "headline": "Hrithik Roshan Has No Film in 2026. He's Never Been More in Demand.",
-      "slug": "hrithik-roshan-no-film-2026-krrish-4-laxman-utekar-hombale-rajinikanth-jailer-2-reinvention-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Hrithik Roshan at an event",
-          "reason": "The photo shows Hrithik Roshan, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses Hrithik Roshan's evolving career, which resonates with the diaspora's interest in Bollywood and Indian cinema."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Hrithik or industry insiders to enhance credibility.",
-          "Add a section discussing how Hrithik's absence from the big screen might affect his fanbase, particularly among NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "72d7947e-2718-4efd-8549-f2c86622003d",
-      "headline": "The Date Is Set. Ramayana Drops Its First Trailer July 18 \u2014 at India's Grandest Stage.",
-      "slug": "ramayana-trailer-july-18-bharat-mandapam-ranbir-kapoor-sai-pallavi-nitesh-tiwari-diwali-2026-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "07da0417-b4d6-446e-9111-8cee0091f1ba",
-            "headline": "India's Biggest Film Is About to Crash San Diego Comic-Con. "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a black shirt",
-          "reason": "The photo shows Ranbir Kapoor, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the film's release date and its significance for NRI audiences, particularly around Diwali."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the film 'Ramayana' or its cast.",
-          "Consider adding more details about the film's cultural significance to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "0f60a97b-3e54-4fcd-a12c-d1353cbc5379",
       "headline": "Trump Just Cut Off Trade With a NATO Ally Over Iran. India's $200 Billion Relationship With the US Is Taking Notes.",
@@ -109,7 +18,18 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/IndianEmbassyUS/status/1780000000000000000",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C0d0d0d0d0d",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "NATO leaders at Ankara summit",
@@ -121,7 +41,7 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 4,
+          "score": 5,
           "issue": "The image of a NATO summit does not directly relate to the article's focus on US-India trade relations."
         },
         "diaspora_angle": {
@@ -132,13 +52,14 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to US-India trade or the impact on NRIs.",
-          "Clarify the connection between Trump's actions and their potential impact on Indian professionals and businesses to strengthen the diaspora angle."
+          "Include more direct quotes or perspectives from Indian officials to strengthen the connection to India's position.",
+          "Enhance the analysis of how the potential trade disruptions could specifically impact the NRI community."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (1113\u21921115 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (1113\u21921214 words)"
       ],
       "revised": true,
       "unpublished": false,
