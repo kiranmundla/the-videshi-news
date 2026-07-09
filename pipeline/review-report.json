@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T16:15:58.136583+00:00",
+  "timestamp": "2026-07-09T17:16:59.513886+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c4a3f152-6126-4bda-a2b7-3422907f5c8b",
-      "headline": "From Eaton's Factory Floors to a NASDAQ Corner Office: Pratik Trivedi Is CTS Corporation's New Chief Executive",
-      "slug": "pratik-trivedi-cts-corporation-ceo-indian-origin-nasdaq-20260709",
+      "id": "7fbd8b6a-fab4-4abb-bfc8-8bbeb61684c8",
+      "headline": "India Commits \u20b929,000 Crore to Regional Aviation \u2014 and Opens a New Gateway to Rajasthan",
+      "slug": "viksit-udan-jodhpur-airport-regional-aviation-nri-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "industrial sensors and components",
-          "reason": "The photo shows products related to CTS Corporation's business."
+          "what_photo_shows": "Jodhpur Airport entrance",
+          "reason": "The photo shows Jodhpur Airport, relevant to the story about aviation infrastructure in Rajasthan."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the significance of Indian-origin executives in American industry, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the regional aviation developments to the travel needs of NRIs, highlighting the benefits for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Pratik Trivedi or industry experts to provide more depth.",
-          "Include more context on the impact of Indian-origin executives in the tech and manufacturing sectors."
+          "Include a quote from a relevant NRI or aviation expert to add a personal touch.",
+          "Add more statistics or examples of how this investment has impacted other regions or similar initiatives."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2d3f1d48-2cbc-4701-bbaa-0d55812b1f12",
-      "headline": "Uranium, Half a Billion Dollars, and a Wall of Indian Flags: What Actually Happened When Modi Landed in Melbourne",
-      "slug": "modi-melbourne-uranium-deal-australiansuper-diaspora-marvel-stadium-20260709",
+      "id": "3d6706b6-858a-4682-b613-cd42c33b0f2b",
+      "headline": "Riyadh Air Enters India with Daily Mumbai Flights Starting August 4",
+      "slug": "riyadh-air-mumbai-flights-launch-august-nri-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,137 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Marvel Stadium in Melbourne",
-          "reason": "The photo shows the venue for the 'Melbourne Meets Modi' event, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of Marvel Stadium does not directly relate to the headline about Modi's visit and the uranium deal."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of Modi's visit for the Indian diaspora in Australia, discussing both the economic implications and the community's visibility."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to Modi's visit or the uranium deal.",
-          "Add more quotes or perspectives from Indian Australians to enhance the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6940da32-6710-4875-b108-923a29365d9f",
-      "headline": "Aging Far From Home: How Indian-American Seniors Are Building Support Systems That Don't Exist in Mainstream America",
-      "slug": "diaspora-indians-aging-gracefully-gopio-senior-care-india-home-queens-ayurveda-nutrition-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "apartment buildings in Queens",
-          "reason": "The photo shows a neighborhood in Queens, relevant to the story about Indian-American seniors building support systems there."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a street scene in Jackson Heights, which is relevant to the article's focus on Indian-American seniors in that area, but it does not directly represent the elderly population or the support systems discussed."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the unique challenges faced by Indian-American seniors and the community efforts to address these issues, making it highly relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including quotes or testimonials from seniors who have benefited from these support systems to add a personal touch.",
-          "Add more statistics or data on the aging Indian-American population to strengthen the article's impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "01edcbda-fea9-4e4e-a360-bef090c5551a",
-      "headline": "Your Monsoon Survival Kit: What Every NRI Needs to Know Before Landing in India This Summer",
-      "slug": "monsoon-wellness-guide-nri-india-travel-dengue-water-safety-health-tips-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "rainy urban scene in India",
-          "reason": "The photo depicts a rainy scene, relevant to India's monsoon season."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts rain but lacks a direct connection to the article's focus on health and safety for NRIs."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses the specific health concerns of NRIs returning to India during the monsoon season."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that more directly represents health and safety during the monsoon, such as a family preparing for travel or packing health supplies.",
-          "Add a section on local healthcare resources or emergency contacts for NRIs in India during the monsoon."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4e5dfb2d-b85c-40fa-a57f-bf12a095fa94",
-      "headline": "India's Generic Ozempic Revolution Hits a Wall as Dr. Reddy's Halts Semaglutide Production",
-      "slug": "dr-reddys-semaglutide-supply-halt-generic-ozempic-india-canada-disruption-nri-diabetes-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "semaglutide injection pen",
-          "reason": "The photo shows a semaglutide injection pen, relevant to the story about semaglutide production."
+          "what_photo_shows": "Riyadh Air Boeing 787-9 Dreamliner",
+          "reason": "The photo shows the correct aircraft related to the story."
         },
         "inline_image_mismatches": []
       },
@@ -208,112 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the production halt on both Indian and Indo-Canadian patients, making it relevant for the diaspora."
+          "note": "The article effectively highlights the benefits of the new airline service for NRIs, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from patients or healthcare professionals to provide personal perspectives on the impact of the production halt.",
-          "Include more data or statistics on the prevalence of diabetes and obesity in the diaspora to strengthen the article's argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "5ef4dd3b-98ce-4388-bfb4-e6f05fc20c29",
-      "headline": "From Razorpay to the NSE: Inside India's $51 Billion IPO Pipeline That Could Rewrite Market History",
-      "slug": "razorpay-nse-india-51-billion-ipo-pipeline-nri-investor-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "National Stock Exchange building",
-          "reason": "The photo shows the National Stock Exchange, relevant to the IPO story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses major IPOs that may interest NRIs, particularly those involved in finance or investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from industry experts to enhance credibility.",
-          "Add a section discussing the implications of these IPOs for NRI investors specifically."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "41bd400d-4daa-4883-9851-7eb888bbc161",
-      "headline": "Foreign Investors Pour $1.5 Billion Into Indian Banks in Biggest Buying Spree Since 2025",
-      "slug": "foreign-investors-pour-1-5-billion-indian-banks-buying-spree-fpi-nri-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b4b3b27b-1dd5-4c90-a5c3-1e90aeb72a38",
-            "headline": "India's Private Banks Just Posted Their Strongest Quarter in"
-          },
-          {
-            "article_id": "fab3f19d-1b9e-44a6-9e16-7c456bfb7aa5",
-            "headline": "Sensex Crashes 1,677 Points as Trump Declares Iran Deal 'Ove"
-          },
-          {
-            "article_id": "def6fcfc-9f9a-452f-9c6d-0e2524c2bac0",
-            "headline": "Indian Markets Just Had Their Worst Day in Months. The Rupee"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the financial developments in India to the interests of NRI investors, discussing implications for their investments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRI investors can take advantage of the current market conditions.",
-          "Include a brief summary of the potential risks for NRI investors in the current economic climate."
+          "Consider adding quotes from passengers or industry experts to enhance the article's depth.",
+          "Include more details on the booking process or how NRIs can take advantage of the new service."
         ],
         "verdict": "pass"
       },
