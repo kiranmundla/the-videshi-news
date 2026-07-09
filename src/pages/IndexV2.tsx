@@ -375,7 +375,7 @@ export default function IndexV2() {
           categorySlug="technology"
           articles={layout.technology}
         />
-        <div className="container"><TweetScroll category="technology" /></div>
+        <TweetScroll category="technology" />
 
         {/* 11. Entertainment (horizontal ribbon — portrait, 8 cards) */}
         <RibbonSection
@@ -391,7 +391,7 @@ export default function IndexV2() {
           articles={layout.news}
           trending={layout.trending}
         />
-        <div className="container"><TweetScroll category="news" label="India News" /></div>
+        <TweetScroll category="news" label="India News" />
 
         {/* 13. Markets & Finance (lead + list) */}
         <LeadListSection
@@ -419,7 +419,7 @@ export default function IndexV2() {
           aspectRatio="landscape"
           cardCount={4}
         />
-        <div className="container"><TweetScroll category="sports" /></div>
+        <TweetScroll category="sports" />
 
         {/* 16. Voices (full section) */}
         <VoicesSection />

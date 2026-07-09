@@ -3,6 +3,33 @@
    Styles that can't be easily done with Tailwind
    ═══════════════════════════════════════════ */
 
+/* ── Shared scroll strip styling ────────── */
+/* Thin, styled scrollbar for all horizontal scroll strips */
+.v2-scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.15) transparent;
+}
+.v2-scroll-thin::-webkit-scrollbar { height: 6px; }
+.v2-scroll-thin::-webkit-scrollbar-track { background: transparent; }
+.v2-scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+.v2-scroll-thin::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+
+/* Dark bg variant (immigration) */
+.v2-scroll-thin-dark {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+.v2-scroll-thin-dark::-webkit-scrollbar { height: 6px; }
+.v2-scroll-thin-dark::-webkit-scrollbar-track { background: transparent; }
+.v2-scroll-thin-dark::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+.v2-scroll-thin-dark::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.35); }
+
 /* ── Section spacing — override mb-14 (56px) to 72px ── */
 .v2-main-sections > section.mb-14 {
   margin-bottom: 72px;
@@ -74,10 +101,8 @@
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
-.v2-imm-scroll::-webkit-scrollbar { display: none; }
 .v2-imm-card {
   flex: 0 0 300px;
   min-width: 300px;
@@ -135,10 +160,8 @@
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
-.v2-ribbon-scroll::-webkit-scrollbar { display: none; }
 .v2-ribbon-portrait { width: 200px; }
 .v2-ribbon-landscape { width: 280px; }
 
@@ -162,10 +185,8 @@
   gap: 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
-.v2-voices-scroll::-webkit-scrollbar { display: none; }
 
 /* ── Events section ─────────────────────── */
 .v2-events-scroll {
@@ -173,10 +194,8 @@
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
-.v2-events-scroll::-webkit-scrollbar { display: none; }
 
 /* ── Trending sidebar (India News) ─────── */
 .v2-trending-sidebar {
@@ -257,10 +276,8 @@
   gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
-.v2-social-scroll::-webkit-scrollbar { display: none; }
 .v2-social-card {
   flex: 0 0 280px;
   min-width: 280px;

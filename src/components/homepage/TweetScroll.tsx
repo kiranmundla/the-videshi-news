@@ -57,7 +57,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
 
         {/* Scroll strip with fade edge */}
         <div className="v2-social-scroll-wrap">
-          <div className="v2-social-scroll">
+          <div className="v2-social-scroll v2-scroll-thin">
             {tweets.map((t) => (
             <a
               key={t.tweet_id}

@@ -55,7 +55,7 @@ export default function RibbonSection({
 
         {/* Ribbon scroll */}
         <div className="v2-ribbon-scroll-wrap">
-        <div className="v2-ribbon-scroll">
+        <div className="v2-ribbon-scroll v2-scroll-thin">
           {items.map((a) => {
             const img = isValidImage(a.hero_image_url);
             return (

@@ -59,7 +59,7 @@ export default function EventsStrip({ events }: Props) {
         </div>
 
         {/* Scroll strip */}
-        <div className="v2-events-scroll">
+        <div className="v2-events-scroll v2-scroll-thin">
           {upcoming.map((e) => {
             const { month, day } = formatEventDate(e.date);
             return (

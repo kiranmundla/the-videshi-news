@@ -81,7 +81,7 @@ export default function VoicesSection({ stories }: Props) {
         </p>
 
         {/* Scroll strip */}
-        <div className="v2-voices-scroll">
+        <div className="v2-voices-scroll v2-scroll-thin">
           {items.map((s) => (
             <div
               key={s.id}
