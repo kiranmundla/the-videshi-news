@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-09T00:15:22.223769+00:00",
+  "timestamp": "2026-07-09T00:45:18.152278+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b52436c7-0e97-4416-97df-bb48922fab0d",
-      "headline": "From OpenAI to Anthropic to Apple: Indian-Origin Engineers Now Run the AI Departments That Run the World",
-      "slug": "indian-origin-tech-leaders-ai-csuite-openai-anthropic-apple-20260709",
+      "id": "c426d56d-f869-47e0-a855-8495db445231",
+      "headline": "The US Just Charged Lawrence Bishnoi With Ordering the Nijjar Murder. The Indictment Pointedly Clears India's Government.",
+      "slug": "us-charges-bishnoi-nijjar-murder-operation-hard-ball-indian-gangs-20260708",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and glasses",
-          "reason": "The photo plausibly shows Sundar Pichai, relevant to the story."
+          "what_photo_shows": "Guru Nanak Sikh Gurdwara",
+          "reason": "The gurdwara is relevant to the Nijjar murder story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of organized crime on Indian diaspora communities, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from diaspora community members to enhance relatability.",
+          "Provide a brief background on the Nijjar case for readers unfamiliar with the topic."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: no sources"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "95a20d67-bbae-4ece-8be1-e8a4d8f9126e",
+      "headline": "The DOJ Just Threatened to Prosecute Election Officials Over Voter Rolls. Naturalized Indian Americans Could Pay the Price.",
+      "slug": "doj-harmeet-dhillon-voter-purge-noncitizen-indian-americans-midterms-20260708",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman in official portrait",
+          "reason": "The photo shows Harmeet Dhillon, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,61 +79,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the achievements of Indian-origin engineers in AI, which resonates with the Indian diaspora's pride in their contributions to global technology."
+          "note": "The article discusses the implications of voter roll purges on naturalized Indian Americans, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal stories or quotes from the featured engineers to enhance relatability.",
-          "Include statistics or data on the impact of Indian-origin engineers in the AI sector to strengthen the argument."
+          "Include more direct quotes from affected individuals or organizations to enhance the human interest angle.",
+          "Add a section discussing potential solutions or responses from the Indian American community regarding the DOJ's actions."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c116b38b-3e60-4ae2-827c-ed1529d2bf93",
-      "headline": "At Twenty-Three, a Haryana-Born Councillor Becomes the Youngest Indian-Origin Mayor in Britain",
-      "slug": "tushar-kumar-youngest-indian-origin-mayor-uk-elstree-borehamwood-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "The Palace of Westminster, London",
-          "reason": "The photo shows a relevant UK landmark for a story about British politics."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's subject matter."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Kumar's achievements to the broader Indian diaspora experience in the UK."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts Tushar Kumar or a related event.",
-          "Add quotes or perspectives from other community members to enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
+        "held: no sources"
       ],
       "revised": false,
       "unpublished": false,
