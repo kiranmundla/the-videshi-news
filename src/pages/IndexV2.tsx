@@ -367,8 +367,7 @@ export default function IndexV2() {
         {/* 8. Newsletter CTA */}
         <NewsletterCTA />
 
-        {/* 9. Voices Teaser */}
-        <VoicesTeaser article={layout.voicesTeaser} />
+        {/* 9. (VoicesTeaser removed — VoicesSection below covers Voices) */}
 
         {/* 10. Technology (lead + list) */}
         <LeadListSection
