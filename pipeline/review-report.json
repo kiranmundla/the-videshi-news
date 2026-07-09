@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T15:15:29.215893+00:00",
+  "timestamp": "2026-07-09T15:46:18.417584+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 4,
+    "flag": 3,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "22753975-65f5-42dc-be32-10185b165ca8",
-      "headline": "Series Lost. Pride on the Line. India's Last Stand Against England Begins in Bristol.",
-      "slug": "india-england-4th-t20i-bristol-preview-76-all-out-samson-sooryavanshi-iyer-nri-2026",
+      "id": "6da9c342-6af7-462b-a969-d911209a883b",
+      "headline": "Nita Ambani Proposes an India-America Health Alliance at AAPI's Sold-Out Tampa Convention. The Diaspora's Physicians Are Listening.",
+      "slug": "nita-ambani-aapi-humanitarian-award-india-america-health-alliance-tamp-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in casual attire at airport",
-          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the cricket story."
+          "what_photo_shows": "woman in traditional Indian attire",
+          "reason": "The photo plausibly shows Nita Ambani, matching the story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 3,
-          "issue": "irrelevant"
+          "issue": "The image does not match the article's topic about Nita Ambani and the AAPI convention."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions the match timing for NRIs, connecting to the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the proposal to the Indian-American community and highlights the impact on both the diaspora and homeland."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the cricket match or the players involved.",
-          "Expand on the diaspora angle by including quotes or reactions from Indian fans in the UK or US."
+          "Replace the hero image with one that directly relates to Nita Ambani or the AAPI convention.",
+          "Include quotes or reactions from diaspora physicians to enhance the personal connection to the topic."
         ],
         "verdict": "flag"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "451152bf-d469-4028-90e8-5c58dd44bbe5",
-      "headline": "Eight Teams. Four Cities. Three Days. The World Cup Quarterfinals Are Here.",
-      "slug": "world-cup-2026-quarterfinals-preview-france-morocco-spain-belgium-england-argentina-nri-july-2026",
+      "id": "ec81f04f-b33a-4596-9e66-571b6d521c79",
+      "headline": "Five Days, Zero Tickets Required: Lincoln Center's India Week Returns With Garba, Comedy, and the Biggest Silent Disco in South Asian New York",
+      "slug": "lincoln-center-india-week-2026-free-events-garba-dj-rekha-comedy-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,232 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "France's Kylian Mbapp\u00e9 celebrating",
-          "reason": "The photo shows a relevant player for the World Cup story."
+          "what_photo_shows": "people at Lincoln Center fountain",
+          "reason": "The photo shows Lincoln Center, relevant to the event location."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": "The image of Lincoln Center matches the article's topic about India Week at Lincoln Center."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights cultural events that resonate with the Indian diaspora, showcasing familiar art forms and artists."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from attendees or organizers to enhance the personal connection to the events.",
+          "Include more details about how the events cater specifically to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2292642-5a0a-4027-9850-8f9a00bd61b4",
+      "headline": "TCS Just Beat Estimates and Crossed $2.6 Billion in AI Revenue. Its Order Book Tells a Different Story.",
+      "slug": "tcs-q1-results-ai-revenue-2-6-billion-order-book-shrinks-diaspora-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "N. Chandrasekaran smiling at an event",
+          "reason": "The photo shows N. Chandrasekaran, relevant to the TCS story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "image does not directly relate to TCS or AI revenue"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of TCS's performance to Indian IT workers in the US, discussing hiring trends and immigration issues."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to TCS or AI revenue.",
+          "Expand on the implications of the shrinking order book for the diaspora community."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16e0f17a-6b2d-4c3a-9745-5b7312a4364d",
+      "headline": "The White House Just Launched Its First Major H-1B Fraud Investigation. Seventy-Three Per Cent of Visa Holders Are Indian.",
+      "slug": "vance-dol-h1b-visa-fraud-probe-subpoenas-indian-workers-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit with flag",
+          "reason": "The photo plausibly shows Vice President JD Vance, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of H-1B visa fraud investigations on Indian professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration.",
+          "Include more direct quotes or perspectives from Indian professionals affected by the investigation to enhance the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ee751872-f3f5-4bf5-8293-0081926b6a81",
+      "headline": "OpenAI's GPT-Live Can Listen and Talk at the Same Time. India's Voice AI Race Just Accelerated.",
+      "slug": "openai-gpt-live-voice-models-india-developers-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3f4bbba1-5eef-4879-a39f-13a0728de56f",
+            "headline": "Sam Altman Offered Washington 5% of OpenAI. The Government W"
+          },
+          {
+            "article_id": "6dc026f0-224b-4dc2-bf12-9d3f653b2af4",
+            "headline": "Washington Just Cleared GPT-5.6 for the World. Here's What I"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Sam Altman, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of voice AI or OpenAI's GPT-Live."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the advancements in voice AI to the Indian technology ecosystem and its implications for Indian developers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to voice AI or OpenAI's GPT-Live.",
+          "Expand on the implications of GPT-Live for the Indian diaspora, particularly in terms of how it could impact communication and services for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "43c41fd6-40b1-4736-b122-488d2b768f78",
+      "headline": "SpaceXAI Launches Grok 4.5 on AI's Biggest Day. It Was Trained on Tens of Thousands of Nvidia Chips.",
+      "slug": "spacexai-grok-45-launch-cursor-nvidia-ai-wars-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit",
+          "reason": "The photo plausibly shows Elon Musk, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "image does not directly relate to the article's topic of AI and Grok 4.5"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the relevance of Grok 4.5 for Indian software engineers, making a strong connection to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects AI or Grok 4.5 specifically.",
+          "Add more context or quotes from Indian developers to enhance the diaspora angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e113d52c-b8dd-4a6f-a771-54b93207e91f",
+      "headline": "TCS Beat Expectations and Hired 9,300 People. Its AI Revenue Just Crossed $2.6 Billion.",
+      "slug": "tcs-q1-fy27-ai-revenue-hiring-beat-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tata Consultancy Services building",
+          "reason": "The photo shows a TCS campus, relevant to the story about TCS."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +303,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup quarterfinals to Indian-origin fans in the US, highlighting their local relevance."
+          "note": "The article effectively connects TCS's performance to the concerns of Indian professionals in the US, particularly those on work visas."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from Indian-origin fans to enhance the diaspora connection.",
-          "Include a brief overview of the significance of the World Cup for the Indian diaspora to deepen engagement."
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more specific implications for NRIs regarding job security and market trends."
         ],
         "verdict": "pass"
       },
