@@ -1,0 +1,40 @@
+{
+  "article_id": "a271cbdf-8124-4fd1-8577-059e031534cb",
+  "scenes": [
+    {
+      "voiceover": "Who sends India the most money? For the first time ever, it's not the Gulf.",
+      "onscreen": "THE BIG SHIFT",
+      "image_prompt": "Hook question with currency symbols floating above globe showing India and Middle East"
+    },
+    {
+      "voiceover": "A hundred and forty-five billion dollars. India just smashed its remittance record \u2014 up sixteen percent in a single year.",
+      "onscreen": "$145B RECORD",
+      "image_prompt": "Giant $145 BILLION number with upward trend chart showing FY24-FY26 growth"
+    },
+    {
+      "voiceover": "America now leads at twenty-eight percent. UAE dropped to nineteen. UK, Saudi, Singapore round out the top five.",
+      "onscreen": "TOP 5 SOURCES",
+      "image_prompt": "Horizontal bar chart showing US 27.7%, UAE 19.2%, UK 10.8%, Saudi 6.7%, Singapore 6.6%"
+    },
+    {
+      "voiceover": "Why the shift? Fewer Gulf laborers. More tech workers and doctors in the US and UK. Bigger paychecks, bigger transfers.",
+      "onscreen": "DIASPORA EVOLVED",
+      "image_prompt": "Split screen showing Gulf construction workers fading vs tech professionals in modern offices"
+    },
+    {
+      "voiceover": "Even with war in West Asia, Q4 hit fourteen billion a month. NRIs sent more, not less.",
+      "onscreen": "$13.7B / MONTH",
+      "image_prompt": "Rising green chart line breaking through chaos of West Asia conflict imagery"
+    },
+    {
+      "voiceover": "It's beyond wire transfers now. NRIs buy property, invest in mutual funds, earn seven percent on dollar deposits.",
+      "onscreen": "BEYOND TRANSFERS",
+      "image_prompt": "Three investment panels: real estate, mutual fund SIPs, FCNR deposits at 7%"
+    },
+    {
+      "voiceover": "Five million Indians in America. Their money home outweighs most foreign aid programs. The diaspora isn't just sending love \u2014 it's powering an economy.",
+      "onscreen": "POWERING INDIA",
+      "image_prompt": "Indian and American flags connected by golden light, text about 5 million Indians"
+    }
+  ]
+}
