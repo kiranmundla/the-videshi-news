@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T05:15:17.261725+00:00",
+  "timestamp": "2026-07-09T08:15:29.176759+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,52 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "438aba22-9225-43af-93f5-03ef24629a06",
-      "headline": "Half the Companies That Fired Workers for AI Will Rehire Them by 2027. The Boomerang Has Begun.",
-      "slug": "ai-boomerang-rehiring-workers-klarna-ibm-ford-20260709",
+      "id": "24e8229a-7292-45a8-8367-d5494da4e171",
+      "headline": "You Paid $120,000 in Social Security Taxes. India Has No Deal to Get Any of It Back",
+      "slug": "social-security-totalization-india-h1b-workers-lost-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at conference",
-          "reason": "The photo plausibly shows a CEO at a tech event, fitting the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "old employee identification card",
+          "reason": "The photo shows an employee card, not a US Social Security card."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Arvind Krishna does not directly relate to the article's focus on AI layoffs and rehiring trends."
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses IBM's rehiring, which is relevant to Indian tech workers, connecting well with the diaspora audience."
+          "note": "The article effectively addresses the concerns of Indian H-1B workers regarding Social Security taxes and the lack of a totalization agreement."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of companies that have rehired workers in the Indian context to strengthen the diaspora connection.",
-          "Consider using a more relevant image that depicts AI in the workplace or the impact of AI on employment."
+          "Include a relevant hero image that visually represents the topic of Social Security taxes and Indian workers.",
+          "Add more personal anecdotes or quotes from affected individuals to enhance the emotional connection with the diaspora audience."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (old employee identification card)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ad7bf7db-489a-440e-a9bf-6d718f99fcd7",
-      "headline": "Cisco Gave Every Worker an AI Agent. It Had Just Fired 4,000 of Them.",
-      "slug": "cisco-ai-agents-90000-workers-layoffs-h1b-20260709",
+      "id": "aec80018-750d-4f5b-a652-bbd687576230",
+      "headline": "Eighty-Three Days of Nothing. The July Visa Bulletin Just Shut Down EB-2 India",
+      "slug": "eb2-india-unavailable-july-visa-bulletin-green-card-frozen-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +66,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cisco Systems headquarters building",
-          "reason": "The photo shows Cisco headquarters, relevant to the story about Cisco."
+          "what_photo_shows": "open passport with visa stamps",
+          "reason": "The photo of a passport with visa stamps is relevant to a story about visa issues."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of Cisco's headquarters is relevant to the article's topic about the company."
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of immigration or visas."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of Cisco's layoffs on Indian tech workers, connecting well with the diaspora audience."
+          "note": "The article discusses visa issues that directly affect Indian professionals, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from affected employees or industry experts to enhance the narrative.",
-          "Provide additional context on how AI is being integrated into other companies to compare with Cisco's approach."
+          "Consider using an image that visually represents immigration or the visa process to enhance relevance.",
+          "Add quotes or insights from immigration experts or affected individuals to provide a more personal touch."
         ],
         "verdict": "pass"
       },
