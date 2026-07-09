@@ -36,7 +36,7 @@ export default function HeroSection({ lead, side }: Props) {
   const rt = (lead as any).reading_time ?? 5;
 
   return (
-    <section className="pt-8 md:pt-10">
+    <section className="pt-8 md:pt-10 pb-10 md:pb-14">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-7">
           {/* Lead article */}
