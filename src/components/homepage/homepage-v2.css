@@ -243,9 +243,11 @@
 /* ── Social / X tweet scroll strip ──────── */
 .v2-social-strip {
   background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
-  padding: 32px 0 20px;
+  padding: 20px 0 20px;
   border-top: 1px solid #F0E6CC;
   border-bottom: 1px solid #F0E6CC;
+  margin-top: -48px;
+  margin-bottom: 72px;
 }
 .v2-social-x-badge {
   width: 22px;
