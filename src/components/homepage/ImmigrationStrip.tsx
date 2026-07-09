@@ -75,22 +75,21 @@ export default function ImmigrationStrip({ articles }: Props) {
                 to={`/articles/${a.slug}`}
                 className="v2-imm-card group block"
               >
-                {img ? (
-                  <div className="w-full aspect-[16/10] bg-white/[0.08] overflow-hidden">
+                <div className="w-full bg-white/[0.08] overflow-hidden" style={{ aspectRatio: "16/10" }}>
+                  {img ? (
                     <HeroImage
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                      width="400"
-                      height="250"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
-                  </div>
-                ) : (
-                  <div className="w-full aspect-[16/10] bg-white/[0.08] flex items-center justify-center text-white/20 text-xs">
-                    IMAGE
-                  </div>
-                )}
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-white/20 text-xs">
+                      IMAGE
+                    </div>
+                  )}
+                </div>
                 <div className="p-3.5 pb-4">
                   <p
                     className="text-[10px] font-bold tracking-[1.2px] uppercase mb-2"
