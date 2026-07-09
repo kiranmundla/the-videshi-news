@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-08T21:15:28.046973+00:00",
+  "timestamp": "2026-07-09T00:15:22.223769+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0ec6bbdf-6431-4d6f-b820-e7acc19ab6d7",
-      "headline": "An Intel-Backed Chipmaker Just Filed to Go Public. It Thinks the AI Race Ends on Your Wrist, Not in a Data Centre.",
-      "slug": "syntiant-ipo-edge-ai-chip-intel-nasdaq-20260708",
+      "id": "b52436c7-0e97-4416-97df-bb48922fab0d",
+      "headline": "From OpenAI to Anthropic to Apple: Indian-Origin Engineers Now Run the AI Departments That Run the World",
+      "slug": "indian-origin-tech-leaders-ai-csuite-openai-anthropic-apple-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "AI processor chip",
-          "reason": "The photo shows an AI processor chip relevant to the semiconductor story."
+          "what_photo_shows": "A man in a suit and glasses",
+          "reason": "The photo plausibly shows Sundar Pichai, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of AI chips or the company Syntiant."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the topic to NRI engineers and investors, highlighting their roles in the semiconductor industry."
+          "note": "The article discusses the achievements of Indian-origin engineers in AI, which resonates with the Indian diaspora's pride in their contributions to global technology."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts AI chips or technology to enhance visual alignment with the article's content.",
-          "Expand on the implications of Syntiant's technology for the Indian semiconductor market to strengthen the diaspora connection."
+          "Consider adding more personal stories or quotes from the featured engineers to enhance relatability.",
+          "Include statistics or data on the impact of Indian-origin engineers in the AI sector to strengthen the argument."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "4da5d4f3-eced-4e50-9973-e08074e0b2b2",
-      "headline": "India's AI Jobs Just Grew 16 Per Cent While Overall IT Hiring Shrank. The Industry's Two-Speed Future Is Here.",
-      "slug": "india-ai-hiring-boom-it-jobs-shrink-naukri-20260708",
+      "id": "c116b38b-3e60-4ae2-827c-ed1529d2bf93",
+      "headline": "At Twenty-Three, a Haryana-Born Councillor Becomes the Youngest Indian-Origin Mayor in Britain",
+      "slug": "tushar-kumar-youngest-indian-origin-mayor-uk-elstree-borehamwood-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "software developers working at computers",
-          "reason": "The photo shows software developers, which aligns with the tech sector focus of the story."
+          "what_photo_shows": "The Palace of Westminster, London",
+          "reason": "The photo shows a relevant UK landmark for a story about British politics."
         },
         "inline_image_mismatches": []
       },
@@ -74,61 +74,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the tech theme but does not specifically represent AI or job growth."
+          "issue": "The image does not directly relate to the article's subject matter."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the implications of AI job growth in India to the career prospects of Indian-origin tech workers in the US."
+          "note": "The article effectively connects Kumar's achievements to the broader Indian diaspora experience in the UK."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents AI or job growth in the tech sector.",
-          "Add more data or quotes from industry experts to strengthen the analysis of the impact on the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c11f844c-d78d-412a-980d-30ed2fe3f3ed",
-      "headline": "Synopsys Just Killed the Software That Runs Chip Factories. It Wants to Design the Chips Instead.",
-      "slug": "synopsys-kills-fab-software-ai-chip-design-20260708",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "semiconductor fabrication equipment",
-          "reason": "The photo subject aligns with the semiconductor story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the semiconductor industry but does not specifically depict chip factories or AI design."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications for Indian engineers and the semiconductor industry in India, making it relevant for the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how Indian engineers are adapting to the shift towards AI chip design.",
-          "Consider adding quotes or insights from industry experts to enhance credibility and depth."
+          "Consider using a more relevant image that depicts Tushar Kumar or a related event.",
+          "Add quotes or perspectives from other community members to enrich the narrative."
         ],
         "verdict": "pass"
       },
