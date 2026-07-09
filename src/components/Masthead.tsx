@@ -25,10 +25,10 @@ const NAV_CATEGORIES = [
 
 /* Row 2 — feature / community sections (fixed, no scroll) */
 const NAV_SECTIONS = [
-  { slug: "events", label: "Events", path: "/events", icon: "📅" },
-  { slug: "directory", label: "Directory", path: "/directory", icon: "📒" },
-  { slug: "classifieds", label: "Classifieds", path: "/classifieds", icon: "📌" },
-  { slug: "stories", label: "Voices", path: "/stories", icon: "🎙️" },
+  { slug: "events", label: "Events", path: "/events" },
+  { slug: "directory", label: "Directory", path: "/directory" },
+  { slug: "classifieds", label: "Classifieds", path: "/classifieds" },
+  { slug: "stories", label: "Voices", path: "/stories" },
 ];
 
 /* Row 3 — live happenings (conditional, only renders when non-empty) */
@@ -121,7 +121,6 @@ function CategoryNavBar() {
                       : "text-foreground/55 hover:text-foreground"
                   }`}
                 >
-                  <span className="text-[0.7rem]">{sec.icon}</span>
                   <span className="smallcaps">{sec.label}</span>
                   {isActive && (
                     <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />

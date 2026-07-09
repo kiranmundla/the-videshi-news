@@ -3,6 +3,11 @@
    Styles that can't be easily done with Tailwind
    ═══════════════════════════════════════════ */
 
+/* ── Section spacing — override mb-14 (56px) to 72px ── */
+.v2-main-sections > section.mb-14 {
+  margin-bottom: 72px;
+}
+
 /* ── Trending Strip ─────────────────────── */
 .v2-trending-strip {
   background: #FFFBF0;
@@ -193,7 +198,10 @@
 
 /* ── Social / X tweet scroll strip ──────── */
 .v2-social-strip {
-  padding: 28px 0 12px;
+  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
+  padding: 32px 0 20px;
+  border-top: 1px solid #F0E6CC;
+  border-bottom: 1px solid #F0E6CC;
 }
 .v2-social-x-badge {
   width: 22px;

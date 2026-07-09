@@ -94,7 +94,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
                 className="font-serif text-[14px] italic leading-relaxed mb-3 pl-3"
                 style={{
                   color: "#334155",
-                  borderLeft: "3px solid #0B1D3A",
+                  borderLeft: "3px solid #D4A843",
                 }}
               >
                 "{t.article_headline}"

@@ -9,7 +9,6 @@ import TrendingStrip from "@/components/homepage/TrendingStrip";
 import HeroSection from "@/components/homepage/HeroSection";
 import ImmigrationStrip from "@/components/homepage/ImmigrationStrip";
 import NewsletterCTA from "@/components/homepage/NewsletterCTA";
-import VoicesTeaser from "@/components/homepage/VoicesTeaser";
 import LeadListSection from "@/components/homepage/LeadListSection";
 import RibbonSection from "@/components/homepage/RibbonSection";
 import IndiaNewsGrid from "@/components/homepage/IndiaNewsGrid";
@@ -357,7 +356,7 @@ export default function IndexV2() {
       {/* 5. Trending Strip */}
       <TrendingStrip articles={layout.trending} />
 
-      <main className="flex-1">
+      <main className="flex-1 v2-main-sections">
         {/* 6. Hero Section */}
         <HeroSection lead={featured} side={layout.heroSide} />
 
