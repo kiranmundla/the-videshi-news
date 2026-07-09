@@ -190,3 +190,29 @@
   .v2-trending-sidebar::-webkit-scrollbar { display: none; }
   .v2-trending-sidebar > a { min-width: 260px; flex-shrink: 0; }
 }
+
+/* ── Tweet scroll strip ──────────────── */
+.v2-tweet-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.v2-tweet-scroll::-webkit-scrollbar { display: none; }
+.v2-tweet-card {
+  flex: 0 0 320px;
+  min-width: 320px;
+  max-width: 320px;
+}
+.v2-tweet-card .twitter-tweet {
+  margin: 0 !important;
+}
+@media (max-width: 767px) {
+  .v2-tweet-card {
+    flex: 0 0 280px;
+    min-width: 280px;
+    max-width: 280px;
+  }
+}

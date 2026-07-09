@@ -1,0 +1,261 @@
+{
+  "_generated": "2026-07-09T21:59:10.301545+00:00",
+  "_description": "Cached tweet embeds for homepage social strips. Harvested from article embeds, zero API cost.",
+  "categories": {
+    "technology": [
+      {
+        "tweet_url": "https://x.com/nvidia/status/2074979063106843131",
+        "handle": "nvidia",
+        "tweet_id": "2074979063106843131",
+        "category": "technology",
+        "article_slug": "spacexai-grok-45-launch-cursor-nvidia-ai-wars-20260709",
+        "article_headline": "SpaceXAI Launches Grok 4.5 on AI's Biggest Day. It Was Trained on Tens of Thousands of Nvidia Chips.",
+        "published_at": "2026-07-09T15:46:10+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/OpenAI/status/2074972182640492731",
+        "handle": "OpenAI",
+        "tweet_id": "2074972182640492731",
+        "category": "technology",
+        "article_slug": "openai-gpt-live-voice-models-india-developers-20260709",
+        "article_headline": "OpenAI's GPT-Live Can Listen and Talk at the Same Time. India's Voice AI Race Just Accelerated.",
+        "published_at": "2026-07-09T15:45:56+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Google/status/2074958689497190513",
+        "handle": "Google",
+        "tweet_id": "2074958689497190513",
+        "category": "technology",
+        "article_slug": "skyroot-aerospace-unicorn-ram-shriram-space-india-20260709",
+        "article_headline": "India's First Space-Tech Unicorn Just Landed. A Google Founding Investor Put Up the Money.",
+        "published_at": "2026-07-09T13:15:31+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/nvidia/status/2075248918011801686",
+        "handle": "nvidia",
+        "tweet_id": "2075248918011801686",
+        "category": "technology",
+        "article_slug": "sambanova-billion-inference-chips-nvidia-jpmorgan-20260709",
+        "article_headline": "The Startup JPMorgan Chose Over Nvidia for AI Inference Just Raised $1 Billion.",
+        "published_at": "2026-07-09T13:15:24+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/nvidia/status/2074161704456356216",
+        "handle": "nvidia",
+        "tweet_id": "2074161704456356216",
+        "category": "technology",
+        "article_slug": "deepseek-ai-inference-chip-nvidia-huawei-india-20260707",
+        "article_headline": "DeepSeek Is Building Its Own AI Chip. Nvidia and Huawei Should Both Be Worried.",
+        "published_at": "2026-07-07T13:15:21+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/nvidia/status/2070597978826449174",
+        "handle": "nvidia",
+        "tweet_id": "2070597978826449174",
+        "category": "technology",
+        "article_slug": "upscale-ai-2-billion-indian-founders-premji-nvidia-skyhammer-20260628",
+        "article_headline": "Two Indian-Origin Founders Just Built a $2 Billion Chip Startup. Nvidia Invested Anyway.",
+        "published_at": "2026-06-28T03:15:39+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Google/status/2070203163584475186",
+        "handle": "Google",
+        "tweet_id": "2070203163584475186",
+        "category": "technology",
+        "article_slug": "google-gemini-35-pro-delayed-july-flash-computer-use-pichai-20260627",
+        "article_headline": "Sundar Pichai Promised Gemini 3.5 Pro in June. Google Just Pushed It to July.",
+        "published_at": "2026-06-27T06:15:43+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/robot2trade1/status/2070560153414279656",
+        "handle": "robot2trade1",
+        "tweet_id": "2070560153414279656",
+        "category": "technology",
+        "article_slug": "openai-gpt-5-6-government-gated-release-altman-developers-nri-20260626",
+        "article_headline": "Washington Just Got First Dibs on OpenAI's Newest Brain. The Indian Engineer Building on It Has to Wait in Line.",
+        "published_at": "2026-06-26T18:15:59+00:00"
+      }
+    ],
+    "entertainment": [
+      {
+        "tweet_url": "https://x.com/NetflixIndia/status/2074757883808407778",
+        "handle": "NetflixIndia",
+        "tweet_id": "2074757883808407778",
+        "category": "entertainment",
+        "article_slug": "ikka-sunny-deol-akshaye-khanna-netflix-courtroom-drama-reunion-july-10-tillotama-shome-20260708",
+        "article_headline": "Sunny Deol Has Never Made a Netflix Film. Akshaye Khanna Hasn't Faced Him in Thirty Years. That Changes Thursday.",
+        "published_at": "2026-07-09T01:45:22+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2073636463112225098",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2073636463112225098",
+        "category": "entertainment",
+        "article_slug": "diljit-dosanjh-satluj-zee5-banned-india-jaswant-singh-khalra-censorship-diaspora-nri-20260706",
+        "article_headline": "He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway \u2014 and India Pulled It in 48 Hours.",
+        "published_at": "2026-07-06T17:15:30+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Netflix_INSouth/status/2073278132518273256",
+        "handle": "Netflix_INSouth",
+        "tweet_id": "2073278132518273256",
+        "category": "entertainment",
+        "article_slug": "ram-charan-peddi-netflix-july-9-339-crore-telugu-megastar-ar-rahman-streaming-diaspora-20260706",
+        "article_headline": "He Took Eight Stitches to the Eye Mid-Shoot. Now Ram Charan's \u20b9339-Crore Epic Hits Netflix.",
+        "published_at": "2026-07-06T17:15:16+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/tarak9999/status/2071557756570796349",
+        "handle": "tarak9999",
+        "tweet_id": "2071557756570796349",
+        "category": "entertainment",
+        "article_slug": "jr-ntr-trivikram-lord-murugan-god-of-war-mythological-epic-anirudh-hombale-suriya-diaspora-nri-20260630",
+        "article_headline": "Jr NTR Just Declared War on the Gods \u2014 and Brought Anirudh Along for the Ride",
+        "published_at": "2026-06-30T09:15:42+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/1lsBongofficial/status/2070786865708580929",
+        "handle": "1lsBongofficial",
+        "tweet_id": "2070786865708580929",
+        "category": "entertainment",
+        "article_slug": "awarapan-2-teaser-june-29-emraan-hashmi-shivam-pandit-disha-patani-shabana-azmi-independence-day-2026-where-to-watch-diaspora-nri-20260627",
+        "article_headline": "Shivam Pandit Is Two Days Away: The 'Awarapan 2' Teaser Drops on the Original's 19th Anniversary",
+        "published_at": "2026-06-27T19:15:12+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/akshaykumar/status/2070364268747424044",
+        "handle": "akshaykumar",
+        "tweet_id": "2070364268747424044",
+        "category": "entertainment",
+        "article_slug": "haiwaan-akshay-kumar-villain-saif-ali-khan-priyadarshan-september-11-2026-mohanlal-cameo-oppam-remake-where-to-watch-diaspora-nri-20260627",
+        "article_headline": "Akshay Kumar Turns Villain, Saif Ali Khan Plays the Hero \u2014 and Priyadarshan Has Reunited Them After 18 Years",
+        "published_at": "2026-06-27T07:15:19+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/NetflixIndia/status/2070821071365030122",
+        "handle": "NetflixIndia",
+        "tweet_id": "2070821071365030122",
+        "category": "entertainment",
+        "article_slug": "baahubali-the-torchbearer-netflix-documentary-prabhas-three-fingers-baahubali-3-tease-rajamouli-rana-daggubati-where-to-watch-diaspora-nri-20260626",
+        "article_headline": "Prabhas Held Up Three Fingers and the Internet Lost Its Mind: Inside Netflix's 'Baahubali: The Torchbearer'",
+        "published_at": "2026-06-27T05:15:12+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/NetflixIndia/status/2070447727344013801",
+        "handle": "NetflixIndia",
+        "tweet_id": "2070447727344013801",
+        "category": "entertainment",
+        "article_slug": "lock-upp-season-2-netflix-june-27-2026-farah-khan-riteish-deshmukh-jailers-ektaa-kapoor-ram-kapoor-shivangi-joshi-where-to-watch-diaspora-nri-20260626",
+        "article_headline": "The Jail Goes Global: 'Lock Upp' Trades MX Player for Netflix, and Now the Diaspora Gets a Cell Too",
+        "published_at": "2026-06-26T09:15:12+00:00"
+      }
+    ],
+    "sports": [
+      {
+        "tweet_url": "https://x.com/airnewsalerts/status/2070845303847260439",
+        "handle": "airnewsalerts",
+        "tweet_id": "2070845303847260439",
+        "category": "sports",
+        "article_slug": "india-us-open-badminton-semifinals-srikanth-rounak-devika-20260627",
+        "article_headline": "Three Indians Storm US Open Badminton Semifinals as Srikanth, Teen Prodigy Rounak, and Devika Sihag Shine in California",
+        "published_at": "2026-06-27T19:45:09+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/BWFScore/status/2070282175732400396",
+        "handle": "BWFScore",
+        "tweet_id": "2070282175732400396",
+        "category": "sports",
+        "article_slug": "rounak-chouhan-18-stuns-world-no-6-chou-tien-chen-us-open-badminton-2026-fullerton-california-india-srikanth-tanvi-sharma-diaspora-nri",
+        "article_headline": "He Came Through Qualifying and Saved Four Match Points. Then the Top Seed Was Out.",
+        "published_at": "2026-06-27T07:45:22+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/sportstarweb/status/2070556332902821893",
+        "handle": "sportstarweb",
+        "tweet_id": "2070556332902821893",
+        "category": "sports",
+        "article_slug": "inter-state-athletics-day-3-thirteen-athletes-asian-games-qualifying-praveen-chithravel-triple-jump-bhubaneswar-2026-diaspora-nri",
+        "article_headline": "Thirteen Athletes Qualified in a Single Day. The Triple Jumpers Were the Story India Didn't See Coming.",
+        "published_at": "2026-06-27T07:45:14+00:00"
+      }
+    ],
+    "news": [
+      {
+        "tweet_url": "https://x.com/ajassy/status/2070056379675754958",
+        "handle": "ajassy",
+        "tweet_id": "2070056379675754958",
+        "category": "news",
+        "article_slug": "amazon-48-billion-india-investment-jassy-modi-ai-quick-commerce-20260629",
+        "article_headline": "Amazon Just Raised Its India Bet to $48 Billion. The Quick Commerce War It Triggered Is Already Drawing Blood.",
+        "published_at": "2026-06-30T02:45:16+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/OpenAI/status/2070196105745518913",
+        "handle": "OpenAI",
+        "tweet_id": "2070196105745518913",
+        "category": "news",
+        "article_slug": "openai-prabhjeet-singh-india-md-uber-iit-kharagpur-chatgpt-second-largest-market-20260627",
+        "article_headline": "OpenAI Just Hired Uber India's Boss to Run Its Second-Biggest Market. It's Not Messing Around.",
+        "published_at": "2026-06-27T16:45:24+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/moneycontrolcom/status/2070137926642700502",
+        "handle": "moneycontrolcom",
+        "tweet_id": "2070137926642700502",
+        "category": "news",
+        "article_slug": "india-passport-fee-hike-july-1-2026-normal-tatkal-minor-lost-damaged-mea-amendment-rules-20260625",
+        "article_headline": "India Just Raised Passport Fees for the First Time in Years. Here's the New Price List.",
+        "published_at": "2026-06-26T06:45:14+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/IndianEmbassyUS/status/2070245326502436880",
+        "handle": "IndianEmbassyUS",
+        "tweet_id": "2070245326502436880",
+        "category": "news",
+        "article_slug": "indian-embassy-uae-pauses-passport-visa-consular-services-june-26-30-bls-sgivs-al-hind-provider-switch-20260625",
+        "article_headline": "India's UAE Embassy Is Hitting Pause on Passports and Visas for Five Days. Here's What 4 Million Indians Need to Know.",
+        "published_at": "2026-06-26T04:45:15+00:00"
+      }
+    ],
+    "immigration": [
+      {
+        "tweet_url": "https://x.com/USCIS/status/2074915970620039551",
+        "handle": "USCIS",
+        "tweet_id": "2074915970620039551",
+        "category": "immigration",
+        "article_slug": "uscis-adjustment-of-status-extraordinary-relief-consular-20260709",
+        "article_headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary Relief.' That Word Does the Heavy Lifting",
+        "published_at": "2026-07-09T14:15:15+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/USCIS/status/2074129131646615616",
+        "handle": "USCIS",
+        "tweet_id": "2074129131646615616",
+        "category": "immigration",
+        "article_slug": "federal-judge-blocks-uscis-nationality-bias-ohio-immigration-20260707",
+        "article_headline": "A Federal Judge Just Told USCIS It Cannot Punish People for Where They Were Born",
+        "published_at": "2026-07-07T20:15:28+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/USCIS/status/2070611132528615926",
+        "handle": "USCIS",
+        "tweet_id": "2070611132528615926",
+        "category": "immigration",
+        "article_slug": "uscis-adjustment-of-status-extraordinary-consular-processing-india-h1b-20260627",
+        "article_headline": "The Green Card You Could Get Without Leaving America? USCIS Just Made It 'Extraordinary'",
+        "published_at": "2026-06-27T12:15:19+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/USCIS/status/2070173371224997959",
+        "handle": "USCIS",
+        "tweet_id": "2070173371224997959",
+        "category": "immigration",
+        "article_slug": "h1b-100k-fee-rfe-limbo-uscis-demands-exempt-workers-indians-20260626",
+        "article_headline": "The $100K H-1B Fee Is Dead in Court. USCIS Keeps Demanding It Anyway",
+        "published_at": "2026-06-26T16:15:25+00:00"
+      }
+    ],
+    "nri-world": [],
+    "markets-finance": []
+  }
+}

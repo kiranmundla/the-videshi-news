@@ -16,6 +16,7 @@ import IndiaNewsGrid from "@/components/homepage/IndiaNewsGrid";
 import NewsGrid from "@/components/homepage/NewsGrid";
 import VoicesSection from "@/components/homepage/VoicesSection";
 import EventsStrip from "@/components/homepage/EventsStrip";
+import TweetScroll from "@/components/homepage/TweetScroll";
 import "@/components/homepage/homepage-v2.css";
 
 import {
@@ -376,6 +377,7 @@ export default function IndexV2() {
           categorySlug="technology"
           articles={layout.technology}
         />
+        <div className="container"><TweetScroll category="technology" /></div>
 
         {/* 11. Entertainment (horizontal ribbon — portrait, 8 cards) */}
         <RibbonSection
@@ -392,6 +394,7 @@ export default function IndexV2() {
           articles={layout.news}
           trending={layout.trending}
         />
+        <div className="container"><TweetScroll category="news" label="India News" /></div>
 
         {/* 13. Markets & Finance (lead + list) */}
         <LeadListSection
@@ -419,6 +422,7 @@ export default function IndexV2() {
           aspectRatio="landscape"
           cardCount={4}
         />
+        <div className="container"><TweetScroll category="sports" /></div>
 
         {/* 16. Voices (full section) */}
         <VoicesSection />
