@@ -87,7 +87,7 @@ export default function AdminPostToX() {
       )
       .eq("status", "published")
       .order("published_at", { ascending: false, nullsFirst: false })
-      .limit(30);
+      .limit(100);
 
     if (filter === "not-posted") {
       q = q.is("tweeted_at", null);
