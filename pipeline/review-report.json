@@ -1,15 +1,106 @@
 {
-  "timestamp": "2026-07-09T08:45:34.562023+00:00",
+  "timestamp": "2026-07-09T09:15:41.083045+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 1,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
   "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "f27e6615-a2b5-4308-8c9e-7cadebf9af29",
+      "headline": "Hrithik Roshan Has No Film in 2026. He's Never Been More in Demand.",
+      "slug": "hrithik-roshan-no-film-2026-krrish-4-laxman-utekar-hombale-rajinikanth-jailer-2-reinvention-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Hrithik Roshan at an event",
+          "reason": "The photo shows Hrithik Roshan, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses Hrithik Roshan's evolving career, which resonates with the diaspora's interest in Bollywood and Indian cinema."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Hrithik or industry insiders to enhance credibility.",
+          "Add a section discussing how Hrithik's absence from the big screen might affect his fanbase, particularly among NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "72d7947e-2718-4efd-8549-f2c86622003d",
+      "headline": "The Date Is Set. Ramayana Drops Its First Trailer July 18 \u2014 at India's Grandest Stage.",
+      "slug": "ramayana-trailer-july-18-bharat-mandapam-ranbir-kapoor-sai-pallavi-nitesh-tiwari-diwali-2026-20260709",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "07da0417-b4d6-446e-9111-8cee0091f1ba",
+            "headline": "India's Biggest Film Is About to Crash San Diego Comic-Con. "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a black shirt",
+          "reason": "The photo shows Ranbir Kapoor, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the film's release date and its significance for NRI audiences, particularly around Diwali."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to the film 'Ramayana' or its cast.",
+          "Consider adding more details about the film's cultural significance to enhance the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "0f60a97b-3e54-4fcd-a12c-d1353cbc5379",
       "headline": "Trump Just Cut Off Trade With a NATO Ally Over Iran. India's $200 Billion Relationship With the US Is Taking Notes.",
@@ -30,107 +121,26 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of the NATO summit does not directly relate to the article's focus on US-India trade relations and the specific incident involving Spain."
+          "score": 4,
+          "issue": "The image of a NATO summit does not directly relate to the article's focus on US-India trade relations."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's economic ties with the US, which is relevant to the Indian diaspora, but the connection could be more explicitly articulated."
+          "note": "The article discusses the implications of US trade policies on India, which is relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Clarify the connection between the NATO incident and its implications for India to strengthen the diaspora angle.",
-          "Consider using a more relevant image that directly relates to US-India trade relations or the impact on Indian professionals."
+          "Consider using a more relevant image that directly relates to US-India trade or the impact on NRIs.",
+          "Clarify the connection between Trump's actions and their potential impact on Indian professionals and businesses to strengthen the diaspora angle."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (1054\u21921113 words)"
+        "Revised by gemini-2.5-flash (1113\u21921115 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6d0313fc-aa16-4e8e-a02a-945c31032eca",
-      "headline": "Australia Just Agreed to Sell India Its Uranium. A Twelve-Year Stalemate Is Over.",
-      "slug": "australia-india-uranium-deal-modi-melbourne-australiansuper-nuclear-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Modi meeting Albanese in New Delhi",
-          "reason": "The photo shows the leaders relevant to the uranium deal story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the significance of the Indian diaspora in Australia and its connection to the uranium deal."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Modi or Albanese to enhance the article's engagement.",
-          "Add a brief section on potential implications of the uranium deal for India's energy policy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "24e8229a-7292-45a8-8367-d5494da4e171",
-      "headline": "You Paid $120,000 in Social Security Taxes. India Has No Deal to Get Any of It Back",
-      "slug": "social-security-totalization-india-h1b-workers-lost-20260709",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article addresses the financial implications of U.S. Social Security taxes on Indian H-1B workers, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that visually represents the topic of Social Security taxes and Indian H-1B workers.",
-          "Add more statistics or personal anecdotes to enhance the emotional connection with the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
