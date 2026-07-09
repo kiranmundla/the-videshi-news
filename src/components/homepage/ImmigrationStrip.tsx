@@ -65,9 +65,9 @@ export default function ImmigrationStrip({ articles }: Props) {
           ))}
         </div>
 
-        {/* Cards */}
-        <div className="v2-imm-grid">
-          {display.slice(0, 4).map((a) => {
+        {/* Cards — horizontal scroll */}
+        <div className="v2-imm-scroll">
+          {display.map((a) => {
             const img = isValidImage(a.hero_image_url);
             return (
               <Link

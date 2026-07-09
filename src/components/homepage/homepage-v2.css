@@ -55,12 +55,19 @@
   border-color: #D4A843;
   color: #D4A843;
 }
-.v2-imm-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.v2-imm-scroll {
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.v2-imm-scroll::-webkit-scrollbar { display: none; }
 .v2-imm-card {
+  flex: 0 0 300px;
+  min-width: 300px;
+  max-width: 300px;
   background: #122a4f;
   border-radius: 10px;
   overflow: hidden;
@@ -151,23 +158,13 @@
 
 /* ── Tablet overrides ────────────────────── */
 @media (max-width: 1024px) {
-  .v2-imm-grid { grid-template-columns: repeat(2, 1fr); }
+  .v2-imm-scroll > * { flex: 0 0 280px; min-width: 280px; max-width: 280px; }
 }
 
 /* ── Mobile overrides ───────────────────── */
 @media (max-width: 768px) {
   .v2-imm-section { padding: 28px 0; }
-  .v2-imm-grid {
-    grid-template-columns: 1fr;
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
-  .v2-imm-grid::-webkit-scrollbar { display: none; }
-  .v2-imm-grid > * { min-width: 260px; max-width: 280px; flex-shrink: 0; }
+  .v2-imm-scroll > * { flex: 0 0 260px; min-width: 260px; max-width: 260px; }
 
   .v2-newsletter-inner { flex-direction: column; gap: 16px; text-align: center; }
 
