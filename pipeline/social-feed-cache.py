@@ -2,18 +2,20 @@
 """
 social-feed-cache.py — Build a cached social feed JSON for the homepage.
 
-Extracts tweet URLs already embedded in published articles (zero X API cost),
-groups by category, and writes public/data/social-feed.json for the homepage
-tweet scroll strips.
+Two-tier approach:
+  1. DIRECT FETCH: Pulls recent tweets from VVIP/celebrity person handles
+     per category via X API (small cost per run).
+  2. ARTICLE HARVEST: Falls back to tweet URLs embedded in published articles
+     (zero cost).
 
-Each entry: { tweet_url, handle, category, article_slug, article_headline, published_at }
-
-Rotation: keeps the most recent 8 tweets per category. Cron runs every 6h
-so tweets rotate naturally as new articles publish with embeds.
+Person handles always shown first. Company/org handles excluded.
+Writes public/data/social-feed.json for the homepage tweet scroll strips.
 """
 
 import os, sys, json, re, requests
 from datetime import datetime, timezone, timedelta
+
+# ─── Load envs ────────────────────────────────────────────────────────────────
 
 def load_env(path):
     if os.path.exists(path):
@@ -25,21 +27,94 @@ def load_env(path):
                     os.environ.setdefault(k.strip(), v.strip())
 
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
+load_env(os.path.expanduser("~/workspace/.env.twitter"))
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 
-# Categories that get tweet strips on the homepage
-STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration", "nri-world", "markets-finance"]
-TWEETS_PER_CATEGORY = 8
-LOOKBACK_DAYS = 14  # search last 2 weeks of articles
+# ─── Config ───────────────────────────────────────────────────────────────────
 
+STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration"]
+TWEETS_PER_CATEGORY = 8
+LOOKBACK_DAYS = 14
+VVIP_TWEET_HOURS = 168  # look back 7 days for VVIP tweets
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/social-feed.json")
 
+# VVIP person handles per category — these get direct API fetch
+VVIP_HANDLES = {
+    "technology": ["sundarpichai", "sataboreel", "satyanadella", "sama", "elonmusk", "tim_cook", "NandanNilekani", "jaboreel"],
+    "entertainment": ["iamsrk", "priyankachopra", "deepikapadukone", "akshaykumar", "karanjohar", "diljitdosanjh", "aliaa08", "SrBachchan"],
+    "sports": ["imVkohli", "ImRo45", "sachin_rt", "Jaspritbumrah93", "hardikpandya7", "Neeraj_chopra1", "SGanguly99", "Pvsindhu1"],
+    "news": ["narendramodi", "DrSJaishankar", "AmitShah", "nsitharaman", "RahulGandhi"],
+    "immigration": [],
+}
+
+# Company handles to exclude from article-harvested tweets
+COMPANY_HANDLES = {
+    "nvidia", "openai", "google", "microsoft", "meta", "apple", "amazon", "ibm",
+    "googledeepmind", "anthropic", "tesla", "spacex", "infosys", "tcs", "wipro",
+    "tatamotors", "reliancejio", "netflix", "netflixindia", "netflix_insouth",
+    "icc", "bcci", "fifaworldcup", "formula1", "nba", "nfl",
+    "sportstarweb", "bwfscore", "airnewsalerts", "moneycontrolcom",
+    "indianembassyus", "robot2trade1", "1lsbongofficial",
+}
+
+# ─── Direct VVIP fetch via X API ──────────────────────────────────────────────
+
+sys.path.insert(0, os.path.expanduser("~/workspace/the-videshi-news/pipeline"))
+
+def fetch_vvip_tweets():
+    """Fetch recent tweets from VVIP handles using the X API."""
+    try:
+        from fetch_tweets import fetch_recent_tweets
+    except ImportError:
+        # Fallback: import from fetch-tweets.py
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("fetch_tweets",
+            os.path.expanduser("~/workspace/the-videshi-news/pipeline/fetch-tweets.py"))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        fetch_recent_tweets = mod.fetch_recent_tweets
+
+    results = {cat: [] for cat in STRIP_CATEGORIES}
+
+    for cat, handles in VVIP_HANDLES.items():
+        for handle in handles:
+            if len(results[cat]) >= TWEETS_PER_CATEGORY:
+                break
+            try:
+                tweets = fetch_recent_tweets(handle, hours=VVIP_TWEET_HOURS, max_results=5)
+                handle_count = 0
+                for t in tweets:
+                    if len(results[cat]) >= TWEETS_PER_CATEGORY:
+                        break
+                    if handle_count >= 2:  # max 2 tweets per handle for variety
+                        break
+                    # Skip replies and very short tweets
+                    text = t.get("text", "")
+                    if text.startswith("@") or len(text) < 20:
+                        continue
+                    results[cat].append({
+                        "tweet_url": t["url"],
+                        "handle": handle,
+                        "tweet_id": t["id"],
+                        "category": cat,
+                        "article_slug": "",
+                        "article_headline": text[:200],
+                        "published_at": t.get("created_at", ""),
+                    })
+                    handle_count += 1
+            except Exception as e:
+                print(f"  ⚠ {handle}: {e}", file=sys.stderr)
+                continue
+
+    return results
+
+
+# ─── Article-harvested tweets (zero cost fallback) ────────────────────────────
 
 def fetch_articles_with_embeds():
-    """Fetch recent published articles that contain X embed URLs."""
     cutoff = (datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)).isoformat()
     resp = requests.get(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
@@ -60,29 +135,28 @@ def fetch_articles_with_embeds():
     return resp.json()
 
 
-def extract_tweets(articles):
-    """Extract tweet URLs from article bodies, grouped by category."""
+def extract_article_tweets(articles):
     tweet_pattern = re.compile(r'https://(?:x\.com|twitter\.com)/(\w+)/status/(\d+)')
-    
     by_category = {cat: [] for cat in STRIP_CATEGORIES}
     seen_tweet_ids = set()
-    
+
     for article in articles:
         body = article.get("body", "") or ""
         cat = article.get("category", "")
         if cat not in by_category:
             continue
-        
+
         matches = tweet_pattern.findall(body)
         for handle, tweet_id in matches:
             if tweet_id in seen_tweet_ids:
                 continue
             seen_tweet_ids.add(tweet_id)
-            
-            # Skip self-citations
+
             if handle.lower() in ("thevideshi", "the_videshi"):
                 continue
-            
+            if handle.lower() in COMPANY_HANDLES:
+                continue
+
             by_category[cat].append({
                 "tweet_url": f"https://x.com/{handle}/status/{tweet_id}",
                 "handle": handle,
@@ -92,42 +166,55 @@ def extract_tweets(articles):
                 "article_headline": article.get("headline", ""),
                 "published_at": article.get("published_at", ""),
             })
-    
-    # Keep only the most recent N per category
-    result = {}
-    for cat, tweets in by_category.items():
-        # Already sorted by article publish date (desc) from query
-        result[cat] = tweets[:TWEETS_PER_CATEGORY]
-    
-    return result
 
+    return by_category
+
+
+# ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
     print("📡 Building social feed cache...")
-    articles = fetch_articles_with_embeds()
-    print(f"  Found {len(articles)} articles with X embeds in last {LOOKBACK_DAYS} days")
-    
-    feed = extract_tweets(articles)
-    
-    total = sum(len(v) for v in feed.values())
-    print(f"  Extracted {total} unique tweets across {sum(1 for v in feed.values() if v)} categories:")
-    for cat, tweets in sorted(feed.items()):
+
+    # Tier 1: Direct VVIP fetch
+    print("  Fetching VVIP tweets via X API...")
+    vvip_feed = fetch_vvip_tweets()
+    vvip_total = sum(len(v) for v in vvip_feed.values())
+    print(f"  Got {vvip_total} VVIP tweets")
+    for cat, tweets in sorted(vvip_feed.items()):
         if tweets:
-            print(f"    {cat}: {len(tweets)} tweets")
-    
-    # Write output
+            handles = [t["handle"] for t in tweets]
+            print(f"    {cat}: {handles}")
+
+    # Tier 2: Article-harvested (fill remaining slots)
+    print("  Harvesting from article embeds...")
+    articles = fetch_articles_with_embeds()
+    article_feed = extract_article_tweets(articles)
+
+    # Merge: VVIP first, then article-harvested to fill gaps
+    final = {}
+    vvip_ids = set()
+    for cat in STRIP_CATEGORIES:
+        vvip = vvip_feed.get(cat, [])
+        for t in vvip:
+            vvip_ids.add(t["tweet_id"])
+        article = [t for t in article_feed.get(cat, []) if t["tweet_id"] not in vvip_ids]
+        merged = vvip + article
+        final[cat] = merged[:TWEETS_PER_CATEGORY]
+
+    total = sum(len(v) for v in final.values())
+    print(f"  Final: {total} tweets across {sum(1 for v in final.values() if v)} categories")
+
     output = {
         "_generated": datetime.now(timezone.utc).isoformat(),
-        "_description": "Cached tweet embeds for homepage social strips. Harvested from article embeds, zero API cost.",
-        "categories": feed,
+        "_description": "Cached social feed: VVIP person tweets + article-harvested fallback.",
+        "categories": final,
     }
-    
+
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w") as f:
         json.dump(output, f, indent=2)
-    
+
     print(f"  ✅ Written to {OUTPUT_PATH}")
-    print(f"  💰 X API cost: $0.00 (harvested from existing embeds)")
 
 
 if __name__ == "__main__":

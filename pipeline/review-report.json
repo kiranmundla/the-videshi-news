@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-09T23:15:27.315292+00:00",
+  "timestamp": "2026-07-09T23:45:09.573967+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,49 +10,6 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "e30bff03-a5ab-4dd0-827f-0cd044bc5b58",
-      "headline": "America's Cricket League Has a Runaway Leader. San Francisco's Unicorns Are the Team to Beat.",
-      "slug": "mlc-2026-season-4-san-francisco-unicorns-standings-mi-new-york-nri-cricket-usa",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Cricket stadium in the USA",
-          "reason": "The photo shows a cricket venue in the United States, relevant to the story about Major League Cricket."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Grand Prairie Stadium is relevant as it relates to the venues where the league is played, but it does not directly depict the San Francisco Unicorns."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with the NRI audience by discussing the accessibility of matches and the cultural significance of cricket in the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a direct image of the San Francisco Unicorns or their matches to enhance visual relevance.",
-          "Add quotes or reactions from players or fans to provide a more personal touch and engage the audience further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "cd80589b-632e-48b4-9c99-1a9b59cc9db1",
       "headline": "212 Years of Lord's. Zero Women's Tests. Until Friday.",
@@ -62,11 +19,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "building with LMC logo",
-          "reason": "The photo does not show Lord's Cricket Ground or anything related to cricket."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -74,63 +26,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+          "issue": "The image description is missing, making it difficult to assess its relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the match to the Indian diaspora in the UK, highlighting their interest and the historical context."
+          "note": "The article effectively connects the significance of the match to the Indian diaspora in the UK."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a relevant image description to enhance the image match score.",
-          "Include quotes or perspectives from Indian players or fans to further enrich the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (building with LMC logo)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "41b2ae4a-3259-42e6-93d8-c01d41124910",
-      "headline": "Cricket's Mr. 360 Goes to Baseball. Suryakumar Yadav Named MLB's First Indian Ambassador.",
-      "slug": "suryakumar-yadav-mlb-ambassador-india-cricket-baseball-all-star-philadelphia-nri-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Suryakumar Yadav in cricket jersey",
-          "reason": "The photo shows Suryakumar Yadav, matching the story's subject."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Suryakumar Yadav's role as an ambassador to the interests of the Indian diaspora, highlighting their dual identity and sports culture."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Indian American fans or sports analysts to enhance the diaspora perspective.",
-          "Include more details about how Suryakumar's role will specifically impact Indian audiences and baseball's growth in India."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or perspectives from Indian players to further engage the diaspora audience."
         ],
         "verdict": "pass"
       },
