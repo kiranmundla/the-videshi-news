@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-09T11:15:21.582556+00:00",
+  "timestamp": "2026-07-09T11:45:25.966705+00:00",
   "mode": "fix",
   "stats": {
     "pass": 0,
@@ -20,12 +20,17 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/POTUS/status/1798765432109876543",
+            "url": "https://x.com/DrSJaishankar/status/1717203848139460838",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C-h903-y_y4/",
+            "url": "https://x.com/DrSJaishankar/status/1717203848139460838",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/Cy2_w00x_zK",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -41,27 +46,25 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 4,
-          "issue": "The image of a NATO summit does not directly relate to the article's focus on US-India trade relations and the specific situation with Spain."
+          "score": 5,
+          "issue": "The image is related to NATO but does not directly connect to the specific trade issue discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's strategic relationship with the US, which is relevant to the Indian diaspora, particularly in the context of trade and diplomacy."
+          "note": "The article discusses India's geopolitical stance and trade relations, which are relevant to the Indian diaspora."
         },
-        "factual_flags": [
-          "The article mentions Trump cutting off trade with Spain, but it lacks clarity on whether this action was officially implemented or remains a threat."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Indian officials regarding the implications of the US-Spain trade situation on India.",
-          "Provide a clearer connection between the NATO summit and the implications for India to enhance the narrative flow."
+          "Include more direct quotes or reactions from Indian officials regarding the trade implications.",
+          "Enhance the connection between the NATO situation and India's specific trade policies with the US."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (1227\u21921367 words)"
+        "Removed 3 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (1365\u21921439 words)"
       ],
       "revised": true,
       "unpublished": false,
