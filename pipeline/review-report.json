@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-09T17:16:59.513886+00:00",
+  "timestamp": "2026-07-09T18:15:28.181659+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7fbd8b6a-fab4-4abb-bfc8-8bbeb61684c8",
-      "headline": "India Commits \u20b929,000 Crore to Regional Aviation \u2014 and Opens a New Gateway to Rajasthan",
-      "slug": "viksit-udan-jodhpur-airport-regional-aviation-nri-20260709",
+      "id": "49af18ab-0d7f-4bad-b5f8-b3a40d8e57b4",
+      "headline": "Trial by Reel: Inside India's Bitter War Between Food Influencers and the Country's Safety Watchdog",
+      "slug": "trial-by-reel-india-food-influencers-fssai-paneer-safety-war",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Jodhpur Airport entrance",
-          "reason": "The photo shows Jodhpur Airport, relevant to the story about aviation infrastructure in Rajasthan."
+          "what_photo_shows": "Fresh paneer on a mat",
+          "reason": "The photo shows paneer, which is central to the food safety debate in the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the regional aviation developments to the travel needs of NRIs, highlighting the benefits for the diaspora."
+          "quality": 7,
+          "note": "The article discusses food safety and influencer culture in India, which resonates with the Indian diaspora concerned about food authenticity and safety."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote from a relevant NRI or aviation expert to add a personal touch.",
-          "Add more statistics or examples of how this investment has impacted other regions or similar initiatives."
+          "Include more direct quotes or perspectives from diaspora members regarding food safety issues in India.",
+          "Add a section discussing how these controversies affect Indian restaurants abroad."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3d6706b6-858a-4682-b613-cd42c33b0f2b",
-      "headline": "Riyadh Air Enters India with Daily Mumbai Flights Starting August 4",
-      "slug": "riyadh-air-mumbai-flights-launch-august-nri-20260709",
+      "id": "80c34509-09ba-4228-aa17-f9ff1bf2033b",
+      "headline": "From Ahmedabad's Gullies to New Jersey Kitchens: The Gujarati Women Feeding the NRI Dream, One Thepla at a Time",
+      "slug": "gujarati-women-home-kitchens-thepla-khakhra-nri-diaspora-snacks",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Riyadh Air Boeing 787-9 Dreamliner",
-          "reason": "The photo shows the correct aircraft related to the story."
+          "what_photo_shows": "traditional Gujarati thali",
+          "reason": "The photo shows a traditional Gujarati thali, relevant to the story about Gujarati home cooking."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the benefits of the new airline service for NRIs, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the experiences of Gujarati women entrepreneurs with the NRI community, highlighting the cultural significance of food."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from passengers or industry experts to enhance the article's depth.",
-          "Include more details on the booking process or how NRIs can take advantage of the new service."
+          "Consider adding quotes or anecdotes from more NRI customers to enhance the personal connection.",
+          "Include statistics or studies on the growth of the cottage food industry among NRIs for added depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9b9a4a9e-8217-4da8-bda0-eb8f771302f3",
+      "headline": "America Just Named Indian Food Its Cuisine of the Year \u2014 and It Goes Way Beyond Butter Chicken",
+      "slug": "america-named-indian-food-cuisine-of-the-year-next-gen-beyond-butter-chicken",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian curry in a pot",
+          "reason": "The photo shows Indian curry, relevant to the story about Indian cuisine."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by discussing cultural validation and economic opportunities for Indian-Americans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or anecdotes from Indian-American chefs or restaurateurs to enhance the personal connection.",
+          "Include more statistics or data points about the growth of Indian cuisine in America to strengthen the argument."
         ],
         "verdict": "pass"
       },
