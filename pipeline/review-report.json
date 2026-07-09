@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-09T09:45:27.793667+00:00",
+  "timestamp": "2026-07-09T10:15:19.630607+00:00",
   "mode": "fix",
   "stats": {
     "pass": 0,
@@ -18,18 +18,7 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/IndianEmbassyUS/status/1780000000000000000",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C0d0d0d0d0d",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "NATO leaders at Ankara summit",
@@ -41,25 +30,26 @@
         "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
+          "score": 4,
           "issue": "The image of a NATO summit does not directly relate to the article's focus on US-India trade relations."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses the implications of US trade policies on India, which is relevant to the NRI audience."
+          "note": "The article discusses India's trade relationship with the US, which is relevant to the Indian diaspora."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions Trump cutting off trade with Spain, but it lacks clarity on the actual implications for India."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian officials to strengthen the connection to India's position.",
-          "Enhance the analysis of how the potential trade disruptions could specifically impact the NRI community."
+          "Clarify the implications of Trump's actions on India more explicitly.",
+          "Consider using a more relevant image that reflects the US-India trade relationship."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (1113\u21921214 words)"
+        "Revised by gemini-2.5-flash (1214\u21921214 words)"
       ],
       "revised": true,
       "unpublished": false,
