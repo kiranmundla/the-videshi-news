@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-09T20:00:00Z",
-  "stage": "Quarterfinals — 96 of 100 matches played",
+  "last_updated": "2026-07-09T23:59:41Z",
+  "stage": "Quarterfinals — 97 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -130,12 +130,12 @@
         "code": "MAR",
         "flag": "🇲🇦",
         "rank": 7,
-        "p": 5,
+        "p": 6,
         "w": 3,
         "d": 2,
-        "l": 0,
+        "l": 1,
         "gf": 10,
-        "ga": 4,
+        "ga": 6,
         "pts": 11
       },
       {
@@ -454,13 +454,13 @@
         "code": "FRA",
         "flag": "🇫🇷",
         "rank": 3,
-        "p": 5,
-        "w": 5,
+        "p": 6,
+        "w": 6,
         "d": 0,
         "l": 0,
-        "gf": 14,
+        "gf": 16,
         "ga": 2,
-        "pts": 15
+        "pts": 18
       },
       {
         "name": "Norway",
@@ -2127,8 +2127,8 @@
       "away": "Morocco",
       "venue": "Gillette Stadium",
       "city": "Foxborough, MA",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-0",
       "home_code": "FRA",
       "away_code": "MAR"
     },
@@ -9523,6 +9523,84 @@
     {
       "platform": "facebook",
       "url": "https://www.facebook.com/reel/915261388283193/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DalsYRqCwHM/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dalk0tWCveG",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DalqMqnjx0B",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DallzQpD2az",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DalrlW9AT47",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dalp2qSj5pQ",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dalo9TciuGi",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0Q9E7dqFCR2GEN4QkfkW7zh1tD2QAiNY2DaPzMxw2cCqjPiSVs3agwff5TSPJEYK4l",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1902573853772924/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0tgCNf4VtvhcK1tMehC8TwdDNsbV4ucmv7Us2Zv9had37aqqMg7uQ99efwwPuCAMcl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02uLCay8cCj6fYDAP4JWJt2YdoFTisAYqhAAixcycP8QXJnueD6uN13qBaoqjVqwGJl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02QRPWpc3gNzehjaJc1PSSJq2XvPmgAC9MVVShFY2m2C4EMW1UFkq9zWAfRZpDPoPbl",
+      "account": "@fifaworldcup",
+      "date": "2026-07-09"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid035Nwq3oWiMAWFUk1MHycSN6wWjmbNkx5TsewrWyvu5k7UPwv22pFYGwc8s8ZLn9wul",
       "account": "@fifaworldcup",
       "date": "2026-07-09"
     }
