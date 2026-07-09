@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-09T14:15:27.092073+00:00",
+  "timestamp": "2026-07-09T15:15:29.215893+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,57 +11,40 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "753196ab-bbe4-4f36-a851-292b3e4a319b",
-      "headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary Relief.' That Word Does the Heavy Lifting",
-      "slug": "uscis-adjustment-of-status-extraordinary-relief-consular-20260709",
+      "id": "22753975-65f5-42dc-be32-10185b165ca8",
+      "headline": "Series Lost. Pride on the Line. India's Last Stand Against England Begins in Bristol.",
+      "slug": "india-england-4th-t20i-bristol-preview-76-all-out-samson-sooryavanshi-iyer-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4cc2561b-be2f-427e-988f-4124eaa48e32",
-            "headline": "Your Employer Cannot Fix This Either. Social Media Vetting I"
-          },
-          {
-            "article_id": "4c4dc133-2a9c-4880-aaf4-50429414a2ea",
-            "headline": "Four Hundred and Three Days. That Is How Long the First Step"
-          },
-          {
-            "article_id": "73ff88d6-068d-48aa-805b-6b6d8ad05875",
-            "headline": "The H-1B Lottery Is No Longer Random. What the Wage-Weighted"
-          },
-          {
-            "article_id": "aec80018-750d-4f5b-a652-bbd687576230",
-            "headline": "Eighty-Three Days of Nothing. The July Visa Bulletin Just Sh"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+          "what_photo_shows": "man in casual attire at airport",
+          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of green card applications, but it lacks a direct connection to the 'extraordinary relief' concept discussed in the article."
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the implications of USCIS policy changes specifically affecting Indian nationals, making it highly relevant to the Indian diaspora."
+          "quality": 7,
+          "note": "The article mentions the match timing for NRIs, connecting to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an immigration attorney or expert to provide additional insights on the implications of the policy change.",
-          "Include a brief section on potential next steps for affected applicants to enhance the article's practical value."
+          "Replace the hero image with one that is more relevant to the cricket match or the players involved.",
+          "Expand on the diaspora angle by including quotes or reactions from Indian fans in the UK or US."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -71,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d14a95aa-a5ed-48d6-af9c-2a319a318658",
-      "headline": "Pay $750 to Skip the Queue. The State Department Just Put a Price on Visa Interviews",
-      "slug": "state-department-750-expedited-visa-interview-fee-pilot-20260709",
+      "id": "451152bf-d469-4028-90e8-5c58dd44bbe5",
+      "headline": "Eight Teams. Four Cities. Three Days. The World Cup Quarterfinals Are Here.",
+      "slug": "world-cup-2026-quarterfinals-preview-france-morocco-spain-belgium-england-argentina-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -81,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Embassy entrance sign",
-          "reason": "The photo is relevant to a story about U.S. visa interviews."
+          "what_photo_shows": "France's Kylian Mbapp\u00e9 celebrating",
+          "reason": "The photo shows a relevant player for the World Cup story."
         },
         "inline_image_mismatches": []
       },
@@ -90,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of visa interviews or the State Department."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the impact of the new fee on Indian families and professionals, making it relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the World Cup quarterfinals to Indian-origin fans in the US, highlighting their local relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to visa interviews or the U.S. consulate experience.",
-          "Include quotes or insights from immigration attorneys or affected individuals to enhance the article's depth."
+          "Consider adding more quotes or insights from Indian-origin fans to enhance the diaspora connection.",
+          "Include a brief overview of the significance of the World Cup for the Indian diaspora to deepen engagement."
         ],
         "verdict": "pass"
       },
