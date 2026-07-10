@@ -32,65 +32,55 @@ import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
 
 const DEFAULT_CITY = "Bay Area";
-const NEAR_ME = "__near_me__";
 
 /* ------------------------------------------------------------------ */
-/* Tab groups                                                         */
+/* Per-category emoji + color maps                                    */
 /* ------------------------------------------------------------------ */
-const TAB_GROUPS: { label: string; emoji: string; categories: string[] }[] = [
-  { label: "Entertainment", emoji: "🎶", categories: ["Music", "Comedy", "Dance", "Cultural", "Festival", "Food"] },
-  { label: "Community",     emoji: "🤝", categories: ["Community", "Other"] },
-  { label: "Sports & Fitness", emoji: "🏃", categories: ["Sports"] },
-  { label: "Education",     emoji: "🎓", categories: ["Education", "Competition"] },
-  { label: "Spiritual",     emoji: "🙏", categories: ["Religious"] },
-];
-
-function getTabLabel(category: string | null): string {
-  if (!category) return "Community";
-  for (const tab of TAB_GROUPS) {
-    if (tab.categories.includes(category)) return tab.label;
-  }
-  return "Community";
-}
-
-function getTabCategories(tabLabel: string): string[] {
-  const tab = TAB_GROUPS.find((t) => t.label === tabLabel);
-  return tab ? tab.categories : [];
-}
-
-/* ------------------------------------------------------------------ */
-/* Badge colors                                                       */
-/* ------------------------------------------------------------------ */
-const TAB_COLORS: Record<string, string> = {
-  Entertainment:      "bg-pink-100 text-pink-700",
-  Community:          "bg-blue-100 text-blue-700",
-  "Sports & Fitness": "bg-green-100 text-green-700",
-  Education:          "bg-teal-100 text-teal-700",
-  Spiritual:          "bg-indigo-100 text-indigo-700",
-};
-
-const TAB_EMOJI: Record<string, string> = {
-  Entertainment: "🎶",
+const CAT_EMOJI: Record<string, string> = {
+  Cultural: "🎭",
+  Music: "🎵",
+  Food: "🍛",
+  Sports: "🏏",
   Community: "🤝",
-  "Sports & Fitness": "🏃",
+  Festival: "🪔",
+  Comedy: "😂",
+  Dance: "💃",
+  Religious: "🙏",
   Education: "🎓",
-  Spiritual: "🙏",
+  Competition: "🏆",
+  Entertainment: "🎶",
+  Other: "📌",
 };
 
-function GroupBadge({ category }: { category: string | null }) {
-  const group = getTabLabel(category);
-  const color = TAB_COLORS[group] || TAB_COLORS.Community;
-  const emoji = TAB_EMOJI[group] || "📌";
+const CAT_BADGE_COLORS: Record<string, string> = {
+  Cultural: "bg-purple-100 text-purple-700",
+  Music: "bg-pink-100 text-pink-700",
+  Food: "bg-amber-100 text-amber-700",
+  Sports: "bg-green-100 text-green-700",
+  Community: "bg-blue-100 text-blue-700",
+  Festival: "bg-orange-100 text-orange-700",
+  Comedy: "bg-yellow-100 text-yellow-700",
+  Dance: "bg-fuchsia-100 text-fuchsia-700",
+  Religious: "bg-indigo-100 text-indigo-700",
+  Education: "bg-teal-100 text-teal-700",
+  Competition: "bg-emerald-100 text-emerald-700",
+  Entertainment: "bg-pink-100 text-pink-700",
+  Other: "bg-gray-100 text-gray-700",
+};
+
+function CategoryBadge({ category }: { category: string | null }) {
+  const cat = category || "Other";
+  const color = CAT_BADGE_COLORS[cat] || CAT_BADGE_COLORS.Other;
+  const emoji = CAT_EMOJI[cat] || "📌";
   return (
     <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${color}`}>
-      {emoji} {group}
+      {emoji} {cat}
     </span>
   );
 }
 
 function categoryEmoji(category: string | null): string {
-  const group = getTabLabel(category);
-  return TAB_EMOJI[group] || "🎪";
+  return CAT_EMOJI[category || "Other"] || "🎪";
 }
 
 /* ------------------------------------------------------------------ */
@@ -124,7 +114,7 @@ function EventCard({ event, distance }: { event: EventItem; distance?: number })
       <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-4 flex flex-col justify-between min-w-0 overflow-hidden">
         <div>
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <GroupBadge category={event.category} />
+            <CategoryBadge category={event.category} />
             {distance != null && distance < 9999 && (
               <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-orange-600/20 text-orange-300">
                 📍 {formatDistance(distance)}
@@ -217,47 +207,69 @@ function DateFilterBar({
 }
 
 /* ------------------------------------------------------------------ */
-/* Tab Bar                                                            */
+/* Dynamic Category Pills with Counts                                 */
 /* ------------------------------------------------------------------ */
-function TabBar({
+function DynamicCategoryPills({
+  counts,
   selected,
   onSelect,
 }: {
+  counts: Record<string, number>;
   selected: string | null;
-  onSelect: (v: string | null) => void;
+  onSelect: (cat: string | null) => void;
 }) {
+  /* Sort categories by count (descending), then alphabetically */
+  const sortedCategories = useMemo(() => {
+    return Object.entries(counts)
+      .filter(([, count]) => count > 0)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([cat]) => cat);
+  }, [counts]);
+
+  const total = useMemo(
+    () => Object.values(counts).reduce((s, c) => s + c, 0),
+    [counts],
+  );
+
+  if (sortedCategories.length === 0) return null;
+
   return (
-    <div className="flex flex-wrap items-center gap-1 pb-1">
+    <div className="flex items-center gap-1.5 mb-4 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
+      {/* All pill */}
       <button
         onClick={() => onSelect(null)}
-        className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
+        className={`flex-shrink-0 inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full transition-colors whitespace-nowrap ${
           selected === null
-            ? "text-foreground"
-            : "text-muted-foreground hover:text-foreground/70"
+            ? "bg-primary text-primary-foreground shadow-sm"
+            : "bg-muted/50 text-foreground/70 hover:bg-muted"
         }`}
       >
-        All
-        {selected === null && (
-          <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
-        )}
+        🎪 All
+        <span className={`ml-0.5 ${selected === null ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+          ({total})
+        </span>
       </button>
-      {TAB_GROUPS.map((tab) => (
-        <button
-          key={tab.label}
-          onClick={() => onSelect(tab.label)}
-          className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
-            selected === tab.label
-              ? "text-foreground"
-              : "text-muted-foreground hover:text-foreground/70"
-          }`}
-        >
-          <span className="mr-1.5">{tab.emoji}</span>
-          {tab.label}
-          {selected === tab.label && (
-            <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
-          )}
-        </button>
-      ))}
+
+      {sortedCategories.map((cat) => {
+        const isActive = selected === cat;
+        const emoji = CAT_EMOJI[cat] || "📌";
+        return (
+          <button
+            key={cat}
+            onClick={() => onSelect(isActive ? null : cat)}
+            className={`flex-shrink-0 inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full transition-colors whitespace-nowrap ${
+              isActive
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "bg-muted/50 text-foreground/70 hover:bg-muted"
+            }`}
+          >
+            {emoji} {cat}
+            <span className={`ml-0.5 ${isActive ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+              ({counts[cat]})
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -383,10 +395,12 @@ function SmartSearchChips({ chips, onClear }: { chips: string[]; onClear: () => 
 /* ------------------------------------------------------------------ */
 export default function EventsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [events, setEvents] = useState<(EventWithDistance | EventItem)[]>([]);
+  const [allFetchedEvents, setAllFetchedEvents] = useState<(EventWithDistance | EventItem)[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  /** Whether the current result set was fetched client-side (all events loaded) */
+  const [isClientFiltered, setIsClientFiltered] = useState(false);
 
   /* --- Search state --- */
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
@@ -396,10 +410,13 @@ export default function EventsPage() {
   /* --- Date filter state --- */
   const dateFilterParam = (searchParams.get("when") || null) as DateFilterKey;
 
+  /* --- Category filter state (replaces old tab filter) --- */
+  const categoryParam = searchParams.get("category") || null;
+
   /* --- Smart search parsed result --- */
   const parsed = useMemo<ParsedSearch>(
     () => parseSearchQuery(searchQuery),
-    [searchQuery]
+    [searchQuery],
   );
   const smartChips = useMemo(() => getSmartChips(parsed), [parsed]);
 
@@ -431,13 +448,12 @@ export default function EventsPage() {
         sessionStorage.removeItem("videshi_events_coords");
         sessionStorage.removeItem("videshi_events_label");
       }
-    } catch {}
+    } catch { /* noop */ }
   }, [userCoords, locationLabel]);
 
   /* --- Sync filters with URL --- */
   const rawCity = searchParams.get("city");
   const cityFilter = nearMeActive ? null : (rawCity ?? DEFAULT_CITY);
-  const tabFilter = searchParams.get("tab") || null;
 
   const setCityFilter = useCallback((city: string | null) => {
     setNearMeActive(false);
@@ -475,10 +491,12 @@ export default function EventsPage() {
     }, { replace: true });
   }, [setCityFilter, setSearchParams]);
 
-  const setTabFilter = useCallback((tab: string | null) => {
+  const setCategoryFilter = useCallback((cat: string | null) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
-      if (tab) next.set("tab", tab); else next.delete("tab");
+      if (cat) next.set("category", cat); else next.delete("category");
+      // Remove old "tab" param if it still exists
+      next.delete("tab");
       return next;
     }, { replace: true });
   }, [setSearchParams]);
@@ -515,7 +533,6 @@ export default function EventsPage() {
   }, [setSearchParams]);
 
   const PAGE_SIZE = 30;
-  const categoryFilters = tabFilter ? getTabCategories(tabFilter) : null;
 
   /* --- Auto-request geolocation on page load --- */
   useEffect(() => {
@@ -556,7 +573,7 @@ export default function EventsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ipLocation]);
 
-  /* --- Client-side smart filter for events already loaded --- */
+  /* --- Client-side smart filter (location + date + search, NO category) --- */
   const applySmartFilters = useCallback(
     (data: EventItem[]): EventItem[] => {
       let filtered = data;
@@ -565,7 +582,7 @@ export default function EventsPage() {
       const dateRange = getDateFilterRange(effectiveDateFilter);
       if (dateRange) {
         filtered = filtered.filter(
-          (e) => e.date >= dateRange.from && e.date <= dateRange.to
+          (e) => e.date >= dateRange.from && e.date <= dateRange.to,
         );
       }
 
@@ -581,7 +598,7 @@ export default function EventsPage() {
         filtered = filtered.filter((e) => e.state && states.has(e.state.toUpperCase()));
       }
 
-      // Smart search: category hints (additive to tab filter)
+      // Smart search: category hints from SEARCH (not from URL param — that's applied later)
       if (parsed.categoryHints.length > 0) {
         const cats = new Set(parsed.categoryHints);
         filtered = filtered.filter((e) => e.category && cats.has(e.category));
@@ -599,7 +616,7 @@ export default function EventsPage() {
 
       return filtered;
     },
-    [effectiveDateFilter, parsed]
+    [effectiveDateFilter, parsed],
   );
 
   /* --- Fetch events --- */
@@ -609,43 +626,69 @@ export default function EventsPage() {
 
     if (nearMeActive && userCoords) {
       // Near Me mode: fetch ALL events, sort by distance, then apply smart filters client-side
-      getAllUpcomingEvents(categoryFilters, undefined).then((data) => {
+      getAllUpcomingEvents(null, undefined).then((data) => {
         const smartFiltered = applySmartFilters(data);
         const sorted = sortEventsByDistance(smartFiltered, userCoords.lat, userCoords.lng);
-        setEvents(sorted);
+        setAllFetchedEvents(sorted);
+        setIsClientFiltered(true);
         setHasMore(false);
         setLoading(false);
       });
     } else if (
-      // If smart search has city/state hints, we need to fetch all and filter client-side
+      // If smart search has city/state/price/keyword hints or date filter, fetch all + filter client-side
       parsed.cityHints.length > 0 ||
       parsed.stateHints.length > 0 ||
       parsed.priceFilter ||
       parsed.keywords.length > 0 ||
       effectiveDateFilter
     ) {
-      getAllUpcomingEvents(categoryFilters, undefined).then((data) => {
+      getAllUpcomingEvents(null, undefined).then((data) => {
         const smartFiltered = applySmartFilters(data);
-        setEvents(smartFiltered);
+        setAllFetchedEvents(smartFiltered);
+        setIsClientFiltered(true);
         setHasMore(false);
         setLoading(false);
       });
     } else {
-      // Normal mode: server-side city filter + pagination
+      // Normal mode: server-side city filter + pagination (no category filter applied here)
       const filterCity = cityFilter;
-      getEventsMultiCategory(filterCity, categoryFilters, PAGE_SIZE, 0, searchQuery || undefined).then((data) => {
-        setEvents(data);
+      getEventsMultiCategory(filterCity, null, PAGE_SIZE, 0, searchQuery || undefined).then((data) => {
+        setAllFetchedEvents(data);
+        setIsClientFiltered(false);
         setHasMore(data.length === PAGE_SIZE);
         setLoading(false);
       });
     }
-  }, [cityFilter, tabFilter, nearMeActive, userCoords, searchQuery, effectiveDateFilter, applySmartFilters, categoryFilters, parsed]);
+  }, [cityFilter, nearMeActive, userCoords, searchQuery, effectiveDateFilter, applySmartFilters, parsed]);
+
+  /* ------------------------------------------------------------- */
+  /* Two-stage pipeline: pre-category events → counts → displayed  */
+  /* ------------------------------------------------------------- */
+
+  /** Stage 1 result: events BEFORE category filter (used for category counts) */
+  const preFilteredEvents = allFetchedEvents;
+
+  /** Compute category counts from Stage 1 */
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    preFilteredEvents.forEach((e) => {
+      const cat = e.category || "Other";
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+    return counts;
+  }, [preFilteredEvents]);
+
+  /** Stage 2: apply the URL category filter to get displayed events */
+  const displayedEvents = useMemo(() => {
+    if (!categoryParam) return preFilteredEvents;
+    return preFilteredEvents.filter((e) => (e.category || "Other") === categoryParam);
+  }, [preFilteredEvents, categoryParam]);
 
   const loadMore = async () => {
-    if (loadingMore || !hasMore || nearMeActive) return;
+    if (loadingMore || !hasMore || nearMeActive || isClientFiltered) return;
     setLoadingMore(true);
-    const next = await getEventsMultiCategory(cityFilter, categoryFilters, PAGE_SIZE, events.length, searchQuery || undefined);
-    setEvents((prev) => [...prev, ...next]);
+    const next = await getEventsMultiCategory(cityFilter, null, PAGE_SIZE, allFetchedEvents.length, searchQuery || undefined);
+    setAllFetchedEvents((prev) => [...prev, ...next]);
     setHasMore(next.length === PAGE_SIZE);
     setLoadingMore(false);
   };
@@ -655,7 +698,7 @@ export default function EventsPage() {
   if (searchQuery) summaryParts.push(`matching "${searchQuery}"`);
   if (nearMeActive) summaryParts.push("near you");
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
-  if (tabFilter) summaryParts.push(`· ${tabFilter}`);
+  if (categoryParam) summaryParts.push(`· ${categoryParam}`);
   if (effectiveDateFilter) {
     const labels: Record<string, string> = {
       today: "today", tomorrow: "tomorrow", weekend: "this weekend",
@@ -682,6 +725,8 @@ export default function EventsPage() {
       <style>{`
         .events-main { max-width: 100vw; overflow-x: hidden; }
         .events-main article { max-width: calc(100vw - 2.5rem); }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
       `}</style>
       <main className="events-main container flex-1 pt-8 md:pt-10 pb-16">
         {/* Header */}
@@ -776,10 +821,14 @@ export default function EventsPage() {
         {/* Date quick-filter pills */}
         <DateFilterBar selected={dateFilterParam} onSelect={setDateFilter} />
 
-        {/* Tab bar — all categories visible, wrapping on mobile */}
-        <div className="border-b border-border mb-4">
-          <TabBar selected={tabFilter} onSelect={setTabFilter} />
-        </div>
+        {/* Dynamic category pills with counts */}
+        {!loading && (
+          <DynamicCategoryPills
+            counts={categoryCounts}
+            selected={categoryParam}
+            onSelect={setCategoryFilter}
+          />
+        )}
 
         {/* Events list */}
         {loading ? (
@@ -791,7 +840,7 @@ export default function EventsPage() {
               />
             ))}
           </div>
-        ) : events.length === 0 ? (
+        ) : displayedEvents.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-4xl mb-4">🎪</p>
             <p className="text-muted-foreground text-lg">
@@ -804,22 +853,22 @@ export default function EventsPage() {
         ) : (
           <>
             <p className="text-sm text-muted-foreground mb-4">
-              {events.length}{hasMore ? "+" : ""} upcoming events{summaryText}
+              {displayedEvents.length}{hasMore && !categoryParam ? "+" : ""} upcoming events{summaryText}
             </p>
 
             {/* Near-Me mode: split into "Nearby" and "More Events" */}
             {nearMeActive ? (
-              <NearMeList events={events as EventWithDistance[]} />
+              <NearMeList events={displayedEvents as EventWithDistance[]} />
             ) : (
               <div className="grid grid-cols-1 gap-4 w-full min-w-0">
-                {events.map((event) => (
+                {displayedEvents.map((event) => (
                   <EventCard key={event.id} event={event} />
                 ))}
               </div>
             )}
 
-            {/* Load more (normal mode only) */}
-            {hasMore && !nearMeActive && (
+            {/* Load more (normal mode only, no category filter active) */}
+            {hasMore && !nearMeActive && !isClientFiltered && !categoryParam && (
               <div className="flex justify-center mt-8">
                 <button
                   onClick={loadMore}
