@@ -1,0 +1,40 @@
+{
+  "article_id": "8e6ca2d2-5057-4b1b-b45f-5016f2ceca05",
+  "scenes": [
+    {
+      "voiceover": "What happens when a government tries to erase a true story? The community screens it in their temples.",
+      "onscreen": "BANNED FILM SCREENED IN TEMPLES",
+      "image_prompt": "Gurudwara projector screen scene with silhouettes watching"
+    },
+    {
+      "voiceover": "Diljit Dosanjh's Satluj tells the story of Jaswant Singh Khalra — a human rights activist murdered for exposing the truth in nineties Punjab.",
+      "onscreen": "JASWANT SINGH KHALRA",
+      "image_prompt": "Portrait of activist in Punjab wheat field with documents"
+    },
+    {
+      "voiceover": "The film launched on ZEE5. Forty-eight hours later, the government ordered it removed.",
+      "onscreen": "48 HOURS THEN GONE",
+      "image_prompt": "Streaming platform screen going dark with 48 hours countdown"
+    },
+    {
+      "voiceover": "It took four years to release. The censors demanded one hundred and twenty-seven cuts. The filmmakers refused every single one.",
+      "onscreen": "127 CUTS DEMANDED",
+      "image_prompt": "Censorship battle with rejected stamps and documents"
+    },
+    {
+      "voiceover": "So gurudwaras in five states opened their doors. Punjab. Haryana. Delhi. Rajasthan. Jammu.",
+      "onscreen": "5 STATES STEP UP",
+      "image_prompt": "Map of northern India with 5 glowing pins for screening states"
+    },
+    {
+      "voiceover": "Diljit said it himself: Once something is on the internet, it can never truly be deleted.",
+      "onscreen": "DILJIT'S RESPONSE",
+      "image_prompt": "Silhouette of Diljit on stage with quote overlay"
+    },
+    {
+      "voiceover": "For the diaspora, this isn't just a film. It's about who gets to decide which truths India is allowed to tell.",
+      "onscreen": "WHO DECIDES WHICH TRUTHS GET TOLD?",
+      "image_prompt": "Sunrise over the Satluj River in Punjab with reflections"
+    }
+  ]
+}
