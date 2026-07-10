@@ -81,8 +81,8 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
   return (
     <Link to={`/directory/${listing.slug}`} className="block no-underline">
       <article className="group flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full" style={{ wordBreak: "break-word" }}>
-        {/* Image */}
-        {imageUrl ? (
+        {/* Image — only render when available */}
+        {imageUrl && (
           <div className="w-full sm:w-48 sm:min-w-[12rem] sm:h-auto overflow-hidden flex-shrink-0">
             <img
               src={imageUrl}
@@ -90,10 +90,6 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
               className="w-full max-h-64 object-contain bg-muted/10 group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
-          </div>
-        ) : (
-          <div className="w-full sm:w-48 sm:min-w-[12rem] h-24 sm:h-auto bg-muted/30 flex items-center justify-center flex-shrink-0">
-            <span className="text-4xl opacity-60">{CATEGORY_ICONS[listing.category] || "🏢"}</span>
           </div>
         )}
 
