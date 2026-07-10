@@ -1,5 +1,5 @@
 {
-  "_refreshed_at": "2026-07-09T23:52:15.996556+00:00",
+  "_refreshed_at": "2026-07-10T00:29:21.138297+00:00",
   "_rotation_index": 1,
   "handles": {
     "technology:sundarpichai": [
@@ -26,6 +26,14 @@
         "category": "technology",
         "text": "No matter how you spell it, 250 years of American innovation, ingenuity &amp; curiosity is something to celebrate. Have a happy &amp; safe 4th of July! https://t.co/3hzAP8FDJZ",
         "published_at": "2026-07-04T15:59:02.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/sundarpichai/status/2072803440137285925",
+        "handle": "sundarpichai",
+        "tweet_id": "2072803440137285925",
+        "category": "technology",
+        "text": "Love this re-imagining of America\u2019s founding using Docs, Gmail, Calendar and more from @GoogleWorkspace. Really puts the history in version history :) https://t.co/eWO4yc22p5",
+        "published_at": "2026-07-02T22:03:45.000Z"
       }
     ],
     "technology:satyanadella": [
@@ -44,6 +52,14 @@
         "category": "technology",
         "text": "Super to see GPT-5.6 with Work IQ come to Copilot Chat, Cowork, M365 apps, GitHub, and Foundry today.\n\nFrom multi-step agentic work to analysis and content creation, it brings stronger reasoning and higher-quality outputs without sacrificing efficiency. https://t.co/4AF2Pr48Yq",
         "published_at": "2026-07-09T20:35:46.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/satyanadella/status/2072708957077176563",
+        "handle": "satyanadella",
+        "tweet_id": "2072708957077176563",
+        "category": "technology",
+        "text": "The future of the firm is a learning loop in which human capital and token capital compound. \n \nWith our new Frontier Co., our ambition is to help every enterprise build its own AI capability, and to help create a frontier ecosystem where every organization can turn its",
+        "published_at": "2026-07-02T15:48:19.000Z"
       }
     ],
     "technology:sama": [
@@ -90,44 +106,44 @@
     ],
     "technology:elonmusk": [
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075283356439257417",
+        "tweet_url": "https://x.com/elonmusk/status/2075372185158377948",
         "handle": "elonmusk",
-        "tweet_id": "2075283356439257417",
+        "tweet_id": "2075372185158377948",
         "category": "technology",
-        "text": "Try @Grok 4.5! https://t.co/KxIM7bZ70E",
-        "published_at": "2026-07-09T18:18:03.000Z"
+        "text": "Grok Build improves almost every day https://t.co/lEscWAy0bw",
+        "published_at": "2026-07-10T00:11:02.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075261123264164276",
+        "tweet_url": "https://x.com/elonmusk/status/2075371558588055670",
         "handle": "elonmusk",
-        "tweet_id": "2075261123264164276",
+        "tweet_id": "2075371558588055670",
         "category": "technology",
-        "text": "https://t.co/IQvI4sbaW5 https://t.co/K04Etpyv9c",
-        "published_at": "2026-07-09T16:49:42.000Z"
+        "text": "Grok gaming https://t.co/zRFOQLJkDT",
+        "published_at": "2026-07-10T00:08:32.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075259819154341957",
+        "tweet_url": "https://x.com/elonmusk/status/2075370255971447176",
         "handle": "elonmusk",
-        "tweet_id": "2075259819154341957",
+        "tweet_id": "2075370255971447176",
         "category": "technology",
-        "text": "Consistent with the simulation hypothesis. \n\nLike a video game, objects are randomly generated, with positional certainty only when  observed.  https://t.co/8SUIqjJ8oC",
-        "published_at": "2026-07-09T16:44:32.000Z"
+        "text": "Grok doesn\u2019t give up https://t.co/UIatxB4An1",
+        "published_at": "2026-07-10T00:03:22.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075255448714805440",
+        "tweet_url": "https://x.com/elonmusk/status/2075368342014099576",
         "handle": "elonmusk",
-        "tweet_id": "2075255448714805440",
+        "tweet_id": "2075368342014099576",
         "category": "technology",
-        "text": "California has legalized election fraud https://t.co/pt8pmdfxnl",
-        "published_at": "2026-07-09T16:27:10.000Z"
+        "text": "Grok 4.5 https://t.co/IlkFFoCJMe",
+        "published_at": "2026-07-09T23:55:45.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075254074224623692",
+        "tweet_url": "https://x.com/elonmusk/status/2075367885438890134",
         "handle": "elonmusk",
-        "tweet_id": "2075254074224623692",
+        "tweet_id": "2075367885438890134",
         "category": "technology",
-        "text": "Interesting comparison of Grok &amp; Opus\n\n1M+ context window coming soon https://t.co/GJ5oBsk3xS",
-        "published_at": "2026-07-09T16:21:42.000Z"
+        "text": "Starmind\n\nhttps://t.co/JJhfTw04Px",
+        "published_at": "2026-07-09T23:53:57.000Z"
       }
     ],
     "technology:tim_cook": [
@@ -146,6 +162,32 @@
         "category": "technology",
         "text": "Happy birthday, America! I love this remarkable country, which was built on the idea that anyone can change the world. For 250 years, our country has been a testament to the power of possibility. \u00a0Let\u2019s keep building extraordinary things together.",
         "published_at": "2026-07-04T13:30:00.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/tim_cook/status/2071767260348436494",
+        "handle": "tim_cook",
+        "tweet_id": "2071767260348436494",
+        "category": "technology",
+        "text": "Happy Pride! https://t.co/eP84RdkaUF",
+        "published_at": "2026-06-30T01:26:21.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/tim_cook/status/2070507381348343944",
+        "handle": "tim_cook",
+        "tweet_id": "2070507381348343944",
+        "category": "technology",
+        "text": "All those affected by the catastrophic\u00a0earthquake in Venezuela are in our thoughts, and we thank the first responders for helping everyone in harm's way. Apple will be donating to relief efforts on the ground.",
+        "published_at": "2026-06-26T14:00:02.000Z"
+      }
+    ],
+    "entertainment:iamsrk": [
+      {
+        "tweet_url": "https://x.com/iamsrk/status/2072423575244743045",
+        "handle": "iamsrk",
+        "tweet_id": "2072423575244743045",
+        "category": "entertainment",
+        "text": "What started as a dream\u2026 turns into reality today.\n\nWelcoming you all to the Knight Riders Cricket Ground, LA.\n\nA place built not just for sports but also entertainment and for families\u2026 and memories that last forever. \n\nSpecial thanks to Jaybhai who has been too kind through https://t.co/5WEBSEHyOh",
+        "published_at": "2026-07-01T20:54:18.000Z"
       }
     ],
     "entertainment:priyankachopra": [
@@ -182,9 +224,33 @@
         "category": "entertainment",
         "text": "Badi Bi sahi bol rahi hain \ud83d\udd14\n\n#WelcomeToTheJungle in cinemas now, watch it with your friends and family \ud83c\udf7f\n\n\ud83d\udd17 https://t.co/sBFhGu6tdu https://t.co/w9wMX23Qc9",
         "published_at": "2026-07-03T05:01:44.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/akshaykumar/status/2072192378937790615",
+        "handle": "akshaykumar",
+        "tweet_id": "2072192378937790615",
+        "category": "entertainment",
+        "text": "If a picture is worth a thousand words, this one for me is worth millions.\nBadi bi sahi keh rahi hai\u2026 THANK YOU is very small in front of what I feel right now.\nWhile I am indebted to every single soul connected to Welcome to the Jungle, I bow down in gratitude to seniors like https://t.co/K8SGxuuTI",
+        "published_at": "2026-07-01T05:35:37.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/akshaykumar/status/2071546468184576182",
+        "handle": "akshaykumar",
+        "tweet_id": "2071546468184576182",
+        "category": "entertainment",
+        "text": "The song you've been vibing to in theatres is here! \ud83c\udfb6\n\n#Kyun Out Now: https://t.co/l8PYAI46FQ\n\n#WelcomeToTheJungle in cinemas now \ud83c\udf7f\n\nBook your tickets: https://t.co/sBFhGu6tdu https://t.co/Ia5FKykDwL",
+        "published_at": "2026-06-29T10:49:00.000Z"
       }
     ],
     "entertainment:srbachchan": [
+      {
+        "tweet_url": "https://x.com/SrBachchan/status/2075371819587207327",
+        "handle": "SrBachchan",
+        "tweet_id": "2075371819587207327",
+        "category": "entertainment",
+        "text": "T 5797 - I came to know from someone that none of the players of the WC 2026 Moroccan team were born in Morocco  !!!\nChatGpt when asked says not entirely true  !!",
+        "published_at": "2026-07-10T00:09:34.000Z"
+      },
       {
         "tweet_url": "https://x.com/SrBachchan/status/2074803549767360605",
         "handle": "SrBachchan",
@@ -208,14 +274,26 @@
         "category": "entertainment",
         "text": "T 5794(i) -\n\n\u0924\u092c \u0924\u094d\u0930\u093e\u0939\u093f \u0924\u094d\u0930\u093e\u0939\u093f \u092e\u091a\u0940 \u0939\u0941\u0908 \u0925\u0940  ; \u0905\u092c \u0924\u094d\u0930\u093e\u0939\u093f \u0924\u094d\u0930\u093e\u0939\u093f \u092e\u091a\u0940 \u0939\u0941\u0908 \u0939\u0948 \ud83d\ude33\ud83e\udd23 \ud83d\udc47\ud83c\udffd !! https://t.co/8B5yV3ic5w",
         "published_at": "2026-07-06T13:04:10.000Z"
-      },
+      }
+    ],
+    "entertainment:beingsalmankhan": [
       {
-        "tweet_url": "https://x.com/SrBachchan/status/2074108165621498018",
-        "handle": "SrBachchan",
-        "tweet_id": "2074108165621498018",
+        "tweet_url": "https://x.com/BeingSalmanKhan/status/2074478870699667488",
+        "handle": "BeingSalmanKhan",
+        "tweet_id": "2074478870699667488",
         "category": "entertainment",
-        "text": "T 5794 -\u0905\u092c \u0915\u0939\u0947 \u0926\u0947\u0924\u0947 \u0939\u0948\u0902  :\n the French WC 2026 football team .. the FRENCH  !!\n11 players in team ..\n10 Black .. !!\n1 white !!?\nthe POWER of BLACK  \ud83d\udcaa  \ud83d\udcaa",
-        "published_at": "2026-07-06T12:28:16.000Z"
+        "text": "MAATRUBHUMI https://t.co/373dCVanEg",
+        "published_at": "2026-07-07T13:01:19.000Z"
+      }
+    ],
+    "sports:imvkohli": [
+      {
+        "tweet_url": "https://x.com/imVkohli/status/2071853434383299048",
+        "handle": "imVkohli",
+        "tweet_id": "2071853434383299048",
+        "category": "sports",
+        "text": "Keeping it simple with the essentials I wear the most.\u2028Get yours now -\u00a0https://t.co/fsbUbD6x5k\n\u2028@StayWrogn https://t.co/NSTl2e6LLo",
+        "published_at": "2026-06-30T07:08:46.000Z"
       }
     ],
     "sports:sachin_rt": [
@@ -234,6 +312,22 @@
         "category": "sports",
         "text": "Congratulations to Australia on another World Cup title!\n\nThe unbeaten run really shows how well they managed different match situations and stayed consistent throughout. That kind of stability is usually what brings trophies home.",
         "published_at": "2026-07-06T06:17:21.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/sachin_rt/status/2072648246128984150",
+        "handle": "sachin_rt",
+        "tweet_id": "2072648246128984150",
+        "category": "sports",
+        "text": "Long before scoreboards, stadiums, and international cricket shaped my life, I learnt through play. My article with @UNICEFIndia on the importance of play #ForEveryChild. #ProtectPlayProtectChildhood https://t.co/JHRcjC1SYy",
+        "published_at": "2026-07-02T11:47:04.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/sachin_rt/status/2071630274132341096",
+        "handle": "sachin_rt",
+        "tweet_id": "2071630274132341096",
+        "category": "sports",
+        "text": ".@benstokes38, I\u2019ve always admired the way you brought energy into the game. Your positivity, your fearless intent, and the way you shaped moments under pressure stood out every time you walked in. As an all-rounder, you\u2019ve been one of England\u2019s finest, and as a captain, your",
+        "published_at": "2026-06-29T16:22:01.000Z"
       }
     ],
     "sports:sganguly99": [
@@ -252,6 +346,24 @@
         "category": "sports",
         "text": "The Best Gift Ever! Can\u2019t wait to see you play my cover drive! #RajkummarRao\n\n#Dada #DadaTheSouravGangulyStory #DadaFirstLook https://t.co/TqHsWn2Eg8",
         "published_at": "2026-07-08T04:46:12.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/SGanguly99/status/2071242059152052298",
+        "handle": "SGanguly99",
+        "tweet_id": "2071242059152052298",
+        "category": "sports",
+        "text": "Want to meet me in Kolkata? \ud83c\udfcf\n\nI have teamed up with @musclemindco for #MusclemindCaptainsClub\n\nShop, post your Musclemind look on Instagram, tag us, and you could be one of the 3 winners.\n\nKnow more: https://t.co/pR8LM85oTe https://t.co/CWO1D3eXkR",
+        "published_at": "2026-06-28T14:39:23.000Z"
+      }
+    ],
+    "sports:neeraj_chopra1": [
+      {
+        "tweet_url": "https://x.com/Neeraj_chopra1/status/2072289023809171965",
+        "handle": "Neeraj_chopra1",
+        "tweet_id": "2072289023809171965",
+        "category": "sports",
+        "text": "One and only \nWerner G\u00fcnth\u00f6r\ud83d\udcaa https://t.co/iAL7IEAexR",
+        "published_at": "2026-07-01T11:59:39.000Z"
       }
     ],
     "sports:pvsindhu1": [
@@ -262,6 +374,48 @@
         "category": "sports",
         "text": "Asian Games No. 4 for me personally \u2764\ufe0f so feeling old haha \n\nSo grateful to Lokesh Anna for such a thoughtful initiative to motivate athletes, hear us out, and address our concerns with so much warmth.\n\nLittle moments like these mean a lot. They motivate us, reassure us, and https://t.co/oCtuAr5f3w",
         "published_at": "2026-07-04T10:21:27.000Z"
+      }
+    ],
+    "sports:harbhajan_singh": [
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2075115890803363885",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2075115890803363885",
+        "category": "sports",
+        "text": "Congratulations Captain . Happy to hear the Announcement \u2764\ufe0f https://t.co/iGi8eZKlNw",
+        "published_at": "2026-07-09T07:12:36.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2074727366648287624",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2074727366648287624",
+        "category": "sports",
+        "text": "Happy Birthday Dada @SGanguly99 \u2764\ufe0f\ud83d\ude4f\u2660\ufe0f Tiger https://t.co/e7z3BGa9x8",
+        "published_at": "2026-07-08T05:28:45.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2074403380316049522",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2074403380316049522",
+        "category": "sports",
+        "text": "Happy Birthday Kaptaan . Have a good one \u2660\ufe0f @msdhoni https://t.co/0hogsbrYp4",
+        "published_at": "2026-07-07T08:01:21.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2073636463112225098",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2073636463112225098",
+        "category": "sports",
+        "text": "Jallianwala Bagh stands as one of history\u2019s greatest massacres. It was carried out by a colonial regime. But the question that haunts me after watching Jaswant Singh Khalra is different:\n\nWhat is more painful than oppression by an outsider? When those entrusted to protect their https://t.co/zb71vPhK",
+        "published_at": "2026-07-05T05:13:53.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2073429968823234747",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2073429968823234747",
+        "category": "sports",
+        "text": "Thank you, everyone, for your kind birthday wishes. They truly mean a lot to me. I\u2019m so grateful to have such amazing people in my life.\nMay Waheguru bless each one of you with good health, happiness, success, and everything your heart desires. God bless you all. Thank you so",
+        "published_at": "2026-07-04T15:33:21.000Z"
       }
     ],
     "news:narendramodi": [
@@ -416,6 +570,14 @@
         "category": "news",
         "text": "The news of the landslide in Wayanad is deeply distressing. My heartfelt condolences to the families who have lost their loved ones. My thoughts and prayers are with everyone affected.\n\nRelief and rescue operations are underway, and every possible effort is being made to reach",
         "published_at": "2026-07-07T11:44:32.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/RahulGandhi/status/2072591581455188136",
+        "handle": "RahulGandhi",
+        "tweet_id": "2072591581455188136",
+        "category": "news",
+        "text": "\u092e\u0923\u093f\u092a\u0941\u0930 \u0938\u093e\u0932\u094b\u0902 \u0938\u0947 \u091c\u0932 \u0930\u0939\u093e \u0939\u0948, \u0914\u0930 \u0906\u091c \u092b\u093f\u0930 \u0928\u092b\u093c\u0930\u0924 \u0914\u0930 \u0939\u093f\u0902\u0938\u093e \u0915\u0940 \u0906\u0917 \u092e\u0947\u0902 20 \u0918\u0930 \u0930\u093e\u0916 \u0939\u094b \u0917\u090f\u0964\n\n\u0926\u094b \u0938\u0930\u0915\u093e\u0930\u094b\u0902 \u0914\u0930 \u0930\u093e\u0937\u094d\u091f\u094d\u0930\u092a\u0924\u093f \u0936\u093e\u0938\u0928 \u0915\u0947 \u092c\u093e\u0935\u091c\u0942\u0926 \u0938\u0902\u0918\u0930\u094d\u0937 \u0917\u0939\u0930\u093e\u0924\u093e \u0939\u0940 \u091c\u093e \u0930\u0939\u093e \u0939\u0948\u0964 \u0939\u091c\u093c\u093e\u0930\u094b\u0902 \u0932\u094b\u0917 \u0905\u092a\u0928\u0940 \u091c\u093e\u0928 \u0917\u0902\u0935\u093e \u091a\u0941\u0915\u0947 \u0939\u0948\u0902, \u0905\u0928\u0917\u093f\u0928\u0924 \u092a\u0930\u093f\u0935\u093e\u0930 \u0909\u091c\u0921\u093c \u0917\u090f \u0939\u0948\u0902 - \u092e\u0923\u093f\u092a\u0941\u0930 \u091c\u093f\u0938 \u0905\u0938\u0939\u0928\u0940\u092f \u092a\u0940\u0921\u093c\u093e \u0938\u0947 \u0917\u0941\u091c\u093c\u0930 \u0930\u0939\u093e \u0939\u0948, \u0909\u0938\u0915\u0940 \u0915\u0932\u094d\u092a\u0928\u093e \u092d\u0940 \u092e\u0941\u0936\u094d\u0915\u093f\u0932 \u0939\u0948\u0964 https://t.co/oT8d2N4",
+        "published_at": "2026-07-02T08:01:54.000Z"
       }
     ]
   }

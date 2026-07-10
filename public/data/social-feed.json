@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-07-09T23:52:17.313014+00:00",
+  "_generated": "2026-07-10T00:29:22.330689+00:00",
   "_description": "1 tweet per person, rotated each cron run. Pool refreshed every 12h.",
   "_rotation": 1,
   "categories": {
@@ -32,13 +32,13 @@
         "published_at": "2026-07-09T18:59:31.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075261123264164276",
+        "tweet_url": "https://x.com/elonmusk/status/2075371558588055670",
         "handle": "elonmusk",
-        "tweet_id": "2075261123264164276",
+        "tweet_id": "2075371558588055670",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "https://t.co/IQvI4sbaW5 https://t.co/K04Etpyv9c",
-        "published_at": "2026-07-09T16:49:42.000Z"
+        "article_headline": "Grok gaming https://t.co/zRFOQLJkDT",
+        "published_at": "2026-07-10T00:08:32.000Z"
       },
       {
         "tweet_url": "https://x.com/tim_cook/status/2073398924652806249",
@@ -51,6 +51,15 @@
       }
     ],
     "entertainment": [
+      {
+        "tweet_url": "https://x.com/iamsrk/status/2072423575244743045",
+        "handle": "iamsrk",
+        "tweet_id": "2072423575244743045",
+        "category": "entertainment",
+        "article_slug": "",
+        "article_headline": "What started as a dream\u2026 turns into reality today.\n\nWelcoming you all to the Knight Riders Cricket Ground, LA.\n\nA place built not just for sports but also entertainment and for families\u2026 and memories that last forever. \n\nSpecial thanks to Jaybhai who has been too kind through https://t.co/5WEBSEHyOh",
+        "published_at": "2026-07-01T20:54:18.000Z"
+      },
       {
         "tweet_url": "https://x.com/priyankachopra/status/2075117864663871869",
         "handle": "priyankachopra",
@@ -70,13 +79,22 @@
         "published_at": "2026-07-05T05:39:02.000Z"
       },
       {
-        "tweet_url": "https://x.com/SrBachchan/status/2074262058221387957",
+        "tweet_url": "https://x.com/SrBachchan/status/2074803549767360605",
         "handle": "SrBachchan",
-        "tweet_id": "2074262058221387957",
+        "tweet_id": "2074803549767360605",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "T 5795 - in time all greatness fades away",
-        "published_at": "2026-07-06T22:39:47.000Z"
+        "article_headline": "T 5796 - ... in time the rain too shall abate  ..",
+        "published_at": "2026-07-08T10:31:28.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/BeingSalmanKhan/status/2074478870699667488",
+        "handle": "BeingSalmanKhan",
+        "tweet_id": "2074478870699667488",
+        "category": "entertainment",
+        "article_slug": "",
+        "article_headline": "MAATRUBHUMI https://t.co/373dCVanEg",
+        "published_at": "2026-07-07T13:01:19.000Z"
       },
       {
         "tweet_url": "https://x.com/harbhajan_singh/status/2073636463112225098",
@@ -105,6 +123,15 @@
     ],
     "sports": [
       {
+        "tweet_url": "https://x.com/imVkohli/status/2071853434383299048",
+        "handle": "imVkohli",
+        "tweet_id": "2071853434383299048",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "Keeping it simple with the essentials I wear the most.\u2028Get yours now -\u00a0https://t.co/fsbUbD6x5k\n\u2028@StayWrogn https://t.co/NSTl2e6LLo",
+        "published_at": "2026-06-30T07:08:46.000Z"
+      },
+      {
         "tweet_url": "https://x.com/sachin_rt/status/2074014820689657949",
         "handle": "sachin_rt",
         "tweet_id": "2074014820689657949",
@@ -123,6 +150,15 @@
         "published_at": "2026-07-08T04:46:12.000Z"
       },
       {
+        "tweet_url": "https://x.com/Neeraj_chopra1/status/2072289023809171965",
+        "handle": "Neeraj_chopra1",
+        "tweet_id": "2072289023809171965",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "One and only \nWerner G\u00fcnth\u00f6r\ud83d\udcaa https://t.co/iAL7IEAexR",
+        "published_at": "2026-07-01T11:59:39.000Z"
+      },
+      {
         "tweet_url": "https://x.com/Pvsindhu1/status/2073351477360205852",
         "handle": "Pvsindhu1",
         "tweet_id": "2073351477360205852",
@@ -130,6 +166,15 @@
         "article_slug": "",
         "article_headline": "Asian Games No. 4 for me personally \u2764\ufe0f so feeling old haha \n\nSo grateful to Lokesh Anna for such a thoughtful initiative to motivate athletes, hear us out, and address our concerns with so much warmth.\n\nLittle moments like these mean a lot. They motivate us, reassure us, and https://t.co/oCtuAr5f3w",
         "published_at": "2026-07-04T10:21:27.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/harbhajan_singh/status/2074727366648287624",
+        "handle": "harbhajan_singh",
+        "tweet_id": "2074727366648287624",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "Happy Birthday Dada @SGanguly99 \u2764\ufe0f\ud83d\ude4f\u2660\ufe0f Tiger https://t.co/e7z3BGa9x8",
+        "published_at": "2026-07-08T05:28:45.000Z"
       }
     ],
     "news": [

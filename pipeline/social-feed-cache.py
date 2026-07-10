@@ -37,20 +37,32 @@ DB_HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration"]
 TWEETS_PER_CATEGORY = 8       # max handles shown per strip
 POOL_TWEETS_PER_HANDLE = 5    # tweets to cache per handle
-POOL_MAX_AGE_HOURS = 12       # re-fetch from X API only when pool is older
-VVIP_TWEET_HOURS = 168        # look back 7 days for tweets
+POOL_MAX_AGE_HOURS = 24       # re-fetch from X API only when pool is older
+VVIP_TWEET_HOURS = 336        # look back 14 days for tweets
 LOOKBACK_DAYS = 14            # article harvest lookback
 
 PIPELINE_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline")
 POOL_PATH = os.path.join(PIPELINE_DIR, "social-feed-pool.json")
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/social-feed.json")
 
-# VVIP person handles per category
+# VVIP person handles per category — top names only, budget-conscious
+# ~20 handles × 5 tweets × $0.005 = $0.50/run, 1 run/day = ~$15/mo
 VVIP_HANDLES = {
-    "technology": ["sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook", "NandanNilekani"],
-    "entertainment": ["iamsrk", "priyankachopra", "deepikapadukone", "akshaykumar", "karanjohar", "diljitdosanjh", "aliaa08", "SrBachchan"],
-    "sports": ["imVkohli", "ImRo45", "sachin_rt", "Jaspritbumrah93", "hardikpandya7", "Neeraj_chopra1", "SGanguly99", "Pvsindhu1"],
-    "news": ["narendramodi", "DrSJaishankar", "AmitShah", "nsitharaman", "RahulGandhi"],
+    "technology": [
+        "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
+    ],
+    "entertainment": [
+        "iamsrk", "priyankachopra", "akshaykumar", "SrBachchan",
+        "diljitdosanjh", "RanveerOfficial", "BeingSalmanKhan",
+    ],
+    "sports": [
+        "imVkohli", "ImRo45", "sachin_rt", "SGanguly99",
+        "Neeraj_chopra1", "Pvsindhu1", "harbhajan_singh",
+    ],
+    "news": [
+        "narendramodi", "DrSJaishankar", "AmitShah", "nsitharaman",
+        "RahulGandhi",
+    ],
     "immigration": [],
 }
 
