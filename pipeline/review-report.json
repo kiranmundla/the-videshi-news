@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-10T17:48:15.971204+00:00",
+  "timestamp": "2026-07-10T18:15:38.575492+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a1727d80-d0f6-4f63-8562-124e73b08c2d",
-      "headline": "Cricket Diplomacy. Australia's Big Bash League to Open Its Next Season in Chennai.",
-      "slug": "big-bash-league-bbl-chennai-chepauk-opener-modi-albanese-renegades-scorchers-december-2026-nri",
+      "id": "2a80792d-67dc-443f-9ce6-db210eb62ac7",
+      "headline": "India's Quiet Kitchen Takeover: Seven Indian-Chef-Led Restaurants Crack Asia's 50 Best Extended List",
+      "slug": "india-quiet-kitchen-takeover-seven-indian-chef-restaurants-asia-50-best-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "MA Chidambaram Stadium in Chennai",
-          "reason": "The photo shows the stadium where the cricket match is set to take place."
+          "what_photo_shows": "vegetarian thali with Indian dishes",
+          "reason": "The photo shows Indian cuisine, relevant to the story about Indian chefs."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,99 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the BBL match in Chennai to the interests of the Indian diaspora, highlighting its significance for NRIs in Australia and beyond."
+          "note": "The article connects well with the diaspora by highlighting Indian chefs abroad and the significance of Indian cuisine on a global stage."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from cricket analysts or players to enhance the article's depth.",
-          "Include more historical context about cricket diplomacy between India and Australia."
+          "Consider adding quotes from chefs or culinary experts to enhance the narrative.",
+          "Include more details about the impact of these restaurants on the local and global culinary scene."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "82e71706-e692-40ed-afb7-03d43f8363a1",
+      "headline": "From Gas Stations to Courtrooms: The Improbable American Life of Butter Chicken and Dal Makhani",
+      "slug": "gas-stations-courtrooms-improbable-american-life-butter-chicken-dal-makhani",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A bowl of dal makhani",
+          "reason": "The photo shows dal makhani, which is relevant to the story about its cultural significance."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the dishes to the emotional experiences of the NRI community, highlighting their significance in both high-end and accessible dining contexts."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from chefs or food critics to enhance the narrative.",
+          "Include more statistics or data on the popularity of these dishes among NRIs to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "77789f53-6e03-415b-ace3-19f5f884314a",
+      "headline": "Dubai's Three-Michelin-Star Tr\u00e8sind Lands in London \u2014 and Indian Fine Dining Will Never Be the Same",
+      "slug": "dubai-three-michelin-star-tresind-lands-london-indian-fine-dining-mayfair-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "modern Indian fine-dining dish",
+          "reason": "The photo shows a fine-dining dish, matching the story about Indian cuisine."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not specifically depict Tr\u00e8sind or its dishes, which could lead to a mismatch with the article's focus on the restaurant."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the opening of Tr\u00e8sind in London to the Indian diaspora, highlighting its significance for NRIs and the evolution of Indian cuisine in the UK."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a direct quote from a diner or critic to enhance the personal connection to the diaspora experience.",
+          "Add more details about the restaurant's impact on the local dining scene or specific reactions from the Indian community in London."
         ],
         "verdict": "pass"
       },
