@@ -387,14 +387,9 @@
   border-radius: 8px;
 }
 
-/* Desktop: constrain ticker to container width */
+/* Desktop: ticker follows container flow */
 @media (min-width: 769px) {
   .v2-market-ticker-wrap {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
     margin-bottom: 24px;
   }
 }

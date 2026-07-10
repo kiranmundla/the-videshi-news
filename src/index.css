@@ -156,7 +156,7 @@
   .article-html tbody tr:hover { background: hsl(var(--muted) / 0.3); }
 }
 
-.container { max-width: 1200px !important; }
+.container { /* width managed by Tailwind config */ }
 
 /* Prevent horizontal page overflow on mobile */
 html, body { overflow-x: hidden; }

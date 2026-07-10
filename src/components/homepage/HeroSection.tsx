@@ -38,7 +38,7 @@ export default function HeroSection({ lead, side }: Props) {
   return (
     <section className="pt-8 md:pt-10 pb-10 md:pb-14">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-7">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-7">
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
