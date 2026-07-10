@@ -245,7 +245,7 @@ export default function DiasporaPhotoStrip() {
         `}</style>
 
         {/* Container with nav arrows */}
-        <div style={{ position: "relative" }}>
+        <div className="container" style={{ position: "relative" }}>
           {canScrollLeft && (
             <button
               onClick={() => scrollStrip("left")}
@@ -313,7 +313,7 @@ export default function DiasporaPhotoStrip() {
           {/* Horizontal scroll container */}
           <div
             ref={scrollRef}
-            className="diaspora-scroll-strip container"
+            className="diaspora-scroll-strip"
             style={{
               display: "flex",
               gap: "12px",
