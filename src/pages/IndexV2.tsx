@@ -238,11 +238,28 @@ export default function IndexV2() {
       .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
       .slice(0, 6);
 
-    // Hero: featured + 3 side articles from top stories
-    const heroSide = allArticles
+    // Hero: featured + 3 side articles from top stories (diverse categories)
+    const heroSideCandidates = allArticles
       .filter((a) => !shownIds.has(a.id) && a.id !== featured?.id)
-      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
-      .slice(0, 3);
+      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+    const heroSide: Article[] = [];
+    const heroSideCats = new Set(featured?.category ? [featured.category] : []);
+    // First pass: pick one per category
+    for (const a of heroSideCandidates) {
+      if (heroSide.length >= 3) break;
+      const cat = a.category ?? "";
+      if (!heroSideCats.has(cat)) {
+        heroSide.push(a);
+        heroSideCats.add(cat);
+      }
+    }
+    // Second pass: fill remaining slots if needed
+    for (const a of heroSideCandidates) {
+      if (heroSide.length >= 3) break;
+      if (!heroSide.includes(a)) {
+        heroSide.push(a);
+      }
+    }
     heroSide.forEach((a) => shownIds.add(a.id));
 
     // Immigration

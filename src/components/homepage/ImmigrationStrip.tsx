@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Article, formatShortDate } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
 import ScrollWrap from "./ScrollWrap";
-
-const IMM_PILLS = ["All", "H-1B", "Green Card", "OPT", "Canada PR", "UK Visas", "Citizenship"];
 
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
@@ -19,21 +16,7 @@ interface Props {
 }
 
 export default function ImmigrationStrip({ articles }: Props) {
-  const [activePill, setActivePill] = useState("All");
-
   if (articles.length === 0) return null;
-
-  const filtered =
-    activePill === "All"
-      ? articles
-      : articles.filter((a) => {
-          const tags = (a.tags ?? []).map((t) => t.toLowerCase());
-          const title = a.title.toLowerCase();
-          const needle = activePill.toLowerCase();
-          return tags.some((t) => t.includes(needle)) || title.includes(needle);
-        });
-
-  const display = filtered.length > 0 ? filtered : articles;
 
   return (
     <section className="v2-imm-section">
@@ -52,19 +35,6 @@ export default function ImmigrationStrip({ articles }: Props) {
           </Link>
         </div>
         <div className="w-full h-0.5 mb-4" style={{ background: "#D4A843" }} />
-
-        {/* Sub-pills */}
-        <div className="v2-imm-pills">
-          {IMM_PILLS.map((p) => (
-            <button
-              key={p}
-              onClick={() => setActivePill(p)}
-              className={`v2-imm-pill ${activePill === p ? "active" : ""}`}
-            >
-              {p}
-            </button>
-          ))}
-        </div>
 
         {/* Cards — horizontal scroll with arrows */}
         <ScrollWrap className="v2-imm-scroll" arrowVariant="dark">
