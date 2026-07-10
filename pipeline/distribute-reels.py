@@ -78,7 +78,7 @@ for r in all_reels:
 print(f"  Articles with IG: {len(ig_posted_articles)}, YT: {len(yt_posted_articles)}, Threads: {len(threads_posted_articles)}")
 
 # --- Pick reels to distribute ---
-# Each reel variant gets its own YouTube upload (both music-only + voiceover).
+# YouTube: ONE variant per article, alternating voiceover/music-only across articles.
 # X is handled separately by x-autopost (article text + carousel only, no video).
 # IG/Threads: one video per article (voiceover preferred).
 candidates_resp = requests.get(
@@ -88,13 +88,40 @@ candidates_resp = requests.get(
 candidates = candidates_resp.json()
 
 seen_articles_social = set()  # dedup IG/Threads per article (one variant)
+
+# Alternate YouTube variants: count existing YT uploads to decide next variant
+yt_upload_count = len(yt_posted_articles)
+
 work_queue = []
+# First pass: collect all candidates per article for YT variant selection
+yt_candidates_by_article = {}
+for reel in candidates:
+    aid = reel['article_id']
+    if aid not in yt_posted_articles and not reel.get('yt_posted_at'):
+        yt_candidates_by_article.setdefault(aid, []).append(reel)
+
+# Pick one variant per article for YouTube, alternating voice/music
+yt_selected_reel_ids = set()
+for aid, reels in yt_candidates_by_article.items():
+    want_voiceover = (yt_upload_count % 2 == 0)
+    # Try preferred variant first, fall back to whatever's available
+    picked = None
+    for r in reels:
+        vp = r.get('video_path') or ''
+        if ('voiceover' in vp) == want_voiceover:
+            picked = r
+            break
+    if not picked:
+        picked = reels[0]  # fallback to whatever variant exists
+    yt_selected_reel_ids.add(picked['id'])
+    yt_upload_count += 1
+
 for reel in candidates:
     aid = reel['article_id']
     
     needs = []
-    # YouTube: every variant gets its own upload (no article-level dedup)
-    if not reel.get('yt_posted_at'):
+    # YouTube: ONE per article, alternating voiceover/music-only
+    if reel['id'] in yt_selected_reel_ids:
         needs.append('yt')
     # IG/Threads: one per article
     if aid not in seen_articles_social:

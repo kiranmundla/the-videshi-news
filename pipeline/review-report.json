@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-10T00:45:20.525561+00:00",
+  "timestamp": "2026-07-10T01:15:24.405173+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,42 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
-      "headline": "Google Just Told an Indian Court Its Ad Ruling Makes India the 'Sole Outlier' in the World. The $4.1 Billion Fight Has Begun.",
-      "slug": "google-appeals-india-trademark-ads-ruling-hindware-sole-outlier-20260709",
+      "id": "8e6ca2d2-5057-4b1b-b45f-5016f2ceca05",
+      "headline": "They Took Satluj Off the Internet. Now Gurudwaras Are Screening It Across Five States.",
+      "slug": "satluj-diljit-dosanjh-gurudwara-screenings-five-states-khalra-zee5-removal-sgpc-community-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "4abdcab7-5472-49a7-a097-20a0cb6c6825",
+            "headline": "The Government Says Satluj Bypassed the Censor Board. The Re"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Google headquarters in California",
-          "reason": "The photo of Google headquarters is relevant to a story about Google's legal issues."
+          "what_photo_shows": "Diljit Dosanjh at a public event",
+          "reason": "The photo shows Diljit Dosanjh, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DaYHUn7NvuV/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post by Diljit Dosanjh is relevant as it relates to the film and its context, but the specific content of the reel is not described in the article, making it difficult to assess its relevance fully."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of Diljit Dosanjh is relevant as he is the lead actor in the film, but it does not directly depict the film or its themes."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the legal case to Indian-origin tech professionals in Silicon Valley and Bengaluru, highlighting its implications for them."
+          "note": "The article discusses the diaspora's connection to the film through Diljit Dosanjh's international presence and the community's response, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Google's appeal to enhance the narrative.",
-          "Add a brief explanation of the implications for consumers to strengthen the reader's understanding."
+          "Provide a brief description of the Instagram reel to enhance its relevance.",
+          "Consider including more direct quotes or reactions from the diaspora community regarding the film's suppression."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DaYHUn7NvuV/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +66,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cd2fbf2b-1391-4296-8b9a-d2a623f30d0d",
-      "headline": "Modi Lands in New Zealand Tomorrow for the First Time in Forty Years. He Brings a Trade Deal. The Country Brings a Reckoning.",
-      "slug": "modi-new-zealand-historic-visit-fta-anti-indian-sentiment-diaspora-20260709",
+      "id": "14edd26d-da6a-499d-827f-5e2d3ae65f1c",
+      "headline": "Ram Charan's Peddi Just Landed on Netflix. Here's Why the Diaspora Should Pay Attention.",
+      "slug": "ram-charan-peddi-netflix-premiere-diaspora-streaming-340-crore-telugu-sports-epic-20260709",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +76,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Modi and Luxon meeting",
-          "reason": "The photo shows Modi and Luxon, relevant to the India-NZ story."
+          "what_photo_shows": "Ram Charan at an event",
+          "reason": "The photo shows Ram Charan, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -78,14 +90,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the trade deal for the Indian diaspora in New Zealand, highlighting opportunities for Indian migrants and businesses."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes to the experiences of NRIs, making it relatable."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from members of the Indian diaspora in New Zealand to enhance the personal connection.",
-          "Include more context about the historical relationship between India and New Zealand to provide depth."
+          "Consider adding more direct quotes from the film or reviews to enhance engagement.",
+          "Include a brief section on how the film has been received by critics to provide a balanced view."
         ],
         "verdict": "pass"
       },
