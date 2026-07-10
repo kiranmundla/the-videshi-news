@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-10T09:15:27.234219+00:00",
+  "timestamp": "2026-07-10T12:45:20.232215+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e7a30e81-e4ca-4a35-b145-2579ef8b93e0",
-      "headline": "Washington Just Launched Its Biggest H-1B Fraud Investigation. Indian Tech Workers Are in the Crosshairs.",
-      "slug": "vance-h1b-fraud-investigation-cognizant-indian-tech-20260710",
+      "id": "2a36f8f2-d82a-4545-bd8f-9de97340990b",
+      "headline": "Modi Lands in New Zealand. He Brings a Trade Deal, 5,000 Visas, and a 'Butter Chicken Tsunami.'",
+      "slug": "modi-new-zealand-auckland-fta-5000-visas-butter-chicken-tsunami-anti-indian-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "d9880c50-8318-47fb-b31d-950737d7807e",
-            "headline": "The DOL Just Launched Its Biggest H-1B Fraud Probe. Dozens o"
+            "article_id": "c391374d-6c3b-46d3-962c-27cf93e4c0c7",
+            "headline": "Three Hundred and Fifty Thousand Indian New Zealanders Are A"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Department of Labor building",
-          "reason": "The photo shows the headquarters leading the H-1B investigation."
+          "what_photo_shows": "Indian Prime Minister Narendra Modi",
+          "reason": "The photo shows the correct named person for the story."
         },
         "inline_image_mismatches": []
       },
@@ -35,21 +35,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Department of Labor building is relevant but does not directly depict the H-1B investigation or Indian tech workers."
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of the H-1B investigation on Indian tech workers, making it highly relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the implications of the trade deal and visa provisions for the Indian diaspora in New Zealand, making it relevant to NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or perspectives from Indian tech workers to enhance the human angle of the story.",
-          "Add more context on how this investigation might affect the future of H-1B visas and Indian professionals in the U.S."
+          "Replace the hero image with one that is more relevant to Modi's visit to New Zealand or the trade deal.",
+          "Include quotes or perspectives from Indian diaspora members in New Zealand to enhance the diaspora angle."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -59,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f57def1e-820a-4ce2-bd9a-e8ebfa615d82",
-      "headline": "Xbox's Indian-American CEO Just Ordered the Biggest Restructuring in the Brand's History. The Internet Blamed Her Heritage.",
-      "slug": "xbox-asha-sharma-restructuring-racist-backlash-indian-american-20260710",
+      "id": "02b34910-4461-4517-b648-827343a00280",
+      "headline": "India Goes Directly to Iran to Secure Passage for Nine Trapped Tankers and 198 Stranded Sailors",
+      "slug": "india-iran-direct-talks-hormuz-tankers-sailors-stranded-lila-vadinar-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +69,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A woman holding an Xbox microphone",
-          "reason": "The photo plausibly shows Asha Sharma, related to the Xbox story."
+          "what_photo_shows": "oil tanker at a terminal",
+          "reason": "The photo shows an oil tanker, relevant to the story about tankers and sailors."
         },
         "inline_image_mismatches": []
       },
@@ -83,14 +83,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Asha Sharma's Indian heritage in the context of her leadership role, which resonates with the Indian-American diaspora."
+          "quality": 7,
+          "note": "The article discusses the plight of Indian sailors, which is relevant to the Indian diaspora, but could further emphasize the impact on families and communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or perspectives from Indian-American professionals in tech to enhance the diaspora angle.",
-          "Add a section discussing the broader implications of Sharma's restructuring on the gaming industry and Indian representation in tech."
+          "Include quotes or perspectives from affected families of the stranded sailors to enhance the human interest angle.",
+          "Provide more context on how this situation affects India's geopolitical stance and relations with other countries."
         ],
         "verdict": "pass"
       },
