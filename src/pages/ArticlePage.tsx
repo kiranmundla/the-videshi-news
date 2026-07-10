@@ -566,12 +566,6 @@ export default function ArticlePage() {
             {article.excerpt}
           </p>
           <div className="mt-6 flex flex-wrap gap-x-2 gap-y-1 text-xs text-muted-foreground items-center">
-            {article.author && (
-              <>
-                <span>By {article.author}</span>
-                <span>·</span>
-              </>
-            )}
             <span>{formatLongDate(article.published_at)}</span>
             <span>·</span>
             <span>{time} min read</span>
