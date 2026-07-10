@@ -144,6 +144,7 @@ export default function IndexV2() {
           immPool,
           lifestylePool,
           foodPool,
+          travelPool,
         ] = await Promise.all([
           getFeaturedArticle().catch(() => null),
           getArticlesByCategory("news", 20).catch(() => []),
@@ -155,6 +156,7 @@ export default function IndexV2() {
           getArticlesByCategory("immigration", 12).catch(() => []),
           getArticlesByCategory("lifestyle-health", 8).catch(() => []),
           getArticlesByCategory("food", 8).catch(() => []),
+          getArticlesByCategory("travel", 8).catch(() => []),
         ]);
 
         clearTimeout(timeout);
@@ -169,6 +171,7 @@ export default function IndexV2() {
           immigration: immPool,
           "lifestyle-health": lifestylePool,
           food: foodPool,
+          travel: travelPool,
         };
 
         // Fetch events
@@ -261,6 +264,15 @@ export default function IndexV2() {
     // Sports
     const sports = (sections.sports ?? []).filter((a) => !shownIds.has(a.id));
 
+    // Lifestyle & Health
+    const lifestyle = (sections["lifestyle-health"] ?? []).filter((a) => !shownIds.has(a.id));
+
+    // Food
+    const food = (sections.food ?? []).filter((a) => !shownIds.has(a.id));
+
+    // Travel
+    const travel = (sections.travel ?? []).filter((a) => !shownIds.has(a.id));
+
     // Voices teaser: pick an immigration or NRI article with good excerpt
     const voicesTeaser =
       immigration.find((a) => a.excerpt && a.excerpt.length > 80) ??
@@ -277,6 +289,9 @@ export default function IndexV2() {
       markets,
       nriWorld,
       sports,
+      lifestyle,
+      food,
+      travel,
       voicesTeaser,
     };
   }, [featured, sections]);
@@ -420,7 +435,39 @@ export default function IndexV2() {
         />
         <TweetScroll category="sports" />
 
-        {/* 16. Voices (full section) */}
+        {/* 16. Travel (horizontal ribbon — landscape) */}
+        {layout.travel.length > 0 && (
+          <RibbonSection
+            title="Travel"
+            borderColor="#00695C"
+            categorySlug="travel"
+            articles={layout.travel}
+            aspectRatio="landscape"
+          />
+        )}
+
+        {/* 17. Lifestyle & Health (lead + list) */}
+        {layout.lifestyle.length > 0 && (
+          <LeadListSection
+            title="Lifestyle & Health"
+            borderColor="#6A1B9A"
+            categorySlug="lifestyle-health"
+            articles={layout.lifestyle}
+          />
+        )}
+
+        {/* 18. Food (horizontal ribbon — landscape) */}
+        {layout.food.length > 0 && (
+          <RibbonSection
+            title="Food"
+            borderColor="#BF360C"
+            categorySlug="food"
+            articles={layout.food}
+            aspectRatio="landscape"
+          />
+        )}
+
+        {/* 19. Voices (full section) */}
         <VoicesSection />
 
         {/* 17. Events */}

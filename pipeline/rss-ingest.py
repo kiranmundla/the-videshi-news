@@ -110,7 +110,7 @@ for feed in feeds:
                 if t and u:
                     items.append({"title": t, "url": u, "pub": item.get("pubDate", "")})
         else:
-            resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0 (TheVideshi Bot)"})
+            resp = requests.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0; +https://thevideshi.com)"})
             d = feedparser.parse(resp.content)
             for entry in d.entries:
                 t = (entry.get("title") or "").strip()

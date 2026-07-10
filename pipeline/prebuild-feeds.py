@@ -76,6 +76,7 @@ CATEGORY_SECTIONS = [
     {"slug": "entertainment", "limit": 12},
     {"slug": "lifestyle-health", "limit": 12},
     {"slug": "food", "limit": 12},
+    {"slug": "travel", "limit": 12},
 ]
 CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets-finance"]
 
