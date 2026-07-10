@@ -78,8 +78,15 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
   const photos = listing.photos as string[] | null;
   const imageUrl = listing.image_url || (photos && photos.length > 0 ? photos[0] : null);
   const desc = listing.ai_description || listing.description;
-  const tags = (listing.tags as string[] | null) || [];
-  const languages = (listing.languages as string[] | null) || [];
+
+  // tags/languages may come back as JSON strings from Supabase jsonb
+  const parseSafe = (v: unknown): string[] => {
+    if (Array.isArray(v)) return v;
+    if (typeof v === "string") { try { const p = JSON.parse(v); return Array.isArray(p) ? p : []; } catch { return []; } }
+    return [];
+  };
+  const tags = parseSafe(listing.tags);
+  const languages = parseSafe(listing.languages);
   const nonEnglishLangs = languages.filter((l) => l !== "English");
 
   return (
