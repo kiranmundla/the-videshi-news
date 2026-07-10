@@ -141,6 +141,13 @@ function buildOffers(event: EventItem): Record<string, unknown> | null {
   return { ...base, price: amount };
 }
 
+/** Decode common HTML entities scrapers leave behind */
+function decodeHTMLEntities(text: string): string {
+  const el = document.createElement("textarea");
+  el.innerHTML = text;
+  return el.value;
+}
+
 function isPastEvent(dateStr: string): boolean {
   const eventDate = new Date(dateStr + "T23:59:59");
   return eventDate < new Date();
@@ -546,7 +553,7 @@ export default function EventDetailPage() {
 
             {/* Title */}
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-[1.1] mb-4">
-              {event.title}
+              {decodeHTMLEntities(event.title)}
             </h1>
 
             {/* Venue + City */}

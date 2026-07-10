@@ -106,6 +106,13 @@ function categoryEmoji(category: string | null): string {
 /* ------------------------------------------------------------------ */
 /* Event Card                                                         */
 /* ------------------------------------------------------------------ */
+/** Decode common HTML entities scrapers leave behind */
+function decodeHTMLEntities(text: string): string {
+  const el = document.createElement("textarea");
+  el.innerHTML = text;
+  return el.value;
+}
+
 function EventCard({ event, distance }: { event: EventItem; distance?: number }) {
   const dateStr = formatEventDate(event.date, event.end_date);
   const location = [event.venue_name, event.city, event.state]
@@ -157,7 +164,7 @@ function EventCard({ event, distance }: { event: EventItem; distance?: number })
             )}
           </div>
           <h3 className="font-serif text-lg font-semibold text-foreground leading-snug mb-1 line-clamp-2 group-hover:text-primary transition-colors">
-            {event.title}
+            {decodeHTMLEntities(event.title)}
           </h3>
           {event.description && (
             <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
@@ -936,37 +943,12 @@ export default function EventsPage() {
 /* Near-Me list with distance grouping                                */
 /* ------------------------------------------------------------------ */
 function NearMeList({ events }: { events: EventWithDistance[] }) {
-  const NEARBY_THRESHOLD = 100; // miles
-  const nearby = events.filter((e) => (e.distanceMiles ?? 9999) <= NEARBY_THRESHOLD);
-  const farther = events.filter((e) => (e.distanceMiles ?? 9999) > NEARBY_THRESHOLD);
-
   return (
-    <>
-      {nearby.length > 0 && (
-        <div className="grid grid-cols-1 gap-4 w-full min-w-0">
-          {nearby.map((event) => (
-            <EventCard key={event.id} event={event} distance={event.distanceMiles} />
-          ))}
-        </div>
-      )}
-
-      {farther.length > 0 && (
-        <>
-          <div className="mt-10 mb-4 flex items-center gap-3">
-            <div className="h-px flex-1 bg-border" />
-            <span className="text-sm text-muted-foreground font-medium whitespace-nowrap">
-              More Events
-            </span>
-            <div className="h-px flex-1 bg-border" />
-          </div>
-          <div className="grid grid-cols-1 gap-4 w-full min-w-0">
-            {farther.map((event) => (
-              <EventCard key={event.id} event={event} distance={event.distanceMiles} />
-            ))}
-          </div>
-        </>
-      )}
-    </>
+    <div className="grid grid-cols-1 gap-4 w-full min-w-0">
+      {events.map((event) => (
+        <EventCard key={event.id} event={event} distance={event.distanceMiles} />
+      ))}
+    </div>
   );
 }
 
