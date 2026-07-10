@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-10T05:59:44Z",
+  "last_updated": "2026-07-10T07:58:56Z",
   "stage": "Quarterfinals — 97 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -9725,6 +9725,24 @@
       "url": "https://www.facebook.com/reel/1644625197673031/",
       "account": "@fifaworldcup",
       "date": "2026-07-08"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Damr5xWCeCt",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1693721155288002/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DambXo8RBGp/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
     }
   ],
   "tv": {
