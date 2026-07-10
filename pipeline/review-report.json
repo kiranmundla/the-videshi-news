@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-10T19:15:27.474814+00:00",
+  "timestamp": "2026-07-10T20:15:31.472616+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,57 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "58515db8-fe10-45a5-973e-40e0005e3300",
-      "headline": "Dhanush and Vetri Maaran Just Dropped a First Look. It\u2019s Not Vada Chennai 2.",
-      "slug": "dhanush-vetri-maaran-thamizh-murugan-first-look-warrior-epic-sai-abhyankkar-20260710",
+      "id": "2427edbc-1d82-4be0-92fe-dc4cca32d550",
+      "headline": "The Government Wants to Double Entry-Level H-1B Wages. The Math Is About to Break",
+      "slug": "dol-prevailing-wage-increase-h1b-perm-indian-workers-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "32a419ad-9e35-499e-b5ae-c2d659cda447",
+            "headline": "The Green Card Hiring Test Has Not Changed Since 2004. The D"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "U.S. Department of Labor building",
+          "reason": "The photo shows the U.S. Department of Labor, relevant to the story on H-1B wage rules."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of H-1B wages or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article discusses the impact of wage changes on Indian professionals, which is highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the topic of H-1B wages or immigration.",
+          "Add a section that includes quotes or perspectives from Indian professionals affected by these changes to enhance the human angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0c16f0fe-f1ea-4ffe-9a5e-cfee5a279e10",
+      "headline": "Half of Indian Americans Report Discrimination. The Data Shows They Are Quietly Retreating",
+      "slug": "carnegie-iaas-2026-indian-americans-discrimination-survey-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +69,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a white shirt",
-          "reason": "The photo plausibly shows Dhanush, relevant to the story."
+          "what_photo_shows": "diverse group in office setting",
+          "reason": "The photo aligns with the topic of Indian diaspora identity and experiences."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of discrimination faced by Indian Americans."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the experiences of Indian Americans, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the theme of discrimination or community engagement.",
+          "Add quotes or personal stories from Indian Americans to enhance emotional connection and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f9edf076-6ffb-4af7-b2d3-aa3fdedfbee2",
+      "headline": "She Was Born in Wisconsin. The Internet Blamed Her Indian Heritage for Xbox's Layoffs",
+      "slug": "asha-sharma-xbox-layoffs-fed-appointment-anti-indian-backlash-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "1c0ba8a0-3d16-4f7f-b31a-16f612a337ca",
+            "headline": "Microsoft Just Cut 4,800 Jobs. For Indian H-1B Workers, the "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Aerial view of Microsoft's Redmond campus",
+          "reason": "The photo shows Microsoft's campus, relevant to the story about Xbox layoffs."
         },
         "inline_image_mismatches": []
       },
@@ -36,78 +132,17 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the appeal of the film's music to NRI audiences and its cultural significance."
+          "note": "The article discusses the racial implications of layoffs affecting an Indian-American executive, which resonates with the diaspora experience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Dhanush or Vetri Maaran to enhance the article's depth.",
-          "Add a brief section on the expected release date or production timeline for 'Thamizh Murugan' to provide readers with more context."
+          "Include more direct quotes from Asha Sharma to provide her perspective on the layoffs and the backlash.",
+          "Add a section discussing the broader implications of H-1B visa policies on the Indian diaspora."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a5958503-9e29-497b-bb0b-e04806618801",
-      "headline": "Dhamaal 4 Just Opened to \u20b912 Crore. But the Real Show Was the Ghost Who Came Back.",
-      "slug": "dhamaal-4-opening-day-12-crore-satish-kaushik-tribute-ajay-devgn-box-office-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ded0f8e4-1b3d-4ed8-a75a-dfb7caf63075",
-            "headline": "The Boys Are Back. Dhamaal 4 Drops This Thursday \u2014 and the T"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Dhamaal 4 movie poster",
-          "reason": "The photo is related to the Dhamaal franchise mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link does not appear to be directly related to the article's main topic about 'Dhamaal 4' and its box office performance."
-          },
-          {
-            "url": "https://www.instagram.com/p/DamVWGno3zp/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not seem to provide relevant content that enhances the article's discussion about 'Dhamaal 4'."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's appeal to the NRI audience, discussing its cultural significance and popularity among diaspora communities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant YouTube and Instagram links with embeds that provide insights or reviews related to 'Dhamaal 4'.",
-          "Consider adding more quotes or reactions from diaspora audiences to strengthen the connection with NRI readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://youtube.com/watch?v=IG-eByZdz6Y",
-        "Removed irrelevant embed: https://www.instagram.com/p/DamVWGno3zp/",
         "promoted to published"
       ],
       "revised": false,
