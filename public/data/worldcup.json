@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-10T21:58:49Z",
-  "stage": "Quarterfinals — 97 of 104 matches played",
+  "last_updated": "2026-07-10T23:58:58Z",
+  "stage": "Group Stage — 98 of 102 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -346,12 +346,12 @@
         "code": "BEL",
         "flag": "🇧🇪",
         "rank": 9,
-        "p": 5,
+        "p": 6,
         "w": 3,
         "d": 2,
-        "l": 0,
-        "gf": 13,
-        "ga": 5,
+        "l": 1,
+        "gf": 14,
+        "ga": 7,
         "pts": 11
       },
       {
@@ -400,13 +400,13 @@
         "code": "ESP",
         "flag": "🇪🇸",
         "rank": 2,
-        "p": 5,
-        "w": 4,
+        "p": 6,
+        "w": 5,
         "d": 1,
         "l": 0,
-        "gf": 9,
-        "ga": 0,
-        "pts": 13
+        "gf": 11,
+        "ga": 1,
+        "pts": 16
       },
       {
         "name": "Cape Verde",
