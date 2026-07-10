@@ -91,14 +91,14 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
 
   return (
     <Link to={`/directory/${listing.slug}`} className="block no-underline">
-      <article className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
-        {/* Image — fixed height, cover crop, hide on error */}
+      <article className="group flex flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
+        {/* Thumbnail — compact square, always on the side */}
         {imageUrl && (
-          <div className="w-full h-36 overflow-hidden">
+          <div className="w-20 min-w-[5rem] sm:w-24 sm:min-w-[6rem] flex-shrink-0 overflow-hidden">
             <img
               src={imageUrl}
               alt={listing.name}
-              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover object-center"
               loading="lazy"
               onError={(e) => {
                 const container = (e.target as HTMLElement).parentElement;
@@ -109,7 +109,7 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
         )}
 
         {/* Content */}
-        <div className="p-3">
+        <div className="flex-1 p-3 min-w-0 overflow-hidden">
           {/* Header row: badges */}
           <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
             <CategoryBadge category={listing.category} />
