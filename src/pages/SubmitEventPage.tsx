@@ -14,6 +14,7 @@ import TurnstileWidget from "@/components/TurnstileWidget";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const STORAGE_KEY = "videshi_submit_event_draft";
 
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA",
@@ -64,8 +65,20 @@ function detectCategory(title: string): string | null {
   return null;
 }
 
+/* City reverse-geocode from browser coords */
+async function reverseGeoCity(lat: number, lng: number): Promise<{ city?: string; state?: string } | null> {
+  try {
+    const res = await fetch(`/api/geo?lat=${lat}&lng=${lng}`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return { city: data.city || undefined, state: data.region || undefined };
+  } catch {
+    return null;
+  }
+}
+
 /* ================================================================== */
-/* Form types                                                         */
+/* Types                                                              */
 /* ================================================================== */
 
 type FormData = {
@@ -82,18 +95,20 @@ type FormData = {
   email: string;
 };
 
+const today = () => new Date().toISOString().slice(0, 10);
+
 const INITIAL: FormData = {
-  title: "", date: "", end_date: "", time: "",
+  title: "", date: today(), end_date: "", time: "",
   city: "", state: "", venue_name: "", category: "",
   ticket_url: "", description: "", email: "",
 };
-
-const STORAGE_KEY = "videshi_submit_event_draft";
 
 type ImagePreview = { id: string; file: File; url: string };
 function createPreview(file: File): ImagePreview {
   return { id: crypto.randomUUID(), file, url: URL.createObjectURL(file) };
 }
+
+type SynthesizedContent = { long_description: string | null; artist_info: string | null; venue_info: string | null };
 
 /* ================================================================== */
 /* Main component                                                     */
@@ -104,28 +119,28 @@ export default function SubmitEventPage() {
   const [form, setForm] = useState<FormData>(() => {
     try {
       const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (saved) return { ...INITIAL, ...JSON.parse(saved) };
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return { ...INITIAL, ...parsed, date: parsed.date || today() };
+      }
     } catch { /* ignore */ }
     return INITIAL;
   });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [showMultiDay, setShowMultiDay] = useState(!!form.end_date);
-  const [showDetails, setShowDetails] = useState(false);
-  const [showImageEmail, setShowImageEmail] = useState(false);
-  const [stateSearch, setStateSearch] = useState("");
-  const [stateOpen, setStateOpen] = useState(false);
 
-  /* Steps: "form" | "synthesizing" | "preview" | "verify-email" | "verify-code" | "publishing" | "done" */
+  /* Steps */
   const [step, setStep] = useState<"form" | "synthesizing" | "preview" | "verify-email" | "verify-code" | "publishing" | "done">("form");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [publishedSlug, setPublishedSlug] = useState<string | null>(null);
 
-  /* Import state */
+  /* Import */
   const [importUrl, setImportUrl] = useState("");
   const [importing, setImporting] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState(false);
   const [importedImageUrl, setImportedImageUrl] = useState<string | null>(null);
+  const [highlightFields, setHighlightFields] = useState<Set<string>>(new Set());
 
   /* Turnstile */
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
@@ -136,32 +151,51 @@ export default function SubmitEventPage() {
   const [verifyChecking, setVerifyChecking] = useState(false);
   const [verifyError, setVerifyError] = useState<string | null>(null);
 
-  /* Image state */
+  /* Image */
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null);
   const [coverDragging, setCoverDragging] = useState(false);
   const coverInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
 
-  /* Synthesized content (run after submit, in background) */
-  type SynthesizedContent = { long_description: string | null; artist_info: string | null; venue_info: string | null };
+  /* Synthesized content */
   const [synthesized, setSynthesized] = useState<SynthesizedContent | null>(null);
+
+  /* State picker */
+  const [stateSearch, setStateSearch] = useState("");
+  const [stateOpen, setStateOpen] = useState(false);
+
+  /* Geolocation status */
+  const [geoAttempted, setGeoAttempted] = useState(false);
 
   /* ---- Auto-save to sessionStorage ---- */
   useEffect(() => {
     try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(form)); } catch { /* ignore */ }
   }, [form]);
 
-  /* ---- Auto-expand sections when fields are filled ---- */
+  /* ---- Geolocation pre-fill ---- */
   useEffect(() => {
-    if (form.title && form.date && (form.city || form.state)) setShowDetails(true);
-  }, [form.title, form.date, form.city, form.state]);
-
-  useEffect(() => {
-    if (form.category || form.description) setShowImageEmail(true);
-  }, [form.category, form.description]);
+    if (geoAttempted || form.city || form.state) return;
+    setGeoAttempted(true);
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const geo = await reverseGeoCity(pos.coords.latitude, pos.coords.longitude);
+        if (geo) {
+          setForm(f => ({
+            ...f,
+            city: f.city || geo.city || "",
+            state: f.state || geo.state || "",
+          }));
+        }
+      },
+      () => { /* denied — no problem */ },
+      { timeout: 5000 },
+    );
+  }, [geoAttempted, form.city, form.state]);
 
   /* ---- Auto-detect category from title ---- */
   useEffect(() => {
-    if (form.category) return; // don't override manual selection
+    if (form.category) return;
     const detected = detectCategory(form.title);
     if (detected) setForm(f => ({ ...f, category: detected }));
   }, [form.title, form.category]);
@@ -187,6 +221,7 @@ export default function SubmitEventPage() {
     setImporting(true);
     setImportError(null);
     setImportSuccess(false);
+    setHighlightFields(new Set());
     try {
       const res = await fetch("/api/import-event", {
         method: "POST",
@@ -195,29 +230,37 @@ export default function SubmitEventPage() {
       });
       const json = await res.json();
       if (!json.success) {
-        setImportError(json.error || "Could not extract event details.");
+        setImportError(json.error || "Could not extract event details from that link.");
         setImporting(false);
         return;
       }
       const d = json.data;
-      setForm(f => ({
-        ...f,
-        title: d.title || f.title,
-        date: d.date || f.date,
-        end_date: d.end_date || f.end_date,
-        time: d.time || f.time,
-        city: d.city || f.city,
-        state: d.state || f.state,
-        venue_name: d.venue_name || f.venue_name,
-        category: d.category || f.category,
-        ticket_url: d.ticket_url || f.ticket_url || url,
-        description: (d.description || "").slice(0, 500) || f.description,
-      }));
-      if (d.end_date) setShowMultiDay(true);
+      const filled = new Set<string>();
+      const updates: Partial<FormData> = {};
+      if (d.title) { updates.title = d.title; filled.add("title"); }
+      if (d.date) { updates.date = d.date; filled.add("date"); }
+      if (d.end_date) { updates.end_date = d.end_date; filled.add("end_date"); setShowMultiDay(true); }
+      if (d.time) { updates.time = d.time; filled.add("time"); }
+      if (d.city) { updates.city = d.city; filled.add("city"); }
+      if (d.state) { updates.state = d.state; filled.add("state"); }
+      if (d.venue_name) { updates.venue_name = d.venue_name; filled.add("venue_name"); }
+      if (d.category) { updates.category = d.category; filled.add("category"); }
+      if (d.ticket_url) { updates.ticket_url = d.ticket_url; filled.add("ticket_url"); }
+      else if (!form.ticket_url) { updates.ticket_url = url; filled.add("ticket_url"); }
+      if (d.description) { updates.description = (d.description || "").slice(0, 500); filled.add("description"); }
       if (d.image_url) setImportedImageUrl(d.image_url);
+
+      setForm(f => ({ ...f, ...updates }));
+      setHighlightFields(filled);
       setImportSuccess(true);
-      setShowDetails(true);
-      setShowImageEmail(true);
+
+      // Clear highlight after animation
+      setTimeout(() => setHighlightFields(new Set()), 2000);
+
+      // Scroll to form
+      setTimeout(() => {
+        document.getElementById("event-form-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
     } catch {
       setImportError("Something went wrong. Please try entering details manually.");
     } finally {
@@ -241,9 +284,10 @@ export default function SubmitEventPage() {
     setCoverImage(null);
     setImportedImageUrl(null);
     if (coverInputRef.current) coverInputRef.current.value = "";
+    if (cameraInputRef.current) cameraInputRef.current.value = "";
   }, [coverImage]);
 
-  /* ---- Drag handlers ---- */
+  /* Drag handlers */
   const dragHandlers = {
     onDragOver: (e: React.DragEvent) => { e.preventDefault(); setCoverDragging(true); },
     onDragEnter: (e: React.DragEvent) => { e.preventDefault(); setCoverDragging(true); },
@@ -251,15 +295,13 @@ export default function SubmitEventPage() {
     onDrop: (e: React.DragEvent) => { e.preventDefault(); setCoverDragging(false); handleCoverSelect(e.dataTransfer.files); },
   };
 
-  /* ---- Image upload helper ---- */
+  /* Image upload */
   async function uploadImage(file: File, slug: string): Promise<string | null> {
     const ext = file.name.split(".").pop() || "jpg";
     const path = `events/${slug}/cover-${Date.now()}.${ext}`;
     const sb = supabase as any;
     const { error } = await sb.storage.from("article-images").upload(path, file, {
-      contentType: file.type,
-      cacheControl: "31536000",
-      upsert: false,
+      contentType: file.type, cacheControl: "31536000", upsert: false,
     });
     if (error) { console.error("Image upload error:", error); return null; }
     const { data } = sb.storage.from("article-images").getPublicUrl(path);
@@ -269,26 +311,28 @@ export default function SubmitEventPage() {
   /* ---- Validate ---- */
   const validate = (): boolean => {
     const errs: Partial<Record<keyof FormData, string>> = {};
-    if (!form.title.trim()) errs.title = "Event name is required";
-    if (!form.date) errs.date = "Date is required";
-    if (!form.city.trim()) errs.city = "City is required";
-    if (!form.state) errs.state = "State is required";
-    if (!form.email.trim()) errs.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errs.email = "Please enter a valid email";
-    if (form.ticket_url && !/^https?:\/\/.+/.test(form.ticket_url.trim())) errs.ticket_url = "Enter a valid URL";
-    if (form.end_date && form.end_date < form.date) errs.end_date = "End date must be after start date";
+    if (!form.title.trim()) errs.title = "Give your event a name";
+    if (!form.date) errs.date = "Pick a date";
+    if (!form.city.trim()) errs.city = "Which city?";
+    if (!form.state) errs.state = "Select a state";
+    if (!form.email.trim()) errs.email = "We need your email to verify";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errs.email = "That doesn't look like a valid email";
+    if (form.ticket_url && !/^https?:\/\/.+/.test(form.ticket_url.trim())) errs.ticket_url = "Enter a valid URL starting with http://";
+    if (form.end_date && form.end_date < form.date) errs.end_date = "End date should be after the start date";
     setErrors(errs);
-    // Auto-expand sections that have errors
-    if (errs.category || errs.description || errs.ticket_url) setShowDetails(true);
-    if (errs.email) setShowImageEmail(true);
+    // Scroll to first error
+    if (Object.keys(errs).length > 0) {
+      const firstKey = Object.keys(errs)[0];
+      document.getElementById(`field-${firstKey}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
     return Object.keys(errs).length === 0;
   };
 
-  /* ---- Submit: verify turnstile → synthesize → preview ---- */
+  /* ---- Submit → synthesize → preview ---- */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    if (!turnstileToken) { setSubmitError("Please complete the bot verification."); return; }
+    if (!turnstileToken) { setSubmitError("Please complete the verification below."); return; }
 
     try {
       const tRes = await fetch("/api/verify-turnstile", {
@@ -297,9 +341,9 @@ export default function SubmitEventPage() {
         body: JSON.stringify({ token: turnstileToken }),
       });
       const tData = await tRes.json();
-      if (!tData.success) { setSubmitError("Bot verification failed. Please try again."); setTurnstileToken(null); return; }
+      if (!tData.success) { setSubmitError("Verification failed — please try again."); setTurnstileToken(null); return; }
     } catch {
-      setSubmitError("Bot verification failed. Please try again.");
+      setSubmitError("Verification failed — please try again.");
       setTurnstileToken(null);
       return;
     }
@@ -377,7 +421,7 @@ export default function SubmitEventPage() {
     handleSendVerifyCode();
   };
 
-  /* ---- Actual publish ---- */
+  /* ---- Publish ---- */
   const doPublish = async () => {
     setStep("publishing");
     setSubmitError(null);
@@ -435,7 +479,7 @@ export default function SubmitEventPage() {
     setStep("done");
   };
 
-  /* ---- Filtered states for searchable picker ---- */
+  /* ---- State picker helpers ---- */
   const filteredStates = stateSearch
     ? US_STATES.filter(s => {
         const q = stateSearch.toLowerCase();
@@ -443,51 +487,110 @@ export default function SubmitEventPage() {
       })
     : [...US_STATES];
 
-  /* ---- Progress (how much is filled) ---- */
+  /* ---- Progress ---- */
   const filledBasics = !!(form.title && form.date && form.city && form.state);
   const filledDetails = filledBasics && !!form.category;
   const filledAll = filledDetails && !!form.email;
-  const progressPct = filledAll ? 100 : filledDetails ? 66 : filledBasics ? 33 : 0;
+  const currentStep = filledAll ? 3 : filledDetails ? 2 : filledBasics ? 2 : 1;
+
+  /* Detect mobile */
+  const isMobile = typeof window !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   /* ================================================================ */
-  /* RENDER: Done                                                     */
+  /* RENDER: Done — Success state with event preview card             */
   /* ================================================================ */
   if (step === "done") {
-    const fullUrl = publishedSlug ? `thevideshi.com/events/${publishedSlug}` : "";
+    const dateStr = formatEventDateLong(form.date, form.end_date || undefined);
+    const catEmoji = CAT_EMOJI[form.category || "Other"] || "📌";
+    const heroImg = coverImage?.url || importedImageUrl;
+    const fullUrl = publishedSlug ? `https://www.thevideshi.com/events/${publishedSlug}` : "";
+
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Masthead /><CategoryPills />
         <main className="container flex-1 pt-8 pb-16 max-w-lg mx-auto px-4">
-          <div className="text-center py-16">
-            <p className="text-6xl mb-5">🎉</p>
-            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-3">Your Event Is Live!</h2>
-            <p className="text-muted-foreground mb-2">We've sent a confirmation to your email.</p>
-            {publishedSlug && (
-              <div className="flex items-center gap-2 mt-6 mb-8 max-w-sm mx-auto">
-                <div className="flex-1 bg-muted/60 border border-border rounded-lg px-3 py-2.5 text-sm font-mono truncate text-left text-foreground/80">
-                  {fullUrl}
-                </div>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(`https://${fullUrl}`);
-                    const b = document.getElementById("_cpbtn");
-                    if (b) { b.textContent = "Copied!"; setTimeout(() => { b.textContent = "Copy"; }, 2000); }
-                  }}
-                  id="_cpbtn"
-                  className="px-4 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
-                >Copy</button>
+          <div className="text-center mb-8">
+            <p className="text-6xl mb-4">🎉</p>
+            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-2">Your Event Is Live!</h2>
+            <p className="text-muted-foreground text-sm">A confirmation has been sent to your email.</p>
+          </div>
+
+          {/* Event preview card */}
+          <div className="rounded-2xl overflow-hidden bg-card border border-border mb-6 shadow-sm">
+            {heroImg ? (
+              <div className="w-full h-44 overflow-hidden">
+                <img src={heroImg} alt={form.title} className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              <div className="w-full h-28 bg-gradient-to-br from-primary/5 to-transparent flex items-center justify-center">
+                <span className="text-5xl opacity-20 select-none">{catEmoji}</span>
               </div>
             )}
-            <div className="flex flex-col gap-3 max-w-xs mx-auto">
-              {publishedSlug && (
-                <Link to={`/events/${publishedSlug}`} className="block w-full px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors text-center">
-                  View Your Event →
-                </Link>
-              )}
-              <Link to="/events" className="block w-full px-6 py-3 border border-border rounded-xl font-medium hover:bg-muted/40 transition-colors text-center">
-                Browse Events
-              </Link>
+            <div className="px-5 py-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{catEmoji} {form.category || "Event"}</span>
+                <span>·</span>
+                <span>{dateStr}</span>
+              </div>
+              <h3 className="font-serif text-lg font-bold text-foreground mb-1 leading-snug">{form.title}</h3>
+              {form.venue_name && <p className="text-sm text-muted-foreground">{form.venue_name}</p>}
+              <p className="text-sm text-muted-foreground">{form.city}, {form.state}</p>
             </div>
+          </div>
+
+          {/* Share link */}
+          {publishedSlug && (
+            <div className="flex items-center gap-2 mb-6">
+              <div className="flex-1 bg-muted/50 border border-border rounded-xl px-3.5 py-2.5 text-sm font-mono truncate text-foreground/70">
+                {fullUrl.replace("https://", "")}
+              </div>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(fullUrl);
+                  const b = document.getElementById("_cpbtn");
+                  if (b) { b.textContent = "Copied!"; setTimeout(() => { b.textContent = "Copy Link"; }, 2000); }
+                }}
+                id="_cpbtn"
+                className="px-4 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-xl hover:bg-primary/90 transition-colors whitespace-nowrap"
+              >Copy Link</button>
+            </div>
+          )}
+
+          {/* Share button */}
+          {typeof navigator.share === "function" && (
+            <button
+              onClick={() => navigator.share({ title: form.title, url: fullUrl }).catch(() => {})}
+              className="w-full py-3 mb-3 border border-border rounded-xl text-sm font-medium text-foreground hover:bg-muted/40 transition-colors flex items-center justify-center gap-2"
+            >
+              📤 Share This Event
+            </button>
+          )}
+
+          <div className="flex flex-col gap-3">
+            {publishedSlug && (
+              <Link to={`/events/${publishedSlug}`} className="block w-full px-6 py-3.5 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors text-center">
+                View Your Event →
+              </Link>
+            )}
+            <button
+              onClick={() => {
+                setForm(INITIAL);
+                setStep("form");
+                setCoverImage(null);
+                setImportedImageUrl(null);
+                setImportUrl("");
+                setImportSuccess(false);
+                setPublishedSlug(null);
+                setSynthesized(null);
+                setTurnstileToken(null);
+              }}
+              className="w-full px-6 py-3 border border-border rounded-xl font-medium hover:bg-muted/40 transition-colors text-center"
+            >
+              + Post Another Event
+            </button>
+            <Link to="/events" className="block w-full px-6 py-3 text-sm text-muted-foreground hover:text-foreground transition-colors text-center">
+              ← Back to Events
+            </Link>
           </div>
         </main>
         <SiteFooter />
@@ -511,8 +614,8 @@ export default function SubmitEventPage() {
 
         <main className="container flex-1 pt-6 pb-20 max-w-2xl mx-auto px-4">
           <p className="text-sm text-primary font-medium mb-4 flex items-center gap-2">
-            <span className="inline-block w-5 h-5 rounded-full bg-primary/10 text-center text-[11px] leading-5 font-bold">✓</span>
-            Preview
+            <span className="inline-flex w-5 h-5 rounded-full bg-primary/10 items-center justify-center text-xs">✓</span>
+            Here's how your event will look
           </p>
 
           {/* Event preview card */}
@@ -545,12 +648,12 @@ export default function SubmitEventPage() {
             </div>
           </div>
 
-          {/* Verification UI */}
+          {/* Verification */}
           {(step === "verify-email" || step === "verify-code") && (
             <div className="bg-muted/30 border border-border rounded-xl p-5 mb-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-lg">✉️</span>
-                <h3 className="font-medium text-foreground">Verify your email</h3>
+                <h3 className="font-medium text-foreground">Quick email check</h3>
               </div>
               {step === "verify-email" && (
                 <>
@@ -562,7 +665,7 @@ export default function SubmitEventPage() {
               {step === "verify-code" && (
                 <form onSubmit={handleCheckVerifyCode} className="mt-3">
                   <p className="text-sm text-muted-foreground mb-3">
-                    Enter the 6-digit code sent to <strong>{form.email.trim()}</strong>
+                    Enter the 6-digit code we sent to <strong>{form.email.trim()}</strong>
                   </p>
                   <input
                     type="text" inputMode="numeric" maxLength={6}
@@ -600,7 +703,7 @@ export default function SubmitEventPage() {
             {step === "preview" && (
               <button onClick={handlePublish} disabled={step === "publishing"}
                 className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-bold text-base hover:bg-primary/90 transition-colors disabled:opacity-50">
-                ✅ Publish Event
+                Looks good — Publish! 🚀
               </button>
             )}
             {step === "publishing" && <Spinner label="Publishing your event…" className="py-4" />}
@@ -614,6 +717,9 @@ export default function SubmitEventPage() {
   /* ================================================================ */
   /* RENDER: Form                                                     */
   /* ================================================================ */
+
+  const hlClass = (field: string) => highlightFields.has(field) ? "ring-2 ring-green-400/60 bg-green-50/30 transition-all duration-700" : "";
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
@@ -623,167 +729,199 @@ export default function SubmitEventPage() {
 
       <Masthead /><CategoryPills />
 
-      <main className="container flex-1 pt-6 md:pt-8 pb-28 md:pb-16 max-w-lg mx-auto px-4">
-        {/* Back link + header */}
-        <Link to="/events" className="text-sm text-primary hover:underline mb-3 inline-block">← Events</Link>
-        <h1 className="font-serif text-2xl md:text-3xl text-foreground mb-1">Post Your Event</h1>
-        <p className="text-muted-foreground text-sm mb-6">Share an Indian community event with thousands of readers.</p>
+      <main className="container flex-1 pt-6 md:pt-8 pb-32 md:pb-16 max-w-lg mx-auto px-4">
+        {/* Back link */}
+        <Link to="/events" className="text-sm text-primary hover:underline mb-4 inline-block">← Events</Link>
 
-        {/* Progress bar */}
-        <div className="h-1 bg-muted/50 rounded-full mb-8 overflow-hidden">
-          <div className="h-full bg-primary rounded-full transition-all duration-500 ease-out" style={{ width: `${progressPct}%` }} />
-        </div>
-
-        {/* ============ IMPORT SECTION ============ */}
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-lg">🔗</span>
-            <h2 className="font-medium text-foreground text-sm">Have an event link? Import it</h2>
+        {/* ============ HERO: Import Section ============ */}
+        <div className="rounded-2xl bg-gradient-to-b from-primary/[0.04] to-transparent border border-primary/10 p-6 md:p-8 mb-8">
+          <div className="text-center mb-5">
+            <p className="text-3xl mb-2">🔗</p>
+            <h1 className="font-serif text-xl md:text-2xl text-foreground mb-1.5">Already listed somewhere?</h1>
+            <p className="text-muted-foreground text-sm">Paste the link and we'll fill everything in for you.</p>
           </div>
+
           <div className="flex gap-2">
             <input
               type="url"
               value={importUrl}
               onChange={e => { setImportUrl(e.target.value); setImportError(null); setImportSuccess(false); }}
-              placeholder="Paste Eventbrite, Meetup, or any event URL…"
-              className="flex-1 min-w-0 px-3.5 py-3 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
+              placeholder="e.g. https://eventbrite.com/e/garba-night..."
+              className="flex-1 min-w-0 px-4 py-3.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-colors"
               onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); handleImport(); } }}
+              onPaste={() => { setTimeout(handleImport, 100); }}
             />
             <button
               onClick={handleImport}
               disabled={importing || !importUrl.trim()}
-              className="px-5 py-3 bg-primary text-primary-foreground font-medium text-sm rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 whitespace-nowrap"
+              className="px-5 py-3.5 bg-primary text-primary-foreground font-medium text-sm rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 whitespace-nowrap"
             >
-              {importing ? <Spinner label="" size="sm" /> : "Import"}
+              {importing ? <Spinner size="sm" /> : "Import"}
             </button>
           </div>
-          {importError && <p className="text-sm text-red-600 mt-2">{importError}</p>}
+
+          {importing && (
+            <div className="mt-4 flex items-center gap-2 text-sm text-primary">
+              <span className="inline-block w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+              ✨ Importing event details…
+            </div>
+          )}
+          {importError && <p className="text-sm text-red-600 mt-3">{importError}</p>}
           {importSuccess && (
-            <p className="text-sm text-green-600 mt-2 flex items-center gap-1">
-              <span>✓</span> Details imported! Review and fill in anything missing below.
+            <p className="text-sm text-green-600 mt-3 flex items-center gap-1.5">
+              <span className="inline-flex w-5 h-5 rounded-full bg-green-100 items-center justify-center text-xs">✓</span>
+              Got it! Review the details below and hit post.
             </p>
           )}
         </div>
 
-        <div className="h-px bg-border mb-8" />
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-px bg-border flex-1" />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">or fill it in yourself</span>
+          <div className="h-px bg-border flex-1" />
+        </div>
+
+        {/* ============ Progress Dots ============ */}
+        <div className="flex items-center justify-center gap-2 mb-8">
+          {[1, 2, 3].map(s => (
+            <div key={s} className={`flex items-center gap-1.5 ${s <= currentStep ? "text-primary" : "text-muted-foreground/40"}`}>
+              <div className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
+                s < currentStep ? "bg-primary" : s === currentStep ? "bg-primary/60" : "bg-muted-foreground/20"
+              }`} />
+              <span className="text-xs font-medium hidden sm:inline">
+                {s === 1 ? "Basics" : s === 2 ? "Details" : "Finish"}
+              </span>
+            </div>
+          ))}
+        </div>
 
         {/* ============ FORM ============ */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="event-form-section">
 
           {/* ---- STEP 1: The Basics ---- */}
-          <SectionHeader emoji="1️⃣" label="The Basics" />
+          <div className="mb-8">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-5 flex items-center gap-2">
+              <span className="inline-flex w-5 h-5 rounded-full bg-primary/10 text-primary items-center justify-center text-xs font-bold">1</span>
+              The basics
+            </h2>
 
-          {/* Event name */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-foreground mb-1.5">
-              Event Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={form.title}
-              onChange={set("title")}
-              placeholder='e.g. "Garba Night in Dallas"'
-              className={inputClass(errors.title)}
-            />
-            {errors.title && <ErrMsg msg={errors.title} />}
-            {form.title && detectCategory(form.title) && !errors.title && (
-              <p className="text-xs text-primary/70 mt-1">
-                Auto-detected: {CAT_EMOJI[detectCategory(form.title) || ""] || ""} {detectCategory(form.title)}
-              </p>
-            )}
-          </div>
-
-          {/* Date row */}
-          <div className="grid grid-cols-2 gap-3 mb-2">
-            <div>
+            {/* Event name */}
+            <div className="mb-5" id="field-title">
               <label className="block text-sm font-medium text-foreground mb-1.5">
-                Date <span className="text-red-500">*</span>
-              </label>
-              <input type="date" value={form.date} onChange={set("date")} className={inputClass(errors.date)} />
-              {errors.date && <ErrMsg msg={errors.date} />}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Time</label>
-              <input type="time" value={form.time} onChange={set("time")} className={inputClass()} />
-            </div>
-          </div>
-
-          {/* Multi-day toggle */}
-          {!showMultiDay ? (
-            <button type="button" onClick={() => setShowMultiDay(true)}
-              className="text-xs text-primary hover:underline mb-4 inline-block">
-              + Multi-day event?
-            </button>
-          ) : (
-            <div className="mb-4 transition-all duration-300">
-              <label className="block text-sm font-medium text-foreground mb-1.5">End Date</label>
-              <input type="date" value={form.end_date} onChange={set("end_date")} className={inputClass(errors.end_date)} />
-              {errors.end_date && <ErrMsg msg={errors.end_date} />}
-            </div>
-          )}
-
-          {/* Location */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">
-                City <span className="text-red-500">*</span>
-              </label>
-              <input type="text" value={form.city} onChange={set("city")} placeholder="e.g. Sunnyvale"
-                className={inputClass(errors.city)} />
-              {errors.city && <ErrMsg msg={errors.city} />}
-            </div>
-            <div className="relative">
-              <label className="block text-sm font-medium text-foreground mb-1.5">
-                State <span className="text-red-500">*</span>
+                What's your event called? <span className="text-red-400">*</span>
               </label>
               <input
                 type="text"
-                value={form.state ? `${form.state} — ${STATE_NAMES[form.state] || ""}` : stateSearch}
-                onChange={e => {
-                  setStateSearch(e.target.value);
-                  if (form.state) updateField("state", "");
-                  setStateOpen(true);
-                }}
-                onFocus={() => setStateOpen(true)}
-                placeholder="Search state…"
-                className={inputClass(errors.state)}
-                autoComplete="off"
+                value={form.title}
+                onChange={set("title")}
+                placeholder='e.g. "Garba Night 2026"'
+                className={`${inputClass(errors.title)} ${hlClass("title")}`}
+                autoFocus={!importSuccess}
               />
-              {errors.state && <ErrMsg msg={errors.state} />}
-              {stateOpen && (
-                <>
-                  <div className="fixed inset-0 z-10" onClick={() => setStateOpen(false)} />
-                  <div className="absolute z-20 mt-1 w-full max-h-48 overflow-y-auto bg-card border border-border rounded-xl shadow-lg">
-                    {filteredStates.length === 0 ? (
-                      <p className="px-3 py-2 text-sm text-muted-foreground">No match</p>
-                    ) : filteredStates.map(s => (
-                      <button key={s} type="button"
-                        onClick={() => { updateField("state", s); setStateSearch(""); setStateOpen(false); }}
-                        className="w-full text-left px-3 py-2.5 text-sm hover:bg-muted/60 transition-colors flex items-center gap-2">
-                        <span className="font-medium text-foreground">{s}</span>
-                        <span className="text-muted-foreground text-xs">{STATE_NAMES[s]}</span>
-                      </button>
-                    ))}
-                  </div>
-                </>
+              {errors.title && <ErrMsg msg={errors.title} />}
+              {form.title && detectCategory(form.title) && !errors.title && (
+                <p className="text-xs text-primary/70 mt-1.5 flex items-center gap-1 animate-fadeIn">
+                  ✨ Auto-detected: {CAT_EMOJI[detectCategory(form.title) || ""] || ""} {detectCategory(form.title)}
+                </p>
               )}
+            </div>
+
+            {/* Date + Time */}
+            <div className="grid grid-cols-2 gap-3 mb-2">
+              <div id="field-date">
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  When is it? <span className="text-red-400">*</span>
+                </label>
+                <input type="date" value={form.date} onChange={set("date")} className={`${inputClass(errors.date)} ${hlClass("date")}`} />
+                {errors.date && <ErrMsg msg={errors.date} />}
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">What time?</label>
+                <input type="time" value={form.time} onChange={set("time")} className={`${inputClass()} ${hlClass("time")}`} />
+              </div>
+            </div>
+
+            {/* Multi-day toggle */}
+            {!showMultiDay ? (
+              <button type="button" onClick={() => setShowMultiDay(true)}
+                className="text-xs text-primary/70 hover:text-primary mb-5 inline-block transition-colors">
+                + It's a multi-day event
+              </button>
+            ) : (
+              <div className="mb-5 animate-fadeIn" id="field-end_date">
+                <label className="block text-sm font-medium text-foreground mb-1.5">Ends on</label>
+                <input type="date" value={form.end_date} onChange={set("end_date")} className={`${inputClass(errors.end_date)} ${hlClass("end_date")}`} />
+                {errors.end_date && <ErrMsg msg={errors.end_date} />}
+              </div>
+            )}
+
+            {/* Location */}
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div id="field-city">
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  City <span className="text-red-400">*</span>
+                </label>
+                <input type="text" value={form.city} onChange={set("city")} placeholder="e.g. Sunnyvale"
+                  className={`${inputClass(errors.city)} ${hlClass("city")}`} />
+                {errors.city && <ErrMsg msg={errors.city} />}
+              </div>
+              <div className="relative" id="field-state">
+                <label className="block text-sm font-medium text-foreground mb-1.5">
+                  State <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={form.state ? `${form.state} — ${STATE_NAMES[form.state] || ""}` : stateSearch}
+                  onChange={e => {
+                    setStateSearch(e.target.value);
+                    if (form.state) updateField("state", "");
+                    setStateOpen(true);
+                  }}
+                  onFocus={() => setStateOpen(true)}
+                  placeholder="Search state…"
+                  className={`${inputClass(errors.state)} ${hlClass("state")}`}
+                  autoComplete="off"
+                />
+                {errors.state && <ErrMsg msg={errors.state} />}
+                {stateOpen && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setStateOpen(false)} />
+                    <div className="absolute z-20 mt-1 w-full max-h-48 overflow-y-auto bg-card border border-border rounded-xl shadow-lg">
+                      {filteredStates.length === 0 ? (
+                        <p className="px-3 py-2 text-sm text-muted-foreground">No match</p>
+                      ) : filteredStates.map(s => (
+                        <button key={s} type="button"
+                          onClick={() => { updateField("state", s); setStateSearch(""); setStateOpen(false); }}
+                          className="w-full text-left px-3 py-2.5 text-sm hover:bg-muted/60 transition-colors flex items-center gap-2">
+                          <span className="font-medium text-foreground">{s}</span>
+                          <span className="text-muted-foreground text-xs">{STATE_NAMES[s]}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Venue */}
+            <div className="mb-2">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Venue name</label>
+              <input type="text" value={form.venue_name} onChange={set("venue_name")}
+                placeholder="e.g. Hindu Temple of Silicon Valley" className={`${inputClass()} ${hlClass("venue_name")}`} />
             </div>
           </div>
 
-          {/* Venue */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-foreground mb-1.5">Venue</label>
-            <input type="text" value={form.venue_name} onChange={set("venue_name")}
-              placeholder="e.g. Hindu Temple, Convention Center…" className={inputClass()} />
-          </div>
-
-          {/* ---- STEP 2: Details (expandable) ---- */}
-          <div className={`transition-all duration-300 overflow-hidden ${showDetails ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}>
-            <SectionHeader emoji="2️⃣" label="Details" />
+          {/* ---- STEP 2: Details ---- */}
+          <div className={`mb-8 transition-all duration-500 ${filledBasics || importSuccess ? "opacity-100" : "opacity-40 pointer-events-none"}`}>
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-5 flex items-center gap-2">
+              <span className="inline-flex w-5 h-5 rounded-full bg-primary/10 text-primary items-center justify-center text-xs font-bold">2</span>
+              Add some details
+            </h2>
 
             {/* Category pills */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-foreground mb-2">Category</label>
+            <div className="mb-5">
+              <label className="block text-sm font-medium text-foreground mb-2">What kind of event?</label>
               <div className="flex flex-wrap gap-2">
                 {EVENT_CATEGORIES.map(cat => (
                   <button key={cat} type="button"
@@ -792,53 +930,51 @@ export default function SubmitEventPage() {
                       form.category === cat
                         ? "bg-primary text-primary-foreground shadow-sm scale-105"
                         : "bg-muted/60 text-foreground/70 hover:bg-muted active:scale-95"
-                    }`}>
+                    } ${highlightFields.has("category") && form.category === cat ? "ring-2 ring-green-400/60" : ""}`}>
                     <span className="text-sm">{CAT_EMOJI[cat] || "📌"}</span>
                     {cat}
                   </button>
                 ))}
               </div>
-              {errors.category && <ErrMsg msg={errors.category} />}
             </div>
 
             {/* Description */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-foreground mb-1.5">Description</label>
+            <div className="mb-5">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Tell people what to expect</label>
               <textarea
                 value={form.description}
                 onChange={set("description")}
-                placeholder="Tell people what to expect…"
+                placeholder="e.g. Join us for an evening of garba and dandiya with live dhol, food stalls, and henna artists…"
                 rows={3} maxLength={500}
-                className={`${inputClass()} resize-none`}
+                className={`${inputClass()} resize-none ${hlClass("description")}`}
               />
               <p className="text-xs text-muted-foreground mt-1 text-right">{form.description.length}/500</p>
             </div>
 
             {/* Ticket URL */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-foreground mb-1.5">Ticket / RSVP Link</label>
+            <div className="mb-2">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Ticket or RSVP link</label>
               <input type="url" value={form.ticket_url} onChange={set("ticket_url")}
-                placeholder="https://…" className={inputClass(errors.ticket_url)} />
+                placeholder="e.g. https://eventbrite.com/..." className={`${inputClass(errors.ticket_url)} ${hlClass("ticket_url")}`} />
               {errors.ticket_url && <ErrMsg msg={errors.ticket_url} />}
             </div>
           </div>
 
-          {/* Manual expand button for details */}
-          {!showDetails && (
-            <button type="button" onClick={() => setShowDetails(true)}
-              className="w-full py-3 mb-6 text-sm text-primary font-medium rounded-xl border border-dashed border-primary/30 hover:bg-primary/5 transition-colors">
-              + Add category, description & ticket link
-            </button>
-          )}
-
-          {/* ---- STEP 3: Image & Email (expandable) ---- */}
-          <div className={`transition-all duration-300 overflow-hidden ${showImageEmail ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}>
-            <SectionHeader emoji="3️⃣" label="Image & Contact" />
+          {/* ---- STEP 3: Image & Contact ---- */}
+          <div className={`mb-8 transition-all duration-500 ${filledBasics || importSuccess ? "opacity-100" : "opacity-40 pointer-events-none"}`}>
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-5 flex items-center gap-2">
+              <span className="inline-flex w-5 h-5 rounded-full bg-primary/10 text-primary items-center justify-center text-xs font-bold">3</span>
+              Almost done
+            </h2>
 
             {/* Cover image */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-foreground mb-1.5">Cover Image</label>
-              <input ref={coverInputRef} type="file" accept="image/jpeg,image/png,image/webp" capture="environment"
+            <div className="mb-5">
+              <label className="block text-sm font-medium text-foreground mb-1.5">Add a photo</label>
+
+              {/* Hidden file inputs */}
+              <input ref={coverInputRef} type="file" accept="image/jpeg,image/png,image/webp"
+                onChange={e => handleCoverSelect(e.target.files)} className="hidden" />
+              <input ref={cameraInputRef} type="file" accept="image/*" capture="environment"
                 onChange={e => handleCoverSelect(e.target.files)} className="hidden" />
 
               {(coverImage || importedImageUrl) ? (
@@ -846,50 +982,58 @@ export default function SubmitEventPage() {
                   <img src={coverImage?.url || importedImageUrl || ""}
                     alt="Cover" className="w-full h-40 object-cover rounded-xl border border-border" />
                   <button type="button" onClick={removeCover}
-                    className="absolute top-2 right-2 w-7 h-7 bg-black/60 text-white rounded-full flex items-center justify-center text-xs backdrop-blur-sm hover:bg-black/80">
+                    className="absolute top-2 right-2 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center text-sm backdrop-blur-sm hover:bg-black/80 transition-colors">
                     ✕
                   </button>
                   {importedImageUrl && !coverImage && (
                     <span className="absolute bottom-2 left-2 text-xs bg-black/60 text-white px-2 py-0.5 rounded-full backdrop-blur-sm">
-                      Imported
+                      Imported from link
                     </span>
                   )}
                 </div>
+              ) : isMobile ? (
+                /* Mobile: separate camera + gallery buttons */
+                <div className="flex gap-3">
+                  <button type="button" onClick={() => cameraInputRef.current?.click()}
+                    className="flex-1 flex flex-col items-center gap-1.5 py-5 rounded-xl border-2 border-dashed border-border hover:border-primary/50 active:scale-[0.98] transition-all">
+                    <span className="text-2xl">📷</span>
+                    <span className="text-xs text-muted-foreground font-medium">Take a photo</span>
+                  </button>
+                  <button type="button" onClick={() => coverInputRef.current?.click()}
+                    className="flex-1 flex flex-col items-center gap-1.5 py-5 rounded-xl border-2 border-dashed border-border hover:border-primary/50 active:scale-[0.98] transition-all">
+                    <span className="text-2xl">🖼️</span>
+                    <span className="text-xs text-muted-foreground font-medium">Choose from gallery</span>
+                  </button>
+                </div>
               ) : (
+                /* Desktop: drag & drop */
                 <div
                   onClick={() => coverInputRef.current?.click()}
                   {...dragHandlers}
-                  className={`flex flex-col items-center justify-center gap-2 py-8 rounded-xl border-2 border-dashed cursor-pointer transition-colors active:scale-[0.98] ${
+                  className={`flex flex-col items-center justify-center gap-2 py-8 rounded-xl border-2 border-dashed cursor-pointer transition-colors active:scale-[0.99] ${
                     coverDragging ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
                   }`}>
                   <span className="text-3xl">📷</span>
-                  <span className="text-sm text-muted-foreground">Tap to add a photo</span>
+                  <span className="text-sm text-muted-foreground">Click to upload or drag & drop</span>
                   <span className="text-xs text-muted-foreground/60">JPG, PNG, or WebP · Max 5 MB</span>
                 </div>
               )}
+              <p className="text-xs text-muted-foreground mt-1.5">Optional — events with photos get 3× more views</p>
             </div>
 
             {/* Email */}
-            <div className="mb-6">
+            <div className="mb-2" id="field-email">
               <label className="block text-sm font-medium text-foreground mb-1.5">
-                Your Email <span className="text-red-500">*</span>
+                Your email <span className="text-red-400">*</span>
               </label>
               <input type="email" value={form.email} onChange={set("email")}
-                placeholder="you@example.com" className={inputClass(errors.email)} />
+                placeholder="e.g. organizer@example.com" className={inputClass(errors.email)} />
               {errors.email && <ErrMsg msg={errors.email} />}
-              <p className="text-xs text-muted-foreground mt-1">Not displayed publicly. Used for verification and confirmation.</p>
+              <p className="text-xs text-muted-foreground mt-1.5">We'll send a confirmation — not shared publicly</p>
             </div>
           </div>
 
-          {/* Manual expand for image+email */}
-          {!showImageEmail && (
-            <button type="button" onClick={() => setShowImageEmail(true)}
-              className="w-full py-3 mb-6 text-sm text-primary font-medium rounded-xl border border-dashed border-primary/30 hover:bg-primary/5 transition-colors">
-              + Add image & your email
-            </button>
-          )}
-
-          {/* Turnstile + errors */}
+          {/* Turnstile */}
           {submitError && step === "form" && (
             <div className="rounded-xl bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm mb-4">{submitError}</div>
           )}
@@ -898,7 +1042,7 @@ export default function SubmitEventPage() {
             <TurnstileWidget onVerify={t => setTurnstileToken(t)} onExpire={() => setTurnstileToken(null)} className="mb-2" />
           </div>
 
-          {/* Submit button — sticky on mobile */}
+          {/* Desktop submit */}
           <div className="hidden md:block">
             <button type="submit" disabled={step === "synthesizing" || !turnstileToken}
               className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-bold text-base hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
@@ -908,12 +1052,11 @@ export default function SubmitEventPage() {
         </form>
       </main>
 
-      {/* Sticky mobile submit bar */}
+      {/* Sticky mobile submit */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border px-4 py-3 z-50">
         <button
           type="button"
-          onClick={(e) => {
-            // Trigger form submit
+          onClick={() => {
             const formEl = document.querySelector("form");
             if (formEl) formEl.requestSubmit();
           }}
@@ -925,6 +1068,12 @@ export default function SubmitEventPage() {
       </div>
 
       <SiteFooter />
+
+      {/* Inline animation styles */}
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+      `}</style>
     </div>
   );
 }
@@ -933,17 +1082,8 @@ export default function SubmitEventPage() {
 /* Helper components                                                  */
 /* ================================================================== */
 
-function SectionHeader({ emoji, label }: { emoji: string; label: string }) {
-  return (
-    <div className="flex items-center gap-2 mb-4 mt-2">
-      <span className="text-base">{emoji}</span>
-      <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">{label}</h2>
-    </div>
-  );
-}
-
 function ErrMsg({ msg }: { msg: string }) {
-  return <p className="text-xs text-red-500 mt-1">{msg}</p>;
+  return <p className="text-xs text-red-500 mt-1 flex items-center gap-1">⚠ {msg}</p>;
 }
 
 function Spinner({ label, className, size }: { label?: string; className?: string; size?: "sm" }) {
@@ -957,7 +1097,7 @@ function Spinner({ label, className, size }: { label?: string; className?: strin
 }
 
 function inputClass(error?: string): string {
-  return `w-full px-3.5 py-3 rounded-xl border text-sm text-foreground bg-background placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 transition-colors min-h-[44px] ${
+  return `w-full px-3.5 py-3 rounded-xl border text-sm text-foreground bg-background placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 transition-all duration-300 min-h-[44px] ${
     error
       ? "border-red-400 focus:ring-red-300 focus:border-red-400"
       : "border-border focus:ring-primary/40 focus:border-primary/40"
