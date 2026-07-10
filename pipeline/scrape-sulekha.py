@@ -245,8 +245,11 @@ def parse_event(item: dict, city: dict) -> dict | None:
     # Category — default to Entertainment for Sulekha events
     category = "Entertainment"
 
-    # Build slug
-    slug = slugify(f"{title}-{locality or city['display']}-{date_str}")
+    # Build slug — append time + short hash of source URL for uniqueness
+    # (multi-day events at same venue can share title+city+date)
+    slug_suffix = hashlib.md5((source_url or "").encode()).hexdigest()[:6]
+    time_part = (time_str or "").replace(":", "")[:4]  # e.g. "1900"
+    slug = slugify(f"{title}-{locality or city['display']}-{date_str}-{time_part}-{slug_suffix}")
 
     # Fingerprint
     fp = content_fingerprint(date_str, time_str or "", lat, lon, venue_name)
