@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -16,6 +16,15 @@ import {
   getFeaturedEvents,
   CITY_GROUPS,
 } from "@/lib/events";
+import {
+  parseSearchQuery,
+  matchesKeywords,
+  matchesFreeFilter,
+  getDateFilterRange,
+  getSmartChips,
+  type DateFilterKey,
+  type ParsedSearch,
+} from "@/lib/smartSearch";
 import { formatDistance } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
@@ -167,6 +176,47 @@ function EventCard({ event, distance }: { event: EventItem; distance?: number })
 }
 
 /* ------------------------------------------------------------------ */
+/* Date Quick-Filter Bar                                              */
+/* ------------------------------------------------------------------ */
+const DATE_FILTER_OPTIONS: { key: DateFilterKey; label: string }[] = [
+  { key: null,        label: "All Dates" },
+  { key: "today",     label: "Today" },
+  { key: "tomorrow",  label: "Tomorrow" },
+  { key: "weekend",   label: "This Weekend" },
+  { key: "week",      label: "This Week" },
+  { key: "month",     label: "This Month" },
+];
+
+function DateFilterBar({
+  selected,
+  onSelect,
+}: {
+  selected: DateFilterKey;
+  onSelect: (v: DateFilterKey) => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-1.5 mb-3">
+      {DATE_FILTER_OPTIONS.map((opt) => {
+        const isActive = selected === opt.key;
+        return (
+          <button
+            key={opt.key ?? "all"}
+            onClick={() => onSelect(opt.key)}
+            className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
+              isActive
+                ? "bg-primary text-white border-primary"
+                : "bg-background text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
+            }`}
+          >
+            {opt.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Tab Bar                                                            */
 /* ------------------------------------------------------------------ */
 function TabBar({
@@ -301,6 +351,34 @@ function FeaturedEventsSection() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Smart Search Chips                                                 */
+/* ------------------------------------------------------------------ */
+function SmartSearchChips({ chips, onClear }: { chips: string[]; onClear: () => void }) {
+  if (chips.length === 0) return null;
+  return (
+    <div className="flex flex-wrap items-center gap-1.5 mt-2">
+      <span className="text-[10px] text-muted-foreground/60 font-medium uppercase tracking-wider mr-0.5">
+        Smart search:
+      </span>
+      {chips.map((chip, i) => (
+        <span
+          key={i}
+          className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium"
+        >
+          {chip}
+        </span>
+      ))}
+      <button
+        onClick={onClear}
+        className="text-[10px] text-muted-foreground hover:text-foreground ml-1 underline"
+      >
+        clear
+      </button>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Events Page                                                        */
 /* ------------------------------------------------------------------ */
 export default function EventsPage() {
@@ -315,8 +393,20 @@ export default function EventsPage() {
   const searchQuery = searchParams.get("q") || "";
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  /* --- Date filter state --- */
+  const dateFilterParam = (searchParams.get("when") || null) as DateFilterKey;
+
+  /* --- Smart search parsed result --- */
+  const parsed = useMemo<ParsedSearch>(
+    () => parseSearchQuery(searchQuery),
+    [searchQuery]
+  );
+  const smartChips = useMemo(() => getSmartChips(parsed), [parsed]);
+
+  /* Effective date filter: URL param wins, then smart-search extracted date */
+  const effectiveDateFilter = dateFilterParam ?? parsed.dateFilter;
+
   /* --- Geolocation / zip code state --- */
-  // Restore coords from sessionStorage so back-navigation doesn't re-prompt
   const [nearMeActive, setNearMeActive] = useState(() => {
     try { return !!sessionStorage.getItem("videshi_events_coords"); } catch { return false; }
   });
@@ -345,13 +435,11 @@ export default function EventsPage() {
   }, [userCoords, locationLabel]);
 
   /* --- Sync filters with URL --- */
-  // Default to Bay Area when no city param is present
   const rawCity = searchParams.get("city");
   const cityFilter = nearMeActive ? null : (rawCity ?? DEFAULT_CITY);
   const tabFilter = searchParams.get("tab") || null;
 
   const setCityFilter = useCallback((city: string | null) => {
-    // Selecting a city deactivates Near Me
     setNearMeActive(false);
     setUserCoords(null);
     setLocationLabel("");
@@ -360,7 +448,7 @@ export default function EventsPage() {
       if (city && city !== DEFAULT_CITY) {
         next.set("city", city);
       } else {
-        next.delete("city"); // Bay Area is default, keep URL clean
+        next.delete("city");
       }
       next.delete("nearme");
       return next;
@@ -370,7 +458,6 @@ export default function EventsPage() {
   /* --- Location handler (from ZipCodeSearch) --- */
   const handleLocation = useCallback((result: LocationResult | null) => {
     if (!result) {
-      // Cleared — go back to default
       setNearMeActive(false);
       setUserCoords(null);
       setLocationLabel("");
@@ -392,6 +479,14 @@ export default function EventsPage() {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (tab) next.set("tab", tab); else next.delete("tab");
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const setDateFilter = useCallback((when: DateFilterKey) => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      if (when) next.set("when", when); else next.delete("when");
       return next;
     }, { replace: true });
   }, [setSearchParams]);
@@ -424,9 +519,7 @@ export default function EventsPage() {
 
   /* --- Auto-request geolocation on page load --- */
   useEffect(() => {
-    // If user navigated here with an explicit city param, respect it
     if (rawCity) return;
-    // Otherwise, auto-request location
     if (!nearMeActive && !userCoords && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -442,7 +535,6 @@ export default function EventsPage() {
           }, { replace: true });
         },
         () => {
-          // Denied or error → fall back to Vercel IP geo
           if (ipLocation) {
             const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
             setUserCoords(coords);
@@ -464,17 +556,78 @@ export default function EventsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ipLocation]);
 
+  /* --- Client-side smart filter for events already loaded --- */
+  const applySmartFilters = useCallback(
+    (data: EventItem[]): EventItem[] => {
+      let filtered = data;
+
+      // Date filter (from URL param or smart search)
+      const dateRange = getDateFilterRange(effectiveDateFilter);
+      if (dateRange) {
+        filtered = filtered.filter(
+          (e) => e.date >= dateRange.from && e.date <= dateRange.to
+        );
+      }
+
+      // Smart search: city hints
+      if (parsed.cityHints.length > 0) {
+        const cities = new Set(parsed.cityHints.map((c) => c.toLowerCase()));
+        filtered = filtered.filter((e) => e.city && cities.has(e.city.toLowerCase()));
+      }
+
+      // Smart search: state hints
+      if (parsed.stateHints.length > 0) {
+        const states = new Set(parsed.stateHints.map((s) => s.toUpperCase()));
+        filtered = filtered.filter((e) => e.state && states.has(e.state.toUpperCase()));
+      }
+
+      // Smart search: category hints (additive to tab filter)
+      if (parsed.categoryHints.length > 0) {
+        const cats = new Set(parsed.categoryHints);
+        filtered = filtered.filter((e) => e.category && cats.has(e.category));
+      }
+
+      // Smart search: price filter
+      if (parsed.priceFilter === "free") {
+        filtered = filtered.filter((e) => matchesFreeFilter(e.price_range));
+      }
+
+      // Smart search: remaining keywords
+      if (parsed.keywords.length > 0) {
+        filtered = filtered.filter((e) => matchesKeywords(e, parsed.keywords));
+      }
+
+      return filtered;
+    },
+    [effectiveDateFilter, parsed]
+  );
+
   /* --- Fetch events --- */
   useEffect(() => {
     setLoading(true);
     setHasMore(true);
 
     if (nearMeActive && userCoords) {
-      // Near Me mode: fetch ALL events, sort by distance client-side
-      getAllUpcomingEvents(categoryFilters, searchQuery || undefined).then((data) => {
-        const sorted = sortEventsByDistance(data, userCoords.lat, userCoords.lng);
+      // Near Me mode: fetch ALL events, sort by distance, then apply smart filters client-side
+      getAllUpcomingEvents(categoryFilters, undefined).then((data) => {
+        const smartFiltered = applySmartFilters(data);
+        const sorted = sortEventsByDistance(smartFiltered, userCoords.lat, userCoords.lng);
         setEvents(sorted);
-        setHasMore(false); // All loaded, no pagination needed
+        setHasMore(false);
+        setLoading(false);
+      });
+    } else if (
+      // If smart search has city/state hints, we need to fetch all and filter client-side
+      parsed.cityHints.length > 0 ||
+      parsed.stateHints.length > 0 ||
+      parsed.priceFilter ||
+      parsed.keywords.length > 0 ||
+      effectiveDateFilter
+    ) {
+      getAllUpcomingEvents(categoryFilters, undefined).then((data) => {
+        const smartFiltered = applySmartFilters(data);
+        setEvents(smartFiltered);
+        setHasMore(false);
         setLoading(false);
       });
     } else {
@@ -486,7 +639,7 @@ export default function EventsPage() {
         setLoading(false);
       });
     }
-  }, [cityFilter, tabFilter, nearMeActive, userCoords, searchQuery]);
+  }, [cityFilter, tabFilter, nearMeActive, userCoords, searchQuery, effectiveDateFilter, applySmartFilters, categoryFilters, parsed]);
 
   const loadMore = async () => {
     if (loadingMore || !hasMore || nearMeActive) return;
@@ -503,6 +656,13 @@ export default function EventsPage() {
   if (nearMeActive) summaryParts.push("near you");
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
   if (tabFilter) summaryParts.push(`· ${tabFilter}`);
+  if (effectiveDateFilter) {
+    const labels: Record<string, string> = {
+      today: "today", tomorrow: "tomorrow", weekend: "this weekend",
+      week: "this week", month: "this month",
+    };
+    summaryParts.push(`· ${labels[effectiveDateFilter] || effectiveDateFilter}`);
+  }
   const summaryText = summaryParts.length > 0 ? " " + summaryParts.join(" ") : "";
 
   return (
@@ -538,7 +698,7 @@ export default function EventsPage() {
         <FeaturedEventsSection />
 
         {/* Search + Location controls — one row on desktop, stacked on mobile */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
           {/* Search bar */}
           <div className="relative flex-1 max-w-md">
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -550,7 +710,7 @@ export default function EventsPage() {
               type="text"
               value={searchInput}
               onChange={(e) => handleSearchChange(e.target.value)}
-              placeholder="Search events, artists, venues..."
+              placeholder={'Search "free garba near dallas this weekend"...'}
               className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-colors"
             />
             {searchInput && (
@@ -564,6 +724,8 @@ export default function EventsPage() {
                 </svg>
               </button>
             )}
+            {/* Smart search chips */}
+            <SmartSearchChips chips={smartChips} onClear={clearSearch} />
           </div>
 
           {/* Location: Zip / Near Me + City dropdown */}
@@ -602,11 +764,17 @@ export default function EventsPage() {
           {/* Submit Event link */}
           <Link
             to="/events/submit"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
           >
-            📝 Submit Your Event
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            Post Your Event
           </Link>
         </div>
+
+        {/* Date quick-filter pills */}
+        <DateFilterBar selected={dateFilterParam} onSelect={setDateFilter} />
 
         {/* Tab bar — all categories visible, wrapping on mobile */}
         <div className="border-b border-border mb-4">

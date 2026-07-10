@@ -77,12 +77,20 @@ export default function EventsStrip({ events, userLat, userLng, userCity }: Prop
           >
             {headerLabel}
           </h2>
-          <Link
-            to="/events"
-            className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
-          >
-            See all →
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/events/submit"
+              className="text-[12px] font-semibold text-primary hover:text-primary/80 transition-colors whitespace-nowrap"
+            >
+              + Post event
+            </Link>
+            <Link
+              to="/events"
+              className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
+            >
+              See all →
+            </Link>
+          </div>
         </div>
 
         {/* Scroll strip */}

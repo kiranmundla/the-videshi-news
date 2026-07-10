@@ -31,6 +31,11 @@ const NAV_SECTIONS = [
   { slug: "stories", label: "Voices", path: "/stories" },
 ];
 
+/* CTA links in Row 2 (right-aligned) */
+const NAV_CTAS = [
+  { label: "+ Post Event", path: "/events/submit" },
+];
+
 /* Row 3 — live happenings (conditional, only renders when non-empty) */
 const LIVE_HAPPENINGS = [
   { slug: "world-cup", label: "FIFA World Cup", path: "/world-cup", icon: "⚽" },
@@ -128,6 +133,18 @@ function CategoryNavBar() {
                 </Link>
               );
             })}
+            {/* CTA links */}
+            <div className="ml-auto flex items-center gap-0 shrink-0">
+              {NAV_CTAS.map((cta) => (
+                <Link
+                  key={cta.path}
+                  to={cta.path}
+                  className="shrink-0 px-3 py-1.5 text-[0.6rem] tracking-[0.08em] font-semibold text-primary hover:text-primary/80 transition-colors whitespace-nowrap"
+                >
+                  {cta.label}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* Row 3 — live happenings (conditional, dark accent strip — full bleed on mobile) */}
