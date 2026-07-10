@@ -295,6 +295,13 @@ export default function Masthead() {
           </div>
         )}
 
+        {/* Mobile search bar */}
+        {searchOpen && (
+          <div className="md:hidden pb-3 px-1">
+            <SearchBar onClose={() => setSearchOpen(false)} />
+          </div>
+        )}
+
         <div className="md:hidden pb-3">
           <p className="smallcaps text-muted-foreground">{today}</p>
         </div>
