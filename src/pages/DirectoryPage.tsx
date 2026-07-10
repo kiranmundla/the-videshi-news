@@ -92,7 +92,7 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
   return (
     <Link to={`/directory/${listing.slug}`} className="block no-underline">
       <article className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
-        {/* Image — fixed height, cover crop */}
+        {/* Image — fixed height, cover crop, hide on error */}
         {imageUrl && (
           <div className="w-full h-36 overflow-hidden">
             <img
@@ -100,6 +100,10 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
               alt={listing.name}
               className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              onError={(e) => {
+                const container = (e.target as HTMLElement).parentElement;
+                if (container) container.style.display = "none";
+              }}
             />
           </div>
         )}
