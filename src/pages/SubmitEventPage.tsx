@@ -720,85 +720,193 @@ export default function SubmitEventPage() {
     const catEmoji = CAT_EMOJI[form.category || "Other"] || "📌";
     const desc = synthesized?.long_description || form.description;
     const heroImg = coverImage?.url || importedImageUrl;
+    const fallbackImg = `/images/events/${(form.category || "other").toLowerCase()}.jpg`;
+    const displayImg = heroImg || fallbackImg;
 
     return (
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-screen flex flex-col bg-[#0a0a0a]">
         <Helmet><title>Preview — The Videshi</title><meta name="robots" content="noindex" /></Helmet>
         <Masthead /><CategoryPills />
 
-        <main className="container flex-1 pt-6 pb-20 max-w-2xl mx-auto px-4">
-          <p className="text-sm text-primary font-medium mb-4 flex items-center gap-2">
-            <span className="inline-flex w-5 h-5 rounded-full bg-primary/10 items-center justify-center text-xs">✓</span>
-            Here's how your event will look
-          </p>
+        <main className="flex-1">
+          {/* Sticky banner */}
+          <div className="sticky top-0 z-30 bg-emerald-600/95 backdrop-blur-sm px-4 py-2.5 text-center text-white text-sm font-medium">
+            ✓ Preview — this is how your event will appear
+          </div>
 
-          {/* Event preview card */}
-          <div className="rounded-2xl overflow-hidden bg-[#0a0a0a] text-white mb-6">
-            {heroImg ? (
-              <div className="w-full max-h-[40vh] overflow-hidden">
-                <img src={heroImg} alt={form.title} className="w-full h-full object-contain bg-black" style={{ maxHeight: "40vh" }} />
+          {/* ========== HERO (matches EventDetailPage) ========== */}
+          <div className="relative w-full">
+            <div className="relative w-full max-h-[60vh] overflow-hidden">
+              <img
+                src={displayImg}
+                alt={form.title}
+                className="w-full h-full object-contain bg-black"
+                style={{ maxHeight: "60vh" }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+            </div>
+          </div>
+
+          {/* ========== TITLE CARD (matches EventDetailPage) ========== */}
+          <div className="px-4 -mt-6 relative z-10">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                {form.category && (
+                  <span className="text-sm font-medium text-white/40 uppercase tracking-widest">
+                    {catEmoji} {form.category}
+                  </span>
+                )}
+                <span className="text-sm text-white/30">•</span>
+                <span className="text-sm text-white/60">{dateStr}</span>
+                {form.time && (
+                  <>
+                    <span className="text-sm text-white/30">•</span>
+                    <span className="text-sm text-white/60">{form.time}</span>
+                  </>
+                )}
               </div>
-            ) : (
-              <div className="w-full h-32 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                <span className="text-7xl opacity-15 select-none">{catEmoji}</span>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-[1.1] mb-4">
+                {form.title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-2 text-white/50 text-base mb-5">
+                {form.venue_name && <span className="text-white/70 font-medium">{form.venue_name}</span>}
+                {form.venue_name && form.city && <span>·</span>}
+                <span>{[form.city, form.state].filter(Boolean).join(", ")}</span>
               </div>
-            )}
-            <div className="px-5 sm:px-7 pb-7 -mt-2 relative z-10">
-              <div className="flex flex-wrap items-center gap-2 mb-3 text-sm text-white/50">
-                {form.category && <span className="text-white/40 uppercase tracking-widest text-xs font-medium">{catEmoji} {form.category}</span>}
-                <span>·</span>
-                <span>{dateStr}</span>
-                {form.time && <><span>·</span><span>{form.time}</span></>}
-              </div>
-              <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold leading-tight mb-3">{form.title}</h2>
-              {form.venue_name && <p className="text-white/50 text-sm mb-1">{form.venue_name}</p>}
-              <p className="text-white/40 text-sm">{form.city}, {form.state}</p>
-              {desc && (
-                <>
-                  <div className="h-px bg-white/10 my-5" />
-                  <p className="text-white/70 text-sm leading-relaxed whitespace-pre-line">{desc}</p>
-                </>
+              {form.ticket_url && (
+                <span className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-bold text-base opacity-60 cursor-default">
+                  Get Tickets
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>
+                </span>
               )}
             </div>
           </div>
 
+          {/* ========== DIVIDER ========== */}
+          <div className="max-w-4xl mx-auto px-4 my-6">
+            <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          </div>
+
+          {/* ========== CONTENT (editable) ========== */}
+          <div className="px-4 pb-8">
+            <div className="max-w-4xl mx-auto space-y-8">
+
+              {/* About This Event — editable */}
+              <section>
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                    About This Event
+                  </h2>
+                  <span className="text-[11px] text-white/30 italic">click to edit</span>
+                </div>
+                <textarea
+                  value={desc || ""}
+                  onChange={e => {
+                    setSynthesized(prev => ({
+                      long_description: e.target.value,
+                      artist_info: prev?.artist_info || null,
+                      venue_info: prev?.venue_info || null,
+                    }));
+                  }}
+                  rows={Math.max(6, (desc || "").split("\n").length + 2)}
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent placeholder:text-white/20"
+                  placeholder="Describe your event…"
+                />
+              </section>
+
+              {/* About the Artist — editable */}
+              {synthesized?.artist_info && (
+                <section>
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                      About the Artist
+                    </h2>
+                    <span className="text-[11px] text-white/30 italic">click to edit</span>
+                  </div>
+                  <textarea
+                    value={synthesized.artist_info}
+                    onChange={e => {
+                      setSynthesized(prev => ({
+                        long_description: prev?.long_description || null,
+                        artist_info: e.target.value,
+                        venue_info: prev?.venue_info || null,
+                      }));
+                    }}
+                    rows={Math.max(3, synthesized.artist_info.split("\n").length + 1)}
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent"
+                  />
+                </section>
+              )}
+
+              {/* Venue info — editable */}
+              {synthesized?.venue_info && (
+                <section>
+                  <div className="flex items-center justify-between mb-3">
+                    <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                      Venue
+                    </h2>
+                    <span className="text-[11px] text-white/30 italic">click to edit</span>
+                  </div>
+                  <textarea
+                    value={synthesized.venue_info}
+                    onChange={e => {
+                      setSynthesized(prev => ({
+                        long_description: prev?.long_description || null,
+                        artist_info: prev?.artist_info || null,
+                        venue_info: e.target.value,
+                      }));
+                    }}
+                    rows={Math.max(3, synthesized.venue_info.split("\n").length + 1)}
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent"
+                  />
+                </section>
+              )}
+            </div>
+          </div>
+
+          {/* ========== ACTION BAR ========== */}
+          <div className="px-4 pb-20">
+            <div className="max-w-2xl mx-auto">
+
           {/* Verification */}
           {(step === "verify-email" || step === "verify-code") && (
-            <div className="bg-muted/30 border border-border rounded-xl p-5 mb-5">
+            <div className="bg-white/[0.03] border border-white/10 rounded-xl p-5 mb-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-lg">✉️</span>
-                <h3 className="font-medium text-foreground">Quick email check</h3>
+                <h3 className="font-medium text-white">Quick email check</h3>
               </div>
               {step === "verify-email" && (
                 <>
-                  <p className="text-sm text-muted-foreground">Sending a code to <strong>{form.email.trim()}</strong>…</p>
+                  <p className="text-sm text-white/50">Sending a code to <strong className="text-white/70">{form.email.trim()}</strong>…</p>
                   {verifySending && <Spinner className="mt-3" label="Sending code…" />}
-                  {verifyError && <p className="text-sm text-red-600 mt-2">{verifyError}</p>}
+                  {verifyError && <p className="text-sm text-red-400 mt-2">{verifyError}</p>}
                 </>
               )}
               {step === "verify-code" && (
                 <form onSubmit={handleCheckVerifyCode} className="mt-3">
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Enter the 6-digit code we sent to <strong>{form.email.trim()}</strong>
+                  <p className="text-sm text-white/50 mb-3">
+                    Enter the 6-digit code we sent to <strong className="text-white/70">{form.email.trim()}</strong>
                   </p>
                   <input
                     type="text" inputMode="numeric" maxLength={6}
                     value={verifyCode}
                     onChange={e => { setVerifyCode(e.target.value.replace(/\D/g, "").slice(0, 6)); setVerifyError(null); }}
                     placeholder="000000"
-                    className="w-full max-w-[200px] px-4 py-3 rounded-xl border border-border bg-background text-center text-2xl tracking-[0.3em] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    className="w-full max-w-[200px] px-4 py-3 rounded-xl border border-white/20 bg-white/5 text-center text-2xl tracking-[0.3em] font-mono text-white focus:outline-none focus:ring-2 focus:ring-primary/40"
                     autoFocus
                   />
-                  {verifyError && <p className="text-sm text-red-600 mt-2">{verifyError}</p>}
+                  {verifyError && <p className="text-sm text-red-400 mt-2">{verifyError}</p>}
                   <button type="submit" disabled={verifyChecking || verifyCode.length !== 6}
-                    className="mt-4 w-full py-3.5 bg-primary text-primary-foreground font-medium rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50">
+                    className="mt-4 w-full py-3.5 bg-white text-black font-bold rounded-xl hover:bg-white/90 transition-colors disabled:opacity-50">
                     {verifyChecking ? <Spinner label="Verifying…" /> : "Verify & Publish"}
                   </button>
                   <div className="mt-3 flex gap-4 text-sm">
                     <button type="button" onClick={handleSendVerifyCode} disabled={verifySending} className="text-primary hover:underline disabled:opacity-50">
                       Resend code
                     </button>
-                    <button type="button" onClick={() => { setStep("preview"); setVerifyCode(""); setVerifyError(null); }} className="text-muted-foreground hover:text-foreground">
+                    <button type="button" onClick={() => { setStep("preview"); setVerifyCode(""); setVerifyError(null); }} className="text-white/50 hover:text-white">
                       ← Back
                     </button>
                   </div>
@@ -807,20 +915,22 @@ export default function SubmitEventPage() {
             </div>
           )}
 
-          {submitError && <div className="rounded-xl bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm mb-4">{submitError}</div>}
+          {submitError && <div className="rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 text-sm mb-4">{submitError}</div>}
 
           <div className="flex flex-col gap-3">
             <button onClick={() => { setStep("form"); setSubmitError(null); setVerifyError(null); setVerifyCode(""); }}
-              disabled={step === "publishing"} className="w-full py-3.5 border border-border rounded-xl font-medium hover:bg-muted/40 transition-colors disabled:opacity-50">
+              disabled={step === "publishing"} className="w-full py-3.5 border border-white/20 rounded-xl font-medium text-white hover:bg-white/5 transition-colors disabled:opacity-50">
               ✏️ Edit Details
             </button>
             {step === "preview" && (
               <button onClick={handlePublish} disabled={step === "publishing"}
-                className="w-full py-3.5 bg-primary text-primary-foreground rounded-xl font-bold text-base hover:bg-primary/90 transition-colors disabled:opacity-50">
+                className="w-full py-3.5 bg-white text-black rounded-xl font-bold text-base hover:bg-white/90 transition-colors disabled:opacity-50">
                 Looks good — Publish! 🚀
               </button>
             )}
             {step === "publishing" && <Spinner label="Publishing your event…" className="py-4" />}
+          </div>
+            </div>
           </div>
         </main>
         <SiteFooter />
