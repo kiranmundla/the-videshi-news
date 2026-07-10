@@ -31,10 +31,14 @@ export type DirectoryListing = {
   featured: boolean;
   slug: string;
   created_at: string;
+  languages: string[] | null;
+  community: string | null;
+  tags: string[] | null;
+  ai_description: string | null;
 };
 
 const LISTING_COLS =
-  "id,name,category,subcategory,description,phone,email,website,address,city,state,zip,latitude,longitude,image_url,photos,rating,review_count,google_place_id,affiliation,hours,source,verified,featured,slug,created_at";
+  "id,name,category,subcategory,description,phone,email,website,address,city,state,zip,latitude,longitude,image_url,photos,rating,review_count,google_place_id,affiliation,hours,source,verified,featured,slug,created_at,languages,community,tags,ai_description";
 
 export const DIRECTORY_CATEGORIES = [
   "Doctors & Healthcare",
