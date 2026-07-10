@@ -31,15 +31,26 @@ export function isValidImage(src?: string | null): boolean {
 
 export default function HeroImage({ src, alt, className = "", loading = "lazy", fetchPriority, style, width, height, onOrientationDetected }: Props) {
   const [failed, setFailed] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
 
   const handleLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    if (!onOrientationDetected) return;
     const img = e.currentTarget;
     const ratio = img.naturalWidth / img.naturalHeight;
-    onOrientationDetected(ratio > 1.2 ? "landscape" : "portrait");
+    const portrait = ratio < 0.87; // portrait if height notably exceeds width
+    setIsPortrait(portrait);
+    onOrientationDetected?.(ratio > 1.2 ? "landscape" : "portrait");
   }, [onOrientationDetected]);
 
   if (!isValidImage(src) || failed) return null;
+
+  // For portrait source images, bias toward the top so faces aren't cropped.
+  // Applies when consumer uses object-cover (detected via className or style).
+  const needsPositionFix = isPortrait && className.includes("object-cover");
+  const resolvedStyle: React.CSSProperties = {
+    ...style,
+    ...(needsPositionFix ? { objectPosition: "top center" } : {}),
+  };
+
   return (
     <img
       src={src as string}
@@ -51,7 +62,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
       onError={() => setFailed(true)}
       onLoad={handleLoad}
       className={className}
-      style={style}
+      style={resolvedStyle}
       width={width}
       height={height}
     />
