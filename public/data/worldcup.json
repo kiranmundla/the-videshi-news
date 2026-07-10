@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-10T03:58:47Z",
-  "stage": "Quarterfinals — 97 of 104 matches played",
+  "last_updated": "2026-07-10T05:59:24Z",
+  "stage": "Group Stage — 97 of 100 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -2539,7 +2539,9 @@
           "time": "16:00",
           "tz": "ET",
           "venue": "Gillette Stadium, Foxboro, MA",
-          "status": "scheduled"
+          "status": "FT",
+          "score": "0-2",
+          "winner": "France"
         },
         {
           "match_num": 98,
