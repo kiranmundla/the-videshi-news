@@ -1,67 +1,64 @@
 {
-  "timestamp": "2026-07-10T07:15:47.776583+00:00",
+  "timestamp": "2026-07-10T08:16:08.055148+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 0,
+    "pass": 6,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "dc66d675-610e-4abb-acae-3c5f1c026c23",
-      "headline": "What to Watch This Week: Netflix Drops a Triple Bomb, SonyLIV Brings the Grit, and Dhamaal Returns to Theatres",
-      "slug": "what-to-watch-this-week-july-10-2026",
+      "id": "10e0219a-da5f-4ac2-b9da-24f15325bfbf",
+      "headline": "Anti-Sikh Hate Crimes Surged 3,700 Per Cent in a Decade. Anti-Hindu Incidents Hit a Record. The Numbers Keep Getting Worse.",
+      "slug": "fbi-anti-sikh-hindu-hate-crimes-record-2025-diaspora-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "adf52b25-e46c-48fc-a2f5-a47135442cde",
-            "headline": "Sunny Deol Has Never Made a Netflix Film. Akshaye Khanna Has"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sunny Deol in Ikka poster",
-          "reason": "The photo shows Sunny Deol, relevant to the entertainment story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "A rally at a government building",
+          "reason": "The photo shows a rally unrelated to anti-Sikh or anti-Hindu hate crimes."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image is a film poster but does not directly relate to the specific films mentioned in the article."
+          "score": 5,
+          "issue": "The image does not match the article's focus on hate crimes against specific communities."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the diaspora audience by highlighting films available on streaming platforms that cater to Indian audiences abroad."
+          "quality": 7,
+          "note": "The article discusses hate crimes affecting Sikh and Hindu communities, which resonates with the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that reflects one of the films discussed in the article.",
-          "Add a brief summary or highlight of how these films resonate with the diaspora experience."
+          "Include more direct quotes or testimonials from affected community members to enhance emotional impact.",
+          "Add a section on how diaspora communities can support affected groups or combat hate crimes."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (A rally at a government building)",
+        "Revised by gemini-2.5-flash (941\u21921215 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "86f4edb8-227a-4a9b-8b3d-b30406c21d7a",
-      "headline": "Four Stars. One Husband. Zero Sense. Pati Patni Aur Woh Do Just Landed on Netflix.",
-      "slug": "pati-patni-aur-woh-do-netflix-premiere-ayushmann-khurrana-sara-ali-khan-streaming-july-10-20260710",
+      "id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+      "headline": "Ten Thousand Telugu Americans Are Heading to Charlotte Next Week. An Oscar Winner Will Be Waiting.",
+      "slug": "tta-mega-convention-charlotte-telugu-mm-keeravani-2026-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,51 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ayushmann Khurrana at a film event",
-          "reason": "The photo shows Ayushmann Khurrana, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the film discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film to the diaspora by referencing nostalgia and mixed-language viewing experiences."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features the cast of 'Pati Patni Aur Woh Do' to enhance relevance.",
-          "Consider adding more direct quotes from diaspora viewers or critics to strengthen the connection to the audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3381719b-3276-4010-8643-c56444f73e11",
-      "headline": "Mbappe's Eighth Goal Sends France Past Morocco and Into the World Cup Semifinals.",
-      "slug": "france-2-0-morocco-world-cup-quarterfinal-mbappe-8th-goal-dembele-semifinal-spain-belgium-nri-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Kylian Mbappe celebrating in France jersey",
-          "reason": "The photo shows Kylian Mbappe, relevant to the story about France's World Cup victory."
+          "what_photo_shows": "Charlotte Convention Center building",
+          "reason": "The photo shows the venue for the TTA Mega Convention mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -127,13 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup events to the Indian American community, highlighting their viewing experiences and cultural significance."
+          "note": "The article effectively connects with the Telugu American diaspora by discussing their cultural, educational, and social gatherings."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from players or coaches to enhance the narrative.",
-          "Include statistics or historical context about the significance of the match for both teams."
+          "Include quotes or testimonials from attendees or organizers to add a personal touch.",
+          "Provide more context on the significance of the Oscar-winning composer to the Telugu community."
         ],
         "verdict": "pass"
       },
@@ -145,57 +99,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "04499965-46de-4b9b-ac2a-1823473dada1",
-      "headline": "Dada Enters the Pantheon. Sourav Ganguly Inducted Into ICC Hall of Fame.",
-      "slug": "sourav-ganguly-icc-hall-of-fame-10th-indian-sachin-tribute-dada-biopic-rajkummar-rao-nri-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "9a88a2f7-7f88-4f49-a60c-70a8c1b86bf3",
-            "headline": "Rajkummar Rao Just Took His Shirt Off at Lord's. The Interne"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sourav Ganguly at a press conference",
-          "reason": "The photo shows Sourav Ganguly, relevant to the story about his ICC Hall of Fame induction."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Ganguly's legacy to the NRI experience, highlighting his impact on Indian cricket and its cultural significance."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from Ganguly or other players to enhance the narrative.",
-          "Include a brief section on the significance of the ICC Hall of Fame for context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a933ae8a-573a-44ab-bd97-25d66718b566",
-      "headline": "Five Losses in a Row. England Seal Their First-Ever T20 Series Win Over India.",
-      "slug": "england-first-ever-t20-series-win-india-bristol-brook-salt-iyer-80-fifth-loss-nri-2026",
+      "id": "32a419ad-9e35-499e-b5ae-c2d659cda447",
+      "headline": "The Green Card Hiring Test Has Not Changed Since 2004. The DOL Just Announced It Will",
+      "slug": "perm-labor-certification-overhaul-dol-green-card-hiring-rules-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -203,8 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cricketer holding a bat on field",
-          "reason": "The photo shows a cricketer, relevant to the cricket story."
+          "what_photo_shows": "U.S. Department of Labor building",
+          "reason": "The photo shows the U.S. Department of Labor, relevant to the story about labor certification changes."
         },
         "inline_image_mismatches": []
       },
@@ -213,18 +119,190 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Harry Brook, who is relevant to the article, but does not depict the match context or the Indian team."
+          "issue": "The image is relevant to the Department of Labor but does not directly relate to the specific topic of the Green Card Hiring Test."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects with NRI readers by discussing their reactions and sentiments regarding the Indian team's performance."
+          "quality": 8,
+          "note": "The article discusses changes to the PERM process, which directly impacts Indian professionals seeking green cards, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more images or highlights from the match to enhance visual engagement.",
-          "Add quotes or reactions from NRI fans to further enrich the diaspora perspective."
+          "Consider using an image that directly relates to the Green Card process or employment-based immigration to enhance relevance.",
+          "Add a brief section on how these changes might specifically affect Indian professionals or the NRI community to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "efa50c7f-b9b8-49d1-8fe3-e75286e2b9b9",
+      "headline": "Your Green Card Means Nothing at the Border Now. The Supreme Court Just Said So",
+      "slug": "green-card-blanch-lau-supreme-court-do-not-travel-pending-charges-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo is relevant to a Supreme Court ruling story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of the Supreme Court ruling on the Indian diaspora, particularly regarding travel and legal issues."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from more immigration experts to enhance credibility.",
+          "Include a section on potential legal recourse for affected green card holders."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "02770ee1-7241-4bfc-969d-f230d231157b",
+      "headline": "India Inc. Hedged a Record $120 Billion in June as the Rupee Swings Between War and Central Bank Muscle",
+      "slug": "india-record-120-billion-fx-hedging-rupee-war-rbi-nri-remittance-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian rupee currency note",
+          "reason": "The photo shows Indian rupee notes, relevant to the story on currency hedging."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of currency fluctuations and hedging for NRIs sending remittances, which is relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on how the hedging trends specifically affect NRI remittances to provide deeper insights for diaspora readers.",
+          "Include quotes or perspectives from NRI financial experts to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
+      "headline": "The India-US Trade Deal Is '99% Done' \u2014 So Why Can't They Close It?",
+      "slug": "india-us-trade-deal-99-percent-done-tariff-edge-goyal-nri-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a blue suit smiling",
+          "reason": "The photo plausibly shows Commerce Minister Piyush Goyal, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of Piyush Goyal is relevant but does not directly illustrate the trade deal context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the trade deal to the economic interests of the Indian diaspora, particularly in IT and business."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding a more relevant image that visually represents the trade deal or the India-US economic relationship.",
+          "Include quotes or perspectives from diaspora members to enhance the connection to the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+      "headline": "India's Silver Import Crackdown Sends Premiums to Six-Month High \u2014 What NRI Bullion Buyers Need to Know",
+      "slug": "india-silver-import-crackdown-premiums-six-month-high-nri-bullion-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "silver bullion bar",
+          "reason": "The photo shows silver bullion, relevant to the story on silver import restrictions."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article provides relevant information for NRI investors regarding silver purchases in India, making it applicable to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from NRI investors or experts to enhance the diaspora perspective.",
+          "Include a brief section on potential future trends in silver prices or import policies to provide additional context for readers."
         ],
         "verdict": "pass"
       },
