@@ -116,6 +116,7 @@ type SynthesizedContent = { long_description: string | null; artist_info: string
 
 export default function SubmitEventPage() {
   /* ---- State ---- */
+  const [mode, setMode] = useState<"post" | "manage">("post");
   const [form, setForm] = useState<FormData>(() => {
     try {
       const saved = sessionStorage.getItem(STORAGE_KEY);
@@ -167,6 +168,17 @@ export default function SubmitEventPage() {
   /* Geolocation status */
   const [geoAttempted, setGeoAttempted] = useState(false);
 
+  /* Manage mode */
+  const [manageEmail, setManageEmail] = useState("");
+  const [manageStep, setManageStep] = useState<"email" | "otp" | "list">("email");
+  const [manageOtp, setManageOtp] = useState("");
+  const [manageSending, setManageSending] = useState(false);
+  const [manageVerifying, setManageVerifying] = useState(false);
+  const [manageError, setManageError] = useState<string | null>(null);
+  const [myEvents, setMyEvents] = useState<any[]>([]);
+  const [loadingEvents, setLoadingEvents] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
   /* ---- Auto-save to sessionStorage ---- */
   useEffect(() => {
     try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(form)); } catch { /* ignore */ }
@@ -199,6 +211,108 @@ export default function SubmitEventPage() {
     const detected = detectCategory(form.title);
     if (detected) setForm(f => ({ ...f, category: detected }));
   }, [form.title, form.category]);
+
+  /* ---- Read URL mode param ---- */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("mode") === "manage") setMode("manage");
+  }, []);
+
+  /* ---- Manage: Send OTP ---- */
+  const handleManageSendOtp = async () => {
+    const email = manageEmail.trim().toLowerCase();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setManageError("Please enter a valid email");
+      return;
+    }
+    setManageSending(true);
+    setManageError(null);
+    try {
+      const { error } = await supabase.functions.invoke("send-email-verify", { body: { email } });
+      if (error) throw error;
+      setManageStep("otp");
+    } catch (err: any) {
+      setManageError(err.message || "Failed to send code");
+    } finally {
+      setManageSending(false);
+    }
+  };
+
+  /* ---- Manage: Verify OTP & load events ---- */
+  const handleManageVerifyOtp = async () => {
+    const code = manageOtp.trim();
+    if (code.length !== 6) return;
+    setManageVerifying(true);
+    setManageError(null);
+    try {
+      const { data, error } = await supabase.functions.invoke("verify-email-code", {
+        body: { email: manageEmail.trim().toLowerCase(), code },
+      });
+      if (error) throw error;
+      if (data && !data.verified) throw new Error(data.error || "Invalid code");
+      setManageStep("list");
+      await loadMyEvents();
+    } catch (err: any) {
+      setManageError(err.message || "Invalid code");
+    } finally {
+      setManageVerifying(false);
+    }
+  };
+
+  /* ---- Manage: Load events for this email ---- */
+  const loadMyEvents = async () => {
+    setLoadingEvents(true);
+    try {
+      const sbRaw = supabase as unknown as { from: (t: string) => any };
+      const { data, error } = await sbRaw
+        .from("events")
+        .select("id, title, date, end_date, time, city, state, category, image_url, slug, venue_name")
+        .eq("organizer", manageEmail.trim().toLowerCase())
+        .order("date", { ascending: false });
+      if (error) throw error;
+      setMyEvents(data || []);
+    } catch {
+      setManageError("Failed to load events");
+    } finally {
+      setLoadingEvents(false);
+    }
+  };
+
+  /* ---- Manage: Delete event ---- */
+  const handleDeleteEvent = async (id: string, title: string) => {
+    if (!confirm(`Delete "${title}"? This can't be undone.`)) return;
+    setDeletingId(id);
+    try {
+      const sbRaw = supabase as unknown as { from: (t: string) => any };
+      const { error } = await sbRaw.from("events").delete().eq("id", id);
+      if (error) throw error;
+      setMyEvents(prev => prev.filter(e => e.id !== id));
+    } catch (err: any) {
+      setManageError(`Failed to delete: ${err.message}`);
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  /* ---- Manage: Edit event (pre-fill form and switch to post mode) ---- */
+  const handleEditEvent = (event: any) => {
+    setForm({
+      title: event.title || "",
+      date: event.date || "",
+      end_date: event.end_date || "",
+      time: event.time || "",
+      city: event.city || "",
+      state: event.state || "",
+      venue_name: event.venue_name || "",
+      category: event.category || "",
+      ticket_url: "",
+      description: "",
+      email: manageEmail.trim(),
+    });
+    setMode("post");
+    setStep("form");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   /* ---- Field updater ---- */
   const updateField = useCallback((field: keyof FormData, value: string) => {
@@ -488,9 +602,9 @@ export default function SubmitEventPage() {
     : [...US_STATES];
 
   /* ---- Progress ---- */
-  const filledBasics = !!(form.title && form.date && form.city && form.state);
+  const filledBasics = !!(form.title && form.date && form.city && form.state && form.email);
   const filledDetails = filledBasics && !!form.category;
-  const filledAll = filledDetails && !!form.email;
+  const filledAll = filledDetails;
   const currentStep = filledAll ? 3 : filledDetails ? 2 : filledBasics ? 2 : 1;
 
   /* Detect mobile */
@@ -512,7 +626,7 @@ export default function SubmitEventPage() {
           <div className="text-center mb-8">
             <p className="text-6xl mb-4">🎉</p>
             <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-2">Your Event Is Live!</h2>
-            <p className="text-muted-foreground text-sm">A confirmation has been sent to your email.</p>
+            <p className="text-muted-foreground text-sm">Confirmation sent to <strong>{form.email}</strong>. You'll need this email to edit or delete your event.</p>
           </div>
 
           {/* Event preview card */}
@@ -733,6 +847,178 @@ export default function SubmitEventPage() {
         {/* Back link */}
         <Link to="/events" className="text-sm text-primary hover:underline mb-4 inline-block">← Events</Link>
 
+        {/* Mode toggle: Post / Manage */}
+        <div className="flex bg-muted/40 rounded-xl p-1 mb-6">
+          <button
+            type="button"
+            onClick={() => setMode("post")}
+            className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              mode === "post" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Post Event
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode("manage")}
+            className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              mode === "manage" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Manage My Events
+          </button>
+        </div>
+
+        {/* ============ MANAGE MODE ============ */}
+        {mode === "manage" && (
+          <div className="max-w-lg mx-auto">
+            {manageStep === "email" && (
+              <div className="rounded-2xl bg-gradient-to-b from-primary/[0.04] to-transparent border border-primary/10 p-6 md:p-8">
+                <div className="text-center mb-5">
+                  <p className="text-3xl mb-2">📋</p>
+                  <h2 className="font-serif text-xl md:text-2xl text-foreground mb-1.5">Manage Your Events</h2>
+                  <p className="text-muted-foreground text-sm">Enter the email you used when posting to find your events.</p>
+                </div>
+                <div className="space-y-3">
+                  <input
+                    type="email"
+                    value={manageEmail}
+                    onChange={e => { setManageEmail(e.target.value); setManageError(null); }}
+                    placeholder="e.g. organizer@example.com"
+                    className="w-full px-4 py-3.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); handleManageSendOtp(); } }}
+                    autoFocus
+                  />
+                  {manageError && <p className="text-sm text-red-600">{manageError}</p>}
+                  <button
+                    onClick={handleManageSendOtp}
+                    disabled={manageSending || !manageEmail.trim()}
+                    className="w-full py-3.5 bg-primary text-primary-foreground font-medium rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  >
+                    {manageSending ? <Spinner label="Sending code…" /> : "Send Verification Code"}
+                  </button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-3 text-center">🔒 We'll send a code to verify it's you</p>
+              </div>
+            )}
+
+            {manageStep === "otp" && (
+              <div className="rounded-2xl bg-card border border-border p-6 md:p-8">
+                <div className="text-center mb-5">
+                  <h3 className="font-medium text-foreground mb-1">Enter verification code</h3>
+                  <p className="text-sm text-muted-foreground">
+                    We sent a 6-digit code to <strong>{manageEmail.trim()}</strong>
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={6}
+                    value={manageOtp}
+                    onChange={e => { setManageOtp(e.target.value.replace(/\D/g, "")); setManageError(null); }}
+                    placeholder="000000"
+                    className="w-full px-4 py-3.5 rounded-xl border border-border bg-background text-center text-lg font-mono tracking-[0.5em] text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    autoFocus
+                    onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); handleManageVerifyOtp(); } }}
+                  />
+                  {manageError && <p className="text-sm text-red-600 text-center">{manageError}</p>}
+                  <button
+                    onClick={handleManageVerifyOtp}
+                    disabled={manageVerifying || manageOtp.length !== 6}
+                    className="w-full py-3.5 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  >
+                    {manageVerifying ? <Spinner label="Verifying…" /> : "Verify & View My Events"}
+                  </button>
+                  <div className="flex justify-center gap-4 text-sm pt-1">
+                    <button type="button" onClick={handleManageSendOtp} disabled={manageSending} className="text-primary hover:underline disabled:opacity-50">
+                      Resend code
+                    </button>
+                    <button type="button" onClick={() => { setManageStep("email"); setManageOtp(""); setManageError(null); }} className="text-muted-foreground hover:text-foreground">
+                      ← Back
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {manageStep === "list" && (
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="font-serif text-xl text-foreground mb-0.5">Your Events</h2>
+                    <p className="text-sm text-muted-foreground">{myEvents.length} event{myEvents.length !== 1 ? "s" : ""} found for {manageEmail.trim()}</p>
+                  </div>
+                  <button onClick={() => { setMode("post"); setForm(f => ({ ...f, email: manageEmail.trim() })); }}
+                    className="px-3 py-1.5 text-sm font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors">
+                    + Post New
+                  </button>
+                </div>
+
+                {loadingEvents && (
+                  <div className="flex items-center justify-center py-12">
+                    <Spinner label="Loading your events…" />
+                  </div>
+                )}
+
+                {!loadingEvents && myEvents.length === 0 && (
+                  <div className="text-center py-12 bg-muted/20 rounded-2xl">
+                    <p className="text-3xl mb-2">📭</p>
+                    <p className="text-muted-foreground mb-4">No events found for this email.</p>
+                    <button onClick={() => { setMode("post"); setForm(f => ({ ...f, email: manageEmail.trim() })); }}
+                      className="text-primary font-medium hover:underline">
+                      Post your first event →
+                    </button>
+                  </div>
+                )}
+
+                {!loadingEvents && myEvents.map(event => {
+                  const catEmoji = CAT_EMOJI[event.category || "Other"] || "📌";
+                  const isPast = new Date(event.date) < new Date();
+                  return (
+                    <div key={event.id} className={`rounded-xl border border-border bg-card mb-3 overflow-hidden ${isPast ? "opacity-60" : ""}`}>
+                      <div className="flex items-start gap-3 p-4">
+                        {event.image_url ? (
+                          <img src={event.image_url} alt="" className="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+                        ) : (
+                          <div className="w-16 h-16 rounded-lg bg-muted/40 flex items-center justify-center flex-shrink-0">
+                            <span className="text-2xl">{catEmoji}</span>
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-foreground text-sm leading-snug line-clamp-2">{event.title}</h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {event.date} · {event.city}, {event.state}
+                            {isPast && <span className="ml-2 text-xs bg-muted/60 px-1.5 py-0.5 rounded">Past</span>}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex border-t border-border divide-x divide-border">
+                        <button
+                          onClick={() => handleEditEvent(event)}
+                          className="flex-1 py-2.5 text-sm font-medium text-primary hover:bg-primary/5 transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          ✏️ Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteEvent(event.id, event.title)}
+                          disabled={deletingId === event.id}
+                          className="flex-1 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
+                        >
+                          {deletingId === event.id ? <Spinner label="Deleting…" size="sm" /> : "🗑️ Delete"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ============ POST MODE ============ */}
+        {mode === "post" && (<>
+
         {/* ============ HERO: Import Section ============ */}
         <div className="rounded-2xl bg-gradient-to-b from-primary/[0.04] to-transparent border border-primary/10 p-6 md:p-8 mb-8">
           <div className="text-center mb-5">
@@ -905,10 +1191,21 @@ export default function SubmitEventPage() {
             </div>
 
             {/* Venue */}
-            <div className="mb-2">
+            <div className="mb-5">
               <label className="block text-sm font-medium text-foreground mb-1.5">Venue name</label>
               <input type="text" value={form.venue_name} onChange={set("venue_name")}
                 placeholder="e.g. Hindu Temple of Silicon Valley" className={`${inputClass()} ${hlClass("venue_name")}`} />
+            </div>
+
+            {/* Email — in Step 1 because it's the ownership key */}
+            <div className="mb-2" id="field-email">
+              <label className="block text-sm font-medium text-foreground mb-1.5">
+                Your email <span className="text-red-400">*</span>
+              </label>
+              <input type="email" value={form.email} onChange={set("email")}
+                placeholder="e.g. organizer@example.com" className={`${inputClass(errors.email)} ${hlClass("email")}`} />
+              {errors.email && <ErrMsg msg={errors.email} />}
+              <p className="text-xs text-muted-foreground mt-1.5">🔒 You'll need this to edit or delete your event later — never shared publicly</p>
             </div>
           </div>
 
@@ -1021,16 +1318,7 @@ export default function SubmitEventPage() {
               <p className="text-xs text-muted-foreground mt-1.5">Optional — events with photos get 3× more views</p>
             </div>
 
-            {/* Email */}
-            <div className="mb-2" id="field-email">
-              <label className="block text-sm font-medium text-foreground mb-1.5">
-                Your email <span className="text-red-400">*</span>
-              </label>
-              <input type="email" value={form.email} onChange={set("email")}
-                placeholder="e.g. organizer@example.com" className={inputClass(errors.email)} />
-              {errors.email && <ErrMsg msg={errors.email} />}
-              <p className="text-xs text-muted-foreground mt-1.5">We'll send a confirmation — not shared publicly</p>
-            </div>
+{/* Email moved to Step 1 */}
           </div>
 
           {/* Turnstile */}
@@ -1050,9 +1338,12 @@ export default function SubmitEventPage() {
             </button>
           </div>
         </form>
+
+        </>)}
       </main>
 
-      {/* Sticky mobile submit */}
+      {/* Sticky mobile submit — only in post mode */}
+      {mode === "post" && (
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border px-4 py-3 z-50">
         <button
           type="button"
@@ -1066,6 +1357,7 @@ export default function SubmitEventPage() {
           {step === "synthesizing" ? <Spinner label="Preparing preview…" /> : "Post Your Event →"}
         </button>
       </div>
+      )}
 
       <SiteFooter />
 

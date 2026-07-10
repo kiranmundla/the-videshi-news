@@ -807,15 +807,23 @@ export default function EventsPage() {
           </div>
 
           {/* Submit Event link */}
-          <Link
-            to="/events/submit"
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-            Post Your Event
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              to="/events/submit"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              Post Your Event
+            </Link>
+            <Link
+              to="/events/submit?mode=manage"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+            >
+              Manage my events
+            </Link>
+          </div>
         </div>
 
         {/* Date quick-filter pills */}
