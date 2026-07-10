@@ -442,7 +442,10 @@ export default function EventDetailPage() {
   const dateStr = formatEventDateLong(event.date, event.end_date);
   const past = isPastEvent(event.date);
   const catEmoji = CAT_EMOJI[event.category || "Other"] || "📌";
-  const description = event.long_description || event.description;
+  const rawDescription = event.long_description || event.description;
+  const description = rawDescription
+    ? rawDescription.replace(/\s*(Read below:?|Read more:?)\s*$/i, "").trim() || rawDescription
+    : rawDescription;
   const metaDescription = event.description
     ? `${event.description.slice(0, 155)}…`
     : `${event.title} on ${dateStr} at ${event.venue_name}, ${event.city}`;
@@ -547,7 +550,7 @@ export default function EventDetailPage() {
             </h1>
 
             {/* Venue + City */}
-            <div className="flex flex-wrap items-center gap-2 text-white/50 text-base mb-8">
+            <div className="flex flex-wrap items-center gap-2 text-white/50 text-base mb-5">
               {event.venue_name && <span className="text-white/70 font-medium">{event.venue_name}</span>}
               {event.venue_name && event.city && <span>·</span>}
               <span>{[event.city, event.state].filter(Boolean).join(", ")}</span>
@@ -590,7 +593,7 @@ export default function EventDetailPage() {
         </div>
 
         {/* ========== DIVIDER ========== */}
-        <div className="max-w-4xl mx-auto px-4 my-12">
+        <div className="max-w-4xl mx-auto px-4 my-6">
           <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 
@@ -599,7 +602,7 @@ export default function EventDetailPage() {
           <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
 
             {/* LEFT: Main content */}
-            <div className="space-y-10">
+            <div className="space-y-8">
 
               {/* About This Event */}
               {description && (

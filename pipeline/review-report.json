@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-10T16:45:22.186637+00:00",
+  "timestamp": "2026-07-10T17:15:49.750547+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,6 +10,135 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "826a393e-46f2-4bb0-a1bb-ced452ad3970",
+      "headline": "The NRI's Guide to Monsoon India \u2014 Where to Go, What to Skip, and Why July Is the Smartest Month to Visit",
+      "slug": "nri-monsoon-india-travel-guide-july-2026-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kerala backwaters during monsoon",
+          "reason": "The photo shows Kerala backwaters, relevant to a monsoon travel guide."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs by providing travel insights specifically tailored to their needs and concerns during the monsoon season."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or testimonials from NRIs who have traveled during the monsoon to enhance relatability.",
+          "Include a section on cultural events or festivals that take place during the monsoon to enrich the travel experience for NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cbe80575-13d8-497c-9d29-2035228f03fe",
+      "headline": "Jewar Airport Hits 48 Daily Flights \u2014 Just Four Weeks After Opening",
+      "slug": "noida-jewar-airport-expansion-48-flights-nri-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Prime Minister at Noida Airport",
+          "reason": "The photo shows the airport relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the benefits of Jewar Airport for NRIs, particularly in terms of accessibility and convenience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from NRI travelers or stakeholders to enhance the personal connection.",
+          "Include more statistics or comparisons with other airports to strengthen the argument for Jewar Airport's significance."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cde6fda0-ff74-41f7-a9b3-eb6623574ac9",
+      "headline": "India's Passport Slips Two Spots \u2014 but 56 Doors Stay Open",
+      "slug": "india-passport-henley-index-july-2026-nri-visa-free-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian passport cover",
+          "reason": "The photo shows an Indian passport, relevant to the story about India's passport ranking."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of India's passport ranking for Indian Americans, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the passport ranking impacts travel plans for NRIs.",
+          "Include quotes or insights from travel experts or diaspora members to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "a1727d80-d0f6-4f63-8562-124e73b08c2d",
       "headline": "Cricket Diplomacy. Australia's Big Bash League to Open Its Next Season in Chennai.",
@@ -36,13 +165,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the BBL's match in Chennai to the interests of the Indian diaspora, highlighting its significance for NRIs in Australia and beyond."
+          "note": "The article effectively connects the BBL's expansion to the interests of the Indian diaspora, particularly in Australia, and highlights the significance of cricket for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from cricket analysts or players to enhance the article's depth.",
-          "Include more historical context about the relationship between Indian and Australian cricket to enrich the narrative."
+          "Consider adding quotes from cricket analysts or players to enhance credibility.",
+          "Include more details on how this match could impact future cricket relations between India and Australia."
         ],
         "verdict": "pass"
       },
