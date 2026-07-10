@@ -59,6 +59,8 @@ KEYWORDS = [
     "indian", "desi", "bollywood", "hindi", "tamil", "telugu",
     "bengali", "gujarati", "punjabi", "south asian", "bhangra",
     "garba", "cricket desi", "sikh", "malayalam", "kannada", "marathi",
+    "tech meetup indian", "startup desi", "networking south asian",
+    "professional indian", "yoga",
 ]
 
 # Cities with their Meetup location param format: us--{state_lower}--{City+Name}
@@ -77,6 +79,25 @@ CITIES = [
     {"location": "us--ga--Atlanta",          "display": "Atlanta",       "state": "GA", "slug": "atlanta"},
     {"location": "us--pa--Philadelphia",     "display": "Philadelphia",  "state": "PA", "slug": "philadelphia"},
     {"location": "us--mi--Detroit",          "display": "Detroit",       "state": "MI", "slug": "detroit"},
+    # --- Expanded cities ---
+    {"location": "us--tx--Austin",           "display": "Austin",        "state": "TX", "slug": "austin"},
+    {"location": "us--fl--Miami",            "display": "Miami",         "state": "FL", "slug": "miami"},
+    {"location": "us--az--Phoenix",          "display": "Phoenix",       "state": "AZ", "slug": "phoenix"},
+    {"location": "us--co--Denver",           "display": "Denver",        "state": "CO", "slug": "denver"},
+    {"location": "us--ca--San+Diego",        "display": "San Diego",     "state": "CA", "slug": "san-diego"},
+    {"location": "us--or--Portland",         "display": "Portland",      "state": "OR", "slug": "portland"},
+    {"location": "us--mn--Minneapolis",      "display": "Minneapolis",   "state": "MN", "slug": "minneapolis"},
+    {"location": "us--fl--Tampa",            "display": "Tampa",         "state": "FL", "slug": "tampa"},
+    {"location": "us--nc--Charlotte",        "display": "Charlotte",     "state": "NC", "slug": "charlotte"},
+    {"location": "us--nc--Raleigh",          "display": "Raleigh",       "state": "NC", "slug": "raleigh"},
+    {"location": "us--oh--Columbus",         "display": "Columbus",      "state": "OH", "slug": "columbus"},
+    {"location": "us--in--Indianapolis",     "display": "Indianapolis",  "state": "IN", "slug": "indianapolis"},
+    {"location": "us--tn--Nashville",        "display": "Nashville",     "state": "TN", "slug": "nashville"},
+    {"location": "us--ca--Sacramento",       "display": "Sacramento",    "state": "CA", "slug": "sacramento"},
+    {"location": "us--ca--Irvine",           "display": "Irvine",        "state": "CA", "slug": "irvine"},
+    {"location": "us--tx--Plano",            "display": "Plano",         "state": "TX", "slug": "plano"},
+    {"location": "us--ca--Fremont",          "display": "Fremont",       "state": "CA", "slug": "fremont"},
+    {"location": "us--ca--Sunnyvale",        "display": "Sunnyvale",     "state": "CA", "slug": "sunnyvale"},
 ]
 
 # Category rules (same as events-ingest.py)
@@ -132,6 +153,7 @@ RELEVANCE_KEYWORDS = [
     "diaspora", "nri", "cricket", "kabaddi", "ipl",
     "kirtan", "bhajan", "puja", "pooja", "kundalini",
     "isha yoga", "sahaja yoga", "isha foundation",
+    "yoga", "chai", "rangoli", "kolam",
 ]
 
 FALSE_POSITIVE_PATTERNS = [

@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-scrape-allevents.py — Scrape Indian/desi events from AllEvents.in
+scrape-eventbrite.py — Scrape Indian/desi community events from Eventbrite
 and upsert them into the Supabase `events` table.
 
-Approach: AllEvents.in has public listing pages at allevents.in/<city>/indian.
-Event cards in the HTML have data-eid, data-link, data-name attributes.
-Individual event pages contain rich JSON-LD structured data with full details
-including geo coordinates, description, dates, venue, and pricing.
+Approach: Eventbrite search pages embed JSON-LD (schema.org ItemList) with
+full event details including geo coordinates, venue, dates, and descriptions.
+No API key needed — just fetch the HTML and parse the structured data.
 
 Usage:
-    python3 pipeline/scrape-allevents.py              # Full scrape
-    python3 pipeline/scrape-allevents.py --dry-run     # Print events without inserting
-    python3 pipeline/scrape-allevents.py --city houston # Single city
+    python3 pipeline/scrape-eventbrite.py              # Full scrape
+    python3 pipeline/scrape-eventbrite.py --dry-run     # Print events without inserting
+    python3 pipeline/scrape-eventbrite.py --city austin  # Single city
+    python3 pipeline/scrape-eventbrite.py --batch a      # Run batch A only
 """
 
 import json
@@ -21,7 +21,6 @@ import sys
 import time
 import argparse
 from datetime import datetime, timezone, timedelta
-from urllib.parse import quote
 
 sys.stdout.reconfigure(line_buffering=True)
 
@@ -55,7 +54,7 @@ HEADERS = {
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 
-# Search keywords to append to city URL
+# Search keywords (Indian/South Asian culture + professional/tech)
 KEYWORDS = [
     "indian",
     "bollywood",
@@ -69,55 +68,54 @@ KEYWORDS = [
     "bengali",
     "garba",
     "bhangra",
+    "yoga-indian",
     "tech-meetup-indian",
-    "startup-desi",
     "networking-south-asian",
     "professional-indian",
-    "yoga",
 ]
 
-# Cities (AllEvents URL slug format)
+# Cities — Eventbrite URL format: /d/{state}--{city-slug}/{keyword}/
 CITIES = [
-    # Batch A — West Coast + NY/NJ + some expanded (16 cities)
-    {"ae": "san-francisco", "display": "San Francisco", "state": "CA", "batch": "a"},
-    {"ae": "san-jose", "display": "San Jose", "state": "CA", "batch": "a"},
-    {"ae": "fremont", "display": "Fremont", "state": "CA", "batch": "a"},
-    {"ae": "los-angeles", "display": "Los Angeles", "state": "CA", "batch": "a"},
-    {"ae": "seattle", "display": "Seattle", "state": "WA", "batch": "a"},
-    {"ae": "new-york", "display": "New York", "state": "NY", "batch": "a"},
-    {"ae": "jersey-city", "display": "Jersey City", "state": "NJ", "batch": "a"},
-    {"ae": "edison", "display": "Edison", "state": "NJ", "batch": "a"},
-    {"ae": "san-diego", "display": "San Diego", "state": "CA", "batch": "a"},
-    {"ae": "portland", "display": "Portland", "state": "OR", "batch": "a"},
-    {"ae": "sacramento", "display": "Sacramento", "state": "CA", "batch": "a"},
-    {"ae": "irvine", "display": "Irvine", "state": "CA", "batch": "a"},
-    {"ae": "sunnyvale", "display": "Sunnyvale", "state": "CA", "batch": "a"},
-    {"ae": "phoenix", "display": "Phoenix", "state": "AZ", "batch": "a"},
-    {"ae": "denver", "display": "Denver", "state": "CO", "batch": "a"},
-    {"ae": "minneapolis", "display": "Minneapolis", "state": "MN", "batch": "a"},
-    # Batch B — South, Midwest, East + expanded (16 cities)
-    {"ae": "chicago", "display": "Chicago", "state": "IL", "batch": "b"},
-    {"ae": "houston", "display": "Houston", "state": "TX", "batch": "b"},
-    {"ae": "dallas", "display": "Dallas", "state": "TX", "batch": "b"},
-    {"ae": "washington-dc", "display": "Washington", "state": "DC", "batch": "b"},
-    {"ae": "boston", "display": "Boston", "state": "MA", "batch": "b"},
-    {"ae": "atlanta", "display": "Atlanta", "state": "GA", "batch": "b"},
-    {"ae": "philadelphia", "display": "Philadelphia", "state": "PA", "batch": "b"},
-    {"ae": "detroit", "display": "Detroit", "state": "MI", "batch": "b"},
-    {"ae": "austin", "display": "Austin", "state": "TX", "batch": "b"},
-    {"ae": "miami", "display": "Miami", "state": "FL", "batch": "b"},
-    {"ae": "tampa", "display": "Tampa", "state": "FL", "batch": "b"},
-    {"ae": "charlotte", "display": "Charlotte", "state": "NC", "batch": "b"},
-    {"ae": "raleigh", "display": "Raleigh", "state": "NC", "batch": "b"},
-    {"ae": "columbus", "display": "Columbus", "state": "OH", "batch": "b"},
-    {"ae": "indianapolis", "display": "Indianapolis", "state": "IN", "batch": "b"},
-    {"ae": "nashville", "display": "Nashville", "state": "TN", "batch": "b"},
-    {"ae": "plano", "display": "Plano", "state": "TX", "batch": "b"},
+    # Batch A — West Coast + NY/NJ + Mountain/Midwest (16 cities)
+    {"eb": "ca--san-francisco",  "display": "San Francisco", "state": "CA", "slug": "san-francisco",  "batch": "a"},
+    {"eb": "ca--san-jose",       "display": "San Jose",      "state": "CA", "slug": "san-jose",       "batch": "a"},
+    {"eb": "ca--fremont",        "display": "Fremont",       "state": "CA", "slug": "fremont",        "batch": "a"},
+    {"eb": "ca--sunnyvale",      "display": "Sunnyvale",     "state": "CA", "slug": "sunnyvale",      "batch": "a"},
+    {"eb": "ca--los-angeles",    "display": "Los Angeles",   "state": "CA", "slug": "los-angeles",    "batch": "a"},
+    {"eb": "ca--san-diego",      "display": "San Diego",     "state": "CA", "slug": "san-diego",      "batch": "a"},
+    {"eb": "ca--irvine",         "display": "Irvine",        "state": "CA", "slug": "irvine",         "batch": "a"},
+    {"eb": "ca--sacramento",     "display": "Sacramento",    "state": "CA", "slug": "sacramento",     "batch": "a"},
+    {"eb": "wa--seattle",        "display": "Seattle",       "state": "WA", "slug": "seattle",        "batch": "a"},
+    {"eb": "or--portland",       "display": "Portland",      "state": "OR", "slug": "portland",       "batch": "a"},
+    {"eb": "ny--new-york",       "display": "New York",      "state": "NY", "slug": "new-york",       "batch": "a"},
+    {"eb": "nj--edison",         "display": "Edison",        "state": "NJ", "slug": "edison",         "batch": "a"},
+    {"eb": "az--phoenix",        "display": "Phoenix",       "state": "AZ", "slug": "phoenix",        "batch": "a"},
+    {"eb": "co--denver",         "display": "Denver",        "state": "CO", "slug": "denver",         "batch": "a"},
+    {"eb": "mn--minneapolis",    "display": "Minneapolis",   "state": "MN", "slug": "minneapolis",    "batch": "a"},
+    {"eb": "oh--columbus",       "display": "Columbus",      "state": "OH", "slug": "columbus",       "batch": "a"},
+    # Batch B — South + Midwest + East (17 cities)
+    {"eb": "il--chicago",        "display": "Chicago",       "state": "IL", "slug": "chicago",        "batch": "b"},
+    {"eb": "tx--houston",        "display": "Houston",       "state": "TX", "slug": "houston",        "batch": "b"},
+    {"eb": "tx--dallas",         "display": "Dallas",        "state": "TX", "slug": "dallas",         "batch": "b"},
+    {"eb": "tx--austin",         "display": "Austin",        "state": "TX", "slug": "austin",         "batch": "b"},
+    {"eb": "tx--plano",          "display": "Plano",         "state": "TX", "slug": "plano",          "batch": "b"},
+    {"eb": "dc--washington",     "display": "Washington",    "state": "DC", "slug": "washington-dc",  "batch": "b"},
+    {"eb": "ma--boston",         "display": "Boston",        "state": "MA", "slug": "boston",          "batch": "b"},
+    {"eb": "ga--atlanta",        "display": "Atlanta",       "state": "GA", "slug": "atlanta",        "batch": "b"},
+    {"eb": "pa--philadelphia",   "display": "Philadelphia",  "state": "PA", "slug": "philadelphia",   "batch": "b"},
+    {"eb": "mi--detroit",        "display": "Detroit",       "state": "MI", "slug": "detroit",        "batch": "b"},
+    {"eb": "fl--miami",          "display": "Miami",         "state": "FL", "slug": "miami",          "batch": "b"},
+    {"eb": "fl--tampa",          "display": "Tampa",         "state": "FL", "slug": "tampa",          "batch": "b"},
+    {"eb": "nc--charlotte",      "display": "Charlotte",     "state": "NC", "slug": "charlotte",      "batch": "b"},
+    {"eb": "nc--raleigh",        "display": "Raleigh",       "state": "NC", "slug": "raleigh",        "batch": "b"},
+    {"eb": "in--indianapolis",   "display": "Indianapolis",  "state": "IN", "slug": "indianapolis",   "batch": "b"},
+    {"eb": "tn--nashville",      "display": "Nashville",     "state": "TN", "slug": "nashville",      "batch": "b"},
+    {"eb": "nj--jersey-city",    "display": "Jersey City",   "state": "NJ", "slug": "jersey-city",    "batch": "b"},
 ]
 
-# Category rules
+# Category rules (same as other scrapers)
 CATEGORY_RULES = [
-    # Spiritual/Religious FIRST — yoga, meditation, etc. should never be Education
+    # Spiritual/Religious FIRST
     ("Religious",   ["temple", "gurdwara", "mosque", "puja", "pooja", "havan",
                      "kirtan", "bhajan", "aarti", "satsang", "prayer",
                      "yoga", "meditation", "sound bath", "sound healing",
@@ -126,11 +124,10 @@ CATEGORY_RULES = [
                      "sadhguru", "devotional", "sacred", "chanting", "sufi",
                      "mindfulness", "spiritual"]),
     ("Festival",    ["diwali", "holi", "navratri", "pongal", "onam", "eid", "vaisakhi",
-                     "festival", "mela", "dussehra", "ganesh"]),
+                     "festival", "mela", "dussehra", "ganesh", "independence day"]),
     ("Competition", ["spelling bee", "math olympiad", "science olympiad", "chess tournament",
                      "robotics competition", "coding competition", "hackathon",
                      "competition", "contest", "tournament"]),
-    # Entertainment / Music / Dance BEFORE Education
     ("Entertainment", ["bollywood night", "bollywood festive", "bollywood singing",
                        "bollyx", "dj party", "afterparty", "after party",
                        "cruise party", "rooftop party", "yacht party",
@@ -142,19 +139,19 @@ CATEGORY_RULES = [
                      "bhangra class", "nritya", "bachata", "cha-cha",
                      "forró", "bollyx"]),
     ("Comedy",      ["comedy", "standup", "stand-up", "comedian", "laugh", "open mic"]),
-    ("Food",        ["food", "cook", "biryani", "culinary", "dinner", "brunch",
+    ("Food",        ["food", "cook", "biryani", "culinary", "taste", "dinner", "brunch",
                      "lunch", "feast", "potluck", "tasting", "chai", "restaurant",
                      "cuisine", "wine", "foodie"]),
     ("Sports",      ["cricket", "kabaddi", "badminton", "sport", "marathon",
-                     "run ", "5k ", "10k "]),
-    # Education LAST — only if nothing else matched
+                     "run ", "5k ", "10k ", "carrom"]),
+    # Education LAST
     ("Education",   ["school", "certification", "study group",
                      "seminar", "webinar", "course"]),
     ("Cultural",    ["cultural", "art", "exhibit", "gallery", "heritage", "history"]),
     ("Community",   ["convention", "conference", "meetup", "networking", "association",
-                     "community", "gala", "fundraiser", "charity",
+                     "community", "gala", "fundraiser", "charity", "social",
                      "workshop", "class", "training", "lecture", "learning",
-                     "party", "night"]),
+                     "startup", "professional", "tech meetup"]),
 ]
 
 RELEVANCE_KEYWORDS = [
@@ -165,9 +162,10 @@ RELEVANCE_KEYWORDS = [
     "temple", "carnatic", "hindustani", "bharatanatyam", "kathak",
     "kuchipudi", "biryani", "curry", "samosa", "masala",
     "yoga", "ayurveda", "vedic", "sanskrit", "mehndi", "sangeet",
-    "diaspora", "nri", "cricket", "kabaddi",
+    "diaspora", "nri", "cricket", "kabaddi", "ipl",
     "kirtan", "bhajan", "puja", "pooja", "chai",
-    "rangoli", "kolam",
+    "rangoli", "kolam", "kundalini",
+    "isha yoga", "sahaja yoga", "isha foundation",
 ]
 
 FALSE_POSITIVE_PATTERNS = [
@@ -176,6 +174,10 @@ FALSE_POSITIVE_PATTERNS = [
     r"(?i)indian motorcycle",
     r"(?i)native\s+(american\s+)?indian",
     r"(?i)west indian day parade",
+    r"(?i)indian island",
+    r"(?i)magic the gathering",
+    r"(?i)strong nation",
+    r"(?i)zumba",
 ]
 
 
@@ -189,7 +191,7 @@ def categorize(title: str, description: str = "") -> str:
         for kw in keywords:
             if kw in text:
                 return cat
-    return "Entertainment"  # Default for AllEvents
+    return "Community"
 
 
 def is_relevant(title: str, description: str = "") -> bool:
@@ -220,66 +222,46 @@ def parse_iso_date(dt_str: str):
     if not dt_str:
         return None, None
     try:
-        # Handle full datetime
         if "T" in dt_str:
             dt = datetime.fromisoformat(dt_str)
             return dt.strftime("%Y-%m-%d"), dt.strftime("%I:%M %p").lstrip("0")
         else:
-            # Date only
             return dt_str[:10], None
-    except:
+    except Exception:
         return None, None
 
 
+def extract_event_id(url: str) -> str:
+    """Extract Eventbrite event ID from URL (the digits after 'tickets-')."""
+    m = re.search(r'tickets-(\d+)', url)
+    if m:
+        return m.group(1)
+    # fallback — last segment of URL path
+    parts = url.rstrip("/").split("/")
+    for p in reversed(parts):
+        if p.isdigit():
+            return p
+    return url
+
+
 # ---------------------------------------------------------------------------
-# AllEvents.in Scraper
+# Eventbrite Scraper
 # ---------------------------------------------------------------------------
 
-def scrape_listing_page(city: dict, keyword: str) -> list:
-    """Scrape a single AllEvents listing page and extract event card info."""
-    url = f"https://allevents.in/{city['ae']}/{keyword}"
+def fetch_eventbrite_page(city: dict, keyword: str, page: int = 1) -> list:
+    """Fetch events from an Eventbrite search page via JSON-LD."""
+    url = f"https://www.eventbrite.com/d/{city['eb']}/{keyword}/"
+    params = {}
+    if page > 1:
+        params["page"] = page
 
     try:
-        resp = requests.get(url, headers={"User-Agent": UA}, timeout=20)
+        resp = requests.get(url, params=params, headers={"User-Agent": UA}, timeout=20)
         if resp.status_code != 200:
             return []
     except Exception as e:
-        print(f"  ⚠ Request failed for {url}: {e}")
+        print(f"  ⚠ Request failed: {e}")
         return []
-
-    html = resp.text
-
-    # Extract event cards from HTML using data attributes
-    # Pattern: <li class="event-card event-card-link" data-eid="..." data-link="..." data-name="...">
-    cards = re.findall(
-        r'<li\s+class="event-card event-card-link"\s+'
-        r'data-eid="([^"]*)"\s+'
-        r'data-link="([^"]*)"\s+'
-        r'data-name="([^"]*)"',
-        html
-    )
-
-    events = []
-    for eid, link, name in cards:
-        if not eid or not link:
-            continue
-        events.append({
-            "ae_id": eid,
-            "link": link,
-            "name": name,
-        })
-
-    return events
-
-
-def fetch_event_details(event_url: str) -> dict | None:
-    """Fetch individual event page and extract JSON-LD structured data."""
-    try:
-        resp = requests.get(event_url, headers={"User-Agent": UA}, timeout=20)
-        if resp.status_code != 200:
-            return None
-    except Exception as e:
-        return None
 
     html = resp.text
 
@@ -289,111 +271,104 @@ def fetch_event_details(event_url: str) -> dict | None:
         html, re.DOTALL
     )
 
+    events = []
     for block in blocks:
         try:
             data = json.loads(block)
-            if isinstance(data, list):
-                for item in data:
-                    if item.get("@type") == "Event":
-                        return item
-            elif isinstance(data, dict) and data.get("@type") == "Event":
-                return data
         except json.JSONDecodeError:
             continue
 
-    # Fallback: try to extract from HTML meta tags
-    meta = {}
-    for tag in ["og:title", "og:description", "og:image"]:
-        m = re.search(rf'<meta\s+property="{tag}"\s+content="([^"]*)"', html)
-        if m:
-            meta[tag] = m.group(1)
+        # Look for ItemList
+        if isinstance(data, dict) and data.get("@type") == "ItemList":
+            for item in data.get("itemListElement", []):
+                event_data = item.get("item", item)
+                if event_data.get("@type") != "Event":
+                    continue
 
-    if meta.get("og:title"):
-        return {"_from_meta": True, **meta}
+                name = event_data.get("name", "")
+                if not name:
+                    continue
 
-    return None
+                date_str, time_str = parse_iso_date(event_data.get("startDate"))
+                if not date_str:
+                    continue
+
+                # Skip past events
+                try:
+                    event_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+                    if event_date < datetime.now().date():
+                        continue
+                except Exception:
+                    continue
+
+                end_date_str, _ = parse_iso_date(event_data.get("endDate"))
+
+                description = event_data.get("description", "") or ""
+                event_url = event_data.get("url", "")
+                image_url = event_data.get("image", "")
+
+                # Location info
+                location = event_data.get("location", {}) or {}
+                venue_name = ""
+                venue_city = city["display"]
+                venue_state = city["state"]
+                lat = None
+                lon = None
+
+                if isinstance(location, dict):
+                    venue_name = location.get("name", "")
+                    address = location.get("address", {}) or {}
+                    geo = location.get("geo", {}) or {}
+
+                    if isinstance(address, dict):
+                        venue_city = address.get("addressLocality", city["display"]) or city["display"]
+                        venue_state = address.get("addressRegion", city["state"]) or city["state"]
+
+                    if isinstance(geo, dict):
+                        try:
+                            lat = float(geo["latitude"]) if geo.get("latitude") else None
+                            lon = float(geo["longitude"]) if geo.get("longitude") else None
+                        except (ValueError, TypeError):
+                            pass
+
+                eb_id = extract_event_id(event_url)
+                source_id = f"eventbrite_{eb_id}"
+
+                events.append({
+                    "title": name,
+                    "date": date_str,
+                    "end_date": end_date_str,
+                    "time": time_str or "",
+                    "venue_name": venue_name,
+                    "city": venue_city,
+                    "state": venue_state,
+                    "category": categorize(name, description),
+                    "description": description[:500] if description else name,
+                    "long_description": description[:2000] if description else None,
+                    "image_url": image_url,
+                    "ticket_url": event_url,
+                    "source": "eventbrite",
+                    "source_id": source_id,
+                    "organizer": "",
+                    "slug": make_slug(name, date_str),
+                    "latitude": lat,
+                    "longitude": lon,
+                })
+
+    return events
 
 
-def process_event(card: dict, city: dict) -> dict | None:
-    """Fetch event details and build an event record."""
-    event_url = card["link"]
-    ae_id = card["ae_id"]
-    name = card["name"]
-
-    details = fetch_event_details(event_url)
-    if not details:
-        return None
-
-    if details.get("_from_meta"):
-        # Sparse fallback from meta tags
-        title = details.get("og:title", name)
-        date_str = None
-        time_str = None
-        venue_name = ""
-        description = details.get("og:description", "")
-        image_url = details.get("og:image", "")
-        lat, lon = None, None
-        end_date = None
-    else:
-        # Rich JSON-LD data
-        title = details.get("name", name)
-        date_str, time_str = parse_iso_date(details.get("startDate"))
-        _, _ = parse_iso_date(details.get("endDate"))
-        end_date_str, _ = parse_iso_date(details.get("endDate"))
-
-        location = details.get("location", {})
-        venue_name = location.get("name", "") if isinstance(location, dict) else ""
-        address = location.get("address", {}) if isinstance(location, dict) else {}
-        geo = location.get("geo", {}) if isinstance(location, dict) else {}
-
-        description = details.get("description", "")
-        image_url = details.get("image", "")
-
-        lat = float(geo.get("latitude")) if geo.get("latitude") else None
-        lon = float(geo.get("longitude")) if geo.get("longitude") else None
-
-        # Try to get city/state from address
-        if isinstance(address, dict):
-            addr_city = address.get("addressLocality", city["display"])
-            addr_state = address.get("addressRegion", city["state"])
-        else:
-            addr_city = city["display"]
-            addr_state = city["state"]
-
-    if not date_str:
-        return None
-
-    # Skip past events
-    try:
-        event_date = datetime.strptime(date_str, "%Y-%m-%d").date()
-        if event_date < datetime.now().date():
-            return None
-    except:
-        return None
-
-    event_city = addr_city if 'addr_city' in dir() else city["display"]
-    event_state = addr_state if 'addr_state' in dir() else city["state"]
-
-    return {
-        "title": title,
-        "date": date_str,
-        "end_date": end_date_str if 'end_date_str' in dir() and end_date_str else None,
-        "time": time_str or "",
-        "venue_name": venue_name,
-        "city": event_city,
-        "state": event_state,
-        "category": categorize(title, description),
-        "description": description[:500] if description else title,
-        "long_description": description[:2000] if description else None,
-        "image_url": image_url,
-        "ticket_url": event_url,
-        "source": "allevents",
-        "source_id": f"allevents_{ae_id}",
-        "organizer": "",
-        "slug": make_slug(title, date_str),
-        "latitude": lat,
-        "longitude": lon,
-    }
+def fetch_all_pages(city: dict, keyword: str, max_pages: int = 3) -> list:
+    """Fetch multiple pages of Eventbrite results for a city+keyword combo."""
+    all_events = []
+    for page in range(1, max_pages + 1):
+        events = fetch_eventbrite_page(city, keyword, page)
+        all_events.extend(events)
+        if len(events) < 15:  # Eventbrite returns ~20 per page; if less, no more pages
+            break
+        if page < max_pages:
+            time.sleep(1.2)
+    return all_events
 
 
 # ---------------------------------------------------------------------------
@@ -406,7 +381,7 @@ def get_existing_events() -> tuple:
 
     try:
         resp = requests.get(
-            f"{REST}/events?select=source_id,title,date&limit=2000",
+            f"{REST}/events?select=source_id,title,date&limit=3000",
             headers={
                 "apikey": SB_KEY,
                 "Authorization": f"Bearer {SB_KEY}",
@@ -427,7 +402,6 @@ def get_existing_events() -> tuple:
 
 
 def normalize_title(title: str) -> str:
-    """Normalize title for fuzzy dedup."""
     t = title.lower().strip()
     t = re.sub(r'&amp;', '&', t)
     t = re.sub(r'[^a-z0-9 ]', '', t)
@@ -484,7 +458,6 @@ def upsert_events(events: list) -> int:
                 total += len(batch)
             else:
                 print(f"  ⚠ Upsert failed ({resp.status_code}): {resp.text[:300]}")
-                # Try one at a time
                 for ev in batch:
                     try:
                         r2 = requests.post(
@@ -497,7 +470,7 @@ def upsert_events(events: list) -> int:
                             total += 1
                         else:
                             print(f"    ⚠ Failed for '{ev['title'][:40]}': {r2.text[:200]}")
-                    except:
+                    except Exception:
                         pass
         except Exception as e:
             print(f"  ⚠ Upsert error: {e}")
@@ -510,10 +483,11 @@ def upsert_events(events: list) -> int:
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape AllEvents.in for Indian diaspora events")
+    parser = argparse.ArgumentParser(description="Scrape Eventbrite events for Indian diaspora")
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
-    parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'houston')")
-    parser.add_argument("--batch", type=str, default=None, choices=["a", "b"], help="Run batch a or b (8 cities each)")
+    parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'austin')")
+    parser.add_argument("--batch", type=str, default=None, choices=["a", "b"],
+                        help="Run batch a or b")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -522,9 +496,9 @@ def main():
 
     cities = CITIES
     if args.city:
-        cities = [c for c in CITIES if c["ae"] == args.city]
+        cities = [c for c in CITIES if c["slug"] == args.city]
         if not cities:
-            print(f"Unknown city: {args.city}. Available: {', '.join(c['ae'] for c in CITIES)}")
+            print(f"Unknown city: {args.city}. Available: {', '.join(c['slug'] for c in CITIES)}")
             sys.exit(1)
     elif args.batch:
         cities = [c for c in CITIES if c.get("batch") == args.batch]
@@ -541,57 +515,39 @@ def main():
     seen_source_ids = set()
     seen_batch_keys = set()
 
-    print(f"\n🔍 Scraping AllEvents.in ({len(cities)} cities × {len(KEYWORDS)} keywords)...\n")
+    print(f"\n🔍 Scraping Eventbrite ({len(cities)} cities × {len(KEYWORDS)} keywords)...\n")
 
     for city in cities:
         city_events = []
-        city_cards_seen = set()  # Avoid duplicate detail fetches within a city
 
         for keyword in KEYWORDS:
             print(f"  📍 {city['display']}: \"{keyword}\"...", end=" ", flush=True)
 
-            cards = scrape_listing_page(city, keyword)
-            new_cards = [c for c in cards if c["ae_id"] not in city_cards_seen]
+            events = fetch_all_pages(city, keyword, max_pages=2)
 
-            relevant_count = 0
-            for card in new_cards:
-                city_cards_seen.add(card["ae_id"])
-
-                # Quick relevance check on name before fetching details
-                name = card.get("name", "")
-                if is_false_positive(name):
+            # Filter for relevance
+            relevant = []
+            for e in events:
+                if is_false_positive(e["title"]):
                     continue
-
-                # Fetch full details
-                event = process_event(card, city)
-                if not event:
+                if not is_relevant(e["title"], e.get("description", "")):
                     continue
-
-                # Check relevance with full description
-                if not is_relevant(event["title"], event.get("description", "")):
+                if e["source_id"] in seen_source_ids:
                     continue
-
-                # Dedup check
-                if event["source_id"] in seen_source_ids:
-                    continue
-                batch_key = normalize_title(event["title"])[:25] + "|" + event["date"]
+                batch_key = normalize_title(e["title"])[:25] + "|" + e["date"]
                 if batch_key in seen_batch_keys:
                     continue
-                if not args.dry_run and is_duplicate(event, existing_ids, existing_title_dates):
+                if not args.dry_run and is_duplicate(e, existing_ids, existing_title_dates):
                     continue
-
-                seen_source_ids.add(event["source_id"])
+                seen_source_ids.add(e["source_id"])
                 seen_batch_keys.add(batch_key)
-                city_events.append(event)
-                relevant_count += 1
+                relevant.append(e)
 
-                # Rate limit — be nice to AllEvents
-                time.sleep(0.8)
+            city_events.extend(relevant)
+            print(f"{len(events)} found, {len(relevant)} relevant")
 
-            print(f"{len(cards)} cards, {len(new_cards)} new, {relevant_count} relevant")
-
-            # Rate limit between listing pages
-            time.sleep(1.0)
+            # Rate limit — be nice to Eventbrite
+            time.sleep(1.5)
 
         all_events.extend(city_events)
         if city_events:

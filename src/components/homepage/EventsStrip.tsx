@@ -92,7 +92,7 @@ export default function EventsStrip({ events, userLat, userLng, userCity }: Prop
             return (
               <Link
                 key={e.id}
-                to={`/events/${e.id}`}
+                to={`/events/${e.slug || e.id}`}
                 className="group flex-shrink-0 bg-white rounded-xl border overflow-hidden transition-transform hover:-translate-y-0.5"
                 style={{
                   width: 240,
