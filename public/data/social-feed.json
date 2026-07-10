@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-07-10T00:29:22.330689+00:00",
+  "_generated": "2026-07-10T01:08:10.042534+00:00",
   "_description": "1 tweet per person, rotated each cron run. Pool refreshed every 12h.",
   "_rotation": 1,
   "categories": {
@@ -79,6 +79,15 @@
         "published_at": "2026-07-05T05:39:02.000Z"
       },
       {
+        "tweet_url": "https://x.com/aliaa08/status/2072584707821408299",
+        "handle": "aliaa08",
+        "tweet_id": "2072584707821408299",
+        "category": "entertainment",
+        "article_slug": "",
+        "article_headline": "Thank you so much Rahman Sir\ud83d\udda4 https://t.co/QjcQP3o3Pe",
+        "published_at": "2026-07-02T07:34:35.000Z"
+      },
+      {
         "tweet_url": "https://x.com/SrBachchan/status/2074803549767360605",
         "handle": "SrBachchan",
         "tweet_id": "2074803549767360605",
@@ -86,6 +95,15 @@
         "article_slug": "",
         "article_headline": "T 5796 - ... in time the rain too shall abate  ..",
         "published_at": "2026-07-08T10:31:28.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/arrahman/status/2072196353602769131",
+        "handle": "arrahman",
+        "tweet_id": "2072196353602769131",
+        "category": "entertainment",
+        "article_slug": "",
+        "article_headline": "Best wishes to @aliaa08 and the entire team of #Alpha. \n\nhttps://t.co/hzMqwao8nP \n\n@AnilKapoor @thedeol #sharvari @yrf @shivrawail #adityachopra #akshaywidhani",
+        "published_at": "2026-07-01T05:51:24.000Z"
       },
       {
         "tweet_url": "https://x.com/BeingSalmanKhan/status/2074478870699667488",
@@ -97,28 +115,13 @@
         "published_at": "2026-07-07T13:01:19.000Z"
       },
       {
-        "tweet_url": "https://x.com/harbhajan_singh/status/2073636463112225098",
-        "handle": "harbhajan_singh",
-        "tweet_id": "2073636463112225098",
+        "tweet_url": "https://x.com/AnilKapoor/status/2070896871154061741",
+        "handle": "AnilKapoor",
+        "tweet_id": "2070896871154061741",
         "category": "entertainment",
-        "text": "He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway \u2014 and India Pulled It in 48 Hours.",
-        "published_at": "2026-07-06T17:15:30+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/tarak9999/status/2071557756570796349",
-        "handle": "tarak9999",
-        "tweet_id": "2071557756570796349",
-        "category": "entertainment",
-        "text": "Jr NTR Just Declared War on the Gods \u2014 and Brought Anirudh Along for the Ride",
-        "published_at": "2026-06-30T09:15:42+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/DrDatta_AIIMS/status/2069714026725331375",
-        "handle": "DrDatta_AIIMS",
-        "tweet_id": "2069714026725331375",
-        "category": "entertainment",
-        "text": "Cocktail 2 Has Crossed \u20b960 Crore. So Why Is the Whole Trade Whispering About an Asterisk?",
-        "published_at": "2026-06-26T07:15:18+00:00"
+        "article_slug": "",
+        "article_headline": "Deeply saddened and shocked by the passing of K. Bhagyaraj sir.\n\nIt feels especially unreal because I had the opportunity to meet him recently at Khushbu\u2019s daughter\u2019s wedding and spend some time with him.\n\nBhagyaraj sir was a creative genius whose contributions to Indian cinema https://t.co/TS6Zqyck",
+        "published_at": "2026-06-27T15:47:44.000Z"
       }
     ],
     "sports": [
@@ -150,24 +153,6 @@
         "published_at": "2026-07-08T04:46:12.000Z"
       },
       {
-        "tweet_url": "https://x.com/Neeraj_chopra1/status/2072289023809171965",
-        "handle": "Neeraj_chopra1",
-        "tweet_id": "2072289023809171965",
-        "category": "sports",
-        "article_slug": "",
-        "article_headline": "One and only \nWerner G\u00fcnth\u00f6r\ud83d\udcaa https://t.co/iAL7IEAexR",
-        "published_at": "2026-07-01T11:59:39.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/Pvsindhu1/status/2073351477360205852",
-        "handle": "Pvsindhu1",
-        "tweet_id": "2073351477360205852",
-        "category": "sports",
-        "article_slug": "",
-        "article_headline": "Asian Games No. 4 for me personally \u2764\ufe0f so feeling old haha \n\nSo grateful to Lokesh Anna for such a thoughtful initiative to motivate athletes, hear us out, and address our concerns with so much warmth.\n\nLittle moments like these mean a lot. They motivate us, reassure us, and https://t.co/oCtuAr5f3w",
-        "published_at": "2026-07-04T10:21:27.000Z"
-      },
-      {
         "tweet_url": "https://x.com/harbhajan_singh/status/2074727366648287624",
         "handle": "harbhajan_singh",
         "tweet_id": "2074727366648287624",
@@ -175,6 +160,42 @@
         "article_slug": "",
         "article_headline": "Happy Birthday Dada @SGanguly99 \u2764\ufe0f\ud83d\ude4f\u2660\ufe0f Tiger https://t.co/e7z3BGa9x8",
         "published_at": "2026-07-08T05:28:45.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/MohammadKaif/status/2073343983162692083",
+        "handle": "MohammadKaif",
+        "tweet_id": "2073343983162692083",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "What started as just some on-air banter when I was asked to review Virat Kohli's One8 shoes. I said I can only give my opinion if I see and wear them. And soon the shoes landed at home. My son Kabir is most excited. Big shoes to fill, I will say. Thanks for this @imVkohli https://t.co/DX9fxR0xM0",
+        "published_at": "2026-07-04T09:51:41.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/ajinkyarahane88/status/2071078717984739712",
+        "handle": "ajinkyarahane88",
+        "tweet_id": "2071078717984739712",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "Had a fantastic conversation with Michael Vaughan on India's tour of England, the next generation of cricketers, leadership, and the changing game.\n\nhttps://t.co/UnQEtfeHBD",
+        "published_at": "2026-06-28T03:50:19.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/IrfanPathan/status/2075281391563268276",
+        "handle": "IrfanPathan",
+        "tweet_id": "2075281391563268276",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "Top innings from Shreyas Iyer.\n\nThe way he controls the middle overs is a masterclass, constantly rotating the strike while picking the right moments to take calculated risks. Other batters could definitely take a leaf out of his book.",
+        "published_at": "2026-07-09T18:10:15.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/Neeraj_chopra1/status/2072289023809171965",
+        "handle": "Neeraj_chopra1",
+        "tweet_id": "2072289023809171965",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "One and only \nWerner G\u00fcnth\u00f6r\ud83d\udcaa https://t.co/iAL7IEAexR",
+        "published_at": "2026-07-01T11:59:39.000Z"
       }
     ],
     "news": [
@@ -222,6 +243,24 @@
         "article_slug": "",
         "article_headline": "Remembering senior Congress leader and former Chief Minister of Andhra Pradesh, Y.S. Rajasekhara Reddy ji, on his birth anniversary.\n\nA true statesman, he uplifted countless lives through his unwavering commitment to the welfare of the people of Andhra Pradesh. His service to the https://t.co/dICHla",
         "published_at": "2026-07-08T05:26:29.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/myogiadityanath/status/2075241251662856568",
+        "handle": "myogiadityanath",
+        "tweet_id": "2075241251662856568",
+        "category": "news",
+        "article_slug": "",
+        "article_headline": "\u0905\u092a\u0928\u0940 \u0935\u093f\u0930\u093e\u0938\u0924 \u0915\u0947 \u092a\u094d\u0930\u0924\u093f \u0915\u0943\u0924\u091c\u094d\u091e\u0924\u093e \u0914\u0930 \u0909\u0938\u0915\u0947 \u0938\u0902\u0930\u0915\u094d\u0937\u0923 \u0915\u093e \u092d\u093e\u0935 \u0939\u0940 \u092d\u093e\u0935\u0940 \u092a\u0940\u0922\u093c\u0940 \u0915\u0947 \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 \u092d\u0935\u093f\u0937\u094d\u092f \u0915\u093e \u0906\u0927\u093e\u0930 \u0939\u0948... https://t.co/wlJwdPTpI6",
+        "published_at": "2026-07-09T15:30:45.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/ArvindKejriwal/status/2075200773479448605",
+        "handle": "ArvindKejriwal",
+        "tweet_id": "2075200773479448605",
+        "category": "news",
+        "article_slug": "",
+        "article_headline": "\u091c\u092c \u0915\u091a\u094d\u091a\u0947 \u0924\u0947\u0932 \u0915\u0940 \u0915\u0940\u092e\u0924 $115/\u092c\u0948\u0930\u0932 \u0938\u0947 \u0917\u093f\u0930\u0915\u0930 $70/\u092c\u0948\u0930\u0932 \u0906 \u091a\u0941\u0915\u0940 \u0939\u0948, \u0924\u094b \u092b\u093f\u0930 \u0926\u0947\u0936 \u092e\u0947\u0902 \u092a\u0947\u091f\u094d\u0930\u094b\u0932 \u0915\u0947 \u0926\u093e\u092e \u0915\u092e \u0915\u094d\u092f\u094b\u0902 \u0928\u0939\u0940\u0902 \u0939\u0941\u090f?\n\n\u0926\u0947\u0936 \u092e\u0947\u0902 \u092a\u0947\u091f\u094d\u0930\u094b\u0932 \u0915\u0940 \u0915\u0940\u092e\u0924 \u20b982/\u0932\u0940\u091f\u0930 \u0939\u094b\u0928\u0940 \u091a\u093e\u0939\u093f\u090f\u0964 https://t.co/tMrHlDOSS9",
+        "published_at": "2026-07-09T12:49:54.000Z"
       },
       {
         "tweet_url": "https://x.com/ajassy/status/2070056379675754958",
