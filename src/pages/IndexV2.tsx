@@ -15,6 +15,7 @@ import IndiaNewsGrid from "@/components/homepage/IndiaNewsGrid";
 import NewsGrid from "@/components/homepage/NewsGrid";
 import VoicesSection from "@/components/homepage/VoicesSection";
 import EventsStrip from "@/components/homepage/EventsStrip";
+import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import "@/components/homepage/homepage-v2.css";
 
@@ -68,6 +69,7 @@ function saveCache(data: HomeCache) {
 
 // ── Component ──
 export default function IndexV2() {
+  const { location: userLocation } = useUserLocation();
   const initialCache = useRef(loadCache()).current;
   const [featured, setFeatured] = useState<Article | null>(initialCache?.featured ?? null);
   const [sections, setSections] = useState<Record<string, Article[]>>(initialCache?.sections ?? {});
@@ -471,7 +473,12 @@ export default function IndexV2() {
         <VoicesSection />
 
         {/* 17. Events */}
-        <EventsStrip events={events} />
+        <EventsStrip
+          events={events}
+          userLat={userLocation?.latitude}
+          userLng={userLocation?.longitude}
+          userCity={userLocation?.city}
+        />
 
         {/* 18. Snapshots */}
         <DiasporaPhotoStrip />

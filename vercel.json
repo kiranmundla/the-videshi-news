@@ -75,6 +75,10 @@
       "destination": "/api/instagram-thumb"
     },
     {
+      "source": "/api/geo",
+      "destination": "/api/geo"
+    },
+    {
       "source": "/api/verify-turnstile",
       "destination": "/api/verify-turnstile"
     },
