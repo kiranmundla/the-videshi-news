@@ -213,30 +213,6 @@ export default function MarketTicker() {
         scrollbarWidth: "none",
         msOverflowStyle: "none" as React.CSSProperties["msOverflowStyle"],
       }} className="market-ticker-scroll">
-        {/* Market label */}
-        <div style={{
-          flexShrink: 0,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          paddingRight: 16,
-          borderRight: "1px solid rgba(255,255,255,0.12)",
-          marginRight: 8,
-        }}>
-          <span style={{
-            fontSize: 9,
-            fontWeight: 700,
-            letterSpacing: "0.15em",
-            color: "rgba(255,255,255,0.45)",
-            textTransform: "uppercase",
-          }}>MARKETS</span>
-          <span style={{
-            fontSize: 8,
-            color: "rgba(255,255,255,0.3)",
-            marginTop: 2,
-          }}>{timeAgo(data.last_updated)}</span>
-        </div>
 
         {data.indices.map((idx, i) => {
           const idxUp = idx.change >= 0;

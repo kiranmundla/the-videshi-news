@@ -21,10 +21,10 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 OUTPUT_PATH = PROJECT_ROOT / "public" / "data" / "market-indices.json"
 
 TICKERS = [
-    {"symbol": "^BSESN",   "name": "Sensex",   "display": "SENSEX",  "flag": "🇮🇳"},
-    {"symbol": "^NSEI",    "name": "Nifty 50",  "display": "NIFTY",   "flag": "🇮🇳"},
     {"symbol": "^GSPC",    "name": "S&P 500",   "display": "SPX",     "flag": "🇺🇸"},
     {"symbol": "^IXIC",    "name": "Nasdaq",    "display": "NASDAQ",  "flag": "🇺🇸"},
+    {"symbol": "^BSESN",   "name": "Sensex",   "display": "SENSEX",  "flag": "🇮🇳"},
+    {"symbol": "^NSEI",    "name": "Nifty 50",  "display": "NIFTY",   "flag": "🇮🇳"},
     {"symbol": "USDINR=X", "name": "USD/INR",   "display": "USDINR",  "flag": "💱"},
     {"symbol": "GC=F",     "name": "Gold",      "display": "GOLD",    "flag": "✨"},
     {"symbol": "SI=F",     "name": "Silver",    "display": "SILVER",  "flag": "🪙"},

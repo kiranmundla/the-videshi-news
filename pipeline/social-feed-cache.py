@@ -241,16 +241,13 @@ def build_display(pool, article_tweets):
             seen_handles.add(handle.lower())
 
         # Fill remaining slots from article-harvested (1 per handle, no dupes)
-        # Only backfill from articles if this category has NO VVIP handles defined,
-        # otherwise stale pool = empty strip (better than irrelevant people)
-        if not VVIP_HANDLES.get(cat, []):
-            for t in article_tweets.get(cat, []):
-                if len(display) >= TWEETS_PER_CATEGORY:
-                    break
-                if t["handle"].lower() in seen_handles:
-                    continue
-                seen_handles.add(t["handle"].lower())
-                display.append(t)
+        for t in article_tweets.get(cat, []):
+            if len(display) >= TWEETS_PER_CATEGORY:
+                break
+            if t["handle"].lower() in seen_handles:
+                continue
+            seen_handles.add(t["handle"].lower())
+            display.append(t)
 
         final[cat] = display
 
