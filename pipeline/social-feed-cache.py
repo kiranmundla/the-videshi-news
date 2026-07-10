@@ -37,7 +37,7 @@ DB_HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration"]
 TWEETS_PER_CATEGORY = 8       # max handles shown per strip
 POOL_TWEETS_PER_HANDLE = 5    # tweets to cache per handle
-POOL_MAX_AGE_HOURS = 72       # re-fetch from X API only when pool is older (3 days)
+POOL_MAX_AGE_HOURS = 120      # re-fetch from X API only when pool is older (5 days)
 VVIP_TWEET_HOURS = 336        # look back 14 days for tweets
 LOOKBACK_DAYS = 14            # article harvest lookback
 
@@ -45,23 +45,31 @@ PIPELINE_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline")
 POOL_PATH = os.path.join(PIPELINE_DIR, "social-feed-pool.json")
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/social-feed.json")
 
-# VVIP person handles per category — top names only, budget-conscious
-# ~20 handles × 5 tweets × $0.005 = $0.50/run, 1 run/day = ~$15/mo
+# VVIP person handles per category — full celebrity list
+# Pool refreshes every 5 days. ~45 handles × ~3.5 avg tweets × $0.005 = ~$0.79/refresh
+# 6 refreshes/mo × $0.79 = ~$4.73/mo reads + $7.20 writes = ~$11.93/mo
 VVIP_HANDLES = {
     "technology": [
         "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
+        "NandanNilekani",
     ],
     "entertainment": [
-        "iamsrk", "priyankachopra", "akshaykumar", "SrBachchan",
-        "diljitdosanjh", "RanveerOfficial", "BeingSalmanKhan",
+        "iamsrk", "priyankachopra", "deepikapadukone", "akshaykumar",
+        "karanjohar", "diljitdosanjh", "aliaa08", "SrBachchan",
+        "RanveerOfficial", "arrahman", "AnushkaSharma", "ssrajamouli",
+        "tarak9999", "AlwaysRamCharan", "actorprabhas", "iamRashmika",
+        "BeingSalmanKhan", "vickykaushal09", "shahidkapoor", "kritisanon",
     ],
     "sports": [
-        "imVkohli", "ImRo45", "sachin_rt", "SGanguly99",
-        "Neeraj_chopra1", "Pvsindhu1", "harbhajan_singh",
+        "imVkohli", "ImRo45", "sachin_rt", "Jaspritbumrah93", "hardikpandya7",
+        "Neeraj_chopra1", "SGanguly99", "Pvsindhu1", "MirzaSania",
+        "DGukesh", "chetrisunil11", "Smriti_Mandhana", "RishabhPant17",
+        "ShubmanGill", "imjadeja", "klrahul", "realmanubhaker", "nikhat_zareen",
+        "harbhajan_singh",
     ],
     "news": [
         "narendramodi", "DrSJaishankar", "AmitShah", "nsitharaman",
-        "RahulGandhi",
+        "RahulGandhi", "myogiadityanath", "MamataOfficial", "ArvindKejriwal",
     ],
     "immigration": [],
 }
