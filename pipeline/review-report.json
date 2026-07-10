@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-10T02:15:37.713760+00:00",
+  "timestamp": "2026-07-10T03:15:29.927985+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,23 +11,109 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "57ac53c4-85c9-4e08-987e-57473c50da47",
-      "headline": "The USCIS Ombudsman Just Called H-1B Extension Delays the Agency's Biggest Problem. Workers Are Losing Jobs at Day 241.",
-      "slug": "uscis-ombudsman-h1b-extension-delays-240-day-cliff-20260710",
+      "id": "3b0b2837-b030-4009-b28e-9dc974bff524",
+      "headline": "The World's Biggest AI Memory Chipmaker Lists on Nasdaq Tomorrow. Sanjay Mehrotra's Micron Just Got Company.",
+      "slug": "sk-hynix-nasdaq-listing-micron-mehrotra-ai-memory-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "SK Hynix DRAM memory chips",
+          "reason": "The photo shows SK Hynix chips, relevant to the story about their Nasdaq listing."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of AI memory chips or the companies mentioned."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic to Indian Americans in the semiconductor and AI industries, highlighting Sanjay Mehrotra's role."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts AI memory chips or the semiconductor industry.",
+          "Expand on the implications of 'chipflation' for NRI consumers to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f3702e16-7e0c-45f0-a6f0-f06d0cd3822d",
+      "headline": "India's $315 Billion IT Industry Is Staring Down Its Worst Year in a Decade. The Reckoning Has Arrived.",
+      "slug": "india-it-sector-perfect-storm-nifty-q1-earnings-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "stock trading charts on digital display",
+          "reason": "The photo's subject is relevant to the story about IT industry market trends."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the IT industry or the specific topic of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of the IT industry's downturn on NRI investors, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the IT industry or technology theme.",
+          "Expand on the implications for NRI investors to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9270d57b-a3f1-4881-ba26-6fb583f2d4d8",
+      "headline": "Google Just Broke Ground on Its Biggest AI Hub Outside America. The Location: Vizag.",
+      "slug": "google-vizag-ai-hub-groundbreaking-pichai-subsea-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "e786f62d-67a7-44cc-a7e4-c666a4ed8cfe",
-            "headline": "An AI Is Now Reading Every H-1B Filing You Ever Made. The Go"
+            "article_id": "b52436c7-0e97-4416-97df-bb48922fab0d",
+            "headline": "From OpenAI to Anthropic to Apple: Indian-Origin Engineers N"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS headquarters groundbreaking ceremony",
-          "reason": "The photo is related to USCIS, matching the immigration story topic."
+          "what_photo_shows": "Sundar Pichai at an event",
+          "reason": "The photo shows Sundar Pichai, relevant to the story about Google's AI hub."
         },
         "inline_image_mismatches": []
       },
@@ -35,105 +121,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the specific topic of H-1B extension delays."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of H-1B extension delays on Indian workers, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly relates to H-1B workers or immigration issues.",
-          "Add quotes or testimonials from affected workers to enhance the human interest angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3a3f3079-2f79-4aa4-b529-7e22fe29adef",
-      "headline": "Every H-1B Extension Will Now Cost Indian IT Firms an Extra $4,000. The Rule Takes Effect This Month.",
-      "slug": "h1b-dependent-employer-extension-fee-4000-indian-it-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "USCIS headquarters groundbreaking ceremony",
-          "reason": "The photo is related to USCIS, which is relevant to the immigration topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on H-1B visa extensions and Indian IT firms."
+          "score": 7,
+          "issue": "The image of Sundar Pichai is relevant as he is a key figure in the announcement, but it does not directly depict the AI hub or Vizag."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of H-1B visa changes on Indian IT firms, which is highly relevant to the Indian diaspora working in the US."
+          "note": "The article effectively connects the investment to the NRI community, particularly Indian Americans in technology and Telugu-speaking engineers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of H-1B visas or Indian IT firms.",
-          "Add quotes or perspectives from Indian IT professionals to enhance the human angle of the story."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "edc20b63-36e8-444a-b4a4-532e202c8463",
-      "headline": "Cognizant Is the First Indian IT Giant Named in the Federal H-1B Fraud Probe. It Won't Be the Last.",
-      "slug": "cognizant-whistleblower-h1b-fraud-probe-dol-ig-indian-it-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Cognizant campus in Chennai",
-          "reason": "The photo shows the Cognizant campus, relevant to the story about the company."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the H-1B fraud probe on Indian workers, which is highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or reactions from Indian diaspora organizations regarding the H-1B probe.",
-          "Add a section on potential impacts on the job market for Indian IT professionals in the U.S."
+          "Include a quote or perspective from an NRI or Indian American in tech to enhance the diaspora angle.",
+          "Consider adding more details about the potential impact on local communities in Vizag."
         ],
         "verdict": "pass"
       },
