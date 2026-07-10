@@ -1,15 +1,364 @@
 {
-  "timestamp": "2026-07-10T15:45:29.795824+00:00",
+  "timestamp": "2026-07-10T16:16:25.118978+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 8,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "6c68a81c-3609-4113-93cd-3df0b3c5f7ba",
+      "headline": "India Just Overhauled the OCI Card System for Five Million Holders Worldwide. Here Is What Changed \u2014 and What You Need to Do.",
+      "slug": "india-oci-card-overhaul-2026-digital-eoci-rules-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Overseas Citizen of India card",
+          "reason": "The photo shows an OCI card, relevant to the story about OCI system changes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses changes to the OCI card system, which directly impacts the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a section with FAQs to address common concerns about the new OCI system.",
+          "Add quotes or testimonials from OCI holders about their experiences with the old system and expectations for the new one."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0f808ae0-a384-497e-b5c2-b0da885e67da",
+      "headline": "Seventy-One Per Cent Disapprove, Thirty-One Per Cent Have Gone Quiet on Social Media. Inside the Landmark Survey That Maps Indian America's Political Anxiety.",
+      "slug": "carnegie-iaas-2026-indian-american-attitudes-survey-discrimination-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian community at outdoor event",
+          "reason": "The photo shows an Indian community gathering, relevant to the story about Indian American attitudes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the political theme of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the political concerns and sentiments of the Indian American community, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the political theme of the article.",
+          "Add quotes or testimonials from Indian Americans to enhance the personal connection to the survey findings."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6e71cfe0-ae24-4d56-bcda-1a74fe4e2df1",
+      "headline": "Your Smartwatch Wasn't Built for You: Why South Asians Need to Rethink Wearable Health Data",
+      "slug": "wearable-health-devices-south-asian-cardiovascular-risk-oura-apple-watch-early-detection-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Person checking smartwatch metrics",
+          "reason": "The photo aligns with the topic of wearable health devices."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses health concerns specific to South Asians, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of wearable devices popular among South Asians.",
+          "Add quotes or insights from health experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4d7c0f40-23ff-4184-b852-153c891279f0",
+      "headline": "Ayurveda Has Become a $20 Billion Global Industry. The Diaspora Is Still Figuring Out How to Feel About It.",
+      "slug": "ayurveda-global-market-20-billion-western-wellness-cultural-roots-diaspora-identity-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ayurvedic treatment setup",
+          "reason": "The photo shows an Ayurvedic treatment setup, relevant to the story on Ayurveda."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the Indian diaspora's complex feelings about the commercialization of Ayurveda, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more personal anecdotes or quotes from diaspora members to enhance relatability.",
+          "Include more statistics or studies on the impact of Ayurveda's commercialization on traditional practices."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9458d44b-be6d-4fcc-8934-3dd78e404bce",
+      "headline": "Nita Ambani Receives Key to Tampa and Humanitarian Award as Indian-American Doctors Launch Cross-Border Health Alliance",
+      "slug": "nita-ambani-aapi-humanitarian-award-india-america-health-alliance-tampa-key-city-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "6da9c342-6af7-462b-a969-d911209a883b",
+            "headline": "Nita Ambani Proposes an India-America Health Alliance at AAP"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Nita Ambani at an event",
+          "reason": "The photo shows Nita Ambani, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image does not match the article's headline and topic, as it features a hospital dedication rather than Nita Ambani or the AAPI convention."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements of Indian-American physicians and the relevance of the AAPI convention to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features Nita Ambani or the AAPI convention to better align with the article's content.",
+          "Consider adding quotes or testimonials from attendees to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "62e274a3-31e0-4ba3-9166-ea1f1df2523c",
+      "headline": "India Just Survived a Record $48 Billion Foreign Exodus \u2014 And Came Out Stronger. Here's What NRI Investors Need to Know",
+      "slug": "india-48-billion-fpi-exodus-resilience-domestic-investors-nri-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRI investors and discusses implications for their investments, making the diaspora angle relevant and well-integrated."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRIs can take advantage of the current market conditions.",
+          "Include a brief summary or conclusion to reinforce the key takeaways for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "21725476-8424-46d1-a1c6-19bfbe2777f4",
+      "headline": "India's Rate-Hike Fears Collapse as Traders Dump Bets in Record $2.65 Billion Swap Day \u2014 What It Means for NRI Portfolios",
+      "slug": "india-rate-hike-fears-collapse-record-swap-ois-rbi-nri-bonds-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story on RBI rate changes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of rate-hike expectations to NRI portfolios, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI portfolios can be adjusted in response to the changing market conditions.",
+          "Include a brief summary or conclusion that reiterates the key takeaways for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6f860875-eabe-4f8c-879d-247846bc1198",
+      "headline": "Shapoorji Pallonji Launches $650 Million Dollar Bond With BlackRock Backing \u2014 What NRI Investors Should Know About India's Hottest Debt Deal",
+      "slug": "shapoorji-pallonji-650-million-dollar-bond-blackrock-nri-india-debt-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Indian currency notes and coins",
+          "reason": "The photo represents the corporate debt market, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the financial topic of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and discusses opportunities in the Indian corporate bond market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the financial theme of the article.",
+          "Add a brief summary or conclusion to reinforce the key takeaways for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "a1727d80-d0f6-4f63-8562-124e73b08c2d",
       "headline": "Cricket Diplomacy. Australia's Big Bash League to Open Its Next Season in Chennai.",
@@ -41,8 +390,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from cricket analysts or players to enhance the article's depth.",
-          "Include more historical context about cricket diplomacy between India and Australia to enrich the narrative."
+          "Consider adding quotes from cricket analysts or players to enhance credibility.",
+          "Include more historical context about cricket diplomacy between India and Australia."
         ],
         "verdict": "pass"
       },
@@ -52,44 +401,6 @@
       "revised": false,
       "unpublished": false,
       "image_unverified": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2ea1c759-d4f0-455b-9252-70e3f5d9cce7",
-      "headline": "WhatsApp's New Indian-Born Chief Faces His First Test. Delhi Just Froze His Biggest Feature.",
-      "slug": "whatsapp-kunal-shah-username-india-freeze-meta-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of WhatsApp's regulatory challenges in India, which is relevant to the Indian diaspora interested in tech and business developments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image that visually represents the article's topic.",
-          "Add quotes or perspectives from diaspora members or experts to enhance the connection to the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
   ]
