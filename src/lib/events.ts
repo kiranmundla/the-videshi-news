@@ -104,8 +104,8 @@ export function generateSlug(title: string, _date?: string): string {
     .replace(/-+$/, "")
     .slice(0, 50)
     .replace(/-+$/, "");
-  const suffix = Math.random().toString(36).slice(2, 8);
-  return `${cleaned}-${suffix}`;
+  const uuid = crypto.randomUUID().replace(/-/g, "").slice(0, 12);
+  return `${cleaned}-${uuid}`;
 }
 
 /**
