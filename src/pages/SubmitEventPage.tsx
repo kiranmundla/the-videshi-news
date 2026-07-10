@@ -601,7 +601,6 @@ export default function SubmitEventPage() {
       setPublishedSlug(slug!);
     }
 
-    setPublishedSlug(slug);
     sessionStorage.removeItem(STORAGE_KEY);
 
     /* Confirmation email (fire-and-forget) */
