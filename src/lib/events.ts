@@ -96,15 +96,16 @@ async function loadEventsCache(): Promise<EventItem[] | null> {
  * Generate a deterministic slug from title + date.
  * Used both for URL generation and lookup matching.
  */
-export function generateSlug(title: string, date: string): string {
+export function generateSlug(title: string, _date?: string): string {
   const cleaned = title
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+$/, "")
-    .slice(0, 60)
+    .slice(0, 50)
     .replace(/-+$/, "");
-  return `${cleaned}-${date}`;
+  const suffix = Math.random().toString(36).slice(2, 8);
+  return `${cleaned}-${suffix}`;
 }
 
 /**
