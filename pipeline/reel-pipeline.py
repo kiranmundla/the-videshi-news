@@ -2031,7 +2031,26 @@ def main():
     parser.add_argument("--prompts-only", action="store_true", help="Stop after generating storyboard prompts (Step 1)")
     parser.add_argument("--from-queue", action="store_true", help="Build reels from ready reel_queue entries")
     parser.add_argument("--build-dir", help="Build directory (default: /tmp/reel-build-<id>)")
+    parser.add_argument("--format", choices=["anchor", "pulse", "auto"], default="auto",
+                        help="Reel format: anchor (voice+music), pulse (music-only data cards), auto (alternate)")
     args = parser.parse_args()
+    
+    # ── Determine reel format ──
+    if args.format == "auto":
+        # Alternate: check last QA-passed reel's format
+        try:
+            _fmt_resp = requests.get(
+                f"{SB_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&order=created_at.desc&limit=1&select=reel_format",
+                headers={k: v for k, v in SB_HEADERS.items() if k != 'Prefer'}
+            )
+            _last_fmt = _fmt_resp.json()[0].get("reel_format", "anchor") if _fmt_resp.json() else "pulse"
+            chosen_format = "pulse" if _last_fmt == "anchor" else "anchor"
+        except Exception:
+            chosen_format = "anchor"
+        print(f"  🔄 Auto-alternating format: {chosen_format} (last was {_last_fmt})")
+    else:
+        chosen_format = args.format
+        print(f"  🎬 Format: {chosen_format}")
     
     # ── FROM-QUEUE MODE: process ready entries from reel_queue ──
     if args.from_queue:
@@ -2184,49 +2203,64 @@ def main():
         print(f"   {build_dir}/carousel/")
         return
     
-    # Phase 4: TTS (reuse cached if available)
-    vo_mp3_cache = f"{build_dir}/voiceover.mp3"
-    if os.path.exists(vo_mp3_cache) and os.path.getsize(vo_mp3_cache) > 1000:
-        print(f"\n{'='*60}")
-        print(f"PHASE 4: Reusing cached voiceover")
-        print(f"{'='*60}")
-        dur = float(subprocess.run(
-            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
-             "-of", "default=noprint_wrappers=1:nokey=1", vo_mp3_cache],
-            capture_output=True, text=True
-        ).stdout.strip())
-        # Upload to Supabase (in case it's not there)
-        storage_path = f"reel-gen/{article_id}/voiceover.mp3"
-        with open(vo_mp3_cache, "rb") as f:
-            requests.post(
-                f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
-                headers={**SB_HEADERS, "Content-Type": "audio/mpeg", "x-upsert": "true"},
-                data=f.read(), timeout=30
-            )
-        vo_url = f"{STORAGE_BASE}/{storage_path}"
-        voice_duration = dur
-        vo_mp3 = vo_mp3_cache
-        print(f"  ✅ Voiceover: {dur:.1f}s (cached)")
+    # Phase 4-5: TTS + Whisper (only for anchor/voice format)
+    vo_url = None
+    voice_duration = 0
+    vo_mp3 = None
+    words = []
+    endcard_cta_url = None
+    endcard_cta_dur = 0
+    
+    if chosen_format == "anchor":
+        vo_mp3_cache = f"{build_dir}/voiceover.mp3"
+        if os.path.exists(vo_mp3_cache) and os.path.getsize(vo_mp3_cache) > 1000:
+            print(f"\n{'='*60}")
+            print(f"PHASE 4: Reusing cached voiceover")
+            print(f"{'='*60}")
+            dur = float(subprocess.run(
+                ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                 "-of", "default=noprint_wrappers=1:nokey=1", vo_mp3_cache],
+                capture_output=True, text=True
+            ).stdout.strip())
+            # Upload to Supabase (in case it's not there)
+            storage_path = f"reel-gen/{article_id}/voiceover.mp3"
+            with open(vo_mp3_cache, "rb") as f:
+                requests.post(
+                    f"{SB_URL}/storage/v1/object/article-images/{storage_path}",
+                    headers={**SB_HEADERS, "Content-Type": "audio/mpeg", "x-upsert": "true"},
+                    data=f.read(), timeout=30
+                )
+            vo_url = f"{STORAGE_BASE}/{storage_path}"
+            voice_duration = dur
+            vo_mp3 = vo_mp3_cache
+            print(f"  ✅ Voiceover: {dur:.1f}s (cached)")
+        else:
+            vo_url, voice_duration, vo_mp3 = generate_tts(scenes, article_id, build_dir)
+        
+        # Endcard CTA
+        endcard_cta_url, endcard_cta_dur = ensure_endcard_cta()
+        
+        # Phase 5: Whisper
+        words = get_word_timestamps(vo_mp3, build_dir)
     else:
-        vo_url, voice_duration, vo_mp3 = generate_tts(scenes, article_id, build_dir)
-    
-    # Endcard CTA
-    endcard_cta_url, endcard_cta_dur = ensure_endcard_cta()
-    
-    # Phase 5: Whisper
-    words = get_word_timestamps(vo_mp3, build_dir)
+        print(f"\n  ⏭️  Skipping TTS/Whisper (pulse format — music only)")
     
     # Phase 6: Music
     music_url, attribution = select_music(article, build_dir, story_mood=story_mood)
     
-    # Phase 7a: Build MUSIC-ONLY reel (Quick Pulse)
-    music_reel_path, music_render_id = build_music_only_reel(scenes, music_url, build_dir)
+    # Phase 7: Build ONE variant based on chosen_format
+    music_reel_path = None
+    vo_reel_path = None
     
-    # Phase 7b: Build VOICEOVER reel (Anchor)
-    vo_reel_path, vo_render_id = build_reel(
-        scenes, words, vo_url, voice_duration,
-        music_url, endcard_cta_url, endcard_cta_dur, build_dir
-    )
+    if chosen_format == "pulse":
+        # Phase 7a: Build MUSIC-ONLY reel (Quick Pulse)
+        music_reel_path, music_render_id = build_music_only_reel(scenes, music_url, build_dir)
+    else:
+        # Phase 7b: Build VOICEOVER reel (Anchor)
+        vo_reel_path, vo_render_id = build_reel(
+            scenes, words, vo_url, voice_duration,
+            music_url, endcard_cta_url, endcard_cta_dur, build_dir
+        )
     
     # Phase 7c: QA checks
     print(f"\n{'='*60}")
@@ -2276,7 +2310,7 @@ def main():
     
     # Phase 9: Register in prebuilt_reels + distribute
     if qa_all_passed:
-        # Register reels in DB. YouTube upload is handled ONLY by distribute-reels.py
+        # Register ONE reel in DB. YouTube upload is handled ONLY by distribute-reels.py
         # to prevent duplicate uploads (reel-pipeline + distribute-reels = double upload).
         results = {}
         for variant, reel_path_v in [("music-only", music_reel_path), ("voiceover", vo_reel_path)]:
@@ -2288,6 +2322,16 @@ def main():
             
             # Register (upsert — deletes old row, inserts fresh)
             _register_reel(reel_path_v, variant, article, carousel_slides=carousel_slides)
+            
+            # Tag the format
+            try:
+                requests.patch(
+                    f"{SB_URL}/rest/v1/prebuilt_reels?article_id=eq.{article['id']}",
+                    headers={**SB_HEADERS, "Prefer": "return=minimal"},
+                    json={"reel_format": chosen_format}
+                )
+            except Exception:
+                pass
             
             # Carry forward existing YT ID so distribute-reels doesn't re-upload
             if existing_yt:

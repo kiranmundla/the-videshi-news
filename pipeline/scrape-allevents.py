@@ -113,6 +113,26 @@ CITIES = [
     {"ae": "indianapolis", "display": "Indianapolis", "state": "IN", "batch": "b"},
     {"ae": "nashville", "display": "Nashville", "state": "TN", "batch": "b"},
     {"ae": "plano", "display": "Plano", "state": "TX", "batch": "b"},
+    # Batch C — Tier 2 metros (high Indian/South Asian population)
+    {"ae": "cary", "display": "Cary", "state": "NC", "batch": "c"},
+    {"ae": "durham", "display": "Durham", "state": "NC", "batch": "c"},
+    {"ae": "pittsburgh", "display": "Pittsburgh", "state": "PA", "batch": "c"},
+    {"ae": "orlando", "display": "Orlando", "state": "FL", "batch": "c"},
+    {"ae": "baltimore", "display": "Baltimore", "state": "MD", "batch": "c"},
+    {"ae": "stamford", "display": "Stamford", "state": "CT", "batch": "c"},
+    {"ae": "ann-arbor", "display": "Ann Arbor", "state": "MI", "batch": "c"},
+    {"ae": "san-antonio", "display": "San Antonio", "state": "TX", "batch": "c"},
+    {"ae": "salt-lake-city", "display": "Salt Lake City", "state": "UT", "batch": "c"},
+    # Batch D — More Tier 2 metros
+    {"ae": "cincinnati", "display": "Cincinnati", "state": "OH", "batch": "d"},
+    {"ae": "cleveland", "display": "Cleveland", "state": "OH", "batch": "d"},
+    {"ae": "kansas-city", "display": "Kansas City", "state": "MO", "batch": "d"},
+    {"ae": "st-louis", "display": "St Louis", "state": "MO", "batch": "d"},
+    {"ae": "las-vegas", "display": "Las Vegas", "state": "NV", "batch": "d"},
+    {"ae": "richmond", "display": "Richmond", "state": "VA", "batch": "d"},
+    {"ae": "jacksonville", "display": "Jacksonville", "state": "FL", "batch": "d"},
+    {"ae": "hartford", "display": "Hartford", "state": "CT", "batch": "d"},
+    {"ae": "milwaukee", "display": "Milwaukee", "state": "WI", "batch": "d"},
 ]
 
 # Category rules
@@ -513,7 +533,9 @@ def main():
     parser = argparse.ArgumentParser(description="Scrape AllEvents.in for Indian diaspora events")
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
     parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'houston')")
-    parser.add_argument("--batch", type=str, default=None, choices=["a", "b"], help="Run batch a or b (8 cities each)")
+    parser.add_argument("--batch", type=str, default=None, choices=["a", "b", "c", "d"], help="Legacy batches (prefer --day)")
+    parser.add_argument("--day", type=int, choices=range(7), default=None,
+                        help="Day-of-week batch (0=Mon..6=Sun). Full cycle = 1 week.")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -526,6 +548,9 @@ def main():
         if not cities:
             print(f"Unknown city: {args.city}. Available: {', '.join(c['ae'] for c in CITIES)}")
             sys.exit(1)
+    elif args.day is not None:
+        cities = [c for i, c in enumerate(CITIES) if i % 7 == args.day]
+        print(f"📅 Day {args.day} batch: {', '.join(c['display'] for c in cities)} ({len(cities)} cities)")
     elif args.batch:
         cities = [c for c in CITIES if c.get("batch") == args.batch]
         print(f"📦 Running batch {args.batch.upper()}: {len(cities)} cities")

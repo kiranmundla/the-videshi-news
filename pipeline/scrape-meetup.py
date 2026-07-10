@@ -99,6 +99,25 @@ CITIES = [
     {"location": "us--tx--Plano",            "display": "Plano",         "state": "TX", "slug": "plano"},
     {"location": "us--ca--Fremont",          "display": "Fremont",       "state": "CA", "slug": "fremont"},
     {"location": "us--ca--Sunnyvale",        "display": "Sunnyvale",     "state": "CA", "slug": "sunnyvale"},
+    # --- Tier 2 metros (high Indian/South Asian population) ---
+    {"location": "us--nc--Cary",             "display": "Cary",          "state": "NC", "slug": "cary"},
+    {"location": "us--nc--Durham",           "display": "Durham",        "state": "NC", "slug": "durham"},
+    {"location": "us--pa--Pittsburgh",       "display": "Pittsburgh",    "state": "PA", "slug": "pittsburgh"},
+    {"location": "us--fl--Orlando",          "display": "Orlando",       "state": "FL", "slug": "orlando"},
+    {"location": "us--md--Baltimore",        "display": "Baltimore",     "state": "MD", "slug": "baltimore"},
+    {"location": "us--ct--Stamford",         "display": "Stamford",      "state": "CT", "slug": "stamford"},
+    {"location": "us--mi--Ann+Arbor",        "display": "Ann Arbor",     "state": "MI", "slug": "ann-arbor"},
+    {"location": "us--tx--San+Antonio",      "display": "San Antonio",   "state": "TX", "slug": "san-antonio"},
+    {"location": "us--ut--Salt+Lake+City",   "display": "Salt Lake City","state": "UT", "slug": "salt-lake-city"},
+    {"location": "us--oh--Cincinnati",       "display": "Cincinnati",    "state": "OH", "slug": "cincinnati"},
+    {"location": "us--oh--Cleveland",        "display": "Cleveland",     "state": "OH", "slug": "cleveland"},
+    {"location": "us--mo--Kansas+City",      "display": "Kansas City",   "state": "MO", "slug": "kansas-city"},
+    {"location": "us--mo--Saint+Louis",      "display": "St Louis",      "state": "MO", "slug": "st-louis"},
+    {"location": "us--nv--Las+Vegas",        "display": "Las Vegas",     "state": "NV", "slug": "las-vegas"},
+    {"location": "us--va--Richmond",         "display": "Richmond",      "state": "VA", "slug": "richmond"},
+    {"location": "us--fl--Jacksonville",     "display": "Jacksonville",  "state": "FL", "slug": "jacksonville"},
+    {"location": "us--ct--Hartford",         "display": "Hartford",      "state": "CT", "slug": "hartford"},
+    {"location": "us--wi--Milwaukee",        "display": "Milwaukee",     "state": "WI", "slug": "milwaukee"},
 ]
 
 # Category rules (same as events-ingest.py)
@@ -503,7 +522,9 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
     parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'bay-area')")
     parser.add_argument("--batch", type=str, choices=["A", "B", "C", "D"], default=None,
-                        help="Run a quarter of the city list (A/B/C/D, ~3-4 cities each) to stay under the worker time limit")
+                        help="Legacy quarter batches (prefer --day for daily rotation)")
+    parser.add_argument("--day", type=int, choices=range(7), default=None,
+                        help="Day-of-week batch (0=Mon..6=Sun). Splits 50 cities into 7 daily slices of ~7 each. Full cycle = 1 week.")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -516,6 +537,11 @@ def main():
         if not cities:
             print(f"Unknown city: {args.city}. Available: {', '.join(c['slug'] for c in CITIES)}")
             sys.exit(1)
+    elif args.day is not None:
+        # Daily rotation: split all cities into 7 slices, one per day of the week
+        # 50 cities / 7 = ~7 per day. Full coverage in one week.
+        cities = [c for i, c in enumerate(CITIES) if i % 7 == args.day]
+        print(f"📅 Day {args.day} batch: {', '.join(c['display'] for c in cities)} ({len(cities)} cities)")
     elif args.batch:
         # Split the city list into 4 quarters (~3-4 cities each) so a single
         # run stays well under the 30-minute worker cap even when Meetup is slow.
