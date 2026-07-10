@@ -62,16 +62,6 @@
    "priority": 2
   },
   {
-   "subject": "sikh",
-   "subject_type": "thing",
-   "tags": [
-    "sikh"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "46053432-a765-4316-b8ab-7f4b3990cc08",
-   "priority": 2
-  },
-  {
    "subject": "nagar kirtan",
    "subject_type": "thing",
    "tags": [
@@ -149,7 +139,7 @@
    ],
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "f9485a57-e2b8-4cab-a94d-c743bf9358e5",
-   "priority": 6
+   "priority": 7
   },
   {
    "subject": "vietnam",
@@ -379,7 +369,7 @@
    ],
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
-   "priority": 9
+   "priority": 11
   },
   {
    "subject": "detention",
@@ -439,7 +429,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "960ee946-b1ad-4735-8542-a46652a3393f",
-   "priority": 8
+   "priority": 10
   },
   {
    "subject": "group f",
@@ -692,16 +682,6 @@
    "priority": 2
   },
   {
-   "subject": "department of labor",
-   "subject_type": "thing",
-   "tags": [
-    "department of labor"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "ad57251d-a50a-4182-b997-52e4b4113027",
-   "priority": 2
-  },
-  {
    "subject": "o 1 visa",
    "subject_type": "thing",
    "tags": [
@@ -719,7 +699,7 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "418e8774-0d0a-471c-987c-a98ec8dff5f3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "ai education",
@@ -789,16 +769,6 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "cad5c570-0cb0-4a9e-9274-3f2f0585612e",
-   "priority": 2
-  },
-  {
-   "subject": "perplexity",
-   "subject_type": "thing",
-   "tags": [
-    "perplexity"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "1d24a43b-fd18-4ae4-8224-152d38decf1a",
    "priority": 2
   },
   {
@@ -1192,16 +1162,6 @@
    "priority": 2
   },
   {
-   "subject": "fuel surcharge",
-   "subject_type": "thing",
-   "tags": [
-    "fuel surcharge"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "25f195f7-81a1-4322-83d8-2e8066eabe01",
-   "priority": 3
-  },
-  {
    "subject": "india canada",
    "subject_type": "thing",
    "tags": [
@@ -1210,16 +1170,6 @@
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "0be54a36-341f-4ab3-90ad-918d6a119f0e",
    "priority": 2
-  },
-  {
-   "subject": "indo canadian",
-   "subject_type": "thing",
-   "tags": [
-    "indo canadian"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "0be54a36-341f-4ab3-90ad-918d6a119f0e",
-   "priority": 3
   },
   {
    "subject": "cepa",
@@ -1240,16 +1190,6 @@
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "52e86faa-ce8c-4f22-b1a7-c9f65382fd08",
    "priority": 2
-  },
-  {
-   "subject": "festival",
-   "subject_type": "thing",
-   "tags": [
-    "festival"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "52e86faa-ce8c-4f22-b1a7-c9f65382fd08",
-   "priority": 3
   },
   {
    "subject": "business",
@@ -1282,16 +1222,6 @@
    "priority": 2
   },
   {
-   "subject": "consular processing",
-   "subject_type": "thing",
-   "tags": [
-    "consular processing"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "3e200153-a7bd-4651-8038-58f5cf82302a",
-   "priority": 3
-  },
-  {
    "subject": "northeast",
    "subject_type": "thing",
    "tags": [
@@ -1310,16 +1240,6 @@
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "30f73c0f-f0f5-4584-a116-b3aa34ca0c61",
    "priority": 2
-  },
-  {
-   "subject": "aws",
-   "subject_type": "thing",
-   "tags": [
-    "aws"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "5e2238e4-e719-4f18-8e9f-dd4c0b2c57ac",
-   "priority": 3
   },
   {
    "subject": "cloud",
@@ -1460,26 +1380,6 @@
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "cba77fde-f1be-47fa-94a6-c951e54a75a2",
    "priority": 2
-  },
-  {
-   "subject": "india tourism",
-   "subject_type": "thing",
-   "tags": [
-    "india tourism"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "498dce01-41f2-4cb2-b268-690655f37c8a",
-   "priority": 3
-  },
-  {
-   "subject": "vande bharat",
-   "subject_type": "thing",
-   "tags": [
-    "vande bharat"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "498dce01-41f2-4cb2-b268-690655f37c8a",
-   "priority": 3
   },
   {
    "subject": "railways",
@@ -1632,16 +1532,6 @@
    "priority": 2
   },
   {
-   "subject": "reliance jio",
-   "subject_type": "thing",
-   "tags": [
-    "reliance jio"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "5fe815e4-7446-4234-8d48-d8771c07ef16",
-   "priority": 3
-  },
-  {
    "subject": "satellites",
    "subject_type": "thing",
    "tags": [
@@ -1650,16 +1540,6 @@
    "first_seen": "2026-06-26T10:29:23Z",
    "article_id": "5fe815e4-7446-4234-8d48-d8771c07ef16",
    "priority": 2
-  },
-  {
-   "subject": "starlink",
-   "subject_type": "thing",
-   "tags": [
-    "starlink"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "5fe815e4-7446-4234-8d48-d8771c07ef16",
-   "priority": 3
   },
   {
    "subject": "akash ambani",
@@ -1789,7 +1669,7 @@
    ],
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "5d15a642-85f8-4060-8d81-c1791c7a8b30",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "bharat gaurav",
@@ -1839,7 +1719,7 @@
    ],
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "90c93f0b-2196-431b-81da-36714a6d361c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "neysa",
@@ -2132,16 +2012,6 @@
    "priority": 2
   },
   {
-   "subject": "tech workers",
-   "subject_type": "thing",
-   "tags": [
-    "tech workers"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "a030dda8-503b-4d87-90b6-120ce5a37580",
-   "priority": 3
-  },
-  {
    "subject": "indian tech workers",
    "subject_type": "thing",
    "tags": [
@@ -2150,16 +2020,6 @@
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "adaf6aec-fab6-45e1-9a6d-0fc1a2249026",
    "priority": 8
-  },
-  {
-   "subject": "nasdaq",
-   "subject_type": "thing",
-   "tags": [
-    "nasdaq"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "adaf6aec-fab6-45e1-9a6d-0fc1a2249026",
-   "priority": 3
   },
   {
    "subject": "mirendil",
@@ -2396,16 +2256,6 @@
    "subject_type": "thing",
    "tags": [
     "saudi arabia"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "226f79d6-cf39-4ade-9b48-001fe2962111",
-   "priority": 3
-  },
-  {
-   "subject": "real estate",
-   "subject_type": "thing",
-   "tags": [
-    "real estate"
    ],
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "226f79d6-cf39-4ade-9b48-001fe2962111",
@@ -3272,16 +3122,6 @@
    "priority": 2
   },
   {
-   "subject": "trade deal",
-   "subject_type": "thing",
-   "tags": [
-    "trade deal"
-   ],
-   "first_seen": "2026-06-30T10:29:23Z",
-   "article_id": "c4ac54b6-a6f9-4afc-be3c-af528782b9bd",
-   "priority": 3
-  },
-  {
    "subject": "mobility",
    "subject_type": "thing",
    "tags": [
@@ -3819,7 +3659,7 @@
    ],
    "first_seen": "2026-07-01T10:29:26Z",
    "article_id": "a87c6a7a-67d8-4ba0-a84c-3e8cbdd82f3b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "data centre",
@@ -3859,7 +3699,7 @@
    ],
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "dcfa6647-98c7-4c2c-b554-832ff862ae3c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "the hundred",
@@ -3929,7 +3769,7 @@
    ],
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "b8dc0a92-c1cd-49f1-9d9c-cdab031b1fba",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "codex",
@@ -4050,16 +3890,6 @@
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "a3772749-e609-477b-9004-1fa08e27b556",
    "priority": 2
-  },
-  {
-   "subject": "antitrust",
-   "subject_type": "thing",
-   "tags": [
-    "antitrust"
-   ],
-   "first_seen": "2026-07-02T10:29:24Z",
-   "article_id": "a3772749-e609-477b-9004-1fa08e27b556",
-   "priority": 3
   },
   {
    "subject": "app store",
@@ -4259,7 +4089,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "145b4c83-9f17-4d49-8c49-23cd58700ba7",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "mandatory detention",
@@ -4310,16 +4140,6 @@
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "bcb1ec39-e6ac-4e4e-a63c-39273e3ae9d4",
    "priority": 2
-  },
-  {
-   "subject": "rupee",
-   "subject_type": "thing",
-   "tags": [
-    "rupee"
-   ],
-   "first_seen": "2026-07-03T10:29:24Z",
-   "article_id": "bcb1ec39-e6ac-4e4e-a63c-39273e3ae9d4",
-   "priority": 3
   },
   {
    "subject": "Nifty",
@@ -4389,7 +4209,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "7ea677a0-175e-4473-872f-667e7fbcd098",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "frontier ai",
@@ -4449,7 +4269,7 @@
    ],
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "fd1c0aba-3dbe-485d-a155-68470be01b7c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "sharechat",
@@ -4530,16 +4350,6 @@
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "73093328-8e6e-4d76-b73d-29fd7c945806",
    "priority": 2
-  },
-  {
-   "subject": "deportation",
-   "subject_type": "thing",
-   "tags": [
-    "deportation"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "73093328-8e6e-4d76-b73d-29fd7c945806",
-   "priority": 3
   },
   {
    "subject": "rejection rate",
@@ -5129,7 +4939,7 @@
    ],
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "2030e478-6729-4adf-aa8e-7d7afa543db5",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "climate",
@@ -5292,16 +5102,6 @@
    "priority": 3
   },
   {
-   "subject": "indo pacific",
-   "subject_type": "thing",
-   "tags": [
-    "indo pacific"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "82d56a33-6a04-49ea-ac4b-1af0040913c3",
-   "priority": 3
-  },
-  {
    "subject": "anti indian sentiment",
    "subject_type": "thing",
    "tags": [
@@ -5309,7 +5109,7 @@
    ],
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "82d56a33-6a04-49ea-ac4b-1af0040913c3",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "blind survey",
@@ -5439,7 +5239,7 @@
    ],
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "visa renewal",
@@ -5569,7 +5369,7 @@
    ],
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "cffa6f9c-d76e-41d1-a3ac-8e70af9eec69",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian space",
@@ -6009,7 +5809,7 @@
    ],
    "first_seen": "2026-07-07T10:29:37Z",
    "article_id": "c40f3265-8bb3-4706-b995-482e3f53f3e1",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "music",
@@ -6119,7 +5919,7 @@
    ],
    "first_seen": "2026-07-07T10:29:37Z",
    "article_id": "6d9f9d91-eb07-426c-9b38-35adf2a3b203",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "hamas",
@@ -6529,7 +6329,7 @@
    ],
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "24e8229a-7292-45a8-8367-d5494da4e171",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "cisco",
@@ -6870,7 +6670,597 @@
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "1fe19393-30a3-4624-8019-dbee255bbea6",
    "priority": 2
+  },
+  {
+   "subject": "asha sharma",
+   "subject_type": "thing",
+   "tags": [
+    "asha sharma"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "f57def1e-820a-4ce2-bd9a-e8ebfa615d82",
+   "priority": 2
+  },
+  {
+   "subject": "tech leadership",
+   "subject_type": "thing",
+   "tags": [
+    "tech leadership"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "f57def1e-820a-4ce2-bd9a-e8ebfa615d82",
+   "priority": 2
+  },
+  {
+   "subject": "jd vance",
+   "subject_type": "thing",
+   "tags": [
+    "jd vance"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "e7a30e81-e4ca-4a35-b145-2579ef8b93e0",
+   "priority": 2
+  },
+  {
+   "subject": "visa policy",
+   "subject_type": "thing",
+   "tags": [
+    "visa policy"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "e7a30e81-e4ca-4a35-b145-2579ef8b93e0",
+   "priority": 2
+  },
+  {
+   "subject": "hate crime",
+   "subject_type": "thing",
+   "tags": [
+    "hate crime"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "10e0219a-da5f-4ac2-b9da-24f15325bfbf",
+   "priority": 2
+  },
+  {
+   "subject": "fbi",
+   "subject_type": "thing",
+   "tags": [
+    "fbi"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "10e0219a-da5f-4ac2-b9da-24f15325bfbf",
+   "priority": 2
+  },
+  {
+   "subject": "silver",
+   "subject_type": "thing",
+   "tags": [
+    "silver"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+   "priority": 2
+  },
+  {
+   "subject": "commodities",
+   "subject_type": "thing",
+   "tags": [
+    "commodities"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+   "priority": 2
+  },
+  {
+   "subject": "import restrictions",
+   "subject_type": "thing",
+   "tags": [
+    "import restrictions"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+   "priority": 2
+  },
+  {
+   "subject": "nri investing",
+   "subject_type": "thing",
+   "tags": [
+    "nri investing"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+   "priority": 3
+  },
+  {
+   "subject": "precious metals",
+   "subject_type": "thing",
+   "tags": [
+    "precious metals"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+   "priority": 3
+  },
+  {
+   "subject": "india trade policy",
+   "subject_type": "thing",
+   "tags": [
+    "india trade policy"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
+   "priority": 2
+  },
+  {
+   "subject": "tariffs",
+   "subject_type": "thing",
+   "tags": [
+    "tariffs"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
+   "priority": 2
+  },
+  {
+   "subject": "section 301",
+   "subject_type": "thing",
+   "tags": [
+    "section 301"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
+   "priority": 2
+  },
+  {
+   "subject": "nri business",
+   "subject_type": "thing",
+   "tags": [
+    "nri business"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
+   "priority": 2
+  },
+  {
+   "subject": "forex",
+   "subject_type": "thing",
+   "tags": [
+    "forex"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "02770ee1-7241-4bfc-969d-f230d231157b",
+   "priority": 2
+  },
+  {
+   "subject": "hedging",
+   "subject_type": "thing",
+   "tags": [
+    "hedging"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "02770ee1-7241-4bfc-969d-f230d231157b",
+   "priority": 2
+  },
+  {
+   "subject": "goldman sachs",
+   "subject_type": "thing",
+   "tags": [
+    "goldman sachs"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "02770ee1-7241-4bfc-969d-f230d231157b",
+   "priority": 2
+  },
+  {
+   "subject": "nri remittance",
+   "subject_type": "thing",
+   "tags": [
+    "nri remittance"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "02770ee1-7241-4bfc-969d-f230d231157b",
+   "priority": 2
+  },
+  {
+   "subject": "corporate india",
+   "subject_type": "thing",
+   "tags": [
+    "corporate india"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "02770ee1-7241-4bfc-969d-f230d231157b",
+   "priority": 2
+  },
+  {
+   "subject": "blanch v lau",
+   "subject_type": "thing",
+   "tags": [
+    "blanch v lau"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "efa50c7f-b9b8-49d1-8fe3-e75286e2b9b9",
+   "priority": 2
+  },
+  {
+   "subject": "employment immigration",
+   "subject_type": "thing",
+   "tags": [
+    "employment immigration"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "32a419ad-9e35-499e-b5ae-c2d659cda447",
+   "priority": 2
+  },
+  {
+   "subject": "telugu",
+   "subject_type": "thing",
+   "tags": [
+    "telugu"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+   "priority": 2
+  },
+  {
+   "subject": "convention",
+   "subject_type": "thing",
+   "tags": [
+    "convention"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+   "priority": 2
+  },
+  {
+   "subject": "charlotte",
+   "subject_type": "thing",
+   "tags": [
+    "charlotte"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+   "priority": 2
+  },
+  {
+   "subject": "mm keeravani",
+   "subject_type": "thing",
+   "tags": [
+    "mm keeravani"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+   "priority": 2
+  },
+  {
+   "subject": "tta",
+   "subject_type": "thing",
+   "tags": [
+    "tta"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+   "priority": 2
+  },
+  {
+   "subject": "ata",
+   "subject_type": "thing",
+   "tags": [
+    "ata"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
+   "priority": 2
+  },
+  {
+   "subject": "Sara Ali Khan",
+   "subject_type": "person",
+   "tags": [
+    "sara ali khan"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "86f4edb8-227a-4a9b-8b3d-b30406c21d7a",
+   "priority": 6
+  },
+  {
+   "subject": "subsea cable",
+   "subject_type": "thing",
+   "tags": [
+    "subsea cable"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "9270d57b-a3f1-4881-ba26-6fb583f2d4d8",
+   "priority": 2
+  },
+  {
+   "subject": "processing delays",
+   "subject_type": "thing",
+   "tags": [
+    "processing delays"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "57ac53c4-85c9-4e08-987e-57473c50da47",
+   "priority": 2
+  },
+  {
+   "subject": "ombudsman",
+   "subject_type": "thing",
+   "tags": [
+    "ombudsman"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "57ac53c4-85c9-4e08-987e-57473c50da47",
+   "priority": 2
+  },
+  {
+   "subject": "extension",
+   "subject_type": "thing",
+   "tags": [
+    "extension"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "57ac53c4-85c9-4e08-987e-57473c50da47",
+   "priority": 2
+  },
+  {
+   "subject": "240 day",
+   "subject_type": "thing",
+   "tags": [
+    "240 day"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "57ac53c4-85c9-4e08-987e-57473c50da47",
+   "priority": 2
+  },
+  {
+   "subject": "FTA",
+   "subject_type": "thing",
+   "tags": [
+    "fta"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "cd2fbf2b-1391-4296-8b9a-d2a623f30d0d",
+   "priority": 2
+  },
+  {
+   "subject": "free trade",
+   "subject_type": "thing",
+   "tags": [
+    "free trade"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "cd2fbf2b-1391-4296-8b9a-d2a623f30d0d",
+   "priority": 2
+  },
+  {
+   "subject": "Christopher Luxon",
+   "subject_type": "thing",
+   "tags": [
+    "christopher luxon"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "cd2fbf2b-1391-4296-8b9a-d2a623f30d0d",
+   "priority": 2
+  },
+  {
+   "subject": "Auckland",
+   "subject_type": "thing",
+   "tags": [
+    "auckland"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "cd2fbf2b-1391-4296-8b9a-d2a623f30d0d",
+   "priority": 2
+  },
+  {
+   "subject": "trademark",
+   "subject_type": "thing",
+   "tags": [
+    "trademark"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
+   "priority": 2
+  },
+  {
+   "subject": "advertising",
+   "subject_type": "thing",
+   "tags": [
+    "advertising"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
+   "priority": 2
+  },
+  {
+   "subject": "Delhi High Court",
+   "subject_type": "thing",
+   "tags": [
+    "delhi high court"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
+   "priority": 2
+  },
+  {
+   "subject": "Hindware",
+   "subject_type": "thing",
+   "tags": [
+    "hindware"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
+   "priority": 2
+  },
+  {
+   "subject": "digital ads",
+   "subject_type": "thing",
+   "tags": [
+    "digital ads"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
+   "priority": 2
+  },
+  {
+   "subject": "q1 results",
+   "subject_type": "thing",
+   "tags": [
+    "q1 results"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "bfe917ea-eeae-4f46-b59d-5baf605a80f2",
+   "priority": 2
+  },
+  {
+   "subject": "ai revenue",
+   "subject_type": "thing",
+   "tags": [
+    "ai revenue"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "bfe917ea-eeae-4f46-b59d-5baf605a80f2",
+   "priority": 2
+  },
+  {
+   "subject": "earnings season",
+   "subject_type": "thing",
+   "tags": [
+    "earnings season"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "bfe917ea-eeae-4f46-b59d-5baf605a80f2",
+   "priority": 2
+  },
+  {
+   "subject": "india property",
+   "subject_type": "thing",
+   "tags": [
+    "india property"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "46d04763-0ea0-40a9-84a0-a69c43f1bb61",
+   "priority": 2
+  },
+  {
+   "subject": "foreign investment",
+   "subject_type": "thing",
+   "tags": [
+    "foreign investment"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "46d04763-0ea0-40a9-84a0-a69c43f1bb61",
+   "priority": 2
+  },
+  {
+   "subject": "gcc expansion",
+   "subject_type": "thing",
+   "tags": [
+    "gcc expansion"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "46d04763-0ea0-40a9-84a0-a69c43f1bb61",
+   "priority": 2
+  },
+  {
+   "subject": "gold",
+   "subject_type": "thing",
+   "tags": [
+    "gold"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "dd3dc2f0-7261-49ff-9cdc-dd58a0b1754f",
+   "priority": 2
+  },
+  {
+   "subject": "sovereign gold bonds",
+   "subject_type": "thing",
+   "tags": [
+    "sovereign gold bonds"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "dd3dc2f0-7261-49ff-9cdc-dd58a0b1754f",
+   "priority": 2
+  },
+  {
+   "subject": "india giving day",
+   "subject_type": "thing",
+   "tags": [
+    "india giving day"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "5f462bf0-c930-4545-a751-c71cf3627b76",
+   "priority": 2
+  },
+  {
+   "subject": "custom silicon",
+   "subject_type": "thing",
+   "tags": [
+    "custom silicon"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "208a72da-e43d-488b-94b4-594f2b6509cb",
+   "priority": 2
+  },
+  {
+   "subject": "amd",
+   "subject_type": "thing",
+   "tags": [
+    "amd"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "b9684086-c0e1-4eec-97f4-260458f2cd1f",
+   "priority": 2
+  },
+  {
+   "subject": "arm",
+   "subject_type": "thing",
+   "tags": [
+    "arm"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "b9684086-c0e1-4eec-97f4-260458f2cd1f",
+   "priority": 2
+  },
+  {
+   "subject": "cloud infrastructure",
+   "subject_type": "thing",
+   "tags": [
+    "cloud infrastructure"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "28d5fd40-4bb3-45f7-9e39-ef6d7d30eaa8",
+   "priority": 2
+  },
+  {
+   "subject": "visa renewals",
+   "subject_type": "thing",
+   "tags": [
+    "visa renewals"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "9c40dc8d-bd8e-4b63-96d0-e310dacf8146",
+   "priority": 2
+  },
+  {
+   "subject": "indian workers",
+   "subject_type": "thing",
+   "tags": [
+    "indian workers"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "9c40dc8d-bd8e-4b63-96d0-e310dacf8146",
+   "priority": 2
+  },
+  {
+   "subject": "federal court",
+   "subject_type": "thing",
+   "tags": [
+    "federal court"
+   ],
+   "first_seen": "2026-07-10T10:29:24Z",
+   "article_id": "9fb56b43-ea7d-4843-bb61-abcc4ce22047",
+   "priority": 2
   }
  ],
- "_updated": "2026-07-09T10:29:26Z"
+ "_updated": "2026-07-10T10:29:24Z"
 }
