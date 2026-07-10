@@ -65,6 +65,12 @@ P2_COLS = (
     "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total"
 )
+# Lightweight version without body (for homepage/category feeds where body is stripped anyway)
+P2_COLS_NO_BODY = (
+    "id,slug,headline,subheadline,vertical,category,status,"
+    "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
+    "image_url,image_attribution,image_caption,gallery_images,score_total"
+)
 
 # Homepage section config (mirrors Index.tsx constants)
 INDIA_NEWS = {"slug": "news", "limit": 18}
@@ -103,21 +109,29 @@ def load_env():
     return url, key
 
 
-def fetch_all_published(url: str, key: str) -> list[dict]:
-    """Fetch all published articles from Supabase, newest first."""
+def fetch_all_published(url: str, key: str, include_body: bool = True,
+                        since: str | None = None) -> list[dict]:
+    """Fetch published articles from Supabase, newest first.
+    
+    If include_body=False, fetches without body text (much faster for listings).
+    If since is set (ISO timestamp), only fetches articles published after that date.
+    """
     headers = {"apikey": key, "Authorization": f"Bearer {key}"}
     all_rows = []
     offset = 0
     batch = 500
+    cols = P2_COLS if include_body else P2_COLS_NO_BODY
 
     while True:
         params = {
-            "select": P2_COLS,
+            "select": cols,
             "status": "eq.published",
             "order": "published_at.desc,id.asc",
             "offset": str(offset),
             "limit": str(batch),
         }
+        if since:
+            params["published_at"] = f"gte.{since}"
         resp = _get_with_retry(f"{url}/rest/v1/p2_articles", headers=headers, params=params)
         resp.raise_for_status()
         rows = resp.json()
@@ -128,7 +142,9 @@ def fetch_all_published(url: str, key: str) -> list[dict]:
             break
         offset += batch
 
-    print(f"  Fetched {len(all_rows)} published articles from Supabase")
+    print(f"  Fetched {len(all_rows)} published articles from Supabase"
+          f" ({'with' if include_body else 'without'} body"
+          f"{f', since {since[:10]}' if since else ''})")
     return all_rows
 
 
@@ -380,8 +396,8 @@ def main():
     url = os.environ["SUPABASE_URL"]
     key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ["SUPABASE_ANON_KEY"]
 
-    # Fetch all published articles
-    raw_rows = fetch_all_published(url, key)
+    # Fetch all published articles WITHOUT body (fast — for homepage/category feeds)
+    raw_rows = fetch_all_published(url, key, include_body=False)
     if not raw_rows:
         print("  WARNING: No published articles found, skipping prebuild")
         return
@@ -441,30 +457,50 @@ def main():
 
     print(f"  ✓ {cat_count} category feeds written")
 
-    # 3. Build individual article pages
-    print(f"  Building article JSONs (up to {MAX_ARTICLE_PAGES})...")
+    # 3. Build individual article pages (only recent articles — older ones keep existing JSONs)
+    recent_cutoff = (now - timedelta(days=7)).isoformat()
+    print(f"  Fetching recent articles with body (last 7 days)...")
+    recent_raw = fetch_all_published(url, key, include_body=True, since=recent_cutoff)
+    recent_articles = [map_row(r) for r in recent_raw]
+
+    print(f"  Building article JSONs ({len(recent_articles)} recent)...")
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Clean out old article JSONs that are no longer in the recent set
-    recent_slugs = set()
+    # Track all known slugs (from the full lightweight fetch) for stale cleanup
+    all_slugs = set()
+    for a in articles:
+        slug = a["slug"]
+        if slug and slug != a["id"]:
+            all_slugs.add(slug)
+
+    # Only write JSONs for recent articles (they have body text)
     written = 0
-    for a in articles[:MAX_ARTICLE_PAGES]:
+    skipped = 0
+    for a in recent_articles:
         slug = a["slug"]
         if not slug or slug == a["id"]:
-            continue  # Skip articles without proper slugs
-        recent_slugs.add(slug)
+            continue
         path = ARTICLES_DIR / f"{slug}.json"
-        path.write_text(json.dumps(a, ensure_ascii=False, separators=(",", ":")))
+        content = json.dumps(a, ensure_ascii=False, separators=(",", ":"))
+        # Skip write if file already exists with identical content
+        if path.exists():
+            try:
+                if path.read_text() == content:
+                    skipped += 1
+                    continue
+            except Exception:
+                pass
+        path.write_text(content)
         written += 1
 
-    # Remove stale article JSONs
+    # Remove article JSONs for articles that are no longer published at all
     removed = 0
     for existing in ARTICLES_DIR.glob("*.json"):
-        if existing.stem not in recent_slugs:
+        if existing.stem not in all_slugs:
             existing.unlink()
             removed += 1
 
-    print(f"  ✓ {written} article JSONs written, {removed} stale removed")
+    print(f"  ✓ {written} article JSONs written, {skipped} unchanged, {removed} stale removed")
 
     # 4. Build cars.json
     print("  Building cars.json...")
