@@ -17,6 +17,7 @@ import {
 } from "@/lib/classifieds";
 import { CITY_GROUPS } from "@/lib/events";
 import { getCityCoords, getDistanceMiles, formatDistance } from "@/lib/geo";
+import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 /* ------------------------------------------------------------------ */
@@ -121,6 +122,7 @@ export default function ClassifiedsPage() {
   // Near Me / zip state
   const [nearMeActive, setNearMeActive] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const { location: ipLocation } = useUserLocation();
 
   const onSearchChange = useCallback((val: string) => {
     setSearch(val);
@@ -148,12 +150,18 @@ export default function ClassifiedsPage() {
           setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
           setNearMeActive(true);
         },
-        () => {},
+        () => {
+          // Denied → fall back to Vercel IP geo
+          if (ipLocation) {
+            setUserCoords({ lat: ipLocation.latitude, lng: ipLocation.longitude });
+            setNearMeActive(true);
+          }
+        },
         { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ipLocation]);
 
   useEffect(() => {
     let cancelled = false;

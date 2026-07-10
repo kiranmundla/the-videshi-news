@@ -17,6 +17,7 @@ import {
   CITY_GROUPS,
 } from "@/lib/events";
 import { formatDistance } from "@/lib/geo";
+import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
@@ -318,6 +319,7 @@ export default function EventsPage() {
   const [nearMeActive, setNearMeActive] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [locationLabel, setLocationLabel] = useState<string>("");
+  const { location: ipLocation } = useUserLocation();
 
   /* --- Sync filters with URL --- */
   // Default to Bay Area when no city param is present
@@ -417,14 +419,27 @@ export default function EventsPage() {
           }, { replace: true });
         },
         () => {
-          // Denied or error → silently fall back to Bay Area
-          setNearMeActive(false);
+          // Denied or error → fall back to Vercel IP geo
+          if (ipLocation) {
+            const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
+            setUserCoords(coords);
+            setNearMeActive(true);
+            setLocationLabel(ipLocation.city ? `📍 Near ${ipLocation.city}` : "📍 Near You");
+            setSearchParams((prev) => {
+              const next = new URLSearchParams(prev);
+              next.delete("city");
+              next.set("nearme", "1");
+              return next;
+            }, { replace: true });
+          } else {
+            setNearMeActive(false);
+          }
         },
         { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ipLocation]);
 
   /* --- Fetch events --- */
   useEffect(() => {
