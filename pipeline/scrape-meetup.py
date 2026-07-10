@@ -3,14 +3,17 @@
 scrape-meetup.py — Scrape Indian/desi community events from Meetup.com
 and upsert them into the Supabase `events` table.
 
-Approach: Meetup uses Next.js with Apollo cache. We fetch search pages and
+Searches by US state (all 50 + DC) for full national coverage.
+Meetup uses Next.js with Apollo cache. We fetch search pages and
 extract event data from the __NEXT_DATA__ / __APOLLO_STATE__ JSON embedded
 in the HTML. No API key needed.
 
 Usage:
-    python3 pipeline/scrape-meetup.py              # Full scrape
+    python3 pipeline/scrape-meetup.py              # Today's rotation (~8 states)
+    python3 pipeline/scrape-meetup.py --day 0       # Explicit rotation day
+    python3 pipeline/scrape-meetup.py --all         # All 51 states (full sweep)
+    python3 pipeline/scrape-meetup.py --state tx    # Single state (by code)
     python3 pipeline/scrape-meetup.py --dry-run     # Print events without inserting
-    python3 pipeline/scrape-meetup.py --city bay-area  # Single city
 """
 
 import hashlib
@@ -20,7 +23,7 @@ import re
 import sys
 import time
 import argparse
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone, timedelta, date
 from urllib.parse import quote_plus
 
 sys.stdout.reconfigure(line_buffering=True)
@@ -64,60 +67,60 @@ KEYWORDS = [
     "professional indian", "yoga",
 ]
 
-# Cities with their Meetup location param format: us--{state_lower}--{City+Name}
-CITIES = [
-    {"location": "us--ca--San+Francisco",  "display": "San Francisco", "state": "CA", "slug": "bay-area"},
-    {"location": "us--ca--San+Jose",        "display": "San Jose",      "state": "CA", "slug": "san-jose"},
-    {"location": "us--ny--New+York",        "display": "New York",      "state": "NY", "slug": "new-york"},
-    {"location": "us--nj--Edison",           "display": "Edison",        "state": "NJ", "slug": "edison-nj"},
-    {"location": "us--il--Chicago",          "display": "Chicago",       "state": "IL", "slug": "chicago"},
-    {"location": "us--tx--Houston",          "display": "Houston",       "state": "TX", "slug": "houston"},
-    {"location": "us--tx--Dallas",           "display": "Dallas",        "state": "TX", "slug": "dallas"},
-    {"location": "us--ca--Los+Angeles",      "display": "Los Angeles",   "state": "CA", "slug": "los-angeles"},
-    {"location": "us--wa--Seattle",          "display": "Seattle",       "state": "WA", "slug": "seattle"},
-    {"location": "us--dc--Washington",       "display": "Washington",    "state": "DC", "slug": "washington-dc"},
-    {"location": "us--ma--Boston",           "display": "Boston",        "state": "MA", "slug": "boston"},
-    {"location": "us--ga--Atlanta",          "display": "Atlanta",       "state": "GA", "slug": "atlanta"},
-    {"location": "us--pa--Philadelphia",     "display": "Philadelphia",  "state": "PA", "slug": "philadelphia"},
-    {"location": "us--mi--Detroit",          "display": "Detroit",       "state": "MI", "slug": "detroit"},
-    # --- Expanded cities ---
-    {"location": "us--tx--Austin",           "display": "Austin",        "state": "TX", "slug": "austin"},
-    {"location": "us--fl--Miami",            "display": "Miami",         "state": "FL", "slug": "miami"},
-    {"location": "us--az--Phoenix",          "display": "Phoenix",       "state": "AZ", "slug": "phoenix"},
-    {"location": "us--co--Denver",           "display": "Denver",        "state": "CO", "slug": "denver"},
-    {"location": "us--ca--San+Diego",        "display": "San Diego",     "state": "CA", "slug": "san-diego"},
-    {"location": "us--or--Portland",         "display": "Portland",      "state": "OR", "slug": "portland"},
-    {"location": "us--mn--Minneapolis",      "display": "Minneapolis",   "state": "MN", "slug": "minneapolis"},
-    {"location": "us--fl--Tampa",            "display": "Tampa",         "state": "FL", "slug": "tampa"},
-    {"location": "us--nc--Charlotte",        "display": "Charlotte",     "state": "NC", "slug": "charlotte"},
-    {"location": "us--nc--Raleigh",          "display": "Raleigh",       "state": "NC", "slug": "raleigh"},
-    {"location": "us--oh--Columbus",         "display": "Columbus",      "state": "OH", "slug": "columbus"},
-    {"location": "us--in--Indianapolis",     "display": "Indianapolis",  "state": "IN", "slug": "indianapolis"},
-    {"location": "us--tn--Nashville",        "display": "Nashville",     "state": "TN", "slug": "nashville"},
-    {"location": "us--ca--Sacramento",       "display": "Sacramento",    "state": "CA", "slug": "sacramento"},
-    {"location": "us--ca--Irvine",           "display": "Irvine",        "state": "CA", "slug": "irvine"},
-    {"location": "us--tx--Plano",            "display": "Plano",         "state": "TX", "slug": "plano"},
-    {"location": "us--ca--Fremont",          "display": "Fremont",       "state": "CA", "slug": "fremont"},
-    {"location": "us--ca--Sunnyvale",        "display": "Sunnyvale",     "state": "CA", "slug": "sunnyvale"},
-    # --- Tier 2 metros (high Indian/South Asian population) ---
-    {"location": "us--nc--Cary",             "display": "Cary",          "state": "NC", "slug": "cary"},
-    {"location": "us--nc--Durham",           "display": "Durham",        "state": "NC", "slug": "durham"},
-    {"location": "us--pa--Pittsburgh",       "display": "Pittsburgh",    "state": "PA", "slug": "pittsburgh"},
-    {"location": "us--fl--Orlando",          "display": "Orlando",       "state": "FL", "slug": "orlando"},
-    {"location": "us--md--Baltimore",        "display": "Baltimore",     "state": "MD", "slug": "baltimore"},
-    {"location": "us--ct--Stamford",         "display": "Stamford",      "state": "CT", "slug": "stamford"},
-    {"location": "us--mi--Ann+Arbor",        "display": "Ann Arbor",     "state": "MI", "slug": "ann-arbor"},
-    {"location": "us--tx--San+Antonio",      "display": "San Antonio",   "state": "TX", "slug": "san-antonio"},
-    {"location": "us--ut--Salt+Lake+City",   "display": "Salt Lake City","state": "UT", "slug": "salt-lake-city"},
-    {"location": "us--oh--Cincinnati",       "display": "Cincinnati",    "state": "OH", "slug": "cincinnati"},
-    {"location": "us--oh--Cleveland",        "display": "Cleveland",     "state": "OH", "slug": "cleveland"},
-    {"location": "us--mo--Kansas+City",      "display": "Kansas City",   "state": "MO", "slug": "kansas-city"},
-    {"location": "us--mo--Saint+Louis",      "display": "St Louis",      "state": "MO", "slug": "st-louis"},
-    {"location": "us--nv--Las+Vegas",        "display": "Las Vegas",     "state": "NV", "slug": "las-vegas"},
-    {"location": "us--va--Richmond",         "display": "Richmond",      "state": "VA", "slug": "richmond"},
-    {"location": "us--fl--Jacksonville",     "display": "Jacksonville",  "state": "FL", "slug": "jacksonville"},
-    {"location": "us--ct--Hartford",         "display": "Hartford",      "state": "CT", "slug": "hartford"},
-    {"location": "us--wi--Milwaukee",        "display": "Milwaukee",     "state": "WI", "slug": "milwaukee"},
+# ── 50 US states + DC ─────────────────────────────────────────────────────
+# Meetup location param format: us--{state_code_lower}
+STATES = [
+    {"location": "us--al", "display": "Alabama",              "abbr": "AL", "slug": "alabama"},
+    {"location": "us--ak", "display": "Alaska",               "abbr": "AK", "slug": "alaska"},
+    {"location": "us--az", "display": "Arizona",              "abbr": "AZ", "slug": "arizona"},
+    {"location": "us--ar", "display": "Arkansas",             "abbr": "AR", "slug": "arkansas"},
+    {"location": "us--ca", "display": "California",           "abbr": "CA", "slug": "california"},
+    {"location": "us--co", "display": "Colorado",             "abbr": "CO", "slug": "colorado"},
+    {"location": "us--ct", "display": "Connecticut",          "abbr": "CT", "slug": "connecticut"},
+    {"location": "us--de", "display": "Delaware",             "abbr": "DE", "slug": "delaware"},
+    {"location": "us--fl", "display": "Florida",              "abbr": "FL", "slug": "florida"},
+    {"location": "us--ga", "display": "Georgia",              "abbr": "GA", "slug": "georgia"},
+    {"location": "us--hi", "display": "Hawaii",               "abbr": "HI", "slug": "hawaii"},
+    {"location": "us--id", "display": "Idaho",                "abbr": "ID", "slug": "idaho"},
+    {"location": "us--il", "display": "Illinois",             "abbr": "IL", "slug": "illinois"},
+    {"location": "us--in", "display": "Indiana",              "abbr": "IN", "slug": "indiana"},
+    {"location": "us--ia", "display": "Iowa",                 "abbr": "IA", "slug": "iowa"},
+    {"location": "us--ks", "display": "Kansas",               "abbr": "KS", "slug": "kansas"},
+    {"location": "us--ky", "display": "Kentucky",             "abbr": "KY", "slug": "kentucky"},
+    {"location": "us--la", "display": "Louisiana",            "abbr": "LA", "slug": "louisiana"},
+    {"location": "us--me", "display": "Maine",                "abbr": "ME", "slug": "maine"},
+    {"location": "us--md", "display": "Maryland",             "abbr": "MD", "slug": "maryland"},
+    {"location": "us--ma", "display": "Massachusetts",        "abbr": "MA", "slug": "massachusetts"},
+    {"location": "us--mi", "display": "Michigan",             "abbr": "MI", "slug": "michigan"},
+    {"location": "us--mn", "display": "Minnesota",            "abbr": "MN", "slug": "minnesota"},
+    {"location": "us--ms", "display": "Mississippi",          "abbr": "MS", "slug": "mississippi"},
+    {"location": "us--mo", "display": "Missouri",             "abbr": "MO", "slug": "missouri"},
+    {"location": "us--mt", "display": "Montana",              "abbr": "MT", "slug": "montana"},
+    {"location": "us--ne", "display": "Nebraska",             "abbr": "NE", "slug": "nebraska"},
+    {"location": "us--nv", "display": "Nevada",               "abbr": "NV", "slug": "nevada"},
+    {"location": "us--nh", "display": "New Hampshire",        "abbr": "NH", "slug": "new-hampshire"},
+    {"location": "us--nj", "display": "New Jersey",           "abbr": "NJ", "slug": "new-jersey"},
+    {"location": "us--nm", "display": "New Mexico",           "abbr": "NM", "slug": "new-mexico"},
+    {"location": "us--ny", "display": "New York",             "abbr": "NY", "slug": "new-york"},
+    {"location": "us--nc", "display": "North Carolina",       "abbr": "NC", "slug": "north-carolina"},
+    {"location": "us--nd", "display": "North Dakota",         "abbr": "ND", "slug": "north-dakota"},
+    {"location": "us--oh", "display": "Ohio",                 "abbr": "OH", "slug": "ohio"},
+    {"location": "us--ok", "display": "Oklahoma",             "abbr": "OK", "slug": "oklahoma"},
+    {"location": "us--or", "display": "Oregon",               "abbr": "OR", "slug": "oregon"},
+    {"location": "us--pa", "display": "Pennsylvania",         "abbr": "PA", "slug": "pennsylvania"},
+    {"location": "us--ri", "display": "Rhode Island",         "abbr": "RI", "slug": "rhode-island"},
+    {"location": "us--sc", "display": "South Carolina",       "abbr": "SC", "slug": "south-carolina"},
+    {"location": "us--sd", "display": "South Dakota",         "abbr": "SD", "slug": "south-dakota"},
+    {"location": "us--tn", "display": "Tennessee",            "abbr": "TN", "slug": "tennessee"},
+    {"location": "us--tx", "display": "Texas",                "abbr": "TX", "slug": "texas"},
+    {"location": "us--ut", "display": "Utah",                 "abbr": "UT", "slug": "utah"},
+    {"location": "us--vt", "display": "Vermont",              "abbr": "VT", "slug": "vermont"},
+    {"location": "us--va", "display": "Virginia",             "abbr": "VA", "slug": "virginia"},
+    {"location": "us--wa", "display": "Washington",           "abbr": "WA", "slug": "washington"},
+    {"location": "us--wv", "display": "West Virginia",        "abbr": "WV", "slug": "west-virginia"},
+    {"location": "us--wi", "display": "Wisconsin",            "abbr": "WI", "slug": "wisconsin"},
+    {"location": "us--wy", "display": "Wyoming",              "abbr": "WY", "slug": "wyoming"},
+    {"location": "us--dc", "display": "District of Columbia", "abbr": "DC", "slug": "district-of-columbia"},
 ]
 
 # Category rules (same as events-ingest.py)
@@ -135,7 +138,7 @@ CATEGORY_RULES = [
     ("Competition", ["spelling bee", "math olympiad", "science olympiad", "chess tournament",
                      "robotics competition", "coding competition", "debate tournament",
                      "hackathon", "competition", "contest", "tournament"]),
-    # Entertainment / Music / Dance BEFORE Education — "bollywood dance class" = Entertainment, not Education
+    # Entertainment / Music / Dance BEFORE Education
     ("Entertainment", ["bollywood night", "bollywood festive", "bollywood singing",
                        "bollyx", "dj party", "afterparty", "after party",
                        "cruise party", "rooftop party", "yacht party",
@@ -239,14 +242,14 @@ def parse_datetime(dt_str: str):
 # Meetup Scraper
 # ---------------------------------------------------------------------------
 
-def fetch_meetup_events(city: dict, keyword: str) -> list:
-    """Fetch events from Meetup search page for a city+keyword combo."""
+def fetch_meetup_events(state: dict, keyword: str) -> list:
+    """Fetch events from Meetup search page for a state+keyword combo."""
     url = "https://www.meetup.com/find/"
     params = {
         "keywords": keyword,
         "source": "EVENTS",
         "eventType": "inPerson",
-        "location": city["location"],
+        "location": state["location"],
     }
 
     try:
@@ -310,18 +313,18 @@ def fetch_meetup_events(city: dict, keyword: str) -> list:
         description = v.get("description", "") or ""
         short_desc = description[:500] if description else title
 
-        # Get venue info
+        # Get venue info — city/state come from the event venue, not the search scope
         venue = v.get("venue", {}) or {}
         venue_name = ""
-        venue_city = city["display"]
-        venue_state = city["state"]
+        venue_city = ""
+        venue_state = state["abbr"]
         lat = None
         lon = None
 
         if isinstance(venue, dict) and venue.get("__typename") == "Venue":
             venue_name = venue.get("name", "")
-            venue_city = venue.get("city", city["display"]) or city["display"]
-            venue_state = venue.get("state", city["state"]) or city["state"]
+            venue_city = venue.get("city", "") or ""
+            venue_state = venue.get("state", state["abbr"]) or state["abbr"]
             lat = venue.get("lat")
             lon = venue.get("lng") or venue.get("lon")
 
@@ -352,7 +355,7 @@ def fetch_meetup_events(city: dict, keyword: str) -> list:
             "date": date_str,
             "time": time_str or "",
             "venue_name": venue_name,
-            "city": venue_city,
+            "city": venue_city or None,
             "state": venue_state,
             "category": categorize(title, description),
             "description": short_desc,
@@ -410,7 +413,6 @@ def get_existing_events() -> tuple:
                 if e.get("source_id"):
                     existing_ids.add(e["source_id"])
                 if e.get("title") and e.get("date"):
-                    # Fuzzy: normalize title for matching
                     t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
                     existing_title_dates.add((t, e["date"]))
                 if e.get("content_fingerprint"):
@@ -424,7 +426,7 @@ def get_existing_events() -> tuple:
 def normalize_title(title: str) -> str:
     """Normalize title for fuzzy dedup: lowercase, strip punctuation, dates, 'free', etc."""
     t = title.lower().strip()
-    t = re.sub(r'&amp;', '&', t)  # HTML entities
+    t = re.sub(r'&amp;', '&', t)
     t = re.sub(r'[^a-z0-9 ]', '', t)
     t = re.sub(r'\b(jan|feb|mar|apr|may|june?|july?|aug|sept?|oct|nov|dec)\b', '', t)
     t = re.sub(r'\b\d+\b', '', t)
@@ -433,7 +435,12 @@ def normalize_title(title: str) -> str:
     return t
 
 
-def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set) -> bool:
+def normalize_title_from_stripped(stripped: str) -> str:
+    """Normalize an already-stripped (alphanumeric only) title for prefix matching."""
+    return stripped[:25]
+
+
+def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set = set()) -> bool:
     """Check if event already exists (by source_id, fuzzy title+date, or content fingerprint)."""
     if event["source_id"] in existing_ids:
         return True
@@ -441,14 +448,15 @@ def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, exis
     t = re.sub(r'[^a-z0-9]', '', event["title"].lower())
     if (t, event["date"]) in existing_title_dates:
         return True
-    # Cross-source content fingerprint (same date+time+location = duplicate)
-    fp = content_fingerprint(
-        event["date"], event.get("time", ""),
-        event.get("latitude"), event.get("longitude"),
-        event.get("venue_name", "")
-    )
-    if fp in existing_fingerprints:
-        return True
+    # Cross-source content fingerprint
+    if existing_fingerprints:
+        fp = content_fingerprint(
+            event["date"], event.get("time", ""),
+            event.get("latitude"), event.get("longitude"),
+            event.get("venue_name", "")
+        )
+        if fp in existing_fingerprints:
+            return True
     # Fuzzy prefix match (first 25 normalized chars + same date)
     tn = normalize_title(event["title"])[:25]
     for (et, ed) in existing_title_dates:
@@ -457,12 +465,6 @@ def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, exis
             if tn and en and tn == en:
                 return True
     return False
-
-
-def normalize_title_from_stripped(stripped: str) -> str:
-    """Normalize an already-stripped (alphanumeric only) title for prefix matching."""
-    # Re-insert spaces approximately by treating as already clean
-    return stripped[:25]
 
 
 # ---------------------------------------------------------------------------
@@ -524,44 +526,37 @@ def upsert_events(events: list) -> int:
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape Meetup events for Indian diaspora")
+    parser = argparse.ArgumentParser(description="Scrape Meetup events for Indian diaspora (state-level)")
     parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
-    parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'bay-area')")
-    parser.add_argument("--batch", type=str, choices=["A", "B", "C", "D"], default=None,
-                        help="Legacy quarter batches (prefer --day for daily rotation)")
+    parser.add_argument("--state", type=str, default=None,
+                        help="Single state by code (e.g. 'tx', 'ca') or slug (e.g. 'texas')")
     parser.add_argument("--day", type=int, choices=range(7), default=None,
-                        help="Day-of-week batch (0=Mon..6=Sun). Splits 50 cities into 7 daily slices of ~7 each. Full cycle = 1 week.")
+                        help="Day-of-week rotation (0-6). Splits 51 states into 7 daily slices of ~8 each.")
+    parser.add_argument("--all", action="store_true", help="Scrape all 51 states")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
         print("ERROR: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY required")
         sys.exit(1)
 
-    cities = CITIES
-    if args.city:
-        cities = [c for c in CITIES if c["slug"] == args.city]
-        if not cities:
-            print(f"Unknown city: {args.city}. Available: {', '.join(c['slug'] for c in CITIES)}")
+    states = STATES
+    if args.state:
+        key = args.state.lower()
+        states = [s for s in STATES if s["abbr"].lower() == key or s["slug"] == key]
+        if not states:
+            print(f"Unknown state: {args.state}. Use code (tx) or slug (texas).")
             sys.exit(1)
+    elif args.all:
+        states = STATES
     elif args.day is not None:
-        # Daily rotation: split all cities into 7 slices, one per day of the week
-        # 50 cities / 7 = ~7 per day. Full coverage in one week.
-        cities = [c for i, c in enumerate(CITIES) if i % 7 == args.day]
-        print(f"📅 Day {args.day} batch: {', '.join(c['display'] for c in cities)} ({len(cities)} cities)")
-    elif args.batch:
-        # Split the city list into 4 quarters (~3-4 cities each) so a single
-        # run stays well under the 30-minute worker cap even when Meetup is slow.
-        # Legacy A/B (7 cities each) reliably overran; quarters do not.
-        n = len(CITIES)
-        q = (n + 3) // 4  # ceil(n/4)
-        slices = {
-            "A": CITIES[0:q],
-            "B": CITIES[q:2 * q],
-            "C": CITIES[2 * q:3 * q],
-            "D": CITIES[3 * q:],
-        }
-        cities = slices[args.batch]
-        print(f"🔀 Running batch {args.batch}: {', '.join(c['display'] for c in cities)}")
+        # Daily rotation: split all states into 7 slices
+        states = [s for i, s in enumerate(STATES) if i % 7 == args.day]
+        print(f"📅 Day {args.day} batch: {', '.join(s['abbr'] for s in states)} ({len(states)} states)")
+    else:
+        # Auto-detect rotation day
+        rotation_day = date.today().toordinal() % 7
+        states = [s for i, s in enumerate(STATES) if i % 7 == rotation_day]
+        print(f"📅 Auto day {rotation_day}: {', '.join(s['abbr'] for s in states)} ({len(states)} states)")
 
     # Get existing events for dedup
     existing_ids, existing_title_dates, existing_fingerprints = set(), set(), set()
@@ -574,13 +569,13 @@ def main():
     seen_source_ids = set()
     seen_batch_keys = set()
 
-    print(f"\n🔍 Scraping Meetup ({len(cities)} cities × {len(KEYWORDS)} keywords)...\n")
+    print(f"\n🔍 Scraping Meetup ({len(states)} states × {len(KEYWORDS)} keywords)...\n")
 
-    for city in cities:
-        city_events = []
+    for state in states:
+        state_events = []
         for keyword in KEYWORDS:
-            print(f"  📍 {city['display']}: \"{keyword}\"...", end=" ", flush=True)
-            events = fetch_meetup_events(city, keyword)
+            print(f"  📍 {state['display']} ({state['abbr']}): \"{keyword}\"...", end=" ", flush=True)
+            events = fetch_meetup_events(state, keyword)
 
             # Filter for relevance
             relevant = []
@@ -595,23 +590,23 @@ def main():
                 batch_key = normalize_title(e["title"])[:25] + "|" + e["date"]
                 if batch_key in seen_batch_keys:
                     continue
-                if not args.dry_run and is_duplicate(e, existing_ids, existing_title_dates):
+                if not args.dry_run and is_duplicate(e, existing_ids, existing_title_dates, existing_fingerprints):
                     continue
                 seen_source_ids.add(e["source_id"])
                 seen_batch_keys.add(batch_key)
                 relevant.append(e)
 
-            city_events.extend(relevant)
+            state_events.extend(relevant)
             print(f"{len(events)} found, {len(relevant)} relevant")
 
             # Rate limit — be nice to Meetup
             time.sleep(1.5)
 
-        all_events.extend(city_events)
-        if city_events:
-            print(f"  ✅ {city['display']}: {len(city_events)} new relevant events\n")
+        all_events.extend(state_events)
+        if state_events:
+            print(f"  ✅ {state['display']}: {len(state_events)} new relevant events\n")
         else:
-            print(f"  ⚪ {city['display']}: no new events\n")
+            print(f"  ⚪ {state['display']}: no new events\n")
 
     print(f"\n📊 Total new relevant events: {len(all_events)}")
 
