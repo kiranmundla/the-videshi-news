@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-10T18:45:26.003682+00:00",
+  "timestamp": "2026-07-10T19:15:27.474814+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,31 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "9061dd5f-48ae-46ff-a682-43b97459505b",
-      "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The Rest of the Crackdown Is Just Getting Started.",
-      "slug": "federal-judge-blocks-100k-h1b-fee-fraud-probe-indian-workers-20260710",
+      "id": "58515db8-fe10-45a5-973e-40e0005e3300",
+      "headline": "Dhanush and Vetri Maaran Just Dropped a First Look. It\u2019s Not Vada Chennai 2.",
+      "slug": "dhanush-vetri-maaran-thamizh-murugan-first-look-warrior-epic-sai-abhyankkar-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
-            "headline": "Your Spouse's Work Permit Expires This Month. The Government"
-          },
-          {
-            "article_id": "aec80018-750d-4f5b-a652-bbd687576230",
-            "headline": "Eighty-Three Days of Nothing. The July Visa Bulletin Just Sh"
-          },
-          {
-            "article_id": "753196ab-bbe4-4f36-a851-292b3e4a319b",
-            "headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to H-1B immigration enforcement."
+          "what_photo_shows": "A man in a white shirt",
+          "reason": "The photo plausibly shows Dhanush, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -49,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of immigration policy changes on Indian workers, which is highly relevant to the NRI community."
+          "note": "The article discusses the appeal of the film's music to NRI audiences and its cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or perspectives from Indian diaspora members affected by H-1B policies to enhance relatability.",
-          "Include more context on the potential long-term implications of the ruling for the tech industry and Indian workers."
+          "Include more direct quotes from Dhanush or Vetri Maaran to enhance the article's depth.",
+          "Add a brief section on the expected release date or production timeline for 'Thamizh Murugan' to provide readers with more context."
         ],
         "verdict": "pass"
       },
@@ -67,42 +54,60 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "77d50789-4f54-4f7d-a3ca-af6e82efa044",
-      "headline": "NYC's Indian-Origin Mayor Is Under Fire for an Immigrant Map That Erased Little Italy, Irish, and Jewish New York",
-      "slug": "mamdani-nyc-immigrant-map-erases-little-italy-irish-jewish-neighborhoods-20260710",
+      "id": "a5958503-9e29-497b-bb0b-e04806618801",
+      "headline": "Dhamaal 4 Just Opened to \u20b912 Crore. But the Real Show Was the Ghost Who Came Back.",
+      "slug": "dhamaal-4-opening-day-12-crore-satish-kaushik-tribute-ajay-devgn-box-office-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ded0f8e4-1b3d-4ed8-a75a-dfb7caf63075",
+            "headline": "The Boys Are Back. Dhamaal 4 Drops This Thursday \u2014 and the T"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smiling man in a suit and tie",
-          "reason": "The photo plausibly shows the named person, Zohran Mamdani."
+          "what_photo_shows": "Dhamaal 4 movie poster",
+          "reason": "The photo is related to the Dhamaal franchise mentioned in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://youtube.com/watch?v=IG-eByZdz6Y",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link does not appear to be directly related to the article's main topic about 'Dhamaal 4' and its box office performance."
+          },
+          {
+            "url": "https://www.instagram.com/p/DamVWGno3zp/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not seem to provide relevant content that enhances the article's discussion about 'Dhamaal 4'."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Mayor Zohran Mamdani, which is relevant to the article's subject."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the immigrant map for Indian Americans and other post-1965 diaspora communities, making it relevant to NRI readers."
+          "quality": 9,
+          "note": "The article effectively connects the film's appeal to the NRI audience, discussing its cultural significance and popularity among diaspora communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Indian American community leaders to strengthen the diaspora connection.",
-          "Add a brief historical context about the contributions of Indian immigrants to New York City to enhance the article's depth."
+          "Replace the irrelevant YouTube and Instagram links with embeds that provide insights or reviews related to 'Dhamaal 4'.",
+          "Consider adding more quotes or reactions from diaspora audiences to strengthen the connection with NRI readers."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://youtube.com/watch?v=IG-eByZdz6Y",
+        "Removed irrelevant embed: https://www.instagram.com/p/DamVWGno3zp/",
         "promoted to published"
       ],
       "revised": false,

@@ -178,6 +178,7 @@ export default function SubmitEventPage() {
   const [myEvents, setMyEvents] = useState<any[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
 
   /* ---- Auto-save to sessionStorage ---- */
   useEffect(() => {
@@ -296,6 +297,7 @@ export default function SubmitEventPage() {
 
   /* ---- Manage: Edit event (pre-fill form and switch to post mode) ---- */
   const handleEditEvent = (event: any) => {
+    setEditingEventId(event.id);
     setForm({
       title: event.title || "",
       date: event.date || "",
@@ -305,10 +307,11 @@ export default function SubmitEventPage() {
       state: event.state || "",
       venue_name: event.venue_name || "",
       category: event.category || "",
-      ticket_url: "",
-      description: "",
+      ticket_url: event.ticket_url || "",
+      description: event.description || "",
       email: manageEmail.trim(),
     });
+    if (event.image_url) setImportedImageUrl(event.image_url);
     setMode("post");
     setStep("form");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -529,6 +532,11 @@ export default function SubmitEventPage() {
   };
 
   const handlePublish = () => {
+    if (editingEventId) {
+      /* Already verified email in manage mode — skip OTP */
+      doPublish();
+      return;
+    }
     setVerifyError(null);
     setVerifyCode("");
     setStep("verify-email");
@@ -539,11 +547,11 @@ export default function SubmitEventPage() {
   const doPublish = async () => {
     setStep("publishing");
     setSubmitError(null);
-    const slug = generateSlug(form.title.trim(), form.date);
+    const slug = editingEventId ? undefined : generateSlug(form.title.trim(), form.date);
 
     let imageUrl: string | null = importedImageUrl || null;
     if (coverImage) {
-      const uploaded = await uploadImage(coverImage.file, slug);
+      const uploaded = await uploadImage(coverImage.file, slug || form.title.trim().replace(/\s+/g, "-").toLowerCase());
       if (uploaded) imageUrl = uploaded;
     }
 
@@ -561,19 +569,36 @@ export default function SubmitEventPage() {
       long_description: synthesized?.long_description || null,
       artist_info: synthesized?.artist_info || null,
       venue_info: synthesized?.venue_info || null,
-      source: "user_submitted",
-      organizer: form.email.trim(),
-      slug,
     };
     if (imageUrl) row.image_url = imageUrl;
 
     const sbRaw = supabase as unknown as { from: (t: string) => any };
-    const { error } = await sbRaw.from("events").insert([row]);
-    if (error) {
-      console.error("Submit event error:", error);
-      setSubmitError("Something went wrong. Please try again.");
-      setStep("preview");
-      return;
+
+    if (editingEventId) {
+      /* Update existing event */
+      const { error } = await sbRaw.from("events").update(row).eq("id", editingEventId);
+      if (error) {
+        console.error("Update event error:", error);
+        setSubmitError("Something went wrong. Please try again.");
+        setStep("preview");
+        return;
+      }
+      /* Use the existing slug for the success page */
+      const { data: updated } = await sbRaw.from("events").select("slug").eq("id", editingEventId).single();
+      setPublishedSlug(updated?.slug || editingEventId);
+    } else {
+      /* Insert new event */
+      row.source = "user_submitted";
+      row.organizer = form.email.trim();
+      row.slug = slug;
+      const { error } = await sbRaw.from("events").insert([row]);
+      if (error) {
+        console.error("Submit event error:", error);
+        setSubmitError("Something went wrong. Please try again.");
+        setStep("preview");
+        return;
+      }
+      setPublishedSlug(slug!);
     }
 
     setPublishedSlug(slug);
@@ -625,8 +650,8 @@ export default function SubmitEventPage() {
         <main className="container flex-1 pt-8 pb-16 max-w-lg mx-auto px-4">
           <div className="text-center mb-8">
             <p className="text-6xl mb-4">🎉</p>
-            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-2">Your Event Is Live!</h2>
-            <p className="text-muted-foreground text-sm">Confirmation sent to <strong>{form.email}</strong>. You'll need this email to edit or delete your event.</p>
+            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-2">{editingEventId ? "Event Updated!" : "Your Event Is Live!"}</h2>
+            <p className="text-muted-foreground text-sm">{editingEventId ? "Your changes have been saved." : <>Confirmation sent to <strong>{form.email}</strong>. You'll need this email to edit or delete your event.</>}</p>
           </div>
 
           {/* Event preview card */}
@@ -697,6 +722,7 @@ export default function SubmitEventPage() {
                 setPublishedSlug(null);
                 setSynthesized(null);
                 setTurnstileToken(null);
+                setEditingEventId(null);
               }}
               className="w-full px-6 py-3 border border-border rounded-xl font-medium hover:bg-muted/40 transition-colors text-center"
             >
