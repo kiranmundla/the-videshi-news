@@ -130,12 +130,17 @@ for reel in candidates:
         if aid not in threads_posted_articles and not reel.get('threads_posted_at'):
             needs.append('threads')
     # X: NO video reels — handled by x-autopost (article + carousel only)
+    # X CAROUSEL: if this reel has carousel_images and article hasn't had a carousel posted
+    if reel.get('carousel_images') and aid not in x_posted_articles:
+        needs.append('x_carousel')
     
     if needs:
         reel['_needs'] = needs
         work_queue.append(reel)
         if 'ig' in needs or 'threads' in needs:
             seen_articles_social.add(aid)
+        if 'x_carousel' in needs:
+            x_posted_articles.add(aid)
     
     if len(work_queue) >= 6:
         break
@@ -576,6 +581,9 @@ def post_x_carousel(reel, headline, slug):
     tweet_r = client.create_tweet(text=tweet_text, media_ids=media_ids)
     tweet_id = tweet_r.data['id']
     
+    # Mark as posted
+    patch_reel(reel['id'], {'x_posted_at': now_iso(), 'x_tweet_id': str(tweet_id)})
+    
     # Track spend
     try:
         import importlib.util
@@ -629,6 +637,8 @@ for i, reel in enumerate(work_queue):
                 result = post_youtube_video(reel, local_video, headline, caption)
             elif platform == 'threads':
                 result = post_threads(reel, video_url, caption)
+            elif platform == 'x_carousel':
+                result = post_x_carousel(reel, headline, slug)
             
             print(f"  [{platform.upper()}] Result: {result}")
             results.append((reel['headline'][:50], platform, result))
