@@ -40,7 +40,7 @@ const CAT_EMOJI: Record<string, string> = {
   Cultural: "🎭",
   Music: "🎵",
   Food: "🍛",
-  Sports: "🏏",
+  Sports: "🏅",
   Community: "🤝",
   Festival: "🪔",
   Comedy: "😂",
@@ -399,6 +399,8 @@ export default function EventsPage() {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  /** Monotonic counter to discard stale fetch results */
+  const fetchVersionRef = useRef(0);
   /** Whether the current result set was fetched client-side (all events loaded) */
   const [isClientFiltered, setIsClientFiltered] = useState(false);
 
@@ -621,12 +623,14 @@ export default function EventsPage() {
 
   /* --- Fetch events --- */
   useEffect(() => {
+    const version = ++fetchVersionRef.current;
     setLoading(true);
     setHasMore(true);
 
     if (nearMeActive && userCoords) {
       // Near Me mode: fetch ALL events, sort by distance, then apply smart filters client-side
       getAllUpcomingEvents(null, undefined).then((data) => {
+        if (fetchVersionRef.current !== version) return; // stale
         const smartFiltered = applySmartFilters(data);
         const sorted = sortEventsByDistance(smartFiltered, userCoords.lat, userCoords.lng);
         setAllFetchedEvents(sorted);
@@ -643,6 +647,7 @@ export default function EventsPage() {
       effectiveDateFilter
     ) {
       getAllUpcomingEvents(null, undefined).then((data) => {
+        if (fetchVersionRef.current !== version) return; // stale
         const smartFiltered = applySmartFilters(data);
         setAllFetchedEvents(smartFiltered);
         setIsClientFiltered(true);
@@ -653,6 +658,7 @@ export default function EventsPage() {
       // Normal mode: server-side city filter + pagination (no category filter applied here)
       const filterCity = cityFilter;
       getEventsMultiCategory(filterCity, null, PAGE_SIZE, 0, searchQuery || undefined).then((data) => {
+        if (fetchVersionRef.current !== version) return; // stale
         setAllFetchedEvents(data);
         setIsClientFiltered(false);
         setHasMore(data.length === PAGE_SIZE);
