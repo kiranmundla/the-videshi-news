@@ -13,6 +13,7 @@ Usage:
     python3 pipeline/scrape-meetup.py --city bay-area  # Single city
 """
 
+import hashlib
 import json
 import os
 import re
@@ -346,17 +347,33 @@ def fetch_meetup_events(city: dict, keyword: str) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Cross-source content fingerprint (date + time + location)
+# ---------------------------------------------------------------------------
+
+def content_fingerprint(date_str: str, time_str: str = "", lat=None, lon=None, venue: str = "") -> str:
+    """Generate a fingerprint from date+time+location for cross-source dedup.
+    Two events at the same place and same time = duplicate regardless of source."""
+    lat_r = round(float(lat), 3) if lat else 0
+    lng_r = round(float(lon), 3) if lon else 0
+    norm_venue = re.sub(r'[^a-z0-9]', '', (venue or '').lower())
+    time_norm = (time_str or '00:00')[:5]
+    raw = f"{date_str}|{time_norm}|{lat_r}|{lng_r}|{norm_venue}"
+    return hashlib.sha256(raw.encode()).hexdigest()[:16]
+
+
+# ---------------------------------------------------------------------------
 # Deduplication
 # ---------------------------------------------------------------------------
 
-def get_existing_events() -> set:
-    """Get set of existing source_ids and (title_lower, date) tuples for dedup."""
+def get_existing_events() -> tuple:
+    """Get set of existing source_ids, (title_lower, date) tuples, and content_fingerprints for dedup."""
     existing_ids = set()
     existing_title_dates = set()
+    existing_fingerprints = set()
 
     try:
         resp = requests.get(
-            f"{REST}/events?select=source_id,title,date&limit=2000",
+            f"{REST}/events?select=source_id,title,date,content_fingerprint&limit=5000",
             headers={
                 "apikey": SB_KEY,
                 "Authorization": f"Bearer {SB_KEY}",
@@ -371,10 +388,12 @@ def get_existing_events() -> set:
                     # Fuzzy: normalize title for matching
                     t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
                     existing_title_dates.add((t, e["date"]))
+                if e.get("content_fingerprint"):
+                    existing_fingerprints.add(e["content_fingerprint"])
     except Exception as e:
         print(f"  ⚠ Could not fetch existing events: {e}")
 
-    return existing_ids, existing_title_dates
+    return existing_ids, existing_title_dates, existing_fingerprints
 
 
 def normalize_title(title: str) -> str:
@@ -389,13 +408,21 @@ def normalize_title(title: str) -> str:
     return t
 
 
-def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set) -> bool:
-    """Check if event already exists (by source_id or fuzzy title+date)."""
+def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set) -> bool:
+    """Check if event already exists (by source_id, fuzzy title+date, or content fingerprint)."""
     if event["source_id"] in existing_ids:
         return True
     # Exact alphanumeric match
     t = re.sub(r'[^a-z0-9]', '', event["title"].lower())
     if (t, event["date"]) in existing_title_dates:
+        return True
+    # Cross-source content fingerprint (same date+time+location = duplicate)
+    fp = content_fingerprint(
+        event["date"], event.get("time", ""),
+        event.get("latitude"), event.get("longitude"),
+        event.get("venue_name", "")
+    )
+    if fp in existing_fingerprints:
         return True
     # Fuzzy prefix match (first 25 normalized chars + same date)
     tn = normalize_title(event["title"])[:25]
@@ -505,11 +532,11 @@ def main():
         print(f"🔀 Running batch {args.batch}: {', '.join(c['display'] for c in cities)}")
 
     # Get existing events for dedup
-    existing_ids, existing_title_dates = set(), set()
+    existing_ids, existing_title_dates, existing_fingerprints = set(), set(), set()
     if not args.dry_run:
         print("📋 Fetching existing events for deduplication...")
-        existing_ids, existing_title_dates = get_existing_events()
-        print(f"   Found {len(existing_ids)} existing source_ids, {len(existing_title_dates)} title+date combos")
+        existing_ids, existing_title_dates, existing_fingerprints = get_existing_events()
+        print(f"   Found {len(existing_ids)} existing source_ids, {len(existing_title_dates)} title+date combos, {len(existing_fingerprints)} content fingerprints")
 
     all_events = []
     seen_source_ids = set()
