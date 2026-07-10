@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-10T06:45:23.764733+00:00",
+  "timestamp": "2026-07-10T07:15:47.776583+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 5,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,57 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d79fb0cb-5984-4b04-89c4-f8380326fbaa",
-      "headline": "Trump Just Gutted the Only Federal Agency Devoted to Election Security. Four Months Before the Midterms.",
-      "slug": "trump-fires-election-assistance-commission-midterms-naturalized-citizens-20260710",
+      "id": "dc66d675-610e-4abb-acae-3c5f1c026c23",
+      "headline": "What to Watch This Week: Netflix Drops a Triple Bomb, SonyLIV Brings the Grit, and Dhamaal Returns to Theatres",
+      "slug": "what-to-watch-this-week-july-10-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "adf52b25-e46c-48fc-a2f5-a47135442cde",
+            "headline": "Sunny Deol Has Never Made a Netflix Film. Akshaye Khanna Has"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sunny Deol in Ikka poster",
+          "reason": "The photo shows Sunny Deol, relevant to the entertainment story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image is a film poster but does not directly relate to the specific films mentioned in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the diaspora audience by highlighting films available on streaming platforms that cater to Indian audiences abroad."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant hero image that reflects one of the films discussed in the article.",
+          "Add a brief summary or highlight of how these films resonate with the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "86f4edb8-227a-4a9b-8b3d-b30406c21d7a",
+      "headline": "Four Stars. One Husband. Zero Sense. Pati Patni Aur Woh Do Just Landed on Netflix.",
+      "slug": "pati-patni-aur-woh-do-netflix-premiere-ayushmann-khurrana-sara-ali-khan-streaming-july-10-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +69,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Election Assistance Commission logo",
-          "reason": "The logo is relevant to the story about the Election Assistance Commission."
+          "what_photo_shows": "Ayushmann Khurrana at a film event",
+          "reason": "The photo shows Ayushmann Khurrana, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the film discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film to the diaspora by referencing nostalgia and mixed-language viewing experiences."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features the cast of 'Pati Patni Aur Woh Do' to enhance relevance.",
+          "Consider adding more direct quotes from diaspora viewers or critics to strengthen the connection to the audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3381719b-3276-4010-8643-c56444f73e11",
+      "headline": "Mbappe's Eighth Goal Sends France Past Morocco and Into the World Cup Semifinals.",
+      "slug": "france-2-0-morocco-world-cup-quarterfinal-mbappe-8th-goal-dembele-semifinal-spain-belgium-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Kylian Mbappe celebrating in France jersey",
+          "reason": "The photo shows Kylian Mbappe, relevant to the story about France's World Cup victory."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +127,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the implications of election security issues for naturalized Indian Americans, making it relevant to the diaspora."
+          "note": "The article effectively connects the World Cup events to the Indian American community, highlighting their viewing experiences and cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian American leaders or organizations to strengthen the diaspora connection.",
-          "Include a brief overview of how these changes might specifically impact Indian American voters in upcoming elections."
+          "Consider adding more quotes from players or coaches to enhance the narrative.",
+          "Include statistics or historical context about the significance of the match for both teams."
         ],
         "verdict": "pass"
       },
@@ -54,18 +145,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f9bde3a9-a908-4510-bb29-82d8d210793d",
-      "headline": "An Indian Immigrant's Son Just Entered One of America's Most Consequential Senate Races",
-      "slug": "nirav-shah-indian-american-maine-senate-race-susan-collins-20260710",
+      "id": "04499965-46de-4b9b-ac2a-1823473dada1",
+      "headline": "Dada Enters the Pantheon. Sourav Ganguly Inducted Into ICC Hall of Fame.",
+      "slug": "sourav-ganguly-icc-hall-of-fame-10th-indian-sachin-tribute-dada-biopic-rajkummar-rao-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "9a88a2f7-7f88-4f49-a60c-70a8c1b86bf3",
+            "headline": "Rajkummar Rao Just Took His Shirt Off at Lord's. The Interne"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "interior of Maine State House",
-          "reason": "The photo shows the Maine State House, relevant to the Senate race story."
+          "what_photo_shows": "Sourav Ganguly at a press conference",
+          "reason": "The photo shows Sourav Ganguly, relevant to the story about his ICC Hall of Fame induction."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +169,64 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 10,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights Shah's identity as the son of Indian immigrants and discusses the implications of his candidacy for the Indian American community."
+          "note": "The article effectively connects Ganguly's legacy to the NRI experience, highlighting his impact on Indian cricket and its cultural significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to Dr. Nirav Shah or the political context of the article.",
-          "Consider adding quotes or perspectives from Indian American community leaders to enhance the diaspora angle."
+          "Consider adding more quotes from Ganguly or other players to enhance the narrative.",
+          "Include a brief section on the significance of the ICC Hall of Fame for context."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a933ae8a-573a-44ab-bd97-25d66718b566",
+      "headline": "Five Losses in a Row. England Seal Their First-Ever T20 Series Win Over India.",
+      "slug": "england-first-ever-t20-series-win-india-bristol-brook-salt-iyer-80-fifth-loss-nri-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Cricketer holding a bat on field",
+          "reason": "The photo shows a cricketer, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Harry Brook, who is relevant to the article, but does not depict the match context or the Indian team."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects with NRI readers by discussing their reactions and sentiments regarding the Indian team's performance."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more images or highlights from the match to enhance visual engagement.",
+          "Add quotes or reactions from NRI fans to further enrich the diaspora perspective."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
