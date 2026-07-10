@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import ScrollWrap from "./ScrollWrap";
+import { getDistanceMiles, formatDistance } from "@/lib/geo";
 
 interface EventItem {
   id: string;
@@ -12,10 +13,15 @@ interface EventItem {
   state?: string;
   category?: string;
   image_url?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 interface Props {
   events: EventItem[];
+  userLat?: number | null;
+  userLng?: number | null;
+  userCity?: string | null;
 }
 
 function formatEventDate(dateStr: string) {
@@ -25,17 +31,37 @@ function formatEventDate(dateStr: string) {
   return { month, day };
 }
 
-export default function EventsStrip({ events }: Props) {
-  // Only show upcoming events
+export default function EventsStrip({ events, userLat, userLng, userCity }: Props) {
   const upcoming = useMemo(() => {
     const today = new Date().toISOString().slice(0, 10);
-    return events
+    const filtered = events
       .filter((e) => e.date >= today)
-      .sort((a, b) => a.date.localeCompare(b.date))
-      .slice(0, 8);
-  }, [events]);
+      .map((e) => {
+        let dist: number | null = null;
+        if (userLat && userLng && e.latitude && e.longitude) {
+          dist = getDistanceMiles(userLat, userLng, e.latitude, e.longitude);
+        }
+        return { ...e, _dist: dist };
+      });
+
+    if (userLat && userLng) {
+      // Sort by distance — nearest first
+      filtered.sort((a, b) => {
+        if (a._dist !== null && b._dist !== null) return a._dist - b._dist;
+        if (a._dist !== null) return -1;
+        if (b._dist !== null) return 1;
+        return a.date.localeCompare(b.date);
+      });
+    } else {
+      filtered.sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    return filtered.slice(0, 12);
+  }, [events, userLat, userLng]);
 
   if (upcoming.length === 0) return null;
+
+  const headerLabel = userCity ? `📅 Events near ${userCity}` : "📅 Events";
 
   return (
     <section className="mb-14">
@@ -49,7 +75,7 @@ export default function EventsStrip({ events }: Props) {
             className="text-[13px] font-bold tracking-[2px] uppercase"
             style={{ color: "#0B1D3A" }}
           >
-            📅 Events
+            {headerLabel}
           </h2>
           <Link
             to="/events"
@@ -104,19 +130,29 @@ export default function EventsStrip({ events }: Props) {
                   </div>
                 </div>
 
-                {/* Location */}
+                {/* Location + distance */}
                 <div className="px-4 py-2.5">
                   <p className="text-xs text-muted-foreground line-clamp-1">
                     {[e.venue_name, e.city, e.state].filter(Boolean).join(", ")}
                   </p>
-                  {e.category && (
-                    <span
-                      className="text-[10px] font-bold tracking-[1px] uppercase mt-1 inline-block"
-                      style={{ color: "#D4A843" }}
-                    >
-                      {e.category}
-                    </span>
-                  )}
+                  <div className="flex items-center justify-between mt-1">
+                    {e.category && (
+                      <span
+                        className="text-[10px] font-bold tracking-[1px] uppercase"
+                        style={{ color: "#D4A843" }}
+                      >
+                        {e.category}
+                      </span>
+                    )}
+                    {e._dist !== null && e._dist !== undefined && (
+                      <span
+                        className="text-[10px] font-semibold"
+                        style={{ color: "#6B7280" }}
+                      >
+                        {formatDistance(e._dist)}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </Link>
             );
