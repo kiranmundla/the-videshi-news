@@ -1,0 +1,40 @@
+{
+  "article_id": "62e274a3-31e0-4ba3-9166-ea1f1df2523c",
+  "scenes": [
+    {
+      "voiceover": "",
+      "onscreen": "$48 BILLION LEFT INDIA",
+      "image_prompt": "Record FPI exodus data card with giant $48B figure and red downward arrows"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "$3.5B MONTHLY SIP FLOOR",
+      "image_prompt": "Domestic investor resilience card with golden $3.5B figure and India map"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "FPIs RETURN: $401M IN JULY",
+      "image_prompt": "FPI comeback card with green $401M figure and upward momentum"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "BANK NIFTY +6.1%",
+      "image_prompt": "Banking sector surge card with ₹146B inflows and Bank Nifty gain"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "TAX BARRIERS FALL",
+      "image_prompt": "Tax reform announcement card showing capital gains tax scrapped"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "$3.6B INTO BONDS",
+      "image_prompt": "Bond market boom card with $3.6B FAR bond inflows and Bloomberg index"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "INDIA IS RESILIENT",
+      "image_prompt": "Final takeaway card for NRI investors to reassess India allocation"
+    }
+  ]
+}
