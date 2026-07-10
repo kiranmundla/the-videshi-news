@@ -172,7 +172,10 @@ def main():
         urls = [f"{SITE}/articles/{a['slug']}" for a in articles if a.get("slug")]
         print(f"Found {len(urls)} articles in the last {hours}h\n")
         
-        ping_pubsubhubbub()
+        try:
+            ping_pubsubhubbub()
+        except Exception as e:
+            print(f"⚠️  PubSubHubbub ping failed (non-fatal): {e}")
         ping_indexnow(urls)
         print()
 
