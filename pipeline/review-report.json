@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-10T13:15:26.853842+00:00",
+  "timestamp": "2026-07-10T14:16:09.387552+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 6,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "05af4065-b729-4d2b-b4a2-41f03daa213e",
-      "headline": "Priyanka Chopra FaceTimed Nick Jonas from Wimbledon's Royal Box. The Internet Lost It.",
-      "slug": "priyanka-chopra-wimbledon-2026-royal-box-facetime-nick-jonas-dior-paris-couture-diaspora-20260710",
+      "id": "f043ff8c-74f1-4b4d-b68a-0ac852368f0b",
+      "headline": "The Client-Site Model That Built Indian IT in America Just Got an Expiry Date",
+      "slug": "third-party-placement-rule-indian-it-consulting-h1b-august-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,64 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Priyanka Chopra Jonas at an event",
-          "reason": "The photo shows Priyanka Chopra Jonas, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DakqZEyEceM/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the Wimbledon event or Priyanka Chopra's appearance there."
-          },
-          {
-            "url": "https://www.instagram.com/p/Dadc2vGGBSf/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post about Paris Couture Week is not directly relevant to the Wimbledon event discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Priyanka Chopra is relevant to the article's topic, but it does not depict her at Wimbledon, which is the main focus of the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Priyanka Chopra's achievements and her significance to the Indian diaspora, highlighting her journey and impact."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embeds with content that directly relates to the Wimbledon event.",
-          "Consider adding more context about the significance of Priyanka's presence at Wimbledon for NRI audiences."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DakqZEyEceM/",
-        "Removed irrelevant embed: https://www.instagram.com/p/Dadc2vGGBSf/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ad48eb4f-3b51-40d6-aff8-3cd34241f1ec",
-      "headline": "Ranveer Singh Just Took India's Biggest Film to Japan. The Numbers Are Obscene.",
-      "slug": "ranveer-singh-dhurandhar-japan-release-3100-crore-franchise-saif-ali-khan-before-after-era-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh at an event",
-          "reason": "The photo shows Ranveer Singh, relevant to the story."
+          "what_photo_shows": "diverse team in modern office",
+          "reason": "The photo aligns with the topic of professionals in IT consulting."
         },
         "inline_image_mismatches": []
       },
@@ -86,19 +30,247 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on Indian IT and H-1B visa regulations."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the film's release in Japan and its availability on Netflix in North America, directly appealing to NRI audiences."
+          "quality": 7,
+          "note": "The article discusses the implications of H-1B visa regulations on Indian IT firms, which is relevant to the Indian diaspora working in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from NRI audiences regarding the film's release.",
-          "Add a brief section on how the film's success might influence future Indian films in international markets."
+          "Consider using a more relevant image that reflects the Indian IT industry or H-1B visa context.",
+          "Add quotes or perspectives from industry experts or affected workers to enhance the article's depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5209332a-4e83-4f90-91df-f2a8b4c68f44",
+      "headline": "Four Years. That Is How Long Indian Students Will Get to Finish Their American Degree",
+      "slug": "f1-duration-of-status-fixed-period-indian-students-omb-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "graduates celebrating in caps and gowns",
+          "reason": "The photo shows a graduation scene relevant to a student-visa story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "image does not directly relate to the article's topic of immigration and student visas"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of immigration policy changes on Indian students, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents Indian students or the theme of studying abroad to enhance relevance.",
+          "Add a section that includes quotes or testimonials from Indian students affected by these changes to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
+      "headline": "Your Spouse's Work Permit Expires This Month. The Government Just Killed the Safety Net",
+      "slug": "h4-ead-automatic-extension-ending-indian-spouses-work-gap-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "73ff88d6-068d-48aa-805b-6b6d8ad05875",
+            "headline": "The H-1B Lottery Is No Longer Random. What the Wage-Weighted"
+          },
+          {
+            "article_id": "aec80018-750d-4f5b-a652-bbd687576230",
+            "headline": "Eighty-Three Days of Nothing. The July Visa Bulletin Just Sh"
+          },
+          {
+            "article_id": "753196ab-bbe4-4f36-a851-292b3e4a319b",
+            "headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and work permits."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the concerns of Indian families affected by changes in immigration policy, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from immigration experts or affected individuals to enhance the article's depth.",
+          "Include a section on potential advocacy efforts or resources for affected families."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ac0cdefb-e27a-4790-abd5-1bccb6a1d21d",
+      "headline": "The Body-Shop Model Has an Expiration Date. August's Rule Will Force Indian IT to Prove Every Placement",
+      "slug": "third-party-placement-rule-indian-it-consulting-h1b-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "professionals at office desk",
+          "reason": "The photo shows professionals collaborating, relevant to the IT consulting story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not clearly relate to the article's focus on the Indian IT consulting model and H-1B visa regulations."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of the proposed rule on Indian engineers in the US, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the themes of the Indian IT industry or H-1B visa issues.",
+          "Add a brief conclusion summarizing the potential long-term effects on the Indian IT sector and diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ed9bd280-1bed-4739-8179-4b3b37d3de8f",
+      "headline": "Duration of Status Is Dead. Three Hundred and Sixty Thousand Indian Students Will Feel It First",
+      "slug": "duration-of-status-dead-fixed-period-student-visa-indian-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "students in graduation attire",
+          "reason": "The photo shows a graduation scene, which is relevant to a student-visa story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or student visas."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of immigration policy changes on Indian students, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the theme of immigration or international students to enhance relevance.",
+          "Add quotes or perspectives from Indian students or diaspora members to further enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4e25322d-dad9-443e-8aa2-ecfd17bfa73e",
+      "headline": "One Hundred Thousand Indian Spouses Could Lose Their Work Permits This Month. The Government Calls It a Security Measure",
+      "slug": "h4-ead-work-permit-cliff-indian-spouses-uscis-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman working on laptop in office",
+          "reason": "The photo shows a professional woman working, which aligns with the topic of work permits."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of immigration or work permits."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the impact of immigration policy changes on Indian spouses, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts the theme of immigration or work permits.",
+          "Add quotes or testimonials from affected individuals to enhance the emotional impact of the article."
         ],
         "verdict": "pass"
       },
