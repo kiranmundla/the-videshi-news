@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-10T01:15:24.405173+00:00",
+  "timestamp": "2026-07-10T02:15:37.713760+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,54 +11,47 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "8e6ca2d2-5057-4b1b-b45f-5016f2ceca05",
-      "headline": "They Took Satluj Off the Internet. Now Gurudwaras Are Screening It Across Five States.",
-      "slug": "satluj-diljit-dosanjh-gurudwara-screenings-five-states-khalra-zee5-removal-sgpc-community-20260709",
+      "id": "57ac53c4-85c9-4e08-987e-57473c50da47",
+      "headline": "The USCIS Ombudsman Just Called H-1B Extension Delays the Agency's Biggest Problem. Workers Are Losing Jobs at Day 241.",
+      "slug": "uscis-ombudsman-h1b-extension-delays-240-day-cliff-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "4abdcab7-5472-49a7-a097-20a0cb6c6825",
-            "headline": "The Government Says Satluj Bypassed the Censor Board. The Re"
+            "article_id": "e786f62d-67a7-44cc-a7e4-c666a4ed8cfe",
+            "headline": "An AI Is Now Reading Every H-1B Filing You Ever Made. The Go"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Diljit Dosanjh at a public event",
-          "reason": "The photo shows Diljit Dosanjh, who is relevant to the story."
+          "what_photo_shows": "USCIS headquarters groundbreaking ceremony",
+          "reason": "The photo is related to USCIS, matching the immigration story topic."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DaYHUn7NvuV/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post by Diljit Dosanjh is relevant as it relates to the film and its context, but the specific content of the reel is not described in the article, making it difficult to assess its relevance fully."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Diljit Dosanjh is relevant as he is the lead actor in the film, but it does not directly depict the film or its themes."
+          "score": 6,
+          "issue": "The image does not directly relate to the specific topic of H-1B extension delays."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the diaspora's connection to the film through Diljit Dosanjh's international presence and the community's response, making it relevant to NRI readers."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of H-1B extension delays on Indian workers, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Provide a brief description of the Instagram reel to enhance its relevance.",
-          "Consider including more direct quotes or reactions from the diaspora community regarding the film's suppression."
+          "Consider using a more relevant image that directly relates to H-1B workers or immigration issues.",
+          "Add quotes or testimonials from affected workers to enhance the human interest angle."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DaYHUn7NvuV/",
         "promoted to published"
       ],
       "revised": false,
@@ -66,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "14edd26d-da6a-499d-827f-5e2d3ae65f1c",
-      "headline": "Ram Charan's Peddi Just Landed on Netflix. Here's Why the Diaspora Should Pay Attention.",
-      "slug": "ram-charan-peddi-netflix-premiere-diaspora-streaming-340-crore-telugu-sports-epic-20260709",
+      "id": "3a3f3079-2f79-4aa4-b529-7e22fe29adef",
+      "headline": "Every H-1B Extension Will Now Cost Indian IT Firms an Extra $4,000. The Rule Takes Effect This Month.",
+      "slug": "h1b-dependent-employer-extension-fee-4000-indian-it-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -76,8 +69,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ram Charan at an event",
-          "reason": "The photo shows Ram Charan, relevant to the story."
+          "what_photo_shows": "USCIS headquarters groundbreaking ceremony",
+          "reason": "The photo is related to USCIS, which is relevant to the immigration topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image does not directly relate to the article's focus on H-1B visa extensions and Indian IT firms."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of H-1B visa changes on Indian IT firms, which is highly relevant to the Indian diaspora working in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the topic of H-1B visas or Indian IT firms.",
+          "Add quotes or perspectives from Indian IT professionals to enhance the human angle of the story."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "edc20b63-36e8-444a-b4a4-532e202c8463",
+      "headline": "Cognizant Is the First Indian IT Giant Named in the Federal H-1B Fraud Probe. It Won't Be the Last.",
+      "slug": "cognizant-whistleblower-h1b-fraud-probe-dol-ig-indian-it-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Cognizant campus in Chennai",
+          "reason": "The photo shows the Cognizant campus, relevant to the story about the company."
         },
         "inline_image_mismatches": []
       },
@@ -90,14 +126,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the film's themes to the experiences of NRIs, making it relatable."
+          "quality": 8,
+          "note": "The article discusses the implications of the H-1B fraud probe on Indian workers, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from the film or reviews to enhance engagement.",
-          "Include a brief section on how the film has been received by critics to provide a balanced view."
+          "Include quotes or reactions from Indian diaspora organizations regarding the H-1B probe.",
+          "Add a section on potential impacts on the job market for Indian IT professionals in the U.S."
         ],
         "verdict": "pass"
       },
