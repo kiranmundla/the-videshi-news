@@ -315,3 +315,39 @@
     padding: 16px;
   }
 }
+
+/* ── Full-bleed World Cup & Market Ticker alignment ── */
+
+.v2-live-strip {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.v2-market-ticker-wrap {
+  margin-bottom: 24px;
+}
+
+.v2-market-ticker-box {
+  border-radius: 8px;
+}
+
+/* Desktop: constrain ticker to container width */
+@media (min-width: 769px) {
+  .v2-market-ticker-wrap {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-bottom: 24px;
+  }
+}
+
+/* Mobile: full bleed, no border-radius */
+@media (max-width: 768px) {
+  .v2-market-ticker-box {
+    border-radius: 0;
+  }
+}

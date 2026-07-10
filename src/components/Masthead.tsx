@@ -130,10 +130,10 @@ function CategoryNavBar() {
             })}
           </div>
 
-          {/* Row 3 — live happenings (conditional, dark accent strip) */}
+          {/* Row 3 — live happenings (conditional, dark accent strip — full bleed on mobile) */}
           {LIVE_HAPPENINGS.length > 0 && (
             <div
-              className="flex items-center overflow-x-auto scrollbar-none gap-0 px-1 -mx-1"
+              className="flex items-center overflow-x-auto scrollbar-none gap-0 px-1 v2-live-strip"
               style={{ background: "linear-gradient(135deg, #0B1D3A, #132d54)" }}
             >
               <span className="shrink-0 flex items-center gap-1 pl-3 pr-1 py-1.5 text-[0.6rem] tracking-[0.08em] text-red-400 font-semibold uppercase">
