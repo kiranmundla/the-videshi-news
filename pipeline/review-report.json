@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-10T14:16:09.387552+00:00",
+  "timestamp": "2026-07-10T15:16:14.063790+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 0,
+    "pass": 5,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f043ff8c-74f1-4b4d-b68a-0ac852368f0b",
-      "headline": "The Client-Site Model That Built Indian IT in America Just Got an Expiry Date",
-      "slug": "third-party-placement-rule-indian-it-consulting-h1b-august-20260710",
+      "id": "a1727d80-d0f6-4f63-8562-124e73b08c2d",
+      "headline": "Cricket Diplomacy. Australia's Big Bash League to Open Its Next Season in Chennai.",
+      "slug": "big-bash-league-bbl-chennai-chepauk-opener-modi-albanese-renegades-scorchers-december-2026-nri",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "diverse team in modern office",
-          "reason": "The photo aligns with the topic of professionals in IT consulting."
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
         },
         "inline_image_mismatches": []
       },
@@ -30,33 +30,34 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's focus on Indian IT and H-1B visa regulations."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of H-1B visa regulations on Indian IT firms, which is relevant to the Indian diaspora working in the US."
+          "quality": 8,
+          "note": "The article effectively connects the significance of the BBL match to the Indian diaspora, highlighting its relevance to NRIs in Australia and beyond."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the Indian IT industry or H-1B visa context.",
-          "Add quotes or perspectives from industry experts or affected workers to enhance the article's depth."
+          "Consider adding quotes from cricket analysts or players to enhance the article's depth.",
+          "Include more historical context about cricket diplomacy between India and Australia to enrich the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "held: image unverified"
       ],
       "revised": false,
       "unpublished": false,
+      "image_unverified": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "5209332a-4e83-4f90-91df-f2a8b4c68f44",
-      "headline": "Four Years. That Is How Long Indian Students Will Get to Finish Their American Degree",
-      "slug": "f1-duration-of-status-fixed-period-indian-students-omb-20260710",
+      "id": "a2436982-132d-42c2-804a-9c2426e3331a",
+      "headline": "Two Overs and Done. Ashwin's MLC Dream Ends as Knee Betrays Him Again.",
+      "slug": "ashwin-mlc-2026-knee-injury-san-francisco-unicorns-peter-siddle-replacement-etpl-dublin-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +65,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "graduates celebrating in caps and gowns",
-          "reason": "The photo shows a graduation scene relevant to a student-visa story."
+          "what_photo_shows": "Ravichandran Ashwin receiving an award",
+          "reason": "The photo shows Ravichandran Ashwin, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +74,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "image does not directly relate to the article's topic of immigration and student visas"
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the impact of immigration policy changes on Indian students, making it highly relevant to the diaspora."
+          "note": "The article effectively connects Ashwin's situation to the Indian diaspora in the Bay Area, highlighting the personal significance of his signing."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian students or the theme of studying abroad to enhance relevance.",
-          "Add a section that includes quotes or testimonials from Indian students affected by these changes to provide a personal touch."
+          "Replace the hero image with one that directly relates to Ashwin or the Major League Cricket to enhance relevance.",
+          "Consider adding quotes or reactions from NRI fans to further emphasize the diaspora connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -97,31 +98,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
-      "headline": "Your Spouse's Work Permit Expires This Month. The Government Just Killed the Safety Net",
-      "slug": "h4-ead-automatic-extension-ending-indian-spouses-work-gap-20260710",
+      "id": "5ecc2b3c-acc2-4dd1-bdda-83d8f0593c5e",
+      "headline": "Drawing Board Time. BCCI Orders Performance Review After India's Record T20I Losing Streak.",
+      "slug": "bcci-performance-review-gambhir-india-t20i-five-losses-england-ireland-sanju-samson-nri-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "73ff88d6-068d-48aa-805b-6b6d8ad05875",
-            "headline": "The H-1B Lottery Is No Longer Random. What the Wage-Weighted"
-          },
-          {
-            "article_id": "aec80018-750d-4f5b-a652-bbd687576230",
-            "headline": "Eighty-Three Days of Nothing. The July Visa Bulletin Just Sh"
-          },
-          {
-            "article_id": "753196ab-bbe4-4f36-a851-292b3e4a319b",
-            "headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to the immigration story."
+          "what_photo_shows": "Gautam Gambhir at a cricket event",
+          "reason": "The photo shows Gautam Gambhir, relevant to the story about his coaching tenure."
         },
         "inline_image_mismatches": []
       },
@@ -130,18 +118,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and work permits."
+          "issue": "The image of Gautam Gambhir is relevant as he is the head coach mentioned in the article, but it does not directly depict the current T20I team or the context of the losing streak."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses the concerns of Indian families affected by changes in immigration policy, making it highly relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the performance of the Indian cricket team to the emotional investment of the Indian diaspora, highlighting their pride and concern."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from immigration experts or affected individuals to enhance the article's depth.",
-          "Include a section on potential advocacy efforts or resources for affected families."
+          "Consider including more recent statistics or quotes from players to enhance the analysis of the team's performance.",
+          "Add a brief overview of the implications of the BCCI's performance review for the future of the team and its management."
         ],
         "verdict": "pass"
       },
@@ -153,9 +141,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ac0cdefb-e27a-4790-abd5-1bccb6a1d21d",
-      "headline": "The Body-Shop Model Has an Expiration Date. August's Rule Will Force Indian IT to Prove Every Placement",
-      "slug": "third-party-placement-rule-indian-it-consulting-h1b-20260710",
+      "id": "431c4a09-da55-4691-a57c-32246e113161",
+      "headline": "India Is Drafting Its First AI Law. Chatbots Get a Pass. Banks and Hospitals Do Not.",
+      "slug": "india-ai-law-risk-based-regulation-chatbots-banks-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -163,8 +151,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "professionals at office desk",
-          "reason": "The photo shows professionals collaborating, relevant to the IT consulting story."
+          "what_photo_shows": "digital network visualization with AI theme",
+          "reason": "The photo's subject aligns with the AI regulation topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to AI or the specific topics of regulation and compliance discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses AI regulation in India, which is relevant to the Indian diaspora interested in technological developments and their implications for businesses."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the new AI law may impact Indian companies operating abroad, particularly those in the diaspora.",
+          "Consider using a more relevant image that visually represents AI technology or regulation."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2ea1c759-d4f0-455b-9252-70e3f5d9cce7",
+      "headline": "WhatsApp's New Indian-Born Chief Faces His First Test. Delhi Just Froze His Biggest Feature.",
+      "slug": "whatsapp-kunal-shah-username-india-freeze-meta-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Person wearing Freecharge shirt",
+          "reason": "The photo shows a person associated with Freecharge, not CRED or WhatsApp."
         },
         "inline_image_mismatches": []
       },
@@ -173,104 +204,63 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not clearly relate to the article's focus on the Indian IT consulting model and H-1B visa regulations."
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of regulatory actions on WhatsApp, which is relevant to the Indian diaspora using the app."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that visually represents the article's topic.",
+          "Add a brief section on how this regulatory issue might affect Indian users abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Person wearing Freecharge shirt)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d05f94aa-9009-4fd5-8dc6-499e20359270",
+      "headline": "India Just Scrapped Import Duties on Key Smartphone Parts. Apple and Xiaomi Stand to Gain.",
+      "slug": "india-scraps-import-duty-smartphone-electronics-apple-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "smartphone assembly line components",
+          "reason": "The photo shows components relevant to smartphone manufacturing."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to the topic of smartphone manufacturing but does not specifically depict any of the components mentioned."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the proposed rule on Indian engineers in the US, making it relevant to the diaspora."
+          "note": "The article effectively connects the tariff cuts to NRI investment opportunities in India's electronics sector."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the themes of the Indian IT industry or H-1B visa issues.",
-          "Add a brief conclusion summarizing the potential long-term effects on the Indian IT sector and diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ed9bd280-1bed-4739-8179-4b3b37d3de8f",
-      "headline": "Duration of Status Is Dead. Three Hundred and Sixty Thousand Indian Students Will Feel It First",
-      "slug": "duration-of-status-dead-fixed-period-student-visa-indian-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "students in graduation attire",
-          "reason": "The photo shows a graduation scene, which is relevant to a student-visa story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or student visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of immigration policy changes on Indian students, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or international students to enhance relevance.",
-          "Add quotes or perspectives from Indian students or diaspora members to further enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4e25322d-dad9-443e-8aa2-ecfd17bfa73e",
-      "headline": "One Hundred Thousand Indian Spouses Could Lose Their Work Permits This Month. The Government Calls It a Security Measure",
-      "slug": "h4-ead-work-permit-cliff-indian-spouses-uscis-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman working on laptop in office",
-          "reason": "The photo shows a professional woman working, which aligns with the topic of work permits."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of immigration or work permits."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of immigration policy changes on Indian spouses, making it highly relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the theme of immigration or work permits.",
-          "Add quotes or testimonials from affected individuals to enhance the emotional impact of the article."
+          "Include specific examples of how NRI investors can capitalize on these tariff cuts.",
+          "Add a quote from an NRI investor or expert to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
