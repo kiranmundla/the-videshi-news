@@ -37,7 +37,7 @@ DB_HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration"]
 TWEETS_PER_CATEGORY = 8       # max handles shown per strip
 POOL_TWEETS_PER_HANDLE = 5    # tweets to cache per handle
-POOL_MAX_AGE_HOURS = 24       # re-fetch from X API only when pool is older
+POOL_MAX_AGE_HOURS = 72       # re-fetch from X API only when pool is older (3 days)
 VVIP_TWEET_HOURS = 336        # look back 14 days for tweets
 LOOKBACK_DAYS = 14            # article harvest lookback
 
