@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-10T19:58:24Z",
+  "last_updated": "2026-07-10T21:58:49Z",
   "stage": "Quarterfinals — 97 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2142,8 +2142,8 @@
       "away": "Belgium",
       "venue": "SoFi Stadium",
       "city": "Inglewood, CA",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "2-1",
       "home_code": "ESP",
       "away_code": "BEL"
     },
@@ -2176,6 +2176,36 @@
       "score": null,
       "home_code": "ARG",
       "away_code": "SUI"
+    },
+    {
+      "id": 101,
+      "group": "SF",
+      "date": "2026-07-14",
+      "time": "15:00",
+      "tz": "ET",
+      "home": "France",
+      "away": "Spain",
+      "venue": "AT&T Stadium",
+      "city": "Arlington, TX",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "FRA",
+      "away_code": "ESP"
+    },
+    {
+      "id": 102,
+      "group": "SF",
+      "date": "2026-07-15",
+      "time": "15:00",
+      "tz": "ET",
+      "home": "TBD",
+      "away": "TBD",
+      "venue": "Mercedes-Benz Stadium",
+      "city": "Atlanta, GA",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "TBD",
+      "away_code": "TBD"
     }
   ],
   "knockout": {
@@ -2549,11 +2579,13 @@
           "time": "15:00",
           "tz": "ET",
           "venue": "SoFi Stadium, Inglewood, CA",
-          "status": "scheduled",
+          "status": "FT",
           "home": "Spain",
           "home_code": "ESP",
           "away": "Belgium",
-          "away_code": "BEL"
+          "away_code": "BEL",
+          "score": "2-1",
+          "winner": "Spain"
         },
         {
           "match_num": 99,
@@ -2583,7 +2615,34 @@
     },
     "semifinals": {
       "dates": "July 14–15",
-      "matches": 2
+      "matches": [
+        {
+          "match_num": 101,
+          "date": "2026-07-14",
+          "time": "15:00",
+          "tz": "ET",
+          "venue": "AT&T Stadium, Arlington, TX",
+          "home": "France",
+          "home_code": "FRA",
+          "away": "Spain",
+          "away_code": "ESP",
+          "status": "scheduled",
+          "score": null
+        },
+        {
+          "match_num": 102,
+          "date": "2026-07-15",
+          "time": "15:00",
+          "tz": "ET",
+          "venue": "Mercedes-Benz Stadium, Atlanta, GA",
+          "home": "TBD (Norway/England)",
+          "home_code": "TBD",
+          "away": "TBD (Argentina/Switzerland)",
+          "away_code": "TBD",
+          "status": "scheduled",
+          "score": null
+        }
+      ]
     },
     "third_place": {
       "date": "July 18",
@@ -9825,6 +9884,54 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/DanZ5r-jT6R/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaoHluIiGL7/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaoHNjhidHN/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaoIHnYD-Ys",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaoFypaD2Eo",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaoHWKFD-SG",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dan_tIEj4lV",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DanhIuRCjHx",
+      "account": "@fifaworldcup",
+      "date": "2026-07-10"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dan5Y4lmSG7",
       "account": "@fifaworldcup",
       "date": "2026-07-10"
     }
