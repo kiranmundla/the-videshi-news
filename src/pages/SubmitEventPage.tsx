@@ -799,14 +799,6 @@ export default function SubmitEventPage() {
                 {form.venue_name && form.city && <span>·</span>}
                 <span>{[form.city, form.state].filter(Boolean).join(", ")}</span>
               </div>
-              {form.ticket_url && (
-                <span className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-bold text-base opacity-60 cursor-default">
-                  Get Tickets
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                  </svg>
-                </span>
-              )}
             </div>
           </div>
 
@@ -815,80 +807,134 @@ export default function SubmitEventPage() {
             <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
 
-          {/* ========== CONTENT (editable) ========== */}
+          {/* ========== CONTENT — two-column like EventDetailPage ========== */}
           <div className="px-4 pb-8">
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
 
-              {/* About This Event — editable */}
-              <section>
-                <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
-                    About This Event
-                  </h2>
-                  <span className="text-[11px] text-white/30 italic">click to edit</span>
-                </div>
-                <textarea
-                  value={desc || ""}
-                  onChange={e => {
-                    setSynthesized(prev => ({
-                      long_description: e.target.value,
-                      artist_info: prev?.artist_info || null,
-                      venue_info: prev?.venue_info || null,
-                    }));
-                  }}
-                  rows={Math.max(6, (desc || "").split("\n").length + 2)}
-                  className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent placeholder:text-white/20"
-                  placeholder="Describe your event…"
-                />
-              </section>
+              {/* LEFT: Main content (editable) */}
+              <div className="space-y-8">
 
-              {/* About the Artist — editable */}
-              {synthesized?.artist_info && (
+                {/* About This Event — editable */}
                 <section>
                   <div className="flex items-center justify-between mb-3">
                     <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
-                      About the Artist
+                      About This Event
                     </h2>
                     <span className="text-[11px] text-white/30 italic">click to edit</span>
                   </div>
                   <textarea
-                    value={synthesized.artist_info}
+                    value={desc || ""}
                     onChange={e => {
                       setSynthesized(prev => ({
-                        long_description: prev?.long_description || null,
-                        artist_info: e.target.value,
+                        long_description: e.target.value,
+                        artist_info: prev?.artist_info || null,
                         venue_info: prev?.venue_info || null,
                       }));
                     }}
-                    rows={Math.max(3, synthesized.artist_info.split("\n").length + 1)}
-                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent"
+                    rows={Math.max(6, (desc || "").split("\n").length + 2)}
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent placeholder:text-white/20"
+                    placeholder="Describe your event…"
                   />
                 </section>
-              )}
 
-              {/* Venue info — editable */}
-              {synthesized?.venue_info && (
-                <section>
-                  <div className="flex items-center justify-between mb-3">
-                    <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                {/* About the Artist — editable */}
+                {synthesized?.artist_info && (
+                  <section>
+                    <div className="flex items-center justify-between mb-3">
+                      <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                        About the Artist
+                      </h2>
+                      <span className="text-[11px] text-white/30 italic">click to edit</span>
+                    </div>
+                    <textarea
+                      value={synthesized.artist_info}
+                      onChange={e => {
+                        setSynthesized(prev => ({
+                          long_description: prev?.long_description || null,
+                          artist_info: e.target.value,
+                          venue_info: prev?.venue_info || null,
+                        }));
+                      }}
+                      rows={Math.max(3, synthesized.artist_info.split("\n").length + 1)}
+                      className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent"
+                    />
+                  </section>
+                )}
+
+                {/* Venue section */}
+                {(form.venue_name || synthesized?.venue_info) && (
+                  <section>
+                    <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
                       Venue
                     </h2>
-                    <span className="text-[11px] text-white/30 italic">click to edit</span>
+                    <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-6">
+                      {form.venue_name && (
+                        <p className="text-white font-semibold text-lg mb-1">{form.venue_name}</p>
+                      )}
+                      <p className="text-white/40 text-sm mb-4">
+                        {[form.city, form.state].filter(Boolean).join(", ")}
+                      </p>
+                      {synthesized?.venue_info && (
+                        <textarea
+                          value={synthesized.venue_info}
+                          onChange={e => {
+                            setSynthesized(prev => ({
+                              long_description: prev?.long_description || null,
+                              artist_info: prev?.artist_info || null,
+                              venue_info: e.target.value,
+                            }));
+                          }}
+                          rows={Math.max(2, synthesized.venue_info.split("\n").length + 1)}
+                          className="w-full bg-transparent border border-white/10 rounded-lg px-3 py-2 text-white/60 text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent mb-4"
+                        />
+                      )}
+                      <span className="inline-flex items-center gap-2 text-sm text-white/50">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                        Get Directions →
+                      </span>
+                    </div>
+                  </section>
+                )}
+              </div>
+
+              {/* RIGHT: Sidebar */}
+              <div className="space-y-6 lg:pt-0">
+                {/* Quick info card */}
+                <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-5 space-y-4">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/30">
+                    Event Details
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <span className="text-lg mt-0.5">📅</span>
+                      <div>
+                        <p className="text-white/80 text-sm font-medium">{dateStr}</p>
+                        {form.time && <p className="text-white/40 text-xs">{form.time}</p>}
+                      </div>
+                    </div>
+                    {form.venue_name && (
+                      <div className="flex items-start gap-3">
+                        <span className="text-lg mt-0.5">📍</span>
+                        <div>
+                          <p className="text-white/80 text-sm font-medium">{form.venue_name}</p>
+                          <p className="text-white/40 text-xs">{[form.city, form.state].filter(Boolean).join(", ")}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <textarea
-                    value={synthesized.venue_info}
-                    onChange={e => {
-                      setSynthesized(prev => ({
-                        long_description: prev?.long_description || null,
-                        artist_info: prev?.artist_info || null,
-                        venue_info: e.target.value,
-                      }));
-                    }}
-                    rows={Math.max(3, synthesized.venue_info.split("\n").length + 1)}
-                    className="w-full bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white/70 text-[15px] leading-[1.85] resize-y focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent"
-                  />
-                </section>
-              )}
+                  {form.ticket_url && (
+                    <span className="flex items-center justify-center gap-2 w-full mt-4 px-6 py-3 rounded-full bg-white/20 text-white/60 font-bold text-sm cursor-default">
+                      Get Tickets
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                      </svg>
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
