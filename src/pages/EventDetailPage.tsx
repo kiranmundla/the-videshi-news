@@ -449,6 +449,8 @@ export default function EventDetailPage() {
   const dateStr = formatEventDateLong(event.date, event.end_date);
   const past = isPastEvent(event.date);
   const catEmoji = CAT_EMOJI[event.category || "Other"] || "📌";
+  const catFallbackImg = `/images/events/${(event.category || "other").toLowerCase()}.jpg`;
+  const heroImg = event.image_url || catFallbackImg;
   const rawDescription = event.long_description || event.description;
   const description = rawDescription
     ? rawDescription.replace(/\s*(Read below:?|Read more:?)\s*$/i, "").trim() || rawDescription
@@ -503,26 +505,17 @@ export default function EventDetailPage() {
       <main className="flex-1">
 
         {/* ========== HERO ========== */}
-        {event.image_url ? (
-          <div className="relative w-full">
-            {/* Full poster — no heavy gradient, just a subtle bottom fade */}
-            <div className="relative w-full max-h-[75vh] overflow-hidden">
-              <img
-                src={event.image_url}
-                alt={event.title}
-                className="w-full h-full object-contain bg-black"
-                style={{ maxHeight: "75vh" }}
-              />
-              {/* Very subtle bottom edge fade only */}
-              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
-            </div>
+        <div className="relative w-full">
+          <div className="relative w-full max-h-[75vh] overflow-hidden">
+            <img
+              src={heroImg}
+              alt={event.title}
+              className={`w-full h-full bg-black ${event.image_url ? "object-contain" : "object-cover"}`}
+              style={{ maxHeight: "75vh" }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
           </div>
-        ) : (
-          /* No-image hero — big emoji + color wash */
-          <div className="relative w-full h-48 sm:h-56 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-            <span className="text-[8rem] opacity-15 select-none">{catEmoji}</span>
-          </div>
-        )}
+        </div>
 
         {/* ========== TITLE CARD ========== */}
         <div className="px-4 -mt-6 relative z-10">
