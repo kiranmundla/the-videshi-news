@@ -92,13 +92,13 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
   return (
     <Link to={`/directory/${listing.slug}`} className="block no-underline">
       <article className="group flex flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
-        {/* Thumbnail — compact square, always on the side */}
+        {/* Thumbnail — proportionally scaled, full image visible */}
         {imageUrl && (
-          <div className="w-20 min-w-[5rem] sm:w-24 sm:min-w-[6rem] flex-shrink-0 overflow-hidden">
+          <div className="w-24 min-w-[6rem] sm:w-28 sm:min-w-[7rem] flex-shrink-0 flex items-center justify-center bg-muted/10 overflow-hidden">
             <img
               src={imageUrl}
               alt={listing.name}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-auto object-contain max-h-44"
               loading="lazy"
               onError={(e) => {
                 const container = (e.target as HTMLElement).parentElement;
