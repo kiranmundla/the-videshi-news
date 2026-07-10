@@ -174,6 +174,7 @@ RELEVANCE_KEYWORDS = [
     "kirtan", "bhajan", "puja", "pooja", "kundalini",
     "isha yoga", "sahaja yoga", "isha foundation",
     "yoga", "chai", "rangoli", "kolam",
+    "tech meetup", "startup", "networking", "professional",
 ]
 
 FALSE_POSITIVE_PATTERNS = [
@@ -342,6 +343,10 @@ def fetch_meetup_events(city: dict, keyword: str) -> list:
         event_url = v.get("eventUrl", "")
         event_id = v.get("id", "")
 
+        _lat = float(lat) if lat else None
+        _lon = float(lon) if lon else None
+        fp = content_fingerprint(date_str, time_str or "", _lat, _lon, venue_name)
+
         events.append({
             "title": title,
             "date": date_str,
@@ -358,8 +363,9 @@ def fetch_meetup_events(city: dict, keyword: str) -> list:
             "source_id": f"meetup_{event_id}",
             "organizer": organizer,
             "slug": make_slug(title, date_str),
-            "latitude": float(lat) if lat else None,
-            "longitude": float(lon) if lon else None,
+            "latitude": _lat,
+            "longitude": _lon,
+            "content_fingerprint": fp,
         })
 
     return events
