@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-09T23:45:09.573967+00:00",
+  "timestamp": "2026-07-10T00:15:50.777419+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,14 +11,19 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cd80589b-632e-48b4-9c99-1a9b59cc9db1",
-      "headline": "212 Years of Lord's. Zero Women's Tests. Until Friday.",
-      "slug": "first-womens-test-lords-england-india-beaumont-retirement-sciver-brunt-nri-2026",
+      "id": "5f462bf0-c930-4545-a751-c71cf3627b76",
+      "headline": "Indian Americans Gave Up to Five Billion Dollars Last Year. The Community's Philanthropy Gap Is Finally Closing.",
+      "slug": "indian-american-diaspora-philanthropy-5-billion-giving-gap-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "volunteers at a charity event",
+          "reason": "The photo shows volunteers organizing donations, which aligns with the philanthropy theme."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -26,18 +31,190 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
+          "issue": "The image does not directly relate to philanthropy or the Indian American community."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the match to the Indian diaspora in the UK."
+          "note": "The article effectively discusses the philanthropic contributions of the Indian American community, making it relevant to diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or perspectives from Indian players to further engage the diaspora audience."
+          "Consider using an image that directly represents philanthropy or community engagement to enhance relevance.",
+          "Add quotes or anecdotes from Indian Americans involved in philanthropy to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c5aa09df-d941-425f-a19a-976a841e0f02",
+      "headline": "Forty Per Cent More Indian Tech Workers Moved Home Last Year. Silicon Valley Is Starting to Notice.",
+      "slug": "india-reverse-migration-tech-talent-40-percent-rise-gcc-h1b-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "International Tech Park in Bangalore",
+          "reason": "The photo shows a technology hub in Bangalore, relevant to the story about tech workers returning to India."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the trend of Indian tech workers returning home, which is highly relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from returnees to add personal perspectives.",
+          "Provide statistics or examples of how the return of tech workers is impacting specific sectors in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dd3dc2f0-7261-49ff-9cdc-dd58a0b1754f",
+      "headline": "Gold Hits \u20b91.44 Lakh, SGBs Are at a Premium, and New Issuances Are Dead \u2014 Here's How NRIs Should Buy Gold Now",
+      "slug": "gold-144-lakh-sgb-premium-nri-investment-options-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "gold bars on fabric",
+          "reason": "The photo of gold bars is relevant to a story about gold prices and investments."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs' concerns about gold investment, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can navigate the gold market, such as potential pitfalls or success stories.",
+          "Add a brief section on the historical performance of gold as an investment for NRIs to provide context."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "46d04763-0ea0-40a9-84a0-a69c43f1bb61",
+      "headline": "Foreign Investors Pour $1 Billion Into Indian Real Estate in Q2 \u2014 A 454% Surge That NRIs Should Watch",
+      "slug": "india-real-estate-q2-2026-foreign-investment-nri-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Mumbai skyline with ocean view",
+          "reason": "The photo shows Mumbai's skyline, relevant to the real estate investment story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRIs and their potential interest in Indian real estate, providing relevant insights and actionable advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of properties or projects in Chennai and Bengaluru to enhance the appeal for NRIs.",
+          "Include expert quotes or testimonials from NRIs who have successfully invested in Indian real estate to add credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bfe917ea-eeae-4f46-b59d-5baf605a80f2",
+      "headline": "TCS Beats Revenue Estimates as AI Business Crosses $2.6 Billion \u2014 What NRI Investors Should Know",
+      "slug": "tcs-q1-fy27-results-ai-revenue-nri-investors-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "TCS Gitanjali Park campus in Kolkata",
+          "reason": "The photo shows a TCS campus, relevant to the company's revenue story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and their interests in TCS's performance and implications for the IT sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific insights or quotes from industry experts to enhance credibility.",
+          "Include a brief section on potential risks or challenges TCS might face in the upcoming quarters."
         ],
         "verdict": "pass"
       },
