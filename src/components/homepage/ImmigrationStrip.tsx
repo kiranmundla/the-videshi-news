@@ -55,11 +55,7 @@ export default function ImmigrationStrip({ articles }: Props) {
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-white/20 text-xs">
-                      IMAGE
-                    </div>
-                  )}
+                  ) : null}
                 </div>
                 <div className="p-3.5 pb-4">
                   <p

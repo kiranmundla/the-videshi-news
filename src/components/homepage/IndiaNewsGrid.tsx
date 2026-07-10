@@ -78,11 +78,7 @@ export default function IndiaNewsGrid({ articles, trending }: Props) {
                         
                       />
                     </div>
-                  ) : (
-                    <div className="w-full bg-stone-100 rounded-lg mb-2 flex items-center justify-center text-muted-foreground/30 text-xs" style={{ aspectRatio: "16/10" }}>
-                      IMAGE
-                    </div>
-                  )}
+                  ) : null}
                   <p
                     className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                     style={{ color: catColor(a.category) }}

@@ -76,14 +76,7 @@ export default function RibbonSection({
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                     />
                   </div>
-                ) : (
-                  <div
-                    className="w-full bg-stone-100 flex items-center justify-center text-muted-foreground/30 text-xs rounded-lg mb-2.5"
-                    style={{ aspectRatio: isPortrait ? "3/4" : "16/10" }}
-                  >
-                    IMAGE
-                  </div>
-                )}
+                ) : null}
                 <p
                   className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                   style={{ color: borderColor }}
