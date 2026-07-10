@@ -316,10 +316,33 @@ export default function EventsPage() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* --- Geolocation / zip code state --- */
-  const [nearMeActive, setNearMeActive] = useState(false);
-  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
-  const [locationLabel, setLocationLabel] = useState<string>("");
+  // Restore coords from sessionStorage so back-navigation doesn't re-prompt
+  const [nearMeActive, setNearMeActive] = useState(() => {
+    try { return !!sessionStorage.getItem("videshi_events_coords"); } catch { return false; }
+  });
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(() => {
+    try {
+      const saved = sessionStorage.getItem("videshi_events_coords");
+      return saved ? JSON.parse(saved) : null;
+    } catch { return null; }
+  });
+  const [locationLabel, setLocationLabel] = useState<string>(() => {
+    try { return sessionStorage.getItem("videshi_events_label") || ""; } catch { return ""; }
+  });
   const { location: ipLocation } = useUserLocation();
+
+  /* --- Persist coords in sessionStorage so back-nav doesn't re-prompt --- */
+  useEffect(() => {
+    try {
+      if (userCoords) {
+        sessionStorage.setItem("videshi_events_coords", JSON.stringify(userCoords));
+        sessionStorage.setItem("videshi_events_label", locationLabel);
+      } else {
+        sessionStorage.removeItem("videshi_events_coords");
+        sessionStorage.removeItem("videshi_events_label");
+      }
+    } catch {}
+  }, [userCoords, locationLabel]);
 
   /* --- Sync filters with URL --- */
   // Default to Bay Area when no city param is present
