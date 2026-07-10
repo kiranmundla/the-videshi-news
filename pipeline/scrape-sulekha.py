@@ -46,64 +46,67 @@ HEADERS = {
 
 # Sulekha URL pattern: https://events.sulekha.com/indian-events-in-{city-slug}
 # City slugs use Sulekha's format: lowercase, hyphens
+# Sulekha geo-locates by IP and ignores the URL city — we must send a
+# `sulusrloc` cookie with the city/state/zip/coords to force the right city.
+# Cookie format: "united states::US::{City}::::{State}::{zip}::{lat}::{lng}::0"
 CITIES = [
     # Batch 0 (Mon)
-    {"slug": "san-francisco", "display": "San Francisco", "state": "CA"},
-    {"slug": "los-angeles", "display": "Los Angeles", "state": "CA"},
-    {"slug": "austin", "display": "Austin", "state": "TX"},
-    {"slug": "tampa", "display": "Tampa", "state": "FL"},
-    {"slug": "irvine", "display": "Irvine", "state": "CA"},
-    {"slug": "orlando", "display": "Orlando", "state": "FL"},
-    {"slug": "cleveland", "display": "Cleveland", "state": "OH"},
-    {"slug": "milwaukee", "display": "Milwaukee", "state": "WI"},
+    {"slug": "san-francisco", "display": "San Francisco", "state": "CA", "st": "California", "zip": "94102", "lat": 37.7749, "lng": -122.4194},
+    {"slug": "los-angeles", "display": "Los Angeles", "state": "CA", "st": "California", "zip": "90001", "lat": 34.0522, "lng": -118.2437},
+    {"slug": "austin", "display": "Austin", "state": "TX", "st": "Texas", "zip": "78701", "lat": 30.2672, "lng": -97.7431},
+    {"slug": "tampa", "display": "Tampa", "state": "FL", "st": "Florida", "zip": "33601", "lat": 27.9506, "lng": -82.4572},
+    {"slug": "irvine", "display": "Irvine", "state": "CA", "st": "California", "zip": "92602", "lat": 33.6846, "lng": -117.8265},
+    {"slug": "orlando", "display": "Orlando", "state": "FL", "st": "Florida", "zip": "32801", "lat": 28.5383, "lng": -81.3792},
+    {"slug": "cleveland", "display": "Cleveland", "state": "OH", "st": "Ohio", "zip": "44101", "lat": 41.4993, "lng": -81.6944},
+    {"slug": "milwaukee", "display": "Milwaukee", "state": "WI", "st": "Wisconsin", "zip": "53201", "lat": 43.0389, "lng": -87.9065},
     # Batch 1 (Tue)
-    {"slug": "san-jose", "display": "San Jose", "state": "CA"},
-    {"slug": "seattle", "display": "Seattle", "state": "WA"},
-    {"slug": "miami", "display": "Miami", "state": "FL"},
-    {"slug": "charlotte", "display": "Charlotte", "state": "NC"},
-    {"slug": "plano", "display": "Plano", "state": "TX"},
-    {"slug": "baltimore", "display": "Baltimore", "state": "MD"},
-    {"slug": "kansas-city", "display": "Kansas City", "state": "MO"},
+    {"slug": "san-jose", "display": "San Jose", "state": "CA", "st": "California", "zip": "95101", "lat": 37.3382, "lng": -121.8863},
+    {"slug": "seattle", "display": "Seattle", "state": "WA", "st": "Washington", "zip": "98101", "lat": 47.6062, "lng": -122.3321},
+    {"slug": "miami", "display": "Miami", "state": "FL", "st": "Florida", "zip": "33101", "lat": 25.7617, "lng": -80.1918},
+    {"slug": "charlotte", "display": "Charlotte", "state": "NC", "st": "North Carolina", "zip": "28201", "lat": 35.2271, "lng": -80.8431},
+    {"slug": "plano", "display": "Plano", "state": "TX", "st": "Texas", "zip": "75023", "lat": 33.0198, "lng": -96.6989},
+    {"slug": "baltimore", "display": "Baltimore", "state": "MD", "st": "Maryland", "zip": "21201", "lat": 39.2904, "lng": -76.6122},
+    {"slug": "kansas-city", "display": "Kansas City", "state": "MO", "st": "Missouri", "zip": "64101", "lat": 39.0997, "lng": -94.5786},
     # Batch 2 (Wed)
-    {"slug": "new-york", "display": "New York", "state": "NY"},
-    {"slug": "washington-dc", "display": "Washington", "state": "DC"},
-    {"slug": "phoenix", "display": "Phoenix", "state": "AZ"},
-    {"slug": "raleigh", "display": "Raleigh", "state": "NC"},
-    {"slug": "fremont", "display": "Fremont", "state": "CA"},
-    {"slug": "stamford", "display": "Stamford", "state": "CT"},
-    {"slug": "st-louis", "display": "St Louis", "state": "MO"},
+    {"slug": "new-york", "display": "New York", "state": "NY", "st": "New York", "zip": "10001", "lat": 40.7128, "lng": -74.0060},
+    {"slug": "washington-dc", "display": "Washington", "state": "DC", "st": "District of Columbia", "zip": "20001", "lat": 38.9072, "lng": -77.0369},
+    {"slug": "phoenix", "display": "Phoenix", "state": "AZ", "st": "Arizona", "zip": "85001", "lat": 33.4484, "lng": -112.0740},
+    {"slug": "raleigh", "display": "Raleigh", "state": "NC", "st": "North Carolina", "zip": "27601", "lat": 35.7796, "lng": -78.6382},
+    {"slug": "fremont", "display": "Fremont", "state": "CA", "st": "California", "zip": "94536", "lat": 37.5485, "lng": -121.9886},
+    {"slug": "stamford", "display": "Stamford", "state": "CT", "st": "Connecticut", "zip": "06901", "lat": 41.0534, "lng": -73.5387},
+    {"slug": "st-louis", "display": "St Louis", "state": "MO", "st": "Missouri", "zip": "63101", "lat": 38.6270, "lng": -90.1994},
     # Batch 3 (Thu)
-    {"slug": "edison-nj", "display": "Edison", "state": "NJ"},
-    {"slug": "boston", "display": "Boston", "state": "MA"},
-    {"slug": "denver", "display": "Denver", "state": "CO"},
-    {"slug": "columbus", "display": "Columbus", "state": "OH"},
-    {"slug": "sunnyvale", "display": "Sunnyvale", "state": "CA"},
-    {"slug": "ann-arbor", "display": "Ann Arbor", "state": "MI"},
-    {"slug": "las-vegas", "display": "Las Vegas", "state": "NV"},
+    {"slug": "edison-nj", "display": "Edison", "state": "NJ", "st": "New Jersey", "zip": "08817", "lat": 40.5187, "lng": -74.4121},
+    {"slug": "boston", "display": "Boston", "state": "MA", "st": "Massachusetts", "zip": "02101", "lat": 42.3601, "lng": -71.0589},
+    {"slug": "denver", "display": "Denver", "state": "CO", "st": "Colorado", "zip": "80201", "lat": 39.7392, "lng": -104.9903},
+    {"slug": "columbus", "display": "Columbus", "state": "OH", "st": "Ohio", "zip": "43201", "lat": 39.9612, "lng": -82.9988},
+    {"slug": "sunnyvale", "display": "Sunnyvale", "state": "CA", "st": "California", "zip": "94085", "lat": 37.3688, "lng": -122.0363},
+    {"slug": "ann-arbor", "display": "Ann Arbor", "state": "MI", "st": "Michigan", "zip": "48104", "lat": 42.2808, "lng": -83.7430},
+    {"slug": "las-vegas", "display": "Las Vegas", "state": "NV", "st": "Nevada", "zip": "89101", "lat": 36.1699, "lng": -115.1398},
     # Batch 4 (Fri)
-    {"slug": "chicago", "display": "Chicago", "state": "IL"},
-    {"slug": "atlanta", "display": "Atlanta", "state": "GA"},
-    {"slug": "san-diego", "display": "San Diego", "state": "CA"},
-    {"slug": "indianapolis", "display": "Indianapolis", "state": "IN"},
-    {"slug": "cary", "display": "Cary", "state": "NC"},
-    {"slug": "san-antonio", "display": "San Antonio", "state": "TX"},
-    {"slug": "richmond", "display": "Richmond", "state": "VA"},
+    {"slug": "chicago", "display": "Chicago", "state": "IL", "st": "Illinois", "zip": "60601", "lat": 41.8781, "lng": -87.6298},
+    {"slug": "atlanta", "display": "Atlanta", "state": "GA", "st": "Georgia", "zip": "30301", "lat": 33.7490, "lng": -84.3880},
+    {"slug": "san-diego", "display": "San Diego", "state": "CA", "st": "California", "zip": "92101", "lat": 32.7157, "lng": -117.1611},
+    {"slug": "indianapolis", "display": "Indianapolis", "state": "IN", "st": "Indiana", "zip": "46201", "lat": 39.7684, "lng": -86.1581},
+    {"slug": "cary", "display": "Cary", "state": "NC", "st": "North Carolina", "zip": "27511", "lat": 35.7915, "lng": -78.7811},
+    {"slug": "san-antonio", "display": "San Antonio", "state": "TX", "st": "Texas", "zip": "78201", "lat": 29.4241, "lng": -98.4936},
+    {"slug": "richmond", "display": "Richmond", "state": "VA", "st": "Virginia", "zip": "23218", "lat": 37.5407, "lng": -77.4360},
     # Batch 5 (Sat)
-    {"slug": "houston", "display": "Houston", "state": "TX"},
-    {"slug": "philadelphia", "display": "Philadelphia", "state": "PA"},
-    {"slug": "portland", "display": "Portland", "state": "OR"},
-    {"slug": "nashville", "display": "Nashville", "state": "TN"},
-    {"slug": "durham", "display": "Durham", "state": "NC"},
-    {"slug": "salt-lake-city", "display": "Salt Lake City", "state": "UT"},
-    {"slug": "jacksonville", "display": "Jacksonville", "state": "FL"},
+    {"slug": "houston", "display": "Houston", "state": "TX", "st": "Texas", "zip": "77001", "lat": 29.7604, "lng": -95.3698},
+    {"slug": "philadelphia", "display": "Philadelphia", "state": "PA", "st": "Pennsylvania", "zip": "19101", "lat": 39.9526, "lng": -75.1652},
+    {"slug": "portland", "display": "Portland", "state": "OR", "st": "Oregon", "zip": "97201", "lat": 45.5152, "lng": -122.6784},
+    {"slug": "nashville", "display": "Nashville", "state": "TN", "st": "Tennessee", "zip": "37201", "lat": 36.1627, "lng": -86.7816},
+    {"slug": "durham", "display": "Durham", "state": "NC", "st": "North Carolina", "zip": "27701", "lat": 35.9940, "lng": -78.8986},
+    {"slug": "salt-lake-city", "display": "Salt Lake City", "state": "UT", "st": "Utah", "zip": "84101", "lat": 40.7608, "lng": -111.8910},
+    {"slug": "jacksonville", "display": "Jacksonville", "state": "FL", "st": "Florida", "zip": "32099", "lat": 30.3322, "lng": -81.6557},
     # Batch 6 (Sun)
-    {"slug": "dallas", "display": "Dallas", "state": "TX"},
-    {"slug": "detroit", "display": "Detroit", "state": "MI"},
-    {"slug": "minneapolis", "display": "Minneapolis", "state": "MN"},
-    {"slug": "sacramento", "display": "Sacramento", "state": "CA"},
-    {"slug": "pittsburgh", "display": "Pittsburgh", "state": "PA"},
-    {"slug": "cincinnati", "display": "Cincinnati", "state": "OH"},
-    {"slug": "hartford", "display": "Hartford", "state": "CT"},
+    {"slug": "dallas", "display": "Dallas", "state": "TX", "st": "Texas", "zip": "75201", "lat": 32.7767, "lng": -96.7970},
+    {"slug": "detroit", "display": "Detroit", "state": "MI", "st": "Michigan", "zip": "48201", "lat": 42.3314, "lng": -83.0458},
+    {"slug": "minneapolis", "display": "Minneapolis", "state": "MN", "st": "Minnesota", "zip": "55401", "lat": 44.9778, "lng": -93.2650},
+    {"slug": "sacramento", "display": "Sacramento", "state": "CA", "st": "California", "zip": "95814", "lat": 38.5816, "lng": -121.4944},
+    {"slug": "pittsburgh", "display": "Pittsburgh", "state": "PA", "st": "Pennsylvania", "zip": "15201", "lat": 40.4406, "lng": -79.9959},
+    {"slug": "cincinnati", "display": "Cincinnati", "state": "OH", "st": "Ohio", "zip": "45201", "lat": 39.1031, "lng": -84.5120},
+    {"slug": "hartford", "display": "Hartford", "state": "CT", "st": "Connecticut", "zip": "06101", "lat": 41.7658, "lng": -72.6734},
 ]
 
 
@@ -138,8 +141,12 @@ def scrape_city(city: dict, session: requests.Session) -> list:
     url = f"https://events.sulekha.com/indian-events-in-{city['slug']}"
     events = []
 
+    # Sulekha geo-locates by IP, ignoring URL. Force the city with a location cookie.
+    loc_cookie = f"united states::US::{city['display']}::::{city['st']}::{city['zip']}::{city['lat']}::{city['lng']}::0"
+    cookies = {"sulusrloc": loc_cookie}
+
     try:
-        r = session.get(url, headers=HEADERS, timeout=15)
+        r = session.get(url, headers=HEADERS, cookies=cookies, timeout=15)
         if r.status_code != 200:
             print(f"  ⚠ HTTP {r.status_code} for {city['display']}")
             return events
@@ -250,19 +257,17 @@ def parse_event(item: dict, city: dict) -> dict | None:
         "date": date_str,
         "time": time_str,
         "end_date": end_date,
-        "end_time": end_time,
         "city": locality or city["display"],
         "state": region or city["state"],
-        "venue": venue_name,
-        "address": address,
+        "venue_name": venue_name,
         "latitude": lat,
         "longitude": lon,
         "category": category,
         "source": "sulekha",
-        "source_url": source_url,
+        "source_id": source_url,
         "image_url": image_url,
-        "ticket_url": ticket_url,
-        "price": price,
+        "ticket_url": ticket_url or source_url,
+        "price_range": price,
         "organizer": organizer,
         "slug": slug,
         "content_fingerprint": fp,
@@ -283,7 +288,7 @@ def get_existing(source: str = "sulekha"):
 
     try:
         r = requests.get(
-            f"{REST}/events?select=source_url,content_fingerprint&limit=10000",
+            f"{REST}/events?select=source_id,content_fingerprint&limit=10000",
             headers={
                 "apikey": SB_KEY,
                 "Authorization": f"Bearer {SB_KEY}",
@@ -292,8 +297,8 @@ def get_existing(source: str = "sulekha"):
         )
         if r.status_code == 200:
             for e in r.json():
-                if e.get("source_url"):
-                    existing_urls.add(e["source_url"])
+                if e.get("source_id"):
+                    existing_urls.add(e["source_id"])
                 if e.get("content_fingerprint"):
                     existing_fingerprints.add(e["content_fingerprint"])
     except Exception as e:
@@ -397,7 +402,7 @@ def main():
 
         for ev in events:
             # Source-level skip
-            if ev["source_url"] in existing_urls:
+            if ev["source_id"] in existing_urls:
                 skipped_url += 1
                 continue
             # Cross-source fingerprint dedup
@@ -406,7 +411,7 @@ def main():
                 continue
 
             all_events.append(ev)
-            existing_urls.add(ev["source_url"])
+            existing_urls.add(ev["source_id"])
             if ev.get("content_fingerprint"):
                 existing_fingerprints.add(ev["content_fingerprint"])
 
