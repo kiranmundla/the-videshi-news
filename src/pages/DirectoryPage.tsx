@@ -108,63 +108,65 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
           </div>
         )}
 
-        {/* Content */}
-        <div className="flex-1 p-3 min-w-0 overflow-hidden">
-          {/* Header row: badges */}
-          <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
-            <CategoryBadge category={listing.category} />
-            {listing.subcategory && listing.subcategory !== "General / Other" && (
-              <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-blue-600/20 text-blue-300">
-                {listing.subcategory}
-              </span>
-            )}
-            {distance != null && distance < 9999 && (
-              <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-orange-600/20 text-orange-300">
-                📍 {formatDistance(distance)}
-              </span>
-            )}
-            {listing.community && (
-              <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-purple-600/20 text-purple-300">
-                {listing.community}
-              </span>
-            )}
-          </div>
-
-          {/* Name */}
-          <h3 className="font-serif text-base font-semibold text-foreground leading-snug mb-1 line-clamp-2 group-hover:text-primary transition-colors">
-            {listing.name}
-          </h3>
-
-          {/* Rating + languages on one line */}
-          <div className="flex items-center gap-2 mb-1.5">
-            <StarRating rating={listing.rating} reviewCount={listing.review_count} />
-            {nonEnglishLangs.length > 0 && (
-              <span className="text-[11px] text-muted-foreground truncate">
-                🗣 {nonEnglishLangs.slice(0, 2).join(", ")}
-              </span>
-            )}
-          </div>
-
-          {/* Description */}
-          {desc && (
-            <p className="text-xs text-muted-foreground line-clamp-2 mb-1.5">
-              {desc}
-            </p>
-          )}
-
-          {/* Tags */}
-          {tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 mb-2">
-              {tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="px-1.5 py-0.5 bg-muted/40 rounded text-[10px] text-muted-foreground">
-                  {tag}
+        {/* Content — fills available height, footer pushed to bottom */}
+        <div className="flex-1 p-3 min-w-0 overflow-hidden flex flex-col">
+          <div className="flex-1">
+            {/* Header row: badges */}
+            <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
+              <CategoryBadge category={listing.category} />
+              {listing.subcategory && listing.subcategory !== "General / Other" && (
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-blue-600/20 text-blue-300">
+                  {listing.subcategory}
                 </span>
-              ))}
+              )}
+              {distance != null && distance < 9999 && (
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-orange-600/20 text-orange-300">
+                  📍 {formatDistance(distance)}
+                </span>
+              )}
+              {listing.community && (
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-purple-600/20 text-purple-300">
+                  {listing.community}
+                </span>
+              )}
             </div>
-          )}
 
-          {/* Footer: location + phone */}
-          <div className="flex items-center gap-3 text-xs text-muted-foreground pt-1.5 border-t border-border/50">
+            {/* Name */}
+            <h3 className="font-serif text-base font-semibold text-foreground leading-snug mb-1 line-clamp-2 group-hover:text-primary transition-colors">
+              {listing.name}
+            </h3>
+
+            {/* Rating + languages on one line */}
+            <div className="flex items-center gap-2 mb-1.5">
+              <StarRating rating={listing.rating} reviewCount={listing.review_count} />
+              {nonEnglishLangs.length > 0 && (
+                <span className="text-[11px] text-muted-foreground truncate">
+                  🗣 {nonEnglishLangs.slice(0, 2).join(", ")}
+                </span>
+              )}
+            </div>
+
+            {/* Description */}
+            {desc && (
+              <p className="text-xs text-muted-foreground line-clamp-2 mb-1.5">
+                {desc}
+              </p>
+            )}
+
+            {/* Tags */}
+            {tags.length > 0 && (
+              <div className="flex flex-wrap gap-1 mb-2">
+                {tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="px-1.5 py-0.5 bg-muted/40 rounded text-[10px] text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Footer: location + phone — pinned to bottom */}
+          <div className="flex items-center gap-3 text-xs text-muted-foreground pt-1.5 border-t border-border/50 mt-auto">
             {location && <span className="truncate">📍 {location}</span>}
             {listing.phone && (
               <a
