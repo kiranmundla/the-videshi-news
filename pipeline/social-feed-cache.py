@@ -51,7 +51,9 @@ OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/socia
 VVIP_HANDLES = {
     "technology": [
         "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
-        "NandanNilekani",
+        "NandanNilekani", "bhash", "Nithin0dha", "NithinKamath",
+        "AnandMahindra", "NikeshArora", "vijayshekhar",
+        "RiteshAgarwal", "ajabordi",
     ],
     "entertainment": [
         # Bollywood A-list
