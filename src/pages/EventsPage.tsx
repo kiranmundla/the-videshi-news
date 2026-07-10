@@ -34,7 +34,7 @@ const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any }
 const DEFAULT_CITY = "Bay Area";
 
 /* ------------------------------------------------------------------ */
-/* Per-category emoji + color maps                                    */
+/* Per-category emoji + color maps + fallback images                   */
 /* ------------------------------------------------------------------ */
 const CAT_EMOJI: Record<string, string> = {
   Cultural: "🎭",
@@ -51,6 +51,26 @@ const CAT_EMOJI: Record<string, string> = {
   Entertainment: "🎶",
   Other: "📌",
 };
+
+const CAT_FALLBACK_IMG: Record<string, string> = {
+  Cultural: "/images/events/cultural.jpg",
+  Music: "/images/events/music.jpg",
+  Food: "/images/events/food.jpg",
+  Sports: "/images/events/sports.jpg",
+  Community: "/images/events/community.jpg",
+  Festival: "/images/events/festival.jpg",
+  Comedy: "/images/events/comedy.jpg",
+  Dance: "/images/events/dance.jpg",
+  Religious: "/images/events/religious.jpg",
+  Education: "/images/events/education.jpg",
+  Competition: "/images/events/competition.jpg",
+  Entertainment: "/images/events/entertainment.jpg",
+  Other: "/images/events/other.jpg",
+};
+
+function categoryFallbackImg(category?: string | null): string {
+  return CAT_FALLBACK_IMG[category || "Other"] || CAT_FALLBACK_IMG["Other"];
+}
 
 const CAT_BADGE_COLORS: Record<string, string> = {
   Cultural: "bg-purple-100 text-purple-700",
@@ -105,8 +125,13 @@ function EventCard({ event, distance }: { event: EventItem; distance?: number })
           />
         </div>
       ) : (
-        <div className="w-full sm:w-48 sm:min-w-[12rem] h-32 sm:h-auto bg-muted/30 flex items-center justify-center flex-shrink-0">
-          <span className="text-4xl opacity-60">{categoryEmoji(event.category)}</span>
+        <div className="w-full sm:w-56 sm:min-w-[14rem] sm:h-auto overflow-hidden flex-shrink-0">
+          <img
+            src={categoryFallbackImg(event.category)}
+            alt={event.category || "Event"}
+            className="w-full h-auto max-h-64 sm:max-h-none sm:h-full object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
         </div>
       )}
 
@@ -298,8 +323,13 @@ function FeaturedCarouselCard({ event }: { event: EventItem }) {
             />
           </div>
         ) : (
-          <div className="aspect-[16/10] bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center">
-            <span className="text-5xl opacity-70">{categoryEmoji(event.category)}</span>
+          <div className="aspect-[16/10] overflow-hidden">
+            <img
+              src={categoryFallbackImg(event.category)}
+              alt={event.category || "Event"}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
           </div>
         )}
 
