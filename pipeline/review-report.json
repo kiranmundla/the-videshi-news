@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-07-10T08:16:08.055148+00:00",
+  "timestamp": "2026-07-10T08:45:13.280415+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
@@ -18,100 +18,23 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "A rally at a government building",
-          "reason": "The photo shows a rally unrelated to anti-Sikh or anti-Hindu hate crimes."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not match the article's focus on hate crimes against specific communities."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses hate crimes affecting Sikh and Hindu communities, which resonates with the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or testimonials from affected community members to enhance emotional impact.",
-          "Add a section on how diaspora communities can support affected groups or combat hate crimes."
+        "broken_embeds": [
+          {
+            "url": "https://x.com/State_SCA/status/1749666795499290076",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://x.com/JoshBeckerSV/status/1750058814725046522",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C33v248y_1J/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
         ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (A rally at a government building)",
-        "Revised by gemini-2.5-flash (941\u21921215 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a14345dd-9eb1-45de-8ec3-4e17e4852a88",
-      "headline": "Ten Thousand Telugu Americans Are Heading to Charlotte Next Week. An Oscar Winner Will Be Waiting.",
-      "slug": "tta-mega-convention-charlotte-telugu-mm-keeravani-2026-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Charlotte Convention Center building",
-          "reason": "The photo shows the venue for the TTA Mega Convention mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects with the Telugu American diaspora by discussing their cultural, educational, and social gatherings."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or testimonials from attendees or organizers to add a personal touch.",
-          "Provide more context on the significance of the Oscar-winning composer to the Telugu community."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "32a419ad-9e35-499e-b5ae-c2d659cda447",
-      "headline": "The Green Card Hiring Test Has Not Changed Since 2004. The DOL Just Announced It Will",
-      "slug": "perm-labor-certification-overhaul-dol-green-card-hiring-rules-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "U.S. Department of Labor building",
-          "reason": "The photo shows the U.S. Department of Labor, relevant to the story about labor certification changes."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -119,194 +42,23 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the Department of Labor but does not directly relate to the specific topic of the Green Card Hiring Test."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses changes to the PERM process, which directly impacts Indian professionals seeking green cards, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the Green Card process or employment-based immigration to enhance relevance.",
-          "Add a brief section on how these changes might specifically affect Indian professionals or the NRI community to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "efa50c7f-b9b8-49d1-8fe3-e75286e2b9b9",
-      "headline": "Your Green Card Means Nothing at the Border Now. The Supreme Court Just Said So",
-      "slug": "green-card-blanch-lau-supreme-court-do-not-travel-pending-charges-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The photo is relevant to a Supreme Court ruling story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the impact of the Supreme Court ruling on the Indian diaspora, particularly regarding travel and legal issues."
+          "note": "The article effectively connects the statistics and incidents to the experiences of the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from more immigration experts to enhance credibility.",
-          "Include a section on potential legal recourse for affected green card holders."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or perspectives from NRI community members to further personalize the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "02770ee1-7241-4bfc-969d-f230d231157b",
-      "headline": "India Inc. Hedged a Record $120 Billion in June as the Rupee Swings Between War and Central Bank Muscle",
-      "slug": "india-record-120-billion-fx-hedging-rupee-war-rbi-nri-remittance-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee currency note",
-          "reason": "The photo shows Indian rupee notes, relevant to the story on currency hedging."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of currency fluctuations and hedging for NRIs sending remittances, which is relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on how the hedging trends specifically affect NRI remittances to provide deeper insights for diaspora readers.",
-          "Include quotes or perspectives from NRI financial experts to enhance the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
-      "headline": "The India-US Trade Deal Is '99% Done' \u2014 So Why Can't They Close It?",
-      "slug": "india-us-trade-deal-99-percent-done-tariff-edge-goyal-nri-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a blue suit smiling",
-          "reason": "The photo plausibly shows Commerce Minister Piyush Goyal, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image of Piyush Goyal is relevant but does not directly illustrate the trade deal context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the trade deal to the economic interests of the Indian diaspora, particularly in IT and business."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more relevant image that visually represents the trade deal or the India-US economic relationship.",
-          "Include quotes or perspectives from diaspora members to enhance the connection to the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "fa294c4a-67a6-47ca-a226-a90b2c73163b",
-      "headline": "India's Silver Import Crackdown Sends Premiums to Six-Month High \u2014 What NRI Bullion Buyers Need to Know",
-      "slug": "india-silver-import-crackdown-premiums-six-month-high-nri-bullion-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "silver bullion bar",
-          "reason": "The photo shows silver bullion, relevant to the story on silver import restrictions."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article provides relevant information for NRI investors regarding silver purchases in India, making it applicable to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from NRI investors or experts to enhance the diaspora perspective.",
-          "Include a brief section on potential future trends in silver prices or import policies to provide additional context for readers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed 3 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
