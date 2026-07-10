@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-10T12:45:20.232215+00:00",
+  "timestamp": "2026-07-10T13:15:26.853842+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2a36f8f2-d82a-4545-bd8f-9de97340990b",
-      "headline": "Modi Lands in New Zealand. He Brings a Trade Deal, 5,000 Visas, and a 'Butter Chicken Tsunami.'",
-      "slug": "modi-new-zealand-auckland-fta-5000-visas-butter-chicken-tsunami-anti-indian-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c391374d-6c3b-46d3-962c-27cf93e4c0c7",
-            "headline": "Three Hundred and Fifty Thousand Indian New Zealanders Are A"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian Prime Minister Narendra Modi",
-          "reason": "The photo shows the correct named person for the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of the trade deal and visa provisions for the Indian diaspora in New Zealand, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to Modi's visit to New Zealand or the trade deal.",
-          "Include quotes or perspectives from Indian diaspora members in New Zealand to enhance the diaspora angle."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "02b34910-4461-4517-b648-827343a00280",
-      "headline": "India Goes Directly to Iran to Secure Passage for Nine Trapped Tankers and 198 Stranded Sailors",
-      "slug": "india-iran-direct-talks-hormuz-tankers-sailors-stranded-lila-vadinar-20260710",
+      "id": "05af4065-b729-4d2b-b4a2-41f03daa213e",
+      "headline": "Priyanka Chopra FaceTimed Nick Jonas from Wimbledon's Royal Box. The Internet Lost It.",
+      "slug": "priyanka-chopra-wimbledon-2026-royal-box-facetime-nick-jonas-dior-paris-couture-diaspora-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,64 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "oil tanker at a terminal",
-          "reason": "The photo shows an oil tanker, relevant to the story about tankers and sailors."
+          "what_photo_shows": "Priyanka Chopra Jonas at an event",
+          "reason": "The photo shows Priyanka Chopra Jonas, who is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DakqZEyEceM/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the Wimbledon event or Priyanka Chopra's appearance there."
+          },
+          {
+            "url": "https://www.instagram.com/p/Dadc2vGGBSf/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post about Paris Couture Week is not directly relevant to the Wimbledon event discussed in the article."
+          }
+        ],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Priyanka Chopra is relevant to the article's topic, but it does not depict her at Wimbledon, which is the main focus of the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Priyanka Chopra's achievements and her significance to the Indian diaspora, highlighting her journey and impact."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embeds with content that directly relates to the Wimbledon event.",
+          "Consider adding more context about the significance of Priyanka's presence at Wimbledon for NRI audiences."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DakqZEyEceM/",
+        "Removed irrelevant embed: https://www.instagram.com/p/Dadc2vGGBSf/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ad48eb4f-3b51-40d6-aff8-3cd34241f1ec",
+      "headline": "Ranveer Singh Just Took India's Biggest Film to Japan. The Numbers Are Obscene.",
+      "slug": "ranveer-singh-dhurandhar-japan-release-3100-crore-franchise-saif-ali-khan-before-after-era-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ranveer Singh at an event",
+          "reason": "The photo shows Ranveer Singh, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -83,14 +91,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the plight of Indian sailors, which is relevant to the Indian diaspora, but could further emphasize the impact on families and communities."
+          "quality": 8,
+          "note": "The article discusses the film's release in Japan and its availability on Netflix in North America, directly appealing to NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from affected families of the stranded sailors to enhance the human interest angle.",
-          "Provide more context on how this situation affects India's geopolitical stance and relations with other countries."
+          "Include more direct quotes or reactions from NRI audiences regarding the film's release.",
+          "Add a brief section on how the film's success might influence future Indian films in international markets."
         ],
         "verdict": "pass"
       },
