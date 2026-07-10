@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-10T08:45:13.280415+00:00",
+  "timestamp": "2026-07-10T09:15:27.234219+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,30 +11,24 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "10e0219a-da5f-4ac2-b9da-24f15325bfbf",
-      "headline": "Anti-Sikh Hate Crimes Surged 3,700 Per Cent in a Decade. Anti-Hindu Incidents Hit a Record. The Numbers Keep Getting Worse.",
-      "slug": "fbi-anti-sikh-hindu-hate-crimes-record-2025-diaspora-20260710",
+      "id": "e7a30e81-e4ca-4a35-b145-2579ef8b93e0",
+      "headline": "Washington Just Launched Its Biggest H-1B Fraud Investigation. Indian Tech Workers Are in the Crosshairs.",
+      "slug": "vance-h1b-fraud-investigation-cognizant-indian-tech-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
+        "duplicate_images": [
           {
-            "url": "https://x.com/State_SCA/status/1749666795499290076",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/JoshBeckerSV/status/1750058814725046522",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C33v248y_1J/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
+            "article_id": "d9880c50-8318-47fb-b31d-950737d7807e",
+            "headline": "The DOL Just Launched Its Biggest H-1B Fraud Probe. Dozens o"
           }
         ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "U.S. Department of Labor building",
+          "reason": "The photo shows the headquarters leading the H-1B investigation."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -42,23 +36,65 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "issue": "The image of the Department of Labor building is relevant but does not directly depict the H-1B investigation or Indian tech workers."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the statistics and incidents to the experiences of the NRI community."
+          "note": "The article discusses the impact of the H-1B investigation on Indian tech workers, making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or perspectives from NRI community members to further personalize the narrative."
+          "Consider including quotes or perspectives from Indian tech workers to enhance the human angle of the story.",
+          "Add more context on how this investigation might affect the future of H-1B visas and Indian professionals in the U.S."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 3 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f57def1e-820a-4ce2-bd9a-e8ebfa615d82",
+      "headline": "Xbox's Indian-American CEO Just Ordered the Biggest Restructuring in the Brand's History. The Internet Blamed Her Heritage.",
+      "slug": "xbox-asha-sharma-restructuring-racist-backlash-indian-american-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A woman holding an Xbox microphone",
+          "reason": "The photo plausibly shows Asha Sharma, related to the Xbox story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of Asha Sharma's Indian heritage in the context of her leadership role, which resonates with the Indian-American diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more quotes or perspectives from Indian-American professionals in tech to enhance the diaspora angle.",
+          "Add a section discussing the broader implications of Sharma's restructuring on the gaming industry and Indian representation in tech."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
