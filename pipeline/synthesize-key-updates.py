@@ -174,11 +174,11 @@ Focus on: {config['focus']}
 Examples of good key updates: {config['examples']}
 
 RULES:
-1. Extract ONLY the 3-4 MOST SIGNIFICANT developments from this batch. Maximum 4. Be very selective — only major policy changes, landmark events, or developments that directly affect many people qualify.
-2. Each update should be a concise, factual statement (not a headline — a statement of what happened).
-3. MERGE related stories: if multiple articles cover the same evolving story (e.g. several articles about the same policy change, court ruling, or event), combine them into ONE update with the most complete picture. Do NOT create separate entries for follow-up coverage of the same development.
+1. Identify the 3-4 MOST SIGNIFICANT story threads from this batch. Maximum 4. Be very selective — only major policy changes, landmark events, or developments that directly affect many people qualify.
+2. Each update is a STORY THREAD — one concise factual statement that captures the core development. Multiple articles may cover the same story from different angles; group ALL related articles under one update.
+3. For each update, list ALL articles that are part of that story thread in "related_articles" — include articles that cover the same event, follow-up developments, reactions, analysis, and related angles. Each story thread should typically link 2-5 articles.
 4. Assign impact: "high" = directly affects many NRIs or is a major policy change, "medium" = noteworthy development. Do NOT use "low" — if it's low impact, it's not worth including.
-5. Link each update to the most relevant article.
+5. Pick the single best article as the primary link (article_id/article_slug), and put ALL related articles (including the primary one) in "related_articles".
 6. Set event_date to when the event HAPPENED (from the article content), not when the article was published.
 7. DO NOT duplicate or overlap with these existing updates: {json.dumps(existing_list[:50])}
 
@@ -189,13 +189,17 @@ Return JSON:
 {{
   "updates": [
     {{
-      "headline": "short factual statement of what happened (max 100 chars)",
+      "headline": "concise factual statement of the story thread (max 100 chars)",
       "detail": "one sentence of additional context (max 200 chars)",
-      "impact": "high|medium|low",
-      "article_id": "uuid of the most relevant article",
+      "impact": "high|medium",
+      "article_id": "uuid of the primary/best article",
       "article_slug": "slug of that article",
       "article_headline": "headline of that article",
-      "event_date": "YYYY-MM-DD"
+      "event_date": "YYYY-MM-DD",
+      "related_articles": [
+        {{"slug": "article-slug", "headline": "short article headline"}},
+        {{"slug": "another-slug", "headline": "short headline"}}
+      ]
     }}
   ]
 }}"""

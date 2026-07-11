@@ -11,6 +11,7 @@ export interface KeyUpdate {
   article_headline: string | null;
   event_date: string | null;
   created_at: string;
+  related_articles: { slug: string; headline: string }[] | null;
 }
 
 export async function getKeyUpdates(
