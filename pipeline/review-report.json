@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T15:15:50.081139+00:00",
+  "timestamp": "2026-07-11T16:16:24.259271+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,104 +11,24 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7e541308-df96-4c74-b1d1-170f817d5bab",
-      "headline": "Three Teams. Four Points. One Playoff Spot. MLC's Brutal Bottom-Half Battle Enters Its Final Week.",
-      "slug": "mlc-2026-playoff-race-three-teams-four-points-sf-unicorns-pretorius-century-nri-july",
+      "id": "25cfeecb-edbf-4f7d-a33a-e3570be6a071",
+      "headline": "Five Thousand Visas, Working Holidays, and a Twenty-Billion-Dollar Promise. Inside the India\u2013New Zealand FTA's Diaspora Dividend.",
+      "slug": "india-new-zealand-fta-talent-mobility-diaspora-provisions-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Cricketer in sports attire",
-          "reason": "The photo shows a cricketer, relevant to a cricket story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the MLC to NRI cricket fans, emphasizing local matches and community involvement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that features players or scenes from Major League Cricket to better match the article's focus.",
-          "Add more statistics or player highlights to enhance the depth of analysis regarding the teams' performances."
+        "broken_embeds": [
+          {
+            "url": "https://x.com/naaborotjaishankar/status/1916000000000000000",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3628be4e-d97e-40ab-a514-b8937a831110",
-      "headline": "Glasgow Calls. India Sends 124 Athletes to the Commonwealth Games \u2014 But Without Its Medal Machines.",
-      "slug": "india-124-athletes-commonwealth-games-glasgow-2026-neeraj-chopra-no-cricket-badminton-nri",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "athlete with Olympic medal",
-          "reason": "The photo shows an athlete with a medal, fitting the sports story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of Neeraj Chopra is relevant to the article's topic about Indian athletes, but it does not directly relate to the Commonwealth Games in Glasgow."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Commonwealth Games to the NRI community in the UK, highlighting the significance of the event for Indian athletes and the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to the Commonwealth Games in Glasgow for better alignment with the article's focus.",
-          "Expand on the diaspora angle by including quotes or perspectives from NRIs about their expectations or excitement for the Games."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bd96d661-12b3-42db-9dfd-1f4ce81588d9",
-      "headline": "Infosys Is Putting AI Agents Inside American Hospitals. The Proving Ground Is a Virginia Health System.",
-      "slug": "infosys-sentara-agentic-ai-hospitals-topaz-fabric-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "clinician using a digital tablet",
-          "reason": "The photo aligns with the story about AI in healthcare settings."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "business meeting with EU and US flags",
+          "reason": "The photo shows EU and US flags, unrelated to India-New Zealand FTA."
         },
         "inline_image_mismatches": []
       },
@@ -117,18 +37,155 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to AI or healthcare, but is visually appealing."
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Infosys-Sentara partnership to the Indian diaspora, particularly Indian engineers and healthcare professionals in the US."
+          "quality": 9,
+          "note": "The article effectively highlights the benefits of the FTA for the Indian diaspora in New Zealand."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts AI in healthcare settings.",
-          "Expand on the implications for the diaspora in terms of job opportunities or challenges in the evolving tech landscape."
+          "Add a relevant image description to enhance the connection between the image and the article's content.",
+          "Include quotes or testimonials from members of the Indian diaspora in New Zealand to provide a personal touch."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "Cleared mismatched image (business meeting with EU and US flags)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "abc177e1-f731-4855-ad7f-f8e0d48027ff",
+      "headline": "The American India Foundation Just Raised a Record $3.8 Million in One Night. Here Is Why It Matters.",
+      "slug": "aif-record-gala-cipriani-philanthropy-diaspora-25-years-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/Infosys/status/1800000000000000000",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "elegantly set ballroom with chandeliers",
+          "reason": "The photo matches the gala event setting described in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the gala or the specific event described in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the role of the Indian diaspora in philanthropy, particularly through the American India Foundation."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the gala event or the American India Foundation to enhance relevance.",
+          "Include quotes or testimonials from attendees to provide a more personal touch and connect with the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "98cfe4ad-3569-4979-b163-87ab72480f60",
+      "headline": "India's Workers Are Losing 22 Days a Year to Extreme Heat. The Health Toll Is Even Worse.",
+      "slug": "india-extreme-heat-workers-lost-days-health-toll-heatstroke-adelphi-report-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "worker enduring extreme heat",
+          "reason": "The photo shows a worker in a hot environment, matching the story about heat affecting workers."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a person on a bike, which is somewhat relevant to the gig economy context but does not directly illustrate the extreme heat theme."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the health and economic impacts of extreme heat in India to the personal experiences of NRIs, making it relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents extreme heat or its effects on workers.",
+          "Expand on the diaspora angle by including specific actions NRIs can take to support their families in heat-vulnerable regions."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a93583be-0439-4605-8126-2768221cc76c",
+      "headline": "By 40, Half of South Asian Women in the UK May Develop a Chronic Disease, Landmark Study Warns",
+      "slug": "south-asian-women-uk-multimorbidity-mental-health-cardiovascular-queen-mary-study-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "healthcare professional with patient",
+          "reason": "The photo shows a healthcare consultation, relevant to the health study topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to health but does not specifically depict South Asian women or chronic diseases."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the study's findings to the South Asian diaspora, highlighting the implications for both UK and US communities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a more specific image that represents South Asian women or chronic health issues to enhance relevance.",
+          "Add quotes or insights from health professionals or community leaders to strengthen the article's authority and connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -140,9 +197,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "eed36d64-ccd6-4c61-98a7-d3b25fe1d352",
-      "headline": "Two Indian-Origin Companies Just Struck a $310 Million Deal for the Unsexy Work That Makes AI Actually Function",
-      "slug": "exl-acquires-imerit-310-million-ai-data-training-20260711",
+      "id": "3a9cdf29-fca9-4ccd-9dac-4c3377994955",
+      "headline": "India's Food Safety Regulator Just Called Out Dozens of 'Healthy' Brands. Here's Why NRIs Should Care.",
+      "slug": "fssai-crackdown-misleading-healthy-food-labels-india-nri-packaged-food-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -150,8 +207,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "3D visualization of neural network connections",
-          "reason": "The image represents AI data infrastructure, relevant to the story about AI companies."
+          "what_photo_shows": "Asian snacks and packaged food",
+          "reason": "The photo shows packaged food, relevant to the food safety story."
         },
         "inline_image_mismatches": []
       },
@@ -165,13 +222,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the contributions of Indian-origin companies and professionals in the AI sector, making it relevant to the diaspora audience."
+          "note": "The article effectively connects the food safety issues in India to the concerns of NRIs shopping for Indian products abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from industry experts to enhance credibility.",
-          "Include more statistics or data points about the impact of the acquisition on the AI industry."
+          "Consider adding more specific examples of how these misleading labels have affected NRI consumers directly.",
+          "Include a quote from a food safety expert or consumer advocate to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -183,9 +240,73 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "0b51695e-895d-491c-85fa-d06ef1579077",
-      "headline": "Amazon Raises Its India Bet to $48 Billion. That Is More Than Most Countries Spend on AI.",
-      "slug": "amazon-aws-48-billion-india-ai-cloud-infrastructure-20260711",
+      "id": "d0c95651-1f90-439a-aeed-ce5881cc827a",
+      "headline": "India Inc. Revenue Growth Hits a Two-Year High at 11.5% \u2014 But It's Pricing, Not Demand, Doing the Heavy Lifting",
+      "slug": "india-inc-q1-revenue-two-year-high-pricing-volume-nri-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "eb0a48aa-22e5-47f2-a76c-60f8b65fca24",
+            "headline": "India's Earnings Season Opens With a Bang \u2014 J.P. Morgan Sees"
+          },
+          {
+            "article_id": "af71549b-68fa-424e-b5eb-c4b031e43293",
+            "headline": "SBI Funds Management Prices $1.2 Billion IPO at \u20b9545\u2013574 \u2014 A"
+          },
+          {
+            "article_id": "fab3f19d-1b9e-44a6-9e16-7c456bfb7aa5",
+            "headline": "Sensex Crashes 1,677 Points as Trump Declares Iran Deal 'Ove"
+          },
+          {
+            "article_id": "def6fcfc-9f9a-452f-9c6d-0e2524c2bac0",
+            "headline": "Indian Markets Just Had Their Worst Day in Months. The Rupee"
+          },
+          {
+            "article_id": "41bd400d-4daa-4883-9851-7eb888bbc161",
+            "headline": "Foreign Investors Pour $1.5 Billion Into Indian Banks in Big"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to a finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the Bombay Stock Exchange is relevant to the topic of corporate revenue growth."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses implications for NRI equity investors, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRI investors can navigate the current market conditions.",
+          "Add a section on potential risks or strategies for NRI investors in light of the pricing-driven growth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bcb108db-7351-4ba9-9db7-556767da16dd",
+      "headline": "India's UPI Goes Global \u2014 Indonesia Integration, ECB Linkage, and a 20-Country Roadmap That Could Reshape How NRIs Move Money",
+      "slug": "india-upi-global-expansion-indonesia-ecb-nri-remittance-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -193,8 +314,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "AWS data centre facility",
-          "reason": "The photo shows a data centre, relevant to the AWS investment story."
+          "what_photo_shows": "QR code payment transaction",
+          "reason": "The photo shows a QR code payment, relevant to UPI and digital transactions."
         },
         "inline_image_mismatches": []
       },
@@ -202,21 +323,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on Amazon's investment in India."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the investment to the Indian American community and discusses implications for H-1B and L-1 visa holders."
+          "note": "The article effectively discusses how UPI's global expansion impacts NRIs, particularly in terms of remittance costs and travel convenience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects Amazon's investment in India or AI.",
-          "Expand on the implications for the Indian diaspora to enhance the connection further."
+          "Consider adding more specific examples of how NRIs can benefit from UPI's expansion in their daily transactions.",
+          "Include quotes or insights from financial experts or NRIs to enhance the article's depth and relatability."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
