@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface KeyUpdate {
   id: string;
