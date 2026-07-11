@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-11T07:15:29.771042+00:00",
+  "timestamp": "2026-07-11T07:45:09.660488+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -19,115 +19,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "crowd with Norwegian flag",
-          "reason": "The photo shows a crowd, not a specific player or match action."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup matches to the Indian diaspora in the US, highlighting local viewing opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image that captures the essence of the matches or the excitement of the World Cup.",
-          "Expand on the viewing options for NRIs, perhaps including local venues or community events."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (crowd with Norwegian flag)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "52a60f06-6d66-42d3-9ff8-0cba9d43369c",
-      "headline": "Ranveer Singh Crashed Anshula Kapoor's Wedding Reception. The DJ Knew Exactly What to Play.",
-      "slug": "ranveer-singh-anshula-kapoor-wedding-reception-gunday-reunion-arjun-kapoor-bollywood-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ad48eb4f-3b51-40d6-aff8-3cd34241f1ec",
-            "headline": "Ranveer Singh Just Took India's Biggest Film to Japan. The N"
-          },
-          {
-            "article_id": "921a7792-806b-42f3-8be7-0d44a7c5d376",
-            "headline": "Ranveer Singh Personally Called Kalyani Priyadarshan to Join"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh at an event",
-          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DafW7BUCHb4/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post linked does not provide additional context or relevance to the article's main focus on the wedding reception."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the wedding to the NRI audience by referencing Bollywood's impact and the significance of the Kapoor family."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Remove the irrelevant Instagram link or replace it with a more relevant embed that enhances the article's content.",
-          "Consider adding more quotes or reactions from attendees to enrich the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DafW7BUCHb4/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "71d9bbca-4da9-496f-b0e9-499524e61bf0",
-      "headline": "Knight Riders Finally Crack the Code: LA Hands League-Leading SF Unicorns Their First MLC Defeat",
-      "slug": "la-knight-riders-beat-sf-unicorns-mlc-2026-first-loss-back-to-back-wins-standings-nri-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Andre Russell in Knight Riders gear",
-          "reason": "The photo shows Andre Russell, relevant to the cricket story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -135,18 +26,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Andre Russell is relevant to the article as he is mentioned in the context of the LA Knight Riders, but it could be more directly related to the specific match discussed."
+          "issue": "The image description is missing, making it difficult to assess its relevance to the headline."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the MLC to the NRI community in America, highlighting attendance and the cultural significance of cricket for Indian-Americans."
+          "quality": 8,
+          "note": "The article effectively connects the World Cup matches to the Indian diaspora in the U.S., highlighting local viewing opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from players or coaches to enhance the narrative.",
-          "Add a brief section on the impact of this match on the overall league standings and playoff implications."
+          "Add a description for the hero image to ensure it aligns with the article's content.",
+          "Consider including more direct quotes or reactions from the diaspora community regarding the matches."
         ],
         "verdict": "pass"
       },
