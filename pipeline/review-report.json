@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T20:15:27.888441+00:00",
+  "timestamp": "2026-07-11T21:15:29.344919+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e03c2529-a288-439b-a0e3-046bff37a1db",
-      "headline": "A Bill in Congress Would Kill STEM OPT, End Dual Intent, and Ban Post-Layoff H-1B Hiring. Here Is What It Says",
-      "slug": "chip-roy-bill-stem-opt-dual-intent-h1b-overhaul-20260711",
+      "id": "74691bda-e577-4fc4-bef2-f60bda14ddbc",
+      "headline": "India Wants AI Agents to Pay Your Bills. NPCI Is Building the Rails.",
+      "slug": "npci-unified-agent-protocol-upi-ai-payments-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows Representative Chip Roy, relevant to the story."
+          "what_photo_shows": "contactless payment with smartphone",
+          "reason": "The photo depicts a contactless payment, relevant to the fintech story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Chip Roy is relevant as he is the bill's sponsor, but it does not visually represent the broader implications of the bill on Indian professionals and students."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses the impact of the bill on Indian professionals and students, making it highly relevant to the NRI community."
+          "quality": 8,
+          "note": "The article effectively connects the UAP initiative to the experiences of NRIs, highlighting its potential benefits for managing expenses in India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from Indian diaspora organizations or professionals to enhance the diaspora perspective.",
-          "Consider adding a section on potential responses or counterarguments to the bill to provide a more balanced view."
+          "Consider adding more specific examples of how AI agents could streamline transactions for NRIs.",
+          "Include a brief comparison of the UAP with similar initiatives in other countries to provide a broader context."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c5b331e7-0fc7-4c28-b3d8-3903a7f85fab",
-      "headline": "A Federal Judge Just Told USCIS It Cannot Penalise Immigrants for Their Nationality",
-      "slug": "federal-judge-blocks-uscis-nationality-discrimination-ohio-20260711",
+      "id": "435f5728-5ffe-49b3-b523-58ac555b98ba",
+      "headline": "A Bengaluru Robotics Startup Just Raised $3 Million to Teach American Factory Robots to Learn by Watching.",
+      "slug": "mowito-robotics-3-million-bengaluru-detroit-physical-ai-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,30 +64,73 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The Supreme Court building is relevant to a federal judge's ruling story."
+          "what_photo_shows": "industrial robotic arm on production line",
+          "reason": "The photo subject aligns with the story about robotics in manufacturing."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses immigration policies that significantly affect Indian nationals, particularly H-1B visa holders, making it relevant to the Indian diaspora."
+          "note": "The article effectively connects the startup's innovation to the NRI community, highlighting the flow of talent and technology between India and the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that directly relates to the topic of immigration or the specific ruling.",
-          "Expand on the implications of the ruling for Indian nationals to strengthen the diaspora connection."
+          "Consider adding quotes from investors or industry experts to enhance credibility.",
+          "Include more details on how Mowito's technology specifically impacts the manufacturing process to engage readers further."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d7dc178f-0fc6-4ec2-af43-8b2766bc932d",
+      "headline": "Nandan Nilekani Just Made His Largest Venture Bet Ever. He Is Hunting for India's Next AI Champions.",
+      "slug": "nilekani-fundamentum-2200-crore-fund-iii-ai-startups-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Nandan Nilekani at an event",
+          "reason": "The photo shows Nandan Nilekani, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Nilekani's investment strategy to NRI investors and entrepreneurs, highlighting the implications for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from NRI investors to enhance the diaspora perspective.",
+          "Include more specific examples of potential AI applications relevant to the Indian market."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
