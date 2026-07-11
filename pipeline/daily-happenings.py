@@ -65,8 +65,15 @@ Do NOT include events from other days. Do NOT guess.
 Prioritize: World Cup / cricket matches > major diaspora events > \
 policy / immigration news > entertainment.
 
-Return as a JSON array with NO markdown fencing:
-[{{"emoji":"⚽","label":"Short event name","detail":"Key info, time PT, channel","category":"sports","sort_order":1}}]
+Return as a JSON array with NO markdown fencing. Each item MUST include a \
+"search_terms" array of 2-4 specific, distinctive keywords that uniquely \
+identify this event — use proper nouns, team names, player names, event names. \
+Avoid generic words like "india", "cricket", "world cup", "sports", "news". \
+Good examples: ["noskova", "muchova", "wimbledon"], ["modi", "zealand"], \
+["norway", "england", "quarterfinal"].
+
+[{{"emoji":"⚽","label":"Short event name","detail":"Key info, time PT, channel",\
+"category":"sports","sort_order":1,"search_terms":["keyword1","keyword2"]}}]
 
 category must be one of: sports, news, markets, entertainment
 
@@ -156,12 +163,18 @@ def call_gemini(date: str, weekday: str) -> list[dict]:
         label = (item.get("label") or "").strip()
         if not label:
             continue
+
+        # Preserve search_terms from Gemini
+        raw_terms = item.get("search_terms", [])
+        search_terms = [t.lower().strip() for t in raw_terms if isinstance(t, str) and len(t.strip()) >= 2]
+
         valid.append({
             "emoji": (item.get("emoji") or "📌").strip(),
             "label": label[:80],
             "detail": (item.get("detail") or "")[:200] or None,
             "category": item.get("category", "news"),
             "sort_order": item.get("sort_order", i + 1),
+            "search_terms": search_terms,
         })
 
     return valid[:10]  # cap at 10
@@ -169,93 +182,60 @@ def call_gemini(date: str, weekday: str) -> list[dict]:
 
 # ── Article matching ──────────────────────────────────────────────────────────
 
-# Words too generic to use as standalone search terms
-_STOP_WORDS = {
-    "the", "a", "an", "of", "in", "on", "at", "to", "for", "and", "or", "vs",
-    "is", "are", "was", "were", "be", "been", "has", "have", "had", "do", "does",
-    "did", "will", "would", "could", "should", "may", "might", "shall", "can",
-    "its", "it", "he", "she", "they", "we", "you", "this", "that", "with",
-    "from", "by", "as", "but", "not", "no", "all", "new", "day", "today",
-    "match", "game", "final", "quarterfinal", "semifinal", "concluded", "annual",
-    "festival", "event", "pm", "am", "et", "pt", "ct", "fox", "espn",
-    "quarter", "semi", "round", "cup", "league", "cricket", "stadium",
-    "super", "kings", "freedom", "royal", "united", "city",
-    "released", "releases", "release", "film", "films", "movie", "movies",
-    "visit", "visits", "departs", "departed", "free", "family",
-    "south", "asian", "north", "east", "west", "park", "center", "church",
-    "india", "indian", "bollywood",  # too broad for article search
-    "washington", "texas", "chicago", "miami", "york",  # city/state names match wrong articles
-}
 
+def _build_ilike_queries(terms: list[str]) -> list[str]:
+    """Build ILIKE patterns from Gemini-provided search terms.
 
-def _extract_keywords(label: str, detail: str | None) -> list[str]:
-    """Pull 2-4 distinctive keywords from label + detail for article search."""
-    combined = f"{label} {detail or ''}"
-    # Remove parentheticals and punctuation, keep alphanumeric + spaces
-    combined = re.sub(r"\([^)]*\)", " ", combined)
-    combined = re.sub(r"[^a-zA-Z0-9\s]", " ", combined)
-    words = combined.split()
-
-    # Keep words that are >=3 chars and not stop words
-    candidates = []
-    for w in words:
-        wl = w.lower()
-        if len(wl) >= 3 and wl not in _STOP_WORDS:
-            if wl not in [c.lower() for c in candidates]:  # dedup
-                candidates.append(w)
-
-    # Return top 4 most distinctive (longest first as a rough proxy)
-    candidates.sort(key=lambda w: -len(w))
-    return candidates[:4]
-
-
-def _build_ilike_queries(keywords: list[str]) -> list[str]:
-    """Build a series of ILIKE patterns from most specific to least.
-
-    For keywords [A, B, C, D]:
-      - *A*B*  (top two — most specific)
-      - *A*C*  (first + third)
-      - *A*    (just the top keyword — broadest fallback)
+    Only produces two-keyword combos (both orderings). No single-keyword
+    fallback — a single generic term is too likely to false-positive.
     """
-    if not keywords:
+    if len(terms) < 2:
         return []
+
     queries = []
-    kl = [k.lower() for k in keywords]
-
-    # Two-keyword combos using first keyword
-    if len(kl) >= 2:
-        queries.append(f"*{kl[0]}*{kl[1]}*")
-    if len(kl) >= 3:
-        queries.append(f"*{kl[0]}*{kl[2]}*")
-    if len(kl) >= 2:
-        # Reversed order in case headline word order differs
-        queries.append(f"*{kl[1]}*{kl[0]}*")
-
-    # Single keyword fallback (broadest)
-    queries.append(f"*{kl[0]}*")
-
+    # All two-term combos (both orderings), up to 6 patterns
+    for i in range(len(terms)):
+        for j in range(len(terms)):
+            if i == j:
+                continue
+            q = f"*{terms[i]}*{terms[j]}*"
+            if q not in queries:
+                queries.append(q)
+            if len(queries) >= 8:
+                return queries
     return queries
 
 
 def match_articles(items: list[dict]) -> list[dict]:
-    """For each happening, try to find a matching recent article and set link."""
+    """For each happening, search for a matching recent Videshi article.
+
+    Rules:
+    - Only link to /articles/{slug}. Never external URLs.
+    - Require 2+ specific keywords from search_terms to appear in headline.
+    - Articles must be from the last 3 days.
+    - Default to link=None; only set when confident.
+    """
     sb_url = os.environ.get("SUPABASE_URL", "")
     sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
     if not sb_url or not sb_key:
         print("   ⚠️  Supabase env not set — skipping article matching", file=sys.stderr)
         return items
 
-    # Date cutoff: articles from last 7 days
-    cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%S")
+    # 3-day cutoff — stale articles may be about a different match/round
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%Y-%m-%dT%H:%M:%S")
 
     matched = 0
     for item in items:
-        keywords = _extract_keywords(item["label"], item.get("detail"))
-        if not keywords:
+        item["link"] = None  # default: no link
+
+        terms = item.get("search_terms", [])
+        if len(terms) < 2:
+            # Need at least 2 specific terms to avoid false positives
             continue
 
-        ilike_patterns = _build_ilike_queries(keywords)
-        found = False
+        ilike_patterns = _build_ilike_queries(terms)
+        if not ilike_patterns:
+            continue
 
         for pattern in ilike_patterns:
             query_url = (
@@ -265,7 +245,7 @@ def match_articles(items: list[dict]) -> list[dict]:
                 f"&headline=ilike.{pattern}"
                 f"&published_at=gte.{cutoff}"
                 f"&order=published_at.desc"
-                f"&limit=1"
+                f"&limit=3"
             )
             result = subprocess.run(
                 [
@@ -286,21 +266,36 @@ def match_articles(items: list[dict]) -> list[dict]:
             except json.JSONDecodeError:
                 continue
 
-            if isinstance(rows, list) and len(rows) > 0:
-                slug = rows[0].get("slug", "")
-                headline = (rows[0].get("headline") or "").lower()
-                # Relevance check: matched headline must share at least 1
-                # distinctive keyword with the happening label
-                kw_lower = [k.lower() for k in keywords]
-                shared = sum(1 for k in kw_lower if k in headline)
-                if slug and shared >= 1:
-                    item["link"] = f"/articles/{slug}"
-                    matched += 1
-                    found = True
-                    break
+            if not isinstance(rows, list) or len(rows) == 0:
+                continue
 
-        if not found:
-            item["link"] = None
+            # Pick the best match: most search terms found in headline
+            best_slug = None
+            best_score = 0
+            for row in rows:
+                slug = row.get("slug", "")
+                headline = (row.get("headline") or "").lower()
+                if not slug:
+                    continue
+
+                # Count how many search terms appear in the headline
+                hits = sum(1 for t in terms if t in headline)
+
+                # Require at least 2 matching terms
+                if hits < 2:
+                    continue
+
+                if hits > best_score:
+                    best_score = hits
+                    best_slug = slug
+
+            if best_slug:
+                item["link"] = f"/articles/{best_slug}"
+                matched += 1
+                break  # stop trying more ILIKE patterns
+
+        # Strip search_terms before DB insert (not a DB column)
+        # (kept until after matching for dry-run display)
 
     print(f"   🔗 Matched {matched}/{len(items)} happenings to articles")
     return items
@@ -333,8 +328,19 @@ def supabase_insert(items: list[dict], date: str) -> int:
     sb_url = os.environ["SUPABASE_URL"]
     sb_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 
+    # Build clean rows — strip search_terms (not a DB column)
+    rows = []
     for item in items:
-        item["date"] = date
+        row = {
+            "date": date,
+            "emoji": item["emoji"],
+            "label": item["label"],
+            "detail": item.get("detail"),
+            "link": item.get("link"),
+            "category": item.get("category"),
+            "sort_order": item.get("sort_order", 0),
+        }
+        rows.append(row)
 
     result = subprocess.run(
         [
@@ -344,7 +350,7 @@ def supabase_insert(items: list[dict], date: str) -> int:
             "-H", f"Authorization: Bearer {sb_key}",
             "-H", "Content-Type: application/json",
             "-H", "Prefer: return=representation",
-            "-d", json.dumps(items),
+            "-d", json.dumps(rows),
         ],
         capture_output=True,
         text=True,
@@ -367,7 +373,7 @@ def supabase_insert(items: list[dict], date: str) -> int:
         print(f"ERROR: Supabase insert error: {result.stdout[:300]}", file=sys.stderr)
         return 0
 
-    return len(items)
+    return len(rows)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -395,23 +401,31 @@ def main():
     print(f"{'─' * 60}")
     for item in items:
         detail = f" — {item['detail']}" if item.get("detail") else ""
+        terms = item.get("search_terms", [])
+        terms_str = f"  [{', '.join(terms)}]" if terms else ""
         print(f"   {item['emoji']}  {item['label']}{detail}")
+        if terms_str:
+            print(f"      search_terms: {terms_str}")
     print(f"{'─' * 60}\n")
 
-    # Match happenings to published articles
+    # Match happenings to published articles (only /articles/{slug}, no external)
     if os.environ.get("SUPABASE_URL") and os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
-        print("   Matching happenings to recent articles...")
+        print("   Matching happenings to recent articles (3-day window, ≥2 term match)...")
         items = match_articles(items)
     else:
         print("   ⚠️  Supabase env not set — skipping article matching")
+        for item in items:
+            item["link"] = None
 
     if args.dry_run:
         print("🏁 Dry run — no changes made.")
         for item in items:
-            link_str = f"  → {item['link']}" if item.get("link") else "  (no article match)"
+            link_str = f"  → {item['link']}" if item.get("link") else "  (no match)"
             print(f"   {item['emoji']}  {item['label']}{link_str}")
         print()
-        print(json.dumps(items, indent=2))
+        # Strip search_terms for clean JSON display
+        clean = [{k: v for k, v in it.items() if k != "search_terms"} for it in items]
+        print(json.dumps(clean, indent=2))
         return
 
     # Check Supabase env
