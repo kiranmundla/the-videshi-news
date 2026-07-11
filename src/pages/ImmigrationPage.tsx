@@ -334,6 +334,33 @@ export default function ImmigrationPage() {
               className="mb-8"
             />
 
+            {/* ── Immigration News (horizontal scroll) ─────────── */}
+            {news.length > 0 && (
+              <section className="mb-12">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">📰</span>
+                    <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
+                  </div>
+                  <Link to="/immigration/news" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
+                    View all <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+                  {news.slice(0, 15).map((article: any) => (
+                    <div key={article.id} className="flex-none w-[280px] md:w-[300px] snap-start">
+                      <ArticleCard
+                        article={article}
+                        variant="card"
+                        hideCategory
+                        isKeyUpdate={keyUpdateSlugs.has(article.slug)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* ── Data Trackers ────────────────────────────────── */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
               <GreenCardCard data={bulletin} />
@@ -365,33 +392,6 @@ export default function ImmigrationPage() {
                 <span className="text-white/40 text-2xl shrink-0 group-hover:text-green-400 group-hover:translate-x-1 transition-all">→</span>
               </div>
             </Link>
-
-            {/* ── Immigration News (horizontal scroll) ─────────── */}
-            {news.length > 0 && (
-              <section className="mb-12">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">📰</span>
-                    <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
-                  </div>
-                  <Link to="/immigration/news" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
-                    View all <ChevronRight className="h-4 w-4" />
-                  </Link>
-                </div>
-                <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
-                  {news.slice(0, 15).map((article: any) => (
-                    <div key={article.id} className="flex-none w-[280px] md:w-[300px] snap-start">
-                      <ArticleCard
-                        article={article}
-                        variant="card"
-                        hideCategory
-                        isKeyUpdate={keyUpdateSlugs.has(article.slug)}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
 
             {/* ── Visa Guides Banner ──────────────────────────── */}
             <Link
