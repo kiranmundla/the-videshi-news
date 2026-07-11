@@ -361,14 +361,6 @@ export default function ImmigrationPage() {
               </section>
             )}
 
-            {/* ── Data Trackers ────────────────────────────────── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
-              <GreenCardCard data={bulletin} />
-              <ConsulateCard data={waits} />
-              <H1BCard data={h1b} />
-              <ProcessingCard data={processing} />
-            </div>
-
             {/* ── Visa Appointment Tracker Banner ────────────── */}
             <Link
               to="/immigration/visas"
@@ -392,6 +384,14 @@ export default function ImmigrationPage() {
                 <span className="text-white/40 text-2xl shrink-0 group-hover:text-green-400 group-hover:translate-x-1 transition-all">→</span>
               </div>
             </Link>
+
+            {/* ── Data Trackers ────────────────────────────────── */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+              <GreenCardCard data={bulletin} />
+              <ConsulateCard data={waits} />
+              <H1BCard data={h1b} />
+              <ProcessingCard data={processing} />
+            </div>
 
             {/* ── Immigration Guides ─────────────────────────── */}
             <section className="mb-12">
