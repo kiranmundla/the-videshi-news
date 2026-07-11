@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-11T14:15:23.387808+00:00",
+  "timestamp": "2026-07-11T15:15:50.081139+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3fb32433-1f33-4e14-a10a-3a1a1687e59a",
-      "headline": "Your Company Just Got Acquired. Your Visa May Not Survive the Deal",
-      "slug": "ma-deal-immigration-h1b-visa-risk-corporate-acquisition-20260711",
+      "id": "7e541308-df96-4c74-b1d1-170f817d5bab",
+      "headline": "Three Teams. Four Points. One Playoff Spot. MLC's Brutal Bottom-Half Battle Enters Its Final Week.",
+      "slug": "mlc-2026-playoff-race-three-teams-four-points-sf-unicorns-pretorius-century-nri-july",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,137 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "business professionals reviewing contracts",
-          "reason": "The photo aligns with the topic of corporate transactions affecting visas."
+          "what_photo_shows": "Cricketer in sports attire",
+          "reason": "The photo shows a cricketer, relevant to a cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the MLC to NRI cricket fans, emphasizing local matches and community involvement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that features players or scenes from Major League Cricket to better match the article's focus.",
+          "Add more statistics or player highlights to enhance the depth of analysis regarding the teams' performances."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "3628be4e-d97e-40ab-a514-b8937a831110",
+      "headline": "Glasgow Calls. India Sends 124 Athletes to the Commonwealth Games \u2014 But Without Its Medal Machines.",
+      "slug": "india-124-athletes-commonwealth-games-glasgow-2026-neeraj-chopra-no-cricket-badminton-nri",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "athlete with Olympic medal",
+          "reason": "The photo shows an athlete with a medal, fitting the sports story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Neeraj Chopra is relevant to the article's topic about Indian athletes, but it does not directly relate to the Commonwealth Games in Glasgow."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Commonwealth Games to the NRI community in the UK, highlighting the significance of the event for Indian athletes and the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly relates to the Commonwealth Games in Glasgow for better alignment with the article's focus.",
+          "Expand on the diaspora angle by including quotes or perspectives from NRIs about their expectations or excitement for the Games."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bd96d661-12b3-42db-9dfd-1f4ce81588d9",
+      "headline": "Infosys Is Putting AI Agents Inside American Hospitals. The Proving Ground Is a Virginia Health System.",
+      "slug": "infosys-sentara-agentic-ai-hospitals-topaz-fabric-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "clinician using a digital tablet",
+          "reason": "The photo aligns with the story about AI in healthcare settings."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to AI or healthcare, but is visually appealing."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Infosys-Sentara partnership to the Indian diaspora, particularly Indian engineers and healthcare professionals in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts AI in healthcare settings.",
+          "Expand on the implications for the diaspora in terms of job opportunities or challenges in the evolving tech landscape."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eed36d64-ccd6-4c61-98a7-d3b25fe1d352",
+      "headline": "Two Indian-Origin Companies Just Struck a $310 Million Deal for the Unsexy Work That Makes AI Actually Function",
+      "slug": "exl-acquires-imerit-310-million-ai-data-training-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "3D visualization of neural network connections",
+          "reason": "The image represents AI data infrastructure, relevant to the story about AI companies."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +165,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of corporate acquisitions on work visas, which is highly relevant to the Indian diaspora, particularly those working in the US on H-1B and other visas."
+          "note": "The article effectively highlights the contributions of Indian-origin companies and professionals in the AI sector, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a personal anecdote or case study to illustrate the impact of these visa issues on individuals.",
-          "Include a section on potential solutions or advice for affected workers to enhance the article's practical value."
+          "Consider adding quotes from industry experts to enhance credibility.",
+          "Include more statistics or data points about the impact of the acquisition on the AI industry."
         ],
         "verdict": "pass"
       },
@@ -54,9 +183,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "984f7b1b-8497-4d1f-bade-73d66f38a4be",
-      "headline": "Twenty-Seven Years of H-1B Cases. Zero Fraud. The Lawyers Handling These Visas Want to See the Evidence",
-      "slug": "h1b-fraud-probe-immigration-lawyers-pushback-vance-rhetoric-20260711",
+      "id": "0b51695e-895d-491c-85fa-d06ef1579077",
+      "headline": "Amazon Raises Its India Bet to $48 Billion. That Is More Than Most Countries Spend on AI.",
+      "slug": "amazon-aws-48-billion-india-ai-cloud-infrastructure-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +193,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with flag background",
-          "reason": "The photo plausibly shows JD Vance, relevant to the story."
+          "what_photo_shows": "AWS data centre facility",
+          "reason": "The photo shows a data centre, relevant to the AWS investment story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +202,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on Amazon's investment in India."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the implications of H-1B visa policies, which directly affect Indian professionals, making it relevant to the diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the investment to the Indian American community and discusses implications for H-1B and L-1 visa holders."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to H-1B visas or immigration to enhance relevance.",
-          "Include more direct quotes or perspectives from Indian professionals affected by H-1B policies to strengthen the diaspora connection."
+          "Consider using a more relevant image that reflects Amazon's investment in India or AI.",
+          "Expand on the implications for the Indian diaspora to enhance the connection further."
         ],
         "verdict": "flag"
       },
