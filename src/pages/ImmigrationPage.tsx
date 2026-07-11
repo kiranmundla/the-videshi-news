@@ -342,9 +342,6 @@ export default function ImmigrationPage() {
                     <span className="text-xl">📰</span>
                     <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
                   </div>
-                  <Link to="/immigration/news" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
-                    View all <ChevronRight className="h-4 w-4" />
-                  </Link>
                 </div>
                 <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
                   {news.slice(0, 15).map((article: any) => (
