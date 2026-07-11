@@ -78,6 +78,100 @@
 }
 .v2-trending-strip-inner::-webkit-scrollbar { display: none; }
 
+/* ── Happening Today Strip ──────────────── */
+.v2-happening-strip {
+  background: #0B1D3A;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.2);
+}
+.v2-happening-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+}
+.v2-happening-badge {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #0B1D3A;
+  background: #D4A843;
+  padding: 3px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.v2-happening-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1;
+}
+.v2-happening-scroll::-webkit-scrollbar { display: none; }
+.v2-happening-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.v2-happening-item::after {
+  content: "·";
+  color: rgba(255,255,255,0.25);
+  font-size: 18px;
+  margin-left: 6px;
+}
+.v2-happening-item:last-child::after {
+  content: none;
+}
+.v2-happening-emoji {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.v2-happening-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.v2-happening-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+.v2-happening-detail {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+.v2-happening-link {
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+.v2-happening-link:hover .v2-happening-label {
+  color: #D4A843;
+}
+
+@media (max-width: 768px) {
+  .v2-happening-inner {
+    padding: 8px 0;
+    gap: 12px;
+  }
+  .v2-happening-badge {
+    font-size: 8px;
+    padding: 2px 8px;
+  }
+  .v2-happening-text {
+    flex-direction: column;
+    gap: 0;
+  }
+  .v2-happening-detail {
+    font-size: 10px;
+  }
+}
+
 /* ── Immigration Strip ──────────────────── */
 .v2-imm-section {
   background: #0B1D3A;

@@ -5,7 +5,7 @@ import MarketTicker from "@/components/MarketTicker";
 import SiteFooter from "@/components/SiteFooter";
 import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 
-import TrendingStrip from "@/components/homepage/TrendingStrip";
+import HappeningToday from "@/components/homepage/HappeningToday";
 import HeroSection from "@/components/homepage/HeroSection";
 import ImmigrationStrip from "@/components/homepage/ImmigrationStrip";
 import NewsletterCTA from "@/components/homepage/NewsletterCTA";
@@ -362,8 +362,8 @@ export default function IndexV2() {
       {/* 4. Market Ticker */}
       <MarketTicker />
 
-      {/* 5. Trending Strip */}
-      <TrendingStrip articles={layout.trending} />
+      {/* 5. Happening Today */}
+      <HappeningToday />
 
       <main className="flex-1 v2-main-sections">
         {/* 6. Hero Section */}
