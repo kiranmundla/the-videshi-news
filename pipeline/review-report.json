@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-11T13:15:33.724207+00:00",
+  "timestamp": "2026-07-11T14:15:23.387808+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "61351d58-de52-4c4c-878b-52e406c7f7c8",
-      "headline": "Netflix Drops the Date for Operation Safed Sagar. It\u2019s the Kargil Story India\u2019s Been Waiting to Stream.",
-      "slug": "operation-safed-sagar-netflix-august-7-kargil-war-iaf-golden-arrows-siddharth-jimmy-shergill-20260711",
+      "id": "3fb32433-1f33-4e14-a10a-3a1a1687e59a",
+      "headline": "Your Company Just Got Acquired. Your Visa May Not Survive the Deal",
+      "slug": "ma-deal-immigration-h1b-visa-risk-corporate-acquisition-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,75 +21,14 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a plaid shirt",
-          "reason": "The photo plausibly shows actor Siddharth, relevant to the story."
+          "what_photo_shows": "business professionals reviewing contracts",
+          "reason": "The photo aligns with the topic of corporate transactions affecting visas."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DapBL4jqd6N/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the Kargil War or the Netflix series, making it irrelevant to the article's subject."
-          }
-        ],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of Siddharth does not match the article's focus on the Kargil War and the Operation Safed Sagar series."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Kargil War narrative to the Indian diaspora, highlighting their emotional ties and the significance of the series for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant link, such as a trailer or promotional content for Operation Safed Sagar.",
-          "Consider using an image that directly relates to the Kargil War or the Netflix series to better match the article's content."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DapBL4jqd6N/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cb6d8473-1b5d-44e8-904c-741395bf3b88",
-      "headline": "Matt Damon Called Mumbai the First Real Audience for The Odyssey. Then He Named the Indian Director He\u2019s Owed a Film for Twenty Years.",
-      "slug": "matt-damon-odyssey-mumbai-premiere-shekhar-kapur-nolan-tom-holland-india-first-audience-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Official poster for The Odyssey",
-          "reason": "The photo shows a poster for The Odyssey, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/reel/DanZX9uoNm-/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the content of the article regarding Matt Damon and the film premiere."
-          },
-          {
-            "url": "https://youtube.com/watch?v=Mzw2ttJD2qQ",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified to be related to the premiere or comments made by Matt Damon or Christopher Nolan."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 9,
           "issue": null
@@ -97,19 +36,60 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Hollywood premiere to the Indian diaspora, highlighting the significance of the event for NRI audiences."
+          "note": "The article discusses the implications of corporate acquisitions on work visas, which is highly relevant to the Indian diaspora, particularly those working in the US on H-1B and other visas."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Ensure that all embedded links are directly relevant to the article's content.",
-          "Consider adding more context about the significance of the film for Indian audiences."
+          "Consider adding a personal anecdote or case study to illustrate the impact of these visa issues on individuals.",
+          "Include a section on potential solutions or advice for affected workers to enhance the article's practical value."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DanZX9uoNm-/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=Mzw2ttJD2qQ",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "984f7b1b-8497-4d1f-bade-73d66f38a4be",
+      "headline": "Twenty-Seven Years of H-1B Cases. Zero Fraud. The Lawyers Handling These Visas Want to See the Evidence",
+      "slug": "h1b-fraud-probe-immigration-lawyers-pushback-vance-rhetoric-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in suit with flag background",
+          "reason": "The photo plausibly shows JD Vance, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 2,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of H-1B visa policies, which directly affect Indian professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that directly relates to H-1B visas or immigration to enhance relevance.",
+          "Include more direct quotes or perspectives from Indian professionals affected by H-1B policies to strengthen the diaspora connection."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
