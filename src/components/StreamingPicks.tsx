@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ScrollWrap from "./homepage/ScrollWrap";
 
 interface StreamingPick {
   title: string;
@@ -217,9 +218,6 @@ function PosterCard({ pick, onClick }: { pick: StreamingPick; onClick: () => voi
 /* ── Main component ── */
 export default function StreamingPicks() {
   const [data, setData] = useState<StreamingData | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -234,61 +232,10 @@ export default function StreamingPicks() {
       .catch(() => {});
   }, []);
 
-  const updateScrollButtons = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  }, []);
-
-  const scrollStrip = useCallback((direction: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const amount = el.clientWidth * 0.75;
-    el.scrollBy({ left: direction === "right" ? amount : -amount, behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || !data) return;
-    updateScrollButtons();
-    el.addEventListener("scroll", updateScrollButtons, { passive: true });
-    window.addEventListener("resize", updateScrollButtons);
-    return () => {
-      el.removeEventListener("scroll", updateScrollButtons);
-      window.removeEventListener("resize", updateScrollButtons);
-    };
-  }, [data, updateScrollButtons]);
-
   if (!data || !data.picks.length) return null;
-
-  const arrowStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "calc(50% - 20px)",
-    transform: "translateY(-50%)",
-    zIndex: 10,
-    background: "rgba(0,0,0,0.55)",
-    backdropFilter: "blur(4px)",
-    border: "none",
-    color: "#fff",
-    fontSize: 16,
-    width: 32,
-    height: 32,
-    borderRadius: "50%",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transition: "background 0.2s, opacity 0.2s",
-    opacity: 0.9,
-  };
 
   return (
     <section className="mt-6 mb-4">
-      <style>{`
-        .streaming-scroll::-webkit-scrollbar { display: none; }
-      `}</style>
-
       <div
         className="flex items-center gap-3 mb-3 pb-2"
         style={{ borderBottom: "1px solid rgba(173,20,87,0.25)" }}
@@ -304,58 +251,15 @@ export default function StreamingPicks() {
         </span>
       </div>
 
-      <div style={{ position: "relative" }}>
-        {/* Left arrow */}
-        {canScrollLeft && (
-          <button
-            onClick={() => scrollStrip("left")}
-            style={{ ...arrowStyle, left: 4 }}
-            className="hidden md:flex"
-            aria-label="Scroll left"
-          >
-            ‹
-          </button>
-        )}
-
-        {/* Scroll container */}
-        <div
-          ref={scrollRef}
-          className="streaming-scroll"
-          style={{
-            display: "flex",
-            gap: 14,
-            overflowX: "auto",
-            overflowY: "hidden",
-            WebkitOverflowScrolling: "touch",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            scrollSnapType: "x mandatory",
-            paddingLeft: "2%",
-            paddingRight: "2%",
-            paddingBottom: 4,
-          } as React.CSSProperties}
-        >
-          {data.picks.map((pick) => (
-            <PosterCard
-              key={pick.slug}
-              pick={pick}
-              onClick={() => navigate(`/watch/${pick.slug}`)}
-            />
-          ))}
-        </div>
-
-        {/* Right arrow */}
-        {canScrollRight && (
-          <button
-            onClick={() => scrollStrip("right")}
-            style={{ ...arrowStyle, right: 4 }}
-            className="hidden md:flex"
-            aria-label="Scroll right"
-          >
-            ›
-          </button>
-        )}
-      </div>
+      <ScrollWrap className="pl-4 gap-3.5">
+        {data.picks.map((pick) => (
+          <PosterCard
+            key={pick.slug}
+            pick={pick}
+            onClick={() => navigate(`/watch/${pick.slug}`)}
+          />
+        ))}
+      </ScrollWrap>
     </section>
   );
 }
