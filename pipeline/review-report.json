@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-11T07:45:09.660488+00:00",
+  "timestamp": "2026-07-11T08:16:09.191395+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,14 +11,63 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "460574f2-cb37-4be1-85b4-0402d3df2297",
-      "headline": "Super Saturday Is Here: Haaland Takes On Kane in Miami, Messi Faces Switzerland in Kansas City",
-      "slug": "world-cup-2026-super-saturday-haaland-kane-norway-england-messi-argentina-switzerland-nri-july-2026",
+      "id": "905d92c4-689b-4a3d-bce6-fb6a168a7ebc",
+      "headline": "A Minister Called Them a 'Butter Chicken Tsunami.' A Preacher Threatened to Burn Their Temples. Then New Zealand Rolled Out the Red Carpet.",
+      "slug": "nz-anti-indian-hate-butter-chicken-tsunami-modi-strategic-partnership-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the Indian diaspora's experiences and challenges in New Zealand, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from diaspora members to enhance personal connection.",
+          "Provide a brief background on the significance of Modi's visit to further contextualize the event."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "held: image unverified"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_unverified": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6f8cfd25-f0ed-433b-bd03-6df80f9b78f6",
+      "headline": "It Now Costs $975 to Appeal Your Deportation. The Government Calls It a Fee Adjustment",
+      "slug": "eoir-immigration-court-fees-triple-appeal-deportation-975-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Gavel on US dollars and flag",
+          "reason": "The photo symbolizes legal and financial aspects of immigration."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -26,18 +75,207 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the headline."
+          "issue": "The image does not directly relate to the topic of deportation or immigration court."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the World Cup matches to the Indian diaspora in the U.S., highlighting local viewing opportunities."
+          "note": "The article effectively connects the immigration fee increases to the Indian diaspora, highlighting potential impacts on Indian Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a description for the hero image to ensure it aligns with the article's content.",
-          "Consider including more direct quotes or reactions from the diaspora community regarding the matches."
+          "Consider using an image that directly represents immigration or deportation to enhance relevance.",
+          "Add more statistics or quotes from immigration advocates to strengthen the argument against the fee increases."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d8fa9af6-32e1-461e-9441-27d2e5750f45",
+      "headline": "The Supreme Court Saved Birthright Citizenship. Trump Wants a Do-Over",
+      "slug": "scotus-birthright-citizenship-upheld-trump-rehearing-indian-families-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the story about a Supreme Court ruling."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the Supreme Court ruling to the concerns of Indian families on temporary visas, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from immigration experts or affected families to enhance the emotional impact.",
+          "Include more context on the implications of the ruling for future immigration policies."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5df9dbef-15e3-4f2d-a7fa-4fb0c1a08622",
+      "headline": "India's SIP Machine Hits \u20b9317.81 Billion \u2014 Just \u20b93 Billion Short of the All-Time Record as Mid-Cap Inflows Surge 39%",
+      "slug": "india-sip-317-billion-record-midcap-gold-etf-nri-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "National Stock Exchange of India building",
+          "reason": "The photo shows the National Stock Exchange, relevant to the finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors with actionable insights related to SIPs, mid-caps, and gold ETFs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of successful mid-cap funds to enhance the actionable advice for NRIs.",
+          "Include a brief explanation of how the RBI's measures impact NRI investments for better clarity."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "5574b2b6-146b-422e-923d-771dfd1a83a9",
+      "headline": "India's Forex Reserves Jump $7.26 Billion in a Week \u2014 Gold Reserves Cross $105 Billion as RBI Rebuilds Its War Chest",
+      "slug": "india-forex-reserves-jump-7-billion-gold-rbi-nri-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Reserve Bank of India headquarters",
+          "reason": "The photo shows the Reserve Bank of India, relevant to the story on forex reserves."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of forex reserves to NRI remittances, highlighting the impact on the dollar-to-rupee conversion rate."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more data or analysis on how changes in forex reserves specifically impact NRI investment decisions.",
+          "Include a brief historical context of India's forex reserves to enhance reader understanding."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "af71549b-68fa-424e-b5eb-c4b031e43293",
+      "headline": "SBI Funds Management Prices $1.2 Billion IPO at \u20b9545\u2013574 \u2014 ADIA and GIC Already In, Retail Gets Half the Pie",
+      "slug": "sbi-funds-management-ipo-adia-gic-nri-retail-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "eb0a48aa-22e5-47f2-a76c-60f8b65fca24",
+            "headline": "India's Earnings Season Opens With a Bang \u2014 J.P. Morgan Sees"
+          },
+          {
+            "article_id": "fab3f19d-1b9e-44a6-9e16-7c456bfb7aa5",
+            "headline": "Sensex Crashes 1,677 Points as Trump Declares Iran Deal 'Ove"
+          },
+          {
+            "article_id": "def6fcfc-9f9a-452f-9c6d-0e2524c2bac0",
+            "headline": "Indian Markets Just Had Their Worst Day in Months. The Rupee"
+          },
+          {
+            "article_id": "41bd400d-4daa-4883-9851-7eb888bbc161",
+            "headline": "Foreign Investors Pour $1.5 Billion Into Indian Banks in Big"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the capital markets story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and provides relevant information on how they can participate in the IPO."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more detailed analysis on the potential risks for NRI investors in the IPO market.",
+          "Include a brief comparison with other recent IPOs to provide context on the current market environment."
         ],
         "verdict": "pass"
       },
