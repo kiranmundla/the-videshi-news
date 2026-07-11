@@ -24,7 +24,30 @@
       "why_watch": "Three weeks in and sitting at $377M domestic — the undisputed king of summer 2026. Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. If you still haven't gone, you're running out of excuses.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=c51ND9Hdbw0",
+      "cast_details": [
+        {
+          "name": "Tom Hanks",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg/300px-TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Tim Allen",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TimAllen2026byKrossaunt.jpg/300px-TimAllen2026byKrossaunt.jpg"
+        },
+        {
+          "name": "Joan Cusack",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg/300px-Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Greta Lee",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg/300px-Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg"
+        },
+        {
+          "name": "Conan O'Brien",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg/300px-Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg"
+        }
+      ]
     },
     {
       "title": "Obsession",
@@ -46,7 +69,26 @@
       "why_watch": "Made for $750K. Now at $248M domestic and $406M worldwide — it just matched Jurassic Park's 54-day $1M+ streak. The #1 movie of 2026 in India too. A monkey's-paw horror that's equal parts funny and deeply disturbing. The most profitable film of the decade, and packed theaters still scream every night.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=gMC8kkwbIQQ",
+      "cast_details": [
+        {
+          "name": "Inde Navarrette",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Inde_Navarrette_in_2026.jpg"
+        },
+        {
+          "name": "Michael Johnston",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Michael_Johnston_in_2026_Century_City.jpg/300px-Michael_Johnston_in_2026_Century_City.jpg"
+        },
+        {
+          "name": "Cooper Tomlinson",
+          "photo_url": ""
+        },
+        {
+          "name": "Megan Lawless",
+          "photo_url": ""
+        }
+      ]
     },
     {
       "title": "Backrooms",
@@ -69,7 +111,30 @@
       "why_watch": "A 20-year-old YouTuber turned his viral creepypasta into A24's highest-grossing film ever — $190M domestic, $350M worldwide, and still going. The liminal-space dread is hypnotic, Ejiofor is phenomenal, and that yellow-lit production design will haunt your dreams. The new generation of horror directors is here and it's terrifying (in the best way).",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Backrooms+A24+movie+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=0HjdiohVOik",
+      "cast_details": [
+        {
+          "name": "Chiwetel Ejiofor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Chiwetel_Ejiofor_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg/300px-Chiwetel_Ejiofor_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+        },
+        {
+          "name": "Renate Reinsve",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Renate_Reinsve-9937.jpg/300px-Renate_Reinsve-9937.jpg"
+        },
+        {
+          "name": "Mark Duplass",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Mark_and_Jay_Duplass_at_the_Sundance_Film_Festival_%28cropped_3%29.jpg/300px-Mark_and_Jay_Duplass_at_the_Sundance_Film_Festival_%28cropped_3%29.jpg"
+        },
+        {
+          "name": "Finn Bennett",
+          "photo_url": ""
+        },
+        {
+          "name": "Avan Jogia",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Avan_Jogia_%2833384365238%29_%28cropped%29.jpg/300px-Avan_Jogia_%2833384365238%29_%28cropped%29.jpg"
+        }
+      ]
     },
     {
       "title": "Minions & Monsters",
@@ -93,7 +158,34 @@
       "why_watch": "Currently #1 at the box office with $77M in its first ten days. The franchise's best-reviewed film ever (93% RT!) — a love letter to classic Hollywood that's genuinely witty for adults. Opened below expectations, but that's Toy Story 5 stealing its lunch. Excellent family counter-programming.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Minions+and+Monsters+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=ZSdOwt-G49w",
+      "cast_details": [
+        {
+          "name": "Pierre Coffin",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre_Coffin_2017.jpg/300px-Pierre_Coffin_2017.jpg"
+        },
+        {
+          "name": "Allison Janney",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Allison_Janney_%2840568877620%29.jpg/300px-Allison_Janney_%2840568877620%29.jpg"
+        },
+        {
+          "name": "Christoph Waltz",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg/300px-Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg"
+        },
+        {
+          "name": "Jeff Bridges",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Jeff_Bridges_by_Gage_Skidmore_4.jpg/300px-Jeff_Bridges_by_Gage_Skidmore_4.jpg"
+        },
+        {
+          "name": "Jesse Eisenberg",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg/300px-60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg"
+        },
+        {
+          "name": "Trey Parker",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg/300px-Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg"
+        }
+      ]
     },
     {
       "title": "Disclosure Day",
@@ -115,7 +207,26 @@
       "why_watch": "Spielberg's alien conspiracy thriller has crossed $107M domestic and Emily Blunt is getting genuine Oscar buzz. Not his best, but a Spielberg summer blockbuster in IMAX is always worth the trip. Winding down — catch it before it's gone from the big screen.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=SCYT8vb2siQ",
+      "cast_details": [
+        {
+          "name": "Emily Blunt",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/300px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg"
+        },
+        {
+          "name": "Josh O'Connor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg/300px-Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg"
+        },
+        {
+          "name": "Colin Firth",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Colin_Firth_%2836124162705%29_%28cropped%29.jpg/300px-Colin_Firth_%2836124162705%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Colman Domingo",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg/300px-Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg"
+        }
+      ]
     },
     {
       "title": "Evil Dead Burn",
@@ -137,7 +248,26 @@
       "why_watch": "Opens today and critics are calling it the nastiest, goriest Evil Dead yet — and they mean that as a compliment. Infested director Vaniček brings relentless Deadite carnage with real emotional stakes underneath. The franchise's 45-year streak of Fresh RT scores stays alive. Horror fans, this is your weekend.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Evil+Dead+Burn+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=TnHby2cxJzs",
+      "cast_details": [
+        {
+          "name": "Souheila Yacoub",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Souheila_yacoub_2021_2.jpg/300px-Souheila_yacoub_2021_2.jpg"
+        },
+        {
+          "name": "Hunter Doohan",
+          "photo_url": ""
+        },
+        {
+          "name": "Tandi Wright",
+          "photo_url": ""
+        },
+        {
+          "name": "Luciane Buchanan",
+          "photo_url": ""
+        }
+      ]
     },
     {
       "title": "Moana (Live-Action)",
@@ -157,7 +287,18 @@
       "why_watch": "We'll be honest: critics absolutely savaged this one — 37% on Rotten Tomatoes, the worst Disney live-action remake since Pinocchio. The reviews say it's lifeless, Dwayne's wig is meme-worthy, and nobody asked for this ten years after the original. But your kids might drag you anyway, and the ocean effects are admittedly gorgeous. Just know what you're walking into.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Moana+live+action+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=n7f6hlKsxxo",
+      "cast_details": [
+        {
+          "name": "Dwayne Johnson",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg/300px-Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg"
+        },
+        {
+          "name": "Catherine Laga'aia",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Catherine_Laga%27aia_by_Gage_Skidmore.jpg/300px-Catherine_Laga%27aia_by_Gage_Skidmore.jpg"
+        }
+      ]
     },
     {
       "title": "Alpha",
@@ -180,7 +321,30 @@
       "why_watch": "YRF's first female-led Spy Universe entry had a decent but not explosive first week at ₹47.5 Cr — the weakest Spy Universe opening by a mile. The consensus: Bobby Deol steals the show, Sharvari holds her own, and Hrithik's cameo is worth the whistle. Not a blockbuster, but Alia going full assassin is fun diaspora viewing while it's still around.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Alpha+YRF+Alia+Bhatt+showtimes+near+me",
-      "language": "Hindi"
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=QRqGwGwo1Y0",
+      "cast_details": [
+        {
+          "name": "Alia Bhatt",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg/300px-Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Sharvari",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Sharvari_Wagh_snapped_at_the_grand_celebration_of_Maddock_Films%E2%80%99_remarkable_journey_in_cinema_%28cropped%29.jpg"
+        },
+        {
+          "name": "Bobby Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
+        },
+        {
+          "name": "Anil Kapoor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Anil_Kapoor_1.jpeg/300px-Anil_Kapoor_1.jpeg"
+        },
+        {
+          "name": "Hrithik Roshan (cameo)",
+          "photo_url": ""
+        }
+      ]
     },
     {
       "title": "Dhamaal 4",
@@ -207,7 +371,34 @@
       "why_watch": "Opens today and early reviews call it 'MAZEDAAR' — pure unhinged slapstick with pirates, a treasure hunt, and the original gang's comic timing firing on all cylinders. Leave your brain at the door, grab the family, and let Ajay-Arshad-Jaaved do their thing. Taran Adarsh gave it 3.5 stars, calling it a stressbuster. Diaspora theaters will be rowdy tonight.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
-      "language": "Hindi"
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=IG-eByZdz6Y",
+      "cast_details": [
+        {
+          "name": "Ajay Devgn",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ajay_Devgn_at_the_trailer_launch_of_Raid_2.jpg/300px-Ajay_Devgn_at_the_trailer_launch_of_Raid_2.jpg"
+        },
+        {
+          "name": "Arshad Warsi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Arshad-Warsi.jpg/300px-Arshad-Warsi.jpg"
+        },
+        {
+          "name": "Jaaved Jaaferi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Javed_jeffery_colors_indian_telly_awards.jpg/300px-Javed_jeffery_colors_indian_telly_awards.jpg"
+        },
+        {
+          "name": "Riteish Deshmukh",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg/300px-Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg"
+        },
+        {
+          "name": "Sanjay Mishra",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sanjay_Mishra_Guthlee-Ladoo_%28cropped%29.jpg/300px-Sanjay_Mishra_Guthlee-Ladoo_%28cropped%29.jpg"
+        },
+        {
+          "name": "Ravi Kishan",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg/300px-Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg"
+        }
+      ]
     },
     {
       "title": "Vishwambhara",
@@ -231,7 +422,34 @@
       "why_watch": "Megastar Chiranjeevi's most ambitious film ever — a ₹400 Cr Telugu fantasy epic through Hindu mythological worlds, with Oscar-winner M.M. Keeravani on the score and Rana Daggubati as the villain. Opens today and Telugu diaspora audiences have been waiting months. The VFX overhaul delayed it for a reason — they're going for spectacle on a scale Telugu cinema hasn't seen before.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Vishwambhara+movie+showtimes+near+me",
-      "language": "Telugu"
+      "language": "Telugu",
+      "trailer_url": "https://www.youtube.com/watch?v=TiAaJQ4leNc",
+      "cast_details": [
+        {
+          "name": "Chiranjeevi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Chiranjeevi_at_ANR_Awards_2024_%28cropped%29.jpg/300px-Chiranjeevi_at_ANR_Awards_2024_%28cropped%29.jpg"
+        },
+        {
+          "name": "Trisha Krishnan",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Trisha_Krishnan_at_PS1_pre_release_event_%283%29_%28cropped%29.jpg/300px-Trisha_Krishnan_at_PS1_pre_release_event_%283%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Rana Daggubati",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Rana_Daggubati_by_Gage_Skidmore.jpg/300px-Rana_Daggubati_by_Gage_Skidmore.jpg"
+        },
+        {
+          "name": "Kunal Kapoor",
+          "photo_url": ""
+        },
+        {
+          "name": "Meenakshi Chaudhary",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Meenakshi_in_an_interview.png/300px-Meenakshi_in_an_interview.png"
+        },
+        {
+          "name": "Mouni Roy",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Mouni_Roy_snapped_at_the_opening_party_and_red_carpet_of_Tiffany_%26_Co_%28cropped%29.jpg"
+        }
+      ]
     },
     {
       "title": "The Odyssey",
@@ -255,7 +473,34 @@
       "why_watch": "One week away. Christopher Nolan adapts Homer's Odyssey, shot on IMAX, with the most stacked ensemble of the year. After Oppenheimer swept the Oscars, this is the most anticipated film of 2026 — and it's already breaking pre-sale records. This is the one you see in the biggest, loudest theater you can find. Book your IMAX tickets now.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=AyIZ9tiiN8I",
+      "cast_details": [
+        {
+          "name": "Matt Damon",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/MattDamon-byPhilipRomano.jpg/300px-MattDamon-byPhilipRomano.jpg"
+        },
+        {
+          "name": "Tom Holland",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/300px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg"
+        },
+        {
+          "name": "Zendaya",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg/300px-Zendaya_-_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Anne Hathaway",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
+        },
+        {
+          "name": "Robert Pattinson",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Robert_Pattinson_at_Berlinale_2025.jpg/300px-Robert_Pattinson_at_Berlinale_2025.jpg"
+        },
+        {
+          "name": "Charlize Theron",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Charlize-theron-IMG_6045.jpg/300px-Charlize-theron-IMG_6045.jpg"
+        }
+      ]
     },
     {
       "title": "Spider-Man: Brand New Day",
@@ -274,7 +519,14 @@
       "why_watch": "Tom Holland swings back years after No Way Home's devastating ending — Peter Parker isolated, targeted by multiple villains, and undergoing a mysterious mutation. The most anticipated Marvel movie since Endgame. Three weeks out and the internet is already losing its mind over every trailer frame.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
-      "language": "English"
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=62bIsvRcPv0",
+      "cast_details": [
+        {
+          "name": "Tom Holland",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/300px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg"
+        }
+      ]
     }
   ]
 }
