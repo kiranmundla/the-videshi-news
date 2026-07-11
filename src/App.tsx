@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import React, { Suspense } from "react";
 import useScrollRestore from "@/hooks/useScrollRestore";
+import ChunkErrorBoundary from "@/components/ChunkErrorBoundary";
 
 // ── Keep Index (homepage) eagerly loaded for fastest first paint ──
 import Index from "./pages/IndexV2.tsx";
@@ -129,6 +130,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollRestoreRoot />
+          <ChunkErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -201,6 +203,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          </ChunkErrorBoundary>
         </BrowserRouter>
         <Analytics />
       </TooltipProvider>
