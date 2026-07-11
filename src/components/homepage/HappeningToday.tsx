@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { DailyHappening, getTodayHappenings } from "@/lib/happenings";
+import { DailyHappening, getTodayHappenings, buildDetail } from "@/lib/happenings";
 
 export default function HappeningToday() {
   const [items, setItems] = useState<DailyHappening[]>([]);
@@ -28,12 +28,13 @@ export default function HappeningToday() {
         </div>
         <div className="v2-happening-list">
           {visible.map((item) => {
+            const detail = buildDetail(item);
             const row = (
               <div className="v2-happening-row">
                 <span className="v2-happening-emoji">{item.emoji}</span>
                 <span className="v2-happening-label">{item.label}</span>
-                {item.detail && (
-                  <span className="v2-happening-detail">— {item.detail}</span>
+                {detail && (
+                  <span className="v2-happening-detail">— {detail}</span>
                 )}
               </div>
             );

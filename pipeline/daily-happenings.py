@@ -186,22 +186,32 @@ def call_gemini(date: str, weekday: str) -> list[dict]:
 def _build_ilike_queries(terms: list[str]) -> list[str]:
     """Build ILIKE patterns from Gemini-provided search terms.
 
+    Splits compound terms into individual words first so "pm modi" + "new zealand"
+    becomes candidates like *modi*zealand* which actually match headlines.
     Only produces two-keyword combos (both orderings). No single-keyword
     fallback — a single generic term is too likely to false-positive.
     """
-    if len(terms) < 2:
+    # Flatten compound terms into individual words (3+ chars)
+    words = []
+    for term in terms:
+        for w in term.split():
+            wl = w.lower().strip()
+            if len(wl) >= 3 and wl not in words:
+                words.append(wl)
+
+    if len(words) < 2:
         return []
 
     queries = []
-    # All two-term combos (both orderings), up to 6 patterns
-    for i in range(len(terms)):
-        for j in range(len(terms)):
+    # All two-word combos (both orderings), capped at 10 patterns
+    for i in range(min(len(words), 5)):
+        for j in range(min(len(words), 5)):
             if i == j:
                 continue
-            q = f"*{terms[i]}*{terms[j]}*"
+            q = f"*{words[i]}*{words[j]}*"
             if q not in queries:
                 queries.append(q)
-            if len(queries) >= 8:
+            if len(queries) >= 10:
                 return queries
     return queries
 
@@ -272,6 +282,14 @@ def match_articles(items: list[dict]) -> list[dict]:
             # Pick the best match: most search terms found in headline
             best_slug = None
             best_score = 0
+            # Flatten compound terms for counting
+            flat_terms = []
+            for t in terms:
+                for w in t.split():
+                    wl = w.lower().strip()
+                    if len(wl) >= 3 and wl not in flat_terms:
+                        flat_terms.append(wl)
+
             for row in rows:
                 slug = row.get("slug", "")
                 headline = (row.get("headline") or "").lower()
@@ -279,7 +297,7 @@ def match_articles(items: list[dict]) -> list[dict]:
                     continue
 
                 # Count how many search terms appear in the headline
-                hits = sum(1 for t in terms if t in headline)
+                hits = sum(1 for t in flat_terms if t in headline)
 
                 # Require at least 2 matching terms
                 if hits < 2:
