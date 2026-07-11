@@ -412,7 +412,21 @@ export default function DirectoryDetailPage() {
   const photos = (listing.photos as string[] | null) || [];
   const locationStr = [listing.city, listing.state].filter(Boolean).join(", ");
   const catIcon = CATEGORY_ICONS[listing.category] || "📌";
+  const CATEGORY_FALLBACK_IMAGES: Record<string, string> = {
+    "Doctors & Healthcare": "/images/directory/doctors-healthcare.webp",
+    "Event Venues": "/images/directory/event-venues.webp",
+    "Beauty & Grooming": "/images/directory/beauty-grooming.webp",
+    "Religious Services": "/images/directory/religious-services.webp",
+    "Education & Tutoring": "/images/directory/education-tutoring.webp",
+    "Tax & Accounting": "/images/directory/tax-accounting.webp",
+    "Catering & Food": "/images/directory/catering-food.webp",
+    "Attorneys & Immigration": "/images/directory/attorneys-immigration.webp",
+    "Yoga & Wellness": "/images/directory/yoga-wellness.webp",
+    "Home Services": "/images/directory/home-services.webp",
+    "Real Estate": "/images/directory/real-estate.webp",
+  };
   const heroSrc = listing.image_url || photos[0] || null;
+  const fallbackHero = CATEGORY_FALLBACK_IMAGES[listing.category] || null;
   const languages = parseSafe(listing.languages);
   const tags = parseSafe(listing.tags);
   const nonEnglish = languages.filter((l) => l !== "English");
@@ -495,11 +509,17 @@ export default function DirectoryDetailPage() {
               style={{ width: "100%", height: "auto", maxHeight: 480, objectFit: "contain", display: "block", margin: "0 auto" }}
               onError={() => setHeroError(true)}
             />
+          ) : fallbackHero ? (
+            <img
+              src={fallbackHero}
+              alt={listing.category}
+              style={{ width: "100%", height: 320, objectFit: "cover", display: "block" }}
+            />
           ) : (
             <div
               style={{
                 width: "100%",
-                height: "100%",
+                height: 240,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

@@ -17,11 +17,13 @@ interface TheaterMovie {
   release_date: string;
   status: "now_playing" | "opening" | "coming_soon";
   cast: string[];
+  cast_details?: { name: string; photo_url: string }[];
   director: string;
   why_watch: string;
   is_indian: boolean;
   ticket_url: string;
   language: string;
+  trailer_url?: string;
 }
 
 interface StreamingPick {
@@ -36,6 +38,7 @@ interface StreamingPick {
   trailer_url: string;
   synopsis: string;
   cast: string[];
+  cast_details?: { name: string; photo_url: string }[];
   director: string;
   why_watch: string;
   is_indian: boolean;
@@ -63,6 +66,7 @@ interface UnifiedMovie {
   trailer_url?: string;
   synopsis?: string;
   cast: string[];
+  cast_details?: { name: string; photo_url: string }[];
   director: string;
   why_watch: string;
   is_indian: boolean;
@@ -123,11 +127,13 @@ function theaterToUnified(m: TheaterMovie): UnifiedMovie {
     release_date: m.release_date,
     status: m.status,
     cast: m.cast,
+    cast_details: m.cast_details,
     director: m.director,
     why_watch: m.why_watch,
     is_indian: m.is_indian,
     ticket_url: m.ticket_url,
     language: m.language,
+    trailer_url: m.trailer_url,
   };
 }
 
@@ -145,6 +151,7 @@ function streamingToUnified(p: StreamingPick): UnifiedMovie {
     platform: p.platform,
     platform_icon: p.platform_icon,
     cast: p.cast,
+    cast_details: p.cast_details,
     director: p.director,
     why_watch: p.why_watch,
     is_indian: p.is_indian,
@@ -155,6 +162,74 @@ function streamingToUnified(p: StreamingPick): UnifiedMovie {
 }
 
 /* ── Related card ── */
+
+/* ── Cast card with photo ── */
+
+function CastCard({ name, photoUrl }: { name: string; photoUrl: string }) {
+  const [imgErr, setImgErr] = useState(false);
+  const initials = name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
+  return (
+    <div style={{ flexShrink: 0, textAlign: "center", width: 80 }}>
+      {photoUrl && !imgErr ? (
+        <img
+          src={photoUrl}
+          alt={name}
+          loading="lazy"
+          onError={() => setImgErr(true)}
+          style={{
+            width: 72,
+            height: 72,
+            borderRadius: "50%",
+            objectFit: "cover",
+            margin: "0 auto",
+            display: "block",
+            border: "2px solid rgba(255,255,255,0.08)",
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            width: 72,
+            height: 72,
+            borderRadius: "50%",
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "linear-gradient(135deg, #333, #222)",
+            border: "2px solid rgba(255,255,255,0.08)",
+            color: "#888",
+            fontSize: 18,
+            fontWeight: 700,
+            letterSpacing: "0.05em",
+          }}
+        >
+          {initials}
+        </div>
+      )}
+      <div
+        style={{
+          marginTop: 6,
+          fontSize: 11,
+          fontWeight: 500,
+          lineHeight: 1.3,
+          color: "hsl(var(--foreground))",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {name}
+      </div>
+    </div>
+  );
+}
 
 function RelatedCard({ movie }: { movie: UnifiedMovie }) {
   const [imgErr, setImgErr] = useState(false);
@@ -734,7 +809,7 @@ export default function MovieDetailPage() {
         {(movie.cast.length > 0 || movie.director) && (
           <div style={{ marginBottom: 24 }}>
             {movie.director && (
-              <div style={{ marginBottom: 8 }}>
+              <div style={{ marginBottom: 16 }}>
                 <span
                   style={{
                     fontSize: 11,
@@ -758,11 +833,30 @@ export default function MovieDetailPage() {
                     color: "#888",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase" as const,
+                    display: "block",
+                    marginBottom: 12,
                   }}
                 >
                   Cast
                 </span>
-                <p style={{ margin: "4px 0 0", fontSize: 15 }}>{movie.cast.join(", ")}</p>
+                {movie.cast_details && movie.cast_details.length > 0 ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 16,
+                      overflowX: "auto",
+                      paddingBottom: 8,
+                      WebkitOverflowScrolling: "touch",
+                      scrollbarWidth: "none",
+                    }}
+                  >
+                    {movie.cast_details.map((actor) => (
+                      <CastCard key={actor.name} name={actor.name} photoUrl={actor.photo_url} />
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ margin: "4px 0 0", fontSize: 15 }}>{movie.cast.join(", ")}</p>
+                )}
               </div>
             )}
           </div>

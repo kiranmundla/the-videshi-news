@@ -96,6 +96,42 @@ def fetch_wikipedia_image(title: str, year: int = 0, media_type: str = "auto") -
     return ""
 
 
+def fetch_person_photo(name: str) -> str:
+    """Get a person's photo from Wikipedia. Returns URL or empty string."""
+    candidates = [name, f"{name} (actor)", f"{name} (actress)"]
+    for candidate in candidates:
+        try:
+            encoded = quote(candidate.replace(" ", "_"), safe="/_:()%")
+            url = f"{WIKI_API}/{encoded}"
+            resp = requests.get(url, headers=HEADERS, timeout=8)
+            if resp.status_code == 200:
+                data = resp.json()
+                thumb = data.get("thumbnail", {}).get("source", "")
+                if thumb:
+                    return thumb.replace("/330px-", "/300px-")
+            time.sleep(0.15)
+        except Exception as e:
+            print(f"    ⚠️ Error fetching photo for '{candidate}': {e}")
+            continue
+    return ""
+
+
+def build_cast_details(cast_names: list, limit: int = 6) -> list:
+    """Build cast_details with Wikipedia photos for up to `limit` cast members."""
+    if not cast_names:
+        return []
+    details = []
+    for name in cast_names[:limit]:
+        print(f"    🔍 Looking up: {name}")
+        photo = fetch_person_photo(name)
+        if photo:
+            print(f"    ✅ Photo found for {name}")
+        else:
+            print(f"    ❌ No photo for {name}")
+        details.append({"name": name, "photo_url": photo})
+    return details
+
+
 def youtube_search_url(title: str, suffix: str = "official trailer") -> str:
     """Build a YouTube search URL for the trailer."""
     query = f"{title} {suffix}".strip()
@@ -342,6 +378,14 @@ def build():
         # Find YouTube trailer
         trailer = try_find_youtube_trailer(pick["title"], pick.get("year", 0), pick.get("language", ""))
         pick["trailer_url"] = trailer
+
+        # Fetch cast photos
+        cast = pick.get("cast", [])
+        if cast:
+            print(f"  📸 Fetching cast photos for {len(cast[:6])} actors...")
+            pick["cast_details"] = build_cast_details(cast, limit=6)
+        else:
+            pick["cast_details"] = []
 
         print()
 
