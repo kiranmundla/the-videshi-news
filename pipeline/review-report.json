@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T02:15:27.646429+00:00",
+  "timestamp": "2026-07-11T03:15:32.841533+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ae0d0024-dfdc-4c7d-a917-cfe0e8aabb63",
-      "headline": "The Student Visa Crackdown Will Cost America Half a Trillion Dollars. Indian Students Are Half the Story",
-      "slug": "student-visa-crackdown-gdp-cost-piie-indian-students-20260711",
+      "id": "30fab92c-0652-4ed7-8111-c813c2368251",
+      "headline": "OpenAI Wants to Give the US Government a $42 Billion Stake. An Indian American Is Helping Broker the Deal.",
+      "slug": "openai-5-percent-equity-government-sriram-krishnan-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "6dc026f0-224b-4dc2-bf12-9d3f653b2af4",
+            "headline": "Washington Just Cleared GPT-5.6 for the World. Here's What I"
+          },
+          {
+            "article_id": "ee751872-f3f5-4bf5-8293-0081926b6a81",
+            "headline": "OpenAI's GPT-Live Can Listen and Talk at the Same Time. Indi"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "graduates in caps and gowns",
-          "reason": "The photo shows a graduation scene relevant to the student visa story."
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Sam Altman, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +40,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of student visas or immigration."
+          "issue": "The image features Sam Altman, which is relevant to the article's topic about OpenAI and its leadership, but does not directly connect to the Indian American aspect."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of visa policies on Indian students, making it relevant to the NRI audience."
+          "quality": 8,
+          "note": "The article highlights Sriram Krishnan's significant role as an Indian American in shaping US AI policy, which resonates with the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a relevant image that depicts Indian students or the context of studying abroad.",
-          "Include quotes or testimonials from Indian students affected by the visa policies to enhance the personal connection."
+          "Include more direct quotes or insights from Sriram Krishnan to enhance the personal connection to the Indian American community.",
+          "Consider adding a section that discusses the implications of this deal for the Indian American community or how it might influence future policies."
         ],
         "verdict": "pass"
       },
@@ -54,9 +63,57 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b4abb847-970e-4525-b687-98d2a919136c",
-      "headline": "The Government Wants Ten Years of Your Social Media Handles. It Has Not Defined What Gets You Denied",
-      "slug": "uscis-social-media-vetting-ten-years-handles-immigration-forms-20260711",
+      "id": "908b882c-5930-4798-8a4f-a4c296019385",
+      "headline": "Apple Just Committed $30 Billion to Make Chips in America. Indian Engineers Will Design Most of Them.",
+      "slug": "apple-broadcom-30-billion-us-chips-indian-engineers-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "1fe19393-30a3-4624-8019-dbee255bbea6",
+            "headline": "Apple Just Lost Its Biggest European Court Battle. India's A"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Apple CEO Tim Cook",
+          "reason": "The photo shows the correct named person related to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Tim Cook is relevant as he is the CEO of Apple, but it does not directly depict the chip manufacturing or Indian engineers."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article highlights the significant role of Indian engineers in the semiconductor industry, making it highly relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a quote or perspective from an Indian engineer in the semiconductor field to enhance the diaspora connection.",
+          "Add more context about the implications of this deal for the Indian tech industry and its engineers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "61ced647-aa1e-4f50-8b6d-8bf7c795749e",
+      "headline": "India Now Opens a Global Capability Centre Every Single Day. Nestl\u00e9 Just Signed Up.",
+      "slug": "india-gcc-one-per-day-nestle-sitharaman-ai-threat-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +121,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "social media app icons on smartphone",
-          "reason": "The photo subject is relevant to the story about social media disclosure."
+          "what_photo_shows": "modern tech park buildings",
+          "reason": "The photo shows a tech park, relevant to the GCC story."
         },
         "inline_image_mismatches": []
       },
@@ -73,21 +130,21 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of social media or immigration."
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of Global Capability Centres or the corporate environment discussed in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses immigration policies that directly affect Indian professionals in the U.S., making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article connects the GCC boom to Indian Americans, highlighting professional opportunities, but could elaborate more on personal impacts."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects social media or immigration themes.",
-          "Add a section that includes personal stories or testimonials from affected individuals to enhance relatability."
+          "Include more specific examples of how the GCC boom impacts Indian Americans personally.",
+          "Consider using a more relevant image that reflects the corporate or tech environment."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
