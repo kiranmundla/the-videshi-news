@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T17:15:45.017785+00:00",
+  "timestamp": "2026-07-11T18:15:29.407819+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5fb511a0-e673-4e81-8f5a-68c67318afa9",
-      "headline": "Akasa Air Launches Direct Kochi-Kuwait Flights, Reopening Kerala's Gulf Lifeline",
-      "slug": "akasa-air-kochi-kuwait-direct-flights-kerala-gulf-nri-20260711",
+      "id": "c3478bd5-e089-4c59-bb48-e29f4c7ab6d1",
+      "headline": "Patel Brothers, India Grocers, and the Quiet Empire Building of Indian Grocery in America",
+      "slug": "patel-brothers-india-grocers-quiet-empire-building-indian-grocery-in-america",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Terminal 1 at Cochin International Airport",
-          "reason": "The photo shows the departure point for the new flight service."
+          "what_photo_shows": "South Asian spices and ingredients",
+          "reason": "The photo shows Indian grocery items, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 2,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Kochi-Kuwait flights to the broader Indian diaspora, particularly highlighting the impact on families with members in the Gulf."
+          "quality": 9,
+          "note": "The article effectively connects the growth of Indian grocery stores to the experiences and needs of the NRI community in America."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote from an Akasa Air representative or a travel expert to add authority to the article.",
-          "Consider adding a brief section on how the new route might affect travel costs or options for NRIs in the US."
+          "Replace the hero image with one that directly relates to Indian grocery stores or Indian cuisine to enhance relevance.",
+          "Consider adding quotes or testimonials from NRI customers to strengthen the diaspora connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c2ef7bbf-df6c-44aa-8512-9dabfc6c07b8",
-      "headline": "LOT Polish Airlines Opens a New Delhi-to-Bay Area Route via Warsaw",
-      "slug": "lot-polish-airlines-delhi-san-francisco-warsaw-nri-20260711",
+      "id": "de101fef-cb9d-4007-bce0-be1aff0abd14",
+      "headline": "Turmeric Is Officially 2026's Herb of the Year \u2014 Your Grandmother Knew Before Anyone",
+      "slug": "turmeric-officially-2026-herb-of-the-year-your-grandmother-knew-before-anyone",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "LOT Polish Airlines Boeing 787-8 Dreamliner",
-          "reason": "The photo shows the correct aircraft type mentioned in the story."
+          "what_photo_shows": "Turmeric powder and heart-shaped bowl",
+          "reason": "The photo shows turmeric, which is relevant to the story about turmeric being Herb of the Year."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the significance of the Indian diaspora in the Bay Area and how the new route caters to their needs."
+          "note": "The article effectively connects the significance of turmeric to the NRI experience, highlighting both pride and irony."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from an airline representative or an industry expert to enhance credibility.",
-          "Include more details about the amenities offered on the LOT Polish Airlines flights to attract potential travelers."
+          "Consider adding a quote from a prominent figure in the NRI community to enhance the diaspora connection.",
+          "Include more recent statistics or studies on turmeric's health benefits to strengthen the scientific claims."
         ],
         "verdict": "pass"
       },
@@ -97,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "07c9e5d3-569a-4e73-a513-c1faea6de6dd",
-      "headline": "Emirates Sends Its A380 to Delhi \u2014 and Premium Economy to Half of India",
-      "slug": "emirates-a380-delhi-premium-economy-india-nri-20260711",
+      "id": "65cef40b-de27-4be9-90f9-82757c8c29e4",
+      "headline": "From Amritsar's Bylanes to Harvard's Stage: Vikas Khanna Named Person of the Year",
+      "slug": "from-amritstars-bylanes-to-harvards-stage-vikas-khanna-named-person-of-the-year",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Emirates Airbus A380 taking off",
-          "reason": "The photo shows an Emirates A380, relevant to the story about its service to Delhi."
+          "what_photo_shows": "smiling man in a dark jacket",
+          "reason": "The photo plausibly shows Vikas Khanna, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -121,14 +121,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the Emirates A380 deployment to the needs and travel patterns of the Indian American diaspora, highlighting the importance of the Premium Economy option for NRIs."
+          "quality": 9,
+          "note": "The article effectively connects Vikas Khanna's achievements to the Indian diaspora, highlighting cultural pride and representation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Emirates representatives or industry experts to enhance credibility.",
-          "Include more statistics or data on NRI travel patterns to strengthen the diaspora angle."
+          "Consider adding quotes from other diaspora members or chefs to enhance the community perspective.",
+          "Include more details about Khanna's impact on the diaspora beyond culinary achievements."
         ],
         "verdict": "pass"
       },
