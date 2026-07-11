@@ -410,6 +410,10 @@ export default function ArticlePage() {
     if (TRAVEL_GUIDE_REDIRECTS[slug]) return;
     let cancelled = false;
 
+    // Reset state when slug changes
+    setArticle(undefined);
+    setRelated([]);
+
     // Fallback: original Supabase fetch
     const fetchFromSupabase = async () => {
       const a = await getArticleBySlug(slug);
@@ -438,7 +442,11 @@ export default function ArticlePage() {
       .catch(() => {});
 
     const fromLive = getArticleBySlug(slug).then(async (a) => {
-      if (cancelled || !a) return;
+      if (cancelled) return;
+      if (!a) {
+        // Supabase returned nothing — don't set shown, let fallback handle it
+        return;
+      }
       shown = true;
       setArticle(a);
       try {
