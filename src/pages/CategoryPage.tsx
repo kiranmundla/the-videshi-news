@@ -58,6 +58,8 @@ export default function CategoryPage() {
       .then((data) => {
         const items: Article[] = data.articles ?? [];
         applyArticles(items.slice(0, PAGE_SIZE));
+        // Static pool might not have everything — always allow load-more via Supabase
+        setHasMore(true);
         // Store full list for loadMore without hitting Supabase
         (window as any).__categoryPool = { slug: def.slug, articles: items };
       })
@@ -82,6 +84,7 @@ export default function CategoryPage() {
       if (pool?.slug === def.slug && pool.articles.length > articles.length) {
         next = pool.articles.slice(articles.length, articles.length + PAGE_SIZE);
       } else {
+        // Static pool exhausted — fall back to Supabase
         next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
       }
       if (next.length < PAGE_SIZE) setHasMore(false);
@@ -89,6 +92,7 @@ export default function CategoryPage() {
       setArticles((prev) => [...prev, ...next]);
     } catch (err) {
       console.error("[CategoryPage] loadMore failed", err);
+      setHasMore(false);
     }
     setLoadingMore(false);
   };

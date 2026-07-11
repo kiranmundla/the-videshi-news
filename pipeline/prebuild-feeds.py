@@ -57,6 +57,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "public" / "data"
 ARTICLES_DIR = DATA_DIR / "articles"
 CATEGORY_DIR = DATA_DIR / "category"
+PAGE_SIZE_CAT = 18  # fallback to wider window if fewer than this in 72h
 HOMEPAGE_FEED = DATA_DIR / "homepage-feed.json"
 
 # Supabase columns to fetch (mirrors P2_COLS in articles.ts)
@@ -429,7 +430,7 @@ def main():
     ]
     now = datetime.now(timezone.utc)
     since_72h = (now - timedelta(hours=72)).isoformat()
-    since_7d = (now - timedelta(days=7)).isoformat()
+    since_14d = (now - timedelta(days=14)).isoformat()
 
     by_cat: dict[str, list[dict]] = {}
     for a in articles:
@@ -438,10 +439,10 @@ def main():
     cat_count = 0
     for slug in all_category_slugs:
         pool = by_cat.get(slug, [])
-        # Same logic as getArticlesByCategory: 72h first, fallback to 7d
+        # Same logic as getArticlesByCategory: 72h first, fallback to 14d
         recent = [a for a in pool if a["published_at"] >= since_72h]
-        if len(recent) < 3:
-            wider = [a for a in pool if a["published_at"] >= since_7d]
+        if len(recent) < PAGE_SIZE_CAT:
+            wider = [a for a in pool if a["published_at"] >= since_14d]
             if len(wider) > len(recent):
                 recent = wider
         # Include body=false for listing, keep up to 50 articles per category
