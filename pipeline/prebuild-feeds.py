@@ -565,6 +565,16 @@ def main():
     wait_times_path.write_text(json.dumps(wait_times, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ visa-wait-times.json ({len(wait_times)} rows)")
 
+    # 10. Build instagram-embeds.json (portrait photo embeds for homepage)
+    print("  Building instagram-embeds.json...")
+    ig_embeds = fetch_table(url, key, "instagram_embeds",
+                            order="likes.desc",
+                            filters={"active": "eq.true"},
+                            select="shortcode,account,category,likes,caption_preview")
+    ig_path = DATA_DIR / "instagram-embeds.json"
+    ig_path.write_text(json.dumps(ig_embeds, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ instagram-embeds.json ({len(ig_embeds)} embeds)")
+
     print("=== Done ===")
 
 
