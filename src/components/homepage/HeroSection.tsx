@@ -42,7 +42,7 @@ export default function HeroSection({ lead, side }: Props) {
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-4" style={{ aspectRatio: "16/10" }}>
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-4 lg:max-h-[500px]" style={{ aspectRatio: "16/10" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
