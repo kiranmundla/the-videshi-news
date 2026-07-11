@@ -419,7 +419,7 @@
   color: #334155;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 8;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
