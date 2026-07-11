@@ -1,0 +1,35 @@
+{
+  "article_id": "30fab92c-0652-4ed7-8111-c813c2368251",
+  "scenes": [
+    {
+      "voiceover": "What if the US government owned a piece of OpenAI? Sam Altman just made that offer.",
+      "onscreen": "$42 BILLION OFFER",
+      "image_prompt": "Capitol dome merged with AI circuits, $42 BILLION text"
+    },
+    {
+      "voiceover": "OpenAI wants to give 5 percent of its equity — worth 42 billion dollars — to a government wealth fund.",
+      "onscreen": "5% EQUITY = $42.6B",
+      "image_prompt": "Pie chart showing 5% government stake based on $852B valuation"
+    },
+    {
+      "voiceover": "Brokering this deal? Sriram Krishnan — born in Chennai, now the most powerful AI advisor in the White House.",
+      "onscreen": "SRIRAM KRISHNAN",
+      "image_prompt": "Indian American professional at White House, career timeline Chennai to DC"
+    },
+    {
+      "voiceover": "The model is Alaska's oil fund. But instead of oil, it's AI profits shared with every American.",
+      "onscreen": "OIL FUND → AI FUND",
+      "image_prompt": "Split screen: Alaska oil pipeline vs AI data center servers"
+    },
+    {
+      "voiceover": "OpenAI and Anthropic are both racing to IPO. Together, worth over two trillion dollars.",
+      "onscreen": "THE $2T IPO RACE",
+      "image_prompt": "Racing bar charts OpenAI $852B vs Anthropic $1.09T"
+    },
+    {
+      "voiceover": "Here's the twist — Indian immigrant engineers built much of this AI wealth. Now it could be redistributed to all.",
+      "onscreen": "BUILT BY IMMIGRANTS",
+      "image_prompt": "Diverse Indian tech professionals, India-US globe connection"
+    }
+  ]
+}

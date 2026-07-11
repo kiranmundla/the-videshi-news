@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 import { KeyUpdate, getKeyUpdates } from "@/lib/keyUpdates";
 
 const IMPACT_ICON: Record<string, string> = {
@@ -30,6 +30,72 @@ function groupByMonth(updates: KeyUpdate[]): { label: string; items: KeyUpdate[]
     });
 }
 
+function UpdateRow({ update }: { update: KeyUpdate }) {
+  const [open, setOpen] = useState(false);
+  const related = update.related_articles ?? [];
+  const hasRelated = related.length > 1;
+
+  return (
+    <div className="group hover:bg-foreground/[0.02] transition-colors">
+      <div className="flex items-start gap-3 px-4 py-3">
+        <span className="text-sm mt-0.5 flex-shrink-0">
+          {IMPACT_ICON[update.impact] || "⚪"}
+        </span>
+        <div className="flex-1 min-w-0">
+          {update.article_slug ? (
+            <Link
+              to={`/articles/${update.article_slug}`}
+              className="text-inherit no-underline"
+            >
+              <p className={`text-sm leading-snug ${update.impact === "high" ? "font-bold" : "font-semibold"}`}>
+                {update.headline}
+              </p>
+            </Link>
+          ) : (
+            <p className={`text-sm leading-snug ${update.impact === "high" ? "font-bold" : "font-semibold"}`}>
+              {update.headline}
+            </p>
+          )}
+          {hasRelated && (
+            <button
+              onClick={() => setOpen(!open)}
+              className="mt-1 flex items-center gap-1 text-xs text-foreground/40 hover:text-foreground/60 transition-colors"
+            >
+              {open ? (
+                <ChevronDown className="h-3 w-3" />
+              ) : (
+                <ChevronRight className="h-3 w-3" />
+              )}
+              {related.length} related articles
+            </button>
+          )}
+          {open && hasRelated && (
+            <div className="mt-2 pl-1 space-y-1 border-l-2 border-foreground/10">
+              {related.map((ra, i) => (
+                <Link
+                  key={i}
+                  to={`/articles/${ra.slug}`}
+                  className="block pl-3 text-xs text-foreground/60 hover:text-foreground/80 leading-snug no-underline"
+                >
+                  {ra.headline}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+        {update.event_date && (
+          <span className="text-[10px] text-foreground/40 whitespace-nowrap mt-1 flex-shrink-0">
+            {new Date(update.event_date + "T00:00:00").toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 interface KeyUpdatesProps {
   category: string;
   title?: string;
@@ -54,7 +120,6 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
 
   const filtered = showAll ? updates : updates.filter((u) => u.impact === "high");
   if (filtered.length === 0 && !showAll) {
-    // No high-impact updates — fall back to showing all
     return null;
   }
   const hasMedium = updates.some((u) => u.impact !== "high");
@@ -93,7 +158,7 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
       </div>
 
       <div className="bg-card border border-border rounded-xl overflow-hidden">
-        {displayGroups.map((group, gi) => (
+        {displayGroups.map((group) => (
           <div key={group.label}>
             <div className="px-4 py-2 bg-foreground/[0.03] border-b border-border">
               <span className="text-xs font-bold uppercase tracking-wider text-foreground/50">
@@ -102,45 +167,7 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
             </div>
             <div className="divide-y divide-border">
               {group.items.map((update) => (
-                <div
-                  key={update.id}
-                  className="group hover:bg-foreground/[0.02] transition-colors"
-                >
-                  {update.article_slug ? (
-                    <Link
-                      to={`/articles/${update.article_slug}`}
-                      className="flex items-start gap-3 px-4 py-3 text-inherit no-underline"
-                    >
-                      <span className="text-sm mt-0.5 flex-shrink-0">
-                        {IMPACT_ICON[update.impact] || "⚪"}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-sm leading-snug ${update.impact === "high" ? "font-bold" : "font-semibold"}`}>
-                          {update.headline}
-                        </p>
-                      </div>
-                      {update.event_date && (
-                        <span className="text-[10px] text-foreground/40 whitespace-nowrap mt-1 flex-shrink-0">
-                          {new Date(update.event_date + "T00:00:00").toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </span>
-                      )}
-                    </Link>
-                  ) : (
-                    <div className="flex items-start gap-3 px-4 py-3">
-                      <span className="text-sm mt-0.5 flex-shrink-0">
-                        {IMPACT_ICON[update.impact] || "⚪"}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-sm leading-snug ${update.impact === "high" ? "font-bold" : "font-semibold"}`}>
-                          {update.headline}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <UpdateRow key={update.id} update={update} />
               ))}
             </div>
           </div>
