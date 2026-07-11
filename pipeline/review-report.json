@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T18:15:29.407819+00:00",
+  "timestamp": "2026-07-11T18:45:20.701385+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c3478bd5-e089-4c59-bb48-e29f4c7ab6d1",
-      "headline": "Patel Brothers, India Grocers, and the Quiet Empire Building of Indian Grocery in America",
-      "slug": "patel-brothers-india-grocers-quiet-empire-building-indian-grocery-in-america",
+      "id": "7815f009-8795-4356-8580-a7a25713ab37",
+      "headline": "India Just Sold Its Most Powerful Missile to a Third Country. The $630 Million Deal Rewrites the Indo-Pacific Arms Map.",
+      "slug": "india-indonesia-brahmos-missile-deal-630-million-defence-exports-indo-pacific-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "South Asian spices and ingredients",
-          "reason": "The photo shows Indian grocery items, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 2,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the growth of Indian grocery stores to the experiences and needs of the NRI community in America."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that directly relates to Indian grocery stores or Indian cuisine to enhance relevance.",
-          "Consider adding quotes or testimonials from NRI customers to strengthen the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "de101fef-cb9d-4007-bce0-be1aff0abd14",
-      "headline": "Turmeric Is Officially 2026's Herb of the Year \u2014 Your Grandmother Knew Before Anyone",
-      "slug": "turmeric-officially-2026-herb-of-the-year-your-grandmother-knew-before-anyone",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Turmeric powder and heart-shaped bowl",
-          "reason": "The photo shows turmeric, which is relevant to the story about turmeric being Herb of the Year."
+          "what_photo_shows": "BrahMos missile system on parade",
+          "reason": "The photo shows the BrahMos missile, relevant to the missile sale story."
         },
         "inline_image_mismatches": []
       },
@@ -78,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of turmeric to the NRI experience, highlighting both pride and irony."
+          "quality": 7,
+          "note": "The article discusses India's growing role in global arms exports, which may resonate with the Indian diaspora interested in India's geopolitical influence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a prominent figure in the NRI community to enhance the diaspora connection.",
-          "Include more recent statistics or studies on turmeric's health benefits to strengthen the scientific claims."
+          "Include quotes from experts or officials to enhance credibility.",
+          "Add a section on potential implications for regional security dynamics."
         ],
         "verdict": "pass"
       },
@@ -97,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "65cef40b-de27-4be9-90f9-82757c8c29e4",
-      "headline": "From Amritsar's Bylanes to Harvard's Stage: Vikas Khanna Named Person of the Year",
-      "slug": "from-amritstars-bylanes-to-harvards-stage-vikas-khanna-named-person-of-the-year",
+      "id": "76bd0193-05c9-44a7-974d-bb157f446c30",
+      "headline": "Six Thousand Seafarers Are Trapped in the Gulf. For Indian Sailors, the War Has Become Personal.",
+      "slug": "indian-seafarers-stranded-persian-gulf-iran-war-missiles-6000-trapped-hormuz-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "smiling man in a dark jacket",
-          "reason": "The photo plausibly shows Vikas Khanna, matching the story topic."
+          "what_photo_shows": "Satellite image of Strait of Hormuz",
+          "reason": "The image is relevant to the story about seafarers stranded in the Gulf."
         },
         "inline_image_mismatches": []
       },
@@ -121,14 +78,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Vikas Khanna's achievements to the Indian diaspora, highlighting cultural pride and representation."
+          "quality": 8,
+          "note": "The article effectively highlights the plight of Indian sailors, making it relevant to the Indian diaspora concerned about their safety and well-being."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from other diaspora members or chefs to enhance the community perspective.",
-          "Include more details about Khanna's impact on the diaspora beyond culinary achievements."
+          "Include more personal stories or quotes from sailors to enhance emotional engagement.",
+          "Add a section on how the Indian government is responding to the crisis to provide a more comprehensive view."
         ],
         "verdict": "pass"
       },
