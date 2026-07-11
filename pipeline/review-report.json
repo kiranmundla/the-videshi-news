@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-11T06:45:24.876238+00:00",
+  "timestamp": "2026-07-11T07:15:29.771042+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,113 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "37a64de6-e5ce-4d97-9e45-9ae6b50b7467",
-      "headline": "Five Rules, One Target: The Trump Administration Is Rewriting Every Immigration Pathway Indians Use to Live in America",
-      "slug": "trump-immigration-overhaul-h1b-h4-ead-opt-green-card-indian-workers-students-20260710",
+      "id": "460574f2-cb37-4be1-85b4-0402d3df2297",
+      "headline": "Super Saturday Is Here: Haaland Takes On Kane in Miami, Messi Faces Switzerland in Kansas City",
+      "slug": "world-cup-2026-super-saturday-haaland-kane-norway-england-messi-argentina-switzerland-nri-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "crowd with Norwegian flag",
+          "reason": "The photo shows a crowd, not a specific player or match action."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the World Cup matches to the Indian diaspora in the US, highlighting local viewing opportunities."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that captures the essence of the matches or the excitement of the World Cup.",
+          "Expand on the viewing options for NRIs, perhaps including local venues or community events."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (crowd with Norwegian flag)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "52a60f06-6d66-42d3-9ff8-0cba9d43369c",
+      "headline": "Ranveer Singh Crashed Anshula Kapoor's Wedding Reception. The DJ Knew Exactly What to Play.",
+      "slug": "ranveer-singh-anshula-kapoor-wedding-reception-gunday-reunion-arjun-kapoor-bollywood-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "ad48eb4f-3b51-40d6-aff8-3cd34241f1ec",
+            "headline": "Ranveer Singh Just Took India's Biggest Film to Japan. The N"
+          },
+          {
+            "article_id": "921a7792-806b-42f3-8be7-0d44a7c5d376",
+            "headline": "Ranveer Singh Personally Called Kalyani Priyadarshan to Join"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ranveer Singh at an event",
+          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DafW7BUCHb4/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post linked does not provide additional context or relevance to the article's main focus on the wedding reception."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the wedding to the NRI audience by referencing Bollywood's impact and the significance of the Kapoor family."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Remove the irrelevant Instagram link or replace it with a more relevant embed that enhances the article's content.",
+          "Consider adding more quotes or reactions from attendees to enrich the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DafW7BUCHb4/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "71d9bbca-4da9-496f-b0e9-499524e61bf0",
+      "headline": "Knight Riders Finally Crack the Code: LA Hands League-Leading SF Unicorns Their First MLC Defeat",
+      "slug": "la-knight-riders-beat-sf-unicorns-mlc-2026-first-loss-back-to-back-wins-standings-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +125,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "The United States Capitol at dusk",
-          "reason": "The Capitol is relevant to U.S. immigration policy discussions."
+          "what_photo_shows": "Andre Russell in Knight Riders gear",
+          "reason": "The photo shows Andre Russell, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -31,66 +135,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of the Capitol does not directly relate to the immigration topic but is somewhat relevant as it represents the U.S. government."
+          "issue": "The image of Andre Russell is relevant to the article as he is mentioned in the context of the LA Knight Riders, but it could be more directly related to the specific match discussed."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article directly addresses the impact of U.S. immigration policy changes on Indian professionals and students, making it highly relevant to the diaspora."
+          "note": "The article effectively connects the MLC to the NRI community in America, highlighting attendance and the cultural significance of cricket for Indian-Americans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more directly represents immigration or Indian professionals in the U.S.",
-          "Add quotes or testimonials from affected individuals to enhance the personal connection to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "728650bf-9f6a-4c3a-9964-028c8b79f449",
-      "headline": "An Indian-American CEO Laid Off 1,600 Xbox Workers. Days Later, the Fed Appointed Her to an Advisory Panel. The Internet Did the Rest.",
-      "slug": "asha-sharma-xbox-layoffs-fed-appointment-h1b-racial-backlash-indian-american-20260710",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f57def1e-820a-4ce2-bd9a-e8ebfa615d82",
-            "headline": "Xbox's Indian-American CEO Just Ordered the Biggest Restruct"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Asha Sharma at Xbox event",
-          "reason": "The photo shows the correct named person related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of Asha Sharma is relevant to the article's topic, but it could be more directly related to the layoffs or the Federal Reserve appointment."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of Asha Sharma's actions and heritage, which resonates with the Indian diaspora's experiences in the U.S."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Asha Sharma or other Indian-American leaders to enhance the diaspora perspective.",
-          "Add a section discussing the broader implications of the layoffs on the Indian-American community in tech."
+          "Consider including more direct quotes from players or coaches to enhance the narrative.",
+          "Add a brief section on the impact of this match on the overall league standings and playoff implications."
         ],
         "verdict": "pass"
       },
