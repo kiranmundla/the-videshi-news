@@ -427,11 +427,11 @@ export default function NowInTheaters() {
 
       <div
         className="flex items-center gap-3 mb-3 pb-2"
-        style={{ borderBottom: "1px solid hsl(var(--rule))" }}
+        style={{ borderBottom: "1px solid rgba(173,20,87,0.25)" }}
       >
         <span
           className="font-bold uppercase"
-          style={{ fontSize: 11, letterSpacing: "0.12em", color: "#888" }}
+          style={{ fontSize: 11, letterSpacing: "0.12em", color: "#AD1457" }}
         >
           🍿 Now in Theaters
         </span>

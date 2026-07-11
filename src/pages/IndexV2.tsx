@@ -17,6 +17,8 @@ import VoicesSection from "@/components/homepage/VoicesSection";
 import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
+import NowInTheaters from "@/components/NowInTheaters";
+import StreamingPicks from "@/components/StreamingPicks";
 import "@/components/homepage/homepage-v2.css";
 
 import {
@@ -419,6 +421,8 @@ export default function IndexV2() {
           articles={layout.entertainment}
           aspectRatio="portrait"
         />
+        <NowInTheaters />
+        <StreamingPicks />
 
         {/* 12. India News + Trending Sidebar */}
         <IndiaNewsGrid
