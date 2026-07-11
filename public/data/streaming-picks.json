@@ -1,187 +1,307 @@
 {
-  "generated_at": "2026-07-06T01:05:00Z",
-  "week_of": "Jul 6 – Jul 12, 2026",
-  "editorial_intro": "Rajkumar Hirani's OTT debut and a Ryan Gosling sci-fi thriller lead the week — plus Sunny Deol's courtroom drama lands Thursday.",
+  "generated_at": "2026-07-11T01:35:09Z",
+  "week_of": "Jul 06 – Jul 12, 2026",
+  "editorial_intro": "Dhurandhar drops its uncut version on Netflix this week. Dhanush's heist thriller Kara arrives in five languages. Nicolas Cage goes full noir on Prime Video. And if you're looking for regional gems, Telugu and Tamil cinema deliver again.",
   "picks": [
     {
-      "title": "Pritam and Pedro",
-      "slug": "pritam-and-pedro",
-      "platform": "JioHotstar",
-      "platform_icon": "hotstar",
-      "genre": "Crime Comedy",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "Rajkumar Hirani's OTT debut pairs a veteran cop (Arshad Warsi) with a tech-savvy hacker (Vir Hirani) to crack a high-profile kidnapping tied to a cybercrime ring. Vikrant Massey co-stars in this six-episode series.",
-      "cast": ["Arshad Warsi", "Vikrant Massey", "Vir Hirani"],
-      "director": "Avinash Arun Dhaware",
-      "why_watch": "Hirani's first streaming project — charming buddy chemistry and a surprisingly tight cyber-thriller",
-      "is_indian": true,
-      "watch_url": "https://www.jiohotstar.com/shows/pritam-and-pedro",
-      "language": "Hindi"
-    },
-    {
-      "title": "Dadi Ki Shaadi",
-      "slug": "dadi-ki-shaadi",
+      "title": "Dhurandhar: Raw & Undekha",
+      "slug": "dhurandhar-raw-and-undekha",
       "platform": "Netflix",
       "platform_icon": "netflix",
-      "genre": "Family Comedy",
+      "genre": "Action Thriller",
       "year": 2026,
+      "synopsis": "The extended, uncensored cut of Aditya Dhar's record-breaking spy thriller. Ranveer Singh leads a raw intelligence mission across hostile terrain with Sanjay Dutt and Arjun Rampal in a story that doesn't flinch. The theatrical version shattered box office records — this version goes further.",
+      "cast": [
+        "Ranveer Singh",
+        "Sanjay Dutt",
+        "Arjun Rampal",
+        "Sara Arjun"
+      ],
+      "director": "Aditya Dhar",
+      "why_watch": "The biggest Bollywood hit of 2026 just got a longer, uncut version — and it's streaming on Netflix.",
+      "is_indian": true,
+      "watch_url": "https://www.netflix.com/search?q=dhurandhar",
+      "language": "Hindi",
+      "trending": true,
       "poster_url": "",
       "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/watch?v=q2zwd3OVcnM",
-      "synopsis": "When Tony's grandmother announces she wants to remarry, his wedding plans spiral into chaos. Ashwiny Iyer Tiwari directs this Punjabi family comedy starring Neetu Kapoor and Kapil Sharma.",
-      "cast": ["Neetu Kapoor", "Kapil Sharma", "Sadia Khateeb"],
-      "director": "Ashwiny Iyer Tiwari",
-      "why_watch": "Neetu Kapoor and Kapil Sharma together — heartwarming and genuinely funny family drama",
-      "is_indian": true,
-      "watch_url": "https://www.netflix.com/title/dadi-ki-shaadi",
-      "language": "Hindi"
+      "trailer_url": "https://www.youtube.com/watch?v=NHk7scrb_9I",
+      "cast_details": [
+        {
+          "name": "Ranveer Singh",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ranveer_Singh_in_2023_%281%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Sanjay Dutt",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Sanjay_dutt_department.jpg/300px-Sanjay_dutt_department.jpg"
+        },
+        {
+          "name": "Arjun Rampal",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Arjun_Rampal_is_the_new_Gillette_brand_ambassador.jpg/300px-Arjun_Rampal_is_the_new_Gillette_brand_ambassador.jpg"
+        },
+        {
+          "name": "Sara Arjun",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Photos-Sara-Arjun-from-Dhurandhar-The-Revenge-Cropped.jpg"
+        }
+      ],
+      "rank": 1
     },
     {
-      "title": "Mollywood Times",
-      "slug": "mollywood-times",
+      "title": "Jolly LLB 3",
+      "slug": "jolly-llb-3",
       "platform": "JioHotstar",
       "platform_icon": "hotstar",
-      "genre": "Dark Comedy",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "An aspiring filmmaker's obsession with making the perfect horror film blurs the line between ambition and reality in this psychological dark comedy. Naslen leads the cast in a sharp look at indie cinema's absurdities.",
-      "cast": ["Naslen", "Sharafudheen"],
-      "director": "Abhinav Sunder Nayak",
-      "why_watch": "IMDB 7.4 — if you liked CU Soon or Nayattu, this meta-Malayalam gem is for you",
+      "genre": "Courtroom Comedy-Drama",
+      "year": 2025,
+      "synopsis": "Akshay Kumar returns as the lovably incompetent small-town lawyer who stumbles into cases too big for him. This time, Jolly takes on a pharmaceutical giant in a case that hits uncomfortably close to home. The franchise that proved courtroom dramas can be funny.",
+      "cast": [
+        "Akshay Kumar",
+        "Arshad Warsi",
+        "Huma Qureshi"
+      ],
+      "director": "Subhash Kapoor",
+      "why_watch": "The Jolly franchise is comfort food for Bollywood fans. Akshay Kumar's David-vs-Goliath courtroom antics never get old.",
       "is_indian": true,
-      "watch_url": "https://www.jiohotstar.com/shows/mollywood-times",
-      "language": "Malayalam"
+      "watch_url": "https://www.hotstar.com/in/search?q=jolly+llb+3",
+      "language": "Hindi",
+      "trending": true,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/1/1d/Jolly_LLB_3_poster.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/1/1d/Jolly_LLB_3_poster.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=eSgJ8PfSUSk",
+      "cast_details": [
+        {
+          "name": "Akshay Kumar",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Akshay_Kumar_National_Award_for_Padman_%28cropped%29.jpg/300px-Akshay_Kumar_National_Award_for_Padman_%28cropped%29.jpg"
+        },
+        {
+          "name": "Arshad Warsi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Arshad-Warsi.jpg/300px-Arshad-Warsi.jpg"
+        },
+        {
+          "name": "Huma Qureshi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Huma_Qureshi_at_TIFF_2025_02.jpg/300px-Huma_Qureshi_at_TIFF_2025_02.jpg"
+        }
+      ],
+      "rank": 2
     },
     {
-      "title": "Muthassi",
-      "slug": "muthassi",
-      "platform": "ZEE5",
-      "platform_icon": "zee5",
-      "genre": "Supernatural Horror",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/watch?v=Ms0dEREKkNo",
-      "synopsis": "Set in a remote Tulu village on the Kerala-Karnataka border, a mother returns to her ancestral home only to find an ancient demonic entity possessing her young son. Seven episodes of folklore-rooted horror.",
-      "cast": ["Saniya Iyappan", "Anarkali Marikar", "Sharafudheen"],
-      "director": "Prashanth Vijay",
-      "why_watch": "South Indian horror done right — atmospheric, folklore-driven, and genuinely creepy",
-      "is_indian": true,
-      "watch_url": "https://www.zee5.com/tvshows/muthassi",
-      "language": "Malayalam"
-    },
-    {
-      "title": "Ikka",
-      "slug": "ikka",
+      "title": "Kara",
+      "slug": "kara-dhanush",
       "platform": "Netflix",
       "platform_icon": "netflix",
-      "genre": "Legal Thriller",
-      "year": 2026,
+      "genre": "Heist Thriller",
+      "year": 2025,
+      "synopsis": "Set in 1991 during the Gulf War, a reformed thief in rural Tamil Nadu is forced back into crime when a corrupt bank seizes his family's ancestral land. Dhanush delivers one of his most restrained performances in this slow-burn heist drama.",
+      "cast": [
+        "Dhanush",
+        "Mamitha Baiju",
+        "K. S. Ravikumar"
+      ],
+      "director": "Vignesh Raja",
+      "why_watch": "Dhanush at his brooding best. A Tamil heist film now available in five languages on Netflix.",
+      "is_indian": true,
+      "watch_url": "https://www.netflix.com/search?q=kara+dhanush",
+      "language": "Tamil",
+      "trending": false,
       "poster_url": "",
       "backdrop_url": "",
-      "trailer_url": "https://www.youtube.com/watch?v=unf8x_aZg9Y",
-      "synopsis": "Sunny Deol's major OTT debut is a high-stakes courtroom drama reuniting him with Akshaye Khanna nearly three decades after Border. Directed by Siddharth P. Malhotra. Drops July 10.",
-      "cast": ["Sunny Deol", "Akshaye Khanna"],
-      "director": "Siddharth P. Malhotra",
-      "why_watch": "Sunny Deol and Akshaye Khanna back together after Border — this one's been buzzing for months",
-      "is_indian": true,
-      "watch_url": "https://www.netflix.com/title/ikka",
-      "language": "Hindi"
+      "trailer_url": "https://www.youtube.com/watch?v=xkQS_TET5NI",
+      "cast_details": [
+        {
+          "name": "Dhanush",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Dhanush_at_the_%E2%80%98Asuran%E2%80%99_Success_Meet_%28cropped%29.jpg/300px-Dhanush_at_the_%E2%80%98Asuran%E2%80%99_Success_Meet_%28cropped%29.jpg"
+        },
+        {
+          "name": "Mamitha Baiju",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
+        },
+        {
+          "name": "K. S. Ravikumar",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/K._S._Ravikumar_at_the_first_look_launch_of_%27Policegiri%27_%28cropped%29.jpg"
+        }
+      ],
+      "rank": 3
     },
     {
-      "title": "Karakkam",
-      "slug": "karakkam",
+      "title": "Satrangi",
+      "slug": "satrangi-badle-ka-khel",
+      "platform": "JioHotstar",
+      "platform_icon": "hotstar",
+      "genre": "Action Crime",
+      "year": 2026,
+      "synopsis": "A gritty revenge saga set across seven interconnected stories. When a family is torn apart by a powerful crime syndicate, each member takes a different path to justice — some legal, some not.",
+      "cast": [],
+      "director": "",
+      "why_watch": "Think Sacred Games meets a revenge anthology. Seven stories, one vendetta — a fresh format for Hindi crime TV.",
+      "is_indian": true,
+      "watch_url": "https://www.hotstar.com/in/search?q=satrangi",
+      "language": "Hindi",
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=htULC5gxZnM",
+      "cast_details": [],
+      "rank": 4
+    },
+    {
+      "title": "Jetlee",
+      "slug": "jetlee-telugu",
+      "platform": "JioHotstar",
+      "platform_icon": "hotstar",
+      "genre": "Action Thriller",
+      "year": 2026,
+      "synopsis": "A Telugu action thriller that's been generating buzz for its high-octane sequences and layered storytelling. When an ordinary man discovers a conspiracy that goes all the way to the top, he must become something he never imagined to protect his family.",
+      "cast": [],
+      "director": "",
+      "why_watch": "Telugu cinema continues its hot streak. If you loved Pushpa, this scratches the same itch — ordinary man, extraordinary circumstances.",
+      "is_indian": true,
+      "watch_url": "https://www.hotstar.com/in/search?q=jetlee",
+      "language": "Telugu",
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=NFf-psCV8-Y",
+      "cast_details": [],
+      "rank": 5
+    },
+    {
+      "title": "Warrant",
+      "slug": "warrant-vilangu",
       "platform": "SonyLIV",
       "platform_icon": "sonyliv",
-      "genre": "Horror Comedy",
+      "genre": "Crime Thriller",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "Two friends accidentally unleash a group of spirits during a New Year's Eve prank, setting off a chaotic supernatural adventure in this Malayalam musical horror comedy.",
+      "synopsis": "A spinoff from the acclaimed Tamil series Vilangu, following a new case that pulls investigators into a web of corruption and violence. The series expands the universe of one of Tamil television's most critically acclaimed crime dramas.",
       "cast": [],
       "director": "",
-      "why_watch": "Musical horror comedy — yes, that's a genre now, and it works",
+      "why_watch": "If Vilangu was your gateway into Tamil crime thrillers, Warrant takes you deeper. Same universe, fresh case, higher stakes.",
       "is_indian": true,
-      "watch_url": "https://www.sonyliv.com/shows/karakkam",
-      "language": "Malayalam"
+      "watch_url": "https://www.sonyliv.com/search?q=warrant",
+      "language": "Tamil",
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=3j0NBortZ3k",
+      "cast_details": [],
+      "rank": 6
     },
     {
-      "title": "Project Hail Mary",
-      "slug": "project-hail-mary",
+      "title": "Memu Copulam",
+      "slug": "memu-copulam",
+      "platform": "Zee5",
+      "platform_icon": "zee5",
+      "genre": "Comedy Crime",
+      "year": 2026,
+      "synopsis": "A Telugu comedy-crime series following a group of small-time con artists who accidentally stumble into a much bigger heist than they bargained for. Think Ocean's Eleven meets Telugu slapstick — sharp writing, chaotic energy.",
+      "cast": [],
+      "director": "",
+      "why_watch": "Telugu comedy meets crime caper. Light, fun, and doesn't take itself too seriously — the perfect weekend binge.",
+      "is_indian": true,
+      "watch_url": "https://www.zee5.com/search?q=memu+copulam",
+      "language": "Telugu",
+      "trending": false,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/f/f5/Memu_Copulam.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/f/f5/Memu_Copulam.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=WO0bg33MpsU",
+      "cast_details": [],
+      "rank": 7
+    },
+    {
+      "title": "Spider-Noir",
+      "slug": "spider-noir",
       "platform": "Prime Video",
       "platform_icon": "prime",
-      "genre": "Sci-Fi",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "Based on Andy Weir's bestseller, Ryan Gosling stars as a lone astronaut who wakes up on a spaceship with no memory, tasked with saving Earth from an extinction-level threat. From the author of The Martian.",
-      "cast": ["Ryan Gosling"],
-      "director": "Phil Lord, Christopher Miller",
-      "why_watch": "The Martian author's next story with Ryan Gosling — smart, gripping sci-fi at its best",
+      "genre": "Superhero Noir",
+      "year": 2025,
+      "synopsis": "Nicolas Cage stars as Ben Reilly, an aging private investigator in 1933 New York City hired on a case that forces him to confront his past as the city's only superhero. Available in both black-and-white and full color versions.",
+      "cast": [
+        "Nicolas Cage",
+        "Brendan Gleeson",
+        "Lamorne Morris"
+      ],
+      "director": "Harry Bradbeer",
+      "why_watch": "Nicolas Cage doing noir detective work with spider powers in the 1930s? Critics are calling it 'Cage at his best.'",
       "is_indian": false,
-      "watch_url": "https://www.primevideo.com/detail/project-hail-mary",
-      "language": "English"
+      "watch_url": "https://www.primevideo.com/search?phrase=spider-noir",
+      "language": "English",
+      "trending": true,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/81/Spider-Noir_poster.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/8/81/Spider-Noir_poster.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=OSMUZJ2LkU8",
+      "cast_details": [
+        {
+          "name": "Nicolas Cage",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Nicolas_Cage_Deauville_2013.jpg/300px-Nicolas_Cage_Deauville_2013.jpg"
+        },
+        {
+          "name": "Brendan Gleeson",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/BansheesBFI131022_%2811_of_22%29_%2852448245670%29_%28Brendan_Gleeson%29.jpg/300px-BansheesBFI131022_%2811_of_22%29_%2852448245670%29_%28Brendan_Gleeson%29.jpg"
+        },
+        {
+          "name": "Lamorne Morris",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Lamorne_Morris_by_Gage_Skidmore_%28cropped%29.jpg/300px-Lamorne_Morris_by_Gage_Skidmore_%28cropped%29.jpg"
+        }
+      ],
+      "rank": 8
     },
     {
-      "title": "Silo Season 3",
-      "slug": "silo-season-3",
-      "platform": "Apple TV+",
-      "platform_icon": "appletv",
-      "genre": "Sci-Fi Thriller",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "Rebecca Ferguson returns as Juliette Nichols in the new season, re-entering the silo with no memory of recent events. A parallel storyline reveals how the silos first came into existence centuries earlier.",
-      "cast": ["Rebecca Ferguson"],
-      "director": "",
-      "why_watch": "One of the best sci-fi shows running — the mystery only deepens",
-      "is_indian": false,
-      "watch_url": "https://tv.apple.com/show/silo",
-      "language": "English"
-    },
-    {
-      "title": "Enola Holmes 3",
-      "slug": "enola-holmes-3",
+      "title": "A Good Girl's Guide to Murder",
+      "slug": "good-girls-guide-to-murder-s2",
       "platform": "Netflix",
       "platform_icon": "netflix",
-      "genre": "Mystery",
-      "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "Millie Bobby Brown returns as Sherlock's younger sister. When Sherlock disappears on the day of Enola's wedding, she's drawn into a mystery that uncovers a larger conspiracy.",
-      "cast": ["Millie Bobby Brown", "Henry Cavill"],
-      "director": "",
-      "why_watch": "Perfect weekend watch with the family — fun, smart, and beautifully shot",
+      "genre": "Mystery Thriller",
+      "year": 2024,
+      "synopsis": "Emma Myers returns as Pip Fitz-Amobi, the amateur detective who can't stop digging. Season 2 takes a darker turn as Pip investigates a new case while dealing with the fallout of her first investigation. Based on Holly Jackson's bestselling trilogy.",
+      "cast": [
+        "Emma Myers",
+        "Zain Iqbal",
+        "Rahul Pattni"
+      ],
+      "director": "Dolly Wells",
+      "why_watch": "The YA mystery that became a global hit is back — and this time it's personal.",
       "is_indian": false,
-      "watch_url": "https://www.netflix.com/title/enola-holmes-3",
-      "language": "English"
+      "watch_url": "https://www.netflix.com/search?q=good+girl+guide+murder",
+      "language": "English",
+      "trending": false,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png/330px-A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png/330px-A_Good_Girl%27s_Guide_to_Murder_%28TV_series%29_title_card.png",
+      "trailer_url": "https://www.youtube.com/watch?v=wA39lIDm75Y",
+      "cast_details": [
+        {
+          "name": "Emma Myers",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Emma_Myers_2025_%282%29.png/300px-Emma_Myers_2025_%282%29.png"
+        },
+        {
+          "name": "Zain Iqbal",
+          "photo_url": ""
+        },
+        {
+          "name": "Rahul Pattni",
+          "photo_url": ""
+        }
+      ],
+      "rank": 9
     },
     {
-      "title": "Sparks of Tomorrow",
-      "slug": "sparks-of-tomorrow",
+      "title": "Dead Man's Wire",
+      "slug": "dead-mans-wire",
       "platform": "Netflix",
       "platform_icon": "netflix",
-      "genre": "Fantasy Anime",
+      "genre": "Thriller",
       "year": 2026,
-      "poster_url": "",
-      "backdrop_url": "",
-      "trailer_url": "",
-      "synopsis": "Set in a steam-powered Kyoto, a grieving boy and a determined girl search for a mysterious electrical catalogue that could change their lives. A visually stunning fantasy anime.",
+      "synopsis": "A taut psychological thriller about a crisis negotiator who receives a call that changes everything — the voice on the other end knows secrets about her past that no one else should. As the clock ticks down, the line between negotiator and target blurs.",
       "cast": [],
       "director": "",
-      "why_watch": "Gorgeous steampunk anime — if you loved Spirited Away's world-building, give this a shot",
+      "why_watch": "Netflix's latest edge-of-your-seat thriller. If you liked The Call or Buried, this is your cup of chai.",
       "is_indian": false,
-      "watch_url": "https://www.netflix.com/title/sparks-of-tomorrow",
-      "language": "Japanese"
+      "watch_url": "https://www.netflix.com/search?q=dead+man+wire",
+      "language": "English",
+      "trending": false,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/Dead_Man%27s_Wire_poster.jpg",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/Dead_Man%27s_Wire_poster.jpg",
+      "trailer_url": "https://www.youtube.com/watch?v=xJH8iCcoSDw",
+      "cast_details": [],
+      "rank": 10
     }
   ]
 }
