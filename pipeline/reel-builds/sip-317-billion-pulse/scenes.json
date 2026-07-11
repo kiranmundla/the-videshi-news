@@ -1,0 +1,40 @@
+{
+  "article_id": "5df9dbef-15e3-4f2d-a7fa-4fb0c1a08622",
+  "scenes": [
+    {
+      "voiceover": "",
+      "onscreen": "INDIA'S INVESTMENT MACHINE — ₹317.81 BILLION IN SIPs",
+      "image_prompt": "Hook card: India's investment machine, ₹317.81 billion SIP contributions"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "₹317.81B SIPs — JUST ₹3B SHORT OF ALL-TIME RECORD ₹320.87B",
+      "image_prompt": "SIP hero stat: ₹317.81 billion, 99% of record, +3% growth"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "EQUITY MF INFLOWS: ₹289.73B — UP 26.5% MoM REBOUND",
+      "image_prompt": "Equity mutual fund rebound: ₹289.73 billion, +26.5% month-on-month"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "5 YEARS POSITIVE — LONGEST STREAK ON RECORD",
+      "image_prompt": "Five-year positive inflow streak, longest on record"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "MID-CAPS +39% | LARGE-CAPS +34% | SMALL-CAPS +13%",
+      "image_prompt": "Fund category breakdown: mid-cap +39%, large-cap +34%, small-cap +13%"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "GOLD ETF COMEBACK: ₹34.43B IN vs ₹7.25B OUT IN MAY",
+      "image_prompt": "Gold ETF reversal: May outflows ₹7.25B to June inflows ₹34.43B"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "NRI PLAYBOOK: SIPs | MID-CAP FUNDS | GOLD ETFs",
+      "image_prompt": "NRI investor takeaways: SIPs, mid-cap rotation, gold ETFs over physical"
+    }
+  ]
+}
