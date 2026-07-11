@@ -414,12 +414,12 @@
   margin-top: 1px;
 }
 .v2-tweet-text {
-  font-size: 13.5px;
+  font-size: 12.5px;
   line-height: 1.55;
   color: #334155;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
