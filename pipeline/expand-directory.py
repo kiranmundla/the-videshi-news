@@ -47,15 +47,21 @@ def curl_json(url, headers=None, timeout=20):
 
 
 def curl_post(url, headers, data, timeout=30):
-    cmd = ["curl", "-sS", "-o", "/dev/null", "-w", "%{http_code}",
+    cmd = ["curl", "-sS", "-w", "\nHTTP_CODE:%{http_code}",
            "--max-time", str(timeout), "-X", "POST", "-d", data]
     for k, v in headers.items():
         cmd += ["-H", f"{k}: {v}"]
     cmd.append(url)
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 5)
-        return int(r.stdout.strip())
-    except Exception:
+        parts = r.stdout.rsplit("HTTP_CODE:", 1)
+        code = int(parts[-1].strip()) if len(parts) > 1 else 0
+        if code >= 400:
+            body = parts[0].strip()[:200] if parts else ""
+            log.warning(f"POST {code}: {body}")
+        return code
+    except Exception as e:
+        log.error(f"curl_post error: {e}")
         return 0
 
 
@@ -133,11 +139,16 @@ TYPE_TO_CATEGORY = {
 }
 
 
-def slugify(text):
+def slugify(text, place_id=None):
+    import hashlib
     s = text.lower().strip()
     s = re.sub(r"[^a-z0-9]+", "-", s)
     s = re.sub(r"-+", "-", s)
-    return s.strip("-")[:120]
+    s = s.strip("-")[:100]
+    if place_id:
+        h = hashlib.md5(place_id.encode()).hexdigest()[:6]
+        s = f"{s}-{h}"
+    return s
 
 
 def parse_address(addr):
@@ -194,10 +205,10 @@ def insert_batch(listings):
     if not listings:
         return 0
     ok = 0
-    url = f"{SUPABASE_URL}/rest/v1/directory_listings"
+    url = f"{SUPABASE_URL}/rest/v1/directory_listings?on_conflict=slug"
     hdrs = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}",
             "Content-Type": "application/json",
-            "Prefer": "resolution=ignore-duplicates,return=minimal"}
+            "Prefer": "resolution=merge-duplicates,return=minimal"}
     for i in range(0, len(listings), 50):
         batch = listings[i:i+50]
         code = curl_post(url, hdrs, json.dumps(batch))
@@ -227,7 +238,7 @@ def process(result, cat, seen):
     row = {
         "name": name, "category": categorize(result.get("types", []), cat),
         "address": addr, "city": p["city"], "state": p["state"],
-        "slug": slugify(f"{name}-{p['city']}"),
+        "slug": slugify(f"{name}-{p['city']}", pid),
         "google_place_id": pid, "source": "google_places",
     }
     if p["zip"]: row["zip"] = p["zip"]
