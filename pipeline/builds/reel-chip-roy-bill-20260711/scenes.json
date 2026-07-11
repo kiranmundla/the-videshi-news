@@ -1,0 +1,40 @@
+{
+  "article_id": "e03c2529-a288-439b-a0e3-046bff37a1db",
+  "scenes": [
+    {
+      "voiceover": "What if one bill in Congress could end STEM OPT, kill dual intent, and ban H-1B hiring after layoffs? That bill exists. Here's what it says.",
+      "onscreen": "ONE BILL COULD CHANGE EVERYTHING",
+      "image_prompt": "Breaking news alert card with three provisions listed"
+    },
+    {
+      "voiceover": "The H-1B lottery would be gone. Four hundred forty-two thousand applicants for eighty-five thousand slots — replaced by a wage-based ranking with a new floor at the seventy-fifth percentile.",
+      "onscreen": "LOTTERY → WAGE RANKING",
+      "image_prompt": "Lottery balls replaced by salary ranking chart with 442K stat"
+    },
+    {
+      "voiceover": "Three hundred sixty thousand Indian students rely on STEM OPT to work after graduation. This bill would abolish it entirely — cutting the primary bridge from campus to career.",
+      "onscreen": "360,000 STUDENTS AFFECTED",
+      "image_prompt": "Graduation cap with 360K number and STEM OPT abolished"
+    },
+    {
+      "voiceover": "Right now you can hold an H-1B and file for a green card at the same time. Under this bill, you'd have to choose — visa or residency, not both.",
+      "onscreen": "DUAL INTENT ENDS",
+      "image_prompt": "Fork in road between H-1B visa and green card paths"
+    },
+    {
+      "voiceover": "Microsoft just cut forty-eight hundred jobs while holding over two thousand H-1B approvals. Under this bill, that combination would be illegal.",
+      "onscreen": "4,800 CUTS vs 2,273 H-1Bs",
+      "image_prompt": "Split screen showing layoff numbers versus H-1B approvals with BANNED stamp"
+    },
+    {
+      "voiceover": "This isn't isolated. A fraud probe from the VP's office, sweeping new regulations expected in August, and another bill proposing a three-year H-1B pause are all converging at once.",
+      "onscreen": "THE WAVE IS BUILDING",
+      "image_prompt": "Timeline showing converging immigration restriction events"
+    },
+    {
+      "voiceover": "None of this is law yet. But for Indian professionals in America, the ground is shifting fast — and August is right around the corner.",
+      "onscreen": "THE GROUND IS SHIFTING",
+      "image_prompt": "Cinematic closing card with professional at crossroads near Capitol"
+    }
+  ]
+}
