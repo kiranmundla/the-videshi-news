@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T00:17:03.407170+00:00",
+  "timestamp": "2026-07-11T00:45:21.145041+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c260e95b-60e2-4500-8c02-7cac3774a159",
-      "headline": "Goldman Sachs Upgrades Rupee Forecast to 94 \u2014 What NRIs Should Know Before the Remittance Window Closes",
-      "slug": "goldman-sachs-rupee-forecast-94-nri-remittance-window-20260711",
+      "id": "e83c352e-f1d1-4f9a-88ff-fe5ae28136f9",
+      "headline": "India's Inflation Just Breached the Central Bank's Red Line. The Iran War and a Weak Monsoon Are Making It Worse.",
+      "slug": "india-inflation-breaches-rbi-4-percent-target-june-food-fuel-iran-monsoon-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "02770ee1-7241-4bfc-969d-f230d231157b",
-            "headline": "India Inc. Hedged a Record $120 Billion in June as the Rupee"
+            "article_id": "a271cbdf-8124-4fd1-8577-059e031534cb",
+            "headline": "India Just Received a Record $145 Billion From Its Diaspora."
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee currency note",
-          "reason": "The photo shows Indian rupee notes, relevant to the currency story."
+          "what_photo_shows": "Reserve Bank of India tower",
+          "reason": "The photo shows the RBI tower, relevant to the story on inflation and monetary policy."
         },
         "inline_image_mismatches": []
       },
@@ -41,13 +41,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses NRIs and their remittance strategies, making it relevant to the diaspora."
+          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a brief summary of how the rupee's performance impacts NRIs specifically, perhaps with examples.",
-          "Add a section on potential risks or considerations for NRIs when remitting money in the current market."
+          "Include more specific examples of how inflation impacts NRI investments.",
+          "Add a section on potential government responses to inflation that may affect the diaspora."
         ],
         "verdict": "pass"
       },
@@ -59,45 +59,40 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2efcd9b8-fe18-46ea-b519-dc27bc85d04f",
-      "headline": "Dr. Reddy's Posts Worst Week in Three Years as Semaglutide Supply Crisis Hands Rivals the GLP-1 Prize",
-      "slug": "dr-reddys-semaglutide-supply-crisis-worst-week-nri-pharma-20260711",
+      "id": "41c4572d-fbc7-427d-92b1-700eca1dfed1",
+      "headline": "India Tells Washington Its Forced Labour Tariff Case Has No Evidence. The Hearing Got Personal.",
+      "slug": "india-ustr-section-301-forced-labor-tariff-hearing-ficci-cii-testimony-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "4e5dfb2d-b85c-40fa-a57f-bf12a095fa94",
-            "headline": "India's Generic Ozempic Revolution Hits a Wall as Dr. Reddy'"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a semaglutide injection pen",
-          "reason": "The photo shows a semaglutide pen, relevant to the supply crisis story."
+          "what_photo_shows": "man in suit with U.S. flag",
+          "reason": "The photo plausibly shows a U.S. Trade Representative, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of Dr. Reddy's situation to NRI investors, discussing potential impacts on their investments in Indian pharma."
+          "note": "The article discusses the implications of tariffs on Indian Americans and businesses, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRI investors can navigate the current market situation.",
-          "Include a brief overview of the GLP-1 market dynamics for readers unfamiliar with the topic."
+          "Replace the hero image with one that is more relevant to the topic of trade tariffs or India-US relations.",
+          "Expand on the diaspora angle by including quotes or perspectives from Indian American business leaders affected by the tariffs."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
