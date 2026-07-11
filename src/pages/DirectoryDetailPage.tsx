@@ -487,7 +487,7 @@ export default function DirectoryDetailPage() {
       <Masthead />
       <CategoryPills />
 
-      <main style={{ flex: 1, maxWidth: 1200, margin: "0 auto", width: "100%", padding: "0 20px 64px" }}>
+      <main style={{ flex: 1, maxWidth: 1080, margin: "0 auto", width: "100%", padding: "0 20px 64px" }}>
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  HERO IMAGE                                               */}
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -755,14 +755,14 @@ export default function DirectoryDetailPage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  TWO-COLUMN LAYOUT                                        */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <div className="dir-detail-grid" style={{ marginTop: 40 }}>
+        <div className="dir-detail-grid" style={{ marginTop: 32 }}>
           <style>{`
             .dir-detail-grid {
               display: grid;
-              grid-template-columns: 1fr 340px;
-              gap: 40px;
+              grid-template-columns: 1fr 320px;
+              gap: 28px;
             }
-            @media (max-width: 768px) {
+            @media (max-width: 960px) {
               .dir-detail-grid {
                 grid-template-columns: 1fr;
               }
