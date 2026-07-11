@@ -445,11 +445,11 @@ def main():
             wider = [a for a in pool if a["published_at"] >= since_14d]
             if len(wider) > len(recent):
                 recent = wider
-        # Include body=false for listing, keep up to 50 articles per category
+        # Include body=false for listing, keep up to 200 articles per category
         cat_feed = {
             "generated_at": now.isoformat(),
             "category": slug,
-            "articles": [article_without_body(a) for a in recent[:50]],
+            "articles": [article_without_body(a) for a in recent[:200]],
         }
         path = CATEGORY_DIR / f"{slug}.json"
         path.write_text(json.dumps(cat_feed, ensure_ascii=False, separators=(",", ":")))
