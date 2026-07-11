@@ -522,6 +522,18 @@ def main():
     print("  Building directory.json...")
     directory = fetch_table(url, key, "directory_listings",
                             order="featured.desc,rating.desc.nullslast")
+    # Dedup by slug (safety net — DB should be clean but cache had 405 dupes)
+    seen_slugs = set()
+    deduped_dir = []
+    for d in directory:
+        s = d.get("slug", "")
+        if s and s in seen_slugs:
+            continue
+        seen_slugs.add(s)
+        deduped_dir.append(d)
+    if len(deduped_dir) < len(directory):
+        print(f"    ⚠ Removed {len(directory) - len(deduped_dir)} duplicate slugs")
+    directory = deduped_dir
     directory_path = DATA_DIR / "directory.json"
     directory_path.write_text(json.dumps(directory, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ directory.json ({len(directory)} listings)")
