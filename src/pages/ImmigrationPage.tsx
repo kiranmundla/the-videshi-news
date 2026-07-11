@@ -344,7 +344,7 @@ export default function ImmigrationPage() {
                   </div>
                 </div>
                 <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
-                  {news.slice(0, 15).map((article: any) => (
+                  {news.map((article: any) => (
                     <div key={article.id} className="flex-none w-[280px] md:w-[300px] snap-start">
                       <ArticleCard
                         article={article}
