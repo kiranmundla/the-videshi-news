@@ -101,11 +101,6 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
                         <p className={`text-sm leading-snug ${update.impact === "high" ? "font-bold" : "font-semibold"}`}>
                           {update.headline}
                         </p>
-                        {update.detail && (
-                          <p className="text-xs text-foreground/50 mt-1 line-clamp-1">
-                            {update.detail}
-                          </p>
-                        )}
                       </div>
                       {update.event_date && (
                         <span className="text-[10px] text-foreground/40 whitespace-nowrap mt-1 flex-shrink-0">
@@ -125,11 +120,6 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
                         <p className={`text-sm leading-snug ${update.impact === "high" ? "font-bold" : "font-semibold"}`}>
                           {update.headline}
                         </p>
-                        {update.detail && (
-                          <p className="text-xs text-foreground/50 mt-1 line-clamp-1">
-                            {update.detail}
-                          </p>
-                        )}
                       </div>
                     </div>
                   )}
