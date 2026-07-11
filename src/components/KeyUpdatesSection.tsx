@@ -41,6 +41,7 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
   const [updates, setUpdates] = useState<KeyUpdate[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     getKeyUpdates(category, limit).then((data) => {
@@ -51,7 +52,13 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
 
   if (loading || updates.length === 0) return null;
 
-  const grouped = groupByMonth(updates);
+  const filtered = showAll ? updates : updates.filter((u) => u.impact === "high");
+  if (filtered.length === 0 && !showAll) {
+    // No high-impact updates — fall back to showing all
+    return null;
+  }
+  const hasMedium = updates.some((u) => u.impact !== "high");
+  const grouped = groupByMonth(filtered);
   const displayGroups = expanded ? grouped : grouped.slice(0, 1);
   const hasMore = grouped.length > 1;
 
@@ -64,15 +71,25 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
             {title || "Key Developments"}
           </h2>
         </div>
-        {hasMore && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1"
-          >
-            {expanded ? "Show less" : `All months`}
-            <ChevronRight className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : ""}`} />
-          </button>
-        )}
+        <div className="flex items-center gap-3">
+          {hasMedium && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="text-sm text-foreground/50 hover:text-foreground/70 font-medium"
+            >
+              {showAll ? "Major only" : "Show all"}
+            </button>
+          )}
+          {hasMore && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1"
+            >
+              {expanded ? "Show less" : `All months`}
+              <ChevronRight className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : ""}`} />
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="bg-card border border-border rounded-xl overflow-hidden">
