@@ -38,6 +38,7 @@ export default function HeroSection({ lead, side }: Props) {
   return (
     <section className="pt-8 md:pt-10 pb-10 md:pb-14">
       <div className="container">
+        <p className="text-[11px] font-bold tracking-[1.5px] uppercase text-muted-foreground mb-4">FEATURED</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
