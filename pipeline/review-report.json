@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T00:45:21.145041+00:00",
+  "timestamp": "2026-07-11T01:15:18.743642+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e83c352e-f1d1-4f9a-88ff-fe5ae28136f9",
-      "headline": "India's Inflation Just Breached the Central Bank's Red Line. The Iran War and a Weak Monsoon Are Making It Worse.",
-      "slug": "india-inflation-breaches-rbi-4-percent-target-june-food-fuel-iran-monsoon-20260710",
+      "id": "921a7792-806b-42f3-8be7-0d44a7c5d376",
+      "headline": "Ranveer Singh Personally Called Kalyani Priyadarshan to Join Pralay. She Said Yes.",
+      "slug": "ranveer-singh-pralay-kalyani-priyadarshan-hindi-debut-zombie-thriller-300-crore-august-2026-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "a271cbdf-8124-4fd1-8577-059e031534cb",
-            "headline": "India Just Received a Record $145 Billion From Its Diaspora."
+            "article_id": "ad48eb4f-3b51-40d6-aff8-3cd34241f1ec",
+            "headline": "Ranveer Singh Just Took India's Biggest Film to Japan. The N"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India tower",
-          "reason": "The photo shows the RBI tower, relevant to the story on inflation and monetary policy."
+          "what_photo_shows": "Ranveer Singh at a premiere",
+          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -40,14 +40,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses implications for NRI investors, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the film's significance and potential appeal to NRI audiences, particularly in the context of Bollywood's evolution."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how inflation impacts NRI investments.",
-          "Add a section on potential government responses to inflation that may affect the diaspora."
+          "Expand on the diaspora angle by including specific examples of how the film may resonate with NRI audiences.",
+          "Consider adding quotes or insights from Kalyani Priyadarshan or Ranveer Singh to enhance the narrative."
         ],
         "verdict": "pass"
       },
@@ -59,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "41c4572d-fbc7-427d-92b1-700eca1dfed1",
-      "headline": "India Tells Washington Its Forced Labour Tariff Case Has No Evidence. The Hearing Got Personal.",
-      "slug": "india-ustr-section-301-forced-labor-tariff-hearing-ficci-cii-testimony-20260710",
+      "id": "682cbdeb-f379-4c90-8c91-3889840a5bcb",
+      "headline": "Vicky Kaushal Has Blocked 18 Months for One Film. Mahavatar Might Be the Biggest Bet in Bollywood.",
+      "slug": "vicky-kaushal-mahavatar-18-months-parashurama-shraddha-kapoor-amar-kaushik-maddock-2028-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +69,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with U.S. flag",
-          "reason": "The photo plausibly shows a U.S. Trade Representative, relevant to the story."
+          "what_photo_shows": "Vicky Kaushal at an event",
+          "reason": "The photo shows Vicky Kaushal, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -78,21 +78,21 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 8,
+          "issue": "The image of Vicky Kaushal aligns well with the article's focus on his upcoming film, but it could be more directly related to the film's theme."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of tariffs on Indian Americans and businesses, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses a major Bollywood project that may interest the diaspora, particularly those invested in Indian cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of trade tariffs or India-US relations.",
-          "Expand on the diaspora angle by including quotes or perspectives from Indian American business leaders affected by the tariffs."
+          "Include more context on how the film Mahavatar connects with Indian culture and mythology for diaspora readers.",
+          "Add quotes or insights from Vicky Kaushal or Amar Kaushik to enhance the narrative and provide a personal touch."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
