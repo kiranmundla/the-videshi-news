@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Videshi — Design Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Surface system — layered grays */
+  --bg-base: #0a0a0a;
+  --bg-surface-1: #111111;
+  --bg-surface-2: #161616;
+  --bg-surface-3: #1a1a1a;
+  --bg-surface-4: #222222;
+  --bg-hover: #2a2a2a;
+
+  /* Text */
+  --text-primary: #E4E2D8;    /* warm cream — NOT pure white */
+  --text-secondary: rgba(228,226,216,0.6);
+  --text-muted: rgba(228,226,216,0.35);
+
+  /* Accents */
+  --gold: #D4A843;
+  --gold-dim: rgba(212,168,67,0.15);
+  --gold-glow: rgba(212,168,67,0.25);
+  --magenta: #AD1457;
+  --saffron: #FF9933;
+  --teal: #0D9488;
+  --red-brand: #A32D2D;
+
+  /* Borders */
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-light: rgba(255,255,255,0.1);
+
+  /* Type */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --section-gap: 56px;
+  --card-pad: 24px;
+  --radius: 12px;
+  --radius-lg: 16px;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--bg-surface-1);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.masthead .logo {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.masthead .logo span {
+  color: var(--gold);
+}
+
+.masthead nav {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.masthead nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.masthead nav a:hover {
+  color: var(--gold);
+}
+
+/* ── Section labels ── */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.section-label.entertainment { color: var(--magenta); }
+.section-label.entertainment::after { background: rgba(173,20,87,0.2); }
+.section-label.immigration { color: var(--saffron); }
+.section-label.immigration::after { background: rgba(255,153,51,0.15); }
+.section-label.tech { color: var(--teal); }
+.section-label.tech::after { background: rgba(13,148,136,0.15); }
+
+/* ── Hero Section ── */
+.hero {
+  padding: var(--section-gap) 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.hero-lead {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  background: var(--bg-surface-2);
+}
+
+.hero-lead img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-lead .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 24px 20px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+}
+
+.hero-lead .category-pill {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212,168,67,0.12);
+  border: 1px solid rgba(212,168,67,0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.hero-lead h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-side-item {
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  transition: background 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.hero-side-item:hover {
+  background: var(--bg-surface-2);
+  border-color: var(--border-light);
+}
+
+.hero-side-item img {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hero-side-item h3 {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.hero-side-item .meta {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Article cards — lead+list ── */
+.lead-list {
+  padding: var(--section-gap) 0;
+}
+
+.lead-list-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.lead-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+
+.lead-card:hover {
+  border-color: var(--border-light);
+}
+
+.lead-card img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+
+.lead-card .body {
+  padding: var(--card-pad);
+}
+
+.lead-card h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.lead-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.list-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.list-item:last-child { border-bottom: none; }
+
+.list-item:hover { opacity: 0.8; }
+
+.list-item img {
+  width: 80px;
+  height: 56px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.list-item h4 {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.list-item .meta {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Movie scroll strip ── */
+.movie-section {
+  padding: var(--section-gap) 0 32px;
+}
+
+.movie-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 0;
+}
+.movie-scroll::-webkit-scrollbar { display: none; }
+
+.movie-card {
+  flex-shrink: 0;
+  width: 150px;
+  cursor: pointer;
+}
+
+.movie-poster {
+  width: 150px;
+  height: 225px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-surface-2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s;
+}
+
+.movie-card:hover .movie-poster {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-poster .badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 8px 6px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.movie-poster .status {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #fff;
+  background: #16a34a;
+}
+
+.movie-poster .rating {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.movie-title {
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.movie-genre {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* ── Directory Detail Page Mockup ── */
+.dir-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 60px 0;
+}
+
+.mockup-label {
+  text-align: center;
+  padding: 40px 0 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dir-hero {
+  width: 100%;
+  aspect-ratio: 21/9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-surface-2);
+}
+
+.dir-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dir-hero .gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(transparent, var(--bg-base));
+}
+
+.dir-title-card {
+  margin-top: -48px;
+  position: relative;
+  z-index: 2;
+}
+
+.dir-breadcrumb {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.dir-breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dir-breadcrumb a:hover { color: var(--gold); }
+
+.dir-breadcrumb .sep { margin: 0 6px; opacity: 0.4; }
+
+.dir-name {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.dir-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.dir-pill {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: rgba(255,255,255,0.03);
+  color: var(--text-secondary);
+}
+
+.dir-pill.community {
+  border-color: rgba(139,92,246,0.3);
+  color: #a78bfa;
+  background: rgba(139,92,246,0.08);
+}
+
+.dir-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.dir-rating .stars {
+  color: var(--gold);
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.dir-rating .score {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.dir-rating .count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.dir-cta-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.dir-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+  text-decoration: none;
+}
+
+.dir-cta.primary {
+  background: var(--gold);
+  color: #0a0a0a;
+}
+
+.dir-cta.primary:hover {
+  background: #e0b84e;
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+
+.dir-cta.secondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.dir-cta.secondary:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Two-column layout for detail */
+.dir-content {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.dir-about h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.dir-about p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.dir-services {
+  margin-top: 32px;
+}
+
+.dir-services h3 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.dir-tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dir-tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+/* Contact sidebar */
+.dir-sidebar {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+}
+
+.dir-contact-card {
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+}
+
+.dir-contact-card h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.dir-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.dir-contact-row:last-child { border-bottom: none; }
+
+.dir-contact-row .icon {
+  width: 18px;
+  text-align: center;
+  color: var(--gold);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.dir-contact-row a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.dir-contact-row a:hover { color: var(--gold); }
+
+.dir-hours {
+  margin-top: 20px;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+}
+
+.dir-hours h4 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.dir-hours-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.dir-hours-row .day { color: var(--text-secondary); }
+.dir-hours-row .time { color: var(--text-primary); font-weight: 500; }
+.dir-hours-row.today .day { color: var(--gold); font-weight: 600; }
+.dir-hours-row.today .time { color: var(--gold); font-weight: 600; }
+
+/* ── Footer ── */
+.site-footer {
+  margin-top: var(--section-gap);
+  padding: 40px 0;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .lead-list-grid { grid-template-columns: 1fr; }
+  .dir-content { grid-template-columns: 1fr; }
+  .dir-name { font-size: 28px; }
+  .masthead nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ MASTHEAD ═══ -->
+<header class="masthead">
+  <div class="container masthead-inner">
+    <div class="logo">The <span>Videshi</span></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">News</a>
+      <a href="#">Immigration</a>
+      <a href="#">Technology</a>
+      <a href="#">Events</a>
+      <a href="#">Directory</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ═══ HERO SECTION ═══ -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-lead">
+        <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=800&h=500&fit=crop" alt="Hero" />
+        <div class="overlay">
+          <div class="category-pill">Immigration</div>
+          <h2>H-1B Visa Cap Reached in Record Time as USCIS Confirms Final Selections</h2>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-side-item">
+          <img src="https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=144&h=144&fit=crop" alt="" />
+          <div>
+            <h3>Tech Giants Report Record India Hiring Despite Global Slowdown</h3>
+            <div class="meta">Technology · 3h ago</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=144&h=144&fit=crop" alt="" />
+          <div>
+            <h3>India's UPI Crosses 20 Billion Monthly Transactions Milestone</h3>
+            <div class="meta">Markets & Finance · 5h ago</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <img src="https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=144&h=144&fit=crop" alt="" />
+          <div>
+            <h3>Bollywood's Global Box Office Hits $2B in First Half of 2026</h3>
+            <div class="meta">Entertainment · 6h ago</div>
+          </div>
+        </div>
+        <div class="hero-side-item">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=144&h=144&fit=crop" alt="" />
+          <div>
+            <h3>NRI Remittances to India Touch All-Time High of $125 Billion</h3>
+            <div class="meta">NRI World · 8h ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NOW IN THEATERS ═══ -->
+  <section class="movie-section">
+    <div class="section-label entertainment">Now in Theaters</div>
+    <div class="movie-scroll">
+      <div class="movie-card">
+        <div class="movie-poster">
+          <img src="https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg" alt="Toy Story 5" />
+          <div class="badge">
+            <span class="status">Now Playing</span>
+            <span class="rating">★ 92%</span>
+          </div>
+        </div>
+        <div class="movie-title">Toy Story 5</div>
+        <div class="movie-genre">Animation · Andrew Stanton</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:40px;">🎬</div>
+          <div class="badge">
+            <span class="status">Now Playing</span>
+            <span class="rating">★ 94%</span>
+          </div>
+        </div>
+        <div class="movie-title">Obsession</div>
+        <div class="movie-genre">Horror Thriller · Curry Barker</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:40px;">🎬</div>
+          <div class="badge">
+            <span class="status">Now Playing</span>
+            <span class="rating">★ 88%</span>
+          </div>
+        </div>
+        <div class="movie-title">Backrooms</div>
+        <div class="movie-genre">Psychological Horror</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg, #1a1a2e, #0f3460);">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;padding:16px;text-align:center;">
+            <div style="color:var(--saffron);font-size:9px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:8px;">🇮🇳 Desi</div>
+            <div style="color:#fff;font-size:14px;font-weight:700;font-family:var(--font-serif);">Dadi Ki Shaadi</div>
+            <div style="color:var(--text-muted);font-size:10px;margin-top:4px;">Hindi · Family Comedy</div>
+          </div>
+          <div class="badge">
+            <span class="status" style="background:var(--saffron);">Opening</span>
+          </div>
+        </div>
+        <div class="movie-title">Dadi Ki Shaadi</div>
+        <div class="movie-genre">Family Comedy · Hindi</div>
+      </div>
+      <div class="movie-card">
+        <div class="movie-poster" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:40px;">🎬</div>
+          <div class="badge">
+            <span class="status">Now Playing</span>
+            <span class="rating">★ 85%</span>
+          </div>
+        </div>
+        <div class="movie-title">The Last Stop</div>
+        <div class="movie-genre">Drama · Indie</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TECHNOLOGY — Lead+List ═══ -->
+  <section class="lead-list">
+    <div class="section-label tech">Technology</div>
+    <div class="lead-list-grid">
+      <div class="lead-card">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=375&fit=crop" alt="" />
+        <div class="body">
+          <h3>Indian-Origin CEO Leads $4B AI Chip Startup's IPO on NASDAQ</h3>
+          <p>The largest Indian-founded semiconductor company in Silicon Valley history goes public at a valuation that signals the diaspora's growing dominance in chip design.</p>
+        </div>
+      </div>
+      <div class="list-items">
+        <div class="list-item">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=160&h=112&fit=crop" alt="" />
+          <div>
+            <h4>Infosys Lands $2.3B Deal with European Bank for Cloud Migration</h4>
+            <div class="meta">Technology · 2h ago</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=160&h=112&fit=crop" alt="" />
+          <div>
+            <h4>India's Digital Public Infrastructure Model Adopted by 12 More Countries</h4>
+            <div class="meta">Technology · 4h ago</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=160&h=112&fit=crop" alt="" />
+          <div>
+            <h4>Google Expands Bengaluru AI Research Lab, Adds 2,000 Engineers</h4>
+            <div class="meta">Technology · 7h ago</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=160&h=112&fit=crop" alt="" />
+          <div>
+            <h4>IIT Graduates Dominate Y Combinator's Summer 2026 Batch</h4>
+            <div class="meta">Technology · 9h ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DIRECTORY DETAIL PAGE MOCKUP           -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="dir-divider"></div>
+  <div class="mockup-label">▼ Directory Detail Page Mockup ▼</div>
+
+  <!-- Hero image -->
+  <div class="dir-hero">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=500&fit=crop" alt="Restaurant" />
+    <div class="gradient"></div>
+  </div>
+
+  <!-- Title area -->
+  <div class="dir-title-card">
+    <div class="dir-breadcrumb">
+      <a href="#">Directory</a>
+      <span class="sep">›</span>
+      <a href="#">Catering & Food</a>
+      <span class="sep">›</span>
+      <span style="color: var(--text-secondary)">Saffron Kitchen & Bar</span>
+    </div>
+
+    <h1 class="dir-name">Saffron Kitchen & Bar</h1>
+
+    <div class="dir-pills">
+      <span class="dir-pill community">South Indian Community</span>
+      <span class="dir-pill">Catering</span>
+      <span class="dir-pill">Upscale Dining</span>
+      <span class="dir-pill">Vegetarian Options</span>
+    </div>
+
+    <div class="dir-rating">
+      <span class="stars">★★★★★</span>
+      <span class="score">4.7</span>
+      <span class="count">(238 reviews)</span>
+    </div>
+
+    <div class="dir-cta-row">
+      <a href="#" class="dir-cta primary">Call Now</a>
+      <a href="#" class="dir-cta secondary">Get Directions</a>
+      <a href="#" class="dir-cta secondary">Share</a>
+    </div>
+  </div>
+
+  <!-- Two-column content -->
+  <div class="dir-content">
+    <div class="dir-main">
+      <div class="dir-about">
+        <h3>About</h3>
+        <p>Saffron Kitchen & Bar has been a cornerstone of the Bay Area's Indian dining scene since 2008. Specializing in authentic South Indian cuisine with a modern twist, the restaurant sources spices directly from Kerala and Tamil Nadu. Their weekend brunch buffet has become a beloved gathering point for the local Indian community, featuring over 40 dishes rotating weekly. The restaurant also offers full-service catering for weddings, pujas, and corporate events, with packages for 50–500 guests.</p>
+      </div>
+
+      <div class="dir-services">
+        <h3>Services</h3>
+        <div class="dir-tag-grid">
+          <span class="dir-tag">Dine-in</span>
+          <span class="dir-tag">Takeout</span>
+          <span class="dir-tag">Delivery</span>
+          <span class="dir-tag">Wedding Catering</span>
+          <span class="dir-tag">Corporate Events</span>
+          <span class="dir-tag">Private Dining</span>
+          <span class="dir-tag">Puja Catering</span>
+          <span class="dir-tag">Weekend Brunch Buffet</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="dir-sidebar">
+      <div class="dir-contact-card">
+        <h4>Contact</h4>
+        <div class="dir-contact-row">
+          <span class="icon">✦</span>
+          <span>742 Valencia St, San Francisco, CA 94110</span>
+        </div>
+        <div class="dir-contact-row">
+          <span class="icon">✦</span>
+          <a href="#">(415) 555-0198</a>
+        </div>
+        <div class="dir-contact-row">
+          <span class="icon">✦</span>
+          <a href="#">saffronkitchensf.com</a>
+        </div>
+        <div class="dir-contact-row">
+          <span class="icon">✦</span>
+          <span>Hindi, Tamil, English</span>
+        </div>
+      </div>
+
+      <div class="dir-hours">
+        <h4>Hours</h4>
+        <div class="dir-hours-row">
+          <span class="day">Mon–Thu</span>
+          <span class="time">11:30 AM – 10:00 PM</span>
+        </div>
+        <div class="dir-hours-row today">
+          <span class="day">Fri (Today)</span>
+          <span class="time">11:30 AM – 11:00 PM</span>
+        </div>
+        <div class="dir-hours-row">
+          <span class="day">Sat</span>
+          <span class="time">10:00 AM – 11:00 PM</span>
+        </div>
+        <div class="dir-hours-row">
+          <span class="day">Sun</span>
+          <span class="time">10:00 AM – 9:00 PM</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">© 2026 The Videshi · News for the Diaspora</div>
+</footer>
+
+</body>
+</html>

@@ -195,34 +195,7 @@ export default function IndexV2() {
     fetchStaticJSON();
   }, []);
 
-  // ── Scroll position save/restore ──
-  useEffect(() => {
-    return () => {
-      sessionStorage.setItem("homeScrollY", window.scrollY.toString());
-    };
-  }, []);
-
-  useEffect(() => {
-    if (loading) return;
-    const savedY = sessionStorage.getItem("homeScrollY");
-    if (!savedY) return;
-    const targetY = parseInt(savedY, 10);
-    if (targetY <= 0) return;
-    sessionStorage.removeItem("homeScrollY");
-
-    requestAnimationFrame(() => {
-      window.scrollTo(0, targetY);
-      let attempts = 0;
-      const retry = () => {
-        if (Math.abs(window.scrollY - targetY) > 50 && attempts < 10) {
-          window.scrollTo(0, targetY);
-          attempts++;
-          requestAnimationFrame(retry);
-        }
-      };
-      requestAnimationFrame(retry);
-    });
-  }, [loading]);
+  // ── Scroll position save/restore ── (handled by useScrollRestore in App.tsx)
 
   // ── Derive layout data ──
   const layout = useMemo(() => {

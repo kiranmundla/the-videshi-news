@@ -167,7 +167,7 @@ export default function ArticleCard({
   const hasImage = isValidImage(article.hero_image_url);
   const accent = accentFor(article.category);
   const saveScroll = () => {
-    sessionStorage.setItem("homeScrollY", window.scrollY.toString());
+    // Scroll position is now saved globally by useScrollRestore hook
   };
 
   // Runtime orientation detection for images without w/h URL params

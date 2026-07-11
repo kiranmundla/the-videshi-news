@@ -297,37 +297,7 @@ export default function Index() {
       });
   }, []);
 
-  // Save scroll position when leaving the homepage
-  useEffect(() => {
-    return () => {
-      sessionStorage.setItem("homeScrollY", window.scrollY.toString());
-    };
-  }, []);
-
-  // Restore scroll position once content has rendered
-  useEffect(() => {
-    if (loading) return;
-    const savedY = sessionStorage.getItem("homeScrollY");
-    if (!savedY) return;
-    const targetY = parseInt(savedY, 10);
-    if (targetY <= 0) return;
-    sessionStorage.removeItem("homeScrollY");
-
-    // With cached data, content renders instantly — use rAF for one-pass restore
-    requestAnimationFrame(() => {
-      window.scrollTo(0, targetY);
-      // Fallback: retry a few times for lazy-loaded images that change layout
-      let attempts = 0;
-      const retry = () => {
-        if (Math.abs(window.scrollY - targetY) > 50 && attempts < 10) {
-          window.scrollTo(0, targetY);
-          attempts++;
-          requestAnimationFrame(retry);
-        }
-      };
-      requestAnimationFrame(retry);
-    });
-  }, [loading]);
+  // Scroll position save/restore handled by useScrollRestore in App.tsx
 
   const layout = useMemo(() => {
     const featuredId = featuredArticle?.id;
