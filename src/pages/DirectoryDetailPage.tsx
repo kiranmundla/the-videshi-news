@@ -480,7 +480,7 @@ export default function DirectoryDetailPage() {
         <div
           style={{
             width: "100%",
-            aspectRatio: "21/9",
+            maxHeight: 480,
             borderRadius: 16,
             overflow: "hidden",
             position: "relative",
@@ -492,7 +492,7 @@ export default function DirectoryDetailPage() {
             <img
               src={heroSrc}
               alt={listing.name}
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              style={{ width: "100%", height: "auto", maxHeight: 480, objectFit: "contain", display: "block", margin: "0 auto" }}
               onError={() => setHeroError(true)}
             />
           ) : (
