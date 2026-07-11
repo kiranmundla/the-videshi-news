@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-11T09:46:15.184145+00:00",
+  "timestamp": "2026-07-11T12:45:33.426787+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "905d92c4-689b-4a3d-bce6-fb6a168a7ebc",
-      "headline": "A Minister Called Them a 'Butter Chicken Tsunami.' A Preacher Threatened to Burn Their Temples. Then New Zealand Rolled Out the Red Carpet.",
-      "slug": "nz-anti-indian-hate-butter-chicken-tsunami-modi-strategic-partnership-20260711",
+      "id": "9330f520-7754-4919-904b-0db914181b0c",
+      "headline": "Modi Signs a Strategic Partnership in Auckland. Outside the Arena, 300,000 Indian Kiwis Are Living Through a Racism Crisis.",
+      "slug": "modi-new-zealand-strategic-partnership-anti-indian-racism-spark-arena-diaspora-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Auckland skyline",
-          "reason": "The photo shows the Auckland skyline, relevant to the story's location."
+          "what_photo_shows": "Indian Prime Minister Narendra Modi",
+          "reason": "The photo shows Narendra Modi, relevant to the story about his visit."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Modi does not match the article's focus on the racism crisis faced by the Indian community in New Zealand."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the Indian diaspora in New Zealand and their experiences with racism, which is relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the challenges faced by the Indian community in New Zealand.",
+          "Expand on the diaspora angle by including more personal stories or quotes from Indian Kiwis affected by the racism crisis."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (818\u2192939 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "dc13581f-44f5-4f6b-80f9-52827cc6cf7c",
+      "headline": "An Indian American Congressman Was Detained at Gunpoint in the West Bank. He Says It Made Him More Likely to Run for President.",
+      "slug": "ro-khanna-indian-american-congressman-detained-israeli-settlers-west-bank-2028-presidential-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ro Khanna, congressman from California",
+          "reason": "The photo shows Ro Khanna, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Indian diaspora's experiences and challenges in New Zealand, making it relevant for NRI readers."
+          "note": "The article effectively connects Ro Khanna's experiences and political stance to the Indian American community, highlighting the significance of his potential presidential run."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from diaspora members to enhance personal connection.",
-          "Include more context on the significance of Modi's visit for the Indian community."
+          "Include more direct quotes from Ro Khanna to enhance the personal narrative.",
+          "Provide additional context on the implications of Khanna's visit for Indian Americans and U.S.-Israel relations."
         ],
         "verdict": "pass"
       },
