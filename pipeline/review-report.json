@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-11T12:45:33.426787+00:00",
+  "timestamp": "2026-07-11T13:15:33.724207+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -7,13 +7,13 @@
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "9330f520-7754-4919-904b-0db914181b0c",
-      "headline": "Modi Signs a Strategic Partnership in Auckland. Outside the Arena, 300,000 Indian Kiwis Are Living Through a Racism Crisis.",
-      "slug": "modi-new-zealand-strategic-partnership-anti-indian-racism-spark-arena-diaspora-20260711",
+      "id": "61351d58-de52-4c4c-878b-52e406c7f7c8",
+      "headline": "Netflix Drops the Date for Operation Safed Sagar. It\u2019s the Kargil Story India\u2019s Been Waiting to Stream.",
+      "slug": "operation-safed-sagar-netflix-august-7-kargil-war-iaf-golden-arrows-siddharth-jimmy-shergill-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,57 +21,75 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Indian Prime Minister Narendra Modi",
-          "reason": "The photo shows Narendra Modi, relevant to the story about his visit."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of Modi does not match the article's focus on the racism crisis faced by the Indian community in New Zealand."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the Indian diaspora in New Zealand and their experiences with racism, which is relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the challenges faced by the Indian community in New Zealand.",
-          "Expand on the diaspora angle by including more personal stories or quotes from Indian Kiwis affected by the racism crisis."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (818\u2192939 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "dc13581f-44f5-4f6b-80f9-52827cc6cf7c",
-      "headline": "An Indian American Congressman Was Detained at Gunpoint in the West Bank. He Says It Made Him More Likely to Run for President.",
-      "slug": "ro-khanna-indian-american-congressman-detained-israeli-settlers-west-bank-2028-presidential-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Ro Khanna, congressman from California",
-          "reason": "The photo shows Ro Khanna, who is the subject of the story."
+          "what_photo_shows": "A man in a plaid shirt",
+          "reason": "The photo plausibly shows actor Siddharth, relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DapBL4jqd6N/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the Kargil War or the Netflix series, making it irrelevant to the article's subject."
+          }
+        ],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of Siddharth does not match the article's focus on the Kargil War and the Operation Safed Sagar series."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Kargil War narrative to the Indian diaspora, highlighting their emotional ties and the significance of the series for NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant link, such as a trailer or promotional content for Operation Safed Sagar.",
+          "Consider using an image that directly relates to the Kargil War or the Netflix series to better match the article's content."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DapBL4jqd6N/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cb6d8473-1b5d-44e8-904c-741395bf3b88",
+      "headline": "Matt Damon Called Mumbai the First Real Audience for The Odyssey. Then He Named the Indian Director He\u2019s Owed a Film for Twenty Years.",
+      "slug": "matt-damon-odyssey-mumbai-premiere-shekhar-kapur-nolan-tom-holland-india-first-audience-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Official poster for The Odyssey",
+          "reason": "The photo shows a poster for The Odyssey, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DanZX9uoNm-/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the content of the article regarding Matt Damon and the film premiere."
+          },
+          {
+            "url": "https://youtube.com/watch?v=Mzw2ttJD2qQ",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified to be related to the premiere or comments made by Matt Damon or Christopher Nolan."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -79,17 +97,19 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Ro Khanna's experiences and political stance to the Indian American community, highlighting the significance of his potential presidential run."
+          "note": "The article effectively connects the Hollywood premiere to the Indian diaspora, highlighting the significance of the event for NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from Ro Khanna to enhance the personal narrative.",
-          "Provide additional context on the implications of Khanna's visit for Indian Americans and U.S.-Israel relations."
+          "Ensure that all embedded links are directly relevant to the article's content.",
+          "Consider adding more context about the significance of the film for Indian audiences."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DanZX9uoNm-/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=Mzw2ttJD2qQ",
         "promoted to published"
       ],
       "revised": false,
