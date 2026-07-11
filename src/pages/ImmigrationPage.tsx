@@ -326,38 +326,21 @@ export default function ImmigrationPage() {
           </div>
         ) : (
           <>
-            {/* ── Immigration News (grid with load-more) ─────────── */}
-            {news.length > 0 && (
-              <section className="mb-12">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">📰</span>
-                    <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-12">
-                  {(showAll ? news : news.slice(0, 9)).map((article: any) => (
-                    <ArticleCard
-                      key={article.id}
-                      article={article}
-                      variant="card"
-                      hideCategory
-                      isKeyUpdate={keyUpdateSlugs.has(article.slug)}
-                    />
-                  ))}
-                </div>
-                {!showAll && news.length > 9 && (
-                  <div className="flex justify-center mt-8">
-                    <button
-                      onClick={() => setShowAll(true)}
-                      className="px-6 py-2.5 rounded-lg border border-border bg-card hover:bg-foreground/[0.04] text-sm font-semibold transition-colors"
-                    >
-                      Show all {news.length} articles
-                    </button>
-                  </div>
-                )}
-              </section>
-            )}
+            {/* ── Key Developments ────────────────────────────── */}
+            <KeyUpdatesSection
+              category="immigration"
+              title="Key Immigration Developments"
+              limit={20}
+              className="mb-8"
+            />
+
+            {/* ── Data Trackers ────────────────────────────────── */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+              <GreenCardCard data={bulletin} />
+              <ConsulateCard data={waits} />
+              <H1BCard data={h1b} />
+              <ProcessingCard data={processing} />
+            </div>
 
             {/* ── Visa Appointment Tracker Banner ────────────── */}
             <Link
@@ -383,21 +366,32 @@ export default function ImmigrationPage() {
               </div>
             </Link>
 
-            {/* ── Key Developments ────────────────────────────── */}
-            <KeyUpdatesSection
-              category="immigration"
-              title="Key Immigration Developments"
-              limit={20}
-              className="mb-8"
-            />
-
-            {/* ── Data Trackers ────────────────────────────────── */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
-              <GreenCardCard data={bulletin} />
-              <ConsulateCard data={waits} />
-              <H1BCard data={h1b} />
-              <ProcessingCard data={processing} />
-            </div>
+            {/* ── Immigration News (horizontal scroll) ─────────── */}
+            {news.length > 0 && (
+              <section className="mb-12">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">📰</span>
+                    <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
+                  </div>
+                  <Link to="/immigration/news" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
+                    View all <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+                  {news.slice(0, 15).map((article: any) => (
+                    <div key={article.id} className="flex-none w-[280px] md:w-[300px] snap-start">
+                      <ArticleCard
+                        article={article}
+                        variant="card"
+                        hideCategory
+                        isKeyUpdate={keyUpdateSlugs.has(article.slug)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* ── Visa Guides Banner ──────────────────────────── */}
             <Link

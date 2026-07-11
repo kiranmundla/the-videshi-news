@@ -308,6 +308,7 @@ export async function getImmigrationNews(limit: number = 6): Promise<any[]> {
   return (data || []).map((a: any) => ({
     ...a,
     title: a.headline || a.title,
+    hero_image_url: a.image_url || "",
     excerpt: a.subheadline || a.excerpt || "",
   }));
 }
