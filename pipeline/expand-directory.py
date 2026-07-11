@@ -236,19 +236,22 @@ def process(result, cat, seen):
     pu = photo_urls(result.get("photos", []))
 
     row = {
-        "name": name, "category": categorize(result.get("types", []), cat),
-        "address": addr, "city": p["city"], "state": p["state"],
+        "name": name,
+        "category": categorize(result.get("types", []), cat),
+        "address": addr,
+        "city": p["city"],
+        "state": p["state"],
+        "zip": p["zip"],
         "slug": slugify(f"{name}-{p['city']}", pid),
-        "google_place_id": pid, "source": "google_places",
+        "google_place_id": pid,
+        "source": "google_places",
+        "latitude": loc.get("lat"),
+        "longitude": loc.get("lng"),
+        "rating": result.get("rating"),
+        "review_count": result.get("user_ratings_total"),
+        "image_url": pu[0] if pu else None,
+        "photos": json.dumps(pu) if pu else None,
     }
-    if p["zip"]: row["zip"] = p["zip"]
-    if loc.get("lat") is not None: row["latitude"] = loc["lat"]
-    if loc.get("lng") is not None: row["longitude"] = loc["lng"]
-    if result.get("rating") is not None: row["rating"] = result["rating"]
-    if result.get("user_ratings_total") is not None: row["review_count"] = result["user_ratings_total"]
-    if pu:
-        row["image_url"] = pu[0]
-        row["photos"] = json.dumps(pu)
 
     seen.add(pid)
     return row

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-11T01:15:18.743642+00:00",
+  "timestamp": "2026-07-11T02:15:27.646429+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,23 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "921a7792-806b-42f3-8be7-0d44a7c5d376",
-      "headline": "Ranveer Singh Personally Called Kalyani Priyadarshan to Join Pralay. She Said Yes.",
-      "slug": "ranveer-singh-pralay-kalyani-priyadarshan-hindi-debut-zombie-thriller-300-crore-august-2026-20260710",
+      "id": "ae0d0024-dfdc-4c7d-a917-cfe0e8aabb63",
+      "headline": "The Student Visa Crackdown Will Cost America Half a Trillion Dollars. Indian Students Are Half the Story",
+      "slug": "student-visa-crackdown-gdp-cost-piie-indian-students-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ad48eb4f-3b51-40d6-aff8-3cd34241f1ec",
-            "headline": "Ranveer Singh Just Took India's Biggest Film to Japan. The N"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh at a premiere",
-          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
+          "what_photo_shows": "graduates in caps and gowns",
+          "reason": "The photo shows a graduation scene relevant to the student visa story."
         },
         "inline_image_mismatches": []
       },
@@ -35,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of student visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the film's significance and potential appeal to NRI audiences, particularly in the context of Bollywood's evolution."
+          "quality": 9,
+          "note": "The article effectively highlights the impact of visa policies on Indian students, making it relevant to the NRI audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle by including specific examples of how the film may resonate with NRI audiences.",
-          "Consider adding quotes or insights from Kalyani Priyadarshan or Ranveer Singh to enhance the narrative."
+          "Consider adding a relevant image that depicts Indian students or the context of studying abroad.",
+          "Include quotes or testimonials from Indian students affected by the visa policies to enhance the personal connection."
         ],
         "verdict": "pass"
       },
@@ -59,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "682cbdeb-f379-4c90-8c91-3889840a5bcb",
-      "headline": "Vicky Kaushal Has Blocked 18 Months for One Film. Mahavatar Might Be the Biggest Bet in Bollywood.",
-      "slug": "vicky-kaushal-mahavatar-18-months-parashurama-shraddha-kapoor-amar-kaushik-maddock-2028-20260710",
+      "id": "b4abb847-970e-4525-b687-98d2a919136c",
+      "headline": "The Government Wants Ten Years of Your Social Media Handles. It Has Not Defined What Gets You Denied",
+      "slug": "uscis-social-media-vetting-ten-years-handles-immigration-forms-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vicky Kaushal at an event",
-          "reason": "The photo shows Vicky Kaushal, who is relevant to the story."
+          "what_photo_shows": "social media app icons on smartphone",
+          "reason": "The photo subject is relevant to the story about social media disclosure."
         },
         "inline_image_mismatches": []
       },
@@ -78,19 +73,19 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image of Vicky Kaushal aligns well with the article's focus on his upcoming film, but it could be more directly related to the film's theme."
+          "score": 5,
+          "issue": "The image does not directly relate to the topic of social media or immigration."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a major Bollywood project that may interest the diaspora, particularly those invested in Indian cinema."
+          "quality": 8,
+          "note": "The article discusses immigration policies that directly affect Indian professionals in the U.S., making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on how the film Mahavatar connects with Indian culture and mythology for diaspora readers.",
-          "Add quotes or insights from Vicky Kaushal or Amar Kaushik to enhance the narrative and provide a personal touch."
+          "Consider using a more relevant image that reflects social media or immigration themes.",
+          "Add a section that includes personal stories or testimonials from affected individuals to enhance relatability."
         ],
         "verdict": "pass"
       },
