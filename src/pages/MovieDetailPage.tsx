@@ -1,0 +1,861 @@
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import Masthead from "@/components/Masthead";
+import SiteFooter from "@/components/SiteFooter";
+
+/* ── Types ── */
+
+interface TheaterMovie {
+  title: string;
+  slug: string;
+  genre: string;
+  year: number;
+  poster_url: string;
+  rating: string;
+  rating_source: string;
+  release_date: string;
+  status: "now_playing" | "opening" | "coming_soon";
+  cast: string[];
+  director: string;
+  why_watch: string;
+  is_indian: boolean;
+  ticket_url: string;
+  language: string;
+}
+
+interface StreamingPick {
+  title: string;
+  slug: string;
+  platform: string;
+  platform_icon: string;
+  genre: string;
+  year: number;
+  poster_url: string;
+  backdrop_url: string;
+  trailer_url: string;
+  synopsis: string;
+  cast: string[];
+  director: string;
+  why_watch: string;
+  is_indian: boolean;
+  watch_url: string;
+  language: string;
+  trending?: boolean;
+}
+
+type MovieSource = "theater" | "streaming";
+
+interface UnifiedMovie {
+  source: MovieSource;
+  title: string;
+  slug: string;
+  genre: string;
+  year: number;
+  poster_url: string;
+  backdrop_url?: string;
+  rating?: string;
+  rating_source?: string;
+  release_date?: string;
+  status?: "now_playing" | "opening" | "coming_soon";
+  platform?: string;
+  platform_icon?: string;
+  trailer_url?: string;
+  synopsis?: string;
+  cast: string[];
+  director: string;
+  why_watch: string;
+  is_indian: boolean;
+  ticket_url?: string;
+  watch_url?: string;
+  language: string;
+  trending?: boolean;
+}
+
+/* ── Constants ── */
+
+const STATUS_CONFIG: Record<string, { label: string; bg: string }> = {
+  now_playing: { label: "Now Playing", bg: "#16a34a" },
+  opening: { label: "Opening This Week", bg: "#d97706" },
+  coming_soon: { label: "Coming Soon", bg: "#64748b" },
+};
+
+const PLATFORM_COLORS: Record<string, string> = {
+  netflix: "#E50914",
+  prime: "#00A8E1",
+  hotstar: "#0c0c0c",
+  "apple tv+": "#000",
+  hulu: "#1CE783",
+  hbo: "#B535F6",
+  max: "#B535F6",
+  "disney+": "#113CCF",
+  jiocinema: "#E8078A",
+  zee5: "#8230C6",
+  sonyliv: "#001F5B",
+};
+
+function getPlatformColor(icon: string): string {
+  return PLATFORM_COLORS[icon] || "#555";
+}
+
+/* ── Helpers ── */
+
+function extractYouTubeId(url: string): string | null {
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function formatRelease(dateStr: string): string {
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+function theaterToUnified(m: TheaterMovie): UnifiedMovie {
+  return {
+    source: "theater",
+    title: m.title,
+    slug: m.slug,
+    genre: m.genre,
+    year: m.year,
+    poster_url: m.poster_url,
+    rating: m.rating,
+    rating_source: m.rating_source,
+    release_date: m.release_date,
+    status: m.status,
+    cast: m.cast,
+    director: m.director,
+    why_watch: m.why_watch,
+    is_indian: m.is_indian,
+    ticket_url: m.ticket_url,
+    language: m.language,
+  };
+}
+
+function streamingToUnified(p: StreamingPick): UnifiedMovie {
+  return {
+    source: "streaming",
+    title: p.title,
+    slug: p.slug,
+    genre: p.genre,
+    year: p.year,
+    poster_url: p.poster_url,
+    backdrop_url: p.backdrop_url,
+    trailer_url: p.trailer_url,
+    synopsis: p.synopsis,
+    platform: p.platform,
+    platform_icon: p.platform_icon,
+    cast: p.cast,
+    director: p.director,
+    why_watch: p.why_watch,
+    is_indian: p.is_indian,
+    watch_url: p.watch_url,
+    language: p.language,
+    trending: p.trending,
+  };
+}
+
+/* ── Related card ── */
+
+function RelatedCard({ movie }: { movie: UnifiedMovie }) {
+  const [imgErr, setImgErr] = useState(false);
+  const accentColor = movie.source === "streaming"
+    ? getPlatformColor(movie.platform_icon || movie.platform?.toLowerCase() || "")
+    : "#AD1457";
+
+  return (
+    <Link
+      to={`/movies/${movie.slug}`}
+      style={{ textDecoration: "none", color: "inherit", flexShrink: 0 }}
+    >
+      <div
+        style={{
+          width: 120,
+          height: 180,
+          borderRadius: 8,
+          overflow: "hidden",
+          background: "#1a1a1a",
+        }}
+      >
+        {movie.poster_url && !imgErr ? (
+          <img
+            src={movie.poster_url}
+            alt={movie.title}
+            loading="lazy"
+            onError={() => setImgErr(true)}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              background: `linear-gradient(135deg, ${accentColor}22, #1a1a2e)`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 8,
+            }}
+          >
+            <span style={{ color: "#fff", fontSize: 11, fontWeight: 600, textAlign: "center" }}>
+              {movie.title}
+            </span>
+          </div>
+        )}
+      </div>
+      <div style={{ width: 120, marginTop: 4 }}>
+        <div
+          style={{
+            fontSize: 11,
+            fontWeight: 600,
+            lineHeight: 1.3,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {movie.title}
+        </div>
+        <div style={{ fontSize: 9, color: "#999" }}>
+          {movie.source === "streaming" ? movie.platform : movie.genre}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+/* ── Main page ── */
+
+export default function MovieDetailPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
+  const [movie, setMovie] = useState<UnifiedMovie | null>(null);
+  const [related, setRelated] = useState<UnifiedMovie[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [imgError, setImgError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        // Fetch both sources in parallel
+        const [theaterRes, streamingRes] = await Promise.allSettled([
+          fetch("/data/now-in-theaters.json").then((r) => r.ok ? r.json() : null),
+          fetch("/data/streaming-picks.json").then((r) => r.ok ? r.json() : null),
+        ]);
+
+        if (cancelled) return;
+
+        const theaterData = theaterRes.status === "fulfilled" ? theaterRes.value : null;
+        const streamingData = streamingRes.status === "fulfilled" ? streamingRes.value : null;
+
+        const theaterMovies: UnifiedMovie[] = (theaterData?.movies || []).map(theaterToUnified);
+        const streamingMovies: UnifiedMovie[] = (streamingData?.picks || []).map(streamingToUnified);
+
+        // Theater takes priority
+        const found =
+          theaterMovies.find((m) => m.slug === slug) ||
+          streamingMovies.find((m) => m.slug === slug) ||
+          null;
+
+        setMovie(found);
+
+        // Related: same source first, then other source
+        if (found) {
+          const sameSource = (found.source === "theater" ? theaterMovies : streamingMovies)
+            .filter((m) => m.slug !== slug);
+          const otherSource = (found.source === "theater" ? streamingMovies : theaterMovies)
+            .filter((m) => m.slug !== slug);
+          setRelated([...sameSource, ...otherSource].slice(0, 6));
+        }
+      } catch {
+        // ignore
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => { cancelled = true; };
+  }, [slug]);
+
+  /* Reset image error on slug change */
+  useEffect(() => { setImgError(false); }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Masthead />
+        <main className="container py-20 text-center text-muted-foreground">Loading…</main>
+      </div>
+    );
+  }
+
+  if (!movie) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Masthead />
+        <main className="container py-20 text-center">
+          <p className="smallcaps text-primary">404</p>
+          <h1 className="font-serif text-3xl mt-3">Movie not found</h1>
+          <Link to="/" className="text-primary mt-6 inline-block hover:underline">
+            ← Back to homepage
+          </Link>
+        </main>
+        <SiteFooter lastUpdated={null} />
+      </div>
+    );
+  }
+
+  const isTheater = movie.source === "theater";
+  const accentColor = isTheater
+    ? "#AD1457"
+    : getPlatformColor(movie.platform_icon || movie.platform?.toLowerCase() || "");
+  const statusCfg = movie.status ? STATUS_CONFIG[movie.status] : null;
+  const youtubeId = movie.trailer_url ? extractYouTubeId(movie.trailer_url) : null;
+  const isYouTubeSearch = movie.trailer_url?.includes("youtube.com/results");
+  const heroImage = movie.backdrop_url || movie.poster_url;
+  const isPortraitHero = !movie.backdrop_url && !!movie.poster_url;
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <Helmet>
+        <title>{movie.title} — {isTheater ? "Now in Theaters" : "What to Watch"} | The Videshi</title>
+        <meta name="description" content={movie.why_watch || `${movie.title} — ${movie.genre}`} />
+        {movie.poster_url && <meta property="og:image" content={movie.poster_url} />}
+        <meta property="og:title" content={`${movie.title} | The Videshi`} />
+        <link rel="canonical" href={`https://www.thevideshi.com/movies/${slug}`} />
+      </Helmet>
+
+      <Masthead />
+
+      <main style={{ maxWidth: 720, margin: "0 auto", padding: "0 16px", flex: 1, width: "100%" }}>
+        {/* Back link */}
+        <div style={{ padding: "16px 0 8px" }}>
+          <button
+            onClick={() => {
+              if (window.history.length > 1) navigate(-1);
+              else navigate("/");
+            }}
+            style={{
+              color: "#888",
+              fontSize: 12,
+              textDecoration: "none",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase" as const,
+              fontWeight: 600,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
+          >
+            ← Back
+          </button>
+        </div>
+
+        {/* ── Hero section ── */}
+        <div
+          style={{
+            position: "relative",
+            borderRadius: 14,
+            overflow: "hidden",
+            background: "#111",
+            marginBottom: 24,
+          }}
+        >
+          {heroImage && !imgError ? (
+            <div style={{ position: "relative" }}>
+              <img
+                src={heroImage}
+                alt={movie.title}
+                onError={() => setImgError(true)}
+                style={{
+                  width: "100%",
+                  maxHeight: isPortraitHero ? 420 : 360,
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+              {/* Gradient overlay */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "60%",
+                  background: "linear-gradient(transparent, rgba(0,0,0,0.85))",
+                }}
+              />
+              {/* Title overlay */}
+              <div style={{ position: "absolute", bottom: 16, left: 16, right: 16 }}>
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8, flexWrap: "wrap" }}>
+                  {/* Source badges */}
+                  {isTheater && statusCfg && (
+                    <span
+                      style={{
+                        background: statusCfg.bg,
+                        color: "#fff",
+                        fontSize: 10,
+                        fontWeight: 700,
+                        padding: "3px 8px",
+                        borderRadius: 4,
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase" as const,
+                      }}
+                    >
+                      {statusCfg.label}
+                    </span>
+                  )}
+                  {!isTheater && movie.platform && (
+                    <span
+                      style={{
+                        background: accentColor,
+                        color: "#fff",
+                        fontSize: 10,
+                        fontWeight: 700,
+                        padding: "3px 8px",
+                        borderRadius: 4,
+                      }}
+                    >
+                      {movie.platform}
+                    </span>
+                  )}
+                  {movie.trending && (
+                    <span
+                      style={{
+                        background: "linear-gradient(135deg, #ff6b35, #e50914)",
+                        color: "#fff",
+                        fontSize: 10,
+                        fontWeight: 700,
+                        padding: "3px 8px",
+                        borderRadius: 4,
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase" as const,
+                      }}
+                    >
+                      🔥 Trending
+                    </span>
+                  )}
+                  <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>{movie.genre}</span>
+                  {movie.year > 0 && (
+                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>{movie.year}</span>
+                  )}
+                  {movie.language && movie.language !== "English" && (
+                    <span
+                      style={{
+                        background: "rgba(255,255,255,0.15)",
+                        color: "#fff",
+                        fontSize: 10,
+                        fontWeight: 600,
+                        padding: "2px 6px",
+                        borderRadius: 3,
+                      }}
+                    >
+                      {movie.language}
+                    </span>
+                  )}
+                  {movie.is_indian && (
+                    <span
+                      style={{
+                        background: "linear-gradient(135deg, #ff9933, #138808)",
+                        color: "#fff",
+                        fontSize: 9,
+                        fontWeight: 700,
+                        padding: "2px 6px",
+                        borderRadius: 4,
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase" as const,
+                      }}
+                    >
+                      🇮🇳 Desi
+                    </span>
+                  )}
+                </div>
+                <h1
+                  style={{
+                    color: "#fff",
+                    fontFamily: "var(--font-serif, 'Playfair Display', serif)",
+                    fontSize: "clamp(22px, 5vw, 32px)",
+                    fontWeight: 800,
+                    lineHeight: 1.2,
+                    margin: 0,
+                  }}
+                >
+                  {movie.title}
+                </h1>
+              </div>
+            </div>
+          ) : (
+            /* No-image fallback hero */
+            <div
+              style={{
+                padding: "40px 20px 24px",
+                background: `linear-gradient(135deg, ${accentColor}33 0%, #1a1a2e 50%, #0f3460 100%)`,
+              }}
+            >
+              <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 12, flexWrap: "wrap" }}>
+                {isTheater && statusCfg && (
+                  <span
+                    style={{
+                      background: statusCfg.bg,
+                      color: "#fff",
+                      fontSize: 10,
+                      fontWeight: 700,
+                      padding: "3px 8px",
+                      borderRadius: 4,
+                      letterSpacing: "0.04em",
+                      textTransform: "uppercase" as const,
+                    }}
+                  >
+                    {statusCfg.label}
+                  </span>
+                )}
+                {!isTheater && movie.platform && (
+                  <span
+                    style={{
+                      background: accentColor,
+                      color: "#fff",
+                      fontSize: 10,
+                      fontWeight: 700,
+                      padding: "3px 8px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    {movie.platform}
+                  </span>
+                )}
+                <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 12 }}>{movie.genre}</span>
+                {movie.year > 0 && (
+                  <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>{movie.year}</span>
+                )}
+                {movie.language && movie.language !== "English" && (
+                  <span
+                    style={{
+                      background: "rgba(255,255,255,0.15)",
+                      color: "#fff",
+                      fontSize: 10,
+                      fontWeight: 600,
+                      padding: "2px 6px",
+                      borderRadius: 3,
+                    }}
+                  >
+                    {movie.language}
+                  </span>
+                )}
+                {movie.is_indian && (
+                  <span
+                    style={{
+                      background: "linear-gradient(135deg, #ff9933, #138808)",
+                      color: "#fff",
+                      fontSize: 9,
+                      fontWeight: 700,
+                      padding: "2px 6px",
+                      borderRadius: 4,
+                    }}
+                  >
+                    🇮🇳 Desi
+                  </span>
+                )}
+              </div>
+              <h1
+                style={{
+                  color: "#fff",
+                  fontFamily: "var(--font-serif, 'Playfair Display', serif)",
+                  fontSize: "clamp(24px, 5vw, 36px)",
+                  fontWeight: 800,
+                  lineHeight: 1.2,
+                  margin: 0,
+                }}
+              >
+                {movie.title}
+              </h1>
+            </div>
+          )}
+        </div>
+
+        {/* ── Quick info bar ── */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 12,
+            alignItems: "center",
+            marginBottom: 20,
+            paddingBottom: 16,
+            borderBottom: "1px solid hsl(var(--rule))",
+          }}
+        >
+          {movie.rating && (
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <span style={{ color: "#fbbf24", fontSize: 16 }}>★</span>
+              <span style={{ fontSize: 15, fontWeight: 700 }}>{movie.rating}</span>
+              {movie.rating_source && (
+                <span style={{ fontSize: 11, color: "#999" }}>{movie.rating_source}</span>
+              )}
+            </div>
+          )}
+          {movie.release_date && (
+            <span style={{ fontSize: 13, color: "#666" }}>
+              {formatRelease(movie.release_date)}
+            </span>
+          )}
+          {movie.director && (
+            <span style={{ fontSize: 13, color: "#666" }}>
+              Dir. {movie.director}
+            </span>
+          )}
+        </div>
+
+        {/* ── Why Watch — editorial callout ── */}
+        {movie.why_watch && (
+          <div
+            style={{
+              borderLeft: `3px solid ${accentColor}`,
+              padding: "12px 16px",
+              marginBottom: 24,
+              background: "hsl(var(--muted) / 0.3)",
+              borderRadius: "0 8px 8px 0",
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                fontFamily: "var(--font-serif, 'Source Serif 4', serif)",
+                fontSize: 16,
+                lineHeight: 1.6,
+                fontStyle: "italic",
+                color: "hsl(var(--foreground))",
+              }}
+            >
+              {movie.why_watch}
+            </p>
+          </div>
+        )}
+
+        {/* ── Trailer ── */}
+        {movie.trailer_url && (
+          <div style={{ marginBottom: 24 }}>
+            <h2
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase" as const,
+                color: "#888",
+                marginBottom: 10,
+              }}
+            >
+              Trailer
+            </h2>
+            {youtubeId ? (
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  paddingBottom: "56.25%",
+                  borderRadius: 10,
+                  overflow: "hidden",
+                  background: "#000",
+                }}
+              >
+                <iframe
+                  src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
+                  title={`${movie.title} trailer`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              </div>
+            ) : (
+              <a
+                href={movie.trailer_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 16px",
+                  background: "#111",
+                  color: "#fff",
+                  borderRadius: 10,
+                  textDecoration: "none",
+                  fontSize: 14,
+                  fontWeight: 600,
+                }}
+              >
+                <span style={{ fontSize: 20 }}>▶</span>
+                {isYouTubeSearch ? "Search for trailer on YouTube" : "Watch Trailer"}
+              </a>
+            )}
+          </div>
+        )}
+
+        {/* ── Synopsis (streaming) ── */}
+        {movie.synopsis && (
+          <div style={{ marginBottom: 24 }}>
+            <h2
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase" as const,
+                color: "#888",
+                marginBottom: 10,
+              }}
+            >
+              Synopsis
+            </h2>
+            <p
+              style={{
+                fontFamily: "var(--font-serif, 'Source Serif 4', serif)",
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: "hsl(var(--foreground))",
+                margin: 0,
+              }}
+            >
+              {movie.synopsis}
+            </p>
+          </div>
+        )}
+
+        {/* ── Cast & Director ── */}
+        {(movie.cast.length > 0 || movie.director) && (
+          <div style={{ marginBottom: 24 }}>
+            {movie.director && (
+              <div style={{ marginBottom: 8 }}>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "#888",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase" as const,
+                  }}
+                >
+                  Director
+                </span>
+                <p style={{ margin: "4px 0 0", fontSize: 15 }}>{movie.director}</p>
+              </div>
+            )}
+            {movie.cast.length > 0 && (
+              <div>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "#888",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase" as const,
+                  }}
+                >
+                  Cast
+                </span>
+                <p style={{ margin: "4px 0 0", fontSize: 15 }}>{movie.cast.join(", ")}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── CTA Button ── */}
+        <div style={{ marginBottom: 32 }}>
+          {isTheater && movie.ticket_url && (
+            <a
+              href={movie.ticket_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "#d97706",
+                color: "#fff",
+                fontSize: 14,
+                fontWeight: 700,
+                padding: "12px 24px",
+                borderRadius: 8,
+                textDecoration: "none",
+                transition: "opacity 0.2s",
+              }}
+            >
+              🎟️ Find Showtimes
+            </a>
+          )}
+          {!isTheater && movie.watch_url && (
+            <a
+              href={movie.watch_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: accentColor,
+                color: "#fff",
+                fontSize: 14,
+                fontWeight: 700,
+                padding: "12px 24px",
+                borderRadius: 8,
+                textDecoration: "none",
+                transition: "opacity 0.2s",
+              }}
+            >
+              ▶ Watch on {movie.platform}
+            </a>
+          )}
+        </div>
+
+        {/* ── More to Watch ── */}
+        {related.length > 0 && (
+          <div
+            style={{
+              marginBottom: 40,
+              paddingTop: 20,
+              borderTop: "1px solid hsl(var(--rule))",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase" as const,
+                color: "#888",
+                marginBottom: 14,
+              }}
+            >
+              More to Watch
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                gap: 14,
+                overflowX: "auto",
+                paddingBottom: 8,
+                WebkitOverflowScrolling: "touch",
+                scrollbarWidth: "none",
+              }}
+            >
+              {related.map((rm) => (
+                <RelatedCard key={rm.slug} movie={rm} />
+              ))}
+            </div>
+          </div>
+        )}
+      </main>
+
+      <SiteFooter lastUpdated={null} />
+    </div>
+  );
+}

@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, useParams } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import React, { Suspense } from "react";
+import useScrollRestore from "@/hooks/useScrollRestore";
 
 // ── Keep Index (homepage) eagerly loaded for fastest first paint ──
 import Index from "./pages/IndexV2.tsx";
@@ -43,8 +44,9 @@ const DirectoryPage = React.lazy(() => import("./pages/DirectoryPage.tsx"));
 const DirectoryDetailPage = React.lazy(() => import("./pages/DirectoryDetailPage.tsx"));
 const SubmitListingPage = React.lazy(() => import("./pages/SubmitListingPage.tsx"));
 
-// Watch / Streaming
+// Watch / Streaming / Movies
 const WatchDetailPage = React.lazy(() => import("./pages/WatchDetailPage.tsx"));
+const MovieDetailPage = React.lazy(() => import("./pages/MovieDetailPage.tsx"));
 
 // Classifieds
 const ClassifiedsPage = React.lazy(() => import("./pages/ClassifiedsPage.tsx"));
@@ -105,7 +107,19 @@ const BestEVsGuide = React.lazy(() => import("./pages/CarGuides.tsx").then(m => 
 const IndiaVsUSDrivingGuide = React.lazy(() => import("./pages/CarGuides.tsx").then(m => ({ default: m.IndiaVsUSDrivingGuide })));
 const TechProfessionalsGuide = React.lazy(() => import("./pages/CarGuides.tsx").then(m => ({ default: m.TechProfessionalsGuide })));
 
+/* Redirect /watch/:slug → /movies/:slug for backward compat */
+function WatchRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/movies/${slug}`} replace />;
+}
+
 const queryClient = new QueryClient();
+
+/** Invisible component that runs the scroll-restore hook inside BrowserRouter */
+function ScrollRestoreRoot() {
+  useScrollRestore();
+  return null;
+}
 
 const App = () => (
   <HelmetProvider>
@@ -114,6 +128,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollRestoreRoot />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -124,7 +139,8 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/links" element={<LinksPage />} />
               <Route path="/articles/:slug" element={<ArticlePage />} />
-              <Route path="/watch/:slug" element={<WatchDetailPage />} />
+              <Route path="/movies/:slug" element={<MovieDetailPage />} />
+              <Route path="/watch/:slug" element={<WatchRedirect />} />
               <Route path="/travel" element={<TravelPage />} />
               <Route path="/travel/visa-list/:status/:category" element={<VisaListPage />} />
               <Route path="/travel/:destination" element={<TravelDestination />} />

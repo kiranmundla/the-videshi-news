@@ -480,7 +480,7 @@ export default function WatchDetailPage() {
               {relatedPicks.map((rp) => (
                 <Link
                   key={rp.slug}
-                  to={`/watch/${rp.slug}`}
+                  to={`/movies/${rp.slug}`}
                   style={{ textDecoration: "none", color: "inherit", flexShrink: 0 }}
                 >
                   <div

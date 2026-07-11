@@ -256,7 +256,7 @@ export default function StreamingPicks() {
           <PosterCard
             key={pick.slug}
             pick={pick}
-            onClick={() => navigate(`/watch/${pick.slug}`)}
+            onClick={() => navigate(`/movies/${pick.slug}`)}
           />
         ))}
       </ScrollWrap>

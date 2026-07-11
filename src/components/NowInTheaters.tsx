@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ScrollWrap from "./homepage/ScrollWrap";
 
 interface TheaterMovie {
@@ -231,130 +232,10 @@ function MovieCard({ movie, onClick }: { movie: TheaterMovie; onClick: () => voi
   );
 }
 
-/* ── Tooltip / hover card ── */
-function MovieTooltip({ movie, onClose }: { movie: TheaterMovie; onClose: () => void }) {
-  return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: "rgba(0,0,0,0.6)",
-        backdropFilter: "blur(4px)",
-        zIndex: 1000,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-      }}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          background: "#fff",
-          borderRadius: 16,
-          maxWidth: 400,
-          width: "100%",
-          padding: "24px 20px",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-          position: "relative",
-          maxHeight: "80vh",
-          overflowY: "auto",
-        }}
-      >
-        <button
-          onClick={onClose}
-          style={{
-            position: "absolute",
-            top: 12,
-            right: 12,
-            background: "none",
-            border: "none",
-            fontSize: 20,
-            cursor: "pointer",
-            color: "#999",
-            lineHeight: 1,
-          }}
-        >
-          ×
-        </button>
-
-        <div
-          style={{
-            fontSize: 10,
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            color: STATUS_CONFIG[movie.status]?.bg || "#666",
-            marginBottom: 6,
-          }}
-        >
-          {STATUS_CONFIG[movie.status]?.label} {movie.status !== "now_playing" && `· ${formatRelease(movie.release_date)}`}
-        </div>
-
-        <h3
-          style={{
-            fontSize: 22,
-            fontWeight: 700,
-            fontFamily: "var(--font-serif, 'Playfair Display', serif)",
-            margin: "0 0 4px",
-            color: "#1a1a1a",
-            lineHeight: 1.2,
-          }}
-        >
-          {movie.title}
-          {movie.is_indian && <span style={{ marginLeft: 8, fontSize: 16 }}>🇮🇳</span>}
-        </h3>
-
-        <div style={{ color: "#888", fontSize: 12, marginBottom: 12 }}>
-          {movie.genre} · {movie.year}
-          {movie.director && ` · Dir. ${movie.director}`}
-        </div>
-
-        {movie.cast.length > 0 && (
-          <div style={{ color: "#555", fontSize: 12, marginBottom: 10 }}>
-            <strong>Cast:</strong> {movie.cast.join(", ")}
-          </div>
-        )}
-
-        <p style={{ color: "#333", fontSize: 14, lineHeight: 1.6, margin: "0 0 16px" }}>
-          {movie.why_watch}
-        </p>
-
-        <a
-          href={movie.ticket_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            background: "#d97706",
-            color: "#fff",
-            fontWeight: 700,
-            fontSize: 13,
-            padding: "10px 20px",
-            borderRadius: 8,
-            textDecoration: "none",
-            transition: "background 0.2s",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.background = "#b45309")}
-          onMouseOut={(e) => (e.currentTarget.style.background = "#d97706")}
-        >
-          🎟️ Find Showtimes
-        </a>
-      </div>
-    </div>
-  );
-}
-
 /* ── Main component ── */
 export default function NowInTheaters() {
   const [data, setData] = useState<TheaterData | null>(null);
-  const [selectedMovie, setSelectedMovie] = useState<TheaterMovie | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/data/now-in-theaters.json")
@@ -392,15 +273,10 @@ export default function NowInTheaters() {
           <MovieCard
             key={movie.slug}
             movie={movie}
-            onClick={() => setSelectedMovie(movie)}
+            onClick={() => navigate(`/movies/${movie.slug}`)}
           />
         ))}
       </ScrollWrap>
-
-      {/* Movie detail modal */}
-      {selectedMovie && (
-        <MovieTooltip movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
-      )}
     </section>
   );
 }
