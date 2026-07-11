@@ -38,11 +38,11 @@ export default function HeroSection({ lead, side }: Props) {
   return (
     <section className="pt-8 md:pt-10 pb-10 md:pb-14">
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-4 lg:max-h-[500px]" style={{ aspectRatio: "16/10" }}>
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/10" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
@@ -77,36 +77,34 @@ export default function HeroSection({ lead, side }: Props) {
           </Link>
 
           {/* Side articles */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col">
             {side.slice(0, 3).map((a) => {
               const img = isValidImage(a.hero_image_url);
               return (
                 <Link
                   key={a.id}
                   to={`/articles/${a.slug}`}
-                  className="group flex gap-3.5 pb-4 border-b last:border-b-0 last:pb-0 transition-transform hover:translate-x-0.5"
+                  className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-stone-50 transition-colors rounded"
                   style={{ borderColor: "hsl(var(--rule))" }}
                 >
                   {img && (
-                    <div className="w-[120px] min-w-[120px] bg-stone-100 rounded overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                    <div className="w-[72px] min-w-[72px] h-[72px] bg-stone-100 rounded overflow-hidden">
                       <HeroImage
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"
                         className="w-full h-full object-cover"
-                        
-                        
                       />
                     </div>
                   )}
-                  <div className="min-w-0">
+                  <div className="flex-1 min-w-0">
                     <p
                       className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                       style={{ color: catColor(a.category) }}
                     >
                       {a.category?.replace("-", " ")}
                     </p>
-                    <h3 className="font-serif text-base font-bold leading-snug group-hover:text-primary transition-colors line-clamp-3">
+                    <h3 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {a.title}
                     </h3>
                     <p className="text-xs text-muted-foreground mt-1">
