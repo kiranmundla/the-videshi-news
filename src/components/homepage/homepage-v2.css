@@ -380,7 +380,7 @@
   flex-shrink: 0;
 }
 .v2-tweet-card-body {
-  padding: 16px 18px 14px;
+  padding: 14px 16px 10px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -414,18 +414,18 @@
   margin-top: 1px;
 }
 .v2-tweet-text {
-  font-size: 12.5px;
-  line-height: 1.55;
+  font-size: 12px;
+  line-height: 1.5;
   color: #334155;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .v2-tweet-footer {
-  margin-top: 12px;
-  padding-top: 10px;
+  margin-top: 8px;
+  padding-top: 8px;
   border-top: 1px solid #F1F5F9;
 }
 .v2-tweet-cta {
