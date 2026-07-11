@@ -42,32 +42,32 @@ CATEGORY_PROMPTS = {
         "examples": "EB-2 India retrogressed to Jan 2012, H-4 EAD rule rescinded, USCIS fee increase finalized, New H-1B registration system proposed, India consulate wait times drop to 30 days"
     },
     "technology": {
-        "slug": "Technology",
+        "slug": "technology",
         "focus": "major tech product launches, significant funding rounds by Indian-origin founders, big tech layoffs affecting Indian workers, AI/semiconductor policy, Indian tech company expansions, startup acquisitions, tech policy changes",
         "examples": "Infosys announces 10,000 US hires, TCS wins $2B deal, Indian-origin CEO appointed at major tech firm, New AI regulation proposed, India's semiconductor fab breaks ground"
     },
     "news": {
-        "slug": "News",
+        "slug": "news",
         "focus": "major India-US diplomatic developments, significant political changes affecting diaspora, trade agreements, defense deals, major incidents involving Indian nationals abroad, bilateral relations shifts",
         "examples": "India-US trade deal signed, PM Modi visits Washington, Major hate crime against Indian student, India joins new international alliance"
     },
     "markets-finance": {
-        "slug": "Markets & Finance",
+        "slug": "markets-finance",
         "focus": "major market movements affecting NRI investments, RBI policy changes, India GDP milestones, rupee movements, NRI taxation changes, FEMA/LRS updates, mutual fund regulation changes",
         "examples": "Sensex crosses 80,000, Rupee hits record low against dollar, RBI cuts repo rate, New NRI tax rules for property, LRS limit increased"
     },
     "entertainment": {
-        "slug": "Entertainment",
+        "slug": "entertainment",
         "focus": "major Bollywood/Indian film releases and box office, award wins, Indian artists at global events, streaming platform deals, cultural milestones",
         "examples": "Indian film wins at Cannes, Major Bollywood release crosses $100M, Indian artist headlines Coachella, New streaming deal for Indian content"
     },
     "sports": {
-        "slug": "Sports",
+        "slug": "sports",
         "focus": "major cricket results and milestones, Indian athletes at global events, IPL developments, World Cup moments, Olympic qualifications, Indian sports personalities achievements",
         "examples": "India wins T20 World Cup, Kohli breaks batting record, Indian wrestler wins Olympic gold, IPL franchise sold for record price"
     },
     "nri-world": {
-        "slug": "NRI World",
+        "slug": "nri-world",
         "focus": "notable NRI achievements, diaspora community milestones, Indian-origin political appointments, cultural events, community incidents, diaspora organization developments",
         "examples": "Indian-American appointed federal judge, Desi community raises $10M for charity, Indian-origin student wins national science fair"
     },
@@ -78,25 +78,25 @@ def supa_get(path, params=None):
     url = f"{SUPA_URL}/rest/v1/{path}"
     if params:
         url += "?" + urllib.parse.urlencode(params, safe="*,.:!()=")
-    req = urllib.request.Request(url, headers={
-        "apikey": SUPA_KEY,
-        "Authorization": f"Bearer {SUPA_KEY}",
-    })
-    return json.loads(urllib.request.urlopen(req).read())
+    result = subprocess.run(
+        ["curl", "-s", url,
+         "-H", f"apikey: {SUPA_KEY}",
+         "-H", f"Authorization: Bearer {SUPA_KEY}"],
+        capture_output=True, text=True, timeout=30
+    )
+    return json.loads(result.stdout)
 
 def supa_post(path, data, headers_extra=None):
     url = f"{SUPA_URL}/rest/v1/{path}"
-    body = json.dumps(data).encode()
-    hdrs = {
-        "apikey": SUPA_KEY,
-        "Authorization": f"Bearer {SUPA_KEY}",
-        "Content-Type": "application/json",
-        "Prefer": "return=representation",
-    }
-    if headers_extra:
-        hdrs.update(headers_extra)
-    req = urllib.request.Request(url, data=body, headers=hdrs, method="POST")
-    return json.loads(urllib.request.urlopen(req).read())
+    body = json.dumps(data)
+    cmd = ["curl", "-s", "-X", "POST", url,
+         "-H", f"apikey: {SUPA_KEY}",
+         "-H", f"Authorization: Bearer {SUPA_KEY}",
+         "-H", "Content-Type: application/json",
+         "-H", "Prefer: return=representation",
+         "-d", body]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    return json.loads(result.stdout)
 
 def fetch_articles(category_slug, days):
     """Fetch recent published articles for a category."""

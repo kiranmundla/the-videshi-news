@@ -3,6 +3,9 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import Masthead from "@/components/Masthead";
+import KeyUpdatesSection from "@/components/KeyUpdatesSection";
+import ArticleCard from "@/components/ArticleCard";
+import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import {
@@ -256,6 +259,12 @@ export default function ImmigrationPage() {
   const [h1b, setH1B] = useState<H1BDataRow[]>([]);
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false);
+  const [keyUpdateSlugs, setKeyUpdateSlugs] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    getKeyUpdateSlugs("immigration").then(setKeyUpdateSlugs);
+  }, []);
 
   useEffect(() => {
     Promise.all([
@@ -263,7 +272,7 @@ export default function ImmigrationPage() {
       getConsulateWaitTimes([...INDIA_CONSULATES]),
       getProcessingTimes(),
       getH1BData(),
-      getImmigrationNews(8),
+      getImmigrationNews(30),
     ]).then(([b, w, p, h, n]) => {
       setBulletin(b);
       setWaits(w);
@@ -317,7 +326,7 @@ export default function ImmigrationPage() {
           </div>
         ) : (
           <>
-            {/* ── Immigration News (horizontal scroll) ─────────── */}
+            {/* ── Immigration News (grid with load-more) ─────────── */}
             {news.length > 0 && (
               <section className="mb-12">
                 <div className="flex items-center justify-between mb-5">
@@ -325,54 +334,28 @@ export default function ImmigrationPage() {
                     <span className="text-xl">📰</span>
                     <h2 className="font-serif text-xl font-bold">Latest Immigration News</h2>
                   </div>
-                  <Link to="/immigration" className="text-sm text-primary hover:text-primary/80 font-medium flex items-center gap-1">
-                    More <ChevronRight className="h-4 w-4" />
-                  </Link>
                 </div>
-                <div
-                  className="flex gap-4 overflow-x-auto pb-4"
-                  style={{
-                    scrollSnapType: "x mandatory",
-                    WebkitOverflowScrolling: "touch",
-                    scrollbarWidth: "none",
-                    msOverflowStyle: "none",
-                  } as React.CSSProperties}
-                >
-                  <style>{`.imm-news-strip::-webkit-scrollbar { display: none; }`}</style>
-                  {news.map((article: any) => (
-                    <Link
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-12">
+                  {(showAll ? news : news.slice(0, 9)).map((article: any) => (
+                    <ArticleCard
                       key={article.id}
-                      to={`/articles/${article.slug}`}
-                      className="block group flex-shrink-0"
-                      style={{ width: "280px", scrollSnapAlign: "start" }}
-                    >
-                      <article className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg h-full">
-                        {article.image_url && (
-                          <div className="h-36 overflow-hidden">
-                            <img
-                              src={article.image_url}
-                              alt=""
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
-                        <div className="p-4">
-                          <div className="flex items-center gap-2 mb-1.5">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Immigration</span>
-                            <span className="text-[10px] text-foreground/40">
-                              {new Date(article.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                            </span>
-                          </div>
-                          <h3 className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">{article.title}</h3>
-                          {article.excerpt && (
-                            <p className="text-xs text-foreground/50 mt-1 line-clamp-2">{article.excerpt}</p>
-                          )}
-                        </div>
-                      </article>
-                    </Link>
+                      article={article}
+                      variant="card"
+                      hideCategory
+                      isKeyUpdate={keyUpdateSlugs.has(article.slug)}
+                    />
                   ))}
                 </div>
+                {!showAll && news.length > 9 && (
+                  <div className="flex justify-center mt-8">
+                    <button
+                      onClick={() => setShowAll(true)}
+                      className="px-6 py-2.5 rounded-lg border border-border bg-card hover:bg-foreground/[0.04] text-sm font-semibold transition-colors"
+                    >
+                      Show all {news.length} articles
+                    </button>
+                  </div>
+                )}
               </section>
             )}
 
@@ -399,6 +382,14 @@ export default function ImmigrationPage() {
                 <span className="text-white/40 text-2xl shrink-0 group-hover:text-green-400 group-hover:translate-x-1 transition-all">→</span>
               </div>
             </Link>
+
+            {/* ── Key Developments ────────────────────────────── */}
+            <KeyUpdatesSection
+              category="immigration"
+              title="Key Immigration Developments"
+              limit={20}
+              className="mb-8"
+            />
 
             {/* ── Data Trackers ────────────────────────────────── */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">

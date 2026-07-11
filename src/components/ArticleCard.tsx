@@ -155,11 +155,13 @@ export default function ArticleCard({
   variant = "card",
   hideCategory = false,
   featured = false,
+  isKeyUpdate = false,
 }: {
   article: Article;
   variant?: Variant;
   hideCategory?: boolean;
   featured?: boolean;
+  isKeyUpdate?: boolean;
 }) {
   const time = (article as any).reading_time || readingTime(article.body);
   const href = `/articles/${article.slug}`;
@@ -202,7 +204,8 @@ export default function ArticleCard({
             )}
             {article.category}
           </p>
-          <h3 className="font-serif font-bold text-base md:text-[1.05rem] leading-snug text-foreground group-hover:text-primary transition-colors">
+          <h3 className={`font-serif font-bold text-base md:text-[1.05rem] leading-snug text-foreground group-hover:text-primary transition-colors ${isKeyUpdate ? "text-[1.08rem] md:text-[1.12rem]" : ""}`}>
+            {isKeyUpdate && <span className="text-amber-400 mr-1 text-sm">⚡</span>}
             {article.title}
           </h3>
         </div>

@@ -5,15 +5,17 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
+import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import LoadMoreButton from "@/components/LoadMoreButton";
 import { Article, getArticlesByCategory } from "@/lib/articles";
+import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
 import { getCategoryBySlug } from "@/lib/categories";
 import NotFound from "@/pages/NotFound";
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 18;
 
 export default function CategoryPage() {
   const { category = "" } = useParams();
@@ -23,6 +25,7 @@ export default function CategoryPage() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [fadeFrom, setFadeFrom] = useState(0);
+  const [keyUpdateSlugs, setKeyUpdateSlugs] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (!def?.hasPipeline) {
@@ -34,6 +37,11 @@ export default function CategoryPage() {
     setLoading(true);
     setHasMore(true);
     setFadeFrom(0);
+
+    // Fetch key update slugs for highlighting
+    if (def?.slug) {
+      getKeyUpdateSlugs(def.slug).then(setKeyUpdateSlugs);
+    }
 
     const applyArticles = (a: Article[]) => {
       setArticles(a);
@@ -164,10 +172,18 @@ export default function CategoryPage() {
           </p>
         ) : (
           <>
+            {/* Key Developments — shows for categories that have them */}
+            {["immigration", "technology", "news", "markets-finance", "entertainment", "sports", "nri-world"].includes(def.slug) && (
+              <KeyUpdatesSection
+                category={def.slug}
+                limit={15}
+                className="mb-10"
+              />
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
               {articles.map((a, i) => (
                 <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
-                  <ArticleCard article={a} variant="card" hideCategory />
+                  <ArticleCard article={a} variant="card" hideCategory isKeyUpdate={keyUpdateSlugs.has(a.slug)} />
                 </div>
               ))}
             </div>
