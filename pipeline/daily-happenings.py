@@ -167,6 +167,145 @@ def call_gemini(date: str, weekday: str) -> list[dict]:
     return valid[:10]  # cap at 10
 
 
+# ── Article matching ──────────────────────────────────────────────────────────
+
+# Words too generic to use as standalone search terms
+_STOP_WORDS = {
+    "the", "a", "an", "of", "in", "on", "at", "to", "for", "and", "or", "vs",
+    "is", "are", "was", "were", "be", "been", "has", "have", "had", "do", "does",
+    "did", "will", "would", "could", "should", "may", "might", "shall", "can",
+    "its", "it", "he", "she", "they", "we", "you", "this", "that", "with",
+    "from", "by", "as", "but", "not", "no", "all", "new", "day", "today",
+    "match", "game", "final", "quarterfinal", "semifinal", "concluded", "annual",
+    "festival", "event", "pm", "am", "et", "pt", "ct", "fox", "espn",
+    "quarter", "semi", "round", "cup", "league", "cricket", "stadium",
+    "super", "kings", "freedom", "royal", "united", "city",
+    "released", "releases", "release", "film", "films", "movie", "movies",
+    "visit", "visits", "departs", "departed", "free", "family",
+    "south", "asian", "north", "east", "west", "park", "center", "church",
+    "india", "indian", "bollywood",  # too broad for article search
+    "washington", "texas", "chicago", "miami", "york",  # city/state names match wrong articles
+}
+
+
+def _extract_keywords(label: str, detail: str | None) -> list[str]:
+    """Pull 2-4 distinctive keywords from label + detail for article search."""
+    combined = f"{label} {detail or ''}"
+    # Remove parentheticals and punctuation, keep alphanumeric + spaces
+    combined = re.sub(r"\([^)]*\)", " ", combined)
+    combined = re.sub(r"[^a-zA-Z0-9\s]", " ", combined)
+    words = combined.split()
+
+    # Keep words that are >=3 chars and not stop words
+    candidates = []
+    for w in words:
+        wl = w.lower()
+        if len(wl) >= 3 and wl not in _STOP_WORDS:
+            if wl not in [c.lower() for c in candidates]:  # dedup
+                candidates.append(w)
+
+    # Return top 4 most distinctive (longest first as a rough proxy)
+    candidates.sort(key=lambda w: -len(w))
+    return candidates[:4]
+
+
+def _build_ilike_queries(keywords: list[str]) -> list[str]:
+    """Build a series of ILIKE patterns from most specific to least.
+
+    For keywords [A, B, C, D]:
+      - *A*B*  (top two — most specific)
+      - *A*C*  (first + third)
+      - *A*    (just the top keyword — broadest fallback)
+    """
+    if not keywords:
+        return []
+    queries = []
+    kl = [k.lower() for k in keywords]
+
+    # Two-keyword combos using first keyword
+    if len(kl) >= 2:
+        queries.append(f"*{kl[0]}*{kl[1]}*")
+    if len(kl) >= 3:
+        queries.append(f"*{kl[0]}*{kl[2]}*")
+    if len(kl) >= 2:
+        # Reversed order in case headline word order differs
+        queries.append(f"*{kl[1]}*{kl[0]}*")
+
+    # Single keyword fallback (broadest)
+    queries.append(f"*{kl[0]}*")
+
+    return queries
+
+
+def match_articles(items: list[dict]) -> list[dict]:
+    """For each happening, try to find a matching recent article and set link."""
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        print("   ⚠️  Supabase env not set — skipping article matching", file=sys.stderr)
+        return items
+
+    # Date cutoff: articles from last 7 days
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M:%S")
+
+    matched = 0
+    for item in items:
+        keywords = _extract_keywords(item["label"], item.get("detail"))
+        if not keywords:
+            continue
+
+        ilike_patterns = _build_ilike_queries(keywords)
+        found = False
+
+        for pattern in ilike_patterns:
+            query_url = (
+                f"{sb_url}/rest/v1/p2_articles"
+                f"?select=slug,headline"
+                f"&status=eq.published"
+                f"&headline=ilike.{pattern}"
+                f"&published_at=gte.{cutoff}"
+                f"&order=published_at.desc"
+                f"&limit=1"
+            )
+            result = subprocess.run(
+                [
+                    "curl", "-s", "--max-time", "10",
+                    query_url,
+                    "-H", f"apikey: {sb_key}",
+                    "-H", f"Authorization: Bearer {sb_key}",
+                ],
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+            if result.returncode != 0:
+                continue
+
+            try:
+                rows = json.loads(result.stdout)
+            except json.JSONDecodeError:
+                continue
+
+            if isinstance(rows, list) and len(rows) > 0:
+                slug = rows[0].get("slug", "")
+                headline = (rows[0].get("headline") or "").lower()
+                # Relevance check: matched headline must share at least 1
+                # distinctive keyword with the happening label
+                kw_lower = [k.lower() for k in keywords]
+                shared = sum(1 for k in kw_lower if k in headline)
+                if slug and shared >= 1:
+                    item["link"] = f"/articles/{slug}"
+                    matched += 1
+                    found = True
+                    break
+
+        if not found:
+            item["link"] = None
+
+    print(f"   🔗 Matched {matched}/{len(items)} happenings to articles")
+    return items
+
+
 # ── Supabase operations ──────────────────────────────────────────────────────
 
 def supabase_delete_today(date: str):
@@ -259,8 +398,19 @@ def main():
         print(f"   {item['emoji']}  {item['label']}{detail}")
     print(f"{'─' * 60}\n")
 
+    # Match happenings to published articles
+    if os.environ.get("SUPABASE_URL") and os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
+        print("   Matching happenings to recent articles...")
+        items = match_articles(items)
+    else:
+        print("   ⚠️  Supabase env not set — skipping article matching")
+
     if args.dry_run:
         print("🏁 Dry run — no changes made.")
+        for item in items:
+            link_str = f"  → {item['link']}" if item.get("link") else "  (no article match)"
+            print(f"   {item['emoji']}  {item['label']}{link_str}")
+        print()
         print(json.dumps(items, indent=2))
         return
 
