@@ -204,6 +204,10 @@
       "destination": "/api/prerender-page?path=/:path"
     },
     {
+      "source": "/mockup.html",
+      "destination": "/mockup.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
