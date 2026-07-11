@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-11T21:15:29.344919+00:00",
+  "timestamp": "2026-07-11T23:15:19.164092+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "74691bda-e577-4fc4-bef2-f60bda14ddbc",
-      "headline": "India Wants AI Agents to Pay Your Bills. NPCI Is Building the Rails.",
-      "slug": "npci-unified-agent-protocol-upi-ai-payments-20260711",
+      "id": "5ddab101-0c0a-499e-a44d-e4b26963862c",
+      "headline": "Making History, Then Making a Statement. India's Women Take Lord's Apart on Day Two.",
+      "slug": "india-women-dominate-lords-day-2-mandhana-83-deepti-57-lead-269-historic-test-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "contactless payment with smartphone",
-          "reason": "The photo depicts a contactless payment, relevant to the fintech story."
+          "what_photo_shows": "Smriti Mandhana smiling in a blazer",
+          "reason": "The photo shows Smriti Mandhana, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the UAP initiative to the experiences of NRIs, highlighting its potential benefits for managing expenses in India."
+          "note": "The article connects well with the Indian diaspora, highlighting their pride in the historic match."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how AI agents could streamline transactions for NRIs.",
-          "Include a brief comparison of the UAP with similar initiatives in other countries to provide a broader context."
+          "Include quotes from players or coaches to enhance the narrative.",
+          "Add a brief historical context about women's cricket in India for deeper engagement."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "435f5728-5ffe-49b3-b523-58ac555b98ba",
-      "headline": "A Bengaluru Robotics Startup Just Raised $3 Million to Teach American Factory Robots to Learn by Watching.",
-      "slug": "mowito-robotics-3-million-bengaluru-detroit-physical-ai-20260711",
+      "id": "97c1bf75-b1cc-4cac-b080-6f1f71b0e94f",
+      "headline": "Buttler's Brutal 131 Seals the Humiliation. England Whitewash India 4-0 in T20Is.",
+      "slug": "buttler-131-england-whitewash-india-4-0-t20i-series-southampton-number-one-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "industrial robotic arm on production line",
-          "reason": "The photo subject aligns with the story about robotics in manufacturing."
+          "what_photo_shows": "man in suit and tie",
+          "reason": "The photo plausibly shows Jos Buttler, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the startup's innovation to the NRI community, highlighting the flow of talent and technology between India and the US."
+          "note": "The article connects well with NRI readers by discussing the implications of the series loss and the upcoming ODI series, which is relevant to fans abroad."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from investors or industry experts to enhance credibility.",
-          "Include more details on how Mowito's technology specifically impacts the manufacturing process to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d7dc178f-0fc6-4ec2-af43-8b2766bc932d",
-      "headline": "Nandan Nilekani Just Made His Largest Venture Bet Ever. He Is Hunting for India's Next AI Champions.",
-      "slug": "nilekani-fundamentum-2200-crore-fund-iii-ai-startups-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Nandan Nilekani at an event",
-          "reason": "The photo shows Nandan Nilekani, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Nilekani's investment strategy to NRI investors and entrepreneurs, highlighting the implications for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from NRI investors to enhance the diaspora perspective.",
-          "Include more specific examples of potential AI applications relevant to the Indian market."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context on how this series impacts India's future in T20 cricket."
         ],
         "verdict": "pass"
       },
