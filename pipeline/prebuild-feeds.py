@@ -429,7 +429,7 @@ def main():
         "markets-finance", "lifestyle-health", "food",
     ]
     now = datetime.now(timezone.utc)
-    since_72h = (now - timedelta(hours=72)).isoformat()
+    since_7d = (now - timedelta(days=7)).isoformat()
     since_14d = (now - timedelta(days=14)).isoformat()
 
     by_cat: dict[str, list[dict]] = {}
@@ -439,8 +439,8 @@ def main():
     cat_count = 0
     for slug in all_category_slugs:
         pool = by_cat.get(slug, [])
-        # Same logic as getArticlesByCategory: 72h first, fallback to 14d
-        recent = [a for a in pool if a["published_at"] >= since_72h]
+        # Same logic: 7d first, fallback to 14d
+        recent = [a for a in pool if a["published_at"] >= since_7d]
         if len(recent) < PAGE_SIZE_CAT:
             wider = [a for a in pool if a["published_at"] >= since_14d]
             if len(wider) > len(recent):
