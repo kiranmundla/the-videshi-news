@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-11T19:59:34Z",
-  "stage": "Quarterfinals — 98 of 104 matches played",
+  "last_updated": "2026-07-11T23:59:55Z",
+  "stage": "Group Stage — 99 of 102 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -467,12 +467,12 @@
         "code": "NOR",
         "flag": "🇳🇴",
         "rank": 31,
-        "p": 5,
+        "p": 6,
         "w": 4,
         "d": 0,
-        "l": 1,
-        "gf": 12,
-        "ga": 9,
+        "l": 2,
+        "gf": 13,
+        "ga": 11,
         "pts": 12
       },
       {
@@ -616,13 +616,13 @@
         "code": "ENG",
         "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
-        "p": 5,
-        "w": 4,
+        "p": 6,
+        "w": 5,
         "d": 1,
         "l": 0,
-        "gf": 11,
-        "ga": 5,
-        "pts": 13
+        "gf": 13,
+        "ga": 6,
+        "pts": 16
       },
       {
         "name": "Croatia",
@@ -2157,8 +2157,8 @@
       "away": "England",
       "venue": "Hard Rock Stadium",
       "city": "Miami Gardens, FL",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT (AET)",
+      "score": "1-2 (AET)",
       "home_code": "NOR",
       "away_code": "ENG"
     },
@@ -2198,13 +2198,13 @@
       "date": "2026-07-15",
       "time": "15:00",
       "tz": "ET",
-      "home": "TBD",
+      "home": "England",
       "away": "TBD",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta, GA",
       "status": "scheduled",
       "score": null,
-      "home_code": "TBD",
+      "home_code": "ENG",
       "away_code": "TBD"
     }
   ],
@@ -2593,11 +2593,13 @@
           "time": "17:00",
           "tz": "ET",
           "venue": "Hard Rock Stadium, Miami Gardens, FL",
-          "status": "scheduled",
+          "status": "FT (AET)",
           "home": "Norway",
           "home_code": "NOR",
           "away": "England",
-          "away_code": "ENG"
+          "away_code": "ENG",
+          "score": "1-2 (AET)",
+          "winner": "England"
         },
         {
           "match_num": 100,
@@ -2635,8 +2637,8 @@
           "time": "15:00",
           "tz": "ET",
           "venue": "Mercedes-Benz Stadium, Atlanta, GA",
-          "home": "TBD (Norway/England)",
-          "home_code": "TBD",
+          "home": "England",
+          "home_code": "ENG",
           "away": "TBD (Argentina/Switzerland)",
           "away_code": "TBD",
           "status": "scheduled",
@@ -10214,6 +10216,42 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DaqXcsVCaIo/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaqwGC8D1Vd",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Daq6v06me_4",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid02kydsmbmV59XQ9BwgxnWuw197qvHN1QGoy95LvgJ1RTwph1DpYVkb1hSgVbG4J3Wel",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/Daq-Usqikqp/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0MM3vUaPBJZAY5QLqMjH6uUcmW2LXSHHDPfTYsQZYxGUvU1ErK6ttU1uKqm2qUUo6l",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Daq_E9gmTEl",
       "account": "@fifaworldcup",
       "date": "2026-07-11"
     }
