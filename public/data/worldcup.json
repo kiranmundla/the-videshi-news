@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-11T11:58:33Z",
+  "last_updated": "2026-07-11T17:58:53Z",
   "stage": "Quarterfinals — 98 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -10178,6 +10178,12 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/reel/DapnBXQvD_N/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1530819285246553/",
       "account": "@fifaworldcup",
       "date": "2026-07-11"
     }
