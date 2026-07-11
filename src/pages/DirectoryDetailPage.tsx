@@ -296,6 +296,11 @@ export default function DirectoryDetailPage() {
                     ✨ Featured
                   </span>
                 )}
+                {listing.community && (
+                  <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-purple-600/20 text-purple-300">
+                    {listing.community}
+                  </span>
+                )}
               </div>
               <h1 className="font-serif text-2xl md:text-4xl text-foreground leading-tight">
                 {listing.name}
@@ -312,6 +317,31 @@ export default function DirectoryDetailPage() {
             <StarRating rating={listing.rating} reviewCount={listing.review_count} />
           </div>
 
+          {/* Languages & Tags */}
+          {(() => {
+            const parseSafe = (v: unknown): string[] => {
+              if (Array.isArray(v)) return v;
+              if (typeof v === "string") { try { const p = JSON.parse(v); return Array.isArray(p) ? p : []; } catch { return []; } }
+              return [];
+            };
+            const languages = parseSafe(listing.languages);
+            const tags = parseSafe(listing.tags);
+            const nonEnglish = languages.filter((l) => l !== "English");
+            if (nonEnglish.length === 0 && tags.length === 0) return null;
+            return (
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                {nonEnglish.length > 0 && (
+                  <span className="text-sm text-muted-foreground">🗣 {nonEnglish.join(", ")}</span>
+                )}
+                {tags.map((tag) => (
+                  <span key={tag} className="px-2 py-0.5 bg-muted/40 rounded text-xs text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            );
+          })()}
+
           {/* Hero Image */}
           {(listing.image_url || photos.length > 0) && (
             <div className="rounded-xl overflow-hidden mb-6">
@@ -323,11 +353,11 @@ export default function DirectoryDetailPage() {
             </div>
           )}
 
-          {/* Description */}
-          {listing.description && (
+          {/* Description — prefer AI description, fall back to original */}
+          {(listing.ai_description || listing.description) && (
             <div className="mb-6">
               <p className="text-foreground/90 text-base leading-relaxed whitespace-pre-wrap">
-                {listing.description}
+                {listing.ai_description || listing.description}
               </p>
             </div>
           )}
