@@ -58,22 +58,28 @@ Rules — follow these strictly:
 1. ONLY include events you can confirm are happening TODAY ({date}). \
 Do NOT include events from other days. Do NOT guess.
 2. Saturday/Sunday = US stock markets closed, US courts closed — skip those.
-3. If a match has already concluded today, note "(concluded)" in detail.
-4. Keep label short (under 50 chars). Put times, players, channels in detail.
-5. Limit to the 6-8 MOST important/interesting items.
+3. Only include NATIONALLY or INTERNATIONALLY significant events — things \
+any NRI in any US city would care about.
+4. NO local community events (city-specific festivals, temple events, local \
+Bollywood nights, regional melas). Those are local, not national.
+5. NO travel updates like "PM Modi returns to India" — those are not events.
+6. Keep label short (under 50 chars). detail = venue/channel info, NO times.
+7. Limit to 4-6 MOST important items. Quality over quantity.
 
-Prioritize: World Cup / cricket matches > major diaspora events > \
-policy / immigration news > entertainment.
+Prioritize: Major sports (World Cup, Wimbledon, cricket internationals, MLC) \
+> Major policy/immigration decisions > Big entertainment releases > \
+Significant diplomatic events (not travel updates).
 
-Return as a JSON array with NO markdown fencing. Each item MUST include a \
-"search_terms" array of 2-4 specific, distinctive keywords that uniquely \
-identify this event — use proper nouns, team names, player names, event names. \
-Avoid generic words like "india", "cricket", "world cup", "sports", "news". \
-Good examples: ["noskova", "muchova", "wimbledon"], ["modi", "zealand"], \
-["norway", "england", "quarterfinal"].
+Return as a JSON array with NO markdown fencing. Each item MUST have:
+- "search_terms": 2-4 specific, distinctive keywords (proper nouns, team \
+names, player names). Avoid generic words like "india", "cricket", "sports". \
+Good: ["noskova", "muchova", "wimbledon"], ["norway", "england", "quarterfinal"].
+- "start_time_utc": ISO 8601 UTC timestamp (e.g. "2026-07-11T21:00:00Z"). \
+Convert from ET/PT/BST/IST. Set null if no specific time (news, all-day).
 
-[{{"emoji":"⚽","label":"Short event name","detail":"Key info, time PT, channel",\
-"category":"sports","sort_order":1,"search_terms":["keyword1","keyword2"]}}]
+[{{"emoji":"⚽","label":"Short event name","detail":"Venue, channel (NO times)",\
+"category":"sports","sort_order":1,"search_terms":["keyword1","keyword2"],\
+"start_time_utc":"2026-07-11T21:00:00Z"}}]
 
 category must be one of: sports, news, markets, entertainment
 
@@ -175,6 +181,7 @@ def call_gemini(date: str, weekday: str) -> list[dict]:
             "category": item.get("category", "news"),
             "sort_order": item.get("sort_order", i + 1),
             "search_terms": search_terms,
+            "start_time_utc": item.get("start_time_utc"),
         })
 
     return valid[:10]  # cap at 10
@@ -357,6 +364,7 @@ def supabase_insert(items: list[dict], date: str) -> int:
             "link": item.get("link"),
             "category": item.get("category"),
             "sort_order": item.get("sort_order", 0),
+            "start_time": item.get("start_time_utc"),
         }
         rows.append(row)
 

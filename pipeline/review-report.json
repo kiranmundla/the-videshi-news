@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T18:45:20.701385+00:00",
+  "timestamp": "2026-07-11T19:15:26.764061+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7815f009-8795-4356-8580-a7a25713ab37",
-      "headline": "India Just Sold Its Most Powerful Missile to a Third Country. The $630 Million Deal Rewrites the Indo-Pacific Arms Map.",
-      "slug": "india-indonesia-brahmos-missile-deal-630-million-defence-exports-indo-pacific-20260711",
+      "id": "2d45b52f-8062-4427-8a88-7d5ba7b76c19",
+      "headline": "Janhvi Kapoor Hid One Word in Her Mehendi. The Internet Found It in Seconds.",
+      "slug": "janhvi-kapoor-shikhu-mehendi-shikhar-pahariya-anshula-kapoor-wedding-reception-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,14 +21,20 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "BrahMos missile system on parade",
-          "reason": "The photo shows the BrahMos missile, relevant to the missile sale story."
+          "what_photo_shows": "Janhvi Kapoor at an event",
+          "reason": "The photo shows Janhvi Kapoor, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/Dah5-poCAcB/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post linked does not appear to be directly related to the main topic of Janhvi Kapoor's mehendi and her relationship with Shikhar Pahariya."
+          }
+        ],
         "image_match": {
           "score": 9,
           "issue": null
@@ -36,17 +42,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article discusses India's growing role in global arms exports, which may resonate with the Indian diaspora interested in India's geopolitical influence."
+          "note": "The article connects to the Indian diaspora through its focus on Bollywood culture, which is of significant interest to NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from experts or officials to enhance credibility.",
-          "Add a section on potential implications for regional security dynamics."
+          "Replace the irrelevant Instagram link with a more relevant one that showcases Janhvi Kapoor's mehendi or her relationship.",
+          "Consider adding a quote from Janhvi or Shikhar to enhance the personal touch and engagement with the audience."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/Dah5-poCAcB/",
         "promoted to published"
       ],
       "revised": false,
@@ -54,9 +61,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "76bd0193-05c9-44a7-974d-bb157f446c30",
-      "headline": "Six Thousand Seafarers Are Trapped in the Gulf. For Indian Sailors, the War Has Become Personal.",
-      "slug": "indian-seafarers-stranded-persian-gulf-iran-war-missiles-6000-trapped-hormuz-20260711",
+      "id": "bc224dfa-2376-42e9-8c07-e48aa176cbd6",
+      "headline": "A.R. Rahman Called Sonu Nigam Back to the Studio. The Song Is for Aamir Khan's Partition Epic.",
+      "slug": "ar-rahman-sonu-nigam-batwara-1947-oh-tabassum-aamir-khan-sunny-deol-partition-august-14-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +71,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Satellite image of Strait of Hormuz",
-          "reason": "The image is relevant to the story about seafarers stranded in the Gulf."
+          "what_photo_shows": "A.R. Rahman at an event",
+          "reason": "The photo shows A.R. Rahman, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +80,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image of A.R. Rahman does not directly relate to the article's focus on the song and film, but it is still relevant to the topic of Indian cinema."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the plight of Indian sailors, making it relevant to the Indian diaspora concerned about their safety and well-being."
+          "quality": 9,
+          "note": "The article effectively connects the film's themes of Partition and identity to the experiences of the diaspora, making it relatable for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or quotes from sailors to enhance emotional engagement.",
-          "Add a section on how the Indian government is responding to the crisis to provide a more comprehensive view."
+          "Consider including more direct quotes from Sonu Nigam or A.R. Rahman to enhance the personal connection to the artists.",
+          "Add a brief section on the historical context of Partition for readers who may not be familiar with its significance."
         ],
         "verdict": "pass"
       },
