@@ -189,8 +189,8 @@ Return JSON:
 {{
   "updates": [
     {{
-      "headline": "concise factual statement of the story thread (max 100 chars)",
-      "detail": "one sentence of additional context (max 200 chars)",
+      "headline": "punchy 3-8 word story thread title (e.g. 'EB-2 India Green Card Freeze', 'Modi's Historic NZ Visit', 'India's T20I Crisis')",
+      "detail": "one-sentence factual summary of what happened (max 200 chars)",
       "impact": "high|medium",
       "article_id": "uuid of the primary/best article",
       "article_slug": "slug of that article",
@@ -312,9 +312,12 @@ def main():
                     print(f"    📰 {u.get('article_headline', '')[:60]}")
 
                 if not args.dry_run and updates:
-                    # Clean up for insert
+                    # Clean up for insert — remove non-column fields
                     for u in updates:
                         u.pop("article_headline_display", None)
+                        # Ensure related_articles is present (defaults to [])
+                        if "related_articles" not in u:
+                            u["related_articles"] = []
                     inserted = supa_post("key_updates", updates)
                     total_inserted += len(inserted)
                     print(f"  ✅ Inserted {len(inserted)} updates")
@@ -347,6 +350,11 @@ def main():
                 print(f"    📰 {u.get('article_headline', '')[:60]}")
 
             if not args.dry_run and updates:
+                # Clean up for insert — remove non-column fields
+                for u in updates:
+                    u.pop("article_headline_display", None)
+                    if "related_articles" not in u:
+                        u["related_articles"] = []
                 inserted = supa_post("key_updates", updates)
                 total_inserted += len(inserted)
                 print(f"  ✅ Inserted {len(inserted)} updates")
