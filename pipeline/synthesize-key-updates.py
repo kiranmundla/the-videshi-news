@@ -112,8 +112,8 @@ def fetch_articles(category_slug, days):
     return supa_get("p2_articles", params)
 
 def fetch_existing_updates(category, days):
-    """Fetch existing key updates to avoid duplicates."""
-    since = (datetime.now(timezone.utc) - timedelta(days=days + 7)).strftime("%Y-%m-%d")
+    """Fetch existing key updates to avoid duplicates. Pull wide window."""
+    since = (datetime.now(timezone.utc) - timedelta(days=max(days + 30, 60))).strftime("%Y-%m-%d")
     params = {
         "select": "headline,article_slug",
         "category": f"eq.{category}",
@@ -174,12 +174,13 @@ Focus on: {config['focus']}
 Examples of good key updates: {config['examples']}
 
 RULES:
-1. Extract only SIGNIFICANT developments — not every article is a key update. Aim for 3-8 updates from this batch.
+1. Extract ONLY the 3-4 MOST SIGNIFICANT developments from this batch. Maximum 4. Be very selective — only major policy changes, landmark events, or developments that directly affect many people qualify.
 2. Each update should be a concise, factual statement (not a headline — a statement of what happened).
-3. Assign impact: "high" = directly affects many NRIs or is a major policy change, "medium" = noteworthy development, "low" = interesting but minor.
-4. Link each update to the most relevant article.
-5. Set event_date to when the event HAPPENED (from the article content), not when the article was published.
-6. DO NOT duplicate these existing updates: {json.dumps(existing_list[:30])}
+3. MERGE related stories: if multiple articles cover the same evolving story (e.g. several articles about the same policy change, court ruling, or event), combine them into ONE update with the most complete picture. Do NOT create separate entries for follow-up coverage of the same development.
+4. Assign impact: "high" = directly affects many NRIs or is a major policy change, "medium" = noteworthy development. Do NOT use "low" — if it's low impact, it's not worth including.
+5. Link each update to the most relevant article.
+6. Set event_date to when the event HAPPENED (from the article content), not when the article was published.
+7. DO NOT duplicate or overlap with these existing updates: {json.dumps(existing_list[:50])}
 
 Articles to analyze:
 {json.dumps(article_summaries, indent=2)}
@@ -201,6 +202,55 @@ Return JSON:
 
     messages = [{"role": "user", "content": prompt}]
     return call_gpt(messages)
+
+def dedup_updates(updates, existing_headlines):
+    """Remove near-duplicate updates before inserting.
+    Compares against existing DB headlines AND within the batch itself."""
+    existing_lower = set()
+    for h in existing_headlines:
+        existing_lower.add(h["headline"].lower().strip().rstrip('.'))
+
+    kept = []
+    seen_words = []  # list of word-sets for kept items
+
+    for u in updates:
+        headline = u.get("headline", "")
+        key = headline.lower().strip().rstrip('.')
+
+        # Exact dupe check against existing
+        if key in existing_lower:
+            continue
+
+        words = set(key.split())
+
+        # Near-dupe check against existing
+        is_dupe = False
+        for ex in existing_lower:
+            ex_words = set(ex.split())
+            if len(words) > 0 and len(ex_words) > 0:
+                overlap = len(words & ex_words) / max(len(words | ex_words), 1)
+                if overlap > 0.55:
+                    is_dupe = True
+                    break
+
+        if is_dupe:
+            continue
+
+        # Near-dupe check within this batch
+        for sw in seen_words:
+            overlap = len(words & sw) / max(len(words | sw), 1)
+            if overlap > 0.55:
+                is_dupe = True
+                break
+
+        if is_dupe:
+            continue
+
+        kept.append(u)
+        seen_words.append(words)
+        existing_lower.add(key)
+
+    return kept[:4]  # Hard cap at 4 per chunk
 
 # ── Main ─────────────────────────────────────────────────────────────
 def main():
@@ -245,8 +295,14 @@ def main():
                 updates = result.get("updates", [])
                 print(f"  GPT extracted {len(updates)} updates")
 
+                # Dedup against existing + within batch
                 for u in updates:
                     u["category"] = cat_key
+                updates = dedup_updates(updates, existing)
+                if len(updates) < len(result.get("updates", [])):
+                    print(f"  After dedup: {len(updates)} updates")
+
+                for u in updates:
                     print(f"  {'🔴' if u['impact']=='high' else '🟡' if u['impact']=='medium' else '⚪'} {u['headline']}")
                     print(f"    → {u.get('detail', '')}")
                     print(f"    📰 {u.get('article_headline', '')[:60]}")
@@ -274,8 +330,14 @@ def main():
             updates = result.get("updates", [])
             print(f"  GPT extracted {len(updates)} updates")
 
+            # Dedup against existing + within batch
             for u in updates:
                 u["category"] = cat_key
+            updates = dedup_updates(updates, existing)
+            if len(updates) < len(result.get("updates", [])):
+                print(f"  After dedup: {len(updates)} updates")
+
+            for u in updates:
                 print(f"  {'🔴' if u['impact']=='high' else '🟡' if u['impact']=='medium' else '⚪'} {u['headline']}")
                 print(f"    → {u.get('detail', '')}")
                 print(f"    📰 {u.get('article_headline', '')[:60]}")
