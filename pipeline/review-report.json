@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-11T03:15:32.841533+00:00",
+  "timestamp": "2026-07-11T06:45:24.876238+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,109 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "30fab92c-0652-4ed7-8111-c813c2368251",
-      "headline": "OpenAI Wants to Give the US Government a $42 Billion Stake. An Indian American Is Helping Broker the Deal.",
-      "slug": "openai-5-percent-equity-government-sriram-krishnan-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "6dc026f0-224b-4dc2-bf12-9d3f653b2af4",
-            "headline": "Washington Just Cleared GPT-5.6 for the World. Here's What I"
-          },
-          {
-            "article_id": "ee751872-f3f5-4bf5-8293-0081926b6a81",
-            "headline": "OpenAI's GPT-Live Can Listen and Talk at the Same Time. Indi"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows Sam Altman, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image features Sam Altman, which is relevant to the article's topic about OpenAI and its leadership, but does not directly connect to the Indian American aspect."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article highlights Sriram Krishnan's significant role as an Indian American in shaping US AI policy, which resonates with the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes or insights from Sriram Krishnan to enhance the personal connection to the Indian American community.",
-          "Consider adding a section that discusses the implications of this deal for the Indian American community or how it might influence future policies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "908b882c-5930-4798-8a4f-a4c296019385",
-      "headline": "Apple Just Committed $30 Billion to Make Chips in America. Indian Engineers Will Design Most of Them.",
-      "slug": "apple-broadcom-30-billion-us-chips-indian-engineers-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "1fe19393-30a3-4624-8019-dbee255bbea6",
-            "headline": "Apple Just Lost Its Biggest European Court Battle. India's A"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Apple CEO Tim Cook",
-          "reason": "The photo shows the correct named person related to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Tim Cook is relevant as he is the CEO of Apple, but it does not directly depict the chip manufacturing or Indian engineers."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article highlights the significant role of Indian engineers in the semiconductor industry, making it highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a quote or perspective from an Indian engineer in the semiconductor field to enhance the diaspora connection.",
-          "Add more context about the implications of this deal for the Indian tech industry and its engineers."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "61ced647-aa1e-4f50-8b6d-8bf7c795749e",
-      "headline": "India Now Opens a Global Capability Centre Every Single Day. Nestl\u00e9 Just Signed Up.",
-      "slug": "india-gcc-one-per-day-nestle-sitharaman-ai-threat-20260711",
+      "id": "37a64de6-e5ce-4d97-9e45-9ae6b50b7467",
+      "headline": "Five Rules, One Target: The Trump Administration Is Rewriting Every Immigration Pathway Indians Use to Live in America",
+      "slug": "trump-immigration-overhaul-h1b-h4-ead-opt-green-card-indian-workers-students-20260710",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -121,8 +21,56 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "modern tech park buildings",
-          "reason": "The photo shows a tech park, relevant to the GCC story."
+          "what_photo_shows": "The United States Capitol at dusk",
+          "reason": "The Capitol is relevant to U.S. immigration policy discussions."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the Capitol does not directly relate to the immigration topic but is somewhat relevant as it represents the U.S. government."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article directly addresses the impact of U.S. immigration policy changes on Indian professionals and students, making it highly relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that more directly represents immigration or Indian professionals in the U.S.",
+          "Add quotes or testimonials from affected individuals to enhance the personal connection to the diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "728650bf-9f6a-4c3a-9964-028c8b79f449",
+      "headline": "An Indian-American CEO Laid Off 1,600 Xbox Workers. Days Later, the Fed Appointed Her to an Advisory Panel. The Internet Did the Rest.",
+      "slug": "asha-sharma-xbox-layoffs-fed-appointment-h1b-racial-backlash-indian-american-20260710",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "f57def1e-820a-4ce2-bd9a-e8ebfa615d82",
+            "headline": "Xbox's Indian-American CEO Just Ordered the Biggest Restruct"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Asha Sharma at Xbox event",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
@@ -130,21 +78,21 @@
         "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of Global Capability Centres or the corporate environment discussed in the article."
+          "score": 8,
+          "issue": "The image of Asha Sharma is relevant to the article's topic, but it could be more directly related to the layoffs or the Federal Reserve appointment."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects the GCC boom to Indian Americans, highlighting professional opportunities, but could elaborate more on personal impacts."
+          "quality": 8,
+          "note": "The article discusses the implications of Asha Sharma's actions and heritage, which resonates with the Indian diaspora's experiences in the U.S."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the GCC boom impacts Indian Americans personally.",
-          "Consider using a more relevant image that reflects the corporate or tech environment."
+          "Include more direct quotes from Asha Sharma or other Indian-American leaders to enhance the diaspora perspective.",
+          "Add a section discussing the broader implications of the layoffs on the Indian-American community in tech."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
