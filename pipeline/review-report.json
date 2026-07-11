@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-11T19:15:26.764061+00:00",
+  "timestamp": "2026-07-11T20:15:27.888441+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2d45b52f-8062-4427-8a88-7d5ba7b76c19",
-      "headline": "Janhvi Kapoor Hid One Word in Her Mehendi. The Internet Found It in Seconds.",
-      "slug": "janhvi-kapoor-shikhu-mehendi-shikhar-pahariya-anshula-kapoor-wedding-reception-20260711",
+      "id": "e03c2529-a288-439b-a0e3-046bff37a1db",
+      "headline": "A Bill in Congress Would Kill STEM OPT, End Dual Intent, and Ban Post-Layoff H-1B Hiring. Here Is What It Says",
+      "slug": "chip-roy-bill-stem-opt-dual-intent-h1b-overhaul-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,58 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Janhvi Kapoor at an event",
-          "reason": "The photo shows Janhvi Kapoor, who is the subject of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/Dah5-poCAcB/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post linked does not appear to be directly related to the main topic of Janhvi Kapoor's mehendi and her relationship with Shikhar Pahariya."
-          }
-        ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects to the Indian diaspora through its focus on Bollywood culture, which is of significant interest to NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram link with a more relevant one that showcases Janhvi Kapoor's mehendi or her relationship.",
-          "Consider adding a quote from Janhvi or Shikhar to enhance the personal touch and engagement with the audience."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/Dah5-poCAcB/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bc224dfa-2376-42e9-8c07-e48aa176cbd6",
-      "headline": "A.R. Rahman Called Sonu Nigam Back to the Studio. The Song Is for Aamir Khan's Partition Epic.",
-      "slug": "ar-rahman-sonu-nigam-batwara-1947-oh-tabassum-aamir-khan-sunny-deol-partition-august-14-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A.R. Rahman at an event",
-          "reason": "The photo shows A.R. Rahman, who is relevant to the story."
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Representative Chip Roy, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -80,21 +30,64 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of A.R. Rahman does not directly relate to the article's focus on the song and film, but it is still relevant to the topic of Indian cinema."
+          "score": 5,
+          "issue": "The image of Chip Roy is relevant as he is the bill's sponsor, but it does not visually represent the broader implications of the bill on Indian professionals and students."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the film's themes of Partition and identity to the experiences of the diaspora, making it relatable for NRI readers."
+          "note": "The article effectively discusses the impact of the bill on Indian professionals and students, making it highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more direct quotes from Sonu Nigam or A.R. Rahman to enhance the personal connection to the artists.",
-          "Add a brief section on the historical context of Partition for readers who may not be familiar with its significance."
+          "Include quotes or reactions from Indian diaspora organizations or professionals to enhance the diaspora perspective.",
+          "Consider adding a section on potential responses or counterarguments to the bill to provide a more balanced view."
         ],
         "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c5b331e7-0fc7-4c28-b3d8-3903a7f85fab",
+      "headline": "A Federal Judge Just Told USCIS It Cannot Penalise Immigrants for Their Nationality",
+      "slug": "federal-judge-blocks-uscis-nationality-discrimination-ohio-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The Supreme Court building is relevant to a federal judge's ruling story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses immigration policies that significantly affect Indian nationals, particularly H-1B visa holders, making it relevant to the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that directly relates to the topic of immigration or the specific ruling.",
+          "Expand on the implications of the ruling for Indian nationals to strengthen the diaspora connection."
+        ],
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
