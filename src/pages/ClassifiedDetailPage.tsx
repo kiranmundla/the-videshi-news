@@ -572,15 +572,17 @@ export default function ClassifiedDetailPage() {
             <ChevronLeft className="h-4 w-4" /> Back to classifieds
           </Link>
 
-          {/* Hero image or category fallback */}
-          <div className="relative w-full overflow-hidden rounded-xl">
-            <img
-              src={heroImage || categoryFallbackImg(item.category)}
-              alt={item.title}
-              className={heroImage ? "w-full object-contain bg-black rounded-xl" : "w-full h-48 sm:h-56 object-cover rounded-xl"}
-              style={heroImage ? { maxHeight: "75vh" } : undefined}
-            />
-          </div>
+          {/* Hero image — only when listing has a real photo */}
+          {heroImage && (
+            <div className="relative w-full overflow-hidden rounded-xl">
+              <img
+                src={heroImage}
+                alt={item.title}
+                className="w-full object-contain bg-black rounded-xl"
+                style={{ maxHeight: "75vh" }}
+              />
+            </div>
+          )}
 
           {/* Title + badges + meta */}
           <div className="space-y-3">
