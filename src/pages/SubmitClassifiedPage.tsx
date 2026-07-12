@@ -100,6 +100,7 @@ export default function SubmitClassifiedPage() {
   const [step, setStep] = useState<Step>("form");
   const [form, setForm] = useState<FormData>(INITIAL);
   const [images, setImages] = useState<ImagePreview[]>([]);
+  const [mainPhotoId, setMainPhotoId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [publishedSlug, setPublishedSlug] = useState("");
   const [copied, setCopied] = useState(false);
@@ -254,6 +255,7 @@ export default function SubmitClassifiedPage() {
       if (img) URL.revokeObjectURL(img.url);
       return prev.filter((p) => p.id !== id);
     });
+    setMainPhotoId((cur) => (cur === id ? null : cur));
   }, []);
 
   /* Validation */
@@ -368,9 +370,20 @@ export default function SubmitClassifiedPage() {
       let imageUrl: string | null = null;
       const photoUrls: string[] = [];
 
+      /* Reorder images so the main photo is first */
+      const effectiveMainId = mainPhotoId && images.some((img) => img.id === mainPhotoId)
+        ? mainPhotoId
+        : images.length > 0 ? images[0].id : null;
+      const orderedImages = effectiveMainId
+        ? [
+            ...images.filter((img) => img.id === effectiveMainId),
+            ...images.filter((img) => img.id !== effectiveMainId),
+          ]
+        : images;
+
       /* Upload images */
       const uploadSlug = slug || form.title.toLowerCase().replace(/\s+/g, "-").slice(0, 50);
-      for (const img of images) {
+      for (const img of orderedImages) {
         const ext = img.file.name.split(".").pop() || "jpg";
         const path = `classifieds/${uploadSlug}/${img.id}.${ext}`;
         const { error: uploadErr } = await sb.storage
@@ -762,17 +775,40 @@ export default function SubmitClassifiedPage() {
                   onChange={(e) => addImages(e.target.files)}
                 />
                 <div className="flex flex-wrap gap-3">
-                  {images.map((img) => (
-                    <div key={img.id} className="relative w-24 h-24 rounded-lg overflow-hidden border border-border">
-                      <img src={img.url} alt="" className="w-full h-full object-cover" />
-                      <button
-                        onClick={() => removeImage(img.id)}
-                        className="absolute top-1 right-1 p-0.5 rounded-full bg-black/60 text-white hover:bg-black/80"
-                      >
-                        <X className="h-3.5 w-3.5" />
-                      </button>
-                    </div>
-                  ))}
+                  {images.map((img) => {
+                    const isMain = mainPhotoId
+                      ? img.id === mainPhotoId
+                      : img.id === images[0]?.id;
+                    return (
+                      <div key={img.id} className="relative w-24 h-24 rounded-lg overflow-hidden border border-border group">
+                        <img
+                          src={img.url}
+                          alt=""
+                          className="w-full h-full object-cover cursor-pointer"
+                          onClick={() => setMainPhotoId(img.id)}
+                        />
+                        {/* Main badge or set-as-main hint */}
+                        {isMain ? (
+                          <span className="absolute bottom-0 left-0 right-0 bg-primary/90 text-white text-[10px] font-semibold text-center py-0.5 leading-tight">
+                            ★ Main
+                          </span>
+                        ) : images.length > 1 ? (
+                          <span
+                            className="absolute bottom-0 left-0 right-0 bg-black/60 text-white/70 text-[10px] text-center py-0.5 leading-tight opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                            onClick={(e) => { e.stopPropagation(); setMainPhotoId(img.id); }}
+                          >
+                            Set as main
+                          </span>
+                        ) : null}
+                        <button
+                          onClick={() => removeImage(img.id)}
+                          className="absolute top-1 right-1 p-0.5 rounded-full bg-black/60 text-white hover:bg-black/80"
+                        >
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    );
+                  })}
                   {images.length < MAX_PHOTOS && (
                     <button
                       onClick={() => fileRef.current?.click()}
