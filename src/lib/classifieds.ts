@@ -90,6 +90,48 @@ export const CATEGORY_BG: Record<string, string> = {
   "Jobs & Gigs": "bg-purple-950/40",
   Community: "bg-teal-950/40",
 };
+export const SUBCATEGORY_FALLBACK_IMG: Record<string, string> = {
+  // Community
+  "Carpool": "/images/classifieds/sub/carpool.jpg",
+  "Cricket/Sports Team": "/images/classifieds/sub/cricket-sports-team.jpg",
+  "Study Group": "/images/classifieds/sub/study-group.jpg",
+  "Volunteers Needed": "/images/classifieds/sub/volunteers-needed.jpg",
+  // For Sale
+  "Baby & Kids": "/images/classifieds/sub/baby-kids.jpg",
+  "Books & Textbooks": "/images/classifieds/sub/books-textbooks.jpg",
+  "Electronics": "/images/classifieds/sub/electronics.jpg",
+  "Ethnic Wear & Jewelry": "/images/classifieds/sub/ethnic-wear-jewelry.jpg",
+  "Furniture": "/images/classifieds/sub/furniture.jpg",
+  "Kitchen & Appliances": "/images/classifieds/sub/kitchen-appliances.jpg",
+  // Housing
+  "PG/Shared Housing": "/images/classifieds/sub/pg-shared-housing.jpg",
+  "Room Available": "/images/classifieds/sub/room-available.jpg",
+  "Roommate Wanted": "/images/classifieds/sub/roommate-wanted.jpg",
+  "Short-term Sublet": "/images/classifieds/sub/short-term-sublet.jpg",
+  // Jobs & Gigs
+  "Babysitting/Nanny": "/images/classifieds/sub/babysitting-nanny.jpg",
+  "Freelance": "/images/classifieds/sub/freelance.jpg",
+  "IT/Tech Contract": "/images/classifieds/sub/it-tech-contract.jpg",
+  "Part-time": "/images/classifieds/sub/part-time.jpg",
+  "Restaurant/Retail": "/images/classifieds/sub/restaurant-retail.jpg",
+  // Services
+  "Catering": "/images/classifieds/sub/catering.jpg",
+  "Cleaning": "/images/classifieds/sub/cleaning.jpg",
+  "Driving Lessons": "/images/classifieds/sub/driving-lessons.jpg",
+  "Immigration Help": "/images/classifieds/sub/immigration-help.jpg",
+  "Mehendi/Henna": "/images/classifieds/sub/mehendi-henna.jpg",
+  "Movers & Packers": "/images/classifieds/sub/movers-packers.jpg",
+  "Photography/Videography": "/images/classifieds/sub/photography-videography.jpg",
+  "Priest/Pandit": "/images/classifieds/sub/priest-pandit.jpg",
+  "Tax & Accounting": "/images/classifieds/sub/tax-accounting.jpg",
+  "Tutoring": "/images/classifieds/sub/tutoring.jpg",
+};
+
+export function subcategoryFallbackImg(subcategory: string | null | undefined): string | null {
+  if (!subcategory) return null;
+  return SUBCATEGORY_FALLBACK_IMG[subcategory] || null;
+}
+
 
 export const SUBCATEGORIES: Record<string, string[]> = {
   Services: [

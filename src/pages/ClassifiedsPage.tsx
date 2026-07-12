@@ -15,6 +15,7 @@ import {
   CATEGORY_BORDER,
   CATEGORY_BG,
   SUBCATEGORIES,
+  subcategoryFallbackImg,
   timeAgo,
 } from "@/lib/classifieds";
 import { CITY_GROUPS } from "@/lib/events";
@@ -75,6 +76,15 @@ function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
                 const container = (e.target as HTMLElement).parentElement;
                 if (container) container.style.display = "none";
               }}
+            />
+          </div>
+        ) : subcategoryFallbackImg(item.subcategory) ? (
+          <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 overflow-hidden">
+            <img
+              src={subcategoryFallbackImg(item.subcategory)!}
+              alt={item.subcategory || item.category}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
             />
           </div>
         ) : (

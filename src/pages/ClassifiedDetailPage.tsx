@@ -21,6 +21,7 @@ import {
   getClassifiedBySlug,
   CATEGORY_ICONS,
   CATEGORY_COLORS,
+  subcategoryFallbackImg,
   timeAgo,
 } from "@/lib/classifieds";
 import TurnstileWidget from "@/components/TurnstileWidget";
@@ -572,14 +573,14 @@ export default function ClassifiedDetailPage() {
             <ChevronLeft className="h-4 w-4" /> Back to classifieds
           </Link>
 
-          {/* Hero image — only when listing has a real photo */}
-          {heroImage && (
+          {/* Hero image or subcategory fallback */}
+          {(heroImage || subcategoryFallbackImg(item.subcategory)) && (
             <div className="relative w-full overflow-hidden rounded-xl">
               <img
-                src={heroImage}
+                src={heroImage || subcategoryFallbackImg(item.subcategory)!}
                 alt={item.title}
-                className="w-full object-contain bg-black rounded-xl"
-                style={{ maxHeight: "75vh" }}
+                className={heroImage ? "w-full object-contain bg-black rounded-xl" : "w-full h-48 sm:h-56 object-cover rounded-xl"}
+                style={heroImage ? { maxHeight: "75vh" } : undefined}
               />
             </div>
           )}
