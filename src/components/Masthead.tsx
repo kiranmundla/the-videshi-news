@@ -33,7 +33,7 @@ const NAV_SECTIONS = [
 
 /* CTA links in Row 2 (right-aligned) */
 const NAV_CTAS = [
-  { label: "+ Post Event", path: "/events/submit" },
+  // Removed — each section page (events, classifieds) has its own + Post button
 ];
 
 /* Row 3 — live happenings (conditional, only renders when non-empty) */
