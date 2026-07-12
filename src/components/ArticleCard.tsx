@@ -150,6 +150,15 @@ function accentFor(category?: string): string {
   return ACCENT[category.toLowerCase()] ?? "hsl(var(--primary))";
 }
 
+const DISPLAY_CATEGORY: Record<string, string> = {
+  news: "India News",
+  "nri-world": "World News",
+};
+
+function displayCategory(cat: string): string {
+  return DISPLAY_CATEGORY[cat] || cat;
+}
+
 export default function ArticleCard({
   article,
   variant = "card",
@@ -202,7 +211,7 @@ export default function ArticleCard({
                 {featureLabel}
               </span>
             )}
-            {article.category}
+            {displayCategory(article.category)}
           </p>
           <h3 className={`font-serif font-bold text-base md:text-[1.05rem] leading-snug text-foreground group-hover:text-primary transition-colors ${isKeyUpdate ? "text-[1.08rem] md:text-[1.12rem]" : ""}`}>
             {isKeyUpdate && <span className="text-amber-400 mr-1 text-sm">⚡</span>}
@@ -223,7 +232,7 @@ export default function ArticleCard({
           style={{ borderLeftColor: accent }}
         >
           <p className="smallcaps text-primary mb-3">
-            {article.category}
+            {displayCategory(article.category)}
           </p>
           <h2 className="font-serif font-bold text-[1.75rem] md:text-[2.5rem] leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
@@ -260,7 +269,7 @@ export default function ArticleCard({
         </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
-            {article.category}
+            {displayCategory(article.category)}
           </p>
           <h2 className="font-serif font-bold text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
@@ -312,7 +321,7 @@ export default function ArticleCard({
                 {featureLabel}
               </span>
             )}
-            {article.category}
+            {displayCategory(article.category)}
           </p>
         )}
         <h2
@@ -360,7 +369,7 @@ export default function ArticleCard({
                   {featureLabel}
                 </span>
               )}
-              {article.category}
+              {displayCategory(article.category)}
             </p>
           )}
           <h2
@@ -416,7 +425,7 @@ export default function ArticleCard({
               {featureLabel}
             </span>
           )}
-          {article.category}
+          {displayCategory(article.category)}
         </p>
       )}
       <h2

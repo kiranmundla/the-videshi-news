@@ -10,12 +10,12 @@ import { CATEGORIES } from "@/lib/categories";
 /* Row 1 — editorial content categories (scrollable) */
 const NAV_CATEGORIES = [
   { slug: "", label: "Home", path: "/" },
-  { slug: "news", label: "News", path: "/news" },
+  { slug: "news", label: "India News", path: "/news" },
   { slug: "immigration", label: "Immigration", path: "/immigration" },
   { slug: "technology", label: "Technology", path: "/technology" },
   { slug: "sports", label: "Sports", path: "/sports" },
   { slug: "markets-finance", label: "Markets", path: "/markets-finance" },
-  { slug: "nri-world", label: "World", path: "/nri-world" },
+  { slug: "nri-world", label: "World News", path: "/nri-world" },
   { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
   { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
   { slug: "travel", label: "Travel", path: "/travel" },

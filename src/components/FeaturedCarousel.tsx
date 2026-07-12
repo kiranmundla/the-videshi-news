@@ -20,8 +20,13 @@ function categoryColor(cat: string): string {
   return CATEGORY_COLORS[cat] || "hsl(var(--primary))";
 }
 
+const CATEGORY_LABEL_MAP: Record<string, string> = {
+  news: "INDIA NEWS",
+  "nri-world": "WORLD NEWS",
+};
+
 function categoryLabel(cat: string): string {
-  return (cat || "news").replace(/-/g, " ").toUpperCase();
+  return CATEGORY_LABEL_MAP[cat] || (cat || "news").replace(/-/g, " ").toUpperCase();
 }
 
 /* ── Slide (single article card) ────────────────────── */

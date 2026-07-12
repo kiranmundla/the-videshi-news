@@ -17,12 +17,12 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const CATEGORY_LABELS: Record<string, string> = {
   immigration: "IMMIGRATION",
-  news: "NEWS",
+  news: "INDIA NEWS",
   sports: "SPORTS",
   technology: "TECHNOLOGY",
   entertainment: "ENTERTAINMENT",
   "markets-finance": "MARKETS & FINANCE",
-  "nri-world": "NRI WORLD",
+  "nri-world": "WORLD NEWS",
   "lifestyle-health": "LIFESTYLE & HEALTH",
 };
 

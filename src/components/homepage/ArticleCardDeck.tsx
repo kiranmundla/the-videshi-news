@@ -10,7 +10,7 @@ interface ArticleCard {
 
 const CAT_LABELS: Record<string, string> = {
   immigration: "Immigration", technology: "Technology", entertainment: "Entertainment",
-  news: "News", "markets-finance": "Markets", sports: "Sports", "nri-world": "NRI World",
+  news: "India News", "markets-finance": "Markets", sports: "Sports", "nri-world": "World News",
 };
 
 export default function ArticleCardDeck() {
