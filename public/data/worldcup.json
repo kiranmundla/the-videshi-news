@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-12T13:58:29Z",
+  "last_updated": "2026-07-12T17:58:37Z",
   "stage": "Semifinals — 100 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -10614,6 +10614,12 @@
       "url": "https://www.facebook.com/reel/1590174482472970/",
       "account": "@fifaworldcup",
       "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Darfyr8jIHF",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
     }
   ],
   "tv": {
