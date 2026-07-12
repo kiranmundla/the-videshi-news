@@ -19,6 +19,7 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
+import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import "@/components/homepage/homepage-v2.css";
@@ -356,6 +357,9 @@ export default function IndexV2() {
 
       {/* 1. Masthead (includes category pills + community nav row) */}
       <Masthead />
+
+      {/* 2. Hub Icons */}
+      <HubStrip />
 
       {/* 4. Market Ticker */}
       <MarketTicker />

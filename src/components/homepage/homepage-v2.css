@@ -3,6 +3,63 @@
    Styles that can't be easily done with Tailwind
    ═══════════════════════════════════════════ */
 
+/* ── Hub Strip ──────────────────────────── */
+.v2-hub-strip {
+  background: #fff;
+  padding: 16px 12px 12px;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #e2e8f0;
+}
+.v2-hub-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v2-hub-tile:active .v2-hub-icon {
+  transform: scale(0.92);
+}
+.v2-hub-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 15px;
+  object-fit: contain;
+  transition: transform 0.15s ease;
+}
+.v2-hub-label {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 380px) {
+  .v2-hub-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+  }
+  .v2-hub-label {
+    font-size: 10px;
+  }
+  .v2-hub-strip {
+    padding: 14px 8px 10px;
+  }
+}
+
+/* ── Visual Polish — section dividers ── */
+.v2-main-sections > section {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+}
+.v2-main-sections > section:last-child {
+  border-bottom: none;
+}
+
 /* ── Shared scroll strip styling ────────── */
 /* Reusable scroll wrapper with arrow navigation */
 .v2-scroll-wrap {
@@ -58,9 +115,9 @@
   .v2-scroll-arrow { display: none; }
 }
 
-/* ── Section spacing — override mb-14 (56px) to 72px ── */
+/* ── Section spacing — tighter, polished feel ── */
 .v2-main-sections > section.mb-14 {
-  margin-bottom: 72px;
+  margin-bottom: 48px;
 }
 
 /* ── Trending Strip ─────────────────────── */
@@ -161,7 +218,7 @@
 /* ── Immigration Strip ──────────────────── */
 .v2-imm-section {
   background: #0B1D3A;
-  padding: 40px 0;
+  padding: 32px 0;
 }
 .v2-imm-pills {
   display: flex;
@@ -260,7 +317,7 @@
 /* ── Voices section ─────────────────────── */
 .v2-voices-section {
   background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
-  padding: 48px 0;
+  padding: 36px 0;
   border-top: 1px solid #F0E6CC;
   border-bottom: 1px solid #F0E6CC;
 }
@@ -305,7 +362,7 @@
 
   .v2-trending-strip-inner { padding: 10px 0; gap: 16px; }
 
-  .v2-voices-section { padding: 32px 0; }
+  .v2-voices-section { padding: 24px 0; }
 
   /* Ribbon cards — smaller on mobile */
   .v2-ribbon-landscape { width: 220px; }
@@ -334,8 +391,8 @@
   padding: 20px 0 20px;
   border-top: 1px solid #F0E6CC;
   border-bottom: 1px solid #F0E6CC;
-  margin-top: -48px;
-  margin-bottom: 72px;
+  margin-top: -24px;
+  margin-bottom: 48px;
 }
 .v2-social-x-badge {
   width: 22px;
@@ -482,8 +539,8 @@
 }
 
 .v2-market-ticker-wrap {
-  margin-bottom: 24px;
-  margin-top: 6px;
+  margin-bottom: 16px;
+  margin-top: 4px;
 }
 
 .v2-market-ticker-box {
@@ -493,7 +550,7 @@
 /* Desktop: ticker follows container flow */
 @media (min-width: 769px) {
   .v2-market-ticker-wrap {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 }
 
