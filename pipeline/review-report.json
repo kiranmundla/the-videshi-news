@@ -1,101 +1,15 @@
 {
-  "timestamp": "2026-07-12T16:16:03.627481+00:00",
+  "timestamp": "2026-07-12T16:45:21.130898+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "3db4b37d-9efe-4e23-8d2f-dfdaa11fcfd1",
-      "headline": "Indian Banks Are Offering NRIs Up to Seven Per Cent on Dollar Deposits. The Window Closes in Eleven Weeks.",
-      "slug": "rbi-fcnr-deposits-nri-seven-percent-dollar-swap-window-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story about NRI deposits."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRIs and their banking options, making it relevant and informative for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section on how NRIs can take advantage of these new rates, including any necessary steps or documentation.",
-          "Include quotes or testimonials from NRIs who have benefited from these changes to add a personal touch."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c65de309-a198-4109-be06-e519252811f4",
-      "headline": "Six Months of America's Remittance Tax: The One Per Cent Levy That Rewired How the Diaspora Sends Money Home",
-      "slug": "us-remittance-tax-one-percent-six-months-nri-diaspora-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol building",
-          "reason": "The Capitol is relevant to a story about U.S. legislation."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the impact of the remittance tax on the Indian diaspora, particularly focusing on how it affects different segments of the community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of remittances or the Indian diaspora.",
-          "Consider adding quotes or testimonials from diaspora members affected by the remittance tax to enhance the personal connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "822ce0be-ae51-4f44-887f-389dcc5a566a",
       "headline": "The Science Is Settling: What 104 Clinical Trials Say About Turmeric's Real Health Benefits",
@@ -122,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the health benefits of turmeric to the South Asian diaspora, highlighting their specific health challenges."
+          "note": "The article effectively connects the health benefits of turmeric to the South Asian diaspora's specific health challenges."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Consider adding more specific examples of how turmeric is used in South Asian cooking to enhance cultural relevance.",
-          "Include quotes or insights from health professionals to bolster credibility."
+          "Include quotes or insights from health professionals to add authority to the claims made in the article."
         ],
         "verdict": "pass"
       },
@@ -165,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article briefly mentions the diaspora connection but lacks depth in exploring how NRIs can engage with or relate to the run club phenomenon."
+          "note": "The article briefly mentions the diaspora connection but does not elaborate on how NRIs can engage with or relate to the run club phenomenon."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle to include specific examples of how NRIs can participate in or benefit from India's run club culture.",
-          "Consider adding quotes or testimonials from NRI participants to strengthen the connection."
+          "Expand on the diaspora angle to provide more context on how NRIs can connect with or participate in India's run club culture.",
+          "Include quotes or testimonials from NRI participants or observers to enhance the connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -191,11 +105,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "doctor examining child's abdomen",
-          "reason": "The photo shows a child being examined, not a community health screening event."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -208,158 +117,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant for the diaspora."
+          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or testimonials from South Asian individuals to further personalize the diaspora angle."
+          "Include a relevant image description to enhance the article's visual appeal and context.",
+          "Consider adding quotes or testimonials from South Asian individuals to personalize the health message."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (doctor examining child's abdomen)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "98d25382-14dd-4651-9cdd-3ebb1ed24503",
-      "headline": "Indian Banks Race for Global Ratings as RBI's FCNR Dollar Drive Opens a Rare Window for NRI Depositors",
-      "slug": "indian-banks-global-ratings-rbi-fcnr-nri-deposit-window-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5574b2b6-146b-422e-923d-771dfd1a83a9",
-            "headline": "India's Forex Reserves Jump $7.26 Billion in a Week \u2014 Gold R"
-          },
-          {
-            "article_id": "c17632d1-2a19-413f-9860-c4683eb6814a",
-            "headline": "India's June Inflation Data Arrives Monday \u2014 CPI Expected to"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the RBI headquarters, relevant to the story about Indian banks and RBI policies."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI depositors and their interests in the context of the RBI's new policies."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or perspectives from NRI depositors to enhance relatability.",
-          "Include a brief comparison of the benefits of FCNR(B) deposits versus other investment options for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0ab64788-3a12-4156-a785-936f2bd378be",
-      "headline": "America's 1% Remittance Tax Is Already Law \u2014 Here's What Every NRI Needs to Know About Sending Money Home",
-      "slug": "us-1-percent-remittance-tax-law-nri-exemptions-guide-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian rupee banknotes",
-          "reason": "The photo of Indian rupees is relevant to a story about remittances to India."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to remittances or financial transactions, but it is visually appealing and relevant to the theme of money."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article directly addresses NRIs and their concerns regarding the remittance tax, providing practical advice and insights."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a relevant image that visually represents remittances or financial transactions to enhance the article's connection to the topic.",
-          "Include a brief summary or conclusion to reinforce the key takeaways for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bb28086a-f095-4369-a583-c4e65982e72f",
-      "headline": "TCS Plans Up to 8,900 Forward-Deployed AI Engineers and Hunts for Acquisitions \u2014 What NRI Tech Investors Should Know",
-      "slug": "tcs-8900-forward-deployed-ai-engineers-acquisitions-nri-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "stock market data on screen",
-          "reason": "The photo of stock market data is relevant to a finance and acquisition story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI or TCS, but is a generic tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI investors by discussing TCS's strategies and implications for their investments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents AI or TCS to enhance visual appeal.",
-          "Add a brief section summarizing the implications of TCS's strategies specifically for NRI investors to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
+        "held: no sources"
       ],
       "revised": false,
       "unpublished": false,
