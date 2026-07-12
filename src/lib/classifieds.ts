@@ -68,11 +68,27 @@ export const CATEGORY_ICONS: Record<string, string> = {
 };
 
 export const CATEGORY_COLORS: Record<string, string> = {
-  Services: "bg-blue-100 text-blue-700",
-  Housing: "bg-emerald-100 text-emerald-700",
-  "For Sale": "bg-amber-100 text-amber-700",
-  "Jobs & Gigs": "bg-purple-100 text-purple-700",
-  Community: "bg-teal-100 text-teal-700",
+  Services: "bg-blue-600/20 text-blue-300",
+  Housing: "bg-emerald-600/20 text-emerald-300",
+  "For Sale": "bg-amber-600/20 text-amber-300",
+  "Jobs & Gigs": "bg-purple-600/20 text-purple-300",
+  Community: "bg-teal-600/20 text-teal-300",
+};
+
+export const CATEGORY_BORDER: Record<string, string> = {
+  Services: "border-l-blue-400",
+  Housing: "border-l-emerald-400",
+  "For Sale": "border-l-amber-400",
+  "Jobs & Gigs": "border-l-purple-400",
+  Community: "border-l-teal-400",
+};
+
+export const CATEGORY_BG: Record<string, string> = {
+  Services: "bg-blue-950/40",
+  Housing: "bg-emerald-950/40",
+  "For Sale": "bg-amber-950/40",
+  "Jobs & Gigs": "bg-purple-950/40",
+  Community: "bg-teal-950/40",
 };
 
 export const SUBCATEGORIES: Record<string, string[]> = {

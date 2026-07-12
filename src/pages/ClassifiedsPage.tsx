@@ -12,6 +12,8 @@ import {
   CLASSIFIED_CATEGORIES,
   CATEGORY_ICONS,
   CATEGORY_COLORS,
+  CATEGORY_BORDER,
+  CATEGORY_BG,
   SUBCATEGORIES,
   timeAgo,
 } from "@/lib/classifieds";
@@ -60,7 +62,7 @@ function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
 
   return (
     <Link to={`/classifieds/${item.slug}`} className="block no-underline">
-      <article className="group flex flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
+      <article className={`group flex flex-row ${CATEGORY_BG[item.category] || "bg-card"} border border-border/50 border-l-[3px] ${CATEGORY_BORDER[item.category] || "border-l-muted"} rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full`}>
         {/* Thumbnail */}
         {imageUrl ? (
           <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 flex items-center justify-center bg-muted/10 overflow-hidden">
