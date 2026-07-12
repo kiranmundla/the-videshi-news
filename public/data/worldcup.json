@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-12T05:58:20Z",
+  "last_updated": "2026-07-12T07:59:08Z",
   "stage": "Semifinals — 100 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -10352,6 +10352,34 @@
       "url": "https://www.facebook.com/fifaworldcup/posts/pfbid0KMHi8z1B53sWaxDpwLSx9jHx3YiRY15nEE3sWpE3tcqmbX839kbAdpVWrHjDmopbl",
       "account": "@fifaworldcup",
       "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/Darf2eNkmZ6/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12",
+      "description": "Julián Álvarez goal – Argentina vs Switzerland QF"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2007194074003393/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12",
+      "description": "Julián Álvarez goal – Argentina vs Switzerland QF"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DarxyXqCuia",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12",
+      "description": "Quarterfinal highlights recap – England & Argentina advance"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/Darn4PpiEl3/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12",
+      "description": "Julián Álvarez goal – Argentina 3-1 Switzerland (AET)"
     }
   ],
   "tv": {
