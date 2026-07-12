@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-12T14:15:32.881343+00:00",
+  "timestamp": "2026-07-12T15:15:42.304092+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
+    "pass": 3,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
-      "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is What Every H-1B Holder Should Know",
-      "slug": "uscis-fdns-home-office-site-visits-h1b-remote-workers-20260712",
+      "id": "cb8159ef-03ef-4c7a-befb-c499883d5f55",
+      "headline": "Cricket Comes to the Bay. MLC's Playoffs Head to Oakland for the First Time.",
+      "slug": "mlc-2026-playoffs-oakland-coliseum-unicorns-knight-riders-mi-new-york-freedom-bay-area-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person working remotely at home",
-          "reason": "The photo shows a remote worker, relevant to the story about USCIS visits to home offices."
+          "what_photo_shows": "man in red cap and blue shirt",
+          "reason": "The photo plausibly shows Rashid Khan, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of H-1B workers or immigration enforcement."
+          "score": 5,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article specifically addresses Indian H-1B holders, making it relevant to the diaspora audience."
+          "quality": 9,
+          "note": "The article effectively connects the event to the Indian-American community in the Bay Area."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to H-1B workers or immigration enforcement for better visual alignment.",
-          "Add a section that includes personal stories or testimonials from H-1B workers to enhance relatability."
+          "Replace the hero image with one that features a cricket match or players to better match the article's focus.",
+          "Add more quotes or insights from players or fans to enhance the narrative and engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e50033e6-681e-4f33-861b-be5b378edd8b",
+      "headline": "Broken Bodies, Fresh Faces. India Reshuffles Its ODI Squad as England Series Looms.",
+      "slug": "india-odi-squad-reshuffle-harshit-rana-injury-prince-yadav-england-series-rohit-kohli-bumrah-nri-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Shubman Gill in a blazer",
+          "reason": "The photo shows Shubman Gill, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the ODI series to the interests of Indian Americans, highlighting key players and the viewing options available."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the article's depth.",
+          "Include more context about the significance of the ODI series for the Indian team and its fans."
         ],
         "verdict": "pass"
       },
@@ -54,31 +97,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
-      "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Applicants. None Will Reopen Before October",
-      "slug": "july-visa-bulletin-eb2-eb5-india-unavailable-eb1-retrogression-20260712",
+      "id": "6dffd91f-af30-4216-b9c6-6846ca041e72",
+      "headline": "OpenAI and Anthropic Are Throwing Millions at YC Startups. Indian Founders Are Cashing In \u2014 and Reselling the Credits.",
+      "slug": "openai-anthropic-credit-war-yc-indian-founders-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
-            "headline": "Your Spouse's Work Permit Expires This Month. The Government"
-          },
-          {
-            "article_id": "9061dd5f-48ae-46ff-a682-43b97459505b",
-            "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The R"
-          },
-          {
-            "article_id": "753196ab-bbe4-4f36-a851-292b3e4a319b",
-            "headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to immigration topics."
+          "what_photo_shows": "AI chip visualisation",
+          "reason": "The photo's subject is relevant to the AI and technology theme of the story."
         },
         "inline_image_mismatches": []
       },
@@ -86,19 +116,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the article's focus on visa categories and immigration processes."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa issues, making it highly relevant."
+          "quality": 8,
+          "note": "The article discusses Indian founders in the context of a significant trend in the tech industry, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of immigration or visas.",
-          "Add a brief summary or conclusion that emphasizes the impact of these changes on the Indian diaspora."
+          "Include more direct quotes from Indian founders to enhance personal connection.",
+          "Add a section on how this trend might impact the Indian tech ecosystem in the long term."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "266dd7a4-cb5e-4426-8b4e-66642a093a8a",
+      "headline": "TCS Wants Up to 8,900 Forward-Deployed Engineers. It Marks the Biggest Talent Bet in Indian IT's AI Pivot.",
+      "slug": "tcs-forward-deployed-engineers-ai-acquisitions-krithivasan-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "TCS facility building in India",
+          "reason": "The photo shows a TCS facility, relevant to the story about TCS engineers."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of TCS's new model for Indian engineers in the US, making it relevant for the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from industry experts or analysts to enhance credibility.",
+          "Include more data or examples of how the FDE model has been implemented successfully in other companies."
         ],
         "verdict": "pass"
       },
