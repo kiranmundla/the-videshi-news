@@ -561,3 +561,45 @@
     height: 550px;
   }
 }
+
+/* ── Article Card Scroll ── */
+.article-card-scroll {
+  margin: 1rem 0 0.5rem;
+}
+.article-card-scroll-label {
+  font-family: "InterDisplay", "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aaa;
+  margin: 0 0 0.5rem 0.25rem;
+}
+.article-card-item {
+  flex: 0 0 260px;
+  min-width: 260px;
+  max-width: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: block;
+}
+.article-card-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.article-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .article-card-item {
+    flex: 0 0 220px;
+    min-width: 220px;
+    max-width: 220px;
+  }
+}

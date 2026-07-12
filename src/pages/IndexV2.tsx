@@ -18,6 +18,7 @@ import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
+import ArticleCardScroll from "@/components/homepage/ArticleCardScroll";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import "@/components/homepage/homepage-v2.css";
@@ -372,6 +373,7 @@ export default function IndexV2() {
 
         {/* 7. Immigration Strip */}
         <ImmigrationStrip articles={layout.immigration} />
+        <ArticleCardScroll category="immigration" />
 
         {/* 8. Newsletter CTA */}
         <NewsletterCTA />
@@ -386,6 +388,7 @@ export default function IndexV2() {
           articles={layout.technology}
         />
         <TweetScroll category="technology" />
+        <ArticleCardScroll category="technology" />
 
         {/* 11. Entertainment (horizontal ribbon — portrait, 8 cards) */}
         <RibbonSection
@@ -397,6 +400,7 @@ export default function IndexV2() {
         />
         <NowInTheaters />
         <StreamingPicks />
+        <ArticleCardScroll category="entertainment" />
 
         {/* 12. India News + Trending Sidebar */}
         <IndiaNewsGrid
