@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-12T19:59:08Z",
+  "last_updated": "2026-07-12T23:59:00Z",
   "stage": "Semifinals — 100 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2206,6 +2206,36 @@
       "score": null,
       "home_code": "ENG",
       "away_code": "ARG"
+    },
+    {
+      "id": 103,
+      "group": "3P",
+      "date": "2026-07-18",
+      "time": "16:00",
+      "tz": "ET",
+      "home": "TBD",
+      "away": "TBD",
+      "venue": "Hard Rock Stadium",
+      "city": "Miami Gardens, FL",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "TBD",
+      "away_code": "TBD"
+    },
+    {
+      "id": 104,
+      "group": "F",
+      "date": "2026-07-19",
+      "time": "16:00",
+      "tz": "ET",
+      "home": "TBD",
+      "away": "TBD",
+      "venue": "MetLife Stadium",
+      "city": "East Rutherford, NJ",
+      "status": "scheduled",
+      "score": null,
+      "home_code": "TBD",
+      "away_code": "TBD"
     }
   ],
   "knockout": {
@@ -10630,6 +10660,96 @@
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/DardXKeltAn",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/889280120916246/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DatXwJUCy3S/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1058170756779760/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DatQ4baiX7s/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DatLjTACmhY/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DatNWfCC3dR/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/962726950153874/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DatM9MEi5Xi/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/909481121458617/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1263923279008572/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1032986882443731/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DatdTCoCFKQ/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/Dasm0J0iuvB/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2505014383255123/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dasn4xEjAHC",
       "account": "@fifaworldcup",
       "date": "2026-07-12"
     }
