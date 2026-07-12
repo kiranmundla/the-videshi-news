@@ -408,21 +408,21 @@ export default function IndexV2() {
         />
         <TweetScroll category="news" label="India News" />
 
-        {/* 13. Markets & Finance (lead + list) */}
+        {/* 13. World News (3-col grid) */}
+        <NewsGrid
+          title="World News"
+          borderColor="#1565C0"
+          categorySlug="nri-world"
+          articles={layout.nriWorld}
+          columns={3}
+        />
+
+        {/* 14. Markets & Finance (lead + list) */}
         <LeadListSection
           title="Markets & Finance"
           borderColor="#E65100"
           categorySlug="markets-finance"
           articles={layout.markets}
-        />
-
-        {/* 14. NRI World (3-col grid) */}
-        <NewsGrid
-          title="NRI World"
-          borderColor="#1565C0"
-          categorySlug="nri-world"
-          articles={layout.nriWorld}
-          columns={3}
         />
 
         {/* 15. Sports (horizontal ribbon — landscape) */}
