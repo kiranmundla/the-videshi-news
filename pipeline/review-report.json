@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T03:15:45.531968+00:00",
+  "timestamp": "2026-07-12T06:45:31.702686+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,23 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7cf1eb39-4754-4f01-98ec-a6d3736011e8",
-      "headline": "Washington Is About to Rewrite the H-1B Playbook. Indian IT Giants Should Be Worried.",
-      "slug": "h1b-visa-rules-august-overhaul-indian-it-third-party-20260712",
+      "id": "d371c8df-99f9-4a7b-aa34-9a3d0c97af5b",
+      "headline": "India's Biggest Trade Deal Goes Live on Tuesday. Here's What Changes for the Diaspora in Britain.",
+      "slug": "india-uk-fta-ceta-july-15-diaspora-social-security-tariffs-mobility-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "37a64de6-e5ce-4d97-9e45-9ae6b50b7467",
-            "headline": "Five Rules, One Target: The Trump Administration Is Rewritin"
+            "article_id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
+            "headline": "The India-US Trade Deal Is '99% Done' \u2014 So Why Can't They Cl"
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol building at dusk",
-          "reason": "The photo of the U.S. Capitol is relevant to a story about U.S. immigration policy changes."
+          "what_photo_shows": "Piyush Goyal smiling",
+          "reason": "The photo shows India's Commerce and Industry Minister, relevant to the trade deal story."
         },
         "inline_image_mismatches": []
       },
@@ -36,93 +36,39 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of the Capitol building is relevant to the topic of U.S. immigration policy but does not directly depict the H-1B visa issue."
+          "issue": "The image of Piyush Goyal is relevant as he is a key figure in the trade deal, but it could be more directly related to the trade agreement itself."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article discusses changes to the H-1B visa system, which directly impacts the Indian IT industry and Indian professionals, making it highly relevant to the diaspora."
+          "note": "The article effectively highlights how the trade deal impacts the Indian diaspora in Britain, particularly in terms of social security and professional mobility."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or perspectives from Indian IT professionals or industry experts to enhance the article's depth.",
-          "Add a section on potential responses or strategies that Indian IT companies might adopt in light of these changes."
+          "Include more specific examples of how the trade deal will affect everyday life for the diaspora, such as potential job growth or changes in consumer prices.",
+          "Consider adding quotes from diaspora members or experts to provide personal perspectives on the trade deal's implications."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "3e384230-a6a5-48fb-85c5-c1d9b4e1f519",
-      "headline": "OpenAI's New 'Super App' Can Work for Hours Without You. Its Cheapest Model Is the One to Watch.",
-      "slug": "openai-chatgpt-work-gpt-56-super-app-enterprise-ai-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "30fab92c-0652-4ed7-8111-c813c2368251",
-            "headline": "OpenAI Wants to Give the US Government a $42 Billion Stake. "
-          },
-          {
-            "article_id": "ee751872-f3f5-4bf5-8293-0081926b6a81",
-            "headline": "OpenAI's GPT-Live Can Listen and Talk at the Same Time. Indi"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo shows a person who could plausibly be OpenAI CEO Sam Altman, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image features Sam Altman, which is relevant to OpenAI, but does not directly relate to the specific topic of the new 'Super App'."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of OpenAI's new product for Indian tech professionals, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that directly represents the new 'Super App' or its features.",
-          "Add more specific examples of how Indian startups can leverage the new AI capabilities."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e31bded2-8558-478a-adda-cca30760c181",
-      "headline": "Apple Just Declared War on OpenAI. The Lawsuit Could Reshape How Silicon Valley Hires.",
-      "slug": "apple-sues-openai-trade-secrets-hardware-talent-war-20260712",
+      "id": "48d6b724-87c5-4d84-9ffb-5f03df55a217",
+      "headline": "The Iran War Just Went Gulf-Wide. For Nine Million Indians in the Region, the Fight Is Now Overhead.",
+      "slug": "iran-war-gulf-wide-five-states-jordan-kuwait-qatar-uae-oman-india-diaspora-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Apple Park headquarters in Cupertino",
-          "reason": "The photo shows Apple's headquarters, relevant to the story about Apple."
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: not-an-image"
         },
         "inline_image_mismatches": []
       },
@@ -130,27 +76,28 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Apple Park is relevant to the article's subject but does not directly relate to the lawsuit against OpenAI."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the lawsuit's implications to Indian engineers in Silicon Valley, highlighting their role in the tech industry."
+          "note": "The article effectively connects the geopolitical situation to the Indian diaspora in the Gulf, highlighting the direct impact on their lives."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the implications of the lawsuit for the tech industry as a whole.",
-          "Include quotes or perspectives from Indian engineers to enhance the diaspora angle."
+          "Include quotes or perspectives from Indian expatriates in the Gulf to enhance the diaspora connection.",
+          "Provide more context on how the conflict specifically affects Indian nationals, such as potential evacuation plans or economic impacts."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "held: image unverified"
       ],
       "revised": false,
       "unpublished": false,
+      "image_unverified": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
