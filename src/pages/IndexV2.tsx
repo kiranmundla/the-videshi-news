@@ -431,7 +431,6 @@ export default function IndexV2() {
           aspectRatio="landscape"
         />
         <TweetScroll category="sports" />
-        <InstagramPhotoScroll category="sports" label="Sports in Pictures" />
 
         {/* 16. Travel (horizontal ribbon — landscape) */}
         {layout.travel.length > 0 && (
