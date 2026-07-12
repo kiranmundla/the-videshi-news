@@ -390,22 +390,23 @@ export async function getAllClassifieds(
 export async function getClassifiedBySlug(
   slug: string,
 ): Promise<Classified | null> {
-  // Try static JSON first
-  const cached = await loadClassifiedsCache();
-  if (cached) {
-    const found = cached.find((c) => c.slug === slug);
-    if (found) return found;
-  }
-
-  // Fallback: Supabase
+  // Always read fresh from Supabase for individual listings (edits show immediately)
   const { data, error } = await supabase
     .from("classifieds")
     .select(COLS)
     .eq("slug", slug)
     .limit(1);
 
-  if (error || !data || data.length === 0) return null;
-  return parseClassified(data[0] as any);
+  if (!error && data && data.length > 0) return parseClassified(data[0] as any);
+
+  // Fallback: static JSON (offline / Supabase down)
+  const cached = await loadClassifiedsCache();
+  if (cached) {
+    const found = cached.find((c) => c.slug === slug);
+    if (found) return found;
+  }
+
+  return null;
 }
 
 /* ------------------------------------------------------------------ */
