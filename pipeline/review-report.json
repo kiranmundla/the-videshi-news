@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T21:15:53.052658+00:00",
+  "timestamp": "2026-07-12T23:15:21.517610+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a8c61ef6-f4d1-4bca-bfef-59cc409f356b",
-      "headline": "Mercor Eyes $20 Billion Valuation as India's Invisible AI Workforce Powers Silicon Valley",
-      "slug": "mercor-ai-20-billion-valuation-india-invisible-ai-workforce-20260712",
+      "id": "5f273e5b-5aff-44c0-a4fb-f39cbc4f0f7e",
+      "headline": "Unicorns in Command, Three at Four Points. MLC 2026's Final Week Is a Reckoning.",
+      "slug": "mlc-2026-final-week-standings-unicorns-command-knight-riders-mi-new-york-playoff-race-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "0d14422f-dcf0-498c-af33-32280c78c437",
+            "headline": "Four Wickets. Four Balls. Shanaka's Last-Over Miracle Writes"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "People working on computers",
-          "reason": "The photo shows people working on computers, which aligns with data annotators for AI systems."
+          "what_photo_shows": "aerial view of cricket field",
+          "reason": "The photo shows a cricket field, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image is relevant to cricket but does not specifically depict the teams or events mentioned in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the story of Mercor to the Indian diaspora, highlighting the opportunities for Indian professionals in the tech labor market."
+          "quality": 9,
+          "note": "The article effectively connects the MLC's developments to the NRI community, highlighting their engagement and the cultural significance of the matches."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from Indian professionals working with Mercor to enhance the diaspora perspective.",
-          "Include a brief section on the implications of Mercor's success for the future of AI and tech jobs in India."
+          "Consider including more specific statistics or player highlights to enhance engagement.",
+          "Add quotes from players or coaches to provide a more personal touch to the narrative."
         ],
         "verdict": "pass"
       },
@@ -54,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8cccca51-31c7-4039-856b-c5f87037b119",
-      "headline": "TSMC Reports Thursday: Why This Semiconductor Bellwether Matters to Every NRI Tech Worker and Investor",
-      "slug": "tsmc-q2-earnings-semiconductor-bellwether-nri-investors-20260712",
+      "id": "e48e517d-bb21-4aef-85ce-baf325388e38",
+      "headline": "Yastika Bhatia's Maiden Test Century Puts India One Day From a Historic Lord's Victory.",
+      "slug": "yastika-bhatia-maiden-test-century-113-india-women-lords-day-3-historic-victory-knight-retirement-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +69,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "semiconductor chip on circuit board",
-          "reason": "The photo subject is relevant to the semiconductor industry story."
+          "what_photo_shows": "Person in India cricket attire",
+          "reason": "The photo shows a person associated with Indian cricket, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects TSMC's performance and expansion to the opportunities for Indian-origin engineers and investors, making it relevant to the diaspora."
+          "note": "The article effectively connects the significance of the match to the British-Indian community and diaspora cricket clubs in the US."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of how TSMC's performance directly impacts Indian engineers and investors.",
-          "Add a brief section on potential risks or challenges in the semiconductor market that could affect NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
-      "headline": "Mission Aagaman: India's First Private Orbital Rocket Enters Launch Window as Skyroot Makes History",
-      "slug": "skyroot-mission-aagaman-vikram-1-india-first-private-orbital-rocket-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "rocket launching into sky",
-          "reason": "The photo shows a rocket launch, relevant to the story about Skyroot's Vikram-1 rocket."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects the achievements of Skyroot to the broader narrative of India's technological advancement, which resonates with the diaspora's interest in India's growth."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from Skyroot's founders or industry experts to enhance credibility.",
-          "Add a section on how this launch could impact the global space market, particularly for Indian startups."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about women's cricket at Lord's."
         ],
         "verdict": "pass"
       },
