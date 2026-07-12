@@ -607,3 +607,105 @@
     border-radius: 8px;
   }
 }
+
+/* ── Article Card Deck ── */
+.card-deck-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 1rem 0;
+  padding: 0 0.5rem;
+}
+.card-deck-stack {
+  position: relative;
+  width: 140px;
+  height: 210px;
+  flex-shrink: 0;
+}
+.card-deck-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.card-deck-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  pointer-events: none;
+}
+.card-deck-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-deck-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.card-deck-arrow:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.card-deck-counter {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  color: #888;
+  min-width: 42px;
+  text-align: center;
+}
+
+/* expanded overlay */
+.card-deck-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.card-deck-expanded {
+  max-width: 360px;
+  width: 90vw;
+  cursor: pointer;
+  text-align: center;
+}
+.card-deck-expanded-img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+.card-deck-expanded-hint {
+  margin: 12px 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .card-deck-stack {
+    width: 120px;
+    height: 180px;
+  }
+  .card-deck-card {
+    width: 120px;
+  }
+}
