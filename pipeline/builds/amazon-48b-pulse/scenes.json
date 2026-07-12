@@ -1,0 +1,40 @@
+{
+  "article_id": "0b51695e-895d-491c-85fa-d06ef1579077",
+  "scenes": [
+    {
+      "voiceover": "",
+      "onscreen": "$48 BILLION — AMAZON'S INDIA BET",
+      "image_prompt": "$48B total Amazon India investment through 2030"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "$13B FRESH — MUMBAI & HYDERABAD",
+      "image_prompt": "$13B new for AI and cloud data centers in Mumbai and Hyderabad"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "$430M DATA CENTER — NAVI MUMBAI",
+      "image_prompt": "$430 million new AWS facility in Navi Mumbai"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "AMAZON $48B · MICROSOFT $17.5B · GOOGLE $15B",
+      "image_prompt": "Hyperscaler race comparison bars"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "$80B+ IN 18 MONTHS FROM US TECH",
+      "image_prompt": "$80B pledged by American hyperscalers to India in 18 months"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "300K INDIANS ON H-1B — RETURN MIGRATION SIGNAL",
+      "image_prompt": "300K Indians on H-1B and L-1 visas, return migration now more attractive"
+    },
+    {
+      "voiceover": "",
+      "onscreen": "INDIA'S DATA CENTER BOOM — YOTTA $150M",
+      "image_prompt": "Yotta raises $150M, IPO on track, new asset class"
+    }
+  ]
+}
