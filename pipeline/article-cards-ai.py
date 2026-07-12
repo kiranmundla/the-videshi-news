@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-article-cards-ai.py — GPT-generated designed article cards using hero images.
-Same approach as reel scene generation but for 4:5 portrait cards.
+article-cards-ai.py — Gemini-generated designed article cards using hero + body images.
+Same engine as reel scene generation (gemini-2.5-flash-image).
 """
 
-import os, sys, json, hashlib, subprocess, base64, time
+import os, sys, json, hashlib, subprocess, base64, time, re
 from pathlib import Path
+
+PIPELINE_DIR = Path(__file__).resolve().parent
 
 def load_env(path):
     p = os.path.expanduser(path)
@@ -18,11 +20,15 @@ def load_env(path):
                     os.environ.setdefault(k.strip(), v.strip())
 
 load_env("~/workspace/.env.supabase")
-load_env("~/workspace/.env.openai")
+load_env("~/workspace/.env.google-ai")
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+GEMINI_KEY = os.environ.get("GOOGLE_AI_API_KEY", "")
+
+# Style reference storyboards (same as reel pipeline)
+GEMINI_REF_1 = PIPELINE_DIR / "assets" / "gemini-ref-storyboard-1.jpg"
+GEMINI_REF_2 = PIPELINE_DIR / "assets" / "gemini-ref-storyboard-2.jpg"
 
 CATEGORY_COLORS = {
     "immigration": "deep crimson red",
@@ -37,8 +43,8 @@ CATEGORY_COLORS = {
     "food": "warm orange",
 }
 
-def download_hero(url, timeout=15):
-    """Download hero image and compress for API, return path or None."""
+def download_image(url, timeout=15):
+    """Download and compress image for API."""
     tmp = f"/tmp/ai_hero_{hashlib.md5(url.encode()).hexdigest()[:12]}.jpg"
     r = subprocess.run(
         ["curl", "-sS", "-L", "-o", tmp, "--max-time", str(timeout),
@@ -46,7 +52,6 @@ def download_hero(url, timeout=15):
         capture_output=True, timeout=timeout+5
     )
     if r.returncode == 0 and os.path.exists(tmp) and os.path.getsize(tmp) > 1000:
-        # Compress to keep payload small
         try:
             from PIL import Image
             im = Image.open(tmp).convert("RGB")
@@ -58,95 +63,129 @@ def download_hero(url, timeout=15):
             return tmp
     return None
 
-def image_to_b64(path):
+def img_to_b64(path):
     with open(path, "rb") as f:
         return base64.standard_b64encode(f.read()).decode()
 
 def extract_body_images(body, max_images=2):
-    """Extract inline image URLs from article markdown body."""
-    import re
     if not body:
         return []
-    # Match markdown images: ![alt](url)
-    urls = re.findall(r'!\[.*?\]\((https?://[^\)]+)\)', body)
-    return urls[:max_images]
+    return re.findall(r'!\[.*?\]\((https?://[^\)]+)\)', body)[:max_images]
 
-def generate_card_ai(article):
-    """Use GPT image generation to create a designed card from hero + body images."""
-    hero_path = download_hero(article["image_url"])
+def generate_card_gemini(article):
+    """Use Gemini 2.5 Flash Image to create a data-rich card (same engine as reels)."""
+    hero_path = download_image(article["image_url"])
     if not hero_path:
+        print("    ✗ Hero download failed", file=sys.stderr)
         return None
 
     cat = article.get("category", "news")
     color_desc = CATEGORY_COLORS.get(cat, "navy blue")
     headline = article["headline"]
     cat_upper = cat.replace("-", " & ").upper()
+    body_text = (article.get("body") or "")[:2500]
 
-    # Build image inputs: hero + any body images
-    image_inputs = []
-    hero_b64 = image_to_b64(hero_path)
-    image_inputs.append({
-        "type": "input_image",
-        "image_url": f"data:image/jpeg;base64,{hero_b64}"
+    # Build multimodal parts
+    parts = []
+
+    # Style reference storyboards (same as reel pipeline)
+    has_refs = False
+    if GEMINI_REF_1.exists() and GEMINI_REF_2.exists():
+        for ref_path in [GEMINI_REF_1, GEMINI_REF_2]:
+            parts.append({
+                "inlineData": {
+                    "mimeType": "image/jpeg",
+                    "data": img_to_b64(str(ref_path))
+                }
+            })
+        has_refs = True
+
+    # Hero image
+    parts.append({
+        "inlineData": {
+            "mimeType": "image/jpeg",
+            "data": img_to_b64(hero_path)
+        }
     })
 
+    # Body images
     body_imgs = extract_body_images(article.get("body", ""))
+    body_img_count = 0
     for burl in body_imgs:
-        bpath = download_hero(burl)
+        bpath = download_image(burl)
         if bpath:
-            bb64 = image_to_b64(bpath)
-            image_inputs.append({
-                "type": "input_image",
-                "image_url": f"data:image/jpeg;base64,{bb64}"
+            parts.append({
+                "inlineData": {
+                    "mimeType": "image/jpeg",
+                    "data": img_to_b64(bpath)
+                }
             })
+            body_img_count += 1
 
-    img_count = len(image_inputs)
-    img_note = f"I'm providing {img_count} image(s) from this article." if img_count > 1 else "I'm providing the article's hero image."
+    total_imgs = 1 + body_img_count
 
-    prompt = f"""Create a professional, visually striking 4:5 portrait news card design.
+    # Build the prompt
+    ref_intro = (
+        "The first two images are STYLE REFERENCES showing the visual quality I want — "
+        "notice the bright colors, vivid photographic style, dramatic data callouts with "
+        "big bold numbers, cinematic lighting, strong composition. "
+        "Match this energy and richness.\n\n"
+    ) if has_refs else ""
 
-{img_note} Use the photo(s) prominently in the design — the main image should be clearly visible and take up a significant portion of the card.
+    photo_intro = (
+        f"The next {total_imgs} image(s) are from this article (hero photo + inline images). "
+        f"Use them creatively — as background, inset, or composed into the design.\n\n"
+    )
 
-Design requirements:
-- Category: {cat_upper} (use {color_desc} as the accent/theme color)
-- Headline text on the card: "{headline}"
-- The headline should be large, bold, white text over a dark gradient at the bottom
-- Small "{cat_upper}" category label above the headline
-- Small "THEVIDESHI.COM" branding in gold at the bottom
-- Clean, modern news media aesthetic — think CNN, Bloomberg, or Moneycontrol social cards
-- Professional gradient transitions between the photo and text area
-- ONLY use the exact headline text provided — no fake text or placeholders"""
+    prompt = (
+        f"{ref_intro}"
+        f"{photo_intro}"
+        f"Now create a SINGLE 4:5 PORTRAIT NEWS CARD IMAGE (like an Instagram news card or "
+        f"YouTube community post card).\n\n"
+        f"Category: {cat_upper} (use {color_desc} as accent color)\n"
+        f"Headline: \"{headline}\"\n\n"
+        f"ARTICLE CONTENT (extract the most impactful stat or data point):\n"
+        f"{body_text}\n\n"
+        f"DESIGN GOALS:\n"
+        f"- Extract the BIGGEST stat/number from the article and make it HUGE and bold "
+        f"(like \"$42 BILLION\" or \"4.93M BARRELS\" or \"+26.5%\" or \"5-4 MAJORITY\")\n"
+        f"- Dark, dramatic, cinematic background using the article photo(s)\n"
+        f"- Bold headline text, large enough to read at thumbnail size\n"
+        f"- Small \"{cat_upper}\" category label\n"
+        f"- Small \"THEVIDESHI.COM\" branding in gold at the bottom\n"
+        f"- Information-dense — key takeaway visible at a glance\n"
+        f"- Think CNN breaking news graphics or Bloomberg data visualization cards\n"
+        f"- The card should GRAB ATTENTION when scrolling on a phone\n\n"
+        f"RULES:\n"
+        f"- Use ONLY real data from the article — no placeholder or made-up numbers\n"
+        f"- The headline text must be the EXACT headline provided\n"
+        f"- Make it visually rich and dramatic, NOT plain or corporate"
+    )
 
-    content_parts = [{"type": "input_text", "text": prompt}] + image_inputs
+    parts.append({"text": prompt})
 
-    # Use Responses API (same as reel pipeline) with image_generation tool
     payload = {
-        "model": "gpt-4o",
-        "input": [
-            {
-                "role": "user",
-                "content": content_parts
-            }
-        ],
-        "tools": [{"type": "image_generation", "quality": "medium", "size": "1024x1536"}]
+        "contents": [{"parts": parts}],
+        "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]}
     }
 
-    out_path = f"/tmp/ai_card_{article['slug'][:40]}.png"
-
-    # Write payload to temp file (too large for command line)
-    payload_path = f"/tmp/ai_card_payload_{hashlib.md5(article['slug'].encode()).hexdigest()[:8]}.json"
+    # Write payload to file (too large for -d inline)
+    slug_hash = hashlib.md5(article["slug"].encode()).hexdigest()[:8]
+    payload_path = f"/tmp/ai_card_payload_{slug_hash}.json"
     with open(payload_path, "w") as f:
         json.dump(payload, f)
 
+    out_path = f"/tmp/ai_card_{article['slug'][:40]}.png"
+
+    gem_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
     result = subprocess.run(
-        ["curl", "-sS", "-X", "POST", "https://api.openai.com/v1/responses",
-         "-H", f"Authorization: Bearer {OPENAI_API_KEY}",
+        ["curl", "-sS", "-X", "POST", gem_url,
          "-H", "Content-Type: application/json",
-         "-d", f"@{payload_path}"],
-        capture_output=True, timeout=180
+         "-d", f"@{payload_path}", "--max-time", "120"],
+        capture_output=True, timeout=150
     )
 
-    # Clean up payload file
+    # Cleanup payload
     try:
         os.remove(payload_path)
     except:
@@ -154,24 +193,29 @@ Design requirements:
 
     try:
         resp = json.loads(result.stdout)
-        # Extract generated image from Responses API output
-        for item in resp.get("output", []):
-            if item.get("type") == "image_generation_call":
-                img_b64 = item.get("result", "")
-                if img_b64 and len(img_b64) > 100:
-                    with open(out_path, "wb") as f:
-                        f.write(base64.b64decode(img_b64))
-                    return out_path
-        # No image found
-        print(f"    No image generated. Status: {resp.get('status')}", file=sys.stderr)
-        for item in resp.get("output", []):
-            if item.get("type") == "message":
-                for c in item.get("content", []):
-                    if c.get("type") == "output_text":
-                        print(f"    GPT said: {c['text'][:200]}", file=sys.stderr)
+        # Extract image from Gemini response
+        for candidate in resp.get("candidates", []):
+            for part in candidate.get("content", {}).get("parts", []):
+                if "inlineData" in part:
+                    img_b64 = part["inlineData"].get("data", "")
+                    if img_b64:
+                        with open(out_path, "wb") as f:
+                            f.write(base64.b64decode(img_b64))
+                        return out_path
+        # No image
+        err = resp.get("error")
+        if err:
+            print(f"    Gemini error: {json.dumps(err)[:200]}", file=sys.stderr)
+        else:
+            # Print text parts for debugging
+            for candidate in resp.get("candidates", []):
+                for part in candidate.get("content", {}).get("parts", []):
+                    if "text" in part:
+                        print(f"    Gemini text: {part['text'][:200]}", file=sys.stderr)
     except Exception as e:
         print(f"    Parse error: {e}", file=sys.stderr)
-        print(f"    stdout[:300]: {result.stdout.decode() if isinstance(result.stdout, bytes) else result.stdout[:300]}", file=sys.stderr)
+        raw = result.stdout.decode() if isinstance(result.stdout, bytes) else str(result.stdout)
+        print(f"    raw[:300]: {raw[:300]}", file=sys.stderr)
 
     return None
 
@@ -197,16 +241,16 @@ def main():
     args = parser.parse_args()
 
     articles = fetch_articles(category=args.category, limit=args.limit)
-    print(f"🎨 Generating AI cards for {len(articles)} articles...")
+    print(f"🎨 Generating AI cards (Gemini) for {len(articles)} articles...")
 
     for i, art in enumerate(articles, 1):
         print(f"  [{i}/{len(articles)}] {art['headline'][:55]}...")
-        path = generate_card_ai(art)
+        path = generate_card_gemini(art)
         if path:
             print(f"    ✓ {path}")
         else:
             print(f"    ✗ Failed")
-        time.sleep(1)  # rate limit spacing
+        time.sleep(2)  # rate limit
 
 if __name__ == "__main__":
     main()
