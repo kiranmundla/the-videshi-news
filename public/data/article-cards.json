@@ -1,5 +1,19 @@
 [
   {
+    "slug": "uscis-signature-denial-rule-july-2026-20260712",
+    "headline": "USCIS Can Now Deny Your Filing Over an Invalid Signature \u2014 and Keep Your Fee",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uscis-signature-denial-rule-july-2026-20260712.jpg",
+    "published_at": "2026-07-12T08:15:28+00:00"
+  },
+  {
+    "slug": "americans-first-immigration-act-points-system-bill-20260712",
+    "headline": "A New Bill Would Scrap the Green Card System Entirely. Here Is What Would Replace It",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/americans-first-immigration-act-points-system-bill-20260712.jpg",
+    "published_at": "2026-07-12T08:15:18+00:00"
+  },
+  {
     "slug": "eb1a-niw-approval-rates-falling-indian-self-petition-20260711",
     "headline": "The Self-Petition Escape Route Is Narrowing. USCIS Approval Rates Tell the Story",
     "category": "immigration",
@@ -7,39 +21,39 @@
     "published_at": "2026-07-12T02:15:16+00:00"
   },
   {
-    "slug": "wage-weighted-h1b-lottery-fy2027-results-indian-impact-20260711",
-    "headline": "The First Wage-Weighted H-1B Lottery Is Over. Here Is What It Did to Indian Applicants",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/wage-weighted-h1b-lottery-fy2027-results-indian-impact-20260711.jpg",
-    "published_at": "2026-07-12T02:15:10+00:00"
-  },
-  {
-    "slug": "federal-judge-blocks-uscis-nationality-discrimination-ohio-20260711",
-    "headline": "A Federal Judge Just Told USCIS It Cannot Penalise Immigrants for Their Nationality",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/federal-judge-blocks-uscis-nationality-discrimination-ohio-20260711.jpg",
-    "published_at": "2026-07-11T20:15:26+00:00"
-  },
-  {
-    "slug": "nilekani-fundamentum-2200-crore-fund-iii-ai-startups-20260711",
-    "headline": "Nandan Nilekani Just Made His Largest Venture Bet Ever. He Is Hunting for India's Next AI Champions.",
+    "slug": "cultfit-ipo-mukesh-bansal-fitness-unicorn-sebi-20260712",
+    "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's Co-Founder Is Betting the Gym Can Go Public.",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nilekani-fundamentum-2200-crore-fund-iii-ai-startups-20260711.jpg",
-    "published_at": "2026-07-11T21:15:28+00:00"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cultfit-ipo-mukesh-bansal-fitness-unicorn-sebi-20260712.jpg",
+    "published_at": "2026-07-12T09:15:15+00:00"
   },
   {
-    "slug": "mowito-robotics-3-million-bengaluru-detroit-physical-ai-20260711",
-    "headline": "A Bengaluru Robotics Startup Just Raised $3 Million to Teach American Factory Robots to Learn by Watching.",
+    "slug": "yotta-150-million-ai-data-centre-nvidia-gpu-india-20260712",
+    "headline": "Yotta Just Raised $150 Million to Become India's Answer to the American AI Data Centre Boom",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mowito-robotics-3-million-bengaluru-detroit-physical-ai-20260711.jpg",
-    "published_at": "2026-07-11T21:15:22+00:00"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yotta-150-million-ai-data-centre-nvidia-gpu-india-20260712.jpg",
+    "published_at": "2026-07-12T09:15:10+00:00"
   },
   {
-    "slug": "npci-unified-agent-protocol-upi-ai-payments-20260711",
-    "headline": "India Wants AI Agents to Pay Your Bills. NPCI Is Building the Rails.",
+    "slug": "apple-sues-openai-trade-secrets-hardware-talent-war-20260712",
+    "headline": "Apple Just Declared War on OpenAI. The Lawsuit Could Reshape How Silicon Valley Hires.",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/npci-unified-agent-protocol-upi-ai-payments-20260711.jpg",
-    "published_at": "2026-07-11T21:15:13+00:00"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-sues-openai-trade-secrets-hardware-talent-war-20260712.jpg",
+    "published_at": "2026-07-12T03:15:44+00:00"
+  },
+  {
+    "slug": "dhamaal-4-weekend-box-office-22-crore-saturday-surge-ajay-devgn-60-crore-weekend-20260712",
+    "headline": "Dhamaal 4 Made \u20b922 Crore on Saturday. Nobody Saw That Coming.",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhamaal-4-weekend-box-office-22-crore-saturday-surge-ajay-devgn-60-crore-weekend-20260712.jpg",
+    "published_at": "2026-07-12T07:15:31+00:00"
+  },
+  {
+    "slug": "aamir-khan-lalkaara-ashutosh-gowariker-rajkumar-hirani-farhan-akhtar-1952-cricket-partition-20260712",
+    "headline": "Aamir Khan Just Reunited Three of Bollywood's Greatest. The Film Is About India's First Win Over Pakistan.",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aamir-khan-lalkaara-ashutosh-gowariker-rajkumar-hirani-farhan-akhtar-1952-cricket-partition-20260712.jpg",
+    "published_at": "2026-07-12T07:15:24+00:00"
   },
   {
     "slug": "son-of-sardaar-2-trailer-ajay-devgn-mrunal-thakur-scotland-mukul-dev-july-25-20260711",
@@ -49,39 +63,39 @@
     "published_at": "2026-07-12T01:15:14+00:00"
   },
   {
-    "slug": "ar-rahman-sonu-nigam-batwara-1947-oh-tabassum-aamir-khan-sunny-deol-partition-august-14-20260711",
-    "headline": "A.R. Rahman Called Sonu Nigam Back to the Studio. The Song Is for Aamir Khan's Partition Epic.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ar-rahman-sonu-nigam-batwara-1947-oh-tabassum-aamir-khan-sunny-deol-partition-august-14-20260711.jpg",
-    "published_at": "2026-07-11T19:15:25+00:00"
-  },
-  {
-    "slug": "janhvi-kapoor-shikhu-mehendi-shikhar-pahariya-anshula-kapoor-wedding-reception-20260711",
-    "headline": "Janhvi Kapoor Hid One Word in Her Mehendi. The Internet Found It in Seconds.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/janhvi-kapoor-shikhu-mehendi-shikhar-pahariya-anshula-kapoor-wedding-reception-20260711.jpg",
-    "published_at": "2026-07-11T19:15:18+00:00"
-  },
-  {
-    "slug": "supreme-court-upholds-birthright-citizenship-indian-americans-h1b-visa-holders-14th-amendment-20260711",
-    "headline": "The Supreme Court Just Saved Birthright Citizenship. For Half a Million Indian Families on Temporary Visas, It Was Never Abstract.",
+    "slug": "lindsey-graham-dies-71-senate-india-iran-immigration-diaspora-impact-20260712",
+    "headline": "Lindsey Graham, the Senate's Loudest Voice on Iran and India, Dies at 71. His Empty Chair Changes the Calculus for Both.",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/supreme-court-upholds-birthright-citizenship-indian-americans-h1b-visa-holders-14th-amendment-20260711.jpg",
-    "published_at": "2026-07-12T00:45:16+00:00"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lindsey-graham-dies-71-senate-india-iran-immigration-diaspora-impact-20260712.jpg",
+    "published_at": "2026-07-12T12:45:26+00:00"
   },
   {
-    "slug": "iran-closes-strait-hormuz-until-further-notice-india-oil-lng-lpg-crisis-escalation-20260712",
-    "headline": "Iran Just Closed the Strait of Hormuz 'Until Further Notice.' India Has Spent Four Months Preparing for Exactly This.",
+    "slug": "anil-menon-nasa-astronaut-iss-launch-july-14-indian-origin-kerala-soyuz-20260712",
+    "headline": "An Indian Immigrant's Son Launches to the Space Station on Monday. He Spent a Year in India Vaccinating Children Against Polio.",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-closes-strait-hormuz-until-further-notice-india-oil-lng-lpg-crisis-escalation-20260712.jpg",
-    "published_at": "2026-07-12T00:45:10+00:00"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anil-menon-nasa-astronaut-iss-launch-july-14-indian-origin-kerala-soyuz-20260712.jpg",
+    "published_at": "2026-07-12T12:45:13+00:00"
   },
   {
-    "slug": "indian-seafarers-stranded-persian-gulf-iran-war-missiles-6000-trapped-hormuz-20260711",
-    "headline": "Six Thousand Seafarers Are Trapped in the Gulf. For Indian Sailors, the War Has Become Personal.",
+    "slug": "iran-war-gulf-wide-five-states-jordan-kuwait-qatar-uae-oman-india-diaspora-20260712",
+    "headline": "The Iran War Just Went Gulf-Wide. For Nine Million Indians in the Region, the Fight Is Now Overhead.",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-seafarers-stranded-persian-gulf-iran-war-missiles-6000-trapped-hormuz-20260711.jpg",
-    "published_at": "2026-07-11T18:45:19+00:00"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-war-gulf-wide-five-states-jordan-kuwait-qatar-uae-oman-india-diaspora-20260712.jpg",
+    "published_at": "2026-07-12T06:46:56.832985+00:00"
+  },
+  {
+    "slug": "india-june-cpi-inflation-breach-4-percent-rbi-nri-deposits-bonds-20260712",
+    "headline": "India's June Inflation Data Arrives Monday \u2014 CPI Expected to Breach 4% for the First Time in 16 Months, and NRI Portfolios Are in the Crosshairs",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-june-cpi-inflation-breach-4-percent-rbi-nri-deposits-bonds-20260712.jpg",
+    "published_at": "2026-07-12T08:16:10+00:00"
+  },
+  {
+    "slug": "sk-hynix-record-26-billion-nasdaq-debut-ai-memory-nri-tech-investors-20260712",
+    "headline": "SK Hynix's Record $26.5 Billion Nasdaq Debut Signals the AI Memory Supercycle Is Far From Over",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sk-hynix-record-26-billion-nasdaq-debut-ai-memory-nri-tech-investors-20260712.jpg",
+    "published_at": "2026-07-12T08:15:59+00:00"
   },
   {
     "slug": "sebi-double-shortable-stocks-collateral-cut-nri-derivatives-20260711",
@@ -91,18 +105,18 @@
     "published_at": "2026-07-12T00:15:42+00:00"
   },
   {
-    "slug": "india-scraps-import-duty-smartphone-lithium-ion-electronics-manufactur-20260711",
-    "headline": "India Scraps Import Duties on Smartphone Parts and Lithium-Ion Cells \u2014 A $500 Billion Bet on Becoming the World's Electronics Factory",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-scraps-import-duty-smartphone-lithium-ion-electronics-manufactur-20260711.jpg",
-    "published_at": "2026-07-12T00:15:36+00:00"
+    "slug": "world-cup-2026-semifinals-england-argentina-france-spain-bellingham-messi-nri-july",
+    "headline": "The Stage Is Set. Bellingham's England Meets Messi's Argentina in the World Cup's Defining Week.",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-cup-2026-semifinals-england-argentina-france-spain-bellingham-messi-nri-july.jpg",
+    "published_at": "2026-07-12T07:15:18+00:00"
   },
   {
-    "slug": "india-record-crude-imports-russia-half-hormuz-lpg-risk-nri-20260711",
-    "headline": "India Hits Record 4.93 Million Barrels Per Day in Crude Imports \u2014 And Russia Now Supplies More Than Half",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-record-crude-imports-russia-half-hormuz-lpg-risk-nri-20260711.jpg",
-    "published_at": "2026-07-12T00:15:28+00:00"
+    "slug": "india-2036-olympics-bid-ahmedabad-29-events-cwg-2030-sports-infrastructure-nri-july-2026",
+    "headline": "India Unveils 29 International Sporting Events in Two Years as Ahmedabad's Olympic Dream Takes Shape.",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-2036-olympics-bid-ahmedabad-29-events-cwg-2030-sports-infrastructure-nri-july-2026.jpg",
+    "published_at": "2026-07-12T07:15:12+00:00"
   },
   {
     "slug": "buttler-131-england-whitewash-india-4-0-t20i-series-southampton-number-one-nri-july-2026",
@@ -112,18 +126,18 @@
     "published_at": "2026-07-11T23:15:17+00:00"
   },
   {
-    "slug": "india-women-dominate-lords-day-2-mandhana-83-deepti-57-lead-269-historic-test-nri-july-2026",
-    "headline": "Making History, Then Making a Statement. India's Women Take Lord's Apart on Day Two.",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-women-dominate-lords-day-2-mandhana-83-deepti-57-lead-269-historic-test-nri-july-2026.jpg",
-    "published_at": "2026-07-11T23:15:11+00:00"
+    "slug": "cbdt-ais-foreign-financial-information-nri-overseas-accounts-tax-20260712",
+    "headline": "India's Tax Department Can Now See Your Foreign Bank Accounts. Here Is What Every NRI Needs to Know.",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cbdt-ais-foreign-financial-information-nri-overseas-accounts-tax-20260712.jpg",
+    "published_at": "2026-07-12T08:15:54+00:00"
   },
   {
-    "slug": "india-124-athletes-commonwealth-games-glasgow-2026-neeraj-chopra-no-cricket-badminton-nri",
-    "headline": "Glasgow Calls. India Sends 124 Athletes to the Commonwealth Games \u2014 But Without Its Medal Machines.",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-124-athletes-commonwealth-games-glasgow-2026-neeraj-chopra-no-cricket-badminton-nri.jpg",
-    "published_at": "2026-07-11T15:15:21+00:00"
+    "slug": "gfs-galaxy-iran-attack-indian-seafarer-missing-hormuz-strait-20260712",
+    "headline": "One Indian Sailor Missing, Ten Rescued After Iran Strikes Container Ship in the Strait of Hormuz",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gfs-galaxy-iran-attack-indian-seafarer-missing-hormuz-strait-20260712.jpg",
+    "published_at": "2026-07-12T08:15:37+00:00"
   },
   {
     "slug": "indian-fine-dining-global-expansion-michelin-gymkhana-tresind-20260712",
@@ -131,19 +145,5 @@
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-fine-dining-global-expansion-michelin-gymkhana-tresind-20260712.jpg",
     "published_at": "2026-07-12T00:15:19+00:00"
-  },
-  {
-    "slug": "sunil-mittal-usispf-leadership-award-diaspora-bridge-20260712",
-    "headline": "Sunil Bharti Mittal Calls Indian Diaspora a 'Beautiful Bridge' as USISPF Honours Him with Leadership Award",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sunil-mittal-usispf-leadership-award-diaspora-bridge-20260712.jpg",
-    "published_at": "2026-07-12T00:15:10+00:00"
-  },
-  {
-    "slug": "india-new-zealand-fta-talent-mobility-diaspora-provisions-20260711",
-    "headline": "Five Thousand Visas, Working Holidays, and a Twenty-Billion-Dollar Promise. Inside the India\u2013New Zealand FTA's Diaspora Dividend.",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-new-zealand-fta-talent-mobility-diaspora-provisions-20260711.jpg",
-    "published_at": "2026-07-11T16:17:39.118582+00:00"
   }
 ]
