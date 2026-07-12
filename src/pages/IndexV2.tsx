@@ -371,11 +371,11 @@ export default function IndexV2() {
         {/* 6. Hero Section */}
         <HeroSection lead={featured} side={layout.heroSide} />
 
+        {/* Visual Stories */}
+        <ArticleCardDeck />
+
         {/* 7. Immigration Strip */}
         <ImmigrationStrip articles={layout.immigration} />
-
-        {/* Article Photo Cards — deck */}
-        <ArticleCardDeck />
 
         {/* 8. Newsletter CTA */}
         <NewsletterCTA />
