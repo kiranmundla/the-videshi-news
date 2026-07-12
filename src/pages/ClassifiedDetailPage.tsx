@@ -237,15 +237,15 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
       {/* Lightbox overlay — native scroll-snap like Snapshots */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-[9999] flex flex-col"
-          style={{ backgroundColor: "rgba(0,0,0,0.95)" }}
+          className="fixed inset-0 z-[9999]"
+          style={{ backgroundColor: "rgba(0,0,0,0.95)", display: "flex", flexDirection: "column" }}
         >
           <style>{`.clf-lb-scroll::-webkit-scrollbar { display: none; }`}</style>
 
           {/* Close button */}
           <button
             onClick={() => { setLightbox(false); }}
-            className="absolute top-3 right-4 z-10 bg-white/15 hover:bg-white/25 text-white rounded-full p-2 transition-colors"
+            className="absolute top-3 right-4 z-10 bg-white/15 hover:bg-white/25 text-white rounded-full transition-colors"
             style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}
             aria-label="Close"
           >
@@ -262,8 +262,10 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
           {/* Native scroll-snap container */}
           <div
             ref={lbScrollRef}
-            className="clf-lb-scroll flex-1 flex"
+            className="clf-lb-scroll"
             style={{
+              flex: 1,
+              display: "flex",
               overflowX: "auto",
               overflowY: "hidden",
               scrollSnapType: "x mandatory",
@@ -276,9 +278,8 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
               <div
                 key={i}
                 style={{
-                  minWidth: "100vw",
-                  width: "100vw",
-                  height: "100%",
+                  minWidth: "100%",
+                  width: "100%",
                   scrollSnapAlign: "start",
                   display: "flex",
                   alignItems: "center",
@@ -292,7 +293,7 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
                   src={url}
                   alt={`${title} — photo ${i + 1}`}
                   style={{
-                    maxWidth: "calc(100vw - 40px)",
+                    maxWidth: "calc(100% - 40px)",
                     maxHeight: "calc(100vh - 120px)",
                     objectFit: "contain",
                     borderRadius: "8px",
@@ -309,14 +310,14 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
           {total > 1 && (
             <>
               <button
-                onClick={() => { const el = lbScrollRef.current; if (el) { const p = Math.max(0, active - 1); el.scrollTo({ left: p * el.clientWidth, behavior: "smooth" }); } }}
+                onClick={() => { const el = lbScrollRef.current; if (el) el.scrollBy({ left: -el.clientWidth, behavior: "smooth" }); }}
                 className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
                 aria-label="Previous photo"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
               <button
-                onClick={() => { const el = lbScrollRef.current; if (el) { const n = Math.min(total - 1, active + 1); el.scrollTo({ left: n * el.clientWidth, behavior: "smooth" }); } }}
+                onClick={() => { const el = lbScrollRef.current; if (el) el.scrollBy({ left: el.clientWidth, behavior: "smooth" }); }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
                 aria-label="Next photo"
               >
