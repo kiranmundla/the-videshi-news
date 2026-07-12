@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T00:15:43.363095+00:00",
+  "timestamp": "2026-07-12T00:45:17.826566+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "400bd374-8106-4ed0-9d79-2b31f0c5cace",
-      "headline": "Sunil Bharti Mittal Calls Indian Diaspora a 'Beautiful Bridge' as USISPF Honours Him with Leadership Award",
-      "slug": "sunil-mittal-usispf-leadership-award-diaspora-bridge-20260712",
+      "id": "817ed403-fdec-4a18-bb3d-0cfe17ae540b",
+      "headline": "Iran Just Closed the Strait of Hormuz 'Until Further Notice.' India Has Spent Four Months Preparing for Exactly This.",
+      "slug": "iran-closes-strait-hormuz-until-further-notice-india-oil-lng-lpg-crisis-escalation-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Sunil Bharti Mittal at an event",
-          "reason": "The photo shows Sunil Bharti Mittal, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the role of the Indian diaspora in strengthening India-US relations, making it relevant and engaging for NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from diaspora members or experts to enhance the article's depth.",
-          "Include more specific examples of how the diaspora has influenced US-India relations beyond economic contributions."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "99e5ffbb-130a-418f-8852-82945b06227a",
-      "headline": "From Tandoor to Michelin: Indian Fine Dining Is Conquering the World's Most Demanding Markets",
-      "slug": "indian-fine-dining-global-expansion-michelin-gymkhana-tresind-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Modern Indian fine dining dish",
-          "reason": "The photo shows a fine dining dish, relevant to the story about Indian fine dining."
+          "what_photo_shows": "aerial view of the Strait of Hormuz",
+          "reason": "The photo subject is relevant to the story about the Strait of Hormuz."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the contributions of Indian-origin restaurateurs and chefs, connecting their success to the global Indian diaspora."
+          "note": "The article discusses India's energy strategy and implications for Indian citizens, particularly seafarers, which resonates with the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or anecdotes from the chefs mentioned to enhance the personal connection to the diaspora.",
-          "Add a section discussing the impact of Indian cuisine on local cultures in the markets mentioned."
+          "Include more direct quotes from Indian officials to enhance credibility.",
+          "Add a brief section on potential long-term impacts on the Indian economy due to the closure."
         ],
         "verdict": "pass"
       },
@@ -97,121 +54,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-      "headline": "India Hits Record 4.93 Million Barrels Per Day in Crude Imports \u2014 And Russia Now Supplies More Than Half",
-      "slug": "india-record-crude-imports-russia-half-hormuz-lpg-risk-nri-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "oil refinery complex by water",
-          "reason": "The photo shows an oil refinery, relevant to India's energy infrastructure story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to crude oil imports or the geopolitical context discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI investors and their concerns regarding oil prices and macroeconomic stability in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the topic of crude oil imports or geopolitical issues.",
-          "Add a brief summary or conclusion to reinforce the implications for NRI investors."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7322a8aa-4718-4e19-ba8d-cf07c1487b18",
-      "headline": "India Scraps Import Duties on Smartphone Parts and Lithium-Ion Cells \u2014 A $500 Billion Bet on Becoming the World's Electronics Factory",
-      "slug": "india-scraps-import-duty-smartphone-lithium-ion-electronics-manufactur-20260711",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "circuit boards in manufacturing facility",
-          "reason": "The photo shows electronics components relevant to the story about smartphone parts."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the policy changes to NRI investors, highlighting implications for their investments in India's manufacturing sector."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRI investors can capitalize on these changes.",
-          "Include quotes or insights from additional industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
-      "headline": "SEBI Wants to Double the Stocks You Can Short \u2014 And India's $5 Trillion Market Is About to Get a Lot More Interesting for NRIs",
-      "slug": "sebi-double-shortable-stocks-collateral-cut-nri-derivatives-20260711",
+      "id": "f0f31fc4-7528-4761-bfc2-36e8b69932a5",
+      "headline": "The Supreme Court Just Saved Birthright Citizenship. For Half a Million Indian Families on Temporary Visas, It Was Never Abstract.",
+      "slug": "supreme-court-upholds-birthright-citizenship-indian-americans-h1b-visa-holders-14th-amendment-20260711",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "eb0a48aa-22e5-47f2-a76c-60f8b65fca24",
-            "headline": "India's Earnings Season Opens With a Bang \u2014 J.P. Morgan Sees"
-          },
-          {
-            "article_id": "af71549b-68fa-424e-b5eb-c4b031e43293",
-            "headline": "SBI Funds Management Prices $1.2 Billion IPO at \u20b9545\u2013574 \u2014 A"
-          },
-          {
-            "article_id": "d0c95651-1f90-439a-aeed-ce5881cc827a",
-            "headline": "India Inc. Revenue Growth Hits a Two-Year High at 11.5% \u2014 Bu"
-          },
-          {
-            "article_id": "41bd400d-4daa-4883-9851-7eb888bbc161",
-            "headline": "Foreign Investors Pour $1.5 Billion Into Indian Banks in Big"
+            "article_id": "d8fa9af6-32e1-461e-9441-27d2e5750f45",
+            "headline": "The Supreme Court Saved Birthright Citizenship. Trump Wants "
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo of the Supreme Court building is relevant to a story about a Supreme Court ruling."
         },
         "inline_image_mismatches": []
       },
@@ -225,13 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively addresses the interests and concerns of NRI investors regarding changes in the Indian stock market."
+          "note": "The article effectively connects the Supreme Court ruling to the experiences of Indian American families, highlighting the implications for their citizenship status."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how these changes will directly benefit NRI investors.",
-          "Include quotes from industry experts or stakeholders to enhance credibility and depth."
+          "Include quotes or reactions from Indian American community leaders to enhance the diaspora perspective.",
+          "Add a brief section on how this ruling might influence future immigration policies affecting Indian families."
         ],
         "verdict": "pass"
       },
