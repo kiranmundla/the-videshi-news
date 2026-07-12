@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T13:15:13.025126+00:00",
+  "timestamp": "2026-07-12T14:15:32.881343+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "f1f572d1-2f23-42cb-991d-5ddce14c8330",
-      "headline": "Forty-One Men Were Trapped Underground for Seventeen Days. Now Aamir Khan and Kabir Khan Are Making Their Film.",
-      "slug": "aamir-khan-kabir-khan-silkyara-41-uttarakhand-tunnel-rescue-australia-india-20260712",
+      "id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
+      "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is What Every H-1B Holder Should Know",
+      "slug": "uscis-fdns-home-office-site-visits-h1b-remote-workers-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kabir Khan speaking at an event",
-          "reason": "The photo shows Kabir Khan, who is relevant to the film story."
+          "what_photo_shows": "person working remotely at home",
+          "reason": "The photo shows a remote worker, relevant to the story about USCIS visits to home offices."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,74 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Kabir Khan does not directly relate to the film's subject matter or the rescue operation."
+          "issue": "The image does not directly relate to the topic of H-1B workers or immigration enforcement."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the connection between Indian and Australian cinema, particularly through the involvement of the Indian diaspora in Australia."
+          "note": "The article specifically addresses Indian H-1B holders, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that reflects the film's subject matter or the rescue operation.",
-          "Add more context about the significance of the film for the Indian diaspora in Australia."
+          "Consider using an image that directly relates to H-1B workers or immigration enforcement for better visual alignment.",
+          "Add a section that includes personal stories or testimonials from H-1B workers to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
+      "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Applicants. None Will Reopen Before October",
+      "slug": "july-visa-bulletin-eb2-eb5-india-unavailable-eb1-retrogression-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
+            "headline": "Your Spouse's Work Permit Expires This Month. The Government"
+          },
+          {
+            "article_id": "9061dd5f-48ae-46ff-a682-43b97459505b",
+            "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The R"
+          },
+          {
+            "article_id": "753196ab-bbe4-4f36-a851-292b3e4a319b",
+            "headline": "USCIS Says Your Green Card Application Is Now 'Extraordinary"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to immigration topics."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the article's focus on visa categories and immigration processes."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of the Indian diaspora regarding visa issues, making it highly relevant."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the theme of immigration or visas.",
+          "Add a brief summary or conclusion that emphasizes the impact of these changes on the Indian diaspora."
         ],
         "verdict": "pass"
       },
