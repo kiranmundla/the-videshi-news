@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-12T17:45:22.613489+00:00",
+  "timestamp": "2026-07-12T18:15:24.464111+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -42,7 +42,7 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Consider adding more specific examples of how turmeric is used in South Asian cooking to enhance cultural relevance.",
-          "Include quotes or insights from health professionals to strengthen the credibility of the claims made."
+          "Include quotes or insights from health professionals to add authority to the claims made about turmeric's benefits."
         ],
         "verdict": "pass"
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article briefly mentions the diaspora connection, but it could be expanded to better engage NRI readers."
+          "note": "The article briefly mentions the diaspora connection but lacks depth in exploring how NRIs can engage with or relate to the run club phenomenon."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora connection to make it more relevant for NRI readers.",
-          "Include quotes or anecdotes from NRI participants in run clubs to enhance relatability."
+          "Expand on the diaspora angle to include specific examples of how NRIs can participate in or relate to the run club culture in India.",
+          "Consider adding quotes or testimonials from NRI members or participants to strengthen the connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -116,14 +116,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant for the diaspora."
+          "quality": 9,
+          "note": "The article directly addresses health risks faced by the South Asian diaspora, providing relevant information."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant image description to enhance the article's visual context.",
-          "Consider adding quotes or testimonials from South Asian individuals to personalize the health message."
+          "Consider adding quotes or testimonials from South Asian individuals to personalize the findings."
         ],
         "verdict": "pass"
       },

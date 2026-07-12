@@ -270,7 +270,15 @@ def update_article_scores(article_id, newsworthiness, diaspora_impact, prominenc
         prominence = {prominence}
     WHERE id = '{article_id}'
     """
-    supabase_query(sql)
+    for attempt in range(3):
+        try:
+            supabase_query(sql)
+            return
+        except Exception as e:
+            if attempt < 2:
+                time.sleep(2 * (attempt + 1))
+            else:
+                print(f"  ⚠ Failed to save scores after 3 attempts: {e}", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
