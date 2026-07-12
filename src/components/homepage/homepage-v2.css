@@ -601,48 +601,63 @@
 .card-gallery-overlay {
   position: fixed; inset: 0; z-index: 9999;
   display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.88);
+  animation: cardFadeIn 0.15s ease-out;
+  cursor: pointer;
 }
+@keyframes cardFadeIn { from { opacity: 0; } to { opacity: 1; } }
 .card-gallery-close {
   position: absolute; top: 12px; right: 16px; z-index: 10000;
   background: rgba(255,255,255,0.15); border: none; color: #fff;
   width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
   font-size: 20px; display: flex; align-items: center; justify-content: center;
 }
+.card-gallery-top { flex-shrink: 0; width: 100%; }
 .card-gallery-counter {
   color: rgba(255,255,255,0.5); font-size: 13px;
   font-family: var(--font-sans, sans-serif); text-align: center;
-  padding: 16px 0 8px; margin: 0; user-select: none;
+  padding: 8px 0 6px; margin: 0; user-select: none;
 }
 .card-gallery-scroll {
-  flex: 1; display: flex; overflow-x: auto; overflow-y: hidden;
+  flex: 0 0 auto; display: flex; overflow-x: auto; overflow-y: hidden;
   scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
   scrollbar-width: none; -ms-overflow-style: none;
+  cursor: default; width: 100%;
 }
+.card-gallery-scroll::-webkit-scrollbar { display: none; }
 .card-gallery-slide {
-  min-width: 100vw; width: 100vw; height: 100%;
+  min-width: 100vw; width: 100vw;
   scroll-snap-align: start; display: flex;
   align-items: center; justify-content: center;
-  flex-shrink: 0; padding: 0 20px; box-sizing: border-box;
+  flex-shrink: 0; padding: 0 32px; box-sizing: border-box;
 }
-.card-gallery-link { display: block; }
+.card-gallery-link { display: block; cursor: pointer; }
 .card-gallery-img {
-  max-width: calc(100vw - 40px); max-height: calc(100vh - 180px);
+  max-width: calc(100vw - 96px); max-height: 55vh;
   object-fit: contain; border-radius: 10px;
   user-select: none; -webkit-user-select: none;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+.card-gallery-bottom {
+  flex-shrink: 0; width: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 12px;
 }
 .card-gallery-caption {
-  color: #fff; font-size: 15px; font-weight: 600;
+  color: #fff; font-size: 14px; font-weight: 600;
   font-family: var(--font-sans, sans-serif); letter-spacing: 0.02em;
-  text-align: center; padding: 8px 20px 4px; margin: 0;
-  max-width: 600px; align-self: center;
+  text-align: center; padding: 0 24px 4px; margin: 0;
+  max-width: 500px;
 }
 .card-gallery-category {
-  color: rgba(255,255,255,0.5); font-size: 12px;
+  color: rgba(255,255,255,0.5); font-size: 11px;
   font-family: var(--font-sans, sans-serif);
   text-align: center; margin: 0; padding: 0 20px 8px;
 }
 .card-gallery-dots {
-  display: flex; justify-content: center; gap: 5px; padding-bottom: 12px;
+  display: flex; justify-content: center; gap: 5px; padding: 6px 0;
+  cursor: default;
 }
 .card-gallery-dot {
   width: 6px; height: 6px; border-radius: 3px; cursor: pointer;

@@ -18,7 +18,6 @@ export default function ArticleCardDeck() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const stripRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetch("/data/article-cards.json")
@@ -57,46 +56,6 @@ export default function ArticleCardDeck() {
     return () => window.removeEventListener("keydown", handle);
   }, [openIdx, currentIndex, close]);
 
-  /* pull-down-to-dismiss */
-  const [dragY, setDragY] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dismissing, setDismissing] = useState(false);
-  const touchStartY = useRef<number | null>(null);
-  const touchStartX = useRef<number | null>(null);
-  const isVertical = useRef(false);
-
-  const closeWithDismiss = useCallback(() => {
-    setDismissing(true);
-    setTimeout(() => { setOpenIdx(null); setDragY(0); setIsDragging(false); setDismissing(false); }, 200);
-  }, []);
-
-  const onTS = useCallback((e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
-    touchStartX.current = e.touches[0].clientX;
-    isVertical.current = false;
-  }, []);
-  const onTM = useCallback((e: React.TouchEvent) => {
-    if (touchStartY.current === null || touchStartX.current === null) return;
-    const dy = e.touches[0].clientY - touchStartY.current;
-    const dx = Math.abs(e.touches[0].clientX - touchStartX.current);
-    if (!isVertical.current && !isDragging) {
-      if (Math.abs(dy) > 10 && Math.abs(dy) > dx * 1.2) isVertical.current = true;
-      else if (dx > 10) return;
-    }
-    if (!isVertical.current) return;
-    if (dy > 0) { setIsDragging(true); setDragY(dy); }
-  }, [isDragging]);
-  const onTE = useCallback(() => {
-    if (isVertical.current && dragY > 120) closeWithDismiss();
-    else { setDragY(0); setIsDragging(false); }
-    touchStartY.current = null; touchStartX.current = null; isVertical.current = false;
-  }, [dragY, closeWithDismiss]);
-
-  const dp = Math.min(dragY / 300, 1);
-  const oOp = dismissing ? 0 : 1 - dp * 0.6;
-  const oSc = dismissing ? 0.9 : 1 - dp * 0.1;
-  const oTy = dismissing ? 100 : dragY;
-
   if (cards.length === 0) return null;
 
   return (
@@ -107,7 +66,7 @@ export default function ArticleCardDeck() {
           <p className="vs-label">Visual Stories</p>
         </div>
         <div className="container">
-          <div ref={stripRef} className="vs-strip">
+          <div className="vs-strip">
             {cards.map((card, i) => (
               <div key={card.slug} className="vs-thumb" onClick={() => openAt(i)}>
                 <div className="vs-thumb-ring">
@@ -120,44 +79,39 @@ export default function ArticleCardDeck() {
         </div>
       </section>
 
-      {/* ── Fullscreen gallery ── */}
+      {/* ── Fullscreen gallery — tap outside card to close ── */}
       {openIdx !== null && (
-        <div
-          className="card-gallery-overlay"
-          onTouchStart={onTS} onTouchMove={onTM} onTouchEnd={onTE}
-          style={{ backgroundColor: `rgba(0,0,0,${0.95 * oOp})`, animation: dismissing ? "none" : "cardFadeIn 0.15s ease-out" }}
-        >
-          <style>{`
-            @keyframes cardFadeIn { from { opacity: 0; } to { opacity: 1; } }
-            .card-gallery-scroll::-webkit-scrollbar { display: none; }
-          `}</style>
+        <div className="card-gallery-overlay" onClick={close}>
 
-          <button className="card-gallery-close" onClick={close}>×</button>
-
-          <div style={{
-            flex: 1, display: "flex", flexDirection: "column",
-            transform: `translateY(${oTy}px) scale(${oSc})`, opacity: oOp,
-            transition: isDragging ? "none" : "transform 0.25s cubic-bezier(0.2,0,0,1), opacity 0.2s ease",
-          }}>
+          {/* Top zone — counter */}
+          <div className="card-gallery-top" onClick={close}>
             <p className="card-gallery-counter">{currentIndex + 1} / {cards.length}</p>
+          </div>
 
-            <div ref={scrollRef} className="card-gallery-scroll" onScroll={handleScroll}>
-              {cards.map((card, i) => (
-                <div key={card.slug} className="card-gallery-slide">
-                  <a href={`/articles/${card.slug}`} className="card-gallery-link">
-                    <img src={card.card_url} alt={card.headline} className="card-gallery-img"
-                      loading={Math.abs(i - currentIndex) <= 2 ? "eager" : "lazy"} draggable={false} />
-                  </a>
-                </div>
-              ))}
-            </div>
+          {/* Middle — scroll-snap cards, stop propagation so tapping card doesn't close */}
+          <div
+            ref={scrollRef}
+            className="card-gallery-scroll"
+            onScroll={handleScroll}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {cards.map((card, i) => (
+              <div key={card.slug} className="card-gallery-slide">
+                <a href={`/articles/${card.slug}`} className="card-gallery-link">
+                  <img src={card.card_url} alt={card.headline} className="card-gallery-img"
+                    loading={Math.abs(i - currentIndex) <= 2 ? "eager" : "lazy"} draggable={false} />
+                </a>
+              </div>
+            ))}
+          </div>
 
+          {/* Bottom zone — caption + dots */}
+          <div className="card-gallery-bottom" onClick={close}>
             <p className="card-gallery-caption">{cards[currentIndex]?.headline}</p>
             <p className="card-gallery-category">
               {CAT_LABELS[cards[currentIndex]?.category] ?? cards[currentIndex]?.category} · Tap to read
             </p>
-
-            <div className="card-gallery-dots">
+            <div className="card-gallery-dots" onClick={(e) => e.stopPropagation()}>
               {cards.map((_, i) => (
                 <div key={i}
                   className={`card-gallery-dot${i === currentIndex ? " active" : ""}`}
@@ -165,12 +119,6 @@ export default function ArticleCardDeck() {
                 />
               ))}
             </div>
-
-            {isDragging && (
-              <div style={{ textAlign: "center", paddingBottom: 8, color: dragY > 120 ? "#c9a84c" : "rgba(255,255,255,0.4)", fontSize: 12, fontFamily: "var(--font-sans, sans-serif)" }}>
-                {dragY > 120 ? "Release to close" : "↓ Pull down to close"}
-              </div>
-            )}
           </div>
         </div>
       )}
