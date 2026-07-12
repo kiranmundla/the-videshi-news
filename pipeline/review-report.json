@@ -1,15 +1,106 @@
 {
-  "timestamp": "2026-07-12T18:15:24.464111+00:00",
+  "timestamp": "2026-07-12T18:45:40.468066+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "180a4582-d5b7-4da5-afa2-cb9489c38920",
+      "headline": "The European Parliament Just Condemned Pakistan for the Forced Conversion of Hindu and Christian Girls. The Numbers Are Staggering.",
+      "slug": "eu-parliament-condemns-pakistan-forced-conversion-hindu-christian-girls-maria-shahbaz-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "European Parliament hemicycle",
+          "reason": "The photo shows the European Parliament, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of the European Parliament does not directly relate to the specific human rights issue discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the issue to the Indian diaspora, highlighting the significance of the resolution for Indian readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents the human rights issue discussed.",
+          "Add more context on how the Indian diaspora can engage with or respond to this issue."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0537087-b5dc-454c-b039-c90afce29920",
+      "headline": "One Indian Crew Member Is Missing After Iran Attacked a Container Ship in the Strait of Hormuz. India Has Condemned the Strike.",
+      "slug": "indian-crew-missing-iran-attack-gfs-galaxy-container-ship-hormuz-oman-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "76bd0193-05c9-44a7-974d-bb157f446c30",
+            "headline": "Six Thousand Seafarers Are Trapped in the Gulf. For Indian S"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "satellite image of the Strait of Hormuz",
+          "reason": "The photo shows the location relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of geopolitical tensions on Indian seafarers, which is relevant to the Indian diaspora in the Gulf."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Expand on the implications for the Indian diaspora, particularly in terms of safety and employment.",
+          "Include quotes or reactions from Indian seafarers or diaspora representatives to add a personal touch."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (812\u21921056 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "822ce0be-ae51-4f44-887f-389dcc5a566a",
       "headline": "The Science Is Settling: What 104 Clinical Trials Say About Turmeric's Real Health Benefits",
@@ -21,8 +112,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "various spices including turmeric",
-          "reason": "The photo includes turmeric, which is relevant to the story about turmeric's health benefits."
+          "what_photo_shows": "turmeric root and spices",
+          "reason": "The photo shows turmeric, which is relevant to the story about turmeric's health benefits."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +170,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article briefly mentions the diaspora connection but lacks depth in exploring how NRIs can engage with or relate to the run club phenomenon."
+          "note": "The article briefly mentions the diaspora connection but does not elaborate on how NRIs can engage with or relate to the run club phenomenon."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle to include specific examples of how NRIs can participate in or relate to the run club culture in India.",
-          "Consider adding quotes or testimonials from NRI members or participants to strengthen the connection to the diaspora."
+          "Expand on the diaspora angle to provide more context on how NRIs can connect with or participate in India's run club culture.",
+          "Include quotes or anecdotes from NRI participants or perspectives to enhance relatability for the diaspora audience."
         ],
         "verdict": "pass"
       },
@@ -111,19 +202,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article directly addresses health risks faced by the South Asian diaspora, providing relevant information."
+          "quality": 8,
+          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the article's visual context.",
-          "Consider adding quotes or testimonials from South Asian individuals to personalize the findings."
+          "Include a relevant hero image that visually represents the topic of heart health in South Asians.",
+          "Expand on the recommendations for early screening to provide more actionable advice for the diaspora audience."
         ],
         "verdict": "pass"
       },
