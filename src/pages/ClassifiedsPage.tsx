@@ -100,7 +100,7 @@ function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
             <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
               <CategoryBadge category={item.category} />
               {item.subcategory && (
-                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-blue-600/20 text-blue-300">
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-blue-600/20 text-blue-400">
                   {item.subcategory}
                 </span>
               )}

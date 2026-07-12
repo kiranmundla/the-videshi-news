@@ -68,11 +68,11 @@ export const CATEGORY_ICONS: Record<string, string> = {
 };
 
 export const CATEGORY_COLORS: Record<string, string> = {
-  Services: "bg-blue-600/20 text-blue-300",
-  Housing: "bg-emerald-600/20 text-emerald-300",
-  "For Sale": "bg-amber-600/20 text-amber-300",
-  "Jobs & Gigs": "bg-purple-600/20 text-purple-300",
-  Community: "bg-teal-600/20 text-teal-300",
+  Services: "bg-blue-600/20 text-blue-400",
+  Housing: "bg-emerald-600/20 text-emerald-400",
+  "For Sale": "bg-amber-600/20 text-amber-400",
+  "Jobs & Gigs": "bg-purple-600/20 text-purple-400",
+  Community: "bg-teal-600/20 text-teal-400",
 };
 
 export const CATEGORY_BORDER: Record<string, string> = {

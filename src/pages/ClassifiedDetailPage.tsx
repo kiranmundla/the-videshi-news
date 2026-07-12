@@ -851,7 +851,7 @@ export default function ClassifiedDetailPage() {
                 {catEmoji} {item.category}
               </span>
               {item.subcategory && (
-                <span className="text-sm px-2.5 py-0.5 rounded-full bg-blue-600/20 text-blue-300 font-medium">
+                <span className="text-sm px-2.5 py-0.5 rounded-full bg-blue-600/20 text-blue-400 font-medium">
                   {item.subcategory}
                 </span>
               )}
