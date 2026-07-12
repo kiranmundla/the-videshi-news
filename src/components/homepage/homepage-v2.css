@@ -362,45 +362,58 @@
   flex: 0 0 280px;
   min-width: 280px;
   max-width: 280px;
-  background: #fff;
-  border-radius: 10px;
+  background: #ffffff;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  transition: box-shadow 0.2s, transform 0.15s;
+  transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  position: relative;
 }
 .v2-tweet-card:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.06);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
+  transform: translateY(-3px);
+  border-color: rgba(0,0,0,0.1);
 }
 .v2-tweet-card-stripe {
-  height: 4px;
+  height: 0;
   flex-shrink: 0;
 }
+.v2-tweet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.5px;
+  height: 100%;
+  background: var(--tweet-accent, #3B82F6);
+  border-radius: 14px 0 0 14px;
+}
 .v2-tweet-card-body {
-  padding: 14px 16px 10px;
+  padding: 16px 18px 14px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 .v2-tweet-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
   flex-shrink: 0;
 }
 .v2-tweet-name {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13.5px;
+  font-weight: 800;
   color: #0F172A;
   line-height: 1.2;
   white-space: nowrap;
@@ -408,41 +421,49 @@
   text-overflow: ellipsis;
 }
 .v2-tweet-handle {
-  font-size: 11px;
+  font-size: 10.5px;
   color: #94A3B8;
   line-height: 1.3;
   margin-top: 1px;
+  font-weight: 500;
 }
 .v2-tweet-text {
-  font-size: 12px;
-  line-height: 1.5;
-  color: #334155;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #1E293B;
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 8;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: -0.01em;
 }
 .v2-tweet-footer {
-  margin-top: 8px;
-  padding-top: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
   border-top: 1px solid #F1F5F9;
 }
 .v2-tweet-cta {
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #94A3B8;
-  display: flex;
+  color: #64748B;
+  display: inline-flex;
   align-items: center;
+  gap: 4px;
+  padding: 4px 10px 4px 0;
+  transition: color 0.2s;
+}
+.v2-tweet-card:hover .v2-tweet-cta {
+  color: #0F172A;
 }
 
 @media (max-width: 767px) {
   .v2-tweet-card {
-    flex: 0 0 260px;
-    min-width: 260px;
-    max-width: 260px;
+    flex: 0 0 270px;
+    min-width: 270px;
+    max-width: 270px;
   }
   .v2-tweet-card-body {
     padding: 14px 16px 12px;
