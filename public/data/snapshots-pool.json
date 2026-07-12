@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849636.jpg",
-    "label": "Colorful scene of people in traditional attire celebrating a Hindu festival at a temple. · 📷 Pavan Prasad",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 36849636
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36849683.jpg",
     "label": "Vibrant Indian cultural procession at a Hindu temple with participants in traditional attire. · 📷 Pavan Prasad",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-07-05",
     "pexels_id": 17928231
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/navratri-garba-dance-17264037.jpg",
+    "label": "Colorful display of hands with dandiya sticks celebrating Navratri festival, showcasing Indian culture. · 📷 Teja J",
+    "source": "pexels",
+    "added_date": "2026-07-12",
+    "pexels_id": 17264037
   }
 ]
