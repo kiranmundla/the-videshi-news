@@ -57,7 +57,8 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
   const touchRef = useRef<{ startX: number; startY: number; dist: number; panning: boolean }>({
     startX: 0, startY: 0, dist: 0, panning: false,
   });
-  const mainRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollingToRef = useRef(false);
 
   const total = photos.length;
   const prev = useCallback(() => setActive((i) => (i - 1 + total) % total), [total]);
@@ -66,19 +67,35 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
   /* Reset zoom when switching photos or closing */
   const resetZoom = useCallback(() => { setZoom(1); setPan({ x: 0, y: 0 }); }, []);
 
-  /* Swipe handling for main gallery */
-  const handleMainTouchStart = useCallback((e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      touchRef.current.startX = e.touches[0].clientX;
+  /* Sync scroll position when active changes (e.g. from thumbnail tap or arrow click) */
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const target = active * el.clientWidth;
+    if (Math.abs(el.scrollLeft - target) > 2) {
+      scrollingToRef.current = true;
+      el.scrollTo({ left: target, behavior: "smooth" });
+      // Reset flag after scroll settles
+      setTimeout(() => { scrollingToRef.current = false; }, 400);
     }
-  }, []);
+  }, [active]);
 
-  const handleMainTouchEnd = useCallback((e: React.TouchEvent) => {
-    const dx = e.changedTouches[0].clientX - touchRef.current.startX;
-    if (Math.abs(dx) > 50) {
-      if (dx < 0) next(); else prev();
-    }
-  }, [next, prev]);
+  /* Track native scroll to update active index */
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let rafId = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (scrollingToRef.current) return;
+        const idx = Math.round(el.scrollLeft / el.clientWidth);
+        if (idx >= 0 && idx < total) setActive(idx);
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => { el.removeEventListener("scroll", onScroll); cancelAnimationFrame(rafId); };
+  }, [total]);
 
   /* Lightbox touch: swipe (when not zoomed) + pinch-to-zoom */
   const handleLbTouchStart = useCallback((e: React.TouchEvent) => {
@@ -156,23 +173,38 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
 
   return (
     <>
-      {/* Main gallery */}
+      {/* Main gallery — native scroll-snap */}
       <div className="space-y-2">
-        {/* Active image */}
-        <div
-          ref={mainRef}
-          className="relative w-full overflow-hidden rounded-xl bg-black cursor-pointer group"
-          onClick={() => { setLightbox(true); resetZoom(); }}
-          onTouchStart={handleMainTouchStart}
-          onTouchEnd={handleMainTouchEnd}
-        >
-          <img
-            src={photos[active]}
-            alt={`${title} — photo ${active + 1}`}
-            className="w-full object-contain rounded-xl transition-opacity duration-200"
-            style={{ maxHeight: "70vh" }}
-            draggable={false}
-          />
+        <div className="relative group">
+          {/* Scroll container */}
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto rounded-xl bg-black"
+            style={{
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+            onClick={() => { setLightbox(true); resetZoom(); }}
+          >
+            <style>{`.clf-scroll::-webkit-scrollbar { display: none; }`}</style>
+            {photos.map((url, i) => (
+              <div
+                key={i}
+                className="clf-scroll w-full flex-shrink-0 flex items-center justify-center"
+                style={{ scrollSnapAlign: "start" }}
+              >
+                <img
+                  src={url}
+                  alt={`${title} — photo ${i + 1}`}
+                  className="w-full object-contain cursor-pointer"
+                  style={{ maxHeight: "70vh" }}
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
           {/* Zoom hint */}
           <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white/80 text-xs px-2.5 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             <ZoomIn className="h-3.5 w-3.5" /> Tap to zoom
@@ -206,7 +238,7 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
 
         {/* Thumbnail strip */}
         {total > 1 && (
-          <div className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
             {photos.map((url, i) => (
               <button
                 key={i}
@@ -857,7 +889,7 @@ export default function ClassifiedDetailPage() {
               )}
               {item.price && (
                 <span className="text-sm font-bold px-3 py-1 rounded-md bg-amber-600/20 text-amber-400">
-                  {item.price}
+                  {/^\d/.test(item.price) ? `$${item.price}` : item.price}
                 </span>
               )}
             </div>

@@ -124,7 +124,7 @@ function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
             {/* Price */}
             {item.price && (
               <span className="inline-block text-sm font-bold text-amber-600 mb-1">
-                {item.price}
+                {/^\d/.test(item.price) ? `$${item.price}` : item.price}
               </span>
             )}
 
