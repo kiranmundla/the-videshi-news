@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-12T18:45:40.468066+00:00",
+  "timestamp": "2026-07-12T19:15:21.496665+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "180a4582-d5b7-4da5-afa2-cb9489c38920",
-      "headline": "The European Parliament Just Condemned Pakistan for the Forced Conversion of Hindu and Christian Girls. The Numbers Are Staggering.",
-      "slug": "eu-parliament-condemns-pakistan-forced-conversion-hindu-christian-girls-maria-shahbaz-20260712",
+      "id": "5f25ea21-69b7-4de4-8856-2560ccad6ee2",
+      "headline": "Godzilla Just Picked a Fight With Ramayana. Diwali 2026 Has Become the Biggest Box Office War in Indian History.",
+      "slug": "godzilla-minus-zero-teaser-ramayana-diwali-2026-imax-box-office-clash-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "European Parliament hemicycle",
-          "reason": "The photo shows the European Parliament, relevant to the story."
+          "what_photo_shows": "Godzilla movie poster",
+          "reason": "The photo shows a Godzilla movie poster, relevant to the story about a Godzilla film release."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image of the European Parliament does not directly relate to the specific human rights issue discussed in the article."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the issue to the Indian diaspora, highlighting the significance of the resolution for Indian readers."
+          "note": "The article discusses the competition for IMAX screens, which is relevant to the diaspora audience interested in global cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents the human rights issue discussed.",
-          "Add more context on how the Indian diaspora can engage with or respond to this issue."
+          "Include more direct quotes from filmmakers or actors to enhance credibility.",
+          "Add a section discussing the potential impact on the diaspora audience's viewing habits."
         ],
         "verdict": "pass"
       },
@@ -54,57 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c0537087-b5dc-454c-b039-c90afce29920",
-      "headline": "One Indian Crew Member Is Missing After Iran Attacked a Container Ship in the Strait of Hormuz. India Has Condemned the Strike.",
-      "slug": "indian-crew-missing-iran-attack-gfs-galaxy-container-ship-hormuz-oman-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "76bd0193-05c9-44a7-974d-bb157f446c30",
-            "headline": "Six Thousand Seafarers Are Trapped in the Gulf. For Indian S"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "satellite image of the Strait of Hormuz",
-          "reason": "The photo shows the location relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of geopolitical tensions on Indian seafarers, which is relevant to the Indian diaspora in the Gulf."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Expand on the implications for the Indian diaspora, particularly in terms of safety and employment.",
-          "Include quotes or reactions from Indian seafarers or diaspora representatives to add a personal touch."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (812\u21921056 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "822ce0be-ae51-4f44-887f-389dcc5a566a",
-      "headline": "The Science Is Settling: What 104 Clinical Trials Say About Turmeric's Real Health Benefits",
-      "slug": "turmeric-curcumin-104-clinical-trials-meta-analysis-metabolic-health-benefits-south-asian-20260712",
+      "id": "f81d66da-d8b5-4b1f-af6a-773d7723b028",
+      "headline": "Vishal Dadlani Called Her Singing 'Embarrassing for the Country.' Eighteen Months Later, He Apologised on National Television.",
+      "slug": "vishal-dadlani-apologises-jasleen-royal-indian-idol-coldplay-basic-to-bad-singer-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -112,51 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "turmeric root and spices",
-          "reason": "The photo shows turmeric, which is relevant to the story about turmeric's health benefits."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the health benefits of turmeric to the South Asian diaspora, highlighting their specific health challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how turmeric is used in South Asian cooking to enhance cultural relevance.",
-          "Include quotes or insights from health professionals to add authority to the claims made about turmeric's benefits."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "held: no sources"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "721e903c-ff36-4096-8073-4df05452078a",
-      "headline": "From Bhag Club to Bombay On Foot: How India's Run Club Boom Is Rewriting the Wellness Playbook",
-      "slug": "india-run-club-boom-bhag-club-bombay-on-foot-social-wellness-community-fitness-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "marathon event stage with participants",
-          "reason": "The photo shows a running event, which aligns with the story about running clubs."
+          "what_photo_shows": "Vishal Dadlani at Indian Idol event",
+          "reason": "The photo shows Vishal Dadlani, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -170,56 +79,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article briefly mentions the diaspora connection but does not elaborate on how NRIs can engage with or relate to the run club phenomenon."
+          "note": "The article discusses a significant event in Indian music that resonates with the diaspora, particularly those interested in the global representation of Indian artists."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle to provide more context on how NRIs can connect with or participate in India's run club culture.",
-          "Include quotes or anecdotes from NRI participants or perspectives to enhance relatability for the diaspora audience."
+          "Include more context about the significance of Coldplay's concert in India for NRI readers.",
+          "Add quotes or reactions from diaspora communities regarding the incident to enhance the connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "held: no sources"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "1ad40134-fab3-4d6f-920f-1b8d2d64553a",
-      "headline": "South Asians Face Higher Heart Risk by 45 Despite Healthier Habits, Major Study Finds",
-      "slug": "south-asian-heart-risk-paradox-masala-northwestern-study-midlife-screening-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that visually represents the topic of heart health in South Asians.",
-          "Expand on the recommendations for early screening to provide more actionable advice for the diaspora audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "held: no sources"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
