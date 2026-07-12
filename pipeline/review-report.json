@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-11T23:15:19.164092+00:00",
+  "timestamp": "2026-07-12T00:15:43.363095+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5ddab101-0c0a-499e-a44d-e4b26963862c",
-      "headline": "Making History, Then Making a Statement. India's Women Take Lord's Apart on Day Two.",
-      "slug": "india-women-dominate-lords-day-2-mandhana-83-deepti-57-lead-269-historic-test-nri-july-2026",
+      "id": "400bd374-8106-4ed0-9d79-2b31f0c5cace",
+      "headline": "Sunil Bharti Mittal Calls Indian Diaspora a 'Beautiful Bridge' as USISPF Honours Him with Leadership Award",
+      "slug": "sunil-mittal-usispf-leadership-award-diaspora-bridge-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Smriti Mandhana smiling in a blazer",
-          "reason": "The photo shows Smriti Mandhana, relevant to the cricket story."
+          "what_photo_shows": "Sunil Bharti Mittal at an event",
+          "reason": "The photo shows Sunil Bharti Mittal, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -35,14 +35,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects well with the Indian diaspora, highlighting their pride in the historic match."
+          "quality": 9,
+          "note": "The article effectively highlights the role of the Indian diaspora in strengthening India-US relations, making it relevant and engaging for NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from players or coaches to enhance the narrative.",
-          "Add a brief historical context about women's cricket in India for deeper engagement."
+          "Consider adding quotes from diaspora members or experts to enhance the article's depth.",
+          "Include more specific examples of how the diaspora has influenced US-India relations beyond economic contributions."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "97c1bf75-b1cc-4cac-b080-6f1f71b0e94f",
-      "headline": "Buttler's Brutal 131 Seals the Humiliation. England Whitewash India 4-0 in T20Is.",
-      "slug": "buttler-131-england-whitewash-india-4-0-t20i-series-southampton-number-one-nri-july-2026",
+      "id": "99e5ffbb-130a-418f-8852-82945b06227a",
+      "headline": "From Tandoor to Michelin: Indian Fine Dining Is Conquering the World's Most Demanding Markets",
+      "slug": "indian-fine-dining-global-expansion-michelin-gymkhana-tresind-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit and tie",
-          "reason": "The photo plausibly shows Jos Buttler, relevant to the cricket story."
+          "what_photo_shows": "Modern Indian fine dining dish",
+          "reason": "The photo shows a fine dining dish, relevant to the story about Indian fine dining."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,159 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRI readers by discussing the implications of the series loss and the upcoming ODI series, which is relevant to fans abroad."
+          "note": "The article effectively highlights the contributions of Indian-origin restaurateurs and chefs, connecting their success to the global Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context on how this series impacts India's future in T20 cricket."
+          "Include more quotes or anecdotes from the chefs mentioned to enhance the personal connection to the diaspora.",
+          "Add a section discussing the impact of Indian cuisine on local cultures in the markets mentioned."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
+      "headline": "India Hits Record 4.93 Million Barrels Per Day in Crude Imports \u2014 And Russia Now Supplies More Than Half",
+      "slug": "india-record-crude-imports-russia-half-hormuz-lpg-risk-nri-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "oil refinery complex by water",
+          "reason": "The photo shows an oil refinery, relevant to India's energy infrastructure story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to crude oil imports or the geopolitical context discussed in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and their concerns regarding oil prices and macroeconomic stability in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that reflects the topic of crude oil imports or geopolitical issues.",
+          "Add a brief summary or conclusion to reinforce the implications for NRI investors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7322a8aa-4718-4e19-ba8d-cf07c1487b18",
+      "headline": "India Scraps Import Duties on Smartphone Parts and Lithium-Ion Cells \u2014 A $500 Billion Bet on Becoming the World's Electronics Factory",
+      "slug": "india-scraps-import-duty-smartphone-lithium-ion-electronics-manufactur-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "circuit boards in manufacturing facility",
+          "reason": "The photo shows electronics components relevant to the story about smartphone parts."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the policy changes to NRI investors, highlighting implications for their investments in India's manufacturing sector."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can capitalize on these changes.",
+          "Include quotes or insights from additional industry experts to enhance credibility."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
+      "headline": "SEBI Wants to Double the Stocks You Can Short \u2014 And India's $5 Trillion Market Is About to Get a Lot More Interesting for NRIs",
+      "slug": "sebi-double-shortable-stocks-collateral-cut-nri-derivatives-20260711",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "eb0a48aa-22e5-47f2-a76c-60f8b65fca24",
+            "headline": "India's Earnings Season Opens With a Bang \u2014 J.P. Morgan Sees"
+          },
+          {
+            "article_id": "af71549b-68fa-424e-b5eb-c4b031e43293",
+            "headline": "SBI Funds Management Prices $1.2 Billion IPO at \u20b9545\u2013574 \u2014 A"
+          },
+          {
+            "article_id": "d0c95651-1f90-439a-aeed-ce5881cc827a",
+            "headline": "India Inc. Revenue Growth Hits a Two-Year High at 11.5% \u2014 Bu"
+          },
+          {
+            "article_id": "41bd400d-4daa-4883-9851-7eb888bbc161",
+            "headline": "Foreign Investors Pour $1.5 Billion Into Indian Banks in Big"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses the interests and concerns of NRI investors regarding changes in the Indian stock market."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how these changes will directly benefit NRI investors.",
+          "Include quotes from industry experts or stakeholders to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
