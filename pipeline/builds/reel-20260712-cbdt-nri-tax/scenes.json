@@ -1,0 +1,40 @@
+{
+  "article_id": "2ccaa535-2d02-4120-997f-907974d7de18",
+  "scenes": [
+    {
+      "voiceover": "Have a bank account abroad? India's tax department can now see it.",
+      "onscreen": "YOUR FOREIGN ACCOUNTS ARE NOW VISIBLE",
+      "image_prompt": "Surveillance eye looking at foreign bank accounts"
+    },
+    {
+      "voiceover": "CBDT just linked foreign financial data from over a hundred countries directly to your PAN.",
+      "onscreen": "100+ COUNTRIES LINKED TO YOUR PAN",
+      "image_prompt": "World map with data streams flowing to India"
+    },
+    {
+      "voiceover": "Your savings in New York, your pension in London, your brokerage in Toronto — all now on display.",
+      "onscreen": "SAVINGS • PENSIONS • BROKERAGES — ALL TRACKED",
+      "image_prompt": "City skylines connected to Indian tax records"
+    },
+    {
+      "voiceover": "Three years of historical data, from January 2022 to December 2024, gets uploaded within ninety days.",
+      "onscreen": "3 YEARS OF DATA — 90 DAY UPLOAD",
+      "image_prompt": "Timeline showing data upload schedule 2022-2024"
+    },
+    {
+      "voiceover": "If you're in the US, you now face a double bind. FBAR, FATCA, and India's AIS must all match.",
+      "onscreen": "DUAL REPORTING REQUIRED",
+      "image_prompt": "US and India flags with tax compliance forms"
+    },
+    {
+      "voiceover": "Penalties start at ten thousand dollars per violation. They can reach fifty percent of your account balance.",
+      "onscreen": "$10,000 MINIMUM PENALTY — 50% AT RISK",
+      "image_prompt": "Warning graphic with penalty amounts"
+    },
+    {
+      "voiceover": "The era of informational asymmetry is over. It's time to reconcile your filings.",
+      "onscreen": "THE ERA OF TAX ASYMMETRY IS OVER",
+      "image_prompt": "Scales of justice with globe and tax document"
+    }
+  ]
+}
