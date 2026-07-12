@@ -576,10 +576,10 @@
   margin: 0 0 0.5rem 0.25rem;
 }
 .article-card-item {
-  flex: 0 0 260px;
-  min-width: 260px;
-  max-width: 260px;
-  border-radius: 12px;
+  flex: 0 0 180px;
+  min-width: 180px;
+  max-width: 180px;
+  border-radius: 10px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -593,13 +593,17 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 @media (max-width: 768px) {
   .article-card-item {
-    flex: 0 0 220px;
-    min-width: 220px;
-    max-width: 220px;
+    flex: 0 0 150px;
+    min-width: 150px;
+    max-width: 150px;
+    border-radius: 8px;
+  }
+  .article-card-img {
+    border-radius: 8px;
   }
 }

@@ -10,7 +10,7 @@ interface ArticleCard {
 }
 
 interface ArticleCardScrollProps {
-  category: string;
+  category?: string;
   label?: string;
 }
 
@@ -24,7 +24,9 @@ export default function ArticleCardScroll({
     fetch("/data/article-cards.json")
       .then((r) => r.json())
       .then((data: ArticleCard[]) => {
-        const filtered = data.filter((c) => c.category === category);
+        const filtered = category
+          ? data.filter((c) => c.category === category)
+          : data;
         setCards(filtered);
       })
       .catch(() => {});
