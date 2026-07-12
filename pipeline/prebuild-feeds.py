@@ -64,13 +64,15 @@ HOMEPAGE_FEED = DATA_DIR / "homepage-feed.json"
 P2_COLS = (
     "id,slug,headline,subheadline,body,vertical,category,status,"
     "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
-    "image_url,image_attribution,image_caption,gallery_images,score_total"
+    "image_url,image_attribution,image_caption,gallery_images,score_total,"
+    "newsworthiness,diaspora_impact,prominence"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (
     "id,slug,headline,subheadline,vertical,category,status,"
     "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
-    "image_url,image_attribution,image_caption,gallery_images,score_total"
+    "image_url,image_attribution,image_caption,gallery_images,score_total,"
+    "newsworthiness,diaspora_impact,prominence"
 )
 
 # Homepage section config (mirrors Index.tsx constants)
@@ -220,6 +222,41 @@ def derive_excerpt(subheadline: str | None, body: str) -> str:
     return plain[:217].rstrip() + "…" if len(plain) > 220 else plain
 
 
+def _compute_display_score(row: dict) -> float:
+    """Compute display score from newsworthiness + prominence + diaspora + freshness.
+    Falls back to legacy score_total when new columns are NULL.
+    """
+    nw = row.get("newsworthiness")
+    di = row.get("diaspora_impact")
+    prom = row.get("prominence")
+
+    # If new scores aren't populated yet, fall back to legacy score_total
+    if nw is None and di is None:
+        return float(row.get("score_total") or 0)
+
+    nw = nw or 15  # default mid-range
+    di = di or 10
+    prom = prom or 8
+
+    # Freshness decay: 20 points, decays to 0 over 36 hours
+    pub = row.get("published_at") or row.get("created_at", "")
+    freshness = 0.0
+    if pub:
+        try:
+            pub_dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
+            hours_old = (datetime.now(timezone.utc) - pub_dt).total_seconds() / 3600
+            freshness = 20.0 * max(0.0, 1.0 - hours_old / 36.0)
+        except (ValueError, TypeError):
+            freshness = 0.0
+
+    # Breaking news bonus: very high newsworthiness + very fresh = extra boost
+    breaking_bonus = 0.0
+    if nw >= 28 and freshness >= 16:  # newsworthiness 28+ and < 6h old
+        breaking_bonus = 15.0
+
+    return nw + prom + di + freshness + breaking_bonus
+
+
 def map_row(row: dict) -> dict:
     """Transform a Supabase p2_articles row to the front-end Article shape."""
     return {
@@ -241,7 +278,7 @@ def map_row(row: dict) -> dict:
         "article_type": "news",
         "tags": row.get("tags") if isinstance(row.get("tags"), list) else None,
         "author": "Diaspora Desk",
-        "featured_score": row.get("score_total") or 0,
+        "featured_score": _compute_display_score(row),
         "is_pinned_featured": bool(row.get("is_featured")),
         "pinned_until": None,
     }
@@ -296,12 +333,15 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
         by_cat.setdefault(cat, []).append(a)
 
     def get_category_articles(slug: str, limit: int) -> list[dict]:
-        """Get articles for a category, preferring recent (72h), fallback to 7d."""
+        """Get articles for a category, sorted by display score, preferring recent (72h), fallback to 7d."""
         pool = by_cat.get(slug, [])
         recent = [a for a in pool if a["published_at"] >= since_72h]
+        # Sort by display score (featured_score) descending
+        recent.sort(key=lambda a: (a.get("featured_score") or 0, a["published_at"]), reverse=True)
         if len(recent) >= 3:
             return [article_without_body(a) for a in recent[:limit]]
         wider = [a for a in pool if a["published_at"] >= since_7d]
+        wider.sort(key=lambda a: (a.get("featured_score") or 0, a["published_at"]), reverse=True)
         if len(wider) > len(recent):
             return [article_without_body(a) for a in wider[:limit]]
         return [article_without_body(a) for a in recent[:limit]]
