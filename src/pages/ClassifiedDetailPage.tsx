@@ -52,17 +52,10 @@ const sb = supabase as any;
 function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
   const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
-  const [zoom, setZoom] = useState(1);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const touchRef = useRef<{ startX: number; startY: number; dist: number; panning: boolean }>({
-    startX: 0, startY: 0, dist: 0, panning: false,
-  });
   const stripRef = useRef<HTMLDivElement>(null);
+  const lbScrollRef = useRef<HTMLDivElement>(null);
 
   const total = photos.length;
-
-  /* Reset zoom when switching photos or closing */
-  const resetZoom = useCallback(() => { setZoom(1); setPan({ x: 0, y: 0 }); }, []);
 
   /* Track native scroll to update active index + counter */
   useEffect(() => {
@@ -93,79 +86,52 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
   const prev = useCallback(() => scrollTo(Math.max(0, active - 1)), [active, scrollTo]);
   const next = useCallback(() => scrollTo(Math.min(total - 1, active + 1)), [active, total, scrollTo]);
 
-  /* Lightbox touch: swipe (when not zoomed) + pinch-to-zoom */
-  const handleLbTouchStart = useCallback((e: React.TouchEvent) => {
-    if (e.touches.length === 2) {
-      const dx = e.touches[0].clientX - e.touches[1].clientX;
-      const dy = e.touches[0].clientY - e.touches[1].clientY;
-      touchRef.current.dist = Math.hypot(dx, dy);
-      touchRef.current.panning = false;
-    } else if (e.touches.length === 1) {
-      touchRef.current.startX = e.touches[0].clientX;
-      touchRef.current.startY = e.touches[0].clientY;
-      touchRef.current.panning = zoom > 1;
-    }
-  }, [zoom]);
-
-  const handleLbTouchMove = useCallback((e: React.TouchEvent) => {
-    if (e.touches.length === 2) {
-      const dx = e.touches[0].clientX - e.touches[1].clientX;
-      const dy = e.touches[0].clientY - e.touches[1].clientY;
-      const newDist = Math.hypot(dx, dy);
-      if (touchRef.current.dist > 0) {
-        const scale = newDist / touchRef.current.dist;
-        setZoom((z) => Math.min(4, Math.max(1, z * scale)));
-      }
-      touchRef.current.dist = newDist;
-    } else if (e.touches.length === 1 && touchRef.current.panning && zoom > 1) {
-      const dx = e.touches[0].clientX - touchRef.current.startX;
-      const dy = e.touches[0].clientY - touchRef.current.startY;
-      setPan((p) => ({ x: p.x + dx, y: p.y + dy }));
-      touchRef.current.startX = e.touches[0].clientX;
-      touchRef.current.startY = e.touches[0].clientY;
-    }
-  }, [zoom]);
-
-  const handleLbTouchEnd = useCallback((e: React.TouchEvent) => {
-    if (zoom <= 1) {
-      const dx = e.changedTouches[0].clientX - touchRef.current.startX;
-      if (Math.abs(dx) > 50) {
-        if (dx < 0) scrollTo(Math.min(total - 1, active + 1));
-        else scrollTo(Math.max(0, active - 1));
-        resetZoom();
-      }
-    }
-    touchRef.current.dist = 0;
-    touchRef.current.panning = false;
-  }, [zoom, active, total, scrollTo, resetZoom]);
-
-  /* Double-tap to toggle zoom */
-  const lastTapRef = useRef(0);
-  const handleDoubleTap = useCallback(() => {
-    const now = Date.now();
-    if (now - lastTapRef.current < 300) {
-      if (zoom > 1) resetZoom(); else { setZoom(2.5); setPan({ x: 0, y: 0 }); }
-    }
-    lastTapRef.current = now;
-  }, [zoom, resetZoom]);
-
   /* Keyboard navigation */
   useEffect(() => {
     if (!lightbox) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { setLightbox(false); resetZoom(); }
-      if (e.key === "ArrowLeft") { prev(); resetZoom(); }
-      if (e.key === "ArrowRight") { next(); resetZoom(); }
+      if (e.key === "Escape") { setLightbox(false); }
+      if (e.key === "ArrowLeft") { prev(); }
+      if (e.key === "ArrowRight") { next(); }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [lightbox, prev, next, resetZoom]);
+  }, [lightbox, prev, next]);
 
   /* Lock body scroll when lightbox open */
   useEffect(() => {
     if (lightbox) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => { document.body.style.overflow = ""; };
+  }, [lightbox]);
+
+  /* Track lightbox scroll to sync active index */
+  useEffect(() => {
+    const el = lbScrollRef.current;
+    if (!el || !lightbox) return;
+    let rafId = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const w = el.clientWidth;
+        if (w > 0) {
+          const idx = Math.round(el.scrollLeft / w);
+          if (idx >= 0 && idx < total) setActive(idx);
+        }
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => { el.removeEventListener("scroll", onScroll); cancelAnimationFrame(rafId); };
+  }, [lightbox, total]);
+
+  /* Scroll lightbox to active photo on open */
+  useEffect(() => {
+    if (!lightbox) return;
+    requestAnimationFrame(() => {
+      const el = lbScrollRef.current;
+      if (el) el.scrollTo({ left: active * el.clientWidth, behavior: "instant" as ScrollBehavior });
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lightbox]);
 
   return (
@@ -200,7 +166,7 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
                   flexShrink: 0,
                   cursor: "pointer",
                 }}
-                onClick={() => { setLightbox(true); resetZoom(); }}
+                onClick={() => { setLightbox(true); }}
               >
                 <img
                   src={url}
@@ -268,16 +234,19 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
         )}
       </div>
 
-      {/* Lightbox overlay */}
+      {/* Lightbox overlay — native scroll-snap like Snapshots */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
-          onClick={(e) => { if (e.target === e.currentTarget) { setLightbox(false); resetZoom(); } }}
+          className="fixed inset-0 z-[9999] flex flex-col"
+          style={{ backgroundColor: "rgba(0,0,0,0.95)" }}
         >
+          <style>{`.clf-lb-scroll::-webkit-scrollbar { display: none; }`}</style>
+
           {/* Close button */}
           <button
-            onClick={() => { setLightbox(false); resetZoom(); }}
-            className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+            onClick={() => { setLightbox(false); }}
+            className="absolute top-3 right-4 z-10 bg-white/15 hover:bg-white/25 text-white rounded-full p-2 transition-colors"
+            style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -285,43 +254,69 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
 
           {/* Counter */}
           {total > 1 && (
-            <div className="absolute top-4 left-4 z-10 text-white/80 text-sm font-medium bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
+            <p className="text-white/50 text-sm text-center pt-4 pb-2 m-0 select-none" style={{ fontFamily: "var(--font-sans, sans-serif)" }}>
               {active + 1} / {total}
-            </div>
+            </p>
           )}
 
-          {/* Lightbox image */}
+          {/* Native scroll-snap container */}
           <div
-            className="w-full h-full flex items-center justify-center overflow-hidden"
-            style={{ touchAction: "none" }}
-            onTouchStart={handleLbTouchStart}
-            onTouchMove={handleLbTouchMove}
-            onTouchEnd={handleLbTouchEnd}
-            onClick={handleDoubleTap}
+            ref={lbScrollRef}
+            className="clf-lb-scroll flex-1 flex"
+            style={{
+              overflowX: "auto",
+              overflowY: "hidden",
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            } as React.CSSProperties}
           >
-            <img
-              src={photos[active]}
-              alt={`${title} — photo ${active + 1}`}
-              className="max-w-[95vw] max-h-[85vh] object-contain select-none transition-transform duration-100"
-              style={{
-                transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
-              }}
-              draggable={false}
-            />
+            {photos.map((url, i) => (
+              <div
+                key={i}
+                style={{
+                  minWidth: "100vw",
+                  width: "100vw",
+                  height: "100%",
+                  scrollSnapAlign: "start",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  padding: "0 20px",
+                  boxSizing: "border-box",
+                }}
+              >
+                <img
+                  src={url}
+                  alt={`${title} — photo ${i + 1}`}
+                  style={{
+                    maxWidth: "calc(100vw - 40px)",
+                    maxHeight: "calc(100vh - 120px)",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                    userSelect: "none",
+                    WebkitUserSelect: "none",
+                  } as React.CSSProperties}
+                  draggable={false}
+                />
+              </div>
+            ))}
           </div>
 
-          {/* Lightbox arrows */}
+          {/* Desktop arrows */}
           {total > 1 && (
             <>
               <button
-                onClick={() => { prev(); resetZoom(); }}
+                onClick={() => { const el = lbScrollRef.current; if (el) { const p = Math.max(0, active - 1); el.scrollTo({ left: p * el.clientWidth, behavior: "smooth" }); } }}
                 className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
                 aria-label="Previous photo"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
               <button
-                onClick={() => { next(); resetZoom(); }}
+                onClick={() => { const el = lbScrollRef.current; if (el) { const n = Math.min(total - 1, active + 1); el.scrollTo({ left: n * el.clientWidth, behavior: "smooth" }); } }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
                 aria-label="Next photo"
               >
