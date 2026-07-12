@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-12T19:15:21.496665+00:00",
+  "timestamp": "2026-07-12T20:15:25.405050+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5f25ea21-69b7-4de4-8856-2560ccad6ee2",
-      "headline": "Godzilla Just Picked a Fight With Ramayana. Diwali 2026 Has Become the Biggest Box Office War in Indian History.",
-      "slug": "godzilla-minus-zero-teaser-ramayana-diwali-2026-imax-box-office-clash-20260712",
+      "id": "367fcc48-4127-4581-a35c-092f4e4dd170",
+      "headline": "Fifteen Thousand Indian Tech Workers Went Home Last Year. The Pipeline Behind Them Is Reversing",
+      "slug": "reverse-brain-drain-indian-tech-professionals-returning-india-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Godzilla movie poster",
-          "reason": "The photo shows a Godzilla movie poster, relevant to the story about a Godzilla film release."
+          "what_photo_shows": "Bengaluru skyline with buildings",
+          "reason": "The photo shows the Bengaluru skyline, relevant to the story about tech workers returning to India."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 8,
+          "issue": "The image depicts a professional environment, which aligns with the article's focus on tech workers and their migration patterns."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the competition for IMAX screens, which is relevant to the diaspora audience interested in global cinema."
+          "note": "The article discusses the migration trends of Indian tech workers, which is highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from filmmakers or actors to enhance credibility.",
-          "Add a section discussing the potential impact on the diaspora audience's viewing habits."
+          "Include more personal stories or quotes from returning tech workers to enhance relatability.",
+          "Provide a clearer conclusion summarizing the implications of these trends for both India and the US."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f81d66da-d8b5-4b1f-af6a-773d7723b028",
-      "headline": "Vishal Dadlani Called Her Singing 'Embarrassing for the Country.' Eighteen Months Later, He Apologised on National Television.",
-      "slug": "vishal-dadlani-apologises-jasleen-royal-indian-idol-coldplay-basic-to-bad-singer-20260712",
+      "id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
+      "headline": "Green Card Applicants Must Now Leave the Country. USCIS Calls It the Original Intent of the Law",
+      "slug": "uscis-adjustment-of-status-extraordinary-circumstances-green-card-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
+            "headline": "Your Spouse's Work Permit Expires This Month. The Government"
+          },
+          {
+            "article_id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
+            "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Appli"
+          },
+          {
+            "article_id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
+            "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is "
+          },
+          {
+            "article_id": "9061dd5f-48ae-46ff-a682-43b97459505b",
+            "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The R"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Vishal Dadlani at Indian Idol event",
-          "reason": "The photo shows Vishal Dadlani, relevant to the story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center relevant to the green card process story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +90,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and green card applications."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses a significant event in Indian music that resonates with the diaspora, particularly those interested in the global representation of Indian artists."
+          "quality": 9,
+          "note": "The article discusses changes in immigration policy that directly affect Indian professionals, making it highly relevant to the NRI community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context about the significance of Coldplay's concert in India for NRI readers.",
-          "Add quotes or reactions from diaspora communities regarding the incident to enhance the connection."
+          "Include quotes or perspectives from more immigration experts or affected individuals to provide a broader view.",
+          "Add a section on potential next steps for affected applicants to enhance the article's practical value."
         ],
         "verdict": "pass"
       },
