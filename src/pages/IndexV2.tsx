@@ -19,6 +19,7 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
+import TopPicks from "@/components/homepage/TopPicks";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import "@/components/homepage/homepage-v2.css";
@@ -373,6 +374,17 @@ export default function IndexV2() {
 
         {/* Visual Stories */}
         <ArticleCardDeck />
+
+        {/* Top Stories — #1 from every major category */}
+        <TopPicks categories={[
+          { label: "Immigration", color: "#D4A843", slug: "immigration", articles: layout.immigration },
+          { label: "India", color: "#C62828", slug: "news", articles: layout.news },
+          { label: "World", color: "#1565C0", slug: "nri-world", articles: layout.nriWorld },
+          { label: "Technology", color: "#4527A0", slug: "technology", articles: layout.technology },
+          { label: "Entertainment", color: "#AD1457", slug: "entertainment", articles: layout.entertainment },
+          { label: "Markets", color: "#E65100", slug: "markets-finance", articles: layout.markets },
+          { label: "Sports", color: "#2E7D32", slug: "sports", articles: layout.sports },
+        ]} />
 
         {/* 7. Immigration Strip */}
         <ImmigrationStrip articles={layout.immigration} />
