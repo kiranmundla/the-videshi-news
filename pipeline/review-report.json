@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T08:16:11.217446+00:00",
+  "timestamp": "2026-07-12T09:15:16.617567+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ec04c31b-60a1-45b1-9026-9b2bce8babc7",
-      "headline": "A New Bill Would Scrap the Green Card System Entirely. Here Is What Would Replace It",
-      "slug": "americans-first-immigration-act-points-system-bill-20260712",
+      "id": "7a774f9c-905d-42e3-8c9d-6bf34604ef1a",
+      "headline": "Yotta Just Raised $150 Million to Become India's Answer to the American AI Data Centre Boom",
+      "slug": "yotta-150-million-ai-data-centre-nvidia-gpu-india-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "group of professionals walking",
-          "reason": "The photo shows professionals, which is relevant to an employment immigration story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the topic of immigration or green cards."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of the proposed bill on Indian professionals, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly relates to immigration or the green card process to enhance relevance.",
-          "Add more specific examples or quotes from Indian professionals affected by the proposed changes to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b89f48b9-2a77-4f20-a882-4da3b728bb97",
-      "headline": "USCIS Can Now Deny Your Filing Over an Invalid Signature \u2014 and Keep Your Fee",
-      "slug": "uscis-signature-denial-rule-july-2026-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "open passport with stamps",
-          "reason": "The photo of travel documents relates to immigration filings."
+          "what_photo_shows": "server racks in a data centre",
+          "reason": "The photo shows server racks, relevant to the AI data centre story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or USCIS processes."
+          "issue": "The image does not directly relate to AI data centers or Yotta specifically, but is a general tech-related image."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the impact of the new USCIS rule on Indian nationals, who are a significant portion of employment-based immigration petitioners."
+          "quality": 8,
+          "note": "The article effectively connects Yotta's growth to opportunities for Indian Americans in AI infrastructure."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly relates to immigration or USCIS processes to enhance relevance.",
-          "Add a brief section on how applicants can ensure their signatures are valid to provide practical advice."
+          "Consider using a more relevant image that directly represents AI data centers or Yotta's operations.",
+          "Expand on the diaspora angle by including quotes or insights from Indian Americans in the AI sector."
         ],
         "verdict": "pass"
       },
@@ -97,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6b54174c-8b87-4b3b-9395-f5800cc49669",
-      "headline": "One Indian Sailor Missing, Ten Rescued After Iran Strikes Container Ship in the Strait of Hormuz",
-      "slug": "gfs-galaxy-iran-attack-indian-seafarer-missing-hormuz-strait-20260712",
+      "id": "084fbd1a-7f8b-4689-82b0-77b0ead63f35",
+      "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's Co-Founder Is Betting the Gym Can Go Public.",
+      "slug": "cultfit-ipo-mukesh-bansal-fitness-unicorn-sebi-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Naval vessels in the Strait of Hormuz",
-          "reason": "The photo shows naval vessels in the Strait of Hormuz, relevant to the story about a ship attack there."
+          "what_photo_shows": "group fitness class in studio",
+          "reason": "The photo shows a group fitness class, relevant to Cult.fit's business."
         },
         "inline_image_mismatches": []
       },
@@ -116,153 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image depicts a fitness-related scene, which aligns with the article's topic on Cult.fit and its IPO."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the crisis to Indian maritime families, highlighting their unique anxieties and experiences."
+          "note": "The article connects well with NRIs by discussing the implications of the IPO for Indian Americans and the broader context of India's consumer internet landscape."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from affected families or maritime experts to enhance emotional impact.",
-          "Include more context on the geopolitical implications for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2ccaa535-2d02-4120-997f-907974d7de18",
-      "headline": "India's Tax Department Can Now See Your Foreign Bank Accounts. Here Is What Every NRI Needs to Know.",
-      "slug": "cbdt-ais-foreign-financial-information-nri-overseas-accounts-tax-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Aaykar Bhavan, Income Tax office",
-          "reason": "The photo shows a relevant tax department office for the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRIs and their financial obligations, making it relevant and informative for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a section with practical tips for NRIs on how to ensure compliance with the new regulations.",
-          "Include a brief FAQ addressing common concerns NRIs might have regarding the new tax reporting requirements."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c9f227b0-06f4-4276-a1d5-3fb704beb8b2",
-      "headline": "SK Hynix's Record $26.5 Billion Nasdaq Debut Signals the AI Memory Supercycle Is Far From Over \u2014 Here's What NRI Tech Investors Should Know",
-      "slug": "sk-hynix-nasdaq-debut-ai-memory-nri-tech-india-semiconductor-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "close-up of semiconductor chips",
-          "reason": "The photo shows semiconductor chips, relevant to the SK Hynix story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the SK Hynix IPO to NRI investors and the broader context of India's semiconductor ambitions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how NRI investors can directly engage with SK Hynix shares or related investment vehicles.",
-          "Include a brief overview of potential risks associated with investing in SK Hynix to provide a balanced perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c17632d1-2a19-413f-9860-c4683eb6814a",
-      "headline": "India's June Inflation Data Arrives Monday \u2014 CPI Expected to Breach 4% for the First Time in 16 Months, and NRI Portfolios Are in the Crosshairs",
-      "slug": "india-june-cpi-inflation-breach-4-percent-rbi-nri-deposits-bonds-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "5574b2b6-146b-422e-923d-771dfd1a83a9",
-            "headline": "India's Forex Reserves Jump $7.26 Billion in a Week \u2014 Gold R"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the Reserve Bank of India, relevant to the story on inflation and monetary policy."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the inflation data to NRI investors, discussing implications for their portfolios."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an NRI investor or expert to enhance the diaspora perspective.",
-          "Include a brief section on how inflation trends in India compare to those in other countries relevant to NRIs."
+          "Consider adding more specific examples of how NRIs can engage with or benefit from the IPO.",
+          "Include a brief comparison with other fitness companies in India to provide context."
         ],
         "verdict": "pass"
       },
