@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Article, readingTime } from "@/lib/articles";
+import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
 
 /* ── constants ──────────────────────────────────────── */
@@ -50,7 +50,7 @@ function timeAgo(iso: string | null): string {
 function HeroCard({ article }: { article: Article }) {
   const href = `/articles/${article.slug}`;
   const hasImage = isValidImage(article.hero_image_url);
-  const minutes = readingTime(article.body || "");
+  const minutes = (article as any).reading_time || 3;
 
   return (
     <Link to={href} className="group block">
