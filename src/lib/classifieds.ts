@@ -279,7 +279,7 @@ export async function getClassifieds(
   limit = 50,
   offset = 0,
 ): Promise<Classified[]> {
-  // Try static JSON first
+  // Try static JSON first (fast)
   const cached = await loadClassifiedsCache();
   if (cached) {
     const now = new Date().toISOString();
@@ -304,44 +304,35 @@ export async function getClassifieds(
     return filtered.slice(offset, offset + limit);
   }
 
-  // Fallback: Supabase
-  let query = supabase
-    .from("classifieds")
-    .select(COLS)
-    .eq("status", "active")
-    .gt("expires_at", new Date().toISOString())
-    .order("created_at", { ascending: false })
-    .range(offset, offset + limit - 1);
+  // Fallback: Supabase direct
+  try {
+    let query = supabase
+      .from("classifieds")
+      .select(COLS)
+      .eq("status", "active")
+      .gt("expires_at", new Date().toISOString())
+      .order("created_at", { ascending: false })
+      .range(offset, offset + limit - 1);
 
-  if (category) {
-    query = query.eq("category", category);
-  }
-
-  if (subcategory) {
-    query = query.eq("subcategory", subcategory);
-  }
-
-  if (city) {
-    const { CITY_GROUPS } = await import("./events");
-    const group = CITY_GROUPS.find((g) => g.label === city);
-    if (group) {
-      query = query.in("city", [...group.cities, group.label]);
+    if (category) query = query.eq("category", category);
+    if (subcategory) query = query.eq("subcategory", subcategory);
+    if (city) {
+      const { CITY_GROUPS } = await import("./events");
+      const group = CITY_GROUPS.find((g) => g.label === city);
+      if (group) query = query.in("city", [...group.cities, group.label]);
     }
-  }
+    if (search) {
+      const q = `%${search}%`;
+      query = query.or(
+        `title.ilike.${q},description.ilike.${q},category.ilike.${q},city.ilike.${q},subcategory.ilike.${q}`
+      );
+    }
 
-  if (search) {
-    const q = `%${search}%`;
-    query = query.or(
-      `title.ilike.${q},description.ilike.${q},category.ilike.${q},city.ilike.${q},subcategory.ilike.${q}`
-    );
-  }
+    const { data, error } = await query;
+    if (!error && data) return data.map(parseClassified);
+  } catch { /* return empty */ }
 
-  const { data, error } = await query;
-  if (error) {
-    console.error("Failed to fetch classifieds:", error);
-    return [];
-  }
-  return ((data || []) as any[]).map(parseClassified);
+  return [];
 }
 
 /** Fetch all active classifieds (no city filter, no limit). Used for Near Me sorting. */
