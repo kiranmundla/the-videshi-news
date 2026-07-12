@@ -261,13 +261,14 @@ def compute_prominence(article_id, headline, category, published_at):
         return 8  # default
 
 
-def update_article_scores(article_id, newsworthiness, diaspora_impact, prominence):
+def update_article_scores(article_id, newsworthiness, diaspora_impact, prominence, display_score=None):
     """Write scores back to p2_articles."""
+    ds_clause = f",\n        display_score = {display_score}" if display_score is not None else ""
     sql = f"""
     UPDATE p2_articles
     SET newsworthiness = {newsworthiness},
         diaspora_impact = {diaspora_impact},
-        prominence = {prominence}
+        prominence = {prominence}{ds_clause}
     WHERE id = '{article_id}'
     """
     for attempt in range(3):
@@ -350,7 +351,7 @@ def score_and_update(article, dry_run=False):
     print(f"   💡 {reasoning}")
 
     if not dry_run:
-        update_article_scores(aid, nw, di, prom)
+        update_article_scores(aid, nw, di, prom, display_score=round(display_score, 1))
         print(f"   ✅ Saved to DB")
 
     return {"slug": slug, "newsworthiness": nw, "diaspora_impact": di,

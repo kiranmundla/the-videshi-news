@@ -56,10 +56,10 @@ type P2Row = {
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score";
 
 const P2_LIST_COLS =
-  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images";
+  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score";
 
 function parseSources(raw: unknown): Article["sources"] {
   // Handle JSON array format
@@ -205,8 +205,7 @@ export async function getFeaturedArticle(): Promise<Article | null> {
       .select(P2_COLS)
       .eq("status", "published")
       .gte("published_at", since)
-      .not("score_total", "is", null)
-      .order("score_total", { ascending: false })
+      .order("display_score", { ascending: false, nullsFirst: false })
       .order("published_at", { ascending: false })
       .order("id", { ascending: true });
 
@@ -283,8 +282,8 @@ export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> 
     .select(P2_COLS)
     .eq("status", "published")
     .gte("published_at", since72h)
+    .order("display_score", { ascending: false, nullsFirst: false })
     .order("published_at", { ascending: false })
-    .order("score_total", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) {
     console.error("[articles] getTopStories", error);
@@ -299,8 +298,8 @@ export async function getTopStories(limit = 12, offset = 0): Promise<Article[]> 
       .select(P2_COLS)
       .eq("status", "published")
       .gte("published_at", since7d)
+      .order("display_score", { ascending: false, nullsFirst: false })
       .order("published_at", { ascending: false })
-      .order("score_total", { ascending: false })
       .range(offset, offset + limit - 1);
     if (!widerErr && (wider as P2Row[]).length > (data as P2Row[]).length) {
       return (wider as P2Row[]).map(mapRow);
@@ -428,8 +427,8 @@ export async function getArticlesByCategory(
     .eq("status", "published")
     .eq("category", category)
     .gte("published_at", since72h)
+    .order("display_score", { ascending: false, nullsFirst: false })
     .order("published_at", { ascending: false })
-    .order("score_total", { ascending: false })
     .order("id", { ascending: true })
     .range(offset, offset + limit - 1);
   if (error) {
@@ -446,8 +445,8 @@ export async function getArticlesByCategory(
       .eq("status", "published")
       .eq("category", category)
       .gte("published_at", since7d)
+      .order("display_score", { ascending: false, nullsFirst: false })
       .order("published_at", { ascending: false })
-      .order("score_total", { ascending: false })
       .order("id", { ascending: true })
       .range(offset, offset + limit - 1);
     if (!widerErr && (wider as P2Row[]).length > (data as P2Row[]).length) {
