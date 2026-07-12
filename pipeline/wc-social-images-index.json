@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-11T22:01:17.382409+00:00",
+  "last_refresh": "2026-07-12T04:02:25.838720+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -2073,6 +2073,48 @@
       "likes": 0,
       "image_count": 4,
       "scraped_at": "2026-07-11T22:01:08.044475+00:00"
+    },
+    "https://www.instagram.com/p/DarRm1mjMiL/": {
+      "account": "espnfc",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-12T04:00:24.750965+00:00"
+    },
+    "https://www.instagram.com/reel/DarLVc5Cbsr/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 0,
+      "scraped_at": "2026-07-12T04:00:57.384351+00:00"
+    },
+    "https://www.instagram.com/p/DarZ-YnmTSm/": {
+      "account": "rvcjinsta",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-12T04:01:03.255222+00:00"
+    },
+    "https://www.instagram.com/reel/DaqwbkvzmI8/": {
+      "account": "jasil.frames",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-12T04:01:25.548929+00:00"
+    },
+    "https://www.instagram.com/reel/DarZzA5xUaD/": {
+      "account": "fifaworldrankings",
+      "platform": "instagram",
+      "likes": 47,
+      "image_count": 4,
+      "scraped_at": "2026-07-12T04:01:47.976565+00:00"
+    },
+    "https://www.instagram.com/p/DaraPHWjviL/": {
+      "account": "freemalaysiatoday",
+      "platform": "instagram",
+      "likes": 310,
+      "image_count": 4,
+      "scraped_at": "2026-07-12T04:02:07.626849+00:00"
     }
   },
   "images": [
@@ -13391,6 +13433,238 @@
       "scraped_at": "2026-07-11T22:01:08.044463+00:00",
       "account": "abdoxm_10",
       "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/746199008_18606336835001483_3224462414903190058_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=yHvtqfg0bmYQ7kNvwFHBK4U&_nc_oc=Adp_RS15fuST7zVyHv1038XVRlau8YM5s9QL7KjNelNan9LlKQipuVXk1c3WfxMyratZqtBm94iubzXEdCuvWOg_&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=bbK_H2aA9o9nuoqToMUsXA&_nc_ss=7860f&oh=00_AQByF42OCXMODhACCWQexJ8gLEYFOv9obImyE4PT4CPw4A&oe=6A58E209",
+      "post_url": "https://www.instagram.com/p/DarRm1mjMiL/",
+      "platform": "instagram",
+      "caption": "13K likes, 461 comments - espnfc on July 11, 2026: \"SWITZERLAND EQUALIZE VS. ARGENTINA!\n\nThe reigning champs are in for yet ANOTHER close finish \ud83c\udf7f\". ",
+      "scraped_at": "2026-07-12T04:00:24.748101+00:00",
+      "account": "espnfc",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-espnfc-b74e2e35c71b.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 38641
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/720259095_18596679247001483_8908882127744770177_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=s25UGlRe40kQ7kNvwHgvxxG&_nc_oc=Adq2QrDu8G61VZ70NJ2LlZCLbYOd7z_mN1wHywABo2iSXyxQa42jwOTFki_8PuX8xipldXwtmcnHoPzL2ZcPsmBE&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=XgouObVlVbnQCX0L8oRiTA&_nc_ss=7860f&oh=00_AQDx8TugxjwVJv4_lh3-qjJKCVgu2yBBL1cAx6PtukZ_rA&oe=6A58CBC1",
+      "post_url": "https://www.instagram.com/p/DarRm1mjMiL/",
+      "platform": "instagram",
+      "caption": "13K likes, 461 comments - espnfc on July 11, 2026: \"SWITZERLAND EQUALIZE VS. ARGENTINA!\n\nThe reigning champs are in for yet ANOTHER close finish \ud83c\udf7f\". ",
+      "scraped_at": "2026-07-12T04:00:24.748142+00:00",
+      "account": "espnfc",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/719490896_18596711455001483_6177730930684514943_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=QJMHLIwFRwwQ7kNvwEWISqO&_nc_oc=AdqPSK-1F_McQPmCdSelgZXu7OY5h0EG359MroH1ZkTTKuVb6zRcvea9U7O1w-8Jy-etLjMD41gE_D6hQqN5pBmS&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=XgouObVlVbnQCX0L8oRiTA&_nc_ss=7860f&oh=00_AQAX7yDxuvp7rqOcNi6c5iWHSKnwXkQpvifOW1n0ot6mAQ&oe=6A58F5D7",
+      "post_url": "https://www.instagram.com/p/DarRm1mjMiL/",
+      "platform": "instagram",
+      "caption": "13K likes, 461 comments - espnfc on July 11, 2026: \"SWITZERLAND EQUALIZE VS. ARGENTINA!\n\nThe reigning champs are in for yet ANOTHER close finish \ud83c\udf7f\". ",
+      "scraped_at": "2026-07-12T04:00:24.748149+00:00",
+      "account": "espnfc",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/723137321_18596937652001483_8427758071792306604_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=ruQ-HdjnvF0Q7kNvwGVLyzr&_nc_oc=AdpkmixcK-u2S5R563-3ePTOJ83oIPSwXLJywqEdcMiJVUJnWjLkLVnKLHlfm2WKJuI64eo8jRxOwXwgu3fvOsTJ&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=XgouObVlVbnQCX0L8oRiTA&_nc_ss=7860f&oh=00_AQDNXQx3b9HETkaAhIDdUxFlH2t4MLZqf1SI1xvJRYXw8g&oe=6A58D54A",
+      "post_url": "https://www.instagram.com/p/DarRm1mjMiL/",
+      "platform": "instagram",
+      "caption": "13K likes, 461 comments - espnfc on July 11, 2026: \"SWITZERLAND EQUALIZE VS. ARGENTINA!\n\nThe reigning champs are in for yet ANOTHER close finish \ud83c\udf7f\". ",
+      "scraped_at": "2026-07-12T04:00:24.748166+00:00",
+      "account": "espnfc",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-15/741777670_18605258686023417_4924179709412889481_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=L2ydn3D3CYYQ7kNvwGjEF_3&_nc_oc=AdpAePmhlhIzqhfdgNYh9_QexAnxHyAa-nBM4FK_ZNdXw9PHMDf89gj5Rkq2CVqAFtZ-zUhlpX4C8uFUzUQ4l-fM&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=ryRT9WEewK74XcqdKwXJog&_nc_ss=7860f&oh=00_AQAVCBpVX2fvBEDbvaIYjVqK0Xp0SoOGq5AajAIlcgKzCA&oe=6A58F8AC",
+      "post_url": "https://www.instagram.com/p/DarZ-YnmTSm/",
+      "platform": "instagram",
+      "caption": "19K likes, 263 comments - rvcjinsta on July 11, 2026: \"Argentina beats Switzerland By 3-1 to reach the semi-final of FIFA World Cup 2026.!!\ud83c\udde6\ud83c\uddf7\ud83d\udd25\ud83e\udee1\n#rvcjinsta\". ",
+      "scraped_at": "2026-07-12T04:01:03.254621+00:00",
+      "account": "rvcjinsta",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t51.71878-15/743203662_893801829854916_5708276995112572859_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=IwU0RQFN0uIQ7kNvwHno7VL&_nc_oc=AdrVTrrwyeCpx4fUg0GzSmrkgPERcnyWJFVtVPZm-nihufA4nFe7tfZz6dKtU31SyCu2BPd_cTfUhF4hafeI1AFl&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=ryRT9WEewK74XcqdKwXJog&_nc_ss=7860f&oh=00_AQBksFSRunSmvtJs-JZg4og4fxinWwY4FbMaSfyX3PRw6w&oe=6A58C9A2",
+      "post_url": "https://www.instagram.com/p/DarZ-YnmTSm/",
+      "platform": "instagram",
+      "caption": "19K likes, 263 comments - rvcjinsta on July 11, 2026: \"Argentina beats Switzerland By 3-1 to reach the semi-final of FIFA World Cup 2026.!!\ud83c\udde6\ud83c\uddf7\ud83d\udd25\ud83e\udee1\n#rvcjinsta\". ",
+      "scraped_at": "2026-07-12T04:01:03.254651+00:00",
+      "account": "rvcjinsta",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-15/742020230_18605337262023417_1098422845650938559_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=2SdsO8VZ13AQ7kNvwGRNVLi&_nc_oc=AdrPmJuq-joZCWIB8hHadA_saSifbwnPZFc3dqmjv0-xfHKH83o_m9s97aYk5jX8g4vgYUHGeP6R7puW72jQlbuz&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=ryRT9WEewK74XcqdKwXJog&_nc_ss=7860f&oh=00_AQDACRQyEBFmZ53N_Rdrot3D7bVNEpbxCoN6FOQHp461bA&oe=6A58F47C",
+      "post_url": "https://www.instagram.com/p/DarZ-YnmTSm/",
+      "platform": "instagram",
+      "caption": "19K likes, 263 comments - rvcjinsta on July 11, 2026: \"Argentina beats Switzerland By 3-1 to reach the semi-final of FIFA World Cup 2026.!!\ud83c\udde6\ud83c\uddf7\ud83d\udd25\ud83e\udee1\n#rvcjinsta\". ",
+      "scraped_at": "2026-07-12T04:01:03.254657+00:00",
+      "account": "rvcjinsta",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-15/745541956_18605335105023417_4940080985256857307_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=7ysuyZk4OUcQ7kNvwH3gqnH&_nc_oc=AdqzWsLF13Fwu03kVIEDjLkCzMhkaPv5ZlPvSP7hkp-3SVg2xnugKJhMYyxFHEy1_RX1fRhUroywvah0PhJyhFrI&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=ryRT9WEewK74XcqdKwXJog&_nc_ss=7860f&oh=00_AQDxumZmL556zgogYXJF2aq4SjHQMEcxCiOCWU62unK7Nw&oe=6A58D87E",
+      "post_url": "https://www.instagram.com/p/DarZ-YnmTSm/",
+      "platform": "instagram",
+      "caption": "19K likes, 263 comments - rvcjinsta on July 11, 2026: \"Argentina beats Switzerland By 3-1 to reach the semi-final of FIFA World Cup 2026.!!\ud83c\udde6\ud83c\uddf7\ud83d\udd25\ud83e\udee1\n#rvcjinsta\". ",
+      "scraped_at": "2026-07-12T04:01:03.254662+00:00",
+      "account": "rvcjinsta",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-bos5-1.cdninstagram.com/v/t51.82787-15/744858623_18358716310245471_8961309716239787938_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=XpbFR7pUdDEQ7kNvwHDjox8&_nc_oc=AdpBtd6BKfiBG8RiOs_fQ-MUmpsMgMkP_MeoRcBT8y1yYOOU2SAHyBnMNm3KibVmladhLJT-vmH5wrvM713oCEz6&_nc_zt=23&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_gid=lMJhsJTsCcQkE6ilRPx1sA&_nc_ss=7820f&oh=00_AQD06FATM1pyuuSK810ykxPy9ihWrpLtS3bO_GYi7G7YHA&oe=6A58D322",
+      "post_url": "https://www.instagram.com/reel/DaqwbkvzmI8/",
+      "platform": "instagram",
+      "caption": "13K likes, 47 comments - jasil.frames on July 11, 2026: \"\ud83e\udd2f\ud83e\udd2f\". ",
+      "scraped_at": "2026-07-12T04:01:25.547165+00:00",
+      "account": "jasil.frames",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-bos5-1.cdninstagram.com/v/t51.71878-15/735058423_2080732002786705_2240405969086757486_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=L5IHWcIdn8oQ7kNvwFUxWe3&_nc_oc=AdquEpUu4ZEgmQPfFowIakhgbgJVEkKH4FuGGxF4U9LWXe3A6Olj2ACFeIEbjY1BU9VpV0wy0RVr2NGuMQ50T13-&_nc_zt=23&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_gid=0_129iUPhJI_O80Y-RYALg&_nc_ss=7860f&oh=00_AQDRAE0zwCWxEbFuxlmAO9bHPKeq-3Qd05B5G8xrJAFPQQ&oe=6A58EA39",
+      "post_url": "https://www.instagram.com/reel/DaqwbkvzmI8/",
+      "platform": "instagram",
+      "caption": "13K likes, 47 comments - jasil.frames on July 11, 2026: \"\ud83e\udd2f\ud83e\udd2f\". ",
+      "scraped_at": "2026-07-12T04:01:25.547194+00:00",
+      "account": "jasil.frames",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-jasil.frames-acd288399d9e.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 34648
+    },
+    {
+      "cdn_url": "https://scontent-bos5-1.cdninstagram.com/v/t51.82787-15/567641266_18322038994245471_1532002366926887799_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=4KGFDHryyOkQ7kNvwEpSNF_&_nc_oc=AdpWmZbHn0_VpEFdUBfMG2NnmvaB06PlbegO-2EK0Mq_5t0wh5IU7xlhnJ7Szj_liW1QxPckU-cNuxgBXuWz6ZX9&_nc_zt=23&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_gid=0_129iUPhJI_O80Y-RYALg&_nc_ss=7820f&oh=00_AQCtz9Ch3WRCkvuacQWupDqhVriMjeMJtaA1KznfzXGa0Q&oe=6A58F3F8",
+      "post_url": "https://www.instagram.com/reel/DaqwbkvzmI8/",
+      "platform": "instagram",
+      "caption": "13K likes, 47 comments - jasil.frames on July 11, 2026: \"\ud83e\udd2f\ud83e\udd2f\". ",
+      "scraped_at": "2026-07-12T04:01:25.547200+00:00",
+      "account": "jasil.frames",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-bos5-1.cdninstagram.com/v/t51.82787-15/628421752_18337873570245471_7182342850649369056_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=-h4CSY4kdJcQ7kNvwEFMtX0&_nc_oc=Adpxxi-8NQYQcgadlrAh2I5n49YXG0Sim_UHjiS6YXr4MARHYyCnoecTdrlcVRe6z-Rg-pHoVpceDObx8R0XUkTb&_nc_zt=23&_nc_ht=scontent-bos5-1.cdninstagram.com&_nc_gid=0_129iUPhJI_O80Y-RYALg&_nc_ss=7820f&oh=00_AQCJPGezaKfuRJXFZ7KvdThAp3n-x9iqS_oTf5g7RijeKA&oe=6A58DD9C",
+      "post_url": "https://www.instagram.com/reel/DaqwbkvzmI8/",
+      "platform": "instagram",
+      "caption": "13K likes, 47 comments - jasil.frames on July 11, 2026: \"\ud83e\udd2f\ud83e\udd2f\". ",
+      "scraped_at": "2026-07-12T04:01:25.547205+00:00",
+      "account": "jasil.frames",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia5-1.cdninstagram.com/v/t51.71878-15/742952775_1338027155187144_5154661808558497713_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=ZJXsLIJvfjkQ7kNvwG2FMvC&_nc_oc=Adpsq-wLCYKxC8FJJ5gpPasQkyn6sBb0hmy8zCMAEevy5an0HQ0_naJhZs5kZXfl9UNO6P7YEJE2dq8QwYxXdb2Q&_nc_zt=23&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_gid=MQHL9xK5B4tXGkDRN_vflQ&_nc_ss=7860f&oh=00_AQCZgJwUQu4uUAvNYMry3e_5OiCjPzNCNmIEy8mrJUA3MQ&oe=6A58EBBD",
+      "post_url": "https://www.instagram.com/reel/DarZzA5xUaD/",
+      "platform": "instagram",
+      "caption": "71 likes, 0 comments - fifaworldrankings on July 11, 2026: \"A SENSATIONAL GOAL FROM JULI\u00c1N ALVAREZ TO PUT ARGENTINA IN FRONT IN EXTRA TIME \ud83c\udde6\ud83c\uddf7\n\n#Argentina #messi #switzerland #insight #worldcup2026\". ",
+      "scraped_at": "2026-07-12T04:01:47.976499+00:00",
+      "account": "fifaworldrankings",
+      "likes": 47,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.71878-15/743797041_1045374888233351_8959003094588253212_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=106&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=X0Nk7rNrMrQQ7kNvwGDz0wj&_nc_oc=Adqyd6Fh9u2VdHlYyL0nKeoFsBjSwFGgb1_RikPsOFKDGaDDQDPdatFFEHw2ykLW3KYCiX0Y5_-JaTsajJTcGBWS&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=EpKMRfxAyAK4RLobw8x5Kg&_nc_ss=7860f&oh=00_AQBCC4bx2C9H68G9WveKb2mnIpesmXwQjfNZksC94ytddg&oe=6A58DED0",
+      "post_url": "https://www.instagram.com/reel/DarZzA5xUaD/",
+      "platform": "instagram",
+      "caption": "71 likes, 0 comments - fifaworldrankings on July 11, 2026: \"A SENSATIONAL GOAL FROM JULI\u00c1N ALVAREZ TO PUT ARGENTINA IN FRONT IN EXTRA TIME \ud83c\udde6\ud83c\uddf7\n\n#Argentina #messi #switzerland #insight #worldcup2026\". ",
+      "scraped_at": "2026-07-12T04:01:47.976547+00:00",
+      "account": "fifaworldrankings",
+      "likes": 47,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldrankings-dc4544b89598.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 87249
+    },
+    {
+      "cdn_url": "https://scontent-mia3-2.cdninstagram.com/v/t51.71878-15/743811501_1501005952042073_6623417261380435097_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=jxC0Jzwu9bEQ7kNvwFYwSau&_nc_oc=AdpU9WaLJz5Ko4Khrm0M85cgV3deYdwaI5DJCyxyWVVIDuYqFjdxSfJ1i0KEAIYkGMKq2Odu_l8NF08umbRi763v&_nc_zt=23&_nc_ht=scontent-mia3-2.cdninstagram.com&_nc_gid=EpKMRfxAyAK4RLobw8x5Kg&_nc_ss=7860f&oh=00_AQBUOIBFdHJmXmUVvxmb3tWfhMJRrYQq6zadORYUqP_7xw&oe=6A58DADA",
+      "post_url": "https://www.instagram.com/reel/DarZzA5xUaD/",
+      "platform": "instagram",
+      "caption": "71 likes, 0 comments - fifaworldrankings on July 11, 2026: \"A SENSATIONAL GOAL FROM JULI\u00c1N ALVAREZ TO PUT ARGENTINA IN FRONT IN EXTRA TIME \ud83c\udde6\ud83c\uddf7\n\n#Argentina #messi #switzerland #insight #worldcup2026\". ",
+      "scraped_at": "2026-07-12T04:01:47.976552+00:00",
+      "account": "fifaworldrankings",
+      "likes": 47,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia5-1.cdninstagram.com/v/t51.71878-15/744661434_1743312736689106_2892156364573866803_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=9mrn_5Hiz2IQ7kNvwGrtFzD&_nc_oc=AdoB4wQvCkZeZtQirgxvS4qFrUKNBzpSFQNVjL0Pd0o1ipCev_NtoQUuIAgMUemGb4jY4eF9ZX72RIK_N1A-f1PM&_nc_zt=23&_nc_ht=scontent-mia5-1.cdninstagram.com&_nc_gid=EpKMRfxAyAK4RLobw8x5Kg&_nc_ss=7860f&oh=00_AQC4h_ropWfLhSmgf1tA6MoDyo8BHegiuBrLZ6MrMgtj1g&oe=6A58F9BE",
+      "post_url": "https://www.instagram.com/reel/DarZzA5xUaD/",
+      "platform": "instagram",
+      "caption": "71 likes, 0 comments - fifaworldrankings on July 11, 2026: \"A SENSATIONAL GOAL FROM JULI\u00c1N ALVAREZ TO PUT ARGENTINA IN FRONT IN EXTRA TIME \ud83c\udde6\ud83c\uddf7\n\n#Argentina #messi #switzerland #insight #worldcup2026\". ",
+      "scraped_at": "2026-07-12T04:01:47.976556+00:00",
+      "account": "fifaworldrankings",
+      "likes": 47,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-2.cdninstagram.com/v/t39.30808-6/744873281_1457646069727645_1173264557961615195_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=105&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=9ybzPTigOiUQ7kNvwGVH4y6&_nc_oc=AdrfZsozQGhl6Vu2YwWvUS5FgGdTyruapeK75duRIF8OfDTPzVw4wXyzzWYN75F1aWNaWwJ-CmUe4gnUBDhUxrav&_nc_zt=23&_nc_ht=scontent-iad3-2.cdninstagram.com&_nc_gid=zYxTKqJS2QvyCiZdBzaSpw&_nc_ss=7860f&oh=00_AQAhO8snPuV_bcF7s5O5gmcKgkZQPjQKrC6PX9aamNy1pA&oe=6A58DAB1",
+      "post_url": "https://www.instagram.com/p/DaraPHWjviL/",
+      "platform": "instagram",
+      "caption": "348 likes, 2 comments - freemalaysiatoday on July 11, 2026: \"#FMTSports Argentina defeats Switzerland with a score of 3:1 at Kansas City Stadium. \n\nARG\nAlexis Mac Allister 10\u2019\nJuli\u00e1n Alvarez 112\u2019\nLautaro Mart\u00ednez 120+1\u2019\n\nSUI\nDan Ndoye 67\u2019\n\nGet the latest updates on the Fifa 2026 World Cup through our exclusive tab, available on freemalaysiatoday.com (EPA Images pic)\". ",
+      "scraped_at": "2026-07-12T04:02:07.626800+00:00",
+      "account": "freemalaysiatoday",
+      "likes": 310,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-freemalaysiatoday-87ae2fe555c7.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 66644
+    },
+    {
+      "cdn_url": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/743276512_18185030866399989_9138371865721811621_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=DpJ7DYOId_IQ7kNvwGWOADr&_nc_oc=Adph4-DYY8ctzEkbIe36fsY-QJ31mdHEdxrggI4MBOxLJ78xSfbxAZXIU0vfX8WZHpprctr7X8V9_seKJfwAajIJ&_nc_zt=23&_nc_ht=scontent-iad6-1.cdninstagram.com&_nc_gid=gWmCs81Km8yXnElet2un8A&_nc_ss=7860f&oh=00_AQAqzeM5fEHgw4h23-aBZikYDOXwhqsDlFl0VBOFeUod3w&oe=6A58DC2A",
+      "post_url": "https://www.instagram.com/p/DaraPHWjviL/",
+      "platform": "instagram",
+      "caption": "348 likes, 2 comments - freemalaysiatoday on July 11, 2026: \"#FMTSports Argentina defeats Switzerland with a score of 3:1 at Kansas City Stadium. \n\nARG\nAlexis Mac Allister 10\u2019\nJuli\u00e1n Alvarez 112\u2019\nLautaro Mart\u00ednez 120+1\u2019\n\nSUI\nDan Ndoye 67\u2019\n\nGet the latest updates on the Fifa 2026 World Cup through our exclusive tab, available on freemalaysiatoday.com (EPA Images pic)\". ",
+      "scraped_at": "2026-07-12T04:02:07.626830+00:00",
+      "account": "freemalaysiatoday",
+      "likes": 310,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-2.cdninstagram.com/v/t39.30808-6/746743002_1457341719758080_5784535376324653525_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=CHDMYusIpnMQ7kNvwGUnQ92&_nc_oc=Adoj2a8ZI6JkC5zRVYmM5_hCzK2CcW9r8BqSJeT26EYTwNDwC9Uu4sTWlQhRvRvTt-eGgKOFKxznfRta0g6b3Neb&_nc_zt=23&_nc_ht=scontent-iad3-2.cdninstagram.com&_nc_gid=gWmCs81Km8yXnElet2un8A&_nc_ss=7860f&oh=00_AQAKoI6PTu7Wcgjqe-MBGmeq8L_YreNdCYJ8OzCevsvehQ&oe=6A58CD6E",
+      "post_url": "https://www.instagram.com/p/DaraPHWjviL/",
+      "platform": "instagram",
+      "caption": "348 likes, 2 comments - freemalaysiatoday on July 11, 2026: \"#FMTSports Argentina defeats Switzerland with a score of 3:1 at Kansas City Stadium. \n\nARG\nAlexis Mac Allister 10\u2019\nJuli\u00e1n Alvarez 112\u2019\nLautaro Mart\u00ednez 120+1\u2019\n\nSUI\nDan Ndoye 67\u2019\n\nGet the latest updates on the Fifa 2026 World Cup through our exclusive tab, available on freemalaysiatoday.com (EPA Images pic)\". ",
+      "scraped_at": "2026-07-12T04:02:07.626836+00:00",
+      "account": "freemalaysiatoday",
+      "likes": 310,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t39.30808-6/743386679_1457116066447312_1612886592231887353_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=3Vq-kZ9f0D8Q7kNvwFtvWL3&_nc_oc=AdpEQmV-b7gAviCon4eWAee4YY_0Nfo2tE3JB7RC3cIirZy_fM6f5_TS5NYzO9DgsSDNco7sgdvGPCp5JYpaye5S&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=gWmCs81Km8yXnElet2un8A&_nc_ss=7860f&oh=00_AQBtfzfMEaemhOQInpDJ_518u5PufLW3t-ldh_sZs0eXLQ&oe=6A58F30A",
+      "post_url": "https://www.instagram.com/p/DaraPHWjviL/",
+      "platform": "instagram",
+      "caption": "348 likes, 2 comments - freemalaysiatoday on July 11, 2026: \"#FMTSports Argentina defeats Switzerland with a score of 3:1 at Kansas City Stadium. \n\nARG\nAlexis Mac Allister 10\u2019\nJuli\u00e1n Alvarez 112\u2019\nLautaro Mart\u00ednez 120+1\u2019\n\nSUI\nDan Ndoye 67\u2019\n\nGet the latest updates on the Fifa 2026 World Cup through our exclusive tab, available on freemalaysiatoday.com (EPA Images pic)\". ",
+      "scraped_at": "2026-07-12T04:02:07.626840+00:00",
+      "account": "freemalaysiatoday",
+      "likes": 310,
       "trusted": false,
       "permanent_url": null
     }

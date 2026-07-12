@@ -405,7 +405,6 @@ export default function IndexV2() {
         {/* 12. India News + Trending Sidebar */}
         <IndiaNewsGrid
           articles={layout.news}
-          trending={layout.trending}
         />
         <TweetScroll category="news" label="India News" />
 
