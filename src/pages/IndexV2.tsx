@@ -19,7 +19,6 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
-import TopPicks from "@/components/homepage/TopPicks";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import "@/components/homepage/homepage-v2.css";
@@ -216,27 +215,23 @@ export default function IndexV2() {
       .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
       .slice(0, 6);
 
-    // Hero: featured + 3 side articles from top stories (diverse categories)
-    const heroSideCandidates = allArticles
-      .filter((a) => !shownIds.has(a.id) && a.id !== featured?.id)
-      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+    // Hero side: top article from each major category (excluding featured's category)
+    const HERO_CATS: { slug: string }[] = [
+      { slug: "immigration" },
+      { slug: "news" },
+      { slug: "nri-world" },
+      { slug: "technology" },
+      { slug: "entertainment" },
+      { slug: "markets-finance" },
+      { slug: "sports" },
+    ];
     const heroSide: Article[] = [];
-    const heroSideCats = new Set(featured?.category ? [featured.category] : []);
-    // First pass: pick one per category
-    for (const a of heroSideCandidates) {
-      if (heroSide.length >= 3) break;
-      const cat = a.category ?? "";
-      if (!heroSideCats.has(cat)) {
-        heroSide.push(a);
-        heroSideCats.add(cat);
-      }
-    }
-    // Second pass: fill remaining slots if needed
-    for (const a of heroSideCandidates) {
-      if (heroSide.length >= 3) break;
-      if (!heroSide.includes(a)) {
-        heroSide.push(a);
-      }
+    const featuredCat = featured?.category ?? "";
+    for (const { slug } of HERO_CATS) {
+      if (slug === featuredCat) continue;
+      const pool = sections[slug] ?? [];
+      const pick = pool.find((a) => !shownIds.has(a.id));
+      if (pick) heroSide.push(pick);
     }
     heroSide.forEach((a) => shownIds.add(a.id));
 
@@ -374,17 +369,6 @@ export default function IndexV2() {
 
         {/* Visual Stories */}
         <ArticleCardDeck />
-
-        {/* Top Stories — #1 from every major category */}
-        <TopPicks categories={[
-          { label: "Immigration", color: "#D4A843", slug: "immigration", articles: layout.immigration },
-          { label: "India", color: "#C62828", slug: "news", articles: layout.news },
-          { label: "World", color: "#1565C0", slug: "nri-world", articles: layout.nriWorld },
-          { label: "Technology", color: "#4527A0", slug: "technology", articles: layout.technology },
-          { label: "Entertainment", color: "#AD1457", slug: "entertainment", articles: layout.entertainment },
-          { label: "Markets", color: "#E65100", slug: "markets-finance", articles: layout.markets },
-          { label: "Sports", color: "#2E7D32", slug: "sports", articles: layout.sports },
-        ]} />
 
         {/* 7. Immigration Strip */}
         <ImmigrationStrip articles={layout.immigration} />

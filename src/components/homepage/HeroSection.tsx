@@ -12,6 +12,17 @@ const CATEGORY_COLORS: Record<string, string> = {
   news: "#C62828",
 };
 
+const CATEGORY_LABELS: Record<string, string> = {
+  news: "India",
+  "nri-world": "World",
+  "markets-finance": "Markets",
+  immigration: "Immigration",
+  technology: "Technology",
+  entertainment: "Entertainment",
+  sports: "Sports",
+  "lifestyle-health": "Lifestyle",
+};
+
 function catColor(cat?: string) {
   return CATEGORY_COLORS[cat?.toLowerCase() ?? ""] ?? "#C62828";
 }
@@ -58,7 +69,7 @@ export default function HeroSection({ lead, side }: Props) {
               className="text-[11px] font-bold tracking-[1.2px] uppercase mb-1.5"
               style={{ color: catColor(lead.category) }}
             >
-              {lead.category?.replace("-", " ")}
+              {CATEGORY_LABELS[lead.category ?? ""] ?? lead.category?.replace("-", " ")}
             </p>
             <h1
               className="font-serif font-extrabold leading-[1.2] mb-2.5 group-hover:text-primary transition-colors"
@@ -77,9 +88,9 @@ export default function HeroSection({ lead, side }: Props) {
             </p>
           </Link>
 
-          {/* Side articles */}
+          {/* Side articles — top from each category */}
           <div className="flex flex-col">
-            {side.slice(0, 3).map((a) => {
+            {side.map((a) => {
               const img = isValidImage(a.hero_image_url);
               return (
                 <Link
@@ -103,7 +114,7 @@ export default function HeroSection({ lead, side }: Props) {
                       className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                       style={{ color: catColor(a.category) }}
                     >
-                      {a.category?.replace("-", " ")}
+                      {CATEGORY_LABELS[a.category ?? ""] ?? a.category?.replace("-", " ")}
                     </p>
                     <h3 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {a.title}
