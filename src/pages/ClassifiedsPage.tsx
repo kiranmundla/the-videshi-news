@@ -21,88 +21,142 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 /* ------------------------------------------------------------------ */
-/* Listing Card                                                       */
+/* Category Badge (matches events/directory style)                    */
+/* ------------------------------------------------------------------ */
+function CategoryBadge({ category }: { category: string }) {
+  const icon = CATEGORY_ICONS[category] || "📌";
+  const color = CATEGORY_COLORS[category] || "bg-muted text-muted-foreground";
+  return (
+    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${color}`}>
+      {icon} {category}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Listing Card — matches events/directory card pattern               */
 /* ------------------------------------------------------------------ */
 function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
   const imageUrl = item.image_url || (item.photos?.length ? item.photos[0] : null);
-  const catColor = CATEGORY_COLORS[item.category] || "bg-muted text-muted-foreground";
   const catEmoji = CATEGORY_ICONS[item.category] || "📌";
   const isNew = Date.now() - new Date(item.created_at).getTime() < 24 * 60 * 60 * 1000;
+  const location = [item.city, item.state].filter(Boolean).join(", ");
 
   return (
-    <Link to={`/classifieds/${item.slug}`} className="block group">
-      <article className="flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
-        {/* Image */}
+    <Link to={`/classifieds/${item.slug}`} className="block no-underline">
+      <article className="group flex flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full">
+        {/* Thumbnail */}
         {imageUrl ? (
-          <div className="w-full sm:w-48 sm:min-w-[12rem] sm:h-auto overflow-hidden flex-shrink-0">
+          <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 flex items-center justify-center bg-muted/10 overflow-hidden">
             <img
               src={imageUrl}
               alt={item.title}
-              className="w-full max-h-64 object-contain bg-muted/10 group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-auto object-contain max-h-44 group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
+              onError={(e) => {
+                const container = (e.target as HTMLElement).parentElement;
+                if (container) container.style.display = "none";
+              }}
             />
           </div>
         ) : (
-          <div className="w-full sm:w-48 sm:min-w-[12rem] h-24 sm:h-auto bg-muted/30 flex items-center justify-center flex-shrink-0">
-            <span className="text-4xl opacity-60">{catEmoji}</span>
+          <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 flex items-center justify-center bg-muted/20">
+            <span className="text-3xl sm:text-4xl opacity-50">{catEmoji}</span>
           </div>
         )}
 
         {/* Content */}
-        <div className="flex-1 p-4 flex flex-col gap-2 min-w-0">
-          {/* Badges */}
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${catColor}`}>
-              {catEmoji} {item.category}
-            </span>
-            {item.subcategory && (
-              <span className="text-xs px-2 py-0.5 rounded-full bg-muted/50 text-foreground/70">
-                {item.subcategory}
-              </span>
-            )}
-            {isNew && (
-              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700">
-                NEW
-              </span>
-            )}
-          </div>
+        <div className="flex-1 p-3 min-w-0 overflow-hidden flex flex-col">
+          <div className="flex-1">
+            {/* Badges */}
+            <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
+              <CategoryBadge category={item.category} />
+              {item.subcategory && (
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-blue-600/20 text-blue-300">
+                  {item.subcategory}
+                </span>
+              )}
+              {item._dist != null && item._dist < 9999 && (
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium bg-orange-600/20 text-orange-300">
+                  📍 {formatDistance(item._dist)}
+                </span>
+              )}
+              {isNew && (
+                <span className="inline-block px-1.5 py-0.5 rounded text-[11px] font-bold bg-green-600/20 text-green-400">
+                  NEW
+                </span>
+              )}
+            </div>
 
-          {/* Title + Price */}
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-lg leading-snug group-hover:text-primary transition-colors line-clamp-2">
+            {/* Title */}
+            <h3 className="font-serif text-base font-semibold text-foreground leading-snug mb-1 line-clamp-2 group-hover:text-primary transition-colors">
               {item.title}
             </h3>
+
+            {/* Price */}
             {item.price && (
-              <span className="shrink-0 text-sm font-bold px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 whitespace-nowrap">
+              <span className="inline-block text-sm font-bold text-amber-600 mb-1">
                 {item.price}
               </span>
             )}
+
+            {/* Description */}
+            {item.description && (
+              <p className="text-xs text-muted-foreground line-clamp-2 mb-1.5">
+                {item.description}
+              </p>
+            )}
           </div>
 
-          {/* Description preview */}
-          {item.description && (
-            <p className="text-sm text-foreground/60 line-clamp-2">{item.description}</p>
-          )}
-
-          {/* Meta row */}
-          <div className="flex items-center gap-3 text-xs text-foreground/50 mt-auto pt-1">
-            {item._dist != null && item._dist < 9999 && (
-              <span className="flex items-center gap-1 text-primary font-medium">
-                <Navigation className="h-3 w-3" />
-                {formatDistance(item._dist)}
-              </span>
-            )}
-            {item.city && (
-              <span className="flex items-center gap-1">
-                <MapPin className="h-3 w-3" />
-                {item.city}{item.state ? `, ${item.state}` : ""}
-              </span>
-            )}
-            <span>{timeAgo(item.created_at)}</span>
+          {/* Footer: location + time — pinned to bottom */}
+          <div className="flex items-center gap-3 text-xs text-muted-foreground pt-1.5 border-t border-border/50 mt-auto">
+            {location && <span className="truncate">📍 {location}</span>}
+            <span className="ml-auto flex-shrink-0">{timeAgo(item.created_at)}</span>
           </div>
         </div>
       </article>
     </Link>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Category Tab Bar (matches directory style)                         */
+/* ------------------------------------------------------------------ */
+function CategoryTabBar({
+  selected,
+  onSelect,
+}: {
+  selected: string | null;
+  onSelect: (v: string | null) => void;
+}) {
+  return (
+    <div className="overflow-x-auto scrollbar-none -mx-4 px-4">
+      <div className="flex items-center gap-1 pb-1 min-w-max">
+        <button
+          onClick={() => onSelect(null)}
+          className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+            !selected
+              ? "bg-primary text-primary-foreground border-primary"
+              : "border-border text-foreground/70 hover:border-primary hover:text-primary"
+          }`}
+        >
+          All
+        </button>
+        {CLASSIFIED_CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => onSelect(cat === selected ? null : cat)}
+            className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+              selected === cat
+                ? "bg-primary text-primary-foreground border-primary"
+                : "border-border text-foreground/70 hover:border-primary hover:text-primary"
+            }`}
+          >
+            {CATEGORY_ICONS[cat]} {cat}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -131,7 +185,6 @@ export default function ClassifiedsPage() {
     searchTimeout.current = setTimeout(() => setDebouncedSearch(val), 350);
   }, []);
 
-  /* --- Location handler (from ZipCodeSearch) --- */
   const handleLocation = useCallback((result: LocationResult | null) => {
     if (!result) {
       setNearMeActive(false);
@@ -143,7 +196,6 @@ export default function ClassifiedsPage() {
     setCity(null);
   }, []);
 
-  /* --- Auto-request geolocation on mount --- */
   useEffect(() => {
     if (!userCoords && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -152,7 +204,6 @@ export default function ClassifiedsPage() {
           setNearMeActive(true);
         },
         () => {
-          // Denied → fall back to Vercel IP geo
           if (ipLocation) {
             setUserCoords({ lat: ipLocation.latitude, lng: ipLocation.longitude });
             setNearMeActive(true);
@@ -169,7 +220,6 @@ export default function ClassifiedsPage() {
     setLoading(true);
 
     if (nearMeActive && userCoords) {
-      // Near Me: fetch all, sort by city distance
       getAllClassifieds(category, debouncedSearch || null, subcategory).then((data) => {
         if (cancelled) return;
         const sorted = data
@@ -205,7 +255,7 @@ export default function ClassifiedsPage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.thevideshi.com/classifieds" />
         <meta name="twitter:card" content="summary" />
-              <link rel="canonical" href="https://www.thevideshi.com/classifieds" />
+        <link rel="canonical" href="https://www.thevideshi.com/classifieds" />
       </Helmet>
 
       <Masthead />
@@ -222,7 +272,7 @@ export default function ClassifiedsPage() {
           </div>
           <Link
             to="/classifieds/submit"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors self-start sm:self-auto"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors self-start sm:self-auto whitespace-nowrap"
           >
             <Plus className="h-4 w-4" />
             Post a Classified
@@ -230,31 +280,7 @@ export default function ClassifiedsPage() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex gap-2 overflow-x-auto scrollbar-none -mx-1 px-1 pb-1">
-          <button
-            onClick={() => { setCategory(null); setSubcategory(null); }}
-            className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-              !category
-                ? "bg-primary text-primary-foreground border-primary"
-                : "border-border text-foreground/70 hover:border-primary hover:text-primary"
-            }`}
-          >
-            All
-          </button>
-          {CLASSIFIED_CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => { setCategory(cat === category ? null : cat); setSubcategory(null); }}
-              className={`shrink-0 px-3.5 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-                category === cat
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "border-border text-foreground/70 hover:border-primary hover:text-primary"
-              }`}
-            >
-              {CATEGORY_ICONS[cat]} {cat}
-            </button>
-          ))}
-        </div>
+        <CategoryTabBar selected={category} onSelect={(v) => { setCategory(v); setSubcategory(null); }} />
 
         {/* Subcategory pills */}
         {subcats.length > 0 && (
@@ -287,7 +313,6 @@ export default function ClassifiedsPage() {
 
         {/* Search + Near Me + City Filter */}
         <div className="flex flex-col sm:flex-row gap-3">
-          {/* Search */}
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/40" />
             <input
@@ -307,7 +332,6 @@ export default function ClassifiedsPage() {
             )}
           </div>
 
-          {/* Near Me / Zip + City */}
           <div className="flex gap-2">
             <ZipCodeSearch
               onLocation={handleLocation}
@@ -330,7 +354,7 @@ export default function ClassifiedsPage() {
           </div>
         </div>
 
-        {/* Listings */}
+        {/* Listings — 2-col grid like events/directory */}
         {loading ? (
           <div className="flex justify-center py-16">
             <Loader2 className="h-6 w-6 animate-spin text-foreground/40" />
@@ -353,24 +377,27 @@ export default function ClassifiedsPage() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-3">
-            {items.slice(0, visibleCount).map((item) => (
-              <ClassifiedCard key={item.id} item={item} />
-            ))}
-          </div>
-          {items.length > visibleCount && (
-            <div className="flex flex-col items-center gap-2 mt-6">
-              <p className="text-sm text-muted-foreground">
-                Showing {Math.min(visibleCount, items.length)} of {items.length}
-              </p>
-              <button
-                onClick={() => setVisibleCount((c) => c + 12)}
-                className="px-6 py-2.5 rounded-lg border border-border text-sm font-medium hover:bg-muted/30 transition-colors"
-              >
-                Show More
-              </button>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full min-w-0">
+              {items.slice(0, visibleCount).map((item) => (
+                <ClassifiedCard key={item.id} item={item} />
+              ))}
             </div>
-          )}
+
+            {items.length > visibleCount && (
+              <div className="flex flex-col items-center gap-2 pt-4">
+                <p className="text-sm text-muted-foreground">
+                  Showing {Math.min(visibleCount, items.length)} of {items.length}
+                </p>
+                <button
+                  onClick={() => setVisibleCount((c) => c + 12)}
+                  className="px-6 py-2.5 rounded-lg border border-border text-sm font-medium hover:bg-muted/30 transition-colors"
+                >
+                  Show More
+                </button>
+              </div>
+            )}
+          </>
         )}
       </main>
 
