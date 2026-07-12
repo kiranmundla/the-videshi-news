@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Upload, X, ChevronLeft, Loader2, Check, MapPin } from "lucide-react";
@@ -13,6 +13,7 @@ import {
   CATEGORY_COLORS,
   SUBCATEGORIES,
   generateClassifiedSlug,
+  timeAgo,
 } from "@/lib/classifieds";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -81,7 +82,21 @@ const sb = supabase as any;
 const inputClass =
   "w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
 
+function Spinner({ label, className, size }: { label?: string; className?: string; size?: "sm" }) {
+  const dim = size === "sm" ? "w-4 h-4" : "w-4 h-4";
+  return (
+    <span className={`inline-flex items-center gap-2 justify-center text-sm ${className || ""}`}>
+      <span className={`inline-block ${dim} border-2 border-current border-t-transparent rounded-full animate-spin`} />
+      {label}
+    </span>
+  );
+}
+
 export default function SubmitClassifiedPage() {
+  /* ---- Mode ---- */
+  const [mode, setMode] = useState<"post" | "manage">("post");
+
+  /* ---- Post mode state ---- */
   const [step, setStep] = useState<Step>("form");
   const [form, setForm] = useState<FormData>(INITIAL);
   const [images, setImages] = useState<ImagePreview[]>([]);
@@ -89,16 +104,126 @@ export default function SubmitClassifiedPage() {
   const [publishedSlug, setPublishedSlug] = useState("");
   const [copied, setCopied] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
-
-  /* Turnstile bot protection */
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-
-  /* OTP state */
   const [verifyCode, setVerifyCode] = useState("");
   const [verifySending, setVerifySending] = useState(false);
   const [verifyChecking, setVerifyChecking] = useState(false);
   const [verifyError, setVerifyError] = useState<string | null>(null);
 
+  /* ---- Manage mode state ---- */
+  const [manageEmail, setManageEmail] = useState("");
+  const [manageStep, setManageStep] = useState<"email" | "otp" | "list">("email");
+  const [manageOtp, setManageOtp] = useState("");
+  const [manageSending, setManageSending] = useState(false);
+  const [manageVerifying, setManageVerifying] = useState(false);
+  const [manageError, setManageError] = useState<string | null>(null);
+  const [myListings, setMyListings] = useState<any[]>([]);
+  const [loadingListings, setLoadingListings] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+
+  /* ---- Read URL mode param ---- */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("mode") === "manage") setMode("manage");
+  }, []);
+
+  /* ---- Manage: Send OTP ---- */
+  const handleManageSendOtp = async () => {
+    const email = manageEmail.trim().toLowerCase();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setManageError("Please enter a valid email");
+      return;
+    }
+    setManageSending(true);
+    setManageError(null);
+    try {
+      const { error } = await supabase.functions.invoke("send-email-verify", { body: { email } });
+      if (error) throw error;
+      setManageStep("otp");
+    } catch (err: any) {
+      setManageError(err.message || "Failed to send code");
+    } finally {
+      setManageSending(false);
+    }
+  };
+
+  /* ---- Manage: Verify OTP & load listings ---- */
+  const handleManageVerifyOtp = async () => {
+    const code = manageOtp.trim();
+    if (code.length !== 6) return;
+    setManageVerifying(true);
+    setManageError(null);
+    try {
+      const { data, error } = await supabase.functions.invoke("verify-email-code", {
+        body: { email: manageEmail.trim().toLowerCase(), code },
+      });
+      if (error) throw error;
+      if (data && !data.verified) throw new Error(data.error || "Invalid code");
+      setManageStep("list");
+      await loadMyListings();
+    } catch (err: any) {
+      setManageError(err.message || "Invalid code");
+    } finally {
+      setManageVerifying(false);
+    }
+  };
+
+  /* ---- Manage: Load listings for this email ---- */
+  const loadMyListings = async () => {
+    setLoadingListings(true);
+    try {
+      const { data, error } = await sb
+        .from("classifieds")
+        .select("id, title, category, subcategory, city, state, price, slug, image_url, created_at, status, description, contact_name, contact_email, contact_phone, zip")
+        .eq("contact_email", manageEmail.trim().toLowerCase())
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      setMyListings((data || []).filter((l: any) => l.status !== "deleted"));
+    } catch {
+      setManageError("Failed to load listings");
+    } finally {
+      setLoadingListings(false);
+    }
+  };
+
+  /* ---- Manage: Delete listing (soft) ---- */
+  const handleDeleteListing = async (id: string, title: string) => {
+    if (!confirm(`Delete "${title}"? This can't be undone.`)) return;
+    setDeletingId(id);
+    try {
+      const { error } = await sb.from("classifieds").update({ status: "deleted" }).eq("id", id);
+      if (error) throw error;
+      setMyListings(prev => prev.filter(l => l.id !== id));
+    } catch (err: any) {
+      setManageError(`Failed to delete: ${err.message}`);
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  /* ---- Manage: Edit listing (pre-fill form and switch to post mode) ---- */
+  const handleEditListing = (listing: any) => {
+    setEditingId(listing.id);
+    setForm({
+      title: listing.title || "",
+      category: listing.category || "",
+      subcategory: listing.subcategory || "",
+      description: listing.description || "",
+      price: listing.price || "",
+      contact_name: listing.contact_name || "",
+      contact_email: listing.contact_email || manageEmail.trim(),
+      contact_phone: listing.contact_phone || "",
+      city: listing.city || "",
+      state: listing.state || "",
+      zip: listing.zip || "",
+    });
+    setMode("post");
+    setStep("form");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  /* ---- Field updater ---- */
   const set = useCallback(
     (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -144,13 +269,18 @@ export default function SubmitClassifiedPage() {
   const goPreview = () => {
     const err = validate();
     if (err) { setError(err); return; }
-    if (!turnstileToken) { setError("Please complete the bot verification."); return; }
+    if (!turnstileToken && !editingId) { setError("Please complete the bot verification."); return; }
     setError("");
     setStep("preview");
   };
 
   /* Start email verification */
   const startVerify = () => {
+    /* If already verified via manage mode OTP, skip email verify */
+    if (editingId && manageStep === "list") {
+      doPublish();
+      return;
+    }
     setVerifyError(null);
     setVerifyCode("");
     setStep("verify-email");
@@ -197,7 +327,6 @@ export default function SubmitClassifiedPage() {
       });
       if (error) throw new Error(data?.error || error.message || "Verification failed");
       if (data && !data.verified) throw new Error(data.error || "Invalid code");
-      /* Verified — now actually publish */
       await doPublish();
     } catch (err: any) {
       setVerifyError(err.message || "Invalid or expired code");
@@ -211,36 +340,39 @@ export default function SubmitClassifiedPage() {
     setStep("publishing");
     setError("");
 
-    /* Server-side Turnstile verification */
-    try {
-      const tRes = await fetch("/api/verify-turnstile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: turnstileToken }),
-      });
-      const tData = await tRes.json();
-      if (!tData.success) {
+    /* Server-side Turnstile verification (skip for edits from manage) */
+    if (!editingId) {
+      try {
+        const tRes = await fetch("/api/verify-turnstile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token: turnstileToken }),
+        });
+        const tData = await tRes.json();
+        if (!tData.success) {
+          setError("Bot verification failed. Please try again.");
+          setTurnstileToken(null);
+          setStep("preview");
+          return;
+        }
+      } catch {
         setError("Bot verification failed. Please try again.");
         setTurnstileToken(null);
         setStep("preview");
         return;
       }
-    } catch {
-      setError("Bot verification failed. Please try again.");
-      setTurnstileToken(null);
-      setStep("preview");
-      return;
     }
 
     try {
-      const slug = generateClassifiedSlug(form.title);
+      const slug = editingId ? undefined : generateClassifiedSlug(form.title);
       let imageUrl: string | null = null;
       const photoUrls: string[] = [];
 
       /* Upload images */
+      const uploadSlug = slug || form.title.toLowerCase().replace(/\s+/g, "-").slice(0, 50);
       for (const img of images) {
         const ext = img.file.name.split(".").pop() || "jpg";
-        const path = `classifieds/${slug}/${img.id}.${ext}`;
+        const path = `classifieds/${uploadSlug}/${img.id}.${ext}`;
         const { error: uploadErr } = await sb.storage
           .from("article-images")
           .upload(path, img.file, { cacheControl: "31536000", upsert: false });
@@ -257,8 +389,7 @@ export default function SubmitClassifiedPage() {
         }
       }
 
-      /* Insert */
-      const row = {
+      const row: Record<string, any> = {
         title: form.title.trim(),
         category: form.category,
         subcategory: form.subcategory || null,
@@ -270,17 +401,44 @@ export default function SubmitClassifiedPage() {
         city: form.city.trim() || null,
         state: form.state || null,
         zip: form.zip.trim() || null,
-        image_url: imageUrl,
-        photos: photoUrls,
-        slug,
-        source: "user_submitted",
+        updated_at: new Date().toISOString(),
       };
 
-      const { error: insertErr } = await sb.from("classifieds").insert([row]);
-      if (insertErr) throw insertErr;
+      if (editingId) {
+        /* Update existing */
+        if (imageUrl) row.image_url = imageUrl;
+        if (photoUrls.length) row.photos = photoUrls;
+        const { error: updateErr } = await sb.from("classifieds").update(row).eq("id", editingId);
+        if (updateErr) throw updateErr;
+        /* Find the slug for the updated listing */
+        const updated = myListings.find(l => l.id === editingId);
+        setPublishedSlug(updated?.slug || "");
+      } else {
+        /* Insert new */
+        row.image_url = imageUrl;
+        row.photos = photoUrls;
+        row.slug = slug;
+        row.source = "user_submitted";
+        const { error: insertErr } = await sb.from("classifieds").insert([row]);
+        if (insertErr) throw insertErr;
+        setPublishedSlug(slug!);
 
-      setPublishedSlug(slug);
+        /* Confirmation email (fire-and-forget) */
+        try {
+          await supabase.functions.invoke("send-classified-confirmation", {
+            body: {
+              title: form.title.trim(),
+              slug,
+              email: form.contact_email.trim(),
+              category: form.category,
+              city: form.city.trim() ? `${form.city.trim()}, ${form.state}` : "",
+            },
+          });
+        } catch { /* non-blocking */ }
+      }
+
       setStep("done");
+      setEditingId(null);
     } catch (err: any) {
       console.error("Publish error:", err);
       setError(err.message || "Something went wrong");
@@ -297,7 +455,7 @@ export default function SubmitClassifiedPage() {
   return (
     <>
       <Helmet>
-        <title>Post a Classified — The Videshi</title>
+        <title>{mode === "manage" ? "Manage My Classifieds" : "Post a Classified"} — The Videshi</title>
         <meta name="description" content="Post a classified ad for the Indian diaspora community — services, housing, items for sale, jobs, and more." />
       </Helmet>
 
@@ -314,13 +472,204 @@ export default function SubmitClassifiedPage() {
             <ChevronLeft className="h-4 w-4" /> Back to classifieds
           </Link>
 
-          <h1 className="text-2xl font-bold font-serif mb-6">Post a Classified</h1>
+          {/* Mode toggle: Post / Manage */}
+          <div className="flex bg-muted/40 rounded-xl p-1 mb-6">
+            <button
+              type="button"
+              onClick={() => setMode("post")}
+              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                mode === "post" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Post Classified
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("manage")}
+              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                mode === "manage" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Manage My Classifieds
+            </button>
+          </div>
 
           {error && (
             <div className="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
               {error}
             </div>
           )}
+
+          {/* ============ MANAGE MODE ============ */}
+          {mode === "manage" && (
+            <div className="max-w-lg mx-auto">
+              {manageStep === "email" && (
+                <div className="rounded-2xl bg-gradient-to-b from-primary/[0.04] to-transparent border border-primary/10 p-6 md:p-8">
+                  <div className="text-center mb-5">
+                    <p className="text-3xl mb-2">📋</p>
+                    <h2 className="font-serif text-xl md:text-2xl text-foreground mb-1.5">Manage Your Classifieds</h2>
+                    <p className="text-muted-foreground text-sm">Enter the email you used when posting to find your listings.</p>
+                  </div>
+                  <div className="space-y-3">
+                    <input
+                      type="email"
+                      value={manageEmail}
+                      onChange={e => { setManageEmail(e.target.value); setManageError(null); }}
+                      placeholder="e.g. your@email.com"
+                      className="w-full px-4 py-3.5 rounded-xl border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); handleManageSendOtp(); } }}
+                      autoFocus
+                    />
+                    {manageError && <p className="text-sm text-red-600">{manageError}</p>}
+                    <button
+                      onClick={handleManageSendOtp}
+                      disabled={manageSending || !manageEmail.trim()}
+                      className="w-full py-3.5 bg-primary text-primary-foreground font-medium rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    >
+                      {manageSending ? <Spinner label="Sending code…" /> : "Send Verification Code"}
+                    </button>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-3 text-center">🔒 We'll send a code to verify it's you</p>
+                </div>
+              )}
+
+              {manageStep === "otp" && (
+                <div className="rounded-2xl bg-card border border-border p-6 md:p-8">
+                  <div className="text-center mb-5">
+                    <h3 className="font-medium text-foreground mb-1">Enter verification code</h3>
+                    <p className="text-sm text-muted-foreground">
+                      We sent a 6-digit code to <strong>{manageEmail.trim()}</strong>
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={6}
+                      value={manageOtp}
+                      onChange={e => { setManageOtp(e.target.value.replace(/\D/g, "")); setManageError(null); }}
+                      placeholder="000000"
+                      className="w-full px-4 py-3.5 rounded-xl border border-border bg-background text-center text-lg font-mono tracking-[0.5em] text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      autoFocus
+                      onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); handleManageVerifyOtp(); } }}
+                    />
+                    {manageError && <p className="text-sm text-red-600 text-center">{manageError}</p>}
+                    <button
+                      onClick={handleManageVerifyOtp}
+                      disabled={manageVerifying || manageOtp.length !== 6}
+                      className="w-full py-3.5 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    >
+                      {manageVerifying ? <Spinner label="Verifying…" /> : "Verify & View My Classifieds"}
+                    </button>
+                    <div className="flex justify-center gap-4 text-sm pt-1">
+                      <button type="button" onClick={handleManageSendOtp} disabled={manageSending} className="text-primary hover:underline disabled:opacity-50">
+                        Resend code
+                      </button>
+                      <button type="button" onClick={() => { setManageStep("email"); setManageOtp(""); setManageError(null); }} className="text-muted-foreground hover:text-foreground">
+                        ← Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {manageStep === "list" && (
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <h2 className="font-serif text-xl text-foreground mb-0.5">Your Classifieds</h2>
+                      <p className="text-sm text-muted-foreground">{myListings.length} listing{myListings.length !== 1 ? "s" : ""} found for {manageEmail.trim()}</p>
+                    </div>
+                    <button onClick={() => { setMode("post"); setForm(f => ({ ...f, contact_email: manageEmail.trim() })); }}
+                      className="px-3 py-1.5 text-sm font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors">
+                      + Post New
+                    </button>
+                  </div>
+
+                  {loadingListings && (
+                    <div className="flex items-center justify-center py-12">
+                      <Spinner label="Loading your listings…" />
+                    </div>
+                  )}
+
+                  {!loadingListings && myListings.length === 0 && (
+                    <div className="text-center py-12 bg-muted/20 rounded-2xl">
+                      <p className="text-3xl mb-2">📭</p>
+                      <p className="text-muted-foreground mb-4">No classifieds found for this email.</p>
+                      <button onClick={() => { setMode("post"); setForm(f => ({ ...f, contact_email: manageEmail.trim() })); }}
+                        className="text-primary font-medium hover:underline">
+                        Post your first classified →
+                      </button>
+                    </div>
+                  )}
+
+                  {!loadingListings && myListings.map(listing => {
+                    const catEmoji = CATEGORY_ICONS[listing.category || ""] || "📌";
+                    return (
+                      <div key={listing.id} className="rounded-xl border border-border bg-card mb-3 overflow-hidden">
+                        <div className="flex items-start gap-3 p-4">
+                          {listing.image_url ? (
+                            <img src={listing.image_url} alt="" className="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
+                          ) : (
+                            <div className="w-16 h-16 rounded-lg bg-muted/40 flex items-center justify-center flex-shrink-0">
+                              <span className="text-2xl">{catEmoji}</span>
+                            </div>
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-medium text-foreground text-sm leading-snug line-clamp-2">{listing.title}</h3>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {listing.category}{listing.subcategory ? ` · ${listing.subcategory}` : ""}
+                              {listing.city ? ` · ${listing.city}, ${listing.state}` : ""}
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {listing.price && <span className="text-amber-500 font-medium mr-2">{listing.price}</span>}
+                              Posted {timeAgo(listing.created_at)}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex border-t border-border divide-x divide-border">
+                          <Link
+                            to={`/classifieds/${listing.slug}`}
+                            className="flex-1 py-2.5 text-sm font-medium text-foreground/60 hover:bg-muted/20 transition-colors flex items-center justify-center gap-1.5"
+                          >
+                            👁️ View
+                          </Link>
+                          <button
+                            onClick={() => handleEditListing(listing)}
+                            className="flex-1 py-2.5 text-sm font-medium text-primary hover:bg-primary/5 transition-colors flex items-center justify-center gap-1.5"
+                          >
+                            ✏️ Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteListing(listing.id, listing.title)}
+                            disabled={deletingId === listing.id}
+                            className="flex-1 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
+                          >
+                            {deletingId === listing.id ? <Spinner label="Deleting…" size="sm" /> : "🗑️ Delete"}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ============ POST MODE ============ */}
+          {mode === "post" && (<>
+
+          {/* Editing banner */}
+          {editingId && (
+            <div className="mb-4 p-3 rounded-lg bg-primary/10 border border-primary/20 text-sm flex items-center justify-between">
+              <span>✏️ Editing your listing — make your changes and hit update.</span>
+              <button onClick={() => { setEditingId(null); setForm(INITIAL); }} className="text-primary text-xs hover:underline ml-2">Cancel</button>
+            </div>
+          )}
+
+          <h1 className="text-2xl font-bold font-serif mb-6">
+            {editingId ? "Edit Your Classified" : "Post a Classified"}
+          </h1>
 
           {/* ============== FORM ============== */}
           {step === "form" && (
@@ -521,17 +870,19 @@ export default function SubmitClassifiedPage() {
                 </div>
               </div>
 
-              {/* Turnstile */}
-              <TurnstileWidget
-                onVerify={(token) => setTurnstileToken(token)}
-                onExpire={() => setTurnstileToken(null)}
-                className="mb-2"
-              />
+              {/* Turnstile (skip for edits) */}
+              {!editingId && (
+                <TurnstileWidget
+                  onVerify={(token) => setTurnstileToken(token)}
+                  onExpire={() => setTurnstileToken(null)}
+                  className="mb-2"
+                />
+              )}
 
               {/* Submit */}
               <button
                 onClick={goPreview}
-                disabled={!turnstileToken}
+                disabled={!editingId && !turnstileToken}
                 className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Preview Listing
@@ -543,7 +894,7 @@ export default function SubmitClassifiedPage() {
           {(step === "preview" || step === "verify-email" || step === "verify-code" || step === "publishing") && (
             <div className="space-y-6">
               <p className="text-sm text-foreground/50">
-                Review your listing before publishing:
+                Review your listing before {editingId ? "updating" : "publishing"}:
               </p>
 
               {/* Preview card */}
@@ -571,7 +922,7 @@ export default function SubmitClassifiedPage() {
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-lg">{form.title}</h3>
                     {form.price && (
-                      <span className="shrink-0 text-sm font-bold px-2.5 py-1 rounded-md bg-amber-100 text-amber-800">
+                      <span className="shrink-0 text-sm font-bold px-2.5 py-1 rounded-md bg-amber-600/20 text-amber-400">
                         {form.price}
                       </span>
                     )}
@@ -650,10 +1001,10 @@ export default function SubmitClassifiedPage() {
                       >
                         {verifyChecking ? (
                           <span className="flex items-center justify-center gap-2">
-                            <Loader2 className="h-4 w-4 animate-spin" /> Verifying & Publishing…
+                            <Loader2 className="h-4 w-4 animate-spin" /> {editingId ? "Verifying & Updating…" : "Verifying & Publishing…"}
                           </span>
                         ) : (
-                          "Verify & Publish"
+                          editingId ? "Verify & Update" : "Verify & Publish"
                         )}
                       </button>
                     </form>
@@ -674,7 +1025,7 @@ export default function SubmitClassifiedPage() {
                     onClick={startVerify}
                     className="flex-1 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
                   >
-                    Publish
+                    {editingId ? "Update" : "Publish"}
                   </button>
                 </div>
               )}
@@ -683,7 +1034,7 @@ export default function SubmitClassifiedPage() {
               {step === "publishing" && (
                 <div className="flex flex-col items-center py-8 gap-4">
                   <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                  <p className="text-foreground/60">Publishing your listing…</p>
+                  <p className="text-foreground/60">{editingId ? "Updating your listing…" : "Publishing your listing…"}</p>
                 </div>
               )}
             </div>
@@ -695,30 +1046,34 @@ export default function SubmitClassifiedPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10">
                 <Check className="h-8 w-8 text-green-500" />
               </div>
-              <h2 className="text-xl font-bold">Your listing is live!</h2>
+              <h2 className="text-xl font-bold">{editingId ? "Listing updated!" : "Your listing is live!"}</h2>
               <p className="text-foreground/60 text-sm max-w-md mx-auto">
                 It will stay active for 30 days. You can edit or delete it anytime using the email you provided.
               </p>
-              <div className="flex items-center justify-center gap-2 bg-muted/30 rounded-lg px-4 py-2 max-w-md mx-auto">
-                <span className="text-xs truncate flex-1 text-left">{liveUrl}</span>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(liveUrl);
-                    setCopied(true);
-                    setTimeout(() => setCopied(false), 2000);
-                  }}
-                  className="shrink-0 text-xs text-primary hover:underline"
-                >
-                  {copied ? "Copied!" : "Copy"}
-                </button>
-              </div>
+              {publishedSlug && (
+                <div className="flex items-center justify-center gap-2 bg-muted/30 rounded-lg px-4 py-2 max-w-md mx-auto">
+                  <span className="text-xs truncate flex-1 text-left">{liveUrl}</span>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(liveUrl);
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 2000);
+                    }}
+                    className="shrink-0 text-xs text-primary hover:underline"
+                  >
+                    {copied ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+              )}
               <div className="flex justify-center gap-3 pt-2">
-                <Link
-                  to={`/classifieds/${publishedSlug}`}
-                  className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  View Your Listing
-                </Link>
+                {publishedSlug && (
+                  <Link
+                    to={`/classifieds/${publishedSlug}`}
+                    className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    View Your Listing
+                  </Link>
+                )}
                 <Link
                   to="/classifieds"
                   className="px-5 py-2.5 rounded-lg border border-border text-sm font-medium hover:bg-muted/30 transition-colors"
@@ -728,6 +1083,8 @@ export default function SubmitClassifiedPage() {
               </div>
             </div>
           )}
+
+          </>)}
         </div>
       </main>
 
