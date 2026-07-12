@@ -16,6 +16,7 @@ import MarketTicker from "@/components/MarketTicker";
 import CategoryPills from "@/components/CategoryPills";
 import EventCluster from "@/components/EventCluster";
 import EditorsDesk from "@/components/EditorsDesk";
+import TopStories from "@/components/homepage/TopStories";
 import {
   Article,
   getArticlesByCategory,
@@ -34,7 +35,7 @@ const CATEGORY_SECTIONS = [
   { slug: "food", label: "FOOD", limit: 30 },
 ];
 
-const CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets-finance"];
+const CAROUSEL_CATEGORIES = ["immigration", "news", "entertainment", "sports", "technology", "markets-finance"];
 
 const CLUSTERS: { label: string; require: string[]; also: string[] }[] = [
   {
@@ -402,6 +403,8 @@ export default function Index() {
             <FeaturedHero article={featuredArticle} />
           </div>
         ) : null}
+
+        <TopStories articles={carouselArticles} />
 
         {/* FIFA World Cup 2026 — top of homepage */}
         <WorldCupTracker />

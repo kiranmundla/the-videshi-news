@@ -87,7 +87,7 @@ CATEGORY_SECTIONS = [
     {"slug": "food", "limit": 12},
     {"slug": "travel", "limit": 12},
 ]
-CAROUSEL_CATEGORIES = ["news", "entertainment", "sports", "technology", "markets-finance"]
+CAROUSEL_CATEGORIES = ["immigration", "news", "entertainment", "sports", "technology", "markets-finance"]
 
 MAX_ARTICLE_PAGES = 5000  # Pre-build individual article JSONs for all published articles
 
