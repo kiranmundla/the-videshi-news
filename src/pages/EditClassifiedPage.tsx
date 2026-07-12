@@ -16,6 +16,10 @@ import {
 
 const sb = supabase as any;
 
+const MAX_PHOTOS = 10;
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
 const US_STATES = [
   "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
   "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
@@ -53,6 +57,11 @@ type FormData = {
   zip: string;
 };
 
+type NewImage = { id: string; file: File; url: string };
+function createPreview(file: File): NewImage {
+  return { id: crypto.randomUUID(), file, url: URL.createObjectURL(file) };
+}
+
 const inputClass =
   "w-full px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
 const labelClass = "block text-sm font-medium mb-1.5";
@@ -60,6 +69,7 @@ const labelClass = "block text-sm font-medium mb-1.5";
 export default function EditClassifiedPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const [item, setItem] = useState<Classified | null>(null);
   const [step, setStep] = useState<Step>("loading");
@@ -77,6 +87,14 @@ export default function EditClassifiedPage() {
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+
+  /* ---- Photo state ---- */
+  const [existingPhotos, setExistingPhotos] = useState<string[]>([]);
+  const [newImages, setNewImages] = useState<NewImage[]>([]);
+  // mainPhotoKey: either "existing:<url>" or "new:<id>" — null means first photo
+  const [mainPhotoKey, setMainPhotoKey] = useState<string | null>(null);
+
+  const totalPhotos = existingPhotos.length + newImages.length;
 
   /* Load item */
   useEffect(() => {
@@ -96,6 +114,13 @@ export default function EditClassifiedPage() {
           state: data.state || "",
           zip: data.zip || "",
         });
+        // Load existing photos
+        const photos = data.photos?.length ? data.photos : data.image_url ? [data.image_url] : [];
+        setExistingPhotos(photos);
+        // Mark the hero as main if it exists in photos
+        if (data.image_url && photos.includes(data.image_url)) {
+          setMainPhotoKey(`existing:${data.image_url}`);
+        }
         setStep("email");
       } else {
         setStep("email");
@@ -111,6 +136,55 @@ export default function EditClassifiedPage() {
       },
     [],
   );
+
+  /* ---- Photo handlers ---- */
+  const addImages = useCallback(
+    (files: FileList | null) => {
+      if (!files) return;
+      const newPreviews: NewImage[] = [];
+      for (let i = 0; i < files.length && totalPhotos + newPreviews.length < MAX_PHOTOS; i++) {
+        const f = files[i];
+        if (!ACCEPTED_TYPES.includes(f.type)) continue;
+        if (f.size > MAX_FILE_SIZE) continue;
+        newPreviews.push(createPreview(f));
+      }
+      setNewImages((prev) => [...prev, ...newPreviews]);
+    },
+    [totalPhotos],
+  );
+
+  const removeExistingPhoto = useCallback((url: string) => {
+    setExistingPhotos((prev) => prev.filter((p) => p !== url));
+    setMainPhotoKey((cur) => (cur === `existing:${url}` ? null : cur));
+  }, []);
+
+  const removeNewImage = useCallback((id: string) => {
+    setNewImages((prev) => {
+      const img = prev.find((p) => p.id === id);
+      if (img) URL.revokeObjectURL(img.url);
+      return prev.filter((p) => p.id !== id);
+    });
+    setMainPhotoKey((cur) => (cur === `new:${id}` ? null : cur));
+  }, []);
+
+  /* Resolve which photo is main */
+  const resolveMainKey = (): string | null => {
+    if (mainPhotoKey) {
+      // Make sure the main photo still exists
+      if (mainPhotoKey.startsWith("existing:")) {
+        const url = mainPhotoKey.slice("existing:".length);
+        if (existingPhotos.includes(url)) return mainPhotoKey;
+      } else if (mainPhotoKey.startsWith("new:")) {
+        const id = mainPhotoKey.slice("new:".length);
+        if (newImages.some((img) => img.id === id)) return mainPhotoKey;
+      }
+    }
+    // Default to first available
+    if (existingPhotos.length > 0) return `existing:${existingPhotos[0]}`;
+    if (newImages.length > 0) return `new:${newImages[0].id}`;
+    return null;
+  };
+  const effectiveMainKey = resolveMainKey();
 
   /* Send OTP */
   const handleSendOtp = async (e: React.FormEvent) => {
@@ -159,6 +233,50 @@ export default function EditClassifiedPage() {
     setSaving(true);
     setError(null);
     try {
+      /* Upload new images */
+      const uploadedUrls: string[] = [];
+      const uploadSlug = item.slug || slug || "";
+      for (const img of newImages) {
+        const ext = img.file.name.split(".").pop() || "jpg";
+        const path = `classifieds/${uploadSlug}/${img.id}.${ext}`;
+        const { error: uploadErr } = await sb.storage
+          .from("article-images")
+          .upload(path, img.file, { cacheControl: "31536000", upsert: false });
+        if (uploadErr) {
+          console.error("Upload error:", uploadErr);
+          continue;
+        }
+        const { data: urlData } = sb.storage
+          .from("article-images")
+          .getPublicUrl(path);
+        if (urlData?.publicUrl) uploadedUrls.push(urlData.publicUrl);
+      }
+
+      /* Build final photos array: existing (kept) + newly uploaded */
+      const allPhotos = [...existingPhotos, ...uploadedUrls];
+
+      /* Determine the main/hero image URL */
+      let heroUrl: string | null = null;
+      if (effectiveMainKey) {
+        if (effectiveMainKey.startsWith("existing:")) {
+          heroUrl = effectiveMainKey.slice("existing:".length);
+        } else if (effectiveMainKey.startsWith("new:")) {
+          const id = effectiveMainKey.slice("new:".length);
+          const idx = newImages.findIndex((img) => img.id === id);
+          if (idx >= 0 && idx < uploadedUrls.length) {
+            // Map new image index to uploaded URL index
+            // uploadedUrls order matches newImages order (sequential upload)
+            heroUrl = uploadedUrls[idx];
+          }
+        }
+      }
+      if (!heroUrl && allPhotos.length > 0) heroUrl = allPhotos[0];
+
+      /* Reorder: hero first */
+      const orderedPhotos = heroUrl
+        ? [heroUrl, ...allPhotos.filter((p) => p !== heroUrl)]
+        : allPhotos;
+
       const { error: updateErr } = await sb
         .from("classifieds")
         .update({
@@ -172,6 +290,8 @@ export default function EditClassifiedPage() {
           city: form.city.trim() || null,
           state: form.state || null,
           zip: form.zip.trim() || null,
+          image_url: heroUrl,
+          photos: orderedPhotos.length > 0 ? orderedPhotos : null,
           updated_at: new Date().toISOString(),
         })
         .eq("id", item.id);
@@ -374,6 +494,104 @@ export default function EditClassifiedPage() {
                 <input type="text" value={form.price} onChange={set("price")} className={inputClass} />
               </div>
 
+              {/* ---- Photos section ---- */}
+              <div>
+                <label className={labelClass}>
+                  Photos <span className="text-foreground/40">(up to {MAX_PHOTOS})</span>
+                </label>
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => { addImages(e.target.files); if (fileRef.current) fileRef.current.value = ""; }}
+                />
+                <div className="flex flex-wrap gap-3">
+                  {/* Existing photos */}
+                  {existingPhotos.map((url) => {
+                    const key = `existing:${url}`;
+                    const isMain = effectiveMainKey === key;
+                    return (
+                      <div key={url} className="relative w-24 h-24 rounded-lg overflow-hidden border border-border group">
+                        <img
+                          src={url}
+                          alt=""
+                          className="w-full h-full object-cover cursor-pointer"
+                          onClick={() => setMainPhotoKey(key)}
+                        />
+                        {isMain ? (
+                          <span className="absolute bottom-0 left-0 right-0 bg-primary/90 text-white text-[10px] font-semibold text-center py-0.5 leading-tight">
+                            ★ Main
+                          </span>
+                        ) : totalPhotos > 1 ? (
+                          <span
+                            className="absolute bottom-0 left-0 right-0 bg-black/60 text-white/70 text-[10px] text-center py-0.5 leading-tight opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                            onClick={(e) => { e.stopPropagation(); setMainPhotoKey(key); }}
+                          >
+                            Set as main
+                          </span>
+                        ) : null}
+                        <button
+                          type="button"
+                          onClick={() => removeExistingPhoto(url)}
+                          className="absolute top-1 right-1 p-0.5 rounded-full bg-black/60 text-white hover:bg-black/80"
+                        >
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    );
+                  })}
+
+                  {/* New images (not yet uploaded) */}
+                  {newImages.map((img) => {
+                    const key = `new:${img.id}`;
+                    const isMain = effectiveMainKey === key;
+                    return (
+                      <div key={img.id} className="relative w-24 h-24 rounded-lg overflow-hidden border border-border group">
+                        <img
+                          src={img.url}
+                          alt=""
+                          className="w-full h-full object-cover cursor-pointer"
+                          onClick={() => setMainPhotoKey(key)}
+                        />
+                        {isMain ? (
+                          <span className="absolute bottom-0 left-0 right-0 bg-primary/90 text-white text-[10px] font-semibold text-center py-0.5 leading-tight">
+                            ★ Main
+                          </span>
+                        ) : totalPhotos > 1 ? (
+                          <span
+                            className="absolute bottom-0 left-0 right-0 bg-black/60 text-white/70 text-[10px] text-center py-0.5 leading-tight opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                            onClick={(e) => { e.stopPropagation(); setMainPhotoKey(key); }}
+                          >
+                            Set as main
+                          </span>
+                        ) : null}
+                        <button
+                          type="button"
+                          onClick={() => removeNewImage(img.id)}
+                          className="absolute top-1 right-1 p-0.5 rounded-full bg-black/60 text-white hover:bg-black/80"
+                        >
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    );
+                  })}
+
+                  {/* Add button */}
+                  {totalPhotos < MAX_PHOTOS && (
+                    <button
+                      type="button"
+                      onClick={() => fileRef.current?.click()}
+                      className="w-24 h-24 rounded-lg border-2 border-dashed border-border hover:border-primary/40 flex flex-col items-center justify-center gap-1 text-foreground/40 hover:text-primary/60 transition-colors"
+                    >
+                      <Upload className="h-5 w-5" />
+                      <span className="text-xs">Add</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <div className="col-span-2 sm:col-span-1">
                   <label className={labelClass}>City</label>
@@ -383,7 +601,7 @@ export default function EditClassifiedPage() {
                   <label className={labelClass}>State</label>
                   <select value={form.state} onChange={set("state")} className={inputClass}>
                     <option value="">State</option>
-                    {US_STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                    {US_STATES.map((s) => <option key={s} value={s}>{s} — {STATE_NAMES[s]}</option>)}
                   </select>
                 </div>
                 <div>
