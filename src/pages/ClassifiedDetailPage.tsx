@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
@@ -8,9 +8,12 @@ import {
   MapPin,
   Clock,
   ChevronLeft,
+  ChevronRight,
   Send,
   Loader2,
   MessageCircle,
+  X,
+  ZoomIn,
 } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
@@ -42,6 +45,257 @@ function categoryFallbackImg(category: string): string {
 }
 
 const sb = supabase as any;
+
+/* ------------------------------------------------------------------ */
+/* Photo Gallery with lightbox                                        */
+/* ------------------------------------------------------------------ */
+function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
+  const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const touchRef = useRef<{ startX: number; startY: number; dist: number; panning: boolean }>({
+    startX: 0, startY: 0, dist: 0, panning: false,
+  });
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  const total = photos.length;
+  const prev = useCallback(() => setActive((i) => (i - 1 + total) % total), [total]);
+  const next = useCallback(() => setActive((i) => (i + 1) % total), [total]);
+
+  /* Reset zoom when switching photos or closing */
+  const resetZoom = useCallback(() => { setZoom(1); setPan({ x: 0, y: 0 }); }, []);
+
+  /* Swipe handling for main gallery */
+  const handleMainTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchRef.current.startX = e.touches[0].clientX;
+    }
+  }, []);
+
+  const handleMainTouchEnd = useCallback((e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchRef.current.startX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) next(); else prev();
+    }
+  }, [next, prev]);
+
+  /* Lightbox touch: swipe (when not zoomed) + pinch-to-zoom */
+  const handleLbTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      touchRef.current.dist = Math.hypot(dx, dy);
+      touchRef.current.panning = false;
+    } else if (e.touches.length === 1) {
+      touchRef.current.startX = e.touches[0].clientX;
+      touchRef.current.startY = e.touches[0].clientY;
+      touchRef.current.panning = zoom > 1;
+    }
+  }, [zoom]);
+
+  const handleLbTouchMove = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const newDist = Math.hypot(dx, dy);
+      if (touchRef.current.dist > 0) {
+        const scale = newDist / touchRef.current.dist;
+        setZoom((z) => Math.min(4, Math.max(1, z * scale)));
+      }
+      touchRef.current.dist = newDist;
+    } else if (e.touches.length === 1 && touchRef.current.panning && zoom > 1) {
+      const dx = e.touches[0].clientX - touchRef.current.startX;
+      const dy = e.touches[0].clientY - touchRef.current.startY;
+      setPan((p) => ({ x: p.x + dx, y: p.y + dy }));
+      touchRef.current.startX = e.touches[0].clientX;
+      touchRef.current.startY = e.touches[0].clientY;
+    }
+  }, [zoom]);
+
+  const handleLbTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (zoom <= 1) {
+      const dx = e.changedTouches[0].clientX - touchRef.current.startX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) next(); else prev();
+        resetZoom();
+      }
+    }
+    touchRef.current.dist = 0;
+    touchRef.current.panning = false;
+  }, [zoom, next, prev, resetZoom]);
+
+  /* Double-tap to toggle zoom */
+  const lastTapRef = useRef(0);
+  const handleDoubleTap = useCallback(() => {
+    const now = Date.now();
+    if (now - lastTapRef.current < 300) {
+      if (zoom > 1) resetZoom(); else { setZoom(2.5); setPan({ x: 0, y: 0 }); }
+    }
+    lastTapRef.current = now;
+  }, [zoom, resetZoom]);
+
+  /* Keyboard navigation */
+  useEffect(() => {
+    if (!lightbox) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setLightbox(false); resetZoom(); }
+      if (e.key === "ArrowLeft") { prev(); resetZoom(); }
+      if (e.key === "ArrowRight") { next(); resetZoom(); }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightbox, prev, next, resetZoom]);
+
+  /* Lock body scroll when lightbox open */
+  useEffect(() => {
+    if (lightbox) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightbox]);
+
+  return (
+    <>
+      {/* Main gallery */}
+      <div className="space-y-2">
+        {/* Active image */}
+        <div
+          ref={mainRef}
+          className="relative w-full overflow-hidden rounded-xl bg-black cursor-pointer group"
+          onClick={() => { setLightbox(true); resetZoom(); }}
+          onTouchStart={handleMainTouchStart}
+          onTouchEnd={handleMainTouchEnd}
+        >
+          <img
+            src={photos[active]}
+            alt={`${title} — photo ${active + 1}`}
+            className="w-full object-contain rounded-xl transition-opacity duration-200"
+            style={{ maxHeight: "70vh" }}
+            draggable={false}
+          />
+          {/* Zoom hint */}
+          <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white/80 text-xs px-2.5 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <ZoomIn className="h-3.5 w-3.5" /> Tap to zoom
+          </div>
+          {/* Counter */}
+          {total > 1 && (
+            <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+              {active + 1} / {total}
+            </div>
+          )}
+          {/* Desktop arrows */}
+          {total > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-label="Previous photo"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-label="Next photo"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Thumbnail strip */}
+        {total > 1 && (
+          <div className="flex gap-2 overflow-x-auto scrollbar-none pb-1">
+            {photos.map((url, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                  i === active
+                    ? "border-primary ring-1 ring-primary/40 opacity-100"
+                    : "border-transparent opacity-60 hover:opacity-90"
+                }`}
+              >
+                <img
+                  src={url}
+                  alt={`Thumbnail ${i + 1}`}
+                  className="h-14 w-14 sm:h-16 sm:w-16 object-cover"
+                  loading="lazy"
+                  draggable={false}
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Lightbox overlay */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
+          onClick={(e) => { if (e.target === e.currentTarget) { setLightbox(false); resetZoom(); } }}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => { setLightbox(false); resetZoom(); }}
+            className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+            aria-label="Close"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          {/* Counter */}
+          {total > 1 && (
+            <div className="absolute top-4 left-4 z-10 text-white/80 text-sm font-medium bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
+              {active + 1} / {total}
+            </div>
+          )}
+
+          {/* Lightbox image */}
+          <div
+            className="w-full h-full flex items-center justify-center overflow-hidden"
+            style={{ touchAction: "none" }}
+            onTouchStart={handleLbTouchStart}
+            onTouchMove={handleLbTouchMove}
+            onTouchEnd={handleLbTouchEnd}
+            onClick={handleDoubleTap}
+          >
+            <img
+              src={photos[active]}
+              alt={`${title} — photo ${active + 1}`}
+              className="max-w-[95vw] max-h-[85vh] object-contain select-none transition-transform duration-100"
+              style={{
+                transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+              }}
+              draggable={false}
+            />
+          </div>
+
+          {/* Lightbox arrows */}
+          {total > 1 && (
+            <>
+              <button
+                onClick={() => { prev(); resetZoom(); }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+                aria-label="Previous photo"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={() => { next(); resetZoom(); }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-colors"
+                aria-label="Next photo"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Share buttons                                                      */
@@ -481,9 +735,12 @@ export default function ClassifiedDetailPage() {
     );
   }
 
-  const photos = item.photos?.length ? item.photos : [];
-  const heroImage = item.image_url || (photos.length > 0 ? photos[0] : null);
-  const galleryPhotos = photos.filter((p) => p !== heroImage);
+  const allPhotos = item.photos?.length ? [...item.photos] : [];
+  /* Ensure image_url is first if not already in the photos array */
+  if (item.image_url && !allPhotos.includes(item.image_url)) {
+    allPhotos.unshift(item.image_url);
+  }
+  const heroImage = allPhotos.length > 0 ? allPhotos[0] : null;
   const catEmoji = CATEGORY_ICONS[item.category] || "📌";
   const catColor =
     CATEGORY_COLORS[item.category] || "bg-muted text-muted-foreground";
@@ -573,17 +830,18 @@ export default function ClassifiedDetailPage() {
             <ChevronLeft className="h-4 w-4" /> Back to classifieds
           </Link>
 
-          {/* Hero image or subcategory fallback */}
-          {(heroImage || subcategoryFallbackImg(item.subcategory)) && (
+          {/* Photo gallery or subcategory fallback */}
+          {allPhotos.length > 0 ? (
+            <PhotoGallery photos={allPhotos} title={item.title} />
+          ) : subcategoryFallbackImg(item.subcategory) ? (
             <div className="relative w-full overflow-hidden rounded-xl">
               <img
-                src={heroImage || subcategoryFallbackImg(item.subcategory)!}
+                src={subcategoryFallbackImg(item.subcategory)!}
                 alt={item.title}
-                className={heroImage ? "w-full object-contain bg-black rounded-xl" : "w-full h-48 sm:h-56 object-cover rounded-xl"}
-                style={heroImage ? { maxHeight: "75vh" } : undefined}
+                className="w-full h-48 sm:h-56 object-cover rounded-xl"
               />
             </div>
-          )}
+          ) : null}
 
           {/* Title + badges + meta */}
           <div className="space-y-3">
@@ -634,24 +892,6 @@ export default function ClassifiedDetailPage() {
             </div>
           </div>
 
-          {/* Photo gallery */}
-          {galleryPhotos.length > 0 && (
-            <div className="flex gap-3 overflow-x-auto scrollbar-none -mx-1 px-1 pb-2">
-              {galleryPhotos.map((url, i) => (
-                <div
-                  key={i}
-                  className="flex-shrink-0 snap-start w-[85%] sm:w-[45%] lg:w-[30%] rounded-lg overflow-hidden"
-                >
-                  <img
-                    src={url}
-                    alt={`${item.title} — photo ${i + 2}`}
-                    className="w-full h-44 sm:h-52 object-contain bg-white/5"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
 
           {/* Description card */}
           {item.description && (
