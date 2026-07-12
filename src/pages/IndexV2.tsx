@@ -17,6 +17,7 @@ import VoicesSection from "@/components/homepage/VoicesSection";
 import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
+import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import "@/components/homepage/homepage-v2.css";
@@ -430,6 +431,7 @@ export default function IndexV2() {
           aspectRatio="landscape"
         />
         <TweetScroll category="sports" />
+        <InstagramPhotoScroll category="sports" label="Sports in Pictures" />
 
         {/* 16. Travel (horizontal ribbon — landscape) */}
         {layout.travel.length > 0 && (

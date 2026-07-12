@@ -44,11 +44,13 @@ export function buildDetail(item: DailyHappening): string {
 }
 
 export async function getTodayHappenings(): Promise<DailyHappening[]> {
-  const today = new Date().toISOString().split("T")[0];
+  // Use local date so "today" matches the user's timezone, not UTC
+  const now = new Date();
+  const localDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   const { data, error } = await supabase
     .from("daily_happenings")
     .select("*")
-    .eq("date", today)
+    .eq("date", localDate)
     .order("sort_order", { ascending: true });
 
   if (error) {
