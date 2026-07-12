@@ -336,7 +336,7 @@ export default function ClassifiedsPage() {
             </Link>
             <Link
               to="/classifieds/submit?mode=manage"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
             >
               Manage my classifieds
             </Link>
