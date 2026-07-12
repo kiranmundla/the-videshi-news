@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T20:15:25.405050+00:00",
+  "timestamp": "2026-07-12T21:15:53.052658+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "367fcc48-4127-4581-a35c-092f4e4dd170",
-      "headline": "Fifteen Thousand Indian Tech Workers Went Home Last Year. The Pipeline Behind Them Is Reversing",
-      "slug": "reverse-brain-drain-indian-tech-professionals-returning-india-20260712",
+      "id": "a8c61ef6-f4d1-4bca-bfef-59cc409f356b",
+      "headline": "Mercor Eyes $20 Billion Valuation as India's Invisible AI Workforce Powers Silicon Valley",
+      "slug": "mercor-ai-20-billion-valuation-india-invisible-ai-workforce-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bengaluru skyline with buildings",
-          "reason": "The photo shows the Bengaluru skyline, relevant to the story about tech workers returning to India."
+          "what_photo_shows": "People working on computers",
+          "reason": "The photo shows people working on computers, which aligns with data annotators for AI systems."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image depicts a professional environment, which aligns with the article's focus on tech workers and their migration patterns."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the migration trends of Indian tech workers, which is highly relevant to the NRI community."
+          "note": "The article effectively connects the story of Mercor to the Indian diaspora, highlighting the opportunities for Indian professionals in the tech labor market."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more personal stories or quotes from returning tech workers to enhance relatability.",
-          "Provide a clearer conclusion summarizing the implications of these trends for both India and the US."
+          "Consider adding more quotes or insights from Indian professionals working with Mercor to enhance the diaspora perspective.",
+          "Include a brief section on the implications of Mercor's success for the future of AI and tech jobs in India."
         ],
         "verdict": "pass"
       },
@@ -54,35 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
-      "headline": "Green Card Applicants Must Now Leave the Country. USCIS Calls It the Original Intent of the Law",
-      "slug": "uscis-adjustment-of-status-extraordinary-circumstances-green-card-20260712",
+      "id": "8cccca51-31c7-4039-856b-c5f87037b119",
+      "headline": "TSMC Reports Thursday: Why This Semiconductor Bellwether Matters to Every NRI Tech Worker and Investor",
+      "slug": "tsmc-q2-earnings-semiconductor-bellwether-nri-investors-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
-            "headline": "Your Spouse's Work Permit Expires This Month. The Government"
-          },
-          {
-            "article_id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
-            "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Appli"
-          },
-          {
-            "article_id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
-            "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is "
-          },
-          {
-            "article_id": "9061dd5f-48ae-46ff-a682-43b97459505b",
-            "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The R"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center relevant to the green card process story."
+          "what_photo_shows": "semiconductor chip on circuit board",
+          "reason": "The photo subject is relevant to the semiconductor industry story."
         },
         "inline_image_mismatches": []
       },
@@ -90,19 +73,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a USCIS Application Support Center, which is relevant to the topic of immigration and green card applications."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article discusses changes in immigration policy that directly affect Indian professionals, making it highly relevant to the NRI community."
+          "quality": 8,
+          "note": "The article effectively connects TSMC's performance and expansion to the opportunities for Indian-origin engineers and investors, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or perspectives from more immigration experts or affected individuals to provide a broader view.",
-          "Add a section on potential next steps for affected applicants to enhance the article's practical value."
+          "Include specific examples of how TSMC's performance directly impacts Indian engineers and investors.",
+          "Add a brief section on potential risks or challenges in the semiconductor market that could affect NRIs."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
+      "headline": "Mission Aagaman: India's First Private Orbital Rocket Enters Launch Window as Skyroot Makes History",
+      "slug": "skyroot-mission-aagaman-vikram-1-india-first-private-orbital-rocket-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "rocket launching into sky",
+          "reason": "The photo shows a rocket launch, relevant to the story about Skyroot's Vikram-1 rocket."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects the achievements of Skyroot to the broader narrative of India's technological advancement, which resonates with the diaspora's interest in India's growth."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes from Skyroot's founders or industry experts to enhance credibility.",
+          "Add a section on how this launch could impact the global space market, particularly for Indian startups."
         ],
         "verdict": "pass"
       },
