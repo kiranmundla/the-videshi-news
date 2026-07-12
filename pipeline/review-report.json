@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-12T09:15:16.617567+00:00",
+  "timestamp": "2026-07-12T12:45:27.156260+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "7a774f9c-905d-42e3-8c9d-6bf34604ef1a",
-      "headline": "Yotta Just Raised $150 Million to Become India's Answer to the American AI Data Centre Boom",
-      "slug": "yotta-150-million-ai-data-centre-nvidia-gpu-india-20260712",
+      "id": "f4878d5c-d003-43c6-a515-83d59149d0fa",
+      "headline": "An Indian Immigrant's Son Launches to the Space Station on Monday. He Spent a Year in India Vaccinating Children Against Polio.",
+      "slug": "anil-menon-nasa-astronaut-iss-launch-july-14-indian-origin-kerala-soyuz-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data centre",
-          "reason": "The photo shows server racks, relevant to the AI data centre story."
+          "what_photo_shows": "NASA astronaut in official portrait",
+          "reason": "The photo shows an astronaut, matching the story about Anil Menon."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI data centers or Yotta specifically, but is a general tech-related image."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Yotta's growth to opportunities for Indian Americans in AI infrastructure."
+          "note": "The article effectively connects Menon's achievements to the Indian diaspora experience, highlighting his Indian roots and the significance of his journey for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents AI data centers or Yotta's operations.",
-          "Expand on the diaspora angle by including quotes or insights from Indian Americans in the AI sector."
+          "Consider adding quotes from Menon or other relevant figures to enhance the narrative.",
+          "Include more details about the significance of his polio vaccination work in India to deepen the connection to the diaspora."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "084fbd1a-7f8b-4689-82b0-77b0ead63f35",
-      "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's Co-Founder Is Betting the Gym Can Go Public.",
-      "slug": "cultfit-ipo-mukesh-bansal-fitness-unicorn-sebi-20260712",
+      "id": "96103a8e-4337-4d40-8a31-10d699c32eb1",
+      "headline": "Lindsey Graham, the Senate's Loudest Voice on Iran and India, Dies at 71. His Empty Chair Changes the Calculus for Both.",
+      "slug": "lindsey-graham-dies-71-senate-india-iran-immigration-diaspora-impact-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "group fitness class in studio",
-          "reason": "The photo shows a group fitness class, relevant to Cult.fit's business."
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo shows a man who could plausibly be Lindsey Graham."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image depicts a fitness-related scene, which aligns with the article's topic on Cult.fit and its IPO."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by discussing the implications of the IPO for Indian Americans and the broader context of India's consumer internet landscape."
+          "note": "The article effectively connects Graham's policies and actions to the Indian diaspora, particularly regarding immigration and foreign policy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can engage with or benefit from the IPO.",
-          "Include a brief comparison with other fitness companies in India to provide context."
+          "Consider adding more direct quotes from Indian diaspora leaders or organizations to strengthen the connection.",
+          "Include a brief section on potential successors and their views on India-US relations to provide a forward-looking perspective."
         ],
         "verdict": "pass"
       },
