@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-12T09:59:01Z",
-  "stage": "Semifinals — 100 of 104 matches played",
+  "last_updated": "2026-07-12T11:59:26Z",
+  "stage": "Group Stage — 100 of 102 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -76,12 +76,12 @@
         "code": "SUI",
         "flag": "🇨🇭",
         "rank": 19,
-        "p": 5,
+        "p": 6,
         "w": 3,
         "d": 2,
-        "l": 0,
-        "gf": 9,
-        "ga": 3,
+        "l": 1,
+        "gf": 10,
+        "ga": 6,
         "pts": 11
       },
       {
@@ -508,13 +508,13 @@
         "code": "ARG",
         "flag": "🇦🇷",
         "rank": 1,
-        "p": 5,
-        "w": 5,
+        "p": 6,
+        "w": 6,
         "d": 0,
         "l": 0,
-        "gf": 14,
-        "ga": 5,
-        "pts": 15
+        "gf": 17,
+        "ga": 6,
+        "pts": 18
       },
       {
         "name": "Austria",
@@ -10482,6 +10482,102 @@
       "url": "https://www.threads.com/@fifaworldcup/post/Darb1MiFplN",
       "account": "@fifaworldcup",
       "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/3497989740372001/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DasMxgeD_Xk/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DarABf0Chos/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DarRUjHFnYX",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DarYlPqFq2M",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Darbq15Fi1V",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DarNhrtlr_x",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DarZ7KglnOn",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DarHob0FnfQ",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Daq6o1_Gcak",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dap08rwD1LT",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaqX1dtltsq",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DaqxP2ODyMN",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/DariYjEj9sf",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Dap7inbDUhj",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Daqxc_BD_5t",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
     }
   ],
   "tv": {
