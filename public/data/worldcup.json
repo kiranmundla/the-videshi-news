@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-11T23:59:55Z",
-  "stage": "Quarterfinals — 99 of 104 matches played",
+  "last_updated": "2026-07-12T03:58:39Z",
+  "stage": "Semifinals — 100 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -2172,8 +2172,8 @@
       "away": "Switzerland",
       "venue": "Arrowhead Stadium",
       "city": "Kansas City, MO",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT (AET)",
+      "score": "3-1 (AET)",
       "home_code": "ARG",
       "away_code": "SUI"
     },
@@ -2199,13 +2199,13 @@
       "time": "15:00",
       "tz": "ET",
       "home": "England",
-      "away": "TBD",
+      "away": "Argentina",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta, GA",
       "status": "scheduled",
       "score": null,
       "home_code": "ENG",
-      "away_code": "TBD"
+      "away_code": "ARG"
     }
   ],
   "knockout": {
@@ -2607,11 +2607,13 @@
           "time": "21:00",
           "tz": "ET",
           "venue": "Arrowhead Stadium, Kansas City, MO",
-          "status": "scheduled",
+          "status": "FT (AET)",
           "home": "Argentina",
           "home_code": "ARG",
           "away": "Switzerland",
-          "away_code": "SUI"
+          "away_code": "SUI",
+          "score": "3-1 (AET)",
+          "winner": "Argentina"
         }
       ]
     },
@@ -2639,8 +2641,8 @@
           "venue": "Mercedes-Benz Stadium, Atlanta, GA",
           "home": "England",
           "home_code": "ENG",
-          "away": "TBD (Argentina/Switzerland)",
-          "away_code": "TBD",
+          "away": "Argentina",
+          "away_code": "ARG",
           "status": "scheduled",
           "score": null
         }
@@ -10254,6 +10256,36 @@
       "url": "https://www.threads.com/@fifaworldcup/post/Daq_E9gmTEl",
       "account": "@fifaworldcup",
       "date": "2026-07-11"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DarOlsICIW8/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DarLVc5Cbsr/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DarDk1UC8V6/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1587153849589382/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-11"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1005248859009030/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-12"
     }
   ],
   "tv": {
