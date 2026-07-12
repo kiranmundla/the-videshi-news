@@ -173,23 +173,39 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
       {/* Main gallery — native scroll like other site strips */}
       <div className="space-y-2">
         <div className="relative group">
+          <style>{`.clf-gallery::-webkit-scrollbar { display: none; }`}</style>
           <div
             ref={stripRef}
-            className="v2-scroll-strip rounded-xl bg-black"
-            style={{ scrollSnapType: "x mandatory", gap: 0 }}
+            className="clf-gallery rounded-xl bg-black"
+            style={{
+              display: "flex",
+              overflowX: "auto",
+              overflowY: "hidden",
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            } as React.CSSProperties}
           >
             {photos.map((url, i) => (
               <div
                 key={i}
-                className="w-full flex-shrink-0 flex items-center justify-center cursor-pointer"
-                style={{ scrollSnapAlign: "start" }}
+                style={{
+                  minWidth: "100%",
+                  width: "100%",
+                  scrollSnapAlign: "start",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  cursor: "pointer",
+                }}
                 onClick={() => { setLightbox(true); resetZoom(); }}
               >
                 <img
                   src={url}
                   alt={`${title} — photo ${i + 1}`}
-                  className="w-full object-contain"
-                  style={{ maxHeight: "70vh" }}
+                  style={{ width: "100%", objectFit: "contain", maxHeight: "70vh" }}
                   draggable={false}
                 />
               </div>
