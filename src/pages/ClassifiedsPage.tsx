@@ -78,13 +78,8 @@ function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
             />
           </div>
         ) : (
-          <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 overflow-hidden">
-            <img
-              src={categoryFallbackImg(item.category)}
-              alt={item.category}
-              className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
+          <div className={`w-20 min-w-[5rem] sm:w-24 sm:min-w-[6rem] flex-shrink-0 flex items-center justify-center ${CATEGORY_BG[item.category] || "bg-muted/20"}`}>
+            <span className="text-3xl">{catEmoji}</span>
           </div>
         )}
 

@@ -572,10 +572,20 @@ export default function ClassifiedDetailPage() {
             <ChevronLeft className="h-4 w-4" /> Back to classifieds
           </Link>
 
-          {/* Header card — colored category bar + title + price */}
-          <div className="bg-card border border-border rounded-lg overflow-hidden">
-            {/* Category color bar */}
-            <div className={`px-5 py-3 flex flex-wrap items-center gap-2 ${catColor.replace('text-', 'border-l-4 border-l-').split(' ')[0]} bg-muted/30`}>
+          {/* Hero image or category fallback */}
+          <div className="relative w-full overflow-hidden rounded-xl">
+            <img
+              src={heroImage || categoryFallbackImg(item.category)}
+              alt={item.title}
+              className={heroImage ? "w-full object-contain bg-black rounded-xl" : "w-full h-48 sm:h-56 object-cover rounded-xl"}
+              style={heroImage ? { maxHeight: "75vh" } : undefined}
+            />
+          </div>
+
+          {/* Title + badges + meta */}
+          <div className="space-y-3">
+            {/* Badges */}
+            <div className="flex flex-wrap items-center gap-2">
               <span className={`text-sm font-medium px-3 py-1 rounded-full ${catColor}`}>
                 {catEmoji} {item.category}
               </span>
@@ -585,56 +595,40 @@ export default function ClassifiedDetailPage() {
                 </span>
               )}
               {item.price && (
-                <span className="text-sm font-bold px-3 py-1 rounded-md bg-amber-600/20 text-amber-500 ml-auto">
+                <span className="text-sm font-bold px-3 py-1 rounded-md bg-amber-600/20 text-amber-400">
                   {item.price}
                 </span>
               )}
             </div>
 
-            {/* Title + Meta */}
-            <div className="px-5 py-4 space-y-3">
-              <h1 className="text-xl sm:text-2xl font-bold font-serif leading-tight">
-                {item.title}
-              </h1>
+            {/* Title */}
+            <h1 className="text-xl sm:text-2xl font-bold font-serif leading-tight">
+              {item.title}
+            </h1>
 
-              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                {locationStr && (
-                  <span className="flex items-center gap-1">
-                    <MapPin className="h-3.5 w-3.5" />
-                    {locationStr}
-                  </span>
-                )}
+            {/* Meta row */}
+            <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+              {locationStr && (
                 <span className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" />
-                  Posted {timeAgo(item.created_at)}
+                  <MapPin className="h-3.5 w-3.5" />
+                  {locationStr}
                 </span>
-                {item.expires_at && (
-                  <span className="text-muted-foreground/50">
-                    Expires{" "}
-                    {new Date(item.expires_at).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </span>
-                )}
-              </div>
+              )}
+              <span className="flex items-center gap-1">
+                <Clock className="h-3.5 w-3.5" />
+                Posted {timeAgo(item.created_at)}
+              </span>
+              {item.expires_at && (
+                <span className="text-muted-foreground/50">
+                  Expires{" "}
+                  {new Date(item.expires_at).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </span>
+              )}
             </div>
-          </div>
-
-          {/* Hero image or category fallback */}
-          <div className="relative w-full overflow-hidden rounded-lg">
-            <img
-              src={heroImage || categoryFallbackImg(item.category)}
-              alt={item.title}
-              className={heroImage ? "w-full h-full object-contain bg-black" : "w-full h-48 sm:h-56 object-cover opacity-60"}
-              style={heroImage ? { maxHeight: "75vh" } : undefined}
-            />
-            {!heroImage && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-5xl">{catEmoji}</span>
-              </div>
-            )}
           </div>
 
           {/* Photo gallery */}
