@@ -118,6 +118,7 @@ export default function ClassifiedsPage() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const searchTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const [visibleCount, setVisibleCount] = useState(12);
 
   // Near Me / zip state
   const [nearMeActive, setNearMeActive] = useState(false);
@@ -190,6 +191,9 @@ export default function ClassifiedsPage() {
   }, [category, subcategory, city, debouncedSearch, nearMeActive, userCoords]);
 
   const subcats = category ? SUBCATEGORIES[category] || [] : [];
+
+  // Reset pagination when filters change
+  useEffect(() => { setVisibleCount(12); }, [category, subcategory, city, debouncedSearch, nearMeActive]);
 
   return (
     <>
@@ -350,10 +354,23 @@ export default function ClassifiedsPage() {
           </div>
         ) : (
           <div className="space-y-3">
-            {items.map((item) => (
+            {items.slice(0, visibleCount).map((item) => (
               <ClassifiedCard key={item.id} item={item} />
             ))}
           </div>
+          {items.length > visibleCount && (
+            <div className="flex flex-col items-center gap-2 mt-6">
+              <p className="text-sm text-muted-foreground">
+                Showing {Math.min(visibleCount, items.length)} of {items.length}
+              </p>
+              <button
+                onClick={() => setVisibleCount((c) => c + 12)}
+                className="px-6 py-2.5 rounded-lg border border-border text-sm font-medium hover:bg-muted/30 transition-colors"
+              >
+                Show More
+              </button>
+            </div>
+          )}
         )}
       </main>
 

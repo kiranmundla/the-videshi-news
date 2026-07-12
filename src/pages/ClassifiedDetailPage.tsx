@@ -667,15 +667,9 @@ export default function ClassifiedDetailPage() {
             </div>
           )}
 
-          {/* Share + Edit */}
+          {/* Share */}
           <div className="flex items-center justify-between border-t border-border pt-4">
             <ShareButtons title={item.title} url={pageUrl} />
-            <Link
-              to={`/classifieds/${item.slug}/edit`}
-              className="text-sm text-foreground/40 hover:text-primary transition-colors"
-            >
-              Edit / Delete
-            </Link>
           </div>
         </div>
       </main>
