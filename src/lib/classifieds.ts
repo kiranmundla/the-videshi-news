@@ -200,6 +200,19 @@ export function timeAgo(dateStr: string): string {
 /* Data fetching                                                      */
 /* ------------------------------------------------------------------ */
 
+
+/* ------------------------------------------------------------------ */
+/* Search — match all words (AND logic)                               */
+/* ------------------------------------------------------------------ */
+function matchesSearch(item: { title?: string | null; description?: string | null; category?: string | null; city?: string | null; subcategory?: string | null; price?: string | null }, query: string): boolean {
+  const searchable = [
+    item.title, item.description, item.category,
+    item.city, item.subcategory, item.price,
+  ].filter(Boolean).join(" ").toLowerCase();
+  const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  return words.every((w) => searchable.includes(w));
+}
+
 export async function getClassifieds(
   category: string | null = null,
   city: string | null = null,
@@ -228,14 +241,7 @@ export async function getClassifieds(
       }
     }
     if (search) {
-      const q = search.toLowerCase();
-      filtered = filtered.filter((c) =>
-        c.title?.toLowerCase().includes(q) ||
-        c.description?.toLowerCase().includes(q) ||
-        c.category?.toLowerCase().includes(q) ||
-        c.city?.toLowerCase().includes(q) ||
-        c.subcategory?.toLowerCase().includes(q)
-      );
+      filtered = filtered.filter((c) => matchesSearch(c, search));
     }
     return filtered.slice(offset, offset + limit);
   }
@@ -294,14 +300,7 @@ export async function getAllClassifieds(
     if (category) filtered = filtered.filter((c) => c.category === category);
     if (subcategory) filtered = filtered.filter((c) => c.subcategory === subcategory);
     if (search) {
-      const q = search.toLowerCase();
-      filtered = filtered.filter((c) =>
-        c.title?.toLowerCase().includes(q) ||
-        c.description?.toLowerCase().includes(q) ||
-        c.category?.toLowerCase().includes(q) ||
-        c.city?.toLowerCase().includes(q) ||
-        c.subcategory?.toLowerCase().includes(q)
-      );
+      filtered = filtered.filter((c) => matchesSearch(c, search));
     }
     return filtered.slice(0, 500);
   }

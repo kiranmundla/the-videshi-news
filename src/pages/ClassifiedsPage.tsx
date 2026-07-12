@@ -21,6 +21,22 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 /* ------------------------------------------------------------------ */
+/* Category fallback images                                           */
+/* ------------------------------------------------------------------ */
+const CAT_FALLBACK_IMG: Record<string, string> = {
+  Services: "/images/classifieds/services.jpg",
+  Housing: "/images/classifieds/housing.jpg",
+  "For Sale": "/images/classifieds/for-sale.jpg",
+  "Jobs & Gigs": "/images/classifieds/jobs.jpg",
+  Community: "/images/classifieds/community.jpg",
+};
+
+function categoryFallbackImg(category: string): string {
+  return CAT_FALLBACK_IMG[category] || CAT_FALLBACK_IMG["Community"];
+}
+
+
+/* ------------------------------------------------------------------ */
 /* Category Badge (matches events/directory style)                    */
 /* ------------------------------------------------------------------ */
 function CategoryBadge({ category }: { category: string }) {
@@ -60,8 +76,13 @@ function ClassifiedCard({ item }: { item: Classified & { _dist?: number } }) {
             />
           </div>
         ) : (
-          <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 flex items-center justify-center bg-muted/20">
-            <span className="text-3xl sm:text-4xl opacity-50">{catEmoji}</span>
+          <div className="w-24 min-w-[6rem] sm:w-32 sm:min-w-[8rem] flex-shrink-0 overflow-hidden">
+            <img
+              src={categoryFallbackImg(item.category)}
+              alt={item.category}
+              className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
           </div>
         )}
 
@@ -160,6 +181,23 @@ function CategoryTabBar({
   );
 }
 
+
+/* ------------------------------------------------------------------ */
+/* Time filter helper                                                 */
+/* ------------------------------------------------------------------ */
+function applyTimeFilter(items: Classified[], filter: string): Classified[] {
+  if (filter === "all") return items;
+  const now = Date.now();
+  const cutoffs: Record<string, number> = {
+    today: 24 * 60 * 60 * 1000,
+    week: 7 * 24 * 60 * 60 * 1000,
+    month: 30 * 24 * 60 * 60 * 1000,
+  };
+  const cutoff = cutoffs[filter] || 0;
+  if (!cutoff) return items;
+  return items.filter((item) => now - new Date(item.created_at).getTime() < cutoff);
+}
+
 /* ------------------------------------------------------------------ */
 /* Main Page                                                          */
 /* ------------------------------------------------------------------ */
@@ -169,6 +207,7 @@ export default function ClassifiedsPage() {
   const [category, setCategory] = useState<string | null>(null);
   const [subcategory, setSubcategory] = useState<string | null>(null);
   const [city, setCity] = useState<string | null>(null);
+  const [timeFilter, setTimeFilter] = useState<string>("all");
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const searchTimeout = useRef<ReturnType<typeof setTimeout>>();
@@ -222,28 +261,38 @@ export default function ClassifiedsPage() {
     if (nearMeActive && userCoords) {
       getAllClassifieds(category, debouncedSearch || null, subcategory).then((data) => {
         if (cancelled) return;
-        const sorted = data
+        const filtered = applyTimeFilter(data, timeFilter);
+        const sorted = filtered
           .map((item) => {
             const coords = getCityCoords(item.city);
             const dist = coords ? getDistanceMiles(userCoords.lat, userCoords.lng, coords.lat, coords.lng) : 9999;
             return { ...item, _dist: dist };
           })
-          .sort((a, b) => a._dist - b._dist);
+          .sort((a, b) => {
+            // Primary: distance, Secondary: newest first
+            if (a._dist !== b._dist) return a._dist - b._dist;
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          });
         setItems(sorted);
         setLoading(false);
       });
     } else {
       getClassifieds(category, city, debouncedSearch || null, subcategory).then((data) => {
-        if (!cancelled) { setItems(data); setLoading(false); }
+        if (cancelled) return;
+        const filtered = applyTimeFilter(data, timeFilter);
+        // Sort by newest first when no distance sort
+        filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        setItems(filtered);
+        setLoading(false);
       });
     }
     return () => { cancelled = true; };
-  }, [category, subcategory, city, debouncedSearch, nearMeActive, userCoords]);
+  }, [category, subcategory, city, debouncedSearch, nearMeActive, userCoords, timeFilter]);
 
   const subcats = category ? SUBCATEGORIES[category] || [] : [];
 
   // Reset pagination when filters change
-  useEffect(() => { setVisibleCount(12); }, [category, subcategory, city, debouncedSearch, nearMeActive]);
+  useEffect(() => { setVisibleCount(12); }, [category, subcategory, city, debouncedSearch, nearMeActive, timeFilter]);
 
   return (
     <>
@@ -352,6 +401,29 @@ export default function ClassifiedsPage() {
               ))}
             </select>
           </div>
+        </div>
+
+        {/* Time Filter */}
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-none -mx-1 px-1">
+          <span className="text-xs text-muted-foreground shrink-0">Posted:</span>
+          {[
+            { key: "all", label: "All Time" },
+            { key: "today", label: "Today" },
+            { key: "week", label: "This Week" },
+            { key: "month", label: "This Month" },
+          ].map((t) => (
+            <button
+              key={t.key}
+              onClick={() => setTimeFilter(t.key)}
+              className={`shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                timeFilter === t.key
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "border-border text-foreground/60 hover:border-primary hover:text-primary"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
         </div>
 
         {/* Listings — 2-col grid like events/directory */}

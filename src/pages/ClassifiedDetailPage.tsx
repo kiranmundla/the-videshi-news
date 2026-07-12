@@ -25,6 +25,21 @@ import {
 } from "@/lib/classifieds";
 import TurnstileWidget from "@/components/TurnstileWidget";
 
+/* ------------------------------------------------------------------ */
+/* Category fallback images                                           */
+/* ------------------------------------------------------------------ */
+const CAT_FALLBACK_IMG: Record<string, string> = {
+  Services: "/images/classifieds/services.jpg",
+  Housing: "/images/classifieds/housing.jpg",
+  "For Sale": "/images/classifieds/for-sale.jpg",
+  "Jobs & Gigs": "/images/classifieds/jobs.jpg",
+  Community: "/images/classifieds/community.jpg",
+};
+
+function categoryFallbackImg(category: string): string {
+  return CAT_FALLBACK_IMG[category] || CAT_FALLBACK_IMG["Community"];
+}
+
 const sb = supabase as any;
 
 /* ------------------------------------------------------------------ */
@@ -548,7 +563,7 @@ export default function ClassifiedDetailPage() {
       <CategoryPills />
 
       <main className="container py-6">
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-5">
           {/* Back link */}
           <Link
             to="/classifieds"
@@ -557,17 +572,70 @@ export default function ClassifiedDetailPage() {
             <ChevronLeft className="h-4 w-4" /> Back to classifieds
           </Link>
 
-          {/* Hero image */}
-          {heroImage && (
-            <div className="relative w-full max-h-[75vh] overflow-hidden rounded-lg">
-              <img
-                src={heroImage}
-                alt={item.title}
-                className="w-full h-full object-contain bg-black"
-                style={{ maxHeight: "75vh" }}
-              />
+          {/* Header card — colored category bar + title + price */}
+          <div className="bg-card border border-border rounded-lg overflow-hidden">
+            {/* Category color bar */}
+            <div className={`px-5 py-3 flex flex-wrap items-center gap-2 ${catColor.replace('text-', 'border-l-4 border-l-').split(' ')[0]} bg-muted/30`}>
+              <span className={`text-sm font-medium px-3 py-1 rounded-full ${catColor}`}>
+                {catEmoji} {item.category}
+              </span>
+              {item.subcategory && (
+                <span className="text-sm px-2.5 py-0.5 rounded-full bg-blue-600/20 text-blue-300 font-medium">
+                  {item.subcategory}
+                </span>
+              )}
+              {item.price && (
+                <span className="text-sm font-bold px-3 py-1 rounded-md bg-amber-600/20 text-amber-500 ml-auto">
+                  {item.price}
+                </span>
+              )}
             </div>
-          )}
+
+            {/* Title + Meta */}
+            <div className="px-5 py-4 space-y-3">
+              <h1 className="text-xl sm:text-2xl font-bold font-serif leading-tight">
+                {item.title}
+              </h1>
+
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                {locationStr && (
+                  <span className="flex items-center gap-1">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {locationStr}
+                  </span>
+                )}
+                <span className="flex items-center gap-1">
+                  <Clock className="h-3.5 w-3.5" />
+                  Posted {timeAgo(item.created_at)}
+                </span>
+                {item.expires_at && (
+                  <span className="text-muted-foreground/50">
+                    Expires{" "}
+                    {new Date(item.expires_at).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Hero image or category fallback */}
+          <div className="relative w-full overflow-hidden rounded-lg">
+            <img
+              src={heroImage || categoryFallbackImg(item.category)}
+              alt={item.title}
+              className={heroImage ? "w-full h-full object-contain bg-black" : "w-full h-48 sm:h-56 object-cover opacity-60"}
+              style={heroImage ? { maxHeight: "75vh" } : undefined}
+            />
+            {!heroImage && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-5xl">{catEmoji}</span>
+              </div>
+            )}
+          </div>
 
           {/* Photo gallery */}
           {galleryPhotos.length > 0 && (
@@ -588,71 +656,25 @@ export default function ClassifiedDetailPage() {
             </div>
           )}
 
-          {/* Badges + Price */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span
-              className={`text-sm font-medium px-3 py-1 rounded-full ${catColor}`}
-            >
-              {catEmoji} {item.category}
-            </span>
-            {item.subcategory && (
-              <span className="text-sm px-3 py-1 rounded-full bg-muted/50 text-foreground/70">
-                {item.subcategory}
-              </span>
-            )}
-            {item.price && (
-              <span className="text-sm font-bold px-3 py-1 rounded-md bg-amber-100 text-amber-800">
-                {item.price}
-              </span>
-            )}
-          </div>
-
-          {/* Title */}
-          <h1 className="text-2xl sm:text-3xl font-bold font-serif leading-tight">
-            {item.title}
-          </h1>
-
-          {/* Meta */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-foreground/50">
-            {locationStr && (
-              <span className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
-                {locationStr}
-              </span>
-            )}
-            <span className="flex items-center gap-1">
-              <Clock className="h-4 w-4" />
-              Posted {timeAgo(item.created_at)}
-            </span>
-            {item.expires_at && (
-              <span className="text-foreground/30">
-                Expires{" "}
-                {new Date(item.expires_at).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </span>
-            )}
-          </div>
-
-          {/* Description */}
+          {/* Description card */}
           {item.description && (
-            <div className="prose prose-sm prose-invert max-w-none">
-              <p className="whitespace-pre-wrap text-foreground/80 leading-relaxed">
+            <div className="bg-card border border-border rounded-lg p-5">
+              <h2 className="font-semibold text-base mb-3 flex items-center gap-2">
+                <span className="text-lg">📋</span> Details
+              </h2>
+              <p className="whitespace-pre-wrap text-foreground/80 leading-relaxed text-sm">
                 {item.description}
               </p>
             </div>
           )}
 
-          {/* Inquiry form — replaces all contact info */}
-          <InquiryForm classified={item} />
-
-          {/* Location */}
+          {/* Location card */}
           {locationStr && (
-            <div className="border border-border rounded-lg p-5 space-y-3 bg-card">
-              <h2 className="font-semibold text-lg">Location</h2>
-              <p className="text-foreground/70">
+            <div className="bg-card border border-border rounded-lg p-5 space-y-3">
+              <h2 className="font-semibold text-base flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-primary" /> Location
+              </h2>
+              <p className="text-foreground/70 text-sm">
                 {[item.city, item.state, item.zip].filter(Boolean).join(", ")}
               </p>
               <a
@@ -661,11 +683,14 @@ export default function ClassifiedDetailPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
               >
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-3.5 w-3.5" />
                 Get Directions
               </a>
             </div>
           )}
+
+          {/* Inquiry form */}
+          <InquiryForm classified={item} />
 
           {/* Share */}
           <div className="flex items-center justify-between border-t border-border pt-4">
@@ -677,4 +702,5 @@ export default function ClassifiedDetailPage() {
       <SiteFooter />
     </>
   );
+
 }
