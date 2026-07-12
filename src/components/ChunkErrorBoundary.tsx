@@ -31,7 +31,10 @@ export default class ChunkErrorBoundary extends React.Component<
       // Auto-reload once per 30 seconds max to prevent loops
       if (Date.now() - last > 30_000) {
         sessionStorage.setItem(key, String(Date.now()));
-        window.location.reload();
+        // Cache-busting navigation — reload() can re-serve stale chunks on mobile
+        const url = new URL(window.location.href);
+        url.searchParams.set("_cb", String(Date.now()));
+        window.location.replace(url.toString());
         return;
       }
     }
@@ -45,7 +48,12 @@ export default class ChunkErrorBoundary extends React.Component<
             A newer version is available.
           </p>
           <button
-            onClick={() => window.location.reload()}
+            onClick={() => {
+              // Cache-busting hard navigation
+              const url = new URL(window.location.href);
+              url.searchParams.set("_cb", String(Date.now()));
+              window.location.replace(url.toString());
+            }}
             style={{
               padding: "8px 20px",
               borderRadius: 8,

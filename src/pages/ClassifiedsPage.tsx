@@ -326,13 +326,21 @@ export default function ClassifiedsPage() {
               Community marketplace for the Indian diaspora
             </p>
           </div>
-          <Link
-            to="/classifieds/submit"
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors self-start sm:self-auto whitespace-nowrap"
-          >
-            <Plus className="h-4 w-4" />
-            Post a Classified
-          </Link>
+          <div className="flex items-center gap-3 self-start sm:self-auto">
+            <Link
+              to="/classifieds/submit"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+            >
+              <Plus className="h-4 w-4" />
+              Post a Classified
+            </Link>
+            <Link
+              to="/classifieds/submit?mode=manage"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
+            >
+              Manage my classifieds
+            </Link>
+          </div>
         </div>
 
         {/* Category Tabs */}
