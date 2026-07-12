@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T17:16:03.904989+00:00",
+  "timestamp": "2026-07-12T17:45:22.613489+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,135 +10,6 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "d4c89982-9cd4-43aa-8d93-15ad357ea822",
-      "headline": "Georgia Is Europe's Best-Kept Secret for NRIs \u2014 and Your US Visa Gets You In",
-      "slug": "georgia-europe-hidden-gem-nri-visa-free-travel-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Panoramic view of Tbilisi, Georgia",
-          "reason": "The photo shows Tbilisi, which is relevant to the story about Georgia."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the travel advantages for NRIs, making it relevant and appealing to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Add more personal anecdotes or testimonials from NRIs who have traveled to Georgia to enhance relatability.",
-          "Include a section on cultural experiences or events in Georgia that might interest NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f9f93dcf-1b8e-4e85-8044-f287cb2f5be6",
-      "headline": "Air India Cuts Flights to Chicago, San Francisco, and Toronto as Fuel Costs Bite",
-      "slug": "air-india-cuts-us-routes-fuel-costs-diaspora-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air India Boeing 787-8 Dreamliner",
-          "reason": "The photo shows an Air India aircraft, relevant to the airline story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the impact of flight reductions on the Indian diaspora, particularly highlighting the affected routes and providing alternatives for travelers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from affected passengers or travel experts to enhance the human angle of the story.",
-          "Include more detailed statistics or data on the Indian diaspora's travel patterns to strengthen the article's relevance."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "340429d1-9444-494e-9777-a15749643c34",
-      "headline": "Navi Mumbai Airport Gets Its First International Flight on Tuesday",
-      "slug": "navi-mumbai-airport-first-international-flight-abu-dhabi-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Navi Mumbai International Airport terminal",
-          "reason": "The photo shows the airport terminal relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of the new airport for the Indian diaspora, particularly those in the Gulf region."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from airline representatives or local officials to enhance credibility.",
-          "Include more statistics or data on expected passenger growth to provide a clearer picture of the airport's impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "822ce0be-ae51-4f44-887f-389dcc5a566a",
       "headline": "The Science Is Settling: What 104 Clinical Trials Say About Turmeric's Real Health Benefits",
@@ -151,7 +22,7 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "various spices including turmeric",
-          "reason": "The photo includes turmeric, relevant to the story on turmeric's health benefits."
+          "reason": "The photo includes turmeric, which is relevant to the story about turmeric's health benefits."
         },
         "inline_image_mismatches": []
       },
@@ -171,7 +42,7 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Consider adding more specific examples of how turmeric is used in South Asian cooking to enhance cultural relevance.",
-          "Include quotes or insights from health professionals to bolster credibility."
+          "Include quotes or insights from health professionals to strengthen the credibility of the claims made."
         ],
         "verdict": "pass"
       },
@@ -208,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article briefly mentions the diaspora connection but does not elaborate on how NRIs can engage with or relate to the run club phenomenon."
+          "note": "The article briefly mentions the diaspora connection, but it could be expanded to better engage NRI readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora connection to provide more context on how NRIs can engage with or relate to the run club culture in India.",
-          "Include quotes or anecdotes from NRIs who have participated in run clubs or similar activities to enhance the connection."
+          "Expand on the diaspora connection to make it more relevant for NRI readers.",
+          "Include quotes or anecdotes from NRI participants in run clubs to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -240,19 +111,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "missing image description"
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant to the diaspora."
+          "note": "The article directly addresses South Asian Americans and their unique health risks, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that visually represents the topic of heart health in South Asians.",
-          "Expand on the recommendations for early screening to provide more actionable advice for readers."
+          "Include a relevant image description to enhance the article's visual context.",
+          "Consider adding quotes or testimonials from South Asian individuals to personalize the health message."
         ],
         "verdict": "pass"
       },
