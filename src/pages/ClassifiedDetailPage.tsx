@@ -54,56 +54,44 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
   const [lightbox, setLightbox] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [dragX, setDragX] = useState(0);
-  const [dragging, setDragging] = useState(false);
-  const touchRef = useRef<{ startX: number; startY: number; dist: number; panning: boolean; started: boolean }>({
-    startX: 0, startY: 0, dist: 0, panning: false, started: false,
+  const touchRef = useRef<{ startX: number; startY: number; dist: number; panning: boolean }>({
+    startX: 0, startY: 0, dist: 0, panning: false,
   });
+  const stripRef = useRef<HTMLDivElement>(null);
 
   const total = photos.length;
-  const prev = useCallback(() => setActive((i) => Math.max(0, i - 1)), []);
-  const next = useCallback(() => setActive((i) => Math.min(total - 1, i + 1)), [total]);
 
   /* Reset zoom when switching photos or closing */
   const resetZoom = useCallback(() => { setZoom(1); setPan({ x: 0, y: 0 }); }, []);
 
-  /* Main gallery touch — real-time drag with transform */
-  const handleMainTouchStart = useCallback((e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      touchRef.current.startX = e.touches[0].clientX;
-      touchRef.current.startY = e.touches[0].clientY;
-      touchRef.current.started = false;
-      setDragging(true);
-    }
+  /* Track native scroll to update active index + counter */
+  useEffect(() => {
+    const el = stripRef.current;
+    if (!el) return;
+    let rafId = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const w = el.clientWidth;
+        if (w > 0) {
+          const idx = Math.round(el.scrollLeft / w);
+          if (idx >= 0 && idx < total) setActive(idx);
+        }
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => { el.removeEventListener("scroll", onScroll); cancelAnimationFrame(rafId); };
+  }, [total]);
+
+  /* Scroll to photo when active changes from thumbnail/arrow click */
+  const scrollTo = useCallback((idx: number) => {
+    setActive(idx);
+    const el = stripRef.current;
+    if (el) el.scrollTo({ left: idx * el.clientWidth, behavior: "smooth" });
   }, []);
 
-  const handleMainTouchMove = useCallback((e: React.TouchEvent) => {
-    if (e.touches.length !== 1) return;
-    const dx = e.touches[0].clientX - touchRef.current.startX;
-    const dy = e.touches[0].clientY - touchRef.current.startY;
-    // Only start horizontal drag if mostly horizontal
-    if (!touchRef.current.started) {
-      if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
-        touchRef.current.started = true;
-      } else if (Math.abs(dy) > 8) {
-        return; // vertical scroll, bail
-      } else {
-        return; // too small, wait
-      }
-    }
-    if (touchRef.current.started) {
-      e.preventDefault();
-      setDragX(dx);
-    }
-  }, []);
-
-  const handleMainTouchEnd = useCallback(() => {
-    setDragging(false);
-    if (Math.abs(dragX) > 60) {
-      if (dragX < 0) next(); else prev();
-    }
-    setDragX(0);
-  }, [dragX, next, prev]);
+  const prev = useCallback(() => scrollTo(Math.max(0, active - 1)), [active, scrollTo]);
+  const next = useCallback(() => scrollTo(Math.min(total - 1, active + 1)), [active, total, scrollTo]);
 
   /* Lightbox touch: swipe (when not zoomed) + pinch-to-zoom */
   const handleLbTouchStart = useCallback((e: React.TouchEvent) => {
@@ -142,13 +130,14 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
     if (zoom <= 1) {
       const dx = e.changedTouches[0].clientX - touchRef.current.startX;
       if (Math.abs(dx) > 50) {
-        if (dx < 0) next(); else prev();
+        if (dx < 0) scrollTo(Math.min(total - 1, active + 1));
+        else scrollTo(Math.max(0, active - 1));
         resetZoom();
       }
     }
     touchRef.current.dist = 0;
     touchRef.current.panning = false;
-  }, [zoom, next, prev, resetZoom]);
+  }, [zoom, active, total, scrollTo, resetZoom]);
 
   /* Double-tap to toggle zoom */
   const lastTapRef = useRef(0);
@@ -179,47 +168,32 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
     return () => { document.body.style.overflow = ""; };
   }, [lightbox]);
 
-  /* Compute transform for the sliding strip */
-  const slideOffset = -(active * 100);
-  const dragPercent = total > 0 ? (dragX / (typeof window !== "undefined" ? window.innerWidth : 400)) * 100 : 0;
-
   return (
     <>
-      {/* Main gallery — transform-based slider */}
+      {/* Main gallery — native scroll like other site strips */}
       <div className="space-y-2">
         <div className="relative group">
-          {/* Overflow container */}
           <div
-            className="w-full overflow-hidden rounded-xl bg-black"
-            onTouchStart={handleMainTouchStart}
-            onTouchMove={handleMainTouchMove}
-            onTouchEnd={handleMainTouchEnd}
+            ref={stripRef}
+            className="v2-scroll-strip rounded-xl bg-black"
+            style={{ scrollSnapType: "x mandatory", gap: 0 }}
           >
-            {/* Sliding strip */}
-            <div
-              className="flex"
-              style={{
-                transform: `translateX(${slideOffset + dragPercent}%)`,
-                transition: dragging ? "none" : "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                willChange: "transform",
-              }}
-            >
-              {photos.map((url, i) => (
-                <div
-                  key={i}
-                  className="w-full flex-shrink-0 flex items-center justify-center cursor-pointer"
-                  onClick={() => { if (!touchRef.current.started) { setLightbox(true); resetZoom(); } }}
-                >
-                  <img
-                    src={url}
-                    alt={`${title} — photo ${i + 1}`}
-                    className="w-full object-contain"
-                    style={{ maxHeight: "70vh" }}
-                    draggable={false}
-                  />
-                </div>
-              ))}
-            </div>
+            {photos.map((url, i) => (
+              <div
+                key={i}
+                className="w-full flex-shrink-0 flex items-center justify-center cursor-pointer"
+                style={{ scrollSnapAlign: "start" }}
+                onClick={() => { setLightbox(true); resetZoom(); }}
+              >
+                <img
+                  src={url}
+                  alt={`${title} — photo ${i + 1}`}
+                  className="w-full object-contain"
+                  style={{ maxHeight: "70vh" }}
+                  draggable={false}
+                />
+              </div>
+            ))}
           </div>
           {/* Zoom hint */}
           <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white/80 text-xs px-2.5 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -227,7 +201,7 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
           </div>
           {/* Counter */}
           {total > 1 && (
-            <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+            <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full pointer-events-none">
               {active + 1} / {total}
             </div>
           )}
@@ -258,7 +232,7 @@ function PhotoGallery({ photos, title }: { photos: string[]; title: string }) {
             {photos.map((url, i) => (
               <button
                 key={i}
-                onClick={() => setActive(i)}
+                onClick={() => scrollTo(i)}
                 className={`flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
                   i === active
                     ? "border-primary ring-1 ring-primary/40 opacity-100"
