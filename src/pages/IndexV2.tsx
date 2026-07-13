@@ -25,6 +25,7 @@ import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import ArticleCard from "@/components/ArticleCard";
+import CategorySubTopics, { hasSubTopics } from "@/components/homepage/CategorySubTopics";
 import "@/components/homepage/homepage-v2.css";
 
 import {
@@ -273,6 +274,7 @@ export default function IndexV2() {
     }
     setCatLoading(true);
     // Try static JSON first, fallback to Supabase
+    const fetchLimit = hasSubTopics(selectedCategory) ? 60 : 30;
     fetch(`/data/category/${selectedCategory}.json`)
       .then((r) => {
         if (!r.ok) throw new Error("not found");
@@ -284,7 +286,7 @@ export default function IndexV2() {
       })
       .catch(() => {
         // Fallback to Supabase for categories without static JSON (e.g. immigration)
-        getArticlesByCategory(selectedCategory, 30)
+        getArticlesByCategory(selectedCategory, fetchLimit)
           .then((articles) => {
             setCategoryArticles(articles);
             setCatLoading(false);
@@ -474,7 +476,11 @@ export default function IndexV2() {
               <div className="container py-12 text-center text-muted-foreground">Loading…</div>
             ) : categoryArticles.length === 0 ? (
               <div className="container py-12 text-center text-muted-foreground">No articles yet.</div>
+            ) : hasSubTopics(selectedCategory) ? (
+              /* Sub-topic grouped view */
+              <CategorySubTopics category={selectedCategory} articles={categoryArticles} />
             ) : (
+              /* Flat grid for categories without sub-topics */
               <section className="container" style={{ padding: "24px 16px" }}>
                 <div style={{
                   display: "grid",
