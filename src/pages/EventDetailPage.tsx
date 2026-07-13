@@ -184,7 +184,7 @@ function ShareButtons({ title, slug }: { title: string; slug: string }) {
     "inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all";
 
   return (
-    <div className="flex flex-wrap items-center gap-3 mt-6">
+    <div className="flex flex-wrap items-center gap-3">
       <span className="text-xs text-white/30 uppercase tracking-widest font-bold mr-1">Share</span>
 
       {/* WhatsApp */}
@@ -519,7 +519,7 @@ export default function EventDetailPage() {
         )}
 
         {/* ========== TITLE CARD ========== */}
-        <div className="px-4 -mt-6 relative z-10">
+        <div className={`px-4 relative z-10 ${event.image_url ? "-mt-6" : "pt-8"}`}>
           <div className="max-w-4xl mx-auto">
 
             {past && (
@@ -584,11 +584,9 @@ export default function EventDetailPage() {
             )}
 
             {/* Share & Calendar buttons */}
-            <div className="flex flex-wrap items-start gap-3">
+            <div className="flex flex-wrap items-center gap-3 mt-6">
               <ShareButtons title={event.title} slug={event.slug || slug!} />
-              <div className="mt-6">
-                <AddToCalendar event={event} slug={event.slug || slug!} />
-              </div>
+              <AddToCalendar event={event} slug={event.slug || slug!} />
             </div>
           </div>
         </div>
