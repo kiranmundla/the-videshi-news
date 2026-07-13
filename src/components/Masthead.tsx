@@ -88,6 +88,7 @@ function CategoryNavBar() {
         style={{ borderColor: "hsl(var(--rule))" }}
       >
         <div className="container">
+          {routeSlug !== "" && (
           <div className="flex items-center overflow-x-auto scrollbar-none -mx-1 px-1 gap-0">
             {NAV_CATEGORIES.map((cat) => {
               const isActive = routeSlug === cat.slug;
@@ -110,6 +111,7 @@ function CategoryNavBar() {
               );
             })}
           </div>
+          )}
 
           {/* Row 2 — feature sections (hidden on homepage, hub icons replace it) */}
           {routeSlug !== "" && (
