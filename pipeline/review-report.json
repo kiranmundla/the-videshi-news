@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-13T21:15:47.884672+00:00",
+  "timestamp": "2026-07-13T23:15:27.780961+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,61 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "3dcf31ac-759d-471a-81bc-fae608012f58",
-      "headline": "Indian IT Stocks Just Posted Their Best Day in a Month. The $315 Billion Sector's AI Pivot Is Starting to Work.",
-      "slug": "indian-it-stocks-rally-ai-partnerships-july-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "084fbd1a-7f8b-4689-82b0-77b0ead63f35",
-            "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's"
-          },
-          {
-            "article_id": "6e2919e4-fef7-4f65-9b5a-274db6322787",
-            "headline": "Oil Jumps 3%, Rupee Slides, Sensex Sinks. For Indian Familie"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Indian IT stocks story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of the BSE building is relevant to the financial context but does not directly depict IT stocks or AI."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the Indian IT sector's performance, which is relevant to NRIs interested in investment opportunities and the economic landscape of India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct implications for NRI investors in the Indian IT sector.",
-          "Consider adding a brief overview of how these developments in AI could impact the global tech landscape."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b979da33-456a-4015-aafc-d1854d237939",
-      "headline": "The Founder Who Built a $2 Billion Fintech Just Bet $30 Million on an AI Workplace That Could Replace Slack and Notion",
-      "slug": "bhavin-turakhia-neo-ai-workplace-30-million-20260713",
+      "id": "ff5badd7-e079-440f-8945-779fc0e41a2e",
+      "headline": "Six, Four, Four, Six. Hassan Khan's Ten-Ball Demolition Seals the MLC Playoff Picture.",
+      "slug": "mlc-2026-hassan-khan-10-ball-36-sf-unicorns-playoffs-final-standings-american-cricket-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -73,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man holding a phone, smiling",
-          "reason": "The photo plausibly shows Bhavin Turakhia, relevant to the story."
+          "what_photo_shows": "Grand Prairie Stadium in Texas",
+          "reason": "The stadium is relevant to the MLC cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -88,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the AI platform to the experiences of Indian-origin professionals, making it relevant for the diaspora."
+          "note": "The article effectively connects the playoff event to the Indian diaspora in the Bay Area, highlighting its significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how Neo could directly impact NRI professionals' workflows.",
-          "Include quotes or insights from other industry experts to provide a broader perspective on the AI-native trend."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more context about the significance of the MLC for American cricket."
         ],
         "verdict": "pass"
       },
@@ -106,23 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7b7fd719-7a2e-4f0a-aad1-0ded3655f332",
-      "headline": "HCLTech Just Beat Estimates on Every Metric That Matters. Its AI Revenue Hit $171 Million.",
-      "slug": "hcltech-q1-earnings-beat-ai-revenue-171-million-20260713",
+      "id": "41e84532-57bf-4d02-9cdd-fd9641b7670b",
+      "headline": "Manjrekar Says the IPL 'Puts Heavy Makeup' on Indian Batters. Gavaskar Agrees the System Is Broken.",
+      "slug": "manjrekar-gavaskar-blast-india-t20i-system-ipl-makeup-batters-ranking-drop-england-whitewash-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "8a0356c0-6f28-453b-8bf1-f72674ef3009",
-            "headline": "HCLTech's $1.1 Billion AI Deal Sets the Stage for a Mega Ear"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "HCL Technologies headquarters building",
-          "reason": "The photo shows HCL Technologies headquarters, relevant to the story about the company."
+          "what_photo_shows": "A man at an airport",
+          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -136,13 +79,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses HCLTech's role in the US job market and its impact on Indian IT professionals, which is relevant to the NRI audience."
+          "note": "The article connects the performance of the Indian cricket team to the interests of NRI readers, particularly those who follow the IPL and Indian cricket closely."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more context on how HCLTech's performance compares to other Indian IT firms specifically for NRI investors.",
-          "Include quotes from industry experts or analysts to enhance credibility and provide diverse perspectives."
+          "Consider adding more direct quotes from players or analysts to enhance the article's depth.",
+          "Include a brief historical context of India's performance in T20Is to provide readers with a clearer picture."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "40cd9e66-6360-4a8a-81f2-f40e65889b9d",
+      "headline": "Out With Morkel, In With Bahutule. India's Coaching Staff Gets a Post-Whitewash Facelift.",
+      "slug": "india-coaching-overhaul-morkel-absent-bahutule-interim-nayar-returns-gambhir-sri-lanka-nri-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "cricketer drinking water on field",
+          "reason": "The photo shows a cricketer, relevant to the cricket coaching staff story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the NRI audience by discussing the implications of coaching changes on India's cricket performance, which is of interest to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the article's depth.",
+          "Include more context about the significance of the coaching changes for the upcoming series."
         ],
         "verdict": "pass"
       },
