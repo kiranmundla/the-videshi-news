@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import MarketTicker from "@/components/MarketTicker";
@@ -73,6 +74,31 @@ function saveCache(data: HomeCache) {
 }
 
 
+
+
+/* ── Live Events Strip (rendered after hub icons on homepage) ── */
+const LIVE_EVENTS = [
+  { slug: "world-cup", label: "FIFA World Cup", path: "/world-cup", icon: "⚽" },
+];
+
+function LiveStrip() {
+  if (LIVE_EVENTS.length === 0) return null;
+  return (
+    <div className="v2-home-live-strip">
+      <span className="v2-home-live-dot-wrap">
+        <span className="v2-home-live-ping" />
+        <span className="v2-home-live-dot" />
+      </span>
+      <span className="v2-home-live-label">Live</span>
+      {LIVE_EVENTS.map((e) => (
+        <Link key={e.slug} to={e.path} className="v2-home-live-link">
+          <span className="v2-home-live-icon">{e.icon}</span>
+          <span className="v2-home-live-text">{e.label}</span>
+        </Link>
+      ))}
+    </div>
+  );
+}
 
 // ── Component ──
 export default function IndexV2() {

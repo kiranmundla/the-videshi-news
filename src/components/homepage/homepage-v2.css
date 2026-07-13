@@ -853,3 +853,69 @@
   background: #A32D2D;
   border-radius: 1px;
 }
+
+/* ── Home Live Strip (after hub icons) ── */
+.v2-home-live-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #0B1D3A, #132d54);
+}
+.v2-home-live-dot-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+.v2-home-live-ping {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  opacity: 0.6;
+  animation: livePing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes livePing {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.v2-home-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  position: relative;
+}
+.v2-home-live-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ef4444;
+  margin-right: 4px;
+}
+.v2-home-live-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.v2-home-live-link:hover {
+  background: rgba(255,255,255,0.08);
+}
+.v2-home-live-icon {
+  font-size: 12px;
+}
+.v2-home-live-text {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}

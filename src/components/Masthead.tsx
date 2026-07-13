@@ -151,8 +151,8 @@ function CategoryNavBar() {
           </div>
           )}
 
-          {/* Row 3 — live happenings (conditional, dark accent strip — full bleed on mobile) */}
-          {LIVE_HAPPENINGS.length > 0 && (
+          {/* Row 3 — live happenings (hidden on homepage, shown in HubStrip area instead) */}
+          {routeSlug !== "" && LIVE_HAPPENINGS.length > 0 && (
             <div
               className="flex items-center overflow-x-auto scrollbar-none gap-0 px-1 v2-live-strip"
               style={{ background: "linear-gradient(135deg, #0B1D3A, #132d54)" }}
