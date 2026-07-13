@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-13T16:01:29.216001+00:00",
+  "last_refresh": "2026-07-13T22:00:08.420308+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -2248,6 +2248,13 @@
       "likes": 180,
       "image_count": 1,
       "scraped_at": "2026-07-13T16:01:24.669075+00:00"
+    },
+    "https://www.instagram.com/reel/DavS8CNiAQ6/": {
+      "account": "foxsports",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-13T21:59:55.308376+00:00"
     }
   },
   "images": [
@@ -14626,6 +14633,53 @@
       "account": "sportmts",
       "likes": 180,
       "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/746199014_18614397124053765_5050759525616133988_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=106&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=_4LDAkOzPu4Q7kNvwGG5HNs&_nc_oc=AdoRDLTW6rKpI400G7sgF4SxsttybED4L4x6djF0o2W3xUcMOLOPOA0ot4Xjiekq7cBneCWg8bB_YD03xgUMWd7j&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=Zcf34QPin1QWVZeFOVqJdA&_nc_ss=7860f&oh=00_AQA6QH42b-XmVOfzWHVHkCLmOXLh3pT3Zl8zb63Qku2YZQ&oe=6A5B35CE",
+      "post_url": "https://www.instagram.com/reel/DavS8CNiAQ6/",
+      "platform": "instagram",
+      "caption": "2,819 likes, 20 comments - foxsports on July 13, 2026: \"Relive every 2026 FIFA World Cup goal in the Bay Area \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-13T21:59:55.307833+00:00",
+      "account": "foxsports",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-2.cdninstagram.com/v/t51.71878-15/747062759_1439615628215928_2729029221283442475_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=107&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=aLLtIYZc_oMQ7kNvwHZfkSN&_nc_oc=AdobYuSIUqf6rE5U4uKjaoY48967em0BvLYemWeojilOrUAormcR7yHLnJgI06vRVKEI0mlWJvPODcfU7GXFsvq5&_nc_zt=23&_nc_ht=scontent-mia3-2.cdninstagram.com&_nc_gid=yiND91ooPvqoaFhrt5VfCw&_nc_ss=7860f&oh=00_AQCX10d5wZCIVnqkj2iBVsODWFNgubEXc_upIhkH37i_Vw&oe=6A5B42A3",
+      "post_url": "https://www.instagram.com/reel/DavS8CNiAQ6/",
+      "platform": "instagram",
+      "caption": "2,819 likes, 20 comments - foxsports on July 13, 2026: \"Relive every 2026 FIFA World Cup goal in the Bay Area \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-13T21:59:55.307868+00:00",
+      "account": "foxsports",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-foxsports-fe9f23d1b4f4.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 58548
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t39.30808-6/746476941_1590152835800522_4872855868190965274_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=rq5cGk4INHsQ7kNvwHM6_TB&_nc_oc=AdrVjdM28RP5P47U_xT_ej28O98PoHNnJeLJE6coIfnquqa0uvVCq1-IB4P_tMzsQO1B_G6wZXgCxiwu_xGCkvrm&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=yiND91ooPvqoaFhrt5VfCw&_nc_ss=7860f&oh=00_AQD-0L8gzB5BhHVlXAONdfQ1dopjIUAGNeQ-VSgzm5U_uA&oe=6A5B4917",
+      "post_url": "https://www.instagram.com/reel/DavS8CNiAQ6/",
+      "platform": "instagram",
+      "caption": "2,819 likes, 20 comments - foxsports on July 13, 2026: \"Relive every 2026 FIFA World Cup goal in the Bay Area \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-13T21:59:55.307875+00:00",
+      "account": "foxsports",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-mia3-1.cdninstagram.com/v/t51.82787-15/741643195_18613908508053765_8554034140434654493_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=RIyMQShZ5fUQ7kNvwHWi90d&_nc_oc=AdqbYzJxbuGqWyGKOx34PBJmhCVb1v1LO6C3No-7kwh0qCwQd2DQtdm1QX5uNy2u1fVwnPfjWy0DT7w9-ONn20Nd&_nc_zt=23&_nc_ht=scontent-mia3-1.cdninstagram.com&_nc_gid=yiND91ooPvqoaFhrt5VfCw&_nc_ss=7860f&oh=00_AQBoECz27LZ5Y4Egpr7F-EQ_1CFZ4Al10Cq8V-i9UqV8jQ&oe=6A5B2A1C",
+      "post_url": "https://www.instagram.com/reel/DavS8CNiAQ6/",
+      "platform": "instagram",
+      "caption": "2,819 likes, 20 comments - foxsports on July 13, 2026: \"Relive every 2026 FIFA World Cup goal in the Bay Area \ud83d\udc4f\". ",
+      "scraped_at": "2026-07-13T21:59:55.307882+00:00",
+      "account": "foxsports",
+      "likes": 0,
+      "trusted": true,
       "permanent_url": null
     }
   ]
