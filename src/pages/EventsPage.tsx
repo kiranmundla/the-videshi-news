@@ -49,6 +49,7 @@ const CAT_EMOJI: Record<string, string> = {
   Education: "🎓",
   Competition: "🏆",
   Entertainment: "🎶",
+  Technology: "🚀",
   Other: "📌",
 };
 
@@ -65,6 +66,7 @@ const CAT_FALLBACK_IMG: Record<string, string> = {
   Education: "/images/events/education.jpg",
   Competition: "/images/events/competition.jpg",
   Entertainment: "/images/events/entertainment.jpg",
+  Technology: "/images/events/technology.jpg",
   Other: "/images/events/other.jpg",
 };
 
@@ -85,6 +87,7 @@ const CAT_BADGE_COLORS: Record<string, string> = {
   Education: "bg-teal-100 text-teal-700",
   Competition: "bg-emerald-100 text-emerald-700",
   Entertainment: "bg-pink-100 text-pink-700",
+  Technology: "bg-cyan-100 text-cyan-700",
   Other: "bg-gray-100 text-gray-700",
 };
 

@@ -449,8 +449,7 @@ export default function EventDetailPage() {
   const dateStr = formatEventDateLong(event.date, event.end_date);
   const past = isPastEvent(event.date);
   const catEmoji = CAT_EMOJI[event.category || "Other"] || "📌";
-  const catFallbackImg = `/images/events/${(event.category || "other").toLowerCase()}.jpg`;
-  const heroImg = event.image_url || catFallbackImg;
+
   const rawDescription = event.long_description || event.description;
   const description = rawDescription
     ? rawDescription.replace(/\s*(Read below:?|Read more:?)\s*$/i, "").trim() || rawDescription
@@ -505,17 +504,19 @@ export default function EventDetailPage() {
       <main className="flex-1">
 
         {/* ========== HERO ========== */}
+        {event.image_url && (
         <div className="relative w-full">
           <div className="relative w-full max-h-[75vh] overflow-hidden">
             <img
-              src={heroImg}
+              src={event.image_url}
               alt={event.title}
-              className={`w-full h-full bg-black ${event.image_url ? "object-contain" : "object-cover"}`}
+              className="w-full h-full bg-black object-contain"
               style={{ maxHeight: "75vh" }}
             />
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
           </div>
         </div>
+        )}
 
         {/* ========== TITLE CARD ========== */}
         <div className="px-4 -mt-6 relative z-10">
