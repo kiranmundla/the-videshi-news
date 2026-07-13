@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-13T15:16:01.081332+00:00",
+  "timestamp": "2026-07-13T16:16:13.793331+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 7,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4a7a1460-6a1b-44fb-9496-b4d08780b780",
-      "headline": "Kohli, Rohit, Bumrah Walk In. India's ODI Squad Arrives to Rescue a Tour Gone Wrong.",
-      "slug": "india-odi-series-preview-kohli-rohit-bumrah-return-england-edgbaston-t20i-whitewash-redemption-nri-july-2026",
+      "id": "2e031828-71d4-44b6-ae29-f277abed98c2",
+      "headline": "Shrey Parikh Wins Scripps Spelling Bee With Record-Setting Performance \u2014 31 of Last 37 Champions Are Indian American",
+      "slug": "shrey-parikh-scripps-spelling-bee-indian-american-dynasty-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Cricketer in India jersey",
-          "reason": "The photo shows a cricketer in an India jersey, matching the cricket story."
+          "what_photo_shows": "stage at Scripps National Spelling Bee",
+          "reason": "The photo shows the event stage, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts a spelling bee stage, which is relevant but lacks a direct connection to Shrey Parikh."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively highlights the achievements of Indian Americans in the Scripps Spelling Bee, connecting to the diaspora's cultural emphasis on education."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including a quote from Shrey Parikh or a family member to add a personal touch.",
+          "Add more context about the significance of the Scripps Spelling Bee in American culture."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d112bd78-a6fe-407c-959d-fd805ccc0d54",
+      "headline": "Indian American Congressman Ro Khanna Detained at Gunpoint by Israeli Settlers in West Bank",
+      "slug": "ro-khanna-detained-israeli-settlers-west-bank-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Congressman Ro Khanna, matching the story topic."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article provides a viewing guide specifically for North American fans, making it relevant for the diaspora."
+          "note": "The article effectively connects Ro Khanna's incident to the Indian American community and highlights his potential presidential ambitions, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance engagement.",
-          "Include more context about the significance of the ODI series for the diaspora audience."
+          "Consider adding quotes or reactions from other Indian American leaders to enhance the diaspora perspective.",
+          "Include more context about the implications of Khanna's actions for the Indian American community in the U.S."
         ],
         "verdict": "pass"
       },
@@ -54,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "092dfb0d-4ad3-472e-82cd-8dc70cc857d9",
-      "headline": "270 Runs and a Place on the Honours Board. India's Women Make Lord's History.",
-      "slug": "india-women-historic-270-run-victory-lords-first-womens-test-kranti-gaud-honours-board-yastika-century-knight-retires-nri-july-2026",
+      "id": "0be9cb25-f4ea-45be-8a40-09c81901bfd2",
+      "headline": "14 Indian Cities Rank Among the World's Most Heat-Vulnerable. Here's What That Means for Your Family Back Home.",
+      "slug": "india-14-cities-extreme-heat-risk-oxford-study-health-diaspora-families-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Lord's Cricket Ground Pavilion",
-          "reason": "The photo shows Lord's Cricket Ground, relevant to the cricket story."
+          "what_photo_shows": "building with air conditioning units",
+          "reason": "The photo shows infrastructure related to cooling, relevant to heat vulnerability."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting its impact on women's cricket within the community."
+          "note": "The article effectively addresses the concerns of NRIs regarding their aging parents in heat-vulnerable cities, providing practical advice."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about women's cricket to enrich the article."
+          "Consider adding more specific statistics or examples related to the impact of heat on families in the diaspora.",
+          "Include quotes or insights from diaspora community leaders to enhance the connection with NRI readers."
         ],
         "verdict": "pass"
       },
@@ -97,43 +140,133 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "299da397-c1c5-47a6-8531-43bd6805653b",
-      "headline": "Nvidia's New CPU Is Beating Intel and AMD in Its First Benchmarks. The $200 Billion Server Market Will Never Be the Same.",
-      "slug": "nvidia-vera-cpu-beats-intel-amd-ai-agents-server-market-20260713",
+      "id": "fc02e881-e8cf-421b-a4dd-c75afdf63d22",
+      "headline": "Five Weeks of Walking With Poles Cut Depression Symptoms in Half, a Landmark Trial Found",
+      "slug": "nordic-walking-depression-remission-five-weeks-study-south-asian-mental-health-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "group of people Nordic walking",
+          "reason": "The photo shows people Nordic walking, which aligns with the story about Nordic walking and mental health."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the Nordic walking model to the South Asian diaspora's mental health challenges, making it relevant and relatable."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from participants or experts to enhance the article's credibility and engagement.",
+          "Include practical tips for readers on how to start Nordic walking or join community groups."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "70940f90-ef98-4c9a-b876-944b146193f1",
+      "headline": "An Anti-Inflammatory Diet Cut Dementia Risk by 29% \u2014 and Your Dadi's Kitchen Had It Right All Along",
+      "slug": "anti-inflammatory-diet-dementia-risk-jama-study-indian-traditional-foods-brain-health-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Turmeric powder and bottle on plate",
+          "reason": "Turmeric is a staple in anti-inflammatory diets linked to lower dementia risk."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the findings of the study to the dietary habits of the South Asian diaspora, emphasizing the importance of traditional foods."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of traditional Indian dishes that align with the anti-inflammatory diet to enhance relatability.",
+          "Include quotes or testimonials from diaspora members about their experiences with traditional diets and health."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "aa0b87f5-3ec6-40d9-af0b-a330642221a6",
+      "headline": "India Isn't Rushing Into a US Trade Deal \u2014 And Goldman Sachs Just Gave Modi Another Reason to Wait",
+      "slug": "india-us-trade-deal-standoff-goldman-growth-uk-fta-nri-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [
           {
-            "article_id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
-            "headline": "Jensen Huang Says His Engineers Prefer Building AI Agents to"
+            "article_id": "d371c8df-99f9-4a7b-aa34-9a3d0c97af5b",
+            "headline": "India's Biggest Trade Deal Goes Live on Tuesday. Here's What"
+          },
+          {
+            "article_id": "e42f0f3e-fec3-4a15-a469-5746fa927233",
+            "headline": "India Just Walked Away From a Quick Trade Deal With the U.S."
           }
         ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and glasses",
-          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
+          "what_photo_shows": "Indian Commerce Minister Piyush Goyal",
+          "reason": "The photo shows the correct named person relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Jen-Hsun Huang does not directly relate to the article's focus on the new CPU benchmarks."
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article mentions major companies like Nvidia and their engineering operations in India, which connects to the Indian diaspora's interest in the tech industry."
+          "quality": 6,
+          "note": "The article discusses trade relations that may impact NRIs, but the connection is somewhat indirect."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the Nvidia Vera CPU.",
-          "Expand on the implications of Nvidia's new CPU for the Indian tech industry or workforce."
+          "Include more direct implications of the trade deal on the Indian diaspora.",
+          "Replace the hero image with one that is more relevant to trade discussions or economic themes."
         ],
         "verdict": "flag"
       },
@@ -145,9 +278,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8b9ced85-2c66-4c0a-8448-147fe5e372d3",
-      "headline": "Accenture Confirms a Hacker Stole Source Code and Cloud Credentials. For 300,000 Indian Employees, the Questions Are Just Starting.",
-      "slug": "accenture-data-breach-35gb-source-code-indian-it-workers-20260713",
+      "id": "4718d9cc-3dc7-4917-80ea-215596c6cd1d",
+      "headline": "India's IT Stocks Stage a 10% July Rally as AI Deals Reshape the Sector \u2014 Why the Street Is Still Skeptical",
+      "slug": "india-it-stocks-10-percent-july-rally-ai-deals-tcs-hcltech-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -155,8 +288,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "binary code on computer screen",
-          "reason": "The image of binary code is relevant to a cybersecurity story."
+          "what_photo_shows": "glass pyramid at Infosys campus",
+          "reason": "The photo shows a symbol of India's IT industry, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -164,19 +297,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to cybersecurity but lacks a direct connection to Accenture or the specific incident discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the implications of the breach for Indian employees and the broader Indian IT workforce."
+          "note": "The article addresses NRI investors directly, discussing their potential interest in Indian IT stocks."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including more specific statistics or quotes from Indian employees to enhance the diaspora connection.",
-          "Add a section on potential steps for Indian IT professionals to mitigate risks following the breach."
+          "Include more specific examples of how AI is impacting the job market in India to enhance the discussion on potential job losses.",
+          "Add quotes or insights from NRI investors to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -188,18 +321,35 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "ca1f4cda-5d71-44fa-abe2-83d6535fcb60",
-      "headline": "Intel Just Committed \u20ac5 Billion to Ireland. It Is a Bet on Keeping Europe's Most Advanced Chip Factory Ahead of the AI Curve.",
-      "slug": "intel-5-billion-ireland-ai-chip-leixlip-expansion-20260713",
+      "id": "3c4829ca-8bec-4664-816d-36c0bcb8ac49",
+      "headline": "Rupee Slides to One-Month Low as India's Trade Deficit Balloons to $30.43 Billion \u2014 What NRI Remitters Need to Know",
+      "slug": "rupee-one-month-low-trade-deficit-30-billion-nri-remittance-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "d0c95651-1f90-439a-aeed-ce5881cc827a",
+            "headline": "India Inc. Revenue Growth Hits a Two-Year High at 11.5% \u2014 Bu"
+          },
+          {
+            "article_id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
+            "headline": "SEBI Wants to Double the Stocks You Can Short \u2014 And India's "
+          },
+          {
+            "article_id": "eb0a48aa-22e5-47f2-a76c-60f8b65fca24",
+            "headline": "India's Earnings Season Opens With a Bang \u2014 J.P. Morgan Sees"
+          },
+          {
+            "article_id": "af71549b-68fa-424e-b5eb-c4b031e43293",
+            "headline": "SBI Funds Management Prices $1.2 Billion IPO at \u20b9545\u2013574 \u2014 A"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "an older man in a suit",
-          "reason": "The photo plausibly shows Intel CEO Lip-Bu Tan, relevant to the story."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo of the Bombay Stock Exchange is relevant to a story about India's financial markets."
         },
         "inline_image_mismatches": []
       },
@@ -207,19 +357,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image features Howard Lutnick and Intel's CEO, which is somewhat relevant but does not directly relate to the \u20ac5 billion investment in Ireland."
+          "score": 5,
+          "issue": "The image of the Bombay Stock Exchange does not directly relate to the rupee's decline or trade deficit."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the investment to opportunities for Indian engineers, highlighting Ireland as a destination for Indian tech workers."
+          "note": "The article effectively discusses the implications of the rupee's decline on NRI remittances and investments."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly represents the investment in Ireland or semiconductor manufacturing.",
-          "Expand on the implications for Indian engineers to further emphasize the diaspora angle."
+          "Consider using a more relevant image that directly relates to currency or trade to enhance visual impact.",
+          "Add a brief summary or conclusion that reiterates the key points for NRI readers."
         ],
         "verdict": "pass"
       },
