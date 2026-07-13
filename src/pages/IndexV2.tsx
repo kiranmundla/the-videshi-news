@@ -23,6 +23,8 @@ import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
+import KeyUpdatesSection from "@/components/KeyUpdatesSection";
+import ArticleCard from "@/components/ArticleCard";
 import "@/components/homepage/homepage-v2.css";
 
 import {
@@ -92,18 +94,18 @@ const HOME_CATEGORIES = [
   { slug: "food", label: "Food", path: "/food" },
 ];
 
-function HomeCategoryNav() {
+function HomeCategoryNav({ selected, onSelect }: { selected: string; onSelect: (slug: string) => void }) {
   return (
     <div className="v2-home-cat-nav">
       <div className="v2-home-cat-nav-inner">
         {HOME_CATEGORIES.map((cat) => (
-          <Link
+          <button
             key={cat.slug}
-            to={cat.path}
-            className={`v2-home-cat-pill${cat.slug === "" ? " active" : ""}`}
+            onClick={() => onSelect(cat.slug)}
+            className={`v2-home-cat-pill${cat.slug === selected ? " active" : ""}`}
           >
             {cat.label}
-          </Link>
+          </button>
         ))}
       </div>
     </div>
@@ -145,6 +147,9 @@ export default function IndexV2() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(
     initialCache ? new Date(initialCache.ts) : null
   );
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [categoryArticles, setCategoryArticles] = useState<Article[]>([]);
+  const [catLoading, setCatLoading] = useState(false);
 
   useEffect(() => {
     if (initialCache) return;
@@ -259,6 +264,34 @@ export default function IndexV2() {
 
     fetchStaticJSON();
   }, []);
+
+  // ── Fetch articles when a category is selected ──
+  useEffect(() => {
+    if (!selectedCategory) {
+      setCategoryArticles([]);
+      return;
+    }
+    setCatLoading(true);
+    // Try static JSON first, fallback to Supabase
+    fetch(`/data/category/${selectedCategory}.json`)
+      .then((r) => {
+        if (!r.ok) throw new Error("not found");
+        return r.json();
+      })
+      .then((data) => {
+        setCategoryArticles(data.articles ?? []);
+        setCatLoading(false);
+      })
+      .catch(() => {
+        // Fallback to Supabase for categories without static JSON (e.g. immigration)
+        getArticlesByCategory(selectedCategory, 30)
+          .then((articles) => {
+            setCategoryArticles(articles);
+            setCatLoading(false);
+          })
+          .catch(() => setCatLoading(false));
+      });
+  }, [selectedCategory]);
 
   // ── Scroll position save/restore ── (handled by useScrollRestore in App.tsx)
 
@@ -431,9 +464,33 @@ export default function IndexV2() {
 
       <main className="flex-1 v2-main-sections">
         {/* Category Nav */}
-        <HomeCategoryNav />
+        <HomeCategoryNav selected={selectedCategory} onSelect={setSelectedCategory} />
 
-        {/* 6. Hero Section */}
+        {selectedCategory ? (
+          /* ── Category-filtered view ── */
+          <>
+            <KeyUpdatesSection category={selectedCategory} />
+            {catLoading ? (
+              <div className="container py-12 text-center text-muted-foreground">Loading…</div>
+            ) : categoryArticles.length === 0 ? (
+              <div className="container py-12 text-center text-muted-foreground">No articles yet.</div>
+            ) : (
+              <section className="container" style={{ padding: "24px 16px" }}>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                  gap: "20px",
+                }}>
+                  {categoryArticles.map((a) => (
+                    <ArticleCard key={a.id} article={a} variant="card" />
+                  ))}
+                </div>
+              </section>
+            )}
+          </>
+        ) : (
+          /* ── Full homepage view ── */
+          <>
         <HeroSection lead={featured} side={layout.heroSide} />
 
         {/* Visual Stories */}
@@ -545,6 +602,8 @@ export default function IndexV2() {
 
         {/* 18. Snapshots */}
         <DiasporaPhotoStrip />
+          </>
+        )}
       </main>
 
       {/* 19. Footer */}
