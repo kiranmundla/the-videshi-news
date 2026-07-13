@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-13T12:45:21.786903+00:00",
+  "timestamp": "2026-07-13T13:15:11.325549+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 1,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2b3cc3c7-386c-4032-bf39-0df3b6ca8b86",
-      "headline": "Iran Just Stopped Two More Ships in the Strait of Hormuz. Traffic Through the World's Most Critical Waterway Is Down 52%.",
-      "slug": "iran-irgc-fires-warning-shots-two-ships-hormuz-traffic-down-52-percent-india-crew-missing-20260713",
+      "id": "50cb2895-42e3-4d26-8e9d-96871dc56cf4",
+      "headline": "Samantha's \u20b9100 Crore Blockbuster Hits JioHotstar This Thursday. She Shot Part of It With Morning Sickness.",
+      "slug": "samantha-maa-inti-bangaaram-100-crore-jiohotstar-ott-pregnant-maternity-break-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,78 +21,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "an oil supertanker at sea",
-          "reason": "The photo shows a supertanker, relevant to the shipping story."
+          "what_photo_shows": "woman in Maa Inti Bangaaram poster",
+          "reason": "The photo shows a scene from the film mentioned in the headline."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of the Strait of Hormuz situation on India's LNG imports, which is relevant to the Indian diaspora."
+          "quality": 8,
+          "note": "The article effectively connects the film's release on JioHotstar to the global diaspora audience, highlighting its significance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes from experts or officials to enhance credibility.",
-          "Add a brief background on the significance of the Strait of Hormuz for global oil trade to provide context for readers."
+          "Consider adding more context about the film's themes and how they resonate with the diaspora audience.",
+          "Include quotes or reactions from diaspora viewers or critics to enhance the connection."
         ],
         "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e42f0f3e-fec3-4a15-a469-5746fa927233",
-      "headline": "India Just Walked Away From a Quick Trade Deal With the U.S. The Bet Is That Washington Needs Delhi More.",
-      "slug": "india-rejects-quick-us-trade-deal-holds-out-better-terms-tariff-exports-diaspora-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "d371c8df-99f9-4a7b-aa34-9a3d0c97af5b",
-            "headline": "India's Biggest Trade Deal Goes Live on Tuesday. Here's What"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Indian Commerce Minister Piyush Goyal",
-          "reason": "The photo shows the correct named person relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "image does not directly relate to the article's main topic of trade negotiations"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses trade relations that impact the Indian diaspora, particularly in terms of economic opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the trade negotiations or economic discussions.",
-          "Add a section that explicitly connects the trade deal implications to the Indian diaspora's economic interests."
-        ],
-        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
