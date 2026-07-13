@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-13T20:15:18.378848+00:00",
+  "timestamp": "2026-07-13T21:15:47.884672+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,27 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "4c9e4dcc-4c71-47ae-914f-3e2f7b6e8bd9",
-      "headline": "Germany, Canada, and the EU Want the Indian Talent America Is Pushing Away",
-      "slug": "germany-canada-eu-blue-card-indian-talent-recruitment-20260713",
+      "id": "3dcf31ac-759d-471a-81bc-fae608012f58",
+      "headline": "Indian IT Stocks Just Posted Their Best Day in a Month. The $315 Billion Sector's AI Pivot Is Starting to Work.",
+      "slug": "indian-it-stocks-rally-ai-partnerships-july-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "084fbd1a-7f8b-4689-82b0-77b0ead63f35",
+            "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's"
+          },
+          {
+            "article_id": "6e2919e4-fef7-4f65-9b5a-274db6322787",
+            "headline": "Oil Jumps 3%, Rupee Slides, Sensex Sinks. For Indian Familie"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "open passport with travel stamps",
-          "reason": "The photo is relevant to the topic of immigration."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Indian IT stocks story."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +40,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the article's focus on immigration policies and talent acquisition."
+          "issue": "The image of the BSE building is relevant to the financial context but does not directly depict IT stocks or AI."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses immigration options for Indian professionals, making it relevant to the diaspora audience."
+          "quality": 7,
+          "note": "The article discusses the Indian IT sector's performance, which is relevant to NRIs interested in investment opportunities and the economic landscape of India."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents immigration or international talent exchange to better match the article's theme.",
-          "Add a section that includes testimonials or experiences from Indian professionals who have moved to Germany or Canada to enhance relatability."
+          "Include more direct implications for NRI investors in the Indian IT sector.",
+          "Consider adding a brief overview of how these developments in AI could impact the global tech landscape."
         ],
         "verdict": "pass"
       },
@@ -54,9 +63,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "44cbfb90-cca2-42f0-8889-0a2e62ab30b4",
-      "headline": "The Remittance Tax Is Six Months Old. Most NRIs Have Not Paid a Cent",
-      "slug": "remittance-tax-six-months-nri-exemptions-cash-20260713",
+      "id": "b979da33-456a-4015-aafc-d1854d237939",
+      "headline": "The Founder Who Built a $2 Billion Fintech Just Bet $30 Million on an AI Workplace That Could Replace Slack and Notion",
+      "slug": "bhavin-turakhia-neo-ai-workplace-30-million-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +73,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cash and smartphone calculator",
-          "reason": "The photo relates to financial transactions, fitting the remittance tax story."
+          "what_photo_shows": "man holding a phone, smiling",
+          "reason": "The photo plausibly shows Bhavin Turakhia, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +82,67 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to remittances or the financial topic discussed."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the concerns of NRIs regarding the remittance tax and its implications."
+          "quality": 8,
+          "note": "The article connects the AI platform to the experiences of Indian-origin professionals, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that visually represents remittances or financial transactions to enhance relevance.",
-          "Add a brief section on how NRIs can navigate the new tax regulations to provide practical advice."
+          "Consider adding more specific examples of how Neo could directly impact NRI professionals' workflows.",
+          "Include quotes or insights from other industry experts to provide a broader perspective on the AI-native trend."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7b7fd719-7a2e-4f0a-aad1-0ded3655f332",
+      "headline": "HCLTech Just Beat Estimates on Every Metric That Matters. Its AI Revenue Hit $171 Million.",
+      "slug": "hcltech-q1-earnings-beat-ai-revenue-171-million-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "8a0356c0-6f28-453b-8bf1-f72674ef3009",
+            "headline": "HCLTech's $1.1 Billion AI Deal Sets the Stage for a Mega Ear"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "HCL Technologies headquarters building",
+          "reason": "The photo shows HCL Technologies headquarters, relevant to the story about the company."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses HCLTech's role in the US job market and its impact on Indian IT professionals, which is relevant to the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more context on how HCLTech's performance compares to other Indian IT firms specifically for NRI investors.",
+          "Include quotes from industry experts or analysts to enhance credibility and provide diverse perspectives."
         ],
         "verdict": "pass"
       },
