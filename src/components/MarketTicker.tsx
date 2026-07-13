@@ -66,7 +66,7 @@ const PLOT_H = CHART_H - PAD_T - PAD_B;
 function MiniChart({ data, timeframe, color }: { data: ChartPoint[]; timeframe: Timeframe; color: string }) {
   if (!data || data.length < 2) {
     return (
-      <div style={{ color: "rgba(255,255,255,0.3)", textAlign: "center", padding: 40, fontSize: 13 }}>
+      <div style={{ color: "#94a3b8", textAlign: "center", padding: 40, fontSize: 13 }}>
         No chart data available for this timeframe
       </div>
     );
@@ -119,8 +119,8 @@ function MiniChart({ data, timeframe, color }: { data: ChartPoint[]; timeframe: 
       {/* Grid lines + Y labels */}
       {gridLines.map((g, i) => (
         <g key={i}>
-          <line x1={PAD_L} y1={g.y} x2={CHART_W - PAD_R} y2={g.y} stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4" />
-          <text x={PAD_L - 8} y={g.y + 4} textAnchor="end" fill="rgba(255,255,255,0.35)" fontSize="10" fontFamily="system-ui">
+          <line x1={PAD_L} y1={g.y} x2={CHART_W - PAD_R} y2={g.y} stroke="rgba(0,0,0,0.06)" strokeDasharray="4 4" />
+          <text x={PAD_L - 8} y={g.y + 4} textAnchor="end" fill="#94a3b8" fontSize="10" fontFamily="system-ui">
             {formatAxisValue(g.val)}
           </text>
         </g>
@@ -128,7 +128,7 @@ function MiniChart({ data, timeframe, color }: { data: ChartPoint[]; timeframe: 
 
       {/* Time labels */}
       {timeLabels.map((tl, i) => (
-        <text key={i} x={tl.x} y={CHART_H - 4} textAnchor="middle" fill="rgba(255,255,255,0.35)" fontSize="9" fontFamily="system-ui">
+        <text key={i} x={tl.x} y={CHART_H - 4} textAnchor="middle" fill="#94a3b8" fontSize="9" fontFamily="system-ui">
           {tl.label}
         </text>
       ))}
@@ -233,14 +233,14 @@ export default function MarketTicker() {
                 flexDirection: "column",
                 alignItems: "flex-start",
                 padding: "4px 14px",
-                borderRight: i < data.indices.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
+                borderRight: i < data.indices.length - 1 ? "1px solid #e2e8f0" : "none",
                 minWidth: 120,
                 cursor: "pointer",
                 borderRadius: 6,
                 background: isSelected
-                  ? "rgba(255,255,255,0.1)"
+                  ? "rgba(0,0,0,0.06)"
                   : isHovered
-                    ? "rgba(255,255,255,0.05)"
+                    ? "rgba(0,0,0,0.03)"
                     : "transparent",
                 transition: "background 0.2s",
               }}
@@ -255,7 +255,7 @@ export default function MarketTicker() {
                 <span style={{
                   fontSize: 10,
                   fontWeight: 600,
-                  color: "rgba(255,255,255,0.55)",
+                  color: "#64748b",
                   letterSpacing: "0.05em",
                   textTransform: "uppercase",
                 }}>{idx.name}</span>
@@ -268,7 +268,7 @@ export default function MarketTicker() {
                 <span style={{
                   fontSize: 15,
                   fontWeight: 700,
-                  color: "#ffffff",
+                  color: "#0f172a",
                   fontVariantNumeric: "tabular-nums",
                 }}>{formatValue(idx.symbol, idx.value)}</span>
                 <span style={{
@@ -291,7 +291,7 @@ export default function MarketTicker() {
       }}>
         {selectedIdx && (
           <div style={{
-            borderTop: "1px solid rgba(255,255,255,0.08)",
+            borderTop: "1px solid #e2e8f0",
             padding: "16px 20px 20px",
           }}>
             {/* Header row */}
@@ -305,12 +305,12 @@ export default function MarketTicker() {
                 <span style={{
                   fontSize: 16,
                   fontWeight: 700,
-                  color: "#ffffff",
+                  color: "#0f172a",
                 }}>{selectedIdx.flag} {selectedIdx.name}</span>
                 <span style={{
                   fontSize: 20,
                   fontWeight: 700,
-                  color: "#ffffff",
+                  color: "#0f172a",
                   fontVariantNumeric: "tabular-nums",
                 }}>{formatValue(selectedIdx.symbol, selectedIdx.value)}</span>
                 <span style={{
@@ -337,7 +337,7 @@ export default function MarketTicker() {
                         fontWeight: 600,
                         cursor: "pointer",
                         background: timeframe === tf ? "rgba(0,0,0,0.08)" : "transparent",
-                        color: timeframe === tf ? "#ffffff" : "rgba(255,255,255,0.4)",
+                        color: timeframe === tf ? "#0f172a" : "#94a3b8",
                         transition: "all 0.2s",
                       }}
                     >
