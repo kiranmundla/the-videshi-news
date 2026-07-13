@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatLongDate } from "@/lib/articles";
 import { CATEGORIES } from "@/lib/categories";
+import "@/components/homepage/homepage-v2.css";
 
 /* ── Category Nav Bar ─────────────────────────────────────── */
 /* Persistent nav shown below the masthead on every page.

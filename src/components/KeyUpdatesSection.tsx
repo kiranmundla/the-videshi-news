@@ -9,6 +9,27 @@ const IMPACT_ICON: Record<string, string> = {
   low: "⚪",
 };
 
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+
+function groupByMonth(updates: KeyUpdate[]): { label: string; items: KeyUpdate[] }[] {
+  const groups: Record<string, KeyUpdate[]> = {};
+  for (const u of updates) {
+    const d = u.event_date ? new Date(u.event_date + "T00:00:00") : new Date(u.created_at);
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(u);
+  }
+  return Object.entries(groups)
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([key, items]) => {
+      const [y, m] = key.split("-").map(Number);
+      return { label: `${MONTH_NAMES[m - 1]} ${y}`, items };
+    });
+}
+
 function UpdateRow({ update }: { update: KeyUpdate }) {
   const [open, setOpen] = useState(false);
   const related = update.related_articles ?? [];
@@ -118,11 +139,11 @@ interface KeyUpdatesProps {
   className?: string;
 }
 
-export default function KeyUpdatesSection({ category, title, limit = 15, className = "" }: KeyUpdatesProps) {
+export default function KeyUpdatesSection({ category, title, limit = 30, className = "" }: KeyUpdatesProps) {
   const [updates, setUpdates] = useState<KeyUpdate[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [monthsShown, setMonthsShown] = useState(1);
 
   useEffect(() => {
     getKeyUpdates(category, limit).then((data) => {
@@ -137,9 +158,10 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
   if (filtered.length === 0 && !showAll) return null;
 
   const hasMedium = updates.some((u) => u.impact !== "high");
-  const MAX_VISIBLE = 6;
-  const visible = expanded ? filtered : filtered.slice(0, MAX_VISIBLE);
-  const showToggle = filtered.length > MAX_VISIBLE;
+  const grouped = groupByMonth(filtered);
+  const visibleGroups = grouped.slice(0, monthsShown);
+  const hasMoreMonths = monthsShown < grouped.length;
+  const nextMonthLabel = hasMoreMonths ? grouped[monthsShown].label : "";
 
   return (
     <section
@@ -181,14 +203,36 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
             </button>
           )}
         </div>
-        <div style={{ display: "flex", flexDirection: "column" as const, gap: "8px" }}>
-          {visible.map((update) => (
-            <UpdateRow key={update.id} update={update} />
-          ))}
-        </div>
-        {showToggle && (
+
+        {visibleGroups.map((group, gi) => (
+          <div key={group.label}>
+            {/* Show month label only when multiple months are visible */}
+            {monthsShown > 1 && (
+              <div style={{ marginTop: gi > 0 ? "12px" : 0, marginBottom: "6px" }}>
+                <span
+                  style={{
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    letterSpacing: "1.2px",
+                    color: "#64748b",
+                    textTransform: "uppercase" as const,
+                  }}
+                >
+                  {group.label}
+                </span>
+              </div>
+            )}
+            <div style={{ display: "flex", flexDirection: "column" as const, gap: "8px" }}>
+              {group.items.map((update) => (
+                <UpdateRow key={update.id} update={update} />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        {hasMoreMonths && (
           <button
-            onClick={() => setExpanded(!expanded)}
+            onClick={() => setMonthsShown((n) => n + 1)}
             style={{
               marginTop: "8px",
               fontSize: "11px",
@@ -201,7 +245,25 @@ export default function KeyUpdatesSection({ category, title, limit = 15, classNa
               letterSpacing: "0.02em",
             }}
           >
-            {expanded ? "Show less" : `+${filtered.length - MAX_VISIBLE} more`}
+            + {nextMonthLabel}
+          </button>
+        )}
+        {monthsShown > 1 && (
+          <button
+            onClick={() => setMonthsShown(1)}
+            style={{
+              marginTop: "4px",
+              marginLeft: hasMoreMonths ? "12px" : 0,
+              fontSize: "11px",
+              fontWeight: 600,
+              color: "#64748b",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+            }}
+          >
+            Show less
           </button>
         )}
       </div>
