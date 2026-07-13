@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-13T03:15:31.788073+00:00",
+  "timestamp": "2026-07-13T06:45:36.451528+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "cbd0eef7-aa73-457e-a98a-8e517abfd22d",
-      "headline": "Zetwerk Just Got SEBI's Green Light for a $450 Million IPO. The Manufacturing Unicorn Is Riding the AI Data Centre Boom.",
-      "slug": "zetwerk-sebi-ipo-approval-manufacturing-ai-data-centre-20260713",
+      "id": "ba150e8a-e4a4-4e43-9176-772cebbc234f",
+      "headline": "India Just Approved Its Biggest Emergency Oil Stockpile in a Decade. The Hormuz Blockade Made the Case.",
+      "slug": "ongc-strategic-petroleum-reserve-mangalore-india-oil-stockpile-hormuz-energy-security-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "industrial factory floor with machinery",
-          "reason": "The photo's subject aligns with the manufacturing and tech theme of the story."
+          "what_photo_shows": "construction site with drilling equipment",
+          "reason": "The photo shows a construction site which aligns with building an oil reserve."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of Zetwerk or its IPO."
+          "score": 6,
+          "issue": "The image is related to strategic petroleum reserves but depicts the US Strategic Petroleum Reserve, which may not directly relate to India's context."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the IPO to NRI investors and the broader Indian growth story."
+          "quality": 7,
+          "note": "The article discusses India's oil reserves and strategic importance, which may resonate with NRIs concerned about India's energy security and economic stability."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the manufacturing or tech aspect of Zetwerk.",
-          "Expand on the implications of the IPO for NRI investors to enhance the diaspora angle."
+          "Consider using an image that directly represents India's strategic petroleum reserves for better relevance.",
+          "Include more context on how these developments may impact the Indian diaspora, particularly in terms of economic implications."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
-      "headline": "Jensen Huang Says His Engineers Prefer Building AI Agents to Writing Code. The Implications for Indian Tech Workers Are Enormous.",
-      "slug": "jensen-huang-nvidia-ai-agents-engineers-coding-20260713",
+      "id": "6e2919e4-fef7-4f65-9b5a-274db6322787",
+      "headline": "Oil Jumps 3%, Rupee Slides, Sensex Sinks. For Indian Families Sending Money Home, the War Just Got Personal.",
+      "slug": "india-markets-oil-rupee-sensex-sink-iran-gulf-escalation-nri-remittances-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "084fbd1a-7f8b-4689-82b0-77b0ead63f35",
+            "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and glasses",
-          "reason": "The photo plausibly shows Jensen Huang, relevant to the story."
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the economic story."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +84,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of AI advancements to Indian tech workers, particularly those in the diaspora."
+          "note": "The article effectively connects the economic implications of rising oil prices and currency fluctuations to the Indian diaspora, particularly those in the Gulf."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more statistics or quotes from Indian tech workers to strengthen the diaspora angle.",
-          "Include a brief overview of how Indian tech companies are currently adapting to these changes in AI."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "23749ef3-17a2-4afd-85b2-4932fde87b2f",
-      "headline": "OpenAI Is Launching Its First Hardware Product on Tuesday. It Is a Keyboard for Coders.",
-      "slug": "openai-codex-micro-hardware-keyboard-developers-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "developer's workspace with keyboards",
-          "reason": "The photo shows a workspace relevant to a tech story about keyboards for coders."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the launch of the Codex Micro to the Indian engineering workforce, highlighting its relevance to Indian developers in the tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Indian engineers are currently using AI tools in their work.",
-          "Include quotes or insights from Indian developers to enhance the diaspora connection."
+          "Consider adding more personal stories or quotes from NRIs to enhance the emotional connection.",
+          "Include a brief section on how families in India are coping with the economic impact of these changes."
         ],
         "verdict": "pass"
       },
