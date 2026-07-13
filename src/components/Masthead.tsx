@@ -89,27 +89,22 @@ function CategoryNavBar() {
       >
         <div className="container">
           {routeSlug !== "" && (
-          <div className="flex items-center overflow-x-auto scrollbar-none -mx-1 px-1 gap-0">
-            {NAV_CATEGORIES.map((cat) => {
-              const isActive = routeSlug === cat.slug;
-              return (
-                <Link
-                  key={cat.slug}
-                  to={cat.path}
-                  ref={isActive ? activeRef : undefined}
-                  className={`smallcaps shrink-0 px-3 py-2.5 text-[0.7rem] tracking-[0.12em] transition-colors relative whitespace-nowrap ${
-                    isActive
-                      ? "text-primary font-semibold"
-                      : "text-foreground/65 hover:text-foreground"
-                  }`}
-                >
-                  {cat.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-primary rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
+          <div className="v2-home-cat-nav" style={{ padding: "0 4px" }}>
+            <div className="v2-home-cat-nav-inner">
+              {NAV_CATEGORIES.map((cat) => {
+                const isActive = routeSlug === cat.slug;
+                return (
+                  <Link
+                    key={cat.slug}
+                    to={cat.path}
+                    ref={isActive ? activeRef : undefined}
+                    className={`v2-home-cat-pill${isActive ? " active" : ""}`}
+                  >
+                    {cat.label}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
           )}
 
@@ -151,8 +146,8 @@ function CategoryNavBar() {
           </div>
           )}
 
-          {/* Row 3 — live happenings (hidden on homepage, shown in HubStrip area instead) */}
-          {routeSlug !== "" && LIVE_HAPPENINGS.length > 0 && (
+          {/* Row 3 — live happenings (homepage only, rendered as LiveStrip in IndexV2) */}
+          {false && LIVE_HAPPENINGS.length > 0 && (
             <div
               className="flex items-center overflow-x-auto scrollbar-none gap-0 px-1 v2-live-strip"
               style={{ background: "linear-gradient(135deg, #0B1D3A, #132d54)" }}
