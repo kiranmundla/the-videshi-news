@@ -103,6 +103,7 @@ def find_prior_coverage(article_id: str, headline: str, category: str,
     # Escape single quotes in article_id
     safe_id = article_id.replace("'", "''")
 
+    # First pass: same category
     sql = f"""
     SELECT id, slug, headline, published_at, kw_hits FROM (
         SELECT id, slug, headline, published_at,
@@ -121,6 +122,28 @@ def find_prior_coverage(article_id: str, headline: str, category: str,
 
     try:
         rows = supabase_query(sql)
+
+        # Second pass: cross-category with stricter threshold (4+ keyword hits)
+        # Catches cases where same story is filed under different categories
+        # (e.g., immigration story filed under "news")
+        if (not rows or not isinstance(rows, list) or len(rows) == 0) and len(keywords) >= 4:
+            cross_min = max(min_hits + 1, 4)  # require 4+ keywords for cross-category
+            sql_cross = f"""
+            SELECT id, slug, headline, published_at, kw_hits FROM (
+                SELECT id, slug, headline, published_at,
+                       ({case_parts}) as kw_hits
+                FROM p2_articles
+                WHERE status = 'published'
+                  AND id != '{safe_id}'
+                  AND published_at > '{published_at}'::timestamptz - INTERVAL '{lookback_days} days'
+                  AND published_at < '{published_at}'::timestamptz
+            ) sub
+            WHERE kw_hits >= {cross_min}
+            ORDER BY kw_hits DESC, published_at DESC
+            LIMIT 5
+            """
+            rows = supabase_query(sql_cross)
+
         if not rows or not isinstance(rows, list):
             return {"is_followup": False, "prior_count": 0, "prior_slugs": []}
 

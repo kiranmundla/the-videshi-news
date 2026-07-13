@@ -65,14 +65,14 @@ P2_COLS = (
     "id,slug,headline,subheadline,body,vertical,category,status,"
     "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
-    "newsworthiness,diaspora_impact,prominence"
+    "newsworthiness,diaspora_impact,prominence,article_type"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (
     "id,slug,headline,subheadline,vertical,category,status,"
     "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
-    "newsworthiness,diaspora_impact,prominence"
+    "newsworthiness,diaspora_impact,prominence,article_type"
 )
 
 # Homepage section config (mirrors Index.tsx constants)
@@ -254,7 +254,13 @@ def _compute_display_score(row: dict) -> float:
     if nw >= 28 and freshness >= 16:  # newsworthiness 28+ and < 6h old
         breaking_bonus = 15.0
 
-    return nw + prom + di + freshness + breaking_bonus
+    # Follow-up penalty: deprioritize articles covering already-reported topics
+    followup_penalty = 0.0
+    article_type = row.get("article_type") or "breaking"
+    if article_type in ("follow-up", "analysis"):
+        followup_penalty = -15.0
+
+    return nw + prom + di + freshness + breaking_bonus + followup_penalty
 
 
 def map_row(row: dict) -> dict:
@@ -275,7 +281,7 @@ def map_row(row: dict) -> dict:
         "status": "published" if row.get("status") == "published" else "draft",
         "sources": parse_sources(row.get("sources")),
         "nri_angle": row.get("diaspora_angle"),
-        "article_type": "news",
+        "article_type": row.get("article_type") or "breaking",
         "tags": row.get("tags") if isinstance(row.get("tags"), list) else None,
         "author": "Diaspora Desk",
         "featured_score": _compute_display_score(row),
