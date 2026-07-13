@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-12T23:15:21.517610+00:00",
+  "timestamp": "2026-07-13T00:15:38.098473+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,57 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5f273e5b-5aff-44c0-a4fb-f39cbc4f0f7e",
-      "headline": "Unicorns in Command, Three at Four Points. MLC 2026's Final Week Is a Reckoning.",
-      "slug": "mlc-2026-final-week-standings-unicorns-command-knight-riders-mi-new-york-playoff-race-nri-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "0d14422f-dcf0-498c-af33-32280c78c437",
-            "headline": "Four Wickets. Four Balls. Shanaka's Last-Over Miracle Writes"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "aerial view of cricket field",
-          "reason": "The photo shows a cricket field, relevant to the cricket story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to cricket but does not specifically depict the teams or events mentioned in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the MLC's developments to the NRI community, highlighting their engagement and the cultural significance of the matches."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific statistics or player highlights to enhance engagement.",
-          "Add quotes from players or coaches to provide a more personal touch to the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e48e517d-bb21-4aef-85ce-baf325388e38",
-      "headline": "Yastika Bhatia's Maiden Test Century Puts India One Day From a Historic Lord's Victory.",
-      "slug": "yastika-bhatia-maiden-test-century-113-india-women-lords-day-3-historic-victory-knight-retirement-nri-july-2026",
+      "id": "03edbac9-fbde-4753-8c0f-d78057dbd97f",
+      "headline": "The Billionaire, the Doctor, and the Toss-Up: Vivek Ramaswamy's Ohio Governor Race Just Got Real",
+      "slug": "vivek-ramaswamy-ohio-governor-toss-up-acton-cook-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Person in India cricket attire",
-          "reason": "The photo shows a person associated with Indian cricket, matching the story topic."
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Vivek Ramaswamy, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +36,142 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of the match to the British-Indian community and diaspora cricket clubs in the US."
+          "note": "The article discusses Vivek Ramaswamy's candidacy and its significance for the Indian American community, making a clear connection to diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more statistics or historical context about women's cricket at Lord's."
+          "Consider adding more quotes or perspectives from Indian American voters to enhance the diaspora angle.",
+          "Include a brief analysis of how Ramaswamy's policies might impact the Indian American community specifically."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b92d2bb9-15a0-4fe5-a12e-a5797dc962e8",
+      "headline": "Ninety Artists, Eleven Days, One Ruptured World: Inside Vancouver's Indian Summer Festival",
+      "slug": "indian-summer-festival-vancouver-ragas-ruptured-world-2026-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bharatanatyam dancer performing",
+          "reason": "The photo shows a Bharatanatyam dancer, relevant to an Indian arts festival."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image depicts a Bharatanatyam dancer, which is relevant to Indian culture but does not directly relate to the specific events or themes of the Indian Summer Festival highlighted in the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the festival's themes and performances to the experiences of diaspora communities, particularly second-generation South Asians."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that directly represents the Indian Summer Festival or its specific events to enhance relevance.",
+          "Include quotes or testimonials from attendees or artists to provide a more personal touch and deepen the connection to the diaspora experience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
+      "headline": "One in Five Ultra-Rich Indians Are Planning to Move Abroad \u2014 And It's Quietly Reshaping the NRI Financial Landscape",
+      "slug": "ultra-rich-indians-migrating-abroad-nri-wealth-landscape-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Dubai Marina at night",
+          "reason": "The photo shows Dubai Marina, relevant to the story about migrating millionaires."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the trends in ultra-rich Indian migration to the NRI financial landscape, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from financial experts to enhance credibility.",
+          "Include more specific examples of how NRI financial products are evolving in response to these trends."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8a0356c0-6f28-453b-8bf1-f72674ef3009",
+      "headline": "HCLTech's $1.1 Billion AI Deal Sets the Stage for a Mega Earnings Week \u2014 Here's What NRI Investors Should Watch",
+      "slug": "hcltech-1-billion-ai-deal-mega-earnings-week-nri-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "HCLTech's SEZ campus in Noida",
+          "reason": "The photo shows HCLTech's headquarters, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively addresses NRI investors and their interests in the Indian IT sector and banking."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how the AI deal will impact NRI investors directly.",
+          "Add a brief summary or conclusion to reinforce the key takeaways for NRI investors."
         ],
         "verdict": "pass"
       },
