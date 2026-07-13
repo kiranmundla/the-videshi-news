@@ -172,19 +172,19 @@ def generate_card(article):
     pill_rgb = tuple(int(cc[i:i+2], 16) for i in (0, 2, 4))
 
     # Position from bottom
-    headline_font = get_font("NotoSerif-Bold.ttf", 40)
+    headline_font = get_font("NotoSerif-Bold.ttf", 36)
     headline = article["headline"]
 
-    # Short wrap — max 2-3 lines
-    lines = textwrap.wrap(headline, width=28)
-    max_lines = 3
+    # Short wrap — max 4 lines
+    lines = textwrap.wrap(headline, width=32)
+    max_lines = 4
     if len(lines) > max_lines:
         lines = lines[:max_lines]
         last = lines[-1]
-        if len(last) > 25:
-            lines[-1] = last[:25] + "…"
+        if len(last) > 28:
+            lines[-1] = last[:28] + "…"
 
-    line_spacing = 50
+    line_spacing = 44
     total_text_h = len(lines) * line_spacing
     headline_y = CARD_H - total_text_h - 70
 

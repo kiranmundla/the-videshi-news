@@ -6,6 +6,12 @@
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/alpha-50-crore-yrf-spy-universe-alia-bhatt-sharvari-commercial-loss-20260712.jpg"
   },
   {
+    "slug": "ramayana-trailer-july-24-ranbir-kapoor-yash-san-diego-comic-con-2026-20260712",
+    "headline": "Ranbir Kapoor and Yash Are Taking Ramayana to Comic-Con. No Indian Film Has Ever Done This.",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ramayana-trailer-july-24-ranbir-kapoor-yash-san-diego-comic-con-2026-20260712.jpg"
+  },
+  {
     "slug": "vance-h1b-visa-fraud-investigation-dol-subpoenas-cognizant-indian-workers-diaspora-impact-20260712",
     "headline": "Vance Just Launched the Biggest H-1B Fraud Probe in History. For 600,000 Indian Visa Holders, the Ground Just Shifted.",
     "category": "news",
@@ -102,12 +108,6 @@
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/godzilla-minus-zero-teaser-ramayana-diwali-2026-imax-box-office-clash-20260712.jpg"
   },
   {
-    "slug": "india-run-club-boom-bhag-club-bombay-on-foot-social-wellness-community-fitness-20260712",
-    "headline": "From Bhag Club to Bombay On Foot: How India's Run Club Boom Is Rewriting the Wellness Playbook",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-run-club-boom-bhag-club-bombay-on-foot-social-wellness-community-fitness-20260712.jpg"
-  },
-  {
     "slug": "south-asian-heart-risk-paradox-masala-northwestern-study-midlife-screening-20260712",
     "headline": "South Asians Face Higher Heart Risk by 45 Despite Healthier Habits, Major Study Finds",
     "category": "lifestyle-health",
@@ -118,5 +118,11 @@
     "headline": "The Science Is Settling: What 104 Clinical Trials Say About Turmeric's Real Health Benefits",
     "category": "lifestyle-health",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/turmeric-curcumin-104-clinical-trials-meta-analysis-metabolic-health-benefits-south-asian-20260712.jpg"
+  },
+  {
+    "slug": "indian-crew-missing-iran-attack-gfs-galaxy-container-ship-hormuz-oman-20260712",
+    "headline": "One Indian Crew Member Is Missing After Iran Attacked a Container Ship in the Strait of Hormuz. India Has Condemned the Strike.",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-crew-missing-iran-attack-gfs-galaxy-container-ship-hormuz-oman-20260712.jpg"
   }
 ]
