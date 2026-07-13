@@ -337,10 +337,12 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
 
         # Get group/organizer info
         organizer = ""
+        group_city = ""
         group_ref = v.get("group")
         if isinstance(group_ref, dict) and "__ref" in group_ref:
             group_data = group_map.get(group_ref["__ref"], {})
             organizer = group_data.get("name", "")
+            group_city = group_data.get("city", "") or ""
 
         # Get event URL
         event_url = v.get("eventUrl", "")
@@ -355,7 +357,7 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
             "date": date_str,
             "time": time_str or "",
             "venue_name": venue_name,
-            "city": venue_city or None,
+            "city": venue_city or group_city or "",
             "state": venue_state,
             "category": categorize(title, description),
             "description": short_desc,
