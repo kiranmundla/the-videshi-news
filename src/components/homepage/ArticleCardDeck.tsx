@@ -105,12 +105,8 @@ export default function ArticleCardDeck() {
             ))}
           </div>
 
-          {/* Bottom zone — caption + dots */}
+          {/* Bottom zone — dots only (headline already on card) */}
           <div className="card-gallery-bottom" onClick={close}>
-            <p className="card-gallery-caption">{cards[currentIndex]?.headline}</p>
-            <p className="card-gallery-category">
-              {CAT_LABELS[cards[currentIndex]?.category] ?? cards[currentIndex]?.category} · Tap to read
-            </p>
             <div className="card-gallery-dots" onClick={(e) => e.stopPropagation()}>
               {cards.map((_, i) => (
                 <div key={i}
