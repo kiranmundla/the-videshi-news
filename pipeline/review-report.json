@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-13T01:15:33.885397+00:00",
+  "timestamp": "2026-07-13T02:15:24.805428+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
-    "flag": 2,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d77cc3ad-36ff-4fd7-81f9-6e49370cd65e",
-      "headline": "Ranbir Kapoor and Yash Are Taking Ramayana to Comic-Con. No Indian Film Has Ever Done This.",
-      "slug": "ramayana-trailer-july-24-ranbir-kapoor-yash-san-diego-comic-con-2026-20260712",
+      "id": "29557ea9-4962-426b-8c57-1822ef7f4d3a",
+      "headline": "USCIS Told Laid-Off Workers They Could Job-Hunt on a Tourist Visa. Now It Is Denying Their Applications",
+      "slug": "uscis-b2-job-search-trap-h1b-laid-off-workers-denials-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,45 +21,32 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ranbir Kapoor smiling",
-          "reason": "The photo shows Ranbir Kapoor, who is mentioned in the story."
+          "what_photo_shows": "two people in a job interview",
+          "reason": "The photo shows a job interview, relevant to the story about job-hunting on a tourist visa."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DapPbASjv_K/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's subject about the Comic-Con panel for Ramayana."
-          },
-          {
-            "url": "https://youtube.com/watch?v=VSmU7vDcT2U",
-            "problem": "irrelevant",
-            "explanation": "The YouTube link is not specified as relevant to the Comic-Con event or the Ramayana film."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Ranbir Kapoor at the airport does not match the article's focus on the Comic-Con event."
+          "issue": "The image does not directly relate to the topic of immigration or job searching."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses the global release of Ramayana in IMAX, which is relevant to NRI audiences."
+          "quality": 9,
+          "note": "The article discusses the impact of immigration policy changes on Indian H-1B visa holders, directly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the Comic-Con event or the Ramayana film.",
-          "Use a hero image that features the Comic-Con event or the Ramayana film to better match the article's content."
+          "Consider using a more relevant image that reflects the theme of immigration or job searching.",
+          "Add quotes or testimonials from affected individuals to enhance the human interest angle."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DapPbASjv_K/",
-        "Removed irrelevant embed: https://youtube.com/watch?v=VSmU7vDcT2U",
         "promoted to published"
       ],
       "revised": false,
@@ -67,49 +54,63 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "cb2343a0-854a-448f-932a-ed721b7fa04e",
-      "headline": "Alpha Just Crossed \u20b950 Crore. It Might Still Be the Film That Killed the Spy Universe.",
-      "slug": "alpha-50-crore-yrf-spy-universe-alia-bhatt-sharvari-commercial-loss-20260712",
+      "id": "d8128708-8a6f-4d31-8a5b-46ea1f04bccb",
+      "headline": "The $100,000 H-1B Fee Is Dead in One Court and Alive in Another. Indian Employers Are Caught in the Middle",
+      "slug": "100k-h1b-fee-circuit-split-indian-employers-legal-chaos-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "b7bea9c5-3e46-4e11-a4ad-aec5056bc7c9",
+            "headline": "Your Spouse's Work Permit Expires This Month. The Government"
+          },
+          {
+            "article_id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
+            "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Appli"
+          },
+          {
+            "article_id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
+            "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is "
+          },
+          {
+            "article_id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
+            "headline": "Green Card Applicants Must Now Leave the Country. USCIS Call"
+          },
+          {
+            "article_id": "9061dd5f-48ae-46ff-a682-43b97459505b",
+            "headline": "A Federal Judge Just Killed Trump's $100,000 H-1B Fee. The R"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Alpha movie poster with cast",
-          "reason": "The photo is related to the film 'Alpha' mentioned in the story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo is relevant to the immigration topic of the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/Dac4hPFDAKJ/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the film 'Alpha' or its performance, making it irrelevant to the article's subject."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": null
+          "score": 6,
+          "issue": "The image is relevant to immigration but does not specifically relate to the H-1B visa or the context of the article."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of the film on NRI audiences and their expectations from the Spy Universe, making it relevant to the diaspora."
+          "note": "The article discusses the implications of the H-1B fee on Indian IT firms and healthcare workers, which directly affects the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding more context about the significance of the Spy Universe for NRI audiences to enhance the diaspora angle."
+          "Consider using a more relevant image that directly relates to the H-1B visa or Indian workers in the U.S.",
+          "Add quotes or perspectives from Indian employers or workers affected by the H-1B fee to enhance the diaspora angle."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/Dac4hPFDAKJ/",
         "promoted to published"
       ],
       "revised": false,
