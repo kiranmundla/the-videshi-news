@@ -113,8 +113,8 @@ function CategoryNavBar() {
           </div>
           )}
 
-          {/* Row 2 — feature sections (hidden on homepage, hub icons replace it) */}
-          {routeSlug !== "" && (
+          {/* Row 2 — feature sections (hidden everywhere, hub icons replace it) */}
+          {false && (
           <div className="flex items-center overflow-x-auto scrollbar-none -mx-1 px-1 gap-0 border-t" style={{ borderColor: "hsl(var(--rule) / 0.4)" }}>
             {NAV_SECTIONS.map((sec) => {
               const isActive = routeSlug === sec.slug;
