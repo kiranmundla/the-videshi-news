@@ -19,7 +19,7 @@
    ],
    "first_seen": "2026-06-19T05:23:04Z",
    "article_id": "8098893b-7842-4915-8058-bd4bf64602ee",
-   "priority": 11
+   "priority": 12
   },
   {
    "subject": "lawsuit",
@@ -80,16 +80,6 @@
    "first_seen": "2026-06-19T05:36:15Z",
    "article_id": "46053432-a765-4316-b8ab-7f4b3990cc08",
    "priority": 2
-  },
-  {
-   "subject": "airfare",
-   "subject_type": "thing",
-   "tags": [
-    "airfare"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "6bcf464e-2f29-49e2-ab27-11326adc42e4",
-   "priority": 4
   },
   {
    "subject": "family",
@@ -159,7 +149,7 @@
    ],
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "8de72ac4-0887-43f6-8ee8-340b29a1a9a5",
-   "priority": 5
+   "priority": 6
   },
   {
    "subject": "kaynes",
@@ -492,16 +482,6 @@
    "priority": 3
   },
   {
-   "subject": "remittances",
-   "subject_type": "thing",
-   "tags": [
-    "remittances"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "244ddb20-0591-414d-af65-ba4eb7463df0",
-   "priority": 2
-  },
-  {
    "subject": "harvard",
    "subject_type": "thing",
    "tags": [
@@ -599,36 +579,6 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-   "priority": 2
-  },
-  {
-   "subject": "Ram Shriram",
-   "subject_type": "thing",
-   "tags": [
-    "ram shriram"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "da6ebb0e-2862-4ce5-ac6a-c182f8f62348",
-   "priority": 2
-  },
-  {
-   "subject": "Sriharikota",
-   "subject_type": "thing",
-   "tags": [
-    "sriharikota"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "da6ebb0e-2862-4ce5-ac6a-c182f8f62348",
-   "priority": 2
-  },
-  {
-   "subject": "private space",
-   "subject_type": "thing",
-   "tags": [
-    "private space"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "da6ebb0e-2862-4ce5-ac6a-c182f8f62348",
    "priority": 2
   },
   {
@@ -852,16 +802,6 @@
    "priority": 2
   },
   {
-   "subject": "indian origin ceo",
-   "subject_type": "thing",
-   "tags": [
-    "indian origin ceo"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "dd315d47-16ab-4b53-8026-32d5bb3b57cb",
-   "priority": 2
-  },
-  {
    "subject": "consulate india",
    "subject_type": "thing",
    "tags": [
@@ -879,7 +819,7 @@
    ],
    "first_seen": "2026-06-23T10:29:22Z",
    "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
-   "priority": 5
+   "priority": 6
   },
   {
    "subject": "fy2027",
@@ -1512,30 +1452,10 @@
    "priority": 2
   },
   {
-   "subject": "artificial intelligence",
-   "subject_type": "thing",
-   "tags": [
-    "artificial intelligence"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "5040a872-f870-4f5d-9de2-57bc0b0dde5a",
-   "priority": 2
-  },
-  {
    "subject": "60 day grace",
    "subject_type": "thing",
    "tags": [
     "60 day grace"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "b4d47f06-8fb7-41e1-a889-02c52aa285b1",
-   "priority": 2
-  },
-  {
-   "subject": "b2 visa",
-   "subject_type": "thing",
-   "tags": [
-    "b2 visa"
    ],
    "first_seen": "2026-06-26T10:29:23Z",
    "article_id": "b4d47f06-8fb7-41e1-a889-02c52aa285b1",
@@ -2802,16 +2722,6 @@
    "priority": 2
   },
   {
-   "subject": "banking",
-   "subject_type": "thing",
-   "tags": [
-    "banking"
-   ],
-   "first_seen": "2026-07-01T10:29:26Z",
-   "article_id": "c1671651-8e0b-48b9-9aa7-92aba5c2a06d",
-   "priority": 2
-  },
-  {
    "subject": "ai governance",
    "subject_type": "thing",
    "tags": [
@@ -3252,16 +3162,6 @@
    "priority": 2
   },
   {
-   "subject": "leadership",
-   "subject_type": "thing",
-   "tags": [
-    "leadership"
-   ],
-   "first_seen": "2026-07-01T10:29:26Z",
-   "article_id": "a87c6a7a-67d8-4ba0-a84c-3e8cbdd82f3b",
-   "priority": 2
-  },
-  {
    "subject": "cashfree",
    "subject_type": "thing",
    "tags": [
@@ -3290,46 +3190,6 @@
    "first_seen": "2026-07-02T10:29:24Z",
    "article_id": "dc5fc683-652f-485f-8626-e4df09f34e8c",
    "priority": 2
-  },
-  {
-   "subject": "developer tools",
-   "subject_type": "thing",
-   "tags": [
-    "developer tools"
-   ],
-   "first_seen": "2026-07-02T10:29:24Z",
-   "article_id": "7c4039c3-3cf3-45b9-8811-22fee28a426f",
-   "priority": 2
-  },
-  {
-   "subject": "hardware",
-   "subject_type": "thing",
-   "tags": [
-    "hardware"
-   ],
-   "first_seen": "2026-07-02T10:29:24Z",
-   "article_id": "7c4039c3-3cf3-45b9-8811-22fee28a426f",
-   "priority": 3
-  },
-  {
-   "subject": "ai coding",
-   "subject_type": "thing",
-   "tags": [
-    "ai coding"
-   ],
-   "first_seen": "2026-07-02T10:29:24Z",
-   "article_id": "7c4039c3-3cf3-45b9-8811-22fee28a426f",
-   "priority": 2
-  },
-  {
-   "subject": "indian developers",
-   "subject_type": "thing",
-   "tags": [
-    "indian developers"
-   ],
-   "first_seen": "2026-07-02T10:29:24Z",
-   "article_id": "7c4039c3-3cf3-45b9-8811-22fee28a426f",
-   "priority": 3
   },
   {
    "subject": "visa crackdown",
@@ -3590,16 +3450,6 @@
    "first_seen": "2026-07-03T10:29:24Z",
    "article_id": "145b4c83-9f17-4d49-8c49-23cd58700ba7",
    "priority": 2
-  },
-  {
-   "subject": "earnings",
-   "subject_type": "thing",
-   "tags": [
-    "earnings"
-   ],
-   "first_seen": "2026-07-03T10:29:24Z",
-   "article_id": "145b4c83-9f17-4d49-8c49-23cd58700ba7",
-   "priority": 3
   },
   {
    "subject": "mandatory detention",
@@ -3989,7 +3839,7 @@
    ],
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "426f780a-6b78-47f4-88aa-038970d48d87",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "micron india",
@@ -4599,7 +4449,7 @@
    ],
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "e7a98190-c8a1-4b9e-9d66-3bfbb1a1f91c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "pax silica",
@@ -5239,16 +5089,6 @@
    ],
    "first_seen": "2026-07-07T10:29:37Z",
    "article_id": "c40f3265-8bb3-4706-b995-482e3f53f3e1",
-   "priority": 2
-  },
-  {
-   "subject": "south asian",
-   "subject_type": "thing",
-   "tags": [
-    "south asian"
-   ],
-   "first_seen": "2026-07-07T10:29:37Z",
-   "article_id": "c40f3265-8bb3-4706-b995-482e3f53f3e1",
    "priority": 3
   },
   {
@@ -5450,16 +5290,6 @@
    "first_seen": "2026-07-08T10:29:24Z",
    "article_id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
    "priority": 2
-  },
-  {
-   "subject": "Sensex",
-   "subject_type": "thing",
-   "tags": [
-    "sensex"
-   ],
-   "first_seen": "2026-07-08T10:29:24Z",
-   "article_id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
-   "priority": 3
   },
   {
    "subject": "consular notification",
@@ -5999,7 +5829,7 @@
    ],
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "c18d45c9-757f-4e65-80b1-4fb9ade687fe",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "courthouse",
@@ -6050,16 +5880,6 @@
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "149b1972-24c6-47dc-abf5-6928afac066a",
    "priority": 2
-  },
-  {
-   "subject": "project firewall",
-   "subject_type": "thing",
-   "tags": [
-    "project firewall"
-   ],
-   "first_seen": "2026-07-09T10:29:26Z",
-   "article_id": "d9880c50-8318-47fb-b31d-950737d7807e",
-   "priority": 3
   },
   {
    "subject": "palantir",
@@ -6619,7 +6439,7 @@
    ],
    "first_seen": "2026-07-10T10:29:24Z",
    "article_id": "208a72da-e43d-488b-94b4-594f2b6509cb",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "amd",
@@ -6669,16 +6489,6 @@
    ],
    "first_seen": "2026-07-10T10:29:24Z",
    "article_id": "9c40dc8d-bd8e-4b63-96d0-e310dacf8146",
-   "priority": 2
-  },
-  {
-   "subject": "federal court",
-   "subject_type": "thing",
-   "tags": [
-    "federal court"
-   ],
-   "first_seen": "2026-07-10T10:29:24Z",
-   "article_id": "9fb56b43-ea7d-4843-bb61-abcc4ce22047",
    "priority": 3
   },
   {
@@ -6839,7 +6649,7 @@
    ],
    "first_seen": "2026-07-11T10:29:23Z",
    "article_id": "5df9dbef-15e3-4f2d-a7fa-4fb0c1a08622",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "gold etf",
@@ -7169,7 +6979,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "c17632d1-2a19-413f-9860-c4683eb6814a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "bonds",
@@ -7179,7 +6989,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "c17632d1-2a19-413f-9860-c4683eb6814a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "fixed deposits",
@@ -7239,7 +7049,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "2ccaa535-2d02-4120-997f-907974d7de18",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "seafarers",
@@ -7429,7 +7239,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "cash market",
@@ -7509,23 +7319,13 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "russia india",
    "subject_type": "thing",
    "tags": [
     "russia india"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-   "priority": 2
-  },
-  {
-   "subject": "hormuz",
-   "subject_type": "thing",
-   "tags": [
-    "hormuz"
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
@@ -7539,7 +7339,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "oil imports",
@@ -7850,7 +7650,387 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7815f009-8795-4356-8580-a7a25713ab37",
    "priority": 2
+  },
+  {
+   "subject": "capital markets",
+   "subject_type": "thing",
+   "tags": [
+    "capital markets"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "ac84e7df-0465-4c18-a5b9-0fcba958ab2e",
+   "priority": 2
+  },
+  {
+   "subject": "india exchange",
+   "subject_type": "thing",
+   "tags": [
+    "india exchange"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "ac84e7df-0465-4c18-a5b9-0fcba958ab2e",
+   "priority": 2
+  },
+  {
+   "subject": "bloomberg index",
+   "subject_type": "thing",
+   "tags": [
+    "bloomberg index"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "3710b3c5-947c-4e69-8bd9-fe01264d4527",
+   "priority": 2
+  },
+  {
+   "subject": "fixed income",
+   "subject_type": "thing",
+   "tags": [
+    "fixed income"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "3710b3c5-947c-4e69-8bd9-fe01264d4527",
+   "priority": 2
+  },
+  {
+   "subject": "fpi",
+   "subject_type": "thing",
+   "tags": [
+    "fpi"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "f4b1706c-b03b-4736-b06c-aa9cc08cd577",
+   "priority": 2
+  },
+  {
+   "subject": "foreign funds",
+   "subject_type": "thing",
+   "tags": [
+    "foreign funds"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "f4b1706c-b03b-4736-b06c-aa9cc08cd577",
+   "priority": 2
+  },
+  {
+   "subject": "ai rotation",
+   "subject_type": "thing",
+   "tags": [
+    "ai rotation"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "f4b1706c-b03b-4736-b06c-aa9cc08cd577",
+   "priority": 2
+  },
+  {
+   "subject": "etf",
+   "subject_type": "thing",
+   "tags": [
+    "etf"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "f4b1706c-b03b-4736-b06c-aa9cc08cd577",
+   "priority": 2
+  },
+  {
+   "subject": "mayors",
+   "subject_type": "thing",
+   "tags": [
+    "mayors"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "6f52138c-4410-4ad6-925d-0915ac5c35be",
+   "priority": 2
+  },
+  {
+   "subject": "civic engagement",
+   "subject_type": "thing",
+   "tags": [
+    "civic engagement"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "6f52138c-4410-4ad6-925d-0915ac5c35be",
+   "priority": 2
+  },
+  {
+   "subject": "fremont",
+   "subject_type": "thing",
+   "tags": [
+    "fremont"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "6f52138c-4410-4ad6-925d-0915ac5c35be",
+   "priority": 2
+  },
+  {
+   "subject": "parsippany",
+   "subject_type": "thing",
+   "tags": [
+    "parsippany"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "6f52138c-4410-4ad6-925d-0915ac5c35be",
+   "priority": 2
+  },
+  {
+   "subject": "medicine",
+   "subject_type": "thing",
+   "tags": [
+    "medicine"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "b37ed113-103c-4018-9bd3-6342739964de",
+   "priority": 2
+  },
+  {
+   "subject": "neurology",
+   "subject_type": "thing",
+   "tags": [
+    "neurology"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "b37ed113-103c-4018-9bd3-6342739964de",
+   "priority": 2
+  },
+  {
+   "subject": "stroke",
+   "subject_type": "thing",
+   "tags": [
+    "stroke"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "b37ed113-103c-4018-9bd3-6342739964de",
+   "priority": 2
+  },
+  {
+   "subject": "ongc",
+   "subject_type": "thing",
+   "tags": [
+    "ongc"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "ba150e8a-e4a4-4e43-9176-772cebbc234f",
+   "priority": 2
+  },
+  {
+   "subject": "strategic petroleum reserve",
+   "subject_type": "thing",
+   "tags": [
+    "strategic petroleum reserve"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "ba150e8a-e4a4-4e43-9176-772cebbc234f",
+   "priority": 2
+  },
+  {
+   "subject": "mangalore",
+   "subject_type": "thing",
+   "tags": [
+    "mangalore"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "ba150e8a-e4a4-4e43-9176-772cebbc234f",
+   "priority": 2
+  },
+  {
+   "subject": "oil storage",
+   "subject_type": "thing",
+   "tags": [
+    "oil storage"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "ba150e8a-e4a4-4e43-9176-772cebbc234f",
+   "priority": 2
+  },
+  {
+   "subject": "software engineering",
+   "subject_type": "thing",
+   "tags": [
+    "software engineering"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
+   "priority": 2
+  },
+  {
+   "subject": "zetwerk",
+   "subject_type": "thing",
+   "tags": [
+    "zetwerk"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "cbd0eef7-aa73-457e-a98a-8e517abfd22d",
+   "priority": 2
+  },
+  {
+   "subject": "ai data centres",
+   "subject_type": "thing",
+   "tags": [
+    "ai data centres"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "cbd0eef7-aa73-457e-a98a-8e517abfd22d",
+   "priority": 2
+  },
+  {
+   "subject": "khosla ventures",
+   "subject_type": "thing",
+   "tags": [
+    "khosla ventures"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "cbd0eef7-aa73-457e-a98a-8e517abfd22d",
+   "priority": 2
+  },
+  {
+   "subject": "tech layoffs",
+   "subject_type": "thing",
+   "tags": [
+    "tech layoffs"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "29557ea9-4962-426b-8c57-1822ef7f4d3a",
+   "priority": 2
+  },
+  {
+   "subject": "JD Vance official portrait 2026",
+   "subject_type": "concept",
+   "tags": [
+    "jd vance official portrait 2026"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "64a8e2e8-e5cf-47ef-bf0f-3b220f28f1c3",
+   "priority": 1
+  },
+  {
+   "subject": "wealth management",
+   "subject_type": "thing",
+   "tags": [
+    "wealth management"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
+   "priority": 2
+  },
+  {
+   "subject": "hni migration",
+   "subject_type": "thing",
+   "tags": [
+    "hni migration"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
+   "priority": 2
+  },
+  {
+   "subject": "fema",
+   "subject_type": "thing",
+   "tags": [
+    "fema"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
+   "priority": 2
+  },
+  {
+   "subject": "ohio",
+   "subject_type": "thing",
+   "tags": [
+    "ohio"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "03edbac9-fbde-4753-8c0f-d78057dbd97f",
+   "priority": 2
+  },
+  {
+   "subject": "elections",
+   "subject_type": "thing",
+   "tags": [
+    "elections"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "03edbac9-fbde-4753-8c0f-d78057dbd97f",
+   "priority": 2
+  },
+  {
+   "subject": "mission aagaman",
+   "subject_type": "thing",
+   "tags": [
+    "mission aagaman"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
+   "priority": 2
+  },
+  {
+   "subject": "india space",
+   "subject_type": "thing",
+   "tags": [
+    "india space"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
+   "priority": 2
+  },
+  {
+   "subject": "unicorn",
+   "subject_type": "thing",
+   "tags": [
+    "unicorn"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
+   "priority": 2
+  },
+  {
+   "subject": "mercor",
+   "subject_type": "thing",
+   "tags": [
+    "mercor"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "a8c61ef6-f4d1-4bca-bfef-59cc409f356b",
+   "priority": 2
+  },
+  {
+   "subject": "data labeling",
+   "subject_type": "thing",
+   "tags": [
+    "data labeling"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "a8c61ef6-f4d1-4bca-bfef-59cc409f356b",
+   "priority": 2
+  },
+  {
+   "subject": "valuation",
+   "subject_type": "thing",
+   "tags": [
+    "valuation"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "a8c61ef6-f4d1-4bca-bfef-59cc409f356b",
+   "priority": 2
+  },
+  {
+   "subject": "adarsh hiremath",
+   "subject_type": "thing",
+   "tags": [
+    "adarsh hiremath"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "a8c61ef6-f4d1-4bca-bfef-59cc409f356b",
+   "priority": 2
+  },
+  {
+   "subject": "i 485",
+   "subject_type": "thing",
+   "tags": [
+    "i 485"
+   ],
+   "first_seen": "2026-07-13T10:29:23Z",
+   "article_id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
+   "priority": 2
   }
  ],
- "_updated": "2026-07-12T10:29:26Z"
+ "_updated": "2026-07-13T10:29:23Z"
 }
