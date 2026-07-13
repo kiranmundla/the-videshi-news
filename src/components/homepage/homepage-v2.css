@@ -919,3 +919,8 @@
   text-transform: uppercase;
   color: rgba(255,255,255,0.8);
 }
+
+/* ── Key Developments (matches Happening Today) ─── */
+.v2-keydev-link:hover span {
+  color: #A32D2D !important;
+}
