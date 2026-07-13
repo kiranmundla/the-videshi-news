@@ -5,13 +5,13 @@ import HeroImage, { isValidImage } from "@/components/HeroImage";
 
 /* ── Sub-topic definitions per category ── */
 
-interface SubTopicDef {
+export interface SubTopicDef {
   key: string;
   label: string;
   tags: string[]; // articles matching ANY of these tags go here
 }
 
-const CATEGORY_SUBTOPICS: Record<string, SubTopicDef[]> = {
+export const CATEGORY_SUBTOPICS: Record<string, SubTopicDef[]> = {
   technology: [
     {
       key: "ai",
@@ -62,6 +62,44 @@ const CATEGORY_SUBTOPICS: Record<string, SubTopicDef[]> = {
     },
   ],
 };
+
+/* ── SEO metadata per sub-topic ── */
+export const SUB_TOPIC_SEO: Record<string, { title: string; description: string }> = {
+  ai: {
+    title: "AI & Machine Learning News for NRIs — The Videshi",
+    description:
+      "Latest artificial intelligence, OpenAI, Anthropic, and machine learning news with diaspora impact — jobs, leadership, and what it means for Indians in tech.",
+  },
+  "big-tech": {
+    title: "Big Tech News — Google, Apple, Meta, Microsoft, Nvidia — The Videshi",
+    description:
+      "Breaking news from Google, Apple, Meta, Microsoft, Amazon, Nvidia, Tesla, and SpaceX — company announcements, leadership, layoffs, and diaspora impact.",
+  },
+  semiconductors: {
+    title: "Semiconductor & Chip Industry News for NRIs — The Videshi",
+    description:
+      "Semiconductor industry news — Intel, TSMC, Nvidia, Qualcomm, Micron, India's chip ambitions, and what it means for Indian engineers and investors.",
+  },
+  startups: {
+    title: "Indian Startups, Unicorns & VC News — The Videshi",
+    description:
+      "Indian startup ecosystem news — unicorns, IPOs, venture capital, fintech, NRI founders in Silicon Valley, and funding rounds that matter.",
+  },
+  "indian-it": {
+    title: "Indian IT & Services News — TCS, Infosys, Wipro, HCL — The Videshi",
+    description:
+      "Indian IT industry news — TCS, Infosys, Wipro, HCLTech, GCCs, outsourcing trends, hiring, and what it means for the diaspora workforce.",
+  },
+};
+
+/* ── Lookup helpers ── */
+
+export function getSubTopicDef(
+  category: string,
+  subtopicKey: string
+): SubTopicDef | undefined {
+  return CATEGORY_SUBTOPICS[category]?.find((s) => s.key === subtopicKey);
+}
 
 /* ── Helper: group articles by sub-topic ── */
 
@@ -122,9 +160,16 @@ function timeAgo(iso: string): string {
   return formatShortDate(iso);
 }
 
-function SubTopicGroup({ def, articles }: { def: SubTopicDef; articles: Article[] }) {
-  const [expanded, setExpanded] = useState(false);
-  const visible = expanded ? articles : articles.slice(0, INITIAL_COUNT);
+function SubTopicGroup({
+  def,
+  articles,
+  category,
+}: {
+  def: SubTopicDef;
+  articles: Article[];
+  category: string;
+}) {
+  const visible = articles.slice(0, INITIAL_COUNT);
   const hasMore = articles.length > INITIAL_COUNT;
   const accent = ACCENT_COLORS[def.key] || "#64748b";
 
@@ -212,18 +257,27 @@ function SubTopicGroup({ def, articles }: { def: SubTopicDef; articles: Article[
           </div>
         </div>
 
-        {/* View more / Show less */}
-        {hasMore && (
+        {/* View more → links to sub-topic page */}
+        {hasMore && def.key !== "other" && (
           <div className="text-center mt-4">
-            <button
-              onClick={() => setExpanded(!expanded)}
+            <Link
+              to={`/${category}/${def.key}`}
               className="text-[13px] font-semibold tracking-wide uppercase hover:opacity-80 transition-opacity"
-              style={{ color: accent, background: "none", border: "none", cursor: "pointer" }}
+              style={{ color: accent, textDecoration: "none" }}
             >
-              {expanded
-                ? "Show less"
-                : `View more ${def.label} (${articles.length - INITIAL_COUNT}) →`}
-            </button>
+              View all {def.label} ({articles.length}) →
+            </Link>
+          </div>
+        )}
+        {hasMore && def.key === "other" && (
+          <div className="text-center mt-4">
+            <Link
+              to={`/${category}`}
+              className="text-[13px] font-semibold tracking-wide uppercase hover:opacity-80 transition-opacity"
+              style={{ color: accent, textDecoration: "none" }}
+            >
+              View all {category} →
+            </Link>
           </div>
         )}
       </div>
@@ -233,7 +287,13 @@ function SubTopicGroup({ def, articles }: { def: SubTopicDef; articles: Article[
 
 /* ── Main export: renders all sub-topic groups for a category ── */
 
-export default function CategorySubTopics({ category, articles }: { category: string; articles: Article[] }) {
+export default function CategorySubTopics({
+  category,
+  articles,
+}: {
+  category: string;
+  articles: Article[];
+}) {
   const subtopics = CATEGORY_SUBTOPICS[category];
   if (!subtopics) return null;
 
@@ -242,7 +302,12 @@ export default function CategorySubTopics({ category, articles }: { category: st
   return (
     <>
       {groups.map((g) => (
-        <SubTopicGroup key={g.def.key} def={g.def} articles={g.articles} />
+        <SubTopicGroup
+          key={g.def.key}
+          def={g.def}
+          articles={g.articles}
+          category={category}
+        />
       ))}
     </>
   );

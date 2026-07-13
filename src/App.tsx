@@ -24,6 +24,7 @@ const PageLoader = () => (
 // ── Lazy-loaded pages (separate chunks, loaded on-demand) ─────────
 const ArticlePage = React.lazy(() => import("./pages/ArticlePage.tsx"));
 const CategoryPage = React.lazy(() => import("./pages/CategoryPage.tsx"));
+const SubTopicPage = React.lazy(() => import("./pages/SubTopicPage.tsx"));
 const About = React.lazy(() => import("./pages/About.tsx"));
 const Contact = React.lazy(() => import("./pages/Contact.tsx"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage.tsx"));
@@ -199,6 +200,7 @@ const App = () => (
                 <Route path="review" element={<ReviewQueuePage />} />
                 <Route path="run" element={<RunLogPage />} />
               </Route>
+              <Route path="/:category/:subtopic" element={<SubTopicPage />} />
               <Route path="/:category" element={<CategoryPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
