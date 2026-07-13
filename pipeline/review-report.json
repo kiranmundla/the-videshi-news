@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-13T17:15:41.355203+00:00",
+  "timestamp": "2026-07-13T18:15:49.519312+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d51870ba-c1c7-4af6-897d-7e47e636b0fd",
-      "headline": "Five-Star Hotels Abroad Cost 23% Less Than in America \u2014 Here's How NRIs Can Cash In",
-      "slug": "five-star-hotels-cheaper-abroad-nri-india-monsoon-deals-20260713",
+      "id": "77501e67-3153-4587-84f6-dfb06659bc56",
+      "headline": "From Bukhara to Dimapur: Inside the NDTV Food Awards That Mapped India's New Culinary Geography",
+      "slug": "from-bukhara-to-dimapur-inside-the-ndtv-food-awards-that-mapped-indias-new-culin",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,94 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "luxury tropical resort at dusk",
-          "reason": "The photo shows a luxury resort, relevant to the travel story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs and their travel considerations, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of luxury hotels in other countries to enhance the article's depth.",
-          "Include a section on potential cultural experiences or activities NRIs can enjoy while traveling in India during the monsoon season."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "70bbf85c-3c24-41b3-a850-c77c4c07397f",
-      "headline": "Air New Zealand and Air India Are Building a Bridge to Auckland \u2014 Direct Flights Targeted by 2028",
-      "slug": "air-new-zealand-air-india-direct-flights-codeshare-nri-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Air New Zealand Boeing 787-9 Dreamliner",
-          "reason": "The photo shows the aircraft type relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the benefits of direct flights for the Indian community in New Zealand and Indian Australians, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from travelers or experts to enhance the narrative.",
-          "Include more statistics or data on the Indian diaspora in New Zealand to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c29ed514-2ca6-4872-9dde-55b2cea87d41",
-      "headline": "India-to-US Travel Falls 4% \u2014 and Indian Globetrotters Are Finding New Favorites",
-      "slug": "india-us-travel-decline-alternative-destinations-nri-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "flight information board at airport",
-          "reason": "The photo is relevant to international travel trends."
+          "what_photo_shows": "gourmet tandoori chicken with garnishes",
+          "reason": "The photo shows a gourmet dish relevant to the culinary awards story."
         },
         "inline_image_mismatches": []
       },
@@ -117,18 +31,104 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to travel but does not specifically depict the US or Indian travelers."
+          "issue": "The image is relevant to the food theme but does not specifically represent the NDTV Food Awards or the specific restaurants mentioned."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of travel trends on the NRI community, making it relevant and engaging for diaspora readers."
+          "note": "The article effectively connects the awards to the diaspora's experiences and interests in Indian cuisine."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or quotes from Indian travelers to enhance relatability.",
-          "Add a section on how these travel trends might evolve in the coming years."
+          "Consider including images or links to the award-winning restaurants for a more engaging experience.",
+          "Add quotes or reactions from chefs or attendees at the awards to enhance the narrative."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "325ff52a-8763-4cac-9c94-726fb729d798",
+      "headline": "The World's Most Decorated Indian Chef Is Finally Opening a Restaurant in India",
+      "slug": "the-worlds-most-decorated-indian-chef-is-finally-opening-a-restaurant-in-india",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Gaggan restaurant exterior",
+          "reason": "The photo shows the exterior of Gaggan's restaurant, relevant to the chef's story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image depicts Gaggan's restaurant in Bangkok, which is relevant but does not directly represent the new restaurant in India."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects Gaggan's journey and homecoming to the emotional experience of NRIs, highlighting the significance of his return."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including images or visuals related to Raga to enhance the article's relevance.",
+          "Add quotes or reactions from NRIs or food critics to further emphasize the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f1eaea31-7db2-4a0c-a8eb-0a4893def47c",
+      "headline": "Lucknow's Melt-in-Your-Mouth Moment: How the City of Nawabs Became a UNESCO Culinary Capital",
+      "slug": "lucknows-melt-in-your-mouth-moment-how-the-city-of-nawabs-became-a-unesco-culina",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Galawati kebabs on a plate",
+          "reason": "The photo shows a signature dish of Awadhi cuisine, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the UNESCO recognition of Lucknow's cuisine to the experiences and pride of the NRI community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more quotes or anecdotes from NRIs to enhance the personal connection to the diaspora.",
+          "Include a brief section on how NRIs can engage with or promote Lucknow's culinary heritage."
         ],
         "verdict": "pass"
       },
