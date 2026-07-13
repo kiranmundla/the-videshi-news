@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-13T19:15:26.313434+00:00",
+  "timestamp": "2026-07-13T20:15:18.378848+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "d0f9e9b2-23ec-4158-8c21-d4b4b656ee90",
-      "headline": "Alia Bhatt's Best Friend Married the Man Who Made Gunjan Saxena. Bollywood Showed Up.",
-      "slug": "akanksha-ranjan-kapoor-sharan-sharma-wedding-alia-bhatt-bollywood-sangeet-reception-20260713",
+      "id": "4c9e4dcc-4c71-47ae-914f-3e2f7b6e8bd9",
+      "headline": "Germany, Canada, and the EU Want the Indian Talent America Is Pushing Away",
+      "slug": "germany-canada-eu-blue-card-indian-talent-recruitment-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,58 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Akanksha Ranjan Kapoor at event",
-          "reason": "The photo shows Akanksha Ranjan Kapoor, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DaqB031iBXA/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post is not directly related to the wedding or the couple's story, making it less relevant to the article's main focus."
-          }
-        ],
-        "image_match": {
-          "score": 7,
-          "issue": "The image of Akansha Ranjan Kapoor at a reception does not directly match the wedding theme discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article touches on Bollywood culture, which resonates with the Indian diaspora, but could further emphasize the significance of the event for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant post that highlights the wedding or couple.",
-          "Consider adding a brief section on how the wedding reflects contemporary trends in Bollywood weddings, which could engage diaspora readers more."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DaqB031iBXA/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "38c30ab8-7459-4d10-a6ba-e62a6bbd0e63",
-      "headline": "Lokesh Kanagaraj Is Making a Superhero Film With Aamir Khan. It's Aimed at the World.",
-      "slug": "lokesh-kanagaraj-aamir-khan-superhero-film-bollywood-debut-global-audience-2027-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in black shirt, festive background",
-          "reason": "The photo plausibly shows Lokesh Kanagaraj, relevant to the story."
+          "what_photo_shows": "open passport with travel stamps",
+          "reason": "The photo is relevant to the topic of immigration."
         },
         "inline_image_mismatches": []
       },
@@ -80,19 +30,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the article's focus on immigration policies and talent acquisition."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's global ambitions to the interests of the Indian diaspora, highlighting Aamir Khan's international recognition."
+          "note": "The article effectively discusses immigration options for Indian professionals, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from Aamir Khan to provide a balanced perspective.",
-          "Include a brief overview of previous Indian superhero films to contextualize the challenges faced in the genre."
+          "Consider using an image that visually represents immigration or international talent exchange to better match the article's theme.",
+          "Add a section that includes testimonials or experiences from Indian professionals who have moved to Germany or Canada to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "44cbfb90-cca2-42f0-8889-0a2e62ab30b4",
+      "headline": "The Remittance Tax Is Six Months Old. Most NRIs Have Not Paid a Cent",
+      "slug": "remittance-tax-six-months-nri-exemptions-cash-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "cash and smartphone calculator",
+          "reason": "The photo relates to financial transactions, fitting the remittance tax story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to remittances or the financial topic discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of NRIs regarding the remittance tax and its implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using an image that visually represents remittances or financial transactions to enhance relevance.",
+          "Add a brief section on how NRIs can navigate the new tax regulations to provide practical advice."
         ],
         "verdict": "pass"
       },
