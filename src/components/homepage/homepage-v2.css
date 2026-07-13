@@ -767,11 +767,11 @@
   min-width: 100vw; width: 100vw;
   scroll-snap-align: start; display: flex;
   align-items: center; justify-content: center;
-  flex-shrink: 0; padding: 0 32px; box-sizing: border-box;
+  flex-shrink: 0; padding: 0 16px; box-sizing: border-box;
 }
 .card-gallery-link { display: block; cursor: pointer; }
 .card-gallery-img {
-  max-width: calc(100vw - 96px); max-height: 55vh;
+  max-width: calc(100vw - 48px); max-height: 75vh;
   object-fit: contain; border-radius: 10px;
   user-select: none; -webkit-user-select: none;
   box-shadow: 0 8px 40px rgba(0,0,0,0.5);

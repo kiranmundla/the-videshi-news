@@ -261,14 +261,16 @@ def compute_prominence(article_id, headline, category, published_at):
         return 8  # default
 
 
-def update_article_scores(article_id, newsworthiness, diaspora_impact, prominence, display_score=None):
+def update_article_scores(article_id, newsworthiness, diaspora_impact, prominence,
+                          display_score=None, article_type=None):
     """Write scores back to p2_articles."""
     ds_clause = f",\n        display_score = {display_score}" if display_score is not None else ""
+    at_clause = f",\n        article_type = '{article_type}'" if article_type else ""
     sql = f"""
     UPDATE p2_articles
     SET newsworthiness = {newsworthiness},
         diaspora_impact = {diaspora_impact},
-        prominence = {prominence}{ds_clause}
+        prominence = {prominence}{ds_clause}{at_clause}
     WHERE id = '{article_id}'
     """
     for attempt in range(3):
@@ -333,6 +335,21 @@ def score_and_update(article, dry_run=False):
     # Compute prominence
     prom = compute_prominence(aid, headline, category, published_at)
 
+    # Detect follow-ups: check if this topic has prior coverage
+    article_type = "breaking"
+    followup_penalty = 0.0
+    try:
+        from detect_followups import find_prior_coverage
+        coverage = find_prior_coverage(aid, headline, category, published_at)
+        if coverage["is_followup"]:
+            article_type = "follow-up"
+            # Penalty: -15 to keep follow-ups out of featured slot
+            # but still visible in category sections
+            followup_penalty = -15.0
+            print(f"   📎 Follow-up (prior: {', '.join(coverage['prior_slugs'][:2])})")
+    except Exception as e:
+        print(f"   ⚠ Follow-up detection skipped: {e}", file=sys.stderr)
+
     # Compute display score (with current freshness)
     if published_at:
         try:
@@ -344,19 +361,25 @@ def score_and_update(article, dry_run=False):
     else:
         freshness = 0
 
-    display_score = nw + prom + di + freshness
+    display_score = nw + prom + di + freshness + followup_penalty
 
+    type_label = f" [{article_type.upper()}]" if article_type != "breaking" else ""
     print(f"   Newsworthiness: {nw}/35 | Diaspora: {di}/20 | Prominence: {prom}/25 | Freshness: {freshness:.1f}/20")
-    print(f"   📊 Display Score: {display_score:.1f}/100")
+    if followup_penalty:
+        print(f"   Follow-up penalty: {followup_penalty}")
+    print(f"   📊 Display Score: {display_score:.1f}/100{type_label}")
     print(f"   💡 {reasoning}")
 
     if not dry_run:
-        update_article_scores(aid, nw, di, prom, display_score=round(display_score, 1))
+        update_article_scores(aid, nw, di, prom,
+                              display_score=round(display_score, 1),
+                              article_type=article_type)
         print(f"   ✅ Saved to DB")
 
     return {"slug": slug, "newsworthiness": nw, "diaspora_impact": di,
             "prominence": prom, "freshness": round(freshness, 1),
-            "display_score": round(display_score, 1)}
+            "display_score": round(display_score, 1),
+            "article_type": article_type}
 
 
 # ---------------------------------------------------------------------------
