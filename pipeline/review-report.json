@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-13T06:45:36.451528+00:00",
+  "timestamp": "2026-07-13T07:16:16.745312+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ba150e8a-e4a4-4e43-9176-772cebbc234f",
-      "headline": "India Just Approved Its Biggest Emergency Oil Stockpile in a Decade. The Hormuz Blockade Made the Case.",
-      "slug": "ongc-strategic-petroleum-reserve-mangalore-india-oil-stockpile-hormuz-energy-security-20260713",
+      "id": "44978deb-72e3-4fda-8cb2-d1e1ff961010",
+      "headline": "Three Teams, 12 Points Each. MLC's Playoff Bracket Is Set and Oakland Is Ready.",
+      "slug": "mlc-2026-playoffs-set-three-teams-12-points-oakland-unicorns-knight-riders-freedom-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,56 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "construction site with drilling equipment",
-          "reason": "The photo shows a construction site which aligns with building an oil reserve."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image is related to strategic petroleum reserves but depicts the US Strategic Petroleum Reserve, which may not directly relate to India's context."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses India's oil reserves and strategic importance, which may resonate with NRIs concerned about India's energy security and economic stability."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents India's strategic petroleum reserves for better relevance.",
-          "Include more context on how these developments may impact the Indian diaspora, particularly in terms of economic implications."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6e2919e4-fef7-4f65-9b5a-274db6322787",
-      "headline": "Oil Jumps 3%, Rupee Slides, Sensex Sinks. For Indian Families Sending Money Home, the War Just Got Personal.",
-      "slug": "india-markets-oil-rupee-sensex-sink-iran-gulf-escalation-nri-remittances-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "084fbd1a-7f8b-4689-82b0-77b0ead63f35",
-            "headline": "India's Biggest Fitness Unicorn Just Filed for IPO. Myntra's"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the economic story."
+          "what_photo_shows": "Oakland Coliseum aerial view",
+          "reason": "The photo shows Oakland Coliseum, which is relevant to the story about MLC playoffs in Oakland."
         },
         "inline_image_mismatches": []
       },
@@ -84,17 +36,158 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the economic implications of rising oil prices and currency fluctuations to the Indian diaspora, particularly those in the Gulf."
+          "note": "The article effectively connects the playoff matches to the NRI community in the Bay Area, highlighting the significance of local matches for diaspora fans."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more personal stories or quotes from NRIs to enhance the emotional connection.",
-          "Include a brief section on how families in India are coping with the economic impact of these changes."
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about MLC to engage readers further."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "11fe3413-7da3-441e-83bb-69610d09c382",
+      "headline": "Sinner Makes It Two in a Row. The Italian Defends His Wimbledon Crown After a Four-Set Battle With Zverev.",
+      "slug": "sinner-defends-wimbledon-crown-beats-zverev-four-sets-noskova-womens-nri-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tennis player in action",
+          "reason": "The photo shows a tennis player, which matches the tennis story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is of Jannik Sinner but is from the US Open, which may not directly match the Wimbledon context."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of Indian tennis and its comparison to cricket, which resonates with the NRI audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image from Wimbledon to enhance the visual connection to the article's subject.",
+          "Expand on the diaspora angle by including quotes or perspectives from Indian tennis players or coaches."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "594cd708-4f91-4825-a4b1-f7e1263308e5",
+      "headline": "Sunny Deol Just Made His OTT Debut. Twenty-Nine Years After Border, He's Back With Akshaye Khanna.",
+      "slug": "ikka-netflix-sunny-deol-ott-debut-akshaye-khanna-border-reunion-courtroom-thriller-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Sunny Deol at an event",
+          "reason": "The photo shows Sunny Deol, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects with diaspora readers through the cultural significance of Sunny Deol and Akshaye Khanna's reunion, appealing to nostalgia and the Indian film industry's impact."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context about the film's relevance to the Indian diaspora, such as its themes or how it reflects current societal issues.",
+          "Add quotes or reactions from diaspora audiences or critics to enhance the connection with NRI readers."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "653f0bcf-6a0d-4395-80a9-cbcd764fef4e",
+      "headline": "Dhamaal 4 Just Crossed \u20b965 Crore in Three Days. The Franchise Has Never Done This.",
+      "slug": "dhamaal-4-65-crore-weekend-franchise-record-92-crore-worldwide-100-crore-target-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "a5958503-9e29-497b-bb0b-e04806618801",
+            "headline": "Dhamaal 4 Just Opened to \u20b912 Crore. But the Real Show Was th"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "official poster for Dhamaal 4",
+          "reason": "The photo shows the official poster for Dhamaal 4, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DamVWGno3zp/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's focus on the box office performance of Dhamaal 4."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the film's performance to the interests of the Indian diaspora, particularly in North America."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant source, such as a tweet or post discussing the film's box office success.",
+          "Consider adding more context about the film's reception among diaspora audiences to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DamVWGno3zp/",
         "promoted to published"
       ],
       "revised": false,
