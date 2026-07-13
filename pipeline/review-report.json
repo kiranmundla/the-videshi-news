@@ -1,19 +1,71 @@
 {
-  "timestamp": "2026-07-13T13:15:11.325549+00:00",
+  "timestamp": "2026-07-13T14:15:34.163336+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "50cb2895-42e3-4d26-8e9d-96871dc56cf4",
-      "headline": "Samantha's \u20b9100 Crore Blockbuster Hits JioHotstar This Thursday. She Shot Part of It With Morning Sickness.",
-      "slug": "samantha-maa-inti-bangaaram-100-crore-jiohotstar-ott-pregnant-maternity-break-20260713",
+      "id": "82b2a59d-1a82-490c-8f39-2b597e56c562",
+      "headline": "The Law Nobody Read Is About to Cost Every Indian Visa Holder an Extra $250 a Year",
+      "slug": "big-beautiful-bill-visa-integrity-fee-indian-workers-students-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7cf1eb39-4754-4f01-98ec-a6d3736011e8",
+            "headline": "Washington Is About to Rewrite the H-1B Playbook. Indian IT "
+          },
+          {
+            "article_id": "37a64de6-e5ce-4d97-9e45-9ae6b50b7467",
+            "headline": "Five Rules, One Target: The Trump Administration Is Rewritin"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Capitol building",
+          "reason": "The Capitol building is relevant to U.S. legislative topics."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of the Capitol does not relate to the topic of immigration or the specific fees discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses immigration fees that directly impact Indian visa holders, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that is more relevant to immigration or Indian visa holders.",
+          "Include quotes or testimonials from affected individuals to enhance the personal impact of the article."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (908\u21921080 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "445df2aa-2765-4645-a94e-981ead8b52ae",
+      "headline": "Seven Hundred and Fifty Dollars Now Buys You a Place at the Front of the Visa Line",
+      "slug": "750-dollar-expedited-visa-interview-fee-india-consulate-pilot-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +73,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "woman in Maa Inti Bangaaram poster",
-          "reason": "The photo shows a scene from the film mentioned in the headline."
+          "what_photo_shows": "hand holding passport with entry stamps",
+          "reason": "The photo of a passport with entry stamps is relevant to a visa-related story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +82,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release on JioHotstar to the global diaspora audience, highlighting its significance."
+          "note": "The article discusses visa processes that directly affect Indian families, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the film's themes and how they resonate with the diaspora audience.",
-          "Include quotes or reactions from diaspora viewers or critics to enhance the connection."
+          "Consider using an image that directly represents the visa application process or Indian families traveling.",
+          "Add a section that includes personal stories or testimonials from individuals affected by the visa wait times to enhance relatability."
         ],
         "verdict": "pass"
       },
