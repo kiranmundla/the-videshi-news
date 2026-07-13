@@ -1,142 +1,58 @@
 {
-  "timestamp": "2026-07-13T18:15:49.519312+00:00",
+  "timestamp": "2026-07-13T18:45:22.932305+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "77501e67-3153-4587-84f6-dfb06659bc56",
-      "headline": "From Bukhara to Dimapur: Inside the NDTV Food Awards That Mapped India's New Culinary Geography",
-      "slug": "from-bukhara-to-dimapur-inside-the-ndtv-food-awards-that-mapped-indias-new-culin",
+      "id": "b6496458-d0c1-458f-bda3-1321bbf4539d",
+      "headline": "Trump Just Slapped a 20% Toll on the World's Most Important Waterway. India's Oil Bill Could Jump by Billions.",
+      "slug": "trump-guardian-hormuz-20-percent-toll-india-oil-import-bill-rupee-inflation-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "gourmet tandoori chicken with garnishes",
-          "reason": "The photo shows a gourmet dish relevant to the culinary awards story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "seashells on a beach with city skyline",
+          "reason": "The photo does not show an oil tanker or related subject."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the food theme but does not specifically represent the NDTV Food Awards or the specific restaurants mentioned."
+          "score": 5,
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the awards to the diaspora's experiences and interests in Indian cuisine."
+          "note": "The article effectively connects the economic implications of the toll on India's oil imports to the diaspora's financial interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including images or links to the award-winning restaurants for a more engaging experience.",
-          "Add quotes or reactions from chefs or attendees at the awards to enhance the narrative."
+          "Include a relevant hero image to enhance visual appeal and context.",
+          "Provide more direct quotes or perspectives from diaspora members to strengthen the connection."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (seashells on a beach with city skyline)",
+        "Revised by gemini-2.5-flash (1108\u21921151 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "325ff52a-8763-4cac-9c94-726fb729d798",
-      "headline": "The World's Most Decorated Indian Chef Is Finally Opening a Restaurant in India",
-      "slug": "the-worlds-most-decorated-indian-chef-is-finally-opening-a-restaurant-in-india",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Gaggan restaurant exterior",
-          "reason": "The photo shows the exterior of Gaggan's restaurant, relevant to the chef's story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts Gaggan's restaurant in Bangkok, which is relevant but does not directly represent the new restaurant in India."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects Gaggan's journey and homecoming to the emotional experience of NRIs, highlighting the significance of his return."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including images or visuals related to Raga to enhance the article's relevance.",
-          "Add quotes or reactions from NRIs or food critics to further emphasize the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f1eaea31-7db2-4a0c-a8eb-0a4893def47c",
-      "headline": "Lucknow's Melt-in-Your-Mouth Moment: How the City of Nawabs Became a UNESCO Culinary Capital",
-      "slug": "lucknows-melt-in-your-mouth-moment-how-the-city-of-nawabs-became-a-unesco-culina",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Galawati kebabs on a plate",
-          "reason": "The photo shows a signature dish of Awadhi cuisine, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the UNESCO recognition of Lucknow's cuisine to the experiences and pride of the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or anecdotes from NRIs to enhance the personal connection to the diaspora.",
-          "Include a brief section on how NRIs can engage with or promote Lucknow's culinary heritage."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
