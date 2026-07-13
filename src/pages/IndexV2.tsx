@@ -76,6 +76,40 @@ function saveCache(data: HomeCache) {
 
 
 
+
+/* ── Category Nav (above Featured section on homepage) ── */
+const HOME_CATEGORIES = [
+  { slug: "", label: "Home", path: "/" },
+  { slug: "news", label: "India", path: "/news" },
+  { slug: "nri-world", label: "World", path: "/nri-world" },
+  { slug: "immigration", label: "Immigration", path: "/immigration" },
+  { slug: "technology", label: "Technology", path: "/technology" },
+  { slug: "sports", label: "Sports", path: "/sports" },
+  { slug: "markets-finance", label: "Markets", path: "/markets-finance" },
+  { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
+  { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
+  { slug: "travel", label: "Travel", path: "/travel" },
+  { slug: "food", label: "Food", path: "/food" },
+];
+
+function HomeCategoryNav() {
+  return (
+    <div className="v2-home-cat-nav">
+      <div className="v2-home-cat-nav-inner">
+        {HOME_CATEGORIES.map((cat) => (
+          <Link
+            key={cat.slug}
+            to={cat.path}
+            className={`v2-home-cat-pill${cat.slug === "" ? " active" : ""}`}
+          >
+            {cat.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ── Live Events Strip (rendered after hub icons on homepage) ── */
 const LIVE_EVENTS = [
   { slug: "world-cup", label: "FIFA World Cup", path: "/world-cup", icon: "⚽" },
@@ -396,6 +430,9 @@ export default function IndexV2() {
       <HappeningToday />
 
       <main className="flex-1 v2-main-sections">
+        {/* Category Nav */}
+        <HomeCategoryNav />
+
         {/* 6. Hero Section */}
         <HeroSection lead={featured} side={layout.heroSide} />
 
