@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-13T09:15:28.105035+00:00",
+  "timestamp": "2026-07-13T12:45:21.786903+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e8651ce5-4535-47c3-8190-351b7d053ee5",
-      "headline": "Meta Will Start Making Its Own AI Chips in September. The Move Could Reshape Thousands of Indian Engineers' Careers.",
-      "slug": "meta-iris-ai-chip-production-indian-engineers-broadcom-20260713",
+      "id": "2b3cc3c7-386c-4032-bf39-0df3b6ca8b86",
+      "headline": "Iran Just Stopped Two More Ships in the Strait of Hormuz. Traffic Through the World's Most Critical Waterway Is Down 52%.",
+      "slug": "iran-irgc-fires-warning-shots-two-ships-hormuz-traffic-down-52-percent-india-crew-missing-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,28 +21,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server unit in data centre",
-          "reason": "The photo of a server unit is relevant to a story about AI chips and computing power."
+          "what_photo_shows": "an oil supertanker at sea",
+          "reason": "The photo shows a supertanker, relevant to the shipping story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but lacks a direct connection to AI chips specifically."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications for Indian engineers, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses the impact of the Strait of Hormuz situation on India's LNG imports, which is relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of how Indian engineers are adapting to the new chip design roles.",
-          "Add a quote from an Indian engineer or expert to enhance the diaspora perspective."
+          "Include more direct quotes from experts or officials to enhance credibility.",
+          "Add a brief background on the significance of the Strait of Hormuz for global oil trade to provide context for readers."
         ],
         "verdict": "pass"
       },
@@ -54,83 +54,45 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2193e928-c7c1-4667-9ef0-90511a224243",
-      "headline": "Sanjay Mehrotra Just Raised Micron's U.S. Bet to $250 Billion. It Is Now the Largest Private Investment in New York State History.",
-      "slug": "sanjay-mehrotra-micron-250-billion-us-investment-semiconductor-20260713",
+      "id": "e42f0f3e-fec3-4a15-a469-5746fa927233",
+      "headline": "India Just Walked Away From a Quick Trade Deal With the U.S. The Bet Is That Washington Needs Delhi More.",
+      "slug": "india-rejects-quick-us-trade-deal-holds-out-better-terms-tariff-exports-diaspora-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "d371c8df-99f9-4a7b-aa34-9a3d0c97af5b",
+            "headline": "India's Biggest Trade Deal Goes Live on Tuesday. Here's What"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit smiling",
-          "reason": "The photo plausibly shows Sanjay Mehrotra, relevant to the story."
+          "what_photo_shows": "Indian Commerce Minister Piyush Goyal",
+          "reason": "The photo shows the correct named person relevant to the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 6,
+          "issue": "image does not directly relate to the article's main topic of trade negotiations"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights Sanjay Mehrotra's Indian heritage and connects it to the broader narrative of Indian Americans in corporate leadership."
+          "quality": 7,
+          "note": "The article discusses trade relations that impact the Indian diaspora, particularly in terms of economic opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or perspectives from industry experts to enhance credibility.",
-          "Include a brief section on the potential impact of this investment on the local community in New York."
+          "Consider using a more relevant image that reflects the trade negotiations or economic discussions.",
+          "Add a section that explicitly connects the trade deal implications to the Indian diaspora's economic interests."
         ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ae7c3040-7ab9-4cbd-98d9-7acb57c7d4ce",
-      "headline": "TCS Just Split Its Biggest American Unit in Two. The Restructure Reveals Where Indian IT's Next Billion Will Come From.",
-      "slug": "tcs-reshuffle-us-banking-five-business-units-ai-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tata Consultancy Services building",
-          "reason": "The photo shows a TCS campus, relevant to the story about TCS restructuring."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of TCS's restructuring on Indian tech professionals in the U.S., making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from industry experts or TCS executives to enhance credibility.",
-          "Include more data or statistics on the impact of AI on the Indian IT sector to provide deeper insights."
-        ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
