@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-13T00:15:38.098473+00:00",
+  "timestamp": "2026-07-13T00:45:43.242664+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 0,
+    "pass": 2,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "03edbac9-fbde-4753-8c0f-d78057dbd97f",
-      "headline": "The Billionaire, the Doctor, and the Toss-Up: Vivek Ramaswamy's Ohio Governor Race Just Got Real",
-      "slug": "vivek-ramaswamy-ohio-governor-toss-up-acton-cook-20260713",
+      "id": "64a8e2e8-e5cf-47ef-bf0f-3b220f28f1c3",
+      "headline": "Vance Just Launched the Biggest H-1B Fraud Probe in History. For 600,000 Indian Visa Holders, the Ground Just Shifted.",
+      "slug": "vance-h1b-visa-fraud-investigation-dol-subpoenas-cognizant-indian-workers-diaspora-impact-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,53 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows Vivek Ramaswamy, relevant to the story."
+          "what_photo_shows": "a man in a suit with flag",
+          "reason": "The photo plausibly shows Vice President JD Vance, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "The image of JD Vance does not directly relate to the H-1B visa topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of the H-1B fraud probe on Indian visa holders, making it relevant to the diaspora."
+        },
+        "factual_flags": [
+          "The claim that 21% of H-1B petitions are fraudulent is disputed by immigration attorneys."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that better represents the H-1B visa topic or the Indian diaspora.",
+          "Clarify the disputed statistics regarding H-1B fraud to provide a more balanced view."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (1008\u21921105 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b7721287-01b7-4798-93c3-1b533191ec2d",
+      "headline": "India Is Hosting Iran, Russia, and China Under One Roof While American Missiles Hit the Gulf. Welcome to the BRICS Presidency.",
+      "slug": "india-brics-presidency-ministerial-meetings-iran-russia-china-september-summit-diaspora-20260712",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Prime Minister Narendra Modi at meeting",
+          "reason": "The photo shows Modi at a BRICS meeting, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses Vivek Ramaswamy's candidacy and its significance for the Indian American community, making a clear connection to diaspora readers."
+          "note": "The article connects the geopolitical developments to the Indian diaspora, highlighting their interests and concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or perspectives from Indian American voters to enhance the diaspora angle.",
-          "Include a brief analysis of how Ramaswamy's policies might impact the Indian American community specifically."
+          "Include more specific examples of how the BRICS presidency impacts the diaspora directly.",
+          "Add quotes or perspectives from diaspora members to enhance relatability."
         ],
         "verdict": "pass"
       },
@@ -54,9 +99,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b92d2bb9-15a0-4fe5-a12e-a5797dc962e8",
-      "headline": "Ninety Artists, Eleven Days, One Ruptured World: Inside Vancouver's Indian Summer Festival",
-      "slug": "indian-summer-festival-vancouver-ragas-ruptured-world-2026-20260713",
+      "id": "a6d1aee5-3bfc-48a7-9dc6-517870ea8237",
+      "headline": "The Biggest Crackdown on Indian Crime in U.S. History Just Swept Three Continents. Here Is What It Means for the Diaspora.",
+      "slug": "operation-hard-ball-bishnoi-bhagwanpuria-indian-crime-syndicates-california-fbi-37-charged-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +109,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Bharatanatyam dancer performing",
-          "reason": "The photo shows a Bharatanatyam dancer, relevant to an Indian arts festival."
+          "what_photo_shows": "Robert F. Kennedy Department of Justice Building",
+          "reason": "The building is relevant to the federal prosecution story."
         },
         "inline_image_mismatches": []
       },
@@ -73,105 +118,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 6,
-          "issue": "The image depicts a Bharatanatyam dancer, which is relevant to Indian culture but does not directly relate to the specific events or themes of the Indian Summer Festival highlighted in the article."
+          "score": 7,
+          "issue": "The image of the Department of Justice building is relevant but could be more directly related to the specific crackdown discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the festival's themes and performances to the experiences of diaspora communities, particularly second-generation South Asians."
+          "quality": 9,
+          "note": "The article effectively connects the crime crackdown to the Indian American community, highlighting its impact and relevance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents the Indian Summer Festival or its specific events to enhance relevance.",
-          "Include quotes or testimonials from attendees or artists to provide a more personal touch and deepen the connection to the diaspora experience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
-      "headline": "One in Five Ultra-Rich Indians Are Planning to Move Abroad \u2014 And It's Quietly Reshaping the NRI Financial Landscape",
-      "slug": "ultra-rich-indians-migrating-abroad-nri-wealth-landscape-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Dubai Marina at night",
-          "reason": "The photo shows Dubai Marina, relevant to the story about migrating millionaires."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trends in ultra-rich Indian migration to the NRI financial landscape, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from financial experts to enhance credibility.",
-          "Include more specific examples of how NRI financial products are evolving in response to these trends."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8a0356c0-6f28-453b-8bf1-f72674ef3009",
-      "headline": "HCLTech's $1.1 Billion AI Deal Sets the Stage for a Mega Earnings Week \u2014 Here's What NRI Investors Should Watch",
-      "slug": "hcltech-1-billion-ai-deal-mega-earnings-week-nri-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "HCLTech's SEZ campus in Noida",
-          "reason": "The photo shows HCLTech's headquarters, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI investors and their interests in the Indian IT sector and banking."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the AI deal will impact NRI investors directly.",
-          "Add a brief summary or conclusion to reinforce the key takeaways for NRI investors."
+          "Consider using a more directly related image, such as one depicting law enforcement action or community impact.",
+          "Add quotes or reactions from members of the Indian American community to enhance the diaspora perspective."
         ],
         "verdict": "pass"
       },
