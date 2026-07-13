@@ -200,7 +200,7 @@ export default function MarketTicker() {
   return (
     <div className="v2-market-ticker-wrap">
     <div className="v2-market-ticker-box" style={{
-      background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
+      background: "#f8fafc",
       overflow: "hidden",
     }}>
       {/* Ticker row */}
@@ -336,7 +336,7 @@ export default function MarketTicker() {
                         fontSize: 11,
                         fontWeight: 600,
                         cursor: "pointer",
-                        background: timeframe === tf ? "rgba(255,255,255,0.18)" : "transparent",
+                        background: timeframe === tf ? "rgba(0,0,0,0.08)" : "transparent",
                         color: timeframe === tf ? "#ffffff" : "rgba(255,255,255,0.4)",
                         transition: "all 0.2s",
                       }}
@@ -350,9 +350,9 @@ export default function MarketTicker() {
                 <button
                   onClick={(e) => { e.stopPropagation(); setSelectedSymbol(null); }}
                   style={{
-                    background: "rgba(255,255,255,0.08)",
+                    background: "rgba(0,0,0,0.04)",
                     border: "none",
-                    color: "rgba(255,255,255,0.5)",
+                    color: "#64748b",
                     fontSize: 14,
                     cursor: "pointer",
                     borderRadius: "50%",
