@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-13T00:45:43.242664+00:00",
+  "timestamp": "2026-07-13T01:15:33.885397+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 1,
+    "pass": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "64a8e2e8-e5cf-47ef-bf0f-3b220f28f1c3",
-      "headline": "Vance Just Launched the Biggest H-1B Fraud Probe in History. For 600,000 Indian Visa Holders, the Ground Just Shifted.",
-      "slug": "vance-h1b-visa-fraud-investigation-dol-subpoenas-cognizant-indian-workers-diaspora-impact-20260712",
+      "id": "d77cc3ad-36ff-4fd7-81f9-6e49370cd65e",
+      "headline": "Ranbir Kapoor and Yash Are Taking Ramayana to Comic-Con. No Indian Film Has Ever Done This.",
+      "slug": "ramayana-trailer-july-24-ranbir-kapoor-yash-san-diego-comic-con-2026-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,77 +21,45 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a man in a suit with flag",
-          "reason": "The photo plausibly shows Vice President JD Vance, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "The image of JD Vance does not directly relate to the H-1B visa topic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of the H-1B fraud probe on Indian visa holders, making it relevant to the diaspora."
-        },
-        "factual_flags": [
-          "The claim that 21% of H-1B petitions are fraudulent is disputed by immigration attorneys."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that better represents the H-1B visa topic or the Indian diaspora.",
-          "Clarify the disputed statistics regarding H-1B fraud to provide a more balanced view."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (1008\u21921105 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b7721287-01b7-4798-93c3-1b533191ec2d",
-      "headline": "India Is Hosting Iran, Russia, and China Under One Roof While American Missiles Hit the Gulf. Welcome to the BRICS Presidency.",
-      "slug": "india-brics-presidency-ministerial-meetings-iran-russia-china-september-summit-diaspora-20260712",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Prime Minister Narendra Modi at meeting",
-          "reason": "The photo shows Modi at a BRICS meeting, relevant to the story."
+          "what_photo_shows": "Ranbir Kapoor smiling",
+          "reason": "The photo shows Ranbir Kapoor, who is mentioned in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [],
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DapPbASjv_K/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's subject about the Comic-Con panel for Ramayana."
+          },
+          {
+            "url": "https://youtube.com/watch?v=VSmU7vDcT2U",
+            "problem": "irrelevant",
+            "explanation": "The YouTube link is not specified as relevant to the Comic-Con event or the Ramayana film."
+          }
+        ],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Ranbir Kapoor at the airport does not match the article's focus on the Comic-Con event."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article connects the geopolitical developments to the Indian diaspora, highlighting their interests and concerns."
+          "quality": 7,
+          "note": "The article discusses the global release of Ramayana in IMAX, which is relevant to NRI audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how the BRICS presidency impacts the diaspora directly.",
-          "Add quotes or perspectives from diaspora members to enhance relatability."
+          "Replace the irrelevant Instagram and YouTube links with embeds that directly relate to the Comic-Con event or the Ramayana film.",
+          "Use a hero image that features the Comic-Con event or the Ramayana film to better match the article's content."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DapPbASjv_K/",
+        "Removed irrelevant embed: https://youtube.com/watch?v=VSmU7vDcT2U",
         "promoted to published"
       ],
       "revised": false,
@@ -99,9 +67,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a6d1aee5-3bfc-48a7-9dc6-517870ea8237",
-      "headline": "The Biggest Crackdown on Indian Crime in U.S. History Just Swept Three Continents. Here Is What It Means for the Diaspora.",
-      "slug": "operation-hard-ball-bishnoi-bhagwanpuria-indian-crime-syndicates-california-fbi-37-charged-20260712",
+      "id": "cb2343a0-854a-448f-932a-ed721b7fa04e",
+      "headline": "Alpha Just Crossed \u20b950 Crore. It Might Still Be the Film That Killed the Spy Universe.",
+      "slug": "alpha-50-crore-yrf-spy-universe-alia-bhatt-sharvari-commercial-loss-20260712",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -109,32 +77,39 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Robert F. Kennedy Department of Justice Building",
-          "reason": "The building is relevant to the federal prosecution story."
+          "what_photo_shows": "Alpha movie poster with cast",
+          "reason": "The photo is related to the film 'Alpha' mentioned in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
+        "overall_score": 7,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/Dac4hPFDAKJ/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the film 'Alpha' or its performance, making it irrelevant to the article's subject."
+          }
+        ],
         "image_match": {
-          "score": 7,
-          "issue": "The image of the Department of Justice building is relevant but could be more directly related to the specific crackdown discussed."
+          "score": 8,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the crime crackdown to the Indian American community, highlighting its impact and relevance."
+          "quality": 8,
+          "note": "The article discusses the impact of the film on NRI audiences and their expectations from the Spy Universe, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more directly related image, such as one depicting law enforcement action or community impact.",
-          "Add quotes or reactions from members of the Indian American community to enhance the diaspora perspective."
+          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
+          "Consider adding more context about the significance of the Spy Universe for NRI audiences to enhance the diaspora angle."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/Dac4hPFDAKJ/",
         "promoted to published"
       ],
       "revised": false,
