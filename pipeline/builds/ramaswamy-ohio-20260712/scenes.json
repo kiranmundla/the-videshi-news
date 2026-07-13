@@ -1,0 +1,40 @@
+{
+  "article_id": "03edbac9-fbde-4753-8c0f-d78057dbd97f",
+  "scenes": [
+    {
+      "voiceover": "Can an Indian American billionaire become governor of Ohio? The polls say it's anyone's game.",
+      "onscreen": "OHIO GOVERNOR: TOSS-UP",
+      "image_prompt": "Hook scene: Ohio governor race toss-up"
+    },
+    {
+      "voiceover": "Cook Political Report just moved Ohio from Lean Republican to Toss Up. Both candidates locked at 47 percent.",
+      "onscreen": "RAMASWAMY 47% — ACTON 47%",
+      "image_prompt": "Polling data: dead heat 47-47"
+    },
+    {
+      "voiceover": "Vivek Ramaswamy. Cincinnati native. Harvard and Yale grad. Biotech billionaire. Briefly ran for president in 2024.",
+      "onscreen": "VIVEK RAMASWAMY — PROFILE",
+      "image_prompt": "Ramaswamy profile card"
+    },
+    {
+      "voiceover": "His opponent Amy Acton became Ohio's most recognized face during COVID. She's raised a record 18 million dollars.",
+      "onscreen": "AMY ACTON — $18M RAISED",
+      "image_prompt": "Amy Acton profile card"
+    },
+    {
+      "voiceover": "Ramaswamy self-funded 25 million. A super PAC added another 20 million. But big money hasn't guaranteed wins this cycle.",
+      "onscreen": "$25M + $20M SUPER PAC",
+      "image_prompt": "Money war infographic"
+    },
+    {
+      "voiceover": "71 percent of Indian Americans disapprove of the current administration. His H-1B comments didn't help with the community.",
+      "onscreen": "71% DISAPPROVE",
+      "image_prompt": "Indian American political sentiment"
+    },
+    {
+      "voiceover": "Indian Americans now compete at the highest levels of American power. No longer at the margins. Not yet at ease.",
+      "onscreen": "NO LONGER AT THE MARGINS",
+      "image_prompt": "Closing: Indian Americans in power"
+    }
+  ]
+}
