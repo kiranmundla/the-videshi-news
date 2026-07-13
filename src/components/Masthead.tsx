@@ -111,7 +111,8 @@ function CategoryNavBar() {
             })}
           </div>
 
-          {/* Row 2 — feature sections (scrollable, compact) */}
+          {/* Row 2 — feature sections (hidden on homepage, hub icons replace it) */}
+          {routeSlug !== "" && (
           <div className="flex items-center overflow-x-auto scrollbar-none -mx-1 px-1 gap-0 border-t" style={{ borderColor: "hsl(var(--rule) / 0.4)" }}>
             {NAV_SECTIONS.map((sec) => {
               const isActive = routeSlug === sec.slug;
@@ -146,6 +147,7 @@ function CategoryNavBar() {
               ))}
             </div>
           </div>
+          )}
 
           {/* Row 3 — live happenings (conditional, dark accent strip — full bleed on mobile) */}
           {LIVE_HAPPENINGS.length > 0 && (

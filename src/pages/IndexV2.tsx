@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import MarketTicker from "@/components/MarketTicker";
@@ -70,6 +71,41 @@ function saveCache(data: HomeCache) {
   try {
     sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
   } catch {}
+}
+
+
+/* ── Inline Category Nav (moved here from Masthead on homepage) ── */
+const INLINE_CATEGORIES = [
+  { slug: "", label: "Home", path: "/" },
+  { slug: "news", label: "India", path: "/news" },
+  { slug: "nri-world", label: "World", path: "/nri-world" },
+  { slug: "immigration", label: "Immigration", path: "/immigration" },
+  { slug: "technology", label: "Technology", path: "/technology" },
+  { slug: "sports", label: "Sports", path: "/sports" },
+  { slug: "markets-finance", label: "Markets", path: "/markets-finance" },
+  { slug: "entertainment", label: "Entertainment", path: "/entertainment" },
+  { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
+  { slug: "travel", label: "Travel", path: "/travel" },
+  { slug: "food", label: "Food", path: "/food" },
+];
+
+function HomeCategoryNav() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  return (
+    <div className="v2-home-cat-nav" ref={scrollRef}>
+      <div className="v2-home-cat-nav-inner">
+        {INLINE_CATEGORIES.map((cat) => (
+          <Link
+            key={cat.slug}
+            to={cat.path}
+            className={`v2-home-cat-pill${cat.slug === "" ? " active" : ""}`}
+          >
+            {cat.label}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 // ── Component ──
@@ -368,6 +404,9 @@ export default function IndexV2() {
       <HappeningToday />
 
       <main className="flex-1 v2-main-sections">
+        {/* Category Nav */}
+        <HomeCategoryNav />
+
         {/* 6. Hero Section */}
         <HeroSection lead={featured} side={layout.heroSide} />
 

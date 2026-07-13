@@ -6,7 +6,7 @@
 /* ── Hub Strip ──────────────────────────── */
 .v2-hub-strip {
   background: #fff;
-  padding: 20px 10px 14px;
+  padding: 16px 10px 12px;
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid #e2e8f0;
@@ -23,11 +23,11 @@
   transform: scale(0.92);
 }
 .v2-hub-icon-wrap {
-  width: 66px;
-  height: 66px;
+  width: 62px;
+  height: 62px;
   border-radius: 18px;
-  background: linear-gradient(145deg, #112d54, #0a1628);
-  box-shadow: 0 4px 14px rgba(11,29,58,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+  background: linear-gradient(145deg, #1e2d3d, #141c26);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,18 +40,20 @@
 }
 .v2-hub-dot {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 9px;
-  height: 9px;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  background: #FF6B35;
+  box-shadow: 0 0 5px rgba(255,107,53,0.4);
 }
 .v2-hub-label {
   font-family: "Inter", -apple-system, sans-serif;
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 600;
-  color: #0f172a;
-  letter-spacing: 0.01em;
+  color: #334155;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 380px) {
@@ -804,4 +806,49 @@
   .vs-thumb-ring { width: 80px; height: 80px; }
   .vs-thumb-cat { max-width: 80px; }
   .vs-strip { gap: 10px; }
+}
+
+/* ── Home Category Nav (inline, before Hero) ── */
+.v2-home-cat-nav {
+  padding: 0 16px;
+  border-bottom: 1px solid #e2e8f0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.v2-home-cat-nav::-webkit-scrollbar { display: none; }
+.v2-home-cat-nav-inner {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+}
+.v2-home-cat-pill {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.55);
+  padding: 10px 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+  position: relative;
+  transition: color 0.15s;
+}
+.v2-home-cat-pill:hover {
+  color: rgba(15, 23, 42, 0.85);
+}
+.v2-home-cat-pill.active {
+  color: #A32D2D;
+  font-weight: 600;
+}
+.v2-home-cat-pill.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: #A32D2D;
+  border-radius: 1px;
 }

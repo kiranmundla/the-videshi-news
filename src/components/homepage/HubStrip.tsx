@@ -4,7 +4,6 @@ const HUB_TILES = [
   {
     label: "News",
     to: "/",
-    dotColor: "#EF4444",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 4h12v16H4z"/>
@@ -18,7 +17,6 @@ const HUB_TILES = [
   {
     label: "Directory",
     to: "/directory",
-    dotColor: "#3B82F6",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
@@ -30,7 +28,6 @@ const HUB_TILES = [
   {
     label: "Events",
     to: "/events",
-    dotColor: "#F59E0B",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="4" width="18" height="18" rx="2"/>
@@ -44,7 +41,6 @@ const HUB_TILES = [
   {
     label: "Classifieds",
     to: "/classifieds",
-    dotColor: "#22C55E",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
@@ -57,7 +53,6 @@ const HUB_TILES = [
   {
     label: "Voices",
     to: "/stories",
-    dotColor: "#A855F7",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
@@ -75,7 +70,7 @@ export default function HubStrip() {
       {HUB_TILES.map((t) => (
         <Link key={t.label} to={t.to} className="v2-hub-tile">
           <div className="v2-hub-icon-wrap">
-            <span className="v2-hub-dot" style={{ background: t.dotColor, boxShadow: `0 0 6px ${t.dotColor}66` }} />
+            <span className="v2-hub-dot" />
             {t.icon}
           </div>
           <span className="v2-hub-label">{t.label}</span>
