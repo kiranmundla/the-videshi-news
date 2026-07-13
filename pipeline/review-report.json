@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-13T08:16:06.716182+00:00",
+  "timestamp": "2026-07-13T09:15:28.105035+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "b37ed113-103c-4018-9bd3-6342739964de",
-      "headline": "Indian American Neurologist Wins Lifetime Achievement Award for Transforming Global Stroke Care",
-      "slug": "dileep-yavagal-lifetime-achievement-stroke-care-20260713",
+      "id": "e8651ce5-4535-47c3-8190-351b7d053ee5",
+      "headline": "Meta Will Start Making Its Own AI Chips in September. The Move Could Reshape Thousands of Indian Engineers' Careers.",
+      "slug": "meta-iris-ai-chip-production-indian-engineers-broadcom-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "medical professional with brain MRI",
-          "reason": "The photo is relevant to a neurology and stroke care story."
+          "what_photo_shows": "server unit in data centre",
+          "reason": "The photo of a server unit is relevant to a story about AI chips and computing power."
         },
         "inline_image_mismatches": []
       },
@@ -31,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not specifically relate to stroke care or Dr. Yavagal."
+          "issue": "The image is relevant to technology but lacks a direct connection to AI chips specifically."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article highlights the achievements of an Indian American neurologist, connecting well with the NRI audience."
+          "note": "The article discusses the implications for Indian engineers, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts stroke care or Dr. Yavagal.",
-          "Add a quote from Dr. Yavagal or a colleague to enhance the personal connection and depth of the story."
+          "Include specific examples of how Indian engineers are adapting to the new chip design roles.",
+          "Add a quote from an Indian engineer or expert to enhance the diaspora perspective."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "6f52138c-4410-4ad6-925d-0915ac5c35be",
-      "headline": "From Fremont to Parsippany: Indian-Origin Mayors Are Making History Across America",
-      "slug": "indian-origin-mayors-fremont-parsippany-history-america-20260713",
+      "id": "2193e928-c7c1-4667-9ef0-90511a224243",
+      "headline": "Sanjay Mehrotra Just Raised Micron's U.S. Bet to $250 Billion. It Is Now the Largest Private Investment in New York State History.",
+      "slug": "sanjay-mehrotra-micron-250-billion-us-investment-semiconductor-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Raj Salwan, Indian American mayor",
-          "reason": "The photo subject matches the story about Indian-origin mayors."
+          "what_photo_shows": "man in suit smiling",
+          "reason": "The photo plausibly shows Sanjay Mehrotra, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian-origin mayors in the U.S., connecting to the diaspora's interest in representation and civic engagement."
+          "note": "The article effectively highlights Sanjay Mehrotra's Indian heritage and connects it to the broader narrative of Indian Americans in corporate leadership."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more quotes or perspectives from the mayors to enhance personal connection.",
-          "Add a section discussing the implications of these elections for the Indian diaspora in the U.S."
+          "Consider adding more quotes or perspectives from industry experts to enhance credibility.",
+          "Include a brief section on the potential impact of this investment on the local community in New York."
         ],
         "verdict": "pass"
       },
@@ -97,9 +97,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "68ec7c49-84e4-4058-9419-230c503f318d",
-      "headline": "Day 1 CPT Was the Last Escape Route for H-1B Lottery Losers. The Government Is Sealing It Shut",
-      "slug": "day-1-cpt-crackdown-h1b-lottery-indian-tech-workers-20260713",
+      "id": "ae7c3040-7ab9-4cbd-98d9-7acb57c7d4ce",
+      "headline": "TCS Just Split Its Biggest American Unit in Two. The Restructure Reveals Where Indian IT's Next Billion Will Come From.",
+      "slug": "tcs-reshuffle-us-banking-five-business-units-ai-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,151 +107,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "passport with visa stamps",
-          "reason": "The photo subject is relevant to the immigration story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the topic of immigration or H-1B visas."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of immigration policy changes on Indian tech workers, which is highly relevant to the NRI community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using an image that directly represents the theme of immigration or the H-1B visa process.",
-          "Add more quotes or perspectives from affected individuals to enhance the human element of the story."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c6d3ab44-b861-4e73-86a2-f18c02109e4c",
-      "headline": "Two Hundred Investigations and Counting. Inside the Machine That Could Dismantle Indian IT in America",
-      "slug": "project-firewall-dol-200-investigations-h1b-indian-it-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "32a419ad-9e35-499e-b5ae-c2d659cda447",
-            "headline": "The Green Card Hiring Test Has Not Changed Since 2004. The D"
-          },
-          {
-            "article_id": "2427edbc-1d82-4be0-92fe-dc4cca32d550",
-            "headline": "The Government Wants to Double Entry-Level H-1B Wages. The M"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US Department of Labor building",
-          "reason": "The photo shows the headquarters of the Department of Labor, relevant to the story about investigations by this department."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of U.S. immigration enforcement on H-1B visa holders, which is relevant to the Indian diaspora working in the U.S. tech industry."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of H-1B visas or immigration enforcement.",
-          "Include quotes or perspectives from Indian IT professionals affected by these investigations to enhance the diaspora connection."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f4b1706c-b03b-4736-b06c-aa9cc08cd577",
-      "headline": "60% of Foreign Money Has Fled India-Focused Funds \u2014 But Domestic Investors Are Pouring In at Record Pace",
-      "slug": "foreign-fund-exodus-india-ai-rotation-domestic-sip-nri-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "financial trading screens with market data",
-          "reason": "The photo shows financial trading screens, which is relevant to a finance story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to finance but does not specifically depict Indian markets or investors."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI investors and their concerns regarding foreign and domestic investment dynamics."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a relevant image that directly represents Indian markets or NRI investors.",
-          "Add a brief summary or conclusion that reinforces the implications for NRI investors."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "3710b3c5-947c-4e69-8bd9-fe01264d4527",
-      "headline": "India's Bond Market Awaits a $25 Billion Catalyst \u2014 Bloomberg Global Index Decision Expected This Month",
-      "slug": "bloomberg-global-bond-index-india-inclusion-nri-fixed-income-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3db4b37d-9efe-4e23-8d2f-dfdaa11fcfd1",
-            "headline": "Indian Banks Are Offering NRIs Up to Seven Per Cent on Dolla"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India headquarters",
-          "reason": "The photo shows the Reserve Bank of India, relevant to India's bond market policy."
+          "what_photo_shows": "Tata Consultancy Services building",
+          "reason": "The photo shows a TCS campus, relevant to the story about TCS restructuring."
         },
         "inline_image_mismatches": []
       },
@@ -265,56 +122,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of bond market changes specifically for NRI investors, making it relevant to the diaspora."
+          "note": "The article discusses the impact of TCS's restructuring on Indian tech professionals in the U.S., making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from NRI investors or financial experts to enhance the personal connection.",
-          "Include a brief section on how NRIs can take advantage of these changes in the bond market."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ac84e7df-0465-4c18-a5b9-0fcba958ab2e",
-      "headline": "India's Stock Exchange Is Going Public \u2014 NSE Kicks Off $3.3 Billion IPO Roadshow With 30 Global Investors This Week",
-      "slug": "nse-ipo-roadshow-57-billion-exchange-global-investors-nri-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "NSE headquarters in Mumbai",
-          "reason": "The photo shows the National Stock Exchange of India, relevant to the IPO story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the IPO to NRI investors, highlighting the significance of the NSE listing for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes from financial analysts or experts to enhance credibility.",
-          "Include a brief comparison of NSE's IPO with other recent IPOs in India to provide context."
+          "Consider adding quotes from industry experts or TCS executives to enhance credibility.",
+          "Include more data or statistics on the impact of AI on the Indian IT sector to provide deeper insights."
         ],
         "verdict": "pass"
       },
