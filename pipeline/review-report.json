@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-13T14:45:15.312742+00:00",
+  "timestamp": "2026-07-13T15:16:01.081332+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 4,
     "flag": 1,
     "fail": 0,
     "error": 0
@@ -11,38 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "82b2a59d-1a82-490c-8f39-2b597e56c562",
-      "headline": "The Law Nobody Read Is About to Cost Every Indian Visa Holder an Extra $250 a Year",
-      "slug": "big-beautiful-bill-visa-integrity-fee-indian-workers-students-20260713",
+      "id": "4a7a1460-6a1b-44fb-9496-b4d08780b780",
+      "headline": "Kohli, Rohit, Bumrah Walk In. India's ODI Squad Arrives to Rescue a Tour Gone Wrong.",
+      "slug": "india-odi-series-preview-kohli-rohit-bumrah-return-england-edgbaston-t20i-whitewash-redemption-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "7cf1eb39-4754-4f01-98ec-a6d3736011e8",
-            "headline": "Washington Is About to Rewrite the H-1B Playbook. Indian IT "
-          },
-          {
-            "article_id": "37a64de6-e5ce-4d97-9e45-9ae6b50b7467",
-            "headline": "Five Rules, One Target: The Trump Administration Is Rewritin"
-          }
-        ],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/thevideshi/status/1798765432109876543",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C7_s_u2v0t9/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "duplicate_images": [],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United States Capitol building",
-          "reason": "The Capitol building is relevant to U.S. legislative topics."
+          "what_photo_shows": "Cricketer in India jersey",
+          "reason": "The photo shows a cricketer in an India jersey, matching the cricket story."
         },
         "inline_image_mismatches": []
       },
@@ -50,24 +30,200 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively discusses how the new fees will impact Indian visa holders, making it highly relevant for the diaspora."
+          "quality": 8,
+          "note": "The article provides a viewing guide specifically for North American fans, making it relevant for the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to immigration or visa issues.",
-          "Consider adding quotes or testimonials from affected individuals to enhance the personal impact of the article."
+          "Consider adding quotes from players or coaches to enhance engagement.",
+          "Include more context about the significance of the ODI series for the diaspora audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "092dfb0d-4ad3-472e-82cd-8dc70cc857d9",
+      "headline": "270 Runs and a Place on the Honours Board. India's Women Make Lord's History.",
+      "slug": "india-women-historic-270-run-victory-lords-first-womens-test-kranti-gaud-honours-board-yastika-century-knight-retires-nri-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lord's Cricket Ground Pavilion",
+          "reason": "The photo shows Lord's Cricket Ground, relevant to the cricket story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting its impact on women's cricket within the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include more statistics or historical context about women's cricket to enrich the article."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "299da397-c1c5-47a6-8531-43bd6805653b",
+      "headline": "Nvidia's New CPU Is Beating Intel and AMD in Its First Benchmarks. The $200 Billion Server Market Will Never Be the Same.",
+      "slug": "nvidia-vera-cpu-beats-intel-amd-ai-agents-server-market-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
+            "headline": "Jensen Huang Says His Engineers Prefer Building AI Agents to"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and glasses",
+          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image of Jen-Hsun Huang does not directly relate to the article's focus on the new CPU benchmarks."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article mentions major companies like Nvidia and their engineering operations in India, which connects to the Indian diaspora's interest in the tech industry."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the Nvidia Vera CPU.",
+          "Expand on the implications of Nvidia's new CPU for the Indian tech industry or workforce."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8b9ced85-2c66-4c0a-8448-147fe5e372d3",
+      "headline": "Accenture Confirms a Hacker Stole Source Code and Cloud Credentials. For 300,000 Indian Employees, the Questions Are Just Starting.",
+      "slug": "accenture-data-breach-35gb-source-code-indian-it-workers-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "binary code on computer screen",
+          "reason": "The image of binary code is relevant to a cybersecurity story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image is relevant to cybersecurity but lacks a direct connection to Accenture or the specific incident discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the implications of the breach for Indian employees and the broader Indian IT workforce."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including more specific statistics or quotes from Indian employees to enhance the diaspora connection.",
+          "Add a section on potential steps for Indian IT professionals to mitigate risks following the breach."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ca1f4cda-5d71-44fa-abe2-83d6535fcb60",
+      "headline": "Intel Just Committed \u20ac5 Billion to Ireland. It Is a Bet on Keeping Europe's Most Advanced Chip Factory Ahead of the AI Curve.",
+      "slug": "intel-5-billion-ireland-ai-chip-leixlip-expansion-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "an older man in a suit",
+          "reason": "The photo plausibly shows Intel CEO Lip-Bu Tan, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image features Howard Lutnick and Intel's CEO, which is somewhat relevant but does not directly relate to the \u20ac5 billion investment in Ireland."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the investment to opportunities for Indian engineers, highlighting Ireland as a destination for Indian tech workers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly represents the investment in Ireland or semiconductor manufacturing.",
+          "Expand on the implications for Indian engineers to further emphasize the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
         "promoted to published"
       ],
       "revised": false,
