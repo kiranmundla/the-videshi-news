@@ -26,7 +26,7 @@
   width: 62px;
   height: 62px;
   border-radius: 18px;
-  
+  background: linear-gradient(145deg, #1e2d3d, #141c26);
   box-shadow: 0 3px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
@@ -37,6 +37,16 @@
 .v2-hub-icon-wrap svg {
   width: 28px;
   height: 28px;
+}
+.v2-hub-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FF6B35;
+  box-shadow: 0 0 5px rgba(255,107,53,0.4);
 }
 
 .v2-hub-label {
