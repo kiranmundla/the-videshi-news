@@ -1,5 +1,35 @@
 [
   {
+    "slug": "openai-codex-micro-hardware-keyboard-developers-20260713",
+    "headline": "OpenAI Is Launching Its First Hardware Product on Tuesday. It Is a Keyboard for Coders.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-codex-micro-hardware-keyboard-developers-20260713.jpg"
+  },
+  {
+    "slug": "jensen-huang-nvidia-ai-agents-engineers-coding-20260713",
+    "headline": "Jensen Huang Says His Engineers Prefer Building AI Agents to Writing Code. The Implications for Indian Tech Workers Are Enormous.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jensen-huang-nvidia-ai-agents-engineers-coding-20260713.jpg"
+  },
+  {
+    "slug": "zetwerk-sebi-ipo-approval-manufacturing-ai-data-centre-20260713",
+    "headline": "Zetwerk Just Got SEBI's Green Light for a $450 Million IPO. The Manufacturing Unicorn Is Riding the AI Data Centre Boom.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zetwerk-sebi-ipo-approval-manufacturing-ai-data-centre-20260713.jpg"
+  },
+  {
+    "slug": "100k-h1b-fee-circuit-split-indian-employers-legal-chaos-20260713",
+    "headline": "The $100,000 H-1B Fee Is Dead in One Court and Alive in Another. Indian Employers Are Caught in the Middle",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/100k-h1b-fee-circuit-split-indian-employers-legal-chaos-20260713.jpg"
+  },
+  {
+    "slug": "uscis-b2-job-search-trap-h1b-laid-off-workers-denials-20260713",
+    "headline": "USCIS Told Laid-Off Workers They Could Job-Hunt on a Tourist Visa. Now It Is Denying Their Applications",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uscis-b2-job-search-trap-h1b-laid-off-workers-denials-20260713.jpg"
+  },
+  {
     "slug": "alpha-50-crore-yrf-spy-universe-alia-bhatt-sharvari-commercial-loss-20260712",
     "headline": "Alpha Just Crossed ₹50 Crore. It Might Still Be the Film That Killed the Spy Universe.",
     "category": "entertainment",
@@ -94,35 +124,5 @@
     "headline": "Fifteen Thousand Indian Tech Workers Went Home Last Year. The Pipeline Behind Them Is Reversing",
     "category": "immigration",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/reverse-brain-drain-indian-tech-professionals-returning-india-20260712.jpg"
-  },
-  {
-    "slug": "vishal-dadlani-apologises-jasleen-royal-indian-idol-coldplay-basic-to-bad-singer-20260712",
-    "headline": "Vishal Dadlani Called Her Singing 'Embarrassing for the Country.' Eighteen Months Later, He Apologised on National Television.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vishal-dadlani-apologises-jasleen-royal-indian-idol-coldplay-basic-to-bad-singer-20260712.jpg"
-  },
-  {
-    "slug": "godzilla-minus-zero-teaser-ramayana-diwali-2026-imax-box-office-clash-20260712",
-    "headline": "Godzilla Just Picked a Fight With Ramayana. Diwali 2026 Has Become the Biggest Box Office War in Indian History.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/godzilla-minus-zero-teaser-ramayana-diwali-2026-imax-box-office-clash-20260712.jpg"
-  },
-  {
-    "slug": "south-asian-heart-risk-paradox-masala-northwestern-study-midlife-screening-20260712",
-    "headline": "South Asians Face Higher Heart Risk by 45 Despite Healthier Habits, Major Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/south-asian-heart-risk-paradox-masala-northwestern-study-midlife-screening-20260712.jpg"
-  },
-  {
-    "slug": "turmeric-curcumin-104-clinical-trials-meta-analysis-metabolic-health-benefits-south-asian-20260712",
-    "headline": "The Science Is Settling: What 104 Clinical Trials Say About Turmeric's Real Health Benefits",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/turmeric-curcumin-104-clinical-trials-meta-analysis-metabolic-health-benefits-south-asian-20260712.jpg"
-  },
-  {
-    "slug": "indian-crew-missing-iran-attack-gfs-galaxy-container-ship-hormuz-oman-20260712",
-    "headline": "One Indian Crew Member Is Missing After Iran Attacked a Container Ship in the Strait of Hormuz. India Has Condemned the Strike.",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-crew-missing-iran-attack-gfs-galaxy-container-ship-hormuz-oman-20260712.jpg"
   }
 ]
