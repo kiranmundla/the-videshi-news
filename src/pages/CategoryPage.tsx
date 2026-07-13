@@ -10,6 +10,7 @@ import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import LoadMoreButton from "@/components/LoadMoreButton";
+import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import { Article, getArticlesByCategory } from "@/lib/articles";
 import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
 import { getCategoryBySlug } from "@/lib/categories";
@@ -184,6 +185,7 @@ export default function CategoryPage() {
                 className="mb-10"
               />
             )}
+            {def.slug === "technology" && <UpcomingTechEvents />}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
               {articles.map((a, i) => (
                 <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>

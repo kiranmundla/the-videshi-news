@@ -238,7 +238,7 @@ export default function Masthead() {
     <header className="bg-background relative">
       <div className="container">
         <div className="flex items-end justify-between pt-8 pb-4 md:pt-10 md:pb-5">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" onClick={() => { window.dispatchEvent(new Event('videshi-go-home')); window.scrollTo(0, 0); }} className="flex items-center gap-3">
             <img src="/logo.jpg" alt="The Videshi" className="h-14 md:h-16 w-auto rounded-sm" width="64" height="64" decoding="async" />
             <div className="flex flex-col">
               <h1 className="font-serif font-black tracking-tight text-foreground leading-none text-[2rem] md:text-[3.25rem] lg:text-[3.75rem] whitespace-nowrap">

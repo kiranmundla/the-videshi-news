@@ -23,6 +23,7 @@ import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
+import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import ArticleCard from "@/components/ArticleCard";
 import CategorySubTopics, { hasSubTopics } from "@/components/homepage/CategorySubTopics";
@@ -151,6 +152,13 @@ export default function IndexV2() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categoryArticles, setCategoryArticles] = useState<Article[]>([]);
   const [catLoading, setCatLoading] = useState(false);
+
+  // Reset category when logo is clicked (even if already on /)
+  useEffect(() => {
+    const reset = () => setSelectedCategory("");
+    window.addEventListener("videshi-go-home", reset);
+    return () => window.removeEventListener("videshi-go-home", reset);
+  }, []);
 
   useEffect(() => {
     if (initialCache) return;
@@ -472,6 +480,7 @@ export default function IndexV2() {
           /* ── Category-filtered view ── */
           <>
             <KeyUpdatesSection category={selectedCategory} />
+            {selectedCategory === "technology" && <UpcomingTechEvents />}
             {catLoading ? (
               <div className="container py-12 text-center text-muted-foreground">Loading…</div>
             ) : categoryArticles.length === 0 ? (
@@ -511,6 +520,7 @@ export default function IndexV2() {
         {/* 9. (VoicesTeaser removed — VoicesSection below covers Voices) */}
 
         {/* 10. Technology (lead + list) */}
+        <UpcomingTechEvents />
         <LeadListSection
           title="Technology"
           borderColor="#4527A0"
