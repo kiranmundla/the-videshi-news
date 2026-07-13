@@ -6,7 +6,7 @@
 /* ── Hub Strip ──────────────────────────── */
 .v2-hub-strip {
   background: #fff;
-  padding: 16px 12px 12px;
+  padding: 20px 10px 14px;
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid #e2e8f0;
@@ -15,23 +15,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
-.v2-hub-tile:active .v2-hub-icon {
+.v2-hub-tile:active .v2-hub-icon-wrap {
   transform: scale(0.92);
 }
-.v2-hub-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 15px;
-  object-fit: contain;
+.v2-hub-icon-wrap {
+  width: 66px;
+  height: 66px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #112d54, #0a1628);
+  box-shadow: 0 4px 14px rgba(11,29,58,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   transition: transform 0.15s ease;
+}
+.v2-hub-icon-wrap svg {
+  width: 28px;
+  height: 28px;
+}
+.v2-hub-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
 }
 .v2-hub-label {
   font-family: "Inter", -apple-system, sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #0f172a;
   letter-spacing: 0.01em;
@@ -48,6 +65,18 @@
   }
   .v2-hub-strip {
     padding: 14px 8px 10px;
+  }
+  .v2-hub-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
+  }
+  .v2-hub-icon-wrap svg {
+    width: 24px;
+    height: 24px;
+  }
+  .v2-hub-label {
+    font-size: 10px;
   }
 }
 
