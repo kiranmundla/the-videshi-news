@@ -510,6 +510,7 @@ export default function IndexV2() {
           borderColor="#4527A0"
           categorySlug="technology"
           articles={layout.technology}
+          listCount={9}
         />
         <TweetScroll category="technology" />
 

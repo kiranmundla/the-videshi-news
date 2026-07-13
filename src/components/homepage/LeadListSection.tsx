@@ -7,6 +7,7 @@ interface Props {
   borderColor: string;
   categorySlug: string;
   articles: Article[];
+  listCount?: number;
 }
 
 function timeAgo(iso: string): string {
@@ -17,11 +18,12 @@ function timeAgo(iso: string): string {
   return formatShortDate(iso);
 }
 
-export default function LeadListSection({ title, borderColor, categorySlug, articles }: Props) {
+export default function LeadListSection({ title, borderColor, categorySlug, articles, listCount = 3 }: Props) {
   if (articles.length === 0) return null;
 
   const [lead, ...rest] = articles;
-  const list = rest.slice(0, 3);
+  const list = rest.slice(0, listCount);
+  const hasMore = rest.length > listCount;
   const hasLeadImage = isValidImage(lead.hero_image_url);
   const rt = (lead as any).reading_time ?? 5;
 
@@ -119,6 +121,17 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
               );
             })}
           </div>
+        </div>
+
+        {/* View all link at bottom */}
+        <div className="text-center mt-6">
+          <Link
+            to={`/${categorySlug}`}
+            className="inline-block text-[13px] font-semibold tracking-wide uppercase hover:opacity-80 transition-opacity"
+            style={{ color: borderColor }}
+          >
+            View all {title} →
+          </Link>
         </div>
       </div>
     </section>
