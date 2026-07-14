@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-14T00:15:34.456168+00:00",
+  "timestamp": "2026-07-14T00:45:37.116429+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "26f0c7ee-8323-492f-ab55-bc5d635ba4cd",
-      "headline": "India-UK Trade Deal Goes Live on July 15 \u2014 What Changes for NRIs in Britain",
-      "slug": "india-uk-trade-deal-nri-impact-20260714",
+      "id": "dd575bfa-d245-465b-8b17-d564989dd5e2",
+      "headline": "While India's Navy Guards the Gulf, Its Tall Ship Is Celebrating America's Birthday in Boston",
+      "slug": "ins-sudarshini-sail-boston-250-indian-navy-america-birthday-maritime-diplomacy-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Two officials signing agreement",
-          "reason": "The photo shows officials from India and UK, relevant to the trade deal story."
+          "what_photo_shows": "a tall ship with flags in harbor",
+          "reason": "The photo shows a tall ship, relevant to the story about INS Sudarshini at a maritime event."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of the trade deal for NRIs, particularly in terms of social security and employment opportunities."
+          "note": "The article effectively connects the event to the Indian American community in Boston, highlighting their significant presence and the ship's symbolic importance."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian professionals in the UK to provide personal insights on the impact of the trade deal.",
-          "Include a brief section on potential challenges or criticisms of the trade deal to provide a balanced perspective."
+          "Consider adding quotes from Indian American attendees to enhance the diaspora connection.",
+          "Include more details about the significance of the event for U.S.-India relations."
         ],
         "verdict": "pass"
       },
@@ -54,18 +54,18 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fc121db0-4cb4-4cd8-b172-9fc1743493a8",
-      "headline": "Three Indian-Origin Leaders Tapped to Co-Lead Federal Reserve Policy Task Forces",
-      "slug": "indian-origin-leaders-fed-policy-task-forces-20260714",
+      "id": "bceb4dd3-729a-429b-aa7a-2800f3b3d3aa",
+      "headline": "India's Trade Deficit Just Blew Past Forecasts. The Hormuz Crisis Is Now Showing Up in the Numbers.",
+      "slug": "india-trade-deficit-widens-30-billion-june-exports-fall-hormuz-disruptions-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Raghuram Rajan at a press conference",
-          "reason": "The photo shows Raghuram Rajan, who is mentioned in the story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "group of people at an event",
+          "reason": "The photo shows people at an event, not container port operations."
         },
         "inline_image_mismatches": []
       },
@@ -73,118 +73,29 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively highlights the achievements of Indian-origin leaders in a significant U.S. institution, appealing to the diaspora's interest in representation and influence."
+          "note": "The article effectively connects the trade deficit to the diaspora's financial interests, particularly regarding remittances and currency value."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or reactions from the appointees to add a personal touch.",
-          "Provide more context on the significance of the Federal Reserve's policy reviews for the general public."
+          "Include a relevant hero image to enhance visual appeal and context.",
+          "Consider adding more data or quotes from diaspora members to strengthen the connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (group of people at an event)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cb818ec4-2f08-4c90-bfcb-735ac7cd6ce1",
-      "headline": "TCS Reshuffles Its Top Brass and Creates Five New Business Units \u2014 Here's What the AI-Era Overhaul Means for NRI Investors",
-      "slug": "tcs-leadership-reshuffle-five-business-units-ai-era-nri-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "ae7c3040-7ab9-4cbd-98d9-7acb57c7d4ce",
-            "headline": "TCS Just Split Its Biggest American Unit in Two. The Restruc"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "TCS campus in Hyderabad",
-          "reason": "The photo shows a TCS campus, relevant to the company's restructuring story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI investors by discussing TCS's strategic moves and their implications for investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how the restructuring may directly impact NRI investors' portfolios.",
-          "Add quotes from industry experts or analysts to enhance credibility and provide deeper insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c76cf1e2-62a1-4c4a-a06e-cdf278e0ae7f",
-      "headline": "HCLTech Beats Q1 Estimates as AI Revenue Surges 62% \u2014 India's Third-Largest IT Firm Signals the Sector's Pivot Is Real",
-      "slug": "hcltech-q1-fy27-earnings-beat-ai-revenue-62-percent-nri-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and tie",
-          "reason": "The photo plausibly shows HCLTech CEO C Vijayakumar, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article directly addresses NRI investors, discussing implications for their portfolios and providing context relevant to their interests."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
-          "Include a brief section on how HCLTech's performance compares to its competitors to provide a broader context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
