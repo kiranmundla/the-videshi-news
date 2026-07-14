@@ -1,5 +1,89 @@
 [
   {
+    "slug": "raghib-hussain-altera-fpga-ai-robotics-growth-20260714",
+    "headline": "Raghib Hussain Is Turning Intel's Castoff Into an AI Chip Contender. Altera Is Growing 20 Percent a Year.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/raghib-hussain-altera-fpga-ai-robotics-growth-20260714.jpg"
+  },
+  {
+    "slug": "india-gcc-boom-hiring-outpaces-it-services-payoneer-20260714",
+    "headline": "India's GCC Machine Added Twice as Many Tech Workers as Its IT Giants Last Year. The Power Shift Is Accelerating.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gcc-boom-hiring-outpaces-it-services-payoneer-20260714.jpg"
+  },
+  {
+    "slug": "xbox-layoffs-asha-sharma-h1b-backlash-indian-american-identity-20260714",
+    "headline": "Xbox's Biggest Layoffs Ever Became a Referendum on Indian-American Identity",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/xbox-layoffs-asha-sharma-h1b-backlash-indian-american-identity-20260714.jpg"
+  },
+  {
+    "slug": "fed-reserve-rajan-chetty-sharma-indian-origin-task-forces-20260714",
+    "headline": "The Fed Just Asked Three Indian-Origin Thinkers to Redesign American Monetary Policy",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fed-reserve-rajan-chetty-sharma-indian-origin-task-forces-20260714.jpg"
+  },
+  {
+    "slug": "fahadh-faasil-dont-trouble-the-trouble-teaser-rajamouli-arka-netflix-fantasy-20260713",
+    "headline": "Rajamouli Just Launched the Teaser for Fahadh Faasil's Fantasy Film. The Baahubali Team Is Behind It.",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fahadh-faasil-dont-trouble-the-trouble-teaser-rajamouli-arka-netflix-fantasy-20260713.jpg"
+  },
+  {
+    "slug": "ins-sudarshini-sail-boston-250-indian-navy-america-birthday-maritime-diplomacy-20260713",
+    "headline": "While India's Navy Guards the Gulf, Its Tall Ship Is Celebrating America's Birthday in Boston",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ins-sudarshini-sail-boston-250-indian-navy-america-birthday-maritime-diplomacy-20260713.jpg"
+  },
+  {
+    "slug": "hcltech-q1-fy27-earnings-beat-ai-revenue-62-percent-nri-20260713",
+    "headline": "HCLTech Beats Q1 Estimates as AI Revenue Surges 62% — India's Third-Largest IT Firm Signals the Sector's Pivot Is Real",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hcltech-q1-fy27-earnings-beat-ai-revenue-62-percent-nri-20260713.jpg"
+  },
+  {
+    "slug": "tcs-leadership-reshuffle-five-business-units-ai-era-nri-20260713",
+    "headline": "TCS Reshuffles Its Top Brass and Creates Five New Business Units — Here's What the AI-Era Overhaul Means for NRI Investors",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-leadership-reshuffle-five-business-units-ai-era-nri-20260713.jpg"
+  },
+  {
+    "slug": "indian-origin-leaders-fed-policy-task-forces-20260714",
+    "headline": "Three Indian-Origin Leaders Tapped to Co-Lead Federal Reserve Policy Task Forces",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-origin-leaders-fed-policy-task-forces-20260714.jpg"
+  },
+  {
+    "slug": "india-uk-trade-deal-nri-impact-20260714",
+    "headline": "India-UK Trade Deal Goes Live on July 15 — What Changes for NRIs in Britain",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-uk-trade-deal-nri-impact-20260714.jpg"
+  },
+  {
+    "slug": "india-coaching-overhaul-morkel-absent-bahutule-interim-nayar-returns-gambhir-sri-lanka-nri-july-2026",
+    "headline": "Out With Morkel, In With Bahutule. India's Coaching Staff Gets a Post-Whitewash Facelift.",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-coaching-overhaul-morkel-absent-bahutule-interim-nayar-returns-gambhir-sri-lanka-nri-july-2026.jpg"
+  },
+  {
+    "slug": "manjrekar-gavaskar-blast-india-t20i-system-ipl-makeup-batters-ranking-drop-england-whitewash-nri-july-2026",
+    "headline": "Manjrekar Says the IPL 'Puts Heavy Makeup' on Indian Batters. Gavaskar Agrees the System Is Broken.",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/manjrekar-gavaskar-blast-india-t20i-system-ipl-makeup-batters-ranking-drop-england-whitewash-nri-july-2026.jpg"
+  },
+  {
+    "slug": "mlc-2026-hassan-khan-10-ball-36-sf-unicorns-playoffs-final-standings-american-cricket-nri-july-2026",
+    "headline": "Six, Four, Four, Six. Hassan Khan's Ten-Ball Demolition Seals the MLC Playoff Picture.",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mlc-2026-hassan-khan-10-ball-36-sf-unicorns-playoffs-final-standings-american-cricket-nri-july-2026.jpg"
+  },
+  {
+    "slug": "bhavin-turakhia-neo-ai-workplace-30-million-20260713",
+    "headline": "The Founder Who Built a $2 Billion Fintech Just Bet $30 Million on an AI Workplace That Could Replace Slack and Notion",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bhavin-turakhia-neo-ai-workplace-30-million-20260713.jpg"
+  },
+  {
     "slug": "remittance-tax-six-months-nri-exemptions-cash-20260713",
     "headline": "The Remittance Tax Is Six Months Old. Most NRIs Have Not Paid a Cent",
     "category": "immigration",
@@ -10,113 +94,5 @@
     "headline": "Germany, Canada, and the EU Want the Indian Talent America Is Pushing Away",
     "category": "immigration",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/germany-canada-eu-blue-card-indian-talent-recruitment-20260713.jpg"
-  },
-  {
-    "slug": "lokesh-kanagaraj-aamir-khan-superhero-film-bollywood-debut-global-audience-2027-20260713",
-    "headline": "Lokesh Kanagaraj Is Making a Superhero Film With Aamir Khan. It's Aimed at the World.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lokesh-kanagaraj-aamir-khan-superhero-film-bollywood-debut-global-audience-2027-20260713.jpg"
-  },
-  {
-    "slug": "akanksha-ranjan-kapoor-sharan-sharma-wedding-alia-bhatt-bollywood-sangeet-reception-20260713",
-    "headline": "Alia Bhatt's Best Friend Married the Man Who Made Gunjan Saxena. Bollywood Showed Up.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/akanksha-ranjan-kapoor-sharan-sharma-wedding-alia-bhatt-bollywood-sangeet-reception-20260713.jpg"
-  },
-  {
-    "slug": "lucknows-melt-in-your-mouth-moment-how-the-city-of-nawabs-became-a-unesco-culina",
-    "headline": "Lucknow's Melt-in-Your-Mouth Moment: How the City of Nawabs Became a UNESCO Culinary Capital",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lucknows-melt-in-your-mouth-moment-how-the-city-of-nawabs-became-a-unesco-culina.jpg"
-  },
-  {
-    "slug": "the-worlds-most-decorated-indian-chef-is-finally-opening-a-restaurant-in-india",
-    "headline": "The World's Most Decorated Indian Chef Is Finally Opening a Restaurant in India",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-worlds-most-decorated-indian-chef-is-finally-opening-a-restaurant-in-india.jpg"
-  },
-  {
-    "slug": "from-bukhara-to-dimapur-inside-the-ndtv-food-awards-that-mapped-indias-new-culin",
-    "headline": "From Bukhara to Dimapur: Inside the NDTV Food Awards That Mapped India's New Culinary Geography",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/from-bukhara-to-dimapur-inside-the-ndtv-food-awards-that-mapped-indias-new-culin.jpg"
-  },
-  {
-    "slug": "india-us-travel-decline-alternative-destinations-nri-20260713",
-    "headline": "India-to-US Travel Falls 4% — and Indian Globetrotters Are Finding New Favorites",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-us-travel-decline-alternative-destinations-nri-20260713.jpg"
-  },
-  {
-    "slug": "air-new-zealand-air-india-direct-flights-codeshare-nri-20260713",
-    "headline": "Air New Zealand and Air India Are Building a Bridge to Auckland — Direct Flights Targeted by 2028",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-new-zealand-air-india-direct-flights-codeshare-nri-20260713.jpg"
-  },
-  {
-    "slug": "five-star-hotels-cheaper-abroad-nri-india-monsoon-deals-20260713",
-    "headline": "Five-Star Hotels Abroad Cost 23% Less Than in America — Here's How NRIs Can Cash In",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/five-star-hotels-cheaper-abroad-nri-india-monsoon-deals-20260713.jpg"
-  },
-  {
-    "slug": "rupee-one-month-low-trade-deficit-30-billion-nri-remittance-20260713",
-    "headline": "Rupee Slides to One-Month Low as India's Trade Deficit Balloons to $30.43 Billion — What NRI Remitters Need to Know",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rupee-one-month-low-trade-deficit-30-billion-nri-remittance-20260713.jpg"
-  },
-  {
-    "slug": "india-it-stocks-10-percent-july-rally-ai-deals-tcs-hcltech-20260713",
-    "headline": "India's IT Stocks Stage a 10% July Rally as AI Deals Reshape the Sector — Why the Street Is Still Skeptical",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-it-stocks-10-percent-july-rally-ai-deals-tcs-hcltech-20260713.jpg"
-  },
-  {
-    "slug": "india-us-trade-deal-standoff-goldman-growth-uk-fta-nri-20260713",
-    "headline": "India Isn't Rushing Into a US Trade Deal — And Goldman Sachs Just Gave Modi Another Reason to Wait",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-us-trade-deal-standoff-goldman-growth-uk-fta-nri-20260713.jpg"
-  },
-  {
-    "slug": "anti-inflammatory-diet-dementia-risk-jama-study-indian-traditional-foods-brain-health-20260713",
-    "headline": "An Anti-Inflammatory Diet Cut Dementia Risk by 29% — and Your Dadi's Kitchen Had It Right All Along",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anti-inflammatory-diet-dementia-risk-jama-study-indian-traditional-foods-brain-health-20260713.jpg"
-  },
-  {
-    "slug": "nordic-walking-depression-remission-five-weeks-study-south-asian-mental-health-20260713",
-    "headline": "Five Weeks of Walking With Poles Cut Depression Symptoms in Half, a Landmark Trial Found",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nordic-walking-depression-remission-five-weeks-study-south-asian-mental-health-20260713.jpg"
-  },
-  {
-    "slug": "india-14-cities-extreme-heat-risk-oxford-study-health-diaspora-families-20260713",
-    "headline": "14 Indian Cities Rank Among the World's Most Heat-Vulnerable. Here's What That Means for Your Family Back Home.",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-14-cities-extreme-heat-risk-oxford-study-health-diaspora-families-20260713.jpg"
-  },
-  {
-    "slug": "ro-khanna-detained-israeli-settlers-west-bank-20260713",
-    "headline": "Indian American Congressman Ro Khanna Detained at Gunpoint by Israeli Settlers in West Bank",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ro-khanna-detained-israeli-settlers-west-bank-20260713.jpg"
-  },
-  {
-    "slug": "shrey-parikh-scripps-spelling-bee-indian-american-dynasty-20260713",
-    "headline": "Shrey Parikh Wins Scripps Spelling Bee With Record-Setting Performance — 31 of Last 37 Champions Are Indian American",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shrey-parikh-scripps-spelling-bee-indian-american-dynasty-20260713.jpg"
-  },
-  {
-    "slug": "intel-5-billion-ireland-ai-chip-leixlip-expansion-20260713",
-    "headline": "Intel Just Committed €5 Billion to Ireland. It Is a Bet on Keeping Europe's Most Advanced Chip Factory Ahead of the AI Curve.",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/intel-5-billion-ireland-ai-chip-leixlip-expansion-20260713.jpg"
-  },
-  {
-    "slug": "accenture-data-breach-35gb-source-code-indian-it-workers-20260713",
-    "headline": "Accenture Confirms a Hacker Stole Source Code and Cloud Credentials. For 300,000 Indian Employees, the Questions Are Just Starting.",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/accenture-data-breach-35gb-source-code-indian-it-workers-20260713.jpg"
   }
 ]
