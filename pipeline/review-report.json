@@ -1,67 +1,19 @@
 {
-  "timestamp": "2026-07-14T07:15:43.571364+00:00",
+  "timestamp": "2026-07-14T08:16:01.530595+00:00",
   "mode": "fix",
   "stats": {
     "pass": 4,
-    "flag": 0,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "f46d7da7-e87d-4c7a-aafd-c6ea187ed85f",
-      "headline": "Dhamaal 4 Has Crossed \u20b9100 Crore Worldwide. Nobody's Laughing at the Franchise Anymore.",
-      "slug": "dhamaal-4-100-crore-worldwide-franchise-record-ajay-devgn-indra-kumar-comedy-bollywood-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "653f0bcf-6a0d-4395-80a9-cbcd764fef4e",
-            "headline": "Dhamaal 4 Just Crossed \u20b965 Crore in Three Days. The Franchis"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Dhamaal 4 movie poster",
-          "reason": "The photo is related to the Dhamaal 4 movie mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the film's success to NRI families seeking family-friendly entertainment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more quotes or reactions from the diaspora audience to enhance the connection.",
-          "Include a brief comparison with other successful Bollywood comedies in the diaspora to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d5dc87a1-0127-4e1e-a9b2-006db6c96439",
-      "headline": "John Abraham Studied Rakesh Maria's Mind, Not His Mannerisms. The 26/11 Biopic Is Nearly Ready.",
-      "slug": "john-abraham-maria-ips-rohit-shetty-rakesh-maria-biopic-26-11-mumbai-tamannaah-bhatia-20260714",
+      "id": "9c7bbe52-6c1d-4e49-9692-a3cce1650649",
+      "headline": "One Hundred and Fifty Dancers, Seventeen Countries, Three Nights Under the Acropolis: Inside the World Festival of Indian Dance",
+      "slug": "world-festival-indian-dance-athens-acropolis-2026-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "John Abraham at a film event",
-          "reason": "The photo shows John Abraham, who is relevant to the story."
+          "what_photo_shows": "Bharatanatyam dancer performing",
+          "reason": "The photo shows a Bharatanatyam dancer, relevant to an Indian dance festival story."
         },
         "inline_image_mismatches": []
       },
@@ -84,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's subject matter to the experiences of the Indian diaspora, particularly regarding the emotional impact of the 26/11 attacks."
+          "note": "The article effectively highlights the participation of the Indian diaspora in the festival and discusses the cultural significance of classical Indian dance in diaspora communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes or reactions from diaspora communities regarding the film's relevance to them.",
-          "Include more details about the film's release date or promotional activities to enhance reader engagement."
+          "Consider adding quotes from participants or organizers to enhance the narrative.",
+          "Include more details about the impact of the festival on the diaspora community."
         ],
         "verdict": "pass"
       },
@@ -102,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fd362125-be76-47ef-a1ad-89b7d43b50e6",
-      "headline": "Kohli, Bumrah, and 50 Overs to Salvage a Tour. India's ODI Campaign Opens at Edgbaston.",
-      "slug": "india-england-first-odi-edgbaston-kohli-bumrah-rohit-gill-redemption-nri-july-2026",
+      "id": "672448a6-d97a-4cfe-954d-10a17e28337e",
+      "headline": "Eleven Thousand Years of India, One Museum in Washington: The Diaspora's Audacious Bid to Tell Its Own Story",
+      "slug": "india-heritage-museum-washington-dc-amitabh-sharma-diaspora-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -112,8 +64,143 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Edgbaston Cricket Ground during a match",
-          "reason": "The photo shows Edgbaston, the venue for the ODI match in the story."
+          "what_photo_shows": "Embassy of India in Washington, D.C.",
+          "reason": "The photo shows the Embassy of India, relevant to the museum proposal story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of the Indian Embassy is relevant but does not directly represent the concept of the museum being discussed."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the museum project to the identity and cultural pride of the Indian diaspora in the U.S."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or testimonials from members of the Indian diaspora to enhance the personal connection to the project.",
+          "Add more details about the timeline for the museum's development to provide readers with a clearer picture of the project's future."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8639ea82-9309-470b-a087-652d9cbbb201",
+      "headline": "America Desperately Needs Foreign Doctors. It Is Also Investigating Them for Fraud",
+      "slug": "healthcare-workforce-green-card-recapture-fraud-probe-paradox-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "doctor and nurse in hospital ward",
+          "reason": "The photo shows medical professionals, relevant to the story about foreign doctors."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of foreign doctors or healthcare."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications for Indian-origin healthcare workers in the U.S., making it relevant to the diaspora."
+        },
+        "factual_flags": [
+          "The claim about India seizing over 100,000 forged diplomas in December 2025 is suspicious as it refers to a future date."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that more closely represents foreign doctors or healthcare settings.",
+          "Clarify the timeline of events, especially regarding the future date mentioned in the article."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "94bf7f68-f891-4a43-9165-38a331ade37a",
+      "headline": "Three Federal Agencies Just Told Banks to Think Twice Before Lending to Immigrants",
+      "slug": "bank-regulators-warn-immigrant-lending-risk-h1b-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Consumer Financial Protection Bureau entrance",
+          "reason": "The photo shows a different agency not mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of federal guidance on H-1B holders, which is relevant to the Indian diaspora."
+        },
+        "factual_flags": [
+          "The article mentions a future date (January 2026) which is inconsistent with the current timeline."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Provide a relevant hero image that reflects the article's content.",
+          "Clarify the timeline regarding the January 2026 reference to avoid confusion."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Consumer Financial Protection Bureau entrance)",
+        "Revised by gemini-2.5-flash (764\u2192857 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "213f5a6c-c004-46b4-86b0-3184f0eece64",
+      "headline": "India's Gold ETF Boom Hits a Wall \u2014 Fund Houses Cap Purchases as Physical Demand Cools and Discounts Widen",
+      "slug": "india-gold-etf-boom-cap-physical-demand-nri-investors-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Gold bullion bar at Swiss Money Museum",
+          "reason": "The photo of a gold bar is relevant to a story about gold ETFs and demand."
         },
         "inline_image_mismatches": []
       },
@@ -127,13 +214,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the cricket match to the Indian diaspora in the UK, highlighting their emotional investment in the game."
+          "note": "The article provides relevant insights for NRI investors, particularly regarding Sovereign Gold Bonds and the implications of gold ETF caps."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more historical context about India's past performances at Edgbaston to enrich the article."
+          "Include more data or examples on how the gold market dynamics specifically affect NRIs.",
+          "Consider adding quotes from financial experts or analysts to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -145,9 +232,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "9ca12d9c-c605-4db9-95e2-5f2c905d4f88",
-      "headline": "Best Attack Meets Best Defence. France and Spain Collide in Arlington for a Place in the World Cup Final.",
-      "slug": "france-spain-world-cup-2026-semifinal-mbappe-yamal-dembele-dallas-nri-july-2026",
+      "id": "c21d1d76-59e6-49d6-a545-4af92e4d1a75",
+      "headline": "India's CPI Inflation Surges to 4.38% \u2014 The Rate Hike Cycle Is Coming, and NRI Portfolios Need to Adjust",
+      "slug": "india-cpi-inflation-4-38-rate-hike-nri-deposits-bonds-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -155,8 +242,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "France celebrating World Cup semifinal",
-          "reason": "The photo shows France celebrating a World Cup achievement, relevant to the story."
+          "what_photo_shows": "stock market data display",
+          "reason": "The photo shows stock market data, relevant to the finance story."
         },
         "inline_image_mismatches": []
       },
@@ -170,13 +257,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the Indian diaspora by highlighting the shared experience of watching the World Cup, particularly in the Dallas-Fort Worth area."
+          "note": "The article provides relevant financial insights for NRI investors, discussing how inflation and rate hikes affect their portfolios."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific details about how the Indian diaspora is engaging with the World Cup, such as notable events or community gatherings.",
-          "Include quotes or insights from Indian fans or community leaders to enhance the diaspora connection."
+          "Include more specific examples of how NRIs can adjust their investment strategies in response to the inflation data.",
+          "Consider adding a brief section on potential risks associated with the current economic climate for NRIs."
         ],
         "verdict": "pass"
       },
