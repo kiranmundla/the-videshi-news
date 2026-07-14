@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-13T23:15:27.780961+00:00",
+  "timestamp": "2026-07-14T00:15:34.456168+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ff5badd7-e079-440f-8945-779fc0e41a2e",
-      "headline": "Six, Four, Four, Six. Hassan Khan's Ten-Ball Demolition Seals the MLC Playoff Picture.",
-      "slug": "mlc-2026-hassan-khan-10-ball-36-sf-unicorns-playoffs-final-standings-american-cricket-nri-july-2026",
+      "id": "26f0c7ee-8323-492f-ab55-bc5d635ba4cd",
+      "headline": "India-UK Trade Deal Goes Live on July 15 \u2014 What Changes for NRIs in Britain",
+      "slug": "india-uk-trade-deal-nri-impact-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Grand Prairie Stadium in Texas",
-          "reason": "The stadium is relevant to the MLC cricket story."
+          "what_photo_shows": "Two officials signing agreement",
+          "reason": "The photo shows officials from India and UK, relevant to the trade deal story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the playoff event to the Indian diaspora in the Bay Area, highlighting its significance."
+          "note": "The article effectively discusses the implications of the trade deal for NRIs, particularly in terms of social security and employment opportunities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include more context about the significance of the MLC for American cricket."
+          "Consider adding quotes from Indian professionals in the UK to provide personal insights on the impact of the trade deal.",
+          "Include a brief section on potential challenges or criticisms of the trade deal to provide a balanced perspective."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "41e84532-57bf-4d02-9cdd-fd9641b7670b",
-      "headline": "Manjrekar Says the IPL 'Puts Heavy Makeup' on Indian Batters. Gavaskar Agrees the System Is Broken.",
-      "slug": "manjrekar-gavaskar-blast-india-t20i-system-ipl-makeup-batters-ranking-drop-england-whitewash-nri-july-2026",
+      "id": "fc121db0-4cb4-4cd8-b172-9fc1743493a8",
+      "headline": "Three Indian-Origin Leaders Tapped to Co-Lead Federal Reserve Policy Task Forces",
+      "slug": "indian-origin-leaders-fed-policy-task-forces-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man at an airport",
-          "reason": "The photo plausibly shows Shreyas Iyer, relevant to the cricket story."
+          "what_photo_shows": "Raghuram Rajan at a press conference",
+          "reason": "The photo shows Raghuram Rajan, who is mentioned in the story."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects the performance of the Indian cricket team to the interests of NRI readers, particularly those who follow the IPL and Indian cricket closely."
+          "note": "The article effectively highlights the achievements of Indian-origin leaders in a significant U.S. institution, appealing to the diaspora's interest in representation and influence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from players or analysts to enhance the article's depth.",
-          "Include a brief historical context of India's performance in T20Is to provide readers with a clearer picture."
+          "Include quotes or reactions from the appointees to add a personal touch.",
+          "Provide more context on the significance of the Federal Reserve's policy reviews for the general public."
         ],
         "verdict": "pass"
       },
@@ -97,18 +97,23 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "40cd9e66-6360-4a8a-81f2-f40e65889b9d",
-      "headline": "Out With Morkel, In With Bahutule. India's Coaching Staff Gets a Post-Whitewash Facelift.",
-      "slug": "india-coaching-overhaul-morkel-absent-bahutule-interim-nayar-returns-gambhir-sri-lanka-nri-july-2026",
+      "id": "cb818ec4-2f08-4c90-bfcb-735ac7cd6ce1",
+      "headline": "TCS Reshuffles Its Top Brass and Creates Five New Business Units \u2014 Here's What the AI-Era Overhaul Means for NRI Investors",
+      "slug": "tcs-leadership-reshuffle-five-business-units-ai-era-nri-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "ae7c3040-7ab9-4cbd-98d9-7acb57c7d4ce",
+            "headline": "TCS Just Split Its Biggest American Unit in Two. The Restruc"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "cricketer drinking water on field",
-          "reason": "The photo shows a cricketer, relevant to the cricket coaching staff story."
+          "what_photo_shows": "TCS campus in Hyderabad",
+          "reason": "The photo shows a TCS campus, relevant to the company's restructuring story."
         },
         "inline_image_mismatches": []
       },
@@ -122,13 +127,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the NRI audience by discussing the implications of coaching changes on India's cricket performance, which is of interest to the diaspora."
+          "note": "The article connects well with NRI investors by discussing TCS's strategic moves and their implications for investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the article's depth.",
-          "Include more context about the significance of the coaching changes for the upcoming series."
+          "Include more specific examples of how the restructuring may directly impact NRI investors' portfolios.",
+          "Add quotes from industry experts or analysts to enhance credibility and provide deeper insights."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c76cf1e2-62a1-4c4a-a06e-cdf278e0ae7f",
+      "headline": "HCLTech Beats Q1 Estimates as AI Revenue Surges 62% \u2014 India's Third-Largest IT Firm Signals the Sector's Pivot Is Real",
+      "slug": "hcltech-q1-fy27-earnings-beat-ai-revenue-62-percent-nri-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows HCLTech CEO C Vijayakumar, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRI investors, discussing implications for their portfolios and providing context relevant to their interests."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from industry experts or analysts to enhance credibility.",
+          "Include a brief section on how HCLTech's performance compares to its competitors to provide a broader context."
         ],
         "verdict": "pass"
       },
