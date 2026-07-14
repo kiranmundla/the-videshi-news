@@ -113,16 +113,17 @@ function LeaderModal({ leader, onClose }: { leader: Leader; onClose: () => void 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top gradient band */}
-        <div className="h-24 bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] relative rounded-t-2xl overflow-hidden">
-          <button onClick={onClose} className="absolute top-3 right-3 text-white/70 hover:text-white transition-colors">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+        <div className="h-24 bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] rounded-t-2xl" />
+
+        {/* Close button */}
+        <button onClick={onClose} className="absolute top-3 right-3 z-20 text-white/70 hover:text-white transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
 
         {/* Photo – overlaps the band */}
-        <div className="flex justify-center -mt-14">
+        <div className="flex justify-center -mt-14 relative z-10">
           <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] flex items-center justify-center overflow-hidden ring-4 ring-white shadow-lg">
             {leader.photo_url ? (
               <img src={leader.photo_url} alt={leader.name} className="w-full h-full object-cover" />
