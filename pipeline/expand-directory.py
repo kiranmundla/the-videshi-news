@@ -232,6 +232,19 @@ def process(result, cat, seen):
     if not p["city"] or not p["state"]:
         return None
 
+    # ── Quality gate: curated directory, not a dump ──
+    rating = result.get("rating") or 0
+    reviews = result.get("user_ratings_total") or 0
+    is_religious = cat == "Religious Services"
+    if is_religious:
+        # Temples/gurudwaras: just need some presence, not star ratings
+        if reviews < 5:
+            return None
+    else:
+        # Everything else: 4.0+ stars with 10+ reviews
+        if rating < 4.0 or reviews < 10:
+            return None
+
     loc = result.get("geometry", {}).get("location", {})
     pu = photo_urls(result.get("photos", []))
 
