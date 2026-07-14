@@ -269,33 +269,24 @@ def call_gemini(prompt, json_mode=True, max_tokens=4000):
 
 
 def web_search_context(query):
-    """Use Gemini with Google Search grounding to get context on a breaking story."""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_KEY}"
-    body = {
-        "contents": [{"parts": [{"text": f"Summarize the latest news about: {query}\n\nProvide key facts, quotes, and context in 300 words. Focus on the Indian diaspora angle if relevant. Include source names."}]}],
-        "tools": [{"googleSearch": {}}],
-        "generationConfig": {
-            "maxOutputTokens": 2000,
-            "temperature": 0.2,
-            "thinkingConfig": {"thinkingBudget": 0}
-        }
-    }
-    result = curl_json(url, method="POST", data=body, timeout=45,
-                       headers={"Content-Type": "application/json"})
+    """Use Gemini to expand on a breaking story topic with fuller context."""
+    prompt = f"""You are a senior journalist. Write a detailed factual briefing about this developing story:
+
+"{query}"
+
+Include:
+- What happened (key facts, timeline)
+- Who is involved
+- Why it matters for the Indian diaspora / Indians abroad
+- Any official statements or reactions
+- Context and background
+
+Be factual and specific. Write 300-400 words. Cite specific source names where possible (e.g. "according to Reuters", "AP reported")."""
+
+    result = call_gemini(prompt, json_mode=False, max_tokens=2000)
     if not result:
-        return ""
-    try:
-        text = result["candidates"][0]["content"]["parts"][0]["text"]
-        # Also try to extract grounding sources
-        sources = []
-        grounding = result.get("candidates", [{}])[0].get("groundingMetadata", {})
-        for chunk in grounding.get("groundingChunks", []):
-            web = chunk.get("web", {})
-            if web.get("uri") and web.get("title"):
-                sources.append({"name": web["title"], "url": web["uri"]})
-        return text, sources[:4]
-    except (KeyError, IndexError):
         return "", []
+    return result, []
 
 
 def determine_category(title, context=""):
@@ -537,87 +528,93 @@ def mark_topic_used(topic_id):
 
 
 def scan_web_for_breaking():
-    """Use Gemini + Google Search to check for breaking events relevant to Indian diaspora.
+    """Use Gemini to analyze recent p2_topics and identify genuinely breaking stories
+    that deserve immediate coverage for the Indian diaspora audience.
     Returns list of dicts with title, category, score, context, sources."""
-    prompt = """You are a breaking news scanner for The Videshi, a news site for the Indian diaspora.
+    # Fetch more topics (wider window) for analysis
+    since = (datetime.now(timezone.utc) - timedelta(hours=3)).isoformat()
+    since_enc = urllib.parse.quote(since, safe='')
+    url = (
+        f"{SUPABASE_URL}/rest/v1/p2_topics"
+        f"?status=eq.pending"
+        f"&created_at=gte.{since_enc}"
+        f"&select=canonical_title,category,urgency,score_total,signal_count"
+        f"&order=created_at.desc"
+        f"&limit=80"
+    )
+    all_topics = curl_json(url, headers=HEADERS) or []
+    if not all_topics:
+        return []
 
-Check for ANY of these happening RIGHT NOW (in the last 2-3 hours):
-1. Major sports results: FIFA World Cup, cricket (India matches, IPL), Olympics
-2. Breaking political news affecting India or Indian immigrants
-3. Major tech layoffs/acquisitions affecting Indian workers
-4. Attacks, disasters, or emergencies involving Indians abroad
-5. Major immigration policy changes (H-1B, green card, visa announcements)
-6. Major financial events (market crashes, RBI decisions, rupee moves)
+    # Build a list of titles for Gemini to analyze
+    topic_list = "\n".join(
+        f"- [{t.get('category','?')}] (signals:{t.get('signal_count',1)}) {t['canonical_title']}"
+        for t in all_topics[:60]
+    )
 
-For each genuinely breaking story (happened in last 2-3 hours, not old news):
-Return JSON array of objects:
-[
-  {
-    "title": "Short headline",
-    "category": "one of: news, sports, technology, immigration, markets-finance, entertainment, nri-world",
-    "urgency": 1-10 (10 = most urgent),
-    "context": "2-3 sentence summary with key facts",
-    "diaspora_relevant": true/false
-  }
-]
+    prompt = f"""You are the breaking news editor at The Videshi, a news publication for the Indian diaspora.
 
-If nothing is genuinely breaking right now, return an empty array: []
-Do NOT include stories older than 3 hours. Be strict about recency."""
+Here are {len(all_topics)} recent news signals from the last 3 hours:
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_KEY}"
-    body = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "tools": [{"googleSearch": {}}],
-        "generationConfig": {
-            "maxOutputTokens": 2000,
-            "temperature": 0.1,
-            "thinkingConfig": {"thinkingBudget": 0}
-        }
-    }
-    result = curl_json(url, method="POST", data=body, timeout=45,
-                       headers={"Content-Type": "application/json"})
+{topic_list}
+
+Your job: identify stories that are GENUINELY BREAKING and relevant to the Indian diaspora audience. A story is breaking if:
+1. It just happened (death, disaster, major announcement, sports result, policy change)
+2. It affects Indians abroad, India, or the Indian community significantly
+3. It would make an NRI reader say "I need to know about this NOW"
+
+For each breaking story you identify (max 3), return:
+{{
+  "title": "Headline framed for Indian diaspora audience",
+  "category": "news|sports|technology|immigration|markets-finance|entertainment|nri-world",
+  "urgency": 1-10,
+  "context": "2-3 sentences summarizing what happened and why it matters to NRIs",
+  "diaspora_relevant": true
+}}
+
+If NOTHING qualifies as genuinely breaking for this audience, return: []
+
+Be strict. Most of these are routine news — only flag truly urgent ones.
+Return a JSON array."""
+
+    result = call_gemini(prompt, json_mode=True, max_tokens=1500)
     if not result:
         return []
 
-    try:
-        text = result["candidates"][0]["content"]["parts"][0]["text"]
-        # Extract JSON from text (may have surrounding markdown)
-        match = re.search(r'\[.*\]', text, re.DOTALL)
-        if match:
-            items = json.loads(match.group())
+    if not isinstance(result, list):
+        # Sometimes Gemini wraps in an object
+        if isinstance(result, dict) and "stories" in result:
+            result = result["stories"]
+        elif isinstance(result, dict) and "breaking" in result:
+            result = result["breaking"]
         else:
-            # Try as-is
-            items = json.loads(text)
-        if not isinstance(items, list):
             return []
 
-        # Extract grounding sources
-        grounding_sources = []
-        grounding = result.get("candidates", [{}])[0].get("groundingMetadata", {})
-        for chunk in grounding.get("groundingChunks", []):
-            web = chunk.get("web", {})
-            if web.get("uri") and web.get("title"):
-                grounding_sources.append({"name": web["title"], "url": web["uri"]})
+    breaking = []
+    for item in result:
+        if not isinstance(item, dict) or not item.get("title"):
+            continue
+        if not item.get("diaspora_relevant", False) and item.get("urgency", 0) < 7:
+            continue
+        score = int(item.get("urgency", 5)) * 8
+        if item.get("diaspora_relevant"):
+            score = int(score * 1.3)
+        breaking.append({
+            "title": item["title"],
+            "category": item.get("category", "news"),
+            "score": score,
+            "context": item.get("context", ""),
+            "sources": [],
+        })
 
-        # Convert to our format
-        breaking = []
-        for item in items:
-            if not item.get("diaspora_relevant", False) and item.get("urgency", 0) < 7:
-                continue  # Skip non-diaspora stories unless very urgent
-            score = int(item.get("urgency", 5)) * 8  # Scale 1-10 → 8-80
-            if item.get("diaspora_relevant"):
-                score = int(score * 1.3)
-            breaking.append({
-                "title": item["title"],
-                "category": item.get("category", "news"),
-                "score": score,
-                "context": item.get("context", ""),
-                "sources": grounding_sources[:4],
-            })
-        return breaking
-    except (KeyError, IndexError, json.JSONDecodeError) as e:
-        print(f"  ⚠ Web scan parse error: {e}")
-        return []
+    if breaking:
+        print(f"  Web scan found {len(breaking)} breaking candidates")
+        for b in breaking:
+            print(f"    ✦ [{b['category']}] score={b['score']} {b['title'][:60]}")
+    else:
+        print("  Web scan: nothing breaking right now")
+
+    return breaking
 
 
 # ── Main ────────────────────────────────────────────────────────────────────
