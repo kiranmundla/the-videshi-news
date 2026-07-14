@@ -371,6 +371,34 @@ export default function StoriesPage() {
         )}
 
         {/* ============================================================ */}
+        {/* Leaders of the Indian Diaspora — cross-link                  */}
+        {/* ============================================================ */}
+        <Link
+          to="/representatives"
+          className="group block mt-14 rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200"
+        >
+          <div className="relative bg-gradient-to-r from-[#0B1D3A] to-[#162d54] p-8 md:p-10">
+            <div className="max-w-2xl">
+              <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-2">
+                Community Pride
+              </p>
+              <h2 className="text-white text-xl md:text-2xl font-bold tracking-tight mb-3">
+                Leaders of the Indian Diaspora
+              </h2>
+              <p className="text-white/70 text-sm md:text-base leading-relaxed mb-4">
+                From CEOs of Fortune 500 companies to elected officials across the globe — explore 225+ Indian-origin leaders shaping the world.
+              </p>
+              <span className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold group-hover:gap-3 transition-all">
+                Explore Leaders
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        {/* ============================================================ */}
         {/* Bottom CTA — Community framing                               */}
         {/* ============================================================ */}
         <div className="mt-16 text-center py-12 px-6 bg-muted/30 rounded-2xl border border-border">
