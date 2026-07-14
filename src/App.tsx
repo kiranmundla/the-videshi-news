@@ -79,6 +79,9 @@ const WorldCupPage = React.lazy(() => import("./pages/WorldCupPage.tsx"));
 // Leaders of the Indian Diaspora (was Representatives)
 const LeadersPage = React.lazy(() => import("./pages/LeadersPage.tsx"));
 
+// Know Your Leader (civic lookup by zip)
+const KnowYourLeaderPage = React.lazy(() => import("./pages/KnowYourLeaderPage.tsx"));
+
 // Stories (Diaspora Voices)
 const StoriesPage = React.lazy(() => import("./pages/StoriesPage.tsx"));
 const SubmitStoryPage = React.lazy(() => import("./pages/SubmitStoryPage.tsx"));
@@ -187,6 +190,7 @@ const App = () => (
               <Route path="/stories/:slug" element={<StoryDetailPage />} />
               <Route path="/representatives" element={<LeadersPage />} />
               <Route path="/leaders" element={<LeadersPage />} />
+              <Route path="/know-your-leader" element={<KnowYourLeaderPage />} />
               <Route path="/world-cup" element={<WorldCupPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/articles" element={<AdminArticles />} />

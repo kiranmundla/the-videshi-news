@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-14T17:15:31.340869+00:00",
+  "timestamp": "2026-07-14T18:15:29.266859+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ccae8708-7933-4b52-b3b5-34469616b83f",
-      "headline": "Emirates Plans to Deploy Its A380 Superjumbo on Hyderabad Route After 25 Years in the City",
-      "slug": "emirates-a380-hyderabad-telangana-aviation-hub-nri-20260714",
+      "id": "42c4152a-2c57-4089-a935-84cd56281b03",
+      "headline": "London's Beloved Dishoom Secures Its Manhattan Address \u2014 and It's Bringing Friends",
+      "slug": "dishoom-new-york-nomad-manhattan-2027-british-indian-restaurant-wave-lvmh",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Emirates Airbus A380 in flight",
-          "reason": "The photo shows an Emirates A380, relevant to the airline story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the A380 deployment to the needs and interests of the NRI community, particularly the Telugu diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Emirates officials or local government representatives to enhance credibility.",
-          "Include statistics or data on passenger traffic trends to provide more context on the importance of the A380 deployment."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7bd8d4a9-ff9f-4e05-9ad0-f5f7da918f9c",
-      "headline": "Fifteen Indian Tourists Killed in Vietnam Speedboat Capsize \u2014 What NRIs Need to Know",
-      "slug": "phu-quoc-vietnam-boat-capsize-indian-tourists-killed-travel-safety-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Tourist boats off Phu Quoc Island",
-          "reason": "The photo shows tourist boats at Phu Quoc Island, relevant to the story."
+          "what_photo_shows": "interior of Dishoom restaurant",
+          "reason": "The photo shows Dishoom's interior, relevant to the story about its expansion."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with NRIs by discussing the implications of the tragedy for Indian travelers and providing safety advice."
+          "note": "The article discusses the significance of Dishoom's opening in relation to the Indian diaspora in America, highlighting the growing influence and presence of Indian cuisine in major cities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from survivors or officials to enhance the emotional impact.",
-          "Include more specific safety tips tailored for NRIs traveling to Southeast Asia."
+          "Include quotes from the founders or chefs to add a personal touch and depth to the narrative.",
+          "Provide more context on the significance of Dishoom's cuisine and its cultural impact on both the UK and US dining scenes."
         ],
         "verdict": "pass"
       },
@@ -97,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "d2ae72be-2d56-48f6-af4a-4e027784f744",
-      "headline": "United Airlines Eyes Nonstop Flights From San Francisco to Delhi and Bangalore",
-      "slug": "united-airlines-sfo-delhi-bangalore-nonstop-flights-nri-20260714",
+      "id": "1f8116dd-8ed3-41fd-b447-203783aa3cb3",
+      "headline": "From Two Michelin Stars to the Grocery Aisle: Gymkhana Fine Foods Lands at Whole Foods Nationwide",
+      "slug": "gymkhana-fine-foods-whole-foods-us-launch-simmer-sauces-8-million-series-a-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -107,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "United Airlines aircraft in flight",
-          "reason": "The photo shows a United Airlines aircraft, relevant to the airline story."
+          "what_photo_shows": "Butter naan and chicken tikka masala",
+          "reason": "The photo shows food items relevant to the story about Indian cuisine."
         },
         "inline_image_mismatches": []
       },
@@ -116,19 +73,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "irrelevant"
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the benefits of the proposed flights for the Indian American community, making a strong connection to diaspora interests."
+          "quality": 8,
+          "note": "The article discusses the cultural significance of Indian cuisine in America, particularly for Indian Americans, highlighting the growing demand for authentic Indian food products."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that depicts United Airlines or the specific routes mentioned.",
-          "Add more statistics or quotes from industry experts to enhance credibility and depth."
+          "Include quotes or testimonials from Indian American consumers to enhance the diaspora connection.",
+          "Add more details about the specific impact of Gymkhana Fine Foods on the Indian diaspora's culinary practices."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "807646d8-14ea-41d2-a801-9481938cfedd",
+      "headline": "Pay What You Wish: A New Indian Restaurant in Pennsylvania Is Feeding Its Community on Trust",
+      "slug": "ardas-social-kitchen-richboro-pay-what-you-wish-indian-vegetarian-buffet-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "North Indian vegetarian thali",
+          "reason": "The photo shows a traditional Indian meal, relevant to the restaurant story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the restaurant's model to the values of the Indian diaspora, particularly through the concept of *langar*."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from the restaurant owners or community members to add a personal touch.",
+          "Provide more context on the significance of the *langar* tradition for readers unfamiliar with it."
         ],
         "verdict": "pass"
       },

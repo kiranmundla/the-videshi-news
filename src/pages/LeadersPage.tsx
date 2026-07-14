@@ -446,6 +446,24 @@ export default function LeadersPage() {
           </div>
         </div>
 
+        {/* Know Your Leader cross-link */}
+        <a
+          href="/know-your-leader"
+          className="block"
+          style={{
+            background: "linear-gradient(90deg, #0B1D3A 0%, #162d50 100%)",
+            borderBottom: "1px solid rgba(212,168,67,0.15)",
+          }}
+        >
+          <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-center gap-2 text-center">
+            <span className="text-[13px]">🗳️</span>
+            <span className="text-[12px] text-white/70">
+              <span className="text-[#D4A843] font-semibold">Know Your Leader</span> — Enter your zip code to find all your elected officials
+            </span>
+            <span className="text-[12px] text-[#D4A843]">→</span>
+          </div>
+        </a>
+
         {/* Category Tabs — sticky */}
         <div
           className="sticky top-0 z-50 bg-white border-b border-gray-200"
