@@ -14,6 +14,9 @@ import time
 import logging
 from typing import Optional
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from indian_relevance import is_indian_business
+
 GKEY = "AIzaSyB-KBpDQExIKfEl4J4fxUVMBviTpY7tfZ8"
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
@@ -100,21 +103,60 @@ STATE_CITIES = {
     "WY": ["Cheyenne"],
     "SD": ["Sioux Falls"],
     "ND": ["Fargo"],
+    # Major states (already have some data, expand with curated queries)
+    "CA": ["Los Angeles", "San Francisco", "San Jose", "Fremont", "Sunnyvale",
+           "Irvine", "San Diego", "Sacramento", "Cupertino", "Santa Clara"],
+    "TX": ["Houston", "Dallas", "Austin", "San Antonio", "Plano", "Irving",
+           "Sugar Land", "Frisco", "Fort Worth"],
+    "NY": ["New York", "Queens", "Jersey City", "Flushing", "Hicksville",
+           "Buffalo", "Rochester", "Albany"],
+    "NJ": ["Edison", "Jersey City", "Iselin", "Parsippany", "Princeton",
+           "Cherry Hill", "Piscataway"],
+    "IL": ["Chicago", "Naperville", "Schaumburg", "Skokie", "Des Plaines"],
+    "GA": ["Atlanta", "Alpharetta", "Duluth", "Marietta", "Decatur", "Suwanee"],
+    "VA": ["Fairfax", "Ashburn", "Herndon", "Chantilly", "Richmond", "Virginia Beach"],
+    "MA": ["Boston", "Cambridge", "Waltham", "Lowell", "Worcester"],
+    "MD": ["Rockville", "Columbia", "Baltimore", "Gaithersburg", "Silver Spring"],
+    "WA": ["Seattle", "Bellevue", "Redmond", "Kirkland", "Bothell"],
+    "IN": ["Indianapolis", "Carmel", "Fishers", "Greenwood"],
+    "CT": ["Stamford", "Hartford", "New Haven", "Danbury"],
+    "NV": ["Las Vegas", "Reno", "Henderson"],
+    "NH": ["Nashua", "Manchester", "Concord"],
+    "RI": ["Providence", "Warwick", "Cranston"],
+    "AK": ["Anchorage", "Fairbanks"],
 }
 
 SEARCH_QUERIES = [
+    # Restaurants & Food
     ("Indian restaurant", "Catering & Food"),
     ("Indian grocery store", "Catering & Food"),
+    ("Indian sweets shop", "Catering & Food"),
+    # Doctors
     ("Indian doctor", "Doctors & Healthcare"),
     ("Indian dentist", "Doctors & Healthcare"),
+    # Temples
     ("Hindu temple", "Religious Services"),
     ("Gurudwara Sikh temple", "Religious Services"),
-    ("Indian immigration lawyer", "Attorneys & Immigration"),
-    ("Indian real estate agent", "Real Estate"),
-    ("Indian beauty salon", "Beauty & Grooming"),
-    ("Indian tax accountant CPA", "Tax & Accounting"),
-    ("Indian yoga studio", "Yoga & Wellness"),
+    ("Jain temple", "Religious Services"),
+    # Yoga
+    ("Indian yoga class", "Yoga & Wellness"),
+    # Salons
+    ("mehndi artist", "Beauty & Grooming"),
+    ("Indian beauty salon threading", "Beauty & Grooming"),
+    # Education
     ("Indian tutoring center", "Education & Tutoring"),
+    ("Bharatanatyam dance class", "Education & Tutoring"),
+    ("Indian music class", "Education & Tutoring"),
+    # Event Venues
+    ("Indian banquet hall", "Event Venues"),
+    ("Indian wedding venue", "Event Venues"),
+    # Immigration & Legal
+    ("Indian immigration lawyer", "Attorneys & Immigration"),
+    # Tax & Accounting
+    ("Indian CPA accountant", "Tax & Accounting"),
+    # Indian Clothing & Jewelry
+    ("Indian clothing store saree", "Beauty & Grooming"),
+    ("Indian jewelry store", "Beauty & Grooming"),
 ]
 
 TYPE_TO_CATEGORY = {
@@ -187,7 +229,7 @@ def categorize(types, fallback):
 
 def fetch_existing_ids():
     ids = set()
-    for off in range(0, 5000, 1000):
+    for off in range(0, 20000, 1000):
         url = f"{SUPABASE_URL}/rest/v1/directory_listings?select=google_place_id&offset={off}&limit=1000"
         data = curl_json(url, headers={"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"})
         if not data or not isinstance(data, list):
@@ -232,16 +274,15 @@ def process(result, cat, seen):
     if not p["city"] or not p["state"]:
         return None
 
-    # ── Quality gate: curated directory, not a dump ──
-    rating = result.get("rating") or 0
-    reviews = result.get("user_ratings_total") or 0
-    is_religious = cat == "Religious Services"
-    if is_religious:
-        # Temples/gurudwaras: just need some presence, not star ratings
-        if reviews < 5:
-            return None
-    else:
-        # Everything else: 4.0+ stars with 10+ reviews
+    # ── Relevance + quality gate ──
+    resolved_cat = categorize(result.get("types", []), cat)
+    is_relevant, skip_quality = is_indian_business(name, resolved_cat)
+    if not is_relevant:
+        return None
+
+    if not skip_quality:
+        rating = result.get("rating") or 0
+        reviews = result.get("user_ratings_total") or 0
         if rating < 4.0 or reviews < 10:
             return None
 
@@ -250,7 +291,7 @@ def process(result, cat, seen):
 
     row = {
         "name": name,
-        "category": categorize(result.get("types", []), cat),
+        "category": resolved_cat,
         "address": addr,
         "city": p["city"],
         "state": p["state"],
