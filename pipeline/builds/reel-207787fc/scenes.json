@@ -1,0 +1,40 @@
+{
+  "article_id": "207787fc-388c-4e4f-adb3-d41ad29132cd",
+  "scenes": [
+    {
+      "voiceover": "What if the man who bet thirteen billion dollars on OpenAI is quietly building its replacement?",
+      "onscreen": "THE $13B BET",
+      "image_prompt": "Dramatic CEO silhouette with $13 billion holographic display and MAI vs OpenAI comparison"
+    },
+    {
+      "voiceover": "Satya Nadella just unveiled seven proprietary AI models called MAI — and they're already running thousands of Copilot prompts every week.",
+      "onscreen": "7 MAI MODELS LAUNCHED",
+      "image_prompt": "Tech dashboard showing 7 MAI model nodes with Copilot prompt counter"
+    },
+    {
+      "voiceover": "Every single Copilot prompt costs Microsoft money — paid to OpenAI or Anthropic. Across four hundred million Office users, that bill is crushing margins.",
+      "onscreen": "400M USERS × $30/SEAT",
+      "image_prompt": "Financial cost breakdown infographic with cascading dollar signs and margin squeeze arrows"
+    },
+    {
+      "voiceover": "Nadella privately fears Microsoft could become the next IBM — a company that lost control of the most important technology layer.",
+      "onscreen": "THE NEXT IBM?",
+      "image_prompt": "Split screen comparing fading IBM logo to Microsoft with question mark"
+    },
+    {
+      "voiceover": "His hedge? A stake in OpenAI, Claude embedded inside Copilot, and now his own models for everyday office tasks.",
+      "onscreen": "THE THREE-WAY HEDGE",
+      "image_prompt": "Strategic triple-pillar diagram showing OpenAI stake, Claude partnership, and MAI models"
+    },
+    {
+      "voiceover": "For Indian engineers, this is huge. Microsoft's centers in Hyderabad and Bangalore are gearing up for a massive AI talent push.",
+      "onscreen": "INDIA'S AI TALENT BOOM",
+      "image_prompt": "India map with Hyderabad and Bangalore highlighted as AI talent hubs"
+    },
+    {
+      "voiceover": "The Indian-born CEO who bet everything on AI is making sure Microsoft owns its future — not rents it.",
+      "onscreen": "OWN YOUR FUTURE",
+      "image_prompt": "Inspirational silhouette looking at AI-powered futuristic cityscape"
+    }
+  ]
+}
