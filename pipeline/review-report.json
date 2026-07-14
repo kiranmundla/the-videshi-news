@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-14T18:15:29.266859+00:00",
+  "timestamp": "2026-07-14T18:45:31.482000+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "42c4152a-2c57-4089-a935-84cd56281b03",
-      "headline": "London's Beloved Dishoom Secures Its Manhattan Address \u2014 and It's Bringing Friends",
-      "slug": "dishoom-new-york-nomad-manhattan-2027-british-indian-restaurant-wave-lvmh",
+      "id": "9ca79811-a35a-4251-b5f7-91e8d3f6ddac",
+      "headline": "Trump Dropped the Hormuz Fee in 25 Hours. Gulf Allies Made Him an Offer He Liked Better.",
+      "slug": "trump-drops-hormuz-fee-gulf-investment-deals-india-oil-imports-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,42 +21,44 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "interior of Dishoom restaurant",
-          "reason": "The photo shows Dishoom's interior, relevant to the story about its expansion."
+          "what_photo_shows": "oil tanker at sea",
+          "reason": "The photo of an oil tanker is relevant to the story about energy shipments through the Strait of Hormuz."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 6,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 4,
+          "issue": "The image does not directly relate to the article's focus on geopolitics and the Hormuz Strait."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the significance of Dishoom's opening in relation to the Indian diaspora in America, highlighting the growing influence and presence of Indian cuisine in major cities."
+          "quality": 7,
+          "note": "The article discusses India's oil imports and the implications for the Indian economy, which is relevant to the diaspora."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The claim that shipping traffic through Hormuz is down 52 percent from pre-war levels needs citation."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes from the founders or chefs to add a personal touch and depth to the narrative.",
-          "Provide more context on the significance of Dishoom's cuisine and its cultural impact on both the UK and US dining scenes."
+          "Include more direct quotes or reactions from Indian officials or experts to strengthen the diaspora connection.",
+          "Consider using a more relevant image that depicts the Hormuz Strait or geopolitical discussions."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
-        "promoted to published"
+        "Revised by gemini-2.5-flash (815\u2192871 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1f8116dd-8ed3-41fd-b447-203783aa3cb3",
-      "headline": "From Two Michelin Stars to the Grocery Aisle: Gymkhana Fine Foods Lands at Whole Foods Nationwide",
-      "slug": "gymkhana-fine-foods-whole-foods-us-launch-simmer-sauces-8-million-series-a-2026",
+      "id": "f54ced8c-eb2b-49dd-87c2-c38820262bb2",
+      "headline": "ICE Just Suspended Vehicle Stops Nationwide. For Millions of Immigrants, the Relief May Be Temporary.",
+      "slug": "ice-suspends-vehicle-stops-nationwide-fatal-shootings-immigration-enforcement-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Butter naan and chicken tikka masala",
-          "reason": "The photo shows food items relevant to the story about Indian cuisine."
+          "what_photo_shows": "ICE agents during an operation",
+          "reason": "The photo shows ICE agents, which is relevant to the story about ICE policy."
         },
         "inline_image_mismatches": []
       },
@@ -79,56 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the cultural significance of Indian cuisine in America, particularly for Indian Americans, highlighting the growing demand for authentic Indian food products."
+          "note": "The article effectively connects the suspension of vehicle stops to the Indian immigrant community, highlighting the impact on undocumented individuals and those on temporary work visas."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include quotes or testimonials from Indian American consumers to enhance the diaspora connection.",
-          "Add more details about the specific impact of Gymkhana Fine Foods on the Indian diaspora's culinary practices."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "807646d8-14ea-41d2-a801-9481938cfedd",
-      "headline": "Pay What You Wish: A New Indian Restaurant in Pennsylvania Is Feeding Its Community on Trust",
-      "slug": "ardas-social-kitchen-richboro-pay-what-you-wish-indian-vegetarian-buffet-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "North Indian vegetarian thali",
-          "reason": "The photo shows a traditional Indian meal, relevant to the restaurant story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the restaurant's model to the values of the Indian diaspora, particularly through the concept of *langar*."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from the restaurant owners or community members to add a personal touch.",
-          "Provide more context on the significance of the *langar* tradition for readers unfamiliar with it."
+          "Consider adding more direct quotes from Indian community leaders or organizations to strengthen the diaspora angle.",
+          "Include statistics or data on how many Indian immigrants have been affected by ICE actions in the past to provide more context."
         ],
         "verdict": "pass"
       },
