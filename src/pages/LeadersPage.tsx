@@ -39,7 +39,6 @@ interface Leader {
 
 /* ── constants ─────────────────────────────────────────────────────── */
 const CATEGORY_TABS = [
-  { value: "all", label: "All" },
   { value: "government", label: "Government" },
   { value: "tech_business", label: "Tech & Business" },
   { value: "arts_entertainment", label: "Arts & Entertainment" },
@@ -283,7 +282,7 @@ function CategorySection({ category, leaders }: { category: string; leaders: Lea
 export default function LeadersPage() {
   const [leaders, setLeaders] = useState<Leader[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("government");
   const [search, setSearch] = useState("");
 
   /* fetch data */
@@ -299,10 +298,7 @@ export default function LeadersPage() {
 
   /* filtered leaders */
   const filtered = useMemo(() => {
-    let result = leaders;
-    if (activeTab !== "all") {
-      result = result.filter((l) => l.category === activeTab);
-    }
+    let result = leaders.filter((l) => l.category === activeTab);
     if (search.trim()) {
       const q = search.toLowerCase();
       result = result.filter(
@@ -320,46 +316,35 @@ export default function LeadersPage() {
 
   /* build sections */
   const sections = useMemo(() => {
-    const categories =
-      activeTab === "all"
-        ? ["government", "tech_business", "arts_entertainment", "science_academia"]
-        : [activeTab];
+    const cat = activeTab;
+    const catLeaders = filtered.filter((l) => l.category === cat);
+    if (catLeaders.length === 0) return [];
 
-    return categories
-      .map((cat) => {
-        const catLeaders = filtered.filter((l) => l.category === cat);
-        if (catLeaders.length === 0) return null;
+    if (cat === "government") {
+      // Group by country
+      const byCountry: Record<string, Leader[]> = {};
+      for (const l of catLeaders) {
+        const c = l.country || "US";
+        if (!byCountry[c]) byCountry[c] = [];
+        byCountry[c].push(l);
+      }
+      const sortedCountries = Object.keys(byCountry).sort(
+        (a, b) => (COUNTRY_SORT[a] ?? 99) - (COUNTRY_SORT[b] ?? 99)
+      );
+      return [{
+        category: cat,
+        type: "government" as const,
+        countries: sortedCountries.map((c) => ({ country: c, leaders: byCountry[c] })),
+        total: catLeaders.length,
+      }];
+    }
 
-        if (cat === "government") {
-          // Group by country
-          const byCountry: Record<string, Leader[]> = {};
-          for (const l of catLeaders) {
-            const c = l.country || "US";
-            if (!byCountry[c]) byCountry[c] = [];
-            byCountry[c].push(l);
-          }
-          const sortedCountries = Object.keys(byCountry).sort(
-            (a, b) => (COUNTRY_SORT[a] ?? 99) - (COUNTRY_SORT[b] ?? 99)
-          );
-          return {
-            category: cat,
-            type: "government" as const,
-            countries: sortedCountries.map((c) => ({ country: c, leaders: byCountry[c] })),
-            total: catLeaders.length,
-          };
-        }
-
-        return {
-          category: cat,
-          type: "other" as const,
-          leaders: catLeaders,
-          total: catLeaders.length,
-        };
-      })
-      .filter(Boolean) as Array<
-        | { category: string; type: "government"; countries: { country: string; leaders: Leader[] }[]; total: number }
-        | { category: string; type: "other"; leaders: Leader[]; total: number }
-      >;
+    return [{
+      category: cat,
+      type: "other" as const,
+      leaders: catLeaders,
+      total: catLeaders.length,
+    }];
   }, [filtered, activeTab]);
 
   const totalCount = leaders.length;
