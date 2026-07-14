@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-14T09:15:27.081981+00:00",
+  "timestamp": "2026-07-14T12:45:22.059313+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "207787fc-388c-4e4f-adb3-d41ad29132cd",
-      "headline": "Satya Nadella Is Quietly Building Microsoft's Own AI Models. The Goal: Stop Paying OpenAI and Anthropic.",
-      "slug": "satya-nadella-microsoft-mai-models-openai-anthropic-20260714",
+      "id": "2c86ae14-75f3-4ba1-8561-5741aafdacf1",
+      "headline": "Fifteen Indian Tourists Died When Their Speedboat Capsized off Vietnam. The Victims Were on a Company Trip.",
+      "slug": "fifteen-indian-tourists-died-speedboat-capsized-vietnam-phu-quoc-company-trip-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,60 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in glasses and suit",
-          "reason": "The photo plausibly shows Satya Nadella, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses opportunities for Indian engineers in AI, which is relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Indian engineers can leverage these opportunities.",
-          "Include quotes or insights from Indian engineers or experts to enhance the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0021f8db-fe7d-4c03-b60d-a5fb2cde49ef",
-      "headline": "Nvidia Just Cut More Than Half Its Asian Customers From Its AI Chip Buyer List. India's AI Ambitions Could Feel the Chill.",
-      "slug": "nvidia-halves-asia-ai-chip-whitelist-india-impact-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "299da397-c1c5-47a6-8531-43bd6805653b",
-            "headline": "Nvidia's New CPU Is Beating Intel and AMD in Its First Bench"
-          },
-          {
-            "article_id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
-            "headline": "Jensen Huang Says His Engineers Prefer Building AI Agents to"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "an older man in a suit",
-          "reason": "The photo plausibly shows Nvidia CEO Jensen Huang, relevant to the story."
+          "what_photo_shows": "Long Beach on Phu Quoc Island",
+          "reason": "The photo shows the location where the incident occurred."
         },
         "inline_image_mismatches": []
       },
@@ -83,18 +31,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image of Jen-Hsun Huang does not directly relate to the article's focus on Nvidia's AI chip buyer list and its implications for Asian customers."
+          "issue": "The image does not directly relate to the tragic event described in the article."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses implications for Indian investors and tech professionals, making it relevant to the NRI audience."
+          "quality": 8,
+          "note": "The article effectively connects the incident to the Indian diaspora, highlighting the impact on the community and the diplomatic response."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the topic of AI chip distribution and its impact on India.",
-          "Expand on the implications for Indian tech professionals to strengthen the diaspora angle."
+          "Consider using a more relevant image that depicts the incident or the location involved.",
+          "Add quotes from diaspora community members or experts to enhance the emotional connection and depth of the article."
         ],
         "verdict": "pass"
       },
@@ -106,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7a4c1d71-b8e7-44fa-8b7f-215da32644e0",
-      "headline": "LTIMindtree Just Signed Anthropic and Disclosed $150 Million in AI Revenue. The Indian IT Playbook Is Changing Fast.",
-      "slug": "ltimindtree-anthropic-ai-revenue-150-million-venu-lambu-20260714",
+      "id": "173dd72e-585b-4d24-b848-45906e050088",
+      "headline": "India Summoned Iran's Envoy Over the Killing of an Indian Sailor in the Hormuz Strait. The Death Toll Is Still Rising.",
+      "slug": "india-summoned-iran-envoy-killing-indian-sailor-hormuz-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -116,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data center",
-          "reason": "The photo shows infrastructure relevant to enterprise AI deployments, matching the story topic."
+          "what_photo_shows": "India's External Affairs Minister",
+          "reason": "The photo shows the correct named person related to the story."
         },
         "inline_image_mismatches": []
       },
@@ -125,21 +73,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to the technology theme but lacks specific connection to LTIMindtree or AI."
+          "score": 3,
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses implications for Indian professionals in the US, which is relevant to the NRI audience."
+          "note": "The article discusses the impact of geopolitical tensions on Indian nationals in the Gulf, making it relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more specific examples of how AI is impacting Indian tech workers' roles.",
-          "Consider adding a quote from an NRI investor or expert to strengthen the diaspora connection."
+          "Consider using a more relevant image that reflects the article's focus on the geopolitical situation and its impact on Indian sailors.",
+          "Add quotes or perspectives from Indian sailors or diaspora members to enhance the personal connection to the topic."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
