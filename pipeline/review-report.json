@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-14T20:15:24.319536+00:00",
+  "timestamp": "2026-07-14T21:15:30.267022+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "328e1973-28a0-439f-b120-b420512d6eb9",
-      "headline": "The Compounding Cost of Staying. What a Year of Policy Changes Has Done to Indian Immigrants' Wallets",
-      "slug": "cumulative-cost-indian-immigrant-fees-mortgage-ban-policy-20260714",
+      "id": "6f6ce514-ebab-482e-841b-9a9d07a7aa64",
+      "headline": "Satya Nadella Says You're Paying for AI Twice \u2014 Once With Money, Once With Your Secrets",
+      "slug": "satya-nadella-reverse-information-paradox-ai-enterprise-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "207787fc-388c-4e4f-adb3-d41ad29132cd",
+            "headline": "Satya Nadella Is Quietly Building Microsoft's Own AI Models."
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "hand holding passport with visa stamps",
-          "reason": "The photo of a passport with visa stamps is relevant to a story about visa and immigration policy changes."
+          "what_photo_shows": "A man in glasses and a suit",
+          "reason": "The photo plausibly shows Satya Nadella, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +35,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the article's focus on immigration policy and financial impacts on Indian immigrants."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively addresses the financial and emotional challenges faced by Indian immigrants in the U.S., making it highly relevant to the diaspora."
+          "quality": 7,
+          "note": "The article connects to Indian-origin professionals in the enterprise AI sector, but could elaborate more on their specific roles or contributions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that more closely represents the themes of immigration and financial challenges faced by Indian immigrants.",
-          "Add a concluding section that summarizes the implications of these policy changes for Indian immigrants and potential actions they can take."
+          "Expand on the diaspora angle by including specific examples of Indian-origin professionals or companies making an impact in the enterprise AI space.",
+          "Consider adding quotes or insights from Indian IT leaders to enhance the relevance to the Indian audience."
         ],
         "verdict": "pass"
       },
@@ -54,9 +59,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b61140ec-34e0-40e2-bb46-b43f5568c32c",
-      "headline": "The Rule That Could Put an Expiration Date on Every Indian Student Visa in America",
-      "slug": "dhs-duration-of-status-rule-indian-students-enrollment-decline-20260714",
+      "id": "fa75220b-c8a6-43a5-9abc-80d75360124b",
+      "headline": "Xbox CEO Asha Sharma Joins the Federal Reserve's New Task Force. The Backlash Says More About America Than About Her.",
+      "slug": "asha-sharma-xbox-fed-task-force-h1b-backlash-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +69,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "college students studying on campus",
-          "reason": "The photo shows college students, which is relevant to a student visa story."
+          "what_photo_shows": "A woman holding an Xbox microphone",
+          "reason": "The photo shows a woman associated with Xbox, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of anti-immigration sentiment on Indian Americans in tech, which resonates with the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Asha Sharma to enhance her perspective.",
+          "Include statistics or studies on the impact of H-1B visa perceptions on Indian Americans in tech for a more robust analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e1e092e0-6506-436b-aa61-9cea9758e778",
+      "headline": "Two Ex-Qualcomm Engineers Just Raised $43 Million to Break Broadcom's Grip on Custom AI Chips",
+      "slug": "tylsemi-43-million-chiplets-ai-broadcom-qualcomm-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "semiconductor circuit board with microchips",
+          "reason": "The photo is relevant to the semiconductor topic of the story."
         },
         "inline_image_mismatches": []
       },
@@ -74,18 +122,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image does not directly relate to the topic of student visas or immigration."
+          "issue": "The image does not directly relate to AI chips or semiconductors, but is a generic tech-related image."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of U.S. immigration policy on Indian students, which is highly relevant to the Indian diaspora."
+          "quality": 9,
+          "note": "The article effectively highlights the contributions of Indian-origin engineers in the semiconductor industry, making it relevant to the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents Indian students or the concept of immigration to enhance relevance.",
-          "Add a concluding section that summarizes the potential impact on Indian families and students to strengthen the diaspora connection."
+          "Consider using a more specific image related to AI chips or semiconductors to enhance relevance.",
+          "Add quotes or insights from the diaspora community to further strengthen the connection to NRI readers."
         ],
         "verdict": "pass"
       },
