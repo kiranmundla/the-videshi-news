@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-14T16:16:14.347802+00:00",
+  "timestamp": "2026-07-14T17:15:31.340869+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c477cef9-2774-4a76-a041-6eade323d1b4",
-      "headline": "An Indian Grocery Store Burned Before It Opened. A Mosque Replica Set Ablaze on a Bonfire. Inside Northern Ireland's Summer of Hate.",
-      "slug": "belfast-riots-indian-community-northern-ireland-hate-20260714",
+      "id": "ccae8708-7933-4b52-b3b5-34469616b83f",
+      "headline": "Emirates Plans to Deploy Its A380 Superjumbo on Hyderabad Route After 25 Years in the City",
+      "slug": "emirates-a380-hyderabad-telangana-aviation-hub-nri-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,94 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Belfast City Hall",
-          "reason": "The photo shows Belfast City Hall, which is relevant to the story's location."
+          "what_photo_shows": "Emirates Airbus A380 in flight",
+          "reason": "The photo shows an Emirates A380, relevant to the airline story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the A380 deployment to the needs and interests of the NRI community, particularly the Telugu diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from Emirates officials or local government representatives to enhance credibility.",
+          "Include statistics or data on passenger traffic trends to provide more context on the importance of the A380 deployment."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7bd8d4a9-ff9f-4e05-9ad0-f5f7da918f9c",
+      "headline": "Fifteen Indian Tourists Killed in Vietnam Speedboat Capsize \u2014 What NRIs Need to Know",
+      "slug": "phu-quoc-vietnam-boat-capsize-indian-tourists-killed-travel-safety-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tourist boats off Phu Quoc Island",
+          "reason": "The photo shows tourist boats at Phu Quoc Island, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRIs by discussing the implications of the tragedy for Indian travelers and providing safety advice."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from survivors or officials to enhance the emotional impact.",
+          "Include more specific safety tips tailored for NRIs traveling to Southeast Asia."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d2ae72be-2d56-48f6-af4a-4e027784f744",
+      "headline": "United Airlines Eyes Nonstop Flights From San Francisco to Delhi and Bangalore",
+      "slug": "united-airlines-sfo-delhi-bangalore-nonstop-flights-nri-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United Airlines aircraft in flight",
+          "reason": "The photo shows a United Airlines aircraft, relevant to the airline story."
         },
         "inline_image_mismatches": []
       },
@@ -31,345 +117,18 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "The image does not directly relate to the article's content about violence and hate crimes."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively highlights the impact of the violence on the Indian community in Northern Ireland, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that reflects the themes of violence or community impact.",
-          "Add more quotes or perspectives from the Indian diaspora to enhance the personal connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2b305b2c-8638-4d75-8572-6348cf61cba2",
-      "headline": "Thirty-Seven Defendants, Three Gangs, One Assassination: Inside the US Indictment That Finally Named Nijjar's Killers",
-      "slug": "operation-hardball-bishnoi-nijjar-indictment-diaspora-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Robert F. Kennedy DOJ Building",
-          "reason": "The DOJ building is relevant to the indictment story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image of the Department of Justice building is somewhat relevant but does not directly relate to the specific topic of the article, which focuses on the assassination and the gangs involved."
+          "issue": "irrelevant"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively highlights the impact of the indictment on the Sikh diaspora, making it relevant and engaging for NRI readers."
+          "note": "The article effectively highlights the benefits of the proposed flights for the Indian American community, making a strong connection to diaspora interests."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to the assassination or the individuals involved.",
-          "Add more context or quotes from diaspora community leaders to enhance the connection to the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "094f43c2-97d8-4e74-aa7b-15f5c20a970c",
-      "headline": "One in Three Asian Americans With Serious Distress Goes Untreated, Largest NYC Study Finds",
-      "slug": "asian-american-mental-health-untreated-distress-nyc-study-barriers-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "therapy office interior",
-          "reason": "The photo shows a therapy office, which is relevant to a mental health story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts therapy solutions, which is relevant to the topic of mental health, but it does not specifically relate to the Asian American context discussed in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the findings to the broader South Asian diaspora, highlighting shared cultural barriers and mental health challenges."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including a more specific image that represents Asian American mental health to enhance relevance.",
-          "Add quotes or testimonials from individuals within the Asian American community to provide a personal touch and deepen the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8fa82891-f58b-468a-bc1c-6ef05eb0d7fc",
-      "headline": "Structured Lifestyle Changes Improved Brain Health by 55% in At-Risk Adults, Landmark AAIC Study Shows",
-      "slug": "lifestyle-changes-brain-health-aaic-2026-dementia-prevention-lancet-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "elderly man solving Rubik's cube",
-          "reason": "The photo shows an elderly person engaged in cognitive activity, relevant to brain health."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to health and lifestyle but does not specifically depict brain health or cognitive activities."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to South Asian communities, highlighting relevant health risks and cultural practices."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a more specific image related to brain health or cognitive activities to enhance visual relevance.",
-          "Include quotes or testimonials from South Asian community members to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d90ae301-c798-4d00-8812-d29fd26b9bf7",
-      "headline": "A Daily Cup of Dahi and a 30-Minute Walk May Slow Aging at the Cellular Level, Study Finds",
-      "slug": "daily-yogurt-walking-slow-aging-clinical-trial-cellular-level-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "spoon of yogurt over bowl",
-          "reason": "The photo shows yogurt, which is relevant to the story about yogurt and aging."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the study's findings to South Asian dietary habits and health concerns, making it relevant for the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from health experts or researchers to enhance credibility.",
-          "Include more specific statistics or data points related to the health issues faced by the diaspora for greater impact."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "41ed9a91-d2be-424e-80fd-f4cd93b37a49",
-      "headline": "RBI's NRI Deposit Drive Crosses $10 Billion \u2014 But the Real Flood Is Coming Before the September Deadline",
-      "slug": "rbi-nri-deposit-drive-10-billion-fcnr-september-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "c21d1d76-59e6-49d6-a545-4af92e4d1a75",
-            "headline": "India's CPI Inflation Surges to 4.38% \u2014 The Rate Hike Cycle "
-          },
-          {
-            "article_id": "3db4b37d-9efe-4e23-8d2f-dfdaa11fcfd1",
-            "headline": "Indian Banks Are Offering NRIs Up to Seven Per Cent on Dolla"
-          },
-          {
-            "article_id": "3710b3c5-947c-4e69-8bd9-fe01264d4527",
-            "headline": "India's Bond Market Awaits a $25 Billion Catalyst \u2014 Bloomber"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Reserve Bank of India building",
-          "reason": "The photo shows the RBI headquarters, relevant to the NRI deposit story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRIs by discussing the benefits of the RBI deposit scheme specifically for them."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from NRIs or financial experts to enhance credibility.",
-          "Add a section on potential risks or downsides of the deposit scheme for NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6faacfdc-05a9-4381-8933-03a2120b2467",
-      "headline": "Sensex Drops 560 Points as Brent Crude Hits $87 and Rupee Slides Past 96 \u2014 What NRIs Need to Know About the Oil Shock",
-      "slug": "sensex-drops-brent-87-rupee-96-oil-shock-nri-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3c4829ca-8bec-4664-816d-36c0bcb8ac49",
-            "headline": "Rupee Slides to One-Month Low as India's Trade Deficit Ballo"
-          },
-          {
-            "article_id": "d0c95651-1f90-439a-aeed-ce5881cc827a",
-            "headline": "India Inc. Revenue Growth Hits a Two-Year High at 11.5% \u2014 Bu"
-          },
-          {
-            "article_id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
-            "headline": "SEBI Wants to Double the Stocks You Can Short \u2014 And India's "
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the Sensex story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article provides relevant insights for NRIs regarding the impact of market changes on their investments and remittances."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can adjust their investment strategies in response to the current market conditions.",
-          "Add a brief section on potential long-term implications of the oil price surge for the Indian economy and NRIs."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "f3fc40b5-f0bd-40de-8d86-3f8cb957bb3b",
-      "headline": "Fairfax Submits Revised Bid for IDBI Bank \u2014 India's Biggest Bank Privatization Could Close Within a Month",
-      "slug": "fairfax-revised-bid-idbi-bank-privatization-nri-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at a microphone",
-          "reason": "The photo plausibly shows Prem Watsa, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the IDBI privatization to NRI investors, discussing potential impacts on their accounts and investments."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from financial analysts or experts to enhance credibility.",
-          "Include more context on the implications of the privatization for the broader Indian economy."
+          "Consider using a more relevant image that depicts United Airlines or the specific routes mentioned.",
+          "Add more statistics or quotes from industry experts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
