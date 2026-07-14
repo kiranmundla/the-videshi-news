@@ -927,3 +927,9 @@
 .v2-keydev-link:hover span {
   color: #A32D2D !important;
 }
+
+/* ── Leaders Page Scroll ──────────────── */
+.leaders-scroll-wrap {
+  scrollbar-width: none;
+}
+.leaders-scroll-wrap::-webkit-scrollbar { display: none; }
