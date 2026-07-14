@@ -42,7 +42,7 @@ export default function NewsGrid({
             {title}
           </h2>
           <Link
-            to={`/${categorySlug}`}
+            to={`/?cat=${categorySlug}`}
             className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
           >
             See all →

@@ -27,7 +27,7 @@ export default function ImmigrationStrip({ articles }: Props) {
             <span>🛂</span> Immigration
           </h2>
           <Link
-            to="/immigration"
+            to="/?cat=immigration"
             className="text-[13px] font-semibold transition-opacity hover:opacity-80"
             style={{ color: "#D4A843" }}
           >

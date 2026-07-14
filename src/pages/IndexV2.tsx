@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import MarketTicker from "@/components/MarketTicker";
@@ -152,6 +152,22 @@ export default function IndexV2() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categoryArticles, setCategoryArticles] = useState<Article[]>([]);
   const [catLoading, setCatLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const catNavRef = useRef<HTMLDivElement>(null);
+
+  // Read ?cat= from URL on mount / URL change
+  useEffect(() => {
+    const catParam = searchParams.get("cat");
+    if (catParam) {
+      setSelectedCategory(catParam);
+      // Clear the query param so URL stays clean
+      setSearchParams({}, { replace: true });
+      // Scroll to category nav area
+      setTimeout(() => {
+        catNavRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  }, [searchParams, setSearchParams]);
 
   // Reset category when logo is clicked (even if already on /)
   useEffect(() => {
@@ -474,7 +490,9 @@ export default function IndexV2() {
 
       <main className="flex-1 v2-main-sections">
         {/* Category Nav */}
-        <HomeCategoryNav selected={selectedCategory} onSelect={setSelectedCategory} />
+        <div ref={catNavRef}>
+          <HomeCategoryNav selected={selectedCategory} onSelect={setSelectedCategory} />
+        </div>
 
         {selectedCategory ? (
           /* ── Category-filtered view ── */

@@ -39,7 +39,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
             {title}
           </h2>
           <Link
-            to={`/${categorySlug}`}
+            to={`/?cat=${categorySlug}`}
             className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
           >
             See all →
@@ -126,7 +126,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
         {/* View all link at bottom */}
         <div className="text-center mt-6">
           <Link
-            to={`/${categorySlug}`}
+            to={`/?cat=${categorySlug}`}
             className="inline-block text-[13px] font-semibold tracking-wide uppercase hover:opacity-80 transition-opacity"
             style={{ color: borderColor }}
           >

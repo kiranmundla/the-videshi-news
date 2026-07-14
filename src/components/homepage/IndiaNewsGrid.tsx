@@ -49,7 +49,7 @@ export default function IndiaNewsGrid({ articles }: Props) {
             India News
           </h2>
           <Link
-            to="/news"
+            to="/?cat=news"
             className="text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors"
           >
             See all →
