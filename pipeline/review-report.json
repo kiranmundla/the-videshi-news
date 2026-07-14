@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-14T12:45:22.059313+00:00",
+  "timestamp": "2026-07-14T13:15:19.394369+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "2c86ae14-75f3-4ba1-8561-5741aafdacf1",
-      "headline": "Fifteen Indian Tourists Died When Their Speedboat Capsized off Vietnam. The Victims Were on a Company Trip.",
-      "slug": "fifteen-indian-tourists-died-speedboat-capsized-vietnam-phu-quoc-company-trip-20260714",
+      "id": "09c2118b-d527-4def-b774-77b39984e948",
+      "headline": "Five Box Office Wars That Will Define the Second Half of 2026",
+      "slug": "five-box-office-clashes-second-half-2026-awarapan-toxic-king-avengers-dune-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,51 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Long Beach on Phu Quoc Island",
-          "reason": "The photo shows the location where the incident occurred."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the tragic event described in the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the incident to the Indian diaspora, highlighting the impact on the community and the diplomatic response."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts the incident or the location involved.",
-          "Add quotes from diaspora community members or experts to enhance the emotional connection and depth of the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "173dd72e-585b-4d24-b848-45906e050088",
-      "headline": "India Summoned Iran's Envoy Over the Killing of an Indian Sailor in the Hormuz Strait. The Death Toll Is Still Rising.",
-      "slug": "india-summoned-iran-envoy-killing-indian-sailor-hormuz-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "India's External Affairs Minister",
-          "reason": "The photo shows the correct named person related to the story."
+          "what_photo_shows": "Emraan Hashmi at an event",
+          "reason": "The photo shows Emraan Hashmi, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -78,16 +35,59 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article discusses the impact of geopolitical tensions on Indian nationals in the Gulf, making it relevant to the diaspora."
+          "quality": 7,
+          "note": "The article discusses films that are significant for Indian cinema, which resonates with the diaspora audience, especially with mentions of South Indian cinema."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the article's focus on the geopolitical situation and its impact on Indian sailors.",
-          "Add quotes or perspectives from Indian sailors or diaspora members to enhance the personal connection to the topic."
+          "Replace the hero image with one that is more relevant to the topic of box office films or the specific movies mentioned.",
+          "Include more insights or quotes from industry experts to enhance the depth of analysis."
         ],
         "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "b1d35c7c-f34c-40f5-a5c6-0125a6774f41",
+      "headline": "Alia Bhatt Just Joined Tumbbad 2. The Cult Horror Classic Is Now a \u20b9150 Crore Blockbuster.",
+      "slug": "alia-bhatt-tumbbad-2-nawazuddin-siddiqui-sohum-shah-150-crore-folklore-horror-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Alia Bhatt at an event",
+          "reason": "The photo shows Alia Bhatt, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image features Alia Bhatt, which is relevant to the article's topic about her joining Tumbbad 2."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article connects to diaspora audiences through the mention of Alia Bhatt and the film's international appeal, but it could delve deeper into how this impacts NRI viewers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more context on how Tumbbad 2's success might resonate with NRI audiences.",
+          "Add quotes or insights from diaspora film critics or audiences to enhance the diaspora angle."
+        ],
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
