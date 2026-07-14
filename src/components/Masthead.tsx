@@ -8,7 +8,7 @@ import "@/components/homepage/homepage-v2.css";
 /* Persistent nav shown below the masthead on every page.
    Becomes sticky when user scrolls past it. */
 
-/* Row 1 — editorial content categories (scrollable) */
+/* Row 1 — editorial content categories (scrollable, homepage only via HomeCategoryNav) */
 const NAV_CATEGORIES = [
   { slug: "", label: "Home", path: "/" },
   { slug: "news", label: "India", path: "/news" },
@@ -22,6 +22,30 @@ const NAV_CATEGORIES = [
   { slug: "travel", label: "Travel", path: "/travel" },
   { slug: "food", label: "Food", path: "/food" },
   { slug: "cars", label: "Cars", path: "/cars" },
+];
+
+/* Hub navigation — compact icons for non-homepage pages */
+const HUB_NAV = [
+  {
+    slug: "", label: "News", path: "/",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><path d="M4 4h12v16H4z"/><path d="M16 8h3v12H7"/><line x1="7" y1="8" x2="13" y2="8"/><line x1="7" y1="11" x2="13" y2="11"/><line x1="7" y1="14" x2="10" y2="14"/></svg>,
+  },
+  {
+    slug: "directory", label: "Directory", path: "/directory",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="10" y1="10.5" x2="14" y2="10.5"/></svg>,
+  },
+  {
+    slug: "events", label: "Events", path: "/events",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>,
+  },
+  {
+    slug: "classifieds", label: "Classifieds", path: "/classifieds",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></svg>,
+  },
+  {
+    slug: "stories", label: "Voices", path: "/stories",
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>,
+  },
 ];
 
 /* Row 2 — feature / community sections (fixed, no scroll) */
@@ -92,16 +116,18 @@ function CategoryNavBar() {
           {routeSlug !== "" && (
           <div className="v2-home-cat-nav" style={{ padding: "0 4px" }}>
             <div className="v2-home-cat-nav-inner">
-              {NAV_CATEGORIES.map((cat) => {
-                const isActive = routeSlug === cat.slug;
+              {HUB_NAV.map((item) => {
+                const isActive = routeSlug === item.slug || (item.slug === "" && routeSlug === "");
                 return (
                   <Link
-                    key={cat.slug}
-                    to={cat.path}
+                    key={item.slug}
+                    to={item.path}
                     ref={isActive ? activeRef : undefined}
                     className={`v2-home-cat-pill${isActive ? " active" : ""}`}
+                    style={{ display: "flex", alignItems: "center", gap: 5 }}
                   >
-                    {cat.label}
+                    {item.icon}
+                    {item.label}
                   </Link>
                 );
               })}
