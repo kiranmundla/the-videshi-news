@@ -90,13 +90,6 @@ const SUBCATEGORY_ICONS: Record<string, string> = {
   Professor: "📚", "Research & Medicine": "🔬", Academic: "📖",
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  government: "Government & Politics",
-  tech_business: "Tech & Business",
-  arts_entertainment: "Arts & Entertainment",
-  science_academia: "Science & Academia",
-};
-
 /* ── scroll card ───────────────────────────────────────────────────── */
 function ScrollCard({ leader }: { leader: Leader }) {
   const flag = COUNTRY_FLAGS[leader.country] || "🌐";
@@ -491,33 +484,15 @@ export default function LeadersPage() {
             <div className="text-center py-16">
               <p className="text-lg text-gray-400">No leaders found.</p>
               <button
-                onClick={() => {
-                  setActiveTab("all");
-                  setSearch("");
-                }}
+                onClick={() => setSearch("")}
                 className="mt-3 text-sm text-[#D4A843] hover:underline"
               >
-                Clear filters
+                Clear search
               </button>
             </div>
           ) : (
             sections.map((section) => (
-              <div key={section.category} className="mb-10">
-                {/* Category header — only in "All" view */}
-                {activeTab === "all" && (
-                  <div className="mb-5 pb-2" style={{ borderBottom: "2px solid #D4A843" }}>
-                    <h2
-                      style={{ fontFamily: "'Noto Serif', serif" }}
-                      className="text-xl font-bold text-[#0B1D3A]"
-                    >
-                      {CATEGORY_LABELS[section.category] || section.category}
-                      <span className="text-sm font-normal text-gray-400 ml-2">
-                        ({section.total})
-                      </span>
-                    </h2>
-                  </div>
-                )}
-
+              <div key={section.category}>
                 {section.type === "government" ? (
                   section.countries.map((c) => (
                     <CountrySection
