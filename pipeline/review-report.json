@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-14T01:15:22.831957+00:00",
+  "timestamp": "2026-07-14T02:15:19.831897+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,68 +11,23 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "42b149de-3e42-4deb-97b4-ff052537aada",
-      "headline": "The Panchayat Creators Just Dropped a School Comedy. Kay Kay Menon Is the Headmaster.",
-      "slug": "adarsh-baal-vidyalaya-kay-kay-menon-prime-video-panchayat-school-comedy-july-24-20260713",
+      "id": "25ca6f3a-640b-4836-83dd-6a0a0ab99f35",
+      "headline": "The Fed Just Asked Three Indian-Origin Thinkers to Redesign American Monetary Policy",
+      "slug": "fed-reserve-rajan-chetty-sharma-indian-origin-task-forces-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Kay Kay Menon at a film event",
-          "reason": "The photo shows Kay Kay Menon, who is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
+        "duplicate_images": [
           {
-            "url": "https://www.instagram.com/reel/DauQ_QNgv7a/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about the new show 'Adarsh Baal Vidyalaya'."
+            "article_id": "1e06cf52-3d5a-44bd-ae97-48615002330e",
+            "headline": "Three Indian-Origin Leaders Will Now Help Reshape the Federa"
           }
         ],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the show's themes to the experiences of the diaspora, particularly first-generation immigrants."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one, perhaps a trailer or promotional content related to 'Adarsh Baal Vidyalaya'.",
-          "Consider adding quotes or insights from the diaspora community regarding their experiences with similar educational settings to enhance relatability."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/reel/DauQ_QNgv7a/",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2d459881-3dd5-471e-98e1-ce174fe5ee39",
-      "headline": "Rajamouli Just Launched the Teaser for Fahadh Faasil's Fantasy Film. The Baahubali Team Is Behind It.",
-      "slug": "fahadh-faasil-dont-trouble-the-trouble-teaser-rajamouli-arka-netflix-fantasy-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Fahadh Faasil at an event",
-          "reason": "The photo shows Fahadh Faasil, who is relevant to the story."
+          "what_photo_shows": "man in suit at press conference",
+          "reason": "The photo plausibly shows Raghuram Rajan, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -86,13 +41,56 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's release strategy to the diaspora audience by mentioning its simultaneous release in multiple languages and availability on Netflix."
+          "note": "The article effectively highlights the contributions of Indian-origin thinkers in a significant U.S. institution, connecting well with the diaspora's interest in representation and influence."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
-          "Include a brief comparison with other recent fantasy films to contextualize its significance."
+          "Include more context on the implications of these appointments for Indian immigrants in the U.S.",
+          "Add quotes or reactions from the Indian diaspora regarding these appointments to enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8a462118-3355-4a85-8dc0-af940597a921",
+      "headline": "Xbox's Biggest Layoffs Ever Became a Referendum on Indian-American Identity",
+      "slug": "xbox-layoffs-asha-sharma-h1b-backlash-indian-american-identity-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Asha Sharma at Xbox event",
+          "reason": "The photo shows the correct named person related to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the layoffs and the ensuing narrative to the broader context of Indian-American identity and the H-1B visa debate, making it relevant for diaspora readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Indian-American voices or organizations to enhance the diaspora perspective.",
+          "Include statistics or data on the impact of layoffs on the Indian-American community specifically to strengthen the argument."
         ],
         "verdict": "pass"
       },
