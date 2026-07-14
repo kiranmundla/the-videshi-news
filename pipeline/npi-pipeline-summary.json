@@ -1,0 +1,22 @@
+{
+  "run_at": "2026-07-14T14:46:42.509392+00:00",
+  "total_scanned": 10400,
+  "total_matched": 84,
+  "total_inserted": 84,
+  "total_skipped": 0,
+  "by_specialty": {
+    "Pediatrician": 84
+  },
+  "by_state": {
+    "CA": {
+      "scanned": 5200,
+      "matched": 39,
+      "inserted": 0
+    },
+    "TX": {
+      "scanned": 5200,
+      "matched": 45,
+      "inserted": 0
+    }
+  }
+}
