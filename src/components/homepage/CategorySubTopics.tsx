@@ -12,6 +12,51 @@ export interface SubTopicDef {
 }
 
 export const CATEGORY_SUBTOPICS: Record<string, SubTopicDef[]> = {
+  immigration: [
+    {
+      key: "h1b",
+      label: "H-1B & Work Visas",
+      tags: [
+        "h1b", "h4", "h4-ead", "indian-workers", "indian-it",
+        "layoffs", "100k-fee", "fees", "tcs", "infosys",
+        "dol", "perm", "fraud", "fy2027",
+      ],
+    },
+    {
+      key: "green-card",
+      label: "Green Card & EB Categories",
+      tags: [
+        "green-card", "green card", "green-card-backlog", "backlog",
+        "eb-2", "eb2", "eb-1a", "niw", "adjustment-of-status",
+        "i-485", "visa-bulletin",
+      ],
+    },
+    {
+      key: "students",
+      label: "Students & OPT",
+      tags: [
+        "opt", "f1-visa", "stem-opt", "student-visa",
+        "indian-students", "students", "duration-of-status",
+      ],
+    },
+    {
+      key: "policy",
+      label: "Policy & Enforcement",
+      tags: [
+        "uscis", "dhs", "ice", "deportation", "immigration-enforcement",
+        "congress", "legislation", "immigration-policy", "supreme-court",
+        "court-ruling", "doj", "chip-roy", "cbp", "social-media-vetting",
+      ],
+    },
+    {
+      key: "consular",
+      label: "Visa Processing & Consular",
+      tags: [
+        "consulate", "consular-processing", "visa-stamping", "visa",
+        "state-department", "citizenship", "eb5", "investor-visa",
+      ],
+    },
+  ],
   technology: [
     {
       key: "ai",
@@ -65,6 +110,31 @@ export const CATEGORY_SUBTOPICS: Record<string, SubTopicDef[]> = {
 
 /* ── SEO metadata per sub-topic ── */
 export const SUB_TOPIC_SEO: Record<string, { title: string; description: string }> = {
+  h1b: {
+    title: "H-1B & Work Visa News for NRIs — The Videshi",
+    description:
+      "Latest H-1B visa news — fee changes, lottery updates, H-4 EAD, PERM processing, layoff impacts, and what it means for Indian workers in America.",
+  },
+  "green-card": {
+    title: "Green Card & EB Category News — The Videshi",
+    description:
+      "Green card backlog updates, EB-2/EB-1A/NIW news, visa bulletin analysis, adjustment of status, and priority date movements for Indian immigrants.",
+  },
+  students: {
+    title: "Student Visa & OPT News — The Videshi",
+    description:
+      "F-1 visa, OPT, STEM OPT news — policy changes, duration of status, Indian student trends, and what affects studying in the US.",
+  },
+  policy: {
+    title: "Immigration Policy & Enforcement News — The Videshi",
+    description:
+      "USCIS policy updates, enforcement actions, congressional legislation, Supreme Court rulings, and immigration reform news affecting the Indian diaspora.",
+  },
+  consular: {
+    title: "Visa Processing & Consular News — The Videshi",
+    description:
+      "Consular processing updates, visa stamping wait times, EB-5 investor visas, State Department policies, and embassy news for Indian applicants.",
+  },
   ai: {
     title: "AI & Machine Learning News for NRIs — The Videshi",
     description:
@@ -144,6 +214,11 @@ export function hasSubTopics(category: string): boolean {
 
 const INITIAL_COUNT = 4;
 const ACCENT_COLORS: Record<string, string> = {
+  h1b: "#D32F2F",
+  "green-card": "#2E7D32",
+  students: "#1565C0",
+  policy: "#7B1FA2",
+  consular: "#E65100",
   ai: "#7C3AED",
   "big-tech": "#1565C0",
   semiconductors: "#E65100",
