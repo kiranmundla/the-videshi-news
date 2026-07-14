@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-14T03:15:30.279766+00:00",
+  "timestamp": "2026-07-14T06:45:27.565828+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 1,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "5d043092-aa02-46f7-92ad-a1a290630bdf",
-      "headline": "India's GCC Machine Added Twice as Many Tech Workers as Its IT Giants Last Year. The Power Shift Is Accelerating.",
-      "slug": "india-gcc-boom-hiring-outpaces-it-services-payoneer-20260714",
+      "id": "525f606a-4397-432c-85ae-65c0c71c4f2c",
+      "headline": "An ICE Agent Fatally Shot an Authorized Worker in Maine. It Was the Second Killing in a Week.",
+      "slug": "ice-agent-kills-authorized-worker-maine-biddeford-immigration-crackdown-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,30 +21,30 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "software developer at dual-monitor setup",
-          "reason": "The photo shows a software developer, which aligns with the tech worker hiring topic."
+          "what_photo_shows": "ICE agents during a field operation",
+          "reason": "The photo shows ICE agents, which is relevant to the immigration enforcement story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to the specific topic of GCCs or technology hiring."
+          "score": 8,
+          "issue": "The image is relevant to the article's topic but lacks specific visual context related to the incident."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the opportunities and tensions for Indian Americans in relation to GCCs."
+          "quality": 6,
+          "note": "The article briefly mentions the Indian American community but could elaborate more on how these events specifically impact them."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that reflects the theme of GCCs or technology hiring.",
-          "Expand on the implications of the GCC boom for the Indian diaspora, possibly including more personal stories or examples."
+          "Expand on the diaspora angle to include more specific implications for Indian Americans regarding immigration policies.",
+          "Consider adding more context or background information about ICE operations and their impact on immigrant communities."
         ],
-        "verdict": "pass"
+        "verdict": "flag"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "1532a161-e2c8-4302-986d-afd942c1738c",
-      "headline": "SK Hynix Just Pulled Off a $26.5 Billion U.S. Debut. Here Is Why NRI Investors Should Care.",
-      "slug": "sk-hynix-us-ipo-adr-listing-nri-investors-ai-memory-20260714",
+      "id": "68fa0c9b-0506-4509-9374-7b8e5828c27d",
+      "headline": "An Indian Sailor Was Killed When Iranian Missiles Hit Two UAE Tankers in the Strait of Hormuz. Six More Indians Were Wounded.",
+      "slug": "indian-sailor-killed-uae-tanker-iranian-cruise-missile-hormuz-mombasa-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in a data center",
-          "reason": "The photo shows server racks relevant to the AI memory chip topic."
+          "what_photo_shows": "satellite view of Strait of Hormuz",
+          "reason": "The photo shows the location relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,62 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to SK Hynix or the semiconductor industry."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the investment opportunities in SK Hynix to NRI investors, particularly highlighting the relevance of AI infrastructure."
+          "note": "The article discusses the impact of geopolitical events on Indian seafarers, which is relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using an image that directly represents SK Hynix or semiconductor technology to enhance relevance.",
-          "Add more specific examples of how NRI investors can engage with SK Hynix or similar companies."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cff7eaae-6517-46b9-88f8-9bce3cdb8166",
-      "headline": "Raghib Hussain Is Turning Intel's Castoff Into an AI Chip Contender. Altera Is Growing 20 Percent a Year.",
-      "slug": "raghib-hussain-altera-fpga-ai-robotics-growth-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "semiconductor motherboard with microchips",
-          "reason": "The photo is relevant to the technology and AI chip story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image is relevant to technology but does not specifically depict semiconductors or AI."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Hussain's achievements to the broader narrative of Indian Americans in tech leadership."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a more specific image related to semiconductors or AI to enhance relevance.",
-          "Add quotes or insights from other industry experts to provide a broader perspective on Hussain's impact."
+          "Include quotes or reactions from Indian seafarers or their families to enhance the human interest angle.",
+          "Provide more context on the historical relationship between India and Iran regarding maritime security."
         ],
         "verdict": "pass"
       },
