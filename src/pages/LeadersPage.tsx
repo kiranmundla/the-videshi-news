@@ -149,18 +149,20 @@ function ScrollCard({ leader }: { leader: Leader }) {
 }
 
 /* ── horizontal scroll strip ───────────────────────────────────────── */
-function ScrollStrip({ leaders, label, icon }: { leaders: Leader[]; label: string; icon?: string }) {
+function ScrollStrip({ leaders, label, icon, hideLabel }: { leaders: Leader[]; label: string; icon?: string; hideLabel?: boolean }) {
   const count = leaders.length;
   const rows = count <= 8 ? 1 : count <= 20 ? 2 : 3;
 
   return (
     <div className="mb-6">
       {/* Section label */}
-      <div className="flex items-center gap-2 mb-2 px-1">
-        {icon && <span className="text-base">{icon}</span>}
-        <h4 className="text-[14px] font-bold text-[#0B1D3A]">{label}</h4>
-        <span className="text-[11px] text-gray-400 font-medium">({count})</span>
-      </div>
+      {!hideLabel && (
+        <div className="flex items-center gap-2 mb-2 px-1">
+          {icon && <span className="text-base">{icon}</span>}
+          <h4 className="text-[14px] font-bold text-[#0B1D3A]">{label}</h4>
+          <span className="text-[11px] text-gray-400 font-medium">({count})</span>
+        </div>
+      )}
 
       {/* Scroll container */}
       <div
@@ -226,6 +228,7 @@ function CountrySection({ country, leaders }: { country: string; leaders: Leader
           leaders={bySubcat[sortedSubcats[0]]}
           label={sortedSubcats[0]}
           icon={SUBCATEGORY_ICONS[sortedSubcats[0]]}
+          hideLabel
         />
       ) : (
         sortedSubcats.map((sc) => (
