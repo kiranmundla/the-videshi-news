@@ -47,7 +47,7 @@ VALID_CATEGORIES = [
 ]
 
 MAX_ARTICLES_PER_RUN = 3
-MIN_COMBINED_SCORE = 12  # minimum newsworthiness + diaspora_relevance for LLM eval
+MIN_COMBINED_SCORE = 11  # minimum newsworthiness + diaspora_relevance for LLM eval
 LOOKBACK_HOURS = 12      # how far back to look for topics
 DEDUP_HOURS = 48         # how far back to check for duplicate articles
 
@@ -250,16 +250,31 @@ def get_candidate_topics():
     print("Step 1: Gathering candidate topics...")
 
     # Get topics from last LOOKBACK_HOURS that are still pending
+    # Use multiple queries to ensure diversity:
+    # 1. Top by score (catches multi-signal stories)
+    # 2. Top by recency (catches fresh breaking stories)
+    # This ensures we don't miss IBM-type stories that have low signal_count
+    # but high individual newsworthiness.
     sql = f"""
-    SELECT t.id, t.canonical_title, t.category, t.urgency,
+    (SELECT t.id, t.canonical_title, t.category, t.urgency,
            t.score_total, t.signal_count, t.keywords, t.status,
            t.created_at
     FROM p2_topics t
     WHERE t.created_at > now() - interval '{LOOKBACK_HOURS} hours'
       AND t.status = 'pending'
       AND t.score_total >= 40
-    ORDER BY t.score_total DESC
-    LIMIT 40
+    ORDER BY t.signal_count DESC, t.score_total DESC
+    LIMIT 20)
+    UNION
+    (SELECT t.id, t.canonical_title, t.category, t.urgency,
+           t.score_total, t.signal_count, t.keywords, t.status,
+           t.created_at
+    FROM p2_topics t
+    WHERE t.created_at > now() - interval '{LOOKBACK_HOURS} hours'
+      AND t.status = 'pending'
+      AND t.score_total >= 40
+    ORDER BY t.created_at DESC
+    LIMIT 20)
     """
     topics = sb_query(sql)
     if not topics:
@@ -339,7 +354,17 @@ def evaluate_topics(topics, recent_articles):
 
     # Prepare signal list for LLM (max 25 to keep prompt manageable)
     signals_for_llm = []
+    now = datetime.now(timezone.utc)
     for i, t in enumerate(filtered[:25]):
+        # Calculate hours since signal arrived
+        created = t.get('created_at', '')
+        hours_ago = '?'
+        if created:
+            try:
+                ct = datetime.fromisoformat(created.replace('Z', '+00:00'))
+                hours_ago = round((now - ct).total_seconds() / 3600, 1)
+            except Exception:
+                pass
         signals_for_llm.append({
             "idx": i,
             "title": t.get('canonical_title', ''),
@@ -347,13 +372,16 @@ def evaluate_topics(topics, recent_articles):
             "urgency": t.get('urgency', 'daily'),
             "signal_count": t.get('signal_count', 1),
             "score": t.get('score_total', 0),
-            "keywords": t.get('keywords', [])
+            "keywords": t.get('keywords', []),
+            "hours_ago": hours_ago
         })
 
     prompt = f"""You are the editor of The Videshi, an Indian diaspora news site serving NRIs (Non-Resident Indians) worldwide.
 
-Below are news signals from the last few hours. Score each for:
-1. **newsworthiness** (1-10): How important is this story RIGHT NOW? Major events, breaking news, policy changes = 8-10. Routine/filler = 1-4.
+Below are news signals. Each includes `hours_ago` — how many hours since the signal arrived. Fresher stories (lower hours_ago) should score higher for newsworthiness, all else equal. A breaking result from 1 hour ago beats the same story arriving 8 hours late.
+
+Score each for:
+1. **newsworthiness** (1-10): How important is this story RIGHT NOW? Major events, breaking news, policy changes = 8-10. Routine/filler = 1-4. Penalize stories that are many hours old — they're less urgent.
 2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? Immigration, H-1B, India-US/UK/Canada relations, NRI investments, diaspora culture = 8-10. Purely local Indian domestic news = 3-5. Irrelevant = 1-2.
 3. **suggested_category**: One of: immigration, technology, news, entertainment, sports, markets-finance, nri-world, food, travel, lifestyle-health
 4. **reason**: One sentence explaining your scoring.
@@ -515,9 +543,12 @@ Return a single JSON object with all these fields."""
         print(f"  ⚠ Body too short: {len(body)} chars")
         return None
 
-    # Ensure slug is valid
+    # Ensure slug has date suffix
     slug = result.get('slug', '') or make_slug(headline)
     slug = re.sub(r'[^a-z0-9-]', '', slug.lower())[:90]
+    date_suffix = datetime.now(timezone.utc).strftime("-%Y%m%d")
+    if not re.search(r'-\d{8}$', slug):
+        slug = slug.rstrip('-')[:80] + date_suffix
 
     # Build article dict
     article = {
