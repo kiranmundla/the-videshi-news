@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-14T19:15:19.614134+00:00",
+  "timestamp": "2026-07-14T20:15:24.319536+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 2,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "84f59001-3900-4253-9d5a-ff8372e7eacb",
-      "headline": "Octavia Spencer and Hannah Waddingham Just Made the Best Action Comedy of the Summer. It Lands on Prime Video Tomorrow.",
-      "slug": "ride-or-die-octavia-spencer-hannah-waddingham-prime-video-action-comedy-july-15-20260714",
+      "id": "328e1973-28a0-439f-b120-b420512d6eb9",
+      "headline": "The Compounding Cost of Staying. What a Year of Policy Changes Has Done to Indian Immigrants' Wallets",
+      "slug": "cumulative-cost-indian-immigrant-fees-mortgage-ban-policy-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A woman smiling at an event",
-          "reason": "The photo plausibly shows Octavia Spencer, who is mentioned in the story."
+          "what_photo_shows": "hand holding passport with visa stamps",
+          "reason": "The photo of a passport with visa stamps is relevant to a story about visa and immigration policy changes."
         },
         "inline_image_mismatches": []
       },
@@ -31,20 +31,20 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image features Octavia Spencer but does not directly relate to the new show 'Ride or Die'."
+          "issue": "The image does not directly relate to the article's focus on immigration policy and financial impacts on Indian immigrants."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article discusses a show on Prime Video, which is accessible to NRIs, but lacks a deeper connection to the Indian diaspora."
+          "quality": 9,
+          "note": "The article effectively addresses the financial and emotional challenges faced by Indian immigrants in the U.S., making it highly relevant to the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a quote or perspective from an Indian actor or filmmaker involved in the project to strengthen the diaspora connection.",
-          "Consider using an image that directly relates to the show 'Ride or Die' for better relevance."
+          "Consider using an image that more closely represents the themes of immigration and financial challenges faced by Indian immigrants.",
+          "Add a concluding section that summarizes the implications of these policy changes for Indian immigrants and potential actions they can take."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2ee57bdd-7938-4b0d-9aaf-7450fb13876f",
-      "headline": "They Called His Partition Film Anti-National. Imtiaz Ali's Response Was the Sharpest Thing Bollywood Has Said All Year.",
-      "slug": "imtiaz-ali-main-vaapas-aaunga-anti-national-partition-indian-muslim-patriotism-ar-rahman-20260714",
+      "id": "b61140ec-34e0-40e2-bb46-b43f5568c32c",
+      "headline": "The Rule That Could Put an Expiration Date on Every Indian Student Visa in America",
+      "slug": "dhs-duration-of-status-rule-indian-students-enrollment-decline-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Man speaking at a microphone",
-          "reason": "The photo plausibly shows Imtiaz Ali, relevant to the story."
+          "what_photo_shows": "college students studying on campus",
+          "reason": "The photo shows college students, which is relevant to a student visa story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of student visas or immigration."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by discussing themes of home and identity, which resonate with many NRIs."
+          "note": "The article discusses the implications of U.S. immigration policy on Indian students, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the film's reception in international markets to enhance the diaspora connection.",
-          "Include quotes or reactions from diaspora audiences to further illustrate the film's impact beyond India."
+          "Consider using an image that directly represents Indian students or the concept of immigration to enhance relevance.",
+          "Add a concluding section that summarizes the potential impact on Indian families and students to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
