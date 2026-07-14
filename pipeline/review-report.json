@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-14T23:15:45.007797+00:00",
+  "timestamp": "2026-07-14T23:45:16.593716+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 1,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,135 +10,6 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "9006f340-dece-49e7-9ae4-f591efa09171",
-      "headline": "MLC Playoffs Kick Off Wednesday. Unicorns Face Knight Riders as American Cricket's Championship Week Begins.",
-      "slug": "mlc-2026-playoffs-preview-unicorns-knight-riders-freedom-mi-new-york-grand-prairie-nri-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Grand Prairie Stadium in Texas",
-          "reason": "The photo shows the venue for the MLC 2026 playoff matches, which is relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image depicts a stadium, which is relevant to the article about cricket playoffs, but lacks specific cricket-related imagery."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the cricket playoffs to the Indian diaspora in America, highlighting the significance of the league for NRIs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific cricket-related imagery in the hero image to enhance relevance.",
-          "Add quotes or insights from players or coaches to provide a more personal touch to the narrative."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "05cac8fe-7b02-460b-8d2f-58f227d79580",
-      "headline": "28 Diaspora Footballers, One Proposal. India's Sports Passport Idea Reaches the PM's Office.",
-      "slug": "india-sports-passport-proposal-pmo-aiff-28-diaspora-footballers-blue-tigers-nri-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Salt Lake Stadium during a football match",
-          "reason": "The photo shows a football stadium, relevant to the football story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the Sports Passport proposal aimed at allowing Persons of Indian Origin (PIO) and Overseas Citizens of India (OCI) to represent India in sports, which directly connects with the diaspora community."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes or perspectives from diaspora footballers to enhance the connection with the NRI audience.",
-          "Add more context on how similar sports passport systems have benefited other countries' sports teams."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ee50ff54-03b0-4f80-a310-beefd62823ac",
-      "headline": "Anil Menon Reaches ISS on First Mission Aboard Soyuz MS-29",
-      "slug": "anil-menon-reaches-iss-on-first-mission-aboard-soyuz-ms-29-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "astronaut in space suit",
-          "reason": "The photo shows an astronaut, fitting the story about a space mission."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the significance of Menon's achievement for the Indian diaspora, emphasizing pride and inspiration."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from Anil Menon or experts in the field to enhance the article's depth.",
-          "Include more details about the scientific research Menon will conduct on the ISS to engage readers further."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "a2f93f7c-47b5-4cde-9a87-0e4ffdaeeca7",
       "headline": "OpenAI's First Hardware: A Screenless, Mobile Speaker",
@@ -148,11 +19,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "a smartphone displaying OpenAI website",
-          "reason": "The photo shows a smartphone, not a mobile speaker device."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -165,134 +31,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the product's implications to the daily lives of NRIs."
+          "note": "The article effectively connects the product's implications to the Indian diaspora's lifestyle and needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant image description to enhance the image match score.",
           "Add specific examples of how the speaker could be used in daily life by NRIs to strengthen the diaspora angle."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (a smartphone displaying OpenAI website)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "37249a50-dea2-4560-b874-9506e1ae8386",
-      "headline": "NIA Court Issues Non-Bailable Warrant for Hafiz Saeed",
-      "slug": "nia-court-issues-non-bailable-warrant-for-hafiz-saeed-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man in traditional attire and cap",
-          "reason": "The photo plausibly shows Hafiz Saeed, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of the NIA's decision to the safety and security of the Indian diaspora, making it relevant to NRI readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the diaspora has been affected by terrorism-related scrutiny.",
-          "Include quotes or reactions from diaspora communities to enhance engagement."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c9bfe760-b5ee-4348-8081-db8c162e494b",
-      "headline": "Kylian Mbappe's World Cup Dreams Dashed by Lionel Messi's Legacy",
-      "slug": "kylian-mbappe-fails-to-get-past-lionel-messi",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match's outcome to the Indian diaspora's experiences and emotions."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image description to enhance the image match score.",
-          "Consider adding quotes or reactions from diaspora fans to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "ad1b56ee-d937-45fb-bfca-ef32e67e4d82",
-      "headline": "Meta Layoff Forces H-1B Worker to Leave the US",
-      "slug": "meta-layoff-forces-h1b-worker-to-leave-us",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 10,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the experiences of H-1B workers to the Indian diaspora, highlighting shared challenges and concerns."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from immigration experts to provide a broader perspective on the H-1B visa situation.",
-          "Include statistics or data on the impact of layoffs on the Indian diaspora to strengthen the argument."
         ],
         "verdict": "pass"
       },
