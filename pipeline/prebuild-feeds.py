@@ -238,20 +238,21 @@ def _compute_display_score(row: dict) -> float:
     di = di or 10
     prom = prom or 8
 
-    # Freshness decay: 20 points, decays to 0 over 36 hours
+    # Freshness decay: 30 points, decays to 0 over 16 hours
+    # Steeper curve so newer articles overtake older high-scored ones within hours
     pub = row.get("published_at") or row.get("created_at", "")
     freshness = 0.0
     if pub:
         try:
             pub_dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
             hours_old = (datetime.now(timezone.utc) - pub_dt).total_seconds() / 3600
-            freshness = 20.0 * max(0.0, 1.0 - hours_old / 36.0)
+            freshness = 30.0 * max(0.0, 1.0 - hours_old / 16.0)
         except (ValueError, TypeError):
             freshness = 0.0
 
-    # Breaking news bonus: very high newsworthiness + very fresh = extra boost
+    # Breaking news bonus: high newsworthiness + fresh = extra boost
     breaking_bonus = 0.0
-    if nw >= 28 and freshness >= 16:  # newsworthiness 28+ and < 6h old
+    if nw >= 24 and freshness >= 18:  # newsworthiness 24+ and < ~3h old
         breaking_bonus = 15.0
 
     # Follow-up penalty: deprioritize articles covering already-reported topics
@@ -391,9 +392,32 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
         "generated_at": now.isoformat(),
         "featured": featured,
         "editorial": editorial,
+        "just_in": _build_just_in(articles, now),
         "sections": sections,
         "carousel": carousel,
     }
+
+
+def _build_just_in(articles: list[dict], now: datetime) -> list[dict]:
+    """Build the 'Just In' strip: 8 most recent articles, purely chronological,
+    across all categories. No scoring — just freshness. Dedupes against featured."""
+    since_24h = (now - timedelta(hours=24)).isoformat()
+    recent = [a for a in articles if a["published_at"] >= since_24h and a.get("hero_image_url")]
+    recent.sort(key=lambda a: a["published_at"], reverse=True)
+
+    # Deduplicate headlines: skip articles whose first 6 headline words match an earlier one
+    seen_prefixes: set[str] = set()
+    deduped: list[dict] = []
+    for a in recent:
+        prefix = " ".join(a.get("title", "").split()[:6]).lower()
+        if prefix in seen_prefixes:
+            continue
+        seen_prefixes.add(prefix)
+        deduped.append(a)
+        if len(deduped) >= 8:
+            break
+
+    return [article_without_body(a) for a in deduped]
 
 
 # ── Hero image preload injection ──────────────────────────────────────

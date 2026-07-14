@@ -41,3 +41,5 @@ pipeline/.x-profiles.json
 
 # Per-run writer scripts are throwaway artifacts (category-writer-YYYYMMDD-HHMM.py / -MMDD.py)
 pipeline/*-writer-[0-9]*.py
+pipeline/prebuild-feeds.py.bak-20260714
+src/pages/IndexV2.tsx.bak-20260714

@@ -20,6 +20,7 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
+import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
@@ -57,6 +58,7 @@ type HomeCache = {
   featured: Article | null;
   sections: Record<string, Article[]>;
   events: EventItem[];
+  justIn?: Article[];
 };
 
 function loadCache(): HomeCache | null {
@@ -145,6 +147,7 @@ export default function IndexV2() {
   const [featured, setFeatured] = useState<Article | null>(initialCache?.featured ?? null);
   const [sections, setSections] = useState<Record<string, Article[]>>(initialCache?.sections ?? {});
   const [events, setEvents] = useState<EventItem[]>(initialCache?.events ?? []);
+  const [justIn, setJustIn] = useState<Article[]>(initialCache?.justIn ?? []);
   const [loading, setLoading] = useState(!initialCache);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(
     initialCache ? new Date(initialCache.ts) : null
@@ -183,14 +186,16 @@ export default function IndexV2() {
       f: Article | null,
       sp: Record<string, Article[]>,
       ev: EventItem[],
-      ts: Date
+      ts: Date,
+      ji?: Article[]
     ) => {
       setFeatured(f);
       setSections(sp);
       setEvents(ev);
+      if (ji) setJustIn(ji);
       setLastUpdated(ts);
       setLoading(false);
-      saveCache({ ts: Date.now(), featured: f, sections: sp, events: ev });
+      saveCache({ ts: Date.now(), featured: f, sections: sp, events: ev, justIn: ji ?? [] });
     };
 
     // Try static JSON first (CDN fast path)
@@ -215,7 +220,8 @@ export default function IndexV2() {
           feedData.featured ?? null,
           sp,
           Array.isArray(eventsData) ? eventsData : [],
-          new Date(feedData.generated_at)
+          new Date(feedData.generated_at),
+          (feedData.just_in ?? []) as Article[]
         );
 
         // Fetch immigration separately (not in homepage-feed.json)
@@ -280,7 +286,17 @@ export default function IndexV2() {
           if (evResp.ok) ev = await evResp.json();
         } catch {}
 
-        applyData(f, sp, ev, new Date());
+        // Build just_in from all pools (purely chronological, most recent 8)
+        const allPool = [
+          ...newsPool, ...nriPool, ...techPool, ...entPool,
+          ...marketsPool, ...sportsPool, ...immPool,
+          ...lifestylePool, ...foodPool, ...travelPool,
+        ]
+          .filter((a) => a.hero_image_url)
+          .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+          .slice(0, 8);
+
+        applyData(f, sp, ev, new Date(), allPool);
       } catch {
         clearTimeout(timeout);
         setLoading(false);
@@ -525,6 +541,9 @@ export default function IndexV2() {
           /* ── Full homepage view ── */
           <>
         <HeroSection lead={featured} side={layout.heroSide} />
+
+        {/* Just In — purely chronological, newest articles across all categories */}
+        <JustInStrip articles={justIn} />
 
         {/* Visual Stories */}
         <ArticleCardDeck />

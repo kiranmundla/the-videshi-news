@@ -51,6 +51,7 @@ export const DIRECTORY_CATEGORIES = [
   "Education & Tutoring",
   "Religious Services",
   "Home Services",
+  "Daycare & Childcare",
 ];
 
 export const CATEGORY_ICONS: Record<string, string> = {
@@ -64,6 +65,7 @@ export const CATEGORY_ICONS: Record<string, string> = {
   "Education & Tutoring": "📚",
   "Religious Services": "🙏",
   "Home Services": "🔧",
+  "Daycare & Childcare": "👶",
 };
 
 export const CATEGORY_COLORS: Record<string, string> = {
@@ -77,6 +79,7 @@ export const CATEGORY_COLORS: Record<string, string> = {
   "Education & Tutoring": "bg-indigo-100 text-indigo-700",
   "Religious Services": "bg-violet-100 text-violet-700",
   "Home Services": "bg-slate-100 text-slate-700",
+  "Daycare & Childcare": "bg-yellow-100 text-yellow-700",
 };
 
 /* ------------------------------------------------------------------ */
