@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-14T00:45:37.116429+00:00",
+  "timestamp": "2026-07-14T01:15:22.831957+00:00",
   "mode": "fix",
   "stats": {
     "pass": 2,
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "dd575bfa-d245-465b-8b17-d564989dd5e2",
-      "headline": "While India's Navy Guards the Gulf, Its Tall Ship Is Celebrating America's Birthday in Boston",
-      "slug": "ins-sudarshini-sail-boston-250-indian-navy-america-birthday-maritime-diplomacy-20260713",
+      "id": "42b149de-3e42-4deb-97b4-ff052537aada",
+      "headline": "The Panchayat Creators Just Dropped a School Comedy. Kay Kay Menon Is the Headmaster.",
+      "slug": "adarsh-baal-vidyalaya-kay-kay-menon-prime-video-panchayat-school-comedy-july-24-20260713",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,58 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "a tall ship with flags in harbor",
-          "reason": "The photo shows a tall ship, relevant to the story about INS Sudarshini at a maritime event."
+          "what_photo_shows": "Kay Kay Menon at a film event",
+          "reason": "The photo shows Kay Kay Menon, who is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/reel/DauQ_QNgv7a/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram reel does not appear to be directly related to the article's subject matter about the new show 'Adarsh Baal Vidyalaya'."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the show's themes to the experiences of the diaspora, particularly first-generation immigrants."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one, perhaps a trailer or promotional content related to 'Adarsh Baal Vidyalaya'.",
+          "Consider adding quotes or insights from the diaspora community regarding their experiences with similar educational settings to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/reel/DauQ_QNgv7a/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2d459881-3dd5-471e-98e1-ce174fe5ee39",
+      "headline": "Rajamouli Just Launched the Teaser for Fahadh Faasil's Fantasy Film. The Baahubali Team Is Behind It.",
+      "slug": "fahadh-faasil-dont-trouble-the-trouble-teaser-rajamouli-arka-netflix-fantasy-20260713",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Fahadh Faasil at an event",
+          "reason": "The photo shows Fahadh Faasil, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +86,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the event to the Indian American community in Boston, highlighting their significant presence and the ship's symbolic importance."
+          "note": "The article effectively connects the film's release strategy to the diaspora audience by mentioning its simultaneous release in multiple languages and availability on Netflix."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Indian American attendees to enhance the diaspora connection.",
-          "Include more details about the significance of the event for U.S.-India relations."
+          "Consider adding more quotes from the cast or crew to enhance the article's depth.",
+          "Include a brief comparison with other recent fantasy films to contextualize its significance."
         ],
         "verdict": "pass"
       },
@@ -51,51 +101,6 @@
       ],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "bceb4dd3-729a-429b-aa7a-2800f3b3d3aa",
-      "headline": "India's Trade Deficit Just Blew Past Forecasts. The Hormuz Crisis Is Now Showing Up in the Numbers.",
-      "slug": "india-trade-deficit-widens-30-billion-june-exports-fall-hormuz-disruptions-20260713",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "group of people at an event",
-          "reason": "The photo shows people at an event, not container port operations."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the trade deficit to the diaspora's financial interests, particularly regarding remittances and currency value."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image to enhance visual appeal and context.",
-          "Consider adding more data or quotes from diaspora members to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (group of people at an event)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
