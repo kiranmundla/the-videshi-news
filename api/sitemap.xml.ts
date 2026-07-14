@@ -22,19 +22,24 @@ const STATIC_PAGES = [
   { loc: "/terms", priority: "0.3", changefreq: "yearly" },
   { loc: "/travel", priority: "0.7", changefreq: "weekly" },
   { loc: "/immigration", priority: "0.8", changefreq: "daily" },
-  { loc: "/immigration/green-card", priority: "0.7", changefreq: "weekly" },
-  { loc: "/immigration/h1b", priority: "0.7", changefreq: "weekly" },
-  { loc: "/immigration/consulate-wait-times", priority: "0.7", changefreq: "weekly" },
-  { loc: "/immigration/processing-times", priority: "0.7", changefreq: "weekly" },
-  { loc: "/immigration/visas", priority: "0.7", changefreq: "weekly" },
-  { loc: "/immigration/guides", priority: "0.6", changefreq: "weekly" },
+  { loc: "/immigration/h1b", priority: "0.7", changefreq: "daily" },
+  { loc: "/immigration/green-card", priority: "0.7", changefreq: "daily" },
+  { loc: "/immigration/students", priority: "0.7", changefreq: "daily" },
+  { loc: "/immigration/policy", priority: "0.7", changefreq: "daily" },
+  { loc: "/immigration/consular", priority: "0.7", changefreq: "daily" },
+  { loc: "/technology", priority: "0.8", changefreq: "daily" },
+  { loc: "/technology/ai", priority: "0.7", changefreq: "daily" },
+  { loc: "/technology/big-tech", priority: "0.7", changefreq: "daily" },
+  { loc: "/technology/semiconductors", priority: "0.7", changefreq: "daily" },
+  { loc: "/technology/startups", priority: "0.7", changefreq: "daily" },
+  { loc: "/technology/indian-it", priority: "0.7", changefreq: "daily" },
   { loc: "/stories", priority: "0.6", changefreq: "weekly" },
   { loc: "/world-cup", priority: "0.9", changefreq: "hourly" },
 ];
 
 const CATEGORIES = [
   "news", "nri-world", "travel", "lifestyle-health",
-  "markets-finance", "technology", "sports", "entertainment", "food"
+  "markets-finance", "sports", "entertainment", "food"
 ];
 
 const escapeXml = (s: string) =>

@@ -149,6 +149,17 @@
       "destination": "/api/prerender-page?path=/immigration/:path*"
     },
     {
+      "source": "/technology/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|Discordbot|TelegramBot|WhatsApp).*"
+        }
+      ],
+      "destination": "/api/prerender-page?path=/technology/:path*"
+    },
+    {
       "source": "/stories/:slug",
       "has": [
         {
