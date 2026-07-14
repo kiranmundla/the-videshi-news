@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-14T22:46:01.661827+00:00",
+  "timestamp": "2026-07-14T23:15:45.007797+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
-    "flag": 1,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c9bfe760-b5ee-4348-8081-db8c162e494b",
-      "headline": "Kylian Mbappe's World Cup Dreams Dashed by Lionel Messi's Legacy",
-      "slug": "kylian-mbappe-fails-to-get-past-lionel-messi",
+      "id": "9006f340-dece-49e7-9ae4-f591efa09171",
+      "headline": "MLC Playoffs Kick Off Wednesday. Unicorns Face Knight Riders as American Cricket's Championship Week Begins.",
+      "slug": "mlc-2026-playoffs-preview-unicorns-knight-riders-freedom-mi-new-york-grand-prairie-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "crowd of sports fans",
-          "reason": "The photo shows a crowd, not Mbappe or Messi."
+          "verdict": "MATCH",
+          "what_photo_shows": "Grand Prairie Stadium in Texas",
+          "reason": "The photo shows the venue for the MLC 2026 playoff matches, which is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -31,34 +31,32 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "hero image not provided"
+          "issue": "The image depicts a stadium, which is relevant to the article about cricket playoffs, but lacks specific cricket-related imagery."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match's outcome to the Indian diaspora's experiences and emotions."
+          "quality": 9,
+          "note": "The article effectively connects the cricket playoffs to the Indian diaspora in America, highlighting the significance of the league for NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image that reflects the themes of the article.",
-          "Add more statistics or quotes from players to enhance the depth of analysis."
+          "Consider including more specific cricket-related imagery in the hero image to enhance relevance.",
+          "Add quotes or insights from players or coaches to provide a more personal touch to the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (crowd of sports fans)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c0d36a26-57fe-4805-bdad-9ecd63fdaf65",
-      "headline": "Florida Man Killed After Fleeing US Immigration Agents, 3rd Death in a Week",
-      "slug": "florida-man-killed-after-fleeing-us-immigration-agents-3rd-death-in-a-week",
+      "id": "05cac8fe-7b02-460b-8d2f-58f227d79580",
+      "headline": "28 Diaspora Footballers, One Proposal. India's Sports Passport Idea Reaches the PM's Office.",
+      "slug": "india-sports-passport-proposal-pmo-aiff-28-diaspora-footballers-blue-tigers-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +64,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "U.S. Immigration and Customs Enforcement logo",
-          "reason": "The photo is relevant to the topic of U.S. immigration enforcement."
+          "what_photo_shows": "Salt Lake Stadium during a football match",
+          "reason": "The photo shows a football stadium, relevant to the football story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the Sports Passport proposal aimed at allowing Persons of Indian Origin (PIO) and Overseas Citizens of India (OCI) to represent India in sports, which directly connects with the diaspora community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes or perspectives from diaspora footballers to enhance the connection with the NRI audience.",
+          "Add more context on how similar sports passport systems have benefited other countries' sports teams."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "ee50ff54-03b0-4f80-a310-beefd62823ac",
+      "headline": "Anil Menon Reaches ISS on First Mission Aboard Soyuz MS-29",
+      "slug": "anil-menon-reaches-iss-on-first-mission-aboard-soyuz-ms-29-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "astronaut in space suit",
+          "reason": "The photo shows an astronaut, fitting the story about a space mission."
         },
         "inline_image_mismatches": []
       },
@@ -81,13 +122,139 @@
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively connects the immigration issue to the Indian diaspora, highlighting their concerns and the impact of U.S. immigration policies on their communities."
+          "note": "The article effectively highlights the significance of Menon's achievement for the Indian diaspora, emphasizing pride and inspiration."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from more diverse sources to enhance the article's depth.",
-          "Include statistics or data on immigration enforcement deaths to provide a stronger factual basis."
+          "Consider adding quotes from Anil Menon or experts in the field to enhance the article's depth.",
+          "Include more details about the scientific research Menon will conduct on the ISS to engage readers further."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a2f93f7c-47b5-4cde-9a87-0e4ffdaeeca7",
+      "headline": "OpenAI's First Hardware: A Screenless, Mobile Speaker",
+      "slug": "openais-first-hardware-a-screenless-mobile-speaker-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "a smartphone displaying OpenAI website",
+          "reason": "The photo shows a smartphone, not a mobile speaker device."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "description missing"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the product's implications to the daily lives of NRIs."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Add specific examples of how the speaker could be used in daily life by NRIs to strengthen the diaspora angle."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (a smartphone displaying OpenAI website)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "37249a50-dea2-4560-b874-9506e1ae8386",
+      "headline": "NIA Court Issues Non-Bailable Warrant for Hafiz Saeed",
+      "slug": "nia-court-issues-non-bailable-warrant-for-hafiz-saeed-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man in traditional attire and cap",
+          "reason": "The photo plausibly shows Hafiz Saeed, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of the NIA's decision to the safety and security of the Indian diaspora, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the diaspora has been affected by terrorism-related scrutiny.",
+          "Include quotes or reactions from diaspora communities to enhance engagement."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c9bfe760-b5ee-4348-8081-db8c162e494b",
+      "headline": "Kylian Mbappe's World Cup Dreams Dashed by Lionel Messi's Legacy",
+      "slug": "kylian-mbappe-fails-to-get-past-lionel-messi",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match's outcome to the Indian diaspora's experiences and emotions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image description to enhance the image match score.",
+          "Consider adding quotes or reactions from diaspora fans to strengthen the connection."
         ],
         "verdict": "pass"
       },
@@ -107,11 +274,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "aerial view of a tech campus",
-          "reason": "The photo does not show an H-1B visa stamp, which is relevant to the story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -129,96 +291,8 @@
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider including quotes or insights from immigration experts to provide a broader perspective on the H-1B visa situation.",
-          "Add statistics or data on the impact of layoffs on the tech industry to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (aerial view of a tech campus)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a6443a1e-48ce-42b6-9c45-eb632bf0daaf",
-      "headline": "Patel's All-Round Masterclass Powers India Past England in First ODI. The Big Guns Answer the Call.",
-      "slug": "axar-patel-all-round-india-beat-england-first-odi-edgbaston-gill-80-six-wicket-n",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Edgbaston Cricket Ground during a match",
-          "reason": "The photo shows the venue for the cricket match mentioned in the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article connects well with NRI readers by discussing the significance of the ODI series and its broadcast in the US."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the hero image with one that features players or action from the ODI match to better match the article's content.",
-          "Consider adding more quotes or reactions from players or fans to enhance engagement."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "486255e7-4aeb-4575-8d2c-8ded780bb941",
-      "headline": "Spain Smother France 2-0 in Dallas. La Roja Head to Their First World Cup Final in 16 Years.",
-      "slug": "spain-smother-france-2-0-world-cup-semifinal-dallas-porro-oyarzabal-yamal-final",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Pedro Porro celebrating in Spain jersey",
-          "reason": "The photo shows Pedro Porro, relevant to the story about Spain's World Cup match."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the World Cup event to Indian-origin fans in North America, highlighting their engagement with the tournament."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more direct quotes from Indian-origin fans to enhance the diaspora connection.",
-          "Include a brief overview of Spain's journey in the tournament to provide context for readers."
+          "Consider adding quotes or insights from immigration experts to provide a broader perspective on the H-1B visa situation.",
+          "Include statistics or data on the impact of layoffs on the Indian diaspora to strengthen the argument."
         ],
         "verdict": "pass"
       },

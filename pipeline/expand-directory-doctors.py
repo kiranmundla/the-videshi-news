@@ -10,6 +10,12 @@ import json, os, re, subprocess, sys, time, hashlib, logging
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from indian_relevance import is_indian_business
+from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+import atexit as _atexit
+def _budget_report():
+    u, l = __import__("places_budget").get_usage()
+    if u > 0: print(f"Places API budget: {u}/{l} calls used today")
+_atexit.register(_budget_report)
 
 GKEY = os.environ.get("GOOGLE_PLACES_API_KEY", "")
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")

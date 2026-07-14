@@ -13,6 +13,12 @@ import json
 import time
 import requests
 from typing import Optional
+from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+import atexit as _atexit
+def _budget_report():
+    u, l = __import__("places_budget").get_usage()
+    if u > 0: print(f"Places API budget: {u}/{l} calls used today")
+_atexit.register(_budget_report)
 
 # ---------- Configuration ----------
 

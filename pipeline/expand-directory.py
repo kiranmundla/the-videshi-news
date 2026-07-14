@@ -16,6 +16,12 @@ from typing import Optional
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from indian_relevance import is_indian_business
+from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+import atexit as _atexit
+def _budget_report():
+    u, l = __import__("places_budget").get_usage()
+    if u > 0: print(f"Places API budget: {u}/{l} calls used today")
+_atexit.register(_budget_report)
 
 GKEY = "AIzaSyB-KBpDQExIKfEl4J4fxUVMBviTpY7tfZ8"
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
@@ -206,12 +212,16 @@ def parse_address(addr):
 
 
 def google_search(query, page_token=None):
+    if not check_budget():
+        log.warning(f"Places API daily budget exhausted ({budget_remaining()} remaining). Skipping search.")
+        return {"status": "BUDGET_EXHAUSTED", "results": []}
     import urllib.parse
     params = {"query": query, "key": GKEY}
     if page_token:
         params["pagetoken"] = page_token
     url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?{urllib.parse.urlencode(params)}"
     r = curl_json(url)
+    record_call()
     return r or {"status": "ERROR", "results": []}
 
 

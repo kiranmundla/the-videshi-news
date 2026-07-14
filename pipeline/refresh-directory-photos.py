@@ -5,6 +5,12 @@ Fetches fresh photo_references via Places API, downloads the first photo,
 uploads to Supabase storage (permanent URLs), and updates the listing.
 """
 import os, sys, json, time, requests, hashlib
+from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+import atexit as _atexit
+def _budget_report():
+    u, l = __import__("places_budget").get_usage()
+    if u > 0: print(f"Places API budget: {u}/{l} calls used today")
+_atexit.register(_budget_report)
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]

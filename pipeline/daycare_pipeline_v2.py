@@ -5,6 +5,12 @@ Uses legacy Google Places API (Text Search + Place Details).
 """
 
 import json, os, subprocess, time, re, hashlib, urllib.parse
+from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+import atexit as _atexit
+def _budget_report():
+    u, l = __import__("places_budget").get_usage()
+    if u > 0: print(f"Places API budget: {u}/{l} calls used today")
+_atexit.register(_budget_report)
 
 CATEGORY = "Daycare & Childcare"
 SOURCE = "google_places"
