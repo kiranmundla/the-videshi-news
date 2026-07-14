@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-14T13:15:19.394369+00:00",
+  "timestamp": "2026-07-14T14:15:50.829734+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,9 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "09c2118b-d527-4def-b774-77b39984e948",
-      "headline": "Five Box Office Wars That Will Define the Second Half of 2026",
-      "slug": "five-box-office-clashes-second-half-2026-awarapan-toxic-king-avengers-dune-20260714",
+      "id": "3d524081-12f2-40c9-b91f-2a25b826a4b5",
+      "headline": "They Did Not Commit Fraud. Their Employers Did. The Government Punished Them Anyway",
+      "slug": "indian-graduates-sue-h1b-denial-employer-fraud-due-process-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Emraan Hashmi at an event",
-          "reason": "The photo shows Emraan Hashmi, who is relevant to the story."
+          "what_photo_shows": "neoclassical government building",
+          "reason": "The photo shows a government building where immigration cases are heard, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,21 +30,21 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "irrelevant"
+          "score": 7,
+          "issue": "The image does not directly relate to the specific topic of immigration or the lawsuit discussed."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses films that are significant for Indian cinema, which resonates with the diaspora audience, especially with mentions of South Indian cinema."
+          "quality": 8,
+          "note": "The article discusses the plight of Indian nationals in the U.S. immigration system, which is highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that is more relevant to the topic of box office films or the specific movies mentioned.",
-          "Include more insights or quotes from industry experts to enhance the depth of analysis."
+          "Consider using a more relevant image that reflects the theme of immigration or the specific challenges faced by H-1B visa holders.",
+          "Add a brief section on how this lawsuit could impact future immigration policies, particularly for Indian nationals."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "promoted to published"
@@ -54,9 +54,57 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b1d35c7c-f34c-40f5-a5c6-0125a6774f41",
-      "headline": "Alia Bhatt Just Joined Tumbbad 2. The Cult Horror Classic Is Now a \u20b9150 Crore Blockbuster.",
-      "slug": "alia-bhatt-tumbbad-2-nawazuddin-siddiqui-sohum-shah-150-crore-folklore-horror-20260714",
+      "id": "1eb06e63-fc15-4dc9-aa44-ff59afcc7c6d",
+      "headline": "The West Is Building a Deportation Fast Lane for Indians. Brussels, London, and Washington Are All on Board",
+      "slug": "eu-uk-us-india-safe-country-deportation-fast-track-crackdown-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "180a4582-d5b7-4da5-afa2-cb9489c38920",
+            "headline": "The European Parliament Just Condemned Pakistan for the Forc"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "European Parliament hemicycle",
+          "reason": "The photo shows the European Parliament, relevant to the EU's role in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image of the European Parliament does not directly relate to the topic of deportation and immigration policies affecting Indians."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the implications of immigration policies on the Indian diaspora, particularly in relation to legal and illegal migration."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that directly relates to the topic of deportation or immigration.",
+          "Expand on the diaspora angle by including personal stories or quotes from affected individuals to enhance relatability."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e958c556-3a0c-44c8-9eaa-2d5f94bdb1b6",
+      "headline": "Cognizant Is Under Siege. A Whistleblower Lawsuit and a Federal Probe Are Closing In at the Same Time",
+      "slug": "cognizant-whistleblower-third-circuit-dol-probe-h1b-fraud-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,28 +112,28 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Alia Bhatt at an event",
-          "reason": "The photo shows Alia Bhatt, who is relevant to the story."
+          "what_photo_shows": "Cognizant office building",
+          "reason": "The photo shows a Cognizant office, relevant to the story about the company."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
-          "issue": "The image features Alia Bhatt, which is relevant to the article's topic about her joining Tumbbad 2."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article connects to diaspora audiences through the mention of Alia Bhatt and the film's international appeal, but it could delve deeper into how this impacts NRI viewers."
+          "quality": 8,
+          "note": "The article discusses the implications of legal issues faced by Cognizant, a major employer of Indian IT professionals in the U.S., which directly affects the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more context on how Tumbbad 2's success might resonate with NRI audiences.",
-          "Add quotes or insights from diaspora film critics or audiences to enhance the diaspora angle."
+          "Include quotes or perspectives from affected Indian workers to enhance the human angle.",
+          "Add a brief explanation of the H-1B visa process for readers unfamiliar with immigration policies."
         ],
         "verdict": "pass"
       },
