@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
+import RecommendBusinessModal from "@/components/RecommendBusinessModal";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
@@ -323,6 +324,9 @@ export default function DirectoryPage() {
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
 
+  /* --- Recommend modal --- */
+  const [recommendOpen, setRecommendOpen] = useState(false);
+
   /* --- Search state --- */
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
   const searchQuery = searchParams.get("q") || "";
@@ -518,12 +522,23 @@ export default function DirectoryPage() {
             <h1 className="font-serif text-3xl md:text-5xl text-foreground">
               Directory
             </h1>
-            <Link
-              to="/directory/submit"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap self-start sm:self-auto"
-            >
-              <span>+</span> Submit a Listing
-            </Link>
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <button
+                onClick={() => setRecommendOpen(true)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 border border-primary/40 text-primary text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors whitespace-nowrap"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                </svg>
+                Recommend
+              </button>
+              <Link
+                to="/directory/submit"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
+              >
+                <span>+</span> Submit a Listing
+              </Link>
+            </div>
           </div>
           <p className="text-muted-foreground text-lg">
             Find trusted Indian &amp; desi professionals and businesses across the US
@@ -657,6 +672,8 @@ export default function DirectoryPage() {
       </main>
 
       <SiteFooter />
+
+      <RecommendBusinessModal open={recommendOpen} onClose={() => setRecommendOpen(false)} />
     </div>
   );
 }

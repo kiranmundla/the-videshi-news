@@ -92,6 +92,7 @@ const AdminDirectory = React.lazy(() => import("./pages/admin/AdminDirectory.tsx
 const AdminStories = React.lazy(() => import("./pages/admin/AdminStories.tsx"));
 const AdminReels = React.lazy(() => import("./pages/admin/AdminReels.tsx"));
 const AdminPostToX = React.lazy(() => import("./pages/admin/AdminPostToX.tsx"));
+const AdminRecommendations = React.lazy(() => import("./pages/admin/AdminRecommendations.tsx"));
 const SourcesPage = React.lazy(() => import("./pages/admin/SourcesPage.tsx"));
 const PipelineLayout = React.lazy(() => import("./pages/pipeline/PipelineLayout.tsx"));
 const FeedSourcesPage = React.lazy(() => import("./pages/pipeline/FeedSourcesPage.tsx"));
@@ -188,6 +189,7 @@ const App = () => (
               <Route path="/admin/events" element={<AdminEvents />} />
               <Route path="/admin/classifieds" element={<AdminClassifieds />} />
               <Route path="/admin/directory" element={<AdminDirectory />} />
+              <Route path="/admin/recommendations" element={<AdminRecommendations />} />
               <Route path="/admin/stories" element={<AdminStories />} />
               <Route path="/admin/reels" element={<AdminReels />} />
               <Route path="/admin/post-to-x" element={<AdminPostToX />} />
