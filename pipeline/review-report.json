@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-14T21:15:30.267022+00:00",
+  "timestamp": "2026-07-14T22:46:01.661827+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 0,
+    "pass": 4,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,23 +11,63 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "6f6ce514-ebab-482e-841b-9a9d07a7aa64",
-      "headline": "Satya Nadella Says You're Paying for AI Twice \u2014 Once With Money, Once With Your Secrets",
-      "slug": "satya-nadella-reverse-information-paradox-ai-enterprise-20260714",
+      "id": "c9bfe760-b5ee-4348-8081-db8c162e494b",
+      "headline": "Kylian Mbappe's World Cup Dreams Dashed by Lionel Messi's Legacy",
+      "slug": "kylian-mbappe-fails-to-get-past-lionel-messi",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "207787fc-388c-4e4f-adb3-d41ad29132cd",
-            "headline": "Satya Nadella Is Quietly Building Microsoft's Own AI Models."
-          }
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "crowd of sports fans",
+          "reason": "The photo shows a crowd, not Mbappe or Messi."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "hero image not provided"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match's outcome to the Indian diaspora's experiences and emotions."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that reflects the themes of the article.",
+          "Add more statistics or quotes from players to enhance the depth of analysis."
         ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (crowd of sports fans)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c0d36a26-57fe-4805-bdad-9ecd63fdaf65",
+      "headline": "Florida Man Killed After Fleeing US Immigration Agents, 3rd Death in a Week",
+      "slug": "florida-man-killed-after-fleeing-us-immigration-agents-3rd-death-in-a-week",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in glasses and a suit",
-          "reason": "The photo plausibly shows Satya Nadella, relevant to the story."
+          "what_photo_shows": "U.S. Immigration and Customs Enforcement logo",
+          "reason": "The photo is relevant to the topic of U.S. immigration enforcement."
         },
         "inline_image_mismatches": []
       },
@@ -40,14 +80,14 @@
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to Indian-origin professionals in the enterprise AI sector, but could elaborate more on their specific roles or contributions."
+          "quality": 9,
+          "note": "The article effectively connects the immigration issue to the Indian diaspora, highlighting their concerns and the impact of U.S. immigration policies on their communities."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Expand on the diaspora angle by including specific examples of Indian-origin professionals or companies making an impact in the enterprise AI space.",
-          "Consider adding quotes or insights from Indian IT leaders to enhance the relevance to the Indian audience."
+          "Consider adding quotes from more diverse sources to enhance the article's depth.",
+          "Include statistics or data on immigration enforcement deaths to provide a stronger factual basis."
         ],
         "verdict": "pass"
       },
@@ -59,9 +99,54 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "fa75220b-c8a6-43a5-9abc-80d75360124b",
-      "headline": "Xbox CEO Asha Sharma Joins the Federal Reserve's New Task Force. The Backlash Says More About America Than About Her.",
-      "slug": "asha-sharma-xbox-fed-task-force-h1b-backlash-20260714",
+      "id": "ad1b56ee-d937-45fb-bfca-ef32e67e4d82",
+      "headline": "Meta Layoff Forces H-1B Worker to Leave the US",
+      "slug": "meta-layoff-forces-h1b-worker-to-leave-us",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "aerial view of a tech campus",
+          "reason": "The photo does not show an H-1B visa stamp, which is relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 10,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 9,
+          "note": "The article effectively connects the experiences of H-1B workers to the Indian diaspora, highlighting shared challenges and concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider including quotes or insights from immigration experts to provide a broader perspective on the H-1B visa situation.",
+          "Add statistics or data on the impact of layoffs on the tech industry to strengthen the argument."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (aerial view of a tech campus)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a6443a1e-48ce-42b6-9c45-eb632bf0daaf",
+      "headline": "Patel's All-Round Masterclass Powers India Past England in First ODI. The Big Guns Answer the Call.",
+      "slug": "axar-patel-all-round-india-beat-england-first-odi-edgbaston-gill-80-six-wicket-n",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -69,8 +154,51 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A woman holding an Xbox microphone",
-          "reason": "The photo shows a woman associated with Xbox, relevant to the story."
+          "what_photo_shows": "Edgbaston Cricket Ground during a match",
+          "reason": "The photo shows the venue for the cricket match mentioned in the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 3,
+          "issue": "irrelevant"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI readers by discussing the significance of the ODI series and its broadcast in the US."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the hero image with one that features players or action from the ODI match to better match the article's content.",
+          "Consider adding more quotes or reactions from players or fans to enhance engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "486255e7-4aeb-4575-8d2c-8ded780bb941",
+      "headline": "Spain Smother France 2-0 in Dallas. La Roja Head to Their First World Cup Final in 16 Years.",
+      "slug": "spain-smother-france-2-0-world-cup-semifinal-dallas-porro-oyarzabal-yamal-final",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Pedro Porro celebrating in Spain jersey",
+          "reason": "The photo shows Pedro Porro, relevant to the story about Spain's World Cup match."
         },
         "inline_image_mismatches": []
       },
@@ -84,56 +212,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the implications of anti-immigration sentiment on Indian Americans in tech, which resonates with the diaspora."
+          "note": "The article effectively connects the World Cup event to Indian-origin fans in North America, highlighting their engagement with the tournament."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Asha Sharma to enhance her perspective.",
-          "Include statistics or studies on the impact of H-1B visa perceptions on Indian Americans in tech for a more robust analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e1e092e0-6506-436b-aa61-9cea9758e778",
-      "headline": "Two Ex-Qualcomm Engineers Just Raised $43 Million to Break Broadcom's Grip on Custom AI Chips",
-      "slug": "tylsemi-43-million-chiplets-ai-broadcom-qualcomm-20260714",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "semiconductor circuit board with microchips",
-          "reason": "The photo is relevant to the semiconductor topic of the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image does not directly relate to AI chips or semiconductors, but is a generic tech-related image."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively highlights the contributions of Indian-origin engineers in the semiconductor industry, making it relevant to the diaspora audience."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more specific image related to AI chips or semiconductors to enhance relevance.",
-          "Add quotes or insights from the diaspora community to further strengthen the connection to NRI readers."
+          "Consider adding more direct quotes from Indian-origin fans to enhance the diaspora connection.",
+          "Include a brief overview of Spain's journey in the tournament to provide context for readers."
         ],
         "verdict": "pass"
       },

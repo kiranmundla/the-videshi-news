@@ -48,7 +48,7 @@ VALID_CATEGORIES = [
 
 MAX_ARTICLES_PER_RUN = 3
 MIN_COMBINED_SCORE = 12  # minimum newsworthiness + diaspora_relevance for LLM eval
-LOOKBACK_HOURS = 6       # how far back to look for topics
+LOOKBACK_HOURS = 12      # how far back to look for topics
 DEDUP_HOURS = 48         # how far back to check for duplicate articles
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
