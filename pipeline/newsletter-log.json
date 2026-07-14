@@ -736,5 +736,15 @@
     "errors": 0,
     "hero_slug": "iran-irgc-fires-warning-shots-two-ships-hormuz-traffic-down-52-percent-india-crew-missing-20260713",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-14T13:55:55.768870+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 14, 2026",
+    "subscribers": 4,
+    "sent": 4,
+    "errors": 0,
+    "hero_slug": "ltimindtree-anthropic-ai-revenue-150-million-venu-lambu-20260714",
+    "story_count": 5
   }
 ]
