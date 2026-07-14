@@ -109,11 +109,11 @@ function LeaderModal({ leader, onClose }: { leader: Leader; onClose: () => void 
 
       {/* Card */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-auto overflow-hidden animate-[scaleIn_0.2s_ease-out]"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-auto animate-[scaleIn_0.2s_ease-out]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top gradient band */}
-        <div className="h-24 bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] relative">
+        <div className="h-24 bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] relative rounded-t-2xl overflow-hidden">
           <button onClick={onClose} className="absolute top-3 right-3 text-white/70 hover:text-white transition-colors">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
               <path d="M18 6L6 18M6 6l12 12" />
@@ -136,7 +136,7 @@ function LeaderModal({ leader, onClose }: { leader: Leader; onClose: () => void 
         </div>
 
         {/* Body */}
-        <div className="px-5 pb-5 pt-3 text-center">
+        <div className="px-5 pb-5 pt-3 text-center bg-white rounded-b-2xl">
           <h2 className="text-lg font-bold text-[#0B1D3A]">{leader.name}</h2>
 
           <p className="text-sm text-gray-600 mt-1">
