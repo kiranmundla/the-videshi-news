@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-14T21:59:09Z",
+  "last_updated": "2026-07-14T23:58:37Z",
   "stage": "Semifinals — 101 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2187,8 +2187,8 @@
       "away": "Spain",
       "venue": "AT&T Stadium",
       "city": "Arlington, TX",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "0-2",
       "home_code": "FRA",
       "away_code": "ESP"
     },
@@ -11321,6 +11321,48 @@
     {
       "platform": "instagram",
       "url": "https://www.instagram.com/p/Dax3zFeCgR1/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/reel/DayoLJ-iM_S/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/2803823629974848/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1570164557974278/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/1051144374034298/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/894483829786385/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/992972550236272/",
+      "account": "@fifaworldcup",
+      "date": "2026-07-14"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/reel/27766548946366181/",
       "account": "@fifaworldcup",
       "date": "2026-07-14"
     }
