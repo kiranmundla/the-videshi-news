@@ -14,38 +14,24 @@ const sb = supabaseTyped as unknown as {
 };
 
 /* ── types ──────────────────────────────────────────────────────────── */
-interface CivicChannel {
-  type: string;
-  id: string;
-}
-
-interface CivicOfficial {
+interface Legislator {
   name: string;
-  party?: string;
-  photoUrl?: string;
-  phones?: string[];
-  urls?: string[];
-  emails?: string[];
-  channels?: CivicChannel[];
+  type: "sen" | "rep";
+  state: string;
+  party: string;
+  phone: string;
+  url: string;
+  contact_form: string;
+  address: string;
+  photoUrl: string;
+  bioguide: string;
+  district?: number;
+  state_rank?: string;
 }
 
-interface CivicOffice {
+interface GovernorEntry {
   name: string;
-  divisionId: string;
-  levels?: string[];
-  roles?: string[];
-  officialIndices: number[];
-}
-
-interface CivicResponse {
-  offices: CivicOffice[];
-  officials: CivicOfficial[];
-  normalizedInput?: {
-    line1: string;
-    city: string;
-    state: string;
-    zip: string;
-  };
+  party: string;
 }
 
 interface DiasporaLeader {
@@ -65,6 +51,7 @@ interface GroupedOfficial {
   facebook?: string;
   isDiaspora: boolean;
   wikiUrl?: string;
+  contactForm?: string;
 }
 
 interface OfficialGroup {
@@ -77,42 +64,39 @@ interface OfficialGroup {
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
 
 const PARTY_COLORS: Record<string, string> = {
-  "Democratic Party": "#3b82f6",
-  "Republican Party": "#ef4444",
-  "Libertarian Party": "#f59e0b",
-  "Green Party": "#22c55e",
-  "Nonpartisan": "#9ca3af",
-  "Independent": "#8b5cf6",
+  Democrat: "#3b82f6",
+  Democratic: "#3b82f6",
+  Republican: "#ef4444",
+  Libertarian: "#f59e0b",
+  Green: "#22c55e",
+  Independent: "#8b5cf6",
 };
 
-const LEVEL_CONFIG: { key: string; label: string; icon: string; keywords: string[] }[] = [
-  { key: "federal", label: "Federal", icon: "🏛️", keywords: ["country"] },
-  { key: "state", label: "State", icon: "🏗️", keywords: ["administrativeArea1"] },
-  { key: "county", label: "County", icon: "📋", keywords: ["administrativeArea2"] },
-  { key: "city", label: "City & Local", icon: "🏙️", keywords: ["locality", "regional", "special"] },
-];
+const FIPS_TO_STATE: Record<string, string> = {
+  "01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT",
+  "10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL",
+  "18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD",
+  "25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE",
+  "32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND",
+  "39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD",
+  "47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV",
+  "55":"WI","56":"WY",
+};
+
+const STATE_NAMES: Record<string, string> = {
+  AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",
+  CO:"Colorado",CT:"Connecticut",DE:"Delaware",DC:"District of Columbia",
+  FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",
+  IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",
+  MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",
+  MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",
+  NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",
+  OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",
+  SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",
+  WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",
+};
 
 /* ── helpers ────────────────────────────────────────────────────────── */
-function classifyOffice(office: CivicOffice): string {
-  const levels = office.levels || [];
-  const name = office.name.toLowerCase();
-
-  if (levels.includes("country") || name.includes("president") || name.includes("u.s. senator") || name.includes("u.s. representative")) {
-    return "federal";
-  }
-  if (levels.includes("administrativeArea1") || name.includes("governor") || name.includes("state senator") || name.includes("state representative") || name.includes("state assembly") || name.includes("lieutenant governor") || name.includes("attorney general") || name.includes("secretary of state") || name.includes("state comptroller") || name.includes("state treasurer")) {
-    return "state";
-  }
-  if (levels.includes("administrativeArea2") || name.includes("county")) {
-    return "county";
-  }
-  return "city";
-}
-
-function getChannel(official: CivicOfficial, type: string): string | undefined {
-  return official.channels?.find((c) => c.type.toLowerCase() === type.toLowerCase())?.id;
-}
-
 function normalizeName(name: string): string {
   return name
     .toLowerCase()
@@ -122,13 +106,24 @@ function normalizeName(name: string): string {
     .replace(/\s+/g, " ");
 }
 
+function partyColor(party?: string): string {
+  if (!party) return "#9ca3af";
+  for (const [key, color] of Object.entries(PARTY_COLORS)) {
+    if (party.includes(key)) return color;
+  }
+  return "#9ca3af";
+}
+
+function shortParty(party?: string): string {
+  if (!party) return "Unknown";
+  if (party.includes("Democrat")) return "Democrat";
+  if (party.includes("Republican")) return "Republican";
+  if (party.includes("Independent")) return "Independent";
+  return party;
+}
+
 /* ── Official Card ─────────────────────────────────────────────────── */
 function OfficialCard({ official }: { official: GroupedOfficial }) {
-  const partyColor = official.party ? PARTY_COLORS[official.party] || "#9ca3af" : "#9ca3af";
-  const partyShort = official.party
-    ?.replace(" Party", "")
-    .replace("Democratic", "Democrat") || "";
-
   return (
     <div
       className="rounded-xl p-4 flex gap-4 items-start transition-all hover:shadow-md"
@@ -138,9 +133,7 @@ function OfficialCard({ official }: { official: GroupedOfficial }) {
       }}
     >
       {/* Photo */}
-      <div
-        className="w-14 h-14 rounded-full flex-shrink-0 bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] flex items-center justify-center overflow-hidden ring-2 ring-white shadow-md"
-      >
+      <div className="w-14 h-14 rounded-full flex-shrink-0 bg-gradient-to-br from-[#0B1D3A] to-[#1a3358] flex items-center justify-center overflow-hidden ring-2 ring-white shadow-md">
         {official.photoUrl ? (
           <img
             src={official.photoUrl}
@@ -179,8 +172,11 @@ function OfficialCard({ official }: { official: GroupedOfficial }) {
 
         {/* Party */}
         <div className="flex items-center gap-1 mt-1">
-          <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: partyColor }} />
-          <span className="text-[11px] text-gray-400">{partyShort || "Unknown"}</span>
+          <span
+            className="w-2 h-2 rounded-full inline-block"
+            style={{ backgroundColor: partyColor(official.party) }}
+          />
+          <span className="text-[11px] text-gray-400">{shortParty(official.party)}</span>
         </div>
 
         {/* Contact row */}
@@ -203,28 +199,13 @@ function OfficialCard({ official }: { official: GroupedOfficial }) {
               Website
             </a>
           )}
-          {official.twitter && (
-            <a href={`https://twitter.com/${official.twitter}`} target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#0B1D3A] hover:text-[#D4A843] flex items-center gap-1 transition-colors" title="X / Twitter">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-              @{official.twitter}
-            </a>
-          )}
-          {official.facebook && (
-            <a href={`https://facebook.com/${official.facebook}`} target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#0B1D3A] hover:text-[#D4A843] flex items-center gap-1 transition-colors" title="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-            </a>
-          )}
-          {official.email && (
-            <a href={`mailto:${official.email}`} className="text-[11px] text-[#0B1D3A] hover:text-[#D4A843] flex items-center gap-1 transition-colors" title="Email">
+          {official.contactForm && (
+            <a href={official.contactForm} target="_blank" rel="noopener noreferrer" className="text-[11px] text-[#0B1D3A] hover:text-[#D4A843] flex items-center gap-1 transition-colors" title="Contact Form">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 7l-10 7L2 7" />
               </svg>
-              Email
+              Contact
             </a>
           )}
         </div>
@@ -264,7 +245,21 @@ export default function KnowYourLeaderPage() {
   const [locationLabel, setLocationLabel] = useState<string | null>(null);
   const [diasporaNames, setDiasporaNames] = useState<Map<string, DiasporaLeader>>(new Map());
   const [geoLoading, setGeoLoading] = useState(false);
+  const [legislators, setLegislators] = useState<Legislator[]>([]);
+  const [governors, setGovernors] = useState<Record<string, GovernorEntry>>({});
   const inputRef = useRef<HTMLInputElement>(null);
+
+  /* ── Load static data on mount ─────────────────────────────────── */
+  useEffect(() => {
+    fetch("/data/legislators.json")
+      .then((r) => r.json())
+      .then((data: Legislator[]) => setLegislators(data))
+      .catch(() => {});
+    fetch("/data/governors.json")
+      .then((r) => r.json())
+      .then((data: Record<string, GovernorEntry>) => setGovernors(data))
+      .catch(() => {});
+  }, []);
 
   /* ── Load diaspora leaders for cross-reference ─────────────────── */
   useEffect(() => {
@@ -281,6 +276,197 @@ export default function KnowYourLeaderPage() {
       });
   }, []);
 
+  /* ── Check diaspora match ──────────────────────────────────────── */
+  const isDiaspora = useCallback(
+    (name: string): { match: boolean; wikiUrl?: string } => {
+      const norm = normalizeName(name);
+      const leader = diasporaNames.get(norm);
+      if (leader) return { match: true, wikiUrl: leader.wikipedia_url || undefined };
+      // Try partial match (last name)
+      const parts = norm.split(" ");
+      if (parts.length >= 2) {
+        const lastName = parts[parts.length - 1];
+        for (const [key, val] of diasporaNames.entries()) {
+          if (key.endsWith(lastName) && key.includes(parts[0])) {
+            return { match: true, wikiUrl: val.wikipedia_url || undefined };
+          }
+        }
+      }
+      return { match: false };
+    },
+    [diasporaNames]
+  );
+
+  /* ── Geocode address → lat/lng + state ─────────────────────────── */
+  const geocodeAddress = async (
+    address: string
+  ): Promise<{ lat: number; lng: number; state: string; formattedAddress: string } | null> => {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+      address
+    )}&key=${GOOGLE_API_KEY}&components=country:US`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.results || data.results.length === 0) return null;
+
+    const result = data.results[0];
+    const loc = result.geometry.location;
+    let state = "";
+
+    for (const comp of result.address_components || []) {
+      if (comp.types.includes("administrative_area_level_1")) {
+        state = comp.short_name;
+      }
+    }
+
+    return {
+      lat: loc.lat,
+      lng: loc.lng,
+      state,
+      formattedAddress: result.formatted_address,
+    };
+  };
+
+  /* ── Census Bureau: lat/lng → congressional district ───────────── */
+  const getCongressionalDistrict = async (
+    lat: number,
+    lng: number
+  ): Promise<number | null> => {
+    try {
+      const url = `https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=${lng}&y=${lat}&benchmark=Public_AR_Current&vintage=Current_Current&format=json`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const matches = data?.result?.geographies?.["119th Congressional Districts"];
+      if (matches && matches.length > 0) {
+        const cdName = matches[0].BASENAME || matches[0].NAME || "";
+        // Parse district number: "Congressional District 17" → 17
+        const match = cdName.match(/(\d+)/);
+        if (match) return parseInt(match[1], 10);
+        // At-large districts
+        if (cdName.toLowerCase().includes("at large") || cdName.toLowerCase().includes("at-large")) {
+          return 0;
+        }
+        // Delegate districts (DC, territories)
+        if (cdName.toLowerCase().includes("delegate")) return 0;
+      }
+      // Fallback: try the text directly from CD field
+      const cd = matches?.[0]?.CD || matches?.[0]?.GEOID?.slice(-2);
+      if (cd) {
+        const num = parseInt(cd, 10);
+        if (!isNaN(num)) return num === 0 ? 0 : num;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  };
+
+  /* ── Build official results ────────────────────────────────────── */
+  const buildResults = useCallback(
+    (state: string, district: number | null): OfficialGroup[] => {
+      const federal: GroupedOfficial[] = [];
+      const stateLevel: GroupedOfficial[] = [];
+
+      // President & VP (static)
+      const president = { name: "Donald J. Trump", party: "Republican" };
+      const vp = { name: "JD Vance", party: "Republican" };
+      const presCheck = isDiaspora(president.name);
+      const vpCheck = isDiaspora(vp.name);
+
+      federal.push({
+        name: president.name,
+        office: "President of the United States",
+        party: president.party,
+        photoUrl: "https://www.whitehouse.gov/wp-content/uploads/2025/01/P20250120AS-0839-1536x1024.jpg",
+        phone: "202-456-1111",
+        website: "https://www.whitehouse.gov",
+        isDiaspora: presCheck.match,
+        wikiUrl: presCheck.wikiUrl,
+      });
+
+      federal.push({
+        name: vp.name,
+        office: "Vice President of the United States",
+        party: vp.party,
+        photoUrl: "https://www.whitehouse.gov/wp-content/uploads/2025/01/P20250120AS-1028-1536x1024.jpg",
+        phone: "202-456-1111",
+        website: "https://www.whitehouse.gov",
+        isDiaspora: vpCheck.match,
+        wikiUrl: vpCheck.wikiUrl,
+      });
+
+      // US Senators for this state
+      const senators = legislators.filter(
+        (l) => l.type === "sen" && l.state === state
+      );
+      for (const s of senators) {
+        const check = isDiaspora(s.name);
+        federal.push({
+          name: s.name,
+          office: `U.S. Senator (${STATE_NAMES[state] || state})`,
+          party: s.party,
+          photoUrl: s.photoUrl,
+          phone: s.phone || undefined,
+          website: s.url || undefined,
+          contactForm: s.contact_form || undefined,
+          isDiaspora: check.match,
+          wikiUrl: check.wikiUrl,
+        });
+      }
+
+      // US House Representative for this district
+      if (district !== null) {
+        const reps = legislators.filter(
+          (l) =>
+            l.type === "rep" &&
+            l.state === state &&
+            l.district === district
+        );
+        for (const r of reps) {
+          const check = isDiaspora(r.name);
+          const distLabel =
+            r.district === 0
+              ? "At-Large"
+              : `District ${r.district}`;
+          federal.push({
+            name: r.name,
+            office: `U.S. Representative (${state}-${distLabel})`,
+            party: r.party,
+            photoUrl: r.photoUrl,
+            phone: r.phone || undefined,
+            website: r.url || undefined,
+            contactForm: r.contact_form || undefined,
+            isDiaspora: check.match,
+            wikiUrl: check.wikiUrl,
+          });
+        }
+      }
+
+      // Governor
+      const gov = governors[state];
+      if (gov) {
+        const check = isDiaspora(gov.name);
+        stateLevel.push({
+          name: gov.name,
+          office: `Governor of ${STATE_NAMES[state] || state}`,
+          party: gov.party,
+          isDiaspora: check.match,
+          wikiUrl: check.wikiUrl,
+        });
+      }
+
+      const result: OfficialGroup[] = [];
+      if (federal.length > 0) {
+        result.push({ label: "Federal", icon: "🏛️", officials: federal });
+      }
+      if (stateLevel.length > 0) {
+        result.push({ label: "State", icon: "🏗️", officials: stateLevel });
+      }
+
+      return result;
+    },
+    [legislators, governors, isDiaspora]
+  );
+
   /* ── Geolocation auto-detect ───────────────────────────────────── */
   const detectLocation = useCallback(() => {
     if (!navigator.geolocation) {
@@ -292,14 +478,12 @@ export default function KnowYourLeaderPage() {
       async (position) => {
         try {
           const { latitude, longitude } = position.coords;
-          // Reverse geocode with Google
           const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_API_KEY}`;
           const res = await fetch(geocodeUrl);
           const data = await res.json();
           if (data.results && data.results.length > 0) {
             const address = data.results[0].formatted_address;
             setQuery(address);
-            // Auto-search with detected address
             fetchRepresentatives(address);
           } else {
             setError("Could not determine your address. Please enter your zip code manually.");
@@ -316,9 +500,10 @@ export default function KnowYourLeaderPage() {
       },
       { enableHighAccuracy: false, timeout: 10000 }
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* ── Fetch representatives ─────────────────────────────────────── */
+  /* ── Fetch representatives (main flow) ─────────────────────────── */
   const fetchRepresentatives = useCallback(
     async (address: string) => {
       if (!address.trim()) return;
@@ -328,76 +513,43 @@ export default function KnowYourLeaderPage() {
       setLocationLabel(null);
 
       try {
-        const url = `https://www.googleapis.com/civicinfo/v2/representatives?address=${encodeURIComponent(address)}&key=${GOOGLE_API_KEY}`;
-        const res = await fetch(url);
-        if (!res.ok) {
-          const body = await res.json().catch(() => null);
-          if (res.status === 404 || (body?.error?.errors?.[0]?.reason === "parseError")) {
-            setError("No results found for this address. Try a different zip code or full address.");
-          } else if (res.status === 403) {
-            setError("The Civic Information API is not yet enabled. The site admin needs to enable it in the Google Cloud Console.");
-          } else {
-            setError("Something went wrong. Please try again.");
-          }
+        // Step 1: Geocode address → lat/lng + state
+        const geo = await geocodeAddress(address);
+        if (!geo || !geo.state) {
+          setError(
+            "Could not find this address. Please enter a valid US zip code or street address."
+          );
           setLoading(false);
           return;
         }
 
-        const data = (await res.json()) as CivicResponse;
+        setLocationLabel(geo.formattedAddress);
 
-        // Build location label
-        if (data.normalizedInput) {
-          const ni = data.normalizedInput;
-          setLocationLabel([ni.city, ni.state, ni.zip].filter(Boolean).join(", "));
-        }
+        // Step 2: Get congressional district from Census Bureau
+        const district = await getCongressionalDistrict(geo.lat, geo.lng);
 
-        // Process and group
-        const groupMap: Record<string, GroupedOfficial[]> = {
-          federal: [],
-          state: [],
-          county: [],
-          city: [],
-        };
+        // Step 3: Build results from bundled data
+        const results = buildResults(geo.state, district);
 
-        for (const office of data.offices) {
-          const level = classifyOffice(office);
-          for (const idx of office.officialIndices) {
-            const official = data.officials[idx];
-            if (!official) continue;
-
-            const normalName = normalizeName(official.name);
-            const diasporaMatch = diasporaNames.get(normalName);
-
-            groupMap[level].push({
-              name: official.name,
-              office: office.name,
-              party: official.party,
-              photoUrl: official.photoUrl,
-              phone: official.phones?.[0],
-              website: official.urls?.[0],
-              email: official.emails?.[0],
-              twitter: getChannel(official, "Twitter"),
-              facebook: getChannel(official, "Facebook"),
-              isDiaspora: !!diasporaMatch,
-              wikiUrl: diasporaMatch?.wikipedia_url || undefined,
-            });
+        if (results.length === 0) {
+          setError("No representatives found for this address.");
+        } else {
+          // Add note if district lookup failed
+          if (district === null) {
+            // Still show senators + governor, just note the house rep is missing
+            setError(
+              "We found your Senators and Governor, but couldn't identify your exact Congressional district. Try entering a full street address for your House Representative."
+            );
           }
+          setGroups(results);
         }
-
-        const result: OfficialGroup[] = LEVEL_CONFIG.map((lc) => ({
-          label: lc.label,
-          icon: lc.icon,
-          officials: groupMap[lc.key] || [],
-        })).filter((g) => g.officials.length > 0);
-
-        setGroups(result);
       } catch {
-        setError("Failed to look up representatives. Please check your connection and try again.");
+        setError("Something went wrong. Please try again.");
       } finally {
         setLoading(false);
       }
     },
-    [diasporaNames]
+    [buildResults]
   );
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -405,15 +557,18 @@ export default function KnowYourLeaderPage() {
     fetchRepresentatives(query);
   };
 
-  const totalOfficials = groups?.reduce((sum, g) => sum + g.officials.length, 0) || 0;
+  const totalOfficials =
+    groups?.reduce((sum, g) => sum + g.officials.length, 0) || 0;
 
   return (
     <>
       <Helmet>
-        <title>Know Your Leader — Find Your Elected Officials | The Videshi</title>
+        <title>
+          Know Your Leader — Find Your Elected Officials | The Videshi
+        </title>
         <meta
           name="description"
-          content="Enter your zip code to find all your elected officials — from President to city council. Know who represents you at every level of government."
+          content="Enter your zip code to find all your elected officials — from President to Governor. Know who represents you at every level of government."
         />
       </Helmet>
 
@@ -422,7 +577,8 @@ export default function KnowYourLeaderPage() {
       {/* ── Hero ────────────────────────────────────────────────────── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #0B1D3A 0%, #152a4a 50%, #0B1D3A 100%)",
+          background:
+            "linear-gradient(135deg, #0B1D3A 0%, #152a4a 50%, #0B1D3A 100%)",
           padding: "48px 16px 40px",
           textAlign: "center",
         }}
@@ -434,7 +590,8 @@ export default function KnowYourLeaderPage() {
           Know Your Leader
         </h1>
         <p className="text-gray-300 text-[15px] max-w-lg mx-auto leading-relaxed mb-6">
-          Find out who represents you — from the White House to your city council
+          Find out who represents you — from the White House to your state
+          capitol
         </p>
 
         {/* Search Form */}
@@ -478,7 +635,13 @@ export default function KnowYourLeaderPage() {
               </>
             ) : (
               <>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="w-3.5 h-3.5"
+                >
                   <circle cx="12" cy="12" r="3" />
                   <path d="M12 2v4m0 12v4M2 12h4m12 0h4" />
                 </svg>
@@ -501,7 +664,11 @@ export default function KnowYourLeaderPage() {
         {error && (
           <div
             className="rounded-lg p-4 mb-6 text-[13px] text-center"
-            style={{ backgroundColor: "#FFF3E0", color: "#E65100", border: "1px solid #FFB74D" }}
+            style={{
+              backgroundColor: "#FFF3E0",
+              color: "#E65100",
+              border: "1px solid #FFB74D",
+            }}
           >
             {error}
           </div>
@@ -511,18 +678,22 @@ export default function KnowYourLeaderPage() {
         {loading && (
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <div className="w-8 h-8 border-3 border-[#D4A843] border-t-transparent rounded-full animate-spin" />
-            <p className="text-gray-400 text-[13px]">Looking up your representatives…</p>
+            <p className="text-gray-400 text-[13px]">
+              Looking up your representatives…
+            </p>
           </div>
         )}
 
-        {/* Results header */}
+        {/* Results */}
         {groups && !loading && (
           <>
             {locationLabel && (
               <div className="text-center mb-6">
                 <p className="text-[13px] text-gray-500">
                   Representatives for{" "}
-                  <span className="font-bold text-[#0B1D3A]">{locationLabel}</span>
+                  <span className="font-bold text-[#0B1D3A]">
+                    {locationLabel}
+                  </span>
                 </p>
                 <p className="text-[12px] text-gray-400 mt-1">
                   {totalOfficials} elected officials found
@@ -547,7 +718,8 @@ export default function KnowYourLeaderPage() {
 
             {/* Attribution */}
             <p className="text-center text-[11px] text-gray-300 mt-8">
-              Data provided by Google Civic Information API
+              Congress data from unitedstates project · District data from U.S.
+              Census Bureau
             </p>
 
             {/* Cross-link to Leaders */}
@@ -571,15 +743,15 @@ export default function KnowYourLeaderPage() {
               Who represents you?
             </h2>
             <p className="text-[13px] text-gray-500 max-w-sm mx-auto leading-relaxed">
-              Enter your zip code or address above to find all your elected officials
-              — federal, state, county, and city level.
+              Enter your zip code or address above to find your elected officials
+              — President, Senators, House Representative, and Governor.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mt-6">
               {[
-                { icon: "🏛️", label: "US Congress" },
-                { icon: "🏗️", label: "State Legislature" },
-                { icon: "🏙️", label: "City Council" },
-                { icon: "📋", label: "County Officials" },
+                { icon: "🏛️", label: "President & VP" },
+                { icon: "🏛️", label: "US Senators" },
+                { icon: "🏛️", label: "House Representative" },
+                { icon: "🏗️", label: "Governor" },
               ].map((item) => (
                 <div
                   key={item.label}
