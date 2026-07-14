@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-14T18:45:31.482000+00:00",
+  "timestamp": "2026-07-14T19:15:19.614134+00:00",
   "mode": "fix",
   "stats": {
     "pass": 1,
@@ -7,13 +7,13 @@
     "fail": 0,
     "error": 0
   },
-  "revisions": 1,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
     {
-      "id": "9ca79811-a35a-4251-b5f7-91e8d3f6ddac",
-      "headline": "Trump Dropped the Hormuz Fee in 25 Hours. Gulf Allies Made Him an Offer He Liked Better.",
-      "slug": "trump-drops-hormuz-fee-gulf-investment-deals-india-oil-imports-20260714",
+      "id": "84f59001-3900-4253-9d5a-ff8372e7eacb",
+      "headline": "Octavia Spencer and Hannah Waddingham Just Made the Best Action Comedy of the Summer. It Lands on Prime Video Tomorrow.",
+      "slug": "ride-or-die-octavia-spencer-hannah-waddingham-prime-video-action-comedy-july-15-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,44 +21,42 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "oil tanker at sea",
-          "reason": "The photo of an oil tanker is relevant to the story about energy shipments through the Strait of Hormuz."
+          "what_photo_shows": "A woman smiling at an event",
+          "reason": "The photo plausibly shows Octavia Spencer, who is mentioned in the story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 4,
-          "issue": "The image does not directly relate to the article's focus on geopolitics and the Hormuz Strait."
+          "score": 7,
+          "issue": "The image features Octavia Spencer but does not directly relate to the new show 'Ride or Die'."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses India's oil imports and the implications for the Indian economy, which is relevant to the diaspora."
+          "quality": 6,
+          "note": "The article discusses a show on Prime Video, which is accessible to NRIs, but lacks a deeper connection to the Indian diaspora."
         },
-        "factual_flags": [
-          "The claim that shipping traffic through Hormuz is down 52 percent from pre-war levels needs citation."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or reactions from Indian officials or experts to strengthen the diaspora connection.",
-          "Consider using a more relevant image that depicts the Hormuz Strait or geopolitical discussions."
+          "Include a quote or perspective from an Indian actor or filmmaker involved in the project to strengthen the diaspora connection.",
+          "Consider using an image that directly relates to the show 'Ride or Die' for better relevance."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (815\u2192871 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f54ced8c-eb2b-49dd-87c2-c38820262bb2",
-      "headline": "ICE Just Suspended Vehicle Stops Nationwide. For Millions of Immigrants, the Relief May Be Temporary.",
-      "slug": "ice-suspends-vehicle-stops-nationwide-fatal-shootings-immigration-enforcement-20260714",
+      "id": "2ee57bdd-7938-4b0d-9aaf-7450fb13876f",
+      "headline": "They Called His Partition Film Anti-National. Imtiaz Ali's Response Was the Sharpest Thing Bollywood Has Said All Year.",
+      "slug": "imtiaz-ali-main-vaapas-aaunga-anti-national-partition-indian-muslim-patriotism-ar-rahman-20260714",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "ICE agents during an operation",
-          "reason": "The photo shows ICE agents, which is relevant to the story about ICE policy."
+          "what_photo_shows": "Man speaking at a microphone",
+          "reason": "The photo plausibly shows Imtiaz Ali, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -81,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the suspension of vehicle stops to the Indian immigrant community, highlighting the impact on undocumented individuals and those on temporary work visas."
+          "note": "The article connects well with the diaspora by discussing themes of home and identity, which resonate with many NRIs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian community leaders or organizations to strengthen the diaspora angle.",
-          "Include statistics or data on how many Indian immigrants have been affected by ICE actions in the past to provide more context."
+          "Consider adding more context about the film's reception in international markets to enhance the diaspora connection.",
+          "Include quotes or reactions from diaspora audiences to further illustrate the film's impact beyond India."
         ],
         "verdict": "pass"
       },
