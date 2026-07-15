@@ -56,7 +56,7 @@ export default function HeroSection({ lead, side }: Props) {
             {hasImage && (
               <div
                 className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5"
-                style={{ aspectRatio: "16/9", maxHeight: "400px" }}
+                style={{ aspectRatio: "16/9" }}
               >
                 <HeroImage
                   src={lead.hero_image_url}
