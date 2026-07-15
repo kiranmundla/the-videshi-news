@@ -27,6 +27,30 @@ function catColor(cat?: string) {
   return CATEGORY_COLORS[cat?.toLowerCase() ?? ""] ?? "#C62828";
 }
 
+/**
+ * Compute adaptive container ratio from source image dimensions.
+ * Clamps between square (1:1) and ultrawide (2:1).
+ * For portrait images, uses object-contain + neutral bg;
+ * for landscape, uses object-cover + focal point.
+ */
+function adaptiveImageStyle(
+  imgW?: number | null,
+  imgH?: number | null,
+): { aspectRatio: string; useContain: boolean } {
+  if (!imgW || !imgH || imgW <= 0 || imgH <= 0) {
+    return { aspectRatio: "3/2", useContain: false };
+  }
+  const natural = imgW / imgH;
+  const isPortrait = natural < 0.9;
+  // For portrait source: use a moderate landscape container + contain (show full image)
+  // For landscape source: use adaptive ratio + cover (fills container naturally)
+  if (isPortrait) {
+    return { aspectRatio: "4/3", useContain: true };
+  }
+  const clamped = Math.min(Math.max(natural, 1.0), 2.0);
+  return { aspectRatio: `${clamped.toFixed(3)}`, useContain: false };
+}
+
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
   const h = Math.floor(diff / 3600000);
@@ -45,6 +69,7 @@ export default function HeroSection({ lead, side }: Props) {
 
   const hasImage = isValidImage(lead.hero_image_url);
   const rt = (lead as any).reading_time ?? 5;
+  const { aspectRatio: leadRatio, useContain: leadContain } = adaptiveImageStyle(lead.img_w, lead.img_h);
 
   return (
     <section className="pt-8 md:pt-10 pb-10 md:pb-14">
@@ -54,15 +79,18 @@ export default function HeroSection({ lead, side }: Props) {
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "3/2" }}>
+              <div
+                className={`w-full bg-stone-200 overflow-hidden rounded-lg mb-3.5 ${leadContain ? "flex items-center justify-center" : ""}`}
+                style={{ aspectRatio: leadRatio, maxHeight: "500px" }}
+              >
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="eager"
                   fetchPriority="high"
-                  focalX={lead.focal_x}
-                  focalY={lead.focal_y}
-                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+                  focalX={leadContain ? undefined : lead.focal_x}
+                  focalY={leadContain ? undefined : lead.focal_y}
+                  className={`${leadContain ? "max-w-full max-h-full w-auto h-auto" : "w-full h-full object-cover"} group-hover:scale-[1.01] transition-transform duration-500`}
                 />
               </div>
             )}
