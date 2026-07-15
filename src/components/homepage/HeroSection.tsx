@@ -54,14 +54,14 @@ export default function HeroSection({ lead, side }: Props) {
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9" }}>
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "3/2" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="eager"
                   fetchPriority="high"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  style={{ objectPosition: "center 30%" }}
+                  style={{ objectPosition: "center center" }}
                 />
               </div>
             )}
