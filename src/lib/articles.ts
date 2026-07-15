@@ -30,6 +30,10 @@ export type Article = {
   featured_score?: number;
   is_pinned_featured?: boolean;
   pinned_until?: string | null;
+  focal_x?: number | null;
+  focal_y?: number | null;
+  img_w?: number | null;
+  img_h?: number | null;
 };
 
 type P2Row = {
@@ -53,13 +57,17 @@ type P2Row = {
   image_attribution: string | null;
   image_caption: string | null;
   gallery_images: unknown;
+  focal_x?: number | null;
+  focal_y?: number | null;
+  img_w?: number | null;
+  img_h?: number | null;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
 
 const P2_LIST_COLS =
-  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score";
+  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
 
 function parseSources(raw: unknown): Article["sources"] {
   // Handle JSON array format
@@ -179,6 +187,10 @@ function mapRow(row: P2Row): Article {
     image_caption: row.image_caption ?? null,
     image_credit: row.image_attribution ?? null,
     gallery_images: parseGalleryImages(row.gallery_images),
+    focal_x: row.focal_x ?? null,
+    focal_y: row.focal_y ?? null,
+    img_w: row.img_w ?? null,
+    img_h: row.img_h ?? null,
     // expose raw attribution for callers that want it separately
     // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,

@@ -12,6 +12,7 @@ Articles are inserted with status="review" so the QA reviewer promotes them.
 
 import json, os, re, subprocess, sys, time, urllib.parse, hashlib, unicodedata
 from datetime import datetime, timezone, timedelta
+from focal_point import compute_focal_point, image_dimensions
 
 # ── Env ──────────────────────────────────────────────────────────────────────
 
@@ -817,6 +818,17 @@ def source_hero_image(article):
     if not raw_bytes:
         print(f"    ⚠ Download failed: {img_url[:60]}")
         return None, None, None
+
+    # Compute focal point before compression (higher quality = better detection)
+    fx, fy = compute_focal_point(raw_bytes)
+    iw, ih = image_dimensions(raw_bytes)
+    article["focal_x"] = fx
+    article["focal_y"] = fy
+    if iw > 0 and ih > 0:
+        article["img_w"] = iw
+        article["img_h"] = ih
+    face_flag = "👤" if (fx != 0.5 or fy != 0.5) else "📐"
+    print(f"    {face_flag} Focal point: ({fx}, {fy}), {iw}×{ih}")
 
     compressed = compress_image(raw_bytes)
     if not compressed:

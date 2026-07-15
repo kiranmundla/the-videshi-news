@@ -56,8 +56,9 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="lazy"
+                  focalX={lead.focal_x}
+                  focalY={lead.focal_y}
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  style={{ objectPosition: "center center" }}
                 />
               </div>
             )}
@@ -97,9 +98,9 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"
+                        focalX={a.focal_x}
+                        focalY={a.focal_y}
                         className="w-full h-full object-cover"
-                        
-                        
                       />
                     </div>
                   )}

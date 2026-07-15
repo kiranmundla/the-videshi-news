@@ -80,8 +80,9 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
                     src={a.hero_image_url}
                     alt={a.title}
                     loading="lazy"
+                    focalX={a.focal_x}
+                    focalY={a.focal_y}
                     className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                    style={{ objectPosition: "center 25%" }}
                   />
                 </div>
               )}

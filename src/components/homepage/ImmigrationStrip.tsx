@@ -52,8 +52,9 @@ export default function ImmigrationStrip({ articles }: Props) {
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"
+                      focalX={a.focal_x}
+                      focalY={a.focal_y}
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   ) : null}
                 </div>

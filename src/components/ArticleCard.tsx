@@ -194,6 +194,8 @@ export default function ArticleCard({
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
+            focalX={article.focal_x}
+            focalY={article.focal_y}
             loading="lazy"
             decoding="async"
             className="w-20 h-20 object-cover flex-shrink-0"
@@ -258,12 +260,13 @@ export default function ArticleCard({
             <HeroImage
               src={article.hero_image_url}
               alt={article.title}
+              focalX={article.focal_x}
+              focalY={article.focal_y}
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover"
               width="400"
               height="225"
-              style={{ objectPosition: "center 20%" }}
             />
           </div>
         </figure>
@@ -356,6 +359,8 @@ export default function ArticleCard({
           <HeroImage
             src={article.hero_image_url}
             alt={article.title}
+            focalX={article.focal_x}
+            focalY={article.focal_y}
             loading="lazy"
             className="w-full h-auto rounded object-cover"
             onOrientationDetected={setRuntimeOrientation}
@@ -406,13 +411,14 @@ export default function ArticleCard({
             <HeroImage
               src={article.hero_image_url}
               alt={article.title}
+              focalX={article.focal_x}
+              focalY={article.focal_y}
               loading={variant === "hero" ? "eager" : "lazy"}
               fetchPriority={variant === "hero" ? "high" : undefined}
               decoding={variant === "hero" ? undefined : "async"}
               className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
               width="600"
               height="338"
-              style={{ objectPosition: "center 20%" }}
               onOrientationDetected={setRuntimeOrientation}
             />
           </div>

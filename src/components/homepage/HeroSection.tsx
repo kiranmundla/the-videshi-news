@@ -60,8 +60,9 @@ export default function HeroSection({ lead, side }: Props) {
                   alt={lead.title}
                   loading="eager"
                   fetchPriority="high"
+                  focalX={lead.focal_x}
+                  focalY={lead.focal_y}
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  style={{ objectPosition: "center center" }}
                 />
               </div>
             )}
@@ -105,6 +106,8 @@ export default function HeroSection({ lead, side }: Props) {
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"
+                        focalX={a.focal_x}
+                        focalY={a.focal_y}
                         className="w-full h-full object-cover"
                       />
                     </div>

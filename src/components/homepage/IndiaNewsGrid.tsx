@@ -71,9 +71,9 @@ export default function IndiaNewsGrid({ articles }: Props) {
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" style={{ objectPosition: "center 25%" }}
-                        
-                        
+                        focalX={a.focal_x}
+                        focalY={a.focal_y}
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                       />
                     </div>
                   ) : null}

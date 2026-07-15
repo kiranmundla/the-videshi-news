@@ -281,8 +281,9 @@ function SubTopicGroup({
                     src={visible[0].hero_image_url}
                     alt={visible[0].title}
                     loading="lazy"
+                    focalX={visible[0].focal_x}
+                    focalY={visible[0].focal_y}
                     className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                    style={{ objectPosition: "center 25%" }}
                   />
                 </div>
               )}
@@ -315,6 +316,8 @@ function SubTopicGroup({
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"
+                      focalX={a.focal_x}
+                      focalY={a.focal_y}
                       className="w-full h-full object-cover"
                     />
                   </div>

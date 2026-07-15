@@ -10,6 +10,8 @@ type Props = {
   style?: React.CSSProperties;
   width?: number | string;
   height?: number | string;
+  focalX?: number | null;
+  focalY?: number | null;
   onOrientationDetected?: (orientation: "landscape" | "portrait") => void;
 };
 
@@ -29,20 +31,25 @@ export function isValidImage(src?: string | null): boolean {
   return true;
 }
 
-export default function HeroImage({ src, alt, className = "", loading = "lazy", fetchPriority, style, width, height, onOrientationDetected }: Props) {
+export default function HeroImage({ src, alt, className = "", loading = "lazy", fetchPriority, style, width, height, focalX, focalY, onOrientationDetected }: Props) {
   const [failed, setFailed] = useState(false);
+
+  // Build object-position from focal point data (pipeline-computed)
+  const hasFocal = focalX != null && focalY != null && !(focalX === 0.5 && focalY === 0.5);
+  const focalStyle: React.CSSProperties = hasFocal
+    ? { objectPosition: `${((focalX as number) * 100).toFixed(1)}% ${((focalY as number) * 100).toFixed(1)}%` }
+    : {};
 
   const handleLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / img.naturalHeight;
     const portrait = ratio < 0.87;
-    // For portrait images with object-cover, shift to top so faces aren't cropped.
-    // Mutate DOM directly to avoid a re-render/flicker.
-    if (portrait && className.includes("object-cover")) {
+    // For portrait images without pipeline focal data, shift to top so faces aren't cropped.
+    if (!hasFocal && portrait && className.includes("object-cover")) {
       img.style.objectPosition = "top center";
     }
     onOrientationDetected?.(ratio > 1.2 ? "landscape" : "portrait");
-  }, [onOrientationDetected, className]);
+  }, [onOrientationDetected, className, hasFocal]);
 
   if (!isValidImage(src) || failed) return null;
 
@@ -57,7 +64,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
       onError={() => setFailed(true)}
       onLoad={handleLoad}
       className={className}
-      style={style}
+      style={{...focalStyle, ...style}}
       width={width}
       height={height}
     />
