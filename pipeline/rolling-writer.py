@@ -754,14 +754,22 @@ def upload_to_supabase(jpeg_bytes, filename):
     return None
 
 
-def source_hero_image(article):
-    """Multi-source image sourcing following IMAGE-SOURCING-RULES.md."""
+def source_hero_image(article, used_images=None):
+    """Multi-source image sourcing following IMAGE-SOURCING-RULES.md.
+    
+    Args:
+        article: Article dict with headline, search_query, entities, etc.
+        used_images: Optional set of image URLs already used in this batch.
+                     If provided, will try to pick a different image.
+    """
     headline = article.get("headline", "")
     search_query = article.get("image_search_query", "")
     entities = article.get("image_entities", [])
     must_show = article.get("image_must_show", "")
     slug = article.get("slug", "unknown")
     category = article.get("category", "")
+    if used_images is None:
+        used_images = set()
 
     print(f"  Sourcing hero image for: {headline[:50]}...")
 
@@ -776,8 +784,13 @@ def source_hero_image(article):
             if result.stdout.strip():
                 wc_data = json.loads(result.stdout.strip())
                 if wc_data and isinstance(wc_data, list) and len(wc_data) > 0:
-                    img_url = wc_data[0].get("image_url")
-                    attribution = wc_data[0].get("image_credit", "FIFA/Social Media")
+                    # Pick first image not already used in this batch
+                    for wc_item in wc_data:
+                        candidate = wc_item.get("image_url")
+                        if candidate and candidate not in used_images:
+                            img_url = candidate
+                            attribution = wc_item.get("image_credit", "FIFA/Social Media")
+                            break
                     if img_url:
                         print(f"    ✓ WC social image found")
         except Exception as e:
@@ -813,6 +826,11 @@ def source_hero_image(article):
         print(f"    ✗ No image found (better than wrong image)")
         return None, None, None
 
+    # Skip if this exact image was already used in the current batch
+    if img_url in used_images:
+        print(f"    ⚠ Image already used in this batch, skipping to avoid duplicate")
+        return None, None, None
+
     # Download, compress, upload to Supabase
     raw_bytes = download_image(img_url)
     if not raw_bytes:
@@ -840,8 +858,14 @@ def source_hero_image(article):
     if not final_url:
         return None, None, None
 
-    # Generate caption from must_show or entities
-    caption = must_show or (f"{entities[0]}" if entities else headline[:50])
+    # Generate caption — keep it factual about what we KNOW, not what the image
+    # should depict. The LLM's image_must_show describes what we searched for,
+    # not necessarily what we found. Use a safe generic description.
+    if entities and len(entities) > 0 and isinstance(entities[0], str):
+        # Use the first entity as anchor but keep it generic
+        caption = f"{entities[0]}"
+    else:
+        caption = None  # No caption is better than a wrong caption
 
     return final_url, attribution, caption
 
@@ -933,6 +957,7 @@ def run(dry_run=False):
 
     # Steps 3-5: Write, image, insert each article
     written = 0
+    batch_image_urls = set()  # Track images used in this batch to avoid duplicates
     for i, topic in enumerate(selected):
         print(f"\n{'—'*40}")
         print(f"Writing article {i+1}/{len(selected)}: {topic['canonical_title'][:60]}")
@@ -948,11 +973,12 @@ def run(dry_run=False):
         print(f"    Category: {article['category']}, Words: {article.get('word_count', 0)}")
 
         # Step 4: Hero image
-        img_url, attribution, caption = source_hero_image(article)
+        img_url, attribution, caption = source_hero_image(article, used_images=batch_image_urls)
         if img_url:
             article["image_url"] = img_url
             article["image_attribution"] = attribution
             article["image_caption"] = caption
+            batch_image_urls.add(img_url)  # Track for batch dedup
         else:
             # No image — still publish, no image > wrong image
             article.pop("image_url", None)

@@ -543,7 +543,7 @@ export default function IndexV2() {
         <HeroSection lead={featured} side={layout.heroSide} />
 
         {/* Just In — purely chronological, newest articles across all categories */}
-        <JustInStrip articles={justIn} />
+        <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />
 
         {/* Visual Stories */}
         <ArticleCardDeck />
