@@ -191,10 +191,49 @@ else:
         t = re.sub(r'\s+', ' ', t)
         return t
 
+    def title_keywords(title):
+        """Extract meaningful keywords from a title for fuzzy clustering."""
+        STOP = {'the','and','for','are','was','were','has','have','had','with','from',
+                'that','this','will','been','being','after','before','about','into',
+                'over','amid','says','said','more','than','also','just','first','last',
+                'next','here','what','when','where','which','while','under','could',
+                'would','should','their','there','other','some','most','like','make',
+                'only','very','well','still','does','look','need','come','news',
+                'india','indian','people','world','year','years','time','back','take',
+                'report','reports','new','gets','many','much','even','every','each'}
+        words = re.findall(r'[a-z]+', normalize(title))
+        return set(w for w in words if len(w) >= 4 and w not in STOP)
+
+    def find_matching_cluster(sig_title, clusters):
+        """Find an existing cluster that covers the same story (>= 50% keyword overlap)."""
+        sig_kw = title_keywords(sig_title)
+        if not sig_kw or len(sig_kw) < 2:
+            return None
+        best_key = None
+        best_overlap = 0
+        for key, sigs in clusters.items():
+            cluster_kw = title_keywords(sigs[0]["title"])
+            if not cluster_kw:
+                continue
+            overlap = len(sig_kw & cluster_kw)
+            # Require >= 50% overlap relative to the SMALLER keyword set
+            min_len = min(len(sig_kw), len(cluster_kw))
+            if min_len >= 2 and overlap / min_len >= 0.5 and overlap > best_overlap:
+                best_overlap = overlap
+                best_key = key
+        return best_key
+
     clusters = {}
     for sig in signals:
-        key = normalize(sig["title"])[:40]
-        clusters.setdefault(key, []).append(sig)
+        # Try to merge into an existing cluster with similar keywords
+        matching_key = find_matching_cluster(sig["title"], clusters)
+        if matching_key:
+            clusters[matching_key].append(sig)
+        else:
+            # Use normalized title prefix as key for new cluster
+            key = normalize(sig["title"])[:60]
+            # Handle exact key collisions
+            clusters.setdefault(key, []).append(sig)
 
     topics_created = 0
     ids_to_mark = []

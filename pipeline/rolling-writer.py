@@ -251,11 +251,12 @@ def get_candidate_topics():
     print("Step 1: Gathering candidate topics...")
 
     # Get topics from last LOOKBACK_HOURS that are still pending
-    # Use multiple queries to ensure diversity:
-    # 1. Top by score (catches multi-signal stories)
-    # 2. Top by recency (catches fresh breaking stories)
-    # This ensures we don't miss IBM-type stories that have low signal_count
-    # but high individual newsworthiness.
+    # The topic table has many low-quality signals all at the same score (~52).
+    # We need to cast a WIDE net and let the LLM evaluation do the real filtering.
+    # Strategy:
+    # 1. Top by signal_count (catches multi-signal stories that multiple feeds picked up)
+    # 2. Top by recency (catches fresh breaking stories even if single-signal)
+    # 3. Sample across categories (ensures category diversity)
     sql = f"""
     (SELECT t.id, t.canonical_title, t.category, t.urgency,
            t.score_total, t.signal_count, t.keywords, t.status,
@@ -265,7 +266,7 @@ def get_candidate_topics():
       AND t.status = 'pending'
       AND t.score_total >= 40
     ORDER BY t.signal_count DESC, t.score_total DESC
-    LIMIT 20)
+    LIMIT 50)
     UNION
     (SELECT t.id, t.canonical_title, t.category, t.urgency,
            t.score_total, t.signal_count, t.keywords, t.status,
@@ -275,7 +276,17 @@ def get_candidate_topics():
       AND t.status = 'pending'
       AND t.score_total >= 40
     ORDER BY t.created_at DESC
-    LIMIT 20)
+    LIMIT 50)
+    UNION
+    (SELECT t.id, t.canonical_title, t.category, t.urgency,
+           t.score_total, t.signal_count, t.keywords, t.status,
+           t.created_at
+    FROM p2_topics t
+    WHERE t.created_at > now() - interval '{LOOKBACK_HOURS} hours'
+      AND t.status = 'pending'
+      AND t.score_total >= 40
+    ORDER BY random()
+    LIMIT 100)
     """
     topics = sb_query(sql)
     if not topics:
@@ -356,7 +367,7 @@ def evaluate_topics(topics, recent_articles):
     # Prepare signal list for LLM (max 25 to keep prompt manageable)
     signals_for_llm = []
     now = datetime.now(timezone.utc)
-    for i, t in enumerate(filtered[:25]):
+    for i, t in enumerate(filtered[:80]):
         # Calculate hours since signal arrived
         created = t.get('created_at', '')
         hours_ago = '?'
@@ -417,7 +428,7 @@ Score ALL signals. Be strict — a World Cup semifinal result scores 9-10. A ran
 Return a JSON object with key "signals" containing the array:
 {{"signals": [{{"idx": 0, "newsworthiness": 8, "diaspora_relevance": 7, "suggested_category": "news", "reason": "...", "is_duplicate_of": null}}, ...]}}"""
 
-    result = call_llm(prompt, json_mode=True, max_tokens=3000)
+    result = call_llm(prompt, json_mode=True, max_tokens=5000)
     if not result:
         print("  ⚠ LLM evaluation failed, falling back to score_total ranking")
         return filtered[:MAX_ARTICLES_PER_RUN]
