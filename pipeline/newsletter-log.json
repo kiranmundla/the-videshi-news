@@ -746,5 +746,15 @@
     "errors": 0,
     "hero_slug": "ltimindtree-anthropic-ai-revenue-150-million-venu-lambu-20260714",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-15T13:55:59.061330+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 15, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "centre-approves-semicon-2-0-with-rs-1-27-lakh-crore-outlay-20260715",
+    "story_count": 5
   }
 ]
