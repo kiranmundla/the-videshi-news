@@ -22,16 +22,6 @@
    "priority": 12
   },
   {
-   "subject": "lawsuit",
-   "subject_type": "thing",
-   "tags": [
-    "lawsuit"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "32b7db5d-5c92-4b5b-bbd2-964f0cb9b52e",
-   "priority": 2
-  },
-  {
    "subject": "labor trafficking",
    "subject_type": "thing",
    "tags": [
@@ -149,7 +139,7 @@
    ],
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "8de72ac4-0887-43f6-8ee8-340b29a1a9a5",
-   "priority": 6
+   "priority": 7
   },
   {
    "subject": "kaynes",
@@ -1082,26 +1072,6 @@
    "priority": 2
   },
   {
-   "subject": "business",
-   "subject_type": "thing",
-   "tags": [
-    "business"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "9da44335-73a4-478e-a179-9c76f756afb0",
-   "priority": 2
-  },
-  {
-   "subject": "retail",
-   "subject_type": "thing",
-   "tags": [
-    "retail"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "9da44335-73a4-478e-a179-9c76f756afb0",
-   "priority": 2
-  },
-  {
    "subject": "northeast",
    "subject_type": "thing",
    "tags": [
@@ -1109,16 +1079,6 @@
    ],
    "first_seen": "2026-06-25T10:29:22Z",
    "article_id": "3227658f-2f01-4a78-9206-483862cb829c",
-   "priority": 2
-  },
-  {
-   "subject": "CSK",
-   "subject_type": "thing",
-   "tags": [
-    "csk"
-   ],
-   "first_seen": "2026-06-25T10:29:22Z",
-   "article_id": "30f73c0f-f0f5-4584-a116-b3aa34ca0c61",
    "priority": 2
   },
   {
@@ -2282,30 +2242,10 @@
    "priority": 2
   },
   {
-   "subject": "india stock market",
-   "subject_type": "thing",
-   "tags": [
-    "india stock market"
-   ],
-   "first_seen": "2026-06-29T10:29:23Z",
-   "article_id": "cac7ea7e-91bc-4f8e-a9c5-aa84d30517ba",
-   "priority": 2
-  },
-  {
    "subject": "obbba",
    "subject_type": "thing",
    "tags": [
     "obbba"
-   ],
-   "first_seen": "2026-06-29T10:29:23Z",
-   "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
-   "priority": 2
-  },
-  {
-   "subject": "n 400",
-   "subject_type": "thing",
-   "tags": [
-    "n 400"
    ],
    "first_seen": "2026-06-29T10:29:23Z",
    "article_id": "aa18166c-663c-45a8-b24e-f5f8ce229faa",
@@ -3462,16 +3402,6 @@
    "priority": 3
   },
   {
-   "subject": "bollywood",
-   "subject_type": "thing",
-   "tags": [
-    "bollywood"
-   ],
-   "first_seen": "2026-07-03T10:29:24Z",
-   "article_id": "04fe7f14-01a5-4daf-bed5-71b7fa6145da",
-   "priority": 2
-  },
-  {
    "subject": "ead",
    "subject_type": "thing",
    "tags": [
@@ -3592,16 +3522,6 @@
    "priority": 2
   },
   {
-   "subject": "wall street",
-   "subject_type": "thing",
-   "tags": [
-    "wall street"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "63e6cc52-7985-4d7d-909a-cbb7c830f556",
-   "priority": 2
-  },
-  {
    "subject": "cryptocurrency",
    "subject_type": "thing",
    "tags": [
@@ -3642,16 +3562,6 @@
    "priority": 2
   },
   {
-   "subject": "immigration reform",
-   "subject_type": "thing",
-   "tags": [
-    "immigration reform"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "b37c8c04-0fce-4004-b20f-48ae68823827",
-   "priority": 3
-  },
-  {
    "subject": "british indians",
    "subject_type": "thing",
    "tags": [
@@ -3672,16 +3582,6 @@
    "priority": 2
   },
   {
-   "subject": "advocacy",
-   "subject_type": "thing",
-   "tags": [
-    "advocacy"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "6abdd2cb-381c-4ea5-be49-dfab1d5f8578",
-   "priority": 3
-  },
-  {
    "subject": "aha",
    "subject_type": "thing",
    "tags": [
@@ -3700,46 +3600,6 @@
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "426f780a-6b78-47f4-88aa-038970d48d87",
    "priority": 2
-  },
-  {
-   "subject": "achievement",
-   "subject_type": "thing",
-   "tags": [
-    "achievement"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "426f780a-6b78-47f4-88aa-038970d48d87",
-   "priority": 3
-  },
-  {
-   "subject": "micron india",
-   "subject_type": "thing",
-   "tags": [
-    "micron india"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "0f9bf379-72e8-4eed-85a7-9212831541e8",
-   "priority": 2
-  },
-  {
-   "subject": "july 4",
-   "subject_type": "thing",
-   "tags": [
-    "july 4"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
-   "priority": 3
-  },
-  {
-   "subject": "nfap",
-   "subject_type": "thing",
-   "tags": [
-    "nfap"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "70467e32-d23e-44e0-a7ba-dc212678f551",
-   "priority": 3
   },
   {
    "subject": "venezuela earthquake",
@@ -3972,16 +3832,6 @@
    "priority": 2
   },
   {
-   "subject": "diplomacy",
-   "subject_type": "thing",
-   "tags": [
-    "diplomacy"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "cf5d3bfc-7ad0-43c5-99be-13bf3d523421",
-   "priority": 2
-  },
-  {
    "subject": "Chabahar",
    "subject_type": "thing",
    "tags": [
@@ -4030,16 +3880,6 @@
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "b79cd0f1-3de5-484d-a653-86db99b98fb8",
    "priority": 2
-  },
-  {
-   "subject": "revenue sharing",
-   "subject_type": "thing",
-   "tags": [
-    "revenue sharing"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "4ff0f787-c328-429e-8a3b-da2ad7a8702d",
-   "priority": 3
   },
   {
    "subject": "nurses",
@@ -4109,23 +3949,13 @@
    ],
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "2030e478-6729-4adf-aa8e-7d7afa543db5",
-   "priority": 5
+   "priority": 6
   },
   {
    "subject": "climate",
    "subject_type": "thing",
    "tags": [
     "climate"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
-   "priority": 3
-  },
-  {
-   "subject": "sustainability",
-   "subject_type": "thing",
-   "tags": [
-    "sustainability"
    ],
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
@@ -4249,16 +4079,6 @@
    ],
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "c11062dc-2bc8-438a-9082-44fbe97b554f",
-   "priority": 3
-  },
-  {
-   "subject": "india data centers",
-   "subject_type": "thing",
-   "tags": [
-    "india data centers"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "7fb3d430-2104-48c1-a5e2-f0523e386b4c",
    "priority": 3
   },
   {
@@ -5479,7 +5299,7 @@
    ],
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "438aba22-9225-43af-93f5-03ef24629a06",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "rehiring",
@@ -5899,7 +5719,7 @@
    ],
    "first_seen": "2026-07-10T10:29:24Z",
    "article_id": "e0335b8f-af42-474a-b574-8e4ec6bdb026",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "section 301",
@@ -6732,16 +6552,6 @@
    "priority": 2
   },
   {
-   "subject": "discrimination",
-   "subject_type": "thing",
-   "tags": [
-    "discrimination"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "0c16f0fe-f1ea-4ffe-9a5e-cfee5a279e10",
-   "priority": 2
-  },
-  {
    "subject": "carnegie",
    "subject_type": "thing",
    "tags": [
@@ -6989,7 +6799,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "817ed403-fdec-4a18-bb3d-0cfe17ae540b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "lpg",
@@ -7169,7 +6979,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "99e5ffbb-130a-418f-8852-82945b06227a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "fine dining",
@@ -7579,7 +7389,7 @@
    ],
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "b37ed113-103c-4018-9bd3-6342739964de",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "neurology",
@@ -7649,7 +7459,7 @@
    ],
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "zetwerk",
@@ -7899,7 +7709,7 @@
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "c21d1d76-59e6-49d6-a545-4af92e4d1a75",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "nursing shortage",
@@ -8139,7 +7949,7 @@
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "b979da33-456a-4015-aafc-d1854d237939",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "workplace ai",
@@ -8149,7 +7959,7 @@
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "b979da33-456a-4015-aafc-d1854d237939",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian entrepreneur",
@@ -8230,7 +8040,627 @@
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "b6496458-d0c1-458f-bda3-1321bbf4539d",
    "priority": 2
+  },
+  {
+   "subject": "biosensors",
+   "subject_type": "thing",
+   "tags": [
+    "biosensors"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "441e00a0-2a1e-4def-9ddd-c8a541e02678",
+   "priority": 2
+  },
+  {
+   "subject": "emergency response",
+   "subject_type": "thing",
+   "tags": [
+    "emergency response"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "441e00a0-2a1e-4def-9ddd-c8a541e02678",
+   "priority": 2
+  },
+  {
+   "subject": "amazon india",
+   "subject_type": "thing",
+   "tags": [
+    "amazon india"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "f887604b-ee86-4d01-b080-de2430fa9f3e",
+   "priority": 2
+  },
+  {
+   "subject": "airtel nxtra",
+   "subject_type": "thing",
+   "tags": [
+    "airtel nxtra"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "f887604b-ee86-4d01-b080-de2430fa9f3e",
+   "priority": 2
+  },
+  {
+   "subject": "market reaction",
+   "subject_type": "thing",
+   "tags": [
+    "market reaction"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "6a82ceac-d6ae-45a6-8949-f5baddafdda1",
+   "priority": 2
+  },
+  {
+   "subject": "investments",
+   "subject_type": "thing",
+   "tags": [
+    "investments"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "6a82ceac-d6ae-45a6-8949-f5baddafdda1",
+   "priority": 3
+  },
+  {
+   "subject": "environment",
+   "subject_type": "thing",
+   "tags": [
+    "environment"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "5ecb05c6-db2d-40a6-9855-8df2397d547e",
+   "priority": 3
+  },
+  {
+   "subject": "Ladakh",
+   "subject_type": "thing",
+   "tags": [
+    "ladakh"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "5ecb05c6-db2d-40a6-9855-8df2397d547e",
+   "priority": 2
+  },
+  {
+   "subject": "Sonam Wangchuk",
+   "subject_type": "thing",
+   "tags": [
+    "sonam wangchuk"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "5ecb05c6-db2d-40a6-9855-8df2397d547e",
+   "priority": 2
+  },
+  {
+   "subject": "activism",
+   "subject_type": "thing",
+   "tags": [
+    "activism"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "5ecb05c6-db2d-40a6-9855-8df2397d547e",
+   "priority": 2
+  },
+  {
+   "subject": "nashik",
+   "subject_type": "thing",
+   "tags": [
+    "nashik"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "44224247-aa1a-436f-8d21-5b4a447fe9fe",
+   "priority": 2
+  },
+  {
+   "subject": "road safety",
+   "subject_type": "thing",
+   "tags": [
+    "road safety"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "44224247-aa1a-436f-8d21-5b4a447fe9fe",
+   "priority": 2
+  },
+  {
+   "subject": "crime",
+   "subject_type": "thing",
+   "tags": [
+    "crime"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "44224247-aa1a-436f-8d21-5b4a447fe9fe",
+   "priority": 2
+  },
+  {
+   "subject": "citizenship act 2026",
+   "subject_type": "thing",
+   "tags": [
+    "citizenship act 2026"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "7c29e681-32d0-4aac-8b5e-4c2f4891abca",
+   "priority": 2
+  },
+  {
+   "subject": "groww",
+   "subject_type": "thing",
+   "tags": [
+    "groww"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "e17d6d57-ad45-4283-9ae2-a625d59dca82",
+   "priority": 2
+  },
+  {
+   "subject": "retail investing",
+   "subject_type": "thing",
+   "tags": [
+    "retail investing"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "e17d6d57-ad45-4283-9ae2-a625d59dca82",
+   "priority": 2
+  },
+  {
+   "subject": "brokerage",
+   "subject_type": "thing",
+   "tags": [
+    "brokerage"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "e17d6d57-ad45-4283-9ae2-a625d59dca82",
+   "priority": 2
+  },
+  {
+   "subject": "theater",
+   "subject_type": "thing",
+   "tags": [
+    "theater"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "24efd3e4-fa45-4ccf-8a05-db5e4623e2f6",
+   "priority": 2
+  },
+  {
+   "subject": "performing arts",
+   "subject_type": "thing",
+   "tags": [
+    "performing arts"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "24efd3e4-fa45-4ccf-8a05-db5e4623e2f6",
+   "priority": 2
+  },
+  {
+   "subject": "football",
+   "subject_type": "thing",
+   "tags": [
+    "football"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "49b58e0c-85d5-4c6a-bf1b-9893b6a6ead7",
+   "priority": 3
+  },
+  {
+   "subject": "england",
+   "subject_type": "thing",
+   "tags": [
+    "england"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "49b58e0c-85d5-4c6a-bf1b-9893b6a6ead7",
+   "priority": 3
+  },
+  {
+   "subject": "argentina",
+   "subject_type": "thing",
+   "tags": [
+    "argentina"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "49b58e0c-85d5-4c6a-bf1b-9893b6a6ead7",
+   "priority": 3
+  },
+  {
+   "subject": "rivalry",
+   "subject_type": "thing",
+   "tags": [
+    "rivalry"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "49b58e0c-85d5-4c6a-bf1b-9893b6a6ead7",
+   "priority": 2
+  },
+  {
+   "subject": "kia",
+   "subject_type": "thing",
+   "tags": [
+    "kia"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "2e0500e6-4a0c-4e00-abc0-f3bf9823f199",
+   "priority": 2
+  },
+  {
+   "subject": "affordable ev",
+   "subject_type": "thing",
+   "tags": [
+    "affordable ev"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "2e0500e6-4a0c-4e00-abc0-f3bf9823f199",
+   "priority": 2
+  },
+  {
+   "subject": "ajit manocha",
+   "subject_type": "thing",
+   "tags": [
+    "ajit manocha"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "784a03c1-935b-4551-98f1-3e4f46a3e190",
+   "priority": 2
+  },
+  {
+   "subject": "semi",
+   "subject_type": "thing",
+   "tags": [
+    "semi"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "784a03c1-935b-4551-98f1-3e4f46a3e190",
+   "priority": 2
+  },
+  {
+   "subject": "employment",
+   "subject_type": "thing",
+   "tags": [
+    "employment"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "eaa41c96-db13-4917-b86c-cfe6f3d3b095",
+   "priority": 2
+  },
+  {
+   "subject": "food safety",
+   "subject_type": "thing",
+   "tags": [
+    "food safety"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "62b2f480-a805-4db5-9cbb-a04cfc2e2681",
+   "priority": 3
+  },
+  {
+   "subject": "cyclospora",
+   "subject_type": "thing",
+   "tags": [
+    "cyclospora"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "62b2f480-a805-4db5-9cbb-a04cfc2e2681",
+   "priority": 2
+  },
+  {
+   "subject": "food",
+   "subject_type": "thing",
+   "tags": [
+    "food"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "b0710a23-3e2d-45d1-bbe9-51ef5f6a5edb",
+   "priority": 2
+  },
+  {
+   "subject": "taco bell",
+   "subject_type": "thing",
+   "tags": [
+    "taco bell"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "c52f07ba-77a0-4585-9d36-85cce7d106dc",
+   "priority": 2
+  },
+  {
+   "subject": "parasite outbreak",
+   "subject_type": "thing",
+   "tags": [
+    "parasite outbreak"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "c52f07ba-77a0-4585-9d36-85cce7d106dc",
+   "priority": 2
+  },
+  {
+   "subject": "cdc",
+   "subject_type": "thing",
+   "tags": [
+    "cdc"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "c52f07ba-77a0-4585-9d36-85cce7d106dc",
+   "priority": 2
+  },
+  {
+   "subject": "intellectual property",
+   "subject_type": "thing",
+   "tags": [
+    "intellectual property"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "e1391d91-a079-4552-a746-28bc6cfca22f",
+   "priority": 2
+  },
+  {
+   "subject": "mass extinction",
+   "subject_type": "thing",
+   "tags": [
+    "mass extinction"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "16d5e0f3-41f7-4283-83f5-e903760d71a4",
+   "priority": 2
+  },
+  {
+   "subject": "climate change",
+   "subject_type": "thing",
+   "tags": [
+    "climate change"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "16d5e0f3-41f7-4283-83f5-e903760d71a4",
+   "priority": 2
+  },
+  {
+   "subject": "volcanism",
+   "subject_type": "thing",
+   "tags": [
+    "volcanism"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "16d5e0f3-41f7-4283-83f5-e903760d71a4",
+   "priority": 2
+  },
+  {
+   "subject": "biodiversity",
+   "subject_type": "thing",
+   "tags": [
+    "biodiversity"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "16d5e0f3-41f7-4283-83f5-e903760d71a4",
+   "priority": 2
+  },
+  {
+   "subject": "india energy policy",
+   "subject_type": "thing",
+   "tags": [
+    "india energy policy"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "d4782cbc-c57b-4200-b15a-4ff6f3e38c9f",
+   "priority": 2
+  },
+  {
+   "subject": "russian oil imports",
+   "subject_type": "thing",
+   "tags": [
+    "russian oil imports"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "d4782cbc-c57b-4200-b15a-4ff6f3e38c9f",
+   "priority": 2
+  },
+  {
+   "subject": "ethics",
+   "subject_type": "thing",
+   "tags": [
+    "ethics"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "d945f059-4715-4ce2-9c6d-6f7424ebf6df",
+   "priority": 2
+  },
+  {
+   "subject": "phoebe gates",
+   "subject_type": "thing",
+   "tags": [
+    "phoebe gates"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "4e756733-075d-4b04-a99e-617f4cf6d0f9",
+   "priority": 2
+  },
+  {
+   "subject": "healthcare technology",
+   "subject_type": "thing",
+   "tags": [
+    "healthcare technology"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "4e756733-075d-4b04-a99e-617f4cf6d0f9",
+   "priority": 2
+  },
+  {
+   "subject": "phia",
+   "subject_type": "thing",
+   "tags": [
+    "phia"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "4e756733-075d-4b04-a99e-617f4cf6d0f9",
+   "priority": 2
+  },
+  {
+   "subject": "ethics in ai",
+   "subject_type": "thing",
+   "tags": [
+    "ethics in ai"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "4e756733-075d-4b04-a99e-617f4cf6d0f9",
+   "priority": 2
+  },
+  {
+   "subject": "tech industry",
+   "subject_type": "thing",
+   "tags": [
+    "tech industry"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "0be07e9b-1512-4f36-b278-04ae14382516",
+   "priority": 2
+  },
+  {
+   "subject": "daylight saving time",
+   "subject_type": "thing",
+   "tags": [
+    "daylight saving time"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "8338cfd4-bed8-4d4b-885b-403a4c947678",
+   "priority": 2
+  },
+  {
+   "subject": "russia sanctions",
+   "subject_type": "thing",
+   "tags": [
+    "russia sanctions"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "2a27fe6a-89a5-41a7-a9ae-6d57b820f15f",
+   "priority": 2
+  },
+  {
+   "subject": "india trade",
+   "subject_type": "thing",
+   "tags": [
+    "india trade"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "2a27fe6a-89a5-41a7-a9ae-6d57b820f15f",
+   "priority": 2
+  },
+  {
+   "subject": "messi",
+   "subject_type": "thing",
+   "tags": [
+    "messi"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "7f03f809-70a9-44fe-8359-f8182711d45f",
+   "priority": 2
+  },
+  {
+   "subject": "ai spending",
+   "subject_type": "thing",
+   "tags": [
+    "ai spending"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "a1e9d20e-eda9-4522-8031-427cb2b1ceee",
+   "priority": 2
+  },
+  {
+   "subject": "software stocks",
+   "subject_type": "thing",
+   "tags": [
+    "software stocks"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "a1e9d20e-eda9-4522-8031-427cb2b1ceee",
+   "priority": 2
+  },
+  {
+   "subject": "indian tech ceos",
+   "subject_type": "thing",
+   "tags": [
+    "indian tech ceos"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "a1e9d20e-eda9-4522-8031-427cb2b1ceee",
+   "priority": 2
+  },
+  {
+   "subject": "metamate",
+   "subject_type": "thing",
+   "tags": [
+    "metamate"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "46f0c526-4678-47ea-8af7-001a8e967631",
+   "priority": 2
+  },
+  {
+   "subject": "llama",
+   "subject_type": "thing",
+   "tags": [
+    "llama"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "46f0c526-4678-47ea-8af7-001a8e967631",
+   "priority": 2
+  },
+  {
+   "subject": "thomson reuters",
+   "subject_type": "thing",
+   "tags": [
+    "thomson reuters"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "215d6a3e-42b6-4dfd-a46d-c441dce2d77a",
+   "priority": 2
+  },
+  {
+   "subject": "tech jobs",
+   "subject_type": "thing",
+   "tags": [
+    "tech jobs"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "215d6a3e-42b6-4dfd-a46d-c441dce2d77a",
+   "priority": 2
+  },
+  {
+   "subject": "ai native",
+   "subject_type": "thing",
+   "tags": [
+    "ai native"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "215d6a3e-42b6-4dfd-a46d-c441dce2d77a",
+   "priority": 2
+  },
+  {
+   "subject": "innovation",
+   "subject_type": "thing",
+   "tags": [
+    "innovation"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "db0d599a-8c6a-4b91-9125-e0c061444845",
+   "priority": 2
+  },
+  {
+   "subject": "iraq",
+   "subject_type": "thing",
+   "tags": [
+    "iraq"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
+   "priority": 2
+  },
+  {
+   "subject": "military",
+   "subject_type": "thing",
+   "tags": [
+    "military"
+   ],
+   "first_seen": "2026-07-15T10:29:26Z",
+   "article_id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
+   "priority": 2
   }
  ],
- "_updated": "2026-07-14T10:29:24Z"
+ "_updated": "2026-07-15T10:29:26Z"
 }
