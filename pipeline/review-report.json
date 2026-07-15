@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-15T06:10:47.917251+00:00",
+  "timestamp": "2026-07-15T07:10:59.558798+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 0,
+    "flag": 1,
     "fail": 0,
     "error": 0
   },
@@ -11,54 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "ee154ced-5253-42b1-8dca-0224c3c6e8cf",
-      "headline": "Polish Minister Claims PM Modi Helped Avert Nuclear Crisis in Ukraine",
-      "slug": "polish-minister-claims-pm-modi-helped-avert-nuclear-crisis-in-ukraine-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "a man speaking at a pulpit",
-          "reason": "The photo shows a religious setting, unrelated to the diplomatic story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Modi's diplomatic efforts to the interests and identity of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that visually represents the article's theme.",
-          "Provide more specific examples of how the diaspora is engaging with these geopolitical developments."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (a man speaking at a pulpit)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "16d5e0f3-41f7-4283-83f5-e903760d71a4",
-      "headline": "Scientists Unravel 252 Million-Year-Old Mystery Behind Mass Extinction",
-      "slug": "scientists-unravel-252-million-year-old-mystery-behind-mass-extinction-20260715",
+      "id": "3bfc5e40-3b2a-410f-a619-6790b69dea53",
+      "headline": "What to Watch This Week: Samantha\u2019s \u20b9100 Crore Hit Finally Streams, and Margot Robbie Haunts the Moors",
+      "slug": "what-to-watch-this-week-july-15-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +21,58 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "map of Siberian Traps region",
-          "reason": "The Siberian Traps are relevant to the mass extinction topic."
+          "what_photo_shows": "Samantha Ruth Prabhu at event",
+          "reason": "The photo shows Samantha Ruth Prabhu, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [
+          {
+            "url": "https://www.instagram.com/p/DasDSNqjsTN/",
+            "problem": "irrelevant",
+            "explanation": "The Instagram post does not appear to be directly related to the article's content about the streaming picks."
+          }
+        ],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article highlights streaming options relevant to the Indian diaspora, particularly with the mention of Telugu cinema."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Replace the irrelevant Instagram embed with a more relevant one that connects to the article's content.",
+          "Consider adding a brief summary or context for each streaming option to enhance reader engagement."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Removed irrelevant embed: https://www.instagram.com/p/DasDSNqjsTN/",
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "195925e5-dc33-488c-9bca-5f2a60a49f29",
+      "headline": "Ranveer Singh\u2019s \u20b9300 Crore Zombie Film Just Hired the Prosthetics Team From 28 Days Later",
+      "slug": "ranveer-singh-pralay-zombie-thriller-28-days-later-prosthetics-australia-deepika-paternity-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Ranveer Singh at an event",
+          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -81,13 +86,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the research findings to the Indian diaspora's concerns about climate change and environmental activism."
+          "note": "The article effectively connects the film's global ambitions and the significance of its production choices to diaspora audiences."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how NRIs can engage in environmental activism.",
-          "Include quotes or insights from Indian scientists or researchers to strengthen the diaspora connection."
+          "Consider adding more quotes or insights from the director or cast to enhance the article's depth.",
+          "Include a brief comparison of Bollywood's previous attempts at horror to contextualize the significance of this film."
         ],
         "verdict": "pass"
       },
@@ -99,33 +104,83 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "f993e082-3d35-4183-9b6a-10ac98c156bf",
-      "headline": "Atlanta Police Enhance Security for World Cup Semi-Final Showdown",
-      "slug": "atlanta-police-enhance-security-world-cup-semi-final-showdown-20260715",
+      "id": "8f588eac-eaab-44e9-9316-cd44330942ec",
+      "headline": "India's Bangladesh Tour Hits a Wall Again. BCB Stalls Media Rights as BCCI Stays Silent.",
+      "slug": "india-bangladesh-tour-fresh-doubts-bcb-media-rights-bcci-geopolitics-nri-july-2026",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "stadium exterior with crowd",
+          "reason": "The photo shows a stadium exterior, not a cricket match or related scene."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess the relevance."
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora, highlighting community engagement."
+          "quality": 9,
+          "note": "The article effectively connects cricket and geopolitics, highlighting the emotional investment of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or perspectives from local Indian community leaders to strengthen the diaspora angle."
+          "Include a relevant hero image with a description that matches the article's content.",
+          "Provide more context on the implications of the stalled media rights for the Indian diaspora."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (stadium exterior with crowd)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6a238a15-af7c-453a-abff-9e440ff2d234",
+      "headline": "Fleming Gone, Simons and Hussey May Follow. CSK's 18-Year Dynasty Is Getting a Full Teardown.",
+      "slug": "csk-fleming-departure-coaching-overhaul-simons-hussey-dhoni-texas-mlc-nri-july-2026",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "MA Chidambaram Stadium during IPL match",
+          "reason": "The stadium is relevant to the Chennai Super Kings story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects with NRI cricket fans, particularly those in the US, discussing the implications of CSK's changes on their experience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from NRI fans or experts to enhance the diaspora perspective.",
+          "Include more context on how the coaching changes might impact CSK's performance in future IPL seasons."
         ],
         "verdict": "pass"
       },
