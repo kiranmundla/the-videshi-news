@@ -1,6 +1,6 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-14T23:58:37Z",
+  "last_updated": "2026-07-15T01:59:24Z",
   "stage": "Semifinals — 101 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
@@ -2211,30 +2211,30 @@
       "id": 103,
       "group": "3P",
       "date": "2026-07-18",
-      "time": "16:00",
+      "time": "17:00",
       "tz": "ET",
-      "home": "TBD",
+      "home": "France",
       "away": "TBD",
       "venue": "Hard Rock Stadium",
       "city": "Miami Gardens, FL",
       "status": "scheduled",
       "score": null,
-      "home_code": "TBD",
+      "home_code": "FRA",
       "away_code": "TBD"
     },
     {
       "id": 104,
       "group": "F",
       "date": "2026-07-19",
-      "time": "16:00",
+      "time": "15:00",
       "tz": "ET",
-      "home": "TBD",
+      "home": "Spain",
       "away": "TBD",
       "venue": "MetLife Stadium",
       "city": "East Rutherford, NJ",
       "status": "scheduled",
       "score": null,
-      "home_code": "TBD",
+      "home_code": "ESP",
       "away_code": "TBD"
     }
   ],
@@ -2684,7 +2684,7 @@
       "match": {
         "match_num": 103,
         "date": "2026-07-18",
-        "time": "16:00",
+        "time": "17:00",
         "tz": "ET",
         "venue": "Hard Rock Stadium, Miami",
         "home": "France",
