@@ -401,6 +401,8 @@ def call_gemini_text(prompt, article_text, model="gemini-2.5-flash", max_tokens=
 # ── Prompts ──
 REVIEW_PROMPT = """You are an editorial quality reviewer for The Videshi, an Indian diaspora news platform for NRIs.
 
+The Videshi's USP is diaspora relevance — every article must matter to Indians living abroad (US, UK, Canada). An article with no genuine diaspora connection should NOT be published regardless of how well it is written.
+
 Review the article below and return a JSON object with these fields:
 
 {
@@ -422,7 +424,8 @@ Rules:
 - "fail" = should not publish without fixes (score 1-3)
 - For embed_issues: check if each social media URL (instagram.com/reel/..., twitter.com/..., x.com/...) is topically relevant to the article's subject. A Sachin Tendulkar cricket post in a sprinting article = "irrelevant". 
 - For image_match: does the hero image description/entities match the article headline and topic?
-- Diaspora angle: does the article connect to NRI/diaspora readers? Is it forced or natural?
+- Diaspora angle: does the article connect to NRI/diaspora readers? Is it forced or natural? If the story is purely India-domestic (local crime, local politics, city-level incidents) or generic international news with zero Indian/diaspora dimension, diaspora_angle quality should be 1-3 and verdict should be "fail".
+- For markets-finance: US/global financial stories are inherently relevant (NRIs live and invest in the US) — diaspora angle is implicit, score 7+. Only Indian market stories (Sensex, RBI) need an explicit diaspora connection.
 - CRITICAL: Check for **anachronistic dates and hallucinated facts**. If the article references past dates (e.g. "December 2023") for events that are clearly current/upcoming, that is a hallucination — instant FAIL. Cross-check any specific dates, scores, statistics, or quotes against the article's publish date and known reality. A World Cup 2026 article mentioning 2023 dates = fabricated content.
 - Be strict but fair. This is a real newsroom quality gate."""
 
@@ -939,6 +942,18 @@ BODY:
                 print(f"  ⚠️ LLM verdict '{llm_verdict}' overridden to '{verdict}' (score {score})")
         else:
             verdict = llm_verdict
+        
+        # Hard reject if diaspora angle is too weak — the story shouldn't have been written
+        diaspora_quality = llm_result.get("diaspora_angle", {}).get("quality", 10)
+        category = article.get("category", "")
+        if isinstance(diaspora_quality, (int, float)) and diaspora_quality <= 3 and category != "markets-finance":
+            if verdict == "pass":
+                verdict = "fail"
+                print(f"  ⚠️ Overridden to FAIL — diaspora angle quality {diaspora_quality}/10 (too weak for publication)")
+            elif verdict == "flag":
+                verdict = "fail"
+                print(f"  ⚠️ Overridden to FAIL — diaspora angle quality {diaspora_quality}/10 (too weak for publication)")
+
         print(f"  📊 Score: {score}/10 | Verdict: {verdict} ({llm_source})")
         
         # ── Handle embed issues (remove irrelevant embeds) ──

@@ -48,7 +48,7 @@ VALID_CATEGORIES = [
 ]
 
 MAX_ARTICLES_PER_RUN = 3
-MIN_COMBINED_SCORE = 11  # minimum newsworthiness + diaspora_relevance for LLM eval
+MIN_COMBINED_SCORE = 13  # minimum newsworthiness + diaspora_relevance for LLM eval
 LOOKBACK_HOURS = 12      # how far back to look for topics
 DEDUP_HOURS = 48         # how far back to check for duplicate articles
 
@@ -383,7 +383,27 @@ Below are news signals. Each includes `hours_ago` — how many hours since the s
 
 Score each for:
 1. **newsworthiness** (1-10): How important is this story RIGHT NOW? Major events, breaking news, policy changes = 8-10. Routine/filler = 1-4. Penalize stories that are many hours old — they're less urgent.
-2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? Immigration, H-1B, India-US/UK/Canada relations, NRI investments, diaspora culture = 8-10. For markets-finance: ONLY major US stories score high — FAANG/mega-cap earnings (Apple, Google, Microsoft, Amazon, Meta, Tesla, NVIDIA, Netflix, JPMorgan, Goldman Sachs), S&P 500/Nasdaq big moves, Fed rate decisions, US inflation/CPI, US jobs/housing data, major IPOs. These score 7-9 because NRIs live, work, and invest in the US. Companies with Indian-origin CEOs (Google/Pichai, Microsoft/Nadella, IBM, Starbucks) score 8-9. But random mid-cap earnings, minor dividend declarations, small-cap moves, and routine analyst upgrades/downgrades = 2-4 (noise, skip). Indian market stories (Sensex, Nifty, RBI, rupee) score 6-8 ONLY for major events (RBI rate decision, rupee milestone, Sensex record) with clear NRI angle, 3-5 for routine daily moves. Purely local Indian domestic news = 3-5. Irrelevant = 1-2.
+2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? The reader is an NRI in the US/UK/Canada — would they specifically seek this out? Score per category:
+
+**immigration**: H-1B, green card, EB-5, OPT, visa processing, USCIS policy, deportation, citizenship = 8-10. Generic US immigration (border, asylum, non-Indian) = 4-6 only if it affects policy broadly. Pure India domestic immigration law = 2-3.
+
+**markets-finance**: FAANG/mega-cap earnings (Apple, Google, Microsoft, Amazon, Meta, Tesla, NVIDIA, Netflix, JPMorgan, Goldman Sachs), S&P 500/Nasdaq big moves, Fed rate decisions, US inflation/CPI, US jobs/housing = 7-9 (NRIs live and invest in the US). Indian-CEO companies (Google/Pichai, Microsoft/Nadella, IBM/Krishna, Starbucks/Narasimhan) = 8-9. NRI investment angles (remittances, FCNR/NRE deposits, India mutual funds for NRIs) = 8-10. Random mid-cap earnings, dividends, analyst upgrades = 2-4 (noise). Indian markets (Sensex, RBI, rupee) = 6-8 ONLY for major events with NRI impact, 3-5 for routine daily moves.
+
+**entertainment**: Bollywood/Indian films releasing or streaming in US/UK/Canada theaters/platforms (where NRIs watch) = 7-9. Indian actors/directors at international festivals, awards, or Hollywood projects = 8-10. Indian-origin talent in global entertainment = 8-10. Crossover cultural moments (Indian music at Coachella, Indian shows on Netflix global) = 7-9. Pure India box office numbers (₹crore collections, opening day records) with NO international release or diaspora viewing angle = 2-3. India-only TV show drama, Bollywood gossip/weddings/breakups with no diaspora connection = 1-3.
+
+**technology**: Indian-origin tech leaders (Pichai, Nadella, Agrawal) = 8-9. Indian tech companies expanding globally or hiring/laying off in US = 7-9. H-1B/immigration impact from tech layoffs = 8-10. India semiconductor/AI policy affecting global supply chain = 7-8. Random tech product launches with no India/diaspora angle = 2-4.
+
+**sports**: India cricket (always relevant to diaspora) = 7-9. World Cup / Olympics with India or Indian-origin athletes = 8-10. Indian sports leagues with global broadcast (IPL, ISL) = 7-8. Indian-origin athletes in US/UK/global sports = 8-10. NRI community sports (MLC cricket, diaspora football) = 8-10. Random non-India international sports = 2-3.
+
+**food**: Indian restaurants opening/winning awards in US/UK/Canada = 8-10. Indian grocery/food brands in Western supermarkets = 7-9. NRI food culture, fusion cuisine = 7-8. Pure India restaurant/food news with no diaspora angle = 2-3.
+
+**news**: Stories directly affecting NRIs (safety, hate crimes, discrimination, bilateral relations, travel advisories) = 8-10. Major India events that every NRI follows (elections, disasters, geopolitical crises) = 7-9. Indian-origin people in global headlines = 7-9. Pure India local news (city fires, highway accidents, local politics) = 2-4 unless scale/impact is national. Generic US/world news with no India/diaspora connection = 2-3.
+
+**nri-world**: Community achievements, diaspora organizations, cultural events abroad = 8-10. This is the core diaspora category.
+
+**lifestyle-health, travel**: NRI-specific health/travel concerns (India travel tips, healthcare for NRIs visiting India, wellness trends in diaspora) = 7-9. Generic health/travel news = 2-4.
+
+DEFAULT RULE: If an NRI in the US would not care about this story MORE than a random American would, score 1-4. The diaspora angle must be genuine, not forced.
 3. **suggested_category**: One of: immigration, technology, news, entertainment, sports, markets-finance, nri-world, food, travel, lifestyle-health
 4. **reason**: One sentence explaining your scoring.
 
@@ -431,6 +451,10 @@ Return a JSON object with key "signals" containing the array:
 
         if dup_of is not None:
             print(f"  SKIP (LLM dup): {topic['canonical_title'][:50]} (dup of #{dup_of})")
+            continue
+
+        if dr < 5:
+            print(f"  ✗ [{nw}+{dr}={combined}] low diaspora relevance: {topic['canonical_title'][:55]}")
             continue
 
         if combined >= MIN_COMBINED_SCORE:
