@@ -686,6 +686,13 @@
   text-overflow: ellipsis; max-width: 100px;
 }
 
+/* Desktop: larger Visual Stories circles */
+@media (min-width: 1024px) {
+  .vs-thumb { width: 120px; }
+  .vs-thumb-ring { width: 120px; height: 120px; }
+  .vs-thumb-cat { max-width: 120px; font-size: 11px; }
+}
+
 /* ── Top Picks ── */
 .tp-section { margin-bottom: 2rem; padding: 0 1rem; }
 .tp-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; }

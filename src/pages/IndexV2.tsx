@@ -599,6 +599,7 @@ export default function IndexV2() {
           borderColor="#E65100"
           categorySlug="markets-finance"
           articles={layout.markets}
+          listCount={6}
         />
 
         {/* 15. Sports (horizontal ribbon — landscape) */}
@@ -629,6 +630,7 @@ export default function IndexV2() {
             borderColor="#6A1B9A"
             categorySlug="lifestyle-health"
             articles={layout.lifestyle}
+            listCount={6}
           />
         )}
 

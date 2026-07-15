@@ -81,7 +81,7 @@ export default function IndiaNewsGrid({ articles }: Props) {
                     className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                     style={{ color: catColor(a.category) }}
                   >
-                    {a.tags?.[0] ?? a.category?.replace("-", " ")}
+                    {a.category?.replace("-", " ")}
                   </p>
                   <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                     {a.title}
