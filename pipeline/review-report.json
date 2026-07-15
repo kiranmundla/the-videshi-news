@@ -1,15 +1,144 @@
 {
-  "timestamp": "2026-07-15T17:11:30.225569+00:00",
+  "timestamp": "2026-07-15T18:11:10.966472+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 1,
-    "fail": 1,
+    "pass": 5,
+    "flag": 0,
+    "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "94108a09-5b27-40b4-b439-ff0052613ee8",
+      "headline": "Tata Capital Secures $400 Million in US Bond Issue",
+      "slug": "tata-capital-secures-400-million-in-us-bond-issue-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Tata logo",
+          "reason": "The Tata logo is relevant to a story about Tata Capital."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses Tata Capital's bond issue in the US, which is relevant to NRIs interested in investment opportunities and the Indian economy."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more specific examples of how NRIs can benefit from Tata Capital's initiatives or the bond issue.",
+          "Add a section on the implications of this bond issue for Indian investors abroad."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "888e209b-6312-40c4-bd6f-87e6bcb4182e",
+      "headline": "China Pressures African Nations to Repay Debt in Yuan",
+      "slug": "china-pressures-african-nations-to-repay-debt-in-yuan-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "China's national flag",
+          "reason": "The photo of China's flag is relevant to a story about China's influence."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical and economic implications of China's actions to the interests of the Indian diaspora, particularly those involved in African markets."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding specific examples of Indian businesses affected by these changes in Africa to strengthen the diaspora connection.",
+          "Include quotes or insights from experts on the implications for Indian investments in Africa."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f3352345-595f-4f22-8da2-9670681031e5",
+      "headline": "ENG vs ARG Live: Can Kane, Bellingham Handle Messi's Magic?",
+      "slug": "eng-vs-arg-live-can-kane-bellingham-handle-messis-magic-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lionel Messi in Argentina jersey",
+          "reason": "The photo shows Lionel Messi, relevant to the story about England vs Argentina."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with the Indian diaspora by highlighting the global significance of the match and its impact on Indian football fans."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Indian fans engage with international football, such as local viewing parties or social media discussions.",
+          "Include quotes or insights from Indian football analysts or fans to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "cb8a4ffc-10d0-4ef2-9eb2-cf7899e240d2",
       "headline": "Regulatory Scrutiny on Grand Dealtrade Private Limited's Illiquid Stock Options",
@@ -18,163 +147,42 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "sticky notes with buy, hold, sell",
-          "reason": "The photo shows generic stock market terms, not specific to Grand Dealtrade Private Limited."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 3,
-        "embed_issues": [],
-        "image_match": {
-          "score": 1,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": false,
-          "quality": 1,
-          "note": "The article does not connect to NRI/diaspora readers."
-        },
-        "factual_flags": [
-          "The article references a date in the future (July 15, 2026), which is anachronistic."
+        "broken_embeds": [
+          {
+            "url": "https://x.com/NSEIndia/status/1798363403233917006",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C70267Jv1-T/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
         ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Update the article to remove or correct the anachronistic date.",
-          "Incorporate a diaspora angle to make the content more relevant to NRI readers."
-        ],
-        "verdict": "fail"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (sticky notes with buy, hold, sell)",
-        "Revised by gemini-2.5-flash (527\u2192681 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0226ab22-56ab-4d29-a1e7-6d2f0ca0888e",
-      "headline": "Anurag Kashyap Backs Sonam Wangchuk Amid Government Silence",
-      "slug": "anurag-kashyap-backs-sonam-wangchuk-amid-government-silence-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Anurag Kashyap speaking at an event",
-          "reason": "The photo shows Anurag Kashyap, who is relevant to the story."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the diaspora's interest in environmental issues with the situation in Ladakh."
+          "note": "The article effectively connects the regulatory scrutiny to NRIs' investment interests and the implications for their portfolios."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of social media posts that have gained traction to enhance the discussion on digital engagement.",
-          "Add quotes from Anurag Kashyap or Sonam Wangchuk to provide more depth and personal insight into their perspectives."
+          "Add a relevant image that visually represents the topic of regulatory scrutiny or financial markets.",
+          "Consider including quotes from financial experts or analysts to enhance credibility and depth."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "b08f7d10-0893-4d41-9902-c0523738f954",
-      "headline": "Congress Demands Clarity from Goyal on U.S. Tariff Bill Over Russian Oil",
-      "slug": "congress-demands-clarity-goyal-us-tariff-bill-russian-oil-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Piyush Goyal smiling portrait",
-          "reason": "The photo shows Piyush Goyal, relevant to the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the proposed tariff's implications to the Indian diaspora's economic interests."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific quotes or reactions from Piyush Goyal to provide a more balanced perspective.",
-          "Add more data or statistics on how previous tariffs have impacted the Indian economy for context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "0b7dec2d-188f-46e9-afe7-2f9194a29c8b",
-      "headline": "Surgeons Successfully Remove Rare Klatskin Tumour Using Robotics",
-      "slug": "surgeons-remove-rare-klatskin-tumour-via-robotics-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects advancements in medical technology to the interests of the Indian diaspora, particularly regarding healthcare options."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include specific statistics or data on the success rates of robotic surgeries for Klatskin tumours to enhance credibility.",
-          "Add a quote from a patient or family member to provide a personal touch and emotional connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
+        "Removed 2 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
@@ -191,12 +199,12 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/CENTCOM/status/1717641217036720516",
+            "url": "https://x.com/CENTCOM/status/1717616110051664161",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/CzXQ-J1M971",
+            "url": "https://instagram.com/p/C21Bf2-y32E/",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
@@ -204,35 +212,35 @@
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "US military aircraft on tarmac",
-          "reason": "The photo shows a US military aircraft, relevant to a military action story."
+          "reason": "The photo shows a military aircraft, relevant to a military action story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 6,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses implications for the Indian diaspora, particularly in relation to economic impacts due to rising oil prices."
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical situation to the Indian diaspora, particularly in relation to economic implications."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Provide more specific details or updates regarding the alleged strike to enhance credibility.",
-          "Include quotes or perspectives from Indian diaspora members to strengthen the connection to the audience."
+          "Consider adding more specific examples of how rising oil prices could impact the Indian diaspora in various sectors.",
+          "Include quotes or perspectives from Indian diaspora members or experts to enhance relatability."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (960\u2192992 words)"
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
