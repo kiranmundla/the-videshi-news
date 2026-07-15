@@ -423,6 +423,7 @@ Rules:
 - For embed_issues: check if each social media URL (instagram.com/reel/..., twitter.com/..., x.com/...) is topically relevant to the article's subject. A Sachin Tendulkar cricket post in a sprinting article = "irrelevant". 
 - For image_match: does the hero image description/entities match the article headline and topic?
 - Diaspora angle: does the article connect to NRI/diaspora readers? Is it forced or natural?
+- CRITICAL: Check for **anachronistic dates and hallucinated facts**. If the article references past dates (e.g. "December 2023") for events that are clearly current/upcoming, that is a hallucination — instant FAIL. Cross-check any specific dates, scores, statistics, or quotes against the article's publish date and known reality. A World Cup 2026 article mentioning 2023 dates = fabricated content.
 - Be strict but fair. This is a real newsroom quality gate."""
 
 REVISE_PROMPT = """You are a senior editor at The Videshi, an Indian diaspora news platform for NRIs in the US, UK, and Canada.

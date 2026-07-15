@@ -493,7 +493,12 @@ def write_article(topic):
         for s in signal_sources
     ])
 
-    prompt = f"""You are a senior journalist at The Videshi, a premium English-language news site for the Indian diaspora (NRIs worldwide). Write a complete article about:
+    today_str = datetime.now(timezone.utc).strftime('%B %d, %Y')
+    prompt = f"""You are a senior journalist at The Videshi, a premium English-language news site for the Indian diaspora (NRIs worldwide).
+
+TODAY'S DATE: {today_str}. All events described are current unless explicitly historical. Do NOT invent dates, quotes, or statistics. If you are unsure of a specific date, score, or detail, omit it rather than fabricate it. NEVER reference dates from past years (2023, 2024, 2025) for current events.
+
+Write a complete article about:
 
 TOPIC: {title}
 
