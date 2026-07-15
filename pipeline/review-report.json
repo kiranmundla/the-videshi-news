@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-15T04:10:55.004876+00:00",
+  "timestamp": "2026-07-15T05:11:03.559879+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 6,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -10,6 +10,137 @@
   "revisions": 0,
   "unpublished": 0,
   "articles": [
+    {
+      "id": "0be07e9b-1512-4f36-b278-04ae14382516",
+      "headline": "IBM Faces Historic Stock Market Crash, Its Worst in 60 Years",
+      "slug": "ibm-faces-historic-stock-market-crash-its-worst-in-60-years-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "IBM building exterior",
+          "reason": "The photo shows an IBM building, relevant to the IBM stock market story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects IBM's struggles to the Indian diaspora, particularly in terms of employment and investment implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how IBM's downturn has affected the Indian tech job market.",
+          "Include quotes from industry experts or analysts to enhance credibility and depth."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f993e082-3d35-4183-9b6a-10ac98c156bf",
+      "headline": "Atlanta Police Enhance Security for World Cup Semi-Final Showdown",
+      "slug": "atlanta-police-enhance-security-world-cup-semi-final-showdown-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "soccer player in action",
+          "reason": "The photo shows a soccer player, not Atlanta Police Department."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the match to the Indian diaspora, highlighting community engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes or perspectives from Indian diaspora members to deepen the connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (soccer player in action)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "4e756733-075d-4b04-a99e-617f4cf6d0f9",
+      "headline": "Phoebe Gates Addresses Phia Controversy as AI Startup Reaches $185M Valuation",
+      "slug": "phoebe-gates-addresses-phia-controversy-as-ai-startup-reaches-185m-valuation-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "woman speaking at tech event",
+          "reason": "The photo plausibly shows Phoebe Gates at a tech event, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the topic of AI in healthcare to the interests of the Indian diaspora, particularly regarding healthcare advancements that could benefit families in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how Phia's technology could directly impact healthcare in India.",
+          "Include quotes or perspectives from Indian healthcare professionals to strengthen the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
     {
       "id": "d945f059-4715-4ce2-9c6d-6f7424ebf6df",
       "headline": "Did AI Influence Meta's Layoffs? Lawsuit Raises Alarming Questions",
@@ -19,11 +150,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Meta logo and Threads app",
-          "reason": "The photo shows Meta and Threads, not AI in a corporate setting."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -31,28 +157,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": null
+          "issue": "The image description is missing, making it difficult to assess relevance."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of the lawsuit to the Indian diaspora working in tech, highlighting potential impacts on employment practices."
+          "note": "The article effectively connects the implications of the lawsuit to the Indian diaspora working in tech."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of how AI has been used in layoffs at other companies for context.",
-          "Add quotes from experts or affected employees to enhance the narrative and provide personal perspectives."
+          "Include a relevant image description to enhance the image match score.",
+          "Add more specific examples of how AI has impacted layoffs in other companies to strengthen the argument."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (Meta logo and Threads app)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -64,11 +188,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "football fans celebrating",
-          "reason": "The photo shows football fans, not cricket fans in a restaurant."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -87,17 +206,15 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes from local business owners or patrons to provide more depth to the narrative."
+          "Consider adding quotes from local business owners or patrons to provide more personal insights."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (football fans celebrating)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -109,11 +226,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Great Seal of the United States",
-          "reason": "The seal does not relate to energy trade routes or tariffs."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -126,53 +238,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the tariff changes to the interests of the Indian diaspora, particularly in sectors reliant on energy prices."
+          "note": "The article effectively connects the tariff changes to the interests of the Indian diaspora, particularly in sectors reliant on energy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant hero image that visually represents the topic of U.S. tariffs and energy procurement.",
-          "Provide more specific examples or quotes from diaspora members to enhance the personal connection to the topic."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (Great Seal of the United States)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "8338cfd4-bed8-4d4b-885b-403a4c947678",
-      "headline": "US House Votes to Make Daylight Saving Time Permanent",
-      "slug": "us-house-votes-to-make-daylight-saving-time-permanent-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the legislative change to the Indian diaspora's communication and business needs."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image that visually represents the topic of daylight saving time.",
-          "Expand on the potential implications for NRIs with specific examples or anecdotes."
+          "Expand on the implications for the Indian diaspora with specific examples or quotes from community leaders."
         ],
         "verdict": "pass"
       },

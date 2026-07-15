@@ -383,7 +383,7 @@ Below are news signals. Each includes `hours_ago` — how many hours since the s
 
 Score each for:
 1. **newsworthiness** (1-10): How important is this story RIGHT NOW? Major events, breaking news, policy changes = 8-10. Routine/filler = 1-4. Penalize stories that are many hours old — they're less urgent.
-2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? Immigration, H-1B, India-US/UK/Canada relations, NRI investments, diaspora culture = 8-10. US market moves (S&P 500, Nasdaq, Fed rate decisions, FAANG/major tech earnings, 401k-relevant news) also score 7-9 because most NRIs live and invest in the US. Purely local Indian domestic news = 3-5. Irrelevant = 1-2.
+2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? Immigration, H-1B, India-US/UK/Canada relations, NRI investments, diaspora culture = 8-10. For markets-finance: US/global stories are DIRECTLY relevant — major company earnings (Apple, Google, Microsoft, Amazon, Meta, Tesla, Netflix, etc.), S&P 500/Nasdaq swings, Fed rate decisions, US inflation/CPI, US jobs data, mortgage rates, major IPOs, and 401k-relevant news ALL score 7-9 because most NRIs live, work, and invest in the US. These do NOT need an India/NRI connection to be relevant. Indian market stories (Sensex, Nifty, RBI, rupee, Indian company earnings) score 6-8 when there's a clear NRI portfolio/remittance angle, 3-5 without one. Purely local Indian domestic news = 3-5. Irrelevant = 1-2.
 3. **suggested_category**: One of: immigration, technology, news, entertainment, sports, markets-finance, nri-world, food, travel, lifestyle-health
 4. **reason**: One sentence explaining your scoring.
 
@@ -505,7 +505,7 @@ SOURCE REFERENCES (use these as basis — cite at least 2 of them):
 REQUIREMENTS:
 1. **headline**: 20-120 chars. Newspaper style — short, punchy, declarative. Not clickbait.
 2. **subheadline**: 30-120 chars. Adds nuance/context the headline doesn't cover.
-3. **body**: 600-900 words in markdown. Well-structured with ## subheadings. Include a diaspora perspective (why NRIs should care). Use present tense for current events. Include at least one section header. No promotional language.
+3. **body**: 600-900 words in markdown. Well-structured with ## subheadings. Use present tense for current events. Include at least one section header. No promotional language.{'' if category == 'markets-finance' else ' Include a diaspora perspective (why NRIs should care).'}
 4. **tags**: Array of 3-6 lowercase tags relevant to the article.
 5. **slug**: lowercase-hyphenated URL slug from headline (max 80 chars).
 6. **vertical**: Short descriptor: "geopolitics", "economy", "immigration", "tech", "entertainment", "sports", "cricket", "world-cup-2026", "diaspora-safety", "culture", etc.
@@ -523,7 +523,8 @@ STYLE GUIDE:
 - Write like The Economist or Bloomberg, not like a blog
 - Lead with the news, then context, then analysis
 - Include specific numbers, names, dates where relevant
-- Add a clear diaspora angle — how does this affect Indians abroad?
+- For markets-finance: if the story is about major US/global companies (earnings, stock moves), US market indices (S&P 500, Nasdaq, Dow), Fed decisions, US inflation, jobs data, housing, or mortgage rates — write it as straight financial journalism for a US-based audience. Do NOT add "here's what it means for NRIs" or "diaspora perspective" paragraphs. Do NOT mention NRIs, remittances, or Indians abroad. These stories are inherently relevant to readers who live and invest in the US. Only add a diaspora angle when the story is about Indian markets (Sensex, RBI, rupee) and the NRI connection genuinely needs explaining.
+- For other categories: add a clear diaspora angle — how does this affect Indians abroad?
 - Use ## for section headers, not #
 - No "In conclusion" or "In summary" — end with impact or forward-looking point
 
