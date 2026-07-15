@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-15T02:11:05.844242+00:00",
+  "timestamp": "2026-07-15T03:11:12.057983+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
-    "flag": 2,
+    "pass": 7,
+    "flag": 0,
     "fail": 0,
     "error": 0
   },
@@ -11,35 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "c30776d8-b139-4d8a-8507-d71dcbd0bf5a",
-      "headline": "India's EB-5 Window Just Closed. The Backup Plan Has an Eleven-Week Deadline",
-      "slug": "india-eb5-cap-hit-grandfathering-deadline-september-20260715",
+      "id": "215d6a3e-42b6-4dfd-a46d-c441dce2d77a",
+      "headline": "Thomson Reuters Is Cutting 500 Engineers and Hiring 250 AI-Native Ones. That Swap Is the Entire Tech Industry Now.",
+      "slug": "thomson-reuters-ai-native-engineer-replacement-wave-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
-            "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Appli"
-          },
-          {
-            "article_id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
-            "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is "
-          },
-          {
-            "article_id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
-            "headline": "Green Card Applicants Must Now Leave the Country. USCIS Call"
-          },
-          {
-            "article_id": "d8128708-8a6f-4d31-8a5b-46ea1f04bccb",
-            "headline": "The $100,000 H-1B Fee Is Dead in One Court and Alive in Anot"
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "USCIS Application Support Center",
-          "reason": "The photo shows a USCIS center, relevant to immigration topics."
+          "what_photo_shows": "software developer at dual-monitor setup",
+          "reason": "The photo shows a software developer, which is relevant to the tech industry story."
         },
         "inline_image_mismatches": []
       },
@@ -47,107 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 3,
-          "issue": "The image does not directly relate to the EB-5 program or Indian immigration."
+          "score": 7,
+          "issue": "The image is relevant to the tech industry but lacks a direct connection to the specific topic of AI and job cuts."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 9,
-          "note": "The article effectively addresses the concerns of Indian immigrants and the diaspora regarding the EB-5 program."
+          "note": "The article discusses the impact of job cuts on H-1B visa holders, particularly Indian engineers, making it highly relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the hero image with one that directly relates to the EB-5 program or Indian immigration.",
-          "Consider adding a brief section on the implications of the EB-5 program's closure for Indian families specifically."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "cd54fd54-9217-4f14-b2be-9ecf769877d3",
-      "headline": "One Hundred Thousand Forged Diplomas. The Fraud That Is Rewriting the Rules for Every Indian Visa Applicant",
-      "slug": "forged-diplomas-fraud-indian-visa-applicants-trust-crisis-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "framed diplomas stacked",
-          "reason": "The photo of diplomas relates to the diploma fraud story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [],
-        "image_match": {
-          "score": 6,
-          "issue": "The image does not directly relate to the topic of forged diplomas or immigration."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses the implications of diploma fraud on the Indian diaspora, particularly in relation to H-1B visa applications."
-        },
-        "factual_flags": [
-          "The claim that 80 to 90 percent of H-1B applications from India involved fraudulent documentation is based on a single officer's experience nearly two decades ago."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider using a more relevant image that depicts education or immigration to better match the article's theme.",
-          "Clarify the context of the statistics mentioned to avoid potential misinterpretation."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
-      "headline": "US Troops to Withdraw from Iraq by September 30, Ending 23-Year Military Presence",
-      "slug": "us-troops-to-withdraw-from-iraq-by-september-30-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "US military personnel in Iraq",
-          "reason": "The photo shows US military personnel, relevant to the story about US troops in Iraq."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the withdrawal to the Indian diaspora's interests and safety in the region."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the withdrawal might impact Indian NRIs in Iraq.",
-          "Include quotes from experts or diaspora members to enhance the article's depth."
+          "Consider including more specific statistics or quotes from affected workers to enhance the human element of the story.",
+          "Add a section discussing potential solutions or support systems for displaced workers, especially those on H-1B visas."
         ],
         "verdict": "pass"
       },
@@ -159,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "db0d599a-8c6a-4b91-9125-e0c061444845",
-      "headline": "India's AI Surge Reflects Mobile Revolution, Says DeepMind Executive",
-      "slug": "indias-ai-surge-reflects-mobile-revolution-says-deepmind-executive-20260715",
+      "id": "46f0c526-4678-47ea-8af7-001a8e967631",
+      "headline": "Meta Used AI to Decide Who Gets Fired. Twenty-Six Workers Are Suing.",
+      "slug": "meta-ai-layoff-lawsuit-metamate-discrimination-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -169,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "AI technology demonstration in India",
-          "reason": "The photo subject aligns with the story about AI in India."
+          "what_photo_shows": "Meta Platforms headquarters",
+          "reason": "The photo shows Meta's headquarters, relevant to the story about Meta's AI usage."
         },
         "inline_image_mismatches": []
       },
@@ -184,13 +79,187 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications of AI adoption in India for the Indian diaspora, highlighting opportunities for collaboration and investment."
+          "note": "The article effectively connects the lawsuit's implications to Indian tech workers, highlighting the risks faced by H-1B visa holders."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding specific examples of Indian companies leading in AI to enhance credibility.",
-          "Include quotes or insights from the DeepMind executive to provide a more personal touch to the article."
+          "Consider adding quotes from experts or legal analysts to provide more depth to the discussion on AI in layoffs.",
+          "Include more context on the potential impact of this lawsuit on the tech industry as a whole."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a1e9d20e-eda9-4522-8031-427cb2b1ceee",
+      "headline": "Arvind Krishna Admits IBM 'Faltered.' The Stock Just Had Its Worst Day Since 1968.",
+      "slug": "arvind-krishna-ibm-faltered-worst-day-1968-ai-software-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "man speaking at conference",
+          "reason": "The photo shows a man at a conference, matching the story about IBM's CEO."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Arvind Krishna is relevant to the article's topic, but the event date in the image URL (2025) is incorrect and misleading."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of IBM's performance to Indian Americans in the tech sector, discussing employment and investment concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the date in the image URL to reflect the current year or ensure it is relevant to the article.",
+          "Expand on the implications for NRI investors with specific examples or quotes from industry experts."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "8338cfd4-bed8-4d4b-885b-403a4c947678",
+      "headline": "US House Votes to Make Daylight Saving Time Permanent",
+      "slug": "us-house-votes-to-make-daylight-saving-time-permanent-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Great Seal of the United States",
+          "reason": "The photo does not show a session of the US House of Representatives voting."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of DST changes for the Indian diaspora, particularly in terms of communication and business."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image that visually represents the topic of daylight saving time.",
+          "Expand on the potential implications for NRIs with specific examples or anecdotes to enhance the diaspora connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Great Seal of the United States)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7f03f809-70a9-44fe-8359-f8182711d45f",
+      "headline": "Messi Faces England: The Semifinal That Eluded Him",
+      "slug": "messi-faces-england-the-semifinal-that-eluded-him-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Lionel Messi playing soccer",
+          "reason": "The photo shows Lionel Messi in action, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting their passion for football and the sense of community it fosters."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from players or coaches to enhance the narrative.",
+          "Include statistics or recent performance data to provide more depth to the analysis."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c2bdff0c-9786-4a62-bf05-79e6e24ed9ee",
+      "headline": "Argentina's Scaloni Reveals Strategy for World Cup Glory Against England",
+      "slug": "argentina-scaloni-strategy-world-cup-final-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Argentina and England football teams playing",
+          "reason": "The photo shows a football match between Argentina and England, relevant to the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting their growing interest in football and community engagement."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes or insights from Indian football experts or fans to strengthen the diaspora connection.",
+          "Include more specific examples of how the Indian community engages with football during the World Cup."
         ],
         "verdict": "pass"
       },
@@ -210,11 +279,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "Great Seal of the United States",
-          "reason": "The photo does not show the US Capitol building or flags."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -222,7 +286,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 5,
-          "issue": "missing image"
+          "issue": "missing image description"
         },
         "diaspora_angle": {
           "present": true,
@@ -233,17 +297,15 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant hero image to enhance visual appeal and context.",
-          "Provide more specific examples of how the proposed tariffs could impact individual NRIs or businesses."
+          "Provide more specific examples of how the proposed tariffs could directly affect NRI businesses."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (Great Seal of the United States)",
-        "held: image mismatch"
+        "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
