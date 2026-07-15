@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-15T10:00:55.383366+00:00",
+  "last_refresh": "2026-07-15T16:00:07.956124+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -2514,6 +2514,13 @@
       "likes": 0,
       "image_count": 4,
       "scraped_at": "2026-07-15T10:00:47.516176+00:00"
+    },
+    "https://www.instagram.com/reel/Da0HRv9gaU1/": {
+      "account": "gianni_infantino",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-15T16:00:02.222273+00:00"
     }
   },
   "images": [
@@ -16557,6 +16564,56 @@
       "caption": "1,429 likes, 16 comments - madfootball_1 on July 13, 2026: \"\ud83c\udfc6\u2b50 We\u2019ve selected the Best XI of the 2026 FIFA World Cup quarter-finals.\n\nThese players delivered outstanding performances when it mattered most, helping their teams reach the semi-finals with world-class displays.\n\nEvery position was earned through exceptional performances, making this one of the strongest Best XIs of the tournament so f",
       "scraped_at": "2026-07-15T10:00:47.515695+00:00",
       "account": "madfootball_1",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t51.71878-15/749258369_2173220979912485_3279869514964495318_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=5tHg-8nMHUYQ7kNvwGYoOTb&_nc_oc=AdotHf7Tws4fAe9WSrY5sppIktkVHGwWOofP3YSgwemrTPdeBB-vg78yad0JrSeVU2EQ4ojnC0IAi23ufMhJmtdZ&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=uIwhaPNEsLGcHpAVZglTBg&_nc_ss=7860f&oh=00_AQDkbp6KJVO5ygeHRUqg8olz-tcpm4c4Cr7nxKpAaO6mbw&oe=6A5D68CE",
+      "post_url": "https://www.instagram.com/reel/Da0HRv9gaU1/",
+      "platform": "instagram",
+      "caption": "13K likes, 1 comments - gianni_infantino on July 15, 2026: \"Dallas - thank you! \ud83c\uddfa\ud83c\uddf8\ud83e\udd17\n\nA fantastic place to play football, this beautiful stadium which hosted more FIFA World Cup 2026 games than any other will forever be part of history! At @fwc26dallas, @leomessi overtook Miroslav Klose\u2019s all-time @fifaworldcup goalscoring record, while @egyptnt won their first-ever FIFA World Cup knockout game, an",
+      "scraped_at": "2026-07-15T16:00:02.221741+00:00",
+      "account": "gianni_infantino",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t51.71878-15/747536636_1737961040545053_8118926012085493563_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=1&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=LDrDOMwR-nAQ7kNvwFAK8QG&_nc_oc=Adre1iN1LoF5DQHZaeYwrYghDEwNb2IH1UpQFMN0mOXka8HoVZ4w2Uu0p51OmnL-45cd1OD5QwICW2XrBNcONJe_&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=H06QIZR50i2RvcXC5yMY1g&_nc_ss=7860f&oh=00_AQCrlFBy0FwG_6CgLhmtZe1Py6MWhKQHtMjc6xZEun96jA&oe=6A5D726A",
+      "post_url": "https://www.instagram.com/reel/Da0HRv9gaU1/",
+      "platform": "instagram",
+      "caption": "13K likes, 1 comments - gianni_infantino on July 15, 2026: \"Dallas - thank you! \ud83c\uddfa\ud83c\uddf8\ud83e\udd17\n\nA fantastic place to play football, this beautiful stadium which hosted more FIFA World Cup 2026 games than any other will forever be part of history! At @fwc26dallas, @leomessi overtook Miroslav Klose\u2019s all-time @fifaworldcup goalscoring record, while @egyptnt won their first-ever FIFA World Cup knockout game, an",
+      "scraped_at": "2026-07-15T16:00:02.221779+00:00",
+      "account": "gianni_infantino",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gianni_infantino-6bc61e568825.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 127728
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t51.82787-15/748133815_18022297121902645_89263043542790862_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=K0HAD6J9IwwQ7kNvwHbWO9N&_nc_oc=Adr6RdkLZ75cjP9xlECatKXy90YFzw4Np7NHZpNYr5KCxr1-sX_ShO3B5RjnEqeN8GBtBtKEbQ9_rO3HrdNmkCmA&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=H06QIZR50i2RvcXC5yMY1g&_nc_ss=7860f&oh=00_AQB7xXe_v1HOVwY24T8cStsTpyxcZwJCt2LjGj9vCtRHNQ&oe=6A5D72C6",
+      "post_url": "https://www.instagram.com/reel/Da0HRv9gaU1/",
+      "platform": "instagram",
+      "caption": "13K likes, 1 comments - gianni_infantino on July 15, 2026: \"Dallas - thank you! \ud83c\uddfa\ud83c\uddf8\ud83e\udd17\n\nA fantastic place to play football, this beautiful stadium which hosted more FIFA World Cup 2026 games than any other will forever be part of history! At @fwc26dallas, @leomessi overtook Miroslav Klose\u2019s all-time @fifaworldcup goalscoring record, while @egyptnt won their first-ever FIFA World Cup knockout game, an",
+      "scraped_at": "2026-07-15T16:00:02.221786+00:00",
+      "account": "gianni_infantino",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-gianni_infantino-a31d60de631f.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 70622
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t51.71878-15/746947097_986585217540971_7883940898871980481_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=eKp1mebgH5cQ7kNvwEMxdzC&_nc_oc=AdpxtgPm1xKU0AVs0Vqzj8Y38DPfgz6G6INT7DKCq372tYdIXzUEDohE7zfUVt-POUFKkLxa4mp6KeOGC0XHG55B&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=H06QIZR50i2RvcXC5yMY1g&_nc_ss=7860f&oh=00_AQAsxef-BfmeDkzts-1giKDZZdIVLfeMi639_O-xENGpsg&oe=6A5D9787",
+      "post_url": "https://www.instagram.com/reel/Da0HRv9gaU1/",
+      "platform": "instagram",
+      "caption": "13K likes, 1 comments - gianni_infantino on July 15, 2026: \"Dallas - thank you! \ud83c\uddfa\ud83c\uddf8\ud83e\udd17\n\nA fantastic place to play football, this beautiful stadium which hosted more FIFA World Cup 2026 games than any other will forever be part of history! At @fwc26dallas, @leomessi overtook Miroslav Klose\u2019s all-time @fifaworldcup goalscoring record, while @egyptnt won their first-ever FIFA World Cup knockout game, an",
+      "scraped_at": "2026-07-15T16:00:02.221791+00:00",
+      "account": "gianni_infantino",
       "likes": 0,
       "trusted": false,
       "permanent_url": null

@@ -1,164 +1,29 @@
 {
-  "timestamp": "2026-07-15T15:11:18.678106+00:00",
+  "timestamp": "2026-07-15T16:11:03.689936+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 4,
+    "pass": 1,
     "flag": 1,
-    "fail": 0,
+    "fail": 1,
     "error": 0
   },
   "revisions": 1,
-  "unpublished": 0,
+  "unpublished": 1,
   "articles": [
     {
-      "id": "bf1617b1-5730-4743-8da5-07929f14c3bf",
-      "headline": "Supermicro Expands Liquid Cooling Solutions for AI and HPC",
-      "slug": "supermicro-expands-liquid-cooling-solutions-for-ai-and-hpc-20260715",
+      "id": "0b7dec2d-188f-46e9-afe7-2f9194a29c8b",
+      "headline": "Surgeons Successfully Remove Rare Klatskin Tumour Using Robotics",
+      "slug": "surgeons-remove-rare-klatskin-tumour-via-robotics-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Supermicro logo",
-          "reason": "The logo is relevant to the Supermicro story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "prosthetic leg close-up",
+          "reason": "The photo shows a prosthetic leg, unrelated to robotic surgery or Klatskin tumour."
         },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the advancements in cooling technology to the Indian diaspora's interests in tech and investment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding specific examples of Indian tech companies that could benefit from Supermicro's solutions to strengthen the diaspora angle.",
-          "Include recent statistics or forecasts related to AI and HPC growth to enhance the article's credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "86283fab-6935-4e96-a5c0-f5f425244700",
-      "headline": "Shashi Tharoor Urges Sonam Wangchuk to End Hunger Strike",
-      "slug": "shashi-tharoor-urges-sonam-wangchuk-to-end-hunger-strike-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Sonam Wangchuk speaking at event",
-          "reason": "The photo shows Sonam Wangchuk, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the environmental issues in Ladakh to the concerns of the Indian diaspora, highlighting their potential influence on policy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or reactions from members of the diaspora to enhance the connection.",
-          "Include more specific examples of how the diaspora can engage with environmental advocacy."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2e8abe31-7250-4b9e-b9db-089b90415d02",
-      "headline": "ED Files Chargesheet in U.S. Visa Fraud Racket",
-      "slug": "ed-files-chargesheet-in-us-visa-fraud-racket-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "U.S. immigration graph over time",
-          "reason": "The graph relates to U.S. immigration, matching the visa fraud story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively discusses the implications of the visa fraud on the Indian diaspora, highlighting concerns about the integrity of the immigration process."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include quotes from affected individuals or experts to add depth to the narrative.",
-          "Provide more specific statistics or data regarding the number of victims or financial losses to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d58cf27f-35a0-459a-8007-271c58152f79",
-      "headline": "DRC Ebola Cases Exceed 2,000 Amid Health Worker Strikes",
-      "slug": "drc-ebola-cases-exceed-2000-amid-health-worker-strikes-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/WHOAFRO/status/1709405232145389838",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/CyF2080t11o/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -171,22 +36,70 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the Ebola outbreak to the Indian diaspora, discussing implications for travel and health security."
+          "note": "The article effectively connects advancements in surgical technology to the Indian diaspora's healthcare decisions."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific statistics or quotes from health officials to enhance credibility.",
-          "Add more details on how the Indian diaspora is specifically responding to the crisis."
+          "Include a specific example or statistic about the success rates of robotic surgery for Klatskin tumours to enhance credibility.",
+          "Add a quote from a patient or family member to provide a personal touch and emotional connection."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "promoted to published"
+        "Cleared mismatched image (prosthetic leg close-up)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16444070-036b-4a38-a442-5131b6b432e1",
+      "headline": "Indian Man Survives 15 Stab Wounds in US Mall Attack",
+      "slug": "indian-man-survives-15-stab-wounds-us-mall-attack-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "knife stuck in a tree",
+          "reason": "The photo shows a knife, not related to the specific attack or person."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 2,
+        "embed_issues": [],
+        "image_match": {
+          "score": 0,
+          "issue": "missing image"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects well with the diaspora by discussing safety concerns and community responses."
+        },
+        "factual_flags": [
+          "The date of the incident (July 10, 2026) is a hallucination as it references a future date."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the hallucinated date to a past or current date.",
+          "Include a relevant image to enhance the article's visual appeal."
+        ],
+        "verdict": "fail"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (knife stuck in a tree)",
+        "unpublished: The article describes a violent hate crime that has not occurred. The date (July 10, 2026) is in the future, indicating the entire story is fabricated. Publishing a false report of a hate crime is irresponsible and potentially harmful, as it could incite fear and distrust based on misinformation. This article is completely nonsensical and factually wrong in a dangerous way."
+      ],
+      "revised": false,
+      "unpublished": true,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -199,19 +112,19 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
-            "url": "https://x.com/CENTCOM/status/1780517721327153408",
+            "url": "https://x.com/TheTerminal/status/1727289506263001399",
             "problem": "broken",
             "detail": "react-tweet returned null (deleted/protected/nonexistent)"
           },
           {
-            "url": "https://instagram.com/p/C54-aV0v-7L/",
+            "url": "https://instagram.com/p/Cz_z-20yB4z/",
             "problem": "broken",
             "detail": "Instagram embed shows removed/broken placeholder"
           }
         ],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "US military aircraft on tarmac",
+          "what_photo_shows": "US military aircraft on runway",
           "reason": "The photo shows a US military aircraft, relevant to a military action story."
         },
         "inline_image_mismatches": []
@@ -221,24 +134,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": "The image is relevant to the article's topic, depicting military action in Iran."
+          "issue": "The image is relevant to the article's topic, depicting military action, but lacks specific context about the strike."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects the geopolitical situation to the Indian diaspora's economic interests, particularly regarding oil prices."
+          "note": "The article connects the geopolitical situation to the Indian diaspora, particularly regarding economic implications."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions a strike that is not confirmed as of the current date, leading to potential hallucination."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Provide more specific examples of how rising oil prices could impact the Indian diaspora.",
-          "Include quotes or perspectives from Indian diaspora members to enhance relatability."
+          "Clarify the timeline of events to avoid confusion about the strike's occurrence.",
+          "Provide more specific details or quotes from Indian diaspora members to enhance the diaspora perspective."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
         "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (831\u2192889 words)"
+        "Revised by gemini-2.5-flash (887\u2192962 words)"
       ],
       "revised": true,
       "unpublished": false,
