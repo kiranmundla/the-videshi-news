@@ -1,104 +1,122 @@
 [
   {
-    "slug": "messi-faces-england-the-semifinal-that-eluded-him-20260715",
-    "headline": "Messi Faces England: The Semifinal That Eluded Him",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/messi-faces-england-the-semifinal-that-eluded-him-20260715.jpg"
-  },
-  {
-    "slug": "arvind-krishna-ibm-faltered-worst-day-1968-ai-software-20260715",
-    "headline": "Arvind Krishna Admits IBM 'Faltered.' The Stock Just Had Its Worst Day Since 1968.",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/arvind-krishna-ibm-faltered-worst-day-1968-ai-software-20260715.jpg"
-  },
-  {
-    "slug": "meta-ai-layoff-lawsuit-metamate-discrimination-20260715",
-    "headline": "Meta Used AI to Decide Who Gets Fired. Twenty-Six Workers Are Suing.",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meta-ai-layoff-lawsuit-metamate-discrimination-20260715.jpg"
-  },
-  {
-    "slug": "thomson-reuters-ai-native-engineer-replacement-wave-20260715",
-    "headline": "Thomson Reuters Is Cutting 500 Engineers and Hiring 250 AI-Native Ones. That Swap Is the Entire Tech Industry Now.",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thomson-reuters-ai-native-engineer-replacement-wave-20260715.jpg"
-  },
-  {
-    "slug": "indias-ai-surge-reflects-mobile-revolution-says-deepmind-executive-20260715",
-    "headline": "India's AI Surge Reflects Mobile Revolution, Says DeepMind Executive",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indias-ai-surge-reflects-mobile-revolution-says-deepmind-executive-20260715.jpg"
-  },
-  {
-    "slug": "us-troops-to-withdraw-from-iraq-by-september-30-20260715",
-    "headline": "US Troops to Withdraw from Iraq by September 30, Ending 23-Year Military Presence",
+    "slug": "pok-on-edge-as-showdown-looms-12-killed-4000-rangers-deployed-20260715",
+    "headline": "POK on Edge as Showdown Looms: 12 Killed, 4,000 Rangers Deployed",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-troops-to-withdraw-from-iraq-by-september-30-20260715.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pok-on-edge-as-showdown-looms-12-killed-4000-rangers-deployed-20260715.jpg"
   },
   {
-    "slug": "forged-diplomas-fraud-indian-visa-applicants-trust-crisis-20260715",
-    "headline": "One Hundred Thousand Forged Diplomas. The Fraud That Is Rewriting the Rules for Every Indian Visa Applicant",
+    "slug": "miracle-hudson-pilot-sully-sullenberger-alzheimers-diagnosis-20260715",
+    "headline": "'Miracle on the Hudson' Pilot Sully Sullenberger Reveals Early-Stage Alzheimer's Diagnosis",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/miracle-hudson-pilot-sully-sullenberger-alzheimers-diagnosis-20260715.jpg"
+  },
+  {
+    "slug": "delhi-sir-deadline-extended-draft-roll-august-20260715",
+    "headline": "Delhi SIR Deadline Extended; Draft Roll Set for August Release",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-sir-deadline-extended-draft-roll-august-20260715.jpg"
+  },
+  {
+    "slug": "trump-overrules-ice-traffic-stop-suspension-orders-agents-resume-20260715",
+    "headline": "Trump Overrules ICE's Traffic Stop Suspension, Orders Agents to Resume Vehicle Stops",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-overrules-ice-traffic-stop-suspension-orders-agents-resume-20260715.jpg"
+  },
+  {
+    "slug": "chirag-veer-singh-sarao-first-keshdhari-sikh-us-air-force-academy-20260715",
+    "headline": "Chirag Veer Singh Sarao: First Keshdhari Sikh at US Air Force Academy",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chirag-veer-singh-sarao-first-keshdhari-sikh-us-air-force-academy-20260715.jpg"
+  },
+  {
+    "slug": "sensitive-files-leaked-exposing-risks-at-indias-largest-nuclear-plant-20260715",
+    "headline": "Sensitive Files Leaked, Exposing Risks at India's Largest Nuclear Plant",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sensitive-files-leaked-exposing-risks-at-indias-largest-nuclear-plant-20260715.jpg"
+  },
+  {
+    "slug": "tragedy-strikes-noida-fire-claims-two-lives-in-residential-building-20260715",
+    "headline": "Tragedy Strikes Noida: Fire Claims Two Lives in Residential Building",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tragedy-strikes-noida-fire-claims-two-lives-in-residential-building-20260715.jpg"
+  },
+  {
+    "slug": "centre-approves-semicon-2-0-with-rs-1-27-lakh-crore-outlay-20260715",
+    "headline": "Centre Approves Semicon 2.0 with Rs 1.27 Lakh Crore Outlay",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/centre-approves-semicon-2-0-with-rs-1-27-lakh-crore-outlay-20260715.jpg"
+  },
+  {
+    "slug": "softbank-ceo-dismisses-ai-investment-bubble-fears-20260715",
+    "headline": "SoftBank CEO Dismisses AI Investment Bubble Fears as 'Foolish'",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/softbank-ceo-dismisses-ai-investment-bubble-fears-20260715.jpg"
+  },
+  {
+    "slug": "cabinet-approves-semicon-2-0-varanasi-projects-rail-upgrades-20260715",
+    "headline": "Cabinet Approves Semicon 2.0, Varanasi Projects, and Rail Upgrades",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cabinet-approves-semicon-2-0-varanasi-projects-rail-upgrades-20260715.jpg"
+  },
+  {
+    "slug": "uscis-naturalization-fee-hike-75-percent-waiver-eliminated-20260715",
+    "headline": "The Price of Becoming American Just Jumped 75 Percent. Low-Income Applicants Face a 250 Percent Hit",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/forged-diplomas-fraud-indian-visa-applicants-trust-crisis-20260715.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uscis-naturalization-fee-hike-75-percent-waiver-eliminated-20260715.jpg"
   },
   {
-    "slug": "india-eb5-cap-hit-grandfathering-deadline-september-20260715",
-    "headline": "India's EB-5 Window Just Closed. The Backup Plan Has an Eleven-Week Deadline",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-eb5-cap-hit-grandfathering-deadline-september-20260715.jpg"
+    "slug": "protein-biosensors-revolutionizing-emergency-medical-response-20260715",
+    "headline": "Protein Biosensors: Revolutionizing Emergency Medical Response",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/protein-biosensors-revolutionizing-emergency-medical-response-20260715.jpg"
   },
   {
-    "slug": "aamir-khan-gauri-spratt-third-marriage-bengaluru-love-story-pali-hill-kapoor-wedding-20260714",
-    "headline": "Aamir Khan Married a Bengaluru Entrepreneur He Met 25 Years Ago. Their First Outing Was at a Kapoor Wedding.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aamir-khan-gauri-spratt-third-marriage-bengaluru-love-story-pali-hill-kapoor-wedding-20260714.jpg"
+    "slug": "india-data-center-156-billion-investment-surge-h1-2026-20260715",
+    "headline": "India Pulled In $1.56 Billion in Data Centre Investment in Six Months. That Is Seven Times Last Year's Pace.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-data-center-156-billion-investment-surge-h1-2026-20260715.jpg"
   },
   {
-    "slug": "raktanchal-season-3-amazon-mx-player-free-streaming-july-16-purvanchal-crime-drama-20260714",
-    "headline": "Raktanchal Is Back for Its Final Season. The Gang Wars Move to the State Assembly This Time.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/raktanchal-season-3-amazon-mx-player-free-streaming-july-16-purvanchal-crime-drama-20260714.jpg"
-  },
-  {
-    "slug": "aapi-india-america-health-alliance-nita-ambani-tampa-20260715",
-    "headline": "One Hundred and Twenty Thousand Doctors, One Alliance: How Indian American Physicians Just Built a Healthcare Bridge Between Two Continents",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aapi-india-america-health-alliance-nita-ambani-tampa-20260715.jpg"
-  },
-  {
-    "slug": "india-eu-fta-redirect-10-billion-exports-us-europe-goyal-brussels-20260714",
-    "headline": "India Is Building a Trade Architecture That Bypasses the U.S. The EU Deal Could Redirect $11 Billion in Exports.",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-eu-fta-redirect-10-billion-exports-us-europe-goyal-brussels-20260714.jpg"
-  },
-  {
-    "slug": "india-supports-tribunal-ruling-against-china-in-south-china-sea-dispute-20260715",
-    "headline": "India Supports Tribunal Ruling Against China in South China Sea Dispute",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-supports-tribunal-ruling-against-china-in-south-china-sea-dispute-20260715.jpg"
-  },
-  {
-    "slug": "kylian-mbappe-owns-up-to-frances-poor-display-vs-spain-20260715",
-    "headline": "Kylian Mbappe Takes Responsibility for France's World Cup Defeat to Spain",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kylian-mbappe-owns-up-to-frances-poor-display-vs-spain-20260715.jpg"
-  },
-  {
-    "slug": "matt-damon-tom-holland-india-rock-concert-movie-culture-20260715",
-    "headline": "Why Matt Damon and Tom Holland Can't Shake India's Rock Concert Movie Culture",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/matt-damon-tom-holland-india-rock-concert-movie-culture-20260715.jpg"
-  },
-  {
-    "slug": "trump-reimpose-iran-blockade-threatens-power-plants-bridges-kharg-island-20260714",
-    "headline": "Trump Reimposed the Full Iran Blockade and Gave Tehran One Week. Power Plants and Bridges Are Next.",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-reimpose-iran-blockade-threatens-power-plants-bridges-kharg-island-20260714.jpg"
-  },
-  {
-    "slug": "goldman-sachs-fpi-reversal-nifty-26500-nri-banking-20260715",
-    "headline": "Goldman Sachs Declares Foreign Selling 'Likely Over' — FPIs Pump ₹15,157 Crore Into Indian Equities as the Tide Turns",
+    "slug": "ibm-ceo-remarks-cybersecurity-firm-value-20260715",
+    "headline": "IBM CEO's Remarks Trigger $70 Billion Loss, Boost Cybersecurity Firm's Value",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/goldman-sachs-fpi-reversal-nifty-26500-nri-banking-20260715.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ibm-ceo-remarks-cybersecurity-firm-value-20260715.jpg"
+  },
+  {
+    "slug": "soni-razdan-shabana-azmi-swara-bhasker-rally-sonam-wangchuk-20260715",
+    "headline": "Soni Razdan, Shabana Azmi, and Swara Bhasker Rally for Sonam Wangchuk",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/soni-razdan-shabana-azmi-swara-bhasker-rally-sonam-wangchuk-20260715.jpg"
+  },
+  {
+    "slug": "nashik-highway-horror-family-escapes-attacker-20260715",
+    "headline": "Nashik Highway Horror: Family Escapes Attacker Clinging to Car",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nashik-highway-horror-family-escapes-attacker-20260715.jpg"
+  },
+  {
+    "slug": "birthright-citizenship-scotus-ruling-banks-bill-indian-diaspora-20260715",
+    "headline": "Birthright Citizenship Survived the Supreme Court. The Next Attack Has Already Begun",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/birthright-citizenship-scotus-ruling-banks-bill-indian-diaspora-20260715.jpg"
+  },
+  {
+    "slug": "groww-q1-profit-doubles-735-crore-retail-investing-boom-nri-20260715",
+    "headline": "Groww's Profit Nearly Doubles to ₹735 Crore as 22 Million Indians Trade Actively — Inside the Retail Boom That's Rewriting India's Market DNA",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/groww-q1-profit-doubles-735-crore-retail-investing-boom-nri-20260715.jpg"
+  },
+  {
+    "slug": "natya-darpan-2026-new-jersey-multilingual-theater-20260715",
+    "headline": "Five Plays, Four Languages, Six Hours, One Stage: Inside New Jersey's Quietly Radical Indian Theatre Festival",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/natya-darpan-2026-new-jersey-multilingual-theater-20260715.jpg"
+  },
+  {
+    "slug": "england-argentina-world-cup-rivalry-revenge-20260715",
+    "headline": "England and Argentina: A World Cup Rivalry Rekindled",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/england-argentina-world-cup-rivalry-revenge-20260715.jpg"
   }
 ]
