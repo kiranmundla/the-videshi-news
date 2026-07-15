@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-15T03:11:12.057983+00:00",
+  "timestamp": "2026-07-15T04:10:55.004876+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 7,
+    "pass": 4,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,18 +11,18 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "215d6a3e-42b6-4dfd-a46d-c441dce2d77a",
-      "headline": "Thomson Reuters Is Cutting 500 Engineers and Hiring 250 AI-Native Ones. That Swap Is the Entire Tech Industry Now.",
-      "slug": "thomson-reuters-ai-native-engineer-replacement-wave-20260715",
+      "id": "d945f059-4715-4ce2-9c6d-6f7424ebf6df",
+      "headline": "Did AI Influence Meta's Layoffs? Lawsuit Raises Alarming Questions",
+      "slug": "did-ai-influence-meta-layoffs-lawsuit-raises-alarming-questions-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "software developer at dual-monitor setup",
-          "reason": "The photo shows a software developer, which is relevant to the tech industry story."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Meta logo and Threads app",
+          "reason": "The photo shows Meta and Threads, not AI in a corporate setting."
         },
         "inline_image_mismatches": []
       },
@@ -31,84 +31,43 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image is relevant to the tech industry but lacks a direct connection to the specific topic of AI and job cuts."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article discusses the impact of job cuts on H-1B visa holders, particularly Indian engineers, making it highly relevant to the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider including more specific statistics or quotes from affected workers to enhance the human element of the story.",
-          "Add a section discussing potential solutions or support systems for displaced workers, especially those on H-1B visas."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "46f0c526-4678-47ea-8af7-001a8e967631",
-      "headline": "Meta Used AI to Decide Who Gets Fired. Twenty-Six Workers Are Suing.",
-      "slug": "meta-ai-layoff-lawsuit-metamate-discrimination-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Meta Platforms headquarters",
-          "reason": "The photo shows Meta's headquarters, relevant to the story about Meta's AI usage."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the lawsuit's implications to Indian tech workers, highlighting the risks faced by H-1B visa holders."
+          "note": "The article effectively connects the implications of the lawsuit to the Indian diaspora working in tech, highlighting potential impacts on employment practices."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from experts or legal analysts to provide more depth to the discussion on AI in layoffs.",
-          "Include more context on the potential impact of this lawsuit on the tech industry as a whole."
+          "Include specific examples of how AI has been used in layoffs at other companies for context.",
+          "Add quotes from experts or affected employees to enhance the narrative and provide personal perspectives."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (Meta logo and Threads app)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a1e9d20e-eda9-4522-8031-427cb2b1ceee",
-      "headline": "Arvind Krishna Admits IBM 'Faltered.' The Stock Just Had Its Worst Day Since 1968.",
-      "slug": "arvind-krishna-ibm-faltered-worst-day-1968-ai-software-20260715",
+      "id": "6285e564-4338-48db-9cc6-080f50b9f62a",
+      "headline": "World Cup Fever: Bengaluru Eateries Extend Hours to 3:30 AM for Match Screenings",
+      "slug": "world-cup-fever-bengaluru-eateries-extend-hours-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "man speaking at conference",
-          "reason": "The photo shows a man at a conference, matching the story about IBM's CEO."
+          "verdict": "MISMATCH",
+          "what_photo_shows": "football fans celebrating",
+          "reason": "The photo shows football fans, not cricket fans in a restaurant."
         },
         "inline_image_mismatches": []
       },
@@ -117,32 +76,34 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image of Arvind Krishna is relevant to the article's topic, but the event date in the image URL (2025) is incorrect and misleading."
+          "issue": "The image description is missing, making it difficult to assess its relevance."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of IBM's performance to Indian Americans in the tech sector, discussing employment and investment concerns."
+          "quality": 9,
+          "note": "The article effectively connects the World Cup to the NRI experience, highlighting cultural ties."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the date in the image URL to reflect the current year or ensure it is relevant to the article.",
-          "Expand on the implications for NRI investors with specific examples or quotes from industry experts."
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes from local business owners or patrons to provide more depth to the narrative."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (football fans celebrating)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "8338cfd4-bed8-4d4b-885b-403a4c947678",
-      "headline": "US House Votes to Make Daylight Saving Time Permanent",
-      "slug": "us-house-votes-to-make-daylight-saving-time-permanent-20260715",
+      "id": "d4782cbc-c57b-4200-b15a-4ff6f3e38c9f",
+      "headline": "US Eases Tariff Threat Against India, China for Russian Oil Buys",
+      "slug": "us-eases-tariff-threat-against-india-china-for-russian-oil-buys-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -151,7 +112,7 @@
         "vision_image_match": {
           "verdict": "MISMATCH",
           "what_photo_shows": "Great Seal of the United States",
-          "reason": "The photo does not show a session of the US House of Representatives voting."
+          "reason": "The seal does not relate to energy trade routes or tariffs."
         },
         "inline_image_mismatches": []
       },
@@ -165,13 +126,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the implications of DST changes for the Indian diaspora, particularly in terms of communication and business."
+          "note": "The article effectively connects the tariff changes to the interests of the Indian diaspora, particularly in sectors reliant on energy prices."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image that visually represents the topic of daylight saving time.",
-          "Expand on the potential implications for NRIs with specific examples or anecdotes to enhance the diaspora connection."
+          "Include a relevant hero image that visually represents the topic of U.S. tariffs and energy procurement.",
+          "Provide more specific examples or quotes from diaspora members to enhance the personal connection to the topic."
         ],
         "verdict": "pass"
       },
@@ -185,95 +146,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "7f03f809-70a9-44fe-8359-f8182711d45f",
-      "headline": "Messi Faces England: The Semifinal That Eluded Him",
-      "slug": "messi-faces-england-the-semifinal-that-eluded-him-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Lionel Messi playing soccer",
-          "reason": "The photo shows Lionel Messi in action, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting their passion for football and the sense of community it fosters."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from players or coaches to enhance the narrative.",
-          "Include statistics or recent performance data to provide more depth to the analysis."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "c2bdff0c-9786-4a62-bf05-79e6e24ed9ee",
-      "headline": "Argentina's Scaloni Reveals Strategy for World Cup Glory Against England",
-      "slug": "argentina-scaloni-strategy-world-cup-final-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Argentina and England football teams playing",
-          "reason": "The photo shows a football match between Argentina and England, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the significance of the match to the Indian diaspora, highlighting their growing interest in football and community engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes or insights from Indian football experts or fans to strengthen the diaspora connection.",
-          "Include more specific examples of how the Indian community engages with football during the World Cup."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "2a27fe6a-89a5-41a7-a9ae-6d57b820f15f",
-      "headline": "US Senators Introduce Trump-Backed Bill for Russia Sanctions, Targeting India",
-      "slug": "us-senators-introduce-trump-backed-bill-for-russia-sanctions-targeting-india-20260715",
+      "id": "8338cfd4-bed8-4d4b-885b-403a4c947678",
+      "headline": "US House Votes to Make Daylight Saving Time Permanent",
+      "slug": "us-house-votes-to-make-daylight-saving-time-permanent-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -291,13 +166,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively discusses the implications for the Indian diaspora, making it relevant to NRI readers."
+          "note": "The article effectively connects the legislative change to the Indian diaspora's communication and business needs."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant hero image to enhance visual appeal and context.",
-          "Provide more specific examples of how the proposed tariffs could directly affect NRI businesses."
+          "Include a relevant image that visually represents the topic of daylight saving time.",
+          "Expand on the potential implications for NRIs with specific examples or anecdotes."
         ],
         "verdict": "pass"
       },
