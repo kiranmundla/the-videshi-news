@@ -283,7 +283,7 @@ function SubTopicGroup({
                     loading="lazy"
                     focalX={visible[0].focal_x}
                     focalY={visible[0].focal_y}
-                    className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-[1.01] transition-transform duration-500"
                   />
                 </div>
               )}

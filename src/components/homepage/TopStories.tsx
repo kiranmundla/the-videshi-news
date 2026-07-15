@@ -61,8 +61,8 @@ function HeroCard({ article }: { article: Article }) {
             alt={article.title}
             loading="eager"
             referrerPolicy="no-referrer"
-            className="w-full h-auto object-cover"
-            style={{ maxHeight: "340px", objectPosition: "center 20%" }}
+            className="w-full h-auto object-contain"
+            style={{ objectPosition: "center 20%" }}
           />
         )}
         <div className="p-4 md:p-5">

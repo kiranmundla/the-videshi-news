@@ -52,8 +52,8 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
               <div
-                className="w-full bg-stone-200 overflow-hidden rounded-lg mb-3.5"
-                style={{ aspectRatio: "16/9", maxHeight: "400px" }}
+                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5"
+                style={{ aspectRatio: "16/9" }}
               >
                 <HeroImage
                   src={lead.hero_image_url}
@@ -61,7 +61,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                   loading="lazy"
                   focalX={lead.focal_x}
                   focalY={lead.focal_y}
-                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.01] transition-transform duration-500"
                 />
               </div>
             )}
