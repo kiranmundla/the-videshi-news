@@ -103,26 +103,40 @@ function SourcesPill({
       </button>
 
       {/* Expanded sources list */}
-      {open && (
-        <div
-          style={{
-            marginTop: "8px",
-            padding: "12px 16px",
-            borderRadius: "12px",
-            border: "1px solid hsl(var(--border))",
-            background: "hsl(var(--card))",
-            fontSize: "13px",
-            lineHeight: "1.6",
-          }}
-        >
-          <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-            {sources.map((s, i) => {
-              const domain = s.url
-                ? (() => {
-                    try { return new URL(s.url).hostname.replace("www.", ""); } catch { return ""; }
-                  })()
-                : "";
-              return (
+      {open && (() => {
+        /* Deduplicate by domain — show each site name once */
+        const seen = new Set<string>();
+        const dedupedSites = sources.reduce<{ domain: string; siteName: string }[]>((acc, s) => {
+          const domain = s.url
+            ? (() => { try { return new URL(s.url).hostname.replace("www.", ""); } catch { return ""; } })()
+            : "";
+          const key = domain || s.label;
+          if (!seen.has(key)) {
+            seen.add(key);
+            /* Pretty site name: strip TLD, capitalize, handle multi-word domains */
+            const siteName = domain
+              ? domain.replace(/\.(com|org|net|co\.in|co\.uk|gov|gov\.in|io|xml)$/i, "")
+                  .split(/[.-]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+              : s.label.split("—")[0].split("–")[0].trim();
+            acc.push({ domain, siteName });
+          }
+          return acc;
+        }, []);
+
+        return (
+          <div
+            style={{
+              marginTop: "8px",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              border: "1px solid hsl(var(--border))",
+              background: "hsl(var(--card))",
+              fontSize: "13px",
+              lineHeight: "1.6",
+            }}
+          >
+            <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+              {dedupedSites.map((s, i) => (
                 <li
                   key={i}
                   style={{
@@ -133,9 +147,9 @@ function SourcesPill({
                     color: "hsl(var(--muted-foreground))",
                   }}
                 >
-                  {domain ? (
+                  {s.domain ? (
                     <img
-                      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=16`}
+                      src={`https://www.google.com/s2/favicons?domain=${s.domain}&sz=16`}
                       alt=""
                       width={14}
                       height={14}
@@ -144,28 +158,13 @@ function SourcesPill({
                   ) : (
                     <span style={{ width: 14, height: 14, flexShrink: 0 }} />
                   )}
-                  {s.url ? (
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        color: "hsl(var(--muted-foreground))",
-                        textDecoration: "underline",
-                        textUnderlineOffset: "2px",
-                      }}
-                    >
-                      {s.label}
-                    </a>
-                  ) : (
-                    <span>{s.label}</span>
-                  )}
+                  <span>{s.siteName}</span>
                 </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+              ))}
+            </ul>
+          </div>
+        );
+      })()}
     </div>
   );
 }

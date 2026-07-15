@@ -382,7 +382,7 @@ Below are news signals. Each includes `hours_ago` — how many hours since the s
 
 Score each for:
 1. **newsworthiness** (1-10): How important is this story RIGHT NOW? Major events, breaking news, policy changes = 8-10. Routine/filler = 1-4. Penalize stories that are many hours old — they're less urgent.
-2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? Immigration, H-1B, India-US/UK/Canada relations, NRI investments, diaspora culture = 8-10. Purely local Indian domestic news = 3-5. Irrelevant = 1-2.
+2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? Immigration, H-1B, India-US/UK/Canada relations, NRI investments, diaspora culture = 8-10. US market moves (S&P 500, Nasdaq, Fed rate decisions, FAANG/major tech earnings, 401k-relevant news) also score 7-9 because most NRIs live and invest in the US. Purely local Indian domestic news = 3-5. Irrelevant = 1-2.
 3. **suggested_category**: One of: immigration, technology, news, entertainment, sports, markets-finance, nri-world, food, travel, lifestyle-health
 4. **reason**: One sentence explaining your scoring.
 
