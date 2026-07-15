@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-15T12:10:52.782230+00:00",
+  "timestamp": "2026-07-15T13:10:51.374925+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 2,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,54 +11,9 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "bde455c2-67d5-4879-9054-89c1b6a504d5",
-      "headline": "ICC Unveils Super 7: A Game-Changer for ODI and T20 World Cups",
-      "slug": "icc-unveils-super-7-a-game-changer-for-odi-and-t20-world-cups-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "football match in progress",
-          "reason": "The photo shows a football match, unrelated to cricket or ICC."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the changes in cricket formats to the interests of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the article's visual appeal.",
-          "Add quotes from cricket analysts or players to provide more depth and credibility to the article."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (football match in progress)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "56e79558-9aff-418c-ab25-269de2a1ed65",
-      "headline": "Sensitive Files Leaked, Exposing Risks at India's Largest Nuclear Plant",
-      "slug": "sensitive-files-leaked-exposing-risks-at-indias-largest-nuclear-plant-20260715",
+      "id": "ff78f86d-5cbd-4abe-a5fb-b45b9a8f4ea2",
+      "headline": "Rani Mukerji Will Receive an Honorary Doctorate in Melbourne Next Month. She Follows Shah Rukh Khan Into the Record Books.",
+      "slug": "rani-mukerji-honorary-doctorate-la-trobe-university-iffm-melbourne-2026-shah-rukh-khan-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -66,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kudankulam Nuclear Power Plant",
-          "reason": "The photo shows the Kudankulam Nuclear Power Plant, relevant to the story."
+          "what_photo_shows": "Rani Mukerji at an event",
+          "reason": "The photo shows Rani Mukerji, who is the subject of the story."
         },
         "inline_image_mismatches": []
       },
@@ -81,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the incident to the concerns of the Indian diaspora, particularly regarding safety and investment."
+          "note": "The article effectively connects Mukerji's achievements and the event to the Indian diaspora in Australia, particularly highlighting the significance of the event for the Indian community."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples of the types of sensitive information leaked to enhance the article's depth.",
-          "Add quotes from cybersecurity experts to provide authoritative perspectives on the implications of the leak."
+          "Consider adding quotes from Rani Mukerji or festival organizers to enhance the personal connection to the event.",
+          "Include more context about the significance of honorary doctorates in the Indian diaspora to deepen the cultural relevance."
         ],
         "verdict": "pass"
       },
@@ -99,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2fec9b7a-7cab-4065-9067-d2be6e6a3e0c",
-      "headline": "Chirag Veer Singh Sarao: First Keshdhari Sikh at US Air Force Academy",
-      "slug": "chirag-veer-singh-sarao-first-keshdhari-sikh-us-air-force-academy-20260715",
+      "id": "c4c84b64-203d-4157-916d-db5151741d12",
+      "headline": "Akshay Kumar Turns Villain Against a Blind Saif Ali Khan. Their First Film Together in 17 Years Drops Its Teaser Tonight.",
+      "slug": "akshay-kumar-villain-haiwaan-saif-ali-khan-blind-priyadarshan-teaser-september-2026-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -109,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "person in military uniform with aircraft",
-          "reason": "The photo aligns with a military setting related to the US Air Force Academy."
+          "what_photo_shows": "Akshay Kumar at an event",
+          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -124,13 +79,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects Sarao's achievement to the broader Indian diaspora and Sikh community, highlighting themes of representation and cultural identity."
+          "note": "The article connects well with the diaspora by referencing nostalgia and past films that NRIs may have enjoyed."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding a quote from a family member or community leader to further emphasize the impact of Sarao's achievement.",
-          "Include more details about the specific challenges Keshdhari Sikhs face in the military to provide deeper context."
+          "Consider adding more context about the film's themes and how they resonate with current societal issues.",
+          "Include quotes or reactions from fans or critics to enhance engagement."
         ],
         "verdict": "pass"
       },
