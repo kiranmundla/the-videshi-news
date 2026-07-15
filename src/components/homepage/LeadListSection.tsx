@@ -51,7 +51,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
           {/* Lead card */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9", maxHeight: "380px" }}>
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9", maxHeight: "480px" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
