@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-15T07:10:59.558798+00:00",
+  "timestamp": "2026-07-15T08:12:11.769751+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 6,
     "flag": 1,
-    "fail": 0,
+    "fail": 3,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 4,
   "unpublished": 0,
   "articles": [
     {
-      "id": "3bfc5e40-3b2a-410f-a619-6790b69dea53",
-      "headline": "What to Watch This Week: Samantha\u2019s \u20b9100 Crore Hit Finally Streams, and Margot Robbie Haunts the Moors",
-      "slug": "what-to-watch-this-week-july-15-2026",
+      "id": "24efd3e4-fa45-4ccf-8a05-db5e4623e2f6",
+      "headline": "Five Plays, Four Languages, Six Hours, One Stage: Inside New Jersey's Quietly Radical Indian Theatre Festival",
+      "slug": "natya-darpan-2026-new-jersey-multilingual-theater-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,49 +21,44 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Samantha Ruth Prabhu at event",
-          "reason": "The photo shows Samantha Ruth Prabhu, relevant to the story."
+          "what_photo_shows": "Actors performing a theatrical play",
+          "reason": "The photo shows actors on stage, fitting the theatre festival theme."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DasDSNqjsTN/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the article's content about the streaming picks."
-          }
-        ],
+        "overall_score": 3,
+        "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image does not clearly relate to the specific content of the article about the theatre festival."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article highlights streaming options relevant to the Indian diaspora, particularly with the mention of Telugu cinema."
+          "quality": 7,
+          "note": "The article discusses an Indian theatre festival in New Jersey, which is relevant to the diaspora audience."
         },
-        "factual_flags": [],
+        "factual_flags": [
+          "The article mentions the 2026 edition of the festival, which is a hallucination as the current date is October 2023."
+        ],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that connects to the article's content.",
-          "Consider adding a brief summary or context for each streaming option to enhance reader engagement."
+          "Correct the hallucinated date references to reflect the current year.",
+          "Ensure the image used is more representative of the theatre festival or its themes."
         ],
-        "verdict": "flag"
+        "verdict": "fail"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DasDSNqjsTN/",
-        "promoted to published"
+        "Revised by gemini-2.5-flash (690\u2192804 words)"
       ],
-      "revised": false,
+      "revised": true,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "195925e5-dc33-488c-9bca-5f2a60a49f29",
-      "headline": "Ranveer Singh\u2019s \u20b9300 Crore Zombie Film Just Hired the Prosthetics Team From 28 Days Later",
-      "slug": "ranveer-singh-pralay-zombie-thriller-28-days-later-prosthetics-australia-deepika-paternity-20260715",
+      "id": "b0710a23-3e2d-45d1-bbe9-51ef5f6a5edb",
+      "headline": "Eight Michelin Stars, One Grocery Aisle: How Indian Cuisine Conquered America's Supermarket Shelves",
+      "slug": "gymkhana-whole-foods-indian-cuisine-american-grocery-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -71,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Ranveer Singh at an event",
-          "reason": "The photo shows Ranveer Singh, who is relevant to the story."
+          "what_photo_shows": "Indian dishes with tandoori chicken",
+          "reason": "The photo shows Indian cuisine, relevant to the story about Indian food in supermarkets."
         },
         "inline_image_mismatches": []
       },
@@ -86,13 +81,335 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the film's global ambitions and the significance of its production choices to diaspora audiences."
+          "note": "The article effectively connects the rise of Indian cuisine in America to the experiences and influence of the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more quotes or insights from the director or cast to enhance the article's depth.",
-          "Include a brief comparison of Bollywood's previous attempts at horror to contextualize the significance of this film."
+          "Consider adding quotes or testimonials from Indian Americans about their experiences with Indian cuisine in the U.S.",
+          "Include more statistics or data points to strengthen the argument about the growth of Indian cuisine in American supermarkets."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "e17d6d57-ad45-4283-9ae2-a625d59dca82",
+      "headline": "Groww's Profit Nearly Doubles to \u20b9735 Crore as 22 Million Indians Trade Actively \u2014 Inside the Retail Boom That's Rewriting India's Market DNA",
+      "slug": "groww-q1-profit-doubles-735-crore-retail-investing-boom-nri-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3c4829ca-8bec-4664-816d-36c0bcb8ac49",
+            "headline": "Rupee Slides to One-Month Low as India's Trade Deficit Ballo"
+          },
+          {
+            "article_id": "6b84bd3b-bd0d-487a-a708-5d798980b707",
+            "headline": "Goldman Sachs Declares Foreign Selling 'Likely Over' \u2014 FPIs "
+          },
+          {
+            "article_id": "6faacfdc-05a9-4381-8933-03a2120b2467",
+            "headline": "Sensex Drops 560 Points as Brent Crude Hits $87 and Rupee Sl"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the Bombay Stock Exchange is relevant to the article's topic on trading and finance."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses Groww's impact on NRI investors, making it relevant for the diaspora audience."
+        },
+        "factual_flags": [
+          "The article mentions a profit report for the quarter ended June 30, 2026, which is a hallucination as the current date is October 2023."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the hallucinated date to reflect a realistic timeline.",
+          "Provide more context on how Groww's performance specifically impacts NRI investors beyond just investment opportunities."
+        ],
+        "verdict": "fail"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (887\u2192949 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "abfdc44f-d8be-4113-b044-60e2c2c7a950",
+      "headline": "US Inflation Crashes to 3.5% and Fed Rate Hike Odds Collapse \u2014 But Oil at $86 Keeps NRI Investors on Edge",
+      "slug": "us-cpi-inflation-3-5-percent-fed-rate-hike-collapse-nri-rupee-oil-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Federal Reserve Board Building",
+          "reason": "The photo is relevant to a story about US inflation and Fed rate hikes."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of U.S. inflation and Fed rate changes on NRI investors, making it relevant to the diaspora audience."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from NRI investors or financial experts to enhance the diaspora perspective.",
+          "Include a brief summary of how these economic changes specifically impact NRIs in different sectors."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7a4ceb29-13ad-4602-bab0-40688d5b1e5a",
+      "headline": "The Price of Becoming American Just Jumped 75 Percent. Low-Income Applicants Face a 250 Percent Hit",
+      "slug": "uscis-naturalization-fee-hike-75-percent-waiver-eliminated-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "people at a naturalization ceremony",
+          "reason": "The photo shows a naturalization ceremony, relevant to the immigration story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article discusses the impact of immigration fee increases specifically on the Indian-American community, making it relevant to the diaspora."
+        },
+        "factual_flags": [
+          "The article mentions a proposed fee increase and specific dates related to immigration processes, which should be verified for accuracy."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Clarify the timeline of the proposed changes and their expected implementation to avoid confusion.",
+          "Include more direct quotes or perspectives from affected individuals or community leaders to enhance the human angle."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (942\u21921225 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "7c29e681-32d0-4aac-8b5e-4c2f4891abca",
+      "headline": "Birthright Citizenship Survived the Supreme Court. The Next Attack Has Already Begun",
+      "slug": "birthright-citizenship-scotus-ruling-banks-bill-indian-diaspora-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "United States Supreme Court building",
+          "reason": "The photo shows the Supreme Court, relevant to the story on a Supreme Court ruling."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 5,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image does not directly relate to the topic of birthright citizenship or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the implications of the Supreme Court ruling to the Indian diaspora, highlighting the impact on Indian families."
+        },
+        "factual_flags": [
+          "The article mentions Trump's executive order signed on January 20, 2025, which is a hallucination as that date is in the future."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the hallucinated date regarding Trump's executive order.",
+          "Consider using a more relevant image that reflects the topic of immigration or birthright citizenship."
+        ],
+        "verdict": "fail"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (861\u2192926 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "44224247-aa1a-436f-8d21-5b4a447fe9fe",
+      "headline": "Nashik Highway Horror: Family Escapes Attacker Clinging to Car",
+      "slug": "nashik-highway-horror-family-escapes-attacker-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "historical portrait of a family",
+          "reason": "The photo shows a historical family portrait, unrelated to a modern highway incident."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the incident to the concerns of the Indian diaspora regarding safety while traveling in India."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image description to enhance the image match score.",
+          "Consider adding quotes from diaspora members to strengthen the connection to the NRI audience."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (historical portrait of a family)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "62b2f480-a805-4db5-9cbb-a04cfc2e2681",
+      "headline": "US Doctors Warn Against Fresh Produce Amid Cyclospora Outbreak",
+      "slug": "us-doctors-warn-against-fresh-produce-amid-cyclospora-outbreak-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "fresh produce including broccoli and cauliflower",
+          "reason": "The photo shows fresh produce, which is relevant to the Cyclospora outbreak story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the outbreak to the Indian diaspora's culinary habits and emphasizes the importance of food safety."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding specific examples of affected brands or products to enhance the article's relevance.",
+          "Include a section on how NRIs can stay updated on food safety alerts related to fresh produce."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "eaa41c96-db13-4917-b86c-cfe6f3d3b095",
+      "headline": "Meta Faces Lawsuit Over AI-Driven Layoffs Targeting Employees on Leave",
+      "slug": "meta-faces-lawsuit-over-ai-driven-layoffs-targeting-employees-on-leave-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Meta Platforms Inc. headquarters",
+          "reason": "The photo shows Meta's headquarters, relevant to the story about Meta."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the lawsuit's implications to the Indian diaspora in the tech sector, emphasizing the relevance of fair labor practices."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from legal experts or affected employees to enhance the article's depth.",
+          "Include more statistics or data on AI usage in layoffs across the tech industry for a stronger argument."
         ],
         "verdict": "pass"
       },
@@ -112,75 +429,25 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "stadium exterior with crowd",
-          "reason": "The photo shows a stadium exterior, not a cricket match or related scene."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 8,
+        "overall_score": 7,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects cricket and geopolitics, highlighting the emotional investment of the Indian diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image with a description that matches the article's content.",
-          "Provide more context on the implications of the stalled media rights for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (stadium exterior with crowd)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6a238a15-af7c-453a-abff-9e440ff2d234",
-      "headline": "Fleming Gone, Simons and Hussey May Follow. CSK's 18-Year Dynasty Is Getting a Full Teardown.",
-      "slug": "csk-fleming-departure-coaching-overhaul-simons-hussey-dhoni-texas-mlc-nri-july-2026",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "MA Chidambaram Stadium during IPL match",
-          "reason": "The stadium is relevant to the Chennai Super Kings story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
+          "score": 8,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects with NRI cricket fans, particularly those in the US, discussing the implications of CSK's changes on their experience."
+          "note": "The article effectively connects cricket with geopolitical issues relevant to the Indian diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from NRI fans or experts to enhance the diaspora perspective.",
-          "Include more context on how the coaching changes might impact CSK's performance in future IPL seasons."
+          "Add more recent quotes or statements from BCCI officials to enhance credibility.",
+          "Include a brief overview of the implications for the Indian diaspora if the tour is canceled."
         ],
         "verdict": "pass"
       },
