@@ -10,22 +10,6 @@ interface Props {
   listCount?: number;
 }
 
-function adaptiveImageStyle(
-  imgW?: number | null,
-  imgH?: number | null,
-): { aspectRatio: string; useContain: boolean } {
-  if (!imgW || !imgH || imgW <= 0 || imgH <= 0) {
-    return { aspectRatio: "3/2", useContain: false };
-  }
-  const natural = imgW / imgH;
-  const isPortrait = natural < 0.9;
-  if (isPortrait) {
-    return { aspectRatio: "4/3", useContain: true };
-  }
-  const clamped = Math.min(Math.max(natural, 1.0), 2.0);
-  return { aspectRatio: `${clamped.toFixed(3)}`, useContain: false };
-}
-
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
   const h = Math.floor(diff / 3600000);
@@ -42,7 +26,6 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
   const hasMore = rest.length > listCount;
   const hasLeadImage = isValidImage(lead.hero_image_url);
   const rt = (lead as any).reading_time ?? 5;
-  const { aspectRatio: leadRatio, useContain: leadContain } = adaptiveImageStyle(lead.img_w, lead.img_h);
 
   return (
     <section className="mb-14">
@@ -69,16 +52,16 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
               <div
-                className={`w-full bg-stone-200 overflow-hidden rounded-lg mb-3.5 ${leadContain ? "flex items-center justify-center" : ""}`}
-                style={{ aspectRatio: leadRatio, maxHeight: "500px" }}
+                className="w-full bg-stone-200 overflow-hidden rounded-lg mb-3.5"
+                style={{ aspectRatio: "16/9", maxHeight: "400px" }}
               >
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="lazy"
-                  focalX={leadContain ? undefined : lead.focal_x}
-                  focalY={leadContain ? undefined : lead.focal_y}
-                  className={`${leadContain ? "max-w-full max-h-full w-auto h-auto" : "w-full h-full object-cover"} group-hover:scale-[1.01] transition-transform duration-500`}
+                  focalX={lead.focal_x}
+                  focalY={lead.focal_y}
+                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
                 />
               </div>
             )}
