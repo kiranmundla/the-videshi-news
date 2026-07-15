@@ -1,240 +1,214 @@
 # Pipeline V2 — Unified Rolling News Pipeline
 
-## Design Document — July 15, 2026
+## Design Document — July 15, 2026 (Revised)
 
-### Problem
+### Core Principle
 
-The current pipeline is fragmented: separate crons for ingest (RSS), email newsletters, writing, reviewing, scoring, and feed sync — each running independently on hourly cycles. Stories take 3-4 hours from signal to live. Signal sources don't talk to each other. Dedup is mechanical (keyword overlap), can't distinguish "same story, different outlet" from "same topic, new development." Important stories get missed because they're not in our 79 RSS feeds.
+Hatch is the editor AND writer. GPT-4o-mini API is only used for bulk mechanical classification where parallelism matters. Everything that requires judgment — writing, review, editorial decisions — is Hatch.
 
-### North Star
+### Division of Labor
 
-A single rolling pipeline that acts like an intelligent editor:
-- Sees everything (RSS + Google News + newsletters + press releases)
-- Recognizes what's the same story vs. genuinely new information  
-- Makes editorial judgments about what our readers need to see
-- Gets stories live in one cycle, not four
+| Who | Does what | Cost |
+|-----|----------|------|
+| **Hatch** | Article writing, quality review, editorial decisions, new-development detection, scoring/ranking | $0 |
+| **GPT-4o-mini API** | Batch signal classification, diaspora yes/no gate, one-sentence summaries for embeddings | ~$2.25–2.75/day |
+| **Local compute** | LSH dedup, SBERT embeddings, HDBSCAN clustering, spaCy NER, keyword pre-filter | $0 |
 
 ---
 
-## Signal Sources
-
-All sources feed into one unified pool: `p2_signals`
+## Signal Sources (all feed into unified `p2_signals`)
 
 ### 1. RSS Feeds (existing, 79 feeds)
-- Polled hourly
-- Each item = one signal with `source_type: 'rss'`
-- Source quality varies: Tier A (Reuters, BBC) vs Tier B (blogs)
+- Polled every 15-30 min
+- `source_type: 'rss'`
 
-### 2. Google News RSS (new)
-Two modes, both free, no API key:
+### 2. Google News RSS (new, free, no API key)
 
-**a) Topic Feeds** — pre-built categories (Top Stories, Business, Tech, Sports, etc.)
-- ~40-70 items per feed, **heavily clustered** (Google groups related articles)
-- Cluster size = instant signal strength (5+ sources = major story)
-- Good for: catching major stories we missed, understanding story magnitude
+**a) Topic Feeds** — Top Stories, Business, Tech, Sports, Entertainment, World, Science, Health
+- 40-70 items per feed, heavily clustered by Google (5+ sources per story)
 - US edition + India edition for dual perspective
+- Good for: catching major stories our RSS feeds miss
 
-**b) Search Queries** — keyword-based, diaspora-focused
+**b) Search Queries** — 10-15 diaspora-focused keyword queries
 - Up to 100 items per query, no clustering
-- Operators: exact phrases, OR/exclusion, geo edition
-- Good for: niche diaspora stories (H-1B, NRI investment, Indian American achievements)
-- ~10-15 targeted queries covering our core beats
+- Operators: exact phrases, OR, exclusion, geo editions
+- Queries: H-1B/visa/green card, "Indian American", NRI/diaspora, Indian tech CEO, India-US trade, Bollywood international, USCIS, Indian startup, etc.
 
-**Query list (initial):**
-```
-"H-1B visa" OR "green card India" OR "EB-2" OR "OPT"
-"Indian American" OR "Indian origin"
-"NRI" OR "Indian diaspora" OR "non-resident Indian"
-Indian tech CEO OR "Indian origin" CEO
-India US trade OR India UK trade
-Bollywood US release OR Indian film international
-India cricket OR "Indian Premier League"
-USCIS OR "immigration India"
-"hate crime" Indian OR "Indian student" abroad
-Indian startup unicorn OR "Indian founder"
-```
+### 3. GDELT DOC API (new, free)
+- Global news database, 100+ languages, updates every 15 min
+- Up to 250 articles per query
+- Gap-filler for stories not in RSS or Google News
+- Diaspora-relevant queries run every 30-60 min
 
-### 3. Email Newsletters (existing, needs rewiring)
-- Currently: gmail-scanner → email_signals → email-signal-ingest → p2_topics (bypasses p2_signals)
-- Change: email-signal-ingest writes to `p2_signals` with `source_type: 'newsletter'`
-- Sources: USCIS, Boundless, NVIDIA, a16z, Qualcomm, MPI, CIS newsletters
+### 4. Email Newsletters (existing, rewired)
+- Currently bypasses `p2_signals` — rewire to go through unified pool
+- `source_type: 'newsletter'`
+- USCIS, Boundless, NVIDIA, a16z, Qualcomm, MPI, CIS
 
-### 4. Press Releases (future)
-- PR Newswire, GlobeNewswire, Business Wire RSS feeds filtered for India/diaspora keywords
+### 5. Press Releases (future)
+- PR Newswire, GlobeNewswire, Business Wire RSS filtered for India/diaspora
 - `source_type: 'press_release'`
 
-### 5. Social/X (future, when credits available)
-- Trending topics mentioning India/diaspora
-- `source_type: 'social'`
-
 ---
 
-## The Intelligent Decisions (where GPT comes in)
+## Pipeline Architecture — One Rolling Loop
 
-### Decision 1: Signal Triage — "What is this about?"
-
-**When:** Every new signal arrives  
-**Input:** Signal title + snippet + source  
-**GPT decides:**
-- **Entity extraction**: Who/what is this about? (e.g., "Anil Menon", "H-1B", "SpaceX")
-- **Story ID**: A canonical story identifier (e.g., "anil-menon-iss-launch-2026-07")
-- **Category**: immigration / technology / markets-finance / entertainment / sports / news / nri-world
-- **Diaspora relevant?** Yes/No (binary gate — no 1-10 scale)
-- **Story stage**: breaking / developing / background / opinion
-
-This replaces the mechanical keyword-overlap clustering. GPT understands that "Menon reaches ISS" and "Indian astronaut docks at space station" are the same story, even with zero keyword overlap.
-
-**Cost control:** Use GPT-4o-mini. Batch signals — send 20-30 at once, not one-by-one. ~$0.01-0.02 per batch.
-
-### Decision 2: Topic Intelligence — "Should we cover this?"
-
-**When:** After clustering, for each topic  
-**Input:** Topic with all its signals, our recent published articles  
-**GPT decides:**
-
-For **new topics** (no published article):
-- **Newsworthiness** (1-10): How important right now?
-- **Cover?** Yes/No based on: newsworthiness + diaspora relevance + signal strength
-- **Urgency**: Write now vs. wait for more signals
-- **Angle**: What's the diaspora angle for this story?
-
-For **existing topics** (already published):
-- **New information?** Does this signal add materially new facts beyond what we published?
-  - "Menon launches" → published ✓ → "Menon arrives at ISS" → YES, new development
-  - "Menon launches" → published ✓ → "Another outlet reports Menon launched" → NO, same facts
-- **Update or follow-up?** If new info, should we update the existing article or write a follow-up?
-- **What changed?** One-line summary of the new development
-
-### Decision 3: Editorial Prioritization — "What do we write next?"
-
-**When:** After all signals are triaged and topics scored  
-**Input:** All eligible topics with scores, current site state, recent articles  
-**GPT decides:**
-- **Top N to write** (considering category diversity, recency, reader value)
-- **Story angle** for each (the diaspora-specific lens)
-- **Priority order** (breaking first, then developing, then features)
-- **What NOT to write** and why (too similar to recent article, low value, wait for more info)
-
-This is the "editor's meeting" — one intelligent pass that looks at the full picture, not individual threshold checks.
-
----
-
-## Topic Lifecycle
-
-Topics are not one-shot. They have a lifecycle:
+Runs every 30 minutes via single cron. Each phase is idempotent.
 
 ```
-EMERGING → COVERED → DEVELOPING → SATURATED
-```
+PHASE 1: INGEST (~30 sec, parallel fetches)
+├── Fetch all RSS feeds (79)
+├── Fetch Google News topic feeds (8 categories × 2 geo editions)
+├── Fetch Google News search queries (10-15 queries)
+├── Read pending email_signals
+├── Fetch GDELT DOC API (diaspora queries)
+└── All → p2_signals (with source_type tag)
 
-- **EMERGING**: New signals coming in, no article published yet. Accumulate signals, wait for strength OR write immediately if high-urgency.
-- **COVERED**: Article published. Topic stays open. New signals are checked for "new info?"
-- **DEVELOPING**: New material information arrives on a covered topic. Follow-up article warranted.
-- **SATURATED**: Topic has been covered thoroughly, new signals are just echoes. Stop writing.
+PHASE 2: DEDUP (~10 sec, zero LLM cost)
+├── URL normalization (strip tracking params, canonicalize)
+├── Title normalization (strip publisher, lowercase, remove punctuation)
+├── LSH/MinHash on title+snippet (>80% similarity = duplicate)
+├── Cluster propagation (dup of already-clustered signal → inherit cluster)
+└── Result: only unique signals pass through (60-80% filtered out)
 
-GPT manages these transitions. A human editor would naturally do this — "we already covered the launch, but the ISS arrival is new, write a follow-up. The third article about the same launch from a different outlet? Skip."
+PHASE 3: ENRICH (~15 sec, small GPT cost)
+├── Full article extraction (newspaper3k) for signals worth enriching
+├── One-sentence summary via GPT-4o-mini (batched, 20-30 per call)
+├── NER extraction via spaCy (local, free)
+├── Sentence embedding via SBERT all-MiniLM-L6-v2 (local, free)
+└── Store embeddings in pgvector (Supabase native)
 
----
+PHASE 4: DIASPORA GATE (~10 sec, small GPT cost)
+├── Keyword pre-filter: auto-pass/reject on strong matches (40-60% handled, $0)
+├── GPT-4o-mini binary yes/no on remaining signals (batched)
+└── Result: only diaspora-relevant signals pass through
 
-## Rolling Pipeline Architecture
+PHASE 5: CLUSTER (zero cost, local compute)
+├── HDBSCAN on 3-signal distance matrix:
+│   ├── Semantic distance (cosine similarity of SBERT embeddings) — weight 0.4
+│   ├── Entity distance (Jaccard similarity of NER entities) — weight 0.4
+│   └── Time distance (normalized time gap, 0-3 day window) — weight 0.2
+├── 3-day rolling window
+├── Match clusters against existing p2_topics
+└── Match against already-published articles
 
-One script, one loop, runs every 30 minutes:
+PHASE 6: EDITORIAL DECISIONS (Hatch, $0)
+├── For new topics: Is this worth covering? What angle?
+├── For covered topics with new signals: New information or just echoes?
+│   ├── New info → mark as DEVELOPING, write follow-up
+│   └── Same facts → mark as SATURATED, skip
+├── Priority ranking (cluster size + source authority + recency + diaspora strength)
+├── Category balance check
+└── Select top 2-3 articles to write this cycle
 
-```
-┌─────────────────────────────────────────────────┐
-│  PHASE 1: INGEST (parallel, ~30 sec)            │
-│  ├─ Fetch all 79 RSS feeds                      │
-│  ├─ Fetch 8 Google News topic feeds              │
-│  ├─ Fetch 10-15 Google News search queries       │
-│  ├─ Read pending email_signals                   │
-│  └─ All → p2_signals (with source_type tag)      │
-│                                                  │
-│  PHASE 2: TRIAGE (GPT batch, ~15 sec)           │
-│  ├─ New signals → GPT: entity, story ID,         │
-│  │   category, diaspora Y/N, stage               │
-│  ├─ Cluster by story ID                          │
-│  ├─ Match against existing topics + published    │
-│  │   articles                                    │
-│  └─ Result: new topics, updated topics,          │
-│     developing stories                           │
-│                                                  │
-│  PHASE 3: EDITORIAL (GPT, ~10 sec)              │
-│  ├─ Score all eligible topics                    │
-│  ├─ For covered topics: new info check           │
-│  ├─ Prioritize: what to write, what angle        │
-│  └─ Select top 2-3 articles to write             │
-│                                                  │
-│  PHASE 4: WRITE (GPT, ~60 sec per article)      │
-│  ├─ Generate articles with diaspora angle        │
-│  ├─ Source hero images                           │
-│  └─ Insert with status = "review"                │
-│                                                  │
-│  PHASE 5: QA + PUBLISH (~30 sec)                │
-│  ├─ Quality review (GPT)                         │
-│  ├─ Score for ranking                            │
-│  ├─ Approve or reject                            │
-│  └─ Rebuild feeds → live                         │
-└─────────────────────────────────────────────────┘
+PHASE 7: WRITE (Hatch, $0)
+├── Hatch writes articles directly from clustered source material
+├── Source-grounded: only facts from source excerpts, cited inline
+├── Diaspora angle baked in
+├── Hero image sourcing (Wikipedia/Pexels/Commons)
+└── Insert into Supabase with status="review" or "published"
 
-Total cycle: ~4-5 minutes
+PHASE 8: QA + PUBLISH (Hatch, $0)
+├── Quality review (Hatch checks facts, sources, tone)
+├── Score for ranking (display_score computation)
+├── Rebuild feeds → commit → Vercel deploys
+└── Live
+
+Total cycle: ~5-8 minutes
 Runs every: 30 minutes
 Signal to live: ONE cycle (was 3-4 hours)
 ```
 
 ---
 
-## Schema Changes Needed
+## Topic Lifecycle
+
+Topics are not one-shot. They evolve:
+
+```
+EMERGING → COVERED → DEVELOPING → SATURATED
+```
+
+- **EMERGING**: New signals arriving, no article yet. Accumulate or write immediately if urgent.
+- **COVERED**: Article published. Topic stays open. New signals checked for new info.
+- **DEVELOPING**: Genuinely new information on a covered topic. Follow-up warranted.
+- **SATURATED**: Thoroughly covered, new signals are just echoes. Stop writing.
+
+Hatch manages these transitions — same judgment a human editor would make.
+
+---
+
+## Schema Changes
 
 ### p2_signals (add columns)
 ```sql
-source_type     TEXT    -- 'rss', 'google_news', 'newsletter', 'press_release'
-google_cluster  INT     -- cluster size from Google News (if applicable)
-story_id        TEXT    -- GPT-assigned canonical story identifier
-entities        TEXT[]  -- extracted entities
-diaspora_relevant BOOL  -- binary gate
+source_type      TEXT     -- 'rss', 'google_news', 'newsletter', 'press_release', 'gdelt'
+google_cluster   INT      -- cluster size from Google News topic feeds
+story_id         TEXT     -- canonical story identifier (from clustering)
+entities         TEXT[]   -- NER-extracted entities
+diaspora_relevant BOOL   -- binary gate result
+embedding        vector(384) -- SBERT embedding (pgvector)
 ```
 
 ### p2_topics (add columns)
 ```sql
-lifecycle       TEXT    -- 'emerging', 'covered', 'developing', 'saturated'
-last_article_id UUID    -- link to most recent published article on this topic
-last_article_at TIMESTAMPTZ
-new_info_summary TEXT   -- what's new since last article
-source_types    TEXT[]  -- which source types contributed signals
+lifecycle        TEXT     -- 'emerging', 'covered', 'developing', 'saturated'
+last_article_id  UUID     -- most recent published article on this topic
+last_article_at  TIMESTAMPTZ
+new_info_summary TEXT     -- what's new since last article
+source_types     TEXT[]   -- which source types contributed
+cluster_size     INT      -- total signals across all sources
 ```
 
 ---
 
-## Cost Estimate
+## Cost Summary
 
-Per cycle (30 min):
-- GPT-4o-mini triage batch (30-50 signals): ~$0.02
-- GPT-4o-mini editorial decision: ~$0.01
-- GPT-4o-mini article writing (2-3 articles): ~$0.06
-- GPT-4o-mini QA review: ~$0.02
+| Component | Daily cost |
+|-----------|-----------|
+| GPT-4o-mini: signal classification + diaspora gate | ~$1.50–2.00 |
+| GPT-4o-mini: one-sentence summaries (batched) | ~$0.50 |
+| GPT-4o-mini: new-dev detection on edge cases | ~$0.25 |
+| Hatch: writing, review, scoring, editorial | $0 |
+| Local: dedup, embeddings, clustering, NER | $0 |
+| Google News RSS, GDELT | $0 |
+| **Total** | **~$2.25–2.75/day** |
 
-**~$0.11 per cycle × 48 cycles/day = ~$5.28/day**
-
-Current spend: ~$6/day (before category writer retirement). So roughly comparable, but doing much more work (Google News scanning, intelligent triage, topic lifecycle management).
+Down from ~$5-6/day. ~50% cost reduction while adding more signal sources and smarter clustering.
 
 ---
 
-## Migration Plan
+## Migration Plan (incremental, current pipeline keeps running)
 
-1. Add Google News ingest as a standalone test first (validate signal quality)
-2. Add source_type + story_id columns to p2_signals
-3. Build the GPT triage step (entity extraction + story ID + diaspora gate)
-4. Rewire email-signal-ingest to go through p2_signals
-5. Build topic lifecycle (emerging/covered/developing/saturated)
-6. Merge ingest + write + review + score into one rolling script
-7. Retire individual crons, replace with single rolling pipeline cron
+### Step 1: Google News + GDELT ingest
+- Add as new signal sources into existing p2_signals
+- Validate signal quality, measure gap-fill vs RSS
+- No disruption to current pipeline
+
+### Step 2: Better dedup + clustering
+- Add LSH/MinHash, SBERT embeddings, spaCy NER
+- Enable pgvector in Supabase
+- HDBSCAN clustering replaces keyword-overlap
+- Run in shadow mode alongside current clustering, compare results
+
+### Step 3: Topic lifecycle
+- Add lifecycle columns to p2_topics
+- Implement EMERGING → COVERED → DEVELOPING → SATURATED
+- Hatch handles new-development detection
+
+### Step 4: Unify into rolling pipeline
+- Collapse ingest + write + review + score + sync into one script
+- Hatch writes articles directly (replaces GPT-4o-mini writer)
+- Hatch does QA (replaces GPT-4o-mini reviewer)
+- Single cron every 30 min replaces 10+ separate crons
+- Retire old crons
 
 ---
 
 ## Open Questions
 
-1. **Cycle frequency**: 30 min? 15 min? 1 hour? Tradeoff between freshness and cost.
-2. **Google News rate limits**: No documented limit, but should we self-limit to avoid blocks?
-3. **Article updates vs follow-ups**: When new info arrives, update the existing article in-place or publish a new follow-up? (UX question)
-4. **Story ID stability**: GPT might assign different story IDs to the same story across runs. Need a matching layer.
-5. **Press release sources**: Which PR wire RSS feeds are worth adding?
+1. **Cycle frequency**: 30 min? 15 min? Tradeoff between freshness and Hatch compute time.
+2. **Google News self-rate-limit**: How aggressive can we poll without getting blocked?
+3. **Article updates vs follow-ups**: When new info arrives, update existing article in-place or publish new follow-up?
+4. **How many articles per cycle**: 2-3 per 30-min run = 96-144/day capacity. Enough?
+5. **GDELT reliability**: Need to test DOC API from this environment (proxy/egress).
