@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-15T13:10:51.374925+00:00",
+  "timestamp": "2026-07-15T14:12:10.222496+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 2,
-    "flag": 0,
-    "fail": 0,
+    "pass": 3,
+    "flag": 1,
+    "fail": 1,
     "error": 0
   },
-  "revisions": 0,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "ff78f86d-5cbd-4abe-a5fb-b45b9a8f4ea2",
-      "headline": "Rani Mukerji Will Receive an Honorary Doctorate in Melbourne Next Month. She Follows Shah Rukh Khan Into the Record Books.",
-      "slug": "rani-mukerji-honorary-doctorate-la-trobe-university-iffm-melbourne-2026-shah-rukh-khan-20260715",
+      "id": "7704db33-b9ed-48d2-92a2-fd44a199ab11",
+      "headline": "A Republican Senator Is Using Harry Reid's Own Immigration Bill Against Democrats. Legal Immigration Is in the Crossfire",
+      "slug": "moreno-reid-immigration-bill-legal-cuts-birthright-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Rani Mukerji at an event",
-          "reason": "The photo shows Rani Mukerji, who is the subject of the story."
+          "what_photo_shows": "A man in a suit with a flag pin",
+          "reason": "The photo plausibly shows Sen. Bernie Moreno, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
-          "issue": null
+          "score": 5,
+          "issue": "The image of Sen. Bernie Moreno does not directly relate to the article's focus on immigration legislation and Harry Reid's bill."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively connects Mukerji's achievements and the event to the Indian diaspora in Australia, particularly highlighting the significance of the event for the Indian community."
+          "quality": 7,
+          "note": "The article discusses implications for Indian Americans regarding visa backlogs, which connects well with the diaspora audience."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding quotes from Rani Mukerji or festival organizers to enhance the personal connection to the event.",
-          "Include more context about the significance of honorary doctorates in the Indian diaspora to deepen the cultural relevance."
+          "Consider using a more relevant image that directly relates to immigration legislation or the historical context of Harry Reid's bill.",
+          "Add more context or quotes from Indian American voices or organizations to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c4c84b64-203d-4157-916d-db5151741d12",
-      "headline": "Akshay Kumar Turns Villain Against a Blind Saif Ali Khan. Their First Film Together in 17 Years Drops Its Teaser Tonight.",
-      "slug": "akshay-kumar-villain-haiwaan-saif-ali-khan-blind-priyadarshan-teaser-september-2026-20260715",
+      "id": "b633c531-27c7-4054-b3e1-6cebaf4769ce",
+      "headline": "The Word in Congress Is No Longer Reform. It Is Abolish",
+      "slug": "h1b-abolish-movement-congress-riley-moore-crane-roy-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,141 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Akshay Kumar at an event",
-          "reason": "The photo shows Akshay Kumar, who is relevant to the story."
+          "what_photo_shows": "man in suit with US flag",
+          "reason": "The photo plausibly shows a congressman, matching the story topic."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "The image of Congress members is relevant but does not specifically relate to the H-1B visa topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the impact of proposed legislation on Indian professionals, making it relevant to the diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include more direct quotes or perspectives from Indian professionals affected by the H-1B visa changes.",
+          "Add a section discussing potential responses or actions from the Indian government or organizations regarding these legislative changes."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d58cf27f-35a0-459a-8007-271c58152f79",
+      "headline": "DRC Ebola Cases Exceed 2,000 Amid Health Worker Strikes",
+      "slug": "drc-ebola-cases-exceed-2000-amid-health-worker-strikes-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "microscopic view of Ebola virus",
+          "reason": "The photo does not show health workers, which is the subject of the story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 4,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "The image description/entities do not match the article's headline and topic."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 6,
+          "note": "The article connects to the Indian diaspora by discussing implications for travel and health security, but the connection could be more deeply explored."
+        },
+        "factual_flags": [
+          "The article mentions 'mid-July 2026', which is a hallucination as the current date is October 2023."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the hallucinated date to reflect a realistic timeline.",
+          "Enhance the diaspora angle by including specific examples of how the Indian community is responding or affected by the outbreak."
+        ],
+        "verdict": "fail"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (microscopic view of Ebola virus)",
+        "Revised by gemini-2.5-flash (543\u2192594 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "938793d3-6ade-400f-a15b-2dbfa0df2970",
+      "headline": "US Strikes Marine Control Tower in Iran Amid Rising Tensions",
+      "slug": "us-strikes-marine-control-tower-in-iran-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US military aircraft on tarmac",
+          "reason": "The photo shows a US military aircraft, relevant to a military action story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 6,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the geopolitical situation to the Indian diaspora's economic interests and safety concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add more specific examples of how rising oil prices could impact the Indian diaspora.",
+          "Include quotes from experts or officials to enhance credibility and depth."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (635\u2192833 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "a39d3f6f-fea9-4cfe-9f18-8144befce3ef",
+      "headline": "Paramount-Warner Bros Discovery: Emergency Motions and Showdown Hearing Looms",
+      "slug": "paramount-warner-bros-discovery-emergency-motions-showdown-hearing-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Paramount theater sign and building",
+          "reason": "The Paramount sign is relevant to the story about Paramount-Warner Bros Discovery."
         },
         "inline_image_mismatches": []
       },
@@ -79,13 +212,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article connects well with the diaspora by referencing nostalgia and past films that NRIs may have enjoyed."
+          "note": "The article effectively connects the merger's implications to the diaspora community, particularly in media and entertainment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more context about the film's themes and how they resonate with current societal issues.",
-          "Include quotes or reactions from fans or critics to enhance engagement."
+          "Consider adding more specific examples of how the merger might affect content for Indian viewers.",
+          "Include quotes or insights from industry experts to enhance credibility."
         ],
         "verdict": "pass"
       },
