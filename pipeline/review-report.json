@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-15T14:12:10.222496+00:00",
+  "timestamp": "2026-07-15T15:11:18.678106+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 3,
+    "pass": 4,
     "flag": 1,
-    "fail": 1,
+    "fail": 0,
     "error": 0
   },
-  "revisions": 2,
+  "revisions": 1,
   "unpublished": 0,
   "articles": [
     {
-      "id": "7704db33-b9ed-48d2-92a2-fd44a199ab11",
-      "headline": "A Republican Senator Is Using Harry Reid's Own Immigration Bill Against Democrats. Legal Immigration Is in the Crossfire",
-      "slug": "moreno-reid-immigration-bill-legal-cuts-birthright-20260715",
+      "id": "bf1617b1-5730-4743-8da5-07929f14c3bf",
+      "headline": "Supermicro Expands Liquid Cooling Solutions for AI and HPC",
+      "slug": "supermicro-expands-liquid-cooling-solutions-for-ai-and-hpc-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit with a flag pin",
-          "reason": "The photo plausibly shows Sen. Bernie Moreno, relevant to the story."
+          "what_photo_shows": "Supermicro logo",
+          "reason": "The logo is relevant to the Supermicro story."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +30,19 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image of Sen. Bernie Moreno does not directly relate to the article's focus on immigration legislation and Harry Reid's bill."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article discusses implications for Indian Americans regarding visa backlogs, which connects well with the diaspora audience."
+          "quality": 8,
+          "note": "The article effectively connects the advancements in cooling technology to the Indian diaspora's interests in tech and investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant image that directly relates to immigration legislation or the historical context of Harry Reid's bill.",
-          "Add more context or quotes from Indian American voices or organizations to strengthen the diaspora connection."
+          "Consider adding specific examples of Indian tech companies that could benefit from Supermicro's solutions to strengthen the diaspora angle.",
+          "Include recent statistics or forecasts related to AI and HPC growth to enhance the article's credibility."
         ],
         "verdict": "pass"
       },
@@ -54,9 +54,9 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "b633c531-27c7-4054-b3e1-6cebaf4769ce",
-      "headline": "The Word in Congress Is No Longer Reform. It Is Abolish",
-      "slug": "h1b-abolish-movement-congress-riley-moore-crane-roy-20260715",
+      "id": "86283fab-6935-4e96-a5c0-f5f425244700",
+      "headline": "Shashi Tharoor Urges Sonam Wangchuk to End Hunger Strike",
+      "slug": "shashi-tharoor-urges-sonam-wangchuk-to-end-hunger-strike-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -64,8 +64,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "man in suit with US flag",
-          "reason": "The photo plausibly shows a congressman, matching the story topic."
+          "what_photo_shows": "Sonam Wangchuk speaking at event",
+          "reason": "The photo shows Sonam Wangchuk, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -73,19 +73,62 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 7,
-          "issue": "The image of Congress members is relevant but does not specifically relate to the H-1B visa topic."
+          "score": 9,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article discusses the impact of proposed legislation on Indian professionals, making it relevant to the diaspora."
+          "note": "The article effectively connects the environmental issues in Ladakh to the concerns of the Indian diaspora, highlighting their potential influence on policy."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include more direct quotes or perspectives from Indian professionals affected by the H-1B visa changes.",
-          "Add a section discussing potential responses or actions from the Indian government or organizations regarding these legislative changes."
+          "Consider adding quotes or reactions from members of the diaspora to enhance the connection.",
+          "Include more specific examples of how the diaspora can engage with environmental advocacy."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2e8abe31-7250-4b9e-b9db-089b90415d02",
+      "headline": "ED Files Chargesheet in U.S. Visa Fraud Racket",
+      "slug": "ed-files-chargesheet-in-us-visa-fraud-racket-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "U.S. immigration graph over time",
+          "reason": "The graph relates to U.S. immigration, matching the visa fraud story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications of the visa fraud on the Indian diaspora, highlighting concerns about the integrity of the immigration process."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include quotes from affected individuals or experts to add depth to the narrative.",
+          "Provide more specific statistics or data regarding the number of victims or financial losses to enhance credibility."
         ],
         "verdict": "pass"
       },
@@ -104,43 +147,46 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "microscopic view of Ebola virus",
-          "reason": "The photo does not show health workers, which is the subject of the story."
-        },
+        "broken_embeds": [
+          {
+            "url": "https://x.com/WHOAFRO/status/1709405232145389838",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/CyF2080t11o/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 4,
+        "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image description/entities do not match the article's headline and topic."
+          "score": 7,
+          "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 6,
-          "note": "The article connects to the Indian diaspora by discussing implications for travel and health security, but the connection could be more deeply explored."
+          "quality": 8,
+          "note": "The article effectively connects the Ebola outbreak to the Indian diaspora, discussing implications for travel and health security."
         },
-        "factual_flags": [
-          "The article mentions 'mid-July 2026', which is a hallucination as the current date is October 2023."
-        ],
+        "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Correct the hallucinated date to reflect a realistic timeline.",
-          "Enhance the diaspora angle by including specific examples of how the Indian community is responding or affected by the outbreak."
+          "Include specific statistics or quotes from health officials to enhance credibility.",
+          "Add more details on how the Indian diaspora is specifically responding to the crisis."
         ],
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Cleared mismatched image (microscopic view of Ebola virus)",
-        "Revised by gemini-2.5-flash (543\u2192594 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
       ],
-      "revised": true,
+      "revised": false,
       "unpublished": false,
-      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     },
     {
@@ -151,7 +197,18 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/CENTCOM/status/1780517721327153408",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C54-aV0v-7L/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
         "vision_image_match": {
           "verdict": "MATCH",
           "what_photo_shows": "US military aircraft on tarmac",
@@ -164,68 +221,26 @@
         "embed_issues": [],
         "image_match": {
           "score": 8,
-          "issue": null
+          "issue": "The image is relevant to the article's topic, depicting military action in Iran."
         },
         "diaspora_angle": {
           "present": true,
           "quality": 7,
-          "note": "The article connects the geopolitical situation to the Indian diaspora's economic interests and safety concerns."
+          "note": "The article connects the geopolitical situation to the Indian diaspora's economic interests, particularly regarding oil prices."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add more specific examples of how rising oil prices could impact the Indian diaspora.",
-          "Include quotes from experts or officials to enhance credibility and depth."
+          "Provide more specific examples of how rising oil prices could impact the Indian diaspora.",
+          "Include quotes or perspectives from Indian diaspora members to enhance relatability."
         ],
         "verdict": "flag"
       },
       "actions_taken": [
-        "Revised by gemini-2.5-flash (635\u2192833 words)"
+        "Removed 2 broken/hallucinated embed(s)",
+        "Revised by gemini-2.5-flash (831\u2192889 words)"
       ],
       "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "a39d3f6f-fea9-4cfe-9f18-8144befce3ef",
-      "headline": "Paramount-Warner Bros Discovery: Emergency Motions and Showdown Hearing Looms",
-      "slug": "paramount-warner-bros-discovery-emergency-motions-showdown-hearing-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Paramount theater sign and building",
-          "reason": "The Paramount sign is relevant to the story about Paramount-Warner Bros Discovery."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the merger's implications to the diaspora community, particularly in media and entertainment."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how the merger might affect content for Indian viewers.",
-          "Include quotes or insights from industry experts to enhance credibility."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     }
