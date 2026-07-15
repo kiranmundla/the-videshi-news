@@ -50,18 +50,18 @@ export default function HeroSection({ lead, side }: Props) {
     <section className="pt-8 md:pt-10 pb-10 md:pb-14">
       <div className="container">
         <p className="text-[11px] font-bold tracking-[1.5px] uppercase text-muted-foreground mb-4">FEATURED</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-start">
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9", maxHeight: "480px" }}>
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="eager"
                   fetchPriority="high"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  style={{ objectPosition: "center 25%" }}
+                  style={{ objectPosition: "center 30%" }}
                 />
               </div>
             )}

@@ -47,17 +47,17 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
         </div>
 
         {/* Lead + list grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-start">
           {/* Lead card */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
-              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9", maxHeight: "480px" }}>
+              <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3.5" style={{ aspectRatio: "16/9" }}>
                 <HeroImage
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                  style={{ objectPosition: "center 25%" }}
+                  style={{ objectPosition: "center 30%" }}
                 />
               </div>
             )}
