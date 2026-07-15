@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-14T23:45:16.593716+00:00",
+  "timestamp": "2026-07-15T00:11:03.687560+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
+    "pass": 5,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,14 +11,170 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "a2f93f7c-47b5-4cde-9a87-0e4ffdaeeca7",
-      "headline": "OpenAI's First Hardware: A Screenless, Mobile Speaker",
-      "slug": "openais-first-hardware-a-screenless-mobile-speaker-20260714",
+      "id": "0a0dd91e-ea97-4c6f-930c-3d1405be99d0",
+      "headline": "India's Tricolour in Boston Harbour: The Three-Masted Barque That Sailed Into America's Birthday Party",
+      "slug": "ins-sudarshini-sail-boston-250-lokayan-indian-navy-diaspora-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "three-masted ship with Indian flag",
+          "reason": "The photo shows a ship with the Indian tricolour, matching the story about INS Sudarshini."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively highlights the significance of the event for the Indian diaspora in New England, providing a direct connection to the community."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding quotes from attendees or crew members to enhance the personal connection to the event.",
+          "Include more details about the significance of the Indian Navy's presence in the context of US-India relations."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "29fda571-3202-4d4c-a246-0414102cda83",
+      "headline": "HCLTech Beats Every Estimate, Then Loses $1.54 Billion in Market Cap \u2014 The Guidance Trap Haunting India's IT Sector",
+      "slug": "hcltech-loses-market-cap-guidance-trap-nri-it-stocks-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "7b7fd719-7a2e-4f0a-aad1-0ded3655f332",
+            "headline": "HCLTech Just Beat Estimates on Every Metric That Matters. It"
+          },
+          {
+            "article_id": "8a0356c0-6f28-453b-8bf1-f72674ef3009",
+            "headline": "HCLTech's $1.1 Billion AI Deal Sets the Stage for a Mega Ear"
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "HCL Technologies' Noida SEZ campus",
+          "reason": "The photo shows HCL Technologies' campus, relevant to the story about the company's market performance."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article connects well with NRI investors, particularly those in the IT sector, discussing implications for their portfolios."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can navigate the current market conditions.",
+          "Include quotes or insights from NRI investors or experts to enhance the diaspora perspective."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6b84bd3b-bd0d-487a-a708-5d798980b707",
+      "headline": "Goldman Sachs Declares Foreign Selling 'Likely Over' \u2014 FPIs Pump \u20b915,157 Crore Into Indian Equities as the Tide Turns",
+      "slug": "goldman-sachs-fpi-reversal-nifty-26500-nri-banking-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [
+          {
+            "article_id": "3c4829ca-8bec-4664-816d-36c0bcb8ac49",
+            "headline": "Rupee Slides to One-Month Low as India's Trade Deficit Ballo"
+          },
+          {
+            "article_id": "6faacfdc-05a9-4381-8933-03a2120b2467",
+            "headline": "Sensex Drops 560 Points as Brent Crude Hits $87 and Rupee Sl"
+          },
+          {
+            "article_id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
+            "headline": "SEBI Wants to Double the Stocks You Can Short \u2014 And India's "
+          }
+        ],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "Bombay Stock Exchange building",
+          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 8,
+          "issue": "The image of the Bombay Stock Exchange is relevant to the article's topic on Indian equities."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article directly addresses NRI investors and provides actionable insights relevant to their interests."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how NRI investors can capitalize on the current market trends.",
+          "Include a brief summary of the implications of the foreign investment trends for the Indian economy as a whole."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6410407a-fc4e-45ea-b220-409fb8ec6e83",
+      "headline": "Labor Force Participation Rate Hits 50-Year Low, Job Seekers Give Up",
+      "slug": "labor-force-participation-rate-hits-50-year-low-job-seekers-give-up-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "book cover of Bureau of Labor Statistics",
+          "reason": "The photo shows a book cover, not a graph related to labor force participation rates."
+        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -31,21 +187,68 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the product's implications to the Indian diaspora's lifestyle and needs."
+          "note": "The article effectively connects the labor market issues in India to the interests of the diaspora."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Add specific examples of how the speaker could be used in daily life by NRIs to strengthen the diaspora angle."
+          "Include a relevant image description to enhance the visual context of the article.",
+          "Consider adding specific examples of how the diaspora is responding to these labor market changes."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
-        "promoted to published"
+        "Cleared mismatched image (book cover of Bureau of Labor Statistics)",
+        "held: image mismatch"
       ],
       "revised": false,
       "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "0859b7a9-8bb2-433e-b95c-d57aa6e47871",
+      "headline": "UN Agency Halts Hormuz Ship Evacuation After Vessel Attack",
+      "slug": "un-agency-halts-hormuz-ship-evacuation-after-vessel-attack-20260714",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Iranian national flag",
+          "reason": "The photo shows a flag, not a commercial vessel."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the geopolitical situation to the Indian diaspora's economic interests and safety concerns."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant image with a description that matches the article's content.",
+          "Add more direct quotes from diaspora members to enhance the personal connection."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Iranian national flag)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
