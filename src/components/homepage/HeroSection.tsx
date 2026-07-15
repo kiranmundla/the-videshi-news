@@ -55,7 +55,7 @@ export default function HeroSection({ lead, side }: Props) {
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
               <div
-                className="w-full bg-stone-200 overflow-hidden rounded-lg mb-3.5"
+                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5"
                 style={{ aspectRatio: "16/9", maxHeight: "400px" }}
               >
                 <HeroImage
@@ -65,7 +65,7 @@ export default function HeroSection({ lead, side }: Props) {
                   fetchPriority="high"
                   focalX={lead.focal_x}
                   focalY={lead.focal_y}
-                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.01] transition-transform duration-500"
                 />
               </div>
             )}
