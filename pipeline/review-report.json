@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-07-15T01:10:42.188554+00:00",
+  "timestamp": "2026-07-15T02:11:05.844242+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 1,
-    "flag": 1,
+    "pass": 3,
+    "flag": 2,
     "fail": 0,
     "error": 0
   },
@@ -11,18 +11,35 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "e1befbb7-25a6-40ec-ac72-33b89c4d10c8",
-      "headline": "Raktanchal Is Back for Its Final Season. The Gang Wars Move to the State Assembly This Time.",
-      "slug": "raktanchal-season-3-amazon-mx-player-free-streaming-july-16-purvanchal-crime-drama-20260714",
+      "id": "c30776d8-b139-4d8a-8507-d71dcbd0bf5a",
+      "headline": "India's EB-5 Window Just Closed. The Backup Plan Has an Eleven-Week Deadline",
+      "slug": "india-eb5-cap-hit-grandfathering-deadline-september-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [],
+        "duplicate_images": [
+          {
+            "article_id": "bded0a1d-09a7-40ca-8fcd-dfd35b4d4e08",
+            "headline": "The July Visa Bulletin Just Shut Three Doors on Indian Appli"
+          },
+          {
+            "article_id": "3bece507-d006-4973-9229-d8bd70ed4fd8",
+            "headline": "USCIS Is Showing Up at Remote Workers' Front Doors. Here Is "
+          },
+          {
+            "article_id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
+            "headline": "Green Card Applicants Must Now Leave the Country. USCIS Call"
+          },
+          {
+            "article_id": "d8128708-8a6f-4d31-8a5b-46ea1f04bccb",
+            "headline": "The $100,000 H-1B Fee Is Dead in One Court and Alive in Anot"
+          }
+        ],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Nikitin Dheer at an event",
-          "reason": "The photo shows Nikitin Dheer, who is relevant to the story."
+          "what_photo_shows": "USCIS Application Support Center",
+          "reason": "The photo shows a USCIS center, relevant to immigration topics."
         },
         "inline_image_mismatches": []
       },
@@ -30,19 +47,107 @@
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 5,
-          "issue": "The image does not directly relate to the article's content about the show 'Raktanchal' and its themes."
+          "score": 3,
+          "issue": "The image does not directly relate to the EB-5 program or Indian immigration."
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 8,
-          "note": "The article effectively addresses NRI audiences by highlighting the show's availability for free and its cultural significance."
+          "quality": 9,
+          "note": "The article effectively addresses the concerns of Indian immigrants and the diaspora regarding the EB-5 program."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider using a more relevant hero image that reflects the themes or characters of 'Raktanchal'.",
-          "Add more context about the show's reception among diaspora audiences to strengthen the connection."
+          "Replace the hero image with one that directly relates to the EB-5 program or Indian immigration.",
+          "Consider adding a brief section on the implications of the EB-5 program's closure for Indian families specifically."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "cd54fd54-9217-4f14-b2be-9ecf769877d3",
+      "headline": "One Hundred Thousand Forged Diplomas. The Fraud That Is Rewriting the Rules for Every Indian Visa Applicant",
+      "slug": "forged-diplomas-fraud-indian-visa-applicants-trust-crisis-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "framed diplomas stacked",
+          "reason": "The photo of diplomas relates to the diploma fraud story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 7,
+        "embed_issues": [],
+        "image_match": {
+          "score": 6,
+          "issue": "The image does not directly relate to the topic of forged diplomas or immigration."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article discusses the implications of diploma fraud on the Indian diaspora, particularly in relation to H-1B visa applications."
+        },
+        "factual_flags": [
+          "The claim that 80 to 90 percent of H-1B applications from India involved fraudulent documentation is based on a single officer's experience nearly two decades ago."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider using a more relevant image that depicts education or immigration to better match the article's theme.",
+          "Clarify the context of the statistics mentioned to avoid potential misinterpretation."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
+      "headline": "US Troops to Withdraw from Iraq by September 30, Ending 23-Year Military Presence",
+      "slug": "us-troops-to-withdraw-from-iraq-by-september-30-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "US military personnel in Iraq",
+          "reason": "The photo shows US military personnel, relevant to the story about US troops in Iraq."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the withdrawal to the Indian diaspora's interests and safety in the region."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the withdrawal might impact Indian NRIs in Iraq.",
+          "Include quotes from experts or diaspora members to enhance the article's depth."
         ],
         "verdict": "pass"
       },
@@ -54,62 +159,91 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "c7ab0bb2-f338-4684-b75a-0420f82d26f9",
-      "headline": "Aamir Khan Married a Bengaluru Entrepreneur He Met 25 Years Ago. Their First Outing Was at a Kapoor Wedding.",
-      "slug": "aamir-khan-gauri-spratt-third-marriage-bengaluru-love-story-pali-hill-kapoor-wedding-20260714",
+      "id": "db0d599a-8c6a-4b91-9125-e0c061444845",
+      "headline": "India's AI Surge Reflects Mobile Revolution, Says DeepMind Executive",
+      "slug": "indias-ai-surge-reflects-mobile-revolution-says-deepmind-executive-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "f1f572d1-2f23-42cb-991d-5ddce14c8330",
-            "headline": "Forty-One Men Were Trapped Underground for Seventeen Days. N"
-          },
-          {
-            "article_id": "9600322d-4f6b-4f6c-81b9-5b418e1e69a7",
-            "headline": "Aamir Khan Just Reunited Three of Bollywood's Greatest. The "
-          }
-        ],
+        "duplicate_images": [],
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Aamir Khan at a public event",
-          "reason": "The photo shows Aamir Khan, who is the subject of the story."
+          "what_photo_shows": "AI technology demonstration in India",
+          "reason": "The photo subject aligns with the story about AI in India."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
-        "overall_score": 7,
-        "embed_issues": [
-          {
-            "url": "https://www.instagram.com/p/DacHFgMhnno/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to Aamir Khan's wedding or Gauri Spratt."
-          }
-        ],
+        "overall_score": 8,
+        "embed_issues": [],
         "image_match": {
-          "score": 8,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 7,
-          "note": "The article connects to the diaspora by discussing Aamir Khan's personal life, which is of interest to NRI readers, but could further emphasize the cultural significance."
+          "quality": 8,
+          "note": "The article effectively discusses the implications of AI adoption in India for the Indian diaspora, highlighting opportunities for collaboration and investment."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant one that showcases Aamir Khan and Gauri Spratt's wedding.",
-          "Enhance the diaspora angle by including quotes or perspectives from NRIs regarding Aamir Khan's influence in their lives."
+          "Consider adding specific examples of Indian companies leading in AI to enhance credibility.",
+          "Include quotes or insights from the DeepMind executive to provide a more personal touch to the article."
         ],
-        "verdict": "flag"
+        "verdict": "pass"
       },
       "actions_taken": [
-        "Removed irrelevant embed: https://www.instagram.com/p/DacHFgMhnno/",
         "promoted to published"
       ],
       "revised": false,
       "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "2a27fe6a-89a5-41a7-a9ae-6d57b820f15f",
+      "headline": "US Senators Introduce Trump-Backed Bill for Russia Sanctions, Targeting India",
+      "slug": "us-senators-introduce-trump-backed-bill-for-russia-sanctions-targeting-india-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "Great Seal of the United States",
+          "reason": "The photo does not show the US Capitol building or flags."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively discusses the implications for the Indian diaspora, making it relevant to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image to enhance visual appeal and context.",
+          "Provide more specific examples of how the proposed tariffs could impact individual NRIs or businesses."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (Great Seal of the United States)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
       "llm_source": "gpt-4o-mini"
     }
   ]
