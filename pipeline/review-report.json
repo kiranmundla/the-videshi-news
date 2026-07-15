@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-15T09:12:22.350854+00:00",
+  "timestamp": "2026-07-15T10:11:23.553719+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 8,
+    "pass": 4,
     "flag": 1,
-    "fail": 2,
+    "fail": 1,
     "error": 0
   },
-  "revisions": 2,
-  "unpublished": 1,
+  "revisions": 1,
+  "unpublished": 0,
   "articles": [
     {
-      "id": "f887604b-ee86-4d01-b080-de2430fa9f3e",
-      "headline": "India Pulled In $1.56 Billion in Data Centre Investment in Six Months. That Is Seven Times Last Year's Pace.",
-      "slug": "india-data-center-156-billion-investment-surge-h1-2026-20260715",
+      "id": "5ecb05c6-db2d-40a6-9855-8df2397d547e",
+      "headline": "Soni Razdan, Shabana Azmi, and Swara Bhasker Rally for Sonam Wangchuk",
+      "slug": "soni-razdan-shabana-azmi-swara-bhasker-rally-sonam-wangchuk-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,98 +21,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "server racks in data centre",
-          "reason": "The photo shows server racks, relevant to data centre investment."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 5,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article discusses opportunities for NRIs in the data center sector, but the connection could be more explicit."
-        },
-        "factual_flags": [
-          "The article mentions investments in the first half of 2026, which is a hallucination as the current date is October 2023."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the hallucinated date to reflect the current year.",
-          "Enhance the diaspora angle by providing specific examples of NRI involvement or success stories in the data center sector."
-        ],
-        "verdict": "fail"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (756\u2192933 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7f2ad168-c5ce-4423-8b2f-a49f1e0f6f71",
-      "headline": "Apple Is the Best-Performing Magnificent Seven Stock of 2026. Its Secret: Not Spending Billions on AI.",
-      "slug": "apple-stock-record-not-spending-on-ai-google-gemini-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in glasses smiling",
-          "reason": "The photo plausibly shows Apple CEO Tim Cook, relevant to the story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 2,
-        "embed_issues": [],
-        "image_match": {
-          "score": 1,
-          "issue": "The image date is anachronistic."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 6,
-          "note": "The article mentions Indian engineers and the implications for the Indian Apple ecosystem, which connects to the diaspora."
-        },
-        "factual_flags": [
-          "The article references events in 2026, which is a hallucination as the current date is October 2023."
-        ],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Correct the anachronistic references to 2026.",
-          "Provide more current context or analysis to connect with the diaspora audience."
-        ],
-        "verdict": "fail"
-      },
-      "actions_taken": [
-        "unpublished: The article presents information as fact that is demonstrably false and speculative, particularly regarding stock performance in 2026 and future product releases (iOS 27, macOS Golden Gate, foldable iPhone in September). It also makes up a lawsuit against OpenAI and a 'dramatic break' that did not occur. This is highly misleading and could cause financial harm to readers. It is not salvageable and should be unpublished."
-      ],
-      "revised": false,
-      "unpublished": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "784a03c1-935b-4551-98f1-3e4f46a3e190",
-      "headline": "The World Will Spend $166 Billion on Chip-Making Gear This Year. India Has 12 Fab Projects Ready to Absorb the Wave.",
-      "slug": "semi-166-billion-chip-equipment-forecast-india-fabs-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "semiconductor silicon wafer",
-          "reason": "The photo shows a semiconductor wafer, relevant to chip manufacturing."
+          "what_photo_shows": "Sonam Wangchuk speaking at event",
+          "reason": "The photo shows Sonam Wangchuk, relevant to the story."
         },
         "inline_image_mismatches": []
       },
@@ -126,13 +36,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the semiconductor industry's growth to opportunities for Indian engineers and NRI investors."
+          "note": "The article effectively connects the diaspora's responsibility towards environmental and cultural preservation in Ladakh."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the semiconductor projects in India will impact the local economy.",
-          "Include quotes or insights from Indian engineers in the diaspora to enhance the personal connection."
+          "Consider adding quotes from the celebrities involved to enhance the emotional appeal.",
+          "Include specific examples of how the diaspora can contribute to Wangchuk's initiatives."
         ],
         "verdict": "pass"
       },
@@ -144,9 +54,56 @@
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "2e0500e6-4a0c-4e00-abc0-f3bf9823f199",
-      "headline": "Kia's Affordable EV Promises 500km Range Ahead of Launch",
-      "slug": "kias-affordable-ev-promises-500km-range-ahead-of-launch-20260715",
+      "id": "7cf830e9-1ee8-4039-b728-dca254a7ffbe",
+      "headline": "Tragedy Strikes Noida: Fire Claims Two Lives in Residential Building",
+      "slug": "tragedy-strikes-noida-fire-claims-two-lives-in-residential-building-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "formal gathering in a grand hall",
+          "reason": "The photo shows a formal event, not a fire or emergency scene."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 2,
+        "embed_issues": [],
+        "image_match": {
+          "score": 1,
+          "issue": "The article does not provide an image URL or description, making it impossible to assess the relevance of the image."
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 7,
+          "note": "The article connects the incident to the diaspora by highlighting the emotional impact on NRIs with ties to India."
+        },
+        "factual_flags": [
+          "The article mentions a fire occurring on July 15, 2026, which is a future date and indicates hallucinated content."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Correct the hallucinated date to a current or past date.",
+          "Provide an image URL and description that matches the article's content."
+        ],
+        "verdict": "fail"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (formal gathering in a grand hall)",
+        "Revised by gemini-2.5-flash (510\u2192534 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "6a82ceac-d6ae-45a6-8949-f5baddafdda1",
+      "headline": "IBM CEO's Remarks Trigger $70 Billion Loss, Boost Cybersecurity Firm's Value",
+      "slug": "ibm-ceo-remarks-cybersecurity-firm-value-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -154,8 +111,62 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "Kia building with logo",
-          "reason": "The photo shows a Kia building, relevant to a Kia EV story."
+          "what_photo_shows": "A man in a suit and tie",
+          "reason": "The photo plausibly shows Arvind Krishna, relevant to the IBM CEO story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 5,
+          "note": "The article does not specifically address the Indian diaspora or connect the topic to NRI readers."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Incorporate a section that discusses how these market changes specifically impact Indian tech firms or investors.",
+          "Add quotes or insights from Indian analysts or experts in cybersecurity to enhance relevance for the diaspora audience."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "f887604b-ee86-4d01-b080-de2430fa9f3e",
+      "headline": "India Pulled In $1.56 Billion in Data Centre Investment in Six Months. That Is Seven Times Last Year's Pace.",
+      "slug": "india-data-center-156-billion-investment-surge-h1-2026-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/narendramodi/status/1671510499092873216",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
+            "url": "https://instagram.com/p/C02022_y22j/",
+            "problem": "broken",
+            "detail": "Instagram embed shows removed/broken placeholder"
+          }
+        ],
+        "vision_image_match": {
+          "verdict": "MATCH",
+          "what_photo_shows": "server racks in data centre",
+          "reason": "The photo shows server racks, relevant to data centre investment."
         },
         "inline_image_mismatches": []
       },
@@ -169,17 +180,18 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the launch of Kia's EV to the interests of the Indian diaspora, highlighting potential investments and family ties."
+          "note": "The article effectively connects the investment trends in India's tech sector to opportunities for the Indian diaspora, particularly in terms of job openings and relocation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding specific details about the expected launch date or pricing to enhance reader engagement.",
-          "Include quotes from Kia representatives or industry experts to add credibility and depth to the article."
+          "Consider adding more specific examples of how NRIs can engage with these opportunities.",
+          "Include quotes or insights from diaspora professionals who have relocated or are considering relocation."
         ],
         "verdict": "pass"
       },
       "actions_taken": [
+        "Removed 2 broken/hallucinated embed(s)",
         "promoted to published"
       ],
       "revised": false,
@@ -195,11 +207,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "list of scientists and innovations",
-          "reason": "The photo shows scientists and innovations, not protein biosensors."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -212,169 +219,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the technology to the Indian diaspora, highlighting its potential impact on healthcare access for families in India."
+          "note": "The article effectively connects the technology to the Indian diaspora's healthcare concerns."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include specific examples or case studies of protein biosensors currently in use to enhance credibility.",
-          "Add a section on potential future developments in protein biosensor technology to provide a forward-looking perspective."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (list of scientists and innovations)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "49b58e0c-85d5-4c6a-bf1b-9893b6a6ead7",
-      "headline": "England and Argentina: A World Cup Rivalry Rekindled",
-      "slug": "england-argentina-world-cup-rivalry-revenge-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "soccer match with England and Argentina",
-          "reason": "The photo shows a soccer match involving England and Argentina, fitting the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the match to the Indian diaspora, highlighting cultural ties and community engagement."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more recent statistics or player form leading up to the match to enhance the current context.",
-          "Include quotes from players or coaches to provide more depth and personal insight into the rivalry."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "24efd3e4-fa45-4ccf-8a05-db5e4623e2f6",
-      "headline": "Five Plays, Four Languages, Six Hours, One Stage: Inside New Jersey's Quietly Radical Indian Theatre Festival",
-      "slug": "natya-darpan-2026-new-jersey-multilingual-theater-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/indiacgny/status/1679093077755910144",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/CuoJ-3_uC-C/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "actors performing a theatrical play",
-          "reason": "The photo shows actors on stage, fitting the theatre festival theme."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the festival to the NRI community, emphasizing cultural ties and community building."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from attendees or participants to enhance the personal connection to the festival.",
-          "Include more details about the impact of the festival on the local community or specific stories from the performances."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "e17d6d57-ad45-4283-9ae2-a625d59dca82",
-      "headline": "Groww's Profit Nearly Doubles to \u20b9735 Crore as 22 Million Indians Trade Actively \u2014 Inside the Retail Boom That's Rewriting India's Market DNA",
-      "slug": "groww-q1-profit-doubles-735-crore-retail-investing-boom-nri-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [
-          {
-            "article_id": "3c4829ca-8bec-4664-816d-36c0bcb8ac49",
-            "headline": "Rupee Slides to One-Month Low as India's Trade Deficit Ballo"
-          },
-          {
-            "article_id": "6b84bd3b-bd0d-487a-a708-5d798980b707",
-            "headline": "Goldman Sachs Declares Foreign Selling 'Likely Over' \u2014 FPIs "
-          },
-          {
-            "article_id": "6faacfdc-05a9-4381-8933-03a2120b2467",
-            "headline": "Sensex Drops 560 Points as Brent Crude Hits $87 and Rupee Sl"
-          }
-        ],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Bombay Stock Exchange building",
-          "reason": "The photo shows the Bombay Stock Exchange, relevant to the finance story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article discusses Groww's impact on NRI investors, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more specific examples of how NRIs can leverage Groww for investments.",
-          "Add a brief section on potential risks for NRIs investing in Indian fintech."
+          "Include specific examples of protein biosensors currently in use or in development to enhance credibility.",
+          "Add a section on potential future advancements in protein biosensor technology to engage readers further."
         ],
         "verdict": "pass"
       },
@@ -393,138 +244,31 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/USCIS/status/1684284838637768704",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C0gQf-fLg23/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
+        "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "naturalization ceremony attendees",
-          "reason": "The photo shows a naturalization ceremony, relevant to the story on citizenship fees."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": "The image of a naturalization ceremony aligns well with the article's topic on immigration and citizenship."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article discusses the impact of immigration fee increases specifically on the Indian-American community, making it relevant for diaspora readers."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include more direct quotes from affected individuals or community leaders to enhance the emotional impact.",
-          "Provide a clearer explanation of how these fee increases compare to historical trends in immigration costs."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Revised by gemini-2.5-flash (1223\u21921286 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "7c29e681-32d0-4aac-8b5e-4c2f4891abca",
-      "headline": "Birthright Citizenship Survived the Supreme Court. The Next Attack Has Already Begun",
-      "slug": "birthright-citizenship-scotus-ruling-banks-bill-indian-diaspora-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/thevideshi/status/1799999999999999999",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "United States Supreme Court building",
-          "reason": "The Supreme Court is relevant to the story about a ruling."
+          "what_photo_shows": "people at a naturalization ceremony",
+          "reason": "The photo shows a naturalization ceremony, which is relevant to the immigration story."
         },
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/thevideshi/p/C7Y2Xy-u4uF/?img_index=1",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not relate to the topic of birthright citizenship or the Supreme Court ruling discussed in the article."
-          }
-        ],
+        "embed_issues": [],
         "image_match": {
-          "score": 7,
+          "score": 9,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the implications of the Supreme Court ruling and subsequent legislation to the Indian diaspora, highlighting the personal impact on Indian families."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding more statistics or quotes from experts to strengthen the analysis of the implications for the Indian diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://instagram.com/thevideshi/p/C7Y2Xy-u4uF/?img_index=1",
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "44224247-aa1a-436f-8d21-5b4a447fe9fe",
-      "headline": "Nashik Highway Horror: Family Escapes Attacker Clinging to Car",
-      "slug": "nashik-highway-horror-family-escapes-attacker-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
           "quality": 8,
-          "note": "The article effectively connects the incident to the concerns of the Indian diaspora regarding safety."
+          "note": "The article effectively discusses the impact of immigration fee increases on the Indian-American community, making it relevant for diaspora readers."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Include a relevant image description to enhance the article's visual context.",
-          "Add more statistics or expert opinions to strengthen the discussion on road safety."
+          "Include more personal stories or quotes from affected individuals to enhance emotional engagement.",
+          "Add a section discussing potential responses or actions from advocacy groups regarding the fee increases."
         ],
         "verdict": "pass"
       },
