@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-15T05:11:03.559879+00:00",
+  "timestamp": "2026-07-15T06:10:47.917251+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 6,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
     "error": 0
@@ -11,9 +11,54 @@
   "unpublished": 0,
   "articles": [
     {
-      "id": "0be07e9b-1512-4f36-b278-04ae14382516",
-      "headline": "IBM Faces Historic Stock Market Crash, Its Worst in 60 Years",
-      "slug": "ibm-faces-historic-stock-market-crash-its-worst-in-60-years-20260715",
+      "id": "ee154ced-5253-42b1-8dca-0224c3c6e8cf",
+      "headline": "Polish Minister Claims PM Modi Helped Avert Nuclear Crisis in Ukraine",
+      "slug": "polish-minister-claims-pm-modi-helped-avert-nuclear-crisis-in-ukraine-20260715",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "vision_image_match": {
+          "verdict": "MISMATCH",
+          "what_photo_shows": "a man speaking at a pulpit",
+          "reason": "The photo shows a religious setting, unrelated to the diplomatic story."
+        },
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects Modi's diplomatic efforts to the interests and identity of the Indian diaspora."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Include a relevant hero image that visually represents the article's theme.",
+          "Provide more specific examples of how the diaspora is engaging with these geopolitical developments."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Cleared mismatched image (a man speaking at a pulpit)",
+        "held: image mismatch"
+      ],
+      "revised": false,
+      "unpublished": false,
+      "image_mismatch": true,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "16d5e0f3-41f7-4283-83f5-e903760d71a4",
+      "headline": "Scientists Unravel 252 Million-Year-Old Mystery Behind Mass Extinction",
+      "slug": "scientists-unravel-252-million-year-old-mystery-behind-mass-extinction-20260715",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -21,8 +66,8 @@
         "broken_embeds": [],
         "vision_image_match": {
           "verdict": "MATCH",
-          "what_photo_shows": "IBM building exterior",
-          "reason": "The photo shows an IBM building, relevant to the IBM stock market story."
+          "what_photo_shows": "map of Siberian Traps region",
+          "reason": "The Siberian Traps are relevant to the mass extinction topic."
         },
         "inline_image_mismatches": []
       },
@@ -36,13 +81,13 @@
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects IBM's struggles to the Indian diaspora, particularly in terms of employment and investment implications."
+          "note": "The article effectively connects the research findings to the Indian diaspora's concerns about climate change and environmental activism."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how IBM's downturn has affected the Indian tech job market.",
-          "Include quotes from industry experts or analysts to enhance credibility and depth."
+          "Consider adding more specific examples of how NRIs can engage in environmental activism.",
+          "Include quotes or insights from Indian scientists or researchers to strengthen the diaspora connection."
         ],
         "verdict": "pass"
       },
@@ -62,11 +107,6 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "soccer player in action",
-          "reason": "The photo shows a soccer player, not Atlanta Police Department."
-        },
         "inline_image_mismatches": []
       },
       "llm_review": {
@@ -74,7 +114,7 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance to the article."
+          "issue": "The image description is missing, making it difficult to assess the relevance."
         },
         "diaspora_angle": {
           "present": true,
@@ -85,166 +125,7 @@
         "duplicate_embeds": [],
         "suggestions": [
           "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes or perspectives from Indian diaspora members to deepen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (soccer player in action)",
-        "held: image mismatch"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "4e756733-075d-4b04-a99e-617f4cf6d0f9",
-      "headline": "Phoebe Gates Addresses Phia Controversy as AI Startup Reaches $185M Valuation",
-      "slug": "phoebe-gates-addresses-phia-controversy-as-ai-startup-reaches-185m-valuation-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "woman speaking at tech event",
-          "reason": "The photo plausibly shows Phoebe Gates at a tech event, matching the story topic."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the topic of AI in healthcare to the interests of the Indian diaspora, particularly regarding healthcare advancements that could benefit families in India."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding more specific examples of how Phia's technology could directly impact healthcare in India.",
-          "Include quotes or perspectives from Indian healthcare professionals to strengthen the diaspora connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d945f059-4715-4ce2-9c6d-6f7424ebf6df",
-      "headline": "Did AI Influence Meta's Layoffs? Lawsuit Raises Alarming Questions",
-      "slug": "did-ai-influence-meta-layoffs-lawsuit-raises-alarming-questions-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the implications of the lawsuit to the Indian diaspora working in tech."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Add more specific examples of how AI has impacted layoffs in other companies to strengthen the argument."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "6285e564-4338-48db-9cc6-080f50b9f62a",
-      "headline": "World Cup Fever: Bengaluru Eateries Extend Hours to 3:30 AM for Match Screenings",
-      "slug": "world-cup-fever-bengaluru-eateries-extend-hours-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "The image description is missing, making it difficult to assess its relevance."
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the World Cup to the NRI experience, highlighting cultural ties."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant image description to enhance the image match score.",
-          "Consider adding quotes from local business owners or patrons to provide more personal insights."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "d4782cbc-c57b-4200-b15a-4ff6f3e38c9f",
-      "headline": "US Eases Tariff Threat Against India, China for Russian Oil Buys",
-      "slug": "us-eases-tariff-threat-against-india-china-for-russian-oil-buys-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 5,
-          "issue": "missing image description"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the tariff changes to the interests of the Indian diaspora, particularly in sectors reliant on energy."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that visually represents the topic of U.S. tariffs and energy procurement.",
-          "Expand on the implications for the Indian diaspora with specific examples or quotes from community leaders."
+          "Consider adding quotes or perspectives from local Indian community leaders to strengthen the diaspora angle."
         ],
         "verdict": "pass"
       },
