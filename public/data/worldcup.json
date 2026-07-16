@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-15T20:00:00Z",
-  "stage": "Semifinals — 101 of 104 matches played",
+  "last_updated": "2026-07-16T20:55:59Z",
+  "stage": "Group Stage — 102 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -400,13 +400,13 @@
         "code": "ESP",
         "flag": "🇪🇸",
         "rank": 2,
-        "p": 6,
-        "w": 5,
+        "p": 7,
+        "w": 6,
         "d": 1,
         "l": 0,
-        "gf": 11,
+        "gf": 13,
         "ga": 1,
-        "pts": 16
+        "pts": 19
       },
       {
         "name": "Cape Verde",
@@ -454,12 +454,12 @@
         "code": "FRA",
         "flag": "🇫🇷",
         "rank": 3,
-        "p": 6,
+        "p": 7,
         "w": 6,
         "d": 0,
-        "l": 0,
+        "l": 1,
         "gf": 16,
-        "ga": 2,
+        "ga": 4,
         "pts": 18
       },
       {
@@ -508,13 +508,13 @@
         "code": "ARG",
         "flag": "🇦🇷",
         "rank": 1,
-        "p": 6,
-        "w": 6,
+        "p": 7,
+        "w": 7,
         "d": 0,
         "l": 0,
-        "gf": 17,
-        "ga": 6,
-        "pts": 18
+        "gf": 19,
+        "ga": 7,
+        "pts": 21
       },
       {
         "name": "Austria",
@@ -616,12 +616,12 @@
         "code": "ENG",
         "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "rank": 4,
-        "p": 6,
+        "p": 7,
         "w": 5,
         "d": 1,
-        "l": 0,
-        "gf": 13,
-        "ga": 6,
+        "l": 1,
+        "gf": 14,
+        "ga": 8,
         "pts": 16
       },
       {
@@ -2202,8 +2202,8 @@
       "away": "Argentina",
       "venue": "Mercedes-Benz Stadium",
       "city": "Atlanta, GA",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "1-2",
       "home_code": "ENG",
       "away_code": "ARG"
     },
@@ -2214,13 +2214,13 @@
       "time": "17:00",
       "tz": "ET",
       "home": "France",
-      "away": "TBD",
+      "away": "England",
       "venue": "Hard Rock Stadium",
       "city": "Miami Gardens, FL",
       "status": "scheduled",
       "score": null,
       "home_code": "FRA",
-      "away_code": "TBD"
+      "away_code": "ENG"
     },
     {
       "id": 104,
@@ -2229,13 +2229,13 @@
       "time": "15:00",
       "tz": "ET",
       "home": "Spain",
-      "away": "TBD",
+      "away": "Argentina",
       "venue": "MetLife Stadium",
       "city": "East Rutherford, NJ",
       "status": "scheduled",
       "score": null,
       "home_code": "ESP",
-      "away_code": "TBD"
+      "away_code": "ARG"
     }
   ],
   "knockout": {
@@ -2673,8 +2673,8 @@
           "home_code": "ENG",
           "away": "Argentina",
           "away_code": "ARG",
-          "status": "scheduled",
-          "score": null
+          "status": "FT",
+          "score": "1-2"
         }
       ]
     },
@@ -2689,8 +2689,8 @@
         "venue": "Hard Rock Stadium, Miami",
         "home": "France",
         "home_code": "FRA",
-        "away": "TBD",
-        "away_code": "TBD",
+        "away": "England",
+        "away_code": "ENG",
         "status": "scheduled",
         "score": null
       }
@@ -2708,8 +2708,8 @@
         "venue": "MetLife Stadium, New York/New Jersey",
         "home": "Spain",
         "home_code": "ESP",
-        "away": "TBD",
-        "away_code": "TBD",
+        "away": "Argentina",
+        "away_code": "ARG",
         "status": "scheduled",
         "score": null
       }
