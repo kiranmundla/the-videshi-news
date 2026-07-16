@@ -287,3 +287,80 @@ After implementation, we should see:
 2. **Source article images:** Using og:image from source articles means showing the source's photography. Is that OK legally? (Fair use for news commentary is defensible, but worth deciding.)
 3. **Google News rate limiting:** How aggressively can we poll without getting blocked? Current: every 30 min. Proposed: keep at 30 min but with more queries.
 4. **Email newsletter subscriptions:** Should I subscribe signals@thevideshi.com to the new sources, or should you do it to keep control?
+
+---
+
+## Appendix: Image Pipeline — Detailed Findings
+
+### Current Flow (broken)
+
+```
+Writer picks topic → LLM generates image_search_query + image_entities
+  → Wikipedia person lookup (entities)
+  → Wikimedia Commons search (search query)
+  → Pexels fallback (search query)
+  → Upload to Supabase storage
+```
+
+**Problems:**
+1. RSS feeds carry `media:thumbnail` images (verified: BBC, NDTV, etc.) but the ingest scripts **discard them** — `p2_signals` has no image column
+2. The writer never fetches og:image from the source article URL — even though it has the `original_url`
+3. Wikipedia lookups sometimes return wrong images (Pennsylvania State Capitol for US Capitol Hill)
+4. No HTTP verification on any image URL before writing to DB
+5. All 10 articles published today used Wikipedia/Commons — zero used the source article's actual image
+
+### Proposed Flow
+
+```
+1. Source article's own image (og:image from original_url)
+   → curl the source URL, extract og:image meta tag
+   → HTTP GET verify: 200 OK, Content-Type starts with image/, ≥600px
+   → BEST option: most relevant, already editorial-quality
+
+2. RSS feed image (media:thumbnail stored at ingest time)
+   → Already captured in p2_signals.image_url (new column)
+   → HTTP GET verify
+   → GOOD: editorial photo, already associated with the story
+
+3. Media library cache (person_images)
+   → Check if we have a verified image for this subject
+   → No network call needed
+
+4. Wikipedia / Wikimedia Commons
+   → API query → get File: title → thumb URL
+   → HTTP GET verify (never HEAD — returns 400 from this env)
+   → Commons relevance gate still applies
+
+5. Pexels (last resort)
+   → Landscape, ≥800px
+   → With attribution
+
+6. No image
+   → Publish without hero rather than publish a broken one
+   → Log for manual review
+```
+
+### DB Changes Needed
+
+```sql
+-- Add image column to p2_signals
+ALTER TABLE p2_signals ADD COLUMN image_url TEXT;
+```
+
+### Ingest Changes Needed
+
+In `rss-ingest.py` and the RSS section of `v2-ingest.py`:
+- Extract `media:thumbnail`, `media:content`, or `enclosure` image URL from each RSS item
+- Store in `p2_signals.image_url`
+
+In `google-news-ingest.py`:
+- Google News RSS items sometimes carry images too — capture them
+
+### Writer Changes Needed
+
+In `rolling-writer.py` `source_hero_image()`:
+- Add Source 0: fetch og:image from source article's `original_url`
+- Add Source 0.5: check if any signal in the topic has an `image_url`
+- Keep existing Wikipedia/Commons/Pexels as fallback chain
+- Add HTTP GET verification wrapper around ALL image URLs
+

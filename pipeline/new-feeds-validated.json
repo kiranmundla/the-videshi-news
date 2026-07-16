@@ -1,0 +1,371 @@
+[
+  {
+    "name": "Eater",
+    "url": "https://www.eater.com/rss/index.xml",
+    "category": "food",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-15",
+    "note": "Major US food news, restaurant openings, trends. Very active."
+  },
+  {
+    "name": "Eater NY",
+    "url": "https://ny.eater.com/rss/index.xml",
+    "category": "food",
+    "active": true,
+    "items": 5,
+    "last_item_date": "2026-07-16",
+    "note": "NYC restaurant scene \u2014 huge NRI population."
+  },
+  {
+    "name": "Eater LA",
+    "url": "https://la.eater.com/rss/index.xml",
+    "category": "food",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-16",
+    "note": "LA restaurant scene \u2014 large Indian community."
+  },
+  {
+    "name": "Eater SF",
+    "url": "https://sf.eater.com/rss/index.xml",
+    "category": "food",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-16",
+    "note": "SF/Bay Area \u2014 densest NRI population in the US."
+  },
+  {
+    "name": "Eater Chicago",
+    "url": "https://chicago.eater.com/rss/index.xml",
+    "category": "food",
+    "active": true,
+    "items": 8,
+    "last_item_date": "2026-07-16",
+    "note": "Chicago food scene."
+  },
+  {
+    "name": "NDTV Food",
+    "url": "https://feeds.feedburner.com/ndtvfood-latest",
+    "category": "food",
+    "active": true,
+    "items": 60,
+    "last_item_date": "2026-07-16",
+    "note": "Indian food news, recipes, restaurant reviews. High volume."
+  },
+  {
+    "name": "Indian Express Food",
+    "url": "https://indianexpress.com/section/lifestyle/food-wine/feed/",
+    "category": "food",
+    "active": true,
+    "items": 68,
+    "last_item_date": "2026-07-16",
+    "note": "Indian food & wine coverage. Very active."
+  },
+  {
+    "name": "Taste of Home",
+    "url": "https://www.tasteofhome.com/feed/",
+    "category": "food",
+    "active": true,
+    "items": 4,
+    "last_item_date": "2026-07-16",
+    "note": "US home cooking, recipes."
+  },
+  {
+    "name": "Hebbar's Kitchen",
+    "url": "https://hebbarskitchen.com/feed/",
+    "category": "food",
+    "active": true,
+    "items": 9,
+    "last_item_date": "2026-07-13",
+    "note": "Popular Indian vegetarian recipe blog. Good diaspora angle."
+  },
+  {
+    "name": "The Kitchn",
+    "url": "https://www.thekitchn.com/main.rss",
+    "category": "food",
+    "active": true,
+    "items": 20,
+    "last_item_date": "2026-07-16",
+    "note": "Recipes, kitchen tips, food news."
+  },
+  {
+    "name": "NY Times Dining",
+    "url": "https://rss.nytimes.com/services/xml/rss/nyt/DiningandWine.xml",
+    "category": "food",
+    "active": true,
+    "items": 25,
+    "last_item_date": "2026-07-16",
+    "note": "Premium food journalism \u2014 restaurant reviews, trends, Indian chef profiles."
+  },
+  {
+    "name": "HT Food",
+    "url": "https://www.hindustantimes.com/feeds/rss/lifestyle/food/rssfeed.xml",
+    "category": "food",
+    "active": true,
+    "items": 2,
+    "last_item_date": "unknown",
+    "note": "Low volume but Indian food focus."
+  },
+  {
+    "name": "TOI Food",
+    "url": "https://timesofindia.indiatimes.com/rssfeeds/54829575.cms",
+    "category": "food",
+    "active": true,
+    "items": 20,
+    "last_item_date": "2026-07-16",
+    "note": "Indian food news and recipes."
+  },
+  {
+    "name": "The Points Guy",
+    "url": "https://thepointsguy.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 6,
+    "last_item_date": "2026-07-16",
+    "note": "Points, miles, flight deals \u2014 extremely relevant for NRI frequent flyers."
+  },
+  {
+    "name": "Skift",
+    "url": "https://skift.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-16",
+    "note": "Travel industry news \u2014 airlines, hotels, trends."
+  },
+  {
+    "name": "Simple Flying",
+    "url": "https://simpleflying.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-16",
+    "note": "Aviation news \u2014 Air India, IndiGo, new routes, airline reviews."
+  },
+  {
+    "name": "Fodors",
+    "url": "https://www.fodors.com/feed",
+    "category": "travel",
+    "active": true,
+    "items": 15,
+    "last_item_date": "2026-07-16",
+    "note": "Travel guides, destination picks, travel tips."
+  },
+  {
+    "name": "One Mile at a Time",
+    "url": "https://onemileatatime.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 8,
+    "last_item_date": "2026-07-16",
+    "note": "Flight reviews, hotel reviews, points/miles strategy. NRI-relevant."
+  },
+  {
+    "name": "Head for Points",
+    "url": "https://www.headforpoints.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 9,
+    "last_item_date": "2026-07-16",
+    "note": "UK-focused points/miles \u2014 relevant for UK NRIs."
+  },
+  {
+    "name": "Live and Let's Fly",
+    "url": "https://liveandletsfly.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 3,
+    "last_item_date": "2026-07-16",
+    "note": "Flight deals, airline news."
+  },
+  {
+    "name": "Frommer's",
+    "url": "https://www.frommers.com/feed.xml",
+    "category": "travel",
+    "active": true,
+    "items": 87,
+    "last_item_date": "2026-07-16",
+    "note": "Travel guides and destination coverage. Very high volume."
+  },
+  {
+    "name": "Nomadic Matt",
+    "url": "https://www.nomadicmatt.com/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 5,
+    "last_item_date": "2026-06-18",
+    "note": "Budget travel tips. Active but posts less frequently."
+  },
+  {
+    "name": "BBC Travel",
+    "url": "https://www.bbc.com/travel/feed.rss",
+    "category": "travel",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-16",
+    "note": "Cultural travel stories \u2014 good India/diaspora angles."
+  },
+  {
+    "name": "Indian Express Travel",
+    "url": "https://indianexpress.com/section/lifestyle/destination-of-the-week/feed/",
+    "category": "travel",
+    "active": true,
+    "items": 62,
+    "last_item_date": "2026-07-16",
+    "note": "Indian travel destinations, NRI travel tips. Very active."
+  },
+  {
+    "name": "Economic Times Travel",
+    "url": "https://travel.economictimes.indiatimes.com/rss/topstories",
+    "category": "travel",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-17",
+    "note": "Travel industry from Indian business perspective."
+  },
+  {
+    "name": "HT Travel",
+    "url": "https://www.hindustantimes.com/feeds/rss/travel/rssfeed.xml",
+    "category": "travel",
+    "active": true,
+    "items": 0,
+    "last_item_date": "unknown",
+    "note": "Valid RSS but may have low volume. Monitor."
+  },
+  {
+    "name": "Indian Express Lifestyle",
+    "url": "https://indianexpress.com/section/lifestyle/feed/",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 67,
+    "last_item_date": "2026-07-16",
+    "note": "Broad Indian lifestyle \u2014 fashion, wellness, relationships. Very active."
+  },
+  {
+    "name": "Indian Express Health",
+    "url": "https://indianexpress.com/section/lifestyle/health/feed/",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 70,
+    "last_item_date": "2026-07-16",
+    "note": "Health news with Indian context."
+  },
+  {
+    "name": "HT Lifestyle",
+    "url": "https://www.hindustantimes.com/feeds/rss/lifestyle/rssfeed.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 80,
+    "last_item_date": "2026-07-16",
+    "note": "Indian lifestyle news. Very high volume."
+  },
+  {
+    "name": "HT Health",
+    "url": "https://www.hindustantimes.com/feeds/rss/lifestyle/health/rssfeed.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 37,
+    "last_item_date": "2026-07-16",
+    "note": "Indian health news."
+  },
+  {
+    "name": "HT Fashion",
+    "url": "https://www.hindustantimes.com/feeds/rss/lifestyle/fashion/rssfeed.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 14,
+    "last_item_date": "2026-07-16",
+    "note": "Indian fashion trends."
+  },
+  {
+    "name": "TOI Lifestyle",
+    "url": "https://timesofindia.indiatimes.com/rssfeeds/2886704.cms",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 20,
+    "last_item_date": "2026-07-17",
+    "note": "TOI lifestyle section."
+  },
+  {
+    "name": "MindBodyGreen",
+    "url": "https://www.mindbodygreen.com/rss/featured.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 138,
+    "last_item_date": "2026-07-16",
+    "note": "Wellness, mindfulness, nutrition \u2014 strong alignment with yoga/Ayurveda audience."
+  },
+  {
+    "name": "Prevention",
+    "url": "https://www.prevention.com/rss/all.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 50,
+    "last_item_date": "2026-07-16",
+    "note": "Health prevention, wellness tips."
+  },
+  {
+    "name": "Women's Health",
+    "url": "https://www.womenshealthmag.com/rss/all.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 50,
+    "last_item_date": "2026-07-16",
+    "note": "Health, fitness, wellness."
+  },
+  {
+    "name": "Men's Health",
+    "url": "https://www.menshealth.com/rss/all.xml",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 46,
+    "last_item_date": "2026-07-16",
+    "note": "Health, fitness, grooming."
+  },
+  {
+    "name": "MedicalXpress",
+    "url": "https://medicalxpress.com/rss-feed/",
+    "category": "lifestyle-health",
+    "active": true,
+    "items": 30,
+    "last_item_date": "2026-07-16",
+    "note": "Medical research news \u2014 good for health stories."
+  },
+  {
+    "name": "Bollywood Hungama",
+    "url": "https://www.bollywoodhungama.com/feed/",
+    "category": "entertainment",
+    "active": true,
+    "items": 10,
+    "last_item_date": "2026-07-16",
+    "note": "Bollywood news, box office, reviews."
+  },
+  {
+    "name": "Hindustan Times Entertainment",
+    "url": "https://www.hindustantimes.com/feeds/rss/entertainment/rssfeed.xml",
+    "category": "entertainment",
+    "active": true,
+    "items": 76,
+    "last_item_date": "2026-07-16",
+    "note": "Bollywood + Hollywood entertainment news. High volume."
+  },
+  {
+    "name": "NDTV Movies",
+    "url": "https://feeds.feedburner.com/ndtvmovies-latest",
+    "category": "entertainment",
+    "active": true,
+    "items": 64,
+    "last_item_date": "2026-07-16",
+    "note": "Indian movie news, reviews, box office."
+  },
+  {
+    "name": "Pinkvilla",
+    "url": "https://www.pinkvilla.com/rss.xml",
+    "category": "entertainment",
+    "active": true,
+    "items": 16,
+    "last_item_date": "2026-05-08",
+    "note": "Bollywood celebrity news. Active but RSS may lag the site \u2014 last item ~2 months old. Monitor."
+  }
+]

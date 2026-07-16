@@ -119,7 +119,26 @@ for feed in feeds:
                 u = (entry.get("link") or "").strip()
                 pub = getattr(entry, "published", getattr(entry, "updated", ""))
                 if t and u:
-                    items.append({"title": t, "url": u, "pub": pub})
+                    # Extract image from RSS entry (media:thumbnail, media:content, enclosure)
+                    img = None
+                    if hasattr(entry, 'media_thumbnail') and entry.media_thumbnail:
+                        img = entry.media_thumbnail[0].get('url')
+                    elif hasattr(entry, 'media_content') and entry.media_content:
+                        for mc in entry.media_content:
+                            if mc.get('type', '').startswith('image/') or mc.get('medium') == 'image':
+                                img = mc.get('url')
+                                break
+                    if not img and hasattr(entry, 'links'):
+                        for link in entry.links:
+                            if link.get('type', '').startswith('image/'):
+                                img = link.get('href')
+                                break
+                    if not img and hasattr(entry, 'enclosures'):
+                        for enc in entry.enclosures:
+                            if enc.get('type', '').startswith('image/'):
+                                img = enc.get('href') or enc.get('url')
+                                break
+                    items.append({"title": t, "url": u, "pub": pub, "image_url": img})
     except Exception as e:
         print(f"  ⚠ {name}: {e}")
         continue
@@ -129,7 +148,7 @@ for feed in feeds:
     for item in items:
         h = url_hash(item["url"])
         if h not in existing:
-            all_new.append({
+            signal = {
                 "feed_source_id": feed["id"],
                 "title": item["title"][:500],
                 "original_url": item["url"][:2000],
@@ -137,7 +156,11 @@ for feed in feeds:
                 "published_at": parse_pub_date(item["pub"]),
                 "fetched_at": NOW_ISO,
                 "is_processed": False,
-            })
+            }
+            # Include image_url if RSS entry had one
+            if item.get("image_url"):
+                signal["image_url"] = item["image_url"][:2000]
+            all_new.append(signal)
             existing.add(h)
             new_for_feed += 1
     total_items += len(items)

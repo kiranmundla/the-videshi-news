@@ -181,6 +181,9 @@ def parse_rss(xml_str):
     except ET.ParseError:
         return items
 
+    # Media namespace for image extraction
+    media_ns = {'media': 'http://search.yahoo.com/mrss/'}
+
     # RSS 2.0
     for item in root.findall('.//item'):
         title = (item.findtext('title') or '').strip()
@@ -191,10 +194,25 @@ def parse_rss(xml_str):
         # Google News cluster size from description
         desc = html.unescape(item.findtext('description') or '')
         cluster_size = len(re.findall(r'<li>', desc)) + 1 if '<li>' in desc else 1
+        # Extract image from media:thumbnail, media:content, or enclosure
+        img_url = None
+        thumb = item.find('media:thumbnail', media_ns)
+        if thumb is not None:
+            img_url = thumb.get('url')
+        if not img_url:
+            for mc in item.findall('media:content', media_ns):
+                if mc.get('type', '').startswith('image/') or mc.get('medium') == 'image':
+                    img_url = mc.get('url')
+                    break
+        if not img_url:
+            enc = item.find('enclosure')
+            if enc is not None and enc.get('type', '').startswith('image/'):
+                img_url = enc.get('url')
         if title and link:
             items.append({
                 'title': title, 'url': link, 'pub': pub,
-                'source_name': source_name, 'cluster_size': cluster_size
+                'source_name': source_name, 'cluster_size': cluster_size,
+                'image_url': img_url,
             })
 
     # Atom
@@ -206,8 +224,13 @@ def parse_rss(xml_str):
             link_el = entry.find("atom:link", ns)
         link = (link_el.get('href', '') if link_el is not None else '').strip()
         pub = (entry.findtext('atom:published', '', ns) or entry.findtext('atom:updated', '', ns) or '').strip()
+        # Extract image from Atom entry
+        img_url = None
+        thumb = entry.find('media:thumbnail', media_ns)
+        if thumb is not None:
+            img_url = thumb.get('url')
         if title and link:
-            items.append({'title': title, 'url': link, 'pub': pub, 'source_name': '', 'cluster_size': 1})
+            items.append({'title': title, 'url': link, 'pub': pub, 'source_name': '', 'cluster_size': 1, 'image_url': img_url})
 
     return items
 
@@ -286,18 +309,32 @@ GOOGLE_NEWS_GEOS = [
 ]
 
 GOOGLE_NEWS_SEARCHES = [
-    'H-1B visa OR "green card" India OR "EB-2" OR "EB-3"',
-    '"Indian American" OR "Indian origin" achievement',
-    'NRI OR "Indian diaspora" OR "non-resident Indian"',
-    '"Indian CEO" OR "Indian origin" CEO tech',
-    'India US trade OR "India UK" trade deal',
-    'Bollywood "US release" OR "Indian film" international',
-    'USCIS OR "immigration India" policy',
-    '"hate crime" Indian OR "Indian student" abroad safety',
-    '"Indian startup" unicorn OR "Indian founder"',
-    'India cricket OR "Indian Premier League" OR "Team India"',
+    # ── Type A: Diaspora-specific (stories that mention "Indian" explicitly) ──
+    'H-1B visa OR "green card" OR "EB-2" OR "EB-3" OR USCIS',
+    '"Indian American" OR "Indian origin" OR "Indian diaspora"',
+    '"Indian CEO" OR "Indian founder" OR "Indian startup"',
     'OCI card OR "Indian passport" OR "Indian consulate"',
-    'Infosys OR TCS OR Wipro OR HCL Tech',
+    'NRI OR "non-resident Indian" OR "overseas Indian"',
+    'Infosys OR TCS OR Wipro OR "HCL Tech" OR "Tech Mahindra"',
+    'Bollywood OR "Indian film" OR "Indian cinema"',
+    '"Indian restaurant" OR "Indian food" OR Diwali OR Holi',
+    '"Indian student" abroad OR "Indian community"',
+    'India cricket OR "Team India" OR IPL',
+
+    # ── Type B: Diaspora-adjacent (affects NRIs without saying "Indian") ──
+    # Immigration — policy changes that directly impact H-1B/green card holders
+    '"work visa" policy OR "immigration reform" OR "visa processing"',
+    'DACA OR "immigration court" OR "premium processing"',
+    # Tech — companies and trends that employ/affect large Indian workforce
+    'NVIDIA OR Google layoffs OR "Silicon Valley" hiring',
+    'AI regulation OR semiconductor OR "chip act"',
+    # Markets — US/India markets that NRIs invest in / are affected by
+    '"Federal Reserve" rate OR Sensex OR Nifty OR "rupee dollar"',
+    # Entertainment — crossover content NRIs care about
+    '"Dev Patel" OR "Mindy Kaling" OR "Hasan Minhaj" OR "Priyanka Chopra"',
+    # Food/Travel — diaspora lifestyle
+    '"Trader Joes" Indian OR turmeric OR chai latte OR "spice" food trend',
+    '"Air India" OR "IndiGo airlines" OR "India flights"',
 ]
 
 def build_google_feeds():
@@ -523,6 +560,8 @@ def main():
             }
             if item.get("feed_id"):
                 row["feed_source_id"] = item["feed_id"]
+            if item.get("image_url"):
+                row["image_url"] = item["image_url"][:2000]
             all_rows.append(row)
 
         # Parallel batch insert — 5 workers, 50 rows per batch, upsert skips dupes
