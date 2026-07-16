@@ -5,7 +5,7 @@ RSS Ingest Pipeline for The Videshi — v2 (optimized).
 
 import os, json, hashlib, re, sys, time
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import email.utils
 
 # Force unbuffered output
@@ -59,18 +59,19 @@ r.raise_for_status()
 feeds = r.json()
 print(f"\n  📡 Active feed sources: {len(feeds)}")
 
-# Step 2: Load existing hashes (26k+, paginate efficiently)
-print("  🔍 Loading existing signal hashes...")
+# Step 2: Load existing hashes (only last 14 days — RSS feeds never go back further)
+print("  🔍 Loading recent signal hashes (14-day window)...")
 existing = set()
 offset = 0
-PAGE = 1000
+PAGE = 5000
+cutoff = (datetime.now(timezone.utc) - timedelta(days=14)).isoformat()
 while True:
     data = None
     for attempt in range(3):
         try:
             r = requests.get(f"{SB_URL}/rest/v1/p2_signals",
                 headers={**HEADERS, "Range": f"{offset}-{offset+PAGE-1}", "Prefer": "count=none"},
-                params={"select": "url_hash"}, timeout=30)
+                params={"select": "url_hash", "fetched_at": f"gte.{cutoff}"}, timeout=30)
             data = r.json()
             break
         except (requests.exceptions.ChunkedEncodingError, requests.exceptions.ConnectionError) as e:
@@ -87,8 +88,9 @@ while True:
     if len(data) < PAGE:
         break
     offset += PAGE
-    print(f"    ... loaded {len(existing)} hashes")
-print(f"  📊 Existing signals: {len(existing)}")
+    if len(existing) % 5000 == 0:
+        print(f"    ... loaded {len(existing)} hashes")
+print(f"  📊 Existing signals (14d): {len(existing)}")
 
 # Step 3: Fetch feeds sequentially with timeouts
 print("\n  📥 Fetching feeds...")

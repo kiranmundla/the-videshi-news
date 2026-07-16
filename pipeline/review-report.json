@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-07-16T20:51:47.346352+00:00",
+  "timestamp": "2026-07-16T21:01:14.073811+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 0,
+    "pass": 3,
     "flag": 0,
     "fail": 0,
-    "error": 3
+    "error": 0
   },
   "revisions": 0,
   "unpublished": 0,
@@ -21,10 +21,32 @@
         "broken_embeds": [],
         "inline_image_mismatches": []
       },
-      "llm_review": null,
-      "actions_taken": [],
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 7,
+          "issue": "missing image description"
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the significance of India-Pakistan matches to the Indian diaspora, highlighting cultural and economic impacts."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a relevant image that captures the essence of India-Pakistan cricket rivalry.",
+          "Include specific examples of how the diaspora engages with these matches, such as viewing parties or community events."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "promoted to published"
+      ],
       "revised": false,
-      "unpublished": false
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
     },
     {
       "id": "84357db8-c8b9-42bf-b249-c2954a059358",
@@ -36,23 +58,50 @@
         "duplicate_images": [],
         "broken_embeds": [
           {
+            "url": "https://x.com/FIFAWorldCup/status/1798369680387563725",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          },
+          {
             "url": "https://instagram.com/p/C7x0Yw_S_tB/",
             "problem": "broken",
-            "detail": "Instagram embed page empty/invalid (0 bytes)"
+            "detail": "Instagram embed shows removed/broken placeholder"
           }
         ],
         "vision_image_match": {
-          "verdict": "UNVERIFIED",
-          "what_photo_shows": "(image unreadable)",
-          "reason": "could not download image: curl-rc-7"
+          "verdict": "MATCH",
+          "what_photo_shows": "Argentina fans celebrating at a match",
+          "reason": "The photo shows Argentina fans, relevant to the story about fan clashes."
         },
         "inline_image_mismatches": []
       },
-      "llm_review": null,
-      "actions_taken": [],
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the events of the match and fan clashes to the Indian diaspora, highlighting their engagement with football and the cultural implications."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more direct quotes from Indian fans to enhance the diaspora perspective.",
+          "Include specific details about how NRIs are planning to engage with the World Cup, such as travel plans or community events."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 2 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
       "revised": false,
       "unpublished": false,
-      "image_unverified": true
+      "llm_source": "gpt-4o-mini"
     },
     {
       "id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
@@ -62,13 +111,42 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://x.com/timesofindia/status/1798543210987654321",
+            "problem": "broken",
+            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
+          }
+        ],
         "inline_image_mismatches": []
       },
-      "llm_review": null,
-      "actions_taken": [],
+      "llm_review": {
+        "overall_score": 8,
+        "embed_issues": [],
+        "image_match": {
+          "score": 9,
+          "issue": null
+        },
+        "diaspora_angle": {
+          "present": true,
+          "quality": 8,
+          "note": "The article effectively connects the issue of local governance corruption to the diaspora's interests and investments in Tamil Nadu."
+        },
+        "factual_flags": [],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Consider adding more specific examples of how the diaspora can engage with anti-corruption initiatives.",
+          "Include quotes or insights from diaspora members regarding their views on governance issues in India."
+        ],
+        "verdict": "pass"
+      },
+      "actions_taken": [
+        "Removed 1 broken/hallucinated embed(s)",
+        "promoted to published"
+      ],
       "revised": false,
-      "unpublished": false
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
     }
   ]
 }
