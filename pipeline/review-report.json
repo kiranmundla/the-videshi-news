@@ -1,58 +1,15 @@
 {
-  "timestamp": "2026-07-15T20:11:47.395503+00:00",
+  "timestamp": "2026-07-16T20:51:47.346352+00:00",
   "mode": "fix",
   "stats": {
-    "pass": 5,
-    "flag": 2,
+    "pass": 0,
+    "flag": 0,
     "fail": 0,
-    "error": 0
+    "error": 3
   },
-  "revisions": 2,
+  "revisions": 0,
   "unpublished": 0,
   "articles": [
-    {
-      "id": "6ad68e42-0658-4b6f-8eea-a066ddeaf631",
-      "headline": "OpenAI Unveils Physical Keypad for AI Control",
-      "slug": "openai-unveils-physical-keypad-for-ai-control-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "OpenAI logo on a screen",
-          "reason": "The OpenAI logo is relevant to the story about their new device."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the product's relevance to the Indian diaspora, particularly in tech sectors."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding a quote from an OpenAI representative to enhance credibility.",
-          "Include specific examples of how the keypad could be used in industries relevant to the diaspora."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
     {
       "id": "213f3270-dfb8-4086-8ab9-9c7c618e0619",
       "headline": "India-Pakistan Clash Could Happen Thrice in World Cup After ICC Rule Change",
@@ -62,127 +19,12 @@
         "duplicate_embeds": [],
         "duplicate_images": [],
         "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MISMATCH",
-          "what_photo_shows": "FIFA World Cup trophy",
-          "reason": "The photo shows a football trophy, unrelated to cricket."
-        },
         "inline_image_mismatches": []
       },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 7,
-          "issue": "hero image not provided"
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 9,
-          "note": "The article effectively connects the significance of India-Pakistan matches to the Indian diaspora, highlighting cultural and economic impacts."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Include a relevant hero image that reflects the article's theme.",
-          "Add specific examples of how the diaspora engages with cricket during India-Pakistan matches."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "Cleared mismatched image (FIFA World Cup trophy)",
-        "held: image mismatch"
-      ],
+      "llm_review": null,
+      "actions_taken": [],
       "revised": false,
-      "unpublished": false,
-      "image_mismatch": true,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "584aa8b6-4940-4a9c-adf8-8926636c15bb",
-      "headline": "Andhra Pradesh Student Dies in Tragic U.S. Road Accident",
-      "slug": "andhra-pradesh-student-dies-in-tragic-us-road-accident-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "overturned car in a field",
-          "reason": "The photo of a car accident is relevant to a road accident story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the tragic incident to broader concerns about the safety of international students, making it relevant to the diaspora."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding quotes from community leaders or university officials to enhance the emotional impact.",
-          "Include statistics or data on road safety incidents involving international students to provide context."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "94ba8918-8bf0-4fe5-ac97-b47c761a65f4",
-      "headline": "UK Affirms Support for India's Security Concerns Amid Trade Talks",
-      "slug": "uk-affirms-support-for-indias-security-concerns-amid-trade-talks-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "A man in a suit and glasses",
-          "reason": "The photo plausibly shows James Cleverly, relevant to UK-India talks."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the UK-India trade deal and security concerns to the interests of the Indian diaspora, highlighting potential economic benefits and investment opportunities."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding specific examples of how the trade deal could directly impact the diaspora community, such as potential sectors for investment.",
-          "Include quotes or perspectives from diaspora leaders or organizations to strengthen the connection to the NRI audience."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
-      "revised": false,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "unpublished": false
     },
     {
       "id": "84357db8-c8b9-42bf-b249-c2954a059358",
@@ -192,83 +34,25 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [],
+        "broken_embeds": [
+          {
+            "url": "https://instagram.com/p/C7x0Yw_S_tB/",
+            "problem": "broken",
+            "detail": "Instagram embed page empty/invalid (0 bytes)"
+          }
+        ],
         "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Argentina fans celebrating at a match",
-          "reason": "The photo shows Argentina fans, which aligns with the story about Argentina supporters."
+          "verdict": "UNVERIFIED",
+          "what_photo_shows": "(image unreadable)",
+          "reason": "could not download image: curl-rc-7"
         },
         "inline_image_mismatches": []
       },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article connects the events to the Indian diaspora by discussing their potential interest in the match and the cultural narratives involved."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Enhance the diaspora angle by including specific examples of how Indian fans are engaging with the match or any notable Indian figures involved.",
-          "Consider adding quotes or reactions from Indian fans to provide a more personal touch to the diaspora perspective."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Revised by gemini-2.5-flash (620\u2192802 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
-    },
-    {
-      "id": "360173c7-42d7-479d-b1ea-4dc2dae01cff",
-      "headline": "Green-Led Council to Vote on Immigration Raids Cooperation Ban",
-      "slug": "green-led-council-immigration-raids-ban-20260715",
-      "pre_checks": {
-        "fiction_admission": null,
-        "duplicate_embeds": [],
-        "duplicate_images": [],
-        "broken_embeds": [],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "government building with UK flag",
-          "reason": "The photo shows a government building, relevant to a council story."
-        },
-        "inline_image_mismatches": []
-      },
-      "llm_review": {
-        "overall_score": 8,
-        "embed_issues": [],
-        "image_match": {
-          "score": 9,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 8,
-          "note": "The article effectively connects the immigration policy discussion to the Indian diaspora, highlighting its relevance to NRIs with family ties in the UK."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Consider adding specific examples of how similar policies have impacted immigrant communities in the UK.",
-          "Include quotes from diaspora members or organizations to strengthen the connection."
-        ],
-        "verdict": "pass"
-      },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "llm_review": null,
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "image_unverified": true
     },
     {
       "id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
@@ -278,54 +62,13 @@
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/TheVideshi/status/1798765432109876543",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://x.com/TheVideshi/status/1798765432109876544",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
+        "broken_embeds": [],
         "inline_image_mismatches": []
       },
-      "llm_review": {
-        "overall_score": 6,
-        "embed_issues": [
-          {
-            "url": "https://instagram.com/TheVideshi/p/C7D_EfgIJKK/",
-            "problem": "irrelevant",
-            "explanation": "The Instagram post does not appear to be directly related to the topic of corruption or the specific incident discussed in the article."
-          }
-        ],
-        "image_match": {
-          "score": 8,
-          "issue": null
-        },
-        "diaspora_angle": {
-          "present": true,
-          "quality": 7,
-          "note": "The article effectively connects the issue of local governance corruption to the interests of the Indian diaspora, particularly those with ties to Tamil Nadu."
-        },
-        "factual_flags": [],
-        "duplicate_embeds": [],
-        "suggestions": [
-          "Replace the irrelevant Instagram embed with a more relevant source or remove it altogether.",
-          "Consider adding more specific examples of how the diaspora can engage with governance issues beyond general advocacy."
-        ],
-        "verdict": "flag"
-      },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "Removed irrelevant embed: https://instagram.com/TheVideshi/p/C7D_EfgIJKK/",
-        "Revised by gemini-2.5-flash (700\u2192762 words)"
-      ],
-      "revised": true,
-      "unpublished": false,
-      "llm_source": "gpt-4o-mini"
+      "llm_review": null,
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false
     }
   ]
 }
