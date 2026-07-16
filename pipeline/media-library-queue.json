@@ -3882,60 +3882,10 @@
    "priority": 2
   },
   {
-   "subject": "nurses",
-   "subject_type": "thing",
-   "tags": [
-    "nurses"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "069ee223-c7bb-4e67-ab92-283a628d7e87",
-   "priority": 3
-  },
-  {
-   "subject": "recapture",
-   "subject_type": "thing",
-   "tags": [
-    "recapture"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "069ee223-c7bb-4e67-ab92-283a628d7e87",
-   "priority": 3
-  },
-  {
-   "subject": "south asian health",
-   "subject_type": "thing",
-   "tags": [
-    "south asian health"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "6715bf92-c61a-4a44-8984-09e752403cfe",
-   "priority": 3
-  },
-  {
-   "subject": "doordarshan",
-   "subject_type": "thing",
-   "tags": [
-    "doordarshan"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
-   "priority": 3
-  },
-  {
    "subject": "indian television",
    "subject_type": "thing",
    "tags": [
     "indian television"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
-   "priority": 3
-  },
-  {
-   "subject": "cultural preservation",
-   "subject_type": "thing",
-   "tags": [
-    "cultural preservation"
    ],
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "ea5a7182-98e9-4fe2-aa45-c9ed31badc29",
@@ -3950,146 +3900,6 @@
    "first_seen": "2026-07-05T10:29:26Z",
    "article_id": "2030e478-6729-4adf-aa8e-7d7afa543db5",
    "priority": 6
-  },
-  {
-   "subject": "climate",
-   "subject_type": "thing",
-   "tags": [
-    "climate"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "5288ba32-c7ea-47af-afad-e2b45b10a10a",
-   "priority": 3
-  },
-  {
-   "subject": "e verify",
-   "subject_type": "thing",
-   "tags": [
-    "e verify"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
-   "priority": 3
-  },
-  {
-   "subject": "indiana",
-   "subject_type": "thing",
-   "tags": [
-    "indiana"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
-   "priority": 3
-  },
-  {
-   "subject": "state enforcement",
-   "subject_type": "thing",
-   "tags": [
-    "state enforcement"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
-   "priority": 3
-  },
-  {
-   "subject": "business compliance",
-   "subject_type": "thing",
-   "tags": [
-    "business compliance"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "015d6992-65c6-44cb-a099-530e9d1cae08",
-   "priority": 3
-  },
-  {
-   "subject": "trekking",
-   "subject_type": "thing",
-   "tags": [
-    "trekking"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
-   "priority": 3
-  },
-  {
-   "subject": "uttarakhand",
-   "subject_type": "thing",
-   "tags": [
-    "uttarakhand"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
-   "priority": 3
-  },
-  {
-   "subject": "valley of flowers",
-   "subject_type": "thing",
-   "tags": [
-    "valley of flowers"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "44ae5211-84f7-4d62-8147-e86f983e9b4c",
-   "priority": 3
-  },
-  {
-   "subject": "scandinavia",
-   "subject_type": "thing",
-   "tags": [
-    "scandinavia"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "7b8c515e-b7b6-4fbe-968b-80317018f55c",
-   "priority": 3
-  },
-  {
-   "subject": "heatwave",
-   "subject_type": "thing",
-   "tags": [
-    "heatwave"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "7b8c515e-b7b6-4fbe-968b-80317018f55c",
-   "priority": 3
-  },
-  {
-   "subject": "bill c12",
-   "subject_type": "thing",
-   "tags": [
-    "bill c12"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "9ccdde07-426e-4e0f-a0c0-e11b04d513be",
-   "priority": 3
-  },
-  {
-   "subject": "study permit",
-   "subject_type": "thing",
-   "tags": [
-    "study permit"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "9ccdde07-426e-4e0f-a0c0-e11b04d513be",
-   "priority": 3
-  },
-  {
-   "subject": "india japan",
-   "subject_type": "thing",
-   "tags": [
-    "india japan"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "c11062dc-2bc8-438a-9082-44fbe97b554f",
-   "priority": 3
-  },
-  {
-   "subject": "july 4th",
-   "subject_type": "thing",
-   "tags": [
-    "july 4th"
-   ],
-   "first_seen": "2026-07-05T10:29:26Z",
-   "article_id": "f4be962e-386e-4442-98fe-7aa3c638710a",
-   "priority": 3
   },
   {
    "subject": "anti indian sentiment",
@@ -4152,16 +3962,6 @@
    "priority": 2
   },
   {
-   "subject": "india markets",
-   "subject_type": "thing",
-   "tags": [
-    "india markets"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
-   "priority": 3
-  },
-  {
    "subject": "ai trade",
    "subject_type": "thing",
    "tags": [
@@ -4200,16 +4000,6 @@
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
    "priority": 2
-  },
-  {
-   "subject": "portfolio strategy",
-   "subject_type": "thing",
-   "tags": [
-    "portfolio strategy"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
-   "priority": 3
   },
   {
    "subject": "visa renewal",
@@ -4292,16 +4082,6 @@
    "priority": 2
   },
   {
-   "subject": "USISPF",
-   "subject_type": "thing",
-   "tags": [
-    "usispf"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "b41987b5-7bca-44f0-9fb8-68066fe7c9e8",
-   "priority": 3
-  },
-  {
    "subject": "tariff",
    "subject_type": "thing",
    "tags": [
@@ -4320,26 +4100,6 @@
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "b41987b5-7bca-44f0-9fb8-68066fe7c9e8",
    "priority": 2
-  },
-  {
-   "subject": "Sunil Bharti Mittal",
-   "subject_type": "thing",
-   "tags": [
-    "sunil bharti mittal"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "b41987b5-7bca-44f0-9fb8-68066fe7c9e8",
-   "priority": 3
-  },
-  {
-   "subject": "safety",
-   "subject_type": "thing",
-   "tags": [
-    "safety"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "cffa6f9c-d76e-41d1-a3ac-8e70af9eec69",
-   "priority": 3
   },
   {
    "subject": "indian space",
@@ -4380,16 +4140,6 @@
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "7947fbd0-6ab4-4768-ad8f-014244d3e3a0",
    "priority": 2
-  },
-  {
-   "subject": "huawei",
-   "subject_type": "thing",
-   "tags": [
-    "huawei"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "7947fbd0-6ab4-4768-ad8f-014244d3e3a0",
-   "priority": 3
   },
   {
    "subject": "reentry",
@@ -4452,16 +4202,6 @@
    "priority": 2
   },
   {
-   "subject": "remittance tax",
-   "subject_type": "thing",
-   "tags": [
-    "remittance tax"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "d6203b79-4013-48d0-9202-b6f3094ecef7",
-   "priority": 3
-  },
-  {
    "subject": "indian founder",
    "subject_type": "thing",
    "tags": [
@@ -4470,26 +4210,6 @@
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "299a085a-8b9b-4915-9df5-199819dcfd41",
    "priority": 2
-  },
-  {
-   "subject": "neo",
-   "subject_type": "thing",
-   "tags": [
-    "neo"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "299a085a-8b9b-4915-9df5-199819dcfd41",
-   "priority": 3
-  },
-  {
-   "subject": "bhavin turakhia",
-   "subject_type": "thing",
-   "tags": [
-    "bhavin turakhia"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "299a085a-8b9b-4915-9df5-199819dcfd41",
-   "priority": 3
   },
   {
    "subject": "arizona",
@@ -4570,16 +4290,6 @@
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "48715c06-d33e-48a8-addd-4c8932daa2c3",
    "priority": 2
-  },
-  {
-   "subject": "kavanaugh",
-   "subject_type": "thing",
-   "tags": [
-    "kavanaugh"
-   ],
-   "first_seen": "2026-07-07T10:29:37Z",
-   "article_id": "38719118-bb8f-4ce0-a602-696bd7de57d5",
-   "priority": 3
   },
   {
    "subject": "immigration legislation",
