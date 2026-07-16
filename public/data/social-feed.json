@@ -1,53 +1,53 @@
 {
-  "_generated": "2026-07-15T16:58:12.357848+00:00",
+  "_generated": "2026-07-16T20:50:53.334403+00:00",
   "_description": "1 tweet per person, rotated each cron run. Pool refreshed every 12h.",
-  "_rotation": 25,
+  "_rotation": 26,
   "categories": {
     "technology": [
       {
-        "tweet_url": "https://x.com/sundarpichai/status/2074649108414107727",
+        "tweet_url": "https://x.com/sundarpichai/status/2077086951833063580",
         "handle": "sundarpichai",
-        "tweet_id": "2074649108414107727",
+        "tweet_id": "2077086951833063580",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "With just one year in orbit, the first FireSat satellite has already spotted wildfires invisible to existing satellites. After a successful launch early this morning, 3 more satellites joined the constellation, bringing us one step closer to our ultimate goal of near real-time https://t.co/SGnnnq6Vn",
-        "published_at": "2026-07-08T00:17:47.000Z"
+        "article_headline": "Well said Demis! Worth reading https://t.co/VPj2lxEX71",
+        "published_at": "2026-07-14T17:44:54.000Z"
       },
       {
-        "tweet_url": "https://x.com/satyanadella/status/2075318017068863653",
+        "tweet_url": "https://x.com/satyanadella/status/2076323181154230284",
         "handle": "satyanadella",
-        "tweet_id": "2075318017068863653",
+        "tweet_id": "2076323181154230284",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "Try it out: https://t.co/Li1IcdWrci",
-        "published_at": "2026-07-09T20:35:47.000Z"
+        "article_headline": "https://t.co/xv6csf1SbV",
+        "published_at": "2026-07-12T15:09:57.000Z"
       },
       {
-        "tweet_url": "https://x.com/sama/status/2075585386441789605",
+        "tweet_url": "https://x.com/sama/status/2077817060068057493",
         "handle": "sama",
-        "tweet_id": "2075585386441789605",
+        "tweet_id": "2077817060068057493",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "GPT-5.6 is now the preferred model in Microsoft 365 Copilot\n\nhttps://t.co/r2B3EJuV1A",
-        "published_at": "2026-07-10T14:18:13.000Z"
+        "article_headline": "we did not have our best last 12 months ever, which is mostly my fault, but we are about to have our best 12 months to date. the team is doing amazing work and i think you\u2019ll be very happy with what they\u2019ve got cooking for you.\n\ni am happy about this for many reasons, but mostly",
+        "published_at": "2026-07-16T18:06:05.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2075611819872223385",
+        "tweet_url": "https://x.com/elonmusk/status/2077629400569278597",
         "handle": "elonmusk",
-        "tweet_id": "2075611819872223385",
+        "tweet_id": "2077629400569278597",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "Grok is closing the loop on real-world use cases https://t.co/LdSbPlWHsq",
-        "published_at": "2026-07-10T16:03:15.000Z"
+        "article_headline": "Arguing with NPCs is pointless https://t.co/gxvWSrzs19",
+        "published_at": "2026-07-16T05:40:24.000Z"
       },
       {
-        "tweet_url": "https://x.com/tim_cook/status/2073398924652806249",
+        "tweet_url": "https://x.com/tim_cook/status/2074831226020770007",
         "handle": "tim_cook",
-        "tweet_id": "2073398924652806249",
+        "tweet_id": "2074831226020770007",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "Happy birthday, America! I love this remarkable country, which was built on the idea that anyone can change the world. For 250 years, our country has been a testament to the power of possibility. \u00a0Let\u2019s keep building extraordinary things together.",
-        "published_at": "2026-07-04T13:30:00.000Z"
+        "article_headline": "We\u2019re proud to expand our work with Broadcom with a new agreement to produce billions more chips in the US! It's our largest ever American Manufacturing Program commitment and an important step in our work to build an end-to-end silicon supply chain in the US.",
+        "published_at": "2026-07-08T12:21:27.000Z"
       },
       {
         "tweet_url": "https://x.com/bhash/status/2070644528420397074",
@@ -59,40 +59,40 @@
         "published_at": "2026-06-26T23:05:00.000Z"
       },
       {
-        "tweet_url": "https://x.com/Nithin0dha/status/2075161664757076082",
+        "tweet_url": "https://x.com/Nithin0dha/status/2077317427575337389",
         "handle": "Nithin0dha",
-        "tweet_id": "2075161664757076082",
+        "tweet_id": "2077317427575337389",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "Read more: https://t.co/SN4VIaCZwv",
-        "published_at": "2026-07-09T10:14:30.000Z"
+        "article_headline": "Crypto is thriving because of the lack of regulatory clarity. In the last couple of years, a lot of F&amp;O traders have migrated to crypto because of the low margins and ridiculous leverage they get in crypto F&amp;O\u2014leverage as high as 100x to 200x.\n\nFrom @moneycontrolcom article (link https://t.c",
+        "published_at": "2026-07-15T09:00:44.000Z"
       },
       {
-        "tweet_url": "https://x.com/AnandMahindra/status/2075617172773298515",
+        "tweet_url": "https://x.com/AnandMahindra/status/2077730190776762451",
         "handle": "AnandMahindra",
-        "tweet_id": "2075617172773298515",
+        "tweet_id": "2077730190776762451",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "True\u2026 https://t.co/fK8lIDWeOG",
-        "published_at": "2026-07-10T16:24:31.000Z"
+        "article_headline": "The future cutting edge of India\u2019s Defence capability will be shaped by startups. \n\nThis one just built a drone that outperforms the Shahed. \n\nDon\u2019t be deceived by the rudimentary lab or the untidy test field.\n\nThese teams are hungry, lean, and they rebuild their product every https://t.co/xWhPrxalH",
+        "published_at": "2026-07-16T12:20:54.000Z"
       },
       {
-        "tweet_url": "https://x.com/NikeshArora/status/2075275604208029981",
+        "tweet_url": "https://x.com/NikeshArora/status/2077136063500582953",
         "handle": "NikeshArora",
-        "tweet_id": "2075275604208029981",
+        "tweet_id": "2077136063500582953",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "Send me one first :) https://t.co/6OnA9vR0k0",
-        "published_at": "2026-07-09T17:47:15.000Z"
+        "article_headline": "Of course I do remember. I promised to do it then! I will keep my word. Not a word from @patrickc on the cheeky pint podcast, must be running out of beer. https://t.co/bsbLYIpNY8",
+        "published_at": "2026-07-14T21:00:03.000Z"
       },
       {
-        "tweet_url": "https://x.com/vijayshekhar/status/2075619132922618216",
+        "tweet_url": "https://x.com/vijayshekhar/status/2077579465350381821",
         "handle": "vijayshekhar",
-        "tweet_id": "2075619132922618216",
+        "tweet_id": "2077579465350381821",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "Korea se Nigeria. \ud83e\uddd0 https://t.co/ngE580Peef",
-        "published_at": "2026-07-10T16:32:19.000Z"
+        "article_headline": "You wouldn\u2019t have ever guessed a cool device like that could exist. \nTaking coding to next level.  https://t.co/xjhz8HNjrz",
+        "published_at": "2026-07-16T02:21:58.000Z"
       },
       {
         "tweet_url": "https://x.com/SEBI_India/status/2076567370290892928",
@@ -123,13 +123,13 @@
         "published_at": "2026-07-09T07:20:27.000Z"
       },
       {
-        "tweet_url": "https://x.com/akshaykumar/status/2075219943046668460",
+        "tweet_url": "https://x.com/akshaykumar/status/2077038046927798604",
         "handle": "akshaykumar",
-        "tweet_id": "2075219943046668460",
+        "tweet_id": "2077038046927798604",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "Very concerned to hear about my dear friend Rajesh\u2019s health condition after an insect bite while shooting. Hope Mahadev blesses him with fast and complete recovery. Jaldi theek ho ja yaar, abhi saath baith ke bhot hansna hai. https://t.co/n8yH6IYxKH",
-        "published_at": "2026-07-09T14:06:04.000Z"
+        "article_headline": "Kal, raat 8 baje.\nAur iss baar, mazaak nahi hoga.\n\n#Haiwaan https://t.co/5q8S05jsjM",
+        "published_at": "2026-07-14T14:30:34.000Z"
       },
       {
         "tweet_url": "https://x.com/aliaa08/status/2072584707821408299",
@@ -141,22 +141,22 @@
         "published_at": "2026-07-02T07:34:35.000Z"
       },
       {
-        "tweet_url": "https://x.com/SrBachchan/status/2075371819587207327",
+        "tweet_url": "https://x.com/SrBachchan/status/2076700062462488947",
         "handle": "SrBachchan",
-        "tweet_id": "2075371819587207327",
+        "tweet_id": "2076700062462488947",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "T 5797 - I came to know from someone that none of the players of the WC 2026 Moroccan team were born in Morocco  !!!\nChatGpt when asked says not entirely true  !!",
-        "published_at": "2026-07-10T00:09:34.000Z"
+        "article_headline": "T 5800 - \u0906\u0930\u093e\u092e  !  \u092c\u0947 \u0915\u093e\u092e \u0939\u0948  !\n\u0926\u093f\u0928 \u092d\u0930 \u092e\u0915\u094d\u0916\u0940 \u092e\u093e\u0930 https://t.co/NaIUlFw7j6",
+        "published_at": "2026-07-13T16:07:32.000Z"
       },
       {
-        "tweet_url": "https://x.com/arrahman/status/2072196353602769131",
+        "tweet_url": "https://x.com/arrahman/status/2074984421342822831",
         "handle": "arrahman",
-        "tweet_id": "2072196353602769131",
+        "tweet_id": "2074984421342822831",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "Best wishes to @aliaa08 and the entire team of #Alpha. \n\nhttps://t.co/hzMqwao8nP \n\n@AnilKapoor @thedeol #sharvari @yrf @shivrawail #adityachopra #akshaywidhani",
-        "published_at": "2026-07-01T05:51:24.000Z"
+        "article_headline": "Thrilled to have  #Sonunigam  back in our studios to sing  \n#OhTabassum  melody from the movie #Batwara1947   Written by @Javedakhtarjadu ..Directed by @RajSantoshi and produced by @AKPPL_Official #Aamirkhan ..Bro..how can you sound so Romantic? \ud83d\ude0d\ud83c\udf39\ud83d\ude4f",
+        "published_at": "2026-07-08T22:30:12.000Z"
       },
       {
         "tweet_url": "https://x.com/BeingSalmanKhan/status/2074478870699667488",
@@ -186,49 +186,49 @@
         "published_at": "2026-07-10T04:46:28.000Z"
       },
       {
-        "tweet_url": "https://x.com/AnupamPkher/status/2075448628504916431",
+        "tweet_url": "https://x.com/AnupamPkher/status/2077619557209112799",
         "handle": "AnupamPkher",
-        "tweet_id": "2075448628504916431",
+        "tweet_id": "2077619557209112799",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "\u0905\u092c \u091c\u092c\u0915\u093f \u092e\u0947\u0930\u0947 \u0926\u094d\u0935\u093e\u0930\u093e \u0928\u093f\u092d\u093e\u090f \u091c\u093e \u0930\u0939\u0947 \u0915\u093f\u0930\u0926\u093e\u0930 \u0915\u0940 \u0915\u0941\u091b \u0924\u0938\u094d\u0935\u0940\u0930\u0947\u0902 \u092e\u0940\u0921\u093f\u092f\u093e \u092e\u0947\u0902 \u0906 \u091a\u0941\u0915\u0940 \u0939\u0948\u0902, \u0924\u094b \u092e\u0941\u091d\u0947 \u0932\u0917\u093e \u0915\u093f \u0906\u092a \u0938\u092c\u0915\u094b \u092e\u0948\u0902 \u0916\u093c\u0941\u0926 \u0939\u0940 \u092c\u0924\u093e \u0926\u0942\u0901 \u0915\u093f \u092e\u0948\u0902 \u0915\u093f\u0938 \u092d\u0942\u092e\u093f\u0915\u093e \u092e\u0947\u0902 \u0928\u091c\u093c\u0930 \u0906\u0928\u0947 \u0935\u093e\u0932\u093e \u0939\u0942\u0901\u0964\ud83d\ude4f\ud83d\udd49\n\u092b\u093c\u093f\u0932\u094d\u092e \u2018 \u0936\u094d\u0930\u0940 \u0930\u093e\u092e\u092d\u0942\u092e\u093f\u2019 \u092e\u0947\u0902 \u092e\u0948\u0902 \u0936\u094d\u0930\u0940 \u0905\u0936\u094b\u0915 \u0938\u093f\u0902\u0918\u0932 \u091c\u0940 \u0915\u0940 \u092d\u0942\u092e\u093f\u0915\u093e \u0928\u093f\u092d\u093e \u0930\u0939\u093e \u0939\u0942\u0901!! \u090f\u0915 \u0910\u0938\u0947 \u0935\u094d\u092f\u0915\u094d\u0924\u093f\u0924\u094d\u0935, \u091c\u093f\u0928\u094d\u0939\u094b\u0902\u0928\u0947 \u0936\u094d\u0930\u0940\u0930\u093e\u092e https://t.co/We9i6qj32g",
-        "published_at": "2026-07-10T05:14:47.000Z"
+        "article_headline": "\u0938\u091a\u094d\u091a\u093e\u0908!! \ud83e\udd79 https://t.co/kAXW0I1EWr",
+        "published_at": "2026-07-16T05:01:17.000Z"
       },
       {
-        "tweet_url": "https://x.com/FarOutAkhtar/status/2070413538297106669",
+        "tweet_url": "https://x.com/FarOutAkhtar/status/2076315969203339702",
         "handle": "FarOutAkhtar",
-        "tweet_id": "2070413538297106669",
+        "tweet_id": "2076315969203339702",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "Aap gun main goli ready rakhiyega,\nHum ustare main dhaar. \nDekhiye Compounder ko bade parde par 4th September ko. #MirzapurTheMovie, teaser out now. \n\nWatch #MirzapurTheMovie only in cinemas in Hindi &amp; Telugu\n\n@nowitsabhi @gurmmeet #PuneetKrishna @ritesh_sid @J10kassim @vishalrr https://t.co/8Cc",
-        "published_at": "2026-06-26T07:47:08.000Z"
+        "article_headline": "Miss you Milkha ji.\nAs Bhaag Milkha Bhaag turns 13 today, thank you again for trusting me with your life story. \u2665\ufe0f\n\nBig hug to @ROMPPictures #PrasoonJoshi #Binodkpradhan @sonamakapoor @divyadutta25  @yogarajofficial #PawanMalhotra @JoinPrakashRaj  #JaptejSingh @ShankarEhsanLoy https://t.co/0gDLOJey5",
+        "published_at": "2026-07-12T14:41:17.000Z"
       },
       {
-        "tweet_url": "https://x.com/ssrajamouli/status/2071202143726346337",
+        "tweet_url": "https://x.com/ssrajamouli/status/2076572508585877735",
         "handle": "ssrajamouli",
-        "tweet_id": "2071202143726346337",
+        "tweet_id": "2076572508585877735",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "Having me here in Paris and screening my films is itself an honour for me. But a sweet surprise I never saw coming. It is a feeling I cannot fully put into words. To have a permanent place in the halls of one of the world\u2019s most legendary film institutions, named after the great https://t.co/XYrNWfm",
-        "published_at": "2026-06-28T12:00:46.000Z"
+        "article_headline": "You\u2019ll forget they\u2019re Fahadh and Ssara\u2026 You\u2019ll only remember Suri and Divya.\n\nThey\u2019ll make you smile, laugh, and leave you with a full heart.\ud83e\udd17\n\nHere\u2019s a small glimpse into their lives\u2026 In cinemas from September 11..:)\n\n#DontTroubleTheTrouble #DTTTMovie  https://t.co/9IuWVVvEf4",
+        "published_at": "2026-07-13T07:40:41.000Z"
       },
       {
-        "tweet_url": "https://x.com/tarak9999/status/2071557756570796349",
+        "tweet_url": "https://x.com/tarak9999/status/2076690439495889382",
         "handle": "tarak9999",
-        "tweet_id": "2071557756570796349",
+        "tweet_id": "2076690439495889382",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "The Son of Shiva.\nThe Pride of Parvathi.\nThe Eternal Commander.\n\nAnd, once again with TRIVIKRAM.\n\n#NTRxTrivikram https://t.co/oIW7o4PETu",
-        "published_at": "2026-06-29T11:33:51.000Z"
+        "article_headline": "#DontTroubleTheTrouble teaser is breezy and full of heart. Fahadh sir is phenomenal and cute little Ssara is CUTEEE!\n@ShashankYeleti, I know how much you\u2019ve been waiting for this moment over the years\u2026 your passion and patience is now getting paid off thammudu..\n\n@ssk1122,",
+        "published_at": "2026-07-13T15:29:18.000Z"
       },
       {
-        "tweet_url": "https://x.com/AlwaysRamCharan/status/2072345012973806054",
+        "tweet_url": "https://x.com/AlwaysRamCharan/status/2074459036641271936",
         "handle": "AlwaysRamCharan",
-        "tweet_id": "2072345012973806054",
+        "tweet_id": "2074459036641271936",
         "category": "entertainment",
         "article_slug": "",
-        "article_headline": "The #Lenin trailer looks fantastic \ud83d\udd25\n\nMy dearest brother @AkhilAkkineni8 looks absolutely explosive.\n\n\u25b6\ufe0f https://t.co/7K4uM9TnOz\n\nWishing him and the entire team all the very best.",
-        "published_at": "2026-07-01T15:42:08.000Z"
+        "article_headline": "Hearing wonderful things about #BabyDoDieDo.\n\n@humasqureshi always delivers outstanding performances. She and her brother #SaqibSaleem have truly given their all to this film. Wishing them the very best.\n\nCongratulations to the entire team! https://t.co/BJ9OjOeN2f",
+        "published_at": "2026-07-07T11:42:30.000Z"
       },
       {
         "tweet_url": "https://x.com/harbhajan_singh/status/2073636463112225098",
@@ -250,58 +250,67 @@
         "published_at": "2026-06-30T07:08:46.000Z"
       },
       {
-        "tweet_url": "https://x.com/sachin_rt/status/2074014820689657949",
+        "tweet_url": "https://x.com/sachin_rt/status/2076386125531500797",
         "handle": "sachin_rt",
-        "tweet_id": "2074014820689657949",
+        "tweet_id": "2076386125531500797",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Congratulations to Australia on another World Cup title!\n\nThe unbeaten run really shows how well they managed different match situations and stayed consistent throughout. That kind of stability is usually what brings trophies home.",
-        "published_at": "2026-07-06T06:17:21.000Z"
+        "article_headline": ".@AlexZverev really threw everything at @janniksin today! His serve, his movement, his shot-making... outstanding.\n\nBut Sinner showed why champions need more than just their best tennis. He had to fight through difficult moments, stay composed and keep believing.\n\nThat resilience",
+        "published_at": "2026-07-12T19:20:04.000Z"
       },
       {
-        "tweet_url": "https://x.com/SGanguly99/status/2074716657944297548",
+        "tweet_url": "https://x.com/SGanguly99/status/2074854510380667203",
         "handle": "SGanguly99",
-        "tweet_id": "2074716657944297548",
+        "tweet_id": "2074854510380667203",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "The Best Gift Ever! Can\u2019t wait to see you play my cover drive! #RajkummarRao\n\n#Dada #DadaTheSouravGangulyStory #DadaFirstLook https://t.co/TqHsWn2Eg8",
-        "published_at": "2026-07-08T04:46:12.000Z"
+        "article_headline": "Thank you ICC and Chairman Jay shah @JayShah for inducting me in the hall of fame .. it\u2019s a huge honour ..One of the 10 Indians to be inducted in the hall of fame ever .. Amazing to be a part of some great names .. @bcci",
+        "published_at": "2026-07-08T13:53:58.000Z"
       },
       {
-        "tweet_url": "https://x.com/harbhajan_singh/status/2075115890803363885",
+        "tweet_url": "https://x.com/harbhajan_singh/status/2077501499002020202",
         "handle": "harbhajan_singh",
-        "tweet_id": "2075115890803363885",
+        "tweet_id": "2077501499002020202",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Congratulations Captain . Happy to hear the Announcement \u2764\ufe0f https://t.co/iGi8eZKlNw",
-        "published_at": "2026-07-09T07:12:36.000Z"
+        "article_headline": "What a semifinal! \ud83c\udde6\ud83c\uddf7 Argentina showed How champions rise when it matters most\u2014fast, fearless, and full of class. A brilliant second-half performance seals a place in the World Cup final. Credit to England for a terrific fight. Football at its finest. \u26bd\ud83d\udc4f #WorldCup #Argentina https://t.co/I5Lv88eYqP",
+        "published_at": "2026-07-15T21:12:10.000Z"
       },
       {
-        "tweet_url": "https://x.com/MohammadKaif/status/2073343983162692083",
+        "tweet_url": "https://x.com/ShubmanGill/status/2077101533909631270",
+        "handle": "ShubmanGill",
+        "tweet_id": "2077101533909631270",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "https://t.co/4BQxNxSLTB",
+        "published_at": "2026-07-14T18:42:51.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/MohammadKaif/status/2076662306688446580",
         "handle": "MohammadKaif",
-        "tweet_id": "2073343983162692083",
+        "tweet_id": "2076662306688446580",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "What started as just some on-air banter when I was asked to review Virat Kohli's One8 shoes. I said I can only give my opinion if I see and wear them. And soon the shoes landed at home. My son Kabir is most excited. Big shoes to fill, I will say. Thanks for this @imVkohli https://t.co/DX9fxR0xM0",
-        "published_at": "2026-07-04T09:51:41.000Z"
+        "article_headline": "The Dada movie poster brought back memories of that special July 13 of 2002 when we were the Lords of Lord's. Looking forward to the Sourav Ganguly biopic to relive that magical moment on the big screen. Dada box office collection se cut toh bunta hai \ud83d\ude02\ud83d\ude02\ud83d\ude02 https://t.co/LaAV22xDTJ",
+        "published_at": "2026-07-13T13:37:31.000Z"
       },
       {
-        "tweet_url": "https://x.com/ajinkyarahane88/status/2072726999563395078",
+        "tweet_url": "https://x.com/ajinkyarahane88/status/2076632660450197946",
         "handle": "ajinkyarahane88",
-        "tweet_id": "2072726999563395078",
+        "tweet_id": "2076632660450197946",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Vote for your @aramco Player of the Tournament. https://t.co/VlMQxD7tDm",
-        "published_at": "2026-07-02T17:00:00.000Z"
+        "article_headline": "Congratulations to the Indian women's team on a historic Test win at Lord's. \ud83c\uddee\ud83c\uddf3\n\nA memorable performance filled with character and determination. So many valuable contributions coming together to deliver a special team victory. @BCCIWomen https://t.co/W5GXWjmCEJ",
+        "published_at": "2026-07-13T11:39:42.000Z"
       },
       {
-        "tweet_url": "https://x.com/IrfanPathan/status/2075302275313201163",
+        "tweet_url": "https://x.com/IrfanPathan/status/2077087141012935113",
         "handle": "IrfanPathan",
-        "tweet_id": "2075302275313201163",
+        "tweet_id": "2077087141012935113",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "When batting first our batters aren\u2019t able to make par score. While chasing nowhere near to the chase.\n\nWhen the Ball does bit extra our betters get in to odd positions. If Indian batters don\u2019t want to be called flat pitch bullies, they need to do much better than what they have",
-        "published_at": "2026-07-09T19:33:14.000Z"
+        "article_headline": "This win will give team India so much satisfaction as it came because of partnership between two all rounders which they needed it badly. \n\nAxar patel was flawless &amp; Washington sundar was in total control.",
+        "published_at": "2026-07-14T17:45:39.000Z"
       },
       {
         "tweet_url": "https://x.com/Neeraj_chopra1/status/2072289023809171965",
@@ -322,13 +331,22 @@
         "published_at": "2026-07-04T10:21:27.000Z"
       },
       {
-        "tweet_url": "https://x.com/realmanubhaker/status/2070817772502946282",
+        "tweet_url": "https://x.com/realmanubhaker/status/2076295983957512513",
         "handle": "realmanubhaker",
-        "tweet_id": "2070817772502946282",
+        "tweet_id": "2076295983957512513",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "\u091a\u091e\u094d\u091a\u0932\u0902 \u0939\u093f \u092e\u0928: \u0915\u0943\u0937\u094d\u0923 \u092a\u094d\u0930\u092e\u093e\u0925\u093f \u092c\u0932\u0935\u0926\u094d\u0926\u0943\u0922\u092e\u094d \u0964\n\u0924\u0938\u094d\u092f\u093e\u0939\u0902 \u0928\u093f\u0917\u094d\u0930\u0939\u0902 \u092e\u0928\u094d\u092f\u0947 \u0935\u093e\u092f\u094b\u0930\u093f\u0935 \u0938\u0941\u0926\u0941\u0937\u094d\u0915\u0930\u092e\u094d \u0965\n\n\u0938\u0902\u0938\u094d\u0915\u0943\u0924 \u092e\u0947\u0902 \u0932\u093f\u0916 \u0926\u093f\u092f\u093e \u0939\u0948, \u0939\u093f\u0902\u0926\u0940 \u092e\u0947\u0902 \u0905\u0930\u094d\u0925 \u0906\u092a \u092c\u0924\u093e\u092f\u0947\u0902\u0964 https://t.co/oVMjDHb3VS",
-        "published_at": "2026-06-27T10:33:25.000Z"
+        "article_headline": "Thank you @sai_bengaluru for making my time in Bengaluru truly worthwhile. The atmosphere was inspiring, motivating, and filled with such positive energy.\n\nI\u2019m already looking forward to the next training sessions in Bengaluru.\n\nA heartfelt thank you for the wonderful https://t.co/bPbFcSaqKz",
+        "published_at": "2026-07-12T13:21:52.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/nikhat_zareen/status/2076657946516488605",
+        "handle": "nikhat_zareen",
+        "tweet_id": "2076657946516488605",
+        "category": "sports",
+        "article_slug": "",
+        "article_headline": "Honoured to meet the Hon\u2019ble Director General of Police, Telangana, Shri @CVAnandIPS sir, and extend my heartfelt congratulations on assuming charge as the new DGP of Telangana.\n\nA passionate sports lover who leads by example, I\u2019m confident that under his leadership, Telangana https://t.co/5K1O3Gtvm",
+        "published_at": "2026-07-13T13:20:11.000Z"
       },
       {
         "tweet_url": "https://x.com/WeAreTeamIndia/status/2075911977029992757",
@@ -341,31 +359,31 @@
     ],
     "news": [
       {
-        "tweet_url": "https://x.com/narendramodi/status/2075546328608997573",
+        "tweet_url": "https://x.com/narendramodi/status/2077769586708267485",
         "handle": "narendramodi",
-        "tweet_id": "2075546328608997573",
+        "tweet_id": "2077769586708267485",
         "category": "news",
         "article_slug": "",
-        "article_headline": "Delighted to witness the wonderful performance by the Naad Vocal Ensemble. Music has a unique ability to bring people together and today\u2019s performance beautifully reflected the warmth and depth of India-New Zealand friendship. https://t.co/SbobSkjxGi",
-        "published_at": "2026-07-10T11:43:01.000Z"
+        "article_headline": "\u0a2e\u0a48\u0a02 \u0a2d\u0a32\u0a15\u0a47 17 \u0a1c\u0a41\u0a32\u0a3e\u0a08 \u0a28\u0a42\u0a70 \u0a1c\u0a32\u0a70\u0a27\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a39\u0a4b\u0a23 \u0a35\u0a3e\u0a32\u0a40 \u0a2c\u0a40\u0a1c\u0a47\u0a2a\u0a40 \u0a30\u0a48\u0a32\u0a40 \u0a26\u0a4c\u0a30\u0a3e\u0a28 \u0a2a\u0a70\u0a1c\u0a3e\u0a2c \u0a26\u0a47 \u0a32\u0a4b\u0a15\u0a3e\u0a02 \u0a35\u0a3f\u0a1a\u0a3e\u0a32\u0a47 \u0a1c\u0a3e\u0a23 \u0a26\u0a40 \u0a2c\u0a47\u0a38\u0a2c\u0a30\u0a40 \u0a28\u0a3e\u0a32 \u0a09\u0a21\u0a40\u0a15 \u0a15\u0a30 \u0a30\u0a3f\u0a39\u0a3e \u0a39\u0a3e\u0a02\u0964 \u0a2a\u0a70\u0a1c\u0a3e\u0a2c \u0a2c\u0a39\u0a41\u0a24 \u0a09\u0a2e\u0a40\u0a26 \u0a28\u0a3e\u0a32 \u0a2c\u0a40\u0a1c\u0a47\u0a2a\u0a40 \u0a35\u0a71\u0a32 \u0a26\u0a47\u0a16 \u0a30\u0a3f\u0a39\u0a3e \u0a39\u0a48\u0964 \u0a38\u0a3e\u0a21\u0a40 \u0a2a\u0a3e\u0a30\u0a1f\u0a40 \u0a26\u0a3e \u0a35\u0a3f\u0a15\u0a3e\u0a38 \u0a0f\u0a1c\u0a70\u0a21\u0a3e \u0a2e\u0a47\u0a30\u0a47 \u0a2a\u0a70\u0a1c\u0a3e\u0a2c \u0a26\u0a47 \u0a2d\u0a48\u0a23\u0a3e\u0a02 \u0a05\u0a24\u0a47 \u0a2d\u0a30\u0a3e\u0a35\u0a3e\u0a02 \u0a32\u0a08 \u0a16\u0a3c\u0a41\u0a38\u0a3c\u0a39\u0a3e\u0a32\u0a40 \u0a05\u0a24\u0a47 \u2018\u0a1c\u0a40\u0a35\u0a28 \u0a1c\u0a3f\u0a0a\u0a23 \u0a26\u0a40 \u0a38\u0a4c\u0a16\u2019 \u0a28\u0a42\u0a70 \u0a2f\u0a15\u0a40\u0a28\u0a40 \u0a2c\u0a23\u0a3e\u0a0f\u0a17\u0a3e\u0964",
+        "published_at": "2026-07-16T14:57:27.000Z"
       },
       {
-        "tweet_url": "https://x.com/DrSJaishankar/status/2075539048605872493",
+        "tweet_url": "https://x.com/DrSJaishankar/status/2077690698032451797",
         "handle": "DrSJaishankar",
-        "tweet_id": "2075539048605872493",
+        "tweet_id": "2077690698032451797",
         "category": "news",
         "article_slug": "",
-        "article_headline": "A good interaction with members of Indian diaspora in Oman this morning. \n\nTheir enthusiasm in strengthening India - Oman relations was palpable. Appreciated their many contributions to the society as well as to \ud83c\uddee\ud83c\uddf3 \ud83c\uddf4\ud83c\uddf2 partnership. https://t.co/D8pGvlUzVi",
-        "published_at": "2026-07-10T11:14:05.000Z"
+        "article_headline": "Best wishes on the auspicious occasion of Rath Yatra. \n\nMay the blessings of Lord Jagannath bring peace, health, happiness, and prosperity for all.\n\nJai Jagannath!",
+        "published_at": "2026-07-16T09:43:58.000Z"
       },
       {
-        "tweet_url": "https://x.com/AmitShah/status/2075424365089566825",
+        "tweet_url": "https://x.com/AmitShah/status/2077757209409466688",
         "handle": "AmitShah",
-        "tweet_id": "2075424365089566825",
+        "tweet_id": "2077757209409466688",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u0915\u0947\u0902\u0926\u094d\u0930\u0940\u092f \u0930\u0915\u094d\u0937\u093e \u092e\u0902\u0924\u094d\u0930\u0940 \u0935 \u092d\u093e\u091c\u092a\u093e \u0915\u0947 \u0935\u0930\u093f\u0937\u094d\u0920 \u0928\u0947\u0924\u093e \u0936\u094d\u0930\u0940 @rajnathsingh \u091c\u0940 \u0915\u094b \u091c\u0928\u094d\u092e\u0926\u093f\u0928 \u0915\u0940 \u0939\u093e\u0930\u094d\u0926\u093f\u0915 \u0936\u0941\u092d\u0915\u093e\u092e\u0928\u093e\u090f\u0901\u0964 \u092e\u094b\u0926\u0940 \u091c\u0940 \u0915\u0947 \u0928\u0947\u0924\u0943\u0924\u094d\u0935 \u092e\u0947\u0902 \u0939\u092e\u093e\u0930\u0940 \u0938\u0947\u0928\u093e\u0913\u0902 \u0915\u094b \u0905\u0924\u094d\u092f\u093e\u0927\u0941\u0928\u093f\u0915 \u0914\u0930 \u0936\u094d\u0930\u0947\u0937\u094d\u0920 \u092c\u0928\u093e\u0928\u0947 \u0935 \u0930\u0915\u094d\u0937\u093e \u0915\u094d\u0937\u0947\u0924\u094d\u0930 \u092e\u0947\u0902 \u0906\u0924\u094d\u092e\u0928\u093f\u0930\u094d\u092d\u0930\u0924\u093e \u0915\u094b \u0917\u0924\u093f \u0926\u0947\u0928\u0947 \u092e\u0947\u0902 \u0906\u092a \u0938\u0930\u093e\u0939\u0928\u0940\u092f \u092d\u0942\u092e\u093f\u0915\u093e \u0928\u093f\u092d\u093e \u0930\u0939\u0947 \u0939\u0948\u0902\u0964 \u0938\u0902\u0917\u0920\u0928 \u0915\u094b \u091c\u093c\u092e\u0940\u0928\u0940 \u0935\u093f\u0938\u094d\u0924\u093e\u0930 \u0926\u0947\u0928\u0947 \u0938\u0947",
-        "published_at": "2026-07-10T03:38:22.000Z"
+        "article_headline": "On the sacred occasion of Shri Jagannath Rath Yatra performed Mangala Aarti at Shri Jagannath Ji Temple, Ahmedabad. May the divine blessings of Mahaprabhu fill everyone's life with well being, happiness and prosperity.\n\nJai Jagannath! https://t.co/1KoHvA2Iaw",
+        "published_at": "2026-07-16T14:08:16.000Z"
       },
       {
         "tweet_url": "https://x.com/nsitharaman/status/2075103972634120515",
@@ -377,31 +395,31 @@
         "published_at": "2026-07-09T06:25:15.000Z"
       },
       {
-        "tweet_url": "https://x.com/RahulGandhi/status/2074792591745290408",
+        "tweet_url": "https://x.com/RahulGandhi/status/2077614539068383304",
         "handle": "RahulGandhi",
-        "tweet_id": "2074792591745290408",
+        "tweet_id": "2077614539068383304",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u092a\u093f\u091b\u0932\u0947 \u0938\u092a\u094d\u0924\u093e\u0939 \u0939\u0941\u0908 UGC-NET \u092a\u0930\u0940\u0915\u094d\u0937\u093e \u0915\u094b \u0932\u0947\u0915\u0930 \u0938\u093e\u092e\u0928\u0947 \u0906\u090f \u0917\u0902\u092d\u0940\u0930 \u0906\u0930\u094b\u092a \u092c\u0947\u0939\u0926 \u091a\u094c\u0902\u0915\u093e\u0928\u0947 \u0935\u093e\u0932\u0947 \u0939\u0948\u0902\u0964\n\nNEET \u092a\u0947\u092a\u0930 \u0932\u0940\u0915 \u0915\u0947 \u0915\u0941\u091b \u0939\u0940 \u0939\u092b\u094d\u0924\u094b\u0902 \u092c\u093e\u0926 \u0905\u092c \u0916\u092c\u0930\u0947\u0902 \u0906 \u0930\u0939\u0940 \u0939\u0948\u0902 \u0915\u093f -\n\n- UGC-NET \u092a\u0930\u0940\u0915\u094d\u0937\u093e \u0938\u0947 \u0920\u0940\u0915 \u092a\u0939\u0932\u0947 100 \u092a\u0928\u094d\u0928\u094b\u0902 \u0915\u0940 \u090f\u0915 PDF \u092a\u094d\u0930\u0938\u093e\u0930\u093f\u0924 \u0939\u0941\u0908\u0964\n- \u092f\u0939 PDF \u0909\u0938 question paper setting \u0915\u0940 \u0939\u0948, \u091c\u094b \u0938\u093f\u0930\u094d\u092b\u093c NTA \u0915\u0947 \u092a\u093e\u0938 \u0909\u092a\u0932\u092c\u094d\u0927 https://t.co/16hyeGa",
-        "published_at": "2026-07-08T09:47:56.000Z"
+        "article_headline": "17 \u091c\u0941\u0932\u093e\u0908 \u0915\u094b \u0926\u0947\u0939\u0930\u093e\u0926\u0942\u0928 \u0906 \u0930\u0939\u093e \u0939\u0942\u0901\u0964 \u092a\u0930 \u0909\u0924\u094d\u0924\u0930\u093e\u0916\u0902\u0921 \u0939\u0940 \u0915\u094d\u092f\u094b\u0902? \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0926\u0947\u0935\u092d\u0942\u092e\u093f \u0915\u094b \u092a\u0947\u092a\u0930 \u0932\u0940\u0915 \u0915\u093e epicentre \u092c\u0928\u093e \u0926\u093f\u092f\u093e \u0917\u092f\u093e \u0939\u0948\u0964\n\nUKSSSC \u092a\u0930\u0940\u0915\u094d\u0937\u093e \u092e\u0947\u0902 \u092f\u0939\u093e\u0901 \u090f\u0915 \u201c\u0938\u093f\u0938\u094d\u091f\u092e\u201d \u092c\u0948\u0920 \u0917\u092f\u093e \u0939\u0948, \u091c\u0939\u093e\u0901 \u092a\u091f\u0935\u093e\u0930\u0940, \u0932\u0947\u0916\u092a\u093e\u0932, \u092f\u093e \u0915\u094b\u0908 \u0914\u0930 \u092a\u0926 \u0915\u093c\u093e\u092c\u093f\u0932\u093f\u092f\u0924 \u0938\u0947 \u0928\u0939\u0940\u0902, \u0905\u092a\u0930\u093e\u0927\u093f\u092f\u094b\u0902 \u0915\u0947 \u0924\u092f \u0915\u093f\u090f \u0930\u0947\u091f \u0938\u0947 \u092e\u093f\u0932\u0924\u093e \u0939\u0948\u0964\n\n\u0938\u0930\u0915\u093e\u0930 \u0928\u0947 \u0938\u0916\u093c\u094d\u0924 \u0928\u0915\u0932-\u0935\u093f\u0930\u094b\u0927\u0940 https://t.co/NJ3mV0NF",
+        "published_at": "2026-07-16T04:41:20.000Z"
       },
       {
-        "tweet_url": "https://x.com/myogiadityanath/status/2075603469277536727",
+        "tweet_url": "https://x.com/myogiadityanath/status/2077371098086125607",
         "handle": "myogiadityanath",
-        "tweet_id": "2075603469277536727",
+        "tweet_id": "2077371098086125607",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u0939\u092e \u0938\u092d\u0940 \u092e\u093f\u0932\u0915\u0930 '\u0935\u093f\u0915\u0938\u093f\u0924 \u0909\u0924\u094d\u0924\u0930 \u092a\u094d\u0930\u0926\u0947\u0936' \u092c\u0928\u093e \u0930\u0939\u0947 \u0939\u0948\u0902... https://t.co/wXdDdEKDLd",
-        "published_at": "2026-07-10T15:30:04.000Z"
+        "article_headline": "Under the visionary leadership of Hon. PM Shri @narendramodi Ji, the Union Cabinet has approved the Mobile Phone Manufacturing Scheme (MPMS) with a budgetary outlay of \u20b962,500 crore for the period FY 2026\u201327 to FY 2030\u201331.\n\nThe scheme will deepen domestic value addition,",
+        "published_at": "2026-07-15T12:34:00.000Z"
       },
       {
-        "tweet_url": "https://x.com/ArvindKejriwal/status/2075486101658349797",
+        "tweet_url": "https://x.com/ArvindKejriwal/status/2077769719856480369",
         "handle": "ArvindKejriwal",
-        "tweet_id": "2075486101658349797",
+        "tweet_id": "2077769719856480369",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u092a\u093f\u091b\u0932\u0947 \u0915\u0941\u091b \u0939\u092b\u094d\u0924\u094b\u0902 \u0915\u093e \u0918\u091f\u0928\u093e\u0915\u094d\u0930\u092e \u0926\u0930\u094d\u0936\u093e\u0924\u093e \u0939\u0948 \u0915\u093f \u0930\u093e\u092e \u092e\u0902\u0926\u093f\u0930 \u092e\u0947\u0902 \u0921\u0915\u0948\u0924\u0940 \u0915\u0930\u0928\u0947 \u0935\u093e\u0932\u0947 \u092e\u0939\u093e\u092a\u093e\u092a\u093f\u092f\u094b\u0902 \u0915\u094b \u092e\u094b\u0926\u0940 \u0938\u0930\u0915\u093e\u0930 \u092c\u091a\u093e\u0928\u0947 \u092e\u0947\u0902 \u0932\u0917\u0940 \u0939\u0948\u0964 \u0938\u0928\u093e\u0924\u0928 \u0915\u0947 \u0907\u0928 \u0917\u0941\u0928\u0939\u0917\u093e\u0930\u094b\u0902 \u0915\u094b \u092b\u093e\u0902\u0938\u0940 \u092e\u093f\u0932\u0928\u0940 \u091a\u093e\u0939\u093f\u090f \u0925\u0940\u0964 \n\n\u0905\u092c \u0939\u0930 \u0938\u0928\u093e\u0924\u0928\u0940 \u0939\u093f\u0902\u0926\u0942 \u0915\u093e \u0927\u0930\u094d\u092e \u0939\u0948 \u0915\u093f \u0907\u0928 \u092e\u0939\u093e\u092a\u093e\u092a\u093f\u092f\u094b\u0902 \u0915\u094b \u0938\u091c\u093c\u093e \u0926\u093f\u0932\u0935\u093e\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0905\u092a\u0928\u0947 \u0906\u092a \u0915\u094b \u0938\u092e\u0930\u094d\u092a\u093f\u0924 \u0915\u0930\u0947\u0964 \u091c\u094b \u0932\u094b\u0917 \u0907\u0928 \u092a\u093e\u092a\u093f\u092f\u094b\u0902 \u0915\u094b https://t.co/hCA1UJH",
-        "published_at": "2026-07-10T07:43:41.000Z"
+        "article_headline": "\u0927\u0930\u094d\u092e\u0947\u0902\u0926\u094d\u0930 \u092a\u094d\u0930\u0927\u093e\u0928 \u0915\u094b \u0924\u094b \u0907\u0938\u094d\u0924\u0940\u092b\u093c\u093e \u0926\u0947\u0928\u093e \u091a\u093e\u0939\u093f\u090f \u0914\u0930 \u0938\u094b\u0928\u092e \u0935\u093e\u0902\u0917\u091a\u0941\u0915 \u0915\u094b \u0926\u0947\u0936 \u0915\u093e \u0936\u093f\u0915\u094d\u0937\u093e \u092e\u0902\u0924\u094d\u0930\u0940 \u092c\u0928\u093e\u0928\u093e \u091a\u093e\u0939\u093f\u090f\u0964 https://t.co/iqhpeVEYFh",
+        "published_at": "2026-07-16T14:57:58.000Z"
       },
       {
         "tweet_url": "https://x.com/rashtrapatibhvn/status/2075935889210097758",

@@ -1,122 +1,128 @@
 [
   {
-    "slug": "pok-on-edge-as-showdown-looms-12-killed-4000-rangers-deployed-20260715",
-    "headline": "POK on Edge as Showdown Looms: 12 Killed, 4,000 Rangers Deployed",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pok-on-edge-as-showdown-looms-12-killed-4000-rangers-deployed-20260715.jpg"
-  },
-  {
-    "slug": "miracle-hudson-pilot-sully-sullenberger-alzheimers-diagnosis-20260715",
-    "headline": "'Miracle on the Hudson' Pilot Sully Sullenberger Reveals Early-Stage Alzheimer's Diagnosis",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/miracle-hudson-pilot-sully-sullenberger-alzheimers-diagnosis-20260715.jpg"
-  },
-  {
-    "slug": "delhi-sir-deadline-extended-draft-roll-august-20260715",
-    "headline": "Delhi SIR Deadline Extended; Draft Roll Set for August Release",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-sir-deadline-extended-draft-roll-august-20260715.jpg"
-  },
-  {
-    "slug": "trump-overrules-ice-traffic-stop-suspension-orders-agents-resume-20260715",
-    "headline": "Trump Overrules ICE's Traffic Stop Suspension, Orders Agents to Resume Vehicle Stops",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-overrules-ice-traffic-stop-suspension-orders-agents-resume-20260715.jpg"
-  },
-  {
-    "slug": "chirag-veer-singh-sarao-first-keshdhari-sikh-us-air-force-academy-20260715",
-    "headline": "Chirag Veer Singh Sarao: First Keshdhari Sikh at US Air Force Academy",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chirag-veer-singh-sarao-first-keshdhari-sikh-us-air-force-academy-20260715.jpg"
-  },
-  {
-    "slug": "sensitive-files-leaked-exposing-risks-at-indias-largest-nuclear-plant-20260715",
-    "headline": "Sensitive Files Leaked, Exposing Risks at India's Largest Nuclear Plant",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sensitive-files-leaked-exposing-risks-at-indias-largest-nuclear-plant-20260715.jpg"
-  },
-  {
-    "slug": "tragedy-strikes-noida-fire-claims-two-lives-in-residential-building-20260715",
-    "headline": "Tragedy Strikes Noida: Fire Claims Two Lives in Residential Building",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tragedy-strikes-noida-fire-claims-two-lives-in-residential-building-20260715.jpg"
-  },
-  {
-    "slug": "centre-approves-semicon-2-0-with-rs-1-27-lakh-crore-outlay-20260715",
-    "headline": "Centre Approves Semicon 2.0 with Rs 1.27 Lakh Crore Outlay",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/centre-approves-semicon-2-0-with-rs-1-27-lakh-crore-outlay-20260715.jpg"
-  },
-  {
-    "slug": "softbank-ceo-dismisses-ai-investment-bubble-fears-20260715",
-    "headline": "SoftBank CEO Dismisses AI Investment Bubble Fears as 'Foolish'",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/softbank-ceo-dismisses-ai-investment-bubble-fears-20260715.jpg"
-  },
-  {
-    "slug": "cabinet-approves-semicon-2-0-varanasi-projects-rail-upgrades-20260715",
-    "headline": "Cabinet Approves Semicon 2.0, Varanasi Projects, and Rail Upgrades",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cabinet-approves-semicon-2-0-varanasi-projects-rail-upgrades-20260715.jpg"
-  },
-  {
-    "slug": "uscis-naturalization-fee-hike-75-percent-waiver-eliminated-20260715",
-    "headline": "The Price of Becoming American Just Jumped 75 Percent. Low-Income Applicants Face a 250 Percent Hit",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uscis-naturalization-fee-hike-75-percent-waiver-eliminated-20260715.jpg"
-  },
-  {
-    "slug": "protein-biosensors-revolutionizing-emergency-medical-response-20260715",
-    "headline": "Protein Biosensors: Revolutionizing Emergency Medical Response",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/protein-biosensors-revolutionizing-emergency-medical-response-20260715.jpg"
-  },
-  {
-    "slug": "india-data-center-156-billion-investment-surge-h1-2026-20260715",
-    "headline": "India Pulled In $1.56 Billion in Data Centre Investment in Six Months. That Is Seven Times Last Year's Pace.",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-data-center-156-billion-investment-surge-h1-2026-20260715.jpg"
-  },
-  {
-    "slug": "ibm-ceo-remarks-cybersecurity-firm-value-20260715",
-    "headline": "IBM CEO's Remarks Trigger $70 Billion Loss, Boost Cybersecurity Firm's Value",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ibm-ceo-remarks-cybersecurity-firm-value-20260715.jpg"
-  },
-  {
-    "slug": "soni-razdan-shabana-azmi-swara-bhasker-rally-sonam-wangchuk-20260715",
-    "headline": "Soni Razdan, Shabana Azmi, and Swara Bhasker Rally for Sonam Wangchuk",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/soni-razdan-shabana-azmi-swara-bhasker-rally-sonam-wangchuk-20260715.jpg"
-  },
-  {
-    "slug": "nashik-highway-horror-family-escapes-attacker-20260715",
-    "headline": "Nashik Highway Horror: Family Escapes Attacker Clinging to Car",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nashik-highway-horror-family-escapes-attacker-20260715.jpg"
-  },
-  {
-    "slug": "birthright-citizenship-scotus-ruling-banks-bill-indian-diaspora-20260715",
-    "headline": "Birthright Citizenship Survived the Supreme Court. The Next Attack Has Already Begun",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/birthright-citizenship-scotus-ruling-banks-bill-indian-diaspora-20260715.jpg"
-  },
-  {
-    "slug": "groww-q1-profit-doubles-735-crore-retail-investing-boom-nri-20260715",
-    "headline": "Groww's Profit Nearly Doubles to ₹735 Crore as 22 Million Indians Trade Actively — Inside the Retail Boom That's Rewriting India's Market DNA",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/groww-q1-profit-doubles-735-crore-retail-investing-boom-nri-20260715.jpg"
-  },
-  {
-    "slug": "natya-darpan-2026-new-jersey-multilingual-theater-20260715",
-    "headline": "Five Plays, Four Languages, Six Hours, One Stage: Inside New Jersey's Quietly Radical Indian Theatre Festival",
+    "slug": "green-led-council-immigration-raids-ban-20260715",
+    "headline": "Green-Led Council to Vote on Immigration Raids Cooperation Ban",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/natya-darpan-2026-new-jersey-multilingual-theater-20260715.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/green-led-council-immigration-raids-ban-20260715.jpg"
   },
   {
-    "slug": "england-argentina-world-cup-rivalry-revenge-20260715",
-    "headline": "England and Argentina: A World Cup Rivalry Rekindled",
+    "slug": "uk-affirms-support-for-indias-security-concerns-amid-trade-talks-20260715",
+    "headline": "UK Affirms Support for India's Security Concerns Amid Trade Talks",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-affirms-support-for-indias-security-concerns-amid-trade-talks-20260715.jpg"
+  },
+  {
+    "slug": "andhra-pradesh-student-dies-in-tragic-us-road-accident-20260715",
+    "headline": "Andhra Pradesh Student Dies in Tragic U.S. Road Accident",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-pradesh-student-dies-in-tragic-us-road-accident-20260715.jpg"
+  },
+  {
+    "slug": "openai-unveils-physical-keypad-for-ai-control-20260715",
+    "headline": "OpenAI Unveils Physical Keypad for AI Control",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-unveils-physical-keypad-for-ai-control-20260715.jpg"
+  },
+  {
+    "slug": "new-rules-allow-immigration-clients-to-recover-losses-since-2021-20260715",
+    "headline": "New Rules Allow Immigration Clients to Recover Losses Since 2021",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/new-rules-allow-immigration-clients-to-recover-losses-since-2021-20260715.jpg"
+  },
+  {
+    "slug": "paypal-shares-jump-after-53-billion-buyout-offer-20260715",
+    "headline": "PayPal Shares Surge Following $53 Billion Buyout Proposal",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/paypal-shares-jump-after-53-billion-buyout-offer-20260715.jpg"
+  },
+  {
+    "slug": "india-launches-seafarer-first-response-amid-hormuz-attacks-20260715",
+    "headline": "India Launches Seafarer-First Response Amid Hormuz Attacks",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-launches-seafarer-first-response-amid-hormuz-attacks-20260715.jpg"
+  },
+  {
+    "slug": "sun-pharma-secures-approval-generic-semaglutide-injection-south-africa-20260715",
+    "headline": "Sun Pharma Secures Approval for Generic Semaglutide Injection in South Africa",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sun-pharma-secures-approval-generic-semaglutide-injection-south-africa-20260715.jpg"
+  },
+  {
+    "slug": "spacex-stock-dips-below-ipo-price-for-first-time-20260715",
+    "headline": "SpaceX Stock Dips Below IPO Price for the First Time",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-stock-dips-below-ipo-price-for-first-time-20260715.jpg"
+  },
+  {
+    "slug": "jd-vance-commends-youtuber-nick-shirley-for-uncovering-minnesota-fraud-20260715",
+    "headline": "JD Vance Commends YouTuber Nick Shirley for Uncovering Minnesota Fraud",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jd-vance-commends-youtuber-nick-shirley-for-uncovering-minnesota-fraud-20260715.jpg"
+  },
+  {
+    "slug": "indian-missing-after-gfs-galaxy-attack-confirmed-dead-20260715",
+    "headline": "Indian Missing After GFS Galaxy Attack Confirmed Dead by Family",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-missing-after-gfs-galaxy-attack-confirmed-dead-20260715.jpg"
+  },
+  {
+    "slug": "us-strikes-marine-control-tower-in-iran-20260715",
+    "headline": "US Strikes Marine Control Tower in Iran Amid Rising Tensions",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-strikes-marine-control-tower-in-iran-20260715.jpg"
+  },
+  {
+    "slug": "regulatory-scrutiny-grand-dealtrade-illiquid-stock-options-20260715",
+    "headline": "Regulatory Scrutiny on Grand Dealtrade Private Limited's Illiquid Stock Options",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/regulatory-scrutiny-grand-dealtrade-illiquid-stock-options-20260715.jpg"
+  },
+  {
+    "slug": "eng-vs-arg-live-can-kane-bellingham-handle-messis-magic-20260715",
+    "headline": "ENG vs ARG Live: Can Kane, Bellingham Handle Messi's Magic?",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/england-argentina-world-cup-rivalry-revenge-20260715.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/eng-vs-arg-live-can-kane-bellingham-handle-messis-magic-20260715.jpg"
+  },
+  {
+    "slug": "china-pressures-african-nations-to-repay-debt-in-yuan-20260715",
+    "headline": "China Pressures African Nations to Repay Debt in Yuan",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/china-pressures-african-nations-to-repay-debt-in-yuan-20260715.jpg"
+  },
+  {
+    "slug": "tata-capital-secures-400-million-in-us-bond-issue-20260715",
+    "headline": "Tata Capital Secures $400 Million in US Bond Issue",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tata-capital-secures-400-million-in-us-bond-issue-20260715.jpg"
+  },
+  {
+    "slug": "surgeons-remove-rare-klatskin-tumour-via-robotics-20260715",
+    "headline": "Surgeons Successfully Remove Rare Klatskin Tumour Using Robotics",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/surgeons-remove-rare-klatskin-tumour-via-robotics-20260715.jpg"
+  },
+  {
+    "slug": "congress-demands-clarity-goyal-us-tariff-bill-russian-oil-20260715",
+    "headline": "Congress Demands Clarity from Goyal on U.S. Tariff Bill Over Russian Oil",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/congress-demands-clarity-goyal-us-tariff-bill-russian-oil-20260715.jpg"
+  },
+  {
+    "slug": "anurag-kashyap-backs-sonam-wangchuk-amid-government-silence-20260715",
+    "headline": "Anurag Kashyap Backs Sonam Wangchuk Amid Government Silence",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anurag-kashyap-backs-sonam-wangchuk-amid-government-silence-20260715.jpg"
+  },
+  {
+    "slug": "drc-ebola-cases-exceed-2000-amid-health-worker-strikes-20260715",
+    "headline": "DRC Ebola Cases Exceed 2,000 Amid Health Worker Strikes",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/drc-ebola-cases-exceed-2000-amid-health-worker-strikes-20260715.jpg"
+  },
+  {
+    "slug": "ed-files-chargesheet-in-us-visa-fraud-racket-20260715",
+    "headline": "ED Files Chargesheet in U.S. Visa Fraud Racket",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ed-files-chargesheet-in-us-visa-fraud-racket-20260715.jpg"
   }
 ]
