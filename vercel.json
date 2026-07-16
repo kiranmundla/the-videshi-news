@@ -1,6 +1,19 @@
 {
   "headers": [
     {
+      "source": "/data/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=60, stale-while-revalidate=30"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "max-age=60"
+        }
+      ]
+    },
+    {
       "source": "/fonts/(.*)",
       "headers": [
         {

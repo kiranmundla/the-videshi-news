@@ -209,6 +209,9 @@ export default function IndexV2() {
         if (!feedResp.ok) throw new Error("Feed unavailable");
 
         const feedData = await feedResp.json();
+        // If feed is older than 30 minutes, treat as stale and fallback to Supabase
+        const feedAge = Date.now() - new Date(feedData.generated_at).getTime();
+        if (feedAge > 30 * 60 * 1000) throw new Error("Feed stale");
         const eventsData = eventsResp.ok ? await eventsResp.json() : [];
 
         const sp: Record<string, Article[]> = {};

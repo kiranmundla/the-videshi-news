@@ -54,7 +54,7 @@ def patch_reel(reel_id, data):
 # --- Fetch ALL qa_passed reels for dedup ---
 print("Fetching all qa_passed reels for article-level dedup...")
 all_reels_resp = requests.get(
-    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&select=id,article_id,article_slug,ig_posted_at,yt_posted_at,threads_posted_at,x_posted_at&limit=500",
+    f"{SUPABASE_URL}/rest/v1/prebuilt_reels?qa_passed=eq.true&select=id,article_id,article_slug,ig_posted_at,yt_posted_at,threads_posted_at,x_posted_at,x_tweet_id&limit=500",
     headers={k: v for k, v in SB_HEADERS.items() if k != 'Prefer'}
 )
 all_reels = all_reels_resp.json()
