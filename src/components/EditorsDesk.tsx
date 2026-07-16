@@ -19,7 +19,7 @@ const GOLD = "#d4a855";
 
 async function fetchLatestEditorial(): Promise<EditorialArticle | null> {
   try {
-    const resp = await fetch("/data/homepage-feed.json");
+    const resp = await fetch(`/data/homepage-feed.json?v=${Date.now()}`);
     if (!resp.ok) return null;
     const feed = await resp.json();
     const ed = feed.editorial;

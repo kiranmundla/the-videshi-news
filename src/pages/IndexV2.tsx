@@ -202,8 +202,8 @@ export default function IndexV2() {
     const fetchStaticJSON = async () => {
       try {
         const [feedResp, eventsResp] = await Promise.all([
-          fetch("/data/homepage-feed.json"),
-          fetch("/data/events.json"),
+          fetch(`/data/homepage-feed.json?v=${Date.now()}`),
+          fetch(`/data/events.json?v=${Date.now()}`),
         ]);
 
         if (!feedResp.ok) throw new Error("Feed unavailable");

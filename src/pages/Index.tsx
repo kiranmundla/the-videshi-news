@@ -276,7 +276,7 @@ export default function Index() {
     };
 
     // Fast path: try pre-built static JSON from CDN (single request)
-    fetch("/data/homepage-feed.json")
+    fetch(`/data/homepage-feed.json?v=${Date.now()}`)
       .then((r) => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
       .then((data) => {
         const sp: Record<string, Article[]> = {};

@@ -118,7 +118,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
   const [tweets, setTweets] = useState<TweetEntry[]>([]);
 
   useEffect(() => {
-    fetch("/data/social-feed.json")
+    fetch(`/data/social-feed.json?v=${Date.now()}`)
       .then((r) => r.json())
       .then((data: SocialFeed) => {
         const catTweets = data.categories?.[category] || [];
