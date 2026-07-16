@@ -401,8 +401,8 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
 def _build_just_in(articles: list[dict], now: datetime) -> list[dict]:
     """Build the 'Just In' strip: 8 most recent articles, purely chronological,
     across all categories. No scoring — just freshness. Dedupes against featured."""
-    since_24h = (now - timedelta(hours=24)).isoformat()
-    recent = [a for a in articles if a["published_at"] >= since_24h and a.get("hero_image_url")]
+    since_48h = (now - timedelta(hours=48)).isoformat()
+    recent = [a for a in articles if a["published_at"] >= since_48h and a.get("hero_image_url")]
     recent.sort(key=lambda a: a["published_at"], reverse=True)
 
     # Deduplicate headlines: skip articles whose first 6 headline words match an earlier one
@@ -414,7 +414,8 @@ def _build_just_in(articles: list[dict], now: datetime) -> list[dict]:
             continue
         seen_prefixes.add(prefix)
         deduped.append(a)
-        if len(deduped) >= 8:
+        # Return 15 so the frontend filter (removes hero+sidebar overlap) still leaves 8+
+        if len(deduped) >= 15:
             break
 
     return [article_without_body(a) for a in deduped]
