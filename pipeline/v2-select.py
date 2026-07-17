@@ -304,28 +304,21 @@ def main():
         if is_already_covered(title, recent_articles):
             continue
 
-        # Score: cluster_size (40%) + source_diversity (30%) + recency (20%) + diaspora_boost (10%)
-        score_cluster = min(effective_size * 15, 60)
-        score_sources = min(source_diversity * 12, 40)
+        # Binary gate: if it passed diaspora check and isn't a dupe, it's approved.
+        # Rank by freshness (newest first), signal count as tiebreaker for hero.
 
-        # Recency: hours since first signal
+        # Freshness: newest signal timestamp
         try:
-            oldest = min(s.get("published_at") or s.get("fetched_at", "") for s in sigs)
-            if oldest:
-                from email.utils import parsedate_to_datetime
+            newest = max(s.get("published_at") or s.get("fetched_at", "") for s in sigs)
+            if newest:
                 try:
-                    age_hours = (NOW - datetime.fromisoformat(oldest.replace("Z", "+00:00"))).total_seconds() / 3600
+                    newest_dt = datetime.fromisoformat(newest.replace("Z", "+00:00"))
                 except:
-                    age_hours = 2
+                    newest_dt = NOW
             else:
-                age_hours = 2
+                newest_dt = NOW
         except:
-            age_hours = 2
-        score_recency = max(0, 30 - age_hours * 3)  # Newer = higher
-
-        diaspora_boost = 20 if diaspora == "yes" else 0
-
-        total_score = score_cluster + score_sources + score_recency + diaspora_boost
+            newest_dt = NOW
 
         # Collect source URLs
         source_urls = []
@@ -339,29 +332,44 @@ def main():
         scored.append({
             "title": title,
             "category": cat,
-            "score": round(total_score, 1),
-            "signal_count": n,
-            "effective_size": effective_size,
+            "signal_count": effective_size,
             "source_diversity": source_diversity,
             "diaspora_relevance": diaspora,
-            "source_urls": source_urls[:8],  # Top 8 source URLs
+            "newest_signal": newest_dt.isoformat(),
+            "source_urls": source_urls[:8],
             "all_signals": [{"title": s["title"], "url": s["original_url"], "source": s.get("source_name", "")} for s in sigs[:10]],
         })
 
-    # Sort by score
-    scored.sort(key=lambda x: x["score"], reverse=True)
+    # Sort by freshness (newest first), signal count as tiebreaker
+    scored.sort(key=lambda x: (x["newest_signal"], x["signal_count"]), reverse=True)
 
-    # Category balance: max 3 per category to ensure diversity
+    # Category balance: max 3 per category, min 1 per category if signals exist
     balanced = []
     cat_counts = {}
+
+    # First pass: guarantee 1 per category (floor)
+    seen_cats = set()
     for c in scored:
         cat = c["category"]
-        cat_counts.setdefault(cat, 0)
-        if cat_counts[cat] < 3:
+        if cat not in seen_cats:
             balanced.append(c)
-            cat_counts[cat] += 1
+            seen_cats.add(cat)
+            cat_counts[cat] = 1
         if len(balanced) >= MAX_CANDIDATES:
             break
+
+    # Second pass: fill remaining slots by freshness, respecting ceiling
+    if len(balanced) < MAX_CANDIDATES:
+        for c in scored:
+            if c in balanced:
+                continue
+            cat = c["category"]
+            cat_counts.setdefault(cat, 0)
+            if cat_counts[cat] < 3:
+                balanced.append(c)
+                cat_counts[cat] += 1
+            if len(balanced) >= MAX_CANDIDATES:
+                break
 
     # ── Output ────────────────────────────────────────────────────────────────
     output = {
@@ -380,7 +388,7 @@ def main():
     for i, c in enumerate(balanced, 1):
         d = "✅" if c["diaspora_relevance"] == "yes" else "❓"
         print(f"  {i}. [{c['category']}] {c['title'][:70]}")
-        print(f"     Score: {c['score']} | Signals: {c['effective_size']} | Sources: {c['source_diversity']} | Diaspora: {d}")
+        print(f"     Signals: {c['signal_count']} | Sources: {c['source_diversity']} | Diaspora: {d} | Fresh: {c['newest_signal'][:16]}")
     print(f"\n  Output: {OUT_PATH}")
     print(f"  Time: {elapsed:.1f}s")
     print(f"{'='*60}\n")

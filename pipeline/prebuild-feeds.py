@@ -356,8 +356,10 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     # Featured article: most recent 24h with image and highest score
     since_24h = (now - timedelta(hours=24)).isoformat()
     recent_24h = [a for a in articles if a["published_at"] >= since_24h]
-    # Sort by score descending, then published_at descending
-    recent_24h.sort(key=lambda a: (a.get("featured_score") or 0, a["published_at"]), reverse=True)
+    # Sort by freshness (event_at or published_at)
+    recent_24h.sort(key=lambda a: (
+        a.get("event_at") or a["published_at"],
+    ), reverse=True)
     featured = None
     for a in recent_24h:
         if a["hero_image_url"]:
