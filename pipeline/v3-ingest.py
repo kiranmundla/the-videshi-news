@@ -347,7 +347,7 @@ def fetch_email_signals():
 
 # ── GPT topic matching ────────────────────────────────────────────────────────
 
-def call_gpt(messages, max_tokens=4000):
+def call_gpt(messages, max_tokens=4000, retries=2):
     """Call OpenAI gpt-4o-mini via curl, using a temp file for the payload."""
     payload = json.dumps({
         "model": "gpt-4o-mini",
@@ -362,29 +362,34 @@ def call_gpt(messages, max_tokens=4000):
         tmp.write(payload)
         tmp_path = tmp.name
     try:
-        cmd = [
-            "curl", "-sS", "--max-time", "60",
-            "-X", "POST", "https://api.openai.com/v1/chat/completions",
-            "-H", f"Authorization: Bearer {OPENAI_KEY}",
-            "-H", "Content-Type: application/json",
-            "-d", f"@{tmp_path}",
-        ]
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=65)
-        try:
-            resp = json.loads(r.stdout)
-            content = resp["choices"][0]["message"]["content"]
-            usage = resp.get("usage", {})
-            cost = (usage.get("prompt_tokens", 0) * 0.15 + usage.get("completion_tokens", 0) * 0.6) / 1_000_000
-            return json.loads(content), cost
-        except Exception as e:
-            print(f"  ⚠ GPT error: {e}")
-            if r.stdout:
-                print(f"    Response: {r.stdout[:300]}")
-            return None, 0
+        for attempt in range(retries + 1):
+            cmd = [
+                "curl", "-sS", "--max-time", "120",
+                "-X", "POST", "https://api.openai.com/v1/chat/completions",
+                "-H", f"Authorization: Bearer {OPENAI_KEY}",
+                "-H", "Content-Type: application/json",
+                "-d", f"@{tmp_path}",
+            ]
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=130)
+            try:
+                resp = json.loads(r.stdout)
+                content = resp["choices"][0]["message"]["content"]
+                usage = resp.get("usage", {})
+                cost = (usage.get("prompt_tokens", 0) * 0.15 + usage.get("completion_tokens", 0) * 0.6) / 1_000_000
+                return json.loads(content), cost
+            except Exception as e:
+                if attempt < retries:
+                    print(f"  ⚠ GPT attempt {attempt+1} failed: {e}, retrying...")
+                    time.sleep(2)
+                    continue
+                print(f"  ⚠ GPT error after {retries+1} attempts: {e}")
+                if r.stdout:
+                    print(f"    Response: {r.stdout[:300]}")
+                return None, 0
     finally:
         os.unlink(tmp_path)
 
-def match_signals_to_topics(new_signals, existing_topics, chunk_size=100):
+def match_signals_to_topics(new_signals, existing_topics, chunk_size=250):
     """
     Use GPT to match new signals to existing topics or group them into new topics.
     Chunks signals to keep prompt size manageable.
@@ -406,10 +411,11 @@ def match_signals_to_topics(new_signals, existing_topics, chunk_size=100):
     for chunk_start in range(0, len(new_signals), chunk_size):
         chunk = new_signals[chunk_start:chunk_start + chunk_size]
 
-        # Build prompt
+        # Build prompt — cap topics at 500 to keep prompt manageable
+        prompt_topics = match_topics[-500:] if len(match_topics) > 500 else match_topics
         topic_lines = []
         topic_id_map = {}
-        for i, t in enumerate(match_topics):
+        for i, t in enumerate(prompt_topics):
             topic_lines.append(f"{i+1}. {t['canonical_title'][:120]}")
             topic_id_map[i+1] = t['id']
 
@@ -445,7 +451,7 @@ Output JSON:
         result, cost = call_gpt([
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
-        ], max_tokens=max(2000, len(chunk) * 30))
+        ], max_tokens=16000)
         total_cost += cost
 
         if not result or "matches" not in result:
