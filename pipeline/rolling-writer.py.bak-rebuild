@@ -52,119 +52,7 @@ MIN_COMBINED_SCORE = 13  # minimum newsworthiness + diaspora_relevance for LLM e
 LOOKBACK_HOURS = 12      # how far back to look for topics
 DEDUP_HOURS = 48         # how far back to check for duplicate articles
 
-# Category freshness targets — max hours before a category is "stale" and needs
-# a forced article. Prevents high-signal categories (news, tech) from starving
-# lower-volume categories (food, travel, lifestyle-health).
-CATEGORY_FRESHNESS_TARGET = {
-    "news": 3,
-    "technology": 4,
-    "immigration": 6,
-    "sports": 4,
-    "markets-finance": 4,
-    "entertainment": 6,
-    "nri-world": 8,
-    "lifestyle-health": 8,
-    "travel": 10,
-    "food": 10,
-}
-
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-CARD_MARKER = '<!-- data-card -->'
-
-# ── Data card rendering (inline from render-data-cards.py) ───────────────────
-
-def _esc(s):
-    return (str(s) if s is not None else "").replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace('"',"&quot;")
-
-def render_card_html(card):
-    """Render a data card dict to HTML using vdc-* CSS classes."""
-    ctype = card.get("card_type", "stat_grid")
-    title = _esc(card.get("card_title", ""))
-    hs = card.get("hero_stat")
-    items = card.get("items", [])
-    source = _esc(card.get("source_note", ""))
-
-    html = '<div class="vdc"><div class="vdc-glow"></div>'
-    if title:
-        html += f'<div class="vdc-title">{title}</div>'
-
-    if hs:
-        val = _esc(hs.get("value", ""))
-        label = _esc(hs.get("label", ""))
-        trend = _esc(hs.get("trend", ""))
-        trend_cls = "vdc-hero-trend-neg" if (trend.startswith("↓") or trend.startswith("-")) else "vdc-hero-trend"
-        html += '<div class="vdc-hero">'
-        html += f'<div class="vdc-hero-num">{val}</div>'
-        if trend:
-            html += f'<div class="{trend_cls}">{trend}</div>'
-        if label:
-            html += f'<div class="vdc-hero-label">{label}</div>'
-        html += '</div>'
-
-    if ctype == "stat_grid":
-        html += '<div class="vdc-grid">'
-        for item in items:
-            v = _esc(item.get("value", ""))
-            l = _esc(item.get("label", ""))
-            html += f'<div class="vdc-stat"><div class="vdc-stat-val">{v}</div><div class="vdc-stat-lbl">{l}</div></div>'
-        html += '</div>'
-
-    elif ctype == "comparison":
-        max_nv = max((abs(i.get("numeric_value") or 0) for i in items), default=1) or 1
-        for item in items:
-            name = _esc(item.get("name", item.get("label", "")))
-            val = _esc(item.get("value", ""))
-            nv = item.get("numeric_value") or 0
-            pct = max(int(abs(nv) / abs(max_nv) * 100), 12)
-            fill_cls = "vdc-bar-fill-neg" if nv < 0 else "vdc-bar-fill"
-            html += (f'<div class="vdc-bar-row"><div class="vdc-bar-name">{name}</div>'
-                     f'<div class="vdc-bar-track"><div class="{fill_cls}" style="width:{pct}%">{val}</div></div></div>')
-
-    elif ctype == "timeline":
-        html += '<div class="vdc-tl">'
-        for item in items:
-            dt = _esc(item.get("date", ""))
-            ev = _esc(item.get("event", item.get("text", "")))
-            html += (f'<div class="vdc-tl-item"><div class="vdc-tl-dot"></div>'
-                     f'<div class="vdc-tl-date">{dt}</div><div class="vdc-tl-event">{ev}</div></div>')
-        html += '</div>'
-
-    elif ctype == "highlights":
-        for item in items:
-            stat = _esc(item.get("stat", item.get("value", "")))
-            text = _esc(item.get("text", item.get("label", "")))
-            badge = f'<span class="vdc-badge">{stat}</span> ' if stat else ""
-            html += (f'<div class="vdc-bullet"><span class="vdc-bullet-arrow">›</span>{badge}{text}</div>')
-
-    if source:
-        html += f'<div class="vdc-footer">{source}</div>'
-    html += '</div>'
-    return html
-
-def render_takeaways_html(takeaways):
-    """Render key takeaways list to HTML."""
-    if not takeaways:
-        return ""
-    html = '<div class="vdc-takeaways"><div class="vdc-takeaways-title">Key Takeaways</div><ul>'
-    for t in takeaways:
-        html += f'<li>{_esc(t)}</li>'
-    html += '</ul></div>'
-    return html
-
-def inject_data_cards(body, data_cards, key_takeaways):
-    """Inject rendered data card HTML into article body."""
-    blocks = []
-    # Key takeaways always go first
-    if key_takeaways:
-        blocks.append(f'{CARD_MARKER}\n{render_takeaways_html(key_takeaways)}')
-    # Data cards: stat_grid/after_lead first, then mid-article cards
-    for card in (data_cards or []):
-        blocks.append(f'{CARD_MARKER}\n{render_card_html(card)}')
-    if not blocks:
-        return body
-    # Prepend all cards before the article body
-    return '\n\n'.join(blocks) + '\n\n' + body
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -670,18 +558,6 @@ REQUIREMENTS:
 13. **image_search_query**: Specific search query to find a relevant hero image (e.g., "Narendra Modi G20", "H-1B visa stamp", "Spain France World Cup")
 14. **image_must_show**: What the hero image must depict (e.g., "Narendra Modi speaking", "a US visa stamp")
 15. **image_entities**: Array of main people/entities in the article (for image search)
-16. **key_takeaways**: Array of 3-5 bullet point strings. Each is a complete, standalone insight under 20 words. These appear as a highlighted card at the top of the article, letting readers grasp the story in 10 seconds. Every stat/number MUST come from the article body.
-17. **data_cards**: Array of 0-2 data cards. Include ONLY if the article has meaningful numbers/statistics. Each card has:
-    - "card_title": Punchy editorial title (NOT the article headline repeated)
-    - "card_type": One of "stat_grid", "comparison", "timeline", "highlights"
-    - "hero_stat" (for stat_grid only): {{"value": "$70B", "label": "Market Cap Loss", "trend": "↓ 12%"}}
-    - "items": Array of data points:
-      - stat_grid: [{{"value": "12%", "label": "Share Drop"}}, ...] — 2-4 items
-      - comparison: [{{"name": "CrowdStrike", "value": "+15%", "numeric_value": 15}}, ...] — 3-6 items sorted by numeric_value desc
-      - timeline: [{{"date": "Jul 10", "event": "..."}}, ...] — 3-6 items chronological
-      - highlights: [{{"text": "...", "stat": "42%"}}, ...] — 3-5 items
-    - "source_note" (optional): Brief source attribution
-    If no meaningful stats exist, return an EMPTY array []. Do not force cards with generic filler.
 
 STYLE GUIDE:
 - Write like The Economist or Bloomberg, not like a blog
@@ -740,42 +616,6 @@ Return a single JSON object with all these fields."""
         "image_must_show": result.get('image_must_show', ''),
         "image_entities": result.get('image_entities', []),
     }
-
-    # Render data cards and key takeaways into the body
-    key_takeaways = result.get('key_takeaways', [])
-    data_cards = result.get('data_cards', [])
-
-    # Validate key_takeaways
-    if isinstance(key_takeaways, list) and key_takeaways:
-        key_takeaways = [str(t) for t in key_takeaways if t][:5]
-    else:
-        key_takeaways = []
-
-    # Validate data_cards
-    valid_card_types = {"stat_grid", "comparison", "timeline", "highlights"}
-    validated_cards = []
-    if isinstance(data_cards, list):
-        for card in data_cards[:2]:
-            if (isinstance(card, dict)
-                and card.get("card_title")
-                and card.get("card_type") in valid_card_types
-                and isinstance(card.get("items"), list)
-                and len(card["items"]) >= 1):
-                validated_cards.append(card)
-    data_cards = validated_cards
-
-    # Inject rendered HTML into body
-    if key_takeaways or data_cards:
-        article["body"] = inject_data_cards(article["body"], data_cards, key_takeaways)
-        n_kt = len(key_takeaways)
-        n_dc = len(data_cards)
-        print(f"  📊 Data cards: {n_kt} takeaways, {n_dc} cards")
-
-    # Save JSON for the enriched_at / data_cards / key_takeaways columns
-    article["key_takeaways"] = key_takeaways
-    article["data_cards"] = data_cards
-    article["enriched_at"] = datetime.now(timezone.utc).isoformat()
-    article["cards_rendered_at"] = datetime.now(timezone.utc).isoformat()
 
     # Calculate word count
     article["word_count"] = len(re.findall(r'\b\w+\b', body))
@@ -848,79 +688,6 @@ def rebuild_feeds():
         print("  ⚠ Feed rebuild timed out (120s)")
 
 
-# ── Category Freshness: stale-category backfill ─────────────────────────────
-
-def get_stale_categories():
-    """Find categories that haven't had a new article within their freshness target."""
-    stale = []
-    for cat, max_hours in CATEGORY_FRESHNESS_TARGET.items():
-        sql = f"""
-        SELECT published_at FROM p2_articles
-        WHERE category = '{cat}'
-          AND status IN ('published', 'review')
-        ORDER BY published_at DESC
-        LIMIT 1
-        """
-        result = sb_query(sql)
-        if not result:
-            stale.append(cat)
-            continue
-        last_pub = result[0].get('published_at', '')
-        try:
-            last_dt = datetime.fromisoformat(last_pub.replace('Z', '+00:00'))
-            hours_since = (datetime.now(timezone.utc) - last_dt).total_seconds() / 3600
-            if hours_since > max_hours:
-                stale.append(cat)
-        except (ValueError, TypeError):
-            stale.append(cat)
-    return stale
-
-
-def get_backfill_topics(stale_categories, recent_articles):
-    """Find the best pending topic in each stale category for forced writing."""
-    backfill = []
-    for cat in stale_categories:
-        sql = f"""
-        SELECT t.id, t.canonical_title, t.category, t.urgency,
-               t.score_total, t.signal_count, t.keywords, t.status,
-               t.created_at
-        FROM p2_topics t
-        WHERE t.created_at > now() - interval '24 hours'
-          AND t.status = 'pending'
-          AND t.category = '{cat}'
-          AND t.score_total >= 10
-        ORDER BY t.score_total DESC, t.signal_count DESC
-        LIMIT 5
-        """
-        candidates = sb_query(sql)
-        if not candidates:
-            continue
-
-        # Filter out duplicates and Hindi
-        for t in candidates:
-            title = t.get('canonical_title', '')
-            if is_hindi(title):
-                continue
-            if check_duplicate(title, recent_articles, threshold=3):
-                continue
-            # Check not already written
-            existing = sb_query(f"""
-                SELECT id FROM p2_articles
-                WHERE topic_id = '{t["id"]}' AND status IN ('published','review')
-                LIMIT 1
-            """)
-            if existing:
-                continue
-            # Found a usable topic for this stale category
-            t['llm_category'] = cat
-            t['is_backfill'] = True
-            backfill.append(t)
-            print(f"  📌 Backfill [{cat}]: {title[:60]}")
-            break
-
-    return backfill
-
-
 # ── Main pipeline ───────────────────────────────────────────────────────────
 
 def run(dry_run=False):
@@ -947,27 +714,7 @@ def run(dry_run=False):
     # Step 2: LLM evaluation
     selected = evaluate_topics(topics, recent_articles)
     if not selected:
-        print("\n✓ No topics scored high enough.")
-        # Still check for stale categories even if no top picks
-        selected = []
-
-    # Step 2b: Category freshness — backfill stale categories
-    stale = get_stale_categories()
-    if stale:
-        # Don't backfill categories we're already writing about
-        already_covered = {t.get('llm_category', t.get('category', 'news')) for t in selected}
-        stale_uncovered = [c for c in stale if c not in already_covered]
-        if stale_uncovered:
-            print(f"\n  📊 Stale categories ({len(stale_uncovered)}): {', '.join(stale_uncovered)}")
-            backfill = get_backfill_topics(stale_uncovered, recent_articles)
-            if backfill:
-                selected.extend(backfill)
-                print(f"  Added {len(backfill)} backfill topics")
-    else:
-        print("  All categories fresh ✓")
-
-    if not selected:
-        print("\n✓ No topics to write. Exiting cleanly.")
+        print("\n✓ No topics scored high enough. Exiting cleanly.")
         return 0
 
     if dry_run:

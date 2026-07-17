@@ -429,28 +429,13 @@ def find_matching_cluster(sig_title, clusters):
     return best_key
 
 CATEGORY_KEYWORDS = {
-    "sports": ["cricket","ipl","sports","tennis","match","wicket","goal ","football","soccer","fifa","world cup","athlete","olympics"],
-    "entertainment": ["bollywood","film","movie","actor","actress","box office","ott","netflix","streaming","music","album","celebrity"],
-    "technology": ["tech","ai ","startup","software","google","apple","meta ","chip","nvidia","openai","microsoft","quantum","semiconductor"],
+    "sports": ["cricket","ipl","sports","tennis","match","wicket","goal ","football","soccer","fifa","world cup","athlete"],
+    "entertainment": ["bollywood","film","movie","actor","actress","box office","ott","netflix","music","album","celebrity"],
+    "technology": ["tech","ai ","startup","software","google","apple","meta ","chip","nvidia","openai","microsoft","quantum"],
     "immigration": ["visa","immigration","green card","h1b","h-1b","uscis","deportation","asylum","work permit","eb-2","eb-3","opt "],
     "nri-world": ["nri","diaspora","indian-american","indian american","indian origin","overseas indian","oci ","pio "],
     "markets-finance": ["market","sensex","nifty","stock","gdp","rupee","rbi","nasdaq","dow jones","s&p 500","earnings","fed ","inflation"],
-    "food": ["recipe","biryani","masala","curry","paneer","dosa","tikka","tandoori","indian food","indian restaurant","spice","cooking"],
-    "travel": ["airline","flights","airport","tourism","travel advisory","air india","indigo","passport","lounge","hotel"],
-    "lifestyle-health": ["health","yoga","wellness","ayurveda","meditation","fitness","mental health","skincare","fashion","beauty"],
-}
-
-CATEGORY_VERTICAL_MAP = {
-    "news": "politics",
-    "markets-finance": "economy",
-    "technology": "tech",
-    "nri-world": "diaspora",
-    "sports": "sports",
-    "entertainment": "entertainment",
-    "food": "culture",
-    "travel": "travel",
-    "lifestyle-health": "culture",
-    "immigration": "immigration",
+    "lifestyle": ["health","food","yoga","wellness","recipe","travel","fashion","beauty"],
 }
 
 def detect_category(title):
@@ -608,96 +593,6 @@ def main():
             for eid in email_ids:
                 sb_patch("email_signals", {"id": f"eq.{eid}"}, {"processed": True})
             print(f"\n── Step 5: Marked {len(email_ids)} email signals processed ──")
-
-    # ── Step 6: Cluster unprocessed signals into topics ────────────────────────
-    print(f"\n── Step 6: Clustering unprocessed signals into topics ──")
-    unprocessed = sb_get("p2_signals", {
-        "is_processed": "eq.false",
-        "select": "id,title,feed_source_id,original_url,published_at",
-        "order": "fetched_at.desc",
-        "limit": "500",
-    }, range_header="0-499")
-
-    if not unprocessed or isinstance(unprocessed, dict):
-        unprocessed = []
-
-    if not unprocessed:
-        print("  No unprocessed signals to cluster.")
-    elif DRY_RUN:
-        print(f"  [DRY RUN] Would cluster {len(unprocessed)} signals")
-    else:
-        print(f"  Found {len(unprocessed)} unprocessed signals")
-
-        # Build clusters by keyword overlap
-        clusters = {}
-        for sig in unprocessed:
-            title = sig.get("title", "")
-            matching_key = find_matching_cluster(title, clusters)
-            if matching_key:
-                clusters[matching_key].append(sig)
-            else:
-                key = re.sub(r'[^a-z0-9\s]', '', title.lower().strip())[:60]
-                clusters.setdefault(key, []).append(sig)
-
-        topics_created = 0
-        ids_to_mark = []
-
-        for key, sigs in clusters.items():
-            best = max(sigs, key=lambda s: len(s.get("title", "")))
-            title = best.get("title", "")
-            n = len(sigs)
-
-            cat = detect_category(title)
-            vertical = CATEGORY_VERTICAL_MAP.get(cat, "politics")
-
-            # Score: multi-signal clusters score higher
-            sc_sig = min(50 + n * 10, 90)
-            sc_src = min(n * 20, 90)
-            sc_total = round(70 * 0.25 + sc_sig * 0.3 + 50 * 0.25 + sc_src * 0.2)
-
-            # Extract proper noun keywords for the topic
-            keywords = list(set(re.findall(r'[A-Z][a-z]+(?:\s[A-Z][a-z]+)*', title)))[:5]
-            if not keywords:
-                keywords = [title.split()[0]] if title.split() else ["news"]
-
-            topic = {
-                "canonical_title": title[:200],
-                "vertical": vertical,
-                "urgency": "daily",
-                "score_diaspora": 50,
-                "score_significance": sc_sig,
-                "score_recency": 70,
-                "score_source_avail": sc_src,
-                "score_total": sc_total,
-                "signal_count": n,
-                "status": "pending",
-                "keywords": keywords,
-                "category": cat,
-                "created_at": NOW_ISO,
-                "updated_at": NOW_ISO,
-            }
-
-            result = sb_post_returning("p2_topics", topic)
-            if result and isinstance(result, dict) and result.get("id"):
-                topics_created += 1
-                tid = result["id"]
-                # Link signals to topic
-                for sig in sigs:
-                    sb_post("p2_topic_signals", {
-                        "topic_id": tid,
-                        "signal_id": sig["id"],
-                    })
-
-            # Mark signals as processed regardless
-            for sig in sigs:
-                ids_to_mark.append(sig["id"])
-
-        # Batch mark signals as processed
-        for i in range(0, len(ids_to_mark), 50):
-            batch_ids = ",".join(ids_to_mark[i:i+50])
-            sb_patch("p2_signals", {"id": f"in.({batch_ids})"}, {"is_processed": True})
-
-        print(f"  ✅ Created {topics_created} topics from {len(unprocessed)} signals ({len(clusters)} clusters)")
 
     # ── Summary ───────────────────────────────────────────────────────────────
     elapsed = time.time() - t0
