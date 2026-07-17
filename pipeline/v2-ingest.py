@@ -719,9 +719,9 @@ def main():
     prune_resp = subprocess.run([
         'curl', '-s', '-o', '/dev/null', '-w', '%{http_code}',
         '-X', 'DELETE',
-        f'{SUPABASE_URL}/rest/v1/p2_signals?fetched_at=lt.{prune_cutoff}',
-        '-H', f'apikey: {SUPABASE_KEY}',
-        '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+        f'{SB_URL}/rest/v1/p2_signals?fetched_at=lt.{prune_cutoff}',
+        '-H', f'apikey: {SB_KEY}',
+        '-H', f'Authorization: Bearer {SB_KEY}',
     ], capture_output=True, text=True)
     print(f"  Pruned signals older than 7 days (HTTP {prune_resp.stdout.strip()})")
 
