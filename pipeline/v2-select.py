@@ -135,19 +135,14 @@ CATEGORY_KEYWORDS = {
 
 def detect_category(title):
     t = " " + title.lower() + " "
-    # Score each category by number of keyword hits — highest wins
-    # Use word-boundary-aware matching to avoid substring false positives
     scores = {}
     for cat, keywords in CATEGORY_KEYWORDS.items():
         hits = 0
         for kw in keywords:
-            # Keywords ending with space are already boundary-aware
-            # Others need word boundary check
             if kw.endswith(" "):
                 if kw in t:
                     hits += 1
             else:
-                # Check the keyword appears as a whole word (not a substring)
                 pattern = r'\b' + re.escape(kw.strip()) + r'\b'
                 if re.search(pattern, t):
                     hits += 1
@@ -160,7 +155,6 @@ def detect_category(title):
 # ── Diaspora relevance keywords (fast pre-filter) ────────────────────────────
 
 DIASPORA_STRONG = {
-    # Auto-pass: clearly diaspora-relevant
     "h-1b","h1b","green card","visa","immigration","uscis","nri","diaspora",
     "indian-american","indian american","indian origin","oci","pio",
     "desi","diwali","navratri","holi","bollywood","ipl","cricket",
@@ -171,7 +165,6 @@ DIASPORA_STRONG = {
 }
 
 DIASPORA_REJECT = {
-    # Auto-reject: clearly not relevant or bureaucratic noise
     "county fair","local school board","high school football",
     "little league","yard sale","garage sale","traffic accident",
     "weather forecast","road closure","parking meter",
@@ -226,7 +219,6 @@ def resolve_google_news_url(url):
     """Resolve Google News redirect URL to actual article URL."""
     if "news.google.com" not in url:
         return url
-    # Google News URLs redirect to the actual article
     cmd = ["curl", "-sS", "--max-time", "5", "-o", "/dev/null", "-w", "%{redirect_url}", "-L", "--max-redirs", "1", url]
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=8)
@@ -236,9 +228,100 @@ def resolve_google_news_url(url):
         pass
     return url
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── LLM helpers ───────────────────────────────────────────────────────────────
 
-# ── LLM Relevance + Importance Scoring ────────────────────────────────────────
+def llm_call(payload_dict, label="LLM call", timeout=50):
+    """Single OpenAI API call. Returns (parsed_content, usage_dict, error_str)."""
+    payload_file = f"/tmp/llm_{label.replace(' ','_')}_{int(time.time())}.json"
+    with open(payload_file, "w") as f:
+        json.dump(payload_dict, f)
+    try:
+        r = subprocess.run([
+            "curl", "-s", "--max-time", str(timeout),
+            "https://api.openai.com/v1/chat/completions",
+            "-H", f"Authorization: Bearer {OPENAI_KEY}",
+            "-H", "Content-Type: application/json",
+            "-d", f"@{payload_file}"
+        ], capture_output=True, text=True, timeout=timeout+5)
+        os.remove(payload_file)
+        resp = json.loads(r.stdout)
+        if "error" in resp:
+            return None, {}, f"API error: {resp['error'].get('message', '')[:120]}"
+        content = json.loads(resp["choices"][0]["message"]["content"])
+        usage = resp.get("usage", {})
+        return content, usage, None
+    except Exception as e:
+        try: os.remove(payload_file)
+        except: pass
+        return None, {}, str(e)
+
+
+# ── Pass 2: LLM semantic merge ───────────────────────────────────────────────
+
+MERGE_PROMPT = """You are grouping news headlines that cover the SAME underlying story or event.
+
+Two headlines cover the same story if they report on the same event, announcement, ruling, development, 
+or situation — even if worded completely differently.
+
+Examples of SAME story:
+- "USCIS Confirms No Second H-1B Lottery for FY 2027" ↔ "H-1B Visa Cap Reached: Implications for Indian Professionals"
+- "Cricket World Mourns the Passing of Sir Garfield Sobers" ↔ "West Indies Legend Sobers Dies at 89"
+- "Nasdaq Falls 1.6% Amid Chip Rout" ↔ "Global Stocks Plummet Amid Semiconductor Turmoil"
+
+Examples of DIFFERENT stories (do NOT merge):
+- "Trump Proposes Immigration Reform" ↔ "Trump Signs Trade Deal with India" (different topics)
+- "Netflix Q3 Earnings Miss" ↔ "Netflix Launches New Gaming Feature" (different events)
+- "India vs Pakistan Cricket Highlights" ↔ "Cricket World Cup Format Changes" (different events)
+
+Given the numbered headlines below, return groups of IDs that cover the SAME story.
+Only group headlines you are CONFIDENT cover the same event. When in doubt, keep separate.
+
+Return JSON: {"groups": [[1, 5], [3, 8, 12], ...]}
+Headlines not in any group are unique stories. Empty groups array if no merges found.
+"""
+
+def llm_semantic_merge(cluster_titles):
+    """Send cluster titles to LLM to find same-story clusters that keywords missed.
+    Returns list of sets: each set contains indices that should be merged."""
+    if not cluster_titles or not OPENAI_KEY or len(cluster_titles) < 2:
+        return []
+
+    # Build numbered list — send in chunks if >120 titles to keep prompt manageable
+    CHUNK = 120
+    all_groups = []
+
+    for chunk_start in range(0, len(cluster_titles), CHUNK):
+        chunk = cluster_titles[chunk_start:chunk_start + CHUNK]
+        lines = [f"{chunk_start + i + 1}. {t[:140]}" for i, t in enumerate(chunk)]
+
+        content, usage, error = llm_call({
+            "model": "gpt-4o-mini",
+            "messages": [{"role": "user", "content": MERGE_PROMPT + "\n\nHeadlines:\n" + "\n".join(lines)}],
+            "response_format": {"type": "json_object"},
+            "max_tokens": 2000,
+            "temperature": 0,
+        }, label=f"merge_{chunk_start}")
+
+        cost = 0
+        if usage:
+            cost = usage.get("prompt_tokens", 0) * 0.15 / 1_000_000 + usage.get("completion_tokens", 0) * 0.6 / 1_000_000
+
+        if error:
+            print(f"  ⚠ Merge LLM error (chunk {chunk_start}): {error}")
+            continue
+
+        groups = content.get("groups", [])
+        for g in groups:
+            if isinstance(g, list) and len(g) >= 2:
+                # Convert to 0-indexed
+                all_groups.append(set(idx - 1 for idx in g if isinstance(idx, int)))
+
+        print(f"  Merge chunk {chunk_start}-{chunk_start+len(chunk)}: {len(groups)} groups found (${cost:.4f})")
+
+    return all_groups
+
+
+# ── Pass 3: LLM scoring with 3-way classification ────────────────────────────
 
 LLM_PROMPT = """You are the editorial filter for The Videshi, a news site for the Indian diaspora — Indians living in the US, UK, Canada, and Australia.
 
@@ -260,21 +343,29 @@ They are NOT interested in:
 
 IMPORTANT: Be generous with food, entertainment, travel, and lifestyle stories — if a story has ANY Indian connection (Indian chef, Indian restaurant, Bollywood, Indian airline, Indian ingredient, Indian wellness practice), score it at least 3. These categories are essential for a well-rounded diaspora publication.
 
-DUPLICATE DETECTION:
-You will also receive a list of ALREADY PUBLISHED headlines. For each new story, check if it covers the SAME underlying event or topic as any already-published headline — even if worded differently. For example, "USCIS Confirms No Second H-1B Lottery" and "H-1B Visa Cap Reached: Implications for Professionals" are the SAME story. If a story duplicates an already-published one, mark it as "duplicate": true. Also check for duplicates WITHIN the batch — if two stories in the batch cover the same event, mark all but the first as duplicate.
+COVERAGE CLASSIFICATION:
+You will receive ALREADY PUBLISHED headlines. For each new story, classify its coverage status:
+- "new" — We have NOT covered this topic/event yet. No published headline addresses this event or subject. Write it.
+- "update" — We published an article on this topic, BUT this signal contains a MAJOR new development that our readers NEED to know and that our existing article does NOT cover. Examples: a court reversal of a ruling we reported, casualty count doubling, a second earthquake hitting the same region, a CEO resignation following an earnings report we covered. The bar is HIGH — a slightly different angle, additional commentary, or minor new details do NOT qualify as an update. When in doubt, mark as duplicate.
+- "duplicate" — We already have an article covering this event/topic. Even if the wording is different or the angle is slightly different, if a reader who read our published article would NOT learn anything major from this new signal, it is a duplicate. This is the DEFAULT when a published headline covers the same underlying event.
+
+WITHIN-BATCH duplicates: if two stories in this batch cover the same event, mark all but the highest-importance one as "duplicate".
+
+Be STRICT about duplicates. Publishing the same story twice with different headlines looks bad to readers and hurts SEO. When in doubt between "update" and "duplicate", choose "duplicate".
 
 For each story below, provide:
-1. "relevant": true/false
+1. "relevant": true/false — is this relevant to our audience?
 2. "score": 1-5 importance:
    - 5 = Everyone-must-know breaking news (war, major immigration overhaul, catastrophic disaster)
    - 4 = Very important (major economic policy, significant bilateral news, big tech layoffs, immigration ruling)
    - 3 = Important (notable achievement, diplomatic moves, significant cultural story, major sports)
    - 2 = Moderately relevant (interesting cultural piece, community story, mid-tier entertainment/sports)
    - 1 = Mildly relevant (light feature, tangential connection)
-3. "duplicate": true/false — true if this story covers the same event as an already-published headline or an earlier story in this batch
-4. "reason": 1-sentence explanation
+3. "coverage": "new" | "update" | "duplicate"
+4. "reason": 1-sentence explanation (if duplicate, mention which published headline it duplicates)
 
-Respond as JSON: {"results": [{"id": 1, "relevant": true, "duplicate": false, "score": 4, "reason": "..."},...]}\n"""
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "reason": "..."},...]}\n"""
+
 
 def llm_score_stories(stories, recent_articles=None):
     """Batch-score stories via GPT-4o-mini with parallel batches."""
@@ -286,8 +377,8 @@ def llm_score_stories(stories, recent_articles=None):
     # Build the "already published" context for dedup
     published_block = ""
     if recent_articles:
-        pub_lines = [f"- {a.get('headline', '')}" for a in recent_articles[:100]]
-        published_block = "\n\nALREADY PUBLISHED HEADLINES (check duplicates against these):\n" + "\n".join(pub_lines)
+        pub_lines = [f"- {a.get('headline', '')}" for a in recent_articles[:150]]
+        published_block = "\n\nALREADY PUBLISHED HEADLINES (check coverage status against these):\n" + "\n".join(pub_lines)
 
     BATCH_SIZE = 40
     all_results = {}
@@ -296,63 +387,55 @@ def llm_score_stories(stories, recent_articles=None):
     def score_batch(batch_start, batch):
         lines = []
         for i, s in enumerate(batch):
+            src_info = f" [signals: {s.get('signal_count', 1)}, sources: {s.get('source_diversity', 1)}]"
             desc_part = f" | {s.get('description', '')[:150]}" if s.get('description') else ""
-            lines.append(f"{i+1}. {s['title'][:120]}{desc_part}")
+            lines.append(f"{i+1}. {s['title'][:120]}{desc_part}{src_info}")
 
-        payload = json.dumps({
+        payload = {
             "model": "gpt-4o-mini",
             "messages": [{"role": "user", "content": LLM_PROMPT + published_block + "\n\nNEW STORIES TO EVALUATE:\n" + "\n".join(lines)}],
             "response_format": {"type": "json_object"},
-            "max_tokens": max(len(batch) * 60, 1000),
+            "max_tokens": max(len(batch) * 80, 1200),
             "temperature": 0
-        })
+        }
 
-        payload_file = f"/tmp/llm_batch_{batch_start}.json"
-        with open(payload_file, "w") as f:
-            f.write(payload)
-
-        try:
-            r = subprocess.run([
-                "curl", "-s", "--max-time", "45",
-                "https://api.openai.com/v1/chat/completions",
-                "-H", f"Authorization: Bearer {OPENAI_KEY}",
-                "-H", "Content-Type: application/json",
-                "-d", f"@{payload_file}"
-            ], capture_output=True, text=True, timeout=50)
-            os.remove(payload_file)
-
-            resp = json.loads(r.stdout)
-            if "error" in resp:
-                return batch_start, {}, 0.0, f"API error: {resp['error'].get('message', '')[:80]}"
-
-            content = json.loads(resp["choices"][0]["message"]["content"])
-            usage = resp.get("usage", {})
+        content, usage, error = llm_call(payload, label=f"score_{batch_start}", timeout=50)
+        cost = 0
+        if usage:
             cost = usage.get("prompt_tokens", 0) * 0.15 / 1_000_000 + usage.get("completion_tokens", 0) * 0.6 / 1_000_000
 
-            results = {}
-            for item in content.get("results", []):
-                idx = item.get("id", 0) - 1
-                if 0 <= idx < len(batch):
-                    global_idx = batch_start + idx
-                    results[global_idx] = {
-                        "relevant": item.get("relevant", True),
-                        "duplicate": item.get("duplicate", False),
-                        "score": item.get("score", 1) if item.get("relevant", True) else 0,
-                        "reason": item.get("reason", ""),
-                    }
-            return batch_start, results, cost, None
-        except Exception as e:
-            try:
-                os.remove(payload_file)
-            except:
-                pass
-            return batch_start, {}, 0.0, str(e)
+        # Retry once on failure
+        if error:
+            time.sleep(2)
+            content, usage2, error = llm_call(payload, label=f"score_{batch_start}_retry", timeout=60)
+            if usage2:
+                cost += usage2.get("prompt_tokens", 0) * 0.15 / 1_000_000 + usage2.get("completion_tokens", 0) * 0.6 / 1_000_000
+
+        if error:
+            return batch_start, {}, cost, error
+
+        results = {}
+        for item in content.get("results", []):
+            idx = item.get("id", 0) - 1
+            if 0 <= idx < len(batch):
+                global_idx = batch_start + idx
+                coverage = item.get("coverage", "new")
+                # Backward compat: also check old "duplicate" field
+                if item.get("duplicate", False) and coverage == "new":
+                    coverage = "duplicate"
+                results[global_idx] = {
+                    "relevant": item.get("relevant", True),
+                    "coverage": coverage,
+                    "score": item.get("score", 1) if item.get("relevant", True) else 0,
+                    "reason": item.get("reason", ""),
+                }
+        return batch_start, results, cost, None
 
     # Build batches
     batches = [(i, stories[i:i+BATCH_SIZE]) for i in range(0, len(stories), BATCH_SIZE)]
 
     # Run in parallel (10 concurrent)
-    with ThreadPoolExecutor(max_workers=10) as pool:
+    with ThreadPoolExecutor(max_workers=5) as pool:
         futures = [pool.submit(score_batch, start, batch) for start, batch in batches]
         done = 0
         for f in as_completed(futures):
@@ -401,8 +484,10 @@ def main():
         json.dump({"candidates": [], "timestamp": NOW_ISO}, open(OUT_PATH, "w"))
         return
 
-    # ── Cluster signals by story ──────────────────────────────────────────────
-    print(f"\n── Clustering signals ──")
+    # ══════════════════════════════════════════════════════════════════════════
+    # PASS 1: Keyword clustering (fast, free)
+    # ══════════════════════════════════════════════════════════════════════════
+    print(f"\n── Pass 1: Keyword clustering ──")
     clusters = {}
     cluster_keywords = {}  # key -> union of all signal keywords in cluster
 
@@ -410,7 +495,6 @@ def main():
         title = sig.get("title", "")
         if not title:
             continue
-        # Find matching cluster
         match_key = None
         sig_kw = title_keywords(title)
         if sig_kw and len(sig_kw) >= 2:
@@ -419,8 +503,6 @@ def main():
                 if not ckw:
                     continue
                 overlap = len(sig_kw & ckw)
-                # Compare against both the union of cluster keywords and individual signal keywords
-                # Use Jaccard-like: overlap / min(sig, cluster_representative) >= 0.4
                 rep_kw = title_keywords(clusters[key][0]["title"])
                 min_len = min(len(sig_kw), len(rep_kw)) if rep_kw else len(sig_kw)
                 if min_len >= 2 and overlap / min_len >= 0.4 and overlap > best_overlap:
@@ -429,7 +511,7 @@ def main():
 
         if match_key:
             clusters[match_key].append(sig)
-            cluster_keywords[match_key] |= sig_kw  # expand cluster keyword set
+            cluster_keywords[match_key] |= sig_kw
         else:
             key = re.sub(r'[^a-z0-9\s]', '', title.lower().strip())[:60]
             clusters.setdefault(key, []).append(sig)
@@ -437,12 +519,53 @@ def main():
 
     print(f"  {len(clusters)} clusters from {len(signals)} signals")
 
-    # ── Score and rank clusters ───────────────────────────────────────────────
-    print(f"\n── Scoring clusters ──")
+    # ══════════════════════════════════════════════════════════════════════════
+    # PASS 2: LLM semantic merge (catch same-story clusters keywords missed)
+    # ══════════════════════════════════════════════════════════════════════════
+    print(f"\n── Pass 2: LLM semantic merge ──")
+    cluster_keys = list(clusters.keys())
+    cluster_titles = []
+    for k in cluster_keys:
+        best = max(clusters[k], key=lambda s: len(s.get("title", "")))
+        cluster_titles.append(best["title"])
+
+    merge_groups = llm_semantic_merge(cluster_titles)
+
+    # Apply merges: combine signals from grouped clusters
+    merged_count = 0
+    merged_away = set()  # indices of clusters absorbed into another
+    for group in merge_groups:
+        group_list = sorted(group)  # deterministic order
+        if len(group_list) < 2:
+            continue
+        # Keep the cluster with the most signals as primary
+        primary_idx = max(group_list, key=lambda i: len(clusters[cluster_keys[i]]))
+        primary_key = cluster_keys[primary_idx]
+        for idx in group_list:
+            if idx == primary_idx:
+                continue
+            merge_key = cluster_keys[idx]
+            if merge_key in clusters and merge_key != primary_key:
+                clusters[primary_key].extend(clusters[merge_key])
+                cluster_keywords[primary_key] |= cluster_keywords.get(merge_key, set())
+                del clusters[merge_key]
+                merged_away.add(idx)
+                merged_count += 1
+
+    if merged_count:
+        print(f"  Merged {merged_count} clusters → {len(clusters)} clusters remaining")
+    else:
+        print(f"  No additional merges found")
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # Build candidate list from clusters
+    # ══════════════════════════════════════════════════════════════════════════
+    print(f"\n── Building candidates ──")
     recent_articles = load_recent_headlines()
     print(f"  Recent articles loaded: {len(recent_articles)}")
 
     pre_scored = []
+    kw_dedup_skips = 0
     for key, sigs in clusters.items():
         best = max(sigs, key=lambda s: len(s.get("title", "")))
         title = best["title"]
@@ -454,8 +577,10 @@ def main():
 
         # Source diversity
         sources = set()
+        source_types = set()
         for s in sigs:
             sources.add(s.get("source_name") or s.get("source_type", "rss"))
+            source_types.add(s.get("source_type", "rss"))
         source_diversity = len(sources)
 
         # Category
@@ -466,8 +591,9 @@ def main():
         if diaspora == "no":
             continue
 
-        # Already covered?
+        # Keyword-level dedup against published (fast pre-filter — LLM does semantic dedup later)
         if is_already_covered(title, recent_articles):
+            kw_dedup_skips += 1
             continue
 
         # Freshness: newest signal timestamp
@@ -505,43 +631,56 @@ def main():
             "category": cat,
             "signal_count": effective_size,
             "source_diversity": source_diversity,
+            "source_types": list(source_types),
             "diaspora_keyword": diaspora,
             "newest_signal": newest_dt.isoformat(),
             "source_urls": source_urls[:8],
             "all_signals": [{"title": s["title"], "url": s["original_url"], "source": s.get("source_name", "")} for s in sigs[:10]],
         })
 
-    # ── LLM scoring ──────────────────────────────────────────────────────────
-    print(f"\n── LLM scoring {len(pre_scored)} candidates ──")
+    if kw_dedup_skips:
+        print(f"  Keyword dedup: {kw_dedup_skips} clusters skipped (already covered)")
+    print(f"  {len(pre_scored)} candidates to score")
 
-    # Keyword "yes" stories get a default score of 3 (LLM can override higher)
-    # "maybe" stories MUST pass LLM to be included
+    # ══════════════════════════════════════════════════════════════════════════
+    # PASS 3: LLM scoring with 3-way classification (new / update / duplicate)
+    # ══════════════════════════════════════════════════════════════════════════
+    print(f"\n── Pass 3: LLM scoring + coverage classification ──")
+
     llm_results = llm_score_stories(pre_scored, recent_articles)
 
     scored = []
-    dup_count = 0
+    stats = {"new": 0, "update": 0, "duplicate": 0, "irrelevant": 0, "no_result": 0}
     for i, c in enumerate(pre_scored):
         llm = llm_results.get(i)
         if llm:
             if not llm["relevant"]:
-                continue  # LLM rejected
-            if llm.get("duplicate", False):
-                dup_count += 1
-                continue  # LLM flagged as duplicate
+                stats["irrelevant"] += 1
+                continue
+            coverage = llm.get("coverage", "new")
+            if coverage == "duplicate":
+                stats["duplicate"] += 1
+                continue
+            stats[coverage] = stats.get(coverage, 0) + 1
             c["llm_score"] = llm["score"]
             c["llm_reason"] = llm["reason"]
+            c["coverage"] = coverage  # "new" or "update"
         else:
+            stats["no_result"] += 1
             # LLM didn't return a result — use keyword fallback
             if c["diaspora_keyword"] == "yes":
-                c["llm_score"] = 3  # default for keyword-matched
+                c["llm_score"] = 3
             else:
-                c["llm_score"] = 1  # unknown, let it through at low priority
+                c["llm_score"] = 1
+            c["coverage"] = "new"
         scored.append(c)
+
+    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats['no_result']} unscored")
 
     # Sort by LLM score (highest first), then freshness, then signal count
     scored.sort(key=lambda x: (x.get("llm_score", 1), x["newest_signal"], x["signal_count"]), reverse=True)
 
-    # Deduplicate within candidates — remove near-duplicate stories
+    # Final keyword dedup within candidates (safety net)
     deduped = []
     for c in scored:
         c_kw = title_keywords(c["title"])
@@ -557,10 +696,42 @@ def main():
         if not is_dup:
             deduped.append(c)
     if len(scored) != len(deduped):
-        print(f"  Deduped: {len(scored)} → {len(deduped)} (removed {len(scored) - len(deduped)} near-dupes)")
-    if dup_count:
-        print(f"  LLM duplicate detection: {dup_count} stories skipped as duplicates of published articles")
+        print(f"  Final keyword dedup: {len(scored)} → {len(deduped)} (removed {len(scored) - len(deduped)})")
     scored = deduped
+
+    # ── Final LLM dedup on survivors (cross-batch, cheap — only ~30 titles) ──
+    if len(scored) > 1 and OPENAI_KEY:
+        survivor_titles = [c["title"][:120] for c in scored]
+        lines = [f"{i+1}. {t}" for i, t in enumerate(survivor_titles)]
+        content_resp, usage, error = llm_call({
+            "model": "gpt-4o-mini",
+            "messages": [{"role": "user", "content": MERGE_PROMPT + "\n\nHeadlines:\n" + "\n".join(lines)}],
+            "response_format": {"type": "json_object"},
+            "max_tokens": 1000,
+            "temperature": 0,
+        }, label="final_dedup")
+        if not error and content_resp:
+            groups = content_resp.get("groups", [])
+            drop_indices = set()
+            for g in groups:
+                if isinstance(g, list) and len(g) >= 2:
+                    sorted_g = sorted(g)  # 1-indexed from LLM
+                    # Keep highest-scored, drop the rest
+                    best_in_group = max((idx-1 for idx in sorted_g if 0 <= idx-1 < len(scored)),
+                                       key=lambda i: scored[i].get("llm_score", 0), default=None)
+                    for idx in sorted_g:
+                        idx0 = idx - 1
+                        if 0 <= idx0 < len(scored) and idx0 != best_in_group:
+                            drop_indices.add(idx0)
+            if drop_indices:
+                print(f"  Final LLM dedup: dropping {len(drop_indices)} cross-batch duplicates")
+                for di in sorted(drop_indices):
+                    print(f"    ✗ {scored[di]['title'][:80]}")
+                scored = [c for i, c in enumerate(scored) if i not in drop_indices]
+            else:
+                print(f"  Final LLM dedup: no cross-batch duplicates found")
+        elif error:
+            print(f"  ⚠ Final LLM dedup failed: {error}")
 
     # Per-category selection: top N per category (no global cap)
     CAT_LIMITS = {"news": 5, "immigration": 5}  # high-volume categories get more
@@ -591,7 +762,8 @@ def main():
     for i, c in enumerate(balanced, 1):
         score = c.get("llm_score", "?")
         stars = "⭐" * score if isinstance(score, int) else "?"
-        print(f"  {i}. [{c['category']}] {c['title'][:70]}")
+        coverage_tag = f" [UPDATE]" if c.get("coverage") == "update" else ""
+        print(f"  {i}. [{c['category']}]{coverage_tag} {c['title'][:70]}")
         print(f"     Score: {stars} ({score}) | Signals: {c['signal_count']} | Sources: {c['source_diversity']}")
         if c.get("llm_reason"):
             print(f"     Reason: {c['llm_reason'][:80]}")
