@@ -96,7 +96,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
                   {CATEGORY_LABELS[a.category] || a.category}
                 </span>
                 <span className="text-[10px] text-muted-foreground">
-                  {timeAgo(a.published_at)}
+                  {timeAgo(a.event_at || a.published_at)}
                 </span>
               </div>
 

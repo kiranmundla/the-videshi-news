@@ -63,14 +63,14 @@ HOMEPAGE_FEED = DATA_DIR / "homepage-feed.json"
 # Supabase columns to fetch (mirrors P2_COLS in articles.ts)
 P2_COLS = (
     "id,slug,headline,subheadline,body,vertical,category,status,"
-    "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
+    "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (
     "id,slug,headline,subheadline,vertical,category,status,"
-    "is_featured,published_at,created_at,sources,diaspora_angle,tags,"
+    "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type"
 )
@@ -400,10 +400,13 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
 
 def _build_just_in(articles: list[dict], now: datetime) -> list[dict]:
     """Build the 'Just In' strip: 8 most recent articles, purely chronological,
-    across all categories. No scoring — just freshness. Dedupes against featured."""
+    across all categories. No scoring — just freshness. Dedupes against featured.
+    Uses event_at (when the event happened) instead of published_at (when we wrote it)."""
     since_48h = (now - timedelta(hours=48)).isoformat()
-    recent = [a for a in articles if a["published_at"] >= since_48h and a.get("hero_image_url")]
-    recent.sort(key=lambda a: a["published_at"], reverse=True)
+    recent = [a for a in articles
+              if (a.get("event_at") or a["published_at"]) >= since_48h
+              and a.get("hero_image_url")]
+    recent.sort(key=lambda a: a.get("event_at") or a["published_at"], reverse=True)
 
     # Deduplicate headlines: skip articles whose first 6 headline words match an earlier one
     seen_prefixes: set[str] = set()

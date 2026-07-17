@@ -69,7 +69,7 @@ const P2_COLS =
   "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
 
 const P2_LIST_COLS =
-  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
+  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, event_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
 
 function parseSources(raw: unknown): Article["sources"] {
   // Handle JSON array format
@@ -196,6 +196,7 @@ function mapRow(row: P2Row): Article {
     // expose raw attribution for callers that want it separately
     // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,
+    event_at: row.event_at ?? null,
     updated_at: row.updated_at ?? row.published_at ?? row.created_at,
     created_at: row.created_at,
     status: row.status === "published" ? "published" : "draft",
