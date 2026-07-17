@@ -519,7 +519,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 11
+   "priority": 12
   },
   {
    "subject": "F 1",
@@ -2462,16 +2462,6 @@
    "priority": 2
   },
   {
-   "subject": "indian families",
-   "subject_type": "thing",
-   "tags": [
-    "indian families"
-   ],
-   "first_seen": "2026-06-30T10:29:23Z",
-   "article_id": "a9f6a18b-5944-4f12-83d6-a1bd572f6a24",
-   "priority": 2
-  },
-  {
    "subject": "iPhone 18 Pro",
    "subject_type": "thing",
    "tags": [
@@ -3962,16 +3952,6 @@
    "priority": 2
   },
   {
-   "subject": "blackrock",
-   "subject_type": "thing",
-   "tags": [
-    "blackrock"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
-   "priority": 2
-  },
-  {
    "subject": "nifty 50",
    "subject_type": "thing",
    "tags": [
@@ -4056,16 +4036,6 @@
    "subject_type": "thing",
    "tags": [
     "fuel shortage"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "8c793234-5435-4458-b677-95ee1f656f00",
-   "priority": 2
-  },
-  {
-   "subject": "sanctions",
-   "subject_type": "thing",
-   "tags": [
-    "sanctions"
    ],
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "8c793234-5435-4458-b677-95ee1f656f00",
@@ -5142,16 +5112,6 @@
    "priority": 2
   },
   {
-   "subject": "jd vance",
-   "subject_type": "thing",
-   "tags": [
-    "jd vance"
-   ],
-   "first_seen": "2026-07-10T10:29:24Z",
-   "article_id": "e7a30e81-e4ca-4a35-b145-2579ef8b93e0",
-   "priority": 2
-  },
-  {
    "subject": "fbi",
    "subject_type": "thing",
    "tags": [
@@ -5522,16 +5482,6 @@
    "priority": 2
   },
   {
-   "subject": "custom silicon",
-   "subject_type": "thing",
-   "tags": [
-    "custom silicon"
-   ],
-   "first_seen": "2026-07-10T10:29:24Z",
-   "article_id": "208a72da-e43d-488b-94b4-594f2b6509cb",
-   "priority": 3
-  },
-  {
    "subject": "amd",
    "subject_type": "thing",
    "tags": [
@@ -5572,26 +5522,6 @@
    "priority": 2
   },
   {
-   "subject": "indian workers",
-   "subject_type": "thing",
-   "tags": [
-    "indian workers"
-   ],
-   "first_seen": "2026-07-10T10:29:24Z",
-   "article_id": "9c40dc8d-bd8e-4b63-96d0-e310dacf8146",
-   "priority": 3
-  },
-  {
-   "subject": "anti indian",
-   "subject_type": "thing",
-   "tags": [
-    "anti indian"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "905d92c4-689b-4a3d-bce6-fb6a168a7ebc",
-   "priority": 3
-  },
-  {
    "subject": "raj chetty",
    "subject_type": "thing",
    "tags": [
@@ -5600,16 +5530,6 @@
    "first_seen": "2026-07-11T10:29:23Z",
    "article_id": "1e06cf52-3d5a-44bd-ae97-48615002330e",
    "priority": 4
-  },
-  {
-   "subject": "economics",
-   "subject_type": "thing",
-   "tags": [
-    "economics"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "1e06cf52-3d5a-44bd-ae97-48615002330e",
-   "priority": 3
   },
   {
    "subject": "dixon technologies",
@@ -5682,16 +5602,6 @@
    "priority": 2
   },
   {
-   "subject": "deep tech",
-   "subject_type": "thing",
-   "tags": [
-    "deep tech"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "e7cdeb61-de07-4195-afb9-6d92941fb1fc",
-   "priority": 3
-  },
-  {
    "subject": "sbi",
    "subject_type": "thing",
    "tags": [
@@ -5710,16 +5620,6 @@
    "first_seen": "2026-07-11T10:29:23Z",
    "article_id": "5574b2b6-146b-422e-923d-771dfd1a83a9",
    "priority": 2
-  },
-  {
-   "subject": "sip",
-   "subject_type": "thing",
-   "tags": [
-    "sip"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "5df9dbef-15e3-4f2d-a7fa-4fb0c1a08622",
-   "priority": 3
   },
   {
    "subject": "gold etf",
@@ -5880,16 +5780,6 @@
    "first_seen": "2026-07-11T10:29:23Z",
    "article_id": "c260e95b-60e2-4500-8c02-7cac3774a159",
    "priority": 2
-  },
-  {
-   "subject": "nre deposits",
-   "subject_type": "thing",
-   "tags": [
-    "nre deposits"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "c260e95b-60e2-4500-8c02-7cac3774a159",
-   "priority": 3
   },
   {
    "subject": "iskcon",
@@ -6082,16 +5972,6 @@
    "priority": 2
   },
   {
-   "subject": "compliance",
-   "subject_type": "thing",
-   "tags": [
-    "compliance"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "2ccaa535-2d02-4120-997f-907974d7de18",
-   "priority": 3
-  },
-  {
    "subject": "seafarers",
    "subject_type": "thing",
    "tags": [
@@ -6110,16 +5990,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "6b54174c-8b87-4b3b-9395-f5800cc49669",
    "priority": 2
-  },
-  {
-   "subject": "Indian Navy",
-   "subject_type": "thing",
-   "tags": [
-    "indian navy"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "6b54174c-8b87-4b3b-9395-f5800cc49669",
-   "priority": 3
   },
   {
    "subject": "maritime",
@@ -6192,16 +6062,6 @@
    "priority": 2
   },
   {
-   "subject": "h1b alternative",
-   "subject_type": "thing",
-   "tags": [
-    "h1b alternative"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "dc5d7da6-0d79-40a3-83da-9d4cc422df6c",
-   "priority": 3
-  },
-  {
    "subject": "visa lottery",
    "subject_type": "thing",
    "tags": [
@@ -6209,36 +6069,6 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "5a3d784e-fba3-460d-b610-daa8e74500a0",
-   "priority": 2
-  },
-  {
-   "subject": "oil",
-   "subject_type": "thing",
-   "tags": [
-    "oil"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "817ed403-fdec-4a18-bb3d-0cfe17ae540b",
-   "priority": 3
-  },
-  {
-   "subject": "lpg",
-   "subject_type": "thing",
-   "tags": [
-    "lpg"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "817ed403-fdec-4a18-bb3d-0cfe17ae540b",
-   "priority": 3
-  },
-  {
-   "subject": "energy crisis",
-   "subject_type": "thing",
-   "tags": [
-    "energy crisis"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "817ed403-fdec-4a18-bb3d-0cfe17ae540b",
    "priority": 2
   },
   {
@@ -6270,16 +6100,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
    "priority": 2
-  },
-  {
-   "subject": "nse",
-   "subject_type": "thing",
-   "tags": [
-    "nse"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "0a687e1c-e4e5-47d4-987c-525650ebab61",
-   "priority": 3
   },
   {
    "subject": "cash market",
@@ -6350,16 +6170,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7322a8aa-4718-4e19-ba8d-cf07c1487b18",
    "priority": 2
-  },
-  {
-   "subject": "crude oil",
-   "subject_type": "thing",
-   "tags": [
-    "crude oil"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-   "priority": 3
   },
   {
    "subject": "russia india",
@@ -7002,16 +6812,6 @@
    "priority": 2
   },
   {
-   "subject": "unicorn",
-   "subject_type": "thing",
-   "tags": [
-    "unicorn"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
-   "priority": 3
-  },
-  {
    "subject": "mercor",
    "subject_type": "thing",
    "tags": [
@@ -7439,7 +7239,7 @@
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "b6496458-d0c1-458f-bda3-1321bbf4539d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Gulf diaspora",
@@ -7929,7 +7729,7 @@
    ],
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "7f03f809-70a9-44fe-8359-f8182711d45f",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "ai spending",
@@ -8049,7 +7849,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "af04da47-e6ea-482b-8f7a-83bf41102c70",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "tech leaders",
@@ -8059,7 +7859,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "af04da47-e6ea-482b-8f7a-83bf41102c70",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "india england",
@@ -8069,7 +7869,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "799d85e7-f311-4506-b6f2-415203872931",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "joe root",
@@ -8079,7 +7879,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "799d85e7-f311-4506-b6f2-415203872931",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "odi",
@@ -8089,7 +7889,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "799d85e7-f311-4506-b6f2-415203872931",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "spacetech",
@@ -8099,7 +7899,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "1319b4e4-fd5d-4d2b-ad83-755715af5fc2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "strategic partnership",
@@ -8109,7 +7909,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "e4a0b62d-f41b-4cdd-9994-c94b2d8c3cd9",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "asia pacific",
@@ -8119,7 +7919,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "e4a0b62d-f41b-4cdd-9994-c94b2d8c3cd9",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "world cup 2027",
@@ -8129,7 +7929,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "96c3370d-55a0-475e-9884-2cc2a82a36fe",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "nri deposits",
@@ -8139,7 +7939,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "301d00dc-a11b-4340-93bd-efc0df109140",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "fcnr",
@@ -8149,7 +7949,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "301d00dc-a11b-4340-93bd-efc0df109140",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "corruption",
@@ -8159,7 +7959,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "TVK",
@@ -8169,7 +7969,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "local governance",
@@ -8179,7 +7979,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "india pakistan",
@@ -8189,8 +7989,218 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "213f3270-dfb8-4086-8ab9-9c7c618e0619",
+   "priority": 3
+  },
+  {
+   "subject": "Canada immigration",
+   "subject_type": "thing",
+   "tags": [
+    "canada immigration"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
    "priority": 2
+  },
+  {
+   "subject": "parents sponsorship",
+   "subject_type": "thing",
+   "tags": [
+    "parents sponsorship"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
+   "priority": 2
+  },
+  {
+   "subject": "PGP",
+   "subject_type": "thing",
+   "tags": [
+    "pgp"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
+   "priority": 2
+  },
+  {
+   "subject": "Super Visa",
+   "subject_type": "thing",
+   "tags": [
+    "super visa"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
+   "priority": 2
+  },
+  {
+   "subject": "family reunification",
+   "subject_type": "thing",
+   "tags": [
+    "family reunification"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
+   "priority": 2
+  },
+  {
+   "subject": "Canada immigration airport arrivals",
+   "subject_type": "concept",
+   "tags": [
+    "canada immigration airport arrivals"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
+   "priority": 1
+  },
+  {
+   "subject": "Russia oil",
+   "subject_type": "thing",
+   "tags": [
+    "russia oil"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "da2362e0-4138-4eec-afe7-21194d72d786",
+   "priority": 2
+  },
+  {
+   "subject": "India crude oil storage ONGC",
+   "subject_type": "concept",
+   "tags": [
+    "india crude oil storage ongc"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "da2362e0-4138-4eec-afe7-21194d72d786",
+   "priority": 1
+  },
+  {
+   "subject": "SBI Funds",
+   "subject_type": "thing",
+   "tags": [
+    "sbi funds"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "2bb1957a-c38f-4a2c-9a15-b5669b321599",
+   "priority": 2
+  },
+  {
+   "subject": "Amundi",
+   "subject_type": "thing",
+   "tags": [
+    "amundi"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "2bb1957a-c38f-4a2c-9a15-b5669b321599",
+   "priority": 2
+  },
+  {
+   "subject": "State Bank of India SBI logo",
+   "subject_type": "concept",
+   "tags": [
+    "state bank of india sbi logo"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "2bb1957a-c38f-4a2c-9a15-b5669b321599",
+   "priority": 1
+  },
+  {
+   "subject": "FIFA World Cup 2026",
+   "subject_type": "thing",
+   "tags": [
+    "fifa world cup 2026"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bb505145-d7cf-46c4-9ba8-9515566827ae",
+   "priority": 2
+  },
+  {
+   "subject": "Golden Boot",
+   "subject_type": "thing",
+   "tags": [
+    "golden boot"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bb505145-d7cf-46c4-9ba8-9515566827ae",
+   "priority": 2
+  },
+  {
+   "subject": "FIFA World Cup 2026 logo",
+   "subject_type": "concept",
+   "tags": [
+    "fifa world cup 2026 logo"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bb505145-d7cf-46c4-9ba8-9515566827ae",
+   "priority": 1
+  },
+  {
+   "subject": "Houthis",
+   "subject_type": "thing",
+   "tags": [
+    "houthis"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bee4edd9-62d5-4f77-9cf0-9c93d0f45205",
+   "priority": 2
+  },
+  {
+   "subject": "Red Sea",
+   "subject_type": "thing",
+   "tags": [
+    "red sea"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bee4edd9-62d5-4f77-9cf0-9c93d0f45205",
+   "priority": 2
+  },
+  {
+   "subject": "Bab el Mandeb",
+   "subject_type": "thing",
+   "tags": [
+    "bab el mandeb"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bee4edd9-62d5-4f77-9cf0-9c93d0f45205",
+   "priority": 2
+  },
+  {
+   "subject": "Red Sea shipping oil tanker",
+   "subject_type": "concept",
+   "tags": [
+    "red sea shipping oil tanker"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "bee4edd9-62d5-4f77-9cf0-9c93d0f45205",
+   "priority": 1
+  },
+  {
+   "subject": "fraud investigation",
+   "subject_type": "thing",
+   "tags": [
+    "fraud investigation"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "738c1b47-69c3-46a6-ab26-b4fdf8e9f883",
+   "priority": 2
+  },
+  {
+   "subject": "F 1 visa",
+   "subject_type": "thing",
+   "tags": [
+    "f 1 visa"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "071bcb8c-7679-4694-bcb4-44bec34b139d",
+   "priority": 2
+  },
+  {
+   "subject": "university campus American students",
+   "subject_type": "concept",
+   "tags": [
+    "university campus american students"
+   ],
+   "first_seen": "2026-07-17T10:29:25Z",
+   "article_id": "071bcb8c-7679-4694-bcb4-44bec34b139d",
+   "priority": 1
   }
  ],
- "_updated": "2026-07-16T22:28:53Z"
+ "_updated": "2026-07-17T10:29:25Z"
 }
