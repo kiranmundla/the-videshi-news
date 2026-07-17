@@ -714,6 +714,17 @@ def main():
 
         print(f"  ✅ Created {topics_created} topics from {len(unprocessed)} signals ({len(clusters)} clusters)")
 
+    # ── Prune signals older than 7 days ─────────────────────────────────────
+    prune_cutoff = (NOW - timedelta(days=7)).isoformat()
+    prune_resp = subprocess.run([
+        'curl', '-s', '-o', '/dev/null', '-w', '%{http_code}',
+        '-X', 'DELETE',
+        f'{SUPABASE_URL}/rest/v1/p2_signals?fetched_at=lt.{prune_cutoff}',
+        '-H', f'apikey: {SUPABASE_KEY}',
+        '-H', f'Authorization: Bearer {SUPABASE_KEY}',
+    ], capture_output=True, text=True)
+    print(f"  Pruned signals older than 7 days (HTTP {prune_resp.stdout.strip()})")
+
     # ── Summary ───────────────────────────────────────────────────────────────
     elapsed = time.time() - t0
     print(f"\n{'='*60}")
