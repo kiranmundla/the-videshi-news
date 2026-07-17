@@ -64,9 +64,11 @@ SEARCH_QUERIES = [
     '"Federal Reserve" rate OR Sensex OR Nifty OR "rupee dollar"',
     # Entertainment — crossover content NRIs care about
     '"Dev Patel" OR "Mindy Kaling" OR "Hasan Minhaj" OR "Priyanka Chopra"',
-    # Food/Travel — diaspora lifestyle
-    '"Trader Joes" Indian OR turmeric OR chai latte OR "spice" food trend',
-    '"Air India" OR "IndiGo airlines" OR "India flights"',
+    # Food — Indian-specific
+    '"Indian food" OR "Indian recipe" OR biryani OR "dosa" OR "Indian restaurant"',
+    'turmeric OR "masala" OR "Indian grocery" OR "Indian spice" OR paneer',
+    # Travel — diaspora lifestyle
+    '"Air India" OR "IndiGo airlines" OR "India flights" OR "India travel"',
 ]
 
 # ── Supabase helpers ──────────────────────────────────────────────────────────
