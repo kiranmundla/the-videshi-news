@@ -90,11 +90,12 @@ def title_keywords(title):
 CATEGORY_KEYWORDS = {
     "immigration": [
         "visa","immigration","green card","h1b","h-1b","uscis","deportation",
-        "asylum","work permit","eb-2","eb-3","opt ","ice ","dhs","cbp",
-        "naturalization","citizenship","undocumented","dreamer","daca",
+        "asylum","work permit","eb-2","eb-3","optional practical training",
+        "ice agents","ice raids","ice arrest","ice detain","ice enforcement",
+        "dhs","cbp","naturalization","citizenship","undocumented","dreamer","daca",
     ],
     "technology": [
-        "tech","ai ","artificial intelligence","startup","software","google",
+        "tech","ai","artificial intelligence","startup","software","google",
         "apple","meta ","chip","nvidia","openai","microsoft","quantum",
         "cybersecurity","semiconductor","data breach","cloud computing",
     ],
@@ -105,18 +106,18 @@ CATEGORY_KEYWORDS = {
     ],
     "markets-finance": [
         "market","sensex","nifty","stock","futures","gdp","rupee","rbi","nasdaq",
-        "dow jones","s&p 500","earnings","fed ","inflation","ipo ",
+        "dow jones","s&p 500","earnings","fed","inflation","ipo",
         "cryptocurrency","bitcoin","wall street","banking","recession",
         "shares","rally","slips","plunges","tumbles",
     ],
     "sports": [
-        "cricket","ipl","sports","tennis","match","wicket","goal ",
+        "cricket","ipl","sports","tennis","match","wicket","goal",
         "football","soccer","fifa","world cup","athlete","olympic",
         "nba","nfl","premier league","champions league",
     ],
     "nri-world": [
         "nri","diaspora","indian-american","indian american","indian origin",
-        "overseas indian","oci ","pio ","expat",
+        "overseas indian","oci","pio","expat",
     ],
     "food": [
         "food","recipe","restaurant","chef","cuisine","cooking","dish",
@@ -139,13 +140,11 @@ def detect_category(title):
     for cat, keywords in CATEGORY_KEYWORDS.items():
         hits = 0
         for kw in keywords:
-            if kw.endswith(" "):
-                if kw in t:
-                    hits += 1
-            else:
-                pattern = r'\b' + re.escape(kw.strip()) + r'\b'
-                if re.search(pattern, t):
-                    hits += 1
+            # Always use word-boundary regex — trailing-space substring matching
+            # caused false positives (e.g. "ice" matching inside "office ")
+            pattern = r'\b' + re.escape(kw.strip()) + r'\b'
+            if re.search(pattern, t):
+                hits += 1
         if hits > 0:
             scores[cat] = hits
     if not scores:
