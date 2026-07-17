@@ -546,12 +546,14 @@ def main():
     scored = deduped
 
     # Per-category selection: top N per category (no global cap)
+    CAT_LIMITS = {"news": 5, "immigration": 5}  # high-volume categories get more
     balanced = []
     cat_counts = {}
     for c in scored:
         cat = c["category"]
+        cat_max = CAT_LIMITS.get(cat, PER_CAT_MAX)
         cat_counts.setdefault(cat, 0)
-        if cat_counts[cat] < PER_CAT_MAX:
+        if cat_counts[cat] < cat_max:
             balanced.append(c)
             cat_counts[cat] += 1
 
