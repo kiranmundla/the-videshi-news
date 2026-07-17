@@ -1,0 +1,638 @@
+{
+  "timestamp": "2026-07-17T17:28:10.668637+00:00",
+  "window_hours": 4,
+  "total_signals": 488,
+  "total_clusters": 395,
+  "candidates": [
+    {
+      "title": "Trump wants to replace immigrant truckers in US. 1.5 lakh Indians to be hit - India Today",
+      "description": "Trump wants to replace immigrant truckers in US. 1.5 lakh Indians to be hit; Trump says veterans to replace \u2018illegal alien\u2019 truck drivers; Punjabi freight sector watches closely; US veterans to replace \u2018illegal alien\u2019 truckers: Why Trump's move will affect Indians; Crash report released in fatal I-71 crash that killed 21-year-old Toby Forsythe; Trump: replace foreign drivers with vets; Homeland Security joins CDL school removal efforts",
+      "category": "news",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T13:14:46+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQUkFuLWtJSmUxYUtqXzBGaXAtT3F2bWNpWTFlbS1rYmk1SHNDX2tuNl9fM0JXRWtNMnlRWFpMdm9sVmJsdDJJM19mbTZEVkVDNkd4cGdqbVl1N1JXMzJza0RZY25iWHVydkhxNnhBWXN1TXpiRmg4WHVhRUoxcGdybUxzaUtyN0VRLVJKWnRRNEZpeVdiRm5STUdDYWtHYVFoV3JGNXUtS3pDcGM1cW5pMlhaWXpNMlhRcUNwZ3gtUXB6UjQ5TFdhQmM4bXNQSnl6cm9aM1VFVk81TVRtVkpkdG9nUFFGUHk4UnhqU3BPM0g5Z0RTSm9j0gH8AUFVX3lxTE1FU2hLOVQzd2QweEJ2VHd1QW1zek9vMGVkcmtmTEZDRHV0S2lIODY4ZW5RZ3pqNzlld1dFZHRmVGkwZG90Z1hwOHVZQzRpam84WmFCSVhRY2lsbk1hbDBfNFUwMHVOT2hBcElUOENKRzdjaV9qTTdiV1llaENKLWFhV3NDcUo4YXVySEstcXJGYVI1aGpGWmxWUFQ5NGRWeFJtUUk5NkRuT1dLbkRnQWdOOFMxemJJUURyU2VxRW1EWllIaVJicDFhVkprOS1JaGNjM1lLN3Z0X1pKRm1aOHFUdHhRX3owWjdmdld2bTZ2UkhZQ0N0X2xTVU5Weg?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Trump wants to replace immigrant truckers in US. 1.5 lakh Indians to be hit - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQUkFuLWtJSmUxYUtqXzBGaXAtT3F2bWNpWTFlbS1rYmk1SHNDX2tuNl9fM0JXRWtNMnlRWFpMdm9sVmJsdDJJM19mbTZEVkVDNkd4cGdqbVl1N1JXMzJza0RZY25iWHVydkhxNnhBWXN1TXpiRmg4WHVhRUoxcGdybUxzaUtyN0VRLVJKWnRRNEZpeVdiRm5STUdDYWtHYVFoV3JGNXUtS3pDcGM1cW5pMlhaWXpNMlhRcUNwZ3gtUXB6UjQ5TFdhQmM4bXNQSnl6cm9aM1VFVk81TVRtVkpkdG9nUFFGUHk4UnhqU3BPM0g5Z0RTSm9j0gH8AUFVX3lxTE1FU2hLOVQzd2QweEJ2VHd1QW1zek9vMGVkcmtmTEZDRHV0S2lIODY4ZW5RZ3pqNzlld1dFZHRmVGkwZG90Z1hwOHVZQzRpam84WmFCSVhRY2lsbk1hbDBfNFUwMHVOT2hBcElUOENKRzdjaV9qTTdiV1llaENKLWFhV3NDcUo4YXVySEstcXJGYVI1aGpGWmxWUFQ5NGRWeFJtUUk5NkRuT1dLbkRnQWdOOFMxemJJUURyU2VxRW1EWllIaVJicDFhVkprOS1JaGNjM1lLN3Z0X1pKRm1aOHFUdHhRX3owWjdmdld2bTZ2UkhZQ0N0X2xTVU5Weg?oc=5",
+          "source": "India Today"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "Trump's proposal to replace immigrant truckers directly affects many Indian-origin professionals in the US."
+    },
+    {
+      "title": "Scoop: U.S. sending dozens more refueling planes to Israel ahead of possible escalation - Axios",
+      "description": "Scoop: U.S. sending dozens more refueling planes to Israel ahead of possible escalation; Ben-Gurion Airport parking crises continues as US refuses to move its aircraft; From the Frontline: Flights take off, but peace has yet to land; Israelis fear flight cancellations due to Iran, US aircraft parked at Ben-Gurion, Israir CEO says; US tankers cleared to continue landing at Ben-Gurion",
+      "category": "news",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-07-17T16:07:30+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wdWZPMDJyNmZjNk04ZXNBaGo0b3pTdHdXRmJaQ253WlNoVDNkOVFDLU5Oc1FYNXRlTF9sWExqTmwta3poTjNJaUFjMVlEbHlqdWhKNHhScXJZZE12bXpNN0R6SC1jck9UOElHckE4cjV6V0tDRnc?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Scoop: U.S. sending dozens more refueling planes to Israel ahead of possible escalation - Axios",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0wdWZPMDJyNmZjNk04ZXNBaGo0b3pTdHdXRmJaQ253WlNoVDNkOVFDLU5Oc1FYNXRlTF9sWExqTmwta3poTjNJaUFjMVlEbHlqdWhKNHhScXJZZE12bXpNN0R6SC1jck9UOElHckE4cjV6V0tDRnc?oc=5",
+          "source": "Axios"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The US sending refueling planes to Israel is a significant geopolitical development that could impact global stability."
+    },
+    {
+      "title": "Google and Epic Give Up Fighting \u2014 Third-Party Android App Stores Are Coming Next Week - Daring Fireball",
+      "description": "Epic Games & Google Withdraw Settlement: Third-Party App Stores Are Coming to Android; Google\u2019s Android App Store Shake-Up Starts July 22; Google and Epic give up fighting \u2014 third-party Android app stores are coming next week; Google opens Play Store to rival app marketplaces after Epic Games antitrust battle; Google and Epic withdraw settlement as Play Store overhaul moves ahead",
+      "category": "technology",
+      "signal_count": 7,
+      "source_diversity": 2,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-07-17T15:58:29+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiigFBVV95cUxNS1JwVVdhczJmaGtoT3ZmWkc3cWRyZ0Q0eVpMb0ZJeERPcDJJN3NOcUd1TmFqeTllY25OQjVXM3BCYjNSbGkwSldEVVVSZjg2TVFvVmtEV0hDRW5idElpNm5UQVcyYkFNWjVUSnNVX09iQ3N0ZWNsa2QtSjk1T0J4d1ZSVXRIR2NfVkE?oc=5",
+        "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPRkxEeVV5aXhWZ0FieHQwUmxrN2MtdU92UkVtNEdwSTFDQVVNWFJKaXZwckZmMmtIOVdNbmdubEZrUDR3QXpCN1lrZGk5X092MDQtWnJGTVlBT012WTVjREp6SFpzMjZkV3Bzcmh1ZWgtWFdybUo0anBqOHExcV9GVUNKQm9KbC1tWUVzU3lrV2VYeHBiN2Z3aHU3R3lGVTV2dHdSZGFwemU?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Google and Epic Give Up Fighting \u2014 Third-Party Android App Stores Are Coming Next Week - Daring Fireball",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNS1JwVVdhczJmaGtoT3ZmWkc3cWRyZ0Q0eVpMb0ZJeERPcDJJN3NOcUd1TmFqeTllY25OQjVXM3BCYjNSbGkwSldEVVVSZjg2TVFvVmtEV0hDRW5idElpNm5UQVcyYkFNWjVUSnNVX09iQ3N0ZWNsa2QtSjk1T0J4d1ZSVXRIR2NfVkE?oc=5",
+          "source": "Daring Fireball"
+        },
+        {
+          "title": "Epic Games & Google Withdraw Settlement: Third-Party App Stores Are Coming to Android - 80 Level",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPRkxEeVV5aXhWZ0FieHQwUmxrN2MtdU92UkVtNEdwSTFDQVVNWFJKaXZwckZmMmtIOVdNbmdubEZrUDR3QXpCN1lrZGk5X092MDQtWnJGTVlBT012WTVjREp6SFpzMjZkV3Bzcmh1ZWgtWFdybUo0anBqOHExcV9GVUNKQm9KbC1tWUVzU3lrV2VYeHBiN2Z3aHU3R3lGVTV2dHdSZGFwemU?oc=5",
+          "source": "80 Level"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The introduction of third-party app stores on Android could impact tech users in the diaspora."
+    },
+    {
+      "title": "Reliance Retail Q1: Revenue rose 7.4% to Rs 90,408 cr - Moneycontrol.com",
+      "description": "Reliance Retail Q1: Revenue rose 7.4% to Rs 90,408 cr; Reliance Retail Q1 results: Quick-commerce spends drag PAT 14% YoY to Rs 2,806 crore; revenue rises 7%; Reliance Retail revenue rises 7%, JioMart orders more than double; Reliance Retail Q1FY27 results: Net profit falls 14.1% to \u20b92,805 crore; Reliance Retail revenue tops Rs 79,700 crore in Q1; Shein crosses 30 million app installs",
+      "category": "news",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:55:25+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQUVdzNkJhQm9iano3MGxkbHYzUGVqazVVdFNuUXhEempIWDdmTzJaMUZDcE9QVTdnamRYRjM5OU5FNmtDU3lNQnZ6a3lHcERlLXVEbXVvMTkwWmJCQm5STlhnXzRick9Jcmd4SkJETVV2YmIyMWRwRlMza0E5ajVTbFRYVmZhMXByS2t3eW1iTnhrcHR4ZXc4Nkl6LVRNZWQ1SkZlNWkzcV8zSUZYdXlWOHF0Rm1VdVcyQzVzQkdhX1R6ODJaNmcxQQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Reliance Retail Q1: Revenue rose 7.4% to Rs 90,408 cr - Moneycontrol.com",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQUVdzNkJhQm9iano3MGxkbHYzUGVqazVVdFNuUXhEempIWDdmTzJaMUZDcE9QVTdnamRYRjM5OU5FNmtDU3lNQnZ6a3lHcERlLXVEbXVvMTkwWmJCQm5STlhnXzRick9Jcmd4SkJETVV2YmIyMWRwRlMza0E5ajVTbFRYVmZhMXByS2t3eW1iTnhrcHR4ZXc4Nkl6LVRNZWQ1SkZlNWkzcV8zSUZYdXlWOHF0Rm1VdVcyQzVzQkdhX1R6ODJaNmcxQQ?oc=5",
+          "source": "Moneycontrol.com"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Reliance Retail's revenue growth is significant for the Indian economy and may interest the diaspora."
+    },
+    {
+      "title": "Sir Garfield Sobers, one of cricket's greatest all-rounders, dies at 89 - India Today",
+      "description": "Sir Garry Sobers, West Indies cricketing great, dies aged 89; West Indies legend Sobers dies aged 89; Garry Sobers dies, aged 89; Garfield Sobers, legendary West Indies cricketer, passes away at 89; Sir Garfield Sobers has died aged 89 \u2013 farewell to the most talented cricketer ever",
+      "category": "sports",
+      "signal_count": 9,
+      "source_diversity": 4,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:47:23+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMimgFBVV95cUxOTHkteTdLOVBvTkNaRkRzOXNJLWluUXo1OXNUMFd0WXFZUEltQnFLTk9DN1lHYUF1akl0ZEVLd24wWURXRjU3QnpldUZzZ1dycmpPNTBIZXNGT0pEU0ZkOWdnSDNVaHVkNlFOUlEyenQwTlRaNFZ0QUpQcnJfbURrTkxkVnB5MEU4TndUS19BVnlVTWU2a21rYlBn0gGfAUFVX3lxTFA4dTZ1QzBYTnpDWkh5d3F0ZjJOeFVrY2tOanE4NnJKWENER2l2V181eFlvMVlWbDJib2VZcHJDd3V3LVVRNlBIcTJfaG0wLThiX1owSlBESjRXY0RlTk1CbHgyck5mX0lncEsxMDBvRXJNWmhvRF9Fd3JRNXEwTDBNWWJSVERzUzlINmRQRUZnYjhVUWlqbmIzX3JzWFUtdw?oc=5",
+        "https://www.bbc.co.uk/sport/cricket/articles/cq6d421ezjdo?at_medium=RSS&at_campaign=rss",
+        "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUmlLQTdvSDFNcHhiamIxaUFHeTZ6VE5DSnM3VC1FaHJ0Yzd3NVZjdmdoNjFCLUFvM2N2MzVLTnFfTkQwS0FFYWJjSm1KejFpOXFOMUV6SGVCUWNNNFBWeGdEOW9EVlFjc3VPRkgySlp3T3loN25wa2ZOWks2ZDRXcXkxTldoUjZTMG5xUEFQNGtRRFFTRkFxMQ?oc=5",
+        "https://news.google.com/rss/articles/CBMixAFBVV95cUxNcEdDNFdQRG9KVjVFOEltWXZQUklKTkdmSkVTZ1NwdS1ZcW1GdVhwOUkzUmRWOWhmS3hyY0MyNkxqNUFVZTh3LXZxR3VsdlZMRWM1bllQTGxWNlVsTU9rN09TZ3hVYTB3c1lXeEhzSmxkVmM2NGFIOE9objluMmRDajJMN1FtUmdrVERSemlTWjB2Y29ZWkhQVjJQTFpHOFN1bkhuYmhPMWIyR0FqRDlEU3F3WGItR0R5Rmh1QmZ5cTVhRlk00gHKAUFVX3lxTE9MTVIybWRRYXRjb18zckNyMllUM3MzVElGVVZFUURDRUNHVnRhQklmMzZzOVZOQW9maWhoX2pQbGtONmNIQTFHeGYtaXJjMkNra2NpSHllOVlfckhHeTdXQldYQWFlUkVfT21wZHBzbEhZMmRXNFlMNmJ3RV8zMkVFS1NFRUJwWE1mX2NVWGpjWUExMTNzYXFZUmVraEZqcUtOREc2OW9GNlpMYzFBUjBHNmFfOUx1amRaZ05PdURqb0R4N2hrSVdSOFE?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "West Indies cricket legend Gary Sobers dies at age of 89 - India.Com",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOTHkteTdLOVBvTkNaRkRzOXNJLWluUXo1OXNUMFd0WXFZUEltQnFLTk9DN1lHYUF1akl0ZEVLd24wWURXRjU3QnpldUZzZ1dycmpPNTBIZXNGT0pEU0ZkOWdnSDNVaHVkNlFOUlEyenQwTlRaNFZ0QUpQcnJfbURrTkxkVnB5MEU4TndUS19BVnlVTWU2a21rYlBn0gGfAUFVX3lxTFA4dTZ1QzBYTnpDWkh5d3F0ZjJOeFVrY2tOanE4NnJKWENER2l2V181eFlvMVlWbDJib2VZcHJDd3V3LVVRNlBIcTJfaG0wLThiX1owSlBESjRXY0RlTk1CbHgyck5mX0lncEsxMDBvRXJNWmhvRF9Fd3JRNXEwTDBNWWJSVERzUzlINmRQRUZnYjhVUWlqbmIzX3JzWFUtdw?oc=5",
+          "source": "India.Com"
+        },
+        {
+          "title": "West Indies legend Sobers dies aged 89",
+          "url": "https://www.bbc.co.uk/sport/cricket/articles/cq6d421ezjdo?at_medium=RSS&at_campaign=rss",
+          "source": null
+        },
+        {
+          "title": "Sir Garry Sobers, West Indies cricketing great, dies aged 89 - The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUmlLQTdvSDFNcHhiamIxaUFHeTZ6VE5DSnM3VC1FaHJ0Yzd3NVZjdmdoNjFCLUFvM2N2MzVLTnFfTkQwS0FFYWJjSm1KejFpOXFOMUV6SGVCUWNNNFBWeGdEOW9EVlFjc3VPRkgySlp3T3loN25wa2ZOWks2ZDRXcXkxTldoUjZTMG5xUEFQNGtRRFFTRkFxMQ?oc=5",
+          "source": "The Guardian"
+        },
+        {
+          "title": "Sir Garfield Sobers, one of cricket's greatest all-rounders, dies at 89 - India Today",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNcEdDNFdQRG9KVjVFOEltWXZQUklKTkdmSkVTZ1NwdS1ZcW1GdVhwOUkzUmRWOWhmS3hyY0MyNkxqNUFVZTh3LXZxR3VsdlZMRWM1bllQTGxWNlVsTU9rN09TZ3hVYTB3c1lXeEhzSmxkVmM2NGFIOE9objluMmRDajJMN1FtUmdrVERSemlTWjB2Y29ZWkhQVjJQTFpHOFN1bkhuYmhPMWIyR0FqRDlEU3F3WGItR0R5Rmh1QmZ5cTVhRlk00gHKAUFVX3lxTE9MTVIybWRRYXRjb18zckNyMllUM3MzVElGVVZFUURDRUNHVnRhQklmMzZzOVZOQW9maWhoX2pQbGtONmNIQTFHeGYtaXJjMkNra2NpSHllOVlfckhHeTdXQldYQWFlUkVfT21wZHBzbEhZMmRXNFlMNmJ3RV8zMkVFS1NFRUJwWE1mX2NVWGpjWUExMTNzYXFZUmVraEZqcUtOREc2OW9GNlpMYzFBUjBHNmFfOUx1amRaZ05PdURqb0R4N2hrSVdSOFE?oc=5",
+          "source": "India Today"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The death of Sir Garfield Sobers is a significant loss for cricket, impacting fans globally, including the Indian diaspora."
+    },
+    {
+      "title": "H-1B update: No second lottery, USCIS says it has received enough petitions for FY 2027 - The Times of India",
+      "description": "H-1B update: No second lottery, USCIS says it has received enough petitions for FY 2027\u00a0\u00a0The Times of India",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:46:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOY3pWTkJMSE9WNldKd09fNGRRdU9hWGhYUzZmd0c1WWgwWnJESk0wV0JvSDBkaHJfdGNUVUhpWEIweDVhbmxrcUlhVEFCaHRwZ0tRNkxWekRfaTdnWmstZWhMczlMSVlKQmM1TFpQbjVyRkt0UTZLU0h0S054a3ZNZjhfaHdDbm02VkZzT08zcVY2SC1DLVRra2FZLVpoSThGZlh2Wi1zVXlmS3NuWnZRTk1KVWlOaG9oWVpoS3JYLXRkYkRORzNzVEM2SEZHXzI3anlWQlBQLS14OS1VWE1sNWt5c2kxR2ZTWEtOLdIB8gFBVV95cUxPQVZZV2lGRkhROE1oZ0JvT2FPZmJJWUtCdHo5bkxfM18tbVhHRGRKTEZFRlV0VEphT1hvYlBrR1d2X29zUmp4RjBXR3hOa3BhWXJ0Q2cxd0VDTS03U2M3ZWE1X1prMlB1T2pmMUg4NF81N2F6ZF8xU1pKWmhvbjZFWml1dHVIaTVYWERFaHNRbGN3Y3pwNE5hSFVKemluaUluUzlCQUMwQVFoMGYzc1FWYVZIMmMwbXpBa2IwWXJ4cmRPNzFRaURBa3k1b1J1cUNSdUJCLXBpRGEtYzFRWHZvMzRrMU9xeVZfMjBsZTJldkl4QQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "H-1B update: No second lottery, USCIS says it has received enough petitions for FY 2027 - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOY3pWTkJMSE9WNldKd09fNGRRdU9hWGhYUzZmd0c1WWgwWnJESk0wV0JvSDBkaHJfdGNUVUhpWEIweDVhbmxrcUlhVEFCaHRwZ0tRNkxWekRfaTdnWmstZWhMczlMSVlKQmM1TFpQbjVyRkt0UTZLU0h0S054a3ZNZjhfaHdDbm02VkZzT08zcVY2SC1DLVRra2FZLVpoSThGZlh2Wi1zVXlmS3NuWnZRTk1KVWlOaG9oWVpoS3JYLXRkYkRORzNzVEM2SEZHXzI3anlWQlBQLS14OS1VWE1sNWt5c2kxR2ZTWEtOLdIB8gFBVV95cUxPQVZZV2lGRkhROE1oZ0JvT2FPZmJJWUtCdHo5bkxfM18tbVhHRGRKTEZFRlV0VEphT1hvYlBrR1d2X29zUmp4RjBXR3hOa3BhWXJ0Q2cxd0VDTS03U2M3ZWE1X1prMlB1T2pmMUg4NF81N2F6ZF8xU1pKWmhvbjZFWml1dHVIaTVYWERFaHNRbGN3Y3pwNE5hSFVKemluaUluUzlCQUMwQVFoMGYzc1FWYVZIMmMwbXpBa2IwWXJ4cmRPNzFRaURBa3k1b1J1cUNSdUJCLXBpRGEtYzFRWHZvMzRrMU9xeVZfMjBsZTJldkl4QQ?oc=5",
+          "source": "The Times of India"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The update on the H-1B lottery is crucial for many Indian professionals seeking employment in the US."
+    },
+    {
+      "title": "Garfield Sobers, legendary West Indies cricketer, passes away at 89 - Cricbuzz",
+      "description": "Garfield Sobers, legendary West Indies cricketer, passes away at 89; West Indies legend Sobers dies aged 89; Garry Sobers dies, aged 89; Sir Garfield Sobers has died aged 89 \u2013 farewell to the most talented cricketer ever; Sir Garry Sobers, West Indies cricketing great, dies aged 89",
+      "category": "news",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:37:47+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMirwFBVV95cUxNSXAxTGwzNXZ3dnQxbHpaelk0MjhnUFBpQXNaRHNZckhLeG91WkZhZVphU2UzbWxjSy1RcDVNUGhJU3VLRjRqR05QY2dQaDU2OG0yMjlrRWRwNTFDM2ZIVjhfYjNqeHVmbE52N3pBQ2V4RUVRekVFUFpTeFJuMVlLUEJnaGN0aFNjc01DejdMY19kTDFWVzhDTEtadXpnWkdJcmRaZjNTbk1XUWRCYTBB?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Garfield Sobers, legendary West Indies cricketer, passes away at 89 - Cricbuzz",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNSXAxTGwzNXZ3dnQxbHpaelk0MjhnUFBpQXNaRHNZckhLeG91WkZhZVphU2UzbWxjSy1RcDVNUGhJU3VLRjRqR05QY2dQaDU2OG0yMjlrRWRwNTFDM2ZIVjhfYjNqeHVmbE52N3pBQ2V4RUVRekVFUFpTeFJuMVlLUEJnaGN0aFNjc01DejdMY19kTDFWVzhDTEtadXpnWkdJcmRaZjNTbk1XUWRCYTBB?oc=5",
+          "source": "Cricbuzz"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The passing of Garfield Sobers is significant news in the cricketing world, which resonates with Indian cricket fans."
+    },
+    {
+      "title": "US Businesses Hit H-1B Visa Cap After Trump Lottery Overhaul - news.bloombergtax.com",
+      "description": "US Businesses Hit H-1B Visa Cap After Trump Lottery Overhaul\u00a0\u00a0news.bloombergtax.com",
+      "category": "immigration",
+      "signal_count": 2,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:37:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMinwFBVV95cUxOc1NTbXhlZlVSbFdnanMwM3p1U3FUX0xWN3JmVGZZUTNPR0RGdHpJTHl1LXVjSWUyeTIxXzk2WWNMeEhXY2ttNmZFQ3RTb2poVVRFQnlBYXBNMHMxdG0wNC1qX2xzQzlZWnRVenBoak9Db2J1ODlZd2lGZEd2Uk5FaExXVHE2X0FHNTlTTjZBMTN0MjFBMDFtMFJjU1UwdjA?oc=5",
+        "https://news.google.com/rss/articles/CBMisAFBVV95cUxPeE42WFBWOWs4aTd6WENpX0FXM1RoQm4zRDNNS0RnTW5LeDZ5WjdQZDNyclU5NVZ4WktCQzczMDRMQ3FOeFdTeGtidWM0U3RXZGtMbzhaTTZFd0Q4b1BZdmhvZDdIVEs4YjJ0ZXM3VjJLTTlEWmZpMkhEZy01eE5KQzZZUFNETEhzX2FqYndOVVIzZUNFaTljc1dXOTFnVDBReFJqVC1aU3IweTNEMVNpaQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US Businesses Hit H-1B Visa Cap After Trump Lottery Overhaul - news.bloombergtax.com",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOc1NTbXhlZlVSbFdnanMwM3p1U3FUX0xWN3JmVGZZUTNPR0RGdHpJTHl1LXVjSWUyeTIxXzk2WWNMeEhXY2ttNmZFQ3RTb2poVVRFQnlBYXBNMHMxdG0wNC1qX2xzQzlZWnRVenBoak9Db2J1ODlZd2lGZEd2Uk5FaExXVHE2X0FHNTlTTjZBMTN0MjFBMDFtMFJjU1UwdjA?oc=5",
+          "source": "news.bloombergtax.com"
+        },
+        {
+          "title": "US Businesses Hit H-1B Visa Cap After Trump Lottery Overhaul - news.bloombergtax.com",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPeE42WFBWOWs4aTd6WENpX0FXM1RoQm4zRDNNS0RnTW5LeDZ5WjdQZDNyclU5NVZ4WktCQzczMDRMQ3FOeFdTeGtidWM0U3RXZGtMbzhaTTZFd0Q4b1BZdmhvZDdIVEs4YjJ0ZXM3VjJLTTlEWmZpMkhEZy01eE5KQzZZUFNETEhzX2FqYndOVVIzZUNFaTljc1dXOTFnVDBReFJqVC1aU3IweTNEMVNpaQ?oc=5",
+          "source": "news.bloombergtax.com"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The H-1B visa cap news directly impacts many Indian professionals in the US, making it a significant immigration policy update."
+    },
+    {
+      "title": "Leaked Iran report finds record public anger as regime focuses on holding power - Fox News",
+      "description": "Leaked Iran report finds record public anger as regime focuses on holding power; Public Rejects the Regime: An Analysis of Ali Rabiei\u2019s Confidential Report; Leaked presidency report shows how Iran plans to manage record public anger; New Report Highlights Iran\u2019s Attempts to Spin Public Opinion Instead of Addressing Core Issues; Exclusive: What Iranians Want? President Advisor Confidential Report",
+      "category": "news",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-07-17T15:06:59+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxNZHRaaVViM2pfeFZlSkNWbmZwdlJGTXBwQnc5NWpXS2F6OHd1SUtSeHc3aUVQd1ZycjdHUXVvNkloQThsSzFFWjZUb1JHSlJfSUFwdkNEQ29Yc1dRNGNYcC00NElPc3lScnY1LXNLSzdCeVpURzgwTjVOZnNCaTZPckNMUlJQbzJodWRUWHJYejVEU0E1MldaejJVVXBpeE5IcVBoY2x30gGrAUFVX3lxTE13UVVxMWo0czNndzRkc0Jjc040TjUteV9YYW1KMmdsNUt2RDFveThMZnhUX2daUkxqM2VFTlBQSHZBTy1sM2s2a2VvdGw2MVhnX3pia2k4TWc4aldNYTdUY0xWVklHWVdBZGVoWjNMREk4dzQ1MERQaFUzQXhpLUdySktnTVRadFM2cXczMnBRWkE4MHpwRVhBNW4tWHNvbFBqekJFcUY3NjFYWQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Leaked Iran report finds record public anger as regime focuses on holding power - Fox News",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNZHRaaVViM2pfeFZlSkNWbmZwdlJGTXBwQnc5NWpXS2F6OHd1SUtSeHc3aUVQd1ZycjdHUXVvNkloQThsSzFFWjZUb1JHSlJfSUFwdkNEQ29Yc1dRNGNYcC00NElPc3lScnY1LXNLSzdCeVpURzgwTjVOZnNCaTZPckNMUlJQbzJodWRUWHJYejVEU0E1MldaejJVVXBpeE5IcVBoY2x30gGrAUFVX3lxTE13UVVxMWo0czNndzRkc0Jjc040TjUteV9YYW1KMmdsNUt2RDFveThMZnhUX2daUkxqM2VFTlBQSHZBTy1sM2s2a2VvdGw2MVhnX3pia2k4TWc4aldNYTdUY0xWVklHWVdBZGVoWjNMREk4dzQ1MERQaFUzQXhpLUdySktnTVRadFM2cXczMnBRWkE4MHpwRVhBNW4tWHNvbFBqekJFcUY3NjFYWQ?oc=5",
+          "source": "Fox News"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The leaked report on public anger in Iran could have implications for global politics and the Indian diaspora's interests in international relations."
+    },
+    {
+      "title": "IPL 2026 Powers India\u2019s JioStar to $1.14 Billion Quarter and Streaming Record - Variety",
+      "description": "IPL 2026 Powers India\u2019s JioStar to $1.14 Billion Quarter and Streaming Record\u00a0\u00a0Variety",
+      "category": "entertainment",
+      "signal_count": 2,
+      "source_diversity": 2,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:05:07+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiakFVX3lxTE9uU0lmZ2xEV3FfQW5keGxKS1d2b1NqS0dsWGhhbnN2Z2h0TjE0dTJVLVh2bGhxc3JYMGZmWHR4eWdjLTlZMjVyakNlMUQ0QzdPRHJoel9oREF1T3pZbU50ZEVwOElLbGRkTXc?oc=5",
+        "https://news.google.com/rss/articles/CBMiowFBVV95cUxPdlJhZTJ2bjFHTUF4X2lrZGNyQWRjb1hZa0hmLVppcnBqaU9uNHljY2JkYVhyemkyWDhBd1FsWkdtLWdoSFIyeEtCaERLUVdsU05FY25jcGlxdE5KUjN0VHN4WFJjVlVwdGdCRm85VUlyWXBUQ2ZxZktmQUxPcHhEY19Kd1g3enNEcjZFNUpON21hYklEbVg5UHVVRWtmQ0M4Y3hr?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Ipl 2026 Powers India\u2019s JioStar to $1.14 Billion Quarter and Streaming Record - IMDb",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9uU0lmZ2xEV3FfQW5keGxKS1d2b1NqS0dsWGhhbnN2Z2h0TjE0dTJVLVh2bGhxc3JYMGZmWHR4eWdjLTlZMjVyakNlMUQ0QzdPRHJoel9oREF1T3pZbU50ZEVwOElLbGRkTXc?oc=5",
+          "source": "IMDb"
+        },
+        {
+          "title": "IPL 2026 Powers India\u2019s JioStar to $1.14 Billion Quarter and Streaming Record - Variety",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPdlJhZTJ2bjFHTUF4X2lrZGNyQWRjb1hZa0hmLVppcnBqaU9uNHljY2JkYVhyemkyWDhBd1FsWkdtLWdoSFIyeEtCaERLUVdsU05FY25jcGlxdE5KUjN0VHN4WFJjVlVwdGdCRm85VUlyWXBUQ2ZxZktmQUxPcHhEY19Kd1g3enNEcjZFNUpON21hYklEbVg5UHVVRWtmQ0M4Y3hr?oc=5",
+          "source": "Variety"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The financial success of IPL 2026 and its impact on streaming services is significant for both cricket fans and the entertainment industry."
+    },
+    {
+      "title": "From BTS to Bollywood: HYBE INDIA is betting big on Indian talent | Hindustan Times - Hindustan Times",
+      "description": "From BTS to Bollywood: HYBE INDIA is betting big on Indian talent | Hindustan Times\u00a0\u00a0Hindustan Times",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T14:38:36+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiygFBVV95cUxOSTFyblYyMjRBRnFfdmdlNGxxbHNEVTVodnZIM1dwZFFKOTd2OE05eVR1ZXlXNTA2VFlaMDZWdWFSZGJXTFJjSWF0ZkdzTWQ0S1lUTXZaS1RyTFpvb2pFM3hIdmhGYUZhSFJOWEM2d1ExMUQteEhZOU45REZZeVY5dDB2bkZBUUxqWEZWUjh1N0xnZHk3V0JFU2UtYnF0SWR5X1ZmT3hPcXhHaktmdVQ0V0ptZWE2Uk1nVWtQRnFLT1oyemk4Vmo1TzVB0gHPAUFVX3lxTFBLOFJZTmFyZFJZUjUtWkRBcUF2SVpTUVVkdkdXbVYxclV2cHQ5NC1kZGFhc1JTanFOWTJhSkpiUk1yVEYyLUEwemh3MDlmNHh4ekRWSTRNWGJDZUhEaGdPTkRYYWlrbW9GWVJoS3V5TVNLVFV1ZlpxdDRBQUxmXzg5a3preXdaV0V3aXpULVpvMlR4cFFFQ2JLU1p3bHNvQmFod1R6cEdGczlzZHh3MWFZNXk1eVZCY21naWVNUFNibDh4XzN0Nzg1Mlo1enhXWQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "From BTS to Bollywood: HYBE INDIA is betting big on Indian talent | Hindustan Times - Hindustan Times",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOSTFyblYyMjRBRnFfdmdlNGxxbHNEVTVodnZIM1dwZFFKOTd2OE05eVR1ZXlXNTA2VFlaMDZWdWFSZGJXTFJjSWF0ZkdzTWQ0S1lUTXZaS1RyTFpvb2pFM3hIdmhGYUZhSFJOWEM2d1ExMUQteEhZOU45REZZeVY5dDB2bkZBUUxqWEZWUjh1N0xnZHk3V0JFU2UtYnF0SWR5X1ZmT3hPcXhHaktmdVQ0V0ptZWE2Uk1nVWtQRnFLT1oyemk4Vmo1TzVB0gHPAUFVX3lxTFBLOFJZTmFyZFJZUjUtWkRBcUF2SVpTUVVkdkdXbVYxclV2cHQ5NC1kZGFhc1JTanFOWTJhSkpiUk1yVEYyLUEwemh3MDlmNHh4ekRWSTRNWGJDZUhEaGdPTkRYYWlrbW9GWVJoS3V5TVNLVFV1ZlpxdDRBQUxmXzg5a3preXdaV0V3aXpULVpvMlR4cFFFQ2JLU1p3bHNvQmFod1R6cEdGczlzZHh3MWFZNXk1eVZCY21naWVNUFNibDh4XzN0Nzg1Mlo1enhXWQ?oc=5",
+          "source": "Hindustan Times"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "HYBE INDIA's investment in Indian talent is a significant cultural development with potential implications for the Indian entertainment industry."
+    },
+    {
+      "title": "FIFA World Cup final in danger? Wildfire haze engulfs New Jersey as Spain train through toxic smoke - The Times of India",
+      "description": "FIFA World Cup final in danger? Wildfire haze engulfs New Jersey as Spain train through toxic smoke; Spain holds World Cup final practice despite hazardous air in New Jersey from wildfire smoke; Will wildfire smoke over New York threaten the World Cup final?; Timelapse shows World Cup final stadium nearly vanish in smoky haze; Wildfire Smoke Threat to NYC World Cup Final Recedes with Weekend Rain",
+      "category": "sports",
+      "signal_count": 7,
+      "source_diversity": 2,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T14:32:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMimwJBVV95cUxOa1NjbHNoMnU0NFB4Z09qQVBLQnptSTJMVWkzOWJFT2UtTlZxaDJ6dkRPWlFvWUtCdEJRZDBIQkRoX0ZmYk94OGNXUExmdF8yRmk4d2ltbTFsTHZ5MGk0TGc0WkowcUVFVnZ1Tm1zNmNKNU94RF9fNHpPa3RhWk9LVjNyZFQzcGlISERBZGJ1NVhwQ0VHdVk1cEZQSlF6RDFrZkhOdlVXWVBJcDJNWGJhNHJXZEVJdDh6a1VmOWd0bW1BOHpGa3M4RDJYQ0dXaGJ2LVhrRktEVkN6YUJIVjgwNWQ4ZmhQNVBTc1I5SnBjMnhydkhBVHZYX3BvZjdtY0cwVm9nUC1BT0xFc1gyazZiU0VDYkxyQUxxLWtZ?oc=5",
+        "https://www.espn.com/soccer/story/_/id/49380491/chicago-fire-vancouver-whitecaps-postponed-wildfire-smoke"
+      ],
+      "all_signals": [
+        {
+          "title": "FIFA World Cup final in danger? Wildfire haze engulfs New Jersey as Spain train through toxic smoke - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxOa1NjbHNoMnU0NFB4Z09qQVBLQnptSTJMVWkzOWJFT2UtTlZxaDJ6dkRPWlFvWUtCdEJRZDBIQkRoX0ZmYk94OGNXUExmdF8yRmk4d2ltbTFsTHZ5MGk0TGc0WkowcUVFVnZ1Tm1zNmNKNU94RF9fNHpPa3RhWk9LVjNyZFQzcGlISERBZGJ1NVhwQ0VHdVk1cEZQSlF6RDFrZkhOdlVXWVBJcDJNWGJhNHJXZEVJdDh6a1VmOWd0bW1BOHpGa3M4RDJYQ0dXaGJ2LVhrRktEVkN6YUJIVjgwNWQ4ZmhQNVBTc1I5SnBjMnhydkhBVHZYX3BvZjdtY0cwVm9nUC1BT0xFc1gyazZiU0VDYkxyQUxxLWtZ?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Fire-Whitecaps postponed due to wildfire smoke",
+          "url": "https://www.espn.com/soccer/story/_/id/49380491/chicago-fire-vancouver-whitecaps-postponed-wildfire-smoke",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The wildfire haze affecting the FIFA World Cup final is a major global event that could impact the Indian diaspora's interest in sports."
+    },
+    {
+      "title": "US tightens visa regulations for international students, exchange visitors and journalists - orissapost.com",
+      "description": "US tightens visa regulations for international students, exchange visitors and journalists\u00a0\u00a0orissapost.com",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T14:25:18+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOdUhBLWhJU2NGaWp3a2llNnhncWM4XzN0aXZra2RLZ3JUVDNQaDJBdmFDOU9KOE9INTJLN0N4alc3YlBHMnVBdHRsWHBvQS1hblpFSUItdEIxNG5QZzFrQThNOHFHbEFrcGZHdjB0d3czdXgyeUdoR3ZYMWVUUU9vOUhtY2N3ak5rQW15NEZXeFRjNlV2MWFicXMxN01jVGdzY2ZkeGI0T2c1S05NWGFYaGhvUGt5ZGhr0gG4AUFVX3lxTE51SEEtaElTY0ZpandraWU2eGdxYzhfM3RpdmtrZEtnclRUM1BoMkF2YUM5T0o4T0g1Mks3Q3hqVzdiUEcydUF0dGxYcG9BLWFuWkVJQi10QjE0blBnMWtBOE04cUdsQWtwZkd2MHR3dzN1eDJ5R2hHdlgxZVRRT285SG1jY3dqTmtBbXk0Rld4VGM2VXYxYWJxczE3TWNUZ3NjZmR4YjRPZzVLTk1YYVhoaG9Qa3lkaGs?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US tightens visa regulations for international students, exchange visitors and journalists - orissapost.com",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOdUhBLWhJU2NGaWp3a2llNnhncWM4XzN0aXZra2RLZ3JUVDNQaDJBdmFDOU9KOE9INTJLN0N4alc3YlBHMnVBdHRsWHBvQS1hblpFSUItdEIxNG5QZzFrQThNOHFHbEFrcGZHdjB0d3czdXgyeUdoR3ZYMWVUUU9vOUhtY2N3ak5rQW15NEZXeFRjNlV2MWFicXMxN01jVGdzY2ZkeGI0T2c1S05NWGFYaGhvUGt5ZGhr0gG4AUFVX3lxTE51SEEtaElTY0ZpandraWU2eGdxYzhfM3RpdmtrZEtnclRUM1BoMkF2YUM5T0o4T0g1Mks3Q3hqVzdiUEcydUF0dGxYcG9BLWFuWkVJQi10QjE0blBnMWtBOE04cUdsQWtwZkd2MHR3dzN1eDJ5R2hHdlgxZVRRT285SG1jY3dqTmtBbXk0Rld4VGM2VXYxYWJxczE3TWNUZ3NjZmR4YjRPZzVLTk1YYVhoaG9Qa3lkaGs?oc=5",
+          "source": "orissapost.com"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The tightening of US visa regulations is highly relevant to the Indian diaspora, particularly students and professionals."
+    },
+    {
+      "title": "India\u2019s Air India Changes the Long-Haul Journey as One Million Travellers Connect to Wi-Fi Across London, New York and Beyond - Travel And Tour World",
+      "description": "India\u2019s Air India Changes the Long-Haul Journey as One Million Travellers Connect to Wi-Fi Across London, New York and Beyond\u00a0\u00a0Travel And Tour World",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T13:34:37+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMibkFVX3lxTFB0cjY3XzZ5alNHaGxfemwzNDRfa3N2YmFsNEE2dW0yWl94V2l2MkNZbUQ0OTJLcEhBbHMzX3huM1ZabTVWaEpodVg3aWpOMFkxY0FpblVtZGxuN0RUUnRpb2JUY2ZvUzdSMUlSNlh3?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "India\u2019s Air India Changes the Long-Haul Journey as One Million Travellers Connect to Wi-Fi Across London, New York and Beyond - Travel And Tour World",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB0cjY3XzZ5alNHaGxfemwzNDRfa3N2YmFsNEE2dW0yWl94V2l2MkNZbUQ0OTJLcEhBbHMzX3huM1ZabTVWaEpodVg3aWpOMFkxY0FpblVtZGxuN0RUUnRpb2JUY2ZvUzdSMUlSNlh3?oc=5",
+          "source": "Travel And Tour World"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Air India's enhancement of long-haul travel with Wi-Fi connectivity is significant for Indian travelers and diaspora communities."
+    },
+    {
+      "title": "India AI funding frenzy: Claypond, Binny Bansal, Albinder Dhindsa, Accel, others eye half a dozen startup... - Moneycontrol.com",
+      "description": "India AI funding frenzy: Claypond, Binny Bansal, Albinder Dhindsa, Accel, others eye half a dozen startup...; ETTech Explainer: Why AI startups like Emergent, Sarvam, UnifyApps are seeing bigger bets & soaring valuat; India AI Unicorns Surge: 2 in 30 Days; Indian AI Startups Raise $1 Billion in H1 2026, Up 33% Year-Over-Year; Six Indian AI startups attract investor interest from major backers",
+      "category": "technology",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T13:13:45+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMigAJBVV95cUxNMkw5MEpRbVd2QXZRVWVMbk5jSlNhbUFFeVFyVFVuRHlIS3pNR1JPVWdvOUM3ZE10X3NvVVhDaHFJUW9ZZjdnS0poN2I4WFp2V2Z4WlloZlRRelhGYVlQN0stTktEOUNLRXdmV1JzYXY2M1BBbE5LYjQ5XzJGaFRQalBlTDB1dlpOVzJvLXFfVjN3cXFaMXlNQVRfMlh5eHhWT29Oc0VuMnpfaHE5U3U1VTFJdUtXUElfbDdyQ19BNHlJQldlbll5aUN3dGhrWUVBSVkyUzZvLVVmSktWMWtBRVdCV2pJdzdmTGQ3bVJDYW5oWF80VnNfTWlOd0pqR3F50gGGAkFVX3lxTE1aV1h5R3pjWUdCZzFBV1M1TnU5b3ZiTFczdHMxT21uZzdxMWJSZ2thMGVLR2ZYbHFFVU0xM3I1MC01NTNnTGRsSzU1cnN6d3pxQUhyMzlBOWlZTlN3Y3htZjVady1vMGx2MzQxZFBoX2FNVzNPQ3g2V2lVXzJtaDcwODVfNlZkTVVKTVY0bnBQN3FJb1QxbUVJaTloY1QtRjhfU0F0MlNERkkxanYxSHhKM29lMUQwOEpUeWo4bE40VlFRTFc0MEVQSUUyamllTmJIOWdVVHI0UHBHcUs0dGRQZnJtc2FRejc3YjcyVWJ4OHhBSk0tVTVkUFFnMDZLLTE3UUdIV2c?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "India AI funding frenzy: Claypond, Binny Bansal, Albinder Dhindsa, Accel, others eye half a dozen startup... - Moneycontrol.com",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNMkw5MEpRbVd2QXZRVWVMbk5jSlNhbUFFeVFyVFVuRHlIS3pNR1JPVWdvOUM3ZE10X3NvVVhDaHFJUW9ZZjdnS0poN2I4WFp2V2Z4WlloZlRRelhGYVlQN0stTktEOUNLRXdmV1JzYXY2M1BBbE5LYjQ5XzJGaFRQalBlTDB1dlpOVzJvLXFfVjN3cXFaMXlNQVRfMlh5eHhWT29Oc0VuMnpfaHE5U3U1VTFJdUtXUElfbDdyQ19BNHlJQldlbll5aUN3dGhrWUVBSVkyUzZvLVVmSktWMWtBRVdCV2pJdzdmTGQ3bVJDYW5oWF80VnNfTWlOd0pqR3F50gGGAkFVX3lxTE1aV1h5R3pjWUdCZzFBV1M1TnU5b3ZiTFczdHMxT21uZzdxMWJSZ2thMGVLR2ZYbHFFVU0xM3I1MC01NTNnTGRsSzU1cnN6d3pxQUhyMzlBOWlZTlN3Y3htZjVady1vMGx2MzQxZFBoX2FNVzNPQ3g2V2lVXzJtaDcwODVfNlZkTVVKTVY0bnBQN3FJb1QxbUVJaTloY1QtRjhfU0F0MlNERkkxanYxSHhKM29lMUQwOEpUeWo4bE40VlFRTFc0MEVQSUUyamllTmJIOWdVVHI0UHBHcUs0dGRQZnJtc2FRejc3YjcyVWJ4OHhBSk0tVTVkUFFnMDZLLTE3UUdIV2c?oc=5",
+          "source": "Moneycontrol.com"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The funding frenzy in India's AI sector is crucial for understanding the tech landscape and opportunities for Indian-origin entrepreneurs."
+    },
+    {
+      "title": "'Kattar Beimaan Party': PM Modi attacks AAP on corruption, law and order at Jalandhar rally - The Times of India",
+      "description": "'Kattar Beimaan Party': PM Modi attacks AAP on corruption, law and order at Jalandhar rally; In PM Modi's Punjab Speech, References To Drugs And Tahir Hussain; PM lays foundation stone and dedicates to the nation various development projects worth over \u20b94,700 crore in Chandigarh, spanning healthcare, education and road infrastructure; PM Modi launches Rs 4,736 crore development projects in Chandigarh; inaugurates PGIMER facilities; PM Modi inaugurates, lays foundation stone of projects worth \u20b95,470 crore in Jalandhar",
+      "category": "markets-finance",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T12:51:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNVUFWcW9nbzY4MVU0U2FFWkFlaTVnQmVCS3p3Zm5qX1hKLWtNY2ZCTWxnaVBiamoxMmtibXdGek5hTDZkcHlTUkdtMXgydmdoQ1FvMGFNUnhRR05MX0dlZVRJTUwyT3N2YnM5YXV4Y0F0XzUxSFdzQVdpZDhtM2xkbnFWUXN6WTNndy1zRG1kdzZCY1M3VGZJYmJDZndnOFpDb09Wd3lQOXY4Y0tvRFE3U3psQ2huNGpfT3pwUl9YcGZ2ajNrb1g1M2VxTi1DUF80QlVkOF95bEhRSFJYbVRROU5kWXozb0pxMW5n?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "'Kattar Beimaan Party': PM Modi attacks AAP on corruption, law and order at Jalandhar rally - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNVUFWcW9nbzY4MVU0U2FFWkFlaTVnQmVCS3p3Zm5qX1hKLWtNY2ZCTWxnaVBiamoxMmtibXdGek5hTDZkcHlTUkdtMXgydmdoQ1FvMGFNUnhRR05MX0dlZVRJTUwyT3N2YnM5YXV4Y0F0XzUxSFdzQVdpZDhtM2xkbnFWUXN6WTNndy1zRG1kdzZCY1M3VGZJYmJDZndnOFpDb09Wd3lQOXY4Y0tvRFE3U3psQ2huNGpfT3pwUl9YcGZ2ajNrb1g1M2VxTi1DUF80QlVkOF95bEhRSFJYbVRROU5kWXozb0pxMW5n?oc=5",
+          "source": "The Times of India"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "PM Modi's speech on corruption and law and order is significant for Indian politics and diaspora engagement."
+    },
+    {
+      "title": "Rohit Sharma vs 'The Two': Hitman Banks On 'Old Allies' To Rescue World Cup Dream",
+      "description": "BCCI selectors no longer see Rohit Sharma in their scheme of things for next year's ODI World Cup, sources told NDTV.",
+      "category": "sports",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-07-17T12:46:53+00:00",
+      "source_urls": [
+        "https://sports.ndtv.com/cricket/rohit-sharma-vs-the-two-hitman-banks-on-old-allies-to-rescue-world-cup-dream-11784865#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "Rohit Sharma vs 'The Two': Hitman Banks On 'Old Allies' To Rescue World Cup Dream",
+          "url": "https://sports.ndtv.com/cricket/rohit-sharma-vs-the-two-hitman-banks-on-old-allies-to-rescue-world-cup-dream-11784865#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Rohit Sharma's potential retirement is a major cricket story that impacts fans and the cricketing community in India and abroad."
+    },
+    {
+      "title": "US government to consider adding $100,000 bond to Green Card applications for those seeking ... - The Times of India",
+      "description": "US government to consider adding $100,000 bond to Green Card applications for those seeking ...; State Department considering $100,000 bonds on green card applicants; Exclusive | U.S. Weighs Bond of $100,000 for Some Green-Card Applicants Abroad; Applying For US Green Card? New Trump Admin's Proposal Could Require A Bond Of Up To $100,000; US: Immigration News Update \u2013 July 16, 2026",
+      "category": "immigration",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T12:41:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMigwJBVV95cUxPY2lvSi02dzdHR2dJX3ktRVI4TG1WdENYMGUzM0NZQm9tMVBJdTVrdU1DNTZTMVdpd2RUR0tjUWlkQ096Ul9rUWphal9PY1A1cm9STEtIME5mQjY1eDhwcHNFcHRzRnMzSkxfV1Q4S1NxRzY5X1RmWkVBeWxJak5TNzg3ZDFmd2w3S0VzWUlXM2MxRGhlS3BYWjNRZllDeEhqdzhPV2dia2x3aUtxcDBQMWk4NnVuUzltNGZ4ejROS29LeE5OQUhScGI4OUpWX1M0SlIwQi0zckFzTnY4YUg5Z203XzZLNmtCcGVXLWtSR3ktX2xtQ09MbnpiQ2psZkNGdG1Z0gGIAkFVX3lxTE1FUy0xUnlyR2R4WTFBeGRfNTFnYkdWYzREeWhiWDF2bHRDN2NiTWpoU2Q3d212S0dSVWZGaG45Vk0wOHMtYmxpblpHMVNfQ0JUcXJMZlZpSG01MEVSMVBHeGh4QXotaHJrQ19CSkRqMlR2MVJRdlc3Rk5GQldtX2NibWZzajJseWdSYTZBbjBkOWQtUFhaZjlDcnpGQmpTeTJ5eU4zcHBYRW9ZMnZkcmFDcTkwdTRNWi00OUVJdzJQLWVZU181eF9yNlk5blpFOXVPU09tNDBmUlFiLTc5OUUwdVYzU0ZJSFVoOUpzX29vMF9RMkZ2N2h2WFVrOFY1TG45WnpydkpZUQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US government to consider adding $100,000 bond to Green Card applications for those seeking ... - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPY2lvSi02dzdHR2dJX3ktRVI4TG1WdENYMGUzM0NZQm9tMVBJdTVrdU1DNTZTMVdpd2RUR0tjUWlkQ096Ul9rUWphal9PY1A1cm9STEtIME5mQjY1eDhwcHNFcHRzRnMzSkxfV1Q4S1NxRzY5X1RmWkVBeWxJak5TNzg3ZDFmd2w3S0VzWUlXM2MxRGhlS3BYWjNRZllDeEhqdzhPV2dia2x3aUtxcDBQMWk4NnVuUzltNGZ4ejROS29LeE5OQUhScGI4OUpWX1M0SlIwQi0zckFzTnY4YUg5Z203XzZLNmtCcGVXLWtSR3ktX2xtQ09MbnpiQ2psZkNGdG1Z0gGIAkFVX3lxTE1FUy0xUnlyR2R4WTFBeGRfNTFnYkdWYzREeWhiWDF2bHRDN2NiTWpoU2Q3d212S0dSVWZGaG45Vk0wOHMtYmxpblpHMVNfQ0JUcXJMZlZpSG01MEVSMVBHeGh4QXotaHJrQ19CSkRqMlR2MVJRdlc3Rk5GQldtX2NibWZzajJseWdSYTZBbjBkOWQtUFhaZjlDcnpGQmpTeTJ5eU4zcHBYRW9ZMnZkcmFDcTkwdTRNWi00OUVJdzJQLWVZU181eF9yNlk5blpFOXVPU09tNDBmUlFiLTc5OUUwdVYzU0ZJSFVoOUpzX29vMF9RMkZ2N2h2WFVrOFY1TG45WnpydkpZUQ?oc=5",
+          "source": "The Times of India"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The potential addition of a $100,000 bond to Green Card applications is a significant immigration policy change that directly affects the Indian diaspora."
+    },
+    {
+      "title": "The Boardroom Debate That Led to IBM\u2019s Historic 25% Stock Plunge | The 10-Point for July 17 - WSJ",
+      "description": "The Boardroom Debate That Led to IBM\u2019s Historic 25% Stock Plunge | The 10-Point for July 17; IBM\u2019s Warning Is a \u2018Hammer\u2019 Slamming Down on Tech\u2019s AI Outsiders; IBM Shares Crashed 25% In Worst Day Ever\u2014Here\u2019s Why; IBM\u2019s Stock Crash Reignites Fears of A.I. Disruption in Software Sector; After an Epic Fall, IBM Faces a Long Road Back to Relevance",
+      "category": "markets-finance",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-07-17T09:58:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVklxSk9ja0wzZHJBYVRjc2RFakdKTC1JQ3pBbnFiVVdYTjAweDY3Ui1sVDI3SG9OVmVCVXNKSWNjMVZEdjlHRWEySG5peE4yX1hiLTBocHpzNjNkOWstQkNQZWpnZTlxcXRZenhmRHpyaGV6YVRLb2U3dXFJZE13YlJUaDlFV1V1emd3TlJjSVd1MERIUGxIbjhJU25OQzBjS01hU2N2UUROdWk1OVE?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "The Boardroom Debate That Led to IBM\u2019s Historic 25% Stock Plunge | The 10-Point for July 17 - WSJ",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVklxSk9ja0wzZHJBYVRjc2RFakdKTC1JQ3pBbnFiVVdYTjAweDY3Ui1sVDI3SG9OVmVCVXNKSWNjMVZEdjlHRWEySG5peE4yX1hiLTBocHpzNjNkOWstQkNQZWpnZTlxcXRZenhmRHpyaGV6YVRLb2U3dXFJZE13YlJUaDlFV1V1emd3TlJjSVd1MERIUGxIbjhJU25OQzBjS01hU2N2UUROdWk1OVE?oc=5",
+          "source": "WSJ"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "IBM's stock plunge is significant news that could impact the tech industry and investors, including Indian professionals."
+    },
+    {
+      "title": "Stocks drop on deepening semiconductor rout; oil set for weekly gain By Reuters - Investing.com",
+      "description": "Stocks drop on deepening semiconductor rout; oil set for weekly gain By Reuters; S&P 500 and Nasdaq futures drop as chipmaker sell-off intensifies; Netflix slides 11%: Live updates; Stock Market Today: Nasdaq Drops as Chip Selloff Deepens \u2014 Live Updates; Global stocks drop on growing semiconductor rout; oil set for weekly gain; US Stock-Index Futures Slide as Jitters Grow on Chip Selloff",
+      "category": "technology",
+      "signal_count": 6,
+      "source_diversity": 1,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-07-17T01:22:56+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaDdwODNUeXoyeFNPRUFsdU83S2phbUNNbGJ4d25rMHBUQm0zREhFd2E0Vk11dVlHVjQ5QWNaOG1YZEZxd3U1dHBhc0NNRU41dllDeHEzdWtrbG9GXzVhNWd5a2RYX3RnQkxrZ2wzSmlqZlRUOE1Wb3ZvajJMT3NDbHRxaDRvOTVjalhrOWFWWEZjd050dFpMTm4wR1VyTHJDM2F6U19xWlZDb3ZxQUtzZ0lPeTNSUkN1WU82Zm5JWDk?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Stocks drop on deepening semiconductor rout; oil set for weekly gain By Reuters - Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPaDdwODNUeXoyeFNPRUFsdU83S2phbUNNbGJ4d25rMHBUQm0zREhFd2E0Vk11dVlHVjQ5QWNaOG1YZEZxd3U1dHBhc0NNRU41dllDeHEzdWtrbG9GXzVhNWd5a2RYX3RnQkxrZ2wzSmlqZlRUOE1Wb3ZvajJMT3NDbHRxaDRvOTVjalhrOWFWWEZjd050dFpMTm4wR1VyTHJDM2F6U19xWlZDb3ZxQUtzZ0lPeTNSUkN1WU82Zm5JWDk?oc=5",
+          "source": "Investing.com"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The semiconductor market's decline impacts global economies, including India, which is relevant to the diaspora."
+    },
+    {
+      "title": "What Employers Need to Know About the Government\u2019s New H-1B and PERM Fraud Investigations",
+      "description": "The Trump Administration has announced a significant expansion of federal enforcement targeting alleged fraud and abuse in the H-1B and PERM\u00a0(labor certification application)\u00a0programs. The Department of Labor\u2019s Office of Inspector General (DOL-OIG) has confirmed that investigators have already issued dozens of subpoenas as part of a nationwide investigation into alleged visa fraud, labor trafficking, and abuse of foreign labor programs. According to DOL Inspector General Anthony D\u2019Esposito, inve",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-09T16:28:27+00:00",
+      "source_urls": [
+        "https://wolfsdorf.com/what-employers-need-to-know-about-the-governments-new-h-1b-and-perm-fraud-investigations/"
+      ],
+      "all_signals": [
+        {
+          "title": "What Employers Need to Know About the Government\u2019s New H-1B and PERM Fraud Investigations",
+          "url": "https://wolfsdorf.com/what-employers-need-to-know-about-the-governments-new-h-1b-and-perm-fraud-investigations/",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The expansion of H-1B and PERM fraud investigations directly impacts Indian professionals in the U.S."
+    },
+    {
+      "title": "The Fed holds interest rates steady as the economy faces deep uncertainty - NPR",
+      "description": "The Fed holds interest rates steady as the economy faces deep uncertainty\u00a0\u00a0NPR",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "maybe",
+      "newest_signal": "2026-03-18T07:00:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMioAFBVV95cUxNdjdJaWJSQVAzeDc1VnozdHNRbVZyNEFHZFE5bXFrYmRVOTNRSXVBVEY4c0tIT0pKcjVQSmtpN0MwTkhSLUozVWl3Q1I5djdVQ1RuMWxNU2V0SWtRSlBxZU8wTnFlTXhqVkZhUVlhcEVDeUtsVEhxWU10QmhCcE9maTFMVENZNWgxd0taZ0tkcXFRWWE2cjhObWtLdktYUl9H?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "The Fed holds interest rates steady as the economy faces deep uncertainty - NPR",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNdjdJaWJSQVAzeDc1VnozdHNRbVZyNEFHZFE5bXFrYmRVOTNRSXVBVEY4c0tIT0pKcjVQSmtpN0MwTkhSLUozVWl3Q1I5djdVQ1RuMWxNU2V0SWtRSlBxZU8wTnFlTXhqVkZhUVlhcEVDeUtsVEhxWU10QmhCcE9maTFMVENZNWgxd0taZ0tkcXFRWWE2cjhObWtLdktYUl9H?oc=5",
+          "source": "NPR"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The Fed's decision to hold interest rates steady is crucial for economic conditions affecting the diaspora."
+    },
+    {
+      "title": "CM looks to add Bollywood\u2019s grandeur to Lachit biopic, to approach director Aditya Dhar - The Times of India",
+      "description": "CM looks to add Bollywood\u2019s grandeur to Lachit biopic, to approach director Aditya Dhar\u00a0\u00a0The Times of India",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T16:03:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNN2pselM0YmF6b1lwSGJUUE9TQUpjTi1fUjlpaU5yRzNwaFppM05tWEdTaUJzQ0FxZXk2ZjBvcElyWl9VenFMMXdfa3d1aENtQTlEeFNCZ0Z2ZmlPQkVScVlFQzhadUd6MFJiNFJKb0hla2VrUTlxWGpaX0trX1VpdnFoV1F5MnhzcVFxb29vTXpiQm56UGROSFFlRi0wRjl1VTlWOENBYWtUTGxYRGF5NjdHQldNVGJRczN2Qk5CcFBUbS1rT0JWRlQzMEhnbmdWWTdCeUwtdkkyLW5vU1c3WjhtcnFoLVphbi03SVdESzVuUTTSAfgBQVVfeXFMTzN0a0NNNnpjdHMtSzZ1YlNZSS1OdzJja3ZZN1QxbEd2QVNoUVV5Z1prNWJ5N25KZHFzVGhJSHNna1pKVzRka1R5OHA5RlZLSzBPa0pKNkdrU0tISXY3YnctSVRsbjUyZEdXMHZ3TXJxdDdieHFybnlXTEJXZ1JfOUhwaUx4dFY4TEpZX016ellpdF9lV0J5ZzZwVHBJN090R2wyWmdNWGowX0VfZ2w1dzI2MXhxS0RfUjB1bmdUOHhObzRGMzlISDBsbjJFdGN5WVJQS2FTRVFtaUF5SEtuTm84M3ZrM2JUVVlIYTJUWXpkOGpmNS1DLWw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "CM looks to add Bollywood\u2019s grandeur to Lachit biopic, to approach director Aditya Dhar - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNN2pselM0YmF6b1lwSGJUUE9TQUpjTi1fUjlpaU5yRzNwaFppM05tWEdTaUJzQ0FxZXk2ZjBvcElyWl9VenFMMXdfa3d1aENtQTlEeFNCZ0Z2ZmlPQkVScVlFQzhadUd6MFJiNFJKb0hla2VrUTlxWGpaX0trX1VpdnFoV1F5MnhzcVFxb29vTXpiQm56UGROSFFlRi0wRjl1VTlWOENBYWtUTGxYRGF5NjdHQldNVGJRczN2Qk5CcFBUbS1rT0JWRlQzMEhnbmdWWTdCeUwtdkkyLW5vU1c3WjhtcnFoLVphbi03SVdESzVuUTTSAfgBQVVfeXFMTzN0a0NNNnpjdHMtSzZ1YlNZSS1OdzJja3ZZN1QxbEd2QVNoUVV5Z1prNWJ5N25KZHFzVGhJSHNna1pKVzRka1R5OHA5RlZLSzBPa0pKNkdrU0tISXY3YnctSVRsbjUyZEdXMHZ3TXJxdDdieHFybnlXTEJXZ1JfOUhwaUx4dFY4TEpZX016ellpdF9lV0J5ZzZwVHBJN090R2wyWmdNWGowX0VfZ2w1dzI2MXhxS0RfUjB1bmdUOHhObzRGMzlISDBsbjJFdGN5WVJQS2FTRVFtaUF5SEtuTm84M3ZrM2JUVVlIYTJUWXpkOGpmNS1DLWw?oc=5",
+          "source": "The Times of India"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The Bollywood biopic project connects to Indian culture and entertainment interests."
+    },
+    {
+      "title": "NRI reveals 5 things nobody warned her about working in India. The internet is divided - The Times of India",
+      "description": "NRI reveals 5 things nobody warned her about working in India. The internet is divided\u00a0\u00a0The Times of India",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:45:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeG5ZaUNldE9JRFZUUURvdlkxc21WRnptRHRDZ0tyYnhxbjRKa2t5SjAyaDR2blZidUE5SDY4NXN3cGQ4YXhqZEgtNENEZV9vakpQdVN2QVUtUVVDSDdUeGVQVF9jUmV6VFg4WDFZU1c2ZE9nSzh6ZllvTzd2WlN5akM1eWpFUXRGVXktSnZ1V2Q2VTljaVFZSjcyOUYzQmRsbzROUG1rU0wwdV9zWkMydnMxSUR5ZVRHRVRjWENIbFA4U1dOdUFwbGZyOTRiQTBkeENwUTdJYktpWGpBRDhJeHRoNlBoU01nVGdsd1Z2dTVHTDZHTWfSAfsBQVVfeXFMUGppNlpHSmNwVWczeHpCZFRCZXNkRzN0X2dqSFU4d0c2RTJ2SDZRUkxGVUxTRjZmeGh5Z0JKLWJTUkxBNUpYa19vWXdFZjdnMWV5SER4c0xXM2M0Y202R2xFaDVSUm1jcGdQajR2bG5TUzRLbUNpQlpVaHNES25xNVpMNEZNcDdYTDBuQk5kZWM3Z0tiQmNWT1NEOFlvdUc1LVNoRVUzR25WaHAzNUZySU1UYlN6WEd3amV0RUdIeVpJSTBYNzlpYXZHU0xxU1RRVmVhWmRwT09fbFE5U0VfLVBEWFlaaVJyU3I4XzBkZXBKT0xCSDNzT25qYzQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "NRI reveals 5 things nobody warned her about working in India. The internet is divided - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNeG5ZaUNldE9JRFZUUURvdlkxc21WRnptRHRDZ0tyYnhxbjRKa2t5SjAyaDR2blZidUE5SDY4NXN3cGQ4YXhqZEgtNENEZV9vakpQdVN2QVUtUVVDSDdUeGVQVF9jUmV6VFg4WDFZU1c2ZE9nSzh6ZllvTzd2WlN5akM1eWpFUXRGVXktSnZ1V2Q2VTljaVFZSjcyOUYzQmRsbzROUG1rU0wwdV9zWkMydnMxSUR5ZVRHRVRjWENIbFA4U1dOdUFwbGZyOTRiQTBkeENwUTdJYktpWGpBRDhJeHRoNlBoU01nVGdsd1Z2dTVHTDZHTWfSAfsBQVVfeXFMUGppNlpHSmNwVWczeHpCZFRCZXNkRzN0X2dqSFU4d0c2RTJ2SDZRUkxGVUxTRjZmeGh5Z0JKLWJTUkxBNUpYa19vWXdFZjdnMWV5SER4c0xXM2M0Y202R2xFaDVSUm1jcGdQajR2bG5TUzRLbUNpQlpVaHNES25xNVpMNEZNcDdYTDBuQk5kZWM3Z0tiQmNWT1NEOFlvdUc1LVNoRVUzR25WaHAzNUZySU1UYlN6WEd3amV0RUdIeVpJSTBYNzlpYXZHU0xxU1RRVmVhWmRwT09fbFE5U0VfLVBEWFlaaVJyU3I4XzBkZXBKT0xCSDNzT25qYzQ?oc=5",
+          "source": "The Times of India"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The experiences of NRIs working in India provide valuable insights for the diaspora community."
+    },
+    {
+      "title": "Bombay High Court Suggests OCI Cricketers Challenging BCCI's Passport Policy To Play For Home Country Or... - Live Law",
+      "description": "Bombay High Court Suggests OCI Cricketers Challenging BCCI's Passport Policy To Play For Home Country Or...\u00a0\u00a0Live Law",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:41:44+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQRjlfRkdBcDNCWkYxMGI4Qzl1ZklreGlsSDY1b1VWQUhvTFI5TlZnS1hxVFR6c0gtSDcyM2EwNnJscy1TemdzWVdROTBIWHhXWkY4QlRxRVY0eGdYTVFiUEw5Ymo3bG5zLXN4TnFDZkZkYlpBY01tLTNNVFpMeVJtcFBxQzVOcW9YUm9SWDFLZnNfeWt3Q2g2dG9DTkJYeFBxbW1HUXNydGllTFY0OW1GSTBGVDlneEx0YTMxM0ZPUDRwUdIBxwFBVV95cUxOakhNU2E2MmhrTV9NSmk3SDd6SFc2dThqa25oT2VpVUtNSXYzY3FOQW1rLXJiMG5XM25PeWdUV2w4UXV6a0hETEtMZ3RQMXhNUjRtTHJraE54bUgzT1pqdWRrM1hiaXIwT0tVc0diY2ZsaDlCWUEyMUloSDhIc2JDYWlGajd5WGFicV9QNXE3eVZ6LUgxLVNhcktBS3hvUmxsRlhOUGFOUDFuR0hodHA3dDlyNW5UMWVfS0tpX2RULUh2LXJlMzg0?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Bombay High Court Suggests OCI Cricketers Challenging BCCI's Passport Policy To Play For Home Country Or... - Live Law",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQRjlfRkdBcDNCWkYxMGI4Qzl1ZklreGlsSDY1b1VWQUhvTFI5TlZnS1hxVFR6c0gtSDcyM2EwNnJscy1TemdzWVdROTBIWHhXWkY4QlRxRVY0eGdYTVFiUEw5Ymo3bG5zLXN4TnFDZkZkYlpBY01tLTNNVFpMeVJtcFBxQzVOcW9YUm9SWDFLZnNfeWt3Q2g2dG9DTkJYeFBxbW1HUXNydGllTFY0OW1GSTBGVDlneEx0YTMxM0ZPUDRwUdIBxwFBVV95cUxOakhNU2E2MmhrTV9NSmk3SDd6SFc2dThqa25oT2VpVUtNSXYzY3FOQW1rLXJiMG5XM25PeWdUV2w4UXV6a0hETEtMZ3RQMXhNUjRtTHJraE54bUgzT1pqdWRrM1hiaXIwT0tVc0diY2ZsaDlCWUEyMUloSDhIc2JDYWlGajd5WGFicV9QNXE3eVZ6LUgxLVNhcktBS3hvUmxsRlhOUGFOUDFuR0hodHA3dDlyNW5UMWVfS0tpX2RULUh2LXJlMzg0?oc=5",
+          "source": "Live Law"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The Bombay High Court's suggestion regarding OCI cricketers is relevant to Indian sports and diaspora interests."
+    },
+    {
+      "title": "Juneau\u2019s Spice Indian restaurant is up for sale - Juneau Independent",
+      "description": "Juneau\u2019s Spice Indian restaurant is up for sale\u00a0\u00a0Juneau Independent",
+      "category": "food",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:21:46+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMijwFBVV95cUxNLWVPOHZWMFo2OTdMUkhlRlVfdlU1WW9HZTFUZktnVE12emNWd2pZU1ZqZ084eDgxMzZfWF96bmlhaElySDI0eGdNbm1JY1BIemFEWE1ncEpwcUd3YUZubTQ0WW9WZEQ4V2ZfVjMzZmVwOFBoZlNoNUpXQWJ4TjJfNDNqZjNzdkdwamZLSTE5MA?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Juneau\u2019s Spice Indian restaurant is up for sale - Juneau Independent",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNLWVPOHZWMFo2OTdMUkhlRlVfdlU1WW9HZTFUZktnVE12emNWd2pZU1ZqZ084eDgxMzZfWF96bmlhaElySDI0eGdNbm1JY1BIemFEWE1ncEpwcUd3YUZubTQ0WW9WZEQ4V2ZfVjMzZmVwOFBoZlNoNUpXQWJ4TjJfNDNqZjNzdkdwamZLSTE5MA?oc=5",
+          "source": "Juneau Independent"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The sale of an Indian restaurant in Juneau is of interest to food enthusiasts and the diaspora."
+    },
+    {
+      "title": "Indian American candidate announces bid to replace Graham Platner - Yahoo",
+      "description": "Indian American candidate announces bid to replace Graham Platner\u00a0\u00a0Yahoo",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-07-17T15:14:32+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLUtXaU1jZ1I3ZkhpY1NDNnFKTnNNMjFLWmtSdk5SZFAxSzVacGtZZmk0Qm5LYktsYjZsR0hBQjdsbXdZd0dqZmUzTVBFZlhPb2poeXFsVWMwQlAzZmRsWTJXRVNGUEt2SVhmYTZKSVh1MHZibzZwZVR4cE5kSmhQUHVTQ0V1NlNReTJaeTI0TjM3U19oR2lzdy1aMjhsQ0Jw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Indian American candidate announces bid to replace Graham Platner - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOLUtXaU1jZ1I3ZkhpY1NDNnFKTnNNMjFLWmtSdk5SZFAxSzVacGtZZmk0Qm5LYktsYjZsR0hBQjdsbXdZd0dqZmUzTVBFZlhPb2poeXFsVWMwQlAzZmRsWTJXRVNGUEt2SVhmYTZKSVh1MHZibzZwZVR4cE5kSmhQUHVTQ0V1NlNReTJaeTI0TjM3U19oR2lzdy1aMjhsQ0Jw?oc=5",
+          "source": "Yahoo"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The announcement of an Indian American candidate is significant for representation in US politics."
+    },
+    {
+      "title": "The furious dispute over what caused Air India flight 171 to crash - BBC",
+      "description": "The furious dispute over what caused Air India flight 171 to crash\u00a0\u00a0BBC",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "diaspora_keyword": "yes",
+      "newest_signal": "2026-06-10T07:00:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1OTWtlXzBIZ0diNnktY0pweTdYLWtPVHdyaVF4WUhPc2NiOWtRdjNRZk5pa3FMY3VyVmd0aVRQb3Z2T2dSQmtPdXZyTm9qZlUydDdjSlBOSWh2QQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "The furious dispute over what caused Air India flight 171 to crash - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1OTWtlXzBIZ0diNnktY0pweTdYLWtPVHdyaVF4WUhPc2NiOWtRdjNRZk5pa3FMY3VyVmd0aVRQb3Z2T2dSQmtPdXZyTm9qZlUydDdjSlBOSWh2QQ?oc=5",
+          "source": "BBC"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The dispute over the cause of the Air India flight crash is a significant issue that affects public trust in airline safety."
+    }
+  ]
+}
