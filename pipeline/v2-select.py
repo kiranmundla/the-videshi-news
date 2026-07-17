@@ -104,9 +104,10 @@ CATEGORY_KEYWORDS = {
         "disney","streaming","concert","award show",
     ],
     "markets-finance": [
-        "market","sensex","nifty","stock","gdp","rupee","rbi","nasdaq",
+        "market","sensex","nifty","stock","futures","gdp","rupee","rbi","nasdaq",
         "dow jones","s&p 500","earnings","fed ","inflation","ipo ",
         "cryptocurrency","bitcoin","wall street","banking","recession",
+        "shares","rally","slips","plunges","tumbles",
     ],
     "sports": [
         "cricket","ipl","sports","tennis","match","wicket","goal ",
@@ -124,11 +125,28 @@ CATEGORY_KEYWORDS = {
 }
 
 def detect_category(title):
-    t = title.lower()
+    t = " " + title.lower() + " "
+    # Score each category by number of keyword hits — highest wins
+    # Use word-boundary-aware matching to avoid substring false positives
+    scores = {}
     for cat, keywords in CATEGORY_KEYWORDS.items():
-        if any(kw in t for kw in keywords):
-            return cat
-    return "news"
+        hits = 0
+        for kw in keywords:
+            # Keywords ending with space are already boundary-aware
+            # Others need word boundary check
+            if kw.endswith(" "):
+                if kw in t:
+                    hits += 1
+            else:
+                # Check the keyword appears as a whole word (not a substring)
+                pattern = r'\b' + re.escape(kw.strip()) + r'\b'
+                if re.search(pattern, t):
+                    hits += 1
+        if hits > 0:
+            scores[cat] = hits
+    if not scores:
+        return "news"
+    return max(scores, key=scores.get)
 
 # ── Diaspora relevance keywords (fast pre-filter) ────────────────────────────
 
@@ -361,6 +379,8 @@ def main():
     # ── Cluster signals by story ──────────────────────────────────────────────
     print(f"\n── Clustering signals ──")
     clusters = {}
+    cluster_keywords = {}  # key -> union of all signal keywords in cluster
+
     for sig in signals:
         title = sig.get("title", "")
         if not title:
@@ -370,21 +390,25 @@ def main():
         sig_kw = title_keywords(title)
         if sig_kw and len(sig_kw) >= 2:
             best_overlap = 0
-            for key, cluster_sigs in clusters.items():
-                cluster_kw = title_keywords(cluster_sigs[0]["title"])
-                if not cluster_kw:
+            for key, ckw in cluster_keywords.items():
+                if not ckw:
                     continue
-                overlap = len(sig_kw & cluster_kw)
-                min_len = min(len(sig_kw), len(cluster_kw))
-                if min_len >= 2 and overlap / min_len >= 0.5 and overlap > best_overlap:
+                overlap = len(sig_kw & ckw)
+                # Compare against both the union of cluster keywords and individual signal keywords
+                # Use Jaccard-like: overlap / min(sig, cluster_representative) >= 0.4
+                rep_kw = title_keywords(clusters[key][0]["title"])
+                min_len = min(len(sig_kw), len(rep_kw)) if rep_kw else len(sig_kw)
+                if min_len >= 2 and overlap / min_len >= 0.4 and overlap > best_overlap:
                     best_overlap = overlap
                     match_key = key
 
         if match_key:
             clusters[match_key].append(sig)
+            cluster_keywords[match_key] |= sig_kw  # expand cluster keyword set
         else:
             key = re.sub(r'[^a-z0-9\s]', '', title.lower().strip())[:60]
             clusters.setdefault(key, []).append(sig)
+            cluster_keywords[key] = set(sig_kw)
 
     print(f"  {len(clusters)} clusters from {len(signals)} signals")
 
@@ -487,6 +511,25 @@ def main():
 
     # Sort by LLM score (highest first), then freshness, then signal count
     scored.sort(key=lambda x: (x.get("llm_score", 1), x["newest_signal"], x["signal_count"]), reverse=True)
+
+    # Deduplicate within candidates — remove near-duplicate stories
+    deduped = []
+    for c in scored:
+        c_kw = title_keywords(c["title"])
+        is_dup = False
+        for existing in deduped:
+            e_kw = title_keywords(existing["title"])
+            if c_kw and e_kw:
+                overlap = len(c_kw & e_kw)
+                min_len = min(len(c_kw), len(e_kw))
+                if min_len >= 2 and overlap / min_len >= 0.5:
+                    is_dup = True
+                    break
+        if not is_dup:
+            deduped.append(c)
+    if len(scored) != len(deduped):
+        print(f"  Deduped: {len(scored)} → {len(deduped)} (removed {len(scored) - len(deduped)} near-dupes)")
+    scored = deduped
 
     # Category balance: max 3 per category, min 1 per category if signals exist
     balanced = []
