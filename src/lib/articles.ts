@@ -118,7 +118,12 @@ function parseGalleryImages(raw: unknown): GalleryImage[] | null {
 
 function deriveExcerpt(subheadline: string | null, body: string): string {
   if (subheadline && subheadline.trim()) return subheadline.trim();
-  const plain = (body ?? "").replace(/[#*_>`~\-]+/g, "").trim();
+  // Strip HTML tags and markdown formatting, then take first ~220 chars of plain text
+  const plain = (body ?? "")
+    .replace(/<[^>]*>/g, " ")       // strip HTML tags
+    .replace(/[#*_>`~\-]+/g, "")    // strip markdown
+    .replace(/\s+/g, " ")           // collapse whitespace
+    .trim();
   if (!plain) return "";
   return plain.length > 220 ? plain.slice(0, 217).trimEnd() + "…" : plain;
 }
