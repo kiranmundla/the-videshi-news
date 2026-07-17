@@ -432,27 +432,39 @@ def get_candidate_topics():
 def get_recent_articles():
     """Get recent article headlines for dedup comparison."""
     sql = f"""
-    SELECT headline, slug, category FROM p2_articles
+    SELECT headline, subheadline, slug, category FROM p2_articles
     WHERE published_at > now() - interval '{DEDUP_HOURS} hours'
       AND status IN ('published', 'review')
     ORDER BY published_at DESC
-    LIMIT 100
+    LIMIT 200
     """
     return sb_query(sql) or []
 
 
 def check_duplicate(topic_title, recent_articles, threshold=3):
-    """Check if a topic is already covered by a recent article."""
+    """Check if a topic is already covered by a recent article.
+    
+    Returns the matched article headline if duplicate, else None.
+    Uses category-aware matching: within the same category, threshold is lower (2).
+    Checks both headline and subheadline for broader coverage detection.
+    """
     topic_kw = set(extract_keywords(topic_title))
     if not topic_kw:
-        return False
+        return None
 
     for art in recent_articles:
-        art_kw = set(extract_keywords(art.get('headline', '')))
+        # Combine headline + subheadline keywords for the article
+        art_text = art.get('headline', '')
+        sub = art.get('subheadline', '')
+        if sub:
+            art_text += ' ' + sub
+        art_kw = set(extract_keywords(art_text))
         overlap = topic_kw & art_kw
+
         if len(overlap) >= threshold:
-            return True
-    return False
+            return art.get('headline', 'unknown')
+
+    return None
 
 
 # ── Step 2: LLM evaluation ──────────────────────────────────────────────────
@@ -465,8 +477,9 @@ def evaluate_topics(topics, recent_articles):
     filtered = []
     for t in topics:
         title = t.get('canonical_title', '')
-        if check_duplicate(title, recent_articles):
-            print(f"  SKIP (duplicate): {title[:60]}")
+        dup_match = check_duplicate(title, recent_articles)
+        if dup_match:
+            print(f"  SKIP (duplicate of \"{dup_match[:40]}\"): {title[:60]}")
             continue
         filtered.append(t)
 
@@ -645,13 +658,19 @@ def write_article(topic):
 
 TODAY'S DATE: {today_str}. All events described are current unless explicitly historical. Do NOT invent dates, quotes, or statistics. If you are unsure of a specific date, score, or detail, omit it rather than fabricate it. NEVER reference dates from past years (2023, 2024, 2025) for current events.
 
+COPYRIGHT & SYNTHESIS RULES (critical — violations destroy the publication):
+- Extract FACTS ONLY from source articles: numbers, dates, names, events, outcomes. NEVER copy sentences, phrases, or paraphrased paragraphs from any source. Every sentence must be your original prose.
+- SYNTHESIZE across multiple sources to build a more complete picture than any single source provides. Do not rewrite one wire story — combine facts from all available references.
+- ADD CONTEXT the sources don't provide: who the person/company is, historical background, relevant public statistics (e.g., "India's IT sector employs 5.4 million people" for a tech layoff story, or "H-1B visa applications hit 780,000 in FY2025" for an immigration story). Use widely-known public facts to enrich the article.
+- The finished article must be MORE USEFUL than any single source. A reader who already read Reuters should learn something new from your piece — broader context, clearer data, diaspora perspective.
+
 Write a complete article about:
 
 TOPIC: {title}
 
 CATEGORY: {category}
 
-SOURCE REFERENCES (use these as basis — cite at least 2 of them):
+SOURCE REFERENCES (extract facts from these — cite at least 2, but write entirely original prose):
 {source_context if source_context else "Research the topic using your knowledge."}
 
 REQUIREMENTS:
@@ -684,13 +703,16 @@ REQUIREMENTS:
     If no meaningful stats exist, return an EMPTY array []. Do not force cards with generic filler.
 
 STYLE GUIDE:
-- Write like The Economist or Bloomberg, not like a blog
-- Lead with the news, then context, then analysis
-- Include specific numbers, names, dates where relevant
+- Write like The Economist or Bloomberg — authoritative, precise, data-rich. Not a blog, not a press release.
+- Lead with the news (what happened), then context (why it matters), then analysis (what comes next).
+- Include specific numbers, names, dates, and data points throughout. Vague claims like "significant growth" are unacceptable — find the number or omit the claim.
+- Every article must contain at least 3 concrete data points (percentages, dollar amounts, counts, dates). Pull these from the source facts AND from public knowledge to enrich the piece.
+- NEVER open with "In a significant development..." or "In a major move..." or any similar throat-clearing. Start with the news itself.
+- No filler phrases, no promotional language, no rhetorical questions in headlines.
 - For markets-finance: if the story is about major US/global companies (earnings, stock moves), US market indices (S&P 500, Nasdaq, Dow), Fed decisions, US inflation, jobs data, housing, or mortgage rates — write it as straight financial journalism for a US-based audience. Do NOT add "here's what it means for NRIs" or "diaspora perspective" paragraphs. Do NOT mention NRIs, remittances, or Indians abroad. These stories are inherently relevant to readers who live and invest in the US. Only add a diaspora angle when the story is about Indian markets (Sensex, RBI, rupee) and the NRI connection genuinely needs explaining.
-- For other categories: add a clear diaspora angle — how does this affect Indians abroad?
+- For other categories: weave in diaspora context naturally where it adds value. Don't force a "why NRIs should care" section — if the connection is obvious (H-1B policy change), the article speaks for itself. Add it when it's not obvious (a tech layoff's impact on H-1B workers, or an Indian food trend reaching US cities).
 - Use ## for section headers, not #
-- No "In conclusion" or "In summary" — end with impact or forward-looking point
+- No "In conclusion" or "In summary" — end with impact, a forward-looking point, or what to watch next
 
 Return a single JSON object with all these fields."""
 
