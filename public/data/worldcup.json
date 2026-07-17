@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-16T17:00:00-07:00",
-  "stage": "Final / Third Place",
+  "last_updated": "2026-07-17T01:59:05Z",
+  "stage": "Group Stage — 102 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -2679,40 +2679,38 @@
       ]
     },
     "third_place": {
-      "date": "July 18",
-      "venue": "Hard Rock Stadium, Miami",
-      "match": {
-        "match_num": 103,
-        "date": "2026-07-18",
-        "time": "17:00",
-        "tz": "ET",
-        "venue": "Hard Rock Stadium, Miami",
-        "home": "France",
-        "home_code": "FRA",
-        "away": "England",
-        "away_code": "ENG",
-        "status": "scheduled",
-        "score": null
-      }
+      "matches": [
+        {
+          "match_num": 103,
+          "date": "2026-07-18",
+          "time": "17:00",
+          "tz": "ET",
+          "venue": "Hard Rock Stadium, Miami Gardens, FL",
+          "home": "France",
+          "home_code": "FRA",
+          "away": "England",
+          "away_code": "ENG",
+          "status": "scheduled",
+          "score": null
+        }
+      ]
     },
     "final": {
-      "date": "July 19",
-      "venue": "MetLife Stadium, New York/New Jersey",
-      "time": "15:00",
-      "tz": "ET",
-      "match": {
-        "match_num": 104,
-        "date": "2026-07-19",
-        "time": "15:00",
-        "tz": "ET",
-        "venue": "MetLife Stadium, New York/New Jersey",
-        "home": "Spain",
-        "home_code": "ESP",
-        "away": "Argentina",
-        "away_code": "ARG",
-        "status": "scheduled",
-        "score": null
-      }
+      "matches": [
+        {
+          "match_num": 104,
+          "date": "2026-07-19",
+          "time": "15:00",
+          "tz": "ET",
+          "venue": "MetLife Stadium, East Rutherford, NJ",
+          "home": "Spain",
+          "home_code": "ESP",
+          "away": "Argentina",
+          "away_code": "ARG",
+          "status": "scheduled",
+          "score": null
+        }
+      ]
     }
   },
   "highlights": [
@@ -11956,6 +11954,18 @@
     {
       "platform": "threads",
       "url": "https://www.threads.com/@fifaworldcup/post/Da1U4e1jOLM",
+      "account": "@fifaworldcup",
+      "date": "2026-07-16"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Da34OxZgkk9",
+      "account": "@fifaworldcup",
+      "date": "2026-07-16"
+    },
+    {
+      "platform": "threads",
+      "url": "https://www.threads.com/@fifaworldcup/post/Da3_FBkgIye",
       "account": "@fifaworldcup",
       "date": "2026-07-16"
     }
