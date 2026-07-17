@@ -99,13 +99,19 @@ def sb_post(endpoint, data, upsert=False):
         try:
             cmd = ["curl", "-sS", "--max-time", "30", "-X", "POST", url] + headers + ["-d", f"@{tmp_path}"]
             r = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
-            return r.returncode == 0 and r.stdout.strip() in ("", "[]")
+            ok = r.returncode == 0 and r.stdout.strip() in ("", "[]")
+            if not ok:
+                print(f"    ⚠️  sb_post {endpoint} FAIL (large): rc={r.returncode} body={r.stdout[:300]}")
+            return ok
         finally:
             os.unlink(tmp_path)
     else:
         cmd = ["curl", "-sS", "--max-time", "20", "-X", "POST", url] + headers + ["-d", payload]
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
-        return r.returncode == 0 and r.stdout.strip() in ("", "[]")
+        ok = r.returncode == 0 and r.stdout.strip() in ("", "[]")
+        if not ok:
+            print(f"    ⚠️  sb_post {endpoint} FAIL: rc={r.returncode} body={r.stdout[:300]}")
+        return ok
 
 
 def flush_to_db(new_topics, signals, topic_signal_counts, label=""):
@@ -150,8 +156,11 @@ def flush_to_db(new_topics, signals, topic_signal_counts, label=""):
                     row.pop("feed_source_id", None)
                 if row.get("image_url") is None:
                     row.pop("image_url", None)
-            if sb_post("p2_signals", batch, upsert=True):
+            ok = sb_post("p2_signals", batch, upsert=True)
+            if ok:
                 signals_written += len(batch)
+            else:
+                print(f"    ⚠️  Signal batch {i}-{i+len(batch)} FAILED (sb_post returned False)")
 
     if topics_written or signals_written:
         print(f"    💾 DB flush{' ('+label+')' if label else ''}: {topics_written} topics, {signals_written} signals")
