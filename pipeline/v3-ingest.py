@@ -148,14 +148,18 @@ def flush_to_db(new_topics, signals, topic_signal_counts, label=""):
 
     # Insert signals (upsert to skip dupes)
     if signals:
+        # Normalize keys — PostgREST PGRST102 requires all objects to have the same keys
+        all_keys = set()
+        for row in signals:
+            all_keys.update(row.keys())
+        for row in signals:
+            for k in all_keys:
+                if k not in row:
+                    row[k] = None
+
         BATCH = 50
         for i in range(0, len(signals), BATCH):
             batch = signals[i:i+BATCH]
-            for row in batch:
-                if row.get("feed_source_id") is None:
-                    row.pop("feed_source_id", None)
-                if row.get("image_url") is None:
-                    row.pop("image_url", None)
             ok = sb_post("p2_signals", batch, upsert=True)
             if ok:
                 signals_written += len(batch)
