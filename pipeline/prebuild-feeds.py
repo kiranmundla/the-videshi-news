@@ -66,7 +66,7 @@ P2_COLS = (
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
-    "google_cluster_size,signal_count,focal_x,focal_y"
+    "google_cluster_size,signal_count,focal_x,focal_y,llm_score"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (
@@ -74,7 +74,7 @@ P2_COLS_NO_BODY = (
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
-    "google_cluster_size,signal_count,focal_x,focal_y"
+    "google_cluster_size,signal_count,focal_x,focal_y,llm_score"
 )
 
 # Homepage section config (mirrors Index.tsx constants)
@@ -263,7 +263,11 @@ def _compute_display_score(row: dict) -> float:
     if article_type in ("follow-up", "analysis"):
         followup_penalty = -15.0
 
-    return nw + prom + di + freshness + breaking_bonus + followup_penalty
+    # LLM importance boost: 0-25 points based on llm_score (0-5)
+    llm = row.get("llm_score") or 0
+    llm_boost = llm * 5.0  # score 5 = 25pts, score 3 = 15pts
+
+    return nw + prom + di + freshness + breaking_bonus + followup_penalty + llm_boost
 
 
 def map_row(row: dict) -> dict:
@@ -358,11 +362,12 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
             return [article_without_body(a) for a in wider[:limit]]
         return [article_without_body(a) for a in recent[:limit]]
 
-    # Featured article: most recent 24h with image and highest score
+    # Featured article: most recent 24h with image and highest LLM importance score
     since_24h = (now - timedelta(hours=24)).isoformat()
     recent_24h = [a for a in articles if a["published_at"] >= since_24h]
-    # Sort by Google cluster size (biggest story), freshness as tiebreaker
+    # Sort by LLM score first, then Google cluster size, freshness as tiebreaker
     recent_24h.sort(key=lambda a: (
+        a.get("llm_score") or 0,
         a.get("google_cluster_size") or 0,
         a.get("event_at") or a["published_at"],
     ), reverse=True)
