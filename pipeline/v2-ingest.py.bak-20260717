@@ -72,11 +72,9 @@ def sb_get(endpoint, params=None, range_header=None):
     except:
         return []
 
-def sb_post(endpoint, data, upsert=False, on_conflict_col="url_hash"):
+def sb_post(endpoint, data, upsert=False):
     """POST to Supabase REST API via curl."""
     url = f"{SB_URL}/rest/v1/{endpoint}"
-    if upsert:
-        url += f"?on_conflict={on_conflict_col}"
     prefer = "return=minimal"
     headers = [
         "-H", f"apikey: {SB_KEY}",
@@ -85,6 +83,7 @@ def sb_post(endpoint, data, upsert=False, on_conflict_col="url_hash"):
     ]
     if upsert:
         prefer += ", resolution=merge-duplicates"
+        headers += ["-H", "on-conflict: url_hash"]
     cmd = ["curl", "-sS", "--max-time", "20", "-X", "POST", url,
            *headers,
            "-H", f"Prefer: {prefer}",

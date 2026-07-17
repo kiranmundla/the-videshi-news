@@ -77,6 +77,7 @@ def sb_get(endpoint, params=None, range_header=None):
         return []
 
 def sb_post(endpoint, data, upsert=False):
+    """Post data to Supabase. Uses temp file for large payloads."""
     url = f"{SB_URL}/rest/v1/{endpoint}"
     prefer = "return=minimal"
     headers = [
@@ -89,9 +90,73 @@ def sb_post(endpoint, data, upsert=False):
         headers += ["-H", f"on-conflict: url_hash"]
         headers += ["-H", "Prefer: resolution=ignore-duplicates,return=minimal"]
     payload = json.dumps(data)
-    cmd = ["curl", "-sS", "--max-time", "20", "-X", "POST", url] + headers + ["-d", payload]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
-    return r.returncode == 0 and r.stdout.strip() in ("", "[]")
+    # Use temp file for large payloads
+    import tempfile
+    if len(payload) > 50000:
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
+            tmp.write(payload)
+            tmp_path = tmp.name
+        try:
+            cmd = ["curl", "-sS", "--max-time", "30", "-X", "POST", url] + headers + ["-d", f"@{tmp_path}"]
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
+            return r.returncode == 0 and r.stdout.strip() in ("", "[]")
+        finally:
+            os.unlink(tmp_path)
+    else:
+        cmd = ["curl", "-sS", "--max-time", "20", "-X", "POST", url] + headers + ["-d", payload]
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
+        return r.returncode == 0 and r.stdout.strip() in ("", "[]")
+
+
+def flush_to_db(new_topics, signals, topic_signal_counts, label=""):
+    """Write a batch of topics + signals to DB immediately. Returns counts."""
+    if DRY_RUN:
+        return len(new_topics), len(signals)
+
+    topics_written = 0
+    signals_written = 0
+
+    # Insert new topics
+    if new_topics:
+        topic_rows = []
+        for t in new_topics:
+            count = topic_signal_counts.get(t["id"], 0)
+            topic_rows.append({
+                "id": t["id"],
+                "canonical_title": t["canonical_title"],
+                "vertical": "general",
+                "keywords": [],
+                "status": "pending",
+                "signal_count": count,
+                "created_at": NOW_ISO,
+                "updated_at": NOW_ISO,
+                "last_signal_at": NOW_ISO,
+                "lifecycle": "emerging",
+                "source_types": ["google_news", "rss"],
+            })
+        BATCH = 50
+        for i in range(0, len(topic_rows), BATCH):
+            batch = topic_rows[i:i+BATCH]
+            if sb_post("p2_topics", batch):
+                topics_written += len(batch)
+
+    # Insert signals (upsert to skip dupes)
+    if signals:
+        BATCH = 50
+        for i in range(0, len(signals), BATCH):
+            batch = signals[i:i+BATCH]
+            for row in batch:
+                if row.get("feed_source_id") is None:
+                    row.pop("feed_source_id", None)
+                if row.get("image_url") is None:
+                    row.pop("image_url", None)
+            if sb_post("p2_signals", batch, upsert=True):
+                signals_written += len(batch)
+
+    if topics_written or signals_written:
+        print(f"    💾 DB flush{' ('+label+')' if label else ''}: {topics_written} topics, {signals_written} signals")
+
+    return topics_written, signals_written
 
 def sb_patch(endpoint, data, match_params):
     url = f"{SB_URL}/rest/v1/{endpoint}"
@@ -379,12 +444,17 @@ def call_gpt(messages, max_tokens=4000, retries=2):
                 return json.loads(content), cost
             except Exception as e:
                 if attempt < retries:
-                    print(f"  ⚠ GPT attempt {attempt+1} failed: {e}, retrying...")
-                    time.sleep(2)
+                    wait = 5 * (attempt + 1)  # 5s, 10s backoff
+                    print(f"  ⚠ GPT attempt {attempt+1} failed: {e}, retrying in {wait}s...")
+                    if not r.stdout:
+                        print(f"    (empty response, stderr: {r.stderr[:200]})")
+                    time.sleep(wait)
                     continue
                 print(f"  ⚠ GPT error after {retries+1} attempts: {e}")
                 if r.stdout:
                     print(f"    Response: {r.stdout[:300]}")
+                else:
+                    print(f"    (empty response, stderr: {r.stderr[:200]})")
                 return None, 0
     finally:
         os.unlink(tmp_path)
@@ -664,16 +734,14 @@ def main():
     # ── Step 6: Process Google News clusters ──────────────────────────────────
     #    Each cluster becomes/merges-into a topic. Sub-articles become signals.
     print(f"\n── Step 6: Processing Google News clusters ──")
-    all_new_topics = []  # topics to create
-    all_signals_to_insert = []  # signals to insert
-    topic_signal_counts = {}  # topic_id → count of signals added
     total_gpt_cost = 0
+    total_topics_written = 0
+    total_signals_written = 0
 
     # First, use GPT to match Google cluster lead articles to existing topics
     if google_clusters:
         gn_match_map, gn_new_topics, cost = match_signals_to_topics(google_clusters, existing_topics)
         total_gpt_cost += cost
-        all_new_topics.extend(gn_new_topics)
 
         # Add new topics to existing_topics so standalone signals can match against them
         for nt in gn_new_topics:
@@ -683,13 +751,15 @@ def main():
         print(f"  Created {len(gn_new_topics)} new topics from Google clusters")
 
         # Build signals from clusters
+        gn_signals = []
+        gn_topic_counts = {}
         for i, cluster in enumerate(google_clusters):
             topic_id = gn_match_map.get(i)
             if not topic_id:
                 continue
 
             # Lead article signal
-            all_signals_to_insert.append({
+            gn_signals.append({
                 "title": cluster["title"][:500],
                 "original_url": cluster["url"][:2000],
                 "url_hash": cluster["_hash"],
@@ -703,7 +773,7 @@ def main():
                 "feed_source_id": cluster.get("feed_id"),
                 "image_url": (cluster.get("image_url") or "")[:2000] or None,
             })
-            topic_signal_counts[topic_id] = topic_signal_counts.get(topic_id, 0) + 1
+            gn_topic_counts[topic_id] = gn_topic_counts.get(topic_id, 0) + 1
 
             # Sub-article signals (same topic_id)
             for sub in cluster.get("sub_articles", []):
@@ -711,7 +781,7 @@ def main():
                 if sh in existing_hashes or sh in seen:
                     continue
                 seen[sh] = True
-                all_signals_to_insert.append({
+                gn_signals.append({
                     "title": sub["title"][:500],
                     "original_url": sub["url"][:2000],
                     "url_hash": sh,
@@ -723,26 +793,32 @@ def main():
                     "google_cluster_size": 1,
                     "topic_id": topic_id,
                 })
-                topic_signal_counts[topic_id] = topic_signal_counts.get(topic_id, 0) + 1
+                gn_topic_counts[topic_id] = gn_topic_counts.get(topic_id, 0) + 1
+
+        # 💾 Flush Google cluster data to DB immediately
+        tw, sw = flush_to_db(gn_new_topics, gn_signals, gn_topic_counts, "google clusters")
+        total_topics_written += tw
+        total_signals_written += sw
 
     # ── Step 7: Process standalone signals (RSS/email) ────────────────────────
     print(f"\n── Step 7: Processing standalone signals ──")
     if standalone_signals:
         ss_match_map, ss_new_topics, cost = match_signals_to_topics(standalone_signals, existing_topics)
         total_gpt_cost += cost
-        all_new_topics.extend(ss_new_topics)
 
         matched_existing = sum(1 for i, v in ss_match_map.items()
                               if v not in {t['id'] for t in ss_new_topics})
         print(f"  GPT matched {matched_existing} to existing topics")
         print(f"  Created {len(ss_new_topics)} new topics from RSS/email")
 
+        ss_signals = []
+        ss_topic_counts = {}
         for i, sig in enumerate(standalone_signals):
             topic_id = ss_match_map.get(i)
             if not topic_id:
                 continue
 
-            all_signals_to_insert.append({
+            ss_signals.append({
                 "title": sig["title"][:500],
                 "original_url": sig["url"][:2000],
                 "url_hash": sig["_hash"],
@@ -755,91 +831,21 @@ def main():
                 "topic_id": topic_id,
                 "feed_source_id": sig.get("feed_id"),
             })
-            topic_signal_counts[topic_id] = topic_signal_counts.get(topic_id, 0) + 1
+            ss_topic_counts[topic_id] = ss_topic_counts.get(topic_id, 0) + 1
+
+        # 💾 Flush standalone signal data to DB immediately
+        tw, sw = flush_to_db(ss_new_topics, ss_signals, ss_topic_counts, "RSS/email")
+        total_topics_written += tw
+        total_signals_written += sw
 
     print(f"\n  Total GPT cost: ${total_gpt_cost:.4f}")
-
-    # ── Step 8: Write to DB ───────────────────────────────────────────────────
-    print(f"\n── Step 8: Writing to DB ──")
-    print(f"  New topics to create: {len(all_new_topics)}")
-    print(f"  Signals to insert: {len(all_signals_to_insert)}")
-
-    if DRY_RUN:
-        print(f"  [DRY RUN] Skipping DB writes")
-        for t in all_new_topics[:5]:
-            print(f"    Topic: {t['canonical_title'][:80]}")
-        for s in all_signals_to_insert[:5]:
-            print(f"    Signal: {s['title'][:80]} → topic {s['topic_id'][:8]}...")
-    else:
-        # Insert new topics
-        if all_new_topics:
-            topic_rows = []
-            for t in all_new_topics:
-                count = topic_signal_counts.get(t["id"], 0)
-                topic_rows.append({
-                    "id": t["id"],
-                    "canonical_title": t["canonical_title"],
-                    "status": "pending",
-                    "signal_count": count,
-                    "created_at": NOW_ISO,
-                    "updated_at": NOW_ISO,
-                    "last_signal_at": NOW_ISO,
-                    "lifecycle": "emerging",
-                    "source_types": ["google_news", "rss"],
-                })
-            # Batch insert topics
-            BATCH = 50
-            for i in range(0, len(topic_rows), BATCH):
-                batch = topic_rows[i:i+BATCH]
-                ok = sb_post("p2_topics", batch)
-                if ok:
-                    print(f"    Inserted {len(batch)} topics (batch {i//BATCH + 1})")
-                else:
-                    print(f"    ⚠ Failed to insert topic batch {i//BATCH + 1}")
-
-        # Insert signals (upsert to skip dupes)
-        if all_signals_to_insert:
-            BATCH = 50
-            inserted = 0
-            for i in range(0, len(all_signals_to_insert), BATCH):
-                batch = all_signals_to_insert[i:i+BATCH]
-                # Clean None feed_source_id
-                for row in batch:
-                    if row.get("feed_source_id") is None:
-                        row.pop("feed_source_id", None)
-                    if row.get("image_url") is None:
-                        row.pop("image_url", None)
-                ok = sb_post("p2_signals", batch, upsert=True)
-                if ok:
-                    inserted += len(batch)
-                else:
-                    print(f"    ⚠ Failed to insert signal batch {i//BATCH + 1}")
-            print(f"    Inserted {inserted} signals")
-
-        # Update signal_count on existing topics that got new signals
-        existing_topic_ids = {t["id"] for t in existing_topics} - {t["id"] for t in all_new_topics}
-        topics_to_update = {tid: count for tid, count in topic_signal_counts.items()
-                          if tid in existing_topic_ids}
-        if topics_to_update:
-            for tid, added_count in topics_to_update.items():
-                # Get current count and increment
-                current = sb_get("p2_topics", {"select": "signal_count", "id": f"eq.{tid}"})
-                if current and isinstance(current, list) and current[0]:
-                    new_count = (current[0].get("signal_count") or 0) + added_count
-                    sb_patch("p2_topics", {
-                        "signal_count": new_count,
-                        "updated_at": NOW_ISO,
-                        "last_signal_at": NOW_ISO,
-                    }, {"id": f"eq.{tid}"})
-            print(f"    Updated signal_count on {len(topics_to_update)} existing topics")
 
     # ── Summary ───────────────────────────────────────────────────────────────
     elapsed = time.time() - t0
     print(f"\n{'='*60}")
     print(f"V3 INGEST COMPLETE")
-    print(f"  New signals: {len(all_signals_to_insert)}")
-    print(f"  New topics: {len(all_new_topics)}")
-    print(f"  Existing topics updated: {len({tid for tid in topic_signal_counts if tid in {t['id'] for t in existing_topics} - {t['id'] for t in all_new_topics}})}")
+    print(f"  Topics written: {total_topics_written}")
+    print(f"  Signals written: {total_signals_written}")
     print(f"  GPT cost: ${total_gpt_cost:.4f}")
     print(f"  Time: {elapsed:.1f}s")
     print(f"{'='*60}\n")
