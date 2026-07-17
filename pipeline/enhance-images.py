@@ -159,12 +159,12 @@ Return JSON:
 {
   "hero": {
     "pick": "query_idx-result_idx",
-    "caption": "Contextual caption that describes what the image shows AND connects it to the article. Be specific and factual. Never claim a stock photo IS the actual subject — instead describe what it represents."
+    "caption": "Two sentences. First: what the image shows. Second: the article context."
   },
   "body_images": [
     {
       "pick": "query_idx-result_idx",
-      "caption": "Contextual caption for this inline image.",
+      "caption": "Two sentences. First: what the image shows. Second: the article context.",
       "placement_hint": "after which topic/paragraph this image fits best"
     }
   ]
@@ -174,8 +174,10 @@ Rules:
 - Pick 1 hero image (wide, editorial, landscape orientation preferred)
 - Pick 1-2 body images (different from hero, different visual aspects)
 - NEVER claim a stock photo is the actual person, restaurant, or place in the story
-- DO connect the image to the story: "A trading floor in action. Tech stocks led the sell-off as investors rotated out of chip makers."
-- Caption format: What the image shows + one sentence connecting to the article
+- Caption format: Two short factual sentences. Sentence 1 = what the image shows. Sentence 2 = the relevant news context from the article. Just state the facts plainly.
+- Do NOT use words like "symbolizing", "representing", "reflecting", "embodying", "illustrating", "showcasing". Just say what it is, then say what's happening in the news.
+- Example: "A close-up of a microchip on a printed circuit board. The semiconductor industry is experiencing significant stock declines as investors pivot to software giants."
+- Example: "The Federal Reserve building in Washington, D.C. Treasury yields are signaling potential interest rate hikes ahead."
 - Prefer images with relevant, specific alt text over generic ones
 - Credit line is automatic — don't include photographer name in the caption"""
 
