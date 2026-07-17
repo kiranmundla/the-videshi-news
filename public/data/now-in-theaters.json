@@ -1,8 +1,64 @@
 {
-  "generated_at": "2026-07-10T13:00:00Z",
-  "week_of": "Jul 10 – Jul 16, 2026",
-  "editorial_intro": "Four movies open today and the multiplex has never been wilder. Toy Story 5 is an absolute freight train past $375M domestic, Obsession refuses to leave ($248M and climbing — the year's most insane profit story), and Backrooms just became A24's biggest film ever at $190M. Today's new blood: Evil Dead Burn is nasty franchise horror done right (78% RT), Dhamaal 4 reunites Bollywood's most chaotic squad for a pirate treasure hunt, and Chiranjeevi's Vishwambhara is a massive Telugu fantasy epic scored by Oscar-winner M.M. Keeravani. Disney's live-action Moana arrives too, but brace yourself — critics are calling it the worst Disney remake yet. And next Thursday? Christopher Nolan's The Odyssey lands on IMAX. Summer doesn't peak — it just keeps climbing.",
+  "generated_at": "2026-07-17T13:00:00Z",
+  "week_of": "Jul 17 – Jul 23, 2026",
+  "editorial_intro": "Christopher Nolan just dropped a nuclear bomb on the summer box office. The Odyssey opens today with a staggering 98% on Rotten Tomatoes — his highest-rated film ever — and projections have it debuting between $80M and $120M this weekend. Matt Damon as Odysseus, shot entirely on IMAX, R-rated, 172 minutes of pure Nolan spectacle. Meanwhile, Toy Story 5 quietly crossed $410M domestic and is marching toward $1 billion worldwide. Obsession remains the year's most unbelievable story — a $750K horror film now sitting at $254M domestic after nine weeks. Dhamaal 4 crossed ₹100 Cr in India and is packing diaspora theaters in its second week. The multiplex is absolutely stacked right now, and Spider-Man: Brand New Day lands in two weeks. Good luck choosing just one.",
   "movies": [
+    {
+      "title": "The Odyssey",
+      "slug": "the-odyssey-nolan",
+      "genre": "Epic, Action, Drama",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fragment_Odyssee_2245_2.jpg/500px-Fragment_Odyssee_2245_2.jpg",
+      "rating": "98% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-07-17",
+      "status": "now_playing",
+      "cast": [
+        "Matt Damon",
+        "Tom Holland",
+        "Anne Hathaway",
+        "Robert Pattinson",
+        "Zendaya",
+        "Charlize Theron",
+        "Lupita Nyong'o"
+      ],
+      "director": "Christopher Nolan",
+      "why_watch": "Opens today. 98% on Rotten Tomatoes — Nolan's highest-rated film ever, beating The Dark Knight and Memento. Homer's Odyssey adapted by the Oppenheimer director, shot entirely on IMAX cameras for the first time in cinema history, with the most stacked cast of 2026. Matt Damon is getting Oscar buzz as Odysseus. Projected $80-120M opening weekend. See it in the biggest, loudest theater you can find.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=AyIZ9tiiN8I",
+      "cast_details": [
+        {
+          "name": "Matt Damon",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/MattDamon-byPhilipRomano.jpg/300px-MattDamon-byPhilipRomano.jpg"
+        },
+        {
+          "name": "Tom Holland",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/300px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg"
+        },
+        {
+          "name": "Anne Hathaway",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
+        },
+        {
+          "name": "Robert Pattinson",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Robert_Pattinson_at_Berlinale_2025.jpg/300px-Robert_Pattinson_at_Berlinale_2025.jpg"
+        },
+        {
+          "name": "Zendaya",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg/300px-Zendaya_-_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Charlize Theron",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Charlize-theron-IMG_6045.jpg/300px-Charlize-theron-IMG_6045.jpg"
+        },
+        {
+          "name": "Lupita Nyong'o",
+          "photo_url": ""
+        }
+      ]
+    },
     {
       "title": "Toy Story 5",
       "slug": "toy-story-5",
@@ -21,7 +77,7 @@
         "Conan O'Brien"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "Three weeks in and sitting at $377M domestic — the undisputed king of summer 2026. Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. If you still haven't gone, you're running out of excuses.",
+      "why_watch": "Four weeks in and sitting at $410M domestic, $879M worldwide — on a collision course with $1 billion. Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. The Odyssey might dethrone it this weekend, but Toy Story 5 isn't going anywhere.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English",
@@ -66,7 +122,7 @@
         "Megan Lawless"
       ],
       "director": "Curry Barker",
-      "why_watch": "Made for $750K. Now at $248M domestic and $406M worldwide — it just matched Jurassic Park's 54-day $1M+ streak. The #1 movie of 2026 in India too. A monkey's-paw horror that's equal parts funny and deeply disturbing. The most profitable film of the decade, and packed theaters still scream every night.",
+      "why_watch": "Made for $750K. Now at $254M domestic and $427M worldwide in its ninth week — still in the top 10. The most profitable film of the decade. A monkey's-paw horror that somehow kept growing weekend over weekend, defying every box office precedent. If you still haven't seen it, fix that before it finally leaves theaters.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
       "language": "English",
@@ -91,52 +147,6 @@
       ]
     },
     {
-      "title": "Backrooms",
-      "slug": "backrooms",
-      "genre": "Psychological Horror",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3d/Backrooms_%28film%29_poster.jpg",
-      "rating": "88% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-05-29",
-      "status": "now_playing",
-      "cast": [
-        "Chiwetel Ejiofor",
-        "Renate Reinsve",
-        "Mark Duplass",
-        "Finn Bennett",
-        "Avan Jogia"
-      ],
-      "director": "Kane Parsons",
-      "why_watch": "A 20-year-old YouTuber turned his viral creepypasta into A24's highest-grossing film ever — $190M domestic, $350M worldwide, and still going. The liminal-space dread is hypnotic, Ejiofor is phenomenal, and that yellow-lit production design will haunt your dreams. The new generation of horror directors is here and it's terrifying (in the best way).",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Backrooms+A24+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=0HjdiohVOik",
-      "cast_details": [
-        {
-          "name": "Chiwetel Ejiofor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Chiwetel_Ejiofor_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg/300px-Chiwetel_Ejiofor_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
-        },
-        {
-          "name": "Renate Reinsve",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Renate_Reinsve-9937.jpg/300px-Renate_Reinsve-9937.jpg"
-        },
-        {
-          "name": "Mark Duplass",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Mark_and_Jay_Duplass_at_the_Sundance_Film_Festival_%28cropped_3%29.jpg/300px-Mark_and_Jay_Duplass_at_the_Sundance_Film_Festival_%28cropped_3%29.jpg"
-        },
-        {
-          "name": "Finn Bennett",
-          "photo_url": ""
-        },
-        {
-          "name": "Avan Jogia",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Avan_Jogia_%2833384365238%29_%28cropped%29.jpg/300px-Avan_Jogia_%2833384365238%29_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
       "title": "Minions & Monsters",
       "slug": "minions-and-monsters",
       "genre": "Animation, Comedy",
@@ -155,7 +165,7 @@
         "Trey Parker"
       ],
       "director": "Pierre Coffin",
-      "why_watch": "Currently #1 at the box office with $77M in its first ten days. The franchise's best-reviewed film ever (93% RT!) — a love letter to classic Hollywood that's genuinely witty for adults. Opened below expectations, but that's Toy Story 5 stealing its lunch. Excellent family counter-programming.",
+      "why_watch": "The #1 movie at the July box office with $116M so far. The franchise's best-reviewed film ever (93% RT!) — a love letter to classic Hollywood monster movies that's genuinely witty for adults while keeping kids glued. Playing well in the Toy Story 5 shadow. Great family counter-programming to The Odyssey's R-rated epic.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Minions+and+Monsters+showtimes+near+me",
       "language": "English",
@@ -188,43 +198,48 @@
       ]
     },
     {
-      "title": "Disclosure Day",
-      "slug": "disclosure-day",
-      "genre": "Sci-Fi Thriller",
+      "title": "Backrooms",
+      "slug": "backrooms",
+      "genre": "Psychological Horror",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Disclosure_Day_poster.jpg",
-      "rating": "79% RT",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3d/Backrooms_%28film%29_poster.jpg",
+      "rating": "88% RT",
       "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-06-12",
+      "release_date": "2026-05-29",
       "status": "now_playing",
       "cast": [
-        "Emily Blunt",
-        "Josh O'Connor",
-        "Colin Firth",
-        "Colman Domingo"
+        "Chiwetel Ejiofor",
+        "Renate Reinsve",
+        "Mark Duplass",
+        "Finn Bennett",
+        "Avan Jogia"
       ],
-      "director": "Steven Spielberg",
-      "why_watch": "Spielberg's alien conspiracy thriller has crossed $107M domestic and Emily Blunt is getting genuine Oscar buzz. Not his best, but a Spielberg summer blockbuster in IMAX is always worth the trip. Winding down — catch it before it's gone from the big screen.",
+      "director": "Kane Parsons",
+      "why_watch": "A24's highest-grossing film ever — $194M domestic, $364M worldwide. A 20-year-old YouTuber turned viral creepypasta into a genuinely terrifying theater experience. Ejiofor is phenomenal and the yellow-lit liminal-space production design will haunt your dreams. Winding down now — last chance to catch it on the big screen.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=Backrooms+A24+movie+showtimes+near+me",
       "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=SCYT8vb2siQ",
+      "trailer_url": "https://www.youtube.com/watch?v=0HjdiohVOik",
       "cast_details": [
         {
-          "name": "Emily Blunt",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/300px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg"
+          "name": "Chiwetel Ejiofor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Chiwetel_Ejiofor_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg/300px-Chiwetel_Ejiofor_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
         },
         {
-          "name": "Josh O'Connor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg/300px-Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg"
+          "name": "Renate Reinsve",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Renate_Reinsve-9937.jpg/300px-Renate_Reinsve-9937.jpg"
         },
         {
-          "name": "Colin Firth",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Colin_Firth_%2836124162705%29_%28cropped%29.jpg/300px-Colin_Firth_%2836124162705%29_%28cropped%29.jpg"
+          "name": "Mark Duplass",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Mark_and_Jay_Duplass_at_the_Sundance_Film_Festival_%28cropped_3%29.jpg/300px-Mark_and_Jay_Duplass_at_the_Sundance_Film_Festival_%28cropped_3%29.jpg"
         },
         {
-          "name": "Colman Domingo",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg/300px-Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg"
+          "name": "Finn Bennett",
+          "photo_url": ""
+        },
+        {
+          "name": "Avan Jogia",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Avan_Jogia_%2833384365238%29_%28cropped%29.jpg/300px-Avan_Jogia_%2833384365238%29_%28cropped%29.jpg"
         }
       ]
     },
@@ -245,7 +260,7 @@
         "Luciane Buchanan"
       ],
       "director": "Sébastien Vaniček",
-      "why_watch": "Opens today and critics are calling it the nastiest, goriest Evil Dead yet — and they mean that as a compliment. Infested director Vaniček brings relentless Deadite carnage with real emotional stakes underneath. The franchise's 45-year streak of Fresh RT scores stays alive. Horror fans, this is your weekend.",
+      "why_watch": "Week two of the nastiest, goriest Evil Dead yet. $17M domestic and a massive $294M worldwide — the franchise's strongest global performance ever. Infested director Vaniček delivers relentless Deadite carnage with real emotional stakes. The franchise's 45-year streak of Fresh RT scores stays alive. If you survived the first one, you know what you're in for.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Evil+Dead+Burn+showtimes+near+me",
       "language": "English",
@@ -270,6 +285,47 @@
       ]
     },
     {
+      "title": "Disclosure Day",
+      "slug": "disclosure-day",
+      "genre": "Sci-Fi Thriller",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Disclosure_Day_poster.jpg",
+      "rating": "79% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-06-12",
+      "status": "now_playing",
+      "cast": [
+        "Emily Blunt",
+        "Josh O'Connor",
+        "Colin Firth",
+        "Colman Domingo"
+      ],
+      "director": "Steven Spielberg",
+      "why_watch": "Spielberg's alien conspiracy thriller crossed $112M domestic and Emily Blunt is in the early Oscar conversation. Not peak Spielberg, but his most commercially successful film in years. Losing screens to The Odyssey this weekend — this is genuinely your last chance to see it in IMAX.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=SCYT8vb2siQ",
+      "cast_details": [
+        {
+          "name": "Emily Blunt",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/300px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg"
+        },
+        {
+          "name": "Josh O'Connor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg/300px-Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg"
+        },
+        {
+          "name": "Colin Firth",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Colin_Firth_%2836124162705%29_%28cropped%29.jpg/300px-Colin_Firth_%2836124162705%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Colman Domingo",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg/300px-Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg"
+        }
+      ]
+    },
+    {
       "title": "Moana (Live-Action)",
       "slug": "moana-live-action",
       "genre": "Musical Adventure",
@@ -284,7 +340,7 @@
         "Catherine Laga'aia"
       ],
       "director": "Thomas Kail",
-      "why_watch": "We'll be honest: critics absolutely savaged this one — 37% on Rotten Tomatoes, the worst Disney live-action remake since Pinocchio. The reviews say it's lifeless, Dwayne's wig is meme-worthy, and nobody asked for this ten years after the original. But your kids might drag you anyway, and the ocean effects are admittedly gorgeous. Just know what you're walking into.",
+      "why_watch": "Let's be honest: 37% on Rotten Tomatoes, the worst Disney live-action remake since Pinocchio. Critics say it's lifeless, the CGI ocean looks weirdly artificial, and Dwayne's Maui wig launched a thousand memes. But it still pulled $55M in its first week because brand power is undefeated. Your kids will probably insist. The ocean effects are admittedly gorgeous in spots. Just know what you're walking into.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Moana+live+action+showtimes+near+me",
       "language": "English",
@@ -301,59 +357,13 @@
       ]
     },
     {
-      "title": "Alpha",
-      "slug": "alpha-yrf-spy-universe",
-      "genre": "Action, Spy Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Alpha_official_poster.JPG",
-      "rating": "₹47.5 Cr first week",
-      "rating_source": "India box office",
-      "release_date": "2026-07-03",
-      "status": "now_playing",
-      "cast": [
-        "Alia Bhatt",
-        "Sharvari",
-        "Bobby Deol",
-        "Anil Kapoor",
-        "Hrithik Roshan (cameo)"
-      ],
-      "director": "Shiv Rawail",
-      "why_watch": "YRF's first female-led Spy Universe entry had a decent but not explosive first week at ₹47.5 Cr — the weakest Spy Universe opening by a mile. The consensus: Bobby Deol steals the show, Sharvari holds her own, and Hrithik's cameo is worth the whistle. Not a blockbuster, but Alia going full assassin is fun diaspora viewing while it's still around.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Alpha+YRF+Alia+Bhatt+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=QRqGwGwo1Y0",
-      "cast_details": [
-        {
-          "name": "Alia Bhatt",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg/300px-Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "Sharvari",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Sharvari_Wagh_snapped_at_the_grand_celebration_of_Maddock_Films%E2%80%99_remarkable_journey_in_cinema_%28cropped%29.jpg"
-        },
-        {
-          "name": "Bobby Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
-        },
-        {
-          "name": "Anil Kapoor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Anil_Kapoor_1.jpeg/300px-Anil_Kapoor_1.jpeg"
-        },
-        {
-          "name": "Hrithik Roshan (cameo)",
-          "photo_url": ""
-        }
-      ]
-    },
-    {
       "title": "Dhamaal 4",
       "slug": "dhamaal-4",
       "genre": "Comedy, Adventure",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Dhamaal_4.jpg",
-      "rating": "3.5/5 (early reviews)",
-      "rating_source": "Taran Adarsh",
+      "rating": "₹124 Cr worldwide",
+      "rating_source": "India box office",
       "release_date": "2026-07-10",
       "status": "now_playing",
       "cast": [
@@ -368,7 +378,7 @@
         "Madhuri Dixit"
       ],
       "director": "Indra Kumar",
-      "why_watch": "Opens today and early reviews call it 'MAZEDAAR' — pure unhinged slapstick with pirates, a treasure hunt, and the original gang's comic timing firing on all cylinders. Leave your brain at the door, grab the family, and let Ajay-Arshad-Jaaved do their thing. Taran Adarsh gave it 3.5 stars, calling it a stressbuster. Diaspora theaters will be rowdy tonight.",
+      "why_watch": "Crossed ₹100 Cr domestic gross in its first week — a genuine box office hit. ₹124 Cr worldwide and climbing in week two. Pure unhinged slapstick with pirates, treasure hunts, and the original Dhamaal gang's comic timing still firing. Leave your brain at the door, grab the family, and let Ajay-Arshad-Jaaved do their thing. Diaspora theaters are packed.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
       "language": "Hindi",
@@ -401,6 +411,52 @@
       ]
     },
     {
+      "title": "Alpha",
+      "slug": "alpha-yrf-spy-universe",
+      "genre": "Action, Spy Thriller",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Alpha_official_poster.JPG",
+      "rating": "₹93 Cr worldwide",
+      "rating_source": "India box office",
+      "release_date": "2026-07-03",
+      "status": "now_playing",
+      "cast": [
+        "Alia Bhatt",
+        "Sharvari",
+        "Bobby Deol",
+        "Anil Kapoor",
+        "Hrithik Roshan (cameo)"
+      ],
+      "director": "Shiv Rawail",
+      "why_watch": "YRF's first female-led Spy Universe entry is winding down in its third week at ₹93 Cr worldwide — not a blockbuster, but a solid performer. Bobby Deol steals the show, Sharvari holds her own, and Hrithik's cameo is worth the whistle. Catch Alia going full assassin in diaspora theaters while it's still around.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Alpha+YRF+Alia+Bhatt+showtimes+near+me",
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=QRqGwGwo1Y0",
+      "cast_details": [
+        {
+          "name": "Alia Bhatt",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg/300px-Alia_Bhatt_attends_at_the_2026_Cannes_Film_Festival_%28cropped%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Sharvari",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Sharvari_Wagh_snapped_at_the_grand_celebration_of_Maddock_Films%E2%80%99_remarkable_journey_in_cinema_%28cropped%29.jpg"
+        },
+        {
+          "name": "Bobby Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
+        },
+        {
+          "name": "Anil Kapoor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Anil_Kapoor_1.jpeg/300px-Anil_Kapoor_1.jpeg"
+        },
+        {
+          "name": "Hrithik Roshan (cameo)",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Vishwambhara",
       "slug": "vishwambhara",
       "genre": "Action, Fantasy, Epic",
@@ -419,7 +475,7 @@
         "Mouni Roy"
       ],
       "director": "Mallidi Vassishta",
-      "why_watch": "Megastar Chiranjeevi's most ambitious film ever — a ₹400 Cr Telugu fantasy epic through Hindu mythological worlds, with Oscar-winner M.M. Keeravani on the score and Rana Daggubati as the villain. Opens today and Telugu diaspora audiences have been waiting months. The VFX overhaul delayed it for a reason — they're going for spectacle on a scale Telugu cinema hasn't seen before.",
+      "why_watch": "Megastar Chiranjeevi's most ambitious film — a massive Telugu fantasy epic through Hindu mythological worlds, with Oscar-winner M.M. Keeravani on the score and Rana Daggubati as the villain. In its second week now and playing strong across US diaspora theaters. The VFX and scale are unlike anything Telugu cinema has attempted before.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Vishwambhara+movie+showtimes+near+me",
       "language": "Telugu",
@@ -452,57 +508,6 @@
       ]
     },
     {
-      "title": "The Odyssey",
-      "slug": "the-odyssey-nolan",
-      "genre": "Epic, Action, Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fragment_Odyssee_2245_2.jpg/500px-Fragment_Odyssee_2245_2.jpg",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-07-17",
-      "status": "coming_soon",
-      "cast": [
-        "Matt Damon",
-        "Tom Holland",
-        "Zendaya",
-        "Anne Hathaway",
-        "Robert Pattinson",
-        "Charlize Theron"
-      ],
-      "director": "Christopher Nolan",
-      "why_watch": "One week away. Christopher Nolan adapts Homer's Odyssey, shot on IMAX, with the most stacked ensemble of the year. After Oppenheimer swept the Oscars, this is the most anticipated film of 2026 — and it's already breaking pre-sale records. This is the one you see in the biggest, loudest theater you can find. Book your IMAX tickets now.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=AyIZ9tiiN8I",
-      "cast_details": [
-        {
-          "name": "Matt Damon",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/MattDamon-byPhilipRomano.jpg/300px-MattDamon-byPhilipRomano.jpg"
-        },
-        {
-          "name": "Tom Holland",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/300px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg"
-        },
-        {
-          "name": "Zendaya",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg/300px-Zendaya_-_2019_by_Glenn_Francis.jpg"
-        },
-        {
-          "name": "Anne Hathaway",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
-        },
-        {
-          "name": "Robert Pattinson",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Robert_Pattinson_at_Berlinale_2025.jpg/300px-Robert_Pattinson_at_Berlinale_2025.jpg"
-        },
-        {
-          "name": "Charlize Theron",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Charlize-theron-IMG_6045.jpg/300px-Charlize-theron-IMG_6045.jpg"
-        }
-      ]
-    },
-    {
       "title": "Spider-Man: Brand New Day",
       "slug": "spider-man-brand-new-day",
       "genre": "Superhero Action",
@@ -516,7 +521,7 @@
         "Tom Holland"
       ],
       "director": "",
-      "why_watch": "Tom Holland swings back years after No Way Home's devastating ending — Peter Parker isolated, targeted by multiple villains, and undergoing a mysterious mutation. The most anticipated Marvel movie since Endgame. Three weeks out and the internet is already losing its mind over every trailer frame.",
+      "why_watch": "Two weeks out. Tom Holland swings back years after No Way Home's devastating ending — Peter Parker isolated, targeted by multiple villains, and undergoing a mysterious mutation. The most anticipated Marvel movie since Endgame. Pre-sale records are already falling. The internet is losing its mind over every trailer frame.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
       "language": "English",
