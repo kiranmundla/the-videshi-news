@@ -16,17 +16,24 @@ import subprocess
 
 # ── Options ───────────────────────────────────────────────────────────────────
 
-HOURS = 4
+MAX_WINDOW_HOURS = 12  # hard cap if no state / state too old
 PER_CAT_MAX = 3  # max candidates per category
 OUT_PATH = "/tmp/v2-candidates.json"
+STATE_PATH = "/tmp/v2-select-state.json"  # tracks last successful run cutoff
 
 for i, arg in enumerate(sys.argv[1:], 1):
     if arg == "--hours" and i < len(sys.argv) - 1:
-        HOURS = int(sys.argv[i + 1])
+        MAX_WINDOW_HOURS = int(sys.argv[i + 1])
     elif arg == "--per-cat" and i < len(sys.argv) - 1:
         PER_CAT_MAX = int(sys.argv[i + 1])
     elif arg == "--out" and i < len(sys.argv) - 1:
         OUT_PATH = sys.argv[i + 1]
+    elif arg == "--reset":
+        # Force full window (ignore state)
+        try:
+            os.remove(STATE_PATH)
+        except FileNotFoundError:
+            pass
 
 NOW          = datetime.now(timezone.utc)
 NOW_ISO      = NOW.isoformat()
@@ -454,14 +461,35 @@ def llm_score_stories(stories, recent_articles=None):
 
 def main():
     t0 = time.time()
+
+    # ── Incremental: only fetch signals since last successful run ─────────────
+    cutoff = None
+    cutoff_source = "full window"
+    try:
+        with open(STATE_PATH) as f:
+            state = json.load(f)
+        last_cutoff = state["cutoff_utc"]
+        last_ts = datetime.fromisoformat(last_cutoff)
+        age_hours = (NOW - last_ts).total_seconds() / 3600
+        if age_hours <= MAX_WINDOW_HOURS:
+            cutoff = last_cutoff
+            cutoff_source = f"incremental (since {last_cutoff[:19]}Z, {age_hours:.1f}h ago)"
+        else:
+            cutoff_source = f"full window (state is {age_hours:.0f}h stale, cap {MAX_WINDOW_HOURS}h)"
+    except (FileNotFoundError, KeyError, ValueError):
+        cutoff_source = f"full window (no state file, using {MAX_WINDOW_HOURS}h)"
+
+    if cutoff is None:
+        cutoff = (NOW - timedelta(hours=MAX_WINDOW_HOURS)).isoformat()
+
     print(f"\n{'='*60}")
     print(f"Pipeline V2 Selector — {NOW.strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"  Window: {HOURS}h, Per-category max: {PER_CAT_MAX}")
+    print(f"  Mode: {cutoff_source}")
+    print(f"  Per-category max: {PER_CAT_MAX}")
     print(f"{'='*60}")
 
-    # ── Load recent signals ───────────────────────────────────────────────────
-    print(f"\n── Loading signals from last {HOURS}h ──")
-    cutoff = (NOW - timedelta(hours=HOURS)).isoformat()
+    # ── Load signals since cutoff ─────────────────────────────────────────────
+    print(f"\n── Loading signals since {cutoff[:19]}Z ──")
     signals = []
     offset = 0
     while True:
@@ -747,13 +775,25 @@ def main():
     # ── Output ────────────────────────────────────────────────────────────────
     output = {
         "timestamp": NOW_ISO,
-        "window_hours": HOURS,
+        "cutoff_used": cutoff,
         "total_signals": len(signals),
         "total_clusters": len(clusters),
         "candidates": balanced,
     }
     with open(OUT_PATH, "w") as f:
         json.dump(output, f, indent=2)
+
+    # Save state: use the current time as cutoff for next run.
+    # We fetched everything with fetched_at >= old cutoff, so anything
+    # up to NOW has been seen. Next run picks up from NOW onward.
+    # (Signals inserted DURING this run have fetched_at > NOW, so they're safe.)
+    with open(STATE_PATH, "w") as f:
+        json.dump({
+            "cutoff_utc": NOW_ISO,
+            "run_at": NOW_ISO,
+            "signals_processed": len(signals),
+            "candidates_output": len(balanced),
+        }, f, indent=2)
 
     elapsed = time.time() - t0
     print(f"\n{'='*60}")
