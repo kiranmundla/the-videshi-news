@@ -65,14 +65,16 @@ P2_COLS = (
     "id,slug,headline,subheadline,body,vertical,category,status,"
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
-    "newsworthiness,diaspora_impact,prominence,article_type"
+    "newsworthiness,diaspora_impact,prominence,article_type,"
+    "google_cluster_size,signal_count"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (
     "id,slug,headline,subheadline,vertical,category,status,"
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
-    "newsworthiness,diaspora_impact,prominence,article_type"
+    "newsworthiness,diaspora_impact,prominence,article_type,"
+    "google_cluster_size,signal_count"
 )
 
 # Homepage section config (mirrors Index.tsx constants)
@@ -356,8 +358,9 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     # Featured article: most recent 24h with image and highest score
     since_24h = (now - timedelta(hours=24)).isoformat()
     recent_24h = [a for a in articles if a["published_at"] >= since_24h]
-    # Sort by freshness (event_at or published_at)
+    # Sort by Google cluster size (biggest story), freshness as tiebreaker
     recent_24h.sort(key=lambda a: (
+        a.get("google_cluster_size") or 0,
         a.get("event_at") or a["published_at"],
     ), reverse=True)
     featured = None

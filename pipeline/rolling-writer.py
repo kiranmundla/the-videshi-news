@@ -641,6 +641,21 @@ def get_event_time(topic_id):
     return None
 
 
+def get_signal_stats(topic_id):
+    """Get signal count and max Google cluster size for this topic."""
+    sql = f"""
+    SELECT COUNT(*) as signal_count,
+           COALESCE(MAX(s.google_cluster_size), 0) as google_cluster_size
+    FROM p2_topic_signals ts
+    JOIN p2_signals s ON ts.signal_id = s.id
+    WHERE ts.topic_id = '{topic_id}'
+    """
+    rows = sb_query(sql) or []
+    if rows:
+        return rows[0].get('signal_count', 0), rows[0].get('google_cluster_size', 0)
+    return 0, 0
+
+
 def write_article(topic):
     """Use Gemini to write a full article from a topic."""
     title = topic.get('canonical_title', '')
@@ -771,6 +786,11 @@ Return a single JSON object with all these fields."""
         "image_must_show": result.get('image_must_show', ''),
         "image_entities": result.get('image_entities', []),
     }
+
+    # Add signal stats (one query)
+    sig_count, gcs = get_signal_stats(topic['id'])
+    article["signal_count"] = sig_count
+    article["google_cluster_size"] = gcs
 
     # Render data cards and key takeaways into the body
     key_takeaways = result.get('key_takeaways', [])
