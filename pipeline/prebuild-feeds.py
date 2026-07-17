@@ -66,7 +66,7 @@ P2_COLS = (
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
-    "google_cluster_size,signal_count"
+    "google_cluster_size,signal_count,focal_x,focal_y"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (
@@ -74,7 +74,7 @@ P2_COLS_NO_BODY = (
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
-    "google_cluster_size,signal_count"
+    "google_cluster_size,signal_count,focal_x,focal_y"
 )
 
 # Homepage section config (mirrors Index.tsx constants)
@@ -290,6 +290,9 @@ def map_row(row: dict) -> dict:
         "featured_score": _compute_display_score(row),
         "is_pinned_featured": bool(row.get("is_featured")),
         "pinned_until": None,
+        "event_at": row.get("event_at"),
+        "focal_x": row.get("focal_x", 0.5),
+        "focal_y": row.get("focal_y", 0.5),
     }
 
 
