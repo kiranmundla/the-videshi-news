@@ -17,14 +17,14 @@ import subprocess
 # ── Options ───────────────────────────────────────────────────────────────────
 
 HOURS = 4
-MAX_CANDIDATES = 10
+PER_CAT_MAX = 3  # max candidates per category
 OUT_PATH = "/tmp/v2-candidates.json"
 
 for i, arg in enumerate(sys.argv[1:], 1):
     if arg == "--hours" and i < len(sys.argv) - 1:
         HOURS = int(sys.argv[i + 1])
-    elif arg == "--max" and i < len(sys.argv) - 1:
-        MAX_CANDIDATES = int(sys.argv[i + 1])
+    elif arg == "--per-cat" and i < len(sys.argv) - 1:
+        PER_CAT_MAX = int(sys.argv[i + 1])
     elif arg == "--out" and i < len(sys.argv) - 1:
         OUT_PATH = sys.argv[i + 1]
 
@@ -118,9 +118,18 @@ CATEGORY_KEYWORDS = {
         "nri","diaspora","indian-american","indian american","indian origin",
         "overseas indian","oci ","pio ","expat",
     ],
+    "food": [
+        "food","recipe","restaurant","chef","cuisine","cooking","dish",
+        "foodie","kitchen","meal","snack","curry","biryani","samosa",
+        "dosa","masala","spice","vegan","vegetarian",
+    ],
+    "travel": [
+        "travel","tourism","airline","flight","airport","hotel","destination",
+        "vacation","trip","booking","passenger","cruise",
+    ],
     "lifestyle": [
-        "health","food","yoga","wellness","recipe","travel","fashion",
-        "beauty","meditation","ayurveda",
+        "health","yoga","wellness","fashion",
+        "beauty","meditation","ayurveda","fitness","skincare","mental health",
     ],
 }
 
@@ -239,12 +248,17 @@ Your readers are educated professionals who LIVE in these countries. They care a
 - Indian-origin people in tech, business, politics, sports, entertainment
 - BUT ALSO: Major US/UK/global news that affects their daily lives — economy, wars, natural disasters, public health, major policy changes, elections, weather emergencies, food safety recalls
 - Big global events everyone should know about
+- Indian food, recipes, restaurants, chefs (Sanjeev Kapoor, Ranveer Brar, Vikas Khanna, etc.)
+- Travel relevant to diaspora (Air India, Indian destinations, visa-free countries for Indians)
+- Bollywood AND Hollywood entertainment, streaming (Netflix, Disney+, OTT), celebrity news
+- Health, wellness, yoga, Ayurveda, lifestyle with any Indian connection
 
 They are NOT interested in:
 - Hyper-local US news (local school board, yard sale, parking meters, small-town crime)
 - Minor celebrity gossip with no Indian connection
 - Niche bureaucratic/regulatory noise
-- Generic lifestyle tips with no cultural angle
+
+IMPORTANT: Be generous with food, entertainment, travel, and lifestyle stories — if a story has ANY Indian connection (Indian chef, Indian restaurant, Bollywood, Indian airline, Indian ingredient, Indian wellness practice), score it at least 3. These categories are essential for a well-rounded diaspora publication.
 
 For each story below, provide:
 1. "relevant": true/false
@@ -349,7 +363,7 @@ def main():
     t0 = time.time()
     print(f"\n{'='*60}")
     print(f"Pipeline V2 Selector — {NOW.strftime('%Y-%m-%d %H:%M UTC')}")
-    print(f"  Window: {HOURS}h, Max candidates: {MAX_CANDIDATES}")
+    print(f"  Window: {HOURS}h, Per-category max: {PER_CAT_MAX}")
     print(f"{'='*60}")
 
     # ── Load recent signals ───────────────────────────────────────────────────
@@ -531,33 +545,15 @@ def main():
         print(f"  Deduped: {len(scored)} → {len(deduped)} (removed {len(scored) - len(deduped)} near-dupes)")
     scored = deduped
 
-    # Category balance: max 3 per category, min 1 per category if signals exist
+    # Per-category selection: top N per category (no global cap)
     balanced = []
     cat_counts = {}
-
-    # First pass: guarantee 1 per category (floor)
-    seen_cats = set()
     for c in scored:
         cat = c["category"]
-        if cat not in seen_cats:
+        cat_counts.setdefault(cat, 0)
+        if cat_counts[cat] < PER_CAT_MAX:
             balanced.append(c)
-            seen_cats.add(cat)
-            cat_counts[cat] = 1
-        if len(balanced) >= MAX_CANDIDATES:
-            break
-
-    # Second pass: fill remaining slots by freshness, respecting ceiling
-    if len(balanced) < MAX_CANDIDATES:
-        for c in scored:
-            if c in balanced:
-                continue
-            cat = c["category"]
-            cat_counts.setdefault(cat, 0)
-            if cat_counts[cat] < 3:
-                balanced.append(c)
-                cat_counts[cat] += 1
-            if len(balanced) >= MAX_CANDIDATES:
-                break
+            cat_counts[cat] += 1
 
     # ── Output ────────────────────────────────────────────────────────────────
     output = {
