@@ -47,9 +47,10 @@ def load_env(*paths):
                     env[k.strip()] = v.strip().strip('"').strip("'")
     return env
 
-ENV = load_env("~/workspace/.env.supabase")
+ENV = load_env("~/workspace/.env.supabase", "~/workspace/.env.openai")
 SB_URL = ENV.get("SUPABASE_URL", "")
 SB_KEY = ENV.get("SUPABASE_SERVICE_ROLE_KEY", "")
+OPENAI_KEY = ENV.get("OPENAI_API_KEY", "")
 
 def sb_get(endpoint, params=None, range_header=None):
     url = f"{SB_URL}/rest/v1/{endpoint}"
@@ -210,6 +211,122 @@ def resolve_google_news_url(url):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+# ── LLM Relevance + Importance Scoring ────────────────────────────────────────
+
+LLM_PROMPT = """You are the editorial filter for The Videshi, a news site for the Indian diaspora — Indians living in the US, UK, Canada, and Australia.
+
+Your readers are educated professionals who LIVE in these countries. They care about:
+- India news, Indian culture, Bollywood, cricket, Indian politics & economy
+- Immigration policy (H-1B, green cards, visa rules, deportation)
+- Indian-origin people in tech, business, politics, sports, entertainment
+- BUT ALSO: Major US/UK/global news that affects their daily lives — economy, wars, natural disasters, public health, major policy changes, elections, weather emergencies, food safety recalls
+- Big global events everyone should know about
+
+They are NOT interested in:
+- Hyper-local US news (local school board, yard sale, parking meters, small-town crime)
+- Minor celebrity gossip with no Indian connection
+- Niche bureaucratic/regulatory noise
+- Generic lifestyle tips with no cultural angle
+
+For each story below, provide:
+1. "relevant": true/false
+2. "score": 1-5 importance:
+   - 5 = Everyone-must-know breaking news (war, major immigration overhaul, catastrophic disaster)
+   - 4 = Very important (major economic policy, significant bilateral news, big tech layoffs, immigration ruling)
+   - 3 = Important (notable achievement, diplomatic moves, significant cultural story, major sports)
+   - 2 = Moderately relevant (interesting cultural piece, community story, mid-tier entertainment/sports)
+   - 1 = Mildly relevant (light feature, tangential connection)
+3. "reason": 1-sentence explanation
+
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "score": 4, "reason": "..."},...]}\n"""
+
+def llm_score_stories(stories):
+    """Batch-score stories via GPT-4o-mini with parallel batches."""
+    if not stories or not OPENAI_KEY:
+        return {}
+
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    BATCH_SIZE = 40
+    all_results = {}
+    total_cost = 0.0
+
+    def score_batch(batch_start, batch):
+        lines = []
+        for i, s in enumerate(batch):
+            desc_part = f" | {s.get('description', '')[:150]}" if s.get('description') else ""
+            lines.append(f"{i+1}. {s['title'][:120]}{desc_part}")
+
+        payload = json.dumps({
+            "model": "gpt-4o-mini",
+            "messages": [{"role": "user", "content": LLM_PROMPT + "\nStories:\n" + "\n".join(lines)}],
+            "response_format": {"type": "json_object"},
+            "max_tokens": max(len(batch) * 60, 1000),
+            "temperature": 0
+        })
+
+        payload_file = f"/tmp/llm_batch_{batch_start}.json"
+        with open(payload_file, "w") as f:
+            f.write(payload)
+
+        try:
+            r = subprocess.run([
+                "curl", "-s", "--max-time", "45",
+                "https://api.openai.com/v1/chat/completions",
+                "-H", f"Authorization: Bearer {OPENAI_KEY}",
+                "-H", "Content-Type: application/json",
+                "-d", f"@{payload_file}"
+            ], capture_output=True, text=True, timeout=50)
+            os.remove(payload_file)
+
+            resp = json.loads(r.stdout)
+            if "error" in resp:
+                return batch_start, {}, 0.0, f"API error: {resp['error'].get('message', '')[:80]}"
+
+            content = json.loads(resp["choices"][0]["message"]["content"])
+            usage = resp.get("usage", {})
+            cost = usage.get("prompt_tokens", 0) * 0.15 / 1_000_000 + usage.get("completion_tokens", 0) * 0.6 / 1_000_000
+
+            results = {}
+            for item in content.get("results", []):
+                idx = item.get("id", 0) - 1
+                if 0 <= idx < len(batch):
+                    global_idx = batch_start + idx
+                    results[global_idx] = {
+                        "relevant": item.get("relevant", True),
+                        "score": item.get("score", 1) if item.get("relevant", True) else 0,
+                        "reason": item.get("reason", ""),
+                    }
+            return batch_start, results, cost, None
+        except Exception as e:
+            try:
+                os.remove(payload_file)
+            except:
+                pass
+            return batch_start, {}, 0.0, str(e)
+
+    # Build batches
+    batches = [(i, stories[i:i+BATCH_SIZE]) for i in range(0, len(stories), BATCH_SIZE)]
+
+    # Run in parallel (10 concurrent)
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        futures = [pool.submit(score_batch, start, batch) for start, batch in batches]
+        done = 0
+        for f in as_completed(futures):
+            batch_start, results, cost, error = f.result()
+            done += 1
+            total_cost += cost
+            if error:
+                print(f"  ⚠ Batch {batch_start//BATCH_SIZE + 1}: {error}")
+            else:
+                all_results.update(results)
+            if done % 10 == 0 or done == len(batches):
+                print(f"  Progress: {done}/{len(batches)} batches (${total_cost:.4f})")
+
+    print(f"  Total LLM scored: {len(all_results)}/{len(stories)} (${total_cost:.4f})")
+    return all_results
+
+
 def main():
     t0 = time.time()
     print(f"\n{'='*60}")
@@ -224,7 +341,7 @@ def main():
     offset = 0
     while True:
         page = sb_get("p2_signals", {
-            "select": "id,title,original_url,published_at,fetched_at,source_type,source_name,google_cluster_size",
+            "select": "id,title,original_url,published_at,fetched_at,source_type,source_name,google_cluster_size,description",
             "fetched_at": f"gte.{cutoff}",
             "order": "fetched_at.desc",
         }, range_header=f"{offset}-{offset+999}")
@@ -276,7 +393,7 @@ def main():
     recent_articles = load_recent_headlines()
     print(f"  Recent articles loaded: {len(recent_articles)}")
 
-    scored = []
+    pre_scored = []
     for key, sigs in clusters.items():
         best = max(sigs, key=lambda s: len(s.get("title", "")))
         title = best["title"]
@@ -295,7 +412,7 @@ def main():
         # Category
         cat = detect_category(title)
 
-        # Diaspora check
+        # Diaspora check (fast keyword pre-filter)
         diaspora = quick_diaspora_check(title)
         if diaspora == "no":
             continue
@@ -303,9 +420,6 @@ def main():
         # Already covered?
         if is_already_covered(title, recent_articles):
             continue
-
-        # Binary gate: if it passed diaspora check and isn't a dupe, it's approved.
-        # Rank by freshness (newest first), signal count as tiebreaker for hero.
 
         # Freshness: newest signal timestamp
         try:
@@ -329,19 +443,50 @@ def main():
                 seen_urls.add(u)
                 source_urls.append(u)
 
-        scored.append({
+        # Collect best description from signals
+        best_desc = ""
+        for s in sigs:
+            d = s.get("description", "")
+            if d and len(d) > len(best_desc):
+                best_desc = d
+
+        pre_scored.append({
             "title": title,
+            "description": best_desc,
             "category": cat,
             "signal_count": effective_size,
             "source_diversity": source_diversity,
-            "diaspora_relevance": diaspora,
+            "diaspora_keyword": diaspora,
             "newest_signal": newest_dt.isoformat(),
             "source_urls": source_urls[:8],
             "all_signals": [{"title": s["title"], "url": s["original_url"], "source": s.get("source_name", "")} for s in sigs[:10]],
         })
 
-    # Sort by freshness (newest first), signal count as tiebreaker
-    scored.sort(key=lambda x: (x["newest_signal"], x["signal_count"]), reverse=True)
+    # ── LLM scoring ──────────────────────────────────────────────────────────
+    print(f"\n── LLM scoring {len(pre_scored)} candidates ──")
+
+    # Keyword "yes" stories get a default score of 3 (LLM can override higher)
+    # "maybe" stories MUST pass LLM to be included
+    llm_results = llm_score_stories(pre_scored)
+
+    scored = []
+    for i, c in enumerate(pre_scored):
+        llm = llm_results.get(i)
+        if llm:
+            if not llm["relevant"]:
+                continue  # LLM rejected
+            c["llm_score"] = llm["score"]
+            c["llm_reason"] = llm["reason"]
+        else:
+            # LLM didn't return a result — use keyword fallback
+            if c["diaspora_keyword"] == "yes":
+                c["llm_score"] = 3  # default for keyword-matched
+            else:
+                c["llm_score"] = 1  # unknown, let it through at low priority
+        scored.append(c)
+
+    # Sort by LLM score (highest first), then freshness, then signal count
+    scored.sort(key=lambda x: (x.get("llm_score", 1), x["newest_signal"], x["signal_count"]), reverse=True)
 
     # Category balance: max 3 per category, min 1 per category if signals exist
     balanced = []
@@ -386,9 +531,12 @@ def main():
     print(f"\n{'='*60}")
     print(f"CANDIDATES: {len(balanced)} stories selected")
     for i, c in enumerate(balanced, 1):
-        d = "✅" if c["diaspora_relevance"] == "yes" else "❓"
+        score = c.get("llm_score", "?")
+        stars = "⭐" * score if isinstance(score, int) else "?"
         print(f"  {i}. [{c['category']}] {c['title'][:70]}")
-        print(f"     Signals: {c['signal_count']} | Sources: {c['source_diversity']} | Diaspora: {d} | Fresh: {c['newest_signal'][:16]}")
+        print(f"     Score: {stars} ({score}) | Signals: {c['signal_count']} | Sources: {c['source_diversity']}")
+        if c.get("llm_reason"):
+            print(f"     Reason: {c['llm_reason'][:80]}")
     print(f"\n  Output: {OUT_PATH}")
     print(f"  Time: {elapsed:.1f}s")
     print(f"{'='*60}\n")

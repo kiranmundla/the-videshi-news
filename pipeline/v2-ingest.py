@@ -192,8 +192,15 @@ def parse_rss(xml_str):
         source_el = item.find('source')
         source_name = (source_el.text or '').strip() if source_el is not None else ''
         # Google News cluster size from description
-        desc = html.unescape(item.findtext('description') or '')
-        cluster_size = len(re.findall(r'<li>', desc)) + 1 if '<li>' in desc else 1
+        desc_raw = html.unescape(item.findtext('description') or '')
+        cluster_size = len(re.findall(r'<li>', desc_raw)) + 1 if '<li>' in desc_raw else 1
+        # Extract clean description text
+        if '<li>' in desc_raw:
+            # Google News: extract sub-article titles
+            sub_titles = re.findall(r'>([^<]{10,})</a>', desc_raw)
+            item_desc = '; '.join(t.strip() for t in sub_titles[:5]) if sub_titles else ''
+        else:
+            item_desc = re.sub(r'<[^>]+>', '', desc_raw).strip()[:500]
         # Extract image from media:thumbnail, media:content, or enclosure
         img_url = None
         thumb = item.find('media:thumbnail', media_ns)
@@ -212,7 +219,7 @@ def parse_rss(xml_str):
             items.append({
                 'title': title, 'url': link, 'pub': pub,
                 'source_name': source_name, 'cluster_size': cluster_size,
-                'image_url': img_url,
+                'image_url': img_url, 'description': item_desc,
             })
 
     # Atom
@@ -229,8 +236,11 @@ def parse_rss(xml_str):
         thumb = entry.find('media:thumbnail', media_ns)
         if thumb is not None:
             img_url = thumb.get('url')
+        # Atom description
+        atom_desc_raw = html.unescape(entry.findtext('atom:summary', '', ns) or entry.findtext('atom:content', '', ns) or '')
+        atom_desc = re.sub(r'<[^>]+>', '', atom_desc_raw).strip()[:500]
         if title and link:
-            items.append({'title': title, 'url': link, 'pub': pub, 'source_name': '', 'cluster_size': 1, 'image_url': img_url})
+            items.append({'title': title, 'url': link, 'pub': pub, 'source_name': '', 'cluster_size': 1, 'image_url': img_url, 'description': atom_desc})
 
     return items
 
@@ -241,7 +251,8 @@ def parse_rss2json(data):
         t = (item.get("title") or "").strip()
         u = (item.get("link") or "").strip()
         if t and u:
-            items.append({'title': t, 'url': u, 'pub': item.get("pubDate", ""), 'source_name': '', 'cluster_size': 1})
+            desc = re.sub(r'<[^>]+>', '', html.unescape(item.get("description") or "")).strip()[:500]
+            items.append({'title': t, 'url': u, 'pub': item.get("pubDate", ""), 'source_name': '', 'cluster_size': 1, 'description': desc})
     return items
 
 def parse_pub_date(pub_str):
@@ -579,6 +590,10 @@ def main():
                 row["feed_source_id"] = item["feed_id"]
             if item.get("image_url"):
                 row["image_url"] = item["image_url"][:2000]
+            if item.get("description"):
+                row["description"] = item["description"][:2000]
+            if item.get("feed_name"):
+                row["feed_label"] = item["feed_name"][:200]
             all_rows.append(row)
 
         # Parallel batch insert — 5 workers, 50 rows per batch, upsert skips dupes
