@@ -1,19 +1,99 @@
 {
-  "timestamp": "2026-07-16T21:01:14.073811+00:00",
+  "timestamp": "2026-07-17T19:41:11.906120+00:00",
   "mode": "fix",
   "stats": {
     "pass": 3,
-    "flag": 0,
-    "fail": 0,
-    "error": 0
+    "flag": 1,
+    "fail": 1,
+    "error": 2
   },
-  "revisions": 0,
+  "revisions": 2,
   "unpublished": 0,
   "articles": [
     {
-      "id": "213f3270-dfb8-4086-8ab9-9c7c618e0619",
-      "headline": "India-Pakistan Clash Could Happen Thrice in World Cup After ICC Rule Change",
-      "slug": "india-pakistan-clash-world-cup-icc-rule-change-20260715",
+      "id": "647a306e-892d-4fc9-8fc5-07be62c4cf5d",
+      "headline": "Netflix Takes on YouTube by Licensing Digital Publisher Videos Starting August",
+      "slug": "netflix-takes-on-youtube-licensing-digital-publisher-videos-august",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 5,
+        "embed_issues": [],
+        "image_match": {
+          "score": 5,
+          "issue": "missing image URL"
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 2,
+          "note": "The article discusses Netflix's strategy but lacks a direct connection to the Indian diaspora."
+        },
+        "factual_flags": [
+          "The article mentions a start date of August 3, which is in the future relative to the current date."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a section discussing how this move might impact Indian viewers or the Indian entertainment market.",
+          "Include quotes or insights from industry experts regarding the implications for NRIs."
+        ],
+        "verdict": "flag"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (257\u2192409 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "d70b8f2b-76e5-456e-b5f9-4add42552984",
+      "headline": "Panasonic Toaster Oven Sold at Costco and Amazon Recalled Over Shock and Fire Risk",
+      "slug": "panasonic-toaster-oven-costco-amazon-recalled-shock-fire-risk",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": {
+        "overall_score": 3,
+        "embed_issues": [],
+        "image_match": {
+          "score": 1,
+          "issue": "Missing image description/entities"
+        },
+        "diaspora_angle": {
+          "present": false,
+          "quality": 1,
+          "note": "The article is focused on a product recall in the US and Canada but lacks any specific relevance to the Indian diaspora."
+        },
+        "factual_flags": [
+          "The article mentions dates in the future (October 2024 and April 2026) which are hallucinated and not possible."
+        ],
+        "duplicate_embeds": [],
+        "suggestions": [
+          "Add a diaspora angle by discussing how Indian consumers in the US and Canada might be affected by this recall.",
+          "Correct the hallucinated dates to reflect accurate timelines."
+        ],
+        "verdict": "fail"
+      },
+      "actions_taken": [
+        "Revised by gemini-2.5-flash (205\u2192333 words)"
+      ],
+      "revised": true,
+      "unpublished": false,
+      "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "9794a2d8-2e5a-4c29-ad52-afffcaf36adc",
+      "headline": "Indian Film Festival of Melbourne 2026: Aamir Khan, Ranveer Singh Lead Star-Studded Nominations",
+      "slug": "indian-film-festival-melbourne-2026-aamir-khan-ranveer-singh-nominations",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
@@ -26,127 +106,129 @@
         "embed_issues": [],
         "image_match": {
           "score": 7,
-          "issue": "missing image description"
+          "issue": "hero image not provided"
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the significance of India-Pakistan matches to the Indian diaspora, highlighting cultural and economic impacts."
+          "note": "The article highlights the festival's significance for the Indian diaspora, particularly in Australia."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Add a relevant image that captures the essence of India-Pakistan cricket rivalry.",
-          "Include specific examples of how the diaspora engages with these matches, such as viewing parties or community events."
+          "Include a relevant image that represents the festival or its nominees.",
+          "Add quotes or insights from diaspora attendees or filmmakers to enhance the connection."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "84357db8-c8b9-42bf-b249-c2954a059358",
-      "headline": "Argentina vs England LIVE Score: Fans Clash Ahead of World Cup Semi-Final",
-      "slug": "argentina-vs-england-live-score-fans-clash-20260715",
+      "id": "148a5b48-83fe-48ba-b3e5-7cee10e0aa42",
+      "headline": "Indian-Origin NASA Astronaut Anil Menon Reaches ISS on Historic First Mission",
+      "slug": "indian-origin-nasa-astronaut-anil-menon-reaches-iss-first-mission",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/FIFAWorldCup/status/1798369680387563725",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          },
-          {
-            "url": "https://instagram.com/p/C7x0Yw_S_tB/",
-            "problem": "broken",
-            "detail": "Instagram embed shows removed/broken placeholder"
-          }
-        ],
-        "vision_image_match": {
-          "verdict": "MATCH",
-          "what_photo_shows": "Argentina fans celebrating at a match",
-          "reason": "The photo shows Argentina fans, relevant to the story about fan clashes."
-        },
+        "broken_embeds": [],
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 7,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the events of the match and fan clashes to the Indian diaspora, highlighting their engagement with football and the cultural implications."
+          "note": "The article highlights the achievements of an Indian-origin astronaut, which resonates with the Indian diaspora's pride in representation in global fields."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more direct quotes from Indian fans to enhance the diaspora perspective.",
-          "Include specific details about how NRIs are planning to engage with the World Cup, such as travel plans or community events."
+          "Consider adding quotes from Anil Menon or experts to enhance the narrative.",
+          "Include a section on how this mission might inspire Indian youth abroad."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "Removed 2 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
     },
     {
-      "id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-      "headline": "Panchayat President from TVK Arrested for Bribery",
-      "slug": "panchayat-president-from-tvk-arrested-for-bribery-20260715",
+      "id": "265d5865-aef1-431a-8ea4-de2efbada308",
+      "headline": "World Cricketers' Association Slams ICC Over Changes to 2027 ODI World Cup Format",
+      "slug": "world-cricketers-association-slams-icc-2027-odi-world-cup-format-changes",
       "pre_checks": {
         "fiction_admission": null,
         "duplicate_embeds": [],
         "duplicate_images": [],
-        "broken_embeds": [
-          {
-            "url": "https://x.com/timesofindia/status/1798543210987654321",
-            "problem": "broken",
-            "detail": "react-tweet returned null (deleted/protected/nonexistent)"
-          }
-        ],
+        "broken_embeds": [],
         "inline_image_mismatches": []
       },
       "llm_review": {
         "overall_score": 8,
         "embed_issues": [],
         "image_match": {
-          "score": 9,
+          "score": 7,
           "issue": null
         },
         "diaspora_angle": {
           "present": true,
           "quality": 8,
-          "note": "The article effectively connects the issue of local governance corruption to the diaspora's interests and investments in Tamil Nadu."
+          "note": "The article connects the changes in the ODI World Cup format to the Indian diaspora's interest in cricket, particularly regarding India's participation."
         },
         "factual_flags": [],
         "duplicate_embeds": [],
         "suggestions": [
-          "Consider adding more specific examples of how the diaspora can engage with anti-corruption initiatives.",
-          "Include quotes or insights from diaspora members regarding their views on governance issues in India."
+          "Include quotes or reactions from Indian cricketers or cricket analysts to strengthen the diaspora connection.",
+          "Add a brief section on how these changes might impact Indian fans living abroad, such as viewing experiences or engagement with the tournament."
         ],
         "verdict": "pass"
       },
-      "actions_taken": [
-        "Removed 1 broken/hallucinated embed(s)",
-        "promoted to published"
-      ],
+      "actions_taken": [],
       "revised": false,
       "unpublished": false,
       "llm_source": "gpt-4o-mini"
+    },
+    {
+      "id": "c479d530-2216-4117-bc06-03da81b9776b",
+      "headline": "OTT Releases This Weekend: Samantha's Maa Inti Bangaaram, Raktanchal Season 3, and More",
+      "slug": "ott-releases-this-weekend-samantha-maa-inti-bangaaram-raktanchal-season-3",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": null,
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false
+    },
+    {
+      "id": "e6c0ef7a-82ef-4d83-aff0-10b4f39a1ae9",
+      "headline": "Fox News Op-Ed Calls for Eliminating H-1B and OPT Programs, Citing Worker Replacement",
+      "slug": "fox-news-op-ed-calls-for-eliminating-h1b-opt-programs-worker-replacement",
+      "pre_checks": {
+        "fiction_admission": null,
+        "duplicate_embeds": [],
+        "duplicate_images": [],
+        "broken_embeds": [],
+        "inline_image_mismatches": []
+      },
+      "llm_review": null,
+      "actions_taken": [],
+      "revised": false,
+      "unpublished": false
     }
   ]
 }

@@ -424,17 +424,18 @@ def upload_to_supabase(img_bytes, filename):
              "-H", "Content-Type: image/jpeg",
              "-H", "x-upsert: true",
              "--data-binary", "@-"],
-            input=img_bytes, capture_output=True, text=True, timeout=20
+            input=img_bytes, capture_output=True, timeout=20
         )
+        stdout = result.stdout.decode("utf-8", errors="replace") if isinstance(result.stdout, bytes) else result.stdout
         if result.returncode == 0:
             try:
-                resp = json.loads(result.stdout)
+                resp = json.loads(stdout)
                 if "Key" in resp or "Id" in resp:
                     return f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
             except:
                 pass
             # Check for success even without JSON
-            if "200" in result.stdout or not result.stdout.strip():
+            if "200" in stdout or not stdout.strip():
                 return f"{SUPABASE_URL}/storage/v1/object/public/article-images/{filename}"
         return None
     except:
