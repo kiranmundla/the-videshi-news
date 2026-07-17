@@ -296,7 +296,11 @@ export default function IndexV2() {
           ...lifestylePool, ...foodPool, ...travelPool,
         ]
           .filter((a) => a.hero_image_url)
-          .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+          .sort((a, b) => {
+            const aTime = new Date(a.event_at || a.published_at).getTime();
+            const bTime = new Date(b.event_at || b.published_at).getTime();
+            return bTime - aTime;
+          })
           .slice(0, 8);
 
         applyData(f, sp, ev, new Date(), allPool);

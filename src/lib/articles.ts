@@ -20,6 +20,7 @@ export type Article = {
   gallery_images?: GalleryImage[] | null;
   author?: string;
   published_at: string;
+  event_at?: string | null;
   updated_at?: string;
   created_at: string;
   status: "published" | "draft";
@@ -48,6 +49,7 @@ type P2Row = {
   status: string;
   is_featured: boolean | null;
   published_at: string | null;
+  event_at?: string | null;
   updated_at?: string | null;
   created_at: string;
   sources?: unknown;
@@ -64,7 +66,7 @@ type P2Row = {
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
 
 const P2_LIST_COLS =
   "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";

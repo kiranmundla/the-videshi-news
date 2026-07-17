@@ -48,7 +48,7 @@ VALID_CATEGORIES = [
 ]
 
 MAX_ARTICLES_PER_RUN = 3
-MIN_COMBINED_SCORE = 13  # minimum newsworthiness + diaspora_relevance for LLM eval
+# Binary editorial gate — LLM decides yes/no, ranking uses freshness + signal count
 LOOKBACK_HOURS = 12      # how far back to look for topics
 DEDUP_HOURS = 48         # how far back to check for duplicate articles
 
@@ -513,45 +513,42 @@ def evaluate_topics(topics, recent_articles):
             "hours_ago": hours_ago
         })
 
-    prompt = f"""You are the editor of The Videshi, an Indian diaspora news site serving NRIs (Non-Resident Indians) worldwide.
+    prompt = f"""You are the editor of The Videshi, an Indian diaspora news site serving NRIs (Non-Resident Indians) in the US, UK, and Canada.
 
-Below are news signals. Each includes `hours_ago` — how many hours since the signal arrived. Fresher stories (lower hours_ago) should score higher for newsworthiness, all else equal. A breaking result from 1 hour ago beats the same story arriving 8 hours late.
+For each signal below, make a BINARY editorial decision: should The Videshi cover this? YES or NO.
 
-Score each for:
-1. **newsworthiness** (1-10): How important is this story RIGHT NOW? Major events, breaking news, policy changes = 8-10. Routine/filler = 1-4. Penalize stories that are many hours old — they're less urgent.
-2. **diaspora_relevance** (1-10): How relevant is this to Indians living abroad? The reader is an NRI in the US/UK/Canada — would they specifically seek this out? Score per category:
+Say YES if the story meets EITHER condition:
+- It directly affects or interests Indians living abroad (immigration policy, Indian-origin leaders, diaspora safety, India-bilateral relations, Indian culture/food/entertainment accessible abroad, NRI investments, cricket/sports India competes in)
+- It is a major global story that any informed reader would want to know (major market moves, geopolitical crises, landmark tech developments, World Cup results) — even without a specific India angle
 
-**immigration**: H-1B, green card, EB-5, OPT, visa processing, USCIS policy, deportation, citizenship = 8-10. Generic US immigration (border, asylum, non-Indian) = 4-6 only if it affects policy broadly. Pure India domestic immigration law = 2-3.
+Say NO if:
+- It is generic US/world news an NRI would not care about MORE than a random American (random court cases, local US politics, gaming news, obscure product launches)
+- It is pure India local news with no diaspora connection (city accidents, state-level politics, India-only entertainment gossip)
+- It is noise: routine analyst upgrades, minor earnings, press releases disguised as news
 
-**markets-finance**: FAANG/mega-cap earnings (Apple, Google, Microsoft, Amazon, Meta, Tesla, NVIDIA, Netflix, JPMorgan, Goldman Sachs), S&P 500/Nasdaq big moves, Fed rate decisions, US inflation/CPI, US jobs/housing = 7-9 (NRIs live and invest in the US). Indian-CEO companies (Google/Pichai, Microsoft/Nadella, IBM/Krishna, Starbucks/Narasimhan) = 8-9. NRI investment angles (remittances, FCNR/NRE deposits, India mutual funds for NRIs) = 8-10. Random mid-cap earnings, dividends, analyst upgrades = 2-4 (noise). Indian markets (Sensex, RBI, rupee) = 6-8 ONLY for major events with NRI impact, 3-5 for routine daily moves.
+Category guidance for borderline calls:
+- **immigration**: Any H-1B, green card, EB-5, OPT, USCIS, visa policy = YES. Generic US border/asylum policy = YES only if it could ripple into legal immigration.
+- **markets-finance**: FAANG earnings, S&P/Nasdaq big moves, Fed decisions, US macro = YES (NRIs live and invest in the US). Indian-CEO company news (Microsoft/Nadella, Google/Pichai, IBM/Krishna) = YES. Random mid-cap earnings, dividends = NO.
+- **entertainment**: Bollywood/Indian content on global platforms, Indian talent in Hollywood, crossover cultural moments = YES. Pure India box office ₹crore numbers, Bollywood gossip = NO.
+- **technology**: Indian-origin tech leaders, H-1B impact from layoffs, India semiconductor/AI policy = YES. Random product launches with no India angle = NO.
+- **sports**: India cricket, World Cup with India, Indian athletes globally, MLC cricket = YES. Random non-India sports = NO.
+- **food**: Indian restaurants/brands in US/UK/Canada, NRI food culture, Indian recipes = YES. Pure India food news = NO.
+- **news**: NRI safety, hate crimes, bilateral relations, major India events (elections, disasters) = YES. India local news (city fires, highway crashes) = NO unless nationally significant.
 
-**entertainment**: Bollywood/Indian films releasing or streaming in US/UK/Canada theaters/platforms (where NRIs watch) = 7-9. Indian actors/directors at international festivals, awards, or Hollywood projects = 8-10. Indian-origin talent in global entertainment = 8-10. Crossover cultural moments (Indian music at Coachella, Indian shows on Netflix global) = 7-9. Pure India box office numbers (₹crore collections, opening day records) with NO international release or diaspora viewing angle = 2-3. India-only TV show drama, Bollywood gossip/weddings/breakups with no diaspora connection = 1-3.
-
-**technology**: Indian-origin tech leaders (Pichai, Nadella, Agrawal) = 8-9. Indian tech companies expanding globally or hiring/laying off in US = 7-9. H-1B/immigration impact from tech layoffs = 8-10. India semiconductor/AI policy affecting global supply chain = 7-8. Random tech product launches with no India/diaspora angle = 2-4.
-
-**sports**: India cricket (always relevant to diaspora) = 7-9. World Cup / Olympics with India or Indian-origin athletes = 8-10. Indian sports leagues with global broadcast (IPL, ISL) = 7-8. Indian-origin athletes in US/UK/global sports = 8-10. NRI community sports (MLC cricket, diaspora football) = 8-10. Random non-India international sports = 2-3.
-
-**food**: Indian restaurants opening/winning awards in US/UK/Canada = 8-10. Indian grocery/food brands in Western supermarkets = 7-9. NRI food culture, fusion cuisine = 7-8. Pure India restaurant/food news with no diaspora angle = 2-3.
-
-**news**: Stories directly affecting NRIs (safety, hate crimes, discrimination, bilateral relations, travel advisories) = 8-10. Major India events that every NRI follows (elections, disasters, geopolitical crises) = 7-9. Indian-origin people in global headlines = 7-9. Pure India local news (city fires, highway accidents, local politics) = 2-4 unless scale/impact is national. Generic US/world news with no India/diaspora connection = 2-3.
-
-**nri-world**: Community achievements, diaspora organizations, cultural events abroad = 8-10. This is the core diaspora category.
-
-**lifestyle-health, travel**: NRI-specific health/travel concerns (India travel tips, healthcare for NRIs visiting India, wellness trends in diaspora) = 7-9. Generic health/travel news = 2-4.
-
-DEFAULT RULE: If an NRI in the US would not care about this story MORE than a random American would, score 1-4. The diaspora angle must be genuine, not forced.
-3. **suggested_category**: One of: immigration, technology, news, entertainment, sports, markets-finance, nri-world, food, travel, lifestyle-health
-4. **reason**: One sentence explaining your scoring.
-
-Also flag if any are essentially about the same event (duplicate detection).
+Each includes `hours_ago`. A story from 12+ hours ago needs to be MORE significant to justify coverage — stale routine news should be NO even if the topic is borderline.
 
 SIGNALS:
 {json.dumps(signals_for_llm, indent=2)}
 
-Score ALL signals. Be strict — a World Cup semifinal result scores 9-10. A random court case scores 3-4. A story about H-1B visa changes scores 9-10.
+For EACH signal, return:
+- "idx": signal index
+- "cover": true or false (your YES/NO decision)
+- "suggested_category": one of immigration, technology, news, entertainment, sports, markets-finance, nri-world, food, travel, lifestyle-health
+- "reason": one sentence explaining your decision
+- "is_duplicate_of": idx of an earlier signal covering the same event, or null
 
-Return a JSON object with key "signals" containing the array:
-{{"signals": [{{"idx": 0, "newsworthiness": 8, "diaspora_relevance": 7, "suggested_category": "news", "reason": "...", "is_duplicate_of": null}}, ...]}}"""
+Return a JSON object:
+{{"signals": [{{"idx": 0, "cover": true, "suggested_category": "news", "reason": "...", "is_duplicate_of": null}}, ...]}}"""
 
     result = call_llm(prompt, json_mode=True, max_tokens=5000)
     if not result:
@@ -566,21 +563,16 @@ Return a JSON object with key "signals" containing the array:
         print(f"  ⚠ Unexpected LLM response type: {type(result)}, falling back")
         return filtered[:MAX_ARTICLES_PER_RUN]
 
-    # Merge LLM scores with topics
-    scored = []
+    # Merge LLM decisions with topics
+    approved = []
     for item in result:
         idx = item.get('idx')
         if idx is None or idx >= len(filtered):
             continue
         topic = filtered[idx]
-        nw = item.get('newsworthiness', 5)
-        dr = item.get('diaspora_relevance', 5)
-        combined = nw + dr
+        cover = item.get('cover', False)
         dup_of = item.get('is_duplicate_of')
 
-        topic['llm_newsworthiness'] = nw
-        topic['llm_diaspora_relevance'] = dr
-        topic['llm_combined_score'] = combined
         topic['llm_category'] = item.get('suggested_category', topic.get('category', 'news'))
         topic['llm_reason'] = item.get('reason', '')
         topic['is_duplicate_of'] = dup_of
@@ -589,23 +581,19 @@ Return a JSON object with key "signals" containing the array:
             print(f"  SKIP (LLM dup): {topic['canonical_title'][:50]} (dup of #{dup_of})")
             continue
 
-        if dr < 5:
-            print(f"  ✗ [{nw}+{dr}={combined}] low diaspora relevance: {topic['canonical_title'][:55]}")
-            continue
-
-        if combined >= MIN_COMBINED_SCORE:
-            scored.append(topic)
-            print(f"  ✓ [{nw}+{dr}={combined}] [{topic['llm_category']:15s}] {topic['canonical_title'][:55]}")
+        if cover:
+            approved.append(topic)
+            print(f"  ✓ YES [{topic['llm_category']:15s}] {topic['canonical_title'][:60]}")
         else:
-            print(f"  ✗ [{nw}+{dr}={combined}] too low: {topic['canonical_title'][:55]}")
+            print(f"  ✗ NO  [{topic['llm_category']:15s}] {topic['canonical_title'][:60]}  — {item.get('reason','')[:50]}")
 
-    # Sort by combined score desc
-    scored.sort(key=lambda x: x.get('llm_combined_score', 0), reverse=True)
+    # Rank approved topics by freshness (hours_ago asc) then signal count (desc)
+    approved.sort(key=lambda x: (x.get('hours_ago', 999), -x.get('signal_count', 1)))
 
     # Category diversity: don't let one category take all slots
     selected = []
     cat_counts = {}
-    for t in scored:
+    for t in approved:
         cat = t.get('llm_category', 'news')
         count = cat_counts.get(cat, 0)
         if count >= 2 and len(selected) < MAX_ARTICLES_PER_RUN:
@@ -618,7 +606,7 @@ Return a JSON object with key "signals" containing the array:
 
     print(f"\n  Selected {len(selected)} topics to write:")
     for t in selected:
-        print(f"    [{t.get('llm_combined_score', 0)}] [{t.get('llm_category', '?'):15s}] {t['canonical_title'][:60]}")
+        print(f"    [{t.get('llm_category', '?'):15s}] {t['canonical_title'][:60]}")
 
     return selected
 
@@ -628,7 +616,7 @@ Return a JSON object with key "signals" containing the array:
 def get_signal_urls(topic_id):
     """Get source URLs from signals linked to this topic."""
     sql = f"""
-    SELECT s.title, s.original_url, f.name as source_name
+    SELECT s.title, s.original_url, f.name as source_name, s.published_at
     FROM p2_topic_signals ts
     JOIN p2_signals s ON ts.signal_id = s.id
     JOIN p2_feed_sources f ON s.feed_source_id = f.id
@@ -637,6 +625,20 @@ def get_signal_urls(topic_id):
     LIMIT 5
     """
     return sb_query(sql) or []
+
+
+def get_event_time(topic_id):
+    """Get the earliest signal published_at for this topic — when the event actually happened."""
+    sql = f"""
+    SELECT MIN(s.published_at) as event_at
+    FROM p2_topic_signals ts
+    JOIN p2_signals s ON ts.signal_id = s.id
+    WHERE ts.topic_id = '{topic_id}'
+    """
+    rows = sb_query(sql) or []
+    if rows and rows[0].get('event_at'):
+        return rows[0]['event_at']
+    return None
 
 
 def write_article(topic):
@@ -676,7 +678,7 @@ SOURCE REFERENCES (extract facts from these — cite at least 2, but write entir
 REQUIREMENTS:
 1. **headline**: 20-120 chars. Newspaper style — short, punchy, declarative. Not clickbait.
 2. **subheadline**: 30-120 chars. Adds nuance/context the headline doesn't cover.
-3. **body**: 600-900 words in markdown. Well-structured with ## subheadings. Use present tense for current events. Include at least one section header. No promotional language.{'' if category == 'markets-finance' else ' Include a diaspora perspective (why NRIs should care).'}
+3. **body**: 600-900 words in clean HTML. Use <h2> for section subheadings, <p> for paragraphs. Do NOT use markdown syntax (no ##, no **, no []()). Use present tense for current events. Include at least one section header. No promotional language.{'' if category == 'markets-finance' else ' Include a diaspora perspective (why NRIs should care).'}
 4. **tags**: Array of 3-6 lowercase tags relevant to the article.
 5. **slug**: lowercase-hyphenated URL slug from headline (max 80 chars).
 6. **vertical**: Short descriptor: "geopolitics", "economy", "immigration", "tech", "entertainment", "sports", "cricket", "world-cup-2026", "diaspora-safety", "culture", etc.
@@ -711,8 +713,9 @@ STYLE GUIDE:
 - No filler phrases, no promotional language, no rhetorical questions in headlines.
 - For markets-finance: if the story is about major US/global companies (earnings, stock moves), US market indices (S&P 500, Nasdaq, Dow), Fed decisions, US inflation, jobs data, housing, or mortgage rates — write it as straight financial journalism for a US-based audience. Do NOT add "here's what it means for NRIs" or "diaspora perspective" paragraphs. Do NOT mention NRIs, remittances, or Indians abroad. These stories are inherently relevant to readers who live and invest in the US. Only add a diaspora angle when the story is about Indian markets (Sensex, RBI, rupee) and the NRI connection genuinely needs explaining.
 - For other categories: weave in diaspora context naturally where it adds value. Don't force a "why NRIs should care" section — if the connection is obvious (H-1B policy change), the article speaks for itself. Add it when it's not obvious (a tech layoff's impact on H-1B workers, or an Indian food trend reaching US cities).
-- Use ## for section headers, not #
+- Use <h2> for section headers (HTML, not markdown ##)
 - No "In conclusion" or "In summary" — end with impact, a forward-looking point, or what to watch next
+- Output body as clean HTML (<h2>, <p>, <ul>/<li> for lists). No markdown. No ** for bold — use <strong> if needed.
 
 Return a single JSON object with all these fields."""
 
@@ -730,6 +733,11 @@ Return a single JSON object with all these fields."""
     if not body or len(body) < 300:
         print(f"  ⚠ Body too short: {len(body)} chars")
         return None
+
+    # Convert any stray markdown to HTML (safety net)
+    body = re.sub(r'^### (.+)$', r'<h3>\1</h3>', body, flags=re.MULTILINE)
+    body = re.sub(r'^## (.+)$', r'<h2>\1</h2>', body, flags=re.MULTILINE)
+    body = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', body)
 
     # Ensure slug has date suffix
     slug = result.get('slug', '') or make_slug(headline)
@@ -758,6 +766,7 @@ Return a single JSON object with all these fields."""
         "is_editorial": False,
         "topic_id": topic['id'],
         "published_at": datetime.now(timezone.utc).isoformat(),
+        "event_at": get_event_time(topic['id']),
         "image_search_query": result.get('image_search_query', ''),
         "image_must_show": result.get('image_must_show', ''),
         "image_entities": result.get('image_entities', []),
