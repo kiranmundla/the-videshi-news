@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import SocialEmbed, { detectSocialUrl } from "@/components/SocialEmbed";
+import SocialEmbed, { detectSocialUrl, MinimalTweetEmbed } from "@/components/SocialEmbed";
 import XOfficialEmbed from "@/components/XOfficialEmbed";
 import SocialPhotoStrip, { parseSocialPhotos } from "@/components/SocialPhotoStrip";
 import Masthead from "@/components/Masthead";
@@ -690,17 +690,39 @@ export default function ArticlePage() {
                 }
               );
 
-              // Split HTML body to insert social embeds mid-article
+              // Detect bare social-embed URLs in the HTML body and render
+              // them as React components (same logic as MarkdownWithEmbeds).
+              const htmlLines = processedHtml.split("\n");
+              const htmlChunks: Array<{ kind: "html"; html: string } | { kind: "embed"; platform: "instagram" | "twitter"; url: string }> = [];
+              let htmlBuf: string[] = [];
+              const flushHtml = () => {
+                if (htmlBuf.length) {
+                  htmlChunks.push({ kind: "html", html: htmlBuf.join("\n") });
+                  htmlBuf = [];
+                }
+              };
+              for (const line of htmlLines) {
+                const embed = detectSocialUrl(line);
+                if (embed) {
+                  flushHtml();
+                  htmlChunks.push({ kind: "embed", ...embed });
+                } else {
+                  htmlBuf.push(line);
+                }
+              }
+              flushHtml();
+
+              // Also insert social_embeds from the JSON field mid-article
               const socialEmbeds = article.social_embeds ?? [];
-              if (socialEmbeds.length > 0) {
-                // Find a good split point: before the 2nd <h2> (after first section)
-                const h2Matches = [...processedHtml.matchAll(/<h2[\s>]/gi)];
+              if (socialEmbeds.length > 0 && htmlChunks.every(c => c.kind === "html")) {
+                // No inline embeds found — insert social_embeds at a split point
+                const fullHtml = processedHtml;
+                const h2Matches = [...fullHtml.matchAll(/<h2[\s>]/gi)];
                 let splitIdx = -1;
                 if (h2Matches.length >= 2) {
                   splitIdx = h2Matches[1].index!;
                 } else {
-                  // Fallback: split roughly at 1/3 of the paragraphs
-                  const paraBreaks = [...processedHtml.matchAll(/<\/p>/gi)];
+                  const paraBreaks = [...fullHtml.matchAll(/<\/p>/gi)];
                   const target = Math.max(1, Math.floor(paraBreaks.length / 3));
                   if (paraBreaks.length >= 3 && paraBreaks[target]) {
                     splitIdx = paraBreaks[target].index! + paraBreaks[target][0].length;
@@ -708,8 +730,8 @@ export default function ArticlePage() {
                 }
 
                 if (splitIdx > 0) {
-                  const firstHalf = processedHtml.slice(0, splitIdx);
-                  const secondHalf = processedHtml.slice(splitIdx);
+                  const firstHalf = fullHtml.slice(0, splitIdx);
+                  const secondHalf = fullHtml.slice(splitIdx);
                   return (
                     <>
                       <div className="article-html" dangerouslySetInnerHTML={{ __html: firstHalf }} />
@@ -722,10 +744,15 @@ export default function ArticlePage() {
 
               return (
                 <>
-                  <div
-                    className="article-html"
-                    dangerouslySetInnerHTML={{ __html: processedHtml }}
-                  />
+                  {htmlChunks.map((chunk, i) =>
+                    chunk.kind === "embed" && chunk.platform === "twitter" ? (
+                      <MinimalTweetEmbed key={i} url={chunk.url} />
+                    ) : chunk.kind === "embed" ? (
+                      <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
+                    ) : (
+                      <div key={i} className="article-html" dangerouslySetInnerHTML={{ __html: chunk.html }} />
+                    )
+                  )}
                   {socialEmbeds.length > 0 && <SocialEmbeds embeds={socialEmbeds} />}
                 </>
               );
