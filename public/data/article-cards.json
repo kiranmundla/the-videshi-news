@@ -1,122 +1,128 @@
 [
   {
-    "slug": "christopher-nolan-odyssey-box-office-day-1-india-record-opening",
-    "headline": "Christopher Nolan's The Odyssey Opens to Rs 18 Crore in India, Smashing His Own Record for Biggest Debut",
+    "slug": "batwara-1947-sunny-deol-partition-film-aamir-khan",
+    "headline": "Sunny Deol and Aamir Khan's Partition Drama Batwara 1947 Set for August 14 Release With A.R. Rahman Score",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/christopher-nolan-odyssey-box-office-day-1-india-record-opening.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/batwara-1947-sunny-deol-partition-film-aamir-khan.jpg"
   },
   {
-    "slug": "reliance-jio-in-space-approval-1600-satellite-leo-network-starlink",
-    "headline": "Reliance Jio Gets Regulatory Green Light for 1,600-Satellite Network, India's First Domestic Challenge to Starlink",
+    "slug": "tcs-abb-multi-million-ai-deal-network-operations",
+    "headline": "TCS Wins Multi-Million AI Deal to Run ABB's Global Network Operations, Extending 20-Year Partnership",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/reliance-jio-in-space-approval-1600-satellite-leo-network-starlink.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-abb-multi-million-ai-deal-network-operations.jpg"
   },
   {
-    "slug": "sonam-wangchuk-removed-jantar-mantar-hospital-day-21-hunger-strike",
-    "headline": "Sonam Wangchuk Removed From Jantar Mantar Protest Site and Taken to Hospital on Day 21 of Hunger Strike",
+    "slug": "spain-vs-argentina-world-cup-2026-final-preview-messi-yamal",
+    "headline": "Spain vs Argentina: Everything You Need to Know Before Sunday's World Cup Final",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spain-vs-argentina-world-cup-2026-final-preview-messi-yamal.jpg"
+  },
+  {
+    "slug": "world-cup-2026-employers-30-billion-lost-productivity-workplace-disruption",
+    "headline": "World Cup 2026 Could Cost US Employers $30 Billion in Lost Productivity as Workers Stream Matches From Their Desks",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-cup-2026-employers-30-billion-lost-productivity-workplace-disruption.jpg"
+  },
+  {
+    "slug": "france-england-world-cup-third-place-playoff-mbappe-golden-boot-deschamps-farewell",
+    "headline": "France and England Meet in World Cup Third-Place Playoff With Golden Boot and Legacy on the Line",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/france-england-world-cup-third-place-playoff-mbappe-golden-boot-deschamps-farewell.jpg"
+  },
+  {
+    "slug": "indian-americans-turbulence-2026-carnegie-survey-trump-disapproval-emigration",
+    "headline": "71 Percent of Indian Americans Disapprove of Trump, but Democrats Are Not Gaining Ground, Carnegie Survey Finds",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sonam-wangchuk-removed-jantar-mantar-hospital-day-21-hunger-strike.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-americans-turbulence-2026-carnegie-survey-trump-disapproval-emigration.jpg"
   },
   {
-    "slug": "india-emergent-ai-unicorn-1-5-billion-valuation-series-c",
-    "headline": "India's Emergent Hits $1.5 Billion Valuation in a Year, Becomes Second AI Unicorn in a Month",
+    "slug": "chingri-malai-curry-tasteatlas-best-shrimp-dishes-bengali-cuisine-global-ranking",
+    "headline": "Bengal's Chingri Malai Curry Ranks Among the World's Best Shrimp Dishes on TasteAtlas, the Only Indian Entry in the Top 50",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chingri-malai-curry-tasteatlas-best-shrimp-dishes-bengali-cuisine-global-ranking.jpg"
+  },
+  {
+    "slug": "indian-couple-wins-200000-settlement-food-racism-university-colorado-20260718",
+    "headline": "Indian PhD Couple Wins $200,000 Settlement Over 'Food Racism' at University of Colorado",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-couple-wins-200000-settlement-food-racism-university-colorado-20260718.jpg"
+  },
+  {
+    "slug": "germany-steals-spotlight-global-education-indian-students",
+    "headline": "Germany Overtakes Traditional Rivals as Indian Students Flock to Free Tuition and Fast-Track Residency",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/germany-steals-spotlight-global-education-indian-students.jpg"
+  },
+  {
+    "slug": "selective-funding-slows-startup-creation-india-cautious-vcs",
+    "headline": "Selective Funding Slows Startup Creation in India as VCs Shift From Volume to Quality",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-emergent-ai-unicorn-1-5-billion-valuation-series-c.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/selective-funding-slows-startup-creation-india-cautious-vcs.jpg"
   },
   {
-    "slug": "arunachal-pradesh-floods-elephants-lifeline-rescue-operations",
-    "headline": "Elephants Become Last Lifeline in Flood-Ravaged Arunachal Pradesh as Crisis Deepens Across 26 Districts",
+    "slug": "arvind-raman-indian-american-confirmed-nist-director",
+    "headline": "Indian-American Engineer Arvind Raman Confirmed as 18th Director of NIST",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/arvind-raman-indian-american-confirmed-nist-director.jpg"
+  },
+  {
+    "slug": "delhi-rishikesh-namo-bharat-rail-extension-gets-green-light-promising-three-hour-20260718",
+    "headline": "Delhi-Rishikesh Namo Bharat Rail Extension Gets Green Light, Promising Three-Hour Travel Time",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-rishikesh-namo-bharat-rail-extension-gets-green-light-promising-three-hour-20260718.jpg"
+  },
+  {
+    "slug": "indias-top-banks-post-strong-q1-results-as-icici-leads-with-16-percent-profit-ju-20260718",
+    "headline": "India's Top Banks Post Strong Q1 Results as ICICI Leads With 16 Percent Profit Jump",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indias-top-banks-post-strong-q1-results-as-icici-leads-with-16-percent-profit-ju-20260718.jpg"
+  },
+  {
+    "slug": "sitharaman-asks-banks-to-intensify-nri-outreach-as-fcnr-deposit-scheme-targets-5-20260718",
+    "headline": "Sitharaman Asks Banks to Intensify NRI Outreach as FCNR Deposit Scheme Targets $50 Billion",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sitharaman-asks-banks-to-intensify-nri-outreach-as-fcnr-deposit-scheme-targets-5-20260718.jpg"
+  },
+  {
+    "slug": "cyclospora-parasite-outbreak-sickens-thousands-across-the-us-with-taco-bell-lett-20260718",
+    "headline": "Cyclospora Parasite Outbreak Sickens Thousands Across the US With Taco Bell Lettuce Under Scrutiny",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cyclospora-parasite-outbreak-sickens-thousands-across-the-us-with-taco-bell-lett-20260718.jpg"
+  },
+  {
+    "slug": "madhya-pradesh-to-table-uniform-civil-code-bill-next-week-as-cm-yadav-says-only-20260718",
+    "headline": "Madhya Pradesh to Table Uniform Civil Code Bill Next Week as CM Yadav Says Only One Marriage Will Be Recognised",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/arunachal-pradesh-floods-elephants-lifeline-rescue-operations.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/madhya-pradesh-to-table-uniform-civil-code-bill-next-week-as-cm-yadav-says-only-20260718.jpg"
   },
   {
-    "slug": "ipad-mini-oled-display-upgrade-october-2026",
-    "headline": "Apple's iPad Mini Set for Biggest Upgrade in Years With OLED Display, New Chip",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ipad-mini-oled-display-upgrade-october-2026.jpg"
-  },
-  {
-    "slug": "messi-yamal-iconic-photo-world-cup-final",
-    "headline": "From Bathtub to World Cup Final: The Photographer Behind Messi and Yamal's Iconic 2007 Photo",
+    "slug": "sir-garry-sobers-cricket-greatest-all-rounder-dies-89",
+    "headline": "Sir Garry Sobers, Cricket's Greatest All-Rounder, Dies at 89 in Barbados",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/messi-yamal-iconic-photo-world-cup-final.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sir-garry-sobers-cricket-greatest-all-rounder-dies-89.jpg"
   },
   {
-    "slug": "why-india-dropped-yashasvi-jaiswal-despite-back-to-back-odi-centuries-for-the-en",
-    "headline": "Why India Dropped Yashasvi Jaiswal Despite Back-to-Back ODI Centuries for the England Tour",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/why-india-dropped-yashasvi-jaiswal-despite-back-to-back-odi-centuries-for-the-en.jpg"
+    "slug": "sanjeev-kapoor-takes-indian-cuisine-to-masterchef-australia-challenges-contestan",
+    "headline": "Sanjeev Kapoor Takes Indian Cuisine to MasterChef Australia, Challenges Contestants to Cook With Indian Flavors",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sanjeev-kapoor-takes-indian-cuisine-to-masterchef-australia-challenges-contestan.jpg"
   },
   {
-    "slug": "priyanka-chopra-jonas-returns-to-indian-cinema-as-mandakini-in-ss-rajamoulis-epi",
-    "headline": "Priyanka Chopra Jonas Returns to Indian Cinema as Mandakini in SS Rajamouli's Epic Varanasi",
+    "slug": "indias-retail-inflation-breaches-rbi-target-for-first-time-in-17-months-as-food",
+    "headline": "India's Retail Inflation Breaches RBI Target for First Time in 17 Months as Food and Fuel Costs Surge",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indias-retail-inflation-breaches-rbi-target-for-first-time-in-17-months-as-food.jpg"
+  },
+  {
+    "slug": "mumbais-iconic-ashok-vada-pav-earns-global-recognition-on-tasteatlas-worlds-most",
+    "headline": "Mumbai's Iconic Ashok Vada Pav Earns Global Recognition on TasteAtlas' World's Most Iconic Sandwiches List",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mumbais-iconic-ashok-vada-pav-earns-global-recognition-on-tasteatlas-worlds-most.jpg"
+  },
+  {
+    "slug": "ramayana-trailer-set-for-july-24-global-premiere-as-two-versions-clear-cbfc-cert",
+    "headline": "Ramayana Trailer Set for July 24 Global Premiere as Two Versions Clear CBFC Certification",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/priyanka-chopra-jonas-returns-to-indian-cinema-as-mandakini-in-ss-rajamoulis-epi.jpg"
-  },
-  {
-    "slug": "indian-startup-vimag-labs-challenges-chinas-rare-earth-grip-with-magnet-free-ev-",
-    "headline": "Indian Startup Vimag Labs Challenges China's Rare Earth Grip With Magnet-Free EV Motor",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-startup-vimag-labs-challenges-chinas-rare-earth-grip-with-magnet-free-ev-.jpg"
-  },
-  {
-    "slug": "us-senate-bill-targets-india-with-100-percent-tariffs-over-russian-oil-purchases",
-    "headline": "US Senate Bill Targets India With 100 Percent Tariffs Over Russian Oil Purchases",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-senate-bill-targets-india-with-100-percent-tariffs-over-russian-oil-purchases.jpg"
-  },
-  {
-    "slug": "indias-first-private-orbital-rocket-vikram-1-set-for-historic-launch-from-srihar",
-    "headline": "India's First Private Orbital Rocket Vikram-1 Set for Historic Launch From Sriharikota",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indias-first-private-orbital-rocket-vikram-1-set-for-historic-launch-from-srihar.jpg"
-  },
-  {
-    "slug": "r-ashwin-demands-clarity-on-rohit-sharma-virat-kohli-2027-world-cup-futures",
-    "headline": "R Ashwin Demands BCCI Clarity on Rohit Sharma and Virat Kohli's 2027 World Cup Futures",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/r-ashwin-demands-clarity-on-rohit-sharma-virat-kohli-2027-world-cup-futures.jpg"
-  },
-  {
-    "slug": "supreme-court-allows-mahaprabhu-jagannath-film-release-after-rath-yatra",
-    "headline": "Supreme Court Clears 'Mahaprabhu Jagannath' Animated Film for Release After Rath Yatra",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/supreme-court-allows-mahaprabhu-jagannath-film-release-after-rath-yatra.jpg"
-  },
-  {
-    "slug": "ipo-bound-jio-platforms-reports-9-percent-profit-growth-to-rs-7764-crore-in-q1",
-    "headline": "IPO-Bound Jio Platforms Reports 9 Percent Profit Growth to Rs 7,764 Crore in Q1",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ipo-bound-jio-platforms-reports-9-percent-profit-growth-to-rs-7764-crore-in-q1.jpg"
-  },
-  {
-    "slug": "makemytrip-files-confidentially-for-india-ipo-could-raise-over-1-billion",
-    "headline": "MakeMyTrip Files Confidentially for India IPO, Could Raise Over $1 Billion",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/makemytrip-files-confidentially-for-india-ipo-could-raise-over-1-billion.jpg"
-  },
-  {
-    "slug": "zeptos-ipo-valuation-may-fall-27-percent-below-peak-as-profitability-concerns-mo",
-    "headline": "Zepto's IPO Valuation May Fall 27 Percent Below Peak as Profitability Concerns Mount",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zeptos-ipo-valuation-may-fall-27-percent-below-peak-as-profitability-concerns-mo.jpg"
-  },
-  {
-    "slug": "ms-dhonis-10-year-old-fifa-post-appears-to-have-predicted-the-spain-vs-argentina",
-    "headline": "MS Dhoni's 10-Year-Old FIFA Post Appears to Have Predicted the Spain vs Argentina World Cup Final",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ms-dhonis-10-year-old-fifa-post-appears-to-have-predicted-the-spain-vs-argentina.jpg"
-  },
-  {
-    "slug": "google-director-resigns-over-pentagon-ai-deal-says-company-abandoned-its-moral-c",
-    "headline": "Google Director Resigns Over Pentagon AI Deal, Says Company Abandoned Its Moral Compass",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/google-director-resigns-over-pentagon-ai-deal-says-company-abandoned-its-moral-c.jpg"
-  },
-  {
-    "slug": "first-death-reported-in-nyc-legionnaires-disease-outbreak-as-cases-rise-to-63",
-    "headline": "First Death Reported in NYC Legionnaires' Disease Outbreak as Cases Rise to 63",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/first-death-reported-in-nyc-legionnaires-disease-outbreak-as-cases-rise-to-63.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ramayana-trailer-set-for-july-24-global-premiere-as-two-versions-clear-cbfc-cert.jpg"
   }
 ]
