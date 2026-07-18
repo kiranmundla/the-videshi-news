@@ -660,7 +660,7 @@ export default function ArticlePage() {
             if (blocks) return <ArticleBlocks blocks={blocks} />;
 
             // Detect HTML bodies (start with HTML block tags) and render natively
-            const isHtml = /^\s*<(?:!--|p|h[1-6]|div|section|article)\b/i.test(article.body);
+            const isHtml = /^\s*<(?:!--|(?:p|h[1-6]|div|section|article)\b)/i.test(article.body);
             if (isHtml) {
               let processedHtml = article.body;
 
