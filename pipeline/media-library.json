@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-18T10:32:08Z",
+ "_updated": "2026-07-18T10:32:13Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -14387,6 +14387,28 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-07-18T10:32:08Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--ltimindtree--05fb16",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ltimindtree-05fb16.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ltimindtree-05fb16.jpg",
+   "subject": "ltimindtree",
+   "subject_type": "thing",
+   "caption": "Main building of Mindtree, Bangalore branch",
+   "attribution": "Wikimedia Commons / Chinmayee Mishra, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Main_building_of_Mindtree,_Bangalore_branch.jpg",
+   "tags": [
+    "ltimindtree"
+   ],
+   "width": 4608,
+   "height": 3456,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:32:13Z",
    "last_used": null,
    "times_used": 0
   }

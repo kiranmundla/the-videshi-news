@@ -1312,16 +1312,6 @@
    "priority": 2
   },
   {
-   "subject": "study abroad",
-   "subject_type": "thing",
-   "tags": [
-    "study abroad"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "f106f635-0148-4902-8aa7-b6e5de92802c",
-   "priority": 3
-  },
-  {
    "subject": "visa rejection",
    "subject_type": "thing",
    "tags": [
@@ -1830,16 +1820,6 @@
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "f1630d5c-33a3-447c-8730-3cd8f874e53c",
    "priority": 2
-  },
-  {
-   "subject": "T20",
-   "subject_type": "thing",
-   "tags": [
-    "t20"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "f1630d5c-33a3-447c-8730-3cd8f874e53c",
-   "priority": 3
   },
   {
    "subject": "insurance technology",
@@ -4062,16 +4042,6 @@
    "priority": 2
   },
   {
-   "subject": "indian space",
-   "subject_type": "thing",
-   "tags": [
-    "indian space"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "e541cf0a-b2df-46f4-86a2-e9ab4e947942",
-   "priority": 3
-  },
-  {
    "subject": "private launch",
    "subject_type": "thing",
    "tags": [
@@ -5112,16 +5082,6 @@
    "priority": 2
   },
   {
-   "subject": "fbi",
-   "subject_type": "thing",
-   "tags": [
-    "fbi"
-   ],
-   "first_seen": "2026-07-10T10:29:24Z",
-   "article_id": "10e0219a-da5f-4ac2-b9da-24f15325bfbf",
-   "priority": 3
-  },
-  {
    "subject": "silver",
    "subject_type": "thing",
    "tags": [
@@ -5420,16 +5380,6 @@
    "first_seen": "2026-07-10T10:29:24Z",
    "article_id": "a4383b30-c05f-4ac2-ad82-2250cd5151e2",
    "priority": 2
-  },
-  {
-   "subject": "q1 results",
-   "subject_type": "thing",
-   "tags": [
-    "q1 results"
-   ],
-   "first_seen": "2026-07-10T10:29:24Z",
-   "article_id": "bfe917ea-eeae-4f46-b59d-5baf605a80f2",
-   "priority": 4
   },
   {
    "subject": "india property",
@@ -6182,16 +6132,6 @@
    "priority": 2
   },
   {
-   "subject": "energy security",
-   "subject_type": "thing",
-   "tags": [
-    "energy security"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-   "priority": 3
-  },
-  {
    "subject": "oil imports",
    "subject_type": "thing",
    "tags": [
@@ -6200,26 +6140,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
    "priority": 2
-  },
-  {
-   "subject": "indian cuisine",
-   "subject_type": "thing",
-   "tags": [
-    "indian cuisine"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "99e5ffbb-130a-418f-8852-82945b06227a",
-   "priority": 4
-  },
-  {
-   "subject": "fine dining",
-   "subject_type": "thing",
-   "tags": [
-    "fine dining"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "99e5ffbb-130a-418f-8852-82945b06227a",
-   "priority": 3
   },
   {
    "subject": "michelin stars",
@@ -6250,16 +6170,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "99e5ffbb-130a-418f-8852-82945b06227a",
    "priority": 2
-  },
-  {
-   "subject": "indienne",
-   "subject_type": "thing",
-   "tags": [
-    "indienne"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "99e5ffbb-130a-418f-8852-82945b06227a",
-   "priority": 3
   },
   {
    "subject": "dishoom",
@@ -6562,16 +6472,6 @@
    "priority": 2
   },
   {
-   "subject": "etf",
-   "subject_type": "thing",
-   "tags": [
-    "etf"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "f4b1706c-b03b-4736-b06c-aa9cc08cd577",
-   "priority": 3
-  },
-  {
    "subject": "mayors",
    "subject_type": "thing",
    "tags": [
@@ -6610,16 +6510,6 @@
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "6f52138c-4410-4ad6-925d-0915ac5c35be",
    "priority": 2
-  },
-  {
-   "subject": "medicine",
-   "subject_type": "thing",
-   "tags": [
-    "medicine"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "b37ed113-103c-4018-9bd3-6342739964de",
-   "priority": 3
   },
   {
    "subject": "neurology",
@@ -6682,16 +6572,6 @@
    "priority": 2
   },
   {
-   "subject": "software engineering",
-   "subject_type": "thing",
-   "tags": [
-    "software engineering"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "aa41e0af-33b8-4a20-a78a-6c4b094e2052",
-   "priority": 3
-  },
-  {
    "subject": "zetwerk",
    "subject_type": "thing",
    "tags": [
@@ -6720,16 +6600,6 @@
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "cbd0eef7-aa73-457e-a98a-8e517abfd22d",
    "priority": 2
-  },
-  {
-   "subject": "tech layoffs",
-   "subject_type": "thing",
-   "tags": [
-    "tech layoffs"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "29557ea9-4962-426b-8c57-1822ef7f4d3a",
-   "priority": 3
   },
   {
    "subject": "JD Vance official portrait 2026",
@@ -6802,16 +6672,6 @@
    "priority": 2
   },
   {
-   "subject": "india space",
-   "subject_type": "thing",
-   "tags": [
-    "india space"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
-   "priority": 3
-  },
-  {
    "subject": "mercor",
    "subject_type": "thing",
    "tags": [
@@ -6860,16 +6720,6 @@
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "cd59b38d-d2f2-4fd7-a4d5-1b6106d8ccee",
    "priority": 2
-  },
-  {
-   "subject": "ltimindtree",
-   "subject_type": "thing",
-   "tags": [
-    "ltimindtree"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "7a4c1d71-b8e7-44fa-8b7f-215da32644e0",
-   "priority": 3
   },
   {
    "subject": "mai",
@@ -7502,16 +7352,6 @@
    "priority": 2
   },
   {
-   "subject": "food safety",
-   "subject_type": "thing",
-   "tags": [
-    "food safety"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "62b2f480-a805-4db5-9cbb-a04cfc2e2681",
-   "priority": 4
-  },
-  {
    "subject": "cyclospora",
    "subject_type": "thing",
    "tags": [
@@ -7520,16 +7360,6 @@
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "62b2f480-a805-4db5-9cbb-a04cfc2e2681",
    "priority": 3
-  },
-  {
-   "subject": "food",
-   "subject_type": "thing",
-   "tags": [
-    "food"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "b0710a23-3e2d-45d1-bbe9-51ef5f6a5edb",
-   "priority": 4
   },
   {
    "subject": "taco bell",
@@ -7940,16 +7770,6 @@
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "301d00dc-a11b-4340-93bd-efc0df109140",
    "priority": 3
-  },
-  {
-   "subject": "fcnr",
-   "subject_type": "thing",
-   "tags": [
-    "fcnr"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "301d00dc-a11b-4340-93bd-efc0df109140",
-   "priority": 4
   },
   {
    "subject": "corruption",
@@ -8460,16 +8280,6 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "a99fd530-e62a-4aa1-8b84-02206776ff15",
    "priority": 2
-  },
-  {
-   "subject": "Ravindra Jadeja",
-   "subject_type": "person",
-   "tags": [
-    "ravindra jadeja"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "54da884d-365c-46b1-b106-501bce69669f",
-   "priority": 5
   },
   {
    "subject": "west indies",
@@ -8990,16 +8800,6 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "4100107f-3b75-45c6-b8c8-92491bc50abd",
    "priority": 2
-  },
-  {
-   "subject": "Anupam Kher",
-   "subject_type": "person",
-   "tags": [
-    "anupam kher"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "462cc59c-1cf8-4d27-b3ce-d6672b22b026",
-   "priority": 5
   },
   {
    "subject": "Fauzi",
