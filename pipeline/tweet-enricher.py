@@ -2,13 +2,13 @@
 """
 tweet-enricher.py — Automatically find and embed relevant X tweets in Videshi articles.
 
-Uses the X API v2 to fetch recent tweets from handles in social-embed-registry.json,
-matches them to recent articles by topic relevance, and patches the article body.
+Uses TwitterAPI.io to search tweets by handle, matches them to recent articles
+by topic relevance, and patches the article body.
 
 Flow:
   1. Get recent published articles without existing embeds (last 24h)
   2. Match article topics to registry handles (strict name matching)
-  3. Fetch recent tweets from matched handles via X API
+  3. Search recent tweets from matched handles via TwitterAPI.io
   4. Score tweet relevance against article content
   5. Verify tweet via react-tweet API (will it render?)
   6. Patch article body with the tweet URL after paragraph 2
@@ -18,7 +18,7 @@ Usage:
   python3 tweet-enricher.py --apply      # actually patch articles in Supabase
   python3 tweet-enricher.py --hours 48   # look back N hours for articles (default 24)
 
-Env: ~/workspace/.env.twitter, ~/workspace/.env.supabase
+Env: ~/workspace/.env.twitterapi-io, ~/workspace/.env.supabase
 """
 
 import os
@@ -26,14 +26,9 @@ import sys
 import json
 import re
 import subprocess
-import importlib.util
 from datetime import datetime, timezone, timedelta
 
-# Load fetch-tweets module
 _dir = os.path.dirname(os.path.abspath(__file__))
-spec = importlib.util.spec_from_file_location("ft", os.path.join(_dir, "fetch-tweets.py"))
-ft = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(ft)
 
 # ─── Env ──────────────────────────────────────────────────────────────────────
 
@@ -47,7 +42,7 @@ def load_env(path):
                     os.environ.setdefault(k.strip(), v.strip())
 
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
-load_env(os.path.expanduser("~/workspace/.env.twitter"))
+load_env(os.path.expanduser("~/workspace/.env.twitterapi-io"))
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -62,11 +57,107 @@ SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 REST = f"{SB_URL}/rest/v1"
 SB_HEADERS = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
 
+TWITTERAPI_IO_KEY = os.environ.get("TWITTERAPI_IO_KEY", "")
+TWITTERAPI_IO_BASE = "https://api.twitterapi.io"
+
 VERIFY_SCRIPT = os.path.join(_dir, "verify-tweet.sh")
 REGISTRY_PATH = os.path.join(_dir, "social-embed-registry.json")
 
 # Categories where embeds make sense
 EMBED_CATEGORIES = {"news", "sports", "entertainment", "technology", "nri-world", "immigration"}
+
+
+# ─── TwitterAPI.io search ─────────────────────────────────────────────────────
+
+def _twitterapiio_search(query, max_results=20, hours=48):
+    """Run a TwitterAPI.io advanced_search and return normalized tweet dicts."""
+    if not TWITTERAPI_IO_KEY:
+        print("  ⚠ TWITTERAPI_IO_KEY not set", file=sys.stderr)
+        return []
+
+    try:
+        result = subprocess.run(
+            ["curl", "-sS",
+             f"{TWITTERAPI_IO_BASE}/twitter/tweet/advanced_search",
+             "-H", f"X-API-Key: {TWITTERAPI_IO_KEY}",
+             "-G",
+             "--data-urlencode", f"query={query}",
+             "-d", "queryType=Latest"],
+            capture_output=True, text=True, timeout=15,
+        )
+        if result.returncode != 0:
+            print(f"  ⚠ TwitterAPI.io curl error: {result.stderr[:200]}", file=sys.stderr)
+            return []
+        data = json.loads(result.stdout)
+    except Exception as e:
+        print(f"  ⚠ TwitterAPI.io error: {e}", file=sys.stderr)
+        return []
+
+    raw_tweets = data.get("tweets", [])
+    if not raw_tweets:
+        return []
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+    results = []
+    for t in raw_tweets[:max_results]:
+        created_str = t.get("createdAt", "")
+        try:
+            created = datetime.strptime(created_str, "%a %b %d %H:%M:%S %z %Y")
+            if created < cutoff:
+                continue
+        except (ValueError, TypeError):
+            pass
+
+        media_list = t.get("extendedEntities", {}).get("media", [])
+        photos = [m.get("media_url_https", "") for m in media_list if m.get("type") == "photo"]
+        has_video = any(m.get("type") in ("video", "animated_gif") for m in media_list)
+
+        author = t.get("author", {})
+        handle_actual = author.get("userName", "")
+
+        results.append({
+            "id": t.get("id", ""),
+            "text": t.get("text", ""),
+            "created_at": created_str,
+            "photos": photos,
+            "photo_count": len(photos),
+            "has_video": has_video,
+            "url": t.get("url", f"https://x.com/{handle_actual}/status/{t.get('id', '')}"),
+            "likes": t.get("likeCount", 0) or 0,
+            "retweets": t.get("retweetCount", 0) or 0,
+            "views": t.get("viewCount", 0) or 0,
+            "verified": author.get("isBlueVerified", False),
+            "handle": handle_actual,
+            "followers": author.get("followers", 0) or 0,
+        })
+
+    return results
+
+
+def fetch_recent_tweets(handle, hours=48, max_results=20):
+    """Fetch recent tweets from a handle via TwitterAPI.io."""
+    return _twitterapiio_search(f"from:{handle}", max_results=max_results, hours=hours)
+
+
+def search_topic_tweets(topic_query, hours=48, max_results=20):
+    """Search tweets by topic (no handle filter) via TwitterAPI.io.
+    Filters self-citations and sorts by views."""
+    tweets = _twitterapiio_search(topic_query, max_results=max_results, hours=hours)
+    tweets = [t for t in tweets if (t.get("handle", "") or "").lower() != "thevideshi"]
+    tweets.sort(key=lambda t: (t.get("views", 0) or 0), reverse=True)
+    return tweets
+
+
+def build_topic_query(headline):
+    """Extract 3-5 distinctive keywords from headline for topic search."""
+    stopwords = {"the","a","an","in","on","at","to","for","of","and","or","is","are",
+                 "was","were","has","had","have","been","be","will","can","may","with",
+                 "its","it","by","from","that","this","says","said","after","over",
+                 "new","set","how","why","what","who","but","not","all","into","up"}
+    words = re.findall(r'[A-Za-z]{3,}', headline)
+    keywords = [w for w in words if w.lower() not in stopwords]
+    # Take first 5 distinctive words
+    return " ".join(keywords[:5])
 
 
 # ─── Registry matching ────────────────────────────────────────────────────────
@@ -228,6 +319,7 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
     
     # Filter: no existing embeds, eligible category
     candidates = []
+    topic_only = []  # Articles with no registry match — try topic search
     for a in resp:
         body = a.get("body", "") or ""
         if re.search(r'x\.com/\w+/status/\d+', body):
@@ -240,6 +332,8 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         )
         if matches:
             candidates.append({"article": a, "handles": matches})
+        else:
+            topic_only.append({"article": a, "handles": []})
     
     report = {
         "articles_checked": len(resp),
@@ -264,12 +358,16 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             handle = handle_info["handle"]
             
             if handle.lower() in seen_handles:
-                # Already fetched this handle's timeline, use cached result
                 pass
             seen_handles.add(handle.lower())
             
-            # Fetch recent tweets (prefer with photos)
-            tweets = ft.fetch_recent_tweets(handle, hours=max(hours, 48), max_results=10)
+            # Fetch recent tweets via TwitterAPI.io (prefer with photos)
+            tweets = fetch_recent_tweets(handle, hours=max(hours, 48), max_results=20)
+            if not tweets:
+                # Fallback: topic search when handle timeline is empty
+                topic_q = build_topic_query(headline)
+                if topic_q:
+                    tweets = search_topic_tweets(topic_q, hours=max(hours, 48))
             if not tweets:
                 continue
             
@@ -333,6 +431,67 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             report["details"].append(detail)
             break  # Move to next article
     
+    # ── Topic-only search for articles without registry matches ──
+    for c in topic_only:
+        if embeds_added >= max_embeds:
+            break
+
+        a = c["article"]
+        headline = a["headline"]
+        body = a.get("body", "") or ""
+        topic_q = build_topic_query(headline)
+        if not topic_q:
+            continue
+
+        tweets = search_topic_tweets(topic_q, hours=max(hours, 48))
+        if not tweets:
+            continue
+
+        # Score and find best
+        best_tweet = None
+        best_score = 0
+
+        for tweet in tweets:
+            score = score_relevance(tweet["text"], headline, body[:500])
+            if tweet["photo_count"] > 0:
+                score += 3
+            # Higher bar for non-registry: need verified or high views
+            if not tweet.get("verified") and (tweet.get("views", 0) or 0) < 1000:
+                continue
+            if score < 4:  # Stricter threshold for topic search
+                continue
+            if score > best_score:
+                best_score = score
+                best_tweet = tweet
+
+        if not best_tweet:
+            continue
+
+        tweet_id = best_tweet["id"]
+        if not verify_tweet(tweet_id):
+            continue
+
+        detail = {
+            "headline": headline[:80],
+            "handle": f"@{best_tweet.get('handle', '?')}",
+            "tweet_url": best_tweet["url"],
+            "photos": best_tweet["photo_count"],
+            "relevance": best_score,
+            "tweet_text": best_tweet["text"][:100],
+            "source": "topic_search",
+            "status": "would_embed" if not apply else "embedded",
+        }
+
+        if apply:
+            ok = patch_article_embed(a["id"], body, best_tweet["url"])
+            if ok:
+                embeds_added += 1
+                detail["status"] = "embedded"
+            else:
+                detail["status"] = "patch_failed"
+
+        report["details"].append(detail)
+
     report["embeds_added"] = embeds_added
     return report
 
