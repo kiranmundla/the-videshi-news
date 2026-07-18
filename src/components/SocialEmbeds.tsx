@@ -77,14 +77,26 @@ function InstagramCard({ url }: { url: string }) {
 
   return (
     <div className="flex justify-center">
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={url}
-        data-instgrm-version="14"
-        style={{ maxWidth: 540, width: "100%" }}
+      {/* Wrapper crops the bottom engagement section (likes, comments, icons) */}
+      <div
+        style={{
+          overflow: "hidden",
+          position: "relative",
+          maxWidth: 540,
+          width: "100%",
+        }}
       >
-        <a href={url}>Loading Instagram post…</a>
-      </blockquote>
+        <div style={{ marginBottom: "-155px" }}>
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink={url}
+            data-instgrm-version="14"
+            style={{ maxWidth: 540, width: "100%", margin: 0 }}
+          >
+            <a href={url}>Loading Instagram post…</a>
+          </blockquote>
+        </div>
+      </div>
     </div>
   );
 }
