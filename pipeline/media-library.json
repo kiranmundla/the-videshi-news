@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-18T10:31:03Z",
+ "_updated": "2026-07-18T10:32:08Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -14123,6 +14123,270 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-07-18T10:31:03Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--study-abroad--d97f16",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/study-abroad-d97f16.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/study-abroad-d97f16.jpg",
+   "subject": "study abroad",
+   "subject_type": "thing",
+   "caption": "One of the renowned overseas education consultancy in India",
+   "attribution": "Wikimedia Commons / Abroad Solutions India, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Abroad_Solutions_India_Transparent_Logo.png",
+   "tags": [
+    "study abroad"
+   ],
+   "width": 3840,
+   "height": 2491,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-18T10:31:12Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--t20--3a04b4",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/t20-3a04b4.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/t20-3a04b4.jpg",
+   "subject": "T20",
+   "subject_type": "thing",
+   "caption": "ACC Twenty20 Nepal v Malaysia 2013.",
+   "attribution": "Wikimedia Commons / Krish Dulal, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ACC_Twenty20_Nepal_v_Malaysia.JPG",
+   "tags": [
+    "t20"
+   ],
+   "width": 1600,
+   "height": 1200,
+   "duration": null,
+   "quality_score": 54.8,
+   "added_date": "2026-07-18T10:31:18Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--indian-space--3ddf0f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-space-3ddf0f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-space-3ddf0f.jpg",
+   "subject": "indian space",
+   "subject_type": "thing",
+   "caption": "ISRO PSLV Ank Kumar, INFOSYS Limited",
+   "attribution": "Wikimedia Commons / Ank Kumar, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ISRO_PSLV_(2020)_02.jpg",
+   "tags": [
+    "indian space"
+   ],
+   "width": 3024,
+   "height": 4032,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:31:28Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--fbi--f94e96",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fbi-f94e96.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fbi-f94e96.jpg",
+   "subject": "fbi",
+   "subject_type": "thing",
+   "caption": "A sign indicating the Las Vegas Office of the United States Federal Bureau of Investigation.",
+   "attribution": "Wikimedia Commons / Noah Wulf, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:FBI_Las_Vegas_Office_Sign.jpg",
+   "tags": [
+    "fbi"
+   ],
+   "width": 4272,
+   "height": 2848,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:31:32Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--energy-security--d9b9bb",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/energy-security-d9b9bb.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/energy-security-d9b9bb.jpg",
+   "subject": "energy security",
+   "subject_type": "thing",
+   "caption": "WEO 2022 describes the need for a new energy security paradigm for secure transitions. The graphic holds three graphs describing these suggested paradigms. It was published in the International Energy Agency's World Energy Outlook 2022.",
+   "attribution": "Wikimedia Commons / International Energy Agency, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Energy_security_paradigm.png",
+   "tags": [
+    "energy security"
+   ],
+   "width": 1920,
+   "height": 1080,
+   "duration": null,
+   "quality_score": 59.8,
+   "added_date": "2026-07-18T10:31:36Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--fine-dining--6c670d",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fine-dining-6c670d.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fine-dining-6c670d.jpg",
+   "subject": "fine dining",
+   "subject_type": "thing",
+   "caption": "Nuestr elegante salón Regente más intimo para tu banquete.",
+   "attribution": "Wikimedia Commons / HotelReal, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Banquete_en_el_Salón_Regente.JPG",
+   "tags": [
+    "fine dining"
+   ],
+   "width": 2126,
+   "height": 1418,
+   "duration": null,
+   "quality_score": 63.0,
+   "added_date": "2026-07-18T10:31:40Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--indienne--fd6f51",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indienne-fd6f51.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indienne-fd6f51.jpg",
+   "subject": "indienne",
+   "subject_type": "thing",
+   "caption": "Indienne au monogramme (Musée de l'impression sur étoffes) Inde, côte de Coromandel, 18e siècle Toile de coton teinte par mordançage et réserve, peinte, 8 couleurs, 177 x 208 cm Musée de l'impression sur étoffes, Mulhouse (exposée à la BNUS)",
+   "attribution": "Wikimedia Commons / Ji-Elle, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indienne_au_monogramme-Musée_de_l'impression_sur_étoffes_(1).jpg",
+   "tags": [
+    "indienne"
+   ],
+   "width": 4032,
+   "height": 2278,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:31:45Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--etf--00a077",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/etf-00a077.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/etf-00a077.jpg",
+   "subject": "etf",
+   "subject_type": "thing",
+   "caption": "ETF volunteers with students in ETF preschool",
+   "attribution": "Wikimedia Commons / Educating The Future, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ETF_volunteers_in_preschool.png",
+   "tags": [
+    "etf"
+   ],
+   "width": 1620,
+   "height": 1080,
+   "duration": null,
+   "quality_score": 55.1,
+   "added_date": "2026-07-18T10:31:50Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--medicine--372dac",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/medicine-372dac.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/medicine-372dac.jpg",
+   "subject": "medicine",
+   "subject_type": "thing",
+   "caption": "Pharmacie in Paulista Avenue. In some countries, such as Brazil (photo) and France, more than 20% of all drug sales are generic.",
+   "attribution": "Wikimedia Commons / Wilfredor, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pharmacie_in_Paulista_Avenue.jpg",
+   "tags": [
+    "medicine"
+   ],
+   "width": 4000,
+   "height": 2605,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:31:56Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--software-engineering--57cdc2",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/software-engineering-57cdc2.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/software-engineering-57cdc2.jpg",
+   "subject": "software engineering",
+   "subject_type": "thing",
+   "caption": "Three landmark buildings reflected in the corner of the Software Engineering Institute: St. Paul Cathedral, Webster Hall, and the Mellon Institute.",
+   "attribution": "Wikimedia Commons / Cbaile19, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Reflections_in_the_Software_Engineering_Institute,_Oakland,_Pittsburgh,_2019-09-30.jpg",
+   "tags": [
+    "software engineering"
+   ],
+   "width": 1813,
+   "height": 2266,
+   "duration": null,
+   "quality_score": 65.1,
+   "added_date": "2026-07-18T10:32:00Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--tech-layoffs--58e9db",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tech-layoffs-58e9db.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tech-layoffs-58e9db.jpg",
+   "subject": "tech layoffs",
+   "subject_type": "thing",
+   "caption": "Headshot for 2024 Miss Asian Global Pageant",
+   "attribution": "Wikimedia Commons / Xirimpi, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Hannah_Chea_headshot_(2024).jpg",
+   "tags": [
+    "tech layoffs"
+   ],
+   "width": 2910,
+   "height": 4073,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:32:03Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--india-space--ce159f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-space-ce159f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-space-ce159f.jpg",
+   "subject": "india space",
+   "subject_type": "thing",
+   "caption": "This long exposure image of Northern India was taken by astronauts on the International Space Station while the Earth was shrouded in darkness. North is on the upper right, where the snowcapped Himalaya and Tibetan plateau may be seen. Major cities in view include New Delhi, on t",
+   "attribution": "Wikimedia Commons / NASA, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ISS-46_Northern_India_at_night.jpg",
+   "tags": [
+    "india space"
+   ],
+   "width": 4928,
+   "height": 3280,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:32:08Z",
    "last_used": null,
    "times_used": 0
   }
