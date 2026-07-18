@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-17T22:02:03.681688+00:00",
+  "last_refresh": "2026-07-18T10:00:55.801263+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -3326,6 +3326,27 @@
       "likes": 0,
       "image_count": 4,
       "scraped_at": "2026-07-17T22:01:21.000862+00:00"
+    },
+    "https://www.instagram.com/p/Da6SIOMDmy2/": {
+      "account": "foxnews",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-18T10:00:23.931813+00:00"
+    },
+    "https://www.instagram.com/p/Da6HN7TAM64/": {
+      "account": "fifaworldcup",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-18T10:00:37.198945+00:00"
+    },
+    "https://www.instagram.com/p/Da0__nFjx3T/": {
+      "account": "jamaicaobserver",
+      "platform": "instagram",
+      "likes": 880,
+      "image_count": 4,
+      "scraped_at": "2026-07-18T10:00:42.871977+00:00"
     }
   },
   "images": [
@@ -21167,6 +21188,147 @@
       "scraped_at": "2026-07-17T22:01:20.998904+00:00",
       "account": "cnn",
       "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t39.30808-6/748194192_1487659966557194_4360943500367014030_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=m8mMhdXBUfAQ7kNvwEdhho_&_nc_oc=AdoqXYUvS859OmyHdMYV2sEWE6vTxA_Qt8BuhaQ7Ux9-_ZG2cHrDC2n3BykYgavavU1NIzbPkhcR_V3vtHCLBZJ4&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=_-TPkvGXSjqkroYWjUsDxA&_nc_ss=7860f&oh=00_AQB9TbXEu6wSFPFhPfpSLMu-6nz9fRySy8aYLxygUt2wLw&oe=6A611FEA",
+      "post_url": "https://www.instagram.com/p/Da6SIOMDmy2/",
+      "platform": "instagram",
+      "caption": "6,365 likes, 144 comments - foxnews on July 17, 2026: \"From emotional farewells to unforgettable fan moments, the 2026 FIFA World Cup has delivered no shortage of memories.\n\nCristiano Ronaldo and Neymar took the field for what became their final World Cup appearances, while Lionel Messi could be making his last as Argentina prepares to face Spain in Sunday's final.\n\nAside from the play on the pitc",
+      "scraped_at": "2026-07-18T10:00:23.931209+00:00",
+      "account": "foxnews",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-foxnews-b4a7e53bb8e2.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 57298
+    },
+    {
+      "cdn_url": "https://scontent-atl3-2.cdninstagram.com/v/t51.82787-15/749514202_18615534139058867_7445634955778948496_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=5oZ2I7Fu4WoQ7kNvwHKRkpj&_nc_oc=AdqvrEVrWFbh8kOnK_NbUEI-qQYzj2XciDcH1Pnlzs80C9FyRDXA3yygagT8uDW73jb3MTB3HRbhU52iNZ_nJ29S&_nc_zt=23&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_gid=bNWunfPGPDiDg7NbGfGy3w&_nc_ss=7860f&oh=00_AQDymtRkSWL2--KYRrNd42p06jL3VwY5Bizz3g0m5Z9WAw&oe=6A610853",
+      "post_url": "https://www.instagram.com/p/Da6SIOMDmy2/",
+      "platform": "instagram",
+      "caption": "6,365 likes, 144 comments - foxnews on July 17, 2026: \"From emotional farewells to unforgettable fan moments, the 2026 FIFA World Cup has delivered no shortage of memories.\n\nCristiano Ronaldo and Neymar took the field for what became their final World Cup appearances, while Lionel Messi could be making his last as Argentina prepares to face Spain in Sunday's final.\n\nAside from the play on the pitc",
+      "scraped_at": "2026-07-18T10:00:23.931243+00:00",
+      "account": "foxnews",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t39.30808-6/750977590_1487729663216891_1248874468553147558_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=4o761IvkXZQQ7kNvwFOYIW_&_nc_oc=AdoSVnxAKHxVyWK1yyPZx-OQ46xdZfYr0dSGWu9E_DgOlanOgUcV92S3zdK-D8SGxgDZy4mF_YgIoLd-6qVDn1lu&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=bNWunfPGPDiDg7NbGfGy3w&_nc_ss=7860f&oh=00_AQCDsOCOMkqwFYWFmejkWfQxB5WNBs2xEhI6-lzqrBBDeQ&oe=6A61263F",
+      "post_url": "https://www.instagram.com/p/Da6SIOMDmy2/",
+      "platform": "instagram",
+      "caption": "6,365 likes, 144 comments - foxnews on July 17, 2026: \"From emotional farewells to unforgettable fan moments, the 2026 FIFA World Cup has delivered no shortage of memories.\n\nCristiano Ronaldo and Neymar took the field for what became their final World Cup appearances, while Lionel Messi could be making his last as Argentina prepares to face Spain in Sunday's final.\n\nAside from the play on the pitc",
+      "scraped_at": "2026-07-18T10:00:23.931249+00:00",
+      "account": "foxnews",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t39.30808-6/751549741_1487689949887529_9071574289310484694_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=o2CRtX91EzcQ7kNvwFD4isA&_nc_oc=AdqskR-iv_dApFUazffWG3wwbTti-ij0LEwcFZIwwxBF4PlCOoVMsFi2b2QM6tCI57kgs7ymCcCxhRZuUbQ6F15Y&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=bNWunfPGPDiDg7NbGfGy3w&_nc_ss=7860f&oh=00_AQBj50OS05WQFUnRkw_WBuYl7ySxw5EI9o-s4i7WMPgNHQ&oe=6A612987",
+      "post_url": "https://www.instagram.com/p/Da6SIOMDmy2/",
+      "platform": "instagram",
+      "caption": "6,365 likes, 144 comments - foxnews on July 17, 2026: \"From emotional farewells to unforgettable fan moments, the 2026 FIFA World Cup has delivered no shortage of memories.\n\nCristiano Ronaldo and Neymar took the field for what became their final World Cup appearances, while Lionel Messi could be making his last as Argentina prepares to face Spain in Sunday's final.\n\nAside from the play on the pitc",
+      "scraped_at": "2026-07-18T10:00:23.931254+00:00",
+      "account": "foxnews",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/748986047_18612507493061984_1494957417041430574_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=GmQELZLPWD4Q7kNvwHBWJ_E&_nc_oc=AdovLOWjZI5wJd6arOaD6Ezikwit9j77wkBC2ap9DGkZzS1yUA9ecw1QJRNKSoVHDWx2d48kHVBhSyFiEp1YQ5N_&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=ljIZ6CvGDuL3b_49iQbfrA&_nc_ss=7860f&oh=00_AQCIUcc7DwPwR6zOyW1MVaVrLjXyw0yo7Sm5XwB20BvqIg&oe=6A610C4D",
+      "post_url": "https://www.instagram.com/p/Da6HN7TAM64/",
+      "platform": "instagram",
+      "caption": "40K likes, 164 comments - fifaworldcup on July 17, 2026: \"The Top 5 hardest-hit goals of the knockouts. \ud83d\udd25Which one is your favourite? \n#FIFAWorldCup @adidasfootball #YouGotThis\". ",
+      "scraped_at": "2026-07-18T10:00:37.198872+00:00",
+      "account": "fifaworldcup",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-fifaworldcup-cdedab5a49a5.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 38079
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/746041520_18611922469061984_3784039640271118538_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=B4_TI6DeUeUQ7kNvwEXpokw&_nc_oc=AdrbvwnzoCbuuv03zx1FXGCznqcvmh67L0oqPrIOxNt6mD1prmsui2IapEwgIqpVo5yQGfMtWRSC-bCLbggC_fMK&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=qn0pc0UOBbwfOWd6QS9cXw&_nc_ss=7860f&oh=00_AQC963rQAvCIUQ_Dh1HHqPYaa8PdNECj5b7SQTfA4Am8AQ&oe=6A611E3A",
+      "post_url": "https://www.instagram.com/p/Da6HN7TAM64/",
+      "platform": "instagram",
+      "caption": "40K likes, 164 comments - fifaworldcup on July 17, 2026: \"The Top 5 hardest-hit goals of the knockouts. \ud83d\udd25Which one is your favourite? \n#FIFAWorldCup @adidasfootball #YouGotThis\". ",
+      "scraped_at": "2026-07-18T10:00:37.198906+00:00",
+      "account": "fifaworldcup",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/748231482_18611888803061984_4314057494415833827_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=8K0A2OSnSn0Q7kNvwFmWMRI&_nc_oc=AdqgIKZTxMjtJUs5L9tqMtwjiqC-qHXCPbsJuemmDRbE_y48MiLSN54EYnqyPNbiV2DgRfoXu484cLKz_6hjBi3J&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=qn0pc0UOBbwfOWd6QS9cXw&_nc_ss=7860f&oh=00_AQDzd-SfUaSxdjgnyFWAOQmdxGTrTtKrS8pjkwkpFGQbhw&oe=6A61055B",
+      "post_url": "https://www.instagram.com/p/Da6HN7TAM64/",
+      "platform": "instagram",
+      "caption": "40K likes, 164 comments - fifaworldcup on July 17, 2026: \"The Top 5 hardest-hit goals of the knockouts. \ud83d\udd25Which one is your favourite? \n#FIFAWorldCup @adidasfootball #YouGotThis\". ",
+      "scraped_at": "2026-07-18T10:00:37.198911+00:00",
+      "account": "fifaworldcup",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.82787-15/742416937_18612649459061984_4086870264551115180_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=dHuIaBP7iCYQ7kNvwFLgfvM&_nc_oc=AdrWtCtIbexiGo9M0DAc6Vs7pJ-oquW4hSWUWwLh0sS9IV6FZ9FNXBhnVlF-PoXPZ4BpY0KH7ecnZyy334Rwm6aH&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=qn0pc0UOBbwfOWd6QS9cXw&_nc_ss=7860f&oh=00_AQABb1ZjpbsSbSWd1ckxLcIoBH4q_g2XSrRAVKhihnLu1w&oe=6A6115E9",
+      "post_url": "https://www.instagram.com/p/Da6HN7TAM64/",
+      "platform": "instagram",
+      "caption": "40K likes, 164 comments - fifaworldcup on July 17, 2026: \"The Top 5 hardest-hit goals of the knockouts. \ud83d\udd25Which one is your favourite? \n#FIFAWorldCup @adidasfootball #YouGotThis\". ",
+      "scraped_at": "2026-07-18T10:00:37.198915+00:00",
+      "account": "fifaworldcup",
+      "likes": 0,
+      "trusted": true,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-2.cdninstagram.com/v/t51.82787-15/747468546_18613708834060964_4575744814224177986_n.jpg?stp=c216.0.648.648a_dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=oZImT5nIY0gQ7kNvwFrGkAN&_nc_oc=AdoKsyRgCiWroSOCkWaZTf384aVWBvS4gJ5DKhVVS-4VKIBfrfAhY7P_peNk8lJym2sKiKYe2kM0xq6eD37y_Cp3&_nc_zt=23&_nc_ht=scontent-atl3-2.cdninstagram.com&_nc_gid=9LkJkwV6PKjWquQcBPVmoQ&_nc_ss=7820f&oh=00_AQA9oISD7Knzp8HB7merm-vaMxjh7uNziblcDhaicndEgw&oe=6A6136B2",
+      "post_url": "https://www.instagram.com/p/Da0__nFjx3T/",
+      "platform": "instagram",
+      "caption": "880 likes, 125 comments - jamaicaobserver on July 15, 2026: \"\ud83c\udde6\ud83c\uddf7 ARGENTINA ARE THROUGH TO THE WORLD CUP FINAL! \ud83c\udfc6\n\nHeartbreak for the Three Lions as England\u2019s World Cup dream comes to an end. After Anthony Gordon fired England ahead in the 55th minute, Argentina staged another dramatic comeback with goals from Enzo Fern\u00e1ndez (85\u2019) and Lautaro Mart\u00ednez (90+2\u2019) to seal a 2-1 victory and book their pla",
+      "scraped_at": "2026-07-18T10:00:42.871918+00:00",
+      "account": "jamaicaobserver",
+      "likes": 880,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-jamaicaobserver-0585cc5bdd2c.jpg",
+      "width": 640,
+      "height": 640,
+      "size_bytes": 56725
+    },
+    {
+      "cdn_url": "https://scontent-atl3-1.cdninstagram.com/v/t51.71878-15/749566794_2025343708348327_6935265851862726528_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=MWHWsyfhPhEQ7kNvwFo4tRd&_nc_oc=AdoidEy7OTJaKxvi7ON3Iqg0l0ew5g8vAW03XfiQSFZDJmkz9F6MvKI4FCq5p6IvNvCfALwwnPyzcmBy3YlpPGjt&_nc_zt=23&_nc_ht=scontent-atl3-1.cdninstagram.com&_nc_gid=NFNFh-C_7x2q-h51HyCqgw&_nc_ss=7820f&oh=00_AQB9iCY6Pwyr7GxhKicp5qZlGwXdD8wBPLsf-pwp3DKkhg&oe=6A611269",
+      "post_url": "https://www.instagram.com/p/Da0__nFjx3T/",
+      "platform": "instagram",
+      "caption": "880 likes, 125 comments - jamaicaobserver on July 15, 2026: \"\ud83c\udde6\ud83c\uddf7 ARGENTINA ARE THROUGH TO THE WORLD CUP FINAL! \ud83c\udfc6\n\nHeartbreak for the Three Lions as England\u2019s World Cup dream comes to an end. After Anthony Gordon fired England ahead in the 55th minute, Argentina staged another dramatic comeback with goals from Enzo Fern\u00e1ndez (85\u2019) and Lautaro Mart\u00ednez (90+2\u2019) to seal a 2-1 victory and book their pla",
+      "scraped_at": "2026-07-18T10:00:42.871951+00:00",
+      "account": "jamaicaobserver",
+      "likes": 880,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-15/747290515_18613716730060964_6300740484324638478_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=OQfE5EBRY7wQ7kNvwH2Dngm&_nc_oc=AdoqKiByqlFbmpaYoQUYp6pzMgLDxRIzAOqXB0FSHVCWbLB3JZSoKMDVMcgEAXGi4uK6QU68F20lrEnJgxq13KnP&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=NFNFh-C_7x2q-h51HyCqgw&_nc_ss=7820f&oh=00_AQBTVkxTcq2RaUuqx6Ctpcc7KXTJrhzzFQui18XtfZ56kA&oe=6A613BFE",
+      "post_url": "https://www.instagram.com/p/Da0__nFjx3T/",
+      "platform": "instagram",
+      "caption": "880 likes, 125 comments - jamaicaobserver on July 15, 2026: \"\ud83c\udde6\ud83c\uddf7 ARGENTINA ARE THROUGH TO THE WORLD CUP FINAL! \ud83c\udfc6\n\nHeartbreak for the Three Lions as England\u2019s World Cup dream comes to an end. After Anthony Gordon fired England ahead in the 55th minute, Argentina staged another dramatic comeback with goals from Enzo Fern\u00e1ndez (85\u2019) and Lautaro Mart\u00ednez (90+2\u2019) to seal a 2-1 victory and book their pla",
+      "scraped_at": "2026-07-18T10:00:42.871957+00:00",
+      "account": "jamaicaobserver",
+      "likes": 880,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-atl3-3.cdninstagram.com/v/t51.82787-15/749585677_18614430145060964_485701273324763566_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=FCVGOgG2ZgwQ7kNvwEfTx2I&_nc_oc=Adp2cilaA-am3qF74kIqoY8NEN9OveucYMBhSAP4SMDsmcVCWDjsNmAwzBkwOkasFUDBUQowb0V55Eqv_zThQ5Ke&_nc_zt=23&_nc_ht=scontent-atl3-3.cdninstagram.com&_nc_gid=NFNFh-C_7x2q-h51HyCqgw&_nc_ss=7820f&oh=00_AQDC8_GiivpxVCcGosePHHkoWZE0d3A6tN1N8Ky2NLIiXA&oe=6A61234E",
+      "post_url": "https://www.instagram.com/p/Da0__nFjx3T/",
+      "platform": "instagram",
+      "caption": "880 likes, 125 comments - jamaicaobserver on July 15, 2026: \"\ud83c\udde6\ud83c\uddf7 ARGENTINA ARE THROUGH TO THE WORLD CUP FINAL! \ud83c\udfc6\n\nHeartbreak for the Three Lions as England\u2019s World Cup dream comes to an end. After Anthony Gordon fired England ahead in the 55th minute, Argentina staged another dramatic comeback with goals from Enzo Fern\u00e1ndez (85\u2019) and Lautaro Mart\u00ednez (90+2\u2019) to seal a 2-1 victory and book their pla",
+      "scraped_at": "2026-07-18T10:00:42.871962+00:00",
+      "account": "jamaicaobserver",
+      "likes": 880,
       "trusted": false,
       "permanent_url": null
     }
