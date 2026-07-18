@@ -64,7 +64,7 @@ HOMEPAGE_FEED = DATA_DIR / "homepage-feed.json"
 P2_COLS = (
     "id,slug,headline,subheadline,body,vertical,category,status,"
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
-    "image_url,image_attribution,image_caption,gallery_images,score_total,"
+    "image_url,image_attribution,image_caption,gallery_images,social_embeds,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
     "google_cluster_size,signal_count,focal_x,focal_y,llm_score"
 )
@@ -72,7 +72,7 @@ P2_COLS = (
 P2_COLS_NO_BODY = (
     "id,slug,headline,subheadline,vertical,category,status,"
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
-    "image_url,image_attribution,image_caption,gallery_images,score_total,"
+    "image_url,image_attribution,image_caption,gallery_images,social_embeds,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
     "google_cluster_size,signal_count,focal_x,focal_y,llm_score"
 )
@@ -297,6 +297,7 @@ def map_row(row: dict) -> dict:
         "event_at": row.get("event_at"),
         "focal_x": row.get("focal_x", 0.5),
         "focal_y": row.get("focal_y", 0.5),
+        "social_embeds": row.get("social_embeds") or [],
     }
 
 
