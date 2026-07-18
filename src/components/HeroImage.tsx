@@ -22,8 +22,9 @@ export function isValidImage(src?: string | null): boolean {
   if (src.toLowerCase().endsWith(".svg")) return false;
   if (/Flag_of_|flag_of_|_flag\.|national.flag/i.test(src)) return false;
   if (src.includes("Flag_of_Canada")) return false;
-  // Reject common low-quality image patterns
-  if (/logo|icon|avatar|placeholder|default|thumbnail.*small/i.test(src)) return false;
+  // Reject common low-quality image patterns — match as path segments (separator-bounded),
+  // not as substrings, to avoid false positives like "iconic" or "semiconductor"
+  if (/(?:^|[/\-_.])(?:logo|icon|avatar|placeholder|default)(?:[/\-_.\s]|$)|thumbnail.*small/i.test(src)) return false;
   // Reject Wikipedia map/globe images
   if (/upload\.wikimedia.*(?:map|globe|location|locator)/i.test(src)) return false;
   // Reject very short URLs (likely broken)
