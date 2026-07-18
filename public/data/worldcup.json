@@ -1,7 +1,7 @@
 {
   "tournament": "FIFA World Cup 2026",
-  "last_updated": "2026-07-18T17:59:38Z",
-  "stage": "Final Weekend — 102 of 104 matches played",
+  "last_updated": "2026-07-19T00:00:00Z",
+  "stage": "Final Weekend — 103 of 104 matches played",
   "hosts": "USA, Mexico & Canada",
   "dates": {
     "start": "2026-06-11",
@@ -2217,8 +2217,8 @@
       "away": "England",
       "venue": "Hard Rock Stadium",
       "city": "Miami Gardens, FL",
-      "status": "scheduled",
-      "score": null,
+      "status": "FT",
+      "score": "4-6",
       "home_code": "FRA",
       "away_code": "ENG"
     },
@@ -2690,8 +2690,8 @@
           "home_code": "FRA",
           "away": "England",
           "away_code": "ENG",
-          "status": "scheduled",
-          "score": null
+          "status": "FT",
+          "score": "4-6"
         }
       ]
     },
