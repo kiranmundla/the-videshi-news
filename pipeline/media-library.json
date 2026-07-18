@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-17T10:33:38Z",
+ "_updated": "2026-07-18T10:31:03Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -13969,6 +13969,160 @@
    "duration": null,
    "quality_score": 88.7,
    "added_date": "2026-07-17T10:33:38Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--ravindra-jadeja--158d71",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/ravindra-jadeja-158d71.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/ravindra-jadeja-158d71.jpg",
+   "subject": "Ravindra Jadeja",
+   "subject_type": "person",
+   "caption": "PM meets the Players of T 20 World Cup winning team at 7, Lok Kalyan Marg, in New Delhi on July 04, 2024.",
+   "attribution": "Wikimedia Commons / Prime Minister's Office, GODL-India",
+   "license": "GODL-India",
+   "source_url": "https://commons.wikimedia.org/wiki/File:PM_Shri_Narendra_Modi_with_Ravindra_Jadeja.jpg",
+   "tags": [
+    "ravindra jadeja"
+   ],
+   "width": 2200,
+   "height": 1523,
+   "duration": null,
+   "quality_score": 64.1,
+   "added_date": "2026-07-18T10:30:16Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--anupam-kher--78f210",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/anupam-kher-78f210.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/anupam-kher-78f210.jpg",
+   "subject": "Anupam Kher",
+   "subject_type": "person",
+   "caption": "Star of Hotel Mumbai, Sense8, and Silver Linings Playbook. NYC April '19.",
+   "attribution": "Wikimedia Commons / Greg2600, CC BY-SA 2.0",
+   "license": "CC BY-SA 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Anupam_Kher_(40740364673).jpg",
+   "tags": [
+    "anupam kher"
+   ],
+   "width": 3290,
+   "height": 3888,
+   "duration": null,
+   "quality_score": 90.3,
+   "added_date": "2026-07-18T10:30:21Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--q1-results--e269a7",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/q1-results-e269a7.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/q1-results-e269a7.jpg",
+   "subject": "q1 results",
+   "subject_type": "thing",
+   "caption": "Timeline of the universe. A representation of the evolution of the universe over 13.77 billion years. The far left depicts the earliest moment we can now probe, when a period of \"inflation\" produced a burst of exponential growth in the universe. (Size is depicted by the vertical ",
+   "attribution": "Wikimedia Commons / NASA/WMAP Science Team, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:CMB_Timeline300_no_WMAP.jpg",
+   "tags": [
+    "q1 results"
+   ],
+   "width": 3000,
+   "height": 1980,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-07-18T10:30:43Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--indian-cuisine--2a4c25",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-cuisine-2a4c25.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-cuisine-2a4c25.jpg",
+   "subject": "indian cuisine",
+   "subject_type": "thing",
+   "caption": "Indian Folk Cuisine Ramzan Images This media has been taken in the country: India",
+   "attribution": "Wikimedia Commons / AmanAgrahari01, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indian_Folk_Cuisine_Ramzan_Images_(21).jpg",
+   "tags": [
+    "indian cuisine"
+   ],
+   "width": 3000,
+   "height": 4000,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:30:50Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--food-safety--bd9978",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/food-safety-bd9978.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/food-safety-bd9978.jpg",
+   "subject": "food safety",
+   "subject_type": "thing",
+   "caption": "Jennifer Acuff, assistant professor of food safety, and M.S. student Erika Kadas collect Salmonella bacterial cells from agar plates to inoculate low-moisture foods, like milk powder, for thermal inactivation studies. (U of A System Division of Agriculture photo by Fred Miller)",
+   "attribution": "Wikimedia Commons / Ark. Agricultural Experiment Station, CC BY-SA 2.0",
+   "license": "CC BY-SA 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Acuff_Food_Safety_Lab.jpg",
+   "tags": [
+    "food safety"
+   ],
+   "width": 3000,
+   "height": 2000,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-07-18T10:30:54Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--food--060a59",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/food-060a59.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/food-060a59.jpg",
+   "subject": "food",
+   "subject_type": "thing",
+   "caption": "Charcuterie tree",
+   "attribution": "Wikimedia Commons / Wilfredor, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Christmas_food_001.jpg",
+   "tags": [
+    "food"
+   ],
+   "width": 3840,
+   "height": 2922,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-18T10:30:58Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--fcnr--1ab635",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fcnr-1ab635.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fcnr-1ab635.jpg",
+   "subject": "fcnr",
+   "subject_type": "thing",
+   "caption": "_BRK0869 Too Shy Lake (Spelled Tutshi)",
+   "attribution": "Wikimedia Commons / Boris Kasimov from Toronto, Canada, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BRK0869_Too_Shy_Lake_(Spelled_Tutshi)_(9578989850).jpg",
+   "tags": [
+    "fcnr"
+   ],
+   "width": 4928,
+   "height": 3264,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:31:03Z",
    "last_used": null,
    "times_used": 0
   }
