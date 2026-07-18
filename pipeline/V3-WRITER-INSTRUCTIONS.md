@@ -1,0 +1,139 @@
+# V3 Writer Cron Body — Article Quality Standard
+
+## Step 1 — Run V3 selector
+```
+cd ~/workspace/the-videshi-news/pipeline && timeout 600 python3 -u v3-select.py --per-cat 3 2>&1
+```
+
+## Step 2 — Read candidates
+Read `/tmp/v3-candidates.json`. It has a `candidates` array — each entry has `topic_id`, `title`, `category`, `llm_score`, `coverage` ("new" or "update"), `source_urls`, `all_signals`, and `llm_reason`.
+
+Write ONLY these candidates. Do NOT generate additional articles beyond what's in this JSON.
+
+## Step 3 — Write articles (ONLY from candidates)
+
+For each candidate in the JSON array:
+
+### 3a. Dedup check FIRST
+Query `p2_articles` for articles with similar headlines in the last 3 days:
+`GET /rest/v1/p2_articles?select=headline&created_at=gte.<3 days ago>&status=eq.published&limit=200`
+If a published article already covers the same story, SKIP this candidate.
+
+### 3b. Read source material
+Read 2-4 of the `source_urls` via `browser_open` to get actual article text. Also check the `all_signals` array for additional source URLs. Cross-reference multiple sources — never rewrite a single wire story.
+
+### 3c. Write the article — PROFESSIONAL JOURNALISM STANDARD
+
+You are writing for The Videshi, a professional news publication for the Indian diaspora. Write like a senior journalist at Reuters, Bloomberg, or The Economist. Every article must include these structural elements:
+
+#### HEADLINE
+- Clear, informative, engaging. No clickbait. 8-14 words.
+- For `coverage: "update"`: Lead with what's NEW (e.g., "Court Reverses H-1B Ban After..." not "H-1B Update")
+
+#### KEY TAKEAWAYS (required — appears at top)
+- 3-4 bullet points summarizing the essential facts
+- Written so a busy reader gets the full picture in 10 seconds
+- Use `<div class="key-takeaways">` wrapper in the HTML body
+- Format: `<h3>Key Takeaways</h3><ul><li>...</li></ul>`
+
+#### ARTICLE BODY (500-800 words, HTML format)
+Structure with clear `<h2>` subheadings. Must include:
+
+1. **Opening paragraph** — The news lead. What happened, who's involved, why it matters. No fluff, no "In a significant development..." — just the news.
+
+2. **Context & Background** — What led to this? What's the history? NRIs especially need context because they may not follow every thread of a story. Provide the background a smart reader needs to understand WHY this matters, not just WHAT happened. This is what separates professional journalism from press-release rewrites.
+
+3. **Impact & Analysis** — What does this mean going forward? Who benefits, who's affected? For policy/regulation stories: concrete examples of how this changes things.
+
+4. **Diaspora Angle** (when natural, not forced) — How does this affect Indians abroad? For immigration: direct impact. For markets: portfolio implications. For culture: community connection. For some stories (pure global news), a brief line is fine. NEVER force a diaspora angle where none exists — it reads as amateur.
+
+5. **What's Next / Looking Ahead** — What to watch for. Next steps, upcoming decisions, timeline.
+
+#### SUMMARY CARD (required — appears after key takeaways)
+A structured at-a-glance block for quick scanning:
+```html
+<div class="summary-card">
+  <h3>At a Glance</h3>
+  <table>
+    <tr><td><strong>What</strong></td><td>...</td></tr>
+    <tr><td><strong>Who</strong></td><td>...</td></tr>
+    <tr><td><strong>When</strong></td><td>...</td></tr>
+    <tr><td><strong>Impact</strong></td><td>...</td></tr>
+    <tr><td><strong>What's Next</strong></td><td>...</td></tr>
+  </table>
+</div>
+```
+
+#### WRITING RULES
+- Write from source material only — no parametric knowledge, no fabrication
+- Include source citations naturally ("according to Reuters," "the USCIS announced")
+- NO generic filler phrases: "In a significant development," "It is worth noting," "This comes at a time when"
+- NO sycophantic qualifiers: "importantly," "notably," "interestingly"
+- Vary sentence length. Short punchy sentences mixed with longer analytical ones.
+- Use specific numbers, dates, names — concrete details, not vague summaries
+- For markets-finance: US/global-first tone, straight financial journalism. No forced NRI framing on FAANG earnings or Fed decisions.
+- For food: Indian-specific focus, recipes and cultural context
+- For entertainment: Cover both Bollywood and Hollywood with equal depth
+
+### 3d. Hero Image — Follow IMAGE-SOURCING-RULES.md strictly
+
+**Source priority:**
+1. **person_images table** — Check FIRST for any person in the article:
+   `GET /rest/v1/person_images?person_name_lower=eq.<lowercase name>&order=use_count.asc,last_used_at.asc.nullsfirst&limit=1`
+   If match: use that `image_url`, then PATCH to update `use_count` and `last_used_at`.
+
+2. **Wikipedia REST API** — For person articles OR topic images:
+   ```
+   GET https://en.wikipedia.org/api/rest_v1/page/summary/{encoded_name}
+   User-Agent: TheVideshi/1.0 (thevideshi.com)
+   ```
+   Use `originalimage.source` or `thumbnail.source`.
+
+3. **Wikimedia Commons** — Search for topic-relevant CC images.
+
+4. **Pexels** — Last resort only. Avoid generic stock.
+
+**Image Caption Rules (STRICT):**
+- Two sentences. First: what the image shows. Second: the news context.
+- Factual, plain style. Describe what is literally in the image.
+- NO flowery bridging: "symbolizing," "reflects," "illustrating," "representing"
+- NO speculation about what's not visible in the image
+- Person identity must match — exact name, recent/current photo
+- Example: "Indian Prime Minister Narendra Modi addresses Parliament during the Budget session. The government announced new tax incentives for returning NRIs."
+
+**Upload to Supabase:**
+Download image, compress to ≤200KB, upload to `article-images/{slug}.jpg` in Supabase storage. Use BOTH `apikey` and `Authorization: Bearer` headers (required for new key format).
+
+### 3e. Insert into p2_articles
+Insert with `status="published"`. Required fields:
+- `headline`, `body` (HTML), `slug`, `category`, `vertical` (same as category)
+- `tags` (array), `sources` (array of source URLs used)
+- `image_url`, `image_caption`, `image_attribution`
+- `word_count`, `diaspora_angle` (1-sentence summary)
+- `topic_id` (from candidate JSON)
+- `published_at` (NOW), `article_type` (default 'breaking')
+
+### 3f. Update topic status
+After successful article insert, PATCH the p2_topics row:
+`PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`
+
+## Step 4 — Rebuild feeds
+```
+cd ~/workspace/the-videshi-news/pipeline && python3 -u prebuild-feeds.py 2>&1
+```
+
+## Step 5 — Commit and push
+```
+cd ~/workspace/the-videshi-news && git add -A && git commit -m "V3 pipeline articles $(date +%Y-%m-%d)" && git push origin main 2>&1
+```
+
+## RULES
+- Write ONLY candidates from the JSON. No extras.
+- Skip any candidate that duplicates an existing article.
+- If `coverage` is "update" but dedup shows we already covered the SAME new development, skip.
+- If the selector outputs 0 candidates, skip everything and report nothing.
+- If an API error occurs mid-run, continue with remaining candidates.
+- Every article MUST have Key Takeaways and Summary Card — these are not optional.
+- Image captions are factual plain style — two sentences, no flowery language.
+
+Report a brief summary: headlines, categories, and total articles published.
