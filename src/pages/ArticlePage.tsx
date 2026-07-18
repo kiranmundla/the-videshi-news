@@ -661,8 +661,10 @@ export default function ArticlePage() {
             // Detect HTML bodies (start with HTML block tags) and render natively
             const isHtml = /^\s*<(?:p|h[1-6]|div|section|article)\b/i.test(article.body);
             if (isHtml) {
+              let processedHtml = article.body;
+
               // Transform <youtube> tags into responsive iframe embeds
-              const processedHtml = article.body.replace(
+              processedHtml = processedHtml.replace(
                 /<youtube>(.*?)<\/youtube>/g,
                 (_: string, url: string) => {
                   const m = url.match(/(?:youtube\.com\/watch\?.*v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]{11})/);
@@ -670,6 +672,23 @@ export default function ArticlePage() {
                   return `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:28px 0;border-radius:12px"><iframe src="https://www.youtube.com/embed/${m[1]}?rel=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen></iframe></div>`;
                 }
               );
+
+              // Transform markdown images ![alt](url) into HTML img tags
+              processedHtml = processedHtml.replace(
+                /!\[([^\]]*)\]\((https?:\/\/[^)]+)\)/g,
+                (_: string, alt: string, url: string) => {
+                  return `<figure style="margin:28px 0;text-align:center"><img src="${url}" alt="${alt}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">${alt}</figcaption></figure>`;
+                }
+              );
+
+              // Transform markdown blockquotes > **"text"** into pull-quote blockquotes
+              processedHtml = processedHtml.replace(
+                /^>\s*\*\*"([^"]+)"\*\*\s*$/gm,
+                (_: string, quote: string) => {
+                  return `<blockquote class="pull-quote"><p>"${quote}"</p></blockquote>`;
+                }
+              );
+
               return (
                 <div
                   className="article-html"

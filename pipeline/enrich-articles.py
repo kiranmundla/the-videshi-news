@@ -609,11 +609,18 @@ def find_inline_images(headline, body, hero_url=""):
     return results
 
 
+def _is_html_body(body):
+    """Check if article body is HTML (starts with HTML block tags)."""
+    return bool(re.match(r'^\s*<(?:p|h[1-6]|div|section|article)\b', body, re.IGNORECASE))
+
+
 def insert_inline_images(body, images):
     """Insert inline images at natural break points in the article body.
     Places images between paragraphs, spaced evenly through the article."""
     if not images:
         return body
+
+    is_html = _is_html_body(body)
 
     paragraphs = body.split("\n\n")
     if len(paragraphs) < 3:
@@ -627,7 +634,11 @@ def insert_inline_images(body, images):
     for i in range(len(images) - 1, -1, -1):
         entity, url, caption = images[i]
         idx = min(step * (i + 1), len(paragraphs) - 1)
-        img_md = f"\n![{caption}]({url})\n"
+        if is_html:
+            cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
+            img_md = f'\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
+        else:
+            img_md = f"\n![{caption}]({url})\n"
         paragraphs.insert(idx, img_md)
 
     return "\n\n".join(paragraphs)
@@ -697,17 +708,25 @@ def insert_pull_quote(body, quote):
     # Place at ~1/3 point
     insert_at = max(2, len(paragraphs) // 3)
 
-    quote_block = f'\n\n> **"{quote.strip()}"**\n'
+    if _is_html_body(body):
+        quote_escaped = quote.strip().replace("&", "&amp;").replace("<", "&lt;")
+        quote_block = f'\n\n<blockquote class="pull-quote"><p>"{quote_escaped}"</p></blockquote>\n'
+    else:
+        quote_block = f'\n\n> **"{quote.strip()}"**\n'
     paragraphs.insert(insert_at, quote_block)
 
     return "\n\n".join(paragraphs)
 
 
 def article_has_inline_images(body):
-    """Check if article body already has inline markdown images."""
+    """Check if article body already has inline markdown or HTML images."""
     # Count actual inline images (not social embeds or tracking pixels)
     imgs = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', body or "")
-    return len(imgs) > 0
+    if len(imgs) > 0:
+        return True
+    # Also check for HTML figure/img tags from enrichment
+    html_imgs = re.findall(r'<figure[^>]*>.*?<img\s', body or "", re.DOTALL)
+    return len(html_imgs) > 0
 
 
 def article_has_pull_quote(body):
