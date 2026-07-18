@@ -225,8 +225,12 @@ CATEGORY RULES:
 COVERAGE CLASSIFICATION:
 You will receive ALREADY PUBLISHED headlines. For each new topic, classify:
 - "new" — Not yet covered. Write it.
-- "update" — We published on this, BUT this has a MAJOR new development (court reversal, casualty doubling, CEO resignation). The bar is HIGH.
-- "duplicate" — Already covered. Even different wording/angle = duplicate if no major new info. DEFAULT when a published headline covers the same event.
+- "update" — We published on this, BUT this has a MAJOR new development. Classify as "update" in these cases:
+  * The OUTCOME of an anticipated event (e.g. we covered "set to launch" and now the launch SUCCEEDED or FAILED — that's an update, not a duplicate)
+  * A major escalation, reversal, or result (court ruling after charges filed, death toll doubling, CEO resigning after investigation, election results after campaign coverage)
+  * Any story where the published article was forward-looking/anticipatory and the new topic reports what actually happened
+  The bar is HIGH for routine incremental updates, but OUTCOMES of anticipated events are always "update".
+- "duplicate" — Already covered with no major new info. Even different wording/angle = duplicate if the SUBSTANCE is the same. DEFAULT when a published headline covers the same event AND neither is anticipatory vs outcome.
 
 WITHIN-BATCH duplicates: if two topics in this batch cover the same event, mark all but the most important as "duplicate".
 

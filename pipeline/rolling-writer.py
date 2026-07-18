@@ -153,18 +153,70 @@ def render_takeaways_html(takeaways):
     return html
 
 def inject_data_cards(body, data_cards, key_takeaways):
-    """Inject rendered data card HTML into article body."""
-    blocks = []
-    # Key takeaways always go first
-    if key_takeaways:
-        blocks.append(f'{CARD_MARKER}\n{render_takeaways_html(key_takeaways)}')
-    # Data cards: stat_grid/after_lead first, then mid-article cards
-    for card in (data_cards or []):
-        blocks.append(f'{CARD_MARKER}\n{render_card_html(card)}')
-    if not blocks:
+    """Inject rendered data card HTML into article body.
+
+    Strategy:
+    - Key takeaways go at top (skip if body already has them)
+    - Data cards are distributed mid-article, not all prepended
+    - <youtube> tags are preserved in their position (not pushed to end)
+    """
+    import re
+
+    if not data_cards and not key_takeaways:
         return body
-    # Prepend all cards before the article body
-    return '\n\n'.join(blocks) + '\n\n' + body
+
+    # Skip key-takeaways injection if body already has them
+    has_existing_kt = 'key-takeaways' in body or 'vdc-takeaways' in body
+    kt_block = ''
+    if key_takeaways and not has_existing_kt:
+        kt_block = f'{CARD_MARKER}\n{render_takeaways_html(key_takeaways)}'
+
+    if not data_cards:
+        return (kt_block + '\n\n' + body) if kt_block else body
+
+    # Render all data cards
+    card_htmls = [f'{CARD_MARKER}\n{render_card_html(c)}' for c in data_cards]
+
+    # Find insertion points in the body: after </p> tags or <h2> tags
+    p_ends = [m.end() for m in re.finditer(r'</p>', body, re.I)]
+    h2_starts = [m.start() for m in re.finditer(r'<h2[\s>]', body, re.I)]
+
+    # Build list of insertion points (prefer after h2 sections, fallback to p tags)
+    if h2_starts:
+        # Insert cards before h2 tags (which start new sections)
+        insert_points = h2_starts
+    elif len(p_ends) >= 3:
+        # No h2 tags — insert after every 2-3 paragraphs
+        insert_points = [p_ends[i] for i in range(1, len(p_ends), 2)]
+    else:
+        # Very short body — just append cards after body
+        insert_points = []
+
+    # Distribute cards across insertion points
+    result = (kt_block + '\n\n') if kt_block else ''
+    if not insert_points:
+        # Short body: key takeaways first, then body, then cards at end
+        result += body + '\n\n' + '\n\n'.join(card_htmls)
+    else:
+        # Insert cards at distributed points
+        # First card after 1st section, second card after 2nd section, etc.
+        card_positions = {}  # body_offset -> card_html
+        for ci, card_html in enumerate(card_htmls):
+            if ci < len(insert_points):
+                card_positions[insert_points[ci]] = card_html
+            else:
+                # More cards than sections — append remaining after last insert point
+                last = insert_points[-1]
+                card_positions[last] = card_positions.get(last, '') + '\n\n' + card_html
+
+        # Rebuild body with cards inserted
+        sorted_positions = sorted(card_positions.keys(), reverse=True)
+        modified_body = body
+        for pos in sorted_positions:
+            modified_body = modified_body[:pos] + '\n\n' + card_positions[pos] + '\n\n' + modified_body[pos:]
+        result += modified_body
+
+    return result
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
