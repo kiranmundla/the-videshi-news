@@ -88,10 +88,11 @@ function PhotoGrid({ photos, tweetUrl }: { photos: { url: string; width: number;
             style={{
               width: "100%",
               height: count === 1 ? "auto" : "100%",
-              maxHeight: count === 1 ? 400 : "none",
-              objectFit: "cover",
+              maxHeight: count === 1 ? 500 : "none",
+              objectFit: count === 1 ? "contain" : "cover",
               display: "block",
               aspectRatio: count === 1 ? undefined : "4/3",
+              background: count === 1 ? "#0a0a0a" : undefined,
             }}
           />
         ))}
@@ -477,9 +478,10 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
                 style={{
                   width: "100%",
                   height: photos.length === 1 ? "auto" : "100%",
-                  maxHeight: photos.length === 1 ? 280 : 140,
-                  objectFit: "cover",
+                  maxHeight: photos.length === 1 ? 400 : 180,
+                  objectFit: photos.length === 1 ? "contain" : "cover",
                   display: "block",
+                  background: "#f0eeeb",
                 }}
               />
             ))}
