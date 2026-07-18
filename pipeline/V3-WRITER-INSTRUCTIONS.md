@@ -20,7 +20,11 @@ Query `p2_articles` for articles with similar headlines in the last 3 days:
 If a published article already covers the same story, SKIP this candidate.
 
 ### 3b. Read source material
-Read 2-4 of the `source_urls` via `browser_open` to get actual article text. Also check the `all_signals` array for additional source URLs. Cross-reference multiple sources — never rewrite a single wire story.
+If the candidate has `source_urls`: read 2-4 of them via `browser_open` to get actual article text. Also check the `all_signals` array for additional source URLs.
+
+**If source_urls is empty (no linked signals):** Use `browser_search` with the candidate's `title` to find 2-3 actual news articles about the topic. Read the top results. The title always contains the original headline and source name, so the search will find the right articles.
+
+Cross-reference multiple sources — never rewrite a single wire story.
 
 ### 3c. Write the article — PROFESSIONAL JOURNALISM STANDARD
 
