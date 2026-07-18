@@ -20,6 +20,7 @@ import {
   readingTime,
 } from "@/lib/articles";
 import HeroMedia from "@/components/HeroMedia";
+import SocialEmbeds from "@/components/SocialEmbeds";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
@@ -689,20 +690,58 @@ export default function ArticlePage() {
                 }
               );
 
+              // Split HTML body to insert social embeds mid-article
+              const socialEmbeds = article.social_embeds ?? [];
+              if (socialEmbeds.length > 0) {
+                // Find a good split point: before the 2nd <h2> (after first section)
+                const h2Matches = [...processedHtml.matchAll(/<h2[\s>]/gi)];
+                let splitIdx = -1;
+                if (h2Matches.length >= 2) {
+                  splitIdx = h2Matches[1].index!;
+                } else {
+                  // Fallback: split roughly at 1/3 of the paragraphs
+                  const paraBreaks = [...processedHtml.matchAll(/<\/p>/gi)];
+                  const target = Math.max(1, Math.floor(paraBreaks.length / 3));
+                  if (paraBreaks.length >= 3 && paraBreaks[target]) {
+                    splitIdx = paraBreaks[target].index! + paraBreaks[target][0].length;
+                  }
+                }
+
+                if (splitIdx > 0) {
+                  const firstHalf = processedHtml.slice(0, splitIdx);
+                  const secondHalf = processedHtml.slice(splitIdx);
+                  return (
+                    <>
+                      <div className="article-html" dangerouslySetInnerHTML={{ __html: firstHalf }} />
+                      <SocialEmbeds embeds={socialEmbeds} />
+                      <div className="article-html" dangerouslySetInnerHTML={{ __html: secondHalf }} />
+                    </>
+                  );
+                }
+              }
+
               return (
-                <div
-                  className="article-html"
-                  dangerouslySetInnerHTML={{ __html: processedHtml }}
-                />
+                <>
+                  <div
+                    className="article-html"
+                    dangerouslySetInnerHTML={{ __html: processedHtml }}
+                  />
+                  {socialEmbeds.length > 0 && <SocialEmbeds embeds={socialEmbeds} />}
+                </>
               );
             }
 
             return (
-              <MarkdownWithEmbeds
-                body={article.body}
-                heroImageUrl={article.hero_image_url}
-                title={article.title}
-              />
+              <>
+                <MarkdownWithEmbeds
+                  body={article.body}
+                  heroImageUrl={article.hero_image_url}
+                  title={article.title}
+                />
+                {(article.social_embeds ?? []).length > 0 && (
+                  <SocialEmbeds embeds={article.social_embeds!} />
+                )}
+              </>
             );
           })()}
         </div>

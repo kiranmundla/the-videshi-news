@@ -31,6 +31,7 @@ type ArticleRow = {
   status: string;
   image_url: string | null;
   gallery_images: { url: string; caption?: string }[] | null;
+  social_embeds: { platform: string; url: string }[] | null;
   slug: string | null;
   published_at: string | null;
   created_at: string;
@@ -51,7 +52,7 @@ export default function AdminArticles() {
   const load = useCallback(async () => {
     setLoading(true);
     let q = sb.from("p2_articles")
-      .select("id,headline,subheadline,body,vertical,category,status,image_url,gallery_images,slug,published_at,created_at", { count: "exact" })
+      .select("id,headline,subheadline,body,vertical,category,status,image_url,gallery_images,social_embeds,slug,published_at,created_at", { count: "exact" })
       .order("published_at", { ascending: false, nullsFirst: false });
 
     if (search) q = q.ilike("headline", `%${search}%`);
@@ -81,6 +82,7 @@ export default function AdminArticles() {
         status: editRow.status,
         image_url: editRow.image_url,
         gallery_images: editRow.gallery_images ?? [],
+        social_embeds: editRow.social_embeds ?? [],
       })
       .eq("id", editRow.id);
     setSaving(false);
@@ -312,6 +314,40 @@ export default function AdminArticles() {
                 }}
                 maxImages={10}
               />
+              {/* Social Embeds */}
+              <div>
+                <label className="text-sm font-medium mb-2 block">Social Embeds</label>
+                <p className="text-xs text-muted-foreground mb-3">Paste post/video URLs to embed in the article. Leave blank to skip.</p>
+                <div className="space-y-2">
+                  {([
+                    { platform: "twitter", label: "X (Twitter) Post", placeholder: "https://x.com/user/status/..." },
+                    { platform: "instagram", label: "Instagram Post", placeholder: "https://www.instagram.com/p/..." },
+                    { platform: "threads", label: "Threads Post", placeholder: "https://www.threads.com/@user/post/..." },
+                    { platform: "youtube", label: "YouTube Video", placeholder: "https://youtu.be/... or https://youtube.com/watch?v=..." },
+                  ] as const).map(({ platform, label, placeholder }) => {
+                    const embeds = editRow.social_embeds ?? [];
+                    const existing = embeds.find((e) => e.platform === platform);
+                    return (
+                      <div key={platform} className="flex items-center gap-2">
+                        <span className="text-xs w-28 shrink-0 text-muted-foreground">{label}</span>
+                        <Input
+                          placeholder={placeholder}
+                          value={existing?.url ?? ""}
+                          onChange={(e) => {
+                            const val = e.target.value.trim();
+                            const filtered = embeds.filter((em) => em.platform !== platform);
+                            setEditRow({
+                              ...editRow,
+                              social_embeds: val ? [...filtered, { platform, url: val }] : filtered,
+                            });
+                          }}
+                          className="text-xs flex-1"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
               <div>
                 <label className="text-sm font-medium mb-1 block">Body</label>
                 <Textarea
