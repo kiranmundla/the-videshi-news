@@ -965,12 +965,22 @@ def main():
                     if apply:
                         body = article.get("body", "")
                         embed_line = f"\n\n{url}\n"
-                        # Insert after first paragraph
-                        paras = body.split("\n\n", 2)
-                        if len(paras) >= 2:
-                            new_body = paras[0] + "\n\n" + paras[1] + embed_line + "\n\n" + (paras[2] if len(paras) > 2 else "")
+                        # Insert after second </p> tag (works with HTML bodies)
+                        import re as _re
+                        _p_ends = [m.end() for m in _re.finditer(r'</p>', body, _re.IGNORECASE)]
+                        if len(_p_ends) >= 2:
+                            insert_at = _p_ends[1]
+                            new_body = body[:insert_at] + embed_line + body[insert_at:]
+                        elif len(_p_ends) == 1:
+                            insert_at = _p_ends[0]
+                            new_body = body[:insert_at] + embed_line + body[insert_at:]
                         else:
-                            new_body = body + embed_line
+                            # Fallback: try old \n\n split for non-HTML bodies
+                            paras = body.split("\n\n", 2)
+                            if len(paras) >= 2:
+                                new_body = paras[0] + "\n\n" + paras[1] + embed_line + "\n\n" + (paras[2] if len(paras) > 2 else "")
+                            else:
+                                new_body = body + embed_line
                         if update_article(article["id"], {"body": new_body}):
                             print(f"     ✅ Embedded!")
                             ig_enriched += 1
