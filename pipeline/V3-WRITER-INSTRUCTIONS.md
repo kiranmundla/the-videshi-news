@@ -115,12 +115,30 @@ Insert with `status="published"`. Required fields:
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`
 
-## Step 4 — Rebuild feeds
+## Step 4 — Enrich articles (inline images, data cards, pull quotes)
+After publishing, run enrichment on the articles you just wrote:
+
+```bash
+cd ~/workspace/the-videshi-news/pipeline
+
+# Load env
+set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; source ~/workspace/.env.google-ai; source ~/workspace/.env.pexels 2>/dev/null; set +a
+
+# Inline images + pull quotes + embeds (last 3 hours covers this run's articles)
+timeout 600 python3 -u enrich-articles.py --hours 3 --apply 2>&1
+
+# Data cards (navy infographic cards with stats)
+timeout 600 python3 -u enrich-data-cards.py --since-hours 3 --limit 10 2>&1
+```
+
+If either enrichment script fails, continue — the articles are already published and readable without enrichment.
+
+## Step 5 — Rebuild feeds
 ```
 cd ~/workspace/the-videshi-news/pipeline && python3 -u prebuild-feeds.py 2>&1
 ```
 
-## Step 5 — Commit and push
+## Step 6 — Commit and push
 ```
 cd ~/workspace/the-videshi-news && git add -A && git commit -m "V3 pipeline articles $(date +%Y-%m-%d)" && git push origin main 2>&1
 ```
@@ -131,7 +149,10 @@ cd ~/workspace/the-videshi-news && git add -A && git commit -m "V3 pipeline arti
 - If `coverage` is "update" but dedup shows we already covered the SAME new development, skip.
 - If the selector outputs 0 candidates, skip everything and report nothing.
 - If an API error occurs mid-run, continue with remaining candidates.
-- Every article MUST have Key Takeaways and Summary Card — these are not optional.
+- Every article MUST have Key Takeaways bullets at the top (no heading, just `<div class="key-takeaways"><ul>...</ul></div>`).
+- Do NOT include an "At a Glance" / summary card table — we don't use those.
+- Use 1-2 pull quotes per article when strong quotes exist: `<blockquote class="pull-quote"><p>"..."</p><cite>— Name, Title</cite></blockquote>`
 - Image captions are factual plain style — two sentences, no flowery language.
+- Images and video enrichment (inline body images, data cards, embeds) are handled by a SEPARATE enrichment pipeline after publish — the writer does NOT add those. The writer only handles the hero image.
 
 Report a brief summary: headlines, categories, and total articles published.
