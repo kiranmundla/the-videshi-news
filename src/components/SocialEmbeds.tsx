@@ -69,14 +69,16 @@ function InstagramCard({ url }: { url: string }) {
 
   return (
     <div className="flex justify-center">
-      <iframe
-        src={embedUrl}
-        style={{ maxWidth: 540, width: "100%", minHeight: 500, border: "none", borderRadius: 8 }}
-        allowTransparency
-        scrolling="no"
-        allowFullScreen
-        title="Instagram post"
-      />
+      <div style={{ maxWidth: 540, width: "100%", overflow: "hidden", borderRadius: 8 }}>
+        <iframe
+          src={embedUrl}
+          style={{ width: "100%", minHeight: 580, border: "none", marginBottom: "-120px" }}
+          allowTransparency
+          scrolling="no"
+          allowFullScreen
+          title="Instagram post"
+        />
+      </div>
     </div>
   );
 }
