@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Batch convert markdown article bodies to HTML.
+"""Batch convert markdown/plain-text article bodies to HTML.
 
-Targets published articles with markdown ## headings and no </p> tags.
+Targets ALL published articles without </p> tags.
 Uses curl for all Supabase calls. Processes in batches of 50.
 """
 import json, os, re, subprocess, sys, time
@@ -35,8 +35,20 @@ def md_to_html(body):
             i += 1
             continue
         if stripped.startswith('<!--'):
-            result.append(line)
-            i += 1
+            # Collect multi-line HTML comments
+            if '-->' in stripped:
+                result.append(line)
+                i += 1
+            else:
+                comment_lines = [line]
+                i += 1
+                while i < len(lines) and '-->' not in lines[i]:
+                    comment_lines.append(lines[i])
+                    i += 1
+                if i < len(lines):
+                    comment_lines.append(lines[i])
+                    i += 1
+                result.extend(comment_lines)
             continue
         if stripped.startswith('<'):
             result.append(line)
@@ -56,6 +68,10 @@ def md_to_html(body):
             continue
         if stripped.startswith('## '):
             result.append(f'<h2>{inline_md(stripped[3:].strip())}</h2>')
+            i += 1
+            continue
+        if stripped.startswith('# '):
+            result.append(f'<h2>{inline_md(stripped[2:].strip())}</h2>')
             i += 1
             continue
         if stripped.startswith('- ') or stripped.startswith('* '):
@@ -85,7 +101,7 @@ def md_to_html(body):
             l = lines[i].strip()
             if not l or l.startswith('<') or l.startswith('<!--'):
                 break
-            if l.startswith('## ') or l.startswith('### ') or l.startswith('#### '):
+            if l.startswith('## ') or l.startswith('### ') or l.startswith('#### ') or l.startswith('# '):
                 break
             if l.startswith('- ') or l.startswith('* ') or l.startswith('> '):
                 break
@@ -98,16 +114,15 @@ def md_to_html(body):
     return '\n'.join(result)
 
 
-def fetch_batch(offset):
+def fetch_batch():
+    """Fetch next batch. Always offset=0 since converted articles drop out of filter."""
     url = (
         f"{SUPABASE_URL}/rest/v1/p2_articles"
         f"?status=eq.published"
-        f"&body=like.*%23%23%20*"
-        f"&body=not.like.*%3C%2Fp%3E*"
+        f"&body=not.like.*%3C%2Fp%3E*"   # no </p> tags
         f"&select=id,headline,body"
         f"&order=created_at.asc"
         f"&limit={BATCH_SIZE}"
-        f"&offset={offset}"
     )
     r = subprocess.run(
         ["curl", "-s", url,
@@ -116,12 +131,10 @@ def fetch_batch(offset):
         capture_output=True, text=True, timeout=60
     )
     if r.returncode != 0 or not r.stdout.strip():
-        print(f"  FETCH FAIL at offset {offset}", file=sys.stderr)
         return []
     try:
         return json.loads(r.stdout)
     except json.JSONDecodeError:
-        print(f"  JSON ERROR at offset {offset}: {r.stdout[:100]}", file=sys.stderr)
         return []
 
 
@@ -143,20 +156,18 @@ def patch_article(article_id, new_body):
 def main():
     total_converted = 0
     total_errors = 0
-    total_skipped = 0
+    total_unchanged = 0
     batch_num = 0
+    consecutive_zero = 0
 
     mode = "[DRY RUN] " if DRY_RUN else ""
-    print(f"{mode}Starting markdown to HTML batch conversion")
+    print(f"{mode}Starting body → HTML batch conversion (all articles without </p>)")
     print(f"Batch size: {BATCH_SIZE}")
     sys.stdout.flush()
 
     while True:
         batch_num += 1
-        # For real runs, always fetch offset=0 since converted articles
-        # no longer match the filter. For dry runs, paginate normally.
-        offset = (batch_num - 1) * BATCH_SIZE if DRY_RUN else 0
-        articles = fetch_batch(offset)
+        articles = fetch_batch()
 
         if not articles:
             print(f"\n  No more articles. Done.")
@@ -164,37 +175,48 @@ def main():
 
         converted_this = 0
         errors_this = 0
-        skipped_this = 0
+        unchanged_this = 0
 
         for a in articles:
             body = a.get("body", "")
-            if "</p>" in body or "\n## " not in body:
-                skipped_this += 1
+            if not body or "</p>" in body:
+                unchanged_this += 1
                 continue
+
             new_body = md_to_html(body)
             if new_body == body:
-                skipped_this += 1
+                unchanged_this += 1
                 continue
+
             if DRY_RUN:
                 converted_this += 1
                 continue
+
             if patch_article(a["id"], new_body):
                 converted_this += 1
             else:
                 errors_this += 1
-                print(f"  FAIL: {a.get('headline','?')[:50]}", file=sys.stderr)
 
         total_converted += converted_this
         total_errors += errors_this
-        total_skipped += skipped_this
-        print(f"  Batch {batch_num}: {converted_this} converted, {skipped_this} skipped | Total: {total_converted}")
+        total_unchanged += unchanged_this
+
+        print(f"  Batch {batch_num}: {converted_this} converted, {unchanged_this} unchanged | Total: {total_converted}")
         sys.stdout.flush()
+
+        if converted_this == 0:
+            consecutive_zero += 1
+            if consecutive_zero >= 2:
+                print(f"\n  No convertible articles in {consecutive_zero} consecutive batches. Stopping.")
+                break
+        else:
+            consecutive_zero = 0
 
         if len(articles) < BATCH_SIZE:
             break
         time.sleep(0.3)
 
-    print(f"\n{mode}Complete: {total_converted} converted, {total_skipped} skipped, {total_errors} errors")
+    print(f"\n{mode}Complete: {total_converted} converted, {total_unchanged} unchanged, {total_errors} errors")
 
 
 if __name__ == "__main__":
