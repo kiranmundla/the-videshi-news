@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-18T10:34:19Z",
+ "_updated": "2026-07-18T10:35:27Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -14651,6 +14651,204 @@
    "duration": null,
    "quality_score": 89.5,
    "added_date": "2026-07-18T10:34:19Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--workplace-ai--6789a6",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/workplace-ai-6789a6.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/workplace-ai-6789a6.jpg",
+   "subject": "workplace ai",
+   "subject_type": "thing",
+   "caption": "Old barn (im Mühlenbrok) on Borkenbergestraße in Hausdülmen, Dülmen, North Rhine-Westphalia, Germany",
+   "attribution": "Wikimedia Commons / Dietmar Rabich, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dülmen,_Hausdülmen,_Alte_Scheune_--_2021_--_9620.jpg",
+   "tags": [
+    "workplace ai"
+   ],
+   "width": 3840,
+   "height": 2560,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-18T10:34:36Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--india-oil-imports--9daa39",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-oil-imports-9daa39.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-oil-imports-9daa39.jpg",
+   "subject": "India oil imports",
+   "subject_type": "thing",
+   "caption": "The Minister of Foreign Affairs of the Federal Republic of Nigeria, Mr. Henry Odien Ajumogobia meeting the Union Minister for Petroleum and Natural Gas, Shri Jaipal Reddy to discuss increasing imports of crude oil from Nigeria, in New Delhi on March 16, 2011.",
+   "attribution": "Wikimedia Commons / Ministry of Petroleum and Natural Gas, GODL-India",
+   "license": "GODL-India",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Henry_Odien_Ajumogobia_meeting_the_Union_Minister_for_Petroleum_and_Natural_Gas,_Shri_Jaipal_Reddy_to_discuss_increasing_imports_of_crude_oil_from_Nigeria,_in_New_Delhi_on_March_16,_2011.jpg",
+   "tags": [
+    "india oil imports"
+   ],
+   "width": 2200,
+   "height": 1252,
+   "duration": null,
+   "quality_score": 64.1,
+   "added_date": "2026-07-18T10:34:41Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--investments--30dff4",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/investments-30dff4.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/investments-30dff4.jpg",
+   "subject": "investments",
+   "subject_type": "thing",
+   "caption": "«Bakı-İnvest» Sovet-Alman Birgə Müəssisəsi",
+   "attribution": "Wikimedia Commons / Alisahib2001, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bakı-İnvest_(1991).png",
+   "tags": [
+    "investments"
+   ],
+   "width": 2000,
+   "height": 650,
+   "duration": null,
+   "quality_score": 61.0,
+   "added_date": "2026-07-18T10:34:44Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--environment--07739a",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/environment-07739a.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/environment-07739a.jpg",
+   "subject": "environment",
+   "subject_type": "thing",
+   "caption": "An autumn view near Gullesfjordbotn in the island of Hinnøya, Kvæfjord, Troms, Norway in 2010 September.",
+   "attribution": "Wikimedia Commons / Ximonic (Simo Räsänen), CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Autumn_landscape_near_Gullesfjordbotn,_Hinnøya,_2010_September.jpg",
+   "tags": [
+    "environment"
+   ],
+   "width": 2890,
+   "height": 1935,
+   "duration": null,
+   "quality_score": 74.8,
+   "added_date": "2026-07-18T10:34:49Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--messi--0aec33",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/messi-0aec33.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/messi-0aec33.jpg",
+   "subject": "messi",
+   "subject_type": "thing",
+   "caption": "Лионель Месси не реализовывает одиннадцатиметровый удар (вратарь)",
+   "attribution": "Wikimedia Commons / Voltmetro, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:FWC_2018_-_Group_D_-_ARG_v_ISL_-_Messi_penalty_kick.jpg",
+   "tags": [
+    "messi"
+   ],
+   "width": 4608,
+   "height": 3456,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:34:57Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--ceo--4c15cd",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ceo-4c15cd.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ceo-4c15cd.jpg",
+   "subject": "ceo",
+   "subject_type": "thing",
+   "caption": "Desmond K Antwi, Legally known as Desmond Antwi, Desmond K. Antwi is a Ghanaian entrepreneur, educator, and digital innovator. He is the Founder and CEO of Mothers FM and Search IT College, institutions dedicated to empowering communities through media, technology, and education.",
+   "attribution": "Wikimedia Commons / Desmondkantwi, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Desmond_K_Antwi,_The_Chief_Executive_Officer_of_Mothers_FM.jpg",
+   "tags": [
+    "ceo"
+   ],
+   "width": 2016,
+   "height": 1134,
+   "duration": null,
+   "quality_score": 61.2,
+   "added_date": "2026-07-18T10:35:05Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--tech-leaders--f5d5c4",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tech-leaders-f5d5c4.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tech-leaders-f5d5c4.jpg",
+   "subject": "tech leaders",
+   "subject_type": "thing",
+   "caption": "Senator Stabenow addresses a panel of high-tech small business leaders at Lansing Community College. The panel included representatives from Google, the Small Business Association of Michigan, the Michigan Search Engine Marketing Professional Organization and others. This photogr",
+   "attribution": "Wikimedia Commons / Senator Stabenow, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Addressing_high-tech_business_leaders_in_Lansing_(7799133172).jpg",
+   "tags": [
+    "tech leaders"
+   ],
+   "width": 3648,
+   "height": 2736,
+   "duration": null,
+   "quality_score": 86.5,
+   "added_date": "2026-07-18T10:35:13Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--india-england--885ae3",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-england-885ae3.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-england-885ae3.jpg",
+   "subject": "india england",
+   "subject_type": "thing",
+   "caption": "This large map by Herman Moll shows the East Indies from the Persian border to New Guinea and the southern part of Japan, including India, Ceylon, southeast Asia, most of China, Indonesia and the Philippines. It illustrates the extent of European influence and trade in the region",
+   "attribution": "Wikimedia Commons / Moll, Herman, -1732, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:B26055943A_-_A_map_of_the_East-Indies_and_the_adjacent_countries.jpg",
+   "tags": [
+    "india england"
+   ],
+   "width": 3840,
+   "height": 2300,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-18T10:35:24Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--joe-root--47c88e",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/joe-root-47c88e.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/joe-root-47c88e.jpg",
+   "subject": "joe root",
+   "subject_type": "thing",
+   "caption": "England v India, 3rd Investec Test Match, Day 2; Ageas Bowl, Southampton",
+   "attribution": "Wikimedia Commons / Mike Prince, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cheteshwar_Pujara_edges_between_Joe_Root_and_Chris_Woakes.jpg",
+   "tags": [
+    "joe root"
+   ],
+   "width": 2048,
+   "height": 1536,
+   "duration": null,
+   "quality_score": 61.7,
+   "added_date": "2026-07-18T10:35:27Z",
    "last_used": null,
    "times_used": 0
   }

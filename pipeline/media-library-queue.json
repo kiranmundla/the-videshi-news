@@ -6842,16 +6842,6 @@
    "priority": 2
   },
   {
-   "subject": "ai hardware",
-   "subject_type": "thing",
-   "tags": [
-    "ai hardware"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "cff7eaae-6517-46b9-88f8-9bce3cdb8166",
-   "priority": 3
-  },
-  {
    "subject": "fpga",
    "subject_type": "thing",
    "tags": [
@@ -6890,16 +6880,6 @@
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "5d043092-aa02-46f7-92ad-a1a290630bdf",
    "priority": 2
-  },
-  {
-   "subject": "monetary policy",
-   "subject_type": "thing",
-   "tags": [
-    "monetary policy"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "25ca6f3a-640b-4836-83dd-6a0a0ab99f35",
-   "priority": 3
   },
   {
    "subject": "trade deficit",
@@ -7002,36 +6982,6 @@
    "priority": 2
   },
   {
-   "subject": "ai startup",
-   "subject_type": "thing",
-   "tags": [
-    "ai startup"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "b979da33-456a-4015-aafc-d1854d237939",
-   "priority": 3
-  },
-  {
-   "subject": "workplace ai",
-   "subject_type": "thing",
-   "tags": [
-    "workplace ai"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "b979da33-456a-4015-aafc-d1854d237939",
-   "priority": 3
-  },
-  {
-   "subject": "indian entrepreneur",
-   "subject_type": "thing",
-   "tags": [
-    "indian entrepreneur"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "b979da33-456a-4015-aafc-d1854d237939",
-   "priority": 4
-  },
-  {
    "subject": "ai partnerships",
    "subject_type": "thing",
    "tags": [
@@ -7080,16 +7030,6 @@
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "b6496458-d0c1-458f-bda3-1321bbf4539d",
    "priority": 2
-  },
-  {
-   "subject": "India oil imports",
-   "subject_type": "thing",
-   "tags": [
-    "india oil imports"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "b6496458-d0c1-458f-bda3-1321bbf4539d",
-   "priority": 3
   },
   {
    "subject": "Gulf diaspora",
@@ -7150,26 +7090,6 @@
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "6a82ceac-d6ae-45a6-8949-f5baddafdda1",
    "priority": 2
-  },
-  {
-   "subject": "investments",
-   "subject_type": "thing",
-   "tags": [
-    "investments"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "6a82ceac-d6ae-45a6-8949-f5baddafdda1",
-   "priority": 3
-  },
-  {
-   "subject": "environment",
-   "subject_type": "thing",
-   "tags": [
-    "environment"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "5ecb05c6-db2d-40a6-9855-8df2397d547e",
-   "priority": 3
   },
   {
    "subject": "Ladakh",
@@ -7352,46 +7272,6 @@
    "priority": 2
   },
   {
-   "subject": "cyclospora",
-   "subject_type": "thing",
-   "tags": [
-    "cyclospora"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "62b2f480-a805-4db5-9cbb-a04cfc2e2681",
-   "priority": 4
-  },
-  {
-   "subject": "taco bell",
-   "subject_type": "thing",
-   "tags": [
-    "taco bell"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "c52f07ba-77a0-4585-9d36-85cce7d106dc",
-   "priority": 4
-  },
-  {
-   "subject": "parasite outbreak",
-   "subject_type": "thing",
-   "tags": [
-    "parasite outbreak"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "c52f07ba-77a0-4585-9d36-85cce7d106dc",
-   "priority": 4
-  },
-  {
-   "subject": "cdc",
-   "subject_type": "thing",
-   "tags": [
-    "cdc"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "c52f07ba-77a0-4585-9d36-85cce7d106dc",
-   "priority": 4
-  },
-  {
    "subject": "intellectual property",
    "subject_type": "thing",
    "tags": [
@@ -7552,16 +7432,6 @@
    "priority": 2
   },
   {
-   "subject": "messi",
-   "subject_type": "thing",
-   "tags": [
-    "messi"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "7f03f809-70a9-44fe-8359-f8182711d45f",
-   "priority": 3
-  },
-  {
    "subject": "ai spending",
    "subject_type": "thing",
    "tags": [
@@ -7670,46 +7540,6 @@
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
    "priority": 2
-  },
-  {
-   "subject": "ceo",
-   "subject_type": "thing",
-   "tags": [
-    "ceo"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "af04da47-e6ea-482b-8f7a-83bf41102c70",
-   "priority": 3
-  },
-  {
-   "subject": "tech leaders",
-   "subject_type": "thing",
-   "tags": [
-    "tech leaders"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "af04da47-e6ea-482b-8f7a-83bf41102c70",
-   "priority": 3
-  },
-  {
-   "subject": "india england",
-   "subject_type": "thing",
-   "tags": [
-    "india england"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "799d85e7-f311-4506-b6f2-415203872931",
-   "priority": 3
-  },
-  {
-   "subject": "joe root",
-   "subject_type": "thing",
-   "tags": [
-    "joe root"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "799d85e7-f311-4506-b6f2-415203872931",
-   "priority": 3
   },
   {
    "subject": "odi",
@@ -8002,16 +7832,6 @@
    "priority": 2
   },
   {
-   "subject": "F 1 visa",
-   "subject_type": "thing",
-   "tags": [
-    "f 1 visa"
-   ],
-   "first_seen": "2026-07-17T10:29:25Z",
-   "article_id": "071bcb8c-7679-4694-bcb4-44bec34b139d",
-   "priority": 4
-  },
-  {
    "subject": "university campus American students",
    "subject_type": "concept",
    "tags": [
@@ -8290,16 +8110,6 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "54da884d-365c-46b1-b106-501bce69669f",
    "priority": 3
-  },
-  {
-   "subject": "obituary",
-   "subject_type": "thing",
-   "tags": [
-    "obituary"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "54da884d-365c-46b1-b106-501bce69669f",
-   "priority": 5
   },
   {
    "subject": "sir garry sobers",
@@ -8690,16 +8500,6 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "7c471f65-3620-4874-8110-5255b8ba490a",
    "priority": 3
-  },
-  {
-   "subject": "tata consultancy services",
-   "subject_type": "thing",
-   "tags": [
-    "tata consultancy services"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "7c471f65-3620-4874-8110-5255b8ba490a",
-   "priority": 5
   },
   {
    "subject": "sohail khan",
