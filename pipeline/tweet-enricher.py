@@ -354,7 +354,7 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             "select": "id,headline,slug,category,published_at,body",
             "status": "eq.published",
             "order": "published_at.desc",
-            "limit": "50",
+            "limit": "250",
             "published_at": f"gte.{since}",
         },
         headers=SB_HEADERS, timeout=15,
