@@ -232,9 +232,24 @@ def _compute_display_score(row: dict) -> float:
     di = row.get("diaspora_impact")
     prom = row.get("prominence")
 
-    # If new scores aren't populated yet, fall back to legacy score_total
+    # If new scores aren't populated yet, fall back to legacy score_total + freshness
+    # so unscored recent articles still outrank scored stale ones
     if nw is None and di is None:
-        return float(row.get("score_total") or 0)
+        base = float(row.get("score_total") or 0)
+        # Add freshness for unscored articles so today's content isn't buried
+        pub = row.get("published_at") or row.get("created_at", "")
+        age_freshness = 0.0
+        if pub:
+            try:
+                pub_dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
+                hours_old = (datetime.now(timezone.utc) - pub_dt).total_seconds() / 3600
+                # 40 points decaying over 24 hours — ensures a fresh unscored article
+                # (40pts) outranks a day-old scored one (score_total typically 30-50)
+                age_freshness = 40.0 * max(0.0, 1.0 - hours_old / 24.0)
+            except (ValueError, TypeError):
+                pass
+        llm = row.get("llm_score") or 0
+        return base + age_freshness + llm * 5.0
 
     nw = nw or 15  # default mid-range
     di = di or 10
@@ -350,15 +365,14 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
         by_cat.setdefault(cat, []).append(a)
 
     def get_category_articles(slug: str, limit: int) -> list[dict]:
-        """Get articles for a category, sorted by display score, preferring recent (72h), fallback to 7d."""
+        """Get articles for a category, sorted by freshness (newest first), preferring recent (72h), fallback to 7d."""
         pool = by_cat.get(slug, [])
         recent = [a for a in pool if a["published_at"] >= since_72h]
-        # Sort by display score (featured_score) descending
-        recent.sort(key=lambda a: (a.get("featured_score") or 0, a["published_at"]), reverse=True)
+        recent.sort(key=lambda a: a["published_at"], reverse=True)
         if len(recent) >= 3:
             return [article_without_body(a) for a in recent[:limit]]
         wider = [a for a in pool if a["published_at"] >= since_7d]
-        wider.sort(key=lambda a: (a.get("featured_score") or 0, a["published_at"]), reverse=True)
+        wider.sort(key=lambda a: a["published_at"], reverse=True)
         if len(wider) > len(recent):
             return [article_without_body(a) for a in wider[:limit]]
         return [article_without_body(a) for a in recent[:limit]]
