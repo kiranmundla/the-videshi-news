@@ -661,10 +661,19 @@ export default function ArticlePage() {
             // Detect HTML bodies (start with HTML block tags) and render natively
             const isHtml = /^\s*<(?:p|h[1-6]|div|section|article)\b/i.test(article.body);
             if (isHtml) {
+              // Transform <youtube> tags into responsive iframe embeds
+              const processedHtml = article.body.replace(
+                /<youtube>(.*?)<\/youtube>/g,
+                (_: string, url: string) => {
+                  const m = url.match(/(?:youtube\.com\/watch\?.*v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]{11})/);
+                  if (!m) return url;
+                  return `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:28px 0;border-radius:12px"><iframe src="https://www.youtube.com/embed/${m[1]}?rel=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen></iframe></div>`;
+                }
+              );
               return (
                 <div
                   className="article-html"
-                  dangerouslySetInnerHTML={{ __html: article.body }}
+                  dangerouslySetInnerHTML={{ __html: processedHtml }}
                 />
               );
             }
