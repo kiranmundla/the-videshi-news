@@ -258,8 +258,21 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
   // Use Instagram's official embed method (blockquote + embed.js)
   // which auto-sizes the embed correctly — same approach as CelebrityBuzz/HeroMedia
   const ref = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
 
   useEffect(() => {
+    // Watch for embed.js replacing the blockquote with an iframe
+    const observer = new MutationObserver(() => {
+      if (ref.current?.querySelector("iframe")) {
+        setLoaded(true);
+        observer.disconnect();
+      }
+    });
+    if (ref.current) {
+      observer.observe(ref.current, { childList: true, subtree: true });
+    }
+
     const w = window as unknown as { instgrm?: { Embeds: { process: (el?: HTMLElement) => void } } };
     if (w.instgrm?.Embeds) {
       w.instgrm.Embeds.process(ref.current || undefined);
@@ -272,7 +285,42 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
       };
       document.body.appendChild(script);
     }
+
+    // Fallback: if embed doesn't render within 5s, show a link instead
+    const timeout = setTimeout(() => {
+      if (!ref.current?.querySelector("iframe")) {
+        setTimedOut(true);
+      }
+    }, 5000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeout);
+    };
   }, [shortcode]);
+
+  // If embed.js failed, show a compact fallback link instead of blank space
+  if (timedOut && !loaded) {
+    return (
+      <figure className="my-6 flex flex-col items-center">
+        <a
+          href={permalink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-sm"
+          style={{ maxWidth: 540, width: "100%" }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          <span>View on Instagram</span>
+        </a>
+        {caption && (
+          <figcaption className="mt-2 text-sm text-muted-foreground text-center">
+            {caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
 
   return (
     <figure className="my-6 flex flex-col items-center" ref={ref}>
