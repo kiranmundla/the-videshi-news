@@ -619,8 +619,9 @@ def verify_recent_embeds(hours=24, apply=False):
             if tweet_data.get("photo_count", 0) > 0:
                 total += 3
 
-            # Verification threshold: must clear 5 to stay
-            if total >= 5:
+            # Verification threshold: relevance must be ≥5 on its own
+            # (authority alone can't save an off-topic tweet)
+            if relevance >= 5 and total >= 5:
                 report["details"].append({
                     "headline": headline[:80],
                     "handle": f"@{tweet_handle}",
