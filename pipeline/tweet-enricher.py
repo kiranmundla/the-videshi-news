@@ -141,11 +141,57 @@ def fetch_recent_tweets(handle, hours=48, max_results=20):
 
 def search_topic_tweets(topic_query, hours=48, max_results=20):
     """Search tweets by topic (no handle filter) via TwitterAPI.io.
-    Filters self-citations and sorts by views."""
+    Filters self-citations and sorts by authority then views."""
     tweets = _twitterapiio_search(topic_query, max_results=max_results, hours=hours)
     tweets = [t for t in tweets if (t.get("handle", "") or "").lower() != "thevideshi"]
-    tweets.sort(key=lambda t: (t.get("views", 0) or 0), reverse=True)
+    # Sort by authority (followers + verified) first, then views
+    tweets.sort(key=lambda t: (
+        source_authority(t),
+        t.get("views", 0) or 0,
+    ), reverse=True)
     return tweets
+
+
+def source_authority(tweet):
+    """Score source authority: 0 = unknown/low, 1 = mid, 2 = credible, 3 = official.
+    Based on verified status, follower count, and known news handles."""
+    followers = tweet.get("followers", 0) or 0
+    verified = tweet.get("verified", False)
+    handle = (tweet.get("handle", "") or "").lower()
+
+    # Known authoritative news/official handles (lowercase)
+    OFFICIAL_HANDLES = {
+        # Indian news
+        "ndtv", "ndtvprofitindia", "thehindu", "httweets", "timesofindia",
+        "indiatoday", "airnewsalerts", "ani", "ddnews",
+        "presidentofindia", "naaborendramodi", "paborahmoaborahffice",
+        # Global news
+        "reuters", "ap", "bbcnews", "cnn", "bbcworld", "bbcbreaking",
+        "nytimes", "washingtonpost", "guardian", "aljazeera",
+        "cnbc", "bloomberg", "forbes", "wsj",
+        # Cricket / sports
+        "bcci", "icc", "espncricinfo", "fifaworldcup", "fifacom",
+        # Tech
+        "techcrunch", "wired", "theverge",
+        # Entertainment
+        "variety", "deadline", "taborahran_adarsh", "bollyhungama",
+        # Legal / gov
+        "barandbench", "scjudgments",
+        # Known credible handles
+        "mohanlal", "arrahman", "gulf_news", "tradeboc",
+    }
+
+    if handle in OFFICIAL_HANDLES:
+        return 3
+    if verified and followers >= 100_000:
+        return 3
+    if verified and followers >= 10_000:
+        return 2
+    if followers >= 50_000:
+        return 2
+    if verified or followers >= 10_000:
+        return 1
+    return 0
 
 
 def build_topic_query(headline):
@@ -455,10 +501,15 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             score = score_relevance(tweet["text"], headline, body[:500])
             if tweet["photo_count"] > 0:
                 score += 3
-            # Higher bar for non-registry: need verified or high views
-            if not tweet.get("verified") and (tweet.get("views", 0) or 0) < 1000:
-                continue
-            if score < 4:  # Stricter threshold for topic search
+
+            # Source authority gate — prefer official/credible sources
+            authority = source_authority(tweet)
+            if authority == 0:
+                continue  # Skip unknown/low-authority accounts entirely
+            # Bonus for authoritative sources
+            score += authority  # +1 mid, +2 credible, +3 official
+
+            if score < 5:  # Stricter threshold for topic search
                 continue
             if score > best_score:
                 best_score = score
