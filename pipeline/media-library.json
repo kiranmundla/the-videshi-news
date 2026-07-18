@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-18T10:32:13Z",
+ "_updated": "2026-07-18T10:34:19Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -14409,6 +14409,248 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-07-18T10:32:13Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--obituary--8f1500",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/obituary-8f1500.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/obituary-8f1500.jpg",
+   "subject": "obituary",
+   "subject_type": "thing",
+   "caption": "Obituary of Charles T. Howard printed in the New York Times, 1 June 1885.",
+   "attribution": "Wikimedia Commons / New York Times, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Charles_T_Howard_obit_NYT.png",
+   "tags": [
+    "obituary"
+   ],
+   "width": 300,
+   "height": 1991,
+   "duration": null,
+   "quality_score": 60.9,
+   "added_date": "2026-07-18T10:33:09Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--tata-consultancy-services--d54499",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tata-consultancy-services-d54499.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tata-consultancy-services-d54499.jpg",
+   "subject": "tata consultancy services",
+   "subject_type": "thing",
+   "caption": "SIPCOT TCS OFFICE",
+   "attribution": "Wikimedia Commons / Naveen.kumar.kotta, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:TCS_SIPCOT_Building.jpg",
+   "tags": [
+    "tata consultancy services"
+   ],
+   "width": 4032,
+   "height": 2399,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-18T10:33:14Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--indian-entrepreneur--542dad",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-entrepreneur-542dad.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-entrepreneur-542dad.jpg",
+   "subject": "indian entrepreneur",
+   "subject_type": "thing",
+   "caption": "Profile Picture",
+   "attribution": "Wikimedia Commons / Chandan Shenoy, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:B._Ravi_Pillai_(Aug,_2009).jpg",
+   "tags": [
+    "indian entrepreneur"
+   ],
+   "width": 1100,
+   "height": 1714,
+   "duration": null,
+   "quality_score": 56.6,
+   "added_date": "2026-07-18T10:33:30Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--cyclospora--2d9e2c",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/cyclospora-2d9e2c.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/cyclospora-2d9e2c.jpg",
+   "subject": "cyclospora",
+   "subject_type": "thing",
+   "caption": "Oocists de Cyclospora cayetanensis. Sense tenyir, contrast d’interferència diferencial (A i B), tinció ràpida d'àcid (C), tinció de safranina (D), microscòpia de fluorescència ultraviolada (E). L’oocist en B està esporulat. Barres en A-E = 5 µm.",
+   "attribution": "Wikimedia Commons / Sonia Almeria, Hediye N. Cinar and Jitender P. Dubey, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Oocists_de_Cyclospora_cayetanensis.png",
+   "tags": [
+    "cyclospora"
+   ],
+   "width": 1561,
+   "height": 1872,
+   "duration": null,
+   "quality_score": 59.0,
+   "added_date": "2026-07-18T10:33:34Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--taco-bell--6df354",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/taco-bell-6df354.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/taco-bell-6df354.jpg",
+   "subject": "taco bell",
+   "subject_type": "thing",
+   "caption": "A modern Taco Bell restaurant in Hiawassee, Georgia",
+   "attribution": "Wikimedia Commons / Harrison Keely, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:A_modern_Taco_Bell_restaurant_in_Hiawassee,_Georgia.jpg",
+   "tags": [
+    "taco bell"
+   ],
+   "width": 3987,
+   "height": 2785,
+   "duration": null,
+   "quality_score": 91.8,
+   "added_date": "2026-07-18T10:33:39Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--parasite-outbreak--4c8242",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/parasite-outbreak-4c8242.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/parasite-outbreak-4c8242.jpg",
+   "subject": "parasite outbreak",
+   "subject_type": "thing",
+   "caption": "Taken at my local park. Its twittering and wheezing song, and flash of yellow and green as it flies, make this finch a truly colourful character. Nesting in a garden conifer, or feasting on black sunflower seeds, it is a regular garden visitor, able to take advantage of food in r",
+   "attribution": "Wikimedia Commons / Jacob Spinks from Northamptonshire, England, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Green_Finch_(13269570155).jpg",
+   "tags": [
+    "parasite outbreak"
+   ],
+   "width": 3968,
+   "height": 3310,
+   "duration": null,
+   "quality_score": 91.5,
+   "added_date": "2026-07-18T10:33:45Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--cdc--cc5a31",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/cdc-cc5a31.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/cdc-cc5a31.jpg",
+   "subject": "cdc",
+   "subject_type": "thing",
+   "caption": "CDC is launching the fourth phase of the highly successful Tips From Former Smokers Campaign",
+   "attribution": "Wikimedia Commons / Office of the Associate Director of Communications (OADC), Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Brian_King_CDC_Newsroom.jpg",
+   "tags": [
+    "cdc"
+   ],
+   "width": 2879,
+   "height": 1584,
+   "duration": null,
+   "quality_score": 74.6,
+   "added_date": "2026-07-18T10:33:51Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--f-1-visa--e6af5d",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/f-1-visa-e6af5d.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/f-1-visa-e6af5d.jpg",
+   "subject": "F 1 visa",
+   "subject_type": "thing",
+   "caption": "Chinese tourist visa from late 2023",
+   "attribution": "Wikimedia Commons / Talpapa, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:China_visa_2023.png",
+   "tags": [
+    "f 1 visa"
+   ],
+   "width": 2167,
+   "height": 1351,
+   "duration": null,
+   "quality_score": 63.6,
+   "added_date": "2026-07-18T10:33:56Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--ai-hardware--4aeb40",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ai-hardware-4aeb40.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ai-hardware-4aeb40.jpg",
+   "subject": "ai hardware",
+   "subject_type": "thing",
+   "caption": "https://epochai.org/blog/how-much-does-it-cost-to-train-frontier-ai-models Figure 1. Amortized hardware cost plus energy cost for the final training run of frontier models. The selected models are among the top 10 most compute-intensive for their time. Amortized hardware costs ar",
+   "attribution": "Wikimedia Commons / Epoch AI, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Amortized_hardware_and_energy_cost_to_train_frontier_AI_models_over_time.png",
+   "tags": [
+    "ai hardware"
+   ],
+   "width": 2400,
+   "height": 1572,
+   "duration": null,
+   "quality_score": 67.2,
+   "added_date": "2026-07-18T10:34:09Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--monetary-policy--474814",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/monetary-policy-474814.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/monetary-policy-474814.jpg",
+   "subject": "monetary policy",
+   "subject_type": "thing",
+   "caption": "Monetary aggregates of the Euro Zone, Q2 2022",
+   "attribution": "Wikimedia Commons / Artemis Fowl, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Base_et_masse_monétaires_de_la_Zone_Euro_-_2022_10_21.png",
+   "tags": [
+    "monetary policy"
+   ],
+   "width": 1920,
+   "height": 1080,
+   "duration": null,
+   "quality_score": 59.8,
+   "added_date": "2026-07-18T10:34:12Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--ai-startup--d0166b",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ai-startup-d0166b.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ai-startup-d0166b.jpg",
+   "subject": "ai startup",
+   "subject_type": "thing",
+   "caption": "6 November 2019; Gerry McNicol, CEO, Distil.ai, on Startup Showcase Stage during day two of Web Summit 2019 at the Altice Arena in Lisbon, Portugal. Photo by Piaras Ó Mídheach/Web Summit via Sportsfile",
+   "attribution": "Wikimedia Commons / Web Summit, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2019_-_Startup_Showcase_-_Day_2_PM1_4727_(49022968193).jpg",
+   "tags": [
+    "ai startup"
+   ],
+   "width": 3840,
+   "height": 2484,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-18T10:34:19Z",
    "last_used": null,
    "times_used": 0
   }
