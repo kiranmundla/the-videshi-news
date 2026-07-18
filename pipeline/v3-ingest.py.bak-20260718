@@ -79,17 +79,16 @@ def sb_get(endpoint, params=None, range_header=None):
 def sb_post(endpoint, data, upsert=False):
     """Post data to Supabase. Uses temp file for large payloads."""
     url = f"{SB_URL}/rest/v1/{endpoint}"
-    if upsert:
-        url += "?on_conflict=url_hash"
-        prefer = "resolution=ignore-duplicates,return=minimal"
-    else:
-        prefer = "return=minimal"
+    prefer = "return=minimal"
     headers = [
         "-H", f"apikey: {SB_KEY}",
         "-H", f"Authorization: Bearer {SB_KEY}",
         "-H", "Content-Type: application/json",
         "-H", f"Prefer: {prefer}",
     ]
+    if upsert:
+        headers += ["-H", f"on-conflict: url_hash"]
+        headers += ["-H", "Prefer: resolution=ignore-duplicates,return=minimal"]
     payload = json.dumps(data)
     # Use temp file for large payloads
     import tempfile
