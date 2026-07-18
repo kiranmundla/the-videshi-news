@@ -61,42 +61,22 @@ function TwitterCard({ url }: { url: string }) {
 }
 
 function InstagramCard({ url }: { url: string }) {
-  useEffect(() => {
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-      return;
-    }
-    const existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-    if (!existing) {
-      const script = document.createElement("script");
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, [url]);
+  // Extract post ID and use minimal /embed/ URL (no caption, likes, or comments)
+  const postId = url.match(/\/(p|reel)\/([A-Za-z0-9_-]+)/)?.[2];
+  if (!postId) return null;
+
+  const embedUrl = `https://www.instagram.com/p/${postId}/embed/`;
 
   return (
     <div className="flex justify-center">
-      {/* Wrapper crops the bottom engagement section (likes, comments, icons) */}
-      <div
-        style={{
-          overflow: "hidden",
-          position: "relative",
-          maxWidth: 540,
-          width: "100%",
-        }}
-      >
-        <div style={{ marginBottom: "-155px" }}>
-          <blockquote
-            className="instagram-media"
-            data-instgrm-permalink={url}
-            data-instgrm-version="14"
-            style={{ maxWidth: 540, width: "100%", margin: 0 }}
-          >
-            <a href={url}>Loading Instagram post…</a>
-          </blockquote>
-        </div>
-      </div>
+      <iframe
+        src={embedUrl}
+        style={{ maxWidth: 540, width: "100%", minHeight: 500, border: "none", borderRadius: 8 }}
+        allowTransparency
+        scrolling="no"
+        allowFullScreen
+        title="Instagram post"
+      />
     </div>
   );
 }
