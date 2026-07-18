@@ -104,7 +104,7 @@ Download image, compress to ≤200KB, upload to `article-images/{slug}.jpg` in S
 
 ### 3e. Insert into p2_articles
 Insert with `status="published"`. Required fields:
-- `headline`, `body` (HTML), `slug`, `category`, `vertical` (same as category)
+- `headline`, `subheadline` (1-2 sentence summary for display below headline and on cards — NOT the key takeaways), `body` (HTML), `slug`, `category`, `vertical` (same as category)
 - `tags` (array), `sources` (array of source URLs used)
 - `image_url`, `image_caption`, `image_attribution`
 - `word_count`, `diaspora_angle` (1-sentence summary)
