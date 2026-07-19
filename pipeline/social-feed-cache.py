@@ -47,7 +47,7 @@ OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/socia
 
 # VVIP person handles per category — comprehensive diaspora-relevant list
 # Pool refreshes every 5 days. Each handle costs ~$0.15/mo (5 tweets × $0.005 × 6 refreshes)
-# ~68 handles → ~$10.20/mo reads + $7.20 writes = ~$17.40/mo
+# ~47 handles → ~$7.05/mo reads + $5.10 writes = ~$12.15/mo
 VVIP_HANDLES = {
     "technology": [
         "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
@@ -57,26 +57,23 @@ VVIP_HANDLES = {
     ],
     "entertainment": [
         # Bollywood A-list
-        "iamsrk", "priyankachopra", "deepikapadukone", "akshaykumar",
-        "karanjohar", "diljitdosanjh", "aliaa08", "SrBachchan",
-        "RanveerOfficial", "arrahman", "AnushkaSharma",
-        "BeingSalmanKhan", "vickykaushal09", "shahidkapoor", "kritisanon",
-        "juniorbachchan", "AnilKapoor", "ajaydevgn", "AnupamPkher",
-        "sonamakapoor", "FarOutAkhtar", "aamirkhan",
+        "iamsrk", "priyankachopra", "akshaykumar",
+        "diljitdosanjh", "aliaa08", "SrBachchan",
+        "arrahman",
+        "BeingSalmanKhan", "shahidkapoor",
+        "juniorbachchan", "AnilKapoor", "ajaydevgn",
+        "FarOutAkhtar",
         # South stars
-        "ssrajamouli", "tarak9999", "AlwaysRamCharan", "actorprabhas", "iamRashmika",
-        # Diaspora entertainers
-        "mindykaling", "hasanminhaj",
+        "ssrajamouli", "tarak9999", "AlwaysRamCharan", "iamRashmika",
     ],
     "sports": [
         # Cricket
-        "imVkohli", "ImRo45", "sachin_rt", "Jaspritbumrah93", "hardikpandya7",
+        "imVkohli", "ImRo45", "sachin_rt",
         "SGanguly99", "harbhajan_singh", "RishabhPant17", "ShubmanGill",
-        "imjadeja", "klrahul", "Smriti_Mandhana",
         "MohammadKaif", "ajinkyarahane88", "IrfanPathan",
         # Olympic / other sports
-        "Neeraj_chopra1", "Pvsindhu1", "MirzaSania", "DGukesh",
-        "chetrisunil11", "realmanubhaker", "nikhat_zareen",
+        "Neeraj_chopra1", "Pvsindhu1",
+        "realmanubhaker", "nikhat_zareen",
     ],
     "news": [
         # Indian leaders
@@ -87,7 +84,7 @@ VVIP_HANDLES = {
     ],
     "world-leaders": [
         # US
-        "realDonaldTrump", "VP", "WhiteHouse", "SecBlinken",
+        "realDonaldTrump", "VP", "WhiteHouse",
         # UK
         "10DowningStreet", "RishiSunak",
         # Canada
