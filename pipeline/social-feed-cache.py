@@ -37,7 +37,7 @@ DB_HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration"]
 TWEETS_PER_CATEGORY = 999     # no cap — show every handle we have
 POOL_TWEETS_PER_HANDLE = 5    # tweets to cache per handle
-POOL_MAX_AGE_HOURS = 120      # re-fetch from X API only when pool is older (5 days)
+POOL_MAX_AGE_HOURS = 12       # re-fetch from TwitterAPI.io when pool is older (was 120h/5d with X API)
 VVIP_TWEET_HOURS = 336        # look back 14 days for tweets
 LOOKBACK_DAYS = 14            # article harvest lookback
 
@@ -116,16 +116,16 @@ def pool_is_fresh(pool):
     return (datetime.now(timezone.utc) - refreshed).total_seconds() < POOL_MAX_AGE_HOURS * 3600
 
 def refresh_pool(pool):
-    """Fetch tweets from X API for all VVIP handles, update pool."""
+    """Fetch tweets from TwitterAPI.io for all VVIP handles, update pool."""
     try:
-        from fetch_tweets import fetch_recent_tweets
+        from fetch_tweets import fetch_recent_tweets_twitterapiio
     except ImportError:
         import importlib.util
         spec = importlib.util.spec_from_file_location("fetch_tweets",
             os.path.join(PIPELINE_DIR, "fetch-tweets.py"))
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        fetch_recent_tweets = mod.fetch_recent_tweets
+        fetch_recent_tweets_twitterapiio = mod.fetch_recent_tweets_twitterapiio
 
     handles_data = pool.get("handles", {})
 
@@ -133,7 +133,7 @@ def refresh_pool(pool):
         for handle in handles:
             key = f"{cat}:{handle.lower()}"
             try:
-                tweets = fetch_recent_tweets(handle, hours=VVIP_TWEET_HOURS, max_results=POOL_TWEETS_PER_HANDLE)
+                tweets = fetch_recent_tweets_twitterapiio(handle, max_results=POOL_TWEETS_PER_HANDLE)
                 good = []
                 for t in tweets:
                     text = t.get("text", "")

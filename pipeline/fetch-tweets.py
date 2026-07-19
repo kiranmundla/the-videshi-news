@@ -180,6 +180,87 @@ def fetch_recent_tweets(handle, hours=48, max_results=10):
     return results
 
 
+# ─── TwitterAPI.io alternative (cheaper reads) ───────────────────────────────
+
+load_env(os.path.expanduser("~/workspace/.env.twitterapi-io"))
+_TWITTERAPI_IO_KEY = os.environ.get("TWITTERAPI_IO_KEY", "")
+_TWITTERAPI_IO_BASE = "https://api.twitterapi.io"
+
+
+def fetch_recent_tweets_twitterapiio(handle, max_results=5):
+    """
+    Fetch recent tweets from a handle via TwitterAPI.io (read-only, $0.15/1K tweets).
+    Returns same format as fetch_recent_tweets(): list of dicts with
+    id, text, created_at, photos, photo_count, has_video, url, likes, retweets.
+    """
+    if not _TWITTERAPI_IO_KEY:
+        print("  ⚠ TWITTERAPI_IO_KEY not set", file=sys.stderr)
+        return []
+
+    import subprocess
+    cmd = [
+        "curl", "-s", "--max-time", "15",
+        f"{_TWITTERAPI_IO_BASE}/twitter/user/last_tweets",
+        "-H", f"X-API-Key: {_TWITTERAPI_IO_KEY}",
+        "-G", "--data-urlencode", f"userName={handle}",
+    ]
+    proc = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        print(f"  ⚠ twitterapi.io fetch failed for @{handle}: rc={proc.returncode}", file=sys.stderr)
+        return []
+
+    try:
+        data = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        print(f"  ⚠ twitterapi.io JSON error for @{handle}: {proc.stdout[:100]}", file=sys.stderr)
+        return []
+
+    raw_tweets = data.get("tweets", [])
+    if not raw_tweets:
+        return []
+
+    results = []
+    for t in raw_tweets[:max_results]:
+        text = t.get("text", "")
+        tweet_id = t.get("id", "")
+        author = t.get("author", {})
+        screen_name = author.get("userName", handle)
+
+        # Extract photos and video from extendedEntities
+        photos = []
+        has_video = False
+        for media in (t.get("extendedEntities", {}).get("media", []) or []):
+            mtype = media.get("type", "")
+            if mtype == "photo":
+                photos.append(media.get("media_url_https", ""))
+            elif mtype in ("video", "animated_gif"):
+                has_video = True
+
+        # Parse created_at: "Sat Jul 19 03:00:00 +0000 2026"
+        created_at = ""
+        raw_date = t.get("createdAt", "")
+        if raw_date:
+            try:
+                dt = datetime.strptime(raw_date, "%a %b %d %H:%M:%S %z %Y")
+                created_at = dt.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+            except ValueError:
+                created_at = raw_date
+
+        results.append({
+            "id": tweet_id,
+            "text": text,
+            "created_at": created_at,
+            "photos": photos,
+            "photo_count": len(photos),
+            "has_video": has_video,
+            "url": t.get("url", f"https://x.com/{screen_name}/status/{tweet_id}"),
+            "likes": t.get("likeCount", 0),
+            "retweets": t.get("retweetCount", 0),
+        })
+
+    return results
+
+
 def best_photo_tweet(handle, hours=48, topic_keywords=None):
     """
     Get the single best tweet to embed: prefer photos, then relevance, then recency.
