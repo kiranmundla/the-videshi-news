@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-19T10:42:29Z",
+ "_updated": "2026-07-19T11:56:15Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -16125,6 +16125,138 @@
    "duration": null,
    "quality_score": 85.8,
    "added_date": "2026-07-19T10:42:29Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--astrobase--5c9ed1",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/astrobase-5c9ed1.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/astrobase-5c9ed1.jpg",
+   "subject": "Astrobase",
+   "subject_type": "thing",
+   "caption": "BMW's four-cylinder headquarter office building (right) and the BMW museum (left) at night. The 22-floor 4-cylinder building, built from 1968-1972, is 101 meters high and has a diameter of 52 meters. Its architect is Austrian Karl Schwanzer, who also planned the BMW museum. Most ",
+   "attribution": "Wikimedia Commons / Ralf Steinberger from Milan, Berlin + Munich, Italy + Germany, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Astrobase_(50393550011).jpg",
+   "tags": [
+    "astrobase"
+   ],
+   "width": 3840,
+   "height": 2555,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T11:53:41Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--in-space--e269a7",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/in-space-e269a7.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/in-space-e269a7.jpg",
+   "subject": "IN SPACe",
+   "subject_type": "thing",
+   "caption": "Timeline of the universe. A representation of the evolution of the universe over 13.77 billion years. The far left depicts the earliest moment we can now probe, when a period of \"inflation\" produced a burst of exponential growth in the universe. (Size is depicted by the vertical ",
+   "attribution": "Wikimedia Commons / NASA/WMAP Science Team, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:CMB_Timeline300_no_WMAP.jpg",
+   "tags": [
+    "in space"
+   ],
+   "width": 3000,
+   "height": 1980,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-07-19T11:55:56Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--rocket-engine--fcbada",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/rocket-engine-fcbada.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/rocket-engine-fcbada.jpg",
+   "subject": "rocket engine",
+   "subject_type": "thing",
+   "caption": "A Jupiter S-3 Rocket engine on display at the Steven F. Udvar-Hazy Center in Chantilly, Virginia.",
+   "attribution": "Wikimedia Commons / Balon Greyjoy, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:20180328_Jupiter_S-3_Rocket_Engine_Udvar-Hazy.jpg",
+   "tags": [
+    "rocket engine"
+   ],
+   "width": 3840,
+   "height": 1722,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T11:56:04Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--vada-pav--490ce6",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/vada-pav-490ce6.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/vada-pav-490ce6.jpg",
+   "subject": "vada pav",
+   "subject_type": "thing",
+   "caption": "Half-eaten takeaway Vada pav at Aran, a famous shop in Mumbai.",
+   "attribution": "Wikimedia Commons / Jpatokal, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Aran_Vada_Pav_Mumbai.jpg",
+   "tags": [
+    "vada pav"
+   ],
+   "width": 3024,
+   "height": 4032,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T11:56:07Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--street-food--0dd78e",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/street-food-0dd78e.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/street-food-0dd78e.jpg",
+   "subject": "street food",
+   "subject_type": "thing",
+   "caption": "Isaw is a popular Filipino street food made from barbecued chicken or pig intestines. It's a type of inihaw \"grilled\" food.",
+   "attribution": "Wikimedia Commons / Richmond Chi, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Isaw_-_Street_Food.jpg",
+   "tags": [
+    "street food"
+   ],
+   "width": 1800,
+   "height": 1200,
+   "duration": null,
+   "quality_score": 57.9,
+   "added_date": "2026-07-19T11:56:11Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--tasteatlas--b876d9",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tasteatlas-b876d9.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/tasteatlas-b876d9.jpg",
+   "subject": "TasteAtlas",
+   "subject_type": "thing",
+   "caption": "7 Up - You like it..... it likes you, 1948 Identifier: ladieshomejourna65janwyet (find matches) Title: The Ladies' home journal Year: 1889 (1880s) Authors: Wyeth, N. C. (Newell Convers), 1882-1945 Subjects: Women's periodicals Janice Bluestein Longone Culinary Archive Publisher: ",
+   "attribution": "Wikimedia Commons / Wyeth, N. C. (Newell Convers), 1882-1945, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:7_Up_-_You_like_it,_it_likes_you,_1948.jpg",
+   "tags": [
+    "tasteatlas"
+   ],
+   "width": 3264,
+   "height": 4258,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T11:56:15Z",
    "last_used": null,
    "times_used": 0
   }
