@@ -59,7 +59,7 @@ def sb_patch(table, row_id, data):
 
 
 # ── GPT helper ───────────────────────────────────────────────────────────────
-def call_gpt(prompt, system_prompt):
+def call_gpt(prompt, system_prompt, max_retries=3):
     payload = json.dumps({
         "model": "gpt-4o-mini",
         "temperature": 0.2,
@@ -69,20 +69,41 @@ def call_gpt(prompt, system_prompt):
             {"role": "user", "content": prompt},
         ],
     })
-    r = subprocess.run(
-        ["curl", "-sS", "https://api.openai.com/v1/chat/completions",
-         "-H", f"Authorization: Bearer {OPENAI_API_KEY}",
-         "-H", "Content-Type: application/json",
-         "-d", payload],
-        capture_output=True, text=True
-    )
-    try:
-        resp = json.loads(r.stdout)
-        content = resp["choices"][0]["message"]["content"]
-        return json.loads(content)
-    except Exception as e:
-        print(f"  ⚠ GPT parse error: {e}", file=sys.stderr)
-        return None
+    for attempt in range(max_retries):
+        r = subprocess.run(
+            ["curl", "-sS", "--max-time", "30",
+             "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {OPENAI_API_KEY}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True
+        )
+        if not r.stdout.strip():
+            wait = 2 ** (attempt + 1)
+            print(f"  ⚠ Empty response (attempt {attempt+1}/{max_retries}), retrying in {wait}s...", flush=True)
+            time.sleep(wait)
+            continue
+        try:
+            resp = json.loads(r.stdout)
+            if "error" in resp:
+                err_msg = resp["error"].get("message", "")
+                err_type = resp["error"].get("type", "")
+                if "rate_limit" in err_type or "429" in err_msg or "quota" in err_msg.lower():
+                    wait = 2 ** (attempt + 1)
+                    print(f"  ⚠ Rate limited (attempt {attempt+1}/{max_retries}), retrying in {wait}s...", flush=True)
+                    time.sleep(wait)
+                    continue
+                print(f"  ⚠ API error: {err_type}: {err_msg}", flush=True)
+                return None
+            content = resp["choices"][0]["message"]["content"]
+            return json.loads(content)
+        except Exception as e:
+            wait = 2 ** (attempt + 1)
+            print(f"  ⚠ GPT parse error (attempt {attempt+1}/{max_retries}): {e}", flush=True)
+            if attempt < max_retries - 1:
+                time.sleep(wait)
+    print(f"  ⚠ GPT call failed after {max_retries} attempts", flush=True)
+    return None
 
 
 # ── Enrichment prompt ────────────────────────────────────────────────────────
@@ -195,8 +216,8 @@ def main():
         else:
             enriched += 1
 
-        # Rate limit — ~3 req/sec for mini
-        time.sleep(0.35)
+        # Rate limit — ~2 req/sec for mini (conservative to avoid proxy throttle)
+        time.sleep(0.5)
 
     print(f"\n{'🧪 DRY RUN' if args.dry_run else '✅ DONE'}: {enriched} enriched, {errors} errors out of {len(listings)} listings")
 
