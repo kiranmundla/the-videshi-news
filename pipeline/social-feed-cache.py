@@ -47,7 +47,7 @@ OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/socia
 
 # VVIP person handles per category — comprehensive diaspora-relevant list
 # Pool refreshes every 5 days. Each handle costs ~$0.15/mo (5 tweets × $0.005 × 6 refreshes)
-# ~47 handles → ~$7.05/mo reads + $5.10 writes = ~$12.15/mo
+# ~53 handles → ~$7.95/mo reads + $5.60 writes = ~$13.55/mo
 VVIP_HANDLES = {
     "technology": [
         "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
@@ -65,6 +65,10 @@ VVIP_HANDLES = {
         "FarOutAkhtar",
         # South stars
         "ssrajamouli", "tarak9999", "AlwaysRamCharan", "iamRashmika",
+        # New additions
+        "TheAaryanKartik", "VarunDhawan",
+        # Diaspora
+        "JayShetty",
     ],
     "sports": [
         # Cricket
@@ -91,6 +95,7 @@ VVIP_HANDLES = {
         "JustinTrudeau",
         # Europe & other
         "ZelenskyyUa", "EmmanuelMacron",
+        "BarackObama", "MichelleObama", "SecRubio",
     ],
     "immigration": [],
 }
