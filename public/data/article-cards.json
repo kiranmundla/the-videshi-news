@@ -1,5 +1,119 @@
 [
   {
+    "slug": "why-australias-million-strong-indian-diaspora-is-reshaping-bilateral-ties",
+    "headline": "Why Australia's Million-Strong Indian Diaspora Is Reshaping Bilateral Ties With India",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/why-australias-million-strong-indian-diaspora-is-reshaping-bilateral-ties.jpg"
+  },
+  {
+    "slug": "rohit-kohli-set-to-become-first-indian-pair-to-play-400-matches-together",
+    "headline": "Rohit and Kohli Set to Become First Indian Pair to Play 400 Matches Together at Lord's",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rohit-kohli-set-to-become-first-indian-pair-to-play-400-matches-together.jpg"
+  },
+  {
+    "slug": "messi-calls-world-cup-final-the-last-tango-as-argentina-face-spain",
+    "headline": "Messi Calls World Cup Final 'The Last Tango' in Emotional Farewell Before Argentina Face Spain",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/messi-calls-world-cup-final-the-last-tango-as-argentina-face-spain.jpg"
+  },
+  {
+    "slug": "samsung-cuts-hundreds-of-us-jobs-moves-headquarters-to-texas",
+    "headline": "Samsung Cuts Hundreds of US Jobs as It Abandons New Jersey for Texas Headquarters",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/samsung-cuts-hundreds-of-us-jobs-moves-headquarters-to-texas.jpg"
+  },
+  {
+    "slug": "monsoon-chilli-paneer-crispy-indo-chinese-recipe",
+    "headline": "Monsoon Chilli Paneer: A Crispy Indo-Chinese Classic Ready in 35 Minutes",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/monsoon-chilli-paneer-crispy-indo-chinese-recipe.jpg"
+  },
+  {
+    "slug": "us-iran-war-infrastructure-targeting-enters-dangerous-new-phase",
+    "headline": "US and Iran Target Bridges, Power Plants, and Water Systems as War Enters Infrastructure Phase",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-iran-war-infrastructure-targeting-enters-dangerous-new-phase.jpg"
+  },
+  {
+    "slug": "indian-markets-week-ahead-q1-earnings-oil-iran-tensions",
+    "headline": "Indian Markets Face Volatile Week as Q1 Earnings Collide With Oil Surge and Global Tech Selloff",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-markets-week-ahead-q1-earnings-oil-iran-tensions.jpg"
+  },
+  {
+    "slug": "england-and-india-set-for-series-decider-at-lords-as-cricket-returns-to-the-home",
+    "headline": "England and India Set for Series Decider at Lord's as Cricket Returns to the Home of the Game",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/england-and-india-set-for-series-decider-at-lords-as-cricket-returns-to-the-home.jpg"
+  },
+  {
+    "slug": "pancreatic-cancer-vaccine-stimulates-immune-response-in-90-percent-of-high-risk",
+    "headline": "Pancreatic Cancer Vaccine Stimulates Immune Response in 90 Percent of High-Risk Patients in Early Trial",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pancreatic-cancer-vaccine-stimulates-immune-response-in-90-percent-of-high-risk.jpg"
+  },
+  {
+    "slug": "laid-off-h-1b-workers-face-tougher-scrutiny-as-immigration-officials-crack-down",
+    "headline": "Laid-Off H-1B Workers Face Tougher Scrutiny as Immigration Officials Crack Down on Backup Visa Routes",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/laid-off-h-1b-workers-face-tougher-scrutiny-as-immigration-officials-crack-down.jpg"
+  },
+  {
+    "slug": "pv-sindhu-wins-japan-open-title-becomes-first-indian-to-claim-the-crown",
+    "headline": "PV Sindhu Wins Japan Open Title, Becomes First Indian to Claim the Crown",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pv-sindhu-wins-japan-open-title-becomes-first-indian-to-claim-the-crown.jpg"
+  },
+  {
+    "slug": "us-judge-allows-meta-to-proceed-with-layoffs-despite-ai-discrimination-claims-fr",
+    "headline": "US Judge Allows Meta to Proceed With Layoffs Despite AI Discrimination Claims From 26 Employees",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-judge-allows-meta-to-proceed-with-layoffs-despite-ai-discrimination-claims-fr.jpg"
+  },
+  {
+    "slug": "california-makes-diwali-an-official-statewide-holiday-joining-pennsylvania-and-c",
+    "headline": "California Makes Diwali an Official Statewide Holiday, Joining Pennsylvania and Connecticut",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-makes-diwali-an-official-statewide-holiday-joining-pennsylvania-and-c.jpg"
+  },
+  {
+    "slug": "kung-pao-chicken-noodles-high-protein-weeknight-dinner",
+    "headline": "Kung Pao Chicken Noodles: A High-Protein Weeknight Dinner Ready in 30 Minutes",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kung-pao-chicken-noodles-high-protein-weeknight-dinner.jpg"
+  },
+  {
+    "slug": "chef-ranveer-brar-coriander-stems-flavor-secret",
+    "headline": "Chef Ranveer Brar Says 80 Percent of Coriander's Flavor Lives in the Stems Most Cooks Throw Away",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chef-ranveer-brar-coriander-stems-flavor-secret.jpg"
+  },
+  {
+    "slug": "skyrocketing-school-fees-squeeze-indian-families-education-inflation",
+    "headline": "Skyrocketing School Fees Are Squeezing Indian Families as Education Inflation Outpaces Income Growth",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/skyrocketing-school-fees-squeeze-indian-families-education-inflation.jpg"
+  },
+  {
+    "slug": "trump-debank-illegal-immigrants-stephen-miller",
+    "headline": "Trump Administration Moves to Cut Undocumented Immigrants Off From US Banking System",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-debank-illegal-immigrants-stephen-miller.jpg"
+  },
+  {
+    "slug": "trump-veteran-truckers-replace-immigrants",
+    "headline": "Trump Orders Crackdown on Immigrant Truck Drivers, Plans Automatic CDL for Veterans",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-veteran-truckers-replace-immigrants.jpg"
+  },
+  {
+    "slug": "us-four-year-cap-f1-student-visa-indian-students",
+    "headline": "US Ends Open-Ended Student Visas, Imposes Four-Year Cap That Hits 300,000 Indians Hardest",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-four-year-cap-f1-student-visa-indian-students.jpg"
+  },
+  {
     "slug": "skyroot-vikram-1-makes-history-indias-first-private-rocket-reaches-orbit",
     "headline": "Skyroot's Vikram-1 Makes History: India's First Private Rocket Reaches Orbit",
     "category": "technology",
@@ -10,119 +124,5 @@
     "headline": "Dubai's Job Crisis Deepens as Iran War Squeezes Indian and Migrant Workers Across the Gulf",
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dubai-job-crisis-iran-war-indian-migrant-workers-gulf.jpg"
-  },
-  {
-    "slug": "spain-argentina-world-cup-2026-final-messi-falklands",
-    "headline": "Spain and Argentina Set for World Cup Final as Messi's Last Dance Meets Falklands Controversy",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spain-argentina-world-cup-2026-final-messi-falklands.jpg"
-  },
-  {
-    "slug": "eu-caribbean-nations-end-citizenship-investment-2028-schengen",
-    "headline": "EU Gives Caribbean Nations Until 2028 to End Citizenship-for-Sale Programs or Lose Schengen Access",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/eu-caribbean-nations-end-citizenship-investment-2028-schengen.jpg"
-  },
-  {
-    "slug": "trump-weighs-100000-bond-green-card-applicants-abroad",
-    "headline": "Trump Administration Weighs $100,000 Bond for Green Card Applicants Abroad",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-weighs-100000-bond-green-card-applicants-abroad.jpg"
-  },
-  {
-    "slug": "indian-families-overseas-education-spending-europe-shift-2026",
-    "headline": "Indian Families Spent $3.7 Billion on Overseas Education in 2025 as Students Pivot From US and Canada to Europe",
-    "category": "education",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-families-overseas-education-spending-europe-shift-2026.jpg"
-  },
-  {
-    "slug": "priyanka-chopra-critics-choice-super-award-the-bluff-2026",
-    "headline": "Priyanka Chopra Jonas Nominated for Critics Choice Super Award for The Bluff, Adding to Breakout Awards Season",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/priyanka-chopra-critics-choice-super-award-the-bluff-2026.jpg"
-  },
-  {
-    "slug": "tech-layoffs-150000-2026-ai-workforce-restructuring",
-    "headline": "Tech Layoffs Surge Past 150,000 in 2026 as AI Reshapes the American Workforce",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tech-layoffs-150000-2026-ai-workforce-restructuring.jpg"
-  },
-  {
-    "slug": "bia-daca-ruling-deportation-risk-dreamers-2026",
-    "headline": "Justice Department Ruling Strips DACA Shield in Deportation Cases, Putting 500,000 Dreamers at Greater Risk",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bia-daca-ruling-deportation-risk-dreamers-2026.jpg"
-  },
-  {
-    "slug": "tps-work-permits-expiring-supreme-court-ruling-july-2026",
-    "headline": "1.3 Million TPS Holders Face Work Permit Deadline as Supreme Court Clears Path for Mass Terminations",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tps-work-permits-expiring-supreme-court-ruling-july-2026.jpg"
-  },
-  {
-    "slug": "west-nile-virus-2026-record-season-oregon-cdc-warning",
-    "headline": "West Nile Virus Hits 22-Year High in the US as Oregon Reports First 2026 Case",
-    "category": "health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/west-nile-virus-2026-record-season-oregon-cdc-warning.jpg"
-  },
-  {
-    "slug": "perseid-meteor-shower-2026-best-viewing-decade-new-moon",
-    "headline": "Perseid Meteor Shower Season Begins With Best Viewing Conditions in a Decade Expected at Peak",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/perseid-meteor-shower-2026-best-viewing-decade-new-moon.jpg"
-  },
-  {
-    "slug": "kerala-tata-shipyard-10000-crore-clarification-mission-samudra",
-    "headline": "Kerala Walks Back Tata Shipyard Claim: ₹10,000 Crore Figure Is a Long-Term Maritime Vision, Not a Deal",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kerala-tata-shipyard-10000-crore-clarification-mission-samudra.jpg"
-  },
-  {
-    "slug": "the-india-story-trailer-shreyas-talpade-kajal-aggarwal-pesticide-drama",
-    "headline": "The India Story Trailer Drops: Shreyas Talpade and Kajal Aggarwal Take On the Pesticide Crisis",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-india-story-trailer-shreyas-talpade-kajal-aggarwal-pesticide-drama.jpg"
-  },
-  {
-    "slug": "cbse-class-10-second-board-exam-results-2026",
-    "headline": "CBSE Declares Class 10 Second Board Exam Results With 96.78% Overall Pass Rate",
-    "category": "education",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cbse-class-10-second-board-exam-results-2026.jpg"
-  },
-  {
-    "slug": "mlc-2026-final-los-angeles-knight-riders-washington-freedom",
-    "headline": "MLC 2026 Final: Los Angeles Knight Riders Face Washington Freedom in American Cricket's Showpiece",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mlc-2026-final-los-angeles-knight-riders-washington-freedom.jpg"
-  },
-  {
-    "slug": "india-white-rabbit-technology-secure-time-network",
-    "headline": "India Deploys 'White Rabbit' Technology to Secure Its National Time Network",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-white-rabbit-technology-secure-time-network.jpg"
-  },
-  {
-    "slug": "fifa-world-cup-2026-final-prize-money-record-breaking-payout",
-    "headline": "FIFA World Cup 2026 Final Offers Record $50 Million Prize as Tournament Shatters Financial Benchmarks",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fifa-world-cup-2026-final-prize-money-record-breaking-payout.jpg"
-  },
-  {
-    "slug": "india-uk-free-trade-pact-takes-effect-targeting-100-billion-in-bilateral-trade-b",
-    "headline": "India-UK Free Trade Pact Takes Effect, Targeting $100 Billion in Bilateral Trade by 2030",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-uk-free-trade-pact-takes-effect-targeting-100-billion-in-bilateral-trade-b.jpg"
-  },
-  {
-    "slug": "horror-phenomenon-obsession-nears-430-million-worldwide-set-to-outgross-marvels",
-    "headline": "Horror Phenomenon 'Obsession' Nears $430 Million Worldwide, Set to Outgross Marvel's Shang-Chi",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/horror-phenomenon-obsession-nears-430-million-worldwide-set-to-outgross-marvels.jpg"
-  },
-  {
-    "slug": "after-spending-thousands-on-tuition-indian-students-in-canada-face-a-wave-of-wor",
-    "headline": "After Spending Thousands on Tuition, Indian Students in Canada Face a Wave of Work Permit Denials",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/after-spending-thousands-on-tuition-indian-students-in-canada-face-a-wave-of-wor.jpg"
   }
 ]
