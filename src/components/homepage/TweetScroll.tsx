@@ -148,8 +148,13 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
 
   if (tweets.length === 0) return null;
 
-  // Filter out tweets with no usable text
-  const displayTweets = tweets.filter((t) => getTweetText(t).length > 0);
+  // Only show tweets from recognized VVIP handles with actual text content
+  const displayTweets = tweets.filter((t) => {
+    // Must be a recognized handle
+    if (!DISPLAY_NAMES[t.handle.toLowerCase()]) return false;
+    // Must have usable text
+    return getTweetText(t).length > 0;
+  });
   if (displayTweets.length === 0) return null;
 
   const displayLabel =
