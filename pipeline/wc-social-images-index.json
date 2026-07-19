@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_refresh": "2026-07-19T16:00:56.074927+00:00",
+  "last_refresh": "2026-07-19T22:00:36.588052+00:00",
   "posts": {
     "https://www.instagram.com/p/DaRjWN7lLD0/": {
       "account": "usmnt",
@@ -3494,6 +3494,20 @@
       "likes": 180,
       "image_count": 4,
       "scraped_at": "2026-07-19T16:00:51.491472+00:00"
+    },
+    "https://www.instagram.com/reel/Da9jk6ikm8U/": {
+      "account": "khaleejtimes",
+      "platform": "instagram",
+      "likes": 0,
+      "image_count": 4,
+      "scraped_at": "2026-07-19T22:00:20.882577+00:00"
+    },
+    "https://www.threads.com/@crg_1o/post/Da-nrHPCE0e": {
+      "account": "crg_1o",
+      "platform": "threads",
+      "likes": 0,
+      "image_count": 1,
+      "scraped_at": "2026-07-19T22:00:35.323572+00:00"
     }
   },
   "images": [
@@ -22388,6 +22402,64 @@
       "scraped_at": "2026-07-19T16:00:51.491459+00:00",
       "account": "o.mansouri1",
       "likes": 180,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-1.cdninstagram.com/v/t51.82787-15/751666743_18603034447008566_444629339759902661_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=kqa54Ur2MNgQ7kNvwEl9xvS&_nc_oc=Adr-2oSqXHvAY_nrZKzQYyf125K7T0hertitXOq-UruOKshyLoKmpc8KlGGiqDnCFZUJY2Nu8juKzQ0NdIfnYcYc&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_gid=Ah0tPezJQDh_JnSQwokASA&_nc_ss=7860f&oh=00_AQCM7mglccZnP-w3f2rwQ0WcCTnKAzOVTPiOGYDRQH9Imw&oe=6A6327BC",
+      "post_url": "https://www.instagram.com/reel/Da9jk6ikm8U/",
+      "platform": "instagram",
+      "caption": "2,902 likes, 19 comments - khaleejtimes on July 18, 2026: \"England finish third at the 2026 FIFA World Cup after a thrilling 6-4 victory over France!\u2060\n\u2060\nIt was a goal-filled battle in Miami as England secured their best World Cup finish since lifting the trophy in 1966.\u2060\n\u2060\nHighlights:\u2060\n. Bukayo Saka scored a stunning hat-trick\u2060\n. Kylian Mbapp\u00e9 netted twice to become the all-time leading World Cup ",
+      "scraped_at": "2026-07-19T22:00:20.881985+00:00",
+      "account": "khaleejtimes",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-1.cdninstagram.com/v/t51.71878-15/752620318_4283890928530892_2999109749660322420_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=110&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fYWRkaXRpb25hbF9jb3Zlcl9mcmFtZS5DMyJ9&_nc_ohc=7wASIuJTvd8Q7kNvwFQkzKH&_nc_oc=AdpFcddBFgV3Lsm_H8Wb74jOh7CVNtc0VSJQTBnRJq5BjHJaSG1-yose2akvKdOhdxb1E94DzSAVEbN3114XAaj7&_nc_zt=23&_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_gid=xT8jY0h8uo78ZWct87mtlw&_nc_ss=7860f&oh=00_AQAOv0K-OASt0sE1575c0ROSlZYtikKDeOBMcTvkeU-cZw&oe=6A632735",
+      "post_url": "https://www.instagram.com/reel/Da9jk6ikm8U/",
+      "platform": "instagram",
+      "caption": "2,902 likes, 19 comments - khaleejtimes on July 18, 2026: \"England finish third at the 2026 FIFA World Cup after a thrilling 6-4 victory over France!\u2060\n\u2060\nIt was a goal-filled battle in Miami as England secured their best World Cup finish since lifting the trophy in 1966.\u2060\n\u2060\nHighlights:\u2060\n. Bukayo Saka scored a stunning hat-trick\u2060\n. Kylian Mbapp\u00e9 netted twice to become the all-time leading World Cup ",
+      "scraped_at": "2026-07-19T22:00:20.882022+00:00",
+      "account": "khaleejtimes",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/wc-social/ig-khaleejtimes-9d8a10129dd1.jpg",
+      "width": 640,
+      "height": 1136,
+      "size_bytes": 104708
+    },
+    {
+      "cdn_url": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/752648739_18603196201008566_3701310895762426912_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=RPiCTvkt6Y8Q7kNvwHqa_aD&_nc_oc=Adp-hl6ItkJqcN1iHjmBORP7ex4l6niF3a4FENzecu5yjJh_TWfbxnswhbMYt-Gk_9yG9Udijmq9cPLSv05D75bL&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_gid=xT8jY0h8uo78ZWct87mtlw&_nc_ss=7860f&oh=00_AQB2bQYXpSeXyNckdA_ADtUDHNRbBope1_gMaBf7K8MxCQ&oe=6A630B53",
+      "post_url": "https://www.instagram.com/reel/Da9jk6ikm8U/",
+      "platform": "instagram",
+      "caption": "2,902 likes, 19 comments - khaleejtimes on July 18, 2026: \"England finish third at the 2026 FIFA World Cup after a thrilling 6-4 victory over France!\u2060\n\u2060\nIt was a goal-filled battle in Miami as England secured their best World Cup finish since lifting the trophy in 1966.\u2060\n\u2060\nHighlights:\u2060\n. Bukayo Saka scored a stunning hat-trick\u2060\n. Kylian Mbapp\u00e9 netted twice to become the all-time leading World Cup ",
+      "scraped_at": "2026-07-19T22:00:20.882030+00:00",
+      "account": "khaleejtimes",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-lga3-2.cdninstagram.com/v/t51.82787-15/750147088_18603174649008566_6776847495363110657_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=bZK6ra4RYZcQ7kNvwECFhEm&_nc_oc=AdpSxgv-3RW11SRHndPO2N_iG7SpJQayvba929i8q0InwJoTN8xSlbfhIV22ii0ZONt4dhBJWJ4pB9aKiE617Nmi&_nc_zt=23&_nc_ht=scontent-lga3-2.cdninstagram.com&_nc_gid=xT8jY0h8uo78ZWct87mtlw&_nc_ss=7860f&oh=00_AQDKFOMXoYh0a9q1DDbXnlTJJBGl8bCt52RwEEZjiylwNA&oe=6A630AD7",
+      "post_url": "https://www.instagram.com/reel/Da9jk6ikm8U/",
+      "platform": "instagram",
+      "caption": "2,902 likes, 19 comments - khaleejtimes on July 18, 2026: \"England finish third at the 2026 FIFA World Cup after a thrilling 6-4 victory over France!\u2060\n\u2060\nIt was a goal-filled battle in Miami as England secured their best World Cup finish since lifting the trophy in 1966.\u2060\n\u2060\nHighlights:\u2060\n. Bukayo Saka scored a stunning hat-trick\u2060\n. Kylian Mbapp\u00e9 netted twice to become the all-time leading World Cup ",
+      "scraped_at": "2026-07-19T22:00:20.882035+00:00",
+      "account": "khaleejtimes",
+      "likes": 0,
+      "trusted": false,
+      "permanent_url": null
+    },
+    {
+      "cdn_url": "https://scontent-iad3-1.cdninstagram.com/v/t51.71878-15/752551375_1407329551445733_2168347394981409718_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=1&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=uQS2CniQx28Q7kNvwGLUdR4&_nc_oc=Adrdrn23pC8zy1vH7Wgyu-rO_DlUMDR67DOo1jcKnsYFJQLLlkqw4G5XxSEB9DPWTSxOp_ks1xReYl5fZRuACVIN&_nc_zt=23&_nc_ht=scontent-iad3-1.cdninstagram.com&_nc_gid=VNUkNYkpVEEakJY4FtxRNw&_nc_ss=7820f&oh=00_AQCLGHA14TcmHtFSEM_ZCvVnnY5NjwNjrpswYNIDUvnq0g&oe=6A6318A2",
+      "post_url": "https://www.threads.com/@crg_1o/post/Da-nrHPCE0e",
+      "platform": "threads",
+      "caption": "Goodbye, World Cup 2026 \ud83e\udd72",
+      "scraped_at": "2026-07-19T22:00:35.323538+00:00",
+      "account": "crg_1o",
+      "likes": 0,
       "trusted": false,
       "permanent_url": null
     }
