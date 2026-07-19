@@ -34,7 +34,7 @@ DB_HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
-STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration"]
+STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration", "world-leaders"]
 TWEETS_PER_CATEGORY = 999     # no cap — show every handle we have
 POOL_TWEETS_PER_HANDLE = 5    # tweets to cache per handle
 POOL_MAX_AGE_HOURS = 12       # re-fetch from TwitterAPI.io when pool is older (was 120h/5d with X API)
@@ -79,8 +79,21 @@ VVIP_HANDLES = {
         "chetrisunil11", "realmanubhaker", "nikhat_zareen",
     ],
     "news": [
+        # Indian leaders
         "narendramodi", "DrSJaishankar", "AmitShah", "nsitharaman",
         "RahulGandhi", "myogiadityanath", "MamataOfficial", "ArvindKejriwal",
+        "PMOIndia", "rashtrapatibhvn", "PiyushGoyal", "RajnathSingh",
+        "ShashiTharoor", "JPNadda", "NitishKumar",
+    ],
+    "world-leaders": [
+        # US
+        "realDonaldTrump", "VP", "WhiteHouse", "SecBlinken",
+        # UK
+        "10DowningStreet", "RishiSunak",
+        # Canada
+        "JustinTrudeau",
+        # Europe & other
+        "ZelenskyyUa", "EmmanuelMacron",
     ],
     "immigration": [],
 }

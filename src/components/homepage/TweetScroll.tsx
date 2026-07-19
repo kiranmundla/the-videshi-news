@@ -86,6 +86,23 @@ const DISPLAY_NAMES: Record<string, string> = {
   myogiadityanath: "Yogi Adityanath",
   mamataofficial: "Mamata Banerjee",
   arvindkejriwal: "Arvind Kejriwal",
+  pmoindia: "PMO India",
+  rashtrapatibhvn: "President of India",
+  piyushgoyal: "Piyush Goyal",
+  rajnathsingh: "Rajnath Singh",
+  shashitharoor: "Shashi Tharoor",
+  jpnadda: "JP Nadda",
+  nitishkumar: "Nitish Kumar",
+  // World leaders
+  realdonaldtrump: "Donald Trump",
+  vp: "JD Vance",
+  whitehouse: "The White House",
+  secblinken: "Antony Blinken",
+  "10downingstreet": "10 Downing Street",
+  rishisunak: "Rishi Sunak",
+  justintrudeau: "Justin Trudeau",
+  zelenskyyua: "Volodymyr Zelenskyy",
+  emmanuelmacron: "Emmanuel Macron",
 };
 
 function getDisplayName(handle: string): string {
@@ -112,6 +129,7 @@ const CATEGORY_ACCENTS: Record<string, string> = {
   immigration: "#B71C1C",
   "nri-world": "#E65100",
   "markets-finance": "#004D40",
+  "world-leaders": "#1565C0",
 };
 
 export default function TweetScroll({ category, label }: TweetScrollProps) {

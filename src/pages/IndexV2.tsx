@@ -599,6 +599,7 @@ export default function IndexV2() {
           articles={layout.nriWorld}
           columns={3}
         />
+        <TweetScroll category="world-leaders" label="World Leaders" />
 
         {/* 14. Markets & Finance (lead + list) */}
         <LeadListSection
