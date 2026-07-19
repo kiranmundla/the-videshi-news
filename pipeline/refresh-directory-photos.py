@@ -34,32 +34,39 @@ def ensure_bucket():
     else:
         print(f"⚠️  Bucket creation: {r.status_code} {r.text[:200]}")
 
-def get_fresh_photo_ref(place_id):
-    """Get fresh photo reference from Places API."""
-    url = f"https://maps.googleapis.com/maps/api/place/details/json"
-    r = requests.get(url, params={
-        "place_id": place_id,
-        "fields": "photos",
-        "key": GOOGLE_KEY
+def get_fresh_photo_name(place_id):
+    """Get fresh photo resource name from Places API (New)."""
+    url = f"https://places.googleapis.com/v1/places/{place_id}"
+    r = requests.get(url, headers={
+        "X-Goog-Api-Key": GOOGLE_KEY,
+        "X-Goog-FieldMask": "photos",
     }, timeout=15)
     if r.status_code != 200:
         return None
     data = r.json()
-    photos = data.get("result", {}).get("photos", [])
+    photos = data.get("photos", [])
     if not photos:
         return None
-    return photos[0]["photo_reference"]
+    return photos[0]["name"]  # e.g. "places/PLACE_ID/photos/PHOTO_REF"
 
-def download_photo(photo_ref, max_width=800):
-    """Download photo bytes from Google."""
-    url = f"https://maps.googleapis.com/maps/api/place/photo"
+def download_photo(photo_name, max_width=800):
+    """Download photo bytes via Places API (New) media endpoint."""
+    url = f"https://places.googleapis.com/v1/{photo_name}/media"
     r = requests.get(url, params={
-        "maxwidth": max_width,
-        "photo_reference": photo_ref,
-        "key": GOOGLE_KEY
-    }, allow_redirects=True, timeout=15)
-    if r.status_code == 200 and r.headers.get("content-type", "").startswith("image"):
-        return r.content, r.headers["content-type"]
+        "maxWidthPx": max_width,
+        "skipHttpRedirect": "true",
+    }, headers={
+        "X-Goog-Api-Key": GOOGLE_KEY,
+    }, timeout=15)
+    if r.status_code != 200:
+        return None, None
+    photo_uri = r.json().get("photoUri")
+    if not photo_uri:
+        return None, None
+    # Download the actual image from the URI
+    img_r = requests.get(photo_uri, timeout=15)
+    if img_r.status_code == 200 and img_r.headers.get("content-type", "").startswith("image"):
+        return img_r.content, img_r.headers["content-type"]
     return None, None
 
 def upload_to_supabase(listing_id, image_bytes, content_type):
@@ -154,8 +161,8 @@ def main():
             print(f"  [{lid}] {name}...", end=" ", flush=True)
             
             try:
-                # Get fresh photo reference
-                ref = get_fresh_photo_ref(place_id)
+                # Get fresh photo name
+                ref = get_fresh_photo_name(place_id)
                 if not ref:
                     print("❌ no photos")
                     total_failed += 1
