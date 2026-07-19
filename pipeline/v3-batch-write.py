@@ -278,7 +278,7 @@ articles.append({
 
 # ─── 3. INDIA-UK TRADE PACT ───
 articles.append({
-    "topic_id": "9d2b8bb2-e3d2-42c6-bb1a-b1fa3098ca9d",
+    "topic_id": "9d2b8bb2-1a6f-4878-832a-fbc305ff7c56",
     "headline": "India-UK Free Trade Pact Takes Effect, Targeting $100 Billion in Bilateral Trade by 2030",
     "subheadline": "The landmark agreement eliminates duties on 99% of Indian exports to Britain and exempts 75,000 Indian professionals from double social security contributions.",
     "category": "markets-finance",
@@ -374,7 +374,7 @@ articles.append({
 
 # ─── 5. INDIAN STUDENTS CANADA PGWP ───
 articles.append({
-    "topic_id": "1a16952f-95d8-4dbf-b8c3-e16c0879af82",
+    "topic_id": "1a16952f-63f7-4e45-9726-fbd6b2c9b82e",
     "headline": "After Spending Thousands on Tuition, Indian Students in Canada Face a Wave of Work Permit Denials",
     "subheadline": "Nearly 32,000 post-graduation work permits are set to expire in coming weeks as tightened eligibility rules and administrative errors leave graduates with few options.",
     "category": "immigration",
@@ -424,7 +424,7 @@ articles.append({
 
 # ─── 6. OBSESSION BOX OFFICE ───
 articles.append({
-    "topic_id": "ac85a88e-2e64-4fc7-8d1a-51be7a5b7d7b",
+    "topic_id": "ac85a88e-79e3-43d8-83cf-a7ace7dad8b3",
     "headline": "Horror Phenomenon 'Obsession' Nears $430 Million Worldwide, Set to Outgross Marvel's Shang-Chi",
     "subheadline": "Made for under $1 million, the Curry Barker-directed film has become the highest-grossing original horror movie of the decade and Focus Features' all-time top earner.",
     "category": "entertainment",
@@ -511,6 +511,8 @@ articles.append({
 ALREADY_DONE = {
     "1984c40d-b7b5-4a74-acea-28eaaca90fd5",
     "00ee2350-a13f-48fb-9a55-303ec9db20d9",
+    "a53702d4-2625-4f3d-9195-527f96062c28",
+    "2d777d5e-e6c1-429a-9ffc-f7fb278dcea6",
 }
 
 # ─── MAIN EXECUTION ───
