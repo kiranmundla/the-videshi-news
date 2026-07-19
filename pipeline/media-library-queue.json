@@ -519,7 +519,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 14
+   "priority": 15
   },
   {
    "subject": "F 1",
@@ -1499,7 +1499,7 @@
    ],
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "San Francisco Unicorns",
@@ -2439,7 +2439,7 @@
    ],
    "first_seen": "2026-06-30T10:29:23Z",
    "article_id": "a9f6a18b-5944-4f12-83d6-a1bd572f6a24",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "iPhone 18 Pro",
@@ -3479,7 +3479,7 @@
    ],
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "cryptocurrency",
@@ -3679,7 +3679,7 @@
    ],
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "El Niño",
@@ -4429,7 +4429,7 @@
    ],
    "first_seen": "2026-07-07T10:29:37Z",
    "article_id": "790ae639-5118-4728-aaf7-a4be9a131302",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "Bahrain",
@@ -4449,7 +4449,7 @@
    ],
    "first_seen": "2026-07-08T10:29:24Z",
    "article_id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "IRGC",
@@ -4769,7 +4769,7 @@
    ],
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "438aba22-9225-43af-93f5-03ef24629a06",
-   "priority": 4
+   "priority": 5
   },
   {
    "subject": "rehiring",
@@ -5789,7 +5789,7 @@
    ],
    "first_seen": "2026-07-11T10:29:23Z",
    "article_id": "fe1415e1-4487-4eab-b4c3-598a3581c7e8",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "mistral",
@@ -5999,7 +5999,7 @@
    ],
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "ec04c31b-60a1-45b1-9026-9b2bce8babc7",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "trade secrets",
@@ -6669,7 +6669,7 @@
    ],
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "mercor",
@@ -6759,7 +6759,7 @@
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "94bf7f68-f891-4a43-9165-38a331ade37a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "occ",
@@ -6899,7 +6899,7 @@
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "bceb4dd3-729a-429b-aa7a-2800f3b3d3aa",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "INS Sudarshini",
@@ -7539,7 +7539,7 @@
    ],
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "odi",
@@ -7559,7 +7559,7 @@
    ],
    "first_seen": "2026-07-16T22:28:53Z",
    "article_id": "1319b4e4-fd5d-4d2b-ad83-755715af5fc2",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "strategic partnership",
@@ -7649,7 +7649,7 @@
    ],
    "first_seen": "2026-07-17T10:29:25Z",
    "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "parents sponsorship",
@@ -7759,7 +7759,7 @@
    ],
    "first_seen": "2026-07-17T10:29:25Z",
    "article_id": "bb505145-d7cf-46c4-9ba8-9515566827ae",
-   "priority": 2
+   "priority": 4
   },
   {
    "subject": "Golden Boot",
@@ -7859,7 +7859,7 @@
    ],
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "9a4d561d-6735-4e67-b3b2-51afc1e12aed",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "arvind raman",
@@ -8489,7 +8489,7 @@
    ],
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "f811b0ba-ab5a-4873-b5fd-c26dfcc4dfcb",
-   "priority": 3
+   "priority": 5
   },
   {
    "subject": "quarterly earnings",
@@ -9120,7 +9120,1287 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "4e443886-d763-4fd2-9e25-a763a1a0ccb5",
    "priority": 3
+  },
+  {
+   "subject": "chilli paneer",
+   "subject_type": "thing",
+   "tags": [
+    "chilli paneer"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
+   "priority": 2
+  },
+  {
+   "subject": "indo chinese",
+   "subject_type": "thing",
+   "tags": [
+    "indo chinese"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
+   "priority": 3
+  },
+  {
+   "subject": "recipe",
+   "subject_type": "thing",
+   "tags": [
+    "recipe"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
+   "priority": 3
+  },
+  {
+   "subject": "paneer",
+   "subject_type": "thing",
+   "tags": [
+    "paneer"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
+   "priority": 2
+  },
+  {
+   "subject": "vegetarian",
+   "subject_type": "thing",
+   "tags": [
+    "vegetarian"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
+   "priority": 2
+  },
+  {
+   "subject": "starter",
+   "subject_type": "thing",
+   "tags": [
+    "starter"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
+   "priority": 2
+  },
+  {
+   "subject": "q1 earnings",
+   "subject_type": "thing",
+   "tags": [
+    "q1 earnings"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
+   "priority": 2
+  },
+  {
+   "subject": "foreign investors",
+   "subject_type": "thing",
+   "tags": [
+    "foreign investors"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
+   "priority": 2
+  },
+  {
+   "subject": "hsbc",
+   "subject_type": "thing",
+   "tags": [
+    "hsbc"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
+   "priority": 2
+  },
+  {
+   "subject": "england vs india",
+   "subject_type": "thing",
+   "tags": [
+    "england vs india"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "817046c1-b95b-46cf-8315-9a2a79e7f906",
+   "priority": 2
+  },
+  {
+   "subject": "odi cricket",
+   "subject_type": "thing",
+   "tags": [
+    "odi cricket"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "817046c1-b95b-46cf-8315-9a2a79e7f906",
+   "priority": 2
+  },
+  {
+   "subject": "lords",
+   "subject_type": "thing",
+   "tags": [
+    "lords"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "817046c1-b95b-46cf-8315-9a2a79e7f906",
+   "priority": 2
+  },
+  {
+   "subject": "pancreatic cancer",
+   "subject_type": "thing",
+   "tags": [
+    "pancreatic cancer"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
+   "priority": 2
+  },
+  {
+   "subject": "cancer vaccine",
+   "subject_type": "thing",
+   "tags": [
+    "cancer vaccine"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
+   "priority": 2
+  },
+  {
+   "subject": "kras",
+   "subject_type": "thing",
+   "tags": [
+    "kras"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
+   "priority": 2
+  },
+  {
+   "subject": "clinical trial",
+   "subject_type": "thing",
+   "tags": [
+    "clinical trial"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
+   "priority": 2
+  },
+  {
+   "subject": "PV Sindhu",
+   "subject_type": "person",
+   "tags": [
+    "pv sindhu"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
+   "priority": 5
+  },
+  {
+   "subject": "badminton",
+   "subject_type": "thing",
+   "tags": [
+    "badminton"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
+   "priority": 2
+  },
+  {
+   "subject": "japan open",
+   "subject_type": "thing",
+   "tags": [
+    "japan open"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
+   "priority": 2
+  },
+  {
+   "subject": "indian sports",
+   "subject_type": "thing",
+   "tags": [
+    "indian sports"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
+   "priority": 2
+  },
+  {
+   "subject": "bwf",
+   "subject_type": "thing",
+   "tags": [
+    "bwf"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
+   "priority": 2
+  },
+  {
+   "subject": "disability discrimination",
+   "subject_type": "thing",
+   "tags": [
+    "disability discrimination"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "b598bab8-5aa1-4255-8c95-53c00fc4cefe",
+   "priority": 2
+  },
+  {
+   "subject": "employment law",
+   "subject_type": "thing",
+   "tags": [
+    "employment law"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "b598bab8-5aa1-4255-8c95-53c00fc4cefe",
+   "priority": 2
+  },
+  {
+   "subject": "diwali",
+   "subject_type": "thing",
+   "tags": [
+    "diwali"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
+   "priority": 2
+  },
+  {
+   "subject": "south asian americans",
+   "subject_type": "thing",
+   "tags": [
+    "south asian americans"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
+   "priority": 2
+  },
+  {
+   "subject": "cultural recognition",
+   "subject_type": "thing",
+   "tags": [
+    "cultural recognition"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
+   "priority": 2
+  },
+  {
+   "subject": "gavin newsom",
+   "subject_type": "thing",
+   "tags": [
+    "gavin newsom"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
+   "priority": 2
+  },
+  {
+   "subject": "kung pao",
+   "subject_type": "thing",
+   "tags": [
+    "kung pao"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
+   "priority": 2
+  },
+  {
+   "subject": "chicken noodles",
+   "subject_type": "thing",
+   "tags": [
+    "chicken noodles"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
+   "priority": 2
+  },
+  {
+   "subject": "high protein",
+   "subject_type": "thing",
+   "tags": [
+    "high protein"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
+   "priority": 2
+  },
+  {
+   "subject": "weeknight dinner",
+   "subject_type": "thing",
+   "tags": [
+    "weeknight dinner"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
+   "priority": 2
+  },
+  {
+   "subject": "Sichuan",
+   "subject_type": "thing",
+   "tags": [
+    "sichuan"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
+   "priority": 2
+  },
+  {
+   "subject": "coriander",
+   "subject_type": "thing",
+   "tags": [
+    "coriander"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
+   "priority": 2
+  },
+  {
+   "subject": "Ranveer Brar",
+   "subject_type": "thing",
+   "tags": [
+    "ranveer brar"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
+   "priority": 2
+  },
+  {
+   "subject": "cooking tips",
+   "subject_type": "thing",
+   "tags": [
+    "cooking tips"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
+   "priority": 2
+  },
+  {
+   "subject": "herbs",
+   "subject_type": "thing",
+   "tags": [
+    "herbs"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
+   "priority": 2
+  },
+  {
+   "subject": "food waste",
+   "subject_type": "thing",
+   "tags": [
+    "food waste"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
+   "priority": 2
+  },
+  {
+   "subject": "education inflation",
+   "subject_type": "thing",
+   "tags": [
+    "education inflation"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "a6ea9aa7-6805-4500-bcee-db1f31a949e8",
+   "priority": 2
+  },
+  {
+   "subject": "private schools",
+   "subject_type": "thing",
+   "tags": [
+    "private schools"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "a6ea9aa7-6805-4500-bcee-db1f31a949e8",
+   "priority": 2
+  },
+  {
+   "subject": "coaching",
+   "subject_type": "thing",
+   "tags": [
+    "coaching"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "a6ea9aa7-6805-4500-bcee-db1f31a949e8",
+   "priority": 2
+  },
+  {
+   "subject": "debanking",
+   "subject_type": "thing",
+   "tags": [
+    "debanking"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
+   "priority": 2
+  },
+  {
+   "subject": "Stephen Miller",
+   "subject_type": "thing",
+   "tags": [
+    "stephen miller"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
+   "priority": 2
+  },
+  {
+   "subject": "financial system",
+   "subject_type": "thing",
+   "tags": [
+    "financial system"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
+   "priority": 2
+  },
+  {
+   "subject": "self deportation",
+   "subject_type": "thing",
+   "tags": [
+    "self deportation"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
+   "priority": 2
+  },
+  {
+   "subject": "trucking",
+   "subject_type": "thing",
+   "tags": [
+    "trucking"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
+   "priority": 2
+  },
+  {
+   "subject": "CDL",
+   "subject_type": "thing",
+   "tags": [
+    "cdl"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
+   "priority": 2
+  },
+  {
+   "subject": "veterans",
+   "subject_type": "thing",
+   "tags": [
+    "veterans"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
+   "priority": 2
+  },
+  {
+   "subject": "Sikh Americans",
+   "subject_type": "thing",
+   "tags": [
+    "sikh americans"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
+   "priority": 2
+  },
+  {
+   "subject": "transportation",
+   "subject_type": "thing",
+   "tags": [
+    "transportation"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
+   "priority": 2
+  },
+  {
+   "subject": "private orbital launch",
+   "subject_type": "thing",
+   "tags": [
+    "private orbital launch"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "0a80202d-9af7-4c98-b2e7-ae1ea1b9a998",
+   "priority": 2
+  },
+  {
+   "subject": "migrant workers",
+   "subject_type": "thing",
+   "tags": [
+    "migrant workers"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "027e8d17-37dc-4248-9295-e3f2dd4993e5",
+   "priority": 2
+  },
+  {
+   "subject": "construction",
+   "subject_type": "thing",
+   "tags": [
+    "construction"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "027e8d17-37dc-4248-9295-e3f2dd4993e5",
+   "priority": 2
+  },
+  {
+   "subject": "Lionel Messi",
+   "subject_type": "thing",
+   "tags": [
+    "lionel messi"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
+   "priority": 2
+  },
+  {
+   "subject": "Lamine Yamal",
+   "subject_type": "thing",
+   "tags": [
+    "lamine yamal"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
+   "priority": 2
+  },
+  {
+   "subject": "World Cup final",
+   "subject_type": "thing",
+   "tags": [
+    "world cup final"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
+   "priority": 2
+  },
+  {
+   "subject": "Falklands",
+   "subject_type": "thing",
+   "tags": [
+    "falklands"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
+   "priority": 2
+  },
+  {
+   "subject": "citizenship by investment",
+   "subject_type": "thing",
+   "tags": [
+    "citizenship by investment"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "d23c3bea-7a75-4a81-9f46-b4e7ac77af37",
+   "priority": 2
+  },
+  {
+   "subject": "golden passports",
+   "subject_type": "thing",
+   "tags": [
+    "golden passports"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "d23c3bea-7a75-4a81-9f46-b4e7ac77af37",
+   "priority": 2
+  },
+  {
+   "subject": "visa free travel",
+   "subject_type": "thing",
+   "tags": [
+    "visa free travel"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "d23c3bea-7a75-4a81-9f46-b4e7ac77af37",
+   "priority": 2
+  },
+  {
+   "subject": "immigration bond",
+   "subject_type": "thing",
+   "tags": [
+    "immigration bond"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "10625ece-4f69-41fc-8947-fe838c74e91c",
+   "priority": 2
+  },
+  {
+   "subject": "public charge",
+   "subject_type": "thing",
+   "tags": [
+    "public charge"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "10625ece-4f69-41fc-8947-fe838c74e91c",
+   "priority": 2
+  },
+  {
+   "subject": "Indian immigrants",
+   "subject_type": "thing",
+   "tags": [
+    "indian immigrants"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "10625ece-4f69-41fc-8947-fe838c74e91c",
+   "priority": 2
+  },
+  {
+   "subject": "overseas education",
+   "subject_type": "thing",
+   "tags": [
+    "overseas education"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "fe1d639a-3c38-49a6-8395-76a5fefe42df",
+   "priority": 2
+  },
+  {
+   "subject": "Critics Choice Super Awards",
+   "subject_type": "thing",
+   "tags": [
+    "critics choice super awards"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
+   "priority": 2
+  },
+  {
+   "subject": "The Bluff",
+   "subject_type": "thing",
+   "tags": [
+    "the bluff"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
+   "priority": 2
+  },
+  {
+   "subject": "Hollywood",
+   "subject_type": "thing",
+   "tags": [
+    "hollywood"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
+   "priority": 3
+  },
+  {
+   "subject": "awards season",
+   "subject_type": "thing",
+   "tags": [
+    "awards season"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
+   "priority": 2
+  },
+  {
+   "subject": "Indian actors",
+   "subject_type": "thing",
+   "tags": [
+    "indian actors"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
+   "priority": 2
+  },
+  {
+   "subject": "software engineers",
+   "subject_type": "thing",
+   "tags": [
+    "software engineers"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "e1ebefa2-e69b-4ce8-9cac-cf65448a0e59",
+   "priority": 2
+  },
+  {
+   "subject": "job market",
+   "subject_type": "thing",
+   "tags": [
+    "job market"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "e1ebefa2-e69b-4ce8-9cac-cf65448a0e59",
+   "priority": 2
+  },
+  {
+   "subject": "DACA",
+   "subject_type": "thing",
+   "tags": [
+    "daca"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
+   "priority": 2
+  },
+  {
+   "subject": "Dreamers",
+   "subject_type": "thing",
+   "tags": [
+    "dreamers"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
+   "priority": 2
+  },
+  {
+   "subject": "BIA",
+   "subject_type": "thing",
+   "tags": [
+    "bia"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
+   "priority": 2
+  },
+  {
+   "subject": "Board of Immigration Appeals",
+   "subject_type": "thing",
+   "tags": [
+    "board of immigration appeals"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
+   "priority": 2
+  },
+  {
+   "subject": "Temporary Protected Status",
+   "subject_type": "thing",
+   "tags": [
+    "temporary protected status"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
+   "priority": 2
+  },
+  {
+   "subject": "work permits",
+   "subject_type": "thing",
+   "tags": [
+    "work permits"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
+   "priority": 2
+  },
+  {
+   "subject": "Haiti",
+   "subject_type": "thing",
+   "tags": [
+    "haiti"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
+   "priority": 2
+  },
+  {
+   "subject": "Syria",
+   "subject_type": "thing",
+   "tags": [
+    "syria"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
+   "priority": 2
+  },
+  {
+   "subject": "West Nile virus",
+   "subject_type": "thing",
+   "tags": [
+    "west nile virus"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
+   "priority": 2
+  },
+  {
+   "subject": "public health",
+   "subject_type": "thing",
+   "tags": [
+    "public health"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
+   "priority": 2
+  },
+  {
+   "subject": "mosquito borne disease",
+   "subject_type": "thing",
+   "tags": [
+    "mosquito borne disease"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
+   "priority": 2
+  },
+  {
+   "subject": "Oregon",
+   "subject_type": "thing",
+   "tags": [
+    "oregon"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
+   "priority": 2
+  },
+  {
+   "subject": "health advisory",
+   "subject_type": "thing",
+   "tags": [
+    "health advisory"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
+   "priority": 2
+  },
+  {
+   "subject": "Perseid meteor shower",
+   "subject_type": "thing",
+   "tags": [
+    "perseid meteor shower"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
+   "priority": 2
+  },
+  {
+   "subject": "stargazing",
+   "subject_type": "thing",
+   "tags": [
+    "stargazing"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
+   "priority": 2
+  },
+  {
+   "subject": "astronomy",
+   "subject_type": "thing",
+   "tags": [
+    "astronomy"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
+   "priority": 2
+  },
+  {
+   "subject": "night sky",
+   "subject_type": "thing",
+   "tags": [
+    "night sky"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
+   "priority": 2
+  },
+  {
+   "subject": "family activities",
+   "subject_type": "thing",
+   "tags": [
+    "family activities"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
+   "priority": 2
+  },
+  {
+   "subject": "shipbuilding",
+   "subject_type": "thing",
+   "tags": [
+    "shipbuilding"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
+   "priority": 2
+  },
+  {
+   "subject": "Mission Samudra",
+   "subject_type": "thing",
+   "tags": [
+    "mission samudra"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
+   "priority": 2
+  },
+  {
+   "subject": "V D Satheesan",
+   "subject_type": "thing",
+   "tags": [
+    "v d satheesan"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
+   "priority": 2
+  },
+  {
+   "subject": "Vizhinjam",
+   "subject_type": "thing",
+   "tags": [
+    "vizhinjam"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
+   "priority": 2
+  },
+  {
+   "subject": "The India Story",
+   "subject_type": "thing",
+   "tags": [
+    "the india story"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
+   "priority": 2
+  },
+  {
+   "subject": "Shreyas Talpade",
+   "subject_type": "thing",
+   "tags": [
+    "shreyas talpade"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
+   "priority": 2
+  },
+  {
+   "subject": "Kajal Aggarwal",
+   "subject_type": "thing",
+   "tags": [
+    "kajal aggarwal"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
+   "priority": 2
+  },
+  {
+   "subject": "Zee Studios",
+   "subject_type": "thing",
+   "tags": [
+    "zee studios"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
+   "priority": 2
+  },
+  {
+   "subject": "CBSE",
+   "subject_type": "thing",
+   "tags": [
+    "cbse"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
+   "priority": 2
+  },
+  {
+   "subject": "Class 10 results",
+   "subject_type": "thing",
+   "tags": [
+    "class 10 results"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
+   "priority": 2
+  },
+  {
+   "subject": "board exams",
+   "subject_type": "thing",
+   "tags": [
+    "board exams"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
+   "priority": 2
+  },
+  {
+   "subject": "NEP 2020",
+   "subject_type": "thing",
+   "tags": [
+    "nep 2020"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
+   "priority": 2
+  },
+  {
+   "subject": "Los Angeles Knight Riders",
+   "subject_type": "thing",
+   "tags": [
+    "los angeles knight riders"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7390a79b-c206-466c-8422-ac97f32a5bc2",
+   "priority": 2
+  },
+  {
+   "subject": "Washington Freedom",
+   "subject_type": "thing",
+   "tags": [
+    "washington freedom"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7390a79b-c206-466c-8422-ac97f32a5bc2",
+   "priority": 2
+  },
+  {
+   "subject": "Sunil Narine",
+   "subject_type": "thing",
+   "tags": [
+    "sunil narine"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7390a79b-c206-466c-8422-ac97f32a5bc2",
+   "priority": 2
+  },
+  {
+   "subject": "India technology",
+   "subject_type": "thing",
+   "tags": [
+    "india technology"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
+   "priority": 2
+  },
+  {
+   "subject": "White Rabbit",
+   "subject_type": "thing",
+   "tags": [
+    "white rabbit"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
+   "priority": 2
+  },
+  {
+   "subject": "digital infrastructure",
+   "subject_type": "thing",
+   "tags": [
+    "digital infrastructure"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
+   "priority": 2
+  },
+  {
+   "subject": "CSIR NPL",
+   "subject_type": "thing",
+   "tags": [
+    "csir npl"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
+   "priority": 2
+  },
+  {
+   "subject": "prize money",
+   "subject_type": "thing",
+   "tags": [
+    "prize money"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8f0c502a-63d5-453f-881e-c16c33ad66bd",
+   "priority": 2
+  },
+  {
+   "subject": "sports finance",
+   "subject_type": "thing",
+   "tags": [
+    "sports finance"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8f0c502a-63d5-453f-881e-c16c33ad66bd",
+   "priority": 2
+  },
+  {
+   "subject": "MetLife Stadium",
+   "subject_type": "thing",
+   "tags": [
+    "metlife stadium"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8f0c502a-63d5-453f-881e-c16c33ad66bd",
+   "priority": 2
+  },
+  {
+   "subject": "pgwp",
+   "subject_type": "thing",
+   "tags": [
+    "pgwp"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "f7760069-1ff5-41f0-803d-285a8de744e0",
+   "priority": 2
+  },
+  {
+   "subject": "obsession movie",
+   "subject_type": "thing",
+   "tags": [
+    "obsession movie"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
+   "priority": 2
+  },
+  {
+   "subject": "box office",
+   "subject_type": "thing",
+   "tags": [
+    "box office"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
+   "priority": 2
+  },
+  {
+   "subject": "horror",
+   "subject_type": "thing",
+   "tags": [
+    "horror"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
+   "priority": 2
+  },
+  {
+   "subject": "focus features",
+   "subject_type": "thing",
+   "tags": [
+    "focus features"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
+   "priority": 2
+  },
+  {
+   "subject": "shang chi",
+   "subject_type": "thing",
+   "tags": [
+    "shang chi"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
+   "priority": 2
+  },
+  {
+   "subject": "india uk fta",
+   "subject_type": "thing",
+   "tags": [
+    "india uk fta"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
+   "priority": 2
+  },
+  {
+   "subject": "indian professionals",
+   "subject_type": "thing",
+   "tags": [
+    "indian professionals"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
+   "priority": 2
+  },
+  {
+   "subject": "economic policy",
+   "subject_type": "thing",
+   "tags": [
+    "economic policy"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
+   "priority": 2
+  },
+  {
+   "subject": "nykaa",
+   "subject_type": "thing",
+   "tags": [
+    "nykaa"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
+   "priority": 2
+  },
+  {
+   "subject": "marico",
+   "subject_type": "thing",
+   "tags": [
+    "marico"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
+   "priority": 2
+  },
+  {
+   "subject": "indian stocks",
+   "subject_type": "thing",
+   "tags": [
+    "indian stocks"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
+   "priority": 2
+  },
+  {
+   "subject": "founder led",
+   "subject_type": "thing",
+   "tags": [
+    "founder led"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
+   "priority": 2
+  },
+  {
+   "subject": "indian markets",
+   "subject_type": "thing",
+   "tags": [
+    "indian markets"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
+   "priority": 2
+  },
+  {
+   "subject": "bank of america",
+   "subject_type": "thing",
+   "tags": [
+    "bank of america"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "6eb9996a-9214-4e91-acf2-a29e9aec3f25",
+   "priority": 2
+  },
+  {
+   "subject": "bukayo saka",
+   "subject_type": "thing",
+   "tags": [
+    "bukayo saka"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5c2d01ce-d3de-4ac8-9653-2ad8683cd7f9",
+   "priority": 2
+  },
+  {
+   "subject": "kylian mbappe",
+   "subject_type": "thing",
+   "tags": [
+    "kylian mbappe"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "5c2d01ce-d3de-4ac8-9653-2ad8683cd7f9",
+   "priority": 2
+  },
+  {
+   "subject": "jordan",
+   "subject_type": "thing",
+   "tags": [
+    "jordan"
+   ],
+   "first_seen": "2026-07-19T10:29:24Z",
+   "article_id": "86c95876-3571-46a4-b571-c0022deda1a5",
+   "priority": 2
   }
  ],
- "_updated": "2026-07-18T10:32:42Z"
+ "_updated": "2026-07-19T10:29:24Z"
 }

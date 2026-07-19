@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-18T10:35:27Z",
+ "_updated": "2026-07-19T10:31:03Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -14849,6 +14849,182 @@
    "duration": null,
    "quality_score": 61.7,
    "added_date": "2026-07-18T10:35:27Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--trump-administration--e8faf6",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/trump-administration-e8faf6.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/trump-administration-e8faf6.jpg",
+   "subject": "trump administration",
+   "subject_type": "thing",
+   "caption": "Suing Trump Administration announcement",
+   "attribution": "Wikimedia Commons / Seattle City Council from Seattle, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Suing_Trump_Administration_announcement_(34345403236).jpg",
+   "tags": [
+    "trump administration"
+   ],
+   "width": 3840,
+   "height": 2560,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:29:58Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--pv-sindhu--0732b5",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/pv-sindhu-0732b5.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/pv-sindhu-0732b5.jpg",
+   "subject": "PV Sindhu",
+   "subject_type": "person",
+   "caption": "The Union Minister for Urban Development, Housing & Urban Poverty Alleviation and Information & Broadcasting, Shri M. Venkaiah Naidu felicitating the Rio Olympics-2016 silver medalist Ms. P.V. Sindhu, at a function, in Vijayawada on August 23, 2016.",
+   "attribution": "Wikimedia Commons / Ministry of Information and Broadcasting, GODL-India",
+   "license": "GODL-India",
+   "source_url": "https://commons.wikimedia.org/wiki/File:M._Venkaiah_Naidu_felicitating_the_Rio_Olympics-2016_silver_medalist_Ms._P.V._Sindhu,_at_a_function,_in_Vijayawada.jpg",
+   "tags": [
+    "pv sindhu"
+   ],
+   "width": 2200,
+   "height": 1496,
+   "duration": null,
+   "quality_score": 64.1,
+   "added_date": "2026-07-19T10:30:01Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--middle-east--7e5a59",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/middle-east-7e5a59.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/middle-east-7e5a59.jpg",
+   "subject": "middle east",
+   "subject_type": "thing",
+   "caption": "1941 map of the The Near and Middle East",
+   "attribution": "Wikimedia Commons / British War Office, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1941_map_of_the_The_Near_and_Middle_East.tif",
+   "tags": [
+    "middle east"
+   ],
+   "width": 3840,
+   "height": 2800,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:30:30Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--spacetech--2167de",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/spacetech-2167de.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/spacetech-2167de.jpg",
+   "subject": "spacetech",
+   "subject_type": "thing",
+   "caption": "Liniennetzplan der Verkehrsbetriebe Steffisburg-Thun-Interlaken (STI), ab 10. Dezember 2023",
+   "attribution": "Wikimedia Commons / Tschubby, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Liniennetzplan_STI_2024.png",
+   "tags": [
+    "spacetech"
+   ],
+   "width": 3840,
+   "height": 2563,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:30:37Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--fifa-world-cup-2026--d9bb0a",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fifa-world-cup-2026-d9bb0a.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/fifa-world-cup-2026-d9bb0a.jpg",
+   "subject": "FIFA World Cup 2026",
+   "subject_type": "thing",
+   "caption": "2026 FIFA World Cup progression results map. Champion Runner-up Third place Fourth place Quarter-finals Round of 16 Round of 32 Group stage",
+   "attribution": "Wikimedia Commons / User34790, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:2026_world_cup.png",
+   "tags": [
+    "fifa world cup 2026"
+   ],
+   "width": 2644,
+   "height": 1196,
+   "duration": null,
+   "quality_score": 71.0,
+   "added_date": "2026-07-19T10:30:41Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--international-students--d97f16",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/international-students-d97f16.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/international-students-d97f16.jpg",
+   "subject": "international students",
+   "subject_type": "thing",
+   "caption": "One of the renowned overseas education consultancy in India",
+   "attribution": "Wikimedia Commons / Abroad Solutions India, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Abroad_Solutions_India_Transparent_Logo.png",
+   "tags": [
+    "international students"
+   ],
+   "width": 3840,
+   "height": 2491,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:30:44Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--mlc-2026--40611f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/mlc-2026-40611f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/mlc-2026-40611f.jpg",
+   "subject": "MLC 2026",
+   "subject_type": "thing",
+   "caption": "U.S. Marines assigned to Headquarters and Support Battalion, Marine Corps Installations Pacific, present the colors during a Master Labor Contractor Appreciation Day at Camp Foster, Okinawa, Japan, April 29, 2026. MCIPAC Camp Guard, Explosive Ordnance Disposal, Fire and Emergency",
+   "attribution": "Wikimedia Commons / U.S. Marine Corps photo by Lance Cpl. Joseph Kreis, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Camp_Foster_hosts_an_MLC_Appreciation_Day_(9649391).jpg",
+   "tags": [
+    "mlc 2026"
+   ],
+   "width": 3840,
+   "height": 2560,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:30:55Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--work-permit--6d8d7c",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/work-permit-6d8d7c.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/work-permit-6d8d7c.jpg",
+   "subject": "work permit",
+   "subject_type": "thing",
+   "caption": "Arbeitserlaubnis der Bundesanstalt für Arbeitsvermittlung und Arbeitslosenversicherung, ausgestellt vom Arbeitsamt Wesel, 1960",
+   "attribution": "Wikimedia Commons / Arbeitsamt Wesel, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Arbeitserlaubnis,_Arbeitsamt_Wesel,_1960.jpg",
+   "tags": [
+    "work permit"
+   ],
+   "width": 3488,
+   "height": 4928,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T10:31:03Z",
    "last_used": null,
    "times_used": 0
   }
