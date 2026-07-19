@@ -1492,16 +1492,6 @@
    "priority": 8
   },
   {
-   "subject": "MLC 2026",
-   "subject_type": "thing",
-   "tags": [
-    "mlc 2026"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 3
-  },
-  {
    "subject": "San Francisco Unicorns",
    "subject_type": "thing",
    "tags": [
@@ -2430,16 +2420,6 @@
    "first_seen": "2026-06-30T10:29:23Z",
    "article_id": "a19bbdae-61c0-4a30-b0d5-d2850e62f593",
    "priority": 2
-  },
-  {
-   "subject": "work permit",
-   "subject_type": "thing",
-   "tags": [
-    "work permit"
-   ],
-   "first_seen": "2026-06-30T10:29:23Z",
-   "article_id": "a9f6a18b-5944-4f12-83d6-a1bd572f6a24",
-   "priority": 3
   },
   {
    "subject": "iPhone 18 Pro",
@@ -3472,16 +3452,6 @@
    "priority": 2
   },
   {
-   "subject": "higher education",
-   "subject_type": "thing",
-   "tags": [
-    "higher education"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "c320f4e2-f49e-47d3-9e67-6a7764b19f7f",
-   "priority": 3
-  },
-  {
    "subject": "cryptocurrency",
    "subject_type": "thing",
    "tags": [
@@ -3670,16 +3640,6 @@
    "first_seen": "2026-07-04T10:29:23Z",
    "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
    "priority": 2
-  },
-  {
-   "subject": "caribbean",
-   "subject_type": "thing",
-   "tags": [
-    "caribbean"
-   ],
-   "first_seen": "2026-07-04T10:29:23Z",
-   "article_id": "df94a5cc-dc84-42ef-983a-4370fa6731a4",
-   "priority": 3
   },
   {
    "subject": "El Niño",
@@ -4422,16 +4382,6 @@
    "priority": 2
   },
   {
-   "subject": "middle east",
-   "subject_type": "thing",
-   "tags": [
-    "middle east"
-   ],
-   "first_seen": "2026-07-07T10:29:37Z",
-   "article_id": "790ae639-5118-4728-aaf7-a4be9a131302",
-   "priority": 4
-  },
-  {
    "subject": "Bahrain",
    "subject_type": "thing",
    "tags": [
@@ -4440,16 +4390,6 @@
    "first_seen": "2026-07-08T10:29:24Z",
    "article_id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
    "priority": 2
-  },
-  {
-   "subject": "Kuwait",
-   "subject_type": "thing",
-   "tags": [
-    "kuwait"
-   ],
-   "first_seen": "2026-07-08T10:29:24Z",
-   "article_id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
-   "priority": 3
   },
   {
    "subject": "IRGC",
@@ -5782,16 +5722,6 @@
    "priority": 2
   },
   {
-   "subject": "chip stocks",
-   "subject_type": "thing",
-   "tags": [
-    "chip stocks"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "fe1415e1-4487-4eab-b4c3-598a3581c7e8",
-   "priority": 3
-  },
-  {
    "subject": "mistral",
    "subject_type": "thing",
    "tags": [
@@ -5990,16 +5920,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "ec04c31b-60a1-45b1-9026-9b2bce8babc7",
    "priority": 2
-  },
-  {
-   "subject": "family immigration",
-   "subject_type": "thing",
-   "tags": [
-    "family immigration"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "ec04c31b-60a1-45b1-9026-9b2bce8babc7",
-   "priority": 3
   },
   {
    "subject": "trade secrets",
@@ -6752,16 +6672,6 @@
    "priority": 2
   },
   {
-   "subject": "cfpb",
-   "subject_type": "thing",
-   "tags": [
-    "cfpb"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "94bf7f68-f891-4a43-9165-38a331ade37a",
-   "priority": 3
-  },
-  {
    "subject": "occ",
    "subject_type": "thing",
    "tags": [
@@ -6886,16 +6796,6 @@
    "subject_type": "thing",
    "tags": [
     "trade deficit"
-   ],
-   "first_seen": "2026-07-14T10:29:24Z",
-   "article_id": "bceb4dd3-729a-429b-aa7a-2800f3b3d3aa",
-   "priority": 3
-  },
-  {
-   "subject": "exports",
-   "subject_type": "thing",
-   "tags": [
-    "exports"
    ],
    "first_seen": "2026-07-14T10:29:24Z",
    "article_id": "bceb4dd3-729a-429b-aa7a-2800f3b3d3aa",
@@ -7532,66 +7432,6 @@
    "priority": 2
   },
   {
-   "subject": "military",
-   "subject_type": "thing",
-   "tags": [
-    "military"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "62ec35ef-a85c-42c2-ab16-ce6461390d14",
-   "priority": 3
-  },
-  {
-   "subject": "odi",
-   "subject_type": "thing",
-   "tags": [
-    "odi"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "799d85e7-f311-4506-b6f2-415203872931",
-   "priority": 3
-  },
-  {
-   "subject": "spacetech",
-   "subject_type": "thing",
-   "tags": [
-    "spacetech"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "1319b4e4-fd5d-4d2b-ad83-755715af5fc2",
-   "priority": 4
-  },
-  {
-   "subject": "strategic partnership",
-   "subject_type": "thing",
-   "tags": [
-    "strategic partnership"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "e4a0b62d-f41b-4cdd-9994-c94b2d8c3cd9",
-   "priority": 3
-  },
-  {
-   "subject": "asia pacific",
-   "subject_type": "thing",
-   "tags": [
-    "asia pacific"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "e4a0b62d-f41b-4cdd-9994-c94b2d8c3cd9",
-   "priority": 3
-  },
-  {
-   "subject": "world cup 2027",
-   "subject_type": "thing",
-   "tags": [
-    "world cup 2027"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "96c3370d-55a0-475e-9884-2cc2a82a36fe",
-   "priority": 3
-  },
-  {
    "subject": "nri deposits",
    "subject_type": "thing",
    "tags": [
@@ -7752,16 +7592,6 @@
    "priority": 1
   },
   {
-   "subject": "FIFA World Cup 2026",
-   "subject_type": "thing",
-   "tags": [
-    "fifa world cup 2026"
-   ],
-   "first_seen": "2026-07-17T10:29:25Z",
-   "article_id": "bb505145-d7cf-46c4-9ba8-9515566827ae",
-   "priority": 4
-  },
-  {
    "subject": "Golden Boot",
    "subject_type": "thing",
    "tags": [
@@ -7850,16 +7680,6 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "fe061ce7-35e3-4a78-afb1-e515cf4868a5",
    "priority": 3
-  },
-  {
-   "subject": "international students",
-   "subject_type": "thing",
-   "tags": [
-    "international students"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "9a4d561d-6735-4e67-b3b2-51afc1e12aed",
-   "priority": 4
   },
   {
    "subject": "arvind raman",
@@ -8480,16 +8300,6 @@
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "46214a74-92ce-4fea-8b64-365fbe1d48fc",
    "priority": 3
-  },
-  {
-   "subject": "trump administration",
-   "subject_type": "thing",
-   "tags": [
-    "trump administration"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "f811b0ba-ab5a-4873-b5fd-c26dfcc4dfcb",
-   "priority": 5
   },
   {
    "subject": "quarterly earnings",
@@ -9280,16 +9090,6 @@
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
    "priority": 2
-  },
-  {
-   "subject": "PV Sindhu",
-   "subject_type": "person",
-   "tags": [
-    "pv sindhu"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
-   "priority": 5
   },
   {
    "subject": "badminton",

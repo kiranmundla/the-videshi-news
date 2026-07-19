@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-19T10:31:03Z",
+ "_updated": "2026-07-19T10:32:15Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -15025,6 +15025,270 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-07-19T10:31:03Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--higher-education--35391b",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/higher-education-35391b.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/higher-education-35391b.jpg",
+   "subject": "higher education",
+   "subject_type": "thing",
+   "caption": "révision d'anatomie en médecine vétérinaire",
+   "attribution": "Wikimedia Commons / .Anja., CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Anatomy_study.jpg",
+   "tags": [
+    "higher education"
+   ],
+   "width": 4160,
+   "height": 3120,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T10:31:09Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--caribbean--21bb36",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/caribbean-21bb36.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/caribbean-21bb36.jpg",
+   "subject": "caribbean",
+   "subject_type": "thing",
+   "caption": "Impression of the Caribbean Sea. Shutter speed of >20s in daylight achieved by using a 3.0 ND filter.",
+   "attribution": "Wikimedia Commons / Martin Falbisoner, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Caribbean_Sea_-_Long_Exposure.jpg",
+   "tags": [
+    "caribbean"
+   ],
+   "width": 4997,
+   "height": 2700,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T10:31:16Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--kuwait--7324fc",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/kuwait-7324fc.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/kuwait-7324fc.jpg",
+   "subject": "Kuwait",
+   "subject_type": "thing",
+   "caption": "BRIDLED TERN FIGHT",
+   "attribution": "Wikimedia Commons / RATHEESH POTTEPARAMBIL BALAKRISHNAN, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BRIDLED_TERN_FIGHT_(KUBBAR_ISLAND_KUWAIT_).jpg",
+   "tags": [
+    "kuwait"
+   ],
+   "width": 3653,
+   "height": 4258,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T10:31:22Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--chip-stocks--7f64f1",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/chip-stocks-7f64f1.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/chip-stocks-7f64f1.jpg",
+   "subject": "chip stocks",
+   "subject_type": "thing",
+   "caption": "Blue Chip D12-D10 Daisy Wheel Printer",
+   "attribution": "Wikimedia Commons / Akbkuku, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blue-chip-printer-d10-d12-rear.jpg",
+   "tags": [
+    "chip stocks"
+   ],
+   "width": 3840,
+   "height": 1779,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:31:30Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--family-immigration--068fef",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/family-immigration-068fef.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/family-immigration-068fef.jpg",
+   "subject": "family immigration",
+   "subject_type": "thing",
+   "caption": "The immigration card for Fidelma Kirstein (Fidelma Cadmus Kirstein) for her visit to Brasil",
+   "attribution": "Wikimedia Commons / Unknown photographer, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fidelma_Kirstein_immigration_card_for_Brasil.jpg",
+   "tags": [
+    "family immigration"
+   ],
+   "width": 2508,
+   "height": 1748,
+   "duration": null,
+   "quality_score": 68.9,
+   "added_date": "2026-07-19T10:31:36Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--cfpb--200dcc",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/cfpb-200dcc.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/cfpb-200dcc.jpg",
+   "subject": "cfpb",
+   "subject_type": "thing",
+   "caption": "The Consumer Financial Protection Bureau (CFPB) headquarters in downtown Washington, D.C.",
+   "attribution": "Wikimedia Commons / Tony Webster, CC BY 2.0",
+   "license": "CC BY 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:CFPB_-_Consumer_Financial_Protection_Bureau_HQ_-_Washington_D.C._(53799066428).jpg",
+   "tags": [
+    "cfpb"
+   ],
+   "width": 3840,
+   "height": 2560,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T10:31:47Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--exports--daf1a0",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/exports-daf1a0.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/exports-daf1a0.jpg",
+   "subject": "exports",
+   "subject_type": "thing",
+   "caption": "APL Post-Panamax container ships Image ID: line0534, America's Coastlines. Collection Location: San Francisco.",
+   "attribution": "Wikimedia Commons / NOAA, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Container_ships_President_Truman_(IMO_8616283)_and_President_Kennedy_(IMO_8616295)_at_San_Francisco.jpg",
+   "tags": [
+    "exports"
+   ],
+   "width": 1832,
+   "height": 1184,
+   "duration": null,
+   "quality_score": 58.4,
+   "added_date": "2026-07-19T10:31:52Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--military--82ac41",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/military-82ac41.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/military-82ac41.jpg",
+   "subject": "military",
+   "subject_type": "thing",
+   "caption": "Obverse of the Jubilee Medal \"60 Years of the Armed Forces of the USSR\".",
+   "attribution": "Wikimedia Commons / Anastasiya Lvova, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:60th_anniversary_Armed_Forces_of_USSR.JPG",
+   "tags": [
+    "military"
+   ],
+   "width": 1672,
+   "height": 2904,
+   "duration": null,
+   "quality_score": 75.0,
+   "added_date": "2026-07-19T10:31:57Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--odi--aee6bf",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/odi-aee6bf.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/odi-aee6bf.jpg",
+   "subject": "odi",
+   "subject_type": "thing",
+   "caption": "1st ODI between BAN vs IRE at Sylhet International Cricket Stadium during Ireland tour of Bangladesh 2022-23",
+   "attribution": "Wikimedia Commons / Rocky Masum This work was made by Masum-al-Hasan Rocky and released under the license(s) stated below. Please feel free to use it for any purpose as long as you credit Masum-al-Hasan Rocky as author and follow the terms of the chosen license. If you use this work outside of the Wikimedia projects, I would very much like to get a note from you. Thanks!, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:1st_ODI_of_Irish_cricket_team_in_Bangladesh_in_2022–30.jpg",
+   "tags": [
+    "odi"
+   ],
+   "width": 4000,
+   "height": 2250,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T10:32:02Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--strategic-partnership--e702aa",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/strategic-partnership-e702aa.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/strategic-partnership-e702aa.jpg",
+   "subject": "strategic partnership",
+   "subject_type": "thing",
+   "caption": "Azerbaijan, European Union signed MoU on Strategic Partnership in field of energy",
+   "attribution": "Wikimedia Commons / Press Service of the President of the Republic of Azerbaijan, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Azerbaijan,_European_Union_signed_MoU_on_Strategic_Partnership_in_field_of_energy_01.jpg",
+   "tags": [
+    "strategic partnership"
+   ],
+   "width": 1960,
+   "height": 1240,
+   "duration": null,
+   "quality_score": 60.4,
+   "added_date": "2026-07-19T10:32:06Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--asia-pacific--a7b167",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/asia-pacific-a7b167.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/asia-pacific-a7b167.jpg",
+   "subject": "asia pacific",
+   "subject_type": "thing",
+   "caption": "Countries and territories genreally included in the Asia-Pacific region in Dark Green.Countries and territories included in some definitions but not all are in Light Green.",
+   "attribution": "Wikimedia Commons / Abrahamic Faiths, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Asia-Pacific.png",
+   "tags": [
+    "asia pacific"
+   ],
+   "width": 2044,
+   "height": 2048,
+   "duration": null,
+   "quality_score": 61.7,
+   "added_date": "2026-07-19T10:32:10Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--world-cup-2027--f59e9d",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/world-cup-2027-f59e9d.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/world-cup-2027-f59e9d.jpg",
+   "subject": "world cup 2027",
+   "subject_type": "thing",
+   "caption": "Cooper Northey during UCI MTB world cup in Loudenvielle 2024",
+   "attribution": "Wikimedia Commons / Hugo LUC, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cooper_Northey_during_UCI_MTB_world_cup_in_Loudenvielle_2024.jpg",
+   "tags": [
+    "world cup 2027"
+   ],
+   "width": 3377,
+   "height": 2533,
+   "duration": null,
+   "quality_score": 82.3,
+   "added_date": "2026-07-19T10:32:15Z",
    "last_used": null,
    "times_used": 0
   }
