@@ -220,9 +220,18 @@ def fetch_recent_tweets_twitterapiio(handle, max_results=5):
         return []
 
     results = []
-    for t in raw_tweets[:max_results]:
+    for t in raw_tweets:
+        if len(results) >= max_results:
+            break
+
         text = t.get("text", "")
         tweet_id = t.get("id", "")
+
+        # Skip retweets and replies
+        if t.get("retweeted_tweet") or text.startswith("RT @"):
+            continue
+        if t.get("isReply"):
+            continue
         author = t.get("author", {})
         screen_name = author.get("userName", handle)
 
