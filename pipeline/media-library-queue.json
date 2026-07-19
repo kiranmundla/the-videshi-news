@@ -519,7 +519,7 @@
    ],
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "14b1f4ac-109d-42cf-9999-ee66548fa494",
-   "priority": 15
+   "priority": 16
   },
   {
    "subject": "F 1",
@@ -4709,7 +4709,7 @@
    ],
    "first_seen": "2026-07-09T10:29:26Z",
    "article_id": "438aba22-9225-43af-93f5-03ef24629a06",
-   "priority": 5
+   "priority": 6
   },
   {
    "subject": "rehiring",
@@ -6589,7 +6589,7 @@
    ],
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "63210c4f-df9b-40c3-8c5b-6cec240abedf",
-   "priority": 3
+   "priority": 4
   },
   {
    "subject": "mercor",
@@ -7432,66 +7432,6 @@
    "priority": 2
   },
   {
-   "subject": "nri deposits",
-   "subject_type": "thing",
-   "tags": [
-    "nri deposits"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "301d00dc-a11b-4340-93bd-efc0df109140",
-   "priority": 3
-  },
-  {
-   "subject": "corruption",
-   "subject_type": "thing",
-   "tags": [
-    "corruption"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-   "priority": 3
-  },
-  {
-   "subject": "TVK",
-   "subject_type": "thing",
-   "tags": [
-    "tvk"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-   "priority": 3
-  },
-  {
-   "subject": "local governance",
-   "subject_type": "thing",
-   "tags": [
-    "local governance"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "a8bd7f89-19e1-4bdf-a717-76f8ceaf34a2",
-   "priority": 3
-  },
-  {
-   "subject": "india pakistan",
-   "subject_type": "thing",
-   "tags": [
-    "india pakistan"
-   ],
-   "first_seen": "2026-07-16T22:28:53Z",
-   "article_id": "213f3270-dfb8-4086-8ab9-9c7c618e0619",
-   "priority": 3
-  },
-  {
-   "subject": "Canada immigration",
-   "subject_type": "thing",
-   "tags": [
-    "canada immigration"
-   ],
-   "first_seen": "2026-07-17T10:29:25Z",
-   "article_id": "146107a8-86f2-49b9-a88d-7410c061922a",
-   "priority": 3
-  },
-  {
    "subject": "parents sponsorship",
    "subject_type": "thing",
    "tags": [
@@ -7670,296 +7610,6 @@
    "first_seen": "2026-07-17T10:29:25Z",
    "article_id": "071bcb8c-7679-4694-bcb4-44bec34b139d",
    "priority": 1
-  },
-  {
-   "subject": "tuition free",
-   "subject_type": "thing",
-   "tags": [
-    "tuition free"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "fe061ce7-35e3-4a78-afb1-e515cf4868a5",
-   "priority": 3
-  },
-  {
-   "subject": "arvind raman",
-   "subject_type": "thing",
-   "tags": [
-    "arvind raman"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "67b6f14d-5b32-4b16-b09c-41051fba17f3",
-   "priority": 3
-  },
-  {
-   "subject": "nist",
-   "subject_type": "thing",
-   "tags": [
-    "nist"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "67b6f14d-5b32-4b16-b09c-41051fba17f3",
-   "priority": 3
-  },
-  {
-   "subject": "federal government",
-   "subject_type": "thing",
-   "tags": [
-    "federal government"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "67b6f14d-5b32-4b16-b09c-41051fba17f3",
-   "priority": 3
-  },
-  {
-   "subject": "purdue",
-   "subject_type": "thing",
-   "tags": [
-    "purdue"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "67b6f14d-5b32-4b16-b09c-41051fba17f3",
-   "priority": 3
-  },
-  {
-   "subject": "UCC",
-   "subject_type": "thing",
-   "tags": [
-    "ucc"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "Uniform Civil Code",
-   "subject_type": "thing",
-   "tags": [
-    "uniform civil code"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "Madhya Pradesh",
-   "subject_type": "thing",
-   "tags": [
-    "madhya pradesh"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "Mohan Yadav",
-   "subject_type": "thing",
-   "tags": [
-    "mohan yadav"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "personal law",
-   "subject_type": "thing",
-   "tags": [
-    "personal law"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "marriage law",
-   "subject_type": "thing",
-   "tags": [
-    "marriage law"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "BJP",
-   "subject_type": "thing",
-   "tags": [
-    "bjp"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "378cb9d5-a73f-41cb-b244-3e6f2134cde8",
-   "priority": 3
-  },
-  {
-   "subject": "Namo Bharat",
-   "subject_type": "thing",
-   "tags": [
-    "namo bharat"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "dfe6ac49-ab55-498d-b545-12273770cd53",
-   "priority": 3
-  },
-  {
-   "subject": "RRTS",
-   "subject_type": "thing",
-   "tags": [
-    "rrts"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "dfe6ac49-ab55-498d-b545-12273770cd53",
-   "priority": 3
-  },
-  {
-   "subject": "Rishikesh",
-   "subject_type": "thing",
-   "tags": [
-    "rishikesh"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "dfe6ac49-ab55-498d-b545-12273770cd53",
-   "priority": 3
-  },
-  {
-   "subject": "rail",
-   "subject_type": "thing",
-   "tags": [
-    "rail"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "dfe6ac49-ab55-498d-b545-12273770cd53",
-   "priority": 3
-  },
-  {
-   "subject": "foreign currency",
-   "subject_type": "thing",
-   "tags": [
-    "foreign currency"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "dda083a9-1e41-42f8-982f-807cdffab9ab",
-   "priority": 3
-  },
-  {
-   "subject": "deposits",
-   "subject_type": "thing",
-   "tags": [
-    "deposits"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "dda083a9-1e41-42f8-982f-807cdffab9ab",
-   "priority": 3
-  },
-  {
-   "subject": "Taylor Farms",
-   "subject_type": "thing",
-   "tags": [
-    "taylor farms"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "f4d5eaec-bb4c-414e-a9b5-82dca199aa5e",
-   "priority": 3
-  },
-  {
-   "subject": "FDA",
-   "subject_type": "thing",
-   "tags": [
-    "fda"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "f4d5eaec-bb4c-414e-a9b5-82dca199aa5e",
-   "priority": 3
-  },
-  {
-   "subject": "ICICI Bank",
-   "subject_type": "thing",
-   "tags": [
-    "icici bank"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "a99fd530-e62a-4aa1-8b84-02206776ff15",
-   "priority": 3
-  },
-  {
-   "subject": "HDFC Bank",
-   "subject_type": "thing",
-   "tags": [
-    "hdfc bank"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "a99fd530-e62a-4aa1-8b84-02206776ff15",
-   "priority": 3
-  },
-  {
-   "subject": "PNB",
-   "subject_type": "thing",
-   "tags": [
-    "pnb"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "a99fd530-e62a-4aa1-8b84-02206776ff15",
-   "priority": 3
-  },
-  {
-   "subject": "Axis Bank",
-   "subject_type": "thing",
-   "tags": [
-    "axis bank"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "a99fd530-e62a-4aa1-8b84-02206776ff15",
-   "priority": 3
-  },
-  {
-   "subject": "Kotak Mahindra",
-   "subject_type": "thing",
-   "tags": [
-    "kotak mahindra"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "a99fd530-e62a-4aa1-8b84-02206776ff15",
-   "priority": 3
-  },
-  {
-   "subject": "west indies",
-   "subject_type": "thing",
-   "tags": [
-    "west indies"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "54da884d-365c-46b1-b106-501bce69669f",
-   "priority": 3
-  },
-  {
-   "subject": "sir garry sobers",
-   "subject_type": "thing",
-   "tags": [
-    "sir garry sobers"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "54da884d-365c-46b1-b106-501bce69669f",
-   "priority": 3
-  },
-  {
-   "subject": "barbados",
-   "subject_type": "thing",
-   "tags": [
-    "barbados"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "54da884d-365c-46b1-b106-501bce69669f",
-   "priority": 3
-  },
-  {
-   "subject": "markets finance",
-   "subject_type": "thing",
-   "tags": [
-    "markets finance"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "e9465639-b5c4-479d-890e-a746c691d08c",
-   "priority": 3
   },
   {
    "subject": "Astrobase",
@@ -8939,26 +8589,6 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 2
-  },
-  {
-   "subject": "indo chinese",
-   "subject_type": "thing",
-   "tags": [
-    "indo chinese"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 3
-  },
-  {
-   "subject": "recipe",
-   "subject_type": "thing",
-   "tags": [
-    "recipe"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
    "priority": 3
   },
   {
@@ -8969,7 +8599,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "vegetarian",
@@ -8979,7 +8609,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "starter",
@@ -8989,7 +8619,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "q1 earnings",
@@ -8999,7 +8629,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "foreign investors",
@@ -9009,7 +8639,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "hsbc",
@@ -9019,7 +8649,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "england vs india",
@@ -9029,7 +8659,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "817046c1-b95b-46cf-8315-9a2a79e7f906",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "odi cricket",
@@ -9039,7 +8669,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "817046c1-b95b-46cf-8315-9a2a79e7f906",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "lords",
@@ -9049,7 +8679,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "817046c1-b95b-46cf-8315-9a2a79e7f906",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "pancreatic cancer",
@@ -9059,7 +8689,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "cancer vaccine",
@@ -9069,7 +8699,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "kras",
@@ -9079,7 +8709,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "clinical trial",
@@ -9089,7 +8719,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "badminton",
@@ -9099,7 +8729,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "japan open",
@@ -9109,7 +8739,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian sports",
@@ -9119,7 +8749,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "bwf",
@@ -9129,7 +8759,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f18d24b0-29a7-4a33-856d-b225c00b5727",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "disability discrimination",
@@ -9139,7 +8769,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "b598bab8-5aa1-4255-8c95-53c00fc4cefe",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "employment law",
@@ -9149,7 +8779,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "b598bab8-5aa1-4255-8c95-53c00fc4cefe",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "diwali",
@@ -9159,7 +8789,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "south asian americans",
@@ -9169,7 +8799,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "cultural recognition",
@@ -9179,7 +8809,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "gavin newsom",
@@ -9189,7 +8819,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "af9362c7-ac03-4e07-bec4-061e50f1937b",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "kung pao",
@@ -9199,7 +8829,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "chicken noodles",
@@ -9209,7 +8839,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "high protein",
@@ -9219,7 +8849,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "weeknight dinner",
@@ -9229,7 +8859,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Sichuan",
@@ -9239,7 +8869,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "35b06f6b-3b49-4c98-8369-86182bf185c3",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "coriander",
@@ -9249,7 +8879,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Ranveer Brar",
@@ -9259,7 +8889,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "cooking tips",
@@ -9269,7 +8899,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "herbs",
@@ -9279,7 +8909,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "food waste",
@@ -9289,7 +8919,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "23b89f70-8945-4ee8-af19-c3cc86e6754e",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "education inflation",
@@ -9299,7 +8929,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "a6ea9aa7-6805-4500-bcee-db1f31a949e8",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "private schools",
@@ -9309,7 +8939,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "a6ea9aa7-6805-4500-bcee-db1f31a949e8",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "coaching",
@@ -9319,7 +8949,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "a6ea9aa7-6805-4500-bcee-db1f31a949e8",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "debanking",
@@ -9329,7 +8959,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Stephen Miller",
@@ -9339,7 +8969,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "financial system",
@@ -9349,7 +8979,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "self deportation",
@@ -9359,7 +8989,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "3f110c5c-191c-4bb6-b33a-cdc74cd86e95",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "trucking",
@@ -9369,7 +8999,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "CDL",
@@ -9379,7 +9009,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "veterans",
@@ -9389,7 +9019,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Sikh Americans",
@@ -9399,7 +9029,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "transportation",
@@ -9409,7 +9039,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8b5da768-4fd7-4889-8f1e-cc8f7ddfdf91",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "private orbital launch",
@@ -9419,7 +9049,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "0a80202d-9af7-4c98-b2e7-ae1ea1b9a998",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "migrant workers",
@@ -9429,7 +9059,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "027e8d17-37dc-4248-9295-e3f2dd4993e5",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "construction",
@@ -9439,7 +9069,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "027e8d17-37dc-4248-9295-e3f2dd4993e5",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Lionel Messi",
@@ -9449,7 +9079,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Lamine Yamal",
@@ -9459,7 +9089,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "World Cup final",
@@ -9469,7 +9099,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Falklands",
@@ -9479,7 +9109,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "2ac2a717-a5fe-4d9d-ba20-f3db8c88e32a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "citizenship by investment",
@@ -9489,7 +9119,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "d23c3bea-7a75-4a81-9f46-b4e7ac77af37",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "golden passports",
@@ -9499,7 +9129,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "d23c3bea-7a75-4a81-9f46-b4e7ac77af37",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "visa free travel",
@@ -9509,7 +9139,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "d23c3bea-7a75-4a81-9f46-b4e7ac77af37",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "immigration bond",
@@ -9519,7 +9149,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "10625ece-4f69-41fc-8947-fe838c74e91c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "public charge",
@@ -9529,7 +9159,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "10625ece-4f69-41fc-8947-fe838c74e91c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Indian immigrants",
@@ -9539,7 +9169,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "10625ece-4f69-41fc-8947-fe838c74e91c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "overseas education",
@@ -9549,7 +9179,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "fe1d639a-3c38-49a6-8395-76a5fefe42df",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Critics Choice Super Awards",
@@ -9559,23 +9189,13 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "The Bluff",
    "subject_type": "thing",
    "tags": [
     "the bluff"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
-   "priority": 2
-  },
-  {
-   "subject": "Hollywood",
-   "subject_type": "thing",
-   "tags": [
-    "hollywood"
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
@@ -9589,7 +9209,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Indian actors",
@@ -9599,7 +9219,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "094a4149-6756-47d6-b84e-f6699f019e0d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "software engineers",
@@ -9609,7 +9229,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "e1ebefa2-e69b-4ce8-9cac-cf65448a0e59",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "job market",
@@ -9619,7 +9239,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "e1ebefa2-e69b-4ce8-9cac-cf65448a0e59",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "DACA",
@@ -9629,7 +9249,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Dreamers",
@@ -9639,7 +9259,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "BIA",
@@ -9649,7 +9269,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Board of Immigration Appeals",
@@ -9659,7 +9279,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f1a220bd-25a0-49d3-abfa-6553f7d5c7eb",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Temporary Protected Status",
@@ -9669,7 +9289,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "work permits",
@@ -9679,7 +9299,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Haiti",
@@ -9689,7 +9309,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Syria",
@@ -9699,7 +9319,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "6fff7e85-1caf-452c-97de-c9f67a13b695",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "West Nile virus",
@@ -9709,7 +9329,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "public health",
@@ -9719,7 +9339,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "mosquito borne disease",
@@ -9729,7 +9349,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Oregon",
@@ -9739,7 +9359,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "health advisory",
@@ -9749,7 +9369,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "4049752a-8a23-4fa8-8f9e-19c53d64107c",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Perseid meteor shower",
@@ -9759,7 +9379,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "stargazing",
@@ -9769,7 +9389,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "astronomy",
@@ -9779,7 +9399,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "night sky",
@@ -9789,7 +9409,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "family activities",
@@ -9799,7 +9419,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "shipbuilding",
@@ -9809,7 +9429,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Mission Samudra",
@@ -9819,7 +9439,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "V D Satheesan",
@@ -9829,7 +9449,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Vizhinjam",
@@ -9839,7 +9459,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "96067470-c34e-444c-8061-8d7aa5ffeb01",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "The India Story",
@@ -9849,7 +9469,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Shreyas Talpade",
@@ -9859,7 +9479,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Kajal Aggarwal",
@@ -9869,7 +9489,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Zee Studios",
@@ -9879,7 +9499,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "047691e6-11d6-40cf-ae58-0dff1713f900",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "CBSE",
@@ -9889,7 +9509,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Class 10 results",
@@ -9899,7 +9519,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "board exams",
@@ -9909,7 +9529,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "NEP 2020",
@@ -9919,7 +9539,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7a473ac2-ae3d-4d7b-8e56-9644df875f9a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Los Angeles Knight Riders",
@@ -9929,7 +9549,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7390a79b-c206-466c-8422-ac97f32a5bc2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Washington Freedom",
@@ -9939,7 +9559,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7390a79b-c206-466c-8422-ac97f32a5bc2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "Sunil Narine",
@@ -9949,7 +9569,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7390a79b-c206-466c-8422-ac97f32a5bc2",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "India technology",
@@ -9959,7 +9579,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "White Rabbit",
@@ -9969,7 +9589,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "digital infrastructure",
@@ -9979,7 +9599,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "CSIR NPL",
@@ -9989,7 +9609,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "054288ed-39e7-49a7-9e66-f55a039fbc72",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "prize money",
@@ -9999,7 +9619,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8f0c502a-63d5-453f-881e-c16c33ad66bd",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "sports finance",
@@ -10009,7 +9629,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8f0c502a-63d5-453f-881e-c16c33ad66bd",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "MetLife Stadium",
@@ -10019,7 +9639,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8f0c502a-63d5-453f-881e-c16c33ad66bd",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "pgwp",
@@ -10029,7 +9649,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "f7760069-1ff5-41f0-803d-285a8de744e0",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "obsession movie",
@@ -10039,7 +9659,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "box office",
@@ -10049,7 +9669,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "horror",
@@ -10059,7 +9679,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "focus features",
@@ -10069,7 +9689,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "shang chi",
@@ -10079,7 +9699,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "08b8e983-39eb-416c-bc50-97069df93553",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "india uk fta",
@@ -10089,7 +9709,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian professionals",
@@ -10099,7 +9719,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "economic policy",
@@ -10109,7 +9729,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "nykaa",
@@ -10119,7 +9739,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "marico",
@@ -10129,7 +9749,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian stocks",
@@ -10139,7 +9759,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "founder led",
@@ -10149,7 +9769,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "indian markets",
@@ -10159,7 +9779,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "7efca6ec-e797-4a76-90f1-fd1a22947c1a",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "bank of america",
@@ -10169,7 +9789,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "6eb9996a-9214-4e91-acf2-a29e9aec3f25",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "bukayo saka",
@@ -10179,7 +9799,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5c2d01ce-d3de-4ac8-9653-2ad8683cd7f9",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "kylian mbappe",
@@ -10189,7 +9809,7 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5c2d01ce-d3de-4ac8-9653-2ad8683cd7f9",
-   "priority": 2
+   "priority": 3
   },
   {
    "subject": "jordan",
@@ -10199,8 +9819,8 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "86c95876-3571-46a4-b571-c0022deda1a5",
-   "priority": 2
+   "priority": 3
   }
  ],
- "_updated": "2026-07-19T10:29:24Z"
+ "_updated": "2026-07-19T10:32:45Z"
 }
