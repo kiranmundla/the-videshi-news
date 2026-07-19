@@ -1,128 +1,110 @@
 [
   {
-    "slug": "why-australias-million-strong-indian-diaspora-is-reshaping-bilateral-ties",
-    "headline": "Why Australia's Million-Strong Indian Diaspora Is Reshaping Bilateral Ties With India",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/why-australias-million-strong-indian-diaspora-is-reshaping-bilateral-ties.jpg"
-  },
-  {
-    "slug": "rohit-kohli-set-to-become-first-indian-pair-to-play-400-matches-together",
-    "headline": "Rohit and Kohli Set to Become First Indian Pair to Play 400 Matches Together at Lord's",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rohit-kohli-set-to-become-first-indian-pair-to-play-400-matches-together.jpg"
-  },
-  {
-    "slug": "messi-calls-world-cup-final-the-last-tango-as-argentina-face-spain",
-    "headline": "Messi Calls World Cup Final 'The Last Tango' in Emotional Farewell Before Argentina Face Spain",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/messi-calls-world-cup-final-the-last-tango-as-argentina-face-spain.jpg"
-  },
-  {
-    "slug": "samsung-cuts-hundreds-of-us-jobs-moves-headquarters-to-texas",
-    "headline": "Samsung Cuts Hundreds of US Jobs as It Abandons New Jersey for Texas Headquarters",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/samsung-cuts-hundreds-of-us-jobs-moves-headquarters-to-texas.jpg"
-  },
-  {
-    "slug": "monsoon-chilli-paneer-crispy-indo-chinese-recipe",
-    "headline": "Monsoon Chilli Paneer: A Crispy Indo-Chinese Classic Ready in 35 Minutes",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/monsoon-chilli-paneer-crispy-indo-chinese-recipe.jpg"
-  },
-  {
-    "slug": "us-iran-war-infrastructure-targeting-enters-dangerous-new-phase",
-    "headline": "US and Iran Target Bridges, Power Plants, and Water Systems as War Enters Infrastructure Phase",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-iran-war-infrastructure-targeting-enters-dangerous-new-phase.jpg"
-  },
-  {
-    "slug": "indian-markets-week-ahead-q1-earnings-oil-iran-tensions",
-    "headline": "Indian Markets Face Volatile Week as Q1 Earnings Collide With Oil Surge and Global Tech Selloff",
+    "slug": "statistical-revamp-lower-inflation-pce-fed-2026",
+    "headline": "A Statistical Revamp Is About to Lower U.S. Inflation Readings at a Critical Moment",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-markets-week-ahead-q1-earnings-oil-iran-tensions.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/statistical-revamp-lower-inflation-pce-fed-2026.jpg"
   },
   {
-    "slug": "england-and-india-set-for-series-decider-at-lords-as-cricket-returns-to-the-home",
-    "headline": "England and India Set for Series Decider at Lord's as Cricket Returns to the Home of the Game",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/england-and-india-set-for-series-decider-at-lords-as-cricket-returns-to-the-home.jpg"
-  },
-  {
-    "slug": "pancreatic-cancer-vaccine-stimulates-immune-response-in-90-percent-of-high-risk",
-    "headline": "Pancreatic Cancer Vaccine Stimulates Immune Response in 90 Percent of High-Risk Patients in Early Trial",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pancreatic-cancer-vaccine-stimulates-immune-response-in-90-percent-of-high-risk.jpg"
-  },
-  {
-    "slug": "laid-off-h-1b-workers-face-tougher-scrutiny-as-immigration-officials-crack-down",
-    "headline": "Laid-Off H-1B Workers Face Tougher Scrutiny as Immigration Officials Crack Down on Backup Visa Routes",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/laid-off-h-1b-workers-face-tougher-scrutiny-as-immigration-officials-crack-down.jpg"
-  },
-  {
-    "slug": "pv-sindhu-wins-japan-open-title-becomes-first-indian-to-claim-the-crown",
-    "headline": "PV Sindhu Wins Japan Open Title, Becomes First Indian to Claim the Crown",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pv-sindhu-wins-japan-open-title-becomes-first-indian-to-claim-the-crown.jpg"
-  },
-  {
-    "slug": "us-judge-allows-meta-to-proceed-with-layoffs-despite-ai-discrimination-claims-fr",
-    "headline": "US Judge Allows Meta to Proceed With Layoffs Despite AI Discrimination Claims From 26 Employees",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-judge-allows-meta-to-proceed-with-layoffs-despite-ai-discrimination-claims-fr.jpg"
-  },
-  {
-    "slug": "california-makes-diwali-an-official-statewide-holiday-joining-pennsylvania-and-c",
-    "headline": "California Makes Diwali an Official Statewide Holiday, Joining Pennsylvania and Connecticut",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-makes-diwali-an-official-statewide-holiday-joining-pennsylvania-and-c.jpg"
-  },
-  {
-    "slug": "kung-pao-chicken-noodles-high-protein-weeknight-dinner",
-    "headline": "Kung Pao Chicken Noodles: A High-Protein Weeknight Dinner Ready in 30 Minutes",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kung-pao-chicken-noodles-high-protein-weeknight-dinner.jpg"
-  },
-  {
-    "slug": "chef-ranveer-brar-coriander-stems-flavor-secret",
-    "headline": "Chef Ranveer Brar Says 80 Percent of Coriander's Flavor Lives in the Stems Most Cooks Throw Away",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chef-ranveer-brar-coriander-stems-flavor-secret.jpg"
-  },
-  {
-    "slug": "skyrocketing-school-fees-squeeze-indian-families-education-inflation",
-    "headline": "Skyrocketing School Fees Are Squeezing Indian Families as Education Inflation Outpaces Income Growth",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/skyrocketing-school-fees-squeeze-indian-families-education-inflation.jpg"
-  },
-  {
-    "slug": "trump-debank-illegal-immigrants-stephen-miller",
-    "headline": "Trump Administration Moves to Cut Undocumented Immigrants Off From US Banking System",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-debank-illegal-immigrants-stephen-miller.jpg"
-  },
-  {
-    "slug": "trump-veteran-truckers-replace-immigrants",
-    "headline": "Trump Orders Crackdown on Immigrant Truck Drivers, Plans Automatic CDL for Veterans",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-veteran-truckers-replace-immigrants.jpg"
-  },
-  {
-    "slug": "us-four-year-cap-f1-student-visa-indian-students",
-    "headline": "US Ends Open-Ended Student Visas, Imposes Four-Year Cap That Hits 300,000 Indians Hardest",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-four-year-cap-f1-student-visa-indian-students.jpg"
-  },
-  {
-    "slug": "skyroot-vikram-1-makes-history-indias-first-private-rocket-reaches-orbit",
-    "headline": "Skyroot's Vikram-1 Makes History: India's First Private Rocket Reaches Orbit",
+    "slug": "spacex-ai-compute-business-orbital-data-centers-2026",
+    "headline": "SpaceX Is Quietly Building an AI Compute Empire That Could Rival Big Tech",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/skyroot-vikram-1-makes-history-indias-first-private-rocket-reaches-orbit.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-ai-compute-business-orbital-data-centers-2026.jpg"
   },
   {
-    "slug": "dubai-job-crisis-iran-war-indian-migrant-workers-gulf",
-    "headline": "Dubai's Job Crisis Deepens as Iran War Squeezes Indian and Migrant Workers Across the Gulf",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dubai-job-crisis-iran-war-indian-migrant-workers-gulf.jpg"
+    "slug": "fbi-stops-investigating-ice-confrontations-2026",
+    "headline": "FBI Will No Longer Investigate ICE Confrontations, Agents Told",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fbi-stops-investigating-ice-confrontations-2026.jpg"
+  },
+  {
+    "slug": "england-beat-india-lords-odi-series-2026",
+    "headline": "England Beat India by 27 Runs at Lord's to Win ODI Series 2-1",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/england-beat-india-lords-odi-series-2026.jpg"
+  },
+  {
+    "slug": "creatine-supplements-cancer-immune-cells-ucla-study",
+    "headline": "Creatine May Supercharge Immune Cells That Fight Cancer, UCLA Study Finds",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/creatine-supplements-cancer-immune-cells-ucla-study.jpg"
+  },
+  {
+    "slug": "ai-colonoscopy-lynch-syndrome-colorectal-cancer-detection",
+    "headline": "AI-Assisted Colonoscopy Shows Promise for Lynch Syndrome but Falls Short of Breakthrough",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-colonoscopy-lynch-syndrome-colorectal-cancer-detection.jpg"
+  },
+  {
+    "slug": "glp1-weight-loss-drugs-muscle-bone-loss-frailty-risk",
+    "headline": "Weight-Loss Drugs Linked to Higher Frailty Risks in Older Adults, Major Study Warns",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/glp1-weight-loss-drugs-muscle-bone-loss-frailty-risk.jpg"
+  },
+  {
+    "slug": "ink-thrown-cjp-founder-dipke-jantar-mantar-protest",
+    "headline": "Woman Throws Ink at CJP Founder Abhijeet Dipke at Jantar Mantar Protest",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ink-thrown-cjp-founder-dipke-jantar-mantar-protest.jpg"
+  },
+  {
+    "slug": "ai-impact-senior-lawyers-legal-profession-disruption-2026",
+    "headline": "AI Is Reshaping the Legal Profession. Senior Lawyers May Benefit Most.",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-impact-senior-lawyers-legal-profession-disruption-2026.jpg"
+  },
+  {
+    "slug": "potatoes-changed-human-digestion-evolution-amylase",
+    "headline": "How 10,000 Years of Potato Farming Reshaped Human DNA in the Andes",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/potatoes-changed-human-digestion-evolution-amylase.jpg"
+  },
+  {
+    "slug": "ipos-dalal-street-july-21-listings-subscriptions",
+    "headline": "Dalal Street Braces for Blockbuster Week: SBI Funds Debut, Manipal Health IPO, and Five More",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ipos-dalal-street-july-21-listings-subscriptions.jpg"
+  },
+  {
+    "slug": "air-india-group-fleet-expansion-600-aircraft-order-delivery",
+    "headline": "Air India Group Adds One Aircraft Per Week as 600-Plane Fleet Overhaul Accelerates",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-group-fleet-expansion-600-aircraft-order-delivery.jpg"
+  },
+  {
+    "slug": "the-odyssey-christopher-nolan-264-million-global-box-office-opening",
+    "headline": "Nolan's The Odyssey Opens to $264 Million Worldwide, His Biggest Debut Ever",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-odyssey-christopher-nolan-264-million-global-box-office-opening.jpg"
+  },
+  {
+    "slug": "temples-india-non-vegetarian-prasad",
+    "headline": "From Mutton Biryani to Fish Curry: Indian Temples Where Non-Vegetarian Prasad Is Sacred",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/temples-india-non-vegetarian-prasad.jpg"
+  },
+  {
+    "slug": "apple-tv-lucky-anya-taylor-joy-action-thriller-summer-2026",
+    "headline": "Anya Taylor-Joy's Lucky Becomes Apple TV's Biggest Action Thriller of the Summer",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-tv-lucky-anya-taylor-joy-action-thriller-summer-2026.jpg"
+  },
+  {
+    "slug": "rbi-governor-warns-middle-east-war-monsoon-risks-india-growth",
+    "headline": "RBI Governor Flags Middle East War and Erratic Monsoon as Major Risks to India's Growth",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-governor-warns-middle-east-war-monsoon-risks-india-growth.jpg"
+  },
+  {
+    "slug": "iran-araghchi-security-breach-khamenei-assassination-still-exists",
+    "headline": "Iran's Araghchi Says Security Breach That Enabled Khamenei Assassination May Still Exist",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-araghchi-security-breach-khamenei-assassination-still-exists.jpg"
+  },
+  {
+    "slug": "street-style-samosa-chaat-recipe-indian-snack",
+    "headline": "Street-Style Samosa Chaat: The Ultimate Indian Snack You Can Make at Home",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/street-style-samosa-chaat-recipe-indian-snack.jpg"
   }
 ]
