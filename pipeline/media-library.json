@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-19T11:56:15Z",
+ "_updated": "2026-07-19T12:58:13Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -16257,6 +16257,50 @@
    "duration": null,
    "quality_score": 92.0,
    "added_date": "2026-07-19T11:56:15Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--indian-food--0e2b83",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-food-0e2b83.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/indian-food-0e2b83.jpg",
+   "subject": "Indian food",
+   "subject_type": "thing",
+   "caption": "Www.foodmelton.com check out more post on Indian food",
+   "attribution": "Wikimedia Commons / Rehansha41, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Enjoyed_food_at_nandos.jpg",
+   "tags": [
+    "indian food"
+   ],
+   "width": 3840,
+   "height": 2160,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-19T12:58:04Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--ramayana--716293",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ramayana-716293.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/ramayana-716293.jpg",
+   "subject": "Ramayana",
+   "subject_type": "thing",
+   "caption": "Performance of a fragment of the Ramayana, with the accompanying Legong dance, by Bina Remaja Troupe group, Ubud",
+   "attribution": "Wikimedia Commons / Jakub Hałun, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Balinese_dance_Legong_in_Ubud,_Ramayana_performance,_20220823_1905_0460.jpg",
+   "tags": [
+    "ramayana"
+   ],
+   "width": 4826,
+   "height": 3221,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-19T12:58:12Z",
    "last_used": null,
    "times_used": 0
   }
