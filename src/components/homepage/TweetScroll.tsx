@@ -112,6 +112,27 @@ function getInitials(handle: string): string {
   return handle.charAt(0).toUpperCase();
 }
 
+/** Decode common HTML entities from tweet text */
+function decodeEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+/** Get tweet text from either field, strip trailing t.co URLs, skip URL-only tweets */
+function getTweetText(t: TweetEntry): string {
+  const raw = (t.article_headline || (t as any).text || "").trim();
+  if (!raw) return "";
+  // Strip trailing t.co links
+  const cleaned = raw.replace(/\s*https?:\/\/t\.co\/\S+\s*$/g, "").trim();
+  // If nothing left after stripping URLs, it was a URL-only tweet
+  if (!cleaned) return "";
+  return decodeEntities(cleaned);
+}
+
 export default function TweetScroll({ category, label }: TweetScrollProps) {
   const [tweets, setTweets] = useState<TweetEntry[]>([]);
 
@@ -126,6 +147,10 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
   }, [category]);
 
   if (tweets.length === 0) return null;
+
+  // Filter out tweets with no usable text
+  const displayTweets = tweets.filter((t) => getTweetText(t).length > 0);
+  if (displayTweets.length === 0) return null;
 
   const displayLabel =
     label ||
@@ -151,7 +176,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
 
         {/* Quote strip scroll */}
         <ScrollWrap className="v2-social-scroll">
-          {tweets.map((t) => (
+          {displayTweets.map((t) => (
             <a
               key={t.tweet_id}
               href={t.tweet_url}
@@ -161,7 +186,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
             >
               {/* Tweet text as quote */}
               <p className="v2-tweet-quote-text">
-                "{t.article_headline}"
+                "{getTweetText(t)}"
               </p>
 
               {/* Attribution row */}
