@@ -215,7 +215,7 @@ def fetch_recent_tweets_twitterapiio(handle, max_results=5):
         print(f"  ⚠ twitterapi.io JSON error for @{handle}: {proc.stdout[:100]}", file=sys.stderr)
         return []
 
-    raw_tweets = data.get("tweets", [])
+    raw_tweets = data.get("data", {}).get("tweets", []) or data.get("tweets", [])
     if not raw_tweets:
         return []
 
