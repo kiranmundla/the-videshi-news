@@ -916,14 +916,19 @@ def main():
         # Run tweet enricher
         run_tweet_enricher(hours=args.hours, apply=apply)
 
-        # Instagram embed enrichment for entertainment
+        # Instagram embed enrichment — all categories
         print("\n══ Instagram Embed Enrichment ══")
-        ent_articles = get_recent_articles(hours=args.hours, category="entertainment")
-        print(f"Found {len(ent_articles)} entertainment articles")
+        ig_categories = [
+            "entertainment", "sports", "technology", "news",
+            "immigration", "nri-world", "markets-finance", "travel",
+        ]
+        ig_articles = get_recent_articles(hours=args.hours)
+        ig_articles = [a for a in ig_articles if a.get("category") in ig_categories]
+        print(f"Found {len(ig_articles)} articles across {len(ig_categories)} categories")
 
         ig_enriched = 0
         ig_stripped = 0
-        for article in ent_articles[:args.max]:
+        for article in ig_articles[:args.max]:
             # ── Verify existing IG embeds before deciding to skip ──
             body = article.get("body", "")
             if article_has_social_embed(body, "instagram"):
