@@ -137,7 +137,7 @@ def refresh_pool(pool):
                 good = []
                 for t in tweets:
                     text = t.get("text", "")
-                    if text.startswith("@") or len(text) < 20:
+                    if text.startswith("@") or text.startswith("RT @") or len(text) < 20:
                         continue
                     good.append({
                         "tweet_url": t["url"],
