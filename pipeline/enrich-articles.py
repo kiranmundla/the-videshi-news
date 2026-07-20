@@ -167,8 +167,13 @@ def search_wikimedia_commons(query, limit=5):
     return []
 
 
-def fetch_wikipedia_image(subject):
-    """Get the main Wikipedia image for a subject."""
+def fetch_wikipedia_image(subject, article_context=None):
+    """Get the main Wikipedia image for a subject.
+
+    If article_context (headline or body snippet) is provided, validates that
+    the Wikipedia page is actually about the same topic — not a disambiguation
+    or generic concept page whose image has nothing to do with the article.
+    """
     try:
         encoded = quote(subject.replace(" ", "_"))
         r = _session.get(
@@ -179,8 +184,60 @@ def fetch_wikipedia_image(subject):
         if r.status_code == 200:
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
-            if img:
-                return img
+            if not img:
+                return None
+
+            # ── Relevance guard ──
+            # Reject images from generic/disambiguation Wikipedia pages that
+            # match a common phrase but have nothing to do with the article.
+            wiki_title = (data.get("title") or "").lower()
+            wiki_desc = (data.get("description") or "").lower()
+            wiki_type = (data.get("type") or "")
+
+            # Reject disambiguation pages outright
+            if wiki_type == "disambiguation" or "disambiguation" in wiki_desc:
+                print(f"    ⊘ Skipping Wikipedia image for '{subject}' — disambiguation page")
+                return None
+
+            # Reject generic concept pages (no specific person/place/org)
+            _GENERIC_WIKI_DESCRIPTIONS = {
+                "international competition", "competition", "sporting event",
+                "award", "awards ceremony", "trophy", "memorial",
+                "concept", "term", "phrase", "expression", "song",
+                "album", "single", "film", "television series",
+                "video game", "book", "novel", "poem",
+            }
+            if wiki_desc in _GENERIC_WIKI_DESCRIPTIONS:
+                print(f"    ⊘ Skipping Wikipedia image for '{subject}' — generic concept: '{wiki_desc}'")
+                return None
+
+            # If article context is provided, check the Wikipedia page shares
+            # at least one distinctive keyword with the article
+            if article_context:
+                context_lower = article_context.lower()
+                wiki_extract = (data.get("extract") or "").lower()
+                # Extract distinctive words from wiki page (skip short/common words)
+                _COMMON = {"the", "of", "in", "and", "for", "a", "an", "is", "at",
+                           "on", "to", "with", "by", "from", "as", "it", "that",
+                           "this", "or", "was", "were", "are", "be", "been", "has",
+                           "had", "have", "not", "but", "its", "which", "who",
+                           "their", "can", "will", "may", "more", "also", "than",
+                           "about", "such", "other", "into", "some", "these",
+                           "world", "international", "first", "one", "two",
+                           "new", "most", "all", "any", "many", "each", "event",
+                           "competition", "championship", "champion", "title"}
+                subject_words = {w.lower() for w in subject.split() if len(w) > 2}
+                wiki_words = {w for w in re.findall(r'\b[a-z]{4,}\b', wiki_extract[:500])
+                              if w not in _COMMON and w not in subject_words}
+                context_words = {w for w in re.findall(r'\b[a-z]{4,}\b', context_lower[:1000])
+                                 if w not in _COMMON and w not in subject_words}
+                overlap = wiki_words & context_words
+                if not overlap:
+                    print(f"    ⊘ Skipping Wikipedia image for '{subject}' — page topic "
+                          f"('{data.get('description', '')[:50]}') has no keyword overlap with article")
+                    return None
+
+            return img
     except:
         pass
     return None
@@ -253,7 +310,7 @@ def find_better_image(headline, current_url):
 
     # Try Wikipedia first for named subjects (skip logos/PNGs)
     if subject:
-        wiki_img = fetch_wikipedia_image(subject)
+        wiki_img = fetch_wikipedia_image(subject, article_context=headline)
         if wiki_img and "wikimedia" in wiki_img and not wiki_img.endswith(".png"):
             print(f"    ✓ Wikipedia image for '{subject}'")
             return wiki_img, f"Wikimedia Commons / Wikipedia (CC)"
@@ -680,7 +737,7 @@ def find_inline_images(headline, body, hero_url=""):
         if len(results) >= 3:
             break
 
-        img_url = fetch_wikipedia_image(entity)
+        img_url = fetch_wikipedia_image(entity, article_context=headline + " " + body_text[:500])
         if not img_url:
             continue
 
@@ -999,6 +1056,23 @@ def score_youtube_result(result, entity_name, keywords):
     for skip_word in _YT_SKIP_TITLE_WORDS:
         if skip_word in title_lower:
             score -= 5
+
+    # Penalty for non-English videos (Telugu, Hindi, Arabic, etc.)
+    # Check for non-Latin script in title — strong signal of non-English content
+    _NON_LATIN_RE = re.compile(r'[\u0900-\u097F\u0980-\u09FF\u0C00-\u0C7F\u0C80-\u0CFF\u0B80-\u0BFF'
+                               r'\u0A00-\u0A7F\u0A80-\u0AFF\u0B00-\u0B7F\u0D00-\u0D7F'
+                               r'\u0600-\u06FF\u4E00-\u9FFF\u3040-\u30FF'
+                               r'\uAC00-\uD7AF]')
+    title_raw = result["title"]
+    channel_raw = result["channelTitle"]
+    non_latin_in_title = len(_NON_LATIN_RE.findall(title_raw))
+    non_latin_in_channel = len(_NON_LATIN_RE.findall(channel_raw))
+    if non_latin_in_title >= 3:
+        score -= 10  # heavy penalty — title is in a non-English script
+    elif non_latin_in_title >= 1:
+        score -= 3
+    if non_latin_in_channel >= 2:
+        score -= 3  # channel name in non-English script
 
     # Bonus for news/official/interview content
     official_words = {"official", "press conference", "interview", "statement",
