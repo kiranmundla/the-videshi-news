@@ -502,16 +502,16 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
             shortcode = scored[0][1]
             return shortcode, {"handle": handle, "name": m["name"]}
 
-        # Second pass: no topical match — embed the most recent post, but ONLY
-        # for person handles. For organizations (news outlets, govt agencies, brands),
-        # their latest post may be completely unrelated to the article topic, so we
-        # require caption relevance. For people, any recent post is relevant since
-        # the article is about them.
-        if m.get("group") == "persons":
-            for post in posts:
-                sc = post.get("shortCode", "")
-                if sc:
-                    return sc, {"handle": handle, "name": m["name"]}
+        # Second pass: no topical match — embed the most recent post.
+        # IG captions are often just about the image itself, not the news story.
+        # Unlike X/Twitter, the value of an IG embed is showing the person/entity
+        # we're writing about — social proof and visual engagement. Since our
+        # registry contains entities that ARE the article subject (not news outlets
+        # covering random topics), their latest post is relevant to readers.
+        for post in posts:
+            sc = post.get("shortCode", "")
+            if sc:
+                return sc, {"handle": handle, "name": m["name"]}
 
     return None, None
 
