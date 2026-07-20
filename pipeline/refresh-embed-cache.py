@@ -206,6 +206,8 @@ def fetch_ig_posts_batch(handles, results_limit=12):
 
     by_handle = {}
     for item in data:
+        if not isinstance(item, dict):
+            continue
         owner = (item.get("ownerUsername") or "").lower()
         if not owner:
             input_url = item.get("inputUrl", "")

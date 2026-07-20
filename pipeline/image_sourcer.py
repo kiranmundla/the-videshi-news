@@ -197,6 +197,7 @@ def fetch_signal_images(topic_id):
 
 def fetch_source_urls(topic_id):
     """Get original source URLs for a topic's signals.
+    Decodes Google News redirect URLs to actual source URLs.
     Returns list of URLs.
     """
     if not topic_id or not SUPABASE_URL:
@@ -211,9 +212,35 @@ def fetch_source_urls(topic_id):
             capture_output=True, text=True, timeout=15
         )
         data = json.loads(result.stdout)
-        return [s["original_url"] for s in data if s.get("original_url")]
+        raw_urls = [s["original_url"] for s in data if s.get("original_url")]
+        
+        # Decode Google News redirect URLs to actual source URLs
+        decoded = []
+        for url in raw_urls:
+            actual = _decode_gnews_url(url)
+            if actual:
+                decoded.append(actual)
+        
+        return decoded if decoded else raw_urls
     except:
         return []
+
+
+def _decode_gnews_url(url):
+    """Decode a Google News redirect URL to the actual source article URL.
+    Returns decoded URL or None if not a Google News URL or decoding fails.
+    """
+    if not url or "news.google.com" not in url:
+        return url  # Not a Google News URL, return as-is
+    
+    try:
+        from googlenewsdecoder import new_decoderv1
+        result = new_decoderv1(url, interval=1)
+        if result.get("status") and result.get("decoded_url"):
+            return result["decoded_url"]
+        return None
+    except Exception:
+        return None
 
 
 # ── Source 3: Media library cache ────────────────────────────────────────────
@@ -242,7 +269,177 @@ def fetch_cached_person_image(person_name):
         return None
 
 
-# ── Source 4: Wikipedia ──────────────────────────────────────────────────────
+# ── Source 3.5: YouTube thumbnail ─────────────────────────────────────────────
+
+_load_env("~/workspace/.env.youtube")
+
+_YT_IMG_ACCESS_TOKEN = None
+_YT_IMG_TOKEN_EXPIRY = 0
+
+def _get_yt_image_token():
+    """Get YouTube OAuth access token (cached ~50 min)."""
+    global _YT_IMG_ACCESS_TOKEN, _YT_IMG_TOKEN_EXPIRY
+    if _YT_IMG_ACCESS_TOKEN and time.time() < _YT_IMG_TOKEN_EXPIRY:
+        return _YT_IMG_ACCESS_TOKEN
+    cid = os.environ.get("YOUTUBE_CLIENT_ID", "")
+    csec = os.environ.get("YOUTUBE_CLIENT_SECRET", "")
+    rtok = os.environ.get("YOUTUBE_REFRESH_TOKEN", "")
+    if not (cid and csec and rtok):
+        return None
+    try:
+        import requests
+        r = requests.post("https://oauth2.googleapis.com/token", data={
+            "client_id": cid, "client_secret": csec,
+            "refresh_token": rtok, "grant_type": "refresh_token",
+        }, timeout=10)
+        data = r.json()
+        _YT_IMG_ACCESS_TOKEN = data.get("access_token")
+        _YT_IMG_TOKEN_EXPIRY = time.time() + data.get("expires_in", 3600) - 120
+        return _YT_IMG_ACCESS_TOKEN
+    except:
+        return None
+
+# Non-Latin script detector for YouTube language filtering
+_NON_LATIN_RE = re.compile(
+    r'[\u0900-\u097F\u0980-\u09FF\u0C00-\u0C7F\u0C80-\u0CFF\u0B80-\u0BFF'
+    r'\u0A00-\u0A7F\u0A80-\u0AFF\u0B00-\u0B7F\u0D00-\u0D7F'
+    r'\u0600-\u06FF\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]'
+)
+
+# Junk content indicators in YouTube titles
+_YT_SKIP_WORDS = {
+    "compilation", "top 10", "top 5", "top 20", "meme", "memes", "funny",
+    "prank", "reaction video", "fan edit", "whatsapp status",
+    "#shorts", "tiktok", "roast", "exposed", "scam",
+}
+
+_YT_IMG_QUOTA_USED = 0
+_YT_IMG_QUOTA_LIMIT = 4000  # Reserve ~4K units for image sourcing (rest for enricher)
+
+def fetch_youtube_thumbnail(entity_name, headline):
+    """Search YouTube for a specific, relevant video and return its thumbnail.
+    
+    Returns (thumbnail_url, video_title, channel) or (None, None, None).
+    Prefers videos where entity name appears in the title (specific, not generic).
+    """
+    global _YT_IMG_QUOTA_USED
+    if _YT_IMG_QUOTA_USED >= _YT_IMG_QUOTA_LIMIT:
+        return None, None, None
+    if not entity_name or len(entity_name) < 3:
+        return None, None, None
+    
+    token = _get_yt_image_token()
+    if not token:
+        return None, None, None
+    
+    # Build a focused search query
+    # Strip common stopwords from headline to get keywords
+    _stop = {"the","of","in","and","for","a","an","is","at","on","to","with","by",
+             "from","as","its","it","that","this","but","or","has","had","was",
+             "were","are","be","been","have","his","her","he","she","they","their",
+             "we","our","you","your","about","after","before","how","why","what",
+             "when","where","who","new","says","said","could","would","will","can",
+             "may","more","into","over","up","out","just","also","than","most","first"}
+    headline_words = [w for w in headline.split() if w.lower() not in _stop and len(w) > 2]
+    # Remove entity name words from keywords to avoid redundancy
+    entity_words_lower = {w.lower() for w in entity_name.split()}
+    keywords = [w for w in headline_words if w.lower() not in entity_words_lower][:3]
+    query = f"{entity_name} {' '.join(keywords)}"
+    
+    from datetime import datetime, timedelta, timezone
+    after = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    
+    try:
+        import requests
+        r = requests.get("https://www.googleapis.com/youtube/v3/search", params={
+            "part": "snippet",
+            "q": query,
+            "type": "video",
+            "maxResults": 5,
+            "order": "relevance",
+            "publishedAfter": after,
+            "relevanceLanguage": "en",
+        }, headers={"Authorization": f"Bearer {token}"}, timeout=15)
+        _YT_IMG_QUOTA_USED += 100
+        
+        if r.status_code != 200:
+            return None, None, None
+        
+        items = r.json().get("items", [])
+        if not items:
+            return None, None, None
+        
+        # Score each result
+        entity_lower = entity_name.lower()
+        entity_parts = [p for p in entity_lower.split() if len(p) > 2]
+        best = None
+        best_score = 0
+        
+        for item in items:
+            snip = item.get("snippet", {})
+            title = snip.get("title", "")
+            channel = snip.get("channelTitle", "")
+            title_lower = title.lower()
+            channel_lower = channel.lower()
+            
+            score = 0
+            
+            # Entity name in title (strong signal — video IS about this person)
+            if entity_lower in title_lower:
+                score += 5
+            elif all(p in title_lower for p in entity_parts):
+                score += 4
+            
+            # Entity in channel (official channel)
+            if entity_lower in channel_lower:
+                score += 3
+            
+            # Keyword hits
+            kw_hits = sum(1 for kw in keywords if kw.lower() in title_lower)
+            score += kw_hits * 1.5
+            
+            # Penalty for junk
+            for sw in _YT_SKIP_WORDS:
+                if sw in title_lower:
+                    score -= 5
+            
+            # Penalty for non-English
+            non_latin = len(_NON_LATIN_RE.findall(title + " " + channel))
+            if non_latin >= 3:
+                score -= 10
+            elif non_latin >= 1:
+                score -= 3
+            
+            # Bonus for news/official content
+            for ow in ("official", "press conference", "interview", "announcement", "keynote"):
+                if ow in title_lower:
+                    score += 1
+                    break
+            
+            if score > best_score:
+                best_score = score
+                best = item
+        
+        # Require entity name in title (specificity gate) AND minimum score
+        if not best or best_score < 4:
+            return None, None, None
+        
+        vid_id = best["id"]["videoId"]
+        title = best["snippet"]["title"]
+        channel = best["snippet"]["channelTitle"]
+        
+        # Try maxresdefault first (1280x720), fall back to hqdefault (480x360)
+        for quality in ["maxresdefault", "sddefault", "hqdefault"]:
+            thumb_url = f"https://img.youtube.com/vi/{vid_id}/{quality}.jpg"
+            ok, ctype, _ = verify_image_url(thumb_url, min_width=400)
+            if ok:
+                return thumb_url, title, channel
+        
+        return None, None, None
+        
+    except Exception as e:
+        print(f"    ⚠ YouTube thumbnail search error: {e}")
+        return None, None, None
 
 def fetch_wikipedia_image(entity_name):
     """Fetch image from Wikipedia REST API for a person/entity.
@@ -517,6 +714,19 @@ def source_hero_image(article, used_images=None):
                         source_name = "person_cache"
                         print(f"    ✓ Cached image for '{entity}'")
                         break
+    
+    # ── Source 3.5: YouTube thumbnail (specific, recent) ─────────────────
+    # For named entities, a relevant YouTube video's thumbnail is often the
+    # best image — it shows the actual person/event, not a generic stock photo.
+    if not img_url and entities:
+        main_entity = next((e for e in entities[:2] if isinstance(e, str) and len(e) > 2), None)
+        if main_entity:
+            yt_thumb, yt_title, yt_channel = fetch_youtube_thumbnail(main_entity, headline)
+            if yt_thumb and yt_thumb not in used_images:
+                img_url = yt_thumb
+                attribution = f"YouTube / {yt_channel}" if yt_channel else "YouTube"
+                source_name = "youtube_thumbnail"
+                print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
     
     # ── Source 4: Wikipedia person image ─────────────────────────────────
     if not img_url and entities:

@@ -308,7 +308,18 @@ def find_better_image(headline, current_url):
     """Find a better CC image for an article."""
     subject = extract_main_subject(headline)
 
-    # Try Wikipedia first for named subjects (skip logos/PNGs)
+    # Try YouTube thumbnail first for named subjects — specific, recent photos
+    if subject and len(subject) > 2:
+        try:
+            from image_sourcer import fetch_youtube_thumbnail
+            yt_thumb, yt_title, yt_channel = fetch_youtube_thumbnail(subject, headline)
+            if yt_thumb:
+                print(f"    ✓ YouTube thumbnail for '{subject}' → \"{yt_title[:50]}\"")
+                return yt_thumb, f"YouTube / {yt_channel}" if yt_channel else "YouTube"
+        except Exception as e:
+            print(f"    ⚠ YouTube thumbnail lookup failed: {e}")
+
+    # Try Wikipedia for named subjects (skip logos/PNGs)
     if subject:
         wiki_img = fetch_wikipedia_image(subject, article_context=headline)
         if wiki_img and "wikimedia" in wiki_img and not wiki_img.endswith(".png"):

@@ -420,17 +420,58 @@ def main():
     print(f"  Signal distribution: min={min(sig_counts)}, max={max(sig_counts)}, avg={sum(sig_counts)/len(sig_counts):.1f}")
 
     # ── Step 3: Load recent published articles for dedup ──────────────────────
+    # Two layers:
+    #  a) 14-day window sent to LLM for detailed new/update/duplicate classification
+    #  b) 30-day headline keyword check to catch stories that resurface after weeks
+    #     (e.g. Kunal Shah/WhatsApp story published July 1, resurfaced July 20)
     print(f"\n── Step 3: Loading recent articles for dedup ──")
-    cutoff_3d = (NOW - timedelta(days=3)).isoformat()
+    cutoff_14d = (NOW - timedelta(days=14)).isoformat()
     recent_articles = sb_get("p2_articles", {
         "select": "headline,category,published_at",
-        "created_at": f"gte.{cutoff_3d}",
+        "created_at": f"gte.{cutoff_14d}",
         "status": "eq.published",
         "order": "created_at.desc",
-    }, range_header="0-499")
+    }, range_header="0-1199")
     if not recent_articles or isinstance(recent_articles, dict):
         recent_articles = []
-    print(f"  Recent articles: {len(recent_articles)}")
+    print(f"  Recent articles (14d): {len(recent_articles)}")
+
+    # Layer b: fast headline keyword check against 30-day window
+    # Only loads the EXTRA articles beyond 14d, and only adds those matching a topic
+    cutoff_30d = (NOW - timedelta(days=30)).isoformat()
+    older_articles = sb_get("p2_articles", {
+        "select": "headline,category,published_at",
+        "created_at": f"gte.{cutoff_30d}",
+        "status": "eq.published",
+        "order": "created_at.desc",
+    }, range_header="1200-2499")
+    if not older_articles or isinstance(older_articles, dict):
+        older_articles = []
+
+    if older_articles and topics:
+        # Find older headlines that share distinctive keywords with incoming topics
+        _dedup_stop = {"the","and","for","with","from","that","this","will","has","have",
+                       "been","after","about","over","says","said","more","than","also",
+                       "new","india","indian","how","why","what","when","where","who",
+                       "could","would","first","last","may","get","set","into","most"}
+        added = 0
+        for t in topics:
+            t_title = (t.get("canonical_title") or "").lower()
+            t_words = {w for w in re.findall(r'[a-z]{3,}', t_title)} - _dedup_stop
+            if len(t_words) < 2:
+                continue
+            for oa in older_articles:
+                h_lower = (oa.get("headline") or "").lower()
+                h_words = {w for w in re.findall(r'[a-z]{3,}', h_lower)} - _dedup_stop
+                overlap = t_words & h_words
+                # 3+ distinctive keyword overlap = likely same story
+                if len(overlap) >= 3 and oa not in recent_articles:
+                    recent_articles.append(oa)
+                    added += 1
+        if added:
+            print(f"  + {added} older headline(s) matched by keyword (30d)")
+
+    print(f"  Total dedup context: {len(recent_articles)} headlines")
 
     # ── Step 4: LLM scoring + classification ──────────────────────────────────
     print(f"\n── Step 4: LLM scoring + coverage classification ──")
