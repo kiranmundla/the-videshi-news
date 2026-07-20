@@ -786,5 +786,15 @@
     "hero_slug": "kanpur-btech-gold-medallist-suicide-unemployment-crisis",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-20T13:55:53.245432+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 20, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "singapore-airlines-deepens-role-air-india-losses",
+    "story_count": 5
   }
 ]
