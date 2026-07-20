@@ -283,7 +283,8 @@
         "name": "PMO India",
         "x": "PMOIndia",
         "threads": null,
-        "covers": "PM office announcements, official event photos"
+        "covers": "PM office announcements, official event photos",
+        "instagram": ""
       },
       {
         "name": "MEA India",
@@ -379,13 +380,13 @@
         "name": "Sam Altman",
         "x": "sama",
         "threads": null,
-        "instagram": null
+        "instagram": "sama"
       },
       {
         "name": "Elon Musk",
         "x": "elonmusk",
         "threads": null,
-        "instagram": null
+        "instagram": "elonmusk"
       },
       {
         "name": "Tim Cook",
@@ -432,43 +433,50 @@
         "name": "Google",
         "x": "Google",
         "threads": null,
-        "covers": "Product launches, AI announcements"
+        "covers": "Product launches, AI announcements",
+        "instagram": "google"
       },
       {
         "name": "Microsoft",
         "x": "Microsoft",
         "threads": null,
-        "covers": "Products, AI, enterprise"
+        "covers": "Products, AI, enterprise",
+        "instagram": "microsoft"
       },
       {
         "name": "Apple",
         "x": "Apple",
         "threads": null,
-        "covers": "Product launches, WWDC"
+        "covers": "Product launches, WWDC",
+        "instagram": "apple"
       },
       {
         "name": "NVIDIA",
         "x": "nvidia",
         "threads": null,
-        "covers": "GPU, AI chips"
+        "covers": "GPU, AI chips",
+        "instagram": "nvidia"
       },
       {
         "name": "OpenAI",
         "x": "OpenAI",
         "threads": null,
-        "covers": "ChatGPT, AI models"
+        "covers": "ChatGPT, AI models",
+        "instagram": "openai"
       },
       {
         "name": "Meta",
         "x": "Meta",
         "threads": "meta",
-        "covers": "Meta platforms, AI"
+        "covers": "Meta platforms, AI",
+        "instagram": "meta"
       },
       {
         "name": "Infosys",
         "x": "Infosys",
         "threads": null,
-        "covers": "Indian IT"
+        "covers": "Indian IT",
+        "instagram": "infosys"
       },
       {
         "name": "TCS",
@@ -719,6 +727,20 @@
         "x": null,
         "threads": null,
         "instagram": "adaborz"
+      },
+      {
+        "name": "Aamir Khan",
+        "x": "",
+        "threads": "",
+        "instagram": "aamir_khan",
+        "keywords": []
+      },
+      {
+        "name": "Kartik Aaryan",
+        "x": "",
+        "threads": "",
+        "instagram": "kartikaaryan",
+        "keywords": []
       }
     ],
     "organizations": [
@@ -746,7 +768,8 @@
         "name": "Dharma Productions",
         "x": "DharmaMovies",
         "threads": null,
-        "covers": "Bollywood films"
+        "covers": "Bollywood films",
+        "instagram": "dharmaproductions"
       },
       {
         "name": "YRF",

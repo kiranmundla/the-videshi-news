@@ -321,7 +321,8 @@ def find_matching_handles(headline, registry, platform="instagram"):
                 if not significant:
                     continue
 
-                if all(word in headline_lower for word in significant):
+                import re as _re_match
+                if all(_re_match.search(r'\b' + _re_match.escape(word) + r'\b', headline_lower) for word in significant):
                     matches.append({
                         "name": name,
                         "handle": handle,
