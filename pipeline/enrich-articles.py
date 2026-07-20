@@ -42,6 +42,7 @@ load_env(os.path.expanduser("~/workspace/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.twitter"))
 load_env(os.path.expanduser("~/workspace/.env.openai"))
 load_env(os.path.expanduser("~/workspace/.env.google-ai"))
+load_env(os.path.expanduser("~/workspace/.env.apify"))
 
 # ── Reuse the vision wrong-photo gate from the reviewer ──
 # A hero swap on a LIVE article must never push a clearly wrong-subject photo
@@ -332,21 +333,119 @@ def find_matching_handles(headline, registry, platform="instagram"):
 
 
 def search_instagram_posts(handle, topic_keywords, limit=3):
-    """Search for relevant Instagram posts via web search."""
-    # Use browser search to find Instagram posts
-    query = f"site:instagram.com @{handle} {' '.join(topic_keywords[:3])}"
-    try:
-        r = _session.get(
-            "https://www.google.com/search",
-            params={"q": query, "num": 5},
-            headers={"User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1)"},
-            timeout=10,
-        )
-        # Extract Instagram post URLs
-        urls = re.findall(r'https://www\.instagram\.com/p/([A-Za-z0-9_-]+)', r.text)
-        return list(dict.fromkeys(urls))[:limit]  # unique, preserve order
-    except:
+    """Fetch recent posts from an IG handle via Apify and match to topic keywords.
+
+    Returns list of shortcodes that are relevant to the topic keywords.
+    Uses a module-level cache (_ig_post_cache) so each handle is fetched only once per run.
+    """
+    global _ig_post_cache
+    if not hasattr(search_instagram_posts, '_cache'):
+        search_instagram_posts._cache = {}
+
+    cache = search_instagram_posts._cache
+    handle_lower = handle.lower()
+
+    # Fetch posts if not cached
+    if handle_lower not in cache:
+        posts = _fetch_ig_posts_apify([handle_lower])
+        cache[handle_lower] = posts.get(handle_lower, [])
+
+    posts = cache.get(handle_lower, [])
+    if not posts:
         return []
+
+    # Match posts to topic keywords
+    keywords = [w.lower().strip('.,!?:;-') for w in topic_keywords if len(w) > 2]
+    if not keywords:
+        return []
+
+    scored = []
+    for post in posts:
+        caption = (post.get('caption', '') or '').lower()
+        if not caption:
+            continue
+        hits = sum(1 for kw in keywords if kw in caption)
+        if hits >= 2 or (hits >= 1 and len(keywords) <= 2):
+            shortcode = post.get('shortCode', '')
+            if shortcode:
+                scored.append((hits, shortcode))
+
+    scored.sort(key=lambda x: -x[0])
+    return [sc for _, sc in scored[:limit]]
+
+
+def _fetch_ig_posts_apify(handles, results_limit=12):
+    """Batch-fetch recent posts from multiple IG handles via Apify.
+
+    Returns dict: {handle_lower: [post_dict, ...]}
+    """
+    token = os.environ.get('APIFY_API_TOKEN', '')
+    if not token:
+        print("     ⚠ APIFY_API_TOKEN not set, skipping IG enrichment")
+        return {}
+
+    urls = [f"https://www.instagram.com/{h}/" for h in handles]
+    payload = json.dumps({
+        'directUrls': urls,
+        'resultsType': 'posts',
+        'resultsLimit': results_limit,
+        'searchType': 'user',
+        'searchLimit': 1,
+    })
+
+    try:
+        result = subprocess.run(
+            ['curl', '-sS', '-X', 'POST',
+             f'https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync-get-dataset-items?token={token}',
+             '-H', 'Content-Type: application/json',
+             '-d', payload],
+            capture_output=True, text=True, timeout=180,
+        )
+        if result.returncode != 0:
+            print(f"     ⚠ Apify curl failed: {result.stderr[:200]}")
+            return {}
+        data = json.loads(result.stdout)
+    except Exception as e:
+        print(f"     ⚠ Apify call failed: {e}")
+        return {}
+
+    by_handle = {}
+    for item in data:
+        owner = (item.get('ownerUsername') or '').lower()
+        if not owner:
+            # Try to infer from inputUrl
+            input_url = item.get('inputUrl', '')
+            m = re.search(r'instagram\.com/([^/]+)', input_url)
+            owner = m.group(1).lower() if m else ''
+        if owner:
+            by_handle.setdefault(owner, []).append(item)
+
+    return by_handle
+
+
+def prefetch_ig_posts(handles):
+    """Pre-fetch posts for multiple handles in one batch call. Populates the cache."""
+    if not handles:
+        return
+    if not hasattr(search_instagram_posts, '_cache'):
+        search_instagram_posts._cache = {}
+    cache = search_instagram_posts._cache
+
+    # Only fetch handles not already cached
+    to_fetch = [h.lower() for h in handles if h.lower() not in cache]
+    if not to_fetch:
+        return
+
+    # Batch in groups of 10 to avoid timeout
+    BATCH_SIZE = 10
+    for i in range(0, len(to_fetch), BATCH_SIZE):
+        batch = to_fetch[i:i + BATCH_SIZE]
+        print(f"     Fetching IG posts for {len(batch)} handles via Apify...")
+        results = _fetch_ig_posts_apify(batch)
+        for h in batch:
+            cache[h] = results.get(h, [])
+        if i + BATCH_SIZE < len(to_fetch):
+            time.sleep(2)  # brief pause between batches
 
 
 def article_has_social_embed(body, platform):
@@ -925,6 +1024,21 @@ def main():
         ig_articles = get_recent_articles(hours=args.hours)
         ig_articles = [a for a in ig_articles if a.get("category") in ig_categories]
         print(f"Found {len(ig_articles)} articles across {len(ig_categories)} categories")
+
+        # Pre-fetch IG posts for all matching handles in one batch
+        all_ig_handles = set()
+        for article in ig_articles[:args.max]:
+            body = article.get("body", "")
+            if article_has_social_embed(body, "instagram"):
+                continue  # skip articles that already have an IG embed
+            matches = find_matching_handles(article["headline"], registry, platform="instagram")
+            for m in matches[:2]:
+                all_ig_handles.add(m["handle"])
+        if all_ig_handles:
+            print(f"  Pre-fetching {len(all_ig_handles)} unique IG handles via Apify...")
+            prefetch_ig_posts(list(all_ig_handles))
+        else:
+            print(f"  No IG handles matched any articles — skipping Apify calls")
 
         ig_enriched = 0
         ig_stripped = 0
