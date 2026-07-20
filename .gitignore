@@ -43,3 +43,4 @@ pipeline/.x-profiles.json
 pipeline/*-writer-[0-9]*.py
 pipeline/prebuild-feeds.py.bak-20260714
 src/pages/IndexV2.tsx.bak-20260714
+pipeline/cache/embed_cache.json
