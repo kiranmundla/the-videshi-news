@@ -301,13 +301,7 @@ def find_best_tweet(tweets, headline, body_500, min_score=5):
     best_score = 0
 
     for tweet in tweets:
-        topic_score = score_tweet_relevance(tweet["text"], headline, body_500)
-        # Require minimum topic relevance of 3 before considering authority/photo bonuses
-        # This prevents high-authority accounts (NVIDIA, Google) from embedding
-        # any random tweet just because they're verified with many followers
-        if topic_score < 3:
-            continue
-        score = topic_score
+        score = score_tweet_relevance(tweet["text"], headline, body_500)
         if tweet.get("photo_count", 0) > 0:
             score += 3
         authority = source_authority(tweet)
@@ -508,15 +502,16 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
             shortcode = scored[0][1]
             return shortcode, {"handle": handle, "name": m["name"]}
 
-        # Second pass: no topical match — embed the most recent post ONLY for person handles.
-        # For org handles (NVIDIA, Google, etc.), the latest post is about some
-        # random product/announcement, not the article topic — irrelevant.
-        # For persons, showing their latest post adds social proof and visual engagement.
-        if m.get("group") == "persons":
-            for post in posts:
-                sc = post.get("shortCode", "")
-                if sc:
-                    return sc, {"handle": handle, "name": m["name"]}
+        # Second pass: no topical match — embed the most recent post.
+        # IG captions are often just about the image itself, not the news story.
+        # Unlike X/Twitter, the value of an IG embed is showing the person/entity
+        # we're writing about — social proof and visual engagement. Since our
+        # registry contains entities that ARE the article subject (not news outlets
+        # covering random topics), their latest post is relevant to readers.
+        for post in posts:
+            sc = post.get("shortCode", "")
+            if sc:
+                return sc, {"handle": handle, "name": m["name"]}
 
     return None, None
 
@@ -716,11 +711,7 @@ def enrich_youtube(article, registry):
 
         for r in results:
             s = score_youtube_result(r, name, keywords)
-            # Require >= 5 AND at least 1 keyword match beyond entity name
-            # (entity name alone = +4, not enough for relevance)
-            title_lower = r["title"].lower()
-            kw_hits = sum(1 for kw in keywords if kw in title_lower)
-            if s >= 5 and kw_hits >= 1 and (best_yt is None or s > best_yt["score"]):
+            if s >= 3 and (best_yt is None or s > best_yt["score"]):
                 best_yt = {
                     "url": f"https://youtube.com/watch?v={r['videoId']}",
                     "title": r["title"],
