@@ -358,6 +358,7 @@ def llm_score_topics(topics_with_signals, recent_articles):
                     "score": item.get("score", 1) if item.get("relevant", True) else 0,
                     "category": item.get("category", "news"),
                     "reason": item.get("reason", ""),
+                    "ig_handles": item.get("ig_handles", []),
                 }
         return batch_start, results, cost, None
 
@@ -570,6 +571,7 @@ def main():
                 "llm_score": llm["score"],
                 "llm_reason": llm["reason"],
                 "coverage": coverage,
+                "ig_handles": llm.get("ig_handles", []),
             })
             topic_statuses[t["id"]] = "selected"
         else:
@@ -660,7 +662,16 @@ def main():
                      {"id": f"in.({id_list})"})
             updated += len(chunk)
 
-        print(f"  Updated {updated} topics (selected: {len(selected_ids)}, rejected: {len(rejected_ids)})")
+        # Save ig_handles per selected topic (each topic has different handles)
+        ig_saved = 0
+        for c in balanced:
+            handles = c.get("ig_handles", [])
+            if handles:
+                sb_patch("p2_topics", {"ig_handles": json.dumps(handles)},
+                         {"id": f"eq.{c['topic_id']}"})
+                ig_saved += 1
+
+        print(f"  Updated {updated} topics (selected: {len(selected_ids)}, rejected: {len(rejected_ids)}, ig_handles: {ig_saved})")
     else:
         print(f"  [DRY RUN] Would update {len(topic_statuses)} topics")
 
@@ -684,6 +695,8 @@ def main():
         print(f"     Score: {stars} ({score}) | Signals: {c['signal_count']} | Sources: {c['source_diversity']}")
         if c.get("llm_reason"):
             print(f"     Reason: {c['llm_reason'][:80]}")
+        if c.get("ig_handles"):
+            print(f"     IG: {', '.join(c['ig_handles'])}")
     print(f"\n  Output: {OUT_PATH}")
     print(f"  Time: {elapsed:.1f}s")
     print(f"{'='*60}\n")
