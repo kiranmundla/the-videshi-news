@@ -188,6 +188,38 @@ def detect_category(title, description=""):
     return "news"
 
 
+# ── Instagram handle reference for LLM ────────────────────────────────────────
+def _build_ig_handle_block():
+    """Load IG handles + metadata from registry for injection into LLM prompt."""
+    reg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
+    if not os.path.exists(reg_path):
+        return ""
+    with open(reg_path) as f:
+        registry = json.load(f)
+    lines = []
+    seen = set()
+    for cat, data in registry.items():
+        if cat.startswith("_") or not isinstance(data, dict):
+            continue
+        for group in ("persons", "organizations"):
+            kind = "person" if group == "persons" else "org"
+            for entry in data.get(group, []):
+                ig = entry.get("instagram", "")
+                name = entry.get("name", "")
+                if not ig or ig in seen:
+                    continue
+                seen.add(ig)
+                covers = entry.get("covers", "")
+                meta = f"{name} ({kind}, {cat})"
+                if covers:
+                    meta += f" — {covers}"
+                lines.append(f"@{ig}: {meta}")
+    if not lines:
+        return ""
+    return "\n\nKNOWN INSTAGRAM HANDLES:\n" + "\n".join(lines) + "\n"
+
+_IG_HANDLE_BLOCK = _build_ig_handle_block()
+
 # ── LLM scoring prompt ───────────────────────────────────────────────────────
 LLM_PROMPT = """You are the editorial filter for The Videshi, a news site for the Indian diaspora — Indians living in the US, UK, Canada, and Australia.
 
@@ -244,8 +276,9 @@ For each topic, provide:
 3. "coverage": "new" | "update" | "duplicate"
 4. "category": one of the categories above
 5. "reason": 1-sentence explanation
+6. "ig_handles": array of Instagram handles relevant to this topic. Pick from the KNOWN HANDLES list below when possible. If the topic involves a person/org NOT in the list, suggest their likely Instagram handle. Return up to 3 handles, most relevant first. Return [] if no relevant handles exist (e.g. generic policy stories with no specific person/org).
 
-Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "..."},...]}\n"""
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "...", "ig_handles": ["@sunaborasu", "@google"]},...]}\n"""
 
 MERGE_PROMPT = """You are grouping news headlines that cover the SAME underlying story or event.
 
@@ -290,9 +323,9 @@ def llm_score_topics(topics_with_signals, recent_articles):
 
         payload = {
             "model": "gpt-4o-mini",
-            "messages": [{"role": "user", "content": LLM_PROMPT + published_block + "\n\nTOPICS TO EVALUATE:\n" + "\n".join(lines)}],
+            "messages": [{"role": "user", "content": LLM_PROMPT + _IG_HANDLE_BLOCK + published_block + "\n\nTOPICS TO EVALUATE:\n" + "\n".join(lines)}],
             "response_format": {"type": "json_object"},
-            "max_tokens": max(len(batch) * 100, 1500),
+            "max_tokens": max(len(batch) * 130, 2000),
             "temperature": 0,
         }
 
