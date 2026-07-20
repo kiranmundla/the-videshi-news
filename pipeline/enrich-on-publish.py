@@ -160,6 +160,7 @@ def match_handles(headline, registry, platform):
                         "handle": handle.lower(),
                         "category": category,
                         "platform": platform,
+                        "group": group,  # "persons" or "organizations"
                     })
 
     return matches
@@ -482,6 +483,8 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
         ]
 
         posts = cached["posts"]
+
+        # First pass: try caption relevance matching (best if we find a topical post)
         scored = []
         for post in posts:
             caption = (post.get("caption", "") or "").lower()
@@ -498,6 +501,17 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
             scored.sort(key=lambda x: -x[0])
             shortcode = scored[0][1]
             return shortcode, {"handle": handle, "name": m["name"]}
+
+        # Second pass: no topical match — embed the most recent post, but ONLY
+        # for person handles. For organizations (news outlets, govt agencies, brands),
+        # their latest post may be completely unrelated to the article topic, so we
+        # require caption relevance. For people, any recent post is relevant since
+        # the article is about them.
+        if m.get("group") == "persons":
+            for post in posts:
+                sc = post.get("shortCode", "")
+                if sc:
+                    return sc, {"handle": handle, "name": m["name"]}
 
     return None, None
 
