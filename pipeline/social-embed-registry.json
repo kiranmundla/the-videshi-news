@@ -149,6 +149,42 @@
         "x": "KMbappe",
         "threads": null,
         "instagram": "k.mbappe"
+      },
+      {
+        "name": "Yashasvi Jaiswal",
+        "x": "yjaiswal_",
+        "instagram": "yashasvi_jaiswal",
+        "threads": null
+      },
+      {
+        "name": "Mohammed Shami",
+        "x": "MdShami11",
+        "instagram": "mdshami.11",
+        "threads": null
+      },
+      {
+        "name": "Yuzvendra Chahal",
+        "x": "yuzi_chahal",
+        "instagram": "yuzvendrachahal",
+        "threads": null
+      },
+      {
+        "name": "Suryakumar Yadav",
+        "x": "surya_14",
+        "instagram": "suryakumaryadav",
+        "threads": null
+      },
+      {
+        "name": "Saina Nehwal",
+        "x": "NSaina",
+        "instagram": "nehwal_saina",
+        "threads": null
+      },
+      {
+        "name": "Sumit Nagal",
+        "x": "nagalsumit",
+        "instagram": "sumit.nagal",
+        "threads": null
       }
     ],
     "organizations": [
@@ -323,6 +359,48 @@
         "x": "KKRiders",
         "instagram": "kolkataknightriders",
         "covers": "IPL franchise, KKR, SRK",
+        "threads": null
+      },
+      {
+        "name": "Delhi Capitals",
+        "x": "DelhiCapitals",
+        "instagram": "delhicapitals",
+        "threads": null
+      },
+      {
+        "name": "Sunrisers Hyderabad",
+        "x": "SunRisers",
+        "instagram": "sunrisershyd",
+        "threads": null
+      },
+      {
+        "name": "Punjab Kings",
+        "x": "PunjabKingsIPL",
+        "instagram": "punjabkingsipl",
+        "threads": null
+      },
+      {
+        "name": "Gujarat Titans",
+        "x": "gujarat_titans",
+        "instagram": "gujarattitans",
+        "threads": null
+      },
+      {
+        "name": "Lucknow Super Giants",
+        "x": "LucknowIPL",
+        "instagram": "lucknowsupergiants",
+        "threads": null
+      },
+      {
+        "name": "Pro Kabaddi",
+        "x": "ProKabaddi",
+        "instagram": "prokabaddileague",
+        "threads": null
+      },
+      {
+        "name": "ISL Football",
+        "x": "IndSuperLeague",
+        "instagram": "indiansuperleague",
         "threads": null
       }
     ]
@@ -645,6 +723,21 @@
         "x": "PGelsinger",
         "threads": null,
         "instagram": null
+      },
+      {
+        "name": "Vinod Khosla",
+        "x": "vkhosla",
+        "threads": null
+      },
+      {
+        "name": "Sanjay Mehrotra",
+        "covers": "Micron CEO",
+        "threads": null
+      },
+      {
+        "name": "Rajeev Suri",
+        "covers": "Former Nokia CEO, Inmarsat",
+        "threads": null
       }
     ],
     "organizations": [
@@ -783,6 +876,58 @@
         "threads": null,
         "instagram": "hcltechnologies",
         "covers": "Indian IT services"
+      },
+      {
+        "name": "Flipkart",
+        "x": "Flipkart",
+        "instagram": "flipkart",
+        "threads": null
+      },
+      {
+        "name": "Razorpay",
+        "x": "Razorpay",
+        "instagram": "razorpay",
+        "threads": null
+      },
+      {
+        "name": "Ola",
+        "x": "OlaCabs",
+        "instagram": "olacabs",
+        "threads": null
+      },
+      {
+        "name": "PhonePe",
+        "x": "PhonePe_",
+        "instagram": "phonepe",
+        "threads": null
+      },
+      {
+        "name": "Zerodha",
+        "x": "zerodhaonline",
+        "instagram": "zerodha.official",
+        "threads": null
+      },
+      {
+        "name": "CRED",
+        "x": "CRED_club",
+        "instagram": "cred_club",
+        "threads": null
+      },
+      {
+        "name": "Samsung",
+        "x": "Samsung",
+        "instagram": "samsung",
+        "threads": null
+      },
+      {
+        "name": "Micron",
+        "x": "MicronTech",
+        "threads": null
+      },
+      {
+        "name": "Broadcom",
+        "x": "broadcom",
+        "threads": null
       }
     ]
   },
@@ -1088,6 +1233,93 @@
         "x": "Sai_Pallavi92",
         "threads": null,
         "instagram": "saipallavi.senthamarai"
+      },
+      {
+        "name": "Rohit Shetty",
+        "x": "RohitShetty",
+        "instagram": "rohitshettyproductionz",
+        "threads": null
+      },
+      {
+        "name": "Rajkumar Hirani",
+        "instagram": "rajkumarhirani",
+        "threads": null
+      },
+      {
+        "name": "Arijit Singh",
+        "x": "arijitsingh",
+        "instagram": "arijitsingh",
+        "threads": null
+      },
+      {
+        "name": "Badshah",
+        "x": "Its_Badshah",
+        "instagram": "badshahlive",
+        "threads": null
+      },
+      {
+        "name": "Neha Kakkar",
+        "x": "iNehaKakkar",
+        "instagram": "nehakakkar",
+        "threads": null
+      },
+      {
+        "name": "Shreya Ghoshal",
+        "x": "shreyaghoshal",
+        "instagram": "shreyaghoshal",
+        "threads": null
+      },
+      {
+        "name": "Taapsee Pannu",
+        "x": "taapsee",
+        "instagram": "taapseepannu",
+        "threads": null
+      },
+      {
+        "name": "Sunny Deol",
+        "x": "iamsunnydeol",
+        "instagram": "iamsunnydeol",
+        "threads": null
+      },
+      {
+        "name": "Bobby Deol",
+        "instagram": "bobbydeol",
+        "threads": null
+      },
+      {
+        "name": "Nawazuddin Siddiqui",
+        "x": "Awnawaz",
+        "instagram": "nawazuddin._siddiqui",
+        "threads": null
+      },
+      {
+        "name": "Radhika Apte",
+        "x": "radhikaapte",
+        "instagram": "radhikaofficial",
+        "threads": null
+      },
+      {
+        "name": "Sobhita Dhulipala",
+        "x": "sobhitad",
+        "instagram": "sobhitad",
+        "threads": null
+      },
+      {
+        "name": "Dev Patel",
+        "instagram": "devpatel",
+        "threads": null
+      },
+      {
+        "name": "Kumail Nanjiani",
+        "x": "kumailn",
+        "instagram": "kumailn",
+        "threads": null
+      },
+      {
+        "name": "Hasan Minhaj",
+        "x": "hasanminhaj",
+        "instagram": "hasanminhaj",
+        "threads": null
       }
     ],
     "organizations": [
@@ -1146,6 +1378,18 @@
         "threads": null,
         "instagram": "disneyplushotstar",
         "covers": "Indian streaming"
+      },
+      {
+        "name": "JioCinema",
+        "x": "JioCinema",
+        "instagram": "jiocinema",
+        "threads": null
+      },
+      {
+        "name": "SonyLIV",
+        "x": "SonyLIV",
+        "instagram": "sonyliv",
+        "threads": null
       }
     ]
   },
@@ -1163,6 +1407,15 @@
         "threads": null,
         "note": "Search @RIL_Updates for posts",
         "instagram": "ambani_mukesh"
+      },
+      {
+        "name": "Uday Kotak",
+        "x": "udaykotak",
+        "threads": null
+      },
+      {
+        "name": "Raghuram Rajan",
+        "threads": null
       }
     ],
     "organizations": [
@@ -1243,6 +1496,36 @@
         "x": "federalreserve",
         "covers": "US Fed, interest rates, monetary policy",
         "threads": null
+      },
+      {
+        "name": "LIC",
+        "x": "LICIndia",
+        "instagram": "licindia",
+        "threads": null
+      },
+      {
+        "name": "Axis Bank",
+        "x": "AxisBank",
+        "instagram": "axisbank",
+        "threads": null
+      },
+      {
+        "name": "Kotak Mahindra Bank",
+        "x": "KotakBankLtd",
+        "instagram": "kotakmahindrabank",
+        "threads": null
+      },
+      {
+        "name": "Paytm",
+        "x": "Paytm",
+        "instagram": "paytm",
+        "threads": null
+      },
+      {
+        "name": "Nifty",
+        "x": "NSEIndia",
+        "covers": "Nifty 50 index",
+        "threads": null
       }
     ]
   },
@@ -1278,6 +1561,28 @@
         "x": "TulsiGabbard",
         "threads": null,
         "instagram": "tulsigabbard"
+      },
+      {
+        "name": "Ro Khanna",
+        "x": "RoKhanna",
+        "instagram": "rokhanna",
+        "threads": null
+      },
+      {
+        "name": "Pramila Jayapal",
+        "x": "PramilaJayapal",
+        "instagram": "pramilajayapal",
+        "threads": null
+      },
+      {
+        "name": "Raja Krishnamoorthi",
+        "x": "CongressmanRaja",
+        "threads": null
+      },
+      {
+        "name": "Kash Patel",
+        "x": "Kash",
+        "threads": null
       }
     ],
     "organizations": [
@@ -1293,6 +1598,17 @@
         "threads": null,
         "covers": "Indian American political engagement",
         "instagram": "iaimpact"
+      },
+      {
+        "name": "Indiaspora",
+        "x": "Indiaspora",
+        "instagram": "indiaspora",
+        "threads": null
+      },
+      {
+        "name": "AAPI",
+        "covers": "American Association of Physicians of Indian Origin",
+        "threads": null
       }
     ]
   },
@@ -1354,6 +1670,30 @@
         "instagram": "emirates",
         "covers": "Dubai airline, Gulf routes",
         "threads": null
+      },
+      {
+        "name": "Qatar Airways",
+        "x": "qatarairways",
+        "instagram": "qatarairways",
+        "threads": null
+      },
+      {
+        "name": "Singapore Airlines",
+        "x": "SingaporeAir",
+        "instagram": "singaporeair",
+        "threads": null
+      },
+      {
+        "name": "Etihad",
+        "x": "EtihadAirways",
+        "instagram": "etihad",
+        "threads": null
+      },
+      {
+        "name": "Akasa Air",
+        "x": "AkasaAir",
+        "instagram": "akasaair",
+        "threads": null
       }
     ]
   },
@@ -1364,6 +1704,18 @@
         "x": "TheVikasKhanna",
         "threads": null,
         "instagram": "vikaskhanna"
+      },
+      {
+        "name": "Sanjeev Kapoor",
+        "x": "sanjeevkapoor",
+        "instagram": "sanjeevkapoor",
+        "threads": null
+      },
+      {
+        "name": "Ranveer Brar",
+        "x": "ranveerbrar",
+        "instagram": "ranveerbrar",
+        "threads": null
       }
     ],
     "organizations": [
@@ -1380,6 +1732,17 @@
         "threads": null,
         "instagram": "swiggyindia",
         "covers": "Food delivery"
+      },
+      {
+        "name": "Haldiram's",
+        "x": "Haldirams_Nagp",
+        "instagram": "haldirams_official",
+        "threads": null
+      },
+      {
+        "name": "Bikanervala",
+        "instagram": "bikanervala_official",
+        "threads": null
       }
     ]
   }
