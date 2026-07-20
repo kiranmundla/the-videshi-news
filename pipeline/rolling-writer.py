@@ -758,7 +758,8 @@ REQUIREMENTS:
 13. **image_search_query**: Specific search query to find a relevant hero image (e.g., "Narendra Modi G20", "H-1B visa stamp", "Spain France World Cup")
 14. **image_must_show**: What the hero image must depict (e.g., "Narendra Modi speaking", "a US visa stamp")
 15. **image_entities**: Array of main people/entities in the article (for image search)
-16. **key_takeaways**: Array of 3-5 bullet point strings. Each is a complete, standalone insight under 20 words. These appear as a highlighted card at the top of the article, letting readers grasp the story in 10 seconds. Every stat/number MUST come from the article body.
+16. **image_caption**: Two plain sentences. First sentence: what the hero image shows (describe literally). Second sentence: the news context. Factual style — NO flowery words like "symbolizing," "reflects," "illustrating." Example: "Indian Prime Minister Narendra Modi addresses Parliament during the Budget session. The government announced new tax incentives for returning NRIs."
+17. **key_takeaways**: Array of 3-5 bullet point strings. Each is a complete, standalone insight under 20 words. These appear as a highlighted card at the top of the article, letting readers grasp the story in 10 seconds. Every stat/number MUST come from the article body.
 17. **data_cards**: Array of 0-2 data cards. Include ONLY if the article has meaningful numbers/statistics. Each card has:
     - "card_title": Punchy editorial title (NOT the article headline repeated)
     - "card_type": One of "stat_grid", "comparison", "timeline", "highlights"
@@ -837,6 +838,7 @@ Return a single JSON object with all these fields."""
         "image_search_query": result.get('image_search_query', ''),
         "image_must_show": result.get('image_must_show', ''),
         "image_entities": result.get('image_entities', []),
+        "image_caption": result.get('image_caption', ''),
     }
 
     # Add signal stats (one query)
@@ -1099,7 +1101,12 @@ def run(dry_run=False):
         if img_url:
             article["image_url"] = img_url
             article["image_attribution"] = attribution
-            article["image_caption"] = caption
+            # Prefer LLM-generated caption (two-sentence format); fall back to sourcer's basic caption
+            llm_caption = article.get("image_caption", "")
+            if llm_caption and len(llm_caption) > 10:
+                article["image_caption"] = llm_caption
+            elif caption:
+                article["image_caption"] = caption
             batch_image_urls.add(img_url)  # Track for batch dedup
         else:
             # No image — still publish, no image > wrong image

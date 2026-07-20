@@ -594,22 +594,16 @@ def source_hero_image(article, used_images=None):
     face_flag = "👤" if (fx != 0.5 or fy != 0.5) else "📐"
     print(f"    {face_flag} {source_name} → {w}×{h}, focal ({fx:.2f}, {fy:.2f})")
     
-    # Compress
-    compressed = compress_image(raw_bytes)
-    
-    # Upload
-    filename = f"{slug}.jpg"
-    final_url = upload_to_supabase(compressed, filename)
-    if not final_url:
-        print(f"    ✗ Upload to Supabase failed")
-        return None, None, None
+    # Use the original source URL directly — no Supabase upload.
+    # Source CDNs (Wikipedia, Pexels, news sites) are fast and reliable.
+    final_url = img_url
     
     # Caption — keep factual, only use first entity name if confident
     caption = None
     if entities and len(entities) > 0 and isinstance(entities[0], str):
         caption = entities[0]
     
-    print(f"    ✅ Hero image ready: {source_name} → {final_url[-40:]}")
+    print(f"    ✅ Hero image ready: {source_name} → {final_url[-60:]}")
     return final_url, attribution, caption
 
 

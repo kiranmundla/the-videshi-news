@@ -99,8 +99,8 @@ Structure with clear `<h2>` subheadings. Must include:
 - Person identity must match — exact name, recent/current photo
 - Example: "Indian Prime Minister Narendra Modi addresses Parliament during the Budget session. The government announced new tax incentives for returning NRIs."
 
-**Upload to Supabase:**
-Download image, compress to ≤200KB, upload to `article-images/{slug}.jpg` in Supabase storage. Use BOTH `apikey` and `Authorization: Bearer` headers (required for new key format).
+**Image URL:**
+Use the original source URL directly (Wikipedia, Wikimedia Commons, Pexels, og:image). Do NOT download, compress, or upload to Supabase Storage.
 
 ### 3e. Insert into p2_articles
 Insert with `status="published"`. Required fields:

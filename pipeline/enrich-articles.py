@@ -672,6 +672,10 @@ def find_inline_images(headline, body, hero_url=""):
     # Build a slugified version of hero URL path for entity-name matching
     hero_slug = re.sub(r'[^a-z0-9]', '', hero_norm)
 
+    # Strip HTML for sentence extraction
+    body_text = re.sub(r'<[^>]+>', ' ', body)
+    body_text = re.sub(r'\s+', ' ', body_text).strip()
+
     for entity in entities:
         if len(results) >= 3:
             break
@@ -702,7 +706,19 @@ def find_inline_images(headline, body, hero_url=""):
         if img_url.endswith(".svg") or img_url.endswith(".png"):
             continue
 
-        caption = f"{entity} — Photo: Wikimedia Commons"
+        # Build two-sentence caption: what image shows + article context
+        # Extract a body sentence mentioning the entity for context
+        sentences = re.split(r'(?<=[.!?])\s+', body_text)
+        context = ""
+        entity_lower = entity.lower()
+        for s in sentences:
+            if entity_lower in s.lower() and 20 < len(s) < 250:
+                context = s.strip()
+                break
+        if context:
+            caption = f"{entity}. {context}"
+        else:
+            caption = f"{entity}. Photo: Wikimedia Commons"
         results.append((entity, img_url, caption))
         print(f"    ✓ Inline image for '{entity}'")
 
