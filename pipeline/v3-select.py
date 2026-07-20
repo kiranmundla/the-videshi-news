@@ -220,6 +220,49 @@ def _build_ig_handle_block():
 
 _IG_HANDLE_BLOCK = _build_ig_handle_block()
 
+def _build_ig_name_lookup():
+    """Build handle→full_name dict from registry for post-GPT name verification."""
+    reg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
+    if not os.path.exists(reg_path):
+        return {}
+    with open(reg_path) as f:
+        registry = json.load(f)
+    lookup = {}
+    for cat, data in registry.items():
+        if cat.startswith("_") or not isinstance(data, dict):
+            continue
+        for group in ("persons", "organizations"):
+            for entry in data.get(group, []):
+                ig = (entry.get("instagram") or "").lower()
+                name = entry.get("name") or ""
+                if ig and name:
+                    lookup[ig] = name
+    return lookup
+
+_IG_NAME_LOOKUP = _build_ig_name_lookup()
+
+def _verify_handle_name(handle, headline, handle_type="person"):
+    """Reject person handles where the registry name doesn't match the headline.
+    Returns True if the handle should be kept, False if rejected."""
+    handle_clean = handle.lstrip("@").lower()
+    if handle_clean not in _IG_NAME_LOOKUP:
+        return True  # unknown handle, can't verify — keep it
+    if handle_type != "person":
+        return True  # only verify person handles (orgs are matched by topic)
+    full_name = _IG_NAME_LOOKUP[handle_clean]
+    name_parts = full_name.split()
+    if len(name_parts) < 2:
+        return True  # single-name person, can't do last-name check
+    last_name = name_parts[-1].lower()
+    headline_lower = headline.lower()
+    # Check if last name appears in headline
+    if last_name in headline_lower:
+        return True
+    # Also check full name
+    if full_name.lower() in headline_lower:
+        return True
+    return False
+
 # ── LLM scoring prompt ───────────────────────────────────────────────────────
 LLM_PROMPT = """You are the editorial filter for The Videshi, a news site for the Indian diaspora — Indians living in the US, UK, Canada, and Australia.
 
@@ -586,7 +629,7 @@ def main():
                 "llm_score": llm["score"],
                 "llm_reason": llm["reason"],
                 "coverage": coverage,
-                "ig_handles": llm.get("ig_handles", []),
+                "ig_handles": [h for h in llm.get("ig_handles", []) if _verify_handle_name(h.get("handle", ""), t["canonical_title"], h.get("type", "person"))],
             })
             topic_statuses[t["id"]] = "selected"
         else:
