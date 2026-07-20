@@ -203,7 +203,7 @@ export default function IndexV2() {
       try {
         const [feedResp, eventsResp] = await Promise.all([
           fetch(`/data/homepage-feed.json?v=${Date.now()}`),
-          fetch(`/data/events.json?v=${Date.now()}`),
+          fetch(`/data/events-homepage.json?v=${Date.now()}`),
         ]);
 
         if (!feedResp.ok) throw new Error("Feed unavailable");
@@ -285,7 +285,7 @@ export default function IndexV2() {
         // Fetch events
         let ev: EventItem[] = [];
         try {
-          const evResp = await fetch("/data/events.json");
+          const evResp = await fetch("/data/events-homepage.json");
           if (evResp.ok) ev = await evResp.json();
         } catch {}
 
