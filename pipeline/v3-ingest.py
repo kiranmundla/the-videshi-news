@@ -37,7 +37,7 @@ NOW_ISO      = NOW.isoformat()
 HASH_WINDOW  = 14  # days of hashes to load for dedup
 FEED_TIMEOUT = 8   # seconds per feed
 MAX_WORKERS  = 10  # parallel feed fetches
-TOPIC_WINDOW = 72  # hours — match against topics created in this window
+TOPIC_WINDOW = 336  # hours (14 days) — match against topics in this window; Google News can resurface stories for weeks
 
 # ── Supabase ──────────────────────────────────────────────────────────────────
 
@@ -729,11 +729,13 @@ def main():
     offset = 0
     while True:
         # Only load V3-created topics (have last_signal_at set) to avoid 108K old junk
+        # Include rejected/published so GPT can match incoming signals to
+        # stories we already have — prevents the same story spawning dozens
+        # of orphan topics (e.g. Kunal Shah/WhatsApp: 65 duplicate topics in 2 days)
         page = sb_get("p2_topics", {
             "select": "id,canonical_title,signal_count,status",
             "created_at": f"gte.{topic_cutoff}",
             "last_signal_at": "not.is.null",
-            "status": "in.(pending,written)",
             "order": "created_at.desc",
             "limit": "1000",
         }, range_header=f"{offset}-{offset+999}")
