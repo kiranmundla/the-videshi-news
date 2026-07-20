@@ -264,3 +264,8 @@ html, body { overflow-x: hidden; }
   }
 
 /* ── Custom tweet card — all styling is inline, this is just for the old class cleanup ── */
+
+/* ── Instagram embed — crop engagement UI (likes, comments, save) ── */
+.ig-embed-crop iframe {
+  margin-bottom: -145px !important;
+}

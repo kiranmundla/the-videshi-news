@@ -72,7 +72,7 @@ function InstagramCard({ url }: { url: string }) {
       <div style={{ maxWidth: 540, width: "100%", overflow: "hidden", borderRadius: 8 }}>
         <iframe
           src={embedUrl}
-          style={{ width: "100%", minHeight: 580, border: "none", marginBottom: "-120px" }}
+          style={{ width: "100%", minHeight: 580, border: "none", marginBottom: "-145px" }}
           allowTransparency
           scrolling="no"
           allowFullScreen

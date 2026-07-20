@@ -325,21 +325,23 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
 
   return (
     <figure className="my-6 flex flex-col items-center" ref={ref}>
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={permalink}
-        data-instgrm-version="14"
-        style={{
-          background: "#FFF",
-          border: 0,
-          borderRadius: 3,
-          margin: "0 auto",
-          maxWidth: 540,
-          width: "100%",
-          minWidth: 326,
-          padding: 0,
-        }}
-      />
+      <div className="ig-embed-crop" style={{ overflow: 'hidden', maxWidth: 540, width: '100%', borderRadius: 8 }}>
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink={permalink}
+          data-instgrm-version="14"
+          style={{
+            background: "#FFF",
+            border: 0,
+            borderRadius: 3,
+            margin: "0 auto",
+            maxWidth: 540,
+            width: "100%",
+            minWidth: 326,
+            padding: 0,
+          }}
+        />
+      </div>
       {caption && (
         <figcaption className="mt-2 text-sm text-muted-foreground text-center">
           {caption}
