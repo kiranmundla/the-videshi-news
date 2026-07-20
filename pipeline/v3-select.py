@@ -276,9 +276,24 @@ For each topic, provide:
 3. "coverage": "new" | "update" | "duplicate"
 4. "category": one of the categories above
 5. "reason": 1-sentence explanation
-6. "ig_handles": array of objects for Instagram handles relevant to this topic. Each object: {"handle": "@handle", "type": "person" or "org"}. Pick from the KNOWN HANDLES list below when possible. If the topic involves a person or organization NOT in the list, suggest their likely Instagram handle — the list is not exhaustive and you should suggest new handles you are confident about. Return up to 3, most relevant first. Return [] if no relevant handles (e.g. generic policy stories, recipes with no specific person/brand).
+6. "ig_handles": array of objects for ALL Instagram handles directly connected to this story.
+Each object: {"handle": "@x", "type": "person" or "org", "keywords": ["word1", "word2", "word3"]}
+- type: "person" for individuals, "org" for everything else (companies, teams, leagues, govt bodies)
+- keywords: 3-5 words likely to appear in that handle's IG caption about this topic (not news headline words)
 
-Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person"}, {"handle": "@google", "type": "org"}]},...]}\n"""
+WHO TO INCLUDE:
+- People directly mentioned in or central to the story
+- Organizations, teams, leagues, or brands directly involved
+- Entities that would likely POST ABOUT this specific event (e.g. @premierleague for a football legend's death, @nasa for a space launch)
+
+WHO TO EXCLUDE:
+- Handles only thematically related ("article about CEOs" does NOT mean suggest random CEO handles)
+- Handles with no direct connection to the specific story
+- Do NOT match on partial name similarity — the person/org must be the SAME entity in the article (e.g. do NOT suggest @arvindkejriwal for an article about "Arvind Ramanathan")
+
+Pick from KNOWN HANDLES when possible. The list is NOT exhaustive — suggest new handles if you are CERTAIN the person/org has an active IG and you know the exact handle. When in doubt, leave it out. Return up to 5, most relevant first. Return [] if none.
+
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person", "keywords": ["google", "ceo", "ai"]}, {"handle": "@google", "type": "org", "keywords": ["google", "ai", "search"]}]},...]}\n"""
 
 MERGE_PROMPT = """You are grouping news headlines that cover the SAME underlying story or event.
 
