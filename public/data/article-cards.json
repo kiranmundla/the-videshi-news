@@ -1,110 +1,128 @@
 [
   {
-    "slug": "statistical-revamp-lower-inflation-pce-fed-2026",
-    "headline": "A Statistical Revamp Is About to Lower U.S. Inflation Readings at a Critical Moment",
+    "slug": "india-parliament-monsoon-session-2026-bills-agenda",
+    "headline": "Parliament’s Monsoon Session Opens With Seven Bills and the Delimitation Question",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-parliament-monsoon-session-2026-bills-agenda.jpg"
+  },
+  {
+    "slug": "accenture-reworks-salary-hikes-base-pay-lump-sum-split",
+    "headline": "Accenture Splits Salary Hikes for 780,000 Employees Between Base Pay and Lump Sum",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/statistical-revamp-lower-inflation-pce-fed-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/accenture-reworks-salary-hikes-base-pay-lump-sum-split.jpg"
   },
   {
-    "slug": "spacex-ai-compute-business-orbital-data-centers-2026",
-    "headline": "SpaceX Is Quietly Building an AI Compute Empire That Could Rival Big Tech",
+    "slug": "india-top-firms-market-cap-tcs-leads-weekly-rally",
+    "headline": "TCS Leads ₹1.54 Lakh Crore Rally as Five of India’s Top-10 Firms Gain in Market Value",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-top-firms-market-cap-tcs-leads-weekly-rally.jpg"
+  },
+  {
+    "slug": "agnikul-cosmos-mission-02-ocean-booster-recovery",
+    "headline": "Agnikul Cosmos Plans India’s First Ocean Booster Recovery With Mission 02",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-ai-compute-business-orbital-data-centers-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/agnikul-cosmos-mission-02-ocean-booster-recovery.jpg"
   },
   {
-    "slug": "fbi-stops-investigating-ice-confrontations-2026",
-    "headline": "FBI Will No Longer Investigate ICE Confrontations, Agents Told",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fbi-stops-investigating-ice-confrontations-2026.jpg"
+    "slug": "us-iran-strikes-ninth-night-brent-oil-90-hormuz",
+    "headline": "US Strikes Iran for Ninth Straight Night as Brent Oil Tops $90 and Ceasefire Collapses",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-iran-strikes-ninth-night-brent-oil-90-hormuz.jpg"
   },
   {
-    "slug": "england-beat-india-lords-odi-series-2026",
-    "headline": "England Beat India by 27 Runs at Lord's to Win ODI Series 2-1",
+    "slug": "nico-williams-goal-disallowed-var-world-cup-final",
+    "headline": "Why Nico Williams' Extra-Time Goal Was Disallowed in the World Cup Final",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/england-beat-india-lords-odi-series-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nico-williams-goal-disallowed-var-world-cup-final.jpg"
   },
   {
-    "slug": "creatine-supplements-cancer-immune-cells-ucla-study",
-    "headline": "Creatine May Supercharge Immune Cells That Fight Cancer, UCLA Study Finds",
+    "slug": "paredes-red-card-brawl-world-cup-final-spain-argentina",
+    "headline": "Paredes Sent Off for Grabbing García's Throat as Brawl Mars World Cup Final",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/paredes-red-card-brawl-world-cup-final-spain-argentina.jpg"
+  },
+  {
+    "slug": "indians-worst-hit-canada-student-visa-crackdown-permits-plummet",
+    "headline": "Indians Bear the Brunt as Canada's Student Visa Crackdown Sends Permit Approvals Plummeting",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indians-worst-hit-canada-student-visa-crackdown-permits-plummet.jpg"
+  },
+  {
+    "slug": "india-draft-health-research-policy-2026-sixfold-spending-increase",
+    "headline": "India Plans Sixfold Increase in Health Research Spending With Sweeping Draft Policy",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/creatine-supplements-cancer-immune-cells-ucla-study.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-draft-health-research-policy-2026-sixfold-spending-increase.jpg"
   },
   {
-    "slug": "ai-colonoscopy-lynch-syndrome-colorectal-cancer-detection",
-    "headline": "AI-Assisted Colonoscopy Shows Promise for Lynch Syndrome but Falls Short of Breakthrough",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-colonoscopy-lynch-syndrome-colorectal-cancer-detection.jpg"
+    "slug": "usha-jd-vance-welcome-son-alec-neel-first-vp-baby-156-years",
+    "headline": "Usha and JD Vance Welcome Son Alec Neel, First Baby Born to a Sitting VP in 156 Years",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/usha-jd-vance-welcome-son-alec-neel-first-vp-baby-156-years.jpg"
   },
   {
-    "slug": "glp1-weight-loss-drugs-muscle-bone-loss-frailty-risk",
-    "headline": "Weight-Loss Drugs Linked to Higher Frailty Risks in Older Adults, Major Study Warns",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/glp1-weight-loss-drugs-muscle-bone-loss-frailty-risk.jpg"
-  },
-  {
-    "slug": "ink-thrown-cjp-founder-dipke-jantar-mantar-protest",
-    "headline": "Woman Throws Ink at CJP Founder Abhijeet Dipke at Jantar Mantar Protest",
+    "slug": "pakistan-faces-crisis-four-fronts-balochistan-houthis-afghanistan-economy",
+    "headline": "Pakistan Faces Pressure on Four Fronts as Balochistan, Houthis, and Afghan Border Crises Converge",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ink-thrown-cjp-founder-dipke-jantar-mantar-protest.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-faces-crisis-four-fronts-balochistan-houthis-afghanistan-economy.jpg"
   },
   {
-    "slug": "ai-impact-senior-lawyers-legal-profession-disruption-2026",
-    "headline": "AI Is Reshaping the Legal Profession. Senior Lawyers May Benefit Most.",
+    "slug": "indian-film-festival-of-melbourne-2026-unveils-program-with-aamir-khan-kantara-in-spotlight",
+    "headline": "Indian Film Festival of Melbourne 2026 Unveils Program With Aamir Khan and Kantara in the Spotlight",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-film-festival-of-melbourne-2026-unveils-program-with-aamir-khan-kantara-in-spotlight.jpg"
+  },
+  {
+    "slug": "tsmc-pledges-100-billion-more-for-arizona-as-ai-demand-drives-record-profit",
+    "headline": "TSMC Pledges $100 Billion More for Arizona as AI Demand Drives Record Profit",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-impact-senior-lawyers-legal-profession-disruption-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tsmc-pledges-100-billion-more-for-arizona-as-ai-demand-drives-record-profit.jpg"
   },
   {
-    "slug": "potatoes-changed-human-digestion-evolution-amylase",
-    "headline": "How 10,000 Years of Potato Farming Reshaped Human DNA in the Andes",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/potatoes-changed-human-digestion-evolution-amylase.jpg"
+    "slug": "india-approves-record-semiconductor-package-as-tata-micron-fabs-take-shape",
+    "headline": "India Approves Record $13.3 Billion Semiconductor Package as Tata and Micron Fabs Take Shape",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-approves-record-semiconductor-package-as-tata-micron-fabs-take-shape.jpg"
   },
   {
-    "slug": "ipos-dalal-street-july-21-listings-subscriptions",
-    "headline": "Dalal Street Braces for Blockbuster Week: SBI Funds Debut, Manipal Health IPO, and Five More",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ipos-dalal-street-july-21-listings-subscriptions.jpg"
+    "slug": "best-indian-property-markets-nri-buyers-2026",
+    "headline": "Best Indian Property Markets for NRI Buyers in 2026: A City-by-City Guide",
+    "category": "real-estate",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/best-indian-property-markets-nri-buyers-2026.jpg"
   },
   {
-    "slug": "air-india-group-fleet-expansion-600-aircraft-order-delivery",
-    "headline": "Air India Group Adds One Aircraft Per Week as 600-Plane Fleet Overhaul Accelerates",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-group-fleet-expansion-600-aircraft-order-delivery.jpg"
+    "slug": "spain-lift-second-world-cup-title-ferran-torres-extra-time-argentina",
+    "headline": "Spain Lift Second World Cup Title as Ferran Torres Strikes in Extra Time to Deny Argentina",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spain-lift-second-world-cup-title-ferran-torres-extra-time-argentina.jpg"
   },
   {
-    "slug": "the-odyssey-christopher-nolan-264-million-global-box-office-opening",
-    "headline": "Nolan's The Odyssey Opens to $264 Million Worldwide, His Biggest Debut Ever",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-odyssey-christopher-nolan-264-million-global-box-office-opening.jpg"
+    "slug": "world-cup-2026-awards-mbappe-golden-boot-rodri-golden-ball",
+    "headline": "World Cup 2026 Awards: Mbappé Claims Record Golden Boot as Spain Sweep Individual Honours",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-cup-2026-awards-mbappe-golden-boot-rodri-golden-ball.jpg"
   },
   {
-    "slug": "temples-india-non-vegetarian-prasad",
-    "headline": "From Mutton Biryani to Fish Curry: Indian Temples Where Non-Vegetarian Prasad Is Sacred",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/temples-india-non-vegetarian-prasad.jpg"
-  },
-  {
-    "slug": "apple-tv-lucky-anya-taylor-joy-action-thriller-summer-2026",
-    "headline": "Anya Taylor-Joy's Lucky Becomes Apple TV's Biggest Action Thriller of the Summer",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-tv-lucky-anya-taylor-joy-action-thriller-summer-2026.jpg"
-  },
-  {
-    "slug": "rbi-governor-warns-middle-east-war-monsoon-risks-india-growth",
-    "headline": "RBI Governor Flags Middle East War and Erratic Monsoon as Major Risks to India's Growth",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-governor-warns-middle-east-war-monsoon-risks-india-growth.jpg"
-  },
-  {
-    "slug": "iran-araghchi-security-breach-khamenei-assassination-still-exists",
-    "headline": "Iran's Araghchi Says Security Breach That Enabled Khamenei Assassination May Still Exist",
+    "slug": "strait-of-hormuz-ship-fire-us-iran-attacks-widen",
+    "headline": "Ship Fire Jolts Strait of Hormuz as US-Iran Attacks Widen to Kuwait, Bahrain and Jordan",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-araghchi-security-breach-khamenei-assassination-still-exists.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/strait-of-hormuz-ship-fire-us-iran-attacks-widen.jpg"
   },
   {
-    "slug": "street-style-samosa-chaat-recipe-indian-snack",
-    "headline": "Street-Style Samosa Chaat: The Ultimate Indian Snack You Can Make at Home",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/street-style-samosa-chaat-recipe-indian-snack.jpg"
+    "slug": "europes-heatwave-energy-crisis-nuclear-reactors-rhine",
+    "headline": "Europe's Heatwave Becomes an Energy Crisis as France Shuts Nuclear Reactors and Rhine Shipping Stalls",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/europes-heatwave-energy-crisis-nuclear-reactors-rhine.jpg"
+  },
+  {
+    "slug": "rare-atlantic-nina-super-el-nino-double-shield-hurricanes",
+    "headline": "Rare 'Atlantic Niña' Emerges Alongside Super El Niño, Creating Unusual Double Shield Against Hurricanes",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rare-atlantic-nina-super-el-nino-double-shield-hurricanes.jpg"
+  },
+  {
+    "slug": "us-refiner-margins-records-global-fuel-shortage-consumers",
+    "headline": "US Refiner Margins Hit Records as Global Fuel Shortage Squeezes Consumers at the Pump",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-refiner-margins-records-global-fuel-shortage-consumers.jpg"
   }
 ]
