@@ -68,7 +68,7 @@
         "name": "D Gukesh",
         "x": "DGukesh",
         "threads": "dgukesh",
-        "instagram": null
+        "instagram": "gukesh.official"
       },
       {
         "name": "Sunil Chhetri",
@@ -131,6 +131,24 @@
         "threads": null,
         "note": "Search @afiindia for posts about him",
         "instagram": null
+      },
+      {
+        "name": "Lionel Messi",
+        "x": "TeamMessi",
+        "threads": null,
+        "instagram": "leomessi"
+      },
+      {
+        "name": "Cristiano Ronaldo",
+        "x": "Cristiano",
+        "threads": null,
+        "instagram": "cristiano"
+      },
+      {
+        "name": "Kylian Mbappe",
+        "x": "KMbappe",
+        "threads": null,
+        "instagram": "k.mbappe"
       }
     ],
     "organizations": [
@@ -167,7 +185,7 @@
         "x": "TheHockeyIndia",
         "threads": null,
         "covers": "Indian hockey team",
-        "instagram": null
+        "instagram": "hockeyindia"
       },
       {
         "name": "BAI Badminton",
@@ -181,7 +199,7 @@
         "x": "IndianFootball",
         "threads": null,
         "covers": "Indian football, ISL, national team",
-        "instagram": null
+        "instagram": "indianfootball"
       },
       {
         "name": "SAI Sports Authority",
@@ -195,14 +213,14 @@
         "x": "WeAreTeamIndia",
         "threads": null,
         "covers": "Indian Olympic athletes",
-        "instagram": null
+        "instagram": "teamindiaolympics"
       },
       {
         "name": "FIDE Chess",
         "x": "FIDE_chess",
         "threads": null,
         "covers": "International chess",
-        "instagram": null
+        "instagram": "faboride_chess"
       },
       {
         "name": "RCB",
@@ -224,6 +242,18 @@
         "threads": null,
         "covers": "Mumbai Indians cricket",
         "instagram": "mumbaiindians"
+      },
+      {
+        "name": "FIFA",
+        "x": "FIFAcom",
+        "threads": null,
+        "instagram": "fifaworldcup"
+      },
+      {
+        "name": "MLC Cricket",
+        "x": "MLCricket",
+        "threads": null,
+        "instagram": "mlcricket"
       }
     ]
   },
@@ -275,7 +305,31 @@
         "name": "Mamata Banerjee",
         "x": "MamataOfficial",
         "threads": null,
-        "instagram": null
+        "instagram": "mamaborataofficial"
+      },
+      {
+        "name": "Donald Trump",
+        "x": "realDonaldTrump",
+        "threads": null,
+        "instagram": "realdonaldtrump"
+      },
+      {
+        "name": "Kamala Harris",
+        "x": "KamalaHarris",
+        "threads": null,
+        "instagram": "kamalaharris"
+      },
+      {
+        "name": "JD Vance",
+        "x": "JDVance",
+        "threads": null,
+        "instagram": "jdvance"
+      },
+      {
+        "name": "Usha Vance",
+        "x": null,
+        "threads": null,
+        "instagram": "ushavance"
       }
     ],
     "organizations": [
@@ -284,7 +338,7 @@
         "x": "PMOIndia",
         "threads": null,
         "covers": "PM office announcements, official event photos",
-        "instagram": ""
+        "instagram": "pmoindia"
       },
       {
         "name": "MEA India",
@@ -358,7 +412,7 @@
         "x": "USAndIndia",
         "threads": null,
         "covers": "US visa in India, bilateral relations",
-        "instagram": null
+        "instagram": "usaborembindia"
       }
     ]
   },
@@ -411,7 +465,7 @@
         "x": null,
         "threads": null,
         "note": "Search @nvidia for posts about him",
-        "instagram": null
+        "instagram": "jensenhuang"
       },
       {
         "name": "Arvind Krishna",
@@ -482,25 +536,53 @@
         "name": "TCS",
         "x": "TCS",
         "threads": null,
-        "covers": "Indian IT"
+        "covers": "Indian IT",
+        "instagram": "tcsglobal"
       },
       {
         "name": "Wipro",
         "x": "Wipro",
         "threads": null,
-        "covers": "Indian IT"
+        "covers": "Indian IT",
+        "instagram": "wipro"
       },
       {
         "name": "NASSCOM",
         "x": "nasscom",
         "threads": null,
-        "covers": "Indian tech industry body"
+        "covers": "Indian tech industry body",
+        "instagram": "nasscom_official"
       },
       {
         "name": "ISRO",
         "x": "isro",
         "threads": null,
-        "covers": "Indian space program"
+        "covers": "Indian space program",
+        "instagram": "isro.dos"
+      },
+      {
+        "name": "SpaceX",
+        "x": "SpaceX",
+        "threads": null,
+        "instagram": "spacex"
+      },
+      {
+        "name": "Tesla",
+        "x": "Tesla",
+        "threads": null,
+        "instagram": "teslamotors"
+      },
+      {
+        "name": "Amazon",
+        "x": "amazon",
+        "threads": null,
+        "instagram": "amazon"
+      },
+      {
+        "name": "Anthropic",
+        "x": "AnthropicAI",
+        "threads": null,
+        "instagram": "anthropicai"
       }
     ]
   },
@@ -762,7 +844,8 @@
         "name": "Filmfare",
         "x": "filmfare",
         "threads": null,
-        "covers": "Bollywood awards, industry news"
+        "covers": "Bollywood awards, industry news",
+        "instagram": "filmfare"
       },
       {
         "name": "Dharma Productions",
@@ -775,7 +858,8 @@
         "name": "YRF",
         "x": "yrf",
         "threads": null,
-        "covers": "Yash Raj Films"
+        "covers": "Yash Raj Films",
+        "instagram": "yaborrf"
       }
     ]
   },
@@ -792,7 +876,7 @@
         "x": null,
         "threads": null,
         "note": "Search @RIL_Updates for posts",
-        "instagram": null
+        "instagram": "ambaborani_mukesh"
       }
     ],
     "organizations": [
@@ -812,13 +896,26 @@
         "name": "RBI",
         "x": "RBI",
         "threads": null,
-        "covers": "Monetary policy, banking, rates"
+        "covers": "Monetary policy, banking, rates",
+        "instagram": "reservebankofindia"
       },
       {
         "name": "SEBI",
         "x": "SEBI_India",
         "threads": null,
         "covers": "Market regulation"
+      },
+      {
+        "name": "Reliance Industries",
+        "x": "RIaborLlaborimited",
+        "threads": null,
+        "instagram": "reliancejio"
+      },
+      {
+        "name": "Tata Group",
+        "x": "TataCompanies",
+        "threads": null,
+        "instagram": "tatacompanies"
       }
     ]
   },
@@ -861,7 +958,8 @@
         "name": "Indian American Impact",
         "x": "IAImpact",
         "threads": null,
-        "covers": "Indian American political engagement"
+        "covers": "Indian American political engagement",
+        "instagram": "iaimpact"
       }
     ]
   },
@@ -894,7 +992,7 @@
         "x": "IRCTCofficial",
         "threads": null,
         "covers": "Indian railways, travel",
-        "instagram": null
+        "instagram": "irctc_official"
       }
     ]
   }
