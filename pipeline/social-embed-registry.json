@@ -268,6 +268,62 @@
         "threads": null,
         "instagram": "rajasthanroyals",
         "covers": "IPL franchise"
+      },
+      {
+        "name": "Premier League",
+        "x": "premierleague",
+        "instagram": "premierleague",
+        "covers": "English football",
+        "threads": null
+      },
+      {
+        "name": "NBA",
+        "x": "NBA",
+        "instagram": "nba",
+        "covers": "Basketball",
+        "threads": null
+      },
+      {
+        "name": "NFL",
+        "x": "NFL",
+        "instagram": "nfl",
+        "covers": "American football",
+        "threads": null
+      },
+      {
+        "name": "MLB",
+        "x": "MLB",
+        "instagram": "mlb",
+        "covers": "Baseball",
+        "threads": null
+      },
+      {
+        "name": "ATP Tour",
+        "x": "atptour",
+        "instagram": "atptour",
+        "covers": "Tennis",
+        "threads": null
+      },
+      {
+        "name": "Olympics",
+        "x": "Olympics",
+        "instagram": "olympics",
+        "covers": "Olympic Games, Indian athletes",
+        "threads": null
+      },
+      {
+        "name": "Chennai Super Kings",
+        "x": "ChennaiIPL",
+        "instagram": "chennaiipl",
+        "covers": "IPL franchise, CSK, Dhoni",
+        "threads": null
+      },
+      {
+        "name": "Kolkata Knight Riders",
+        "x": "KKRiders",
+        "instagram": "kolkataknightriders",
+        "covers": "IPL franchise, KKR, SRK",
+        "threads": null
       }
     ]
   },
@@ -401,6 +457,47 @@
         "x": "IndiainSanFran",
         "threads": null,
         "covers": "Bay Area Indian community"
+      },
+      {
+        "name": "India in USA",
+        "x": "IndiaInUSA",
+        "instagram": "indiainusa",
+        "covers": "Indian Embassy Washington, consular",
+        "threads": null
+      },
+      {
+        "name": "Supreme Court of India",
+        "x": "SCofIndia",
+        "covers": "Supreme Court verdicts, judicial",
+        "threads": null
+      },
+      {
+        "name": "FBI",
+        "x": "FBI",
+        "instagram": "fbi",
+        "covers": "Federal investigations, terrorism, cybercrime",
+        "threads": null
+      },
+      {
+        "name": "DOJ",
+        "x": "TheJusticeDept",
+        "instagram": "thejusticedept",
+        "covers": "Dept of Justice, federal cases",
+        "threads": null
+      },
+      {
+        "name": "NASA",
+        "x": "NASA",
+        "instagram": "nasa",
+        "covers": "Space, ISRO collaborations",
+        "threads": null
+      },
+      {
+        "name": "Pentagon",
+        "x": "DeptofDefense",
+        "instagram": "deptofdefense",
+        "covers": "US military, defense policy",
+        "threads": null
       }
     ]
   },
@@ -434,6 +531,47 @@
         "threads": null,
         "instagram": "dhsgov",
         "covers": "Department of Homeland Security, border, immigration enforcement"
+      },
+      {
+        "name": "State Department",
+        "x": "StateDept",
+        "instagram": "statedept",
+        "covers": "Visa processing, consular, travel advisories",
+        "threads": null
+      },
+      {
+        "name": "White House",
+        "x": "WhiteHouse",
+        "instagram": "whitehouse",
+        "covers": "Executive orders, immigration policy",
+        "threads": null
+      },
+      {
+        "name": "ICE",
+        "x": "ICEgov",
+        "instagram": "icegov",
+        "covers": "Immigration enforcement, deportation",
+        "threads": null
+      },
+      {
+        "name": "CBP",
+        "x": "CBP",
+        "instagram": "cbpgov",
+        "covers": "Border, customs, ports of entry",
+        "threads": null
+      },
+      {
+        "name": "IRCC Canada",
+        "x": "CitImmCanada",
+        "covers": "Canadian immigration, PR, study permits",
+        "threads": null
+      },
+      {
+        "name": "UK Home Office",
+        "x": "UKHomeOffice",
+        "instagram": "ukhomeoffice",
+        "covers": "UK visas, immigration enforcement",
+        "threads": null
       }
     ]
   },
@@ -1099,6 +1237,12 @@
         "threads": null,
         "instagram": "adanionline",
         "covers": "Adani conglomerate, ports, energy"
+      },
+      {
+        "name": "Federal Reserve",
+        "x": "federalreserve",
+        "covers": "US Fed, interest rates, monetary policy",
+        "threads": null
       }
     ]
   },
@@ -1182,6 +1326,34 @@
         "threads": null,
         "covers": "Indian railways, travel",
         "instagram": "irctc_official"
+      },
+      {
+        "name": "IndiGo Airlines",
+        "x": "IndiGo6E",
+        "instagram": "indigo.6e",
+        "covers": "Indian airline, flights",
+        "threads": null
+      },
+      {
+        "name": "SpiceJet",
+        "x": "flyspicejet",
+        "instagram": "spicejet",
+        "covers": "Indian airline",
+        "threads": null
+      },
+      {
+        "name": "Vistara",
+        "x": "airvistara",
+        "instagram": "airvistara",
+        "covers": "Tata-SIA airline, now merging with Air India",
+        "threads": null
+      },
+      {
+        "name": "Emirates",
+        "x": "emirates",
+        "instagram": "emirates",
+        "covers": "Dubai airline, Gulf routes",
+        "threads": null
       }
     ]
   },
