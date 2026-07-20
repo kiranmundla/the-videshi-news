@@ -189,7 +189,7 @@ def source_authority(tweet):
         return 2
     if followers >= 50_000:
         return 2
-    if verified or followers >= 10_000:
+    if (verified and followers >= 5_000) or followers >= 25_000:
         return 1
     return 0
 

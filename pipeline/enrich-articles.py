@@ -1075,9 +1075,30 @@ def main():
             for m in matches[:2]:
                 print(f"     IG match: @{m['handle']} ({m['name']})")
 
+                # Build topic keywords from FULL headline, excluding the matched
+                # person/org name (trivially present in every post by that account)
+                # and common stopwords.
+                _IG_STOPWORDS = {
+                    "the","a","an","in","on","at","to","for","of","and","or","is",
+                    "are","was","were","has","had","have","been","be","will","can",
+                    "may","with","by","from","as","its","it","his","her","their",
+                    "new","says","said","after","over","how","why","what","who",
+                    "than","amid","that","this","into","top","first","most","more",
+                    "could","would","should","not","but","all","also","just","now",
+                    "up","out","back","set","get","one","two","three","four","big",
+                    "man","men","year","years","day","days","time","per","vice",
+                    "president","minister","prime","ceo","cto","chief","leader",
+                }
+                name_words = {w.lower().strip(".,!?:;-'\"") for w in m["name"].split()}
+                handle_words = {m["handle"].lower().replace("_", "")}
+                exclude = _IG_STOPWORDS | name_words | handle_words
+                topic_kw = [
+                    w for w in article["headline"].split()
+                    if len(w) > 2 and w.lower().strip(".,!?:;-'\"") not in exclude
+                ]
                 shortcodes = search_instagram_posts(
                     m["handle"],
-                    article["headline"].split()[:5],
+                    topic_kw,
                 )
                 if shortcodes:
                     url = f"https://www.instagram.com/p/{shortcodes[0]}/"
