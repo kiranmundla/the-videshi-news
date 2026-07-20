@@ -835,6 +835,237 @@ def article_has_pull_quote(body):
 
 
 # ═══════════════════════════════════════════
+# YOUTUBE EMBED ENRICHMENT
+# ═══════════════════════════════════════════
+
+_YT_ENV = None
+def _load_yt_env():
+    global _YT_ENV
+    if _YT_ENV is None:
+        yt_env = {}
+        path = os.path.expanduser("~/workspace/.env.youtube")
+        if os.path.exists(path):
+            with open(path) as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        yt_env[k.strip()] = v.strip()
+        _YT_ENV = yt_env
+    return _YT_ENV
+
+_YT_ACCESS_TOKEN = None
+_YT_TOKEN_EXPIRY = 0
+
+def _get_youtube_access_token():
+    """Get OAuth access token from refresh token, caching for ~50 min."""
+    global _YT_ACCESS_TOKEN, _YT_TOKEN_EXPIRY
+    import time as _t
+    if _YT_ACCESS_TOKEN and _t.time() < _YT_TOKEN_EXPIRY:
+        return _YT_ACCESS_TOKEN
+    env = _load_yt_env()
+    cid = env.get("YOUTUBE_CLIENT_ID", "")
+    csec = env.get("YOUTUBE_CLIENT_SECRET", "")
+    rtok = env.get("YOUTUBE_REFRESH_TOKEN", "")
+    if not (cid and csec and rtok):
+        print("  ⚠ YouTube OAuth credentials not found in .env.youtube")
+        return None
+    try:
+        r = requests.post("https://oauth2.googleapis.com/token", data={
+            "client_id": cid,
+            "client_secret": csec,
+            "refresh_token": rtok,
+            "grant_type": "refresh_token",
+        }, timeout=10)
+        data = r.json()
+        _YT_ACCESS_TOKEN = data.get("access_token")
+        _YT_TOKEN_EXPIRY = _t.time() + data.get("expires_in", 3600) - 120
+        return _YT_ACCESS_TOKEN
+    except Exception as e:
+        print(f"  ⚠ YouTube token refresh failed: {e}")
+        return None
+
+_YT_QUOTA_USED = 0
+_YT_QUOTA_LIMIT = 9500  # leave buffer under 10K daily limit
+
+def search_youtube_data_api(query, max_results=5, published_after_days=60):
+    """Search YouTube Data API v3. Returns list of {videoId, title, channelTitle, publishedAt}."""
+    global _YT_QUOTA_USED
+    if _YT_QUOTA_USED >= _YT_QUOTA_LIMIT:
+        print(f"  ⚠ YouTube quota near limit ({_YT_QUOTA_USED}/{_YT_QUOTA_LIMIT}), skipping")
+        return []
+    token = _get_youtube_access_token()
+    if not token:
+        return []
+    from datetime import datetime, timedelta, timezone
+    after = (datetime.now(timezone.utc) - timedelta(days=published_after_days)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        r = requests.get("https://www.googleapis.com/youtube/v3/search", params={
+            "part": "snippet",
+            "q": query,
+            "type": "video",
+            "maxResults": max_results,
+            "order": "relevance",
+            "publishedAfter": after,
+            "relevanceLanguage": "en",
+        }, headers={"Authorization": f"Bearer {token}"}, timeout=15)
+        _YT_QUOTA_USED += 100  # search.list = 100 units
+        if r.status_code != 200:
+            print(f"  ⚠ YouTube API {r.status_code}: {r.text[:200]}")
+            return []
+        data = r.json()
+        results = []
+        for item in data.get("items", []):
+            results.append({
+                "videoId": item["id"]["videoId"],
+                "title": item["snippet"]["title"],
+                "channelTitle": item["snippet"]["channelTitle"],
+                "publishedAt": item["snippet"]["publishedAt"],
+                "description": item["snippet"].get("description", ""),
+            })
+        return results
+    except Exception as e:
+        print(f"  ⚠ YouTube search error: {e}")
+        return []
+
+# Junk content indicators in YouTube titles
+_YT_SKIP_TITLE_WORDS = {
+    "compilation", "top 10", "top 5", "top 20", "meme", "memes", "funny",
+    "prank", "reaction video", "fan edit", "whatsapp status",
+    "#shorts", "tiktok", "roast", "exposed", "scam",
+}
+
+def _extract_yt_search_keywords(headline, entity_name):
+    """Extract 2-4 keywords from headline, excluding the entity name and stopwords."""
+    import re as _re
+    clean = _re.sub(_re.escape(entity_name), "", headline, flags=_re.IGNORECASE).strip()
+    clean = _re.sub(r"[^\w\s]", " ", clean)
+    words = clean.lower().split()
+    stopwords = {
+        "the", "of", "in", "and", "for", "a", "an", "is", "at", "on", "to",
+        "with", "by", "from", "as", "its", "it", "that", "this", "but", "or",
+        "has", "had", "was", "were", "are", "be", "been", "being", "have",
+        "his", "her", "he", "she", "they", "their", "we", "our", "you", "your",
+        "about", "after", "before", "how", "why", "what", "when", "where", "who",
+        "new", "says", "said", "could", "would", "will", "can", "may", "more",
+        "into", "over", "up", "out", "just", "also", "than", "most", "first",
+    }
+    keywords = [w for w in words if w not in stopwords and len(w) > 2]
+    return keywords[:4]
+
+
+def score_youtube_result(result, entity_name, keywords):
+    """Score a YouTube search result for relevance. Higher = better."""
+    title_lower = result["title"].lower()
+    channel_lower = result["channelTitle"].lower()
+    entity_lower = entity_name.lower()
+    entity_parts = [p for p in entity_lower.split() if len(p) > 2]
+
+    score = 0
+
+    # Entity name in video title
+    if entity_lower in title_lower:
+        score += 4
+    elif all(p in title_lower for p in entity_parts):
+        score += 3
+
+    # Entity name in channel name (official channel)
+    if entity_lower in channel_lower:
+        score += 3
+    elif any(p in channel_lower for p in entity_parts if p not in {"the", "of", "in"}):
+        score += 1
+
+    # Keyword matches in title
+    kw_hits = sum(1 for kw in keywords if kw in title_lower)
+    score += kw_hits * 1.5
+
+    # Penalty for junk content
+    for skip_word in _YT_SKIP_TITLE_WORDS:
+        if skip_word in title_lower:
+            score -= 5
+
+    # Bonus for news/official/interview content
+    official_words = {"official", "press conference", "interview", "statement",
+                      "announcement", "keynote", "launch", "podcast", "speech"}
+    for ow in official_words:
+        if ow in title_lower:
+            score += 1
+            break
+
+    # Recency bonus
+    try:
+        from datetime import datetime, timezone
+        pub = datetime.fromisoformat(result["publishedAt"].replace("Z", "+00:00"))
+        days_old = (datetime.now(timezone.utc) - pub).days
+        if days_old <= 3:
+            score += 2
+        elif days_old <= 7:
+            score += 1
+    except:
+        pass
+
+    return score
+
+
+def find_matching_entities(headline, registry):
+    """Find registry entity names that appear in an article headline (platform-agnostic)."""
+    import re as _re
+    matches = []
+    headline_lower = headline.lower()
+
+    for category, data in registry.items():
+        if category.startswith("_") or not isinstance(data, dict):
+            continue
+        for group_key in ["persons", "organizations"]:
+            entries = data.get(group_key, [])
+            if not isinstance(entries, list):
+                continue
+            for entry in entries:
+                name = entry.get("name", "")
+                name_parts = name.lower().split()
+                stopwords = {"the", "of", "in", "and", "for", "a", "an", "is", "at", "on", "to"}
+                significant = [p for p in name_parts if p not in stopwords and len(p) > 2]
+                if not significant:
+                    continue
+                if all(_re.search(r'\b' + _re.escape(word) + r'\b', headline_lower) for word in significant):
+                    matches.append({
+                        "name": name,
+                        "category": category,
+                    })
+
+    return matches
+
+
+def find_best_youtube_embed(entity_name, headline, max_results=5):
+    """Search YouTube for a relevant video about entity_name in context of headline."""
+    keywords = _extract_yt_search_keywords(headline, entity_name)
+    query = f"{entity_name} {' '.join(keywords[:3])}"
+
+    results = search_youtube_data_api(query, max_results=max_results, published_after_days=60)
+    if not results:
+        return None
+
+    scored = []
+    for r in results:
+        s = score_youtube_result(r, entity_name, keywords)
+        scored.append((s, r))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+
+    best_score, best = scored[0]
+    if best_score < 3:
+        return None
+
+    url = f"https://youtube.com/watch?v={best['videoId']}"
+    return {
+        "url": url,
+        "title": best["title"],
+        "channel": best["channelTitle"],
+        "score": best_score,
+    }
+
+
+# ═══════════════════════════════════════════
 # MAIN PIPELINE
 # ═══════════════════════════════════════════
 
@@ -889,6 +1120,7 @@ def main():
     parser.add_argument("--embeds-only", action="store_true", help="Only add embeds")
     parser.add_argument("--trailers-only", action="store_true", help="Only add YouTube trailers")
     parser.add_argument("--inline-only", action="store_true", help="Only add inline images + pull quotes")
+    parser.add_argument("--youtube-only", action="store_true", help="Only add YouTube embeds")
     parser.add_argument("--max", type=int, default=10, help="Max articles to enrich per run")
     args = parser.parse_args()
 
@@ -896,11 +1128,12 @@ def main():
     registry = load_registry()
 
     # Scope control
-    only_mode = args.images_only or args.embeds_only or args.trailers_only or args.inline_only
+    only_mode = args.images_only or args.embeds_only or args.trailers_only or args.inline_only or args.youtube_only
     run_images = not only_mode or args.images_only
     run_trailers = not only_mode or args.trailers_only
     run_embeds = not only_mode or args.embeds_only
     run_inline = not only_mode or args.inline_only
+    run_youtube = not only_mode or args.youtube_only
 
     # ── 1. IMAGE ENRICHMENT ──
     if run_images:
@@ -1161,6 +1394,89 @@ def main():
                 else:
                     print(f"  [DRY RUN] Would strip {n_removed} fake IG embed(s) from: {article['headline'][:60]}")
         print(f"  Verification: checked {len(non_ent)} non-entertainment articles, stripped {ig_verify_stripped} fake embed(s)")
+
+    # ── 3.5 YOUTUBE EMBED ENRICHMENT ──
+    if run_youtube:
+        print("\n══ YouTube Embed Enrichment ══")
+        load_env(os.path.expanduser("~/workspace/.env.youtube"))
+        yt_categories = [
+            "entertainment", "sports", "technology", "news",
+            "immigration", "nri-world", "markets-finance", "travel", "food",
+        ]
+        yt_articles = get_recent_articles(hours=args.hours)
+        yt_articles = [a for a in yt_articles if a.get("category") in yt_categories]
+        print(f"Found {len(yt_articles)} articles across {len(yt_categories)} categories")
+
+        yt_enriched = 0
+        yt_searched = 0
+        for article in yt_articles[:args.max]:
+            body = article.get("body", "")
+            headline = article.get("headline", "")
+
+            # Skip if already has a YouTube embed
+            if article_has_social_embed(body, "youtube"):
+                continue
+
+            # Skip if already has both X and IG embeds (enough social enrichment)
+            has_x = article_has_social_embed(body, "twitter") or article_has_social_embed(body, "x")
+            has_ig = article_has_social_embed(body, "instagram")
+            if has_x and has_ig:
+                continue
+
+            # Match headline to registry entities
+            entities = find_matching_entities(headline, registry)
+            if not entities:
+                continue
+
+            # Try up to 2 matching entities, pick best YouTube result
+            best_yt = None
+            print(f"\n  📰 {headline[:75]}")
+            for entity in entities[:2]:
+                print(f"     YT search: {entity['name']}")
+                result = find_best_youtube_embed(entity["name"], headline)
+                yt_searched += 1
+                if result and (best_yt is None or result["score"] > best_yt["score"]):
+                    best_yt = result
+
+            if not best_yt:
+                print(f"     — No relevant YouTube video found")
+                continue
+
+            print(f"     → {best_yt['url']}")
+            print(f"       \"{best_yt['title']}\" ({best_yt['channel']}) [score:{best_yt['score']}]")
+
+            if apply:
+                # Insert <youtube> tag after 2nd </p> tag
+                import re as _re_yt
+                embed_tag = f"\n\n<youtube>{best_yt['url']}</youtube>\n"
+                _p_ends = [m.end() for m in _re_yt.finditer(r'</p>', body, _re_yt.IGNORECASE)]
+                if len(_p_ends) >= 2:
+                    insert_at = _p_ends[1]
+                    new_body = body[:insert_at] + embed_tag + body[insert_at:]
+                elif len(_p_ends) == 1:
+                    insert_at = _p_ends[0]
+                    new_body = body[:insert_at] + embed_tag + body[insert_at:]
+                else:
+                    paras = body.split("\n\n", 2)
+                    if len(paras) >= 2:
+                        new_body = paras[0] + "\n\n" + paras[1] + embed_tag + "\n\n" + (paras[2] if len(paras) > 2 else "")
+                    else:
+                        new_body = body + embed_tag
+
+                # Also update social_embeds JSON
+                existing_embeds = article.get("social_embeds") or []
+                existing_embeds.append({"url": best_yt["url"], "platform": "youtube"})
+
+                if update_article(article["id"], {"body": new_body, "social_embeds": json.dumps(existing_embeds)}):
+                    print(f"     ✅ Embedded!")
+                    yt_enriched += 1
+                else:
+                    print(f"     ❌ Embed failed")
+            else:
+                print(f"     [DRY RUN] Would embed")
+                yt_enriched += 1
+
+        print(f"\n  YouTube enrichment: {yt_enriched} articles {'updated' if apply else 'would update'} ({yt_searched} searched, {_YT_QUOTA_USED} API units used)")
 
     # ── 4. INLINE IMAGE + PULL QUOTE ENRICHMENT ──
     if run_inline:
