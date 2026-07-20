@@ -807,21 +807,6 @@ Return a single JSON object with all these fields."""
     body = re.sub(r'^## (.+)$', r'<h2>\1</h2>', body, flags=re.MULTILINE)
     body = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', body)
 
-    # Deduplicate pull quotes — LLM sometimes generates the same blockquote twice
-    pq_pattern = re.compile(r'(<blockquote class="pull-quote">.*?</blockquote>)', re.DOTALL)
-    seen_quotes = set()
-    def _dedup_pq(m):
-        q = m.group(1)
-        # Normalize whitespace for comparison
-        norm = re.sub(r'\s+', ' ', q).strip()
-        if norm in seen_quotes:
-            return ''  # remove duplicate
-        seen_quotes.add(norm)
-        return q
-    body = pq_pattern.sub(_dedup_pq, body)
-    # Clean up any double blank lines left by removed quotes
-    body = re.sub(r'\n{3,}', '\n\n', body)
-
     # Ensure slug has date suffix
     slug = result.get('slug', '') or make_slug(headline)
     slug = re.sub(r'[^a-z0-9-]', '', slug.lower())[:90]

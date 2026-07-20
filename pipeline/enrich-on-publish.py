@@ -302,10 +302,13 @@ def find_best_tweet(tweets, headline, body_500, min_score=5):
 
     for tweet in tweets:
         topic_score = score_tweet_relevance(tweet["text"], headline, body_500)
-        # Require minimum topic relevance of 3 before considering authority/photo bonuses
+        # Require minimum topic relevance of 5 before considering authority/photo bonuses.
+        # Scoring: entity name match (~1) + long-word bonus (+2) = ~3-4 baseline.
+        # Entity name + one coincidental verb (e.g. "build") = 4, NOT enough.
+        # A genuinely on-topic tweet has 3+ real keyword overlaps → score 5+.
         # This prevents high-authority accounts (NVIDIA, Google) from embedding
-        # any random tweet just because they're verified with many followers
-        if topic_score < 3:
+        # any random tweet just because they're verified with many followers.
+        if topic_score < 5:
             continue
         score = topic_score
         if tweet.get("photo_count", 0) > 0:
