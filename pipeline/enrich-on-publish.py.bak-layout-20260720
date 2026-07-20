@@ -740,72 +740,25 @@ def enrich_youtube(article, registry):
 
 # ─── Body insertion ──────────────────────────────────────────────────────────
 
-def _count_media_in_text(text):
-    """Count media elements (embeds, figures, YouTube tags) in a chunk of HTML."""
-    MEDIA_PATS = [
-        r'<figure[^>]*>',
-        r'<youtube>',
-        r'https?://(?:x|twitter)\.com/\w+/status/',
-        r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/',
-    ]
-    return sum(len(re.findall(p, text, re.IGNORECASE)) for p in MEDIA_PATS)
-
-
 def insert_embed_in_body(body, embed_url, platform="x"):
-    """Insert an embed URL/tag distributed across article sections.
-
-    Finds the H2 section with the fewest existing media elements and inserts
-    after the first </p> in that section.  This prevents clustering all embeds
-    in the same spot when multiple embeds are added sequentially.
-    """
+    """Insert an embed URL/tag at a natural position in the article body (after 2nd </p>)."""
     if platform == "youtube":
         embed_line = f"\n\n<youtube>{embed_url}</youtube>\n"
     else:
         embed_line = f"\n\n{embed_url}\n"
 
-    # Split body into sections delimited by <h2> tags
-    h2_splits = list(re.finditer(r'<h2[^>]*>', body, re.IGNORECASE))
-
-    if not h2_splits:
-        # No sections — fall back to after 2nd </p>
-        p_ends = [m.end() for m in re.finditer(r'</p>', body, re.IGNORECASE)]
-        if len(p_ends) >= 2:
-            return body[:p_ends[1]] + embed_line + body[p_ends[1]:]
-        return body + embed_line
-
-    # Build (start, end) for each section
-    sections = []
-    # Intro (before first H2) — skip if it's just key-takeaways
-    intro_text = body[:h2_splits[0].start()]
-    if intro_text.strip() and not intro_text.strip().startswith('<div class="key-takeaways'):
-        sections.append((0, h2_splits[0].start()))
-
-    for i, m in enumerate(h2_splits):
-        s = m.start()
-        e = h2_splits[i + 1].start() if i + 1 < len(h2_splits) else len(body)
-        sections.append((s, e))
-
-    if not sections:
-        return body + embed_line
-
-    # Pick the section with the fewest media elements
-    best_idx, best_count = 0, float('inf')
-    for i, (s, e) in enumerate(sections):
-        mc = _count_media_in_text(body[s:e])
-        if mc < best_count:
-            best_count = mc
-            best_idx = i
-
-    # Within the chosen section, insert after first </p>
-    s, e = sections[best_idx]
-    section_text = body[s:e]
-    p_ends = [m.end() for m in re.finditer(r'</p>', section_text, re.IGNORECASE)]
-    if p_ends:
-        insert_pos = s + p_ends[0]
+    p_ends = [m.end() for m in re.finditer(r'</p>', body, re.IGNORECASE)]
+    if len(p_ends) >= 2:
+        pos = p_ends[1]
+        return body[:pos] + embed_line + body[pos:]
+    elif len(p_ends) == 1:
+        pos = p_ends[0]
+        return body[:pos] + embed_line + body[pos:]
     else:
-        insert_pos = e
-
-    return body[:insert_pos] + embed_line + body[insert_pos:]
+        paras = body.split("\n\n", 2)
+        if len(paras) >= 2:
+            return paras[0] + "\n\n" + paras[1] + embed_line + "\n\n" + (paras[2] if len(paras) > 2 else "")
+        return body + embed_line
 
 
 def has_embed(body, platform):

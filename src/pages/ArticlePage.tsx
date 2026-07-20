@@ -39,7 +39,7 @@ function SourcesPill({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="max-w-2xl mx-auto mt-8">
+    <div className="max-w-3xl mx-auto mt-8">
       {/* Pill trigger */}
       <button
         onClick={() => setOpen((o) => !o)}
@@ -654,7 +654,7 @@ export default function ArticlePage() {
           />
         ) : null}
 
-        <div className="article-prose max-w-2xl mx-auto mt-12">
+        <div className="article-prose max-w-3xl mx-auto mt-12">
           {(() => {
             const blocks = tryParseBlocks(article.body);
             if (blocks) return <ArticleBlocks blocks={blocks} />;
@@ -787,7 +787,7 @@ export default function ArticlePage() {
         })()}
 
         {["immigration", "nri-world", "lifestyle-health", "news"].includes(article.category) && (
-          <section className="my-10 mx-auto max-w-2xl">
+          <section className="my-10 mx-auto max-w-3xl">
             <a
               href="/stories/submit"
               className="block rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-6 text-center transition hover:shadow-md hover:border-amber-300"

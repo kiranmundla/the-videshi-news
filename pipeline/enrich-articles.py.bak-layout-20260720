@@ -794,95 +794,34 @@ def _is_html_body(body):
     return bool(re.match(r'^\s*<(?:p|h[1-6]|div|section|article)\b', body, re.IGNORECASE))
 
 
-def _count_media_elements(text):
-    """Count media elements in a chunk of HTML (figures, embeds, YouTube tags)."""
-    pats = [r'<figure[^>]*>', r'<youtube>', r'<blockquote[^>]*class="pull-quote"',
-            r'https?://(?:x|twitter)\.com/\w+/status/',
-            r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/']
-    return sum(len(re.findall(p, text, re.IGNORECASE)) for p in pats)
-
-
 def insert_inline_images(body, images):
-    """Insert inline images distributed across article sections.
-
-    Uses H2 sections to spread images out — one per section max, placed in
-    sections that have the fewest existing media elements. Caps at 2 inline
-    images per article to avoid visual clutter.
-    """
+    """Insert inline images at natural break points in the article body.
+    Places images between paragraphs, spaced evenly through the article."""
     if not images:
         return body
 
     is_html = _is_html_body(body)
 
-    # Cap at 2 inline images per article
-    images = images[:2]
+    paragraphs = body.split("\n\n")
+    if len(paragraphs) < 3:
+        return body
 
-    # Split body into sections by <h2> tags
-    h2_splits = list(re.finditer(r'<h2[^>]*>', body, re.IGNORECASE))
+    # Calculate insertion points — evenly spaced, skip first paragraph
+    n_images = len(images)
+    step = max(2, (len(paragraphs) - 1) // (n_images + 1))
 
-    if not h2_splits:
-        # No H2s — fall back to old paragraph-spacing logic
-        paragraphs = body.split("\n\n")
-        if len(paragraphs) < 3:
-            return body
-        step = max(2, (len(paragraphs) - 1) // (len(images) + 1))
-        for i in range(len(images) - 1, -1, -1):
-            entity, url, caption = images[i]
-            idx = min(step * (i + 1), len(paragraphs) - 1)
-            if is_html:
-                cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
-                img_md = f'\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
-            else:
-                img_md = f"\n![{caption}]({url})\n"
-            paragraphs.insert(idx, img_md)
-        return "\n\n".join(paragraphs)
-
-    # Build sections: (start, end) boundaries
-    sections = []
-    # Intro before first H2 — skip for image placement (usually key-takeaways)
-    for i, m in enumerate(h2_splits):
-        s = m.start()
-        e = h2_splits[i + 1].start() if i + 1 < len(h2_splits) else len(body)
-        sections.append((s, e))
-
-    # Score sections by media count and pick the emptiest ones
-    scored = []
-    for idx, (s, e) in enumerate(sections):
-        mc = _count_media_elements(body[s:e])
-        scored.append((mc, idx))
-    scored.sort()  # fewest media first
-
-    # Assign each image to a different section (fewest-media-first)
-    result = body
-    offset = 0  # track offset from prior insertions
-    for img_i, (entity, url, caption) in enumerate(images):
-        if img_i >= len(scored):
-            break
-        _, sec_idx = scored[img_i]
-        s, e = sections[sec_idx]
-        s += offset
-        e += offset
-        section_text = result[s:e]
-
-        # Find </p> tags in this section — insert after the last one
-        p_ends = [m.end() for m in re.finditer(r'</p>', section_text, re.IGNORECASE)]
-        if not p_ends:
-            continue  # no paragraph to insert after
-
-        # Prefer inserting after the last </p> in the section (before next H2)
-        insert_rel = p_ends[-1] if len(p_ends) > 1 else p_ends[0]
-        insert_pos = s + insert_rel
-
+    # Insert in reverse order so indices stay valid
+    for i in range(len(images) - 1, -1, -1):
+        entity, url, caption = images[i]
+        idx = min(step * (i + 1), len(paragraphs) - 1)
         if is_html:
             cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
-            img_md = f'\n\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
+            img_md = f'\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
         else:
-            img_md = f"\n\n![{caption}]({url})\n"
+            img_md = f"\n![{caption}]({url})\n"
+        paragraphs.insert(idx, img_md)
 
-        result = result[:insert_pos] + img_md + result[insert_pos:]
-        offset += len(img_md)
-
-    return result
+    return "\n\n".join(paragraphs)
 
 
 # ═══════════════════════════════════════════
