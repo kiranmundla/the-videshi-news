@@ -576,6 +576,13 @@
         "instagram": "deptofdefense",
         "covers": "US military, defense policy",
         "threads": null
+      },
+      {
+        "name": "ITV Gold",
+        "x": "itvgold",
+        "instagram": "itvgold",
+        "threads": null,
+        "covers": "South Asian American TV network, Indian American community coverage"
       }
     ]
   },
@@ -1390,6 +1397,13 @@
         "x": "SonyLIV",
         "instagram": "sonyliv",
         "threads": null
+      },
+      {
+        "name": "ITV Gold",
+        "x": "itvgold",
+        "instagram": "itvgold",
+        "threads": null,
+        "covers": "South Asian American TV network, Indian American community coverage"
       }
     ]
   },
@@ -1609,6 +1623,27 @@
         "name": "AAPI",
         "covers": "American Association of Physicians of Indian Origin",
         "threads": null
+      },
+      {
+        "name": "ITV Gold",
+        "x": "itvgold",
+        "instagram": "itvgold",
+        "threads": null,
+        "covers": "South Asian American TV, diaspora community events, AAPI physician coverage"
+      },
+      {
+        "name": "NYITCOM",
+        "x": null,
+        "instagram": "nyitcomdo",
+        "threads": null,
+        "covers": "NY Institute of Technology College of Osteopathic Medicine, medical education"
+      },
+      {
+        "name": "India Abroad",
+        "x": "IndiaAbroad_",
+        "instagram": "indiaabroad_",
+        "threads": null,
+        "covers": "Indian American news, diaspora events, NRI community"
       }
     ]
   },
