@@ -276,9 +276,9 @@ For each topic, provide:
 3. "coverage": "new" | "update" | "duplicate"
 4. "category": one of the categories above
 5. "reason": 1-sentence explanation
-6. "ig_handles": array of Instagram handles relevant to this topic. Pick from the KNOWN HANDLES list below when possible. If the topic involves a person/org NOT in the list, suggest their likely Instagram handle. Return up to 3 handles, most relevant first. Return [] if no relevant handles exist (e.g. generic policy stories with no specific person/org).
+6. "ig_handles": array of objects for Instagram handles relevant to this topic. Each object: {"handle": "@handle", "type": "person" or "org"}. Pick from the KNOWN HANDLES list below when possible. If the topic involves a person or organization NOT in the list, suggest their likely Instagram handle — the list is not exhaustive and you should suggest new handles you are confident about. Return up to 3, most relevant first. Return [] if no relevant handles (e.g. generic policy stories, recipes with no specific person/brand).
 
-Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "...", "ig_handles": ["@sunaborasu", "@google"]},...]}\n"""
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person"}, {"handle": "@google", "type": "org"}]},...]}\n"""
 
 MERGE_PROMPT = """You are grouping news headlines that cover the SAME underlying story or event.
 
@@ -696,7 +696,11 @@ def main():
         if c.get("llm_reason"):
             print(f"     Reason: {c['llm_reason'][:80]}")
         if c.get("ig_handles"):
-            print(f"     IG: {', '.join(c['ig_handles'])}")
+            handles_str = ", ".join(
+                h["handle"] + f" ({h['type']})" if isinstance(h, dict) else h
+                for h in c["ig_handles"]
+            )
+            print(f"     IG: {handles_str}")
     print(f"\n  Output: {OUT_PATH}")
     print(f"  Time: {elapsed:.1f}s")
     print(f"{'='*60}\n")
