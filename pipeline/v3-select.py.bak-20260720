@@ -566,23 +566,14 @@ def main():
     print(f"  Total dedup context: {len(recent_articles)} headlines")
 
     # ── Step 4: LLM scoring + classification ──────────────────────────────────
-    # Only LLM-score topics that have loaded signals — the rest are auto-rejected
-    topics_with_loaded_signals = [t for t in topics if t.get("signals")]
-    topics_without_signals = [t for t in topics if not t.get("signals")]
     print(f"\n── Step 4: LLM scoring + coverage classification ──")
-    print(f"  Topics with loaded signals: {len(topics_with_loaded_signals)} (scoring)")
-    print(f"  Topics without signals: {len(topics_without_signals)} (auto-rejecting)")
-    llm_results = llm_score_topics(topics_with_loaded_signals, recent_articles)
+    llm_results = llm_score_topics(topics, recent_articles)
 
     scored = []
     stats = {"new": 0, "update": 0, "duplicate": 0, "irrelevant": 0, "no_result": 0}
     topic_statuses = {}  # topic_id -> status to write back
 
-    # Auto-reject topics without signals
-    for t in topics_without_signals:
-        topic_statuses[t["id"]] = "rejected"
-
-    for i, t in enumerate(topics_with_loaded_signals):
+    for i, t in enumerate(topics):
         llm = llm_results.get(i)
         if llm:
             if not llm["relevant"]:
