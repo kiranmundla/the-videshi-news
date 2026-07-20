@@ -325,7 +325,7 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
 
   return (
     <figure className="my-6 flex flex-col items-center" ref={ref}>
-      <div className="ig-embed-crop" style={{ overflow: 'hidden', maxWidth: 540, width: '100%', borderRadius: 8 }}>
+      <div style={{ maxWidth: 540, width: '100%', borderRadius: 8 }}>
         <blockquote
           className="instagram-media"
           data-instgrm-permalink={permalink}

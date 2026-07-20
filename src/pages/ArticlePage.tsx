@@ -39,7 +39,7 @@ function SourcesPill({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="max-w-3xl mx-auto mt-8">
+    <div className="max-w-4xl mx-auto mt-8">
       {/* Pill trigger */}
       <button
         onClick={() => setOpen((o) => !o)}
@@ -565,7 +565,7 @@ export default function ArticlePage() {
       <Masthead />
 
       <main className="container flex-1 pt-8 md:pt-12">
-        <article className="max-w-3xl mx-auto">
+        <article className="max-w-4xl mx-auto">
           <p className="smallcaps text-primary">{article.category}</p>
           <h1 className="font-serif text-[2rem] md:text-5xl lg:text-[3.5rem] leading-[1.08] mt-3 font-bold">
             {article.title}
@@ -625,7 +625,7 @@ export default function ArticlePage() {
         </article>
 
         {article.gallery_images && article.gallery_images.length > 0 ? (
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <style>{`.article-prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
 .article-prose th, .article-prose td { border: 1px solid #e5e5e5; padding: 0.5rem 0.75rem; text-align: left; }
 .article-prose th { background: #f5f5f4; font-weight: 600; }
@@ -654,7 +654,7 @@ export default function ArticlePage() {
           />
         ) : null}
 
-        <div className="article-prose max-w-3xl mx-auto mt-12">
+        <div className="article-prose max-w-4xl mx-auto mt-12">
           {(() => {
             const blocks = tryParseBlocks(article.body);
             if (blocks) return <ArticleBlocks blocks={blocks} />;
@@ -787,7 +787,7 @@ export default function ArticlePage() {
         })()}
 
         {["immigration", "nri-world", "lifestyle-health", "news"].includes(article.category) && (
-          <section className="my-10 mx-auto max-w-3xl">
+          <section className="my-10 mx-auto max-w-4xl">
             <a
               href="/stories/submit"
               className="block rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-6 text-center transition hover:shadow-md hover:border-amber-300"
