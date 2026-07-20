@@ -1121,7 +1121,7 @@ def main():
         print("\n══ Instagram Embed Verification (all categories) ══")
         all_for_ig_verify = get_recent_articles(hours=args.hours)
         # Exclude entertainment articles we already checked above
-        ent_ids = {a["id"] for a in ent_articles[:args.max]} if run_embeds else set()
+        ent_ids = {a["id"] for a in ig_articles[:args.max]} if run_embeds else set()
         non_ent = [a for a in all_for_ig_verify if a["id"] not in ent_ids]
         ig_verify_stripped = 0
         for article in non_ent:
