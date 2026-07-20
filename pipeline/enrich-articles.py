@@ -1551,6 +1551,62 @@ def main():
 
         print(f"\n  Inline enrichment: {inline_enriched} articles {'updated' if apply else 'would update'}")
 
+    # ── 5. HERO IMAGE HEALTH CHECK ──
+    # Detect dead hero image URLs (Wikipedia deletions, broken uploads) and re-source
+    if not only_mode:
+        print("\n══ Hero Image Health Check ══")
+        all_articles = get_recent_articles(hours=max(args.hours, 72))  # Check 3 days minimum
+        hero_checked = 0
+        hero_fixed = 0
+        for article in all_articles:
+            img_url = article.get("image_url", "")
+            if not img_url or not img_url.startswith("http"):
+                # Relative path = definitely broken
+                print(f"\n  ⚠ Relative URL: {article['headline'][:50]}")
+                print(f"    → {img_url[:80]}")
+            else:
+                continue  # Only flag non-http URLs in this pass; full check below
+
+        # Full health check: verify each image URL loads
+        for article in all_articles:
+            img_url = article.get("image_url", "")
+            if not img_url:
+                continue
+            hero_checked += 1
+            try:
+                r = subprocess.run(
+                    ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '5',
+                     '-A', 'Mozilla/5.0', img_url],
+                    capture_output=True, text=True, timeout=10
+                )
+                code = r.stdout.strip()
+            except Exception:
+                code = "000"
+
+            if code not in ('200', '301', '302'):
+                print(f"\n  ❌ [{code}] {article['headline'][:50]}")
+                print(f"      {img_url[:80]}")
+                if apply:
+                    try:
+                        sys.path.insert(0, PIPELINE_DIR)
+                        from image_sourcer import source_hero_image
+                        new_url, attribution, caption = source_hero_image(article)
+                        if new_url and new_url != img_url:
+                            updates = {'image_url': new_url, 'image_attribution': attribution or ''}
+                            if update_article(article['id'], updates):
+                                print(f"      ✅ Re-sourced: {new_url[:70]}")
+                                hero_fixed += 1
+                            else:
+                                print(f"      ❌ DB update failed")
+                        else:
+                            print(f"      ⚠ No replacement found")
+                    except Exception as e:
+                        print(f"      ❌ Re-source error: {e}")
+                else:
+                    print(f"      [DRY RUN] Would re-source")
+
+        print(f"\n  Hero check: {hero_checked} checked, {hero_fixed} fixed")
+
     print("\n✅ Enrichment complete!")
 
 
