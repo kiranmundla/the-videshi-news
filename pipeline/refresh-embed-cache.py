@@ -179,19 +179,15 @@ def fetch_ig_posts_batch(handles, results_limit=12):
         print("  ⚠ APIFY_API_TOKEN not set, skipping IG")
         return {}
 
-    urls = [f"https://www.instagram.com/{h}/" for h in handles]
     payload = json.dumps({
-        "directUrls": urls,
-        "resultsType": "posts",
+        "username": handles,
         "resultsLimit": results_limit,
-        "searchType": "user",
-        "searchLimit": 1,
     })
 
     try:
         result = subprocess.run(
             ["curl", "-sS", "-X", "POST",
-             f"https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync-get-dataset-items?token={APIFY_API_TOKEN}",
+             f"https://api.apify.com/v2/acts/apify~instagram-post-scraper/run-sync-get-dataset-items?token={APIFY_API_TOKEN}",
              "-H", "Content-Type: application/json",
              "-d", payload],
             capture_output=True, text=True, timeout=300,

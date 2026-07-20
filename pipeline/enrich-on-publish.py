@@ -373,19 +373,15 @@ def fetch_ig_posts_live(handles, results_limit=12):
     if not token or not handles:
         return {}
 
-    urls = [f"https://www.instagram.com/{h}/" for h in handles]
     payload = json.dumps({
-        "directUrls": urls,
-        "resultsType": "posts",
+        "username": handles,
         "resultsLimit": results_limit,
-        "searchType": "user",
-        "searchLimit": 1,
     })
 
     try:
         result = subprocess.run(
             ["curl", "-sS", "-X", "POST",
-             f"https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync-get-dataset-items?token={token}",
+             f"https://api.apify.com/v2/acts/apify~instagram-post-scraper/run-sync-get-dataset-items?token={token}",
              "-H", "Content-Type: application/json",
              "-d", payload],
             capture_output=True, text=True, timeout=180,
