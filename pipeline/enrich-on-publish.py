@@ -367,14 +367,101 @@ def enrich_x_from_search(article):
 
 # ─── IG enrichment from cache ────────────────────────────────────────────────
 
-def enrich_ig_from_cache(article, cache, registry):
-    """Try handle-based IG enrichment from cache. Returns shortcode or None."""
+def fetch_ig_posts_live(handles, results_limit=12):
+    """Live-fetch recent posts from IG handles via Apify. Returns {handle: [posts]}."""
+    token = os.environ.get("APIFY_API_TOKEN", "")
+    if not token or not handles:
+        return {}
+
+    urls = [f"https://www.instagram.com/{h}/" for h in handles]
+    payload = json.dumps({
+        "directUrls": urls,
+        "resultsType": "posts",
+        "resultsLimit": results_limit,
+        "searchType": "user",
+        "searchLimit": 1,
+    })
+
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", "-X", "POST",
+             f"https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync-get-dataset-items?token={token}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=180,
+        )
+        if result.returncode != 0:
+            return {}
+        data = json.loads(result.stdout)
+        if isinstance(data, dict) and "error" in data:
+            err_msg = data["error"].get("message", "")
+            if "limit exceeded" in err_msg.lower():
+                print(f"     ⚠ Apify monthly limit exceeded — skipping IG")
+            else:
+                print(f"     ⚠ Apify error: {err_msg[:80]}")
+            return {}
+    except Exception as e:
+        print(f"     ⚠ Apify call failed: {e}")
+        return {}
+
+    by_handle = {}
+    for item in data:
+        owner = (item.get("ownerUsername") or "").lower()
+        if not owner:
+            input_url = item.get("inputUrl", "")
+            m = re.search(r"instagram\.com/([^/]+)", input_url)
+            owner = m.group(1).lower() if m else ""
+        if owner:
+            by_handle.setdefault(owner, []).append(item)
+    return by_handle
+
+
+def prefetch_ig_for_articles(articles, registry):
+    """Collect matched IG handles across all articles and batch-fetch via Apify.
+    Returns a dict like the ig cache: {handle: {"posts": [...], "fetched_at": ...}}
+    """
+    all_handles = set()
+    for article in articles:
+        headline = article.get("headline", "")
+        body = article.get("body", "")
+        if has_embed(body, "instagram"):
+            continue  # already has an IG embed
+        matches = match_handles(headline, registry, "instagram")
+        for m in matches[:3]:
+            all_handles.add(m["handle"].lower())
+
+    if not all_handles:
+        return {}
+
+    handles_list = sorted(all_handles)
+    print(f"\n  IG pre-fetch: {len(handles_list)} handles via Apify ({', '.join(handles_list[:5])}{'...' if len(handles_list) > 5 else ''})")
+
+    results = fetch_ig_posts_live(handles_list, results_limit=12)
+    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    ig_live = {}
+    total = 0
+    for h in handles_list:
+        posts = results.get(h, [])
+        ig_live[h] = {"posts": posts, "fetched_at": now_iso}
+        total += len(posts)
+    print(f"  IG pre-fetch: {total} posts from {len([h for h in ig_live if ig_live[h]['posts']])} handles\n")
+    return ig_live
+
+
+def enrich_ig_from_cache(article, cache, registry, live_ig=None):
+    """Try handle-based IG enrichment from cache or live fetch. Returns shortcode or None."""
     headline = article["headline"]
     ig_matches = match_handles(headline, registry, "instagram")
     if not ig_matches:
         return None, None
 
+    # Merge cache and live data — live takes precedence
     ig_cache = cache.get("ig", {})
+    if live_ig:
+        merged = {**ig_cache, **live_ig}
+    else:
+        merged = ig_cache
 
     # Build topic keywords from headline
     stopwords = {
@@ -386,7 +473,7 @@ def enrich_ig_from_cache(article, cache, registry):
 
     for m in ig_matches[:3]:
         handle = m["handle"]
-        cached = ig_cache.get(handle)
+        cached = merged.get(handle)
         if not cached or not cached.get("posts"):
             continue
 
@@ -715,6 +802,15 @@ def main():
     eligible = [a for a in articles if a.get("category") in EMBED_CATEGORIES]
     print(f"\nArticles: {len(articles)} total, {len(eligible)} in eligible categories")
 
+    # Pre-fetch IG posts for matched handles (1 Apify call instead of cache)
+    ig_cache_empty = not any(
+        v.get("posts") for v in cache.get("ig", {}).values()
+        if isinstance(v, dict)
+    )
+    live_ig = {}
+    if ig_cache_empty:
+        live_ig = prefetch_ig_for_articles(eligible[:args.max], registry)
+
     report = {"processed": 0, "x_embeds": 0, "ig_embeds": 0, "yt_embeds": 0, "skipped": 0}
 
     for article in eligible[:args.max]:
@@ -756,15 +852,15 @@ def main():
 
         # ── IG enrichment ──
         if not has_embed(body, "instagram"):
-            shortcode, info = enrich_ig_from_cache(article, cache, registry)
+            shortcode, info = enrich_ig_from_cache(article, cache, registry, live_ig=live_ig)
             if shortcode:
                 ig_url = f"https://www.instagram.com/p/{shortcode}/"
-                print(f"     IG (cache): @{info['handle']} → {ig_url}")
+                source = "live" if live_ig else "cache"
+                print(f"     IG ({source}): @{info['handle']} → {ig_url}")
                 new_body = insert_embed_in_body(new_body, ig_url, "instagram")
                 new_embeds.append({"url": ig_url, "platform": "instagram"})
                 changes.append(f"IG(@{info['handle']})")
                 report["ig_embeds"] += 1
-            # No live search fallback for IG — cache only
         else:
             print(f"     IG: already has embed")
 
