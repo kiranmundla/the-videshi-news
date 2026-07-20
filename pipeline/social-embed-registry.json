@@ -1,6 +1,6 @@
 {
   "_description": "Official X and Threads handles for social embed sourcing. Writers search these accounts for relevant posts to embed in article bodies. Organized by category with persons + organizations.",
-  "_updated": "2026-06-07",
+  "_updated": "2026-07-20",
   "_usage": "When writing about a person or topic, check this registry. If a match exists, search their X/Threads/Instagram for a recent relevant post and embed the URL on its own line in the article body. Prefer posts WITH photos/videos. Organization accounts are great for official announcements and event photos. The frontend auto-renders X, Instagram, and Threads embeds from bare URLs on their own line.",
   "sports": {
     "persons": [
@@ -220,7 +220,7 @@
         "x": "FIDE_chess",
         "threads": null,
         "covers": "International chess",
-        "instagram": "faboride_chess"
+        "instagram": "fide_chess"
       },
       {
         "name": "RCB",
@@ -254,6 +254,20 @@
         "x": "MLCricket",
         "threads": null,
         "instagram": "mlcricket"
+      },
+      {
+        "name": "WWE",
+        "x": "WWE",
+        "threads": null,
+        "instagram": "wwe",
+        "covers": "Wrestling, WrestleMania"
+      },
+      {
+        "name": "Rajasthan Royals",
+        "x": "rajasthanroyals",
+        "threads": null,
+        "instagram": "rajasthanroyals",
+        "covers": "IPL franchise"
       }
     ]
   },
@@ -305,7 +319,7 @@
         "name": "Mamata Banerjee",
         "x": "MamataOfficial",
         "threads": null,
-        "instagram": "mamaborataofficial"
+        "instagram": "mamataofficial"
       },
       {
         "name": "Donald Trump",
@@ -412,7 +426,14 @@
         "x": "USAndIndia",
         "threads": null,
         "covers": "US visa in India, bilateral relations",
-        "instagram": "usaborembindia"
+        "instagram": "usembindia"
+      },
+      {
+        "name": "DHS",
+        "x": "DHSgov",
+        "threads": null,
+        "instagram": "dhsgov",
+        "covers": "Department of Homeland Security, border, immigration enforcement"
       }
     ]
   },
@@ -479,6 +500,12 @@
         "x": null,
         "threads": null,
         "note": "Search @Adobe for posts about him",
+        "instagram": null
+      },
+      {
+        "name": "Pat Gelsinger",
+        "x": "PGelsinger",
+        "threads": null,
         "instagram": null
       }
     ],
@@ -583,6 +610,41 @@
         "x": "AnthropicAI",
         "threads": null,
         "instagram": "anthropicai"
+      },
+      {
+        "name": "Tech Mahindra",
+        "x": "tech_mahindra",
+        "threads": null,
+        "instagram": "techmahindra",
+        "covers": "Indian IT services"
+      },
+      {
+        "name": "Intel",
+        "x": "intel",
+        "threads": null,
+        "instagram": "intel",
+        "covers": "Semiconductors, chips"
+      },
+      {
+        "name": "AMD",
+        "x": "AMD",
+        "threads": null,
+        "instagram": "amd",
+        "covers": "Semiconductors, GPUs"
+      },
+      {
+        "name": "Qualcomm",
+        "x": "Qualcomm",
+        "threads": null,
+        "instagram": "qualcomm",
+        "covers": "Mobile chips, Snapdragon"
+      },
+      {
+        "name": "HCL Technologies",
+        "x": "hcltech",
+        "threads": null,
+        "instagram": "hcltechnologies",
+        "covers": "Indian IT services"
       }
     ]
   },
@@ -808,7 +870,7 @@
         "name": "Adah Sharma",
         "x": null,
         "threads": null,
-        "instagram": "adaborz"
+        "instagram": "adahsharma"
       },
       {
         "name": "Aamir Khan",
@@ -823,6 +885,71 @@
         "threads": "",
         "instagram": "kartikaaryan",
         "keywords": []
+      },
+      {
+        "name": "Ajay Devgn",
+        "x": "ajaydevgn",
+        "threads": null,
+        "instagram": "ajaydevgn"
+      },
+      {
+        "name": "Shraddha Kapoor",
+        "x": "ShraddhaKapoor",
+        "threads": null,
+        "instagram": "shraddhakapoor"
+      },
+      {
+        "name": "Yash",
+        "x": "TheNameIsYash",
+        "threads": null,
+        "instagram": "thenameisyash",
+        "keywords": [
+          "KGF",
+          "Toxic",
+          "Yash"
+        ]
+      },
+      {
+        "name": "Mindy Kaling",
+        "x": "mindykaling",
+        "threads": null,
+        "instagram": "mindykaling"
+      },
+      {
+        "name": "Mrunal Thakur",
+        "x": "mrunalthakur",
+        "threads": null,
+        "instagram": "mrunalthakur"
+      },
+      {
+        "name": "Huma Qureshi",
+        "x": "humasqureshi",
+        "threads": null,
+        "instagram": "iamhumaq"
+      },
+      {
+        "name": "Kiara Advani",
+        "x": null,
+        "threads": null,
+        "instagram": "kiaraadvani"
+      },
+      {
+        "name": "Sidharth Malhotra",
+        "x": "SidMalhotra",
+        "threads": null,
+        "instagram": "sidmalhotra"
+      },
+      {
+        "name": "Kangana Ranaut",
+        "x": "KanganaTeam",
+        "threads": null,
+        "instagram": "kanganaranaut"
+      },
+      {
+        "name": "Sai Pallavi",
+        "x": "Sai_Pallavi92",
+        "threads": null,
+        "instagram": "saipallavi.senthamarai"
       }
     ],
     "organizations": [
@@ -859,7 +986,28 @@
         "x": "yrf",
         "threads": null,
         "covers": "Yash Raj Films",
-        "instagram": "yaborrf"
+        "instagram": "yrf"
+      },
+      {
+        "name": "Maddock Films",
+        "x": "MaddockFilms",
+        "threads": null,
+        "instagram": "maddockfilms",
+        "covers": "Bollywood production (Stree, Bhediya, Munjya)"
+      },
+      {
+        "name": "ZEE5",
+        "x": "ZEE5India",
+        "threads": null,
+        "instagram": "zee5",
+        "covers": "Indian OTT platform"
+      },
+      {
+        "name": "Disney+ Hotstar",
+        "x": "DisneyPlusHS",
+        "threads": null,
+        "instagram": "disneyplushotstar",
+        "covers": "Indian streaming"
       }
     ]
   },
@@ -876,7 +1024,7 @@
         "x": null,
         "threads": null,
         "note": "Search @RIL_Updates for posts",
-        "instagram": "ambaborani_mukesh"
+        "instagram": "ambani_mukesh"
       }
     ],
     "organizations": [
@@ -907,7 +1055,7 @@
       },
       {
         "name": "Reliance Industries",
-        "x": "RIaborLlaborimited",
+        "x": "RILLimited",
         "threads": null,
         "instagram": "reliancejio"
       },
@@ -916,6 +1064,41 @@
         "x": "TataCompanies",
         "threads": null,
         "instagram": "tatacompanies"
+      },
+      {
+        "name": "HDFC Bank",
+        "x": "HDFC_Bank",
+        "threads": null,
+        "instagram": "hdfcbank",
+        "covers": "Indian banking, loans, markets"
+      },
+      {
+        "name": "Bajaj Auto",
+        "x": "BajajAuto",
+        "threads": null,
+        "instagram": null,
+        "covers": "Indian automotive, exports"
+      },
+      {
+        "name": "SBI",
+        "x": "TheOfficialSBI",
+        "threads": null,
+        "instagram": "theofficalsbi",
+        "covers": "State Bank of India"
+      },
+      {
+        "name": "ICICI Bank",
+        "x": "ICICIBank",
+        "threads": null,
+        "instagram": "icicibank",
+        "covers": "Indian banking"
+      },
+      {
+        "name": "Adani Group",
+        "x": "AdaniOnline",
+        "threads": null,
+        "instagram": "adanionline",
+        "covers": "Adani conglomerate, ports, energy"
       }
     ]
   },
@@ -945,6 +1128,12 @@
         "threads": null,
         "note": "Search @WorldBank for posts about him",
         "instagram": null
+      },
+      {
+        "name": "Tulsi Gabbard",
+        "x": "TulsiGabbard",
+        "threads": null,
+        "instagram": "tulsigabbard"
       }
     ],
     "organizations": [
@@ -993,6 +1182,32 @@
         "threads": null,
         "covers": "Indian railways, travel",
         "instagram": "irctc_official"
+      }
+    ]
+  },
+  "food": {
+    "persons": [
+      {
+        "name": "Vikas Khanna",
+        "x": "TheVikasKhanna",
+        "threads": null,
+        "instagram": "vikaskhanna"
+      }
+    ],
+    "organizations": [
+      {
+        "name": "Zomato",
+        "x": "zomato",
+        "threads": null,
+        "instagram": "zomato",
+        "covers": "Food delivery, restaurant discovery"
+      },
+      {
+        "name": "Swiggy",
+        "x": "Swiggy",
+        "threads": null,
+        "instagram": "swiggyindia",
+        "covers": "Food delivery"
       }
     ]
   }
