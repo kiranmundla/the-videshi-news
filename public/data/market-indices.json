@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-21T00:57:41.525223+00:00",
+  "last_updated": "2026-07-21T01:27:36.801894+00:00",
   "indices": [
     {
       "symbol": "SPX",
@@ -45,17 +45,17 @@
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4028.8,
-      "change": 1.0,
-      "change_pct": 0.02
+      "value": 4035.0,
+      "change": 7.2,
+      "change_pct": 0.18
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 56.99,
-      "change": -0.31,
-      "change_pct": -0.54
+      "value": 57.4,
+      "change": 0.11,
+      "change_pct": 0.19
     }
   ]
 }
