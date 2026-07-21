@@ -850,7 +850,10 @@ def _download_and_upload_photo(photo_url, slug):
             w, h = img.size
             cx, cy = w // 2, h // 2
             crop = img.crop((max(0, cx-100), max(0, cy-100), min(w, cx+100), min(h, cy+100)))
-            pixels = list(crop.getdata())
+            import warnings
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", DeprecationWarning)
+                pixels = list(crop.getdata())
             total = len(pixels)
             near_black = sum(1 for r, g, b in pixels if (r + g + b) / 3 < 30)
             near_white = sum(1 for r, g, b in pixels if (r + g + b) / 3 > 225)
@@ -1089,24 +1092,46 @@ def main():
             new_body = insert_embed_in_body(new_body, embed_url, platform)
             changes.append(change_label)
 
+        # ── Hero image upgrade ──
+        hero_upgrade = None
+        image_url = article.get("image_url", "") or ""
+        if _is_stock_hero(image_url):
+            # Gather tweet candidates for hero photo (reuse topic search)
+            topic_q = build_topic_query(headline)
+            if topic_q:
+                hero_tweets = live_search_x(topic_q, max_results=20, hours=72)
+                if hero_tweets:
+                    hero_upgrade = try_hero_upgrade(article, hero_tweets)
+                    if hero_upgrade:
+                        changes.append(f"Hero({hero_upgrade['source_handle']})")
+                        report["hero_upgrades"] += 1
+                        print(f"     🖼 Hero upgrade: {hero_upgrade['source_handle']} → {hero_upgrade['new_hero'][:60]}")
+                    else:
+                        print(f"     🖼 Hero: stock, but no valid photo tweet found")
+            else:
+                print(f"     🖼 Hero: stock, but no topic query")
+
         # ── Apply changes ──
         if changes:
             change_desc = " + ".join(changes)
             if args.apply:
                 updates = {"body": new_body, "social_embeds": new_embeds}
+                if hero_upgrade:
+                    updates["image_url"] = hero_upgrade["new_hero"]
+                    updates["image_caption"] = hero_upgrade["caption"]
                 if sb_patch(article["id"], updates):
-                    print(f"     ✅ Embedded: {change_desc}")
+                    print(f"     ✅ Applied: {change_desc}")
                 else:
                     print(f"     ❌ Patch failed")
             else:
-                print(f"     [DRY RUN] Would embed: {change_desc}")
+                print(f"     [DRY RUN] Would apply: {change_desc}")
             report["processed"] += 1
         else:
             report["skipped"] += 1
 
     elapsed = time.time() - start
     print(f"\n═══ Done in {elapsed:.1f}s ═══")
-    print(f"Processed: {report['processed']}, Skipped: {report['skipped']}")
+    print(f"Processed: {report['processed']}, Skipped: {report['skipped']}, Hero upgrades: {report['hero_upgrades']}")
     print(f"Embeds: {report['x_embeds']} X + {report['ig_embeds']} IG + {report['yt_embeds']} YT = {report['x_embeds']+report['ig_embeds']+report['yt_embeds']} total")
     print(f"YouTube API units used: {_YT_QUOTA_USED}")
 

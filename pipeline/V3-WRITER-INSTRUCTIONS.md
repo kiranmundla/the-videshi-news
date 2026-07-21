@@ -130,33 +130,27 @@ Insert with `status="published"`. Required fields:
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`
 
-## Step 4 — Enrich articles (inline images, data cards, pull quotes)
+## Step 4 — Enrich articles (embeds, hero upgrade, inline images, data cards)
 After publishing, run enrichment on the articles you just wrote:
 
 ```bash
 cd ~/workspace/the-videshi-news/pipeline
 
 # Load env
-set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; source ~/workspace/.env.google-ai; source ~/workspace/.env.pexels 2>/dev/null; set +a
+set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; source ~/workspace/.env.google-ai; source ~/workspace/.env.pexels 2>/dev/null; source ~/workspace/.env.twitterapi-io; source ~/workspace/.env.apify; source ~/workspace/.env.youtube; set +a
 
-# Inline images + pull quotes + embeds (last 3 hours covers this run's articles)
+# PRIMARY: Social embeds (X, IG, YouTube) + hero image upgrade from tweet photos
+# This is the main enrichment — articles should look complete after this step
+timeout 180 python3 -u enrich-on-publish.py --hours 3 --apply 2>&1
+
+# Inline images + pull quotes (body enrichment, secondary polish)
 timeout 600 python3 -u enrich-articles.py --hours 3 --apply 2>&1
 
 # Data cards (navy infographic cards with stats)
 timeout 600 python3 -u enrich-data-cards.py --since-hours 3 --limit 10 2>&1
 ```
 
-If either enrichment script fails, continue — the articles are already published and readable without enrichment.
-
-### Tweet embeds + hero image upgrade
-After enrichment, add tweet embeds and upgrade stock hero images from tweet photos:
-```bash
-# Tweet embeds (X) + hero upgrade from tweet photos
-set -a; source ~/workspace/.env.twitterapi-io; set +a
-timeout 120 python3 -u tweet-enricher.py --hours 3 --apply --max 5 2>&1
-```
-
-This finds authoritative tweets about each article, embeds the best one inline, and replaces Pexels/stock hero images with real photos from high-authority tweets. If it fails, continue.
+If any enrichment script fails, continue — the articles are already published and readable without enrichment.
 
 ## Step 5 — Rebuild feeds
 ```
