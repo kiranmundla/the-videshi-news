@@ -43,6 +43,7 @@ def load_env(path):
 
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.twitterapi-io"))
+load_env(os.path.expanduser("~/workspace/.env.openai"))
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -58,6 +59,7 @@ REST = f"{SB_URL}/rest/v1"
 SB_HEADERS = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
 
 TWITTERAPI_IO_KEY = os.environ.get("TWITTERAPI_IO_KEY", "")
+OAI_KEY = os.environ.get("OPENAI_API_KEY", "")
 TWITTERAPI_IO_BASE = "https://api.twitterapi.io"
 
 VERIFY_SCRIPT = os.path.join(_dir, "verify-tweet.sh")
@@ -194,16 +196,102 @@ def source_authority(tweet):
     return 0
 
 
-def build_topic_query(headline):
-    """Extract 3-5 distinctive keywords from headline for topic search."""
-    stopwords = {"the","a","an","in","on","at","to","for","of","and","or","is","are",
-                 "was","were","has","had","have","been","be","will","can","may","with",
-                 "its","it","by","from","that","this","says","said","after","over",
-                 "new","set","how","why","what","who","but","not","all","into","up"}
-    words = re.findall(r'[A-Za-z]{3,}', headline)
-    keywords = [w for w in words if w.lower() not in stopwords]
-    # Take first 5 distinctive words
-    return " ".join(keywords[:5])
+def build_topic_query(headline, body=""):
+    """Build a smart X search query: GPT picks the distinctive entities,
+    heuristic fallback prioritizes proper nouns over generic words."""
+    # Try GPT first — much better at picking "Spain World Cup Champions"
+    # over "Nearly Two Million Fans Line"
+    q = _gpt_topic_query(headline, body)
+    if q:
+        return _sanitize_topic_query(q)
+    # Heuristic fallback: proper nouns first, then content words
+    return _sanitize_topic_query(_heuristic_topic_query(headline))
+
+
+_TOPIC_STOPWORDS = {"the","a","an","in","on","at","to","for","of","and","or","is","are",
+                    "was","were","has","had","have","been","be","will","can","may","with",
+                    "its","it","by","from","that","this","says","said","after","over",
+                    "new","set","how","why","what","who","but","not","all","into","up",
+                    "as","nearly","about","more","than","could","would","should","just",
+                    "also","now","out","here","there","come","home","line","get","got",
+                    "take","make","made","two","three","four","five","first","last"}
+
+
+def _heuristic_topic_query(headline, max_terms=5):
+    """Fallback: proper nouns first (capitalized words carry the topic),
+    then pad with content words."""
+    head = re.split(r'[.\u2014:;!?]', headline)[0]
+    words = re.findall(r"[A-Za-z']+", head.replace('-', ' '))
+    proper, other = [], []
+    for w in words:
+        if w.lower() in _TOPIC_STOPWORDS or len(w) < 3:
+            continue
+        if w[0].isupper():
+            proper.append(w)
+        else:
+            other.append(w)
+    terms, seen = [], set()
+    for w in proper + other:
+        k = w.lower()
+        if k not in seen:
+            seen.add(k)
+            terms.append(w)
+        if len(terms) >= max_terms:
+            break
+    return " ".join(terms)
+
+
+def _gpt_topic_query(headline, body=""):
+    """Ask GPT-4o-mini for the best 2-5 keyword X search query."""
+    snippet = (body or "")[:1200]
+    prompt = (
+        "You are helping search X (Twitter) for a post relevant to a news "
+        "article. Return the BEST short search query.\n\n"
+        "Rules:\n"
+        "- 2 to 5 words, only the most distinctive terms (people, orgs, places, "
+        "the specific event). Use actual proper names.\n"
+        "- NO operators, hashtags, quotes, punctuation, or boolean words.\n"
+        "- Prefer specific named entities over generic words.\n\n"
+        f"HEADLINE: {headline}\n"
+        f"ARTICLE: {snippet}\n\n"
+        'Respond in JSON: {{"query": "the search keywords"}}'
+    )
+    payload = json.dumps({
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.2,
+        "max_tokens": 60,
+        "response_format": {"type": "json_object"}
+    })
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {OAI_KEY}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(r.stdout)
+        q = json.loads(data["choices"][0]["message"]["content"]).get("query", "")
+        q = re.sub(r'[^\w\s]', ' ', q).strip()
+        if q:
+            return " ".join(q.split()[:6])
+    except Exception as e:
+        print(f"     ⚠ GPT topic query error: {e}")
+    return ""
+
+
+def _sanitize_topic_query(q):
+    """Strip leading/trailing boolean operators that X rejects."""
+    if not q:
+        return q
+    ops = {"and", "or", "not"}
+    toks = q.split()
+    while toks and toks[0].lower() in ops:
+        toks.pop(0)
+    while toks and toks[-1].lower() in ops:
+        toks.pop()
+    return " ".join(toks).strip()
 
 
 # ─── Registry matching ────────────────────────────────────────────────────────
@@ -413,7 +501,7 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             tweets = fetch_recent_tweets(handle, hours=max(hours, 48), max_results=20)
             if not tweets:
                 # Fallback: topic search when handle timeline is empty
-                topic_q = build_topic_query(headline)
+                topic_q = build_topic_query(headline, body)
                 if topic_q:
                     tweets = search_topic_tweets(topic_q, hours=max(hours, 48))
             if not tweets:
@@ -487,7 +575,7 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         a = c["article"]
         headline = a["headline"]
         body = a.get("body", "") or ""
-        topic_q = build_topic_query(headline)
+        topic_q = build_topic_query(headline, body)
         if not topic_q:
             continue
 
