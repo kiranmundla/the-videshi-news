@@ -1,6 +1,6 @@
 {
-  "_refreshed_at": "2026-07-20T09:59:21.796840+00:00",
-  "_rotation_index": 16,
+  "_refreshed_at": "2026-07-21T00:59:24.966447+00:00",
+  "_rotation_index": 17,
   "handles": {
     "technology:sundarpichai": [
       {
@@ -122,36 +122,20 @@
     ],
     "technology:elonmusk": [
       {
+        "tweet_url": "https://x.com/elonmusk/status/2079261553136734239",
+        "handle": "elonmusk",
+        "tweet_id": "2079261553136734239",
+        "category": "technology",
+        "text": "Grok for Excel is now live",
+        "published_at": "2026-07-20T17:45:59.000Z"
+      },
+      {
         "tweet_url": "https://x.com/elonmusk/status/2078973008358555851",
         "handle": "elonmusk",
         "tweet_id": "2078973008358555851",
         "category": "technology",
         "text": "Grok is good at predictions",
         "published_at": "2026-07-19T22:39:25.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/elonmusk/status/2078972489925812454",
-        "handle": "elonmusk",
-        "tweet_id": "2078972489925812454",
-        "category": "technology",
-        "text": "\ud83c\uddea\ud83c\uddf8 \ud83c\uddea\ud83c\uddf8 Congratulations Spain!! \ud83c\uddea\ud83c\uddf8 \ud83c\uddea\ud83c\uddf8",
-        "published_at": "2026-07-19T22:37:21.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/elonmusk/status/2078971885488919010",
-        "handle": "elonmusk",
-        "tweet_id": "2078971885488919010",
-        "category": "technology",
-        "text": "Next Starship launch attempt on Friday",
-        "published_at": "2026-07-19T22:34:57.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/elonmusk/status/2078971746896449595",
-        "handle": "elonmusk",
-        "tweet_id": "2078971746896449595",
-        "category": "technology",
-        "text": "The @SpaceX team is amazing",
-        "published_at": "2026-07-19T22:34:24.000Z"
       }
     ],
     "technology:tim_cook": [
@@ -282,6 +266,14 @@
     ],
     "technology:nithin0dha": [
       {
+        "tweet_url": "https://x.com/Nithin0dha/status/2079180068560253052",
+        "handle": "Nithin0dha",
+        "tweet_id": "2079180068560253052",
+        "category": "technology",
+        "text": "This is my first long conversation in a very, very long time.\n\nThe idea was to talk about all the things that make Zerodha what it is today, because a lot of people don\u2019t really know how differently Zerodha has been built compared to most other companies.\n\nWe\u2019ve never raised external capital. We don",
+        "published_at": "2026-07-20T12:22:12.000Z"
+      },
+      {
         "tweet_url": "https://x.com/Nithin0dha/status/2078010961160798372",
         "handle": "Nithin0dha",
         "tweet_id": "2078010961160798372",
@@ -312,14 +304,6 @@
         "category": "technology",
         "text": "When we started the discount brokerage (flat fee per trade) model in India in 2010, we decided to charge the same fee regardless of trade size. The logic was simple: if the effort to execute a trade is the same, why should customers pay differently? We applied the same logic to mutual funds. We didn",
         "published_at": "2026-07-09T10:14:29.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/Nithin0dha/status/2074098865511563473",
-        "handle": "Nithin0dha",
-        "tweet_id": "2074098865511563473",
-        "category": "technology",
-        "text": "https://t.co/irgPw3EBqE",
-        "published_at": "2026-07-06T11:51:19.000Z"
       }
     ],
     "technology:anandmahindra": [
@@ -408,28 +392,28 @@
     ],
     "technology:vijayshekhar": [
       {
+        "tweet_url": "https://x.com/vijayshekhar/status/2079248953871315412",
+        "handle": "vijayshekhar",
+        "tweet_id": "2079248953871315412",
+        "category": "technology",
+        "text": "Started the year with the highest ever EBITDA \ud83d\ude4f\ud83c\udffc",
+        "published_at": "2026-07-20T16:55:55.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/vijayshekhar/status/2079231048014299567",
+        "handle": "vijayshekhar",
+        "tweet_id": "2079231048014299567",
+        "category": "technology",
+        "text": "Coke gets new brand identity and they call it : Makes Coca-Cola more Coca-Cola. \nNew font. Nice look \ud83d\udc40  https://t.co/r2vBrYxpsq",
+        "published_at": "2026-07-20T15:44:46.000Z"
+      },
+      {
         "tweet_url": "https://x.com/vijayshekhar/status/2079062626819244420",
         "handle": "vijayshekhar",
         "tweet_id": "2079062626819244420",
         "category": "technology",
         "text": "Coding is the killer app for Gen AI. \n\nConsumers summarized / created documents &amp; fun images. \ud83e\udd16\n\nWorld is now finishing level 1 of coding era. Harness for whole SDLC changes + open source models will the next generation of Gen AI. #aiBull.",
         "published_at": "2026-07-20T04:35:32.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/vijayshekhar/status/2078370365680824516",
-        "handle": "vijayshekhar",
-        "tweet_id": "2078370365680824516",
-        "category": "technology",
-        "text": "Oh I didn't know it was a story like that behind Rocky ! \nVery inspirational underdog -- my kind'a stuff here. \nI Play Rocky : Official Trailer \n\n https://t.co/bh88HdhSTg",
-        "published_at": "2026-07-18T06:44:44.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/vijayshekhar/status/2077930717636604051",
-        "handle": "vijayshekhar",
-        "tweet_id": "2077930717636604051",
-        "category": "technology",
-        "text": "The word should be Open Frontier Challenger model.",
-        "published_at": "2026-07-17T01:37:43.000Z"
       }
     ],
     "entertainment:iamsrk": [
@@ -636,6 +620,14 @@
     ],
     "entertainment:srbachchan": [
       {
+        "tweet_url": "https://x.com/SrBachchan/status/2079316460716093943",
+        "handle": "SrBachchan",
+        "tweet_id": "2079316460716093943",
+        "category": "entertainment",
+        "text": "T 5806 - \u0916\u0947\u0932 \u0938\u092e\u093e\u092a\u094d\u0924 \u0939\u094b \u0917\u092f\u093e  ! \u092a\u0930 \u0915\u093e\u092e \u091a\u0932 \u0930\u0939\u093e \u0939\u0948",
+        "published_at": "2026-07-20T21:24:10.000Z"
+      },
+      {
         "tweet_url": "https://x.com/SrBachchan/status/2078997536044626300",
         "handle": "SrBachchan",
         "tweet_id": "2078997536044626300",
@@ -666,17 +658,17 @@
         "category": "entertainment",
         "text": "T 5802 - \u0938\u094b\u091a\u093e \u0925\u093e \u0915\u094d\u092f\u093e, \u0915\u094d\u092f\u093e \u0939\u094b \u0917\u092f\u093e https://t.co/SMSnWUT5ZZ",
         "published_at": "2026-07-16T00:32:40.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/SrBachchan/status/2077147842385416562",
-        "handle": "SrBachchan",
-        "tweet_id": "2077147842385416562",
-        "category": "entertainment",
-        "text": "T 5801 -\u0916\u0947\u0932 \u0916\u093c\u0924\u094d\u092e, \u092a\u0948\u0938\u093e \u0939\u091c\u093c\u092e",
-        "published_at": "2026-07-14T21:46:51.000Z"
       }
     ],
     "entertainment:arrahman": [
+      {
+        "tweet_url": "https://x.com/arrahman/status/2079212233415176324",
+        "handle": "arrahman",
+        "tweet_id": "2079212233415176324",
+        "category": "entertainment",
+        "text": "Every new medium offers a new way to tell a story.\n\nLooking forward to sharing something we\u2019ve been building.\n\nTomorrow.\n\n#arrimmersive https://t.co/4L9KNUiDLN",
+        "published_at": "2026-07-20T14:30:00.000Z"
+      },
       {
         "tweet_url": "https://x.com/arrahman/status/2078704280077549688",
         "handle": "arrahman",
@@ -708,14 +700,6 @@
         "category": "entertainment",
         "text": "We will miss you\u00a0Bagyaraj sir Rest in peace. https://t.co/IIW4S8gH5C",
         "published_at": "2026-06-27T16:03:18.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/arrahman/status/2070018469568094459",
-        "handle": "arrahman",
-        "tweet_id": "2070018469568094459",
-        "category": "entertainment",
-        "text": "I am deeply humbled to receive the Academy of Achievement Award this evening. #Washington #PeterJacksonnz  #EPI https://t.co/pdGfCW9131",
-        "published_at": "2026-06-25T05:37:16.000Z"
       }
     ],
     "entertainment:beingsalmankhan": [
@@ -1570,6 +1554,14 @@
     ],
     "sports:pvsindhu1": [
       {
+        "tweet_url": "https://x.com/Pvsindhu1/status/2079239939846443346",
+        "handle": "Pvsindhu1",
+        "tweet_id": "2079239939846443346",
+        "category": "sports",
+        "text": "Shivani, I have to say this first\u2026 you\u2019re such an incredible writer. \u2764\ufe0f I genuinely love reading everything you write.\n\nAlso\u2026 getting Datta to talk this much genuinely feels like an achievement. \ud83d\ude02 He\u2019s usually the one asking all the questions, never answering them.\n\nThe recovery experiments at home ",
+        "published_at": "2026-07-20T16:20:06.000Z"
+      },
+      {
         "tweet_url": "https://x.com/Pvsindhu1/status/2079133557390561733",
         "handle": "Pvsindhu1",
         "tweet_id": "2079133557390561733",
@@ -1600,14 +1592,6 @@
         "category": "sports",
         "text": "Many thanks, Sadhguru. Grateful, as always, for your blessings, dear Guruji. \u2764\ufe0f",
         "published_at": "2026-07-19T12:48:20.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/Pvsindhu1/status/2078822760017719538",
-        "handle": "Pvsindhu1",
-        "tweet_id": "2078822760017719538",
-        "category": "sports",
-        "text": "Thank you so much, DK sir. \ud83d\ude4f Bangalore has become my second home, I\u2019d probably call it my primary residence now! I\u2019m incredibly grateful to this beautiful city and to your leadership. \u2764\ufe0f",
-        "published_at": "2026-07-19T12:42:23.000Z"
       }
     ],
     "sports:realmanubhaker": [
@@ -1738,6 +1722,30 @@
     ],
     "news:drsjaishankar": [
       {
+        "tweet_url": "https://x.com/DrSJaishankar/status/2079240627603341369",
+        "handle": "DrSJaishankar",
+        "tweet_id": "2079240627603341369",
+        "category": "news",
+        "text": "A good conversation with @FM_Saidov of Uzbekistan today. \n\nWe spoke about deepening our bilateral ties, including in trade, investment and other areas. \n\n\ud83c\uddee\ud83c\uddf3 \ud83c\uddfa\ud83c\uddff",
+        "published_at": "2026-07-20T16:22:50.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/DrSJaishankar/status/2079228051905495096",
+        "handle": "DrSJaishankar",
+        "tweet_id": "2079228051905495096",
+        "category": "news",
+        "text": "Delighted to meet FM Panama @javierachapma in New Delhi today. \n\nUnderscored the importance of deepening India\u2019s engagement with Panama as a gateway to Latin America and Carribean region. \n\nOur wide - ranging discussions included advancing our trade, business, development, maritime, health, agricult",
+        "published_at": "2026-07-20T15:32:52.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/DrSJaishankar/status/2079185568827863332",
+        "handle": "DrSJaishankar",
+        "tweet_id": "2079185568827863332",
+        "category": "news",
+        "text": "My opening remarks at meeting with FM @javierachapma of Panama.\n\n\ud83c\uddee\ud83c\uddf3 \ud83c\uddf5\ud83c\udde6  https://t.co/6uojZhaAVK",
+        "published_at": "2026-07-20T12:44:03.000Z"
+      },
+      {
         "tweet_url": "https://x.com/DrSJaishankar/status/2079124022646981077",
         "handle": "DrSJaishankar",
         "tweet_id": "2079124022646981077",
@@ -1752,30 +1760,6 @@
         "category": "news",
         "text": "Warm greetings to the Government and people of Colombia on their Independence Day.\n\n@CancilleriaCol \n\n\ud83c\uddee\ud83c\uddf3\ud83c\udde8\ud83c\uddf4 https://t.co/HYFBr4VteU",
         "published_at": "2026-07-20T02:09:06.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/DrSJaishankar/status/2078740872221671892",
-        "handle": "DrSJaishankar",
-        "tweet_id": "2078740872221671892",
-        "category": "news",
-        "text": "Congratulations @Pvsindhu1 on becoming the first from \ud83c\uddee\ud83c\uddf3 to win the 2026 Japan Open women's singles title. \n\nWe are proud of you! https://t.co/1AzpdcRHLl",
-        "published_at": "2026-07-19T07:16:59.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/DrSJaishankar/status/2078720452202234308",
-        "handle": "DrSJaishankar",
-        "tweet_id": "2078720452202234308",
-        "category": "news",
-        "text": "A pleasure to meet Dr. Hussein Ali Mwinyi @DrHmwinyi, President of Zanzibar, United Republic of Tanzania and Chairman of the Revolutionary Council, today in Delhi.\n\nWe discussed expanding our cooperation in higher education, capacity building, water supply, health, AI, digital and other priority sec",
-        "published_at": "2026-07-19T05:55:51.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/DrSJaishankar/status/2078375213952053431",
-        "handle": "DrSJaishankar",
-        "tweet_id": "2078375213952053431",
-        "category": "news",
-        "text": "India\u2019s space ambitions soar to new heights!\n\nThe successful launch of #Vikram1, India\u2019s first privately developed launch vehicle, by #SkyrootAirspace @SkyrootA today, is truly historic.\n\nThe \ud83d\ude80 is a reflection of what can be achieved when innovation & entrepreneurial drive of \ud83c\uddee\ud83c\uddf3\u2019s youth are backed b",
-        "published_at": "2026-07-18T07:04:00.000Z"
       }
     ],
     "news:amitshah": [
@@ -1848,6 +1832,22 @@
     ],
     "news:rahulgandhi": [
       {
+        "tweet_url": "https://x.com/RahulGandhi/status/2079221878770803174",
+        "handle": "RahulGandhi",
+        "tweet_id": "2079221878770803174",
+        "category": "news",
+        "text": "\u0936\u093e\u0902\u0924\u093f\u092a\u0942\u0930\u094d\u0923 \u0935\u093f\u0930\u094b\u0927 \u090f\u0915 \u0905\u091f\u0942\u091f \u0914\u0930 \u092e\u094c\u0932\u093f\u0915 \u0905\u0927\u093f\u0915\u093e\u0930 \u0939\u0948\u0964 \n\n\u092d\u093e\u0930\u0924 \u0915\u0947 \u0928\u093f\u0930\u094d\u0926\u094b\u0937 \u091b\u093e\u0924\u094d\u0930\u094b\u0902 \u092a\u0930 \u0939\u092e\u0932\u093e \u0915\u0930\u0928\u0947 \u0915\u0947 \u0906\u0926\u0947\u0936\u094b\u0902 \u0915\u093e \u0906\u0901\u0916\u0947\u0902 \u092c\u0902\u0926 \u0915\u0930\u0915\u0947 \u092a\u093e\u0932\u0928 \u0915\u0930\u0928\u0947 \u0935\u093e\u0932\u0947 \u0939\u0930 \u092a\u0941\u0932\u093f\u0938 \u0905\u0927\u093f\u0915\u093e\u0930\u0940 \u0914\u0930 \u0938\u0930\u0915\u093e\u0930\u0940 \u0915\u0930\u094d\u092e\u091a\u093e\u0930\u0940 \u092f\u0947 \u092c\u093e\u0924 \u0927\u094d\u092f\u093e\u0928 \u0930\u0916\u0947\u0902: \n\n\u0938\u0902\u0935\u093f\u0927\u093e\u0928 \u0939\u0940 \u0906\u092a\u0915\u093e \u092e\u093e\u0932\u093f\u0915 \u0939\u0948\u0964\n\u0938\u0924\u094d\u0924\u093e \u0939\u092e\u0947\u0936\u093e \u0915\u0947 \u0932\u093f\u090f \u0928\u0939\u0940\u0902 \u0930\u0939\u0924\u0940\u0964\n\u091c\u0935\u093e\u092c\u0926\u0947\u0939\u0940 \u091c\u093c\u0930\u0942\u0930 \u0924\u092f \u0915\u0940 \u091c\u093e\u090f\u0917\u0940\u0964\n\nPeaceful protest is a sacred an",
+        "published_at": "2026-07-20T15:08:20.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/RahulGandhi/status/2079185498082582748",
+        "handle": "RahulGandhi",
+        "tweet_id": "2079185498082582748",
+        "category": "news",
+        "text": "\u092a\u094d\u0930\u0927\u093e\u0928\u092e\u0902\u0924\u094d\u0930\u0940 \u092e\u094b\u0926\u0940 \u092d\u093e\u0930\u0924 \u0915\u0947 \u0907\u0924\u093f\u0939\u093e\u0938 \u0915\u0947 \u0938\u092c\u0938\u0947 \u092f\u0941\u0935\u093e-\u0935\u093f\u0930\u094b\u0927\u0940 \u092a\u094d\u0930\u0927\u093e\u0928\u092e\u0902\u0924\u094d\u0930\u0940 \u0939\u0948\u0902 - \u0907\u0924\u0928\u0947 \u092f\u0941\u0935\u093e \u0935\u093f\u0930\u094b\u0927\u0940 \u0915\u093f \u090f\u0915 \u0928\u093e\u0915\u093e\u092e \u0936\u093f\u0915\u094d\u0937\u093e \u092e\u0902\u0924\u094d\u0930\u0940 \u0927\u0930\u094d\u092e\u0947\u0902\u0926\u094d\u0930 \u092a\u094d\u0930\u0927\u093e\u0928 \u0915\u093e \u0907\u0938\u094d\u0924\u0940\u092b\u093e \u092d\u0940 \u0928\u0939\u0940\u0902 \u0932\u0947 \u0938\u0915\u0924\u0947\u0964\n\n152 \u092a\u0947\u092a\u0930 \u0932\u0940\u0915\u0964 7.5 \u0915\u0930\u094b\u0921\u093c \u091b\u093e\u0924\u094d\u0930 \u092a\u0940\u0921\u093c\u093f\u0924\u0964 \u0914\u0930 \u0938\u091c\u093c\u093e \u090f\u0915 \u0926\u094b\u0937\u0940 \u0915\u094b \u092d\u0940 \u0928\u0939\u0940\u0902\u0964 \u0938\u091c\u093e \u0915\u093f\u0938\u0947 \u092e\u093f\u0932\u0940? \u092e\u0947\u0939\u0928\u0924\u0940 \u092f\u0941\u0935\u093e\u0913\u0902 \u0915\u094b\u0964\n\n\u0914\u0930 \u091c\u092c \u0907\u0928 \u092c\u091a\u094d\u091a\u094b\u0902 \u0928\u0947 \u0936\u093f\u0915\u094d\u0937\u093e \u0915\u0947 \u091c\u093e\u092f\u091c\u093c \u0938\u0935\u093e\u0932",
+        "published_at": "2026-07-20T12:43:46.000Z"
+      },
+      {
         "tweet_url": "https://x.com/RahulGandhi/status/2078732536617070653",
         "handle": "RahulGandhi",
         "tweet_id": "2078732536617070653",
@@ -1870,25 +1870,33 @@
         "category": "news",
         "text": "The successful flight of Vikram-1, India\u2019s first privately developed orbital rocket, is a tribute to years of patience, precision and quiet work by scientists, engineers and technicians.\n\nMy congratulations to the remarkable young team at Skyroot Aerospace, and to everyone at ISRO and IN-SPACe who s",
         "published_at": "2026-07-18T16:02:41.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/RahulGandhi/status/2078453386408759324",
-        "handle": "RahulGandhi",
-        "tweet_id": "2078453386408759324",
-        "category": "news",
-        "text": "\u0938\u0930\u0947\u0906\u092e \u092d\u0935\u093f\u0937\u094d\u092f \u0915\u0940 \u0928\u0940\u0932\u093e\u092e\u0940\u0964\n\nPaper Leak Rate Card:\n* NEET - \u20b940 \u0932\u093e\u0916\n* IIT-JEE - \u20b915 \u0932\u093e\u0916\n* \u0909\u0924\u094d\u0924\u0930\u093e\u0916\u0902\u0921 \u092a\u091f\u0935\u093e\u0930\u0940 - \u20b915 \u0932\u093e\u0916\n* \u092c\u093f\u0939\u093e\u0930 \u0936\u093f\u0915\u094d\u0937\u0915 \u092d\u0930\u094d\u0924\u0940 - \u20b910 \u0932\u093e\u0916\n* \u0913\u0921\u093f\u0936\u093e \u092a\u0941\u0932\u093f\u0938 \u092d\u0930\u094d\u0924\u0940 - \u20b925 \u0932\u093e\u0916\n\n\u091c\u093f\u0938\u0915\u0947 \u092a\u093e\u0938 \u092a\u0948\u0938\u093e \u0939\u0948, \u0935\u094b \u092e\u0947\u0928\u094d\u092f\u0942 \u0938\u0947 \u092a\u0947\u092a\u0930 \u091a\u0941\u0928 \u0932\u0947\u0924\u093e \u0939\u0948\u0964 \u0914\u0930 \u091c\u094b \u0938\u093f\u0930\u094d\u092b\u093c \u092e\u0947\u0939\u0928\u0924 \u0915\u0930\u0924\u093e \u0939\u0948 \u0935\u094b \u0905\u092a\u0928\u093e \u0938\u092a\u0928\u093e \u0916\u094b \u0926\u0947\u0924\u093e \u0939\u0948\u0964\n\n152 \u092a\u0947\u092a\u0930 \u0932\u0940\u0915, 7.5 \u0915\u0930\u094b\u0921",
-        "published_at": "2026-07-18T12:14:37.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/RahulGandhi/status/2078423893510127833",
-        "handle": "RahulGandhi",
-        "tweet_id": "2078423893510127833",
-        "category": "news",
-        "text": "The core tenets of the Modi government are Asatya and Hinsa.\n\nThe removal of Sonam Wangchuk ji from Jantar Mantar while he was on a non-violent hunger strike is wrong.\n\nPaper leaks, the rising cost of education, and student suicides are critical issues for India\u2019s future. \n\nNo amount of force can de",
-        "published_at": "2026-07-18T10:17:26.000Z"
       }
     ],
     "news:myogiadityanath": [
+      {
+        "tweet_url": "https://x.com/myogiadityanath/status/2079359983020630425",
+        "handle": "myogiadityanath",
+        "tweet_id": "2079359983020630425",
+        "category": "news",
+        "text": "\u0909\u0924\u094d\u0924\u0930 \u092a\u094d\u0930\u0926\u0947\u0936 \u0938\u0930\u0915\u093e\u0930 \u092e\u0947\u0902 \u0938\u0939\u092f\u094b\u0917\u0940, \u0930\u093e\u091c\u094d\u092f \u092e\u0902\u0924\u094d\u0930\u0940 \u0936\u094d\u0930\u0940\u092e\u0924\u0940 \u0930\u091c\u0928\u0940 \u0924\u093f\u0935\u093e\u0930\u0940 \u091c\u0940 \u0915\u094b \u091c\u0928\u094d\u092e\u0926\u093f\u0928 \u0915\u0940 \u0939\u093e\u0930\u094d\u0926\u093f\u0915 \u092c\u0927\u093e\u0908\u0964\n\n\u092a\u094d\u0930\u092d\u0941 \u0936\u094d\u0930\u0940 \u0930\u093e\u092e \u0906\u092a\u0915\u094b \u0909\u0924\u094d\u0924\u092e \u0938\u094d\u0935\u093e\u0938\u094d\u0925\u094d\u092f, \u0926\u0940\u0930\u094d\u0918\u093e\u092f\u0941 \u0914\u0930 \u092f\u0936\u0938\u094d\u0935\u0940 \u091c\u0940\u0935\u0928 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0947\u0902, \u092f\u0939\u0940 \u092a\u094d\u0930\u093e\u0930\u094d\u0925\u0928\u093e \u0939\u0948\u0964\n\n@RajniTiwari_",
+        "published_at": "2026-07-21T00:17:07.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/myogiadityanath/status/2079359320421257264",
+        "handle": "myogiadityanath",
+        "tweet_id": "2079359320421257264",
+        "category": "news",
+        "text": "\u0932\u094b\u0915\u092a\u094d\u0930\u093f\u092f \u0930\u093e\u091c\u0928\u0947\u0924\u093e, \u092c\u093f\u0939\u093e\u0930 \u090f\u0935\u0902 \u092e\u0927\u094d\u092f \u092a\u094d\u0930\u0926\u0947\u0936 \u0915\u0947 \u092a\u0942\u0930\u094d\u0935 \u0930\u093e\u091c\u094d\u092f\u092a\u093e\u0932 \u0932\u093e\u0932\u091c\u0940 \u091f\u0902\u0921\u0928 '\u092c\u093e\u092c\u0942 \u091c\u0940' \u0915\u0940 \u092a\u0941\u0923\u094d\u092f\u0924\u093f\u0925\u093f \u092a\u0930 \u0935\u093f\u0928\u092e\u094d\u0930 \u0936\u094d\u0930\u0926\u094d\u0927\u093e\u0902\u091c\u0932\u093f\u0964\n\n\u0938\u0930\u0932\u0924\u093e, \u0938\u094c\u092e\u094d\u092f\u0924\u093e \u0914\u0930 \u091c\u0928\u0938\u0930\u094b\u0915\u093e\u0930\u094b\u0902 \u0915\u0947 \u092a\u094d\u0930\u0924\u093f '\u092c\u093e\u092c\u0942 \u091c\u0940' \u0915\u0940 \u092a\u094d\u0930\u0924\u093f\u092c\u0926\u094d\u0927\u0924\u093e \u0928\u0947 \u0909\u0928\u094d\u0939\u0947\u0902 \u0938\u092e\u093e\u091c \u0915\u0947 \u092a\u094d\u0930\u0924\u094d\u092f\u0947\u0915 \u0935\u0930\u094d\u0917 \u0915\u093e \u092a\u094d\u0930\u093f\u092f \u092c\u0928\u093e\u092f\u093e\u0964 \n\n\u0909\u0928\u0915\u093e \u0935\u094d\u092f\u0915\u094d\u0924\u093f\u0924\u094d\u0935 \u0939\u092e \u0938\u092d\u0940 \u0915\u0947 \u0932\u093f\u090f \u0939\u092e\u0947\u0936\u093e \u0905\u0928\u0941\u0915\u0930\u0923\u0940\u092f \u0930\u0939\u0947\u0917\u093e\u0964 https://t.co/6EUGjX",
+        "published_at": "2026-07-21T00:14:29.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/myogiadityanath/status/2079227338542493984",
+        "handle": "myogiadityanath",
+        "tweet_id": "2079227338542493984",
+        "category": "news",
+        "text": "\u0921\u092c\u0932 \u0907\u0902\u091c\u0928 \u0938\u0930\u0915\u093e\u0930 \u0915\u093e \u0939\u0930 \u0915\u093e\u0930\u094d\u092f \u091c\u0928\u0924\u093e \u0915\u094b \u0938\u092e\u0930\u094d\u092a\u093f\u0924 \u0939\u0948... https://t.co/qYcazhKOuJ",
+        "published_at": "2026-07-20T15:30:02.000Z"
+      },
       {
         "tweet_url": "https://x.com/myogiadityanath/status/2079138884961870180",
         "handle": "myogiadityanath",
@@ -1904,33 +1912,17 @@
         "category": "news",
         "text": "\u0915\u093e\u0902\u0917\u094d\u0930\u0947\u0938 \u0914\u0930 \u0938\u092e\u093e\u091c\u0935\u093e\u0926\u0940 \u092a\u093e\u0930\u094d\u091f\u0940 \u0915\u0947 \u0932\u094b\u0917-\n\n\u0935\u093f\u0915\u093e\u0938 \u0915\u0947 \u0927\u0941\u0930 \u0935\u093f\u0930\u094b\u0927\u0940 \u0939\u0948\u0902, \u0935\u093f\u0930\u093e\u0938\u0924 \u0915\u0947 \u0935\u093f\u0930\u094b\u0927\u0940 \u0939\u0948\u0902,\n\u0917\u093e\u0902\u0935 \u0914\u0930 \u0917\u0930\u0940\u092c \u0915\u0947 \u0935\u093f\u0930\u094b\u0927\u0940 \u0939\u0948\u0902, \n\u0915\u093f\u0938\u093e\u0928\u094b\u0902, \u0928\u094c\u091c\u0935\u093e\u0928\u094b\u0902 \u0914\u0930 \u092e\u0939\u093f\u0932\u093e\u0913\u0902 \u0915\u0947 \u0924\u094b \u091c\u0928\u094d\u092e\u091c\u093e\u0924 \u0935\u093f\u0930\u094b\u0927\u0940 \u0939\u0948\u0902...\n\n\u0907\u0928\u0938\u0947 \u0938\u0924\u0930\u094d\u0915 \u0930\u0939\u0928\u0947 \u0915\u0940 \u0906\u0935\u0936\u094d\u092f\u0915\u0924\u093e \u0939\u0948... https://t.co/KmxowVVXLh",
         "published_at": "2026-07-20T08:32:32.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/myogiadityanath/status/2079119481402765537",
-        "handle": "myogiadityanath",
-        "tweet_id": "2079119481402765537",
-        "category": "news",
-        "text": "\u092d\u0917\u0935\u093e\u0928 \u0932\u094b\u0927\u0947\u0936\u094d\u0935\u0930 \u092e\u0939\u093e\u0926\u0947\u0935 \u0915\u093e \u091c\u094b \u0915\u0949\u0930\u093f\u0921\u094b\u0930 \u092c\u0928 \u0930\u0939\u093e \u0939\u0948...\n\n\u092f\u0939 \u0935\u0939\u0940 \u092a\u0948\u0938\u093e \u0939\u0948, \u091c\u093f\u0938\u0947 '\u0935\u0947 \u0932\u094b\u0917' \u092a\u0939\u0932\u0947 \u0915\u092c\u094d\u0930\u093f\u0938\u094d\u0924\u093e\u0928 \u0915\u0947 \u0928\u093e\u092e \u092a\u0930 \u0921\u093e\u092f\u0935\u0930\u094d\u091f \u0915\u0930 \u0926\u0947\u0924\u0947 \u0925\u0947... https://t.co/5Zu1zmNw8e",
-        "published_at": "2026-07-20T08:21:27.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/myogiadityanath/status/2079119154704216511",
-        "handle": "myogiadityanath",
-        "tweet_id": "2079119154704216511",
-        "category": "news",
-        "text": "\u092f\u0947 \u0938\u092e\u093e\u091c\u0935\u093e\u0926\u093f\u092f\u094b\u0902 \u0915\u0940 \u0921\u0915\u0948\u0924\u0940 \u0925\u0940... https://t.co/m5YVEf1LD5",
-        "published_at": "2026-07-20T08:20:09.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/myogiadityanath/status/2079118869697069358",
-        "handle": "myogiadityanath",
-        "tweet_id": "2079118869697069358",
-        "category": "news",
-        "text": "\u0938\u0930\u0915\u093e\u0930 \u0915\u093e \u0938\u094d\u092a\u0937\u094d\u091f \u0938\u093f\u0926\u094d\u0927\u093e\u0902\u0924 \u0939\u0948-\n\n\u0938\u0930\u0915\u093e\u0930 \u092c\u093f\u0928\u093e \u092d\u0947\u0926\u092d\u093e\u0935 \u0915\u0947 \u0917\u0930\u0940\u092c, \u0926\u0932\u093f\u0924, \u0935\u0902\u091a\u093f\u0924, \u0915\u093f\u0938\u093e\u0928, \u092e\u0939\u093f\u0932\u093e \u0938\u0939\u093f\u0924 \u0938\u092e\u093e\u091c \u0915\u0947 \u092a\u094d\u0930\u0924\u094d\u092f\u0947\u0915 \u0924\u092c\u0915\u0947 \u0915\u0947 \u0932\u093f\u090f \u0915\u093e\u0930\u094d\u092f \u0915\u0930\u0947\u0917\u0940... https://t.co/ukRFYceulg",
-        "published_at": "2026-07-20T08:19:01.000Z"
       }
     ],
     "news:mamataofficial": [
+      {
+        "tweet_url": "https://x.com/MamataOfficial/status/2079174963588895197",
+        "handle": "MamataOfficial",
+        "tweet_id": "2079174963588895197",
+        "category": "news",
+        "text": "I strongly condemn the police brutality unleashed on our youth and students in Delhi today.\n\nWhat kind of government fears its own students? What kind of democracy responds to questions with batons and tear gas instead of dialogue?\n\nThe Nation belongs to its students, its farmers, its women, its wor",
+        "published_at": "2026-07-20T12:01:55.000Z"
+      },
       {
         "tweet_url": "https://x.com/MamataOfficial/status/2078370501349568810",
         "handle": "MamataOfficial",
@@ -1962,14 +1954,6 @@
         "category": "news",
         "text": "Warm felicitations to @DKShivakumar Ji on taking oath as the Chief Minister of Karnataka.\n\nMay his leadership usher in greater progress, prosperity, and inclusive development across the state.",
         "published_at": "2026-06-03T16:35:03.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/MamataOfficial/status/2062162495130005820",
-        "handle": "MamataOfficial",
-        "tweet_id": "2062162495130005820",
-        "category": "news",
-        "text": "Tribute to \u2018Kalaignar\u2019 M Karunanidhi Ji, former Chief Minister of Tamil Nadu, on his birth anniversary. He was a poet, author, statesman, and great leader, loved by all. After he passed in 2018, we had sent our senior MP to his memorial meeting in Tamil Nadu @mkstalin @arivalayam",
-        "published_at": "2026-06-03T13:20:26.000Z"
       }
     ],
     "news:arvindkejriwal": [
@@ -2058,47 +2042,71 @@
     ],
     "news:rashtrapatibhvn": [
       {
-        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079126369884328182",
+        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079259592543150214",
         "handle": "rashtrapatibhvn",
-        "tweet_id": "2079126369884328182",
+        "tweet_id": "2079259592543150214",
         "category": "news",
-        "text": "President Droupadi Murmu was warmly received by President Maia Sandu of Moldova at the Presidential Palace in Chisinau and accorded a ceremonial welcome and guard of honour. https://t.co/s4A2b0Xxmr",
-        "published_at": "2026-07-20T08:48:49.000Z"
+        "text": "\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u092a\u0924\u093f \u0936\u094d\u0930\u0940\u092e\u0924\u0940 \u0926\u094d\u0930\u094c\u092a\u0926\u0940 \u092e\u0941\u0930\u094d\u092e\u0941 \u0915\u0947 \u0932\u093f\u090f \u092e\u094b\u0932\u094d\u0926\u094b\u0935\u093e \u092e\u0947\u0902 \u092d\u093e\u0930\u0924\u0940\u092f \u0938\u092e\u0941\u0926\u093e\u092f \u0914\u0930 \u092d\u093e\u0930\u0924 \u0915\u0947 \u092e\u093f\u0924\u094d\u0930\u094b\u0902  \u0915\u0940 \u0913\u0930 \u0938\u0947 \u0906\u092f\u094b\u091c\u093f\u0924 \u0938\u094d\u0935\u093e\u0917\u0924 \u0938\u092e\u093e\u0930\u094b\u0939 \u0915\u0940 \u091d\u0932\u0915\u093f\u092f\u093e\u0902 https://t.co/sth51bLNTV",
+        "published_at": "2026-07-20T17:38:12.000Z"
       },
       {
-        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079125527617818707",
+        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079258545242177753",
         "handle": "rashtrapatibhvn",
-        "tweet_id": "2079125527617818707",
+        "tweet_id": "2079258545242177753",
         "category": "news",
-        "text": "President Droupadi Murmu arrived in Chisinau, Moldova. On her arrival at Chisinau International Airport, she was warmly received by the Deputy Prime Minister and Minister of Foreign Affairs of the Republic of Moldova, Mr. Mihai Popsoi. https://t.co/UGgZALMoPq",
-        "published_at": "2026-07-20T08:45:28.000Z"
+        "text": "President Droupadi Murmu attended a banquet hosted in her honour by President Maia Sandu of Moldova at Chi\u0219in\u0103u, before leaving for North Macedonia. https://t.co/sOHzkfSwfs",
+        "published_at": "2026-07-20T17:34:02.000Z"
       },
       {
-        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079122213408846225",
+        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079247448246231303",
         "handle": "rashtrapatibhvn",
-        "tweet_id": "2079122213408846225",
+        "tweet_id": "2079247448246231303",
         "category": "news",
-        "text": "President Droupadi Murmu was warmly received by President Maia Sandu of Moldova at the Presidential Palace in Chisinau and accorded a ceremonial welcome and guard of honour. \nThe two leaders held productive and forward-looking discussions covering the entire spectrum of our bilateral partnership. \n\n",
-        "published_at": "2026-07-20T08:32:18.000Z"
+        "text": "President Droupadi Murmu interacted with the members of Indian Community and Friends of India at Chi\u0219in\u0103u, Moldova. The Indian community welcomed the President with warmth and enthusiasm. https://t.co/DlUWySejaJ",
+        "published_at": "2026-07-20T16:49:56.000Z"
       },
       {
-        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079120213954453795",
+        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079220400979083623",
         "handle": "rashtrapatibhvn",
-        "tweet_id": "2079120213954453795",
+        "tweet_id": "2079220400979083623",
         "category": "news",
-        "text": "LIVE: Press Statement by President Droupadi Murmu and President Maia Sandu of Moldova https://t.co/ZSLwB84l6b",
-        "published_at": "2026-07-20T08:24:21.000Z"
+        "text": "\u0930\u093e\u0937\u094d\u091f\u094d\u0930\u092a\u0924\u093f \u0926\u094d\u0930\u094c\u092a\u0926\u0940 \u092e\u0941\u0930\u094d\u092e\u0941 \u0915\u0940 \u092e\u094b\u0932\u094d\u0926\u094b\u0935\u093e \u0915\u0940 \u0930\u093e\u091c\u0915\u0940\u092f \u092f\u093e\u0924\u094d\u0930\u093e \u0915\u0940 \u091d\u0932\u0915\u093f\u092f\u093e\u0902\u0964 \u0915\u093f\u0938\u0940 \u092d\u0940 \u092d\u093e\u0930\u0924\u0940\u092f \u0930\u093e\u0937\u094d\u091f\u094d\u0930\u092a\u0924\u093f \u0915\u0940 \u092e\u094b\u0932\u094d\u0926\u094b\u0935\u093e \u0915\u0940 \u092f\u0939 \u092a\u0939\u0932\u0940 \u092f\u093e\u0924\u094d\u0930\u093e \u0939\u0948\u0964 https://t.co/9Ce5ttKft4",
+        "published_at": "2026-07-20T15:02:28.000Z"
       },
       {
-        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079102989030379610",
+        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079184769422917911",
         "handle": "rashtrapatibhvn",
-        "tweet_id": "2079102989030379610",
+        "tweet_id": "2079184769422917911",
         "category": "news",
-        "text": "President Droupadi Murmu reached Chisinau, Moldova on the first leg of her State Visits to Moldova, North Macedonia and Romania. On her arrival at Chisinau International Airport, she was warmly received by the Deputy Prime Minister and Minister of Foreign Affairs of the Republic of Moldova, Mr. Miha",
-        "published_at": "2026-07-20T07:15:55.000Z"
+        "text": "President Droupadi Murmu addressed the India\u2013Moldova Business Forum in Chi\u0219in\u0103u along with President Maia Sandu of Moldova. The President said that India offers good business opportunities to Moldovan companies for trade and investment. She invited Moldovan businesses to explore the opportunities in",
+        "published_at": "2026-07-20T12:40:53.000Z"
       }
     ],
     "news:piyushgoyal": [
+      {
+        "tweet_url": "https://x.com/PiyushGoyal/status/2079250699486105681",
+        "handle": "PiyushGoyal",
+        "tweet_id": "2079250699486105681",
+        "category": "news",
+        "text": "Held a productive interaction with stakeholders from the aquaculture and tobacco industries of Andhra Pradesh, along with Union Minister for Civil Aviation @RamMNK ji. \n\nI was also joined by MoS for Heavy Industries and Steel @BJPVarma ji, MP Smt. @PurandeswariBJP ji, TDP Parliamentary Chairperson @",
+        "published_at": "2026-07-20T17:02:52.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/PiyushGoyal/status/2079203389506998776",
+        "handle": "PiyushGoyal",
+        "tweet_id": "2079203389506998776",
+        "category": "news",
+        "text": "Forging stronger ties \ud83c\uddee\ud83c\uddf3\ud83e\udd1d\ud83c\uddea\ud83c\uddea\n\nHighlights from my recent visit to Estonia. https://t.co/yiSSM7q71E",
+        "published_at": "2026-07-20T13:54:52.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/PiyushGoyal/status/2079168283190931701",
+        "handle": "PiyushGoyal",
+        "tweet_id": "2079168283190931701",
+        "category": "news",
+        "text": "Had a produtive meeting with Mr. Abdulla bin Touq Al Marri, Minister of Economy and Tourism of the United Arab Emirates, along with the accompanying delegation.\n\nWe discussed avenues to further strengthen the India-UAE partnership across trade, investment, tourism and connectivity, while reaffirming",
+        "published_at": "2026-07-20T11:35:22.000Z"
+      },
       {
         "tweet_url": "https://x.com/PiyushGoyal/status/2078814854975238154",
         "handle": "PiyushGoyal",
@@ -2114,30 +2122,6 @@
         "category": "news",
         "text": "A remarkable feat! \ud83c\uddee\ud83c\uddf3\n\nA truly proud moment as Team India shines at the 37th International Biology Olympiad in Lithuania, bringing home four medals, including one gold.\n\nCongratulations to Bhavyaa Gunwal, Soumil Maity, Nishit Kalani & Anmol Kumar for this outstanding achievement. Their exceptional k",
         "published_at": "2026-07-19T11:59:36.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/PiyushGoyal/status/2078784157061366011",
-        "handle": "PiyushGoyal",
-        "tweet_id": "2078784157061366011",
-        "category": "news",
-        "text": "Glimpses of my productive visit to Finland. \ud83c\uddee\ud83c\uddf3\ud83e\udd1d\ud83c\uddeb\ud83c\uddee https://t.co/QmCe71qvKK",
-        "published_at": "2026-07-19T10:08:59.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/PiyushGoyal/status/2078781130036359308",
-        "handle": "PiyushGoyal",
-        "tweet_id": "2078781130036359308",
-        "category": "news",
-        "text": "\"India's artistic heritage represents a capability that is fully ready for global markets.\"\n\nRead this insightful article by FM @NSitharaman ji, where she shares her experience of visiting a Vastrakala workshop in Tiruvallur. She highlights how India's traditional crafts have the potential to reach ",
-        "published_at": "2026-07-19T09:56:57.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/PiyushGoyal/status/2078754831184093443",
-        "handle": "PiyushGoyal",
-        "tweet_id": "2078754831184093443",
-        "category": "news",
-        "text": "Many congratulations to @PVSindhu1 on lifting the #JapanOpen2026 women's singles trophy and creating history by becoming the first Indian shuttler to win this prestigious title. \ud83c\udff8\ud83c\uddee\ud83c\uddf3\n\nWith every milestone, you reaffirm the limitless potential of India's Nari Shakti, inspiring millions to dream fearle",
-        "published_at": "2026-07-19T08:12:27.000Z"
       }
     ],
     "news:rajnathsingh": [
@@ -2226,6 +2210,14 @@
     ],
     "news:jpnadda": [
       {
+        "tweet_url": "https://x.com/JPNadda/status/2079161225121091904",
+        "handle": "JPNadda",
+        "tweet_id": "2079161225121091904",
+        "category": "news",
+        "text": "\u0906\u091c \u0938\u0941\u092c\u0939 \u092a\u0939\u0932\u0940 \u092c\u093e\u0930 \u092a\u094d\u0930\u0926\u0930\u094d\u0936\u0928\u0915\u093e\u0930\u093f\u092f\u094b\u0902 \u0915\u0940 \u0913\u0930 \u0938\u0947 \u0938\u0930\u0915\u093e\u0930 \u0915\u0947 \u0938\u093e\u0925 \u092c\u093e\u0924\u091a\u0940\u0924 \u0915\u0930\u0928\u0947 \u0915\u093e \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935 \u0906\u092f\u093e \u0914\u0930 \u0938\u0941\u092c\u0939 11:50 AM \u0938\u0947 \u0939\u0940 \u0939\u092e\u093e\u0930\u0940 \u092c\u093e\u0924\u091a\u0940\u0924 \u091c\u093e\u0930\u0940 \u0939\u0948\u0964\n\n\u0938\u094c\u0939\u093e\u0930\u094d\u0926\u092a\u0942\u0930\u094d\u0923 \u0935\u093e\u0924\u093e\u0935\u0930\u0923 \u092e\u0947\u0902 \u092e\u0941\u0932\u093e\u0915\u093e\u0924 \u0939\u0941\u0908\u0964 \u0909\u0928\u0915\u0947 \u0921\u0947\u0932\u0940\u0917\u0947\u0936\u0928 \u0915\u0947 \u0938\u093e\u0925 \u0935\u093f\u0938\u094d\u0924\u093e\u0930 \u0938\u0947 \u092a\u0939\u0932\u0947 \u092e\u094c\u0916\u093f\u0915 \u091a\u0930\u094d\u091a\u093e \u0939\u0941\u0908 \u0914\u0930 \u0909\u0928\u0915\u0947 \u0926\u094d\u0935\u093e\u0930\u093e \u0932\u0917\u092d\u0917 4 \u092c\u091c\u0947 \u092e\u0941\u091d\u0947 \u0932\u093f\u0916\u093f\u0924 \u092f\u093e\u091a\u093f\u0915\u093e \u0926\u0940 \u0917\u0908\u0964\n\n\u092e\u0948\u0902\u0928\u0947 \u0938\u092d\u0940 \u092a\u094d\u0930\u0926\u0930\u094d\u0936\u0928\u0915\u093e\u0930\u093f\u092f\u094b\u0902 \u0938\u0947",
+        "published_at": "2026-07-20T11:07:19.000Z"
+      },
+      {
         "tweet_url": "https://x.com/JPNadda/status/2078677023351013427",
         "handle": "JPNadda",
         "tweet_id": "2078677023351013427",
@@ -2256,14 +2248,6 @@
         "category": "news",
         "text": "Visited the newly inaugurated Advanced Mother & Child Centre (AMCC) and Advanced Neurosciences Centre (ANC) at PGIMER, Chandigarh, to review their state-of-the-art healthcare infrastructure. These world-class facilities will significantly strengthen maternal and child healthcare, advanced neuroscien",
         "published_at": "2026-07-17T15:51:45.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/JPNadda/status/2078136515616805351",
-        "handle": "JPNadda",
-        "tweet_id": "2078136515616805351",
-        "category": "news",
-        "text": "Hon'ble Prime Minister Shri @narendramodi Ji inaugurated the Advanced Mother and Child Centre and the Advanced Neurosciences Centre at PGIMER, Chandigarh, and laid the foundation stone of a 150-bed Critical Care Block under PM-ABHIM today.\n\nThe 300-bed Advanced Neurosciences Centre, built at a cost ",
-        "published_at": "2026-07-17T15:15:29.000Z"
       }
     ],
     "news:nitishkumar": [
@@ -2362,86 +2346,86 @@
     ],
     "world-leaders:whitehouse": [
       {
-        "tweet_url": "https://x.com/WhiteHouse/status/2078976201188606160",
+        "tweet_url": "https://x.com/WhiteHouse/status/2079365635453133179",
         "handle": "WhiteHouse",
-        "tweet_id": "2078976201188606160",
+        "tweet_id": "2079365635453133179",
         "category": "world-leaders",
-        "text": "President Donald J. Trump presents the World Cup Trophy to Spain, the 2026 @FIFAWorldCup Champions! \ud83c\udfc6 https://t.co/SHsoBhYm1b",
-        "published_at": "2026-07-19T22:52:06.000Z"
+        "text": "57 years ago today, the clearest case of American Exceptionalism became extraterrestrially\u00a0undeniable.\n\nThe\u00a0Stars and Stripes\u00a0were planted on the lunar surface to commemorate the greatest achievement in human history. \ud83c\uddfa\ud83c\uddf8\ud83d\ude80 https://t.co/VYKElvMRKU",
+        "published_at": "2026-07-21T00:39:34.000Z"
       },
       {
-        "tweet_url": "https://x.com/WhiteHouse/status/2078968468750115016",
+        "tweet_url": "https://x.com/WhiteHouse/status/2079339694026858801",
         "handle": "WhiteHouse",
-        "tweet_id": "2078968468750115016",
+        "tweet_id": "2079339694026858801",
         "category": "world-leaders",
-        "text": "Congratulations to Vice President JD Vance and Second Lady Usha Vance on the birth of their fourth child! \ud83d\udc99\ud83c\uddfa\ud83c\uddf8",
-        "published_at": "2026-07-19T22:21:22.000Z"
+        "text": "\"I had a very good conversation with the new Prime Minister of the United Kingdom, Andy Burnham... The Prime Minister has got a big job ahead of him, but he will be able to do it and, of course, the U.S.A. will be there to help!\" - President Donald J. Trump \ud83c\uddfa\ud83c\uddf8 https://t.co/0pQpitwsma",
+        "published_at": "2026-07-20T22:56:29.000Z"
       },
       {
-        "tweet_url": "https://x.com/WhiteHouse/status/2078924146172440651",
+        "tweet_url": "https://x.com/WhiteHouse/status/2079335756284207496",
         "handle": "WhiteHouse",
-        "tweet_id": "2078924146172440651",
+        "tweet_id": "2079335756284207496",
         "category": "world-leaders",
-        "text": "President Trump and First Lady Melania Trump watch on as this incredible @FIFAWorldCup tournament concludes on American soil. \u26bd\ufe0f\ud83c\uddfa\ud83c\uddf8 https://t.co/p5Zb5UPMr5",
-        "published_at": "2026-07-19T19:25:15.000Z"
+        "text": "Canada imposed an unfair tariff scheme on American cars. As a result, Canadian imports of U.S.\u00a0cars fell\u00a0~22%, costing American industry BILLIONS.\n\nPresident Trump won't put up with Canada's trade schemes. The U.S. will levy a 50% TARIFF on some Canadian products. \ud83c\uddfa\ud83c\uddf8 https://t.co/b8x550Gn6M",
+        "published_at": "2026-07-20T22:40:51.000Z"
       },
       {
-        "tweet_url": "https://x.com/WhiteHouse/status/2078919087606902953",
+        "tweet_url": "https://x.com/WhiteHouse/status/2079325687215743292",
         "handle": "WhiteHouse",
-        "tweet_id": "2078919087606902953",
+        "tweet_id": "2079325687215743292",
         "category": "world-leaders",
-        "text": "President Trump interviews with @FOXSports Jenny Taft ahead of the 2026 @FIFAWorldCup Final \ud83c\uddfa\ud83c\uddf8\ud83c\udfc6 https://t.co/rrMIUYfJD1",
-        "published_at": "2026-07-19T19:05:09.000Z"
+        "text": "President Trump is acting to maintain America\u2019s military dominance and keep the U.S. military the STRONGEST and best-equipped in the world.\n\nREAD MORE \u27a1\ufe0f https://t.co/PqMHsLunWj https://t.co/uwLJR6RNcd",
+        "published_at": "2026-07-20T22:00:50.000Z"
       },
       {
-        "tweet_url": "https://x.com/WhiteHouse/status/2078513688802168942",
+        "tweet_url": "https://x.com/WhiteHouse/status/2079306281546866969",
         "handle": "WhiteHouse",
-        "tweet_id": "2078513688802168942",
+        "tweet_id": "2079306281546866969",
         "category": "world-leaders",
-        "text": "An unforgettable 2026 @FIFAWorldCup, hosted right here in AMERICA. \ud83c\uddfa\ud83c\uddf8\n\nSee you at the finals tomorrow. \ud83d\udd25 https://t.co/6oDQcjPWMW",
-        "published_at": "2026-07-18T16:14:14.000Z"
+        "text": "Defend the integrity of America\u2019s elections and PASS THE SAVE AMERICA ACT. https://t.co/DQ8y3H1zU3",
+        "published_at": "2026-07-20T20:43:43.000Z"
       }
     ],
     "world-leaders:10downingstreet": [
       {
-        "tweet_url": "https://x.com/10DowningStreet/status/2077126048739680611",
+        "tweet_url": "https://x.com/10DowningStreet/status/2079350751965376774",
         "handle": "10DowningStreet",
-        "tweet_id": "2077126048739680611",
+        "tweet_id": "2079350751965376774",
         "category": "world-leaders",
-        "text": "Today the Hillsborough Law has been passed by the @HouseofCommons. \n\nA tribute to the courage, determination and perseverance of the Hillsborough families.\n\nTheir fight for justice is delivering lasting change for future generations. https://t.co/Bzf7BkMGhg",
-        "published_at": "2026-07-14T20:20:15.000Z"
+        "text": "Kanishka Narayan has been appointed as Minister of State (Minister for Artificial Intelligence) jointly in the @cabinetofficeuk and the Department for Business, Innovation, Science and Trade. He will attend Cabinet. https://t.co/IWxGwmSt2E",
+        "published_at": "2026-07-20T23:40:26.000Z"
       },
       {
-        "tweet_url": "https://x.com/10DowningStreet/status/2076951690851336440",
+        "tweet_url": "https://x.com/10DowningStreet/status/2079334570017603950",
         "handle": "10DowningStreet",
-        "tweet_id": "2076951690851336440",
+        "tweet_id": "2079334570017603950",
         "category": "world-leaders",
-        "text": "The Hillsborough families fought not just for their loved ones, but for families they would never meet.\n\nThat\u2019s why the Hillsborough Law is not just for the 97. It\u2019s for everyone.",
-        "published_at": "2026-07-14T08:47:25.000Z"
+        "text": "Hamish Falconer has been appointed as Minister of State (Minister for Intergovernmental Relations\u00a0and European Relations) jointly in the @cabinetofficeuk and @fcdogovuk. He will attend Cabinet. https://t.co/8BoxLXhQft",
+        "published_at": "2026-07-20T22:36:08.000Z"
       },
       {
-        "tweet_url": "https://x.com/10DowningStreet/status/2076694515545465012",
+        "tweet_url": "https://x.com/10DowningStreet/status/2079334318044807382",
         "handle": "10DowningStreet",
-        "tweet_id": "2076694515545465012",
+        "tweet_id": "2079334318044807382",
         "category": "world-leaders",
-        "text": "Just announced: a landmark trade deal with Switzerland. https://t.co/N4bymPGlty",
-        "published_at": "2026-07-13T15:45:30.000Z"
+        "text": "Douglas Alexander has been reappointed as Secretary of State for Scotland @UKGovScotland. https://t.co/sm4azqQT7x",
+        "published_at": "2026-07-20T22:35:08.000Z"
       },
       {
-        "tweet_url": "https://x.com/10DowningStreet/status/2073827268615418153",
+        "tweet_url": "https://x.com/10DowningStreet/status/2079332757671497773",
         "handle": "10DowningStreet",
-        "tweet_id": "2073827268615418153",
+        "tweet_id": "2079332757671497773",
         "category": "world-leaders",
-        "text": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f https://t.co/yhPcPcRZWE",
-        "published_at": "2026-07-05T17:52:05.000Z"
+        "text": "Matthew Pennycook will remain as Minister of State in @mhclg. He will attend Cabinet. https://t.co/BOvvCZN1qH",
+        "published_at": "2026-07-20T22:28:56.000Z"
       },
       {
-        "tweet_url": "https://x.com/10DowningStreet/status/2073693815228051474",
+        "tweet_url": "https://x.com/10DowningStreet/status/2079332308742549635",
         "handle": "10DowningStreet",
-        "tweet_id": "2073693815228051474",
+        "tweet_id": "2079332308742549635",
         "category": "world-leaders",
-        "text": "Two years on, we've delivered real change across the country. From putting more money in people's pockets, to improving public services and making communities safer.\n\nHere's a look at what we've achieved so far\ud83d\udc47 https://t.co/NYe0ZMKIQ6",
-        "published_at": "2026-07-05T09:01:47.000Z"
+        "text": "Alan Campbell will remain as Lord President of the Council and Leader of the @houseofcommons. https://t.co/AdLeEmWeEo",
+        "published_at": "2026-07-20T22:27:09.000Z"
       }
     ],
     "world-leaders:rishisunak": [
@@ -2530,47 +2514,55 @@
     ],
     "world-leaders:zelenskyyua": [
       {
-        "tweet_url": "https://x.com/ZelenskyyUa/status/2079114207983735259",
+        "tweet_url": "https://x.com/ZelenskyyUa/status/2079275423632908383",
         "handle": "ZelenskyyUa",
-        "tweet_id": "2079114207983735259",
+        "tweet_id": "2079275423632908383",
         "category": "world-leaders",
-        "text": "The Moscow region. Our long-range sanctions have produced results against logistics facilities and an oil depot. Thank you to the warriors of the Unmanned Systems Forces, our intelligence services, the Missile Forces and Artillery, and the Special Operations Forces. The targets were more than 400 ki",
-        "published_at": "2026-07-20T08:00:29.000Z"
+        "text": "Today, following several days of discussions with the commanders of our corps carrying out the most critical combat missions, I convened a special meeting of the Staff. For the first time, there was direct, first-hand dialogue between our leading weapons and equipment manufacturers, the commanders o",
+        "published_at": "2026-07-20T18:41:06.000Z"
       },
       {
-        "tweet_url": "https://x.com/ZelenskyyUa/status/2078845831105454505",
+        "tweet_url": "https://x.com/ZelenskyyUa/status/2079242502914150584",
         "handle": "ZelenskyyUa",
-        "tweet_id": "2078845831105454505",
+        "tweet_id": "2079242502914150584",
         "category": "world-leaders",
-        "text": "Last night\u2019s attack was one of the largest Russian ballistic missile attacks to date. Kyiv and the Kyiv region were the Russians\u2019 primary target. They had been preparing this attack for several days, stockpiling missiles. The threat, of course, remains even now, and this must be taken into account. ",
-        "published_at": "2026-07-19T14:14:03.000Z"
+        "text": "I was happy to speak with Andy Burnham @andyburnham and congratulate him on taking office as Prime Minister of the United Kingdom. I truly appreciate that the support for Ukraine and our people will remain steadfast. Thank you for your warm words of respect for the Ukrainian people and for your cond",
+        "published_at": "2026-07-20T16:30:17.000Z"
       },
       {
-        "tweet_url": "https://x.com/ZelenskyyUa/status/2078809183386779983",
+        "tweet_url": "https://x.com/ZelenskyyUa/status/2079207808185061838",
         "handle": "ZelenskyyUa",
-        "tweet_id": "2078809183386779983",
+        "tweet_id": "2079207808185061838",
         "category": "world-leaders",
-        "text": "Today, I spoke with three other experienced Ukrainian military officers \u2013 Commander of the Joint Forces of the Armed Forces of Ukraine Mykhailo Drapatyi, Deputy Chief of the General Staff of the Armed Forces of Ukraine Volodymyr Horbatiuk, and Commander of the Airborne Assault Forces of the Armed Fo",
-        "published_at": "2026-07-19T11:48:26.000Z"
+        "text": "A very substantive conversation with Denys Prokopenko. Thank you for the consistently well-prepared work and attention to detail. It is important that every adjustment to Ukraine's defense strategy be carefully thought through and verified. We are also working to make the next prisoner exchanges hap",
+        "published_at": "2026-07-20T14:12:25.000Z"
       },
       {
-        "tweet_url": "https://x.com/ZelenskyyUa/status/2078772615087284424",
+        "tweet_url": "https://x.com/ZelenskyyUa/status/2079201470612672725",
         "handle": "ZelenskyyUa",
-        "tweet_id": "2078772615087284424",
+        "tweet_id": "2079201470612672725",
         "category": "world-leaders",
-        "text": "We continue to respond to Russian strikes in a fully justified and accurate manner. Today, Ukraine\u2019s long-range sanctions reached designated targets that support and finance Russia\u2019s aggression. SSU units struck three oil depots in the Stavropol region at once, while units of our Armed Forces hit an",
-        "published_at": "2026-07-19T09:23:07.000Z"
+        "text": "A report from Oleh Apostol. The Airborne Assault Forces are delivering the results Ukraine needs. I am also grateful for his vision of the broader developments on the front and his evaluation of the key threats. Glory to Ukraine! https://t.co/frdHnEuAcJ",
+        "published_at": "2026-07-20T13:47:14.000Z"
       },
       {
-        "tweet_url": "https://x.com/ZelenskyyUa/status/2078727414268502269",
+        "tweet_url": "https://x.com/ZelenskyyUa/status/2079196730180931789",
         "handle": "ZelenskyyUa",
-        "tweet_id": "2078727414268502269",
+        "tweet_id": "2079196730180931789",
         "category": "world-leaders",
-        "text": "Overnight, Russia carried out one of its largest ballistic missile attacks on Kyiv. The enemy launched more than 40 missiles of various types \u2013 most of them against the capital \u2013 and 120 attack drones.\n\nAs of now, one person has been reported killed in Kyiv and the region, and 16 others have been in",
-        "published_at": "2026-07-19T06:23:31.000Z"
+        "text": "I thanked Ihor Obolenskyi for building up the Khartiia Brigade, and we discussed the key issues that require additional decisions. Of course, advancing the technological capabilities of Ukraine's Defense and Security Forces as well as making the widest possible use of drones of every type are a top ",
+        "published_at": "2026-07-20T13:28:24.000Z"
       }
     ],
     "world-leaders:emmanuelmacron": [
+      {
+        "tweet_url": "https://x.com/EmmanuelMacron/status/2079188762463277323",
+        "handle": "EmmanuelMacron",
+        "tweet_id": "2079188762463277323",
+        "category": "world-leaders",
+        "text": "J\u2019adresse mes f\u00e9licitations \u00e0 @AndyBurnham pour sa nomination comme Premier ministre du Royaume-Uni.\n                 \nFace aux d\u00e9fis qui nous rassemblent, je forme le v\u0153u que nous approfondissions la relation au service de nos peuples et en donnant un nouvel \u00e9lan au partenariat entre le Royaume-Uni",
+        "published_at": "2026-07-20T12:56:45.000Z"
+      },
       {
         "tweet_url": "https://x.com/EmmanuelMacron/status/2078580362200908227",
         "handle": "EmmanuelMacron",
@@ -2602,14 +2594,6 @@
         "category": "world-leaders",
         "text": "En Allemagne, le Conseil des ministres franco-allemand que nous co-pr\u00e9sidons aujourd\u2019hui avec le Chancelier Friedrich Merz doit nous permettre de renforcer notre comp\u00e9titivit\u00e9, notre s\u00e9curit\u00e9 et notre d\u00e9fense et la r\u00e9silience de nos d\u00e9mocraties. \n     \nLe r\u00e9flexe franco-allemand est plus que jamais ",
         "published_at": "2026-07-17T07:01:45.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/EmmanuelMacron/status/2077820071922008164",
-        "handle": "EmmanuelMacron",
-        "tweet_id": "2077820071922008164",
-        "category": "world-leaders",
-        "text": "On va reconstruire. https://t.co/BY7bWOgWGt",
-        "published_at": "2026-07-16T18:18:03.000Z"
       }
     ],
     "entertainment:theaaryankartik": [
@@ -2690,6 +2674,14 @@
     ],
     "entertainment:jayshetty": [
       {
+        "tweet_url": "https://x.com/jayshetty/status/2079199649487790362",
+        "handle": "JayShetty",
+        "tweet_id": "2079199649487790362",
+        "category": "entertainment",
+        "text": "Chris Hemsworth on real friendships https://t.co/UNHXwer4Hz",
+        "published_at": "2026-07-20T13:40:00.000Z"
+      },
+      {
         "tweet_url": "https://x.com/jayshetty/status/2078097416239054895",
         "handle": "JayShetty",
         "tweet_id": "2078097416239054895",
@@ -2720,17 +2712,17 @@
         "category": "entertainment",
         "text": "\ud83c\udfa7 Video available on Netflix or Spotify by searching \u2018On Purpose with Millie Bobby Brown\u2019 or listen wherever you get your podcasts \ud83d\ude4f https://t.co/rkTYuHMUtj",
         "published_at": "2026-07-14T14:40:04.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/jayshetty/status/2075559437478006964",
-        "handle": "JayShetty",
-        "tweet_id": "2075559437478006964",
-        "category": "entertainment",
-        "text": "They weren\u2019t invested in you\u2026 they were invested in what you gave \u2764\ufe0f https://t.co/8CP0ofdfML",
-        "published_at": "2026-07-10T12:35:06.000Z"
       }
     ],
     "world-leaders:barackobama": [
+      {
+        "tweet_url": "https://x.com/BarackObama/status/2079251319131422805",
+        "handle": "BarackObama",
+        "tweet_id": "2079251319131422805",
+        "category": "world-leaders",
+        "text": "There\u2019s nothing like a choir to get you fired up! Michelle and I enjoyed this beautiful performance from the Uniting Voices Chicago during the grand opening of the Obama Presidential Center. https://t.co/Z7gI8S6FM1",
+        "published_at": "2026-07-20T17:05:19.000Z"
+      },
       {
         "tweet_url": "https://x.com/BarackObama/status/2077790184695828699",
         "handle": "BarackObama",
@@ -2762,14 +2754,6 @@
         "category": "world-leaders",
         "text": "My sister Maya and I were profoundly shaped by the influence of our mom, Ann Dunham. Giving Maya a preview of the Obama Presidential Center, including a new sculpture by Maya Lin dedicated to our mom\u2019s memory, was truly special. https://t.co/cY3F0fHcot",
         "published_at": "2026-06-25T14:29:02.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/BarackObama/status/2069930541135049112",
-        "handle": "BarackObama",
-        "tweet_id": "2069930541135049112",
-        "category": "world-leaders",
-        "text": "Reconstruction was a pivotal and turbulent chapter in our nation\u2019s history \u2013 and its consequences are still being felt today. With @HGMedia's Reconstruction: The Unfinished Promise, I hope folks can rediscover an essential part of our past and remember that even in moments of deep conflict and contr",
-        "published_at": "2026-06-24T23:47:53.000Z"
       }
     ],
     "world-leaders:michelleobama": [
@@ -2816,6 +2800,22 @@
     ],
     "world-leaders:secrubio": [
       {
+        "tweet_url": "https://x.com/SecRubio/status/2079359045819834431",
+        "handle": "SecRubio",
+        "tweet_id": "2079359045819834431",
+        "category": "world-leaders",
+        "text": "Just landed in Manila, Philippines to participate in meetings with ASEAN leaders and the East Asia Summit. https://t.co/maLm0jUpLM",
+        "published_at": "2026-07-21T00:13:23.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/SecRubio/status/2079190191160348777",
+        "handle": "SecRubio",
+        "tweet_id": "2079190191160348777",
+        "category": "world-leaders",
+        "text": "For more than six decades, the Cuban regime has been the leading sponsor of radical leftism and Third Worldism in the United States.\n\nThe State Department is exposing the full history of Cuban espionage and subversion in our country.\n\nThe American people deserve to know. https://t.co/ulHF9qiDTY",
+        "published_at": "2026-07-20T13:02:25.000Z"
+      },
+      {
         "tweet_url": "https://x.com/SecRubio/status/2078878312114659787",
         "handle": "SecRubio",
         "tweet_id": "2078878312114659787",
@@ -2838,22 +2838,6 @@
         "category": "world-leaders",
         "text": "Without trust, there can be no greatness. \n\nUnder @POTUS, the Trump Administration will rout out foreign interference in our elections and safeguard our democracy.\n\nAmerica\u2019s future belongs to Americans.",
         "published_at": "2026-07-17T02:57:17.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/SecRubio/status/2077850153814258096",
-        "handle": "SecRubio",
-        "tweet_id": "2077850153814258096",
-        "category": "world-leaders",
-        "text": "Today, @StateDept is imposing new visa restrictions to bar Far-Left Terrorists from entering our country.\n\nForeigners who finance, incite, or aid and abet Far-Left Terrorists are enemies of our civilization. They are not welcome in the United States.\nhttps://t.co/Xnc1dqMAHd",
-        "published_at": "2026-07-16T20:17:35.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/SecRubio/status/2077841278264561780",
-        "handle": "SecRubio",
-        "tweet_id": "2077841278264561780",
-        "category": "world-leaders",
-        "text": "Today, I designated two additional Mexican cartels, the Ju\u00e1rez Cartel and Los Viagras, as Foreign Terrorist Organizations and Specially Designated Global Terrorists. Under President Trump\u2019s leadership, we will never stop fighting against violent narco-terrorists from flooding our nation with deadly ",
-        "published_at": "2026-07-16T19:42:19.000Z"
       }
     ]
   }
