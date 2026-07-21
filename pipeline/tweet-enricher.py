@@ -539,23 +539,27 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             for tweet in tweets:
                 score = score_relevance(tweet["text"], headline, body[:500])
                 photos = tweet.get("photo_count", 0) or 0
+                has_video = tweet.get("has_video", False)
                 
-                # Bonus for photos (the whole point)
-                if photos > 0:
+                # Bonus for media (photos or video)
+                if has_video:
+                    score += 4  # Video is most engaging
+                elif photos > 0:
                     score += 3
                 
                 # Minimum relevance threshold — tweet must actually be about the article topic
                 if score < 5:
                     continue
                 
-                scored_tweets.append((score, photos, tweet))
+                has_media = 1 if (has_video or photos > 0) else 0
+                scored_tweets.append((score, has_media, tweet))
             
-            # Rank: highest score, prefer photos on ties
+            # Rank: highest score, prefer media on ties
             scored_tweets.sort(key=lambda x: (x[0], x[1]), reverse=True)
             
             best_tweet = None
             best_score = 0
-            for score, photos, tweet in scored_tweets:
+            for score, media, tweet in scored_tweets:
                 best_tweet = tweet
                 best_score = score
                 break
@@ -617,13 +621,17 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         if not tweets:
             continue
 
-        # Score all passing tweets, then rank: authority first, then score, then photos
+        # Score all passing tweets, then rank: authority first, then score, then media
         scored_tweets = []
 
         for tweet in tweets:
             score = score_relevance(tweet["text"], headline, body[:500])
             photos = tweet.get("photo_count", 0) or 0
-            if photos > 0:
+            has_video = tweet.get("has_video", False)
+            has_media = 1 if (has_video or photos > 0) else 0
+            if has_video:
+                score += 4  # Video is most engaging
+            elif photos > 0:
                 score += 3
 
             # Source authority gate — prefer official/credible sources
@@ -634,14 +642,14 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
 
             if score < 5:  # Stricter threshold for topic search
                 continue
-            scored_tweets.append((authority, score, photos, tweet))
+            scored_tweets.append((authority, score, has_media, tweet))
 
-        # Rank: highest authority first, then score, then prefer photos
+        # Rank: highest authority first, then score, then prefer media
         scored_tweets.sort(key=lambda x: (x[0], x[1], x[2]), reverse=True)
 
         best_tweet = None
         best_score = 0
-        for authority, score, photos, tweet in scored_tweets:
+        for authority, score, media, tweet in scored_tweets:
             best_tweet = tweet
             best_score = score
             break
