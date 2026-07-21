@@ -464,7 +464,8 @@ def _is_stock_hero(image_url):
 
 
 def _download_tweet_photo(photo_url, slug):
-    """Download a tweet photo and upload to Supabase storage. Returns public URL or None."""
+    """Download a tweet photo, verify it's a real photograph (not a graphic card),
+    and upload to Supabase storage. Returns public URL or None."""
     import hashlib
     try:
         resp = subprocess.run(
@@ -479,6 +480,27 @@ def _download_tweet_photo(photo_url, slug):
         
         if len(img_bytes) < 5000:  # Too small, probably an error
             return None
+        
+        # ── Graphic card detection ──
+        # Text cards on solid backgrounds (common on Indian news X accounts)
+        # are mostly near-black or near-white pixels. Real photos aren't.
+        try:
+            from PIL import Image
+            import io
+            img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+            # Sample center 200x200 region for speed
+            w, h = img.size
+            cx, cy = w // 2, h // 2
+            crop = img.crop((max(0, cx-100), max(0, cy-100), min(w, cx+100), min(h, cy+100)))
+            pixels = list(crop.getdata())
+            total = len(pixels)
+            near_black = sum(1 for r,g,b in pixels if (r+g+b)/3 < 30)
+            near_white = sum(1 for r,g,b in pixels if (r+g+b)/3 > 225)
+            solid_pct = (near_black + near_white) / total
+            if solid_pct > 0.6:  # >60% solid = graphic card, not a photo
+                return None
+        except Exception:
+            pass  # If check fails, continue
         
         # Upload to Supabase storage
         h = hashlib.md5(img_bytes).hexdigest()[:8]
@@ -510,22 +532,79 @@ def _download_tweet_photo(photo_url, slug):
         return None
 
 
-def upgrade_hero_from_tweets(article_id, slug, image_url, all_tweets):
+def _extract_distinctive_entities(headline):
+    """Extract distinctive proper nouns from a headline for strict matching.
+    Returns lowercase set of words that are specific enough to confirm same-story."""
+    import re
+    # Common generic words that appear in many news headlines
+    GENERIC = {
+        "dead", "killed", "trapped", "injured", "dies", "death", "deaths",
+        "seven", "eight", "nine", "ten", "dozen", "dozens", "hundreds",
+        "two", "three", "four", "five", "six", "many", "several", "multiple",
+        "landslide", "earthquake", "flood", "fire", "crash", "blast", "attack",
+        "breaking", "news", "update", "report", "latest", "major", "massive",
+        "india", "us", "uk", "china",  # too common as standalone
+        "government", "minister", "president", "official", "police", "army",
+        "workers", "people", "victims", "rescue", "relief", "tunnel",
+        "construction", "under", "gas", "leak", "devastate",
+        "new", "old", "first", "last", "top", "best", "worst",
+        "says", "said", "announces", "launches", "wins", "loses",
+        "scores", "century", "final", "match", "game", "cup",
+        "million", "billion", "deal", "stake", "sells", "buys",
+        "changes", "cap", "visa", "ban", "rule", "rules", "plan",
+        "against", "after", "over", "into", "from", "with",
+    }
+    # Capitalized words (likely proper nouns)
+    words = re.findall(r'\b[A-Z][a-z]{2,}\b', headline)
+    # Also catch acronyms (2+ uppercase letters) like USCIS, CRED, NASA
+    acronyms = re.findall(r'\b[A-Z]{2,}\b', headline)
+    entities = set()
+    for w in words:
+        if w.lower() not in GENERIC:
+            entities.add(w.lower())
+    for a in acronyms:
+        if a.lower() not in GENERIC:
+            entities.add(a.lower())
+    return entities
+
+
+def upgrade_hero_from_tweets(article_id, slug, image_url, all_tweets, headline=""):
     """If article has a stock hero, find the best photo tweet and upgrade.
     
     Returns dict with upgrade details or None if no upgrade.
     Only uses tweets with photos (not video posters).
-    Requires authority >= 2 (credible/official sources).
+    Requires authority >= 2 (credible/official sources) for topic-search tweets.
+    Registry-match tweets (3-tuples) are already trusted and always eligible.
+    
+    STRICT RELEVANCE GATE: tweet text must contain at least one distinctive
+    proper noun from the headline (e.g. "Sikkim", "Namchi") to prevent
+    wrong-story photos replacing the hero.
+    
+    all_tweets: list of (authority, score, has_media, tweet) 4-tuples
+                OR (score, has_media, tweet) 3-tuples (registry path).
     """
     if not _is_stock_hero(image_url):
         return None
     
+    # Extract distinctive entities from headline for strict matching
+    entities = _extract_distinctive_entities(headline) if headline else set()
+    
     # Find best photo tweet by authority, then follower count
     photo_candidates = []
-    for auth, score, media, tweet in all_tweets:
+    for item in all_tweets:
+        if len(item) == 4:
+            auth, score, media, tweet = item
+        else:
+            score, media, tweet = item
+            auth = 2  # Registry matches are pre-vetted; treat as credible
         photos = tweet.get("photos", [])
         if not photos or auth < 2:
             continue
+        # STRICT: tweet must mention at least one distinctive entity from headline
+        if entities:
+            tweet_text_lower = tweet.get("text", "").lower()
+            if not any(e in tweet_text_lower for e in entities):
+                continue  # Wrong story — skip
         photo_candidates.append((auth, tweet.get("followers", 0), photos[0], tweet))
     
     if not photo_candidates:
@@ -670,6 +749,22 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             # Rank: highest score, prefer media on ties
             scored_tweets.sort(key=lambda x: (x[0], x[1]), reverse=True)
             
+            # ── Hero upgrade: best PHOTO tweet replaces stock hero ──
+            if apply:
+                image_url = a.get("image_url", "") or ""
+                slug = a.get("slug", "unknown")
+                hero_result = upgrade_hero_from_tweets(a["id"], slug, image_url, scored_tweets, headline=headline)
+                if hero_result:
+                    hero_upgrades += 1
+                    report["details"].append({
+                        "headline": headline[:80],
+                        "action": "hero_upgrade",
+                        "old_hero": hero_result["old_hero"][:80],
+                        "new_hero": hero_result["new_hero"][:80],
+                        "source_handle": hero_result["source_handle"],
+                        "caption": hero_result["caption"],
+                    })
+
             best_tweet = None
             best_score = 0
             for score, media, tweet in scored_tweets:
@@ -768,7 +863,7 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         # ── 1. Hero upgrade: best PHOTO tweet replaces stock hero ──
         hero_detail = None
         if apply:
-            hero_result = upgrade_hero_from_tweets(a["id"], slug, image_url, scored_tweets)
+            hero_result = upgrade_hero_from_tweets(a["id"], slug, image_url, scored_tweets, headline=headline)
             if hero_result:
                 hero_upgrades += 1
                 hero_detail = {

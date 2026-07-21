@@ -148,6 +148,16 @@ timeout 600 python3 -u enrich-data-cards.py --since-hours 3 --limit 10 2>&1
 
 If either enrichment script fails, continue — the articles are already published and readable without enrichment.
 
+### Tweet embeds + hero image upgrade
+After enrichment, add tweet embeds and upgrade stock hero images from tweet photos:
+```bash
+# Tweet embeds (X) + hero upgrade from tweet photos
+set -a; source ~/workspace/.env.twitterapi-io; set +a
+timeout 120 python3 -u tweet-enricher.py --hours 3 --apply --max 5 2>&1
+```
+
+This finds authoritative tweets about each article, embeds the best one inline, and replaces Pexels/stock hero images with real photos from high-authority tweets. If it fails, continue.
+
 ## Step 5 — Rebuild feeds
 ```
 cd ~/workspace/the-videshi-news/pipeline && python3 -u prebuild-feeds.py 2>&1
