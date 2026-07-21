@@ -815,40 +815,6 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
 
         report["details"].append(detail)
 
-        # ── 3. Related tweets → social_embeds for tweet scroll ──
-        if apply and len(scored_tweets) > 1:
-            seen_handles = set()
-            if best_tweet:
-                seen_handles.add(best_tweet.get("handle", ""))
-            # Also exclude the hero photo source handle
-            if hero_detail:
-                seen_handles.add(hero_detail.get("source_handle", "").lstrip("@"))
-
-            related = []
-            for authority, score, media, tweet in scored_tweets:
-                handle = tweet.get("handle", "")
-                if handle in seen_handles:
-                    continue
-                tid = tweet["id"]
-                if not verify_tweet(tid):
-                    continue
-                related.append({
-                    "url": tweet["url"],
-                    "platform": "twitter",
-                })
-                seen_handles.add(handle)
-                if len(related) >= 4:  # Up to 4 related tweets
-                    break
-
-            if related:
-                _session.patch(
-                    f"{REST}/p2_articles?id=eq.{a['id']}",
-                    headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
-                    json={"social_embeds": json.dumps(related)},
-                    timeout=10,
-                )
-                detail["related_tweets"] = len(related)
-
     report["embeds_added"] = embeds_added
     report["hero_upgrades"] = hero_upgrades
     return report

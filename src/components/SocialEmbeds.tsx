@@ -157,26 +157,13 @@ const PLATFORM_LABELS: Record<string, string> = {
 export default function SocialEmbeds({ embeds }: SocialEmbedsProps) {
   if (!embeds || embeds.length === 0) return null;
 
-  // Check if there are multiple twitter embeds → show section heading
-  const tweetCount = embeds.filter(e => e.platform === "twitter").length;
-  const showHeading = tweetCount >= 2;
-
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6 my-8">
-      {showHeading && (
-        <div className="border-t border-border pt-6 mb-2">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-            Related Coverage
-          </h3>
-        </div>
-      )}
       {embeds.map((embed, i) => (
         <figure key={`${embed.platform}-${i}`} className="w-full">
-          {!showHeading && (
-            <figcaption className="text-xs text-muted-foreground mb-2 uppercase tracking-wide font-medium">
-              {PLATFORM_LABELS[embed.platform] ?? embed.platform}
-            </figcaption>
-          )}
+          <figcaption className="text-xs text-muted-foreground mb-2 uppercase tracking-wide font-medium">
+            {PLATFORM_LABELS[embed.platform] ?? embed.platform}
+          </figcaption>
           {embed.platform === "twitter" && <TwitterCard url={embed.url} />}
           {embed.platform === "instagram" && <InstagramCard url={embed.url} />}
           {embed.platform === "threads" && <ThreadsCard url={embed.url} />}
