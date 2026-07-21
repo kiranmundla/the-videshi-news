@@ -507,24 +507,32 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             if not tweets:
                 continue
             
-            # Score relevance and filter
-            best_tweet = None
-            best_score = 0
+            # Score relevance, rank by score then photos
+            scored_tweets = []
             
             for tweet in tweets:
                 score = score_relevance(tweet["text"], headline, body[:500])
+                photos = tweet.get("photo_count", 0) or 0
                 
                 # Bonus for photos (the whole point)
-                if tweet["photo_count"] > 0:
+                if photos > 0:
                     score += 3
                 
                 # Minimum relevance threshold — tweet must actually be about the article topic
                 if score < 5:
                     continue
                 
-                if score > best_score:
-                    best_score = score
-                    best_tweet = tweet
+                scored_tweets.append((score, photos, tweet))
+            
+            # Rank: highest score, prefer photos on ties
+            scored_tweets.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            
+            best_tweet = None
+            best_score = 0
+            for score, photos, tweet in scored_tweets:
+                best_tweet = tweet
+                best_score = score
+                break
             
             if not best_tweet:
                 report["details"].append({
@@ -583,27 +591,34 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         if not tweets:
             continue
 
-        # Score and find best
-        best_tweet = None
-        best_score = 0
+        # Score all passing tweets, then rank: authority first, then score, then photos
+        scored_tweets = []
 
         for tweet in tweets:
             score = score_relevance(tweet["text"], headline, body[:500])
-            if tweet["photo_count"] > 0:
+            photos = tweet.get("photo_count", 0) or 0
+            if photos > 0:
                 score += 3
 
             # Source authority gate — prefer official/credible sources
             authority = source_authority(tweet)
             if authority == 0:
                 continue  # Skip unknown/low-authority accounts entirely
-            # Bonus for authoritative sources
             score += authority  # +1 mid, +2 credible, +3 official
 
             if score < 5:  # Stricter threshold for topic search
                 continue
-            if score > best_score:
-                best_score = score
-                best_tweet = tweet
+            scored_tweets.append((authority, score, photos, tweet))
+
+        # Rank: highest authority first, then score, then prefer photos
+        scored_tweets.sort(key=lambda x: (x[0], x[1], x[2]), reverse=True)
+
+        best_tweet = None
+        best_score = 0
+        for authority, score, photos, tweet in scored_tweets:
+            best_tweet = tweet
+            best_score = score
+            break
 
         if not best_tweet:
             continue

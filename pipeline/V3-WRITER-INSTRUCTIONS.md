@@ -76,20 +76,35 @@ Structure with clear `<h2>` subheadings. Must include:
 ### 3d. Hero Image — Follow IMAGE-SOURCING-RULES.md strictly
 
 **Source priority:**
-1. **person_images table** — Check FIRST for any person in the article:
+1. **og:image from source articles** — Check FIRST. The candidate JSON includes `topic_id`. Fetch original signal URLs, decode Google News redirects, and extract og:image:
+   ```
+   # Get signal URLs for this topic
+   GET /rest/v1/p2_signals?topic_id=eq.<topic_id>&select=original_url&limit=5&order=published_at.desc
+   ```
+   Each `original_url` is a Google News redirect. Decode it using `googlenewsdecoder`:
+   ```python
+   from googlenewsdecoder import new_decoderv1
+   result = new_decoderv1(gnews_url, interval=1)
+   actual_url = result["decoded_url"] if result.get("status") else None
+   ```
+   Then fetch the decoded URL and extract `<meta property="og:image" content="...">`.
+   Verify the image loads (curl -o /dev/null -w %{http_code}) before using.
+   This gives you the ACTUAL photo from the source article — always prefer this over stock.
+
+2. **person_images table** — For articles about a specific person:
    `GET /rest/v1/person_images?person_name_lower=eq.<lowercase name>&order=use_count.asc,last_used_at.asc.nullsfirst&limit=1`
    If match: use that `image_url`, then PATCH to update `use_count` and `last_used_at`.
 
-2. **Wikipedia REST API** — For person articles OR topic images:
+3. **Wikipedia REST API** — For person articles OR topic images:
    ```
    GET https://en.wikipedia.org/api/rest_v1/page/summary/{encoded_name}
    User-Agent: TheVideshi/1.0 (thevideshi.com)
    ```
    Use `originalimage.source` or `thumbnail.source`.
 
-3. **Wikimedia Commons** — Search for topic-relevant CC images.
+4. **Wikimedia Commons** — Search for topic-relevant CC images.
 
-4. **Pexels** — Last resort only. Avoid generic stock.
+5. **Pexels** — Last resort only. Avoid generic stock.
 
 **Image Caption Rules (STRICT):**
 - Two sentences. First: what the image shows. Second: the news context.
