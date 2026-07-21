@@ -453,6 +453,117 @@ def patch_article_embed(article_id, body, tweet_url):
     return resp.status_code in (200, 204)
 
 
+def _is_stock_hero(image_url):
+    """Check if the current hero image is from a stock photo service."""
+    if not image_url:
+        return False
+    return any(s in image_url.lower() for s in [
+        "pexels.com", "unsplash.com", "pixabay.com", "shutterstock.com",
+        "istockphoto.com", "gettyimages.com", "stock",
+    ])
+
+
+def _download_tweet_photo(photo_url, slug):
+    """Download a tweet photo and upload to Supabase storage. Returns public URL or None."""
+    import hashlib
+    try:
+        resp = subprocess.run(
+            ["curl", "-sS", "--max-time", "10", "-o", "/tmp/_tweet_hero.jpg", photo_url],
+            capture_output=True, timeout=15,
+        )
+        if resp.returncode != 0:
+            return None
+        
+        with open("/tmp/_tweet_hero.jpg", "rb") as f:
+            img_bytes = f.read()
+        
+        if len(img_bytes) < 5000:  # Too small, probably an error
+            return None
+        
+        # Upload to Supabase storage
+        h = hashlib.md5(img_bytes).hexdigest()[:8]
+        filename = f"tweet-hero-{slug}-{h}.jpg"
+        url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        
+        result = subprocess.run(
+            ["curl", "-sS", "--max-time", "15", "-X", "POST", url,
+             "-H", f"apikey: {SB_KEY}",
+             "-H", f"Authorization: Bearer {SB_KEY}",
+             "-H", "Content-Type: image/jpeg",
+             "-H", "x-upsert: true",
+             "--data-binary", "@-"],
+            input=img_bytes, capture_output=True, timeout=20,
+        )
+        stdout = result.stdout.decode("utf-8", errors="replace") if isinstance(result.stdout, bytes) else result.stdout
+        if result.returncode == 0:
+            try:
+                resp_json = json.loads(stdout)
+                if "Key" in resp_json or "Id" in resp_json:
+                    return f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+            except Exception:
+                pass
+            if not stdout.strip():
+                return f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+        return None
+    except Exception as e:
+        print(f"  ⚠ Hero upload failed: {e}", file=sys.stderr)
+        return None
+
+
+def upgrade_hero_from_tweets(article_id, slug, image_url, all_tweets):
+    """If article has a stock hero, find the best photo tweet and upgrade.
+    
+    Returns dict with upgrade details or None if no upgrade.
+    Only uses tweets with photos (not video posters).
+    Requires authority >= 2 (credible/official sources).
+    """
+    if not _is_stock_hero(image_url):
+        return None
+    
+    # Find best photo tweet by authority, then follower count
+    photo_candidates = []
+    for auth, score, media, tweet in all_tweets:
+        photos = tweet.get("photos", [])
+        if not photos or auth < 2:
+            continue
+        photo_candidates.append((auth, tweet.get("followers", 0), photos[0], tweet))
+    
+    if not photo_candidates:
+        return None
+    
+    # Pick highest authority, then most followers
+    photo_candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    best_auth, best_followers, best_photo_url, best_tweet = photo_candidates[0]
+    
+    # Download and upload
+    new_hero_url = _download_tweet_photo(best_photo_url, slug)
+    if not new_hero_url:
+        return None
+    
+    # Build attribution caption
+    handle = best_tweet.get("handle", "")
+    caption = f"Image: @{handle} via X" if handle else "Image via X"
+    
+    # Patch article
+    resp = _session.patch(
+        f"{REST}/p2_articles?id=eq.{article_id}",
+        headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+        json={"image_url": new_hero_url, "image_caption": caption},
+        timeout=10,
+    )
+    if resp.status_code not in (200, 204):
+        return None
+    
+    return {
+        "old_hero": image_url,
+        "new_hero": new_hero_url,
+        "source_handle": f"@{handle}",
+        "source_photo": best_photo_url,
+        "authority": best_auth,
+        "caption": caption,
+    }
+
+
 # ─── Main enrichment loop ────────────────────────────────────────────────────
 
 def run_enrichment(hours=24, apply=False, max_embeds=5):
@@ -467,7 +578,7 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
     resp = _session.get(
         f"{REST}/p2_articles",
         params={
-            "select": "id,headline,slug,category,published_at,body",
+            "select": "id,headline,slug,category,published_at,body,image_url",
             "status": "eq.published",
             "order": "published_at.desc",
             "limit": "250",
@@ -501,10 +612,12 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         "articles_checked": len(resp),
         "candidates": len(candidates),
         "embeds_added": 0,
+        "hero_upgrades": 0,
         "details": [],
     }
     
     embeds_added = 0
+    hero_upgrades = 0
     seen_handles = set()  # Don't hit the same handle twice
     
     for c in candidates:
@@ -613,6 +726,8 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         a = c["article"]
         headline = a["headline"]
         body = a.get("body", "") or ""
+        image_url = a.get("image_url", "") or ""
+        slug = a.get("slug", "unknown")
         topic_q, short_q = build_topic_query(headline, body)
         if not topic_q:
             continue
@@ -647,18 +762,36 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         # Rank: highest authority first, then score, then prefer media
         scored_tweets.sort(key=lambda x: (x[0], x[1], x[2]), reverse=True)
 
+        if not scored_tweets:
+            continue
+
+        # ── 1. Hero upgrade: best PHOTO tweet replaces stock hero ──
+        hero_detail = None
+        if apply:
+            hero_result = upgrade_hero_from_tweets(a["id"], slug, image_url, scored_tweets)
+            if hero_result:
+                hero_upgrades += 1
+                hero_detail = {
+                    "headline": headline[:80],
+                    "action": "hero_upgrade",
+                    "old_hero": hero_result["old_hero"][:80],
+                    "new_hero": hero_result["new_hero"][:80],
+                    "source_handle": hero_result["source_handle"],
+                    "caption": hero_result["caption"],
+                }
+                report["details"].append(hero_detail)
+
+        # ── 2. Best embed inline in body (video or photo preferred) ──
         best_tweet = None
         best_score = 0
         for authority, score, media, tweet in scored_tweets:
-            best_tweet = tweet
-            best_score = score
-            break
+            tweet_id = tweet["id"]
+            if verify_tweet(tweet_id):
+                best_tweet = tweet
+                best_score = score
+                break
 
         if not best_tweet:
-            continue
-
-        tweet_id = best_tweet["id"]
-        if not verify_tweet(tweet_id):
             continue
 
         detail = {
@@ -682,7 +815,42 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
 
         report["details"].append(detail)
 
+        # ── 3. Related tweets → social_embeds for tweet scroll ──
+        if apply and len(scored_tweets) > 1:
+            seen_handles = set()
+            if best_tweet:
+                seen_handles.add(best_tweet.get("handle", ""))
+            # Also exclude the hero photo source handle
+            if hero_detail:
+                seen_handles.add(hero_detail.get("source_handle", "").lstrip("@"))
+
+            related = []
+            for authority, score, media, tweet in scored_tweets:
+                handle = tweet.get("handle", "")
+                if handle in seen_handles:
+                    continue
+                tid = tweet["id"]
+                if not verify_tweet(tid):
+                    continue
+                related.append({
+                    "url": tweet["url"],
+                    "platform": "twitter",
+                })
+                seen_handles.add(handle)
+                if len(related) >= 4:  # Up to 4 related tweets
+                    break
+
+            if related:
+                _session.patch(
+                    f"{REST}/p2_articles?id=eq.{a['id']}",
+                    headers={**SB_HEADERS, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                    json={"social_embeds": json.dumps(related)},
+                    timeout=10,
+                )
+                detail["related_tweets"] = len(related)
+
     report["embeds_added"] = embeds_added
+    report["hero_upgrades"] = hero_upgrades
     return report
 
 
