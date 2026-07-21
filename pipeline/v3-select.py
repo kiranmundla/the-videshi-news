@@ -138,7 +138,7 @@ def llm_call(payload_dict, label="LLM call", timeout=50):
 CATEGORY_PATTERNS = {
     "immigration": [
         r'\bh-?1b\b', r'\bgreen\s*card\b', r'\bvisa\b', r'\buscis\b', r'\bimmigration\b',
-        r'\bdeport\b', r'\basylum\b', r'\beb-?\d\b', r'\bopt\b(?!i)', r'\bi-?\d{3}\b',
+        r'\bdeport\b', r'\basylum\b', r'\beb-?\d\b', r'\bopt[\s,.\-;:)]', r'\bi-?\d{3}\b',
         r'\bcitizenship\b', r'\bnaturaliz', r'\bwork\s*permit\b', r'\bdaca\b',
     ],
     "technology": [
@@ -325,6 +325,14 @@ WITHIN-BATCH duplicates: if two topics in this batch cover the same event, mark 
 CATEGORY ASSIGNMENT:
 Also assign the best category for each topic:
 immigration, technology, entertainment, sports, markets-finance, food, travel, lifestyle-health, nri-world, news
+
+CATEGORY RULES — prevent common misclassification:
+- "box office" = entertainment (NOT immigration, even though it contains "office")
+- "ICE" = immigration ONLY when referring to Immigration and Customs Enforcement. "ice cream", "icy conditions" = NOT immigration
+- "OPT" = immigration ONLY when referring to Optional Practical Training. "opt out", "opted", "option" = NOT immigration
+- "apple" = technology ONLY when referring to Apple Inc. "apple pie", "apple cider" = food
+- "streaming" = entertainment for Netflix/Disney+/etc. "streaming data" = technology
+- Do NOT classify by substring matches. Read the full headline meaning.
 
 For each topic, provide:
 1. "relevant": true/false

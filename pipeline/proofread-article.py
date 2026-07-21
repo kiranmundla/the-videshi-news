@@ -243,6 +243,23 @@ def apply_proofread(article, review, dry_run=True):
 
     images = extract_inline_images(body)
 
+    # 0. Dedup pull quotes (always, regardless of LLM review)
+    pq_pattern = r'<blockquote\s+class="pull-quote"[^>]*>.*?</blockquote>'
+    pq_blocks = re.findall(pq_pattern, new_body, re.DOTALL)
+    if len(pq_blocks) != len(set(pq_blocks)):
+        seen_pq = set()
+        for block in pq_blocks:
+            if block in seen_pq:
+                first_pos = new_body.find(block)
+                second_pos = new_body.find(block, first_pos + len(block))
+                if second_pos >= 0:
+                    new_body = new_body[:second_pos] + new_body[second_pos + len(block):]
+            else:
+                seen_pq.add(block)
+        dup_count = len(pq_blocks) - len(set(pq_blocks))
+        changes.append(f"removed {dup_count} duplicate pull quote{'s' if dup_count > 1 else ''}")
+        print(f"     🔄 Removed {dup_count} duplicate pull quote{'s' if dup_count > 1 else ''}")
+
     # 1. Remove irrelevant images
     images_to_remove = review.get("images_to_remove", [])
     removed_count = 0
