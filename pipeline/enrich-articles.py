@@ -1497,15 +1497,10 @@ def main():
                     if apply:
                         body = article.get("body", "")
                         embed_line = f"\n\n{url}\n"
-                        # Insert after second </p> tag (works with HTML bodies)
-                        import re as _re
-                        _p_ends = [m.end() for m in _re.finditer(r'</p>', body, _re.IGNORECASE)]
-                        if len(_p_ends) >= 2:
-                            insert_at = _p_ends[1]
-                            new_body = body[:insert_at] + embed_line + body[insert_at:]
-                        elif len(_p_ends) == 1:
-                            insert_at = _p_ends[0]
-                            new_body = body[:insert_at] + embed_line + body[insert_at:]
+                        from embed_placement import insert_embed_high
+                        new_body_candidate = insert_embed_high(body, embed_line)
+                        if new_body_candidate != body:
+                            new_body = new_body_candidate
                         else:
                             # Fallback: try old \n\n split for non-HTML bodies
                             paras = body.split("\n\n", 2)
@@ -1604,16 +1599,11 @@ def main():
             print(f"       \"{best_yt['title']}\" ({best_yt['channel']}) [score:{best_yt['score']}]")
 
             if apply:
-                # Insert <youtube> tag after 2nd </p> tag
-                import re as _re_yt
+                from embed_placement import insert_embed_high
                 embed_tag = f"\n\n<youtube>{best_yt['url']}</youtube>\n"
-                _p_ends = [m.end() for m in _re_yt.finditer(r'</p>', body, _re_yt.IGNORECASE)]
-                if len(_p_ends) >= 2:
-                    insert_at = _p_ends[1]
-                    new_body = body[:insert_at] + embed_tag + body[insert_at:]
-                elif len(_p_ends) == 1:
-                    insert_at = _p_ends[0]
-                    new_body = body[:insert_at] + embed_tag + body[insert_at:]
+                new_body_candidate = insert_embed_high(body, embed_tag)
+                if new_body_candidate != body:
+                    new_body = new_body_candidate
                 else:
                     paras = body.split("\n\n", 2)
                     if len(paras) >= 2:

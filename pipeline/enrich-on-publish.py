@@ -752,60 +752,13 @@ def _count_media_in_text(text):
 
 
 def insert_embed_in_body(body, embed_url, platform="x"):
-    """Insert an embed URL/tag distributed across article sections.
-
-    Finds the H2 section with the fewest existing media elements and inserts
-    after the first </p> in that section.  This prevents clustering all embeds
-    in the same spot when multiple embeds are added sequentially.
-    """
+    """Insert an embed as high as possible without clustering with existing media."""
+    from embed_placement import insert_embed_high
     if platform == "youtube":
         embed_line = f"\n\n<youtube>{embed_url}</youtube>\n"
     else:
         embed_line = f"\n\n{embed_url}\n"
-
-    # Split body into sections delimited by <h2> tags
-    h2_splits = list(re.finditer(r'<h2[^>]*>', body, re.IGNORECASE))
-
-    if not h2_splits:
-        # No sections — fall back to after 2nd </p>
-        p_ends = [m.end() for m in re.finditer(r'</p>', body, re.IGNORECASE)]
-        if len(p_ends) >= 2:
-            return body[:p_ends[1]] + embed_line + body[p_ends[1]:]
-        return body + embed_line
-
-    # Build (start, end) for each section
-    sections = []
-    # Intro (before first H2) — skip if it's just key-takeaways
-    intro_text = body[:h2_splits[0].start()]
-    if intro_text.strip() and not intro_text.strip().startswith('<div class="key-takeaways'):
-        sections.append((0, h2_splits[0].start()))
-
-    for i, m in enumerate(h2_splits):
-        s = m.start()
-        e = h2_splits[i + 1].start() if i + 1 < len(h2_splits) else len(body)
-        sections.append((s, e))
-
-    if not sections:
-        return body + embed_line
-
-    # Pick the section with the fewest media elements
-    best_idx, best_count = 0, float('inf')
-    for i, (s, e) in enumerate(sections):
-        mc = _count_media_in_text(body[s:e])
-        if mc < best_count:
-            best_count = mc
-            best_idx = i
-
-    # Within the chosen section, insert after first </p>
-    s, e = sections[best_idx]
-    section_text = body[s:e]
-    p_ends = [m.end() for m in re.finditer(r'</p>', section_text, re.IGNORECASE)]
-    if p_ends:
-        insert_pos = s + p_ends[0]
-    else:
-        insert_pos = e
-
-    return body[:insert_pos] + embed_line + body[insert_pos:]
+    return insert_embed_high(body, embed_line)
 
 
 def has_embed(body, platform):
@@ -903,23 +856,40 @@ def main():
         new_embeds = list(social_embeds)
         changes = []
 
+        # Collect all available embeds first, then insert in relevance order
+        # so the best match gets the highest placement. Video gets a small
+        # boost (+2) since it's inherently more engaging, but a high-relevance
+        # tweet or IG post can still outrank a mediocre video.
+        pending_embeds = []  # [(score, platform, embed_url, change_label)]
+
+        # ── YouTube enrichment ──
+        if not has_embed(body, "youtube"):
+            has_x = has_embed(body, "x")
+            has_ig = has_embed(body, "instagram")
+            if not (has_x and has_ig):
+                yt_url, info = enrich_youtube(article, registry)
+                if yt_url:
+                    yt_score = info.get("score", 5) + 2  # video engagement bonus
+                    print(f"     YT: {yt_url} — \"{info['title'][:50]}\" [score:{info['score']}→{yt_score}]")
+                    pending_embeds.append((yt_score, "youtube", yt_url, f"YT({info['entity'][:20]})"))
+                    report["yt_embeds"] += 1
+        else:
+            print(f"     YT: already has embed")
+
         # ── X enrichment ──
         if not has_embed(body, "x"):
-            # Try cache first
             tweet, info = enrich_x_from_cache(article, cache, registry)
             if tweet:
                 print(f"     X (cache): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
             else:
-                # Fallback to live search
                 tweet, info = enrich_x_from_search(article)
                 if tweet:
                     print(f"     X (search): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
 
             if tweet:
-                # Verify tweet renders
                 if verify_tweet(tweet["id"]):
-                    new_body = insert_embed_in_body(new_body, tweet["url"], "x")
-                    changes.append(f"X(@{info.get('handle','?')})")
+                    x_score = info.get("score", 5)
+                    pending_embeds.append((x_score, "x", tweet["url"], f"X(@{info.get('handle','?')})"))
                     report["x_embeds"] += 1
                 else:
                     print(f"     ⚠ Tweet verify failed")
@@ -932,27 +902,18 @@ def main():
             if shortcode:
                 ig_url = f"https://www.instagram.com/p/{shortcode}/"
                 source = "live" if live_ig else "cache"
-                print(f"     IG ({source}): @{info['handle']} → {ig_url}")
-                new_body = insert_embed_in_body(new_body, ig_url, "instagram")
-                changes.append(f"IG(@{info['handle']})")
+                ig_score = info.get("score", 5)
+                print(f"     IG ({source}): @{info['handle']} → {ig_url} [score:{ig_score}]")
+                pending_embeds.append((ig_score, "instagram", ig_url, f"IG(@{info['handle']})"))
                 report["ig_embeds"] += 1
         else:
             print(f"     IG: already has embed")
 
-        # ── YouTube enrichment ──
-        if not has_embed(new_body, "youtube"):
-            # Skip if already has both X and IG embeds
-            has_x = has_embed(new_body, "x")
-            has_ig = has_embed(new_body, "instagram")
-            if not (has_x and has_ig):
-                yt_url, info = enrich_youtube(article, registry)
-                if yt_url:
-                    print(f"     YT: {yt_url} — \"{info['title'][:50]}\" [score:{info['score']}]")
-                    new_body = insert_embed_in_body(new_body, yt_url, "youtube")
-                    changes.append(f"YT({info['entity'][:20]})")
-                    report["yt_embeds"] += 1
-        else:
-            print(f"     YT: already has embed")
+        # Sort by relevance score descending — best match gets highest placement
+        pending_embeds.sort(key=lambda x: x[0], reverse=True)
+        for _score, platform, embed_url, change_label in pending_embeds:
+            new_body = insert_embed_in_body(new_body, embed_url, platform)
+            changes.append(change_label)
 
         # ── Apply changes ──
         if changes:

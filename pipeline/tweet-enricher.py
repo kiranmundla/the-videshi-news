@@ -327,21 +327,8 @@ def patch_article_embed(article_id, body, tweet_url):
     import re as _re
     embed_line = f"\n\n{tweet_url}\n"
     
-    # HTML body: find </p> positions
-    _p_ends = [m.end() for m in _re.finditer(r'</p>', body, _re.IGNORECASE)]
-    if len(_p_ends) >= 2:
-        insert_at = _p_ends[1]
-        new_body = body[:insert_at] + embed_line + body[insert_at:]
-    elif len(_p_ends) == 1:
-        insert_at = _p_ends[0]
-        new_body = body[:insert_at] + embed_line + body[insert_at:]
-    else:
-        # Fallback: try old \n\n split for non-HTML bodies
-        paragraphs = body.split("\n\n", 2)
-        if len(paragraphs) >= 2:
-            new_body = paragraphs[0] + "\n\n" + paragraphs[1] + embed_line + "\n\n" + (paragraphs[2] if len(paragraphs) > 2 else "")
-        else:
-            new_body = body + embed_line
+    from embed_placement import insert_embed_high
+    new_body = insert_embed_high(body, embed_line)
     
     resp = _session.patch(
         f"{REST}/p2_articles?id=eq.{article_id}",
