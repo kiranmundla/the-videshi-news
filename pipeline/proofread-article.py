@@ -182,17 +182,19 @@ Review the article and return a JSON object with these fields:
    - Its alt/caption references something not discussed in the article
    Be CONSERVATIVE — only flag images that are clearly wrong or irrelevant. A topically related image is fine even if generic.
 
-2. "text_fixes": array of objects with "old" (exact text to find) and "new" (replacement text) for:
-   - Grammar errors
-   - Awkward phrasing that reads poorly
+2. "text_fixes": array of objects with "old" (exact text to find) and "new" (replacement text) for ONLY:
+   - Clear grammar errors (subject-verb agreement, wrong tense, missing articles)
    - Broken/malformed HTML tags
-   - Repeated words or stuttering
-   Keep fixes minimal and precise. Do NOT rewrite style or voice. Only fix clear errors.
+   - Repeated/stuttered words ("the the", "is is")
+   - Unclosed quotation marks
+   NEVER change factual content: do NOT alter names, numbers, dates, versions, places, statistics, or quotes.
+   If something looks factually wrong, put it in "other_issues" instead of fixing it.
+   Do NOT rewrite style, voice, or sentence structure. Only fix unambiguous errors.
    Each "old" string must be an EXACT substring from the article body.
 
 3. "pull_quote_issues": array of strings describing any pull quote problems (quote not in article, misattributed, etc.)
 
-4. "other_issues": array of strings for anything else notable (duplicate paragraphs, broken formatting, etc.)
+4. "other_issues": array of strings for anything else notable (duplicate paragraphs, possible factual errors, broken formatting, etc.)
 
 5. "verdict": "clean" if no issues found, "minor" if only small fixes, "major" if significant problems
 

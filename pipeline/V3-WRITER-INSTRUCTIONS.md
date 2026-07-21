@@ -152,6 +152,15 @@ timeout 600 python3 -u enrich-data-cards.py --since-hours 3 --limit 10 2>&1
 
 If any enrichment script fails, continue — the articles are already published and readable without enrichment.
 
+## Step 4.5 — Proofread (pre-publish QA)
+After enrichment, run the proofreader to catch irrelevant images, grammar errors, and formatting issues:
+```bash
+cd ~/workspace/the-videshi-news/pipeline
+timeout 120 python3 -u proofread-article.py --hours 3 --apply 2>&1
+```
+
+This uses GPT-4o-mini to review each article like a senior editor. It removes irrelevant inline images and fixes grammar errors. It will NOT change factual content (names, numbers, dates). If it fails, continue.
+
 ## Step 5 — Rebuild feeds
 ```
 cd ~/workspace/the-videshi-news/pipeline && python3 -u prebuild-feeds.py 2>&1
