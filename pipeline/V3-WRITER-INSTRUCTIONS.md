@@ -64,7 +64,7 @@ Structure with clear `<h2>` subheadings. Must include:
     <cite>— Kevin Warsh, Federal Reserve Chairman</cite>
   </blockquote>
   ```
-  Use 1-2 pull quotes per article maximum. Only for genuinely impactful quotes that capture the story's essence — not filler quotes.
+  Use 1-2 pull quotes per article maximum. Only for genuinely impactful quotes that capture the story's essence — not filler quotes. **NEVER repeat the same pull quote — each must be unique text.**
 - NO generic filler phrases: "In a significant development," "It is worth noting," "This comes at a time when"
 - NO sycophantic qualifiers: "importantly," "notably," "interestingly"
 - Vary sentence length. Short punchy sentences mixed with longer analytical ones.

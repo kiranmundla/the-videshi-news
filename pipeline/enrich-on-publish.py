@@ -1033,6 +1033,22 @@ def main():
         new_embeds = list(social_embeds)
         changes = []
 
+        # ── Dedup pull quotes (LLM sometimes generates identical ones) ──
+        pq_pat = re.compile(r'<blockquote class="pull-quote">.*?</blockquote>', re.DOTALL)
+        _seen_pqs = set()
+        def _dedup_pq(m):
+            key = re.sub(r'\s+', ' ', m.group(0)).strip()
+            if key in _seen_pqs:
+                return ''
+            _seen_pqs.add(key)
+            return m.group(0)
+        deduped_body = pq_pat.sub(_dedup_pq, new_body)
+        if deduped_body != new_body:
+            removed_count = len(pq_pat.findall(new_body)) - len(_seen_pqs)
+            new_body = re.sub(r'\n{3,}', '\n\n', deduped_body)
+            changes.append(f"dedup {removed_count} pull quote(s)")
+            print(f"     🔄 Removed {removed_count} duplicate pull quote(s)")
+
         # Collect all available embeds first, then insert in relevance order
         # so the best match gets the highest placement. Video gets a small
         # boost (+2) since it's inherently more engaging, but a high-relevance
