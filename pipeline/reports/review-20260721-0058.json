@@ -1,0 +1,101 @@
+[
+  {
+    "id": "15fe37dd-4bb5-4d75-a157-099737e0739b",
+    "headline": "A 10-Minute Walk After Meals Can Slash Blood Sugar Spikes, and Experts Say India",
+    "slug": "10-minute-walk-after-meals-blood-sugar-diabetes-indians",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian health experts or organizations that specifically address the health challenges faced by the NRI community regarding diabetes and lifestyle habits.",
+        "Provide more context on how the 10-minute walk can be integrated into the daily routines of NRIs, perhaps by including examples of how busy professionals can fit this into their workday or family life.",
+        "Include a section that discusses cultural dietary habits among Indians abroad that may contribute to higher diabetes risk, linking it back to the importance of post-meal walking.",
+        "Mention any existing community initiatives or programs within the NRI community that promote physical activity and healthy living, which could encourage readers to engage with local resources."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or diabetes advocacy group that highlights the importance of post-meal walking, specifically targeting the Indian diaspora."
+      ]
+    }
+  },
+  {
+    "id": "ded4aa53-9ba8-41e7-a03f-199401bbe2cc",
+    "headline": "Singapore\u2019s Malayalee Community Kicks Off Three-Month Onam Season With Boat Race",
+    "slug": "singapore-malayalee-onam-season-three-months-boat-race-cultural-events",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from NRIs who participated in the events, highlighting their connection to Onam and how it fosters community among Malayalees abroad.",
+        "Provide more context about the significance of Onam for the Malayalee community, especially for NRIs, to deepen the reader's understanding of its cultural importance and how it differs from celebrations in Kerala.",
+        "Add a section that discusses how the events in Singapore reflect the challenges and adaptations faced by the Malayalee community abroad, particularly in terms of maintaining cultural traditions in a foreign land.",
+        "Clarify the timeline of events by including specific dates and details about the upcoming celebrations, making it easier for readers to engage with the content."
+      ],
+      "embed_opportunities": [
+        "Embed a video of the Vallam Kali boat race or a promotional video for the Onam season from a local Malayalee association's YouTube channel to visually engage readers."
+      ]
+    }
+  },
+  {
+    "id": "fff9ba86-4cd0-4acf-bb48-87a9778fc168",
+    "headline": "Nearly Two Million Fans Line Madrid Streets as Spain\u2019s World Cup Champions Come ",
+    "slug": "spain-world-cup-champions-homecoming-madrid-parade-two-million",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs celebrating Spain's victory from various locations around the world, highlighting how this win resonates with the Indian diaspora and their connection to Spain.",
+        "Provide context on how Spain's World Cup victory might impact the Indian diaspora, such as potential interest in Spanish football clubs among NRIs or how this victory could influence cultural exchanges between Spain and India.",
+        "Add a section discussing the significance of this victory for Spanish culture and identity, and how NRIs might engage with or celebrate this event in their communities, perhaps through local events or social media.",
+        "Include a brief mention of how the Indian diaspora has historically engaged with football, drawing parallels between their support for teams in Spain and their own local leagues or teams."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official La Liga account or the Spanish national team's account celebrating the victory, which could provide a direct connection to the event and engage readers visually."
+      ]
+    }
+  },
+  {
+    "id": "2a1f3cb2-1c5a-4c9c-8e17-14c7c8ced09c",
+    "headline": "Jamie Dimon Warns Markets Are Underestimating Risks as JPMorgan Posts Record Qua",
+    "slug": "jamie-dimon-warns-markets-underestimating-risks-jpmorgan-record-quarter",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how JPMorgan's performance and Jamie Dimon's warnings may impact Indian NRIs, particularly those investing in U.S. markets or sending remittances back home. This could involve discussing potential implications for the Indian economy or NRI investment strategies.",
+        "Provide context on how the current market conditions, as described by Jamie Dimon, might specifically affect NRIs, such as changes in interest rates impacting home loans or investment returns. This would help the diaspora relate more personally to the financial news.",
+        "Revise the headline to make it more compelling and specific to the NRI audience. For example, 'Jamie Dimon Warns NRIs: U.S. Market Risks Loom as JPMorgan Posts Record Quarter' would directly address the diaspora's concerns.",
+        "Add a section that discusses how geopolitical tensions and inflation could affect remittance flows from the U.S. to India, as this is a crucial aspect for many NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Jamie Dimon or JPMorgan Chase that highlights his warnings about market risks, which would provide direct insight and authority to the article."
+      ]
+    }
+  },
+  {
+    "id": "04b4f490-dc60-48da-bf3f-e85e0088b058",
+    "headline": "Sanjeev Kapoor\u2019s Air-Fryer Onion Pakoda Recipe Promises Monsoon Snacking Without",
+    "slug": "sanjeev-kapoor-air-fryer-onion-pakoda-monsoon-recipe",
+    "category": "food",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how NRIs can adapt this recipe using locally available ingredients in their respective countries, or how they can share this recipe with their families back in India to maintain cultural ties.",
+        "Provide context about the significance of monsoon snacking in Indian culture, especially for NRIs who may be missing home during this season. This could enhance the emotional connection for readers.",
+        "Include a brief mention of how air-fryer recipes are gaining popularity among health-conscious Indian communities abroad, particularly in the US and UK, to resonate more with the NRI audience.",
+        "Add a comparison of traditional pakoda recipes versus air-fried versions in terms of health benefits, which could appeal to readers interested in healthier cooking methods."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Sanjeev Kapoor himself, sharing his thoughts on the air-fryer version of pakodas, to give the article a more authentic touch."
+      ]
+    }
+  }
+]
