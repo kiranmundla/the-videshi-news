@@ -1,128 +1,116 @@
 [
   {
-    "slug": "cant-handle-h-1b-visa-stress-anymore-nri-techie-plans-return-to-india-after-eigh",
-    "headline": "'Can't Handle H-1B Visa Stress Anymore': NRI Techie Plans Return to India After Eight Years in the US",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cant-handle-h-1b-visa-stress-anymore-nri-techie-plans-return-to-india-after-eigh.jpg"
-  },
-  {
-    "slug": "chef-kunal-kapurs-roasted-apple-shrikhand-brings-a-western-twist-to-indias-belov",
-    "headline": "Chef Kunal Kapur's Roasted Apple Shrikhand Brings a Western Twist to India's Beloved Yogurt Dessert",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chef-kunal-kapurs-roasted-apple-shrikhand-brings-a-western-twist-to-indias-belov.jpg"
-  },
-  {
-    "slug": "rbis-foreign-currency-deposit-scheme-pulls-in-207-billion-as-nris-rush-to-lock-i",
-    "headline": "RBI's Foreign Currency Deposit Scheme Pulls in $20.7 Billion as NRIs Rush to Lock In 6.75% Dollar Returns",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbis-foreign-currency-deposit-scheme-pulls-in-207-billion-as-nris-rush-to-lock-i.jpg"
-  },
-  {
-    "slug": "indian-diaspora-protests-outside-india-house-in-london-over-neet-controversy-and",
-    "headline": "Indian Diaspora Protests Outside India House in London Over NEET Controversy and Delhi Crackdown",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-diaspora-protests-outside-india-house-in-london-over-neet-controversy-and.jpg"
-  },
-  {
-    "slug": "sohail-khan-takes-responsibility-for-divorce-from-seema-sajdeh-on-national-telev",
-    "headline": "Sohail Khan Takes Responsibility for Divorce From Seema Sajdeh on National Television",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sohail-khan-takes-responsibility-for-divorce-from-seema-sajdeh-on-national-telev.jpg"
-  },
-  {
-    "slug": "heart-attacks-in-your-20s-and-30s-why-indias-young-are-dying-of-a-disease-their",
-    "headline": "Heart Attacks in Your 20s and 30s: Why India's Young Are Dying of a Disease Their Grandparents Survived",
+    "slug": "inhaling-co2-cleared-alzheimers-proteins-early-human-trial",
+    "headline": "Inhaling CO2 Cleared Alzheimer's Proteins in Early Human Trial",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/heart-attacks-in-your-20s-and-30s-why-indias-young-are-dying-of-a-disease-their.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/inhaling-co2-cleared-alzheimers-proteins-early-human-trial.jpg"
   },
   {
-    "slug": "shyam-metalics-surges-after-q1-profit-jumps-21-as-goldman-and-ubs-name-it-a-top",
-    "headline": "Shyam Metalics Surges After Q1 Profit Jumps 21% as Goldman and UBS Name It a Top Midcap Pick",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shyam-metalics-surges-after-q1-profit-jumps-21-as-goldman-and-ubs-name-it-a-top.jpg"
-  },
-  {
-    "slug": "two-indian-men-jailed-in-singapore-after-swapping-235000-diamond-with-fake-stone",
-    "headline": "Two Indian Men Jailed in Singapore After Swapping $235,000 Diamond With Fake Stone at Chinatown Jeweller",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/two-indian-men-jailed-in-singapore-after-swapping-235000-diamond-with-fake-stone.jpg"
-  },
-  {
-    "slug": "us-tech-layoffs-cross-100000-in-2026-as-europes-most-valuable-company-offers-200",
-    "headline": "US Tech Layoffs Cross 100,000 in 2026 as Europe's Most Valuable Company Offers €20,000 Bonuses to Retain Staff",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-tech-layoffs-cross-100000-in-2026-as-europes-most-valuable-company-offers-200.jpg"
-  },
-  {
-    "slug": "volkswagen-nears-stake-sale-india-jsw-group",
-    "headline": "Volkswagen Nears Deal to Sell Stake in India Unit to JSW Group",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/volkswagen-nears-stake-sale-india-jsw-group.jpg"
-  },
-  {
-    "slug": "mamata-rallies-india-bloc-unity-tmc-split-monsoon-session",
-    "headline": "Mamata Rallies INDIA Bloc for Unity as TMC Split Deepens Ahead of Monsoon Session",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mamata-rallies-india-bloc-unity-tmc-split-monsoon-session.jpg"
-  },
-  {
-    "slug": "americas-glp-1-drug-use-surges-semaglutide-dominates-costs-climb",
-    "headline": "America's GLP-1 Drug Use Surges as Semaglutide Dominates and Costs Climb",
+    "slug": "women-pcos-four-times-higher-heart-disease-risk-lancet",
+    "headline": "Women With PCOS Face Four Times Higher Risk of Heart Disease, Lancet Study Finds",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/americas-glp-1-drug-use-surges-semaglutide-dominates-costs-climb.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/women-pcos-four-times-higher-heart-disease-risk-lancet.jpg"
   },
   {
-    "slug": "christopher-nolan-horror-film-next-the-odyssey-record-opening",
-    "headline": "Christopher Nolan Wants His Next Film to Be a Horror Movie. The Odyssey Proves He Can Do It.",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/christopher-nolan-horror-film-next-the-odyssey-record-opening.jpg"
-  },
-  {
-    "slug": "google-maps-personal-intelligence-gemini-integration",
-    "headline": "Google Maps Prepares to Link Gmail, Photos and More Through Personal Intelligence",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/google-maps-personal-intelligence-gemini-integration.jpg"
-  },
-  {
-    "slug": "indigo-tightens-grip-indian-skies-air-india-loses-ground",
-    "headline": "IndiGo Tightens Grip on Indian Skies as Air India Loses Ground",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-tightens-grip-indian-skies-air-india-loses-ground.jpg"
-  },
-  {
-    "slug": "sergio-ramos-consoled-messi-world-cup-final-2026",
-    "headline": "Sergio Ramos Consoled a Tearful Messi After Spain Won the World Cup Final",
+    "slug": "spains-world-cup-win-reshuffles-2026-ballon-dor-race",
+    "headline": "Spain's World Cup Win Reshuffles 2026 Ballon d'Or Race",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sergio-ramos-consoled-messi-world-cup-final-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spains-world-cup-win-reshuffles-2026-ballon-dor-race.jpg"
   },
   {
-    "slug": "lakhs-march-parliament-neet-paper-leak-sonam-wangchuk-hunger-strike",
-    "headline": "Lakhs March to Parliament Over NEET Paper Leak as Sonam Wangchuk's Hunger Strike Enters Day 23",
+    "slug": "disney-cuts-hundreds-of-jobs-pixar-bearing-brunt",
+    "headline": "Disney Cuts Hundreds of Jobs With Pixar Bearing the Brunt",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/disney-cuts-hundreds-of-jobs-pixar-bearing-brunt.jpg"
+  },
+  {
+    "slug": "mtr-foods-quick-commerce-clean-labels-sambar-anthem",
+    "headline": "MTR Foods Bets on Quick Commerce, Clean Labels and a Viral Sambar Anthem",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mtr-foods-quick-commerce-clean-labels-sambar-anthem.jpg"
+  },
+  {
+    "slug": "rahul-gandhi-detained-modi-home-india-exam-protest",
+    "headline": "Rahul Gandhi Detained Outside Modi's Home Amid India Exam Protest",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lakhs-march-parliament-neet-paper-leak-sonam-wangchuk-hunger-strike.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rahul-gandhi-detained-modi-home-india-exam-protest.jpg"
   },
   {
-    "slug": "bytedance-zhang-yiming-overtakes-mukesh-ambani-asia-second-richest",
-    "headline": "ByteDance's Zhang Yiming Overtakes Mukesh Ambani as Asia's Second-Richest Person",
+    "slug": "japan-protests-china-live-fire-naval-drill-pacific",
+    "headline": "Japan Protests China's Live-Fire Naval Drill in Disputed Pacific Waters",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/japan-protests-china-live-fire-naval-drill-pacific.jpg"
+  },
+  {
+    "slug": "indian-professionals-eb5-investor-visas-green-card-waits",
+    "headline": "Indian Professionals Turn to EB-5 Investor Visas as Green Card Waits Stretch Decades",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-professionals-eb5-investor-visas-green-card-waits.jpg"
+  },
+  {
+    "slug": "allahabad-hc-splits-bulldozer-ban-slams-normalised-corruption",
+    "headline": "Allahabad HC Splits on Bulldozer Ban, Slams India's 'Normalised Corruption'",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/allahabad-hc-splits-bulldozer-ban-slams-normalised-corruption.jpg"
+  },
+  {
+    "slug": "la-liga-tebas-calls-infantino-resign-fifa-world-cup",
+    "headline": "La Liga Chief Tebas Calls on FIFA's Infantino to Resign Over World Cup Overreach",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/la-liga-tebas-calls-infantino-resign-fifa-world-cup.jpg"
+  },
+  {
+    "slug": "trump-booed-world-cup-jon-stewart-trophy-ceremony",
+    "headline": "Trump Booed, Mocked by Stewart After Crashing World Cup Trophy Ceremony",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-booed-world-cup-jon-stewart-trophy-ceremony.jpg"
+  },
+  {
+    "slug": "nvidia-discloses-stake-nebius-neocloud-stock-soaring",
+    "headline": "Nvidia Discloses 9.3% Stake in Nebius, Sending Neocloud Stock Soaring",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-discloses-stake-nebius-neocloud-stock-soaring.jpg"
+  },
+  {
+    "slug": "apple-patches-hide-my-email-flaw-exposed-real-addresses",
+    "headline": "Apple Patches Hide My Email Flaw That Exposed Real User Addresses",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-patches-hide-my-email-flaw-exposed-real-addresses.jpg"
+  },
+  {
+    "slug": "raghav-juyal-bhai-tera-star-hai-meta-bollywood-comedy",
+    "headline": "Raghav Juyal's 'Bhai Tera Star Hai' Takes Aim at Bollywood With Meta Humor and a Nod to Salman Khan",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/raghav-juyal-bhai-tera-star-hai-meta-bollywood-comedy.jpg"
+  },
+  {
+    "slug": "air-india-ranked-fourth-most-punctual-airline-june-2026",
+    "headline": "Air India Ranked Fourth Most Punctual Airline in the World for June 2026",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-ranked-fourth-most-punctual-airline-june-2026.jpg"
+  },
+  {
+    "slug": "air-india-a350-business-class-dazzles-domestic",
+    "headline": "Air India's A350 Business Class Dazzles Even on Short Domestic Hops",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-a350-business-class-dazzles-domestic.jpg"
+  },
+  {
+    "slug": "meghalaya-lakadong-turmeric-processing-global-market",
+    "headline": "Meghalaya Bets Big on Lakadong Turmeric With Processing Push and Global Market Access",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meghalaya-lakadong-turmeric-processing-global-market.jpg"
+  },
+  {
+    "slug": "sanjeev-kapoor-honey-chilli-baby-corn-recipe",
+    "headline": "Sanjeev Kapoor's Honey Chilli Baby Corn Brings the Indo-Chinese Classic Home",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sanjeev-kapoor-honey-chilli-baby-corn-recipe.jpg"
+  },
+  {
+    "slug": "india-russian-oil-imports-record-expired-waiver",
+    "headline": "India's Russian Oil Imports Hold Near Record Highs Despite Expired US Sanctions Waiver",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bytedance-zhang-yiming-overtakes-mukesh-ambani-asia-second-richest.jpg"
-  },
-  {
-    "slug": "hackers-tricked-meta-ai-chatbot-hijack-instagram-accounts",
-    "headline": "Hackers Tricked Meta's Own AI Chatbot to Hijack High-Profile Instagram Accounts",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hackers-tricked-meta-ai-chatbot-hijack-instagram-accounts.jpg"
-  },
-  {
-    "slug": "quad-unveils-fiji-port-project-critical-minerals-pact-new-delhi",
-    "headline": "Quad Unveils Fiji Port Project and Critical Minerals Pact at New Delhi Meeting",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/quad-unveils-fiji-port-project-critical-minerals-pact-new-delhi.jpg"
-  },
-  {
-    "slug": "openai-gpt-red-ai-super-hacker-security-testing",
-    "headline": "OpenAI Builds GPT-Red, an AI Super-Hacker That Outperforms Human Security Testers",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-gpt-red-ai-super-hacker-security-testing.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-russian-oil-imports-record-expired-waiver.jpg"
   }
 ]
