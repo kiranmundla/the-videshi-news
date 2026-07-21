@@ -192,12 +192,48 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
       {/* Photos */}
       {hasPhotos && <PhotoGrid photos={tweet.photos!} tweetUrl={tweetUrl} />}
 
-      {/* Video thumbnail with play button */}
+      {/* Video — inline playback */}
       {hasVideo && !hasPhotos && (() => {
         const video = (tweet as any).video;
+        // Get best mp4 variant from react-tweet video data
+        const mp4Variants = (video.variants || [])
+          .filter((v: any) => v.type === "video/mp4" || v.src?.endsWith(".mp4"))
+          .sort((a: any, b: any) => {
+            // If bitrate exists, pick second-highest (good quality, not huge)
+            const aRate = a.bitrate ?? 0;
+            const bRate = b.bitrate ?? 0;
+            return bRate - aRate;
+          });
+        // Also check mediaDetails for video_info variants
+        const mediaVid = (tweet.mediaDetails || []).find((m: any) => m.type === "video" || m.type === "animated_gif");
+        const mediaVariants = mediaVid?.video_info?.variants
+          ?.filter((v: any) => v.content_type === "video/mp4")
+          ?.sort((a: any, b: any) => ((b.bitrate ?? 0) - (a.bitrate ?? 0))) || [];
+        // Prefer mediaDetails (has bitrate info), fallback to video.variants
+        const bestVariant = mediaVariants.length > 1
+          ? mediaVariants[1]  // second-highest quality
+          : mediaVariants[0] || mp4Variants[0];
+        const videoSrc = bestVariant?.url || bestVariant?.src;
+
+        if (videoSrc) {
+          return (
+            <div style={{ position: "relative", background: "#000", margin: "0 16px 12px", borderRadius: 12, overflow: "hidden" }}>
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                poster={video.poster}
+                style={{ width: "100%", display: "block", maxHeight: 500 }}
+              >
+                <source src={videoSrc} type="video/mp4" />
+              </video>
+            </div>
+          );
+        }
+        // Fallback: poster with link to X
         return (
           <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
-             style={{ display: "block", position: "relative", cursor: "pointer" }}>
+             style={{ display: "block", position: "relative", cursor: "pointer", margin: "0 16px 12px", borderRadius: 12, overflow: "hidden" }}>
             <img
               src={video.poster}
               alt="Video thumbnail"
@@ -520,27 +556,57 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
             ))}
           </div>
         )}
-        {hasVideo && photos.length === 0 && (
-          <div style={{ position: "relative" }}>
-            <img
-              src={videoData.poster}
-              alt="Video thumbnail"
-              loading="lazy"
-              style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 400, background: "#f0eeeb" }}
-            />
-            <div style={{
-              position: "absolute", top: "50%", left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 48, height: 48, borderRadius: "50%",
-              background: "rgba(29, 161, 242, 0.9)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+        {hasVideo && photos.length === 0 && (() => {
+          // Get best mp4 variant
+          const mp4Variants = (videoData.variants || [])
+            .filter((v: any) => v.type === "video/mp4" || v.src?.endsWith(".mp4"))
+            .sort((a: any, b: any) => ((b.bitrate ?? 0) - (a.bitrate ?? 0)));
+          const mediaVid = (tweet.mediaDetails || []).find((m: any) => m.type === "video" || m.type === "animated_gif");
+          const mediaVariants = mediaVid?.video_info?.variants
+            ?.filter((v: any) => v.content_type === "video/mp4")
+            ?.sort((a: any, b: any) => ((b.bitrate ?? 0) - (a.bitrate ?? 0))) || [];
+          const bestVariant = mediaVariants.length > 1
+            ? mediaVariants[1]
+            : mediaVariants[0] || mp4Variants[0];
+          const videoSrc = bestVariant?.url || bestVariant?.src;
+
+          if (videoSrc) {
+            return (
+              <div style={{ position: "relative", background: "#000" }}>
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={videoData.poster}
+                  style={{ width: "100%", display: "block", maxHeight: 400 }}
+                >
+                  <source src={videoSrc} type="video/mp4" />
+                </video>
+              </div>
+            );
+          }
+          return (
+            <div style={{ position: "relative" }}>
+              <img
+                src={videoData.poster}
+                alt="Video thumbnail"
+                loading="lazy"
+                style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 400, background: "#f0eeeb" }}
+              />
+              <div style={{
+                position: "absolute", top: "50%", left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: 48, height: 48, borderRadius: "50%",
+                background: "rgba(29, 161, 242, 0.9)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
         <div style={{ padding: "10px 18px 14px", fontSize: 13, color: "#1d9bf0", fontWeight: 500 }}>
           View on X →
         </div>
