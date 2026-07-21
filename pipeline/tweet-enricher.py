@@ -71,7 +71,7 @@ EMBED_CATEGORIES = {"news", "sports", "entertainment", "technology", "nri-world"
 
 # ─── TwitterAPI.io search ─────────────────────────────────────────────────────
 
-def _twitterapiio_search(query, max_results=20, hours=48):
+def _twitterapiio_search(query, max_results=20, hours=48, query_type="Latest"):
     """Run a TwitterAPI.io advanced_search and return normalized tweet dicts."""
     if not TWITTERAPI_IO_KEY:
         print("  ⚠ TWITTERAPI_IO_KEY not set", file=sys.stderr)
@@ -84,7 +84,7 @@ def _twitterapiio_search(query, max_results=20, hours=48):
              "-H", f"X-API-Key: {TWITTERAPI_IO_KEY}",
              "-G",
              "--data-urlencode", f"query={query}",
-             "-d", "queryType=Latest"],
+             "-d", f"queryType={query_type}"],
             capture_output=True, text=True, timeout=15,
         )
         if result.returncode != 0:
@@ -141,17 +141,35 @@ def fetch_recent_tweets(handle, hours=48, max_results=20):
     return _twitterapiio_search(f"from:{handle}", max_results=max_results, hours=hours)
 
 
-def search_topic_tweets(topic_query, hours=48, max_results=20):
+def search_topic_tweets(topic_query, hours=48, max_results=20, short_query=""):
     """Search tweets by topic (no handle filter) via TwitterAPI.io.
-    Filters self-citations and sorts by authority then views."""
-    tweets = _twitterapiio_search(topic_query, max_results=max_results, hours=hours)
-    tweets = [t for t in tweets if (t.get("handle", "") or "").lower() != "thevideshi"]
+    Searches both Top and Latest with primary + short queries,
+    merges and dedupes, then sorts by authority and views."""
+    seen_ids = set()
+    merged = []
+
+    queries = [topic_query]
+    if short_query and short_query != topic_query:
+        queries.append(short_query)
+
+    # Search Top and Latest for each query
+    for q in queries:
+        for query_type in ("Top", "Latest"):
+            batch = _twitterapiio_search(q, max_results=max_results,
+                                          hours=hours, query_type=query_type)
+            for t in batch:
+                tid = t.get("id", "")
+                if tid and tid not in seen_ids:
+                    seen_ids.add(tid)
+                    merged.append(t)
+
+    merged = [t for t in merged if (t.get("handle", "") or "").lower() != "thevideshi"]
     # Sort by authority (followers + verified) first, then views
-    tweets.sort(key=lambda t: (
+    merged.sort(key=lambda t: (
         source_authority(t),
         t.get("views", 0) or 0,
     ), reverse=True)
-    return tweets
+    return merged
 
 
 def source_authority(tweet):
@@ -197,15 +215,18 @@ def source_authority(tweet):
 
 
 def build_topic_query(headline, body=""):
-    """Build a smart X search query: GPT picks the distinctive entities,
-    heuristic fallback prioritizes proper nouns over generic words."""
-    # Try GPT first — much better at picking "Spain World Cup Champions"
-    # over "Nearly Two Million Fans Line"
-    q = _gpt_topic_query(headline, body)
-    if q:
-        return _sanitize_topic_query(q)
+    """Build smart X search queries: GPT picks the distinctive entities,
+    heuristic fallback prioritizes proper nouns over generic words.
+    Returns (primary, short) tuple — short is a 2-word wider fallback."""
+    primary, short = _gpt_topic_query(headline, body)
+    if primary:
+        return _sanitize_topic_query(primary), _sanitize_topic_query(short) if short else ""
     # Heuristic fallback: proper nouns first, then content words
-    return _sanitize_topic_query(_heuristic_topic_query(headline))
+    h = _sanitize_topic_query(_heuristic_topic_query(headline))
+    # Build a 2-word version from heuristic
+    h_words = h.split()
+    h_short = " ".join(h_words[:2]) if len(h_words) >= 2 else ""
+    return h, h_short
 
 
 _TOPIC_STOPWORDS = {"the","a","an","in","on","at","to","for","of","and","or","is","are",
@@ -242,25 +263,28 @@ def _heuristic_topic_query(headline, max_terms=5):
 
 
 def _gpt_topic_query(headline, body=""):
-    """Ask GPT-4o-mini for the best 2-5 keyword X search query."""
+    """Ask GPT-4o-mini for a primary + short search query for X.
+    Returns (primary, short) tuple. Short is a 2-word fallback to widen results."""
     snippet = (body or "")[:1200]
     prompt = (
-        "You are helping search X (Twitter) for a post relevant to a news "
-        "article. Return the BEST short search query.\n\n"
+        "You are helping search X (Twitter) for tweets about a news "
+        "article. Return TWO search queries as JSON.\n\n"
         "Rules:\n"
-        "- 2 to 5 words, only the most distinctive terms (people, orgs, places, "
-        "the specific event). Use actual proper names.\n"
-        "- NO operators, hashtags, quotes, punctuation, or boolean words.\n"
-        "- Prefer specific named entities over generic words.\n\n"
+        "- primary: 2 to 4 words, the most distinctive named entities "
+        "(people, orgs, places, the specific event).\n"
+        "- short: exactly 2 words — the key place or person plus the event "
+        "type. This catches tweets using different wording.\n"
+        "- NO operators, hashtags, quotes, punctuation, or boolean words in either.\n"
+        "- Prefer specific proper names over generic words.\n\n"
         f"HEADLINE: {headline}\n"
         f"ARTICLE: {snippet}\n\n"
-        'Respond in JSON: {{"query": "the search keywords"}}'
+        'Respond in JSON: {{"primary": "main query", "short": "2 word query"}}'
     )
     payload = json.dumps({
         "model": "gpt-4o-mini",
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.2,
-        "max_tokens": 60,
+        "max_tokens": 80,
         "response_format": {"type": "json_object"}
     })
     try:
@@ -272,13 +296,15 @@ def _gpt_topic_query(headline, body=""):
             capture_output=True, text=True, timeout=15
         )
         data = json.loads(r.stdout)
-        q = json.loads(data["choices"][0]["message"]["content"]).get("query", "")
-        q = re.sub(r'[^\w\s]', ' ', q).strip()
-        if q:
-            return " ".join(q.split()[:6])
+        content = json.loads(data["choices"][0]["message"]["content"])
+        primary = re.sub(r'[^\w\s]', ' ', content.get("primary", "")).strip()
+        short = re.sub(r'[^\w\s]', ' ', content.get("short", "")).strip()
+        if primary:
+            primary = " ".join(primary.split()[:6])
+        return primary, short
     except Exception as e:
         print(f"     ⚠ GPT topic query error: {e}")
-    return ""
+    return "", ""
 
 
 def _sanitize_topic_query(q):
@@ -501,9 +527,9 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             tweets = fetch_recent_tweets(handle, hours=max(hours, 48), max_results=20)
             if not tweets:
                 # Fallback: topic search when handle timeline is empty
-                topic_q = build_topic_query(headline, body)
+                topic_q, short_q = build_topic_query(headline, body)
                 if topic_q:
-                    tweets = search_topic_tweets(topic_q, hours=max(hours, 48))
+                    tweets = search_topic_tweets(topic_q, hours=max(hours, 48), short_query=short_q)
             if not tweets:
                 continue
             
@@ -583,11 +609,11 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
         a = c["article"]
         headline = a["headline"]
         body = a.get("body", "") or ""
-        topic_q = build_topic_query(headline, body)
+        topic_q, short_q = build_topic_query(headline, body)
         if not topic_q:
             continue
 
-        tweets = search_topic_tweets(topic_q, hours=max(hours, 48))
+        tweets = search_topic_tweets(topic_q, hours=max(hours, 48), short_query=short_q)
         if not tweets:
             continue
 
