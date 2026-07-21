@@ -20,7 +20,7 @@
       },
       {
         "name": "MS Dhoni",
-        "x": null,
+        "x": "msdhoni",
         "threads": "msdhoni",
         "instagram": "mahi7781",
         "covers": "Former Indian cricket captain, T20 World Cup winner"
@@ -195,7 +195,7 @@
       },
       {
         "name": "Suryakumar Yadav",
-        "x": "surya_14",
+        "x": "surya_14kumar",
         "instagram": "suryakumaryadav",
         "threads": null,
         "covers": "Explosive batsman, known for innovative shot-making"
