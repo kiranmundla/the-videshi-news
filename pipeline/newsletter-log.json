@@ -796,5 +796,15 @@
     "errors": 0,
     "hero_slug": "singapore-airlines-deepens-role-air-india-losses",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-21T13:56:06.028149+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 21, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "dhs-ends-duration-of-status-f1-j1-visas-four-year-cap",
+    "story_count": 5
   }
 ]
