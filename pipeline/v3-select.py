@@ -311,7 +311,7 @@ WITHIN-BATCH duplicates: if two topics in this batch cover the same event, mark 
 
 CATEGORY ASSIGNMENT:
 Also assign the best category for each topic:
-immigration, technology, entertainment, sports, markets-finance, food, travel, lifestyle, nri-world, news
+immigration, technology, entertainment, sports, markets-finance, food, travel, lifestyle-health, nri-world, news
 
 For each topic, provide:
 1. "relevant": true/false
@@ -410,11 +410,27 @@ def llm_score_topics(topics_with_signals, recent_articles):
                 coverage = item.get("coverage", "new")
                 if item.get("duplicate", False) and coverage == "new":
                     coverage = "duplicate"
+                # Normalize common LLM category mistakes
+                raw_cat = item.get("category", "news")
+                _CAT_NORMALIZE = {
+                    "lifestyle": "lifestyle-health", "health": "lifestyle-health",
+                    "finance": "markets-finance", "markets": "markets-finance",
+                    "market": "markets-finance", "business": "markets-finance",
+                    "nri": "nri-world", "world": "nri-world",
+                    "tech": "technology", "cricket": "sports",
+                    "bollywood": "entertainment", "movies": "entertainment",
+                    "visa": "immigration", "h1b": "immigration",
+                }
+                _VALID_CATS = {"immigration","technology","news","entertainment","sports",
+                               "markets-finance","nri-world","food","travel","lifestyle-health"}
+                norm_cat = _CAT_NORMALIZE.get(raw_cat, raw_cat)
+                if norm_cat not in _VALID_CATS:
+                    norm_cat = "news"
                 results[global_idx] = {
                     "relevant": item.get("relevant", True),
                     "coverage": coverage,
                     "score": item.get("score", 1) if item.get("relevant", True) else 0,
-                    "category": item.get("category", "news"),
+                    "category": norm_cat,
                     "reason": item.get("reason", ""),
                     "ig_handles": item.get("ig_handles", []),
                 }
@@ -624,11 +640,16 @@ def main():
             except:
                 newest = NOW_ISO
 
+            _raw_cat2 = llm.get("category", detect_category(t["canonical_title"]))
+            _norm_cat2 = _CAT_NORMALIZE.get(_raw_cat2, _raw_cat2)
+            if _norm_cat2 not in _VALID_CATS:
+                _norm_cat2 = "news"
+
             scored.append({
                 "topic_id": t["id"],
                 "title": t["canonical_title"],
                 "description": best_desc,
-                "category": llm.get("category", detect_category(t["canonical_title"])),
+                "category": _norm_cat2,
                 "signal_count": t.get("signal_count", 1),
                 "source_diversity": len(sources),
                 "source_types": list(source_types),
