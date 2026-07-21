@@ -1,1140 +1,373 @@
 #!/usr/bin/env python3
 """
-Article Quality Reviewer for The Videshi.
-Dual-LLM review + auto-revision pipeline.
+review-articles.py — Automated editorial QA for published articles.
+
+Catches what Kiran catches manually:
+  1. Structural checks (no LLM, fast):
+     - Duplicate embeds (inline + social_embeds)
+     - Generic hero images (Pexels/Unsplash stock)
+     - Embed placement (all clustered at bottom)
+     - Missing key takeaways
+     - Duplicate pull quotes
+     - Irrelevant YouTube embeds (title mismatch)
+  2. LLM editorial review (GPT-4o-mini, cheap):
+     - Diaspora angle strength
+     - Headline quality
+     - Content gaps / suggestions
+     - Missing obvious embed opportunities
 
 Usage:
-  python3 review-articles.py                    # Review last 3 hours of published articles
-  python3 review-articles.py --hours 6          # Review last 6 hours
-  python3 review-articles.py --id <article-id>  # Review a specific article
-  python3 review-articles.py --fix              # Auto-revise flagged articles + remove bad embeds
-  python3 review-articles.py --pre-publish      # Review articles in 'review' status before publishing
+  python3 -u review-articles.py --hours 12              # review last 12h
+  python3 -u review-articles.py --hours 24 --apply      # review + save report
+  python3 -u review-articles.py --article-ids ID1,ID2   # specific articles
 
-Pipeline:
-  1. Pre-checks (no LLM): duplicate embeds, duplicate images
-  2. LLM Review (GPT-4o-mini primary, Gemini 2.5 Flash fallback): score + feedback
-  3. Auto-revision (--fix mode):
-     - Score 7+  (pass)  → no changes
-     - Score 4-6 (flag)  → send article + feedback to Gemini for revision, patch in Supabase
-     - Score 1-3 (fail)  → unpublish (status → 'archived') if BOTH reviewers agree; else revise
-     - Irrelevant embeds → auto-removed
-     - Duplicate embeds  → auto-deduped
+Env: ~/workspace/.env.supabase, ~/workspace/.env.openai
 """
 
-import json, os, sys, subprocess, time, re
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
 from datetime import datetime, timedelta, timezone
-from collections import Counter
+from urllib.parse import quote
 
-# ── Load env ──
-def load_env(path):
-    if os.path.exists(path):
-        with open(path) as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    k, v = line.split("=", 1)
-                    k = k.strip().lstrip("export ").strip()
-                    v = v.strip().strip("'\"")
-                    if k and not os.environ.get(k):
-                        os.environ[k] = v
+# ── Env ──
+def _load_env(path):
+    env = {}
+    p = os.path.expanduser(path)
+    if not os.path.exists(p):
+        return env
+    with open(p) as f:
+        for line in f:
+            line = line.strip()
+            if "=" in line and not line.startswith("#"):
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip().strip("\"'")
+    return env
 
-for envfile in [".env.supabase", ".env.openai", ".env.google-ai", ".env.pexels"]:
-    load_env(os.path.expanduser(f"~/workspace/{envfile}"))
+_sb = _load_env("~/workspace/.env.supabase")
+_oai = _load_env("~/workspace/.env.openai")
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
-SUPABASE_KEY = os.environ.get("SUPABASE_ANON_KEY", "")
-OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
-GEMINI_KEY = os.environ.get("GOOGLE_AI_API_KEY", "")
+SB_URL = _sb.get("SUPABASE_URL", "").rstrip("/").replace("https://", "")
+SB_KEY = _sb.get("SUPABASE_SERVICE_ROLE_KEY", "")
+OAI_KEY = _oai.get("OPENAI_API_KEY", "")
 
-# ── Supabase helpers ──
-class SupabaseUnavailable(Exception):
-    pass
-
-def sb_get(path, _retries=3):
-    url = f"{SUPABASE_URL}/rest/v1/{path}"
-    last = ""
-    for attempt in range(_retries):
-        r = subprocess.run(
-            ["curl", "-s", "-w", "\n%{http_code}", url,
-             "-H", f"apikey: {SUPABASE_KEY}", "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-            capture_output=True, text=True, timeout=30
-        )
-        body, _, code = r.stdout.rpartition("\n")
-        code = code.strip()
-        if code.startswith("5") or code in ("000", "429"):
-            # Backend/edge outage (e.g. Cloudflare 522) or rate limit — retry with backoff.
-            last = code
-            time.sleep(5 * (attempt + 1))
-            continue
-        try:
-            data = json.loads(body)
-        except json.JSONDecodeError:
-            last = f"non-JSON response (HTTP {code})"
-            time.sleep(5 * (attempt + 1))
-            continue
-        return data if isinstance(data, list) else []
-    raise SupabaseUnavailable(f"Supabase unreachable after {_retries} attempts (last: {last})")
-
-def sb_patch(article_id, data):
-    url = f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
-    body = json.dumps(data)
+def sb_get(endpoint, params=None):
+    url = f"https://{SB_URL}/rest/v1/{endpoint}"
+    if params:
+        url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
     r = subprocess.run(
-        ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "-X", "PATCH", url,
-         "-H", f"apikey: {SUPABASE_KEY}", "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-         "-H", "Content-Type: application/json", "-d", body],
+        ["curl", "-s", url,
+         "-H", f"apikey: {SB_KEY}",
+         "-H", f"Authorization: Bearer {SB_KEY}"],
         capture_output=True, text=True, timeout=30
     )
-    return int(r.stdout.strip())
-
-# ── LLM helpers ──
-def call_openai(prompt, article_text, model="gpt-4o-mini", max_tokens=800):
-    if not OPENAI_KEY:
-        return None
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": article_text}
-        ],
-        "max_tokens": max_tokens,
-        "temperature": 0.1,
-        "response_format": {"type": "json_object"}
-    }
-    r = subprocess.run(
-        ["curl", "-s", "https://api.openai.com/v1/chat/completions",
-         "-H", f"Authorization: Bearer {OPENAI_KEY}",
-         "-H", "Content-Type: application/json",
-         "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=90
-    )
-    try:
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"  ⚠️  OpenAI error: {data['error']['message'][:80]}")
-            return None
-        content = data["choices"][0]["message"]["content"]
-        return json.loads(content)
-    except Exception as e:
-        print(f"  ⚠️  OpenAI parse error: {e}")
-        return None
-
-# ── Vision image-match check (looks at the actual photo pixels) ──
-VISION_JUDGE_PROMPT = """You are a photo desk editor for an Indian-diaspora news site. \
-You are shown ONE photo and the headline/subject it was attached to. Decide ONLY whether \
-the photo's SUBJECT plausibly belongs to this story.
-
-Headline: {headline}
-Subheadline: {subheadline}
-Vertical: {vertical}
-Caption/entities on the photo: {caption}
-
-Judge ONLY the photo's subject vs the story topic — NOT whether the headline or caption \
-claims are factually true. Rules:
-- If the photo shows the correct named person, it is a MATCH even if the caption gets a \
-detail wrong (job title, jersey number, "resigning", team, etc.). Do not second-guess facts.
-- A generic but on-topic photo (a graduation scene for a student-visa story, a stock oil \
-tanker for a shipping story, a city skyline for a city story) is a MATCH.
-- MISMATCH only when the subject is clearly WRONG: a different named person, a music \
-album cover / band on a non-music story, an unrelated company logo, a meme, or a photo \
-whose subject plainly contradicts the story topic (e.g. a wrong country/landmark).
-- When unsure, answer MATCH. Bias strongly toward MATCH; flag only gross mismatches.
-
-Reply with strict JSON only:
-{{"verdict":"MATCH"|"MISMATCH","what_photo_shows":"<5-12 words>","reason":"<one short sentence>"}}"""
-
-def _sniff_image_mime(data):
-    """Return a real image mime from magic bytes, or None if data is not an image.
-    Guards against HTML/error stubs (e.g. Wikimedia rate-limit pages) that the
-    naive size check used to wave through — those reached the vision API, were
-    rejected as 'unsupported image format', and made the gate fail OPEN."""
-    if not data or len(data) < 100:
-        return None
-    if data[:3] == b"\xff\xd8\xff":
-        return "image/jpeg"
-    if data[:8] == b"\x89PNG\r\n\x1a\n":
-        return "image/png"
-    if data[:6] in (b"GIF87a", b"GIF89a"):
-        return "image/gif"
-    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
-        return "image/webp"
-    return None
+    return json.loads(r.stdout) if r.stdout.strip() else []
 
 
-def _download_image_b64(url):
-    """Download an image, return (b64, mime), or (None, reason).
-    Validates real image magic bytes and retries past HTML/error stubs so a
-    throttled CDN response can never be mistaken for a checkable image.
-    On failure the second element is a short reason string (not a mime), which
-    callers can treat as 'could not verify' rather than 'verified OK'."""
-    import base64
-    last = "download-failed"
-    for attempt in range(3):
-        try:
-            r = subprocess.run(
-                ["curl", "-sS", "-L", "-A", "TheVideshi/1.0 (thevideshi.com)", "-o", "-", url],
-                capture_output=True, timeout=45)
-        except Exception:
-            last = "curl-exception"
-            time.sleep(2 * (attempt + 1)); continue
-        if r.returncode != 0 or not r.stdout:
-            last = f"curl-rc-{r.returncode}"
-            time.sleep(2 * (attempt + 1)); continue
-        mime = _sniff_image_mime(r.stdout)
-        if mime and len(r.stdout) > 1000:
-            return base64.b64encode(r.stdout).decode("ascii"), mime
-        # Not a real image (HTML stub / throttle page / truncated) — retry.
-        last = "not-an-image" if not mime else "too-small"
-        time.sleep(2 * (attempt + 1))
-    return None, last
+# ── Structural checks (no LLM) ──
 
-def _gemini_vision_judge(prompt, b64, mime):
-    """Vision fallback for vision_image_match() when OpenAI is unavailable.
-    Gemini 2.5 Flash accepts inline image data. Returns parsed dict or None."""
-    if not GEMINI_KEY:
-        return None
-    payload = {
-        "contents": [{"parts": [
-            {"text": prompt},
-            {"inline_data": {"mime_type": mime, "data": b64}},
-        ]}],
-        "generationConfig": {
-            "temperature": 0,
-            "maxOutputTokens": 200,
-            "responseMimeType": "application/json",
-            "thinkingConfig": {"thinkingBudget": 0},
-        },
-    }
-    model = "gemini-2.5-flash"
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
-    import tempfile
-    for attempt in range(2):
-        try:
-            with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
-                json.dump(payload, tf)
-                tf_path = tf.name
-            try:
-                r = subprocess.run(
-                    ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", f"@{tf_path}"],
-                    capture_output=True, text=True, timeout=90)
-            finally:
-                try:
-                    os.unlink(tf_path)
-                except Exception:
-                    pass
-            data = json.loads(r.stdout)
-            if "error" in data:
-                msg = data["error"].get("message", "")[:80]
-                if any(s in msg.lower() for s in ("rate", "overload", "quota", "try again", "resource")):
-                    time.sleep(2 * (attempt + 1)); continue
-                print(f"  ⚠️  Gemini-vision error: {msg}")
-                return None
-            text = data["candidates"][0]["content"]["parts"][0]["text"]
-            return json.loads(text)
-        except Exception:
-            time.sleep(1.5 * (attempt + 1))
-    return None
-
-
-def vision_image_match(article):
-    """Look at the actual hero image and decide if its subject fits the story.
-    Returns dict {verdict, what_photo_shows, reason} or None if unavailable/skipped."""
-    if not OPENAI_KEY and not GEMINI_KEY:
-        return None
-    url = (article.get("image_url") or "").strip()
-    if not url:
-        return None
-    b64, mime = _download_image_b64(url)
-    if not b64:
-        # Could not fetch a real image (stub / throttle / network). This is NOT
-        # the same as "looks fine" — return UNVERIFIED so the gate can hold the
-        # article instead of failing open (the moth-image failure mode).
-        return {"verdict": "UNVERIFIED", "what_photo_shows": "(image unreadable)",
-                "reason": f"could not download image: {mime}"}
-    prompt = VISION_JUDGE_PROMPT.format(
-        headline=article.get("headline", "") or "",
-        subheadline=article.get("subheadline", "") or "",
-        vertical=article.get("vertical", "") or article.get("category", "") or "",
-        caption=(article.get("image_caption") or article.get("image_entities") or "(none)"),
-    )
-    payload = {
-        "model": "gpt-4o",
-        "messages": [{
-            "role": "user",
-            "content": [
-                {"type": "text", "text": prompt},
-                {"type": "image_url", "image_url": {"url": f"data:{mime};base64,{b64}", "detail": "low"}},
-            ],
-        }],
-        "max_tokens": 150,
-        "temperature": 0,
-        "response_format": {"type": "json_object"},
-    }
-    openai_failed = not OPENAI_KEY
-    if OPENAI_KEY:
-        for attempt in range(3):
-            try:
-                import tempfile
-                with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
-                    json.dump(payload, tf)
-                    tf_path = tf.name
-                try:
-                    r = subprocess.run(
-                        ["curl", "-s", "https://api.openai.com/v1/chat/completions",
-                         "-H", f"Authorization: Bearer {OPENAI_KEY}",
-                         "-H", "Content-Type: application/json",
-                         "-d", f"@{tf_path}"],
-                        capture_output=True, text=True, timeout=90)
-                finally:
-                    try:
-                        os.unlink(tf_path)
-                    except Exception:
-                        pass
-                data = json.loads(r.stdout)
-                if "error" in data:
-                    msg = data["error"].get("message", "")[:80]
-                    if any(s in msg.lower() for s in ("rate", "overload", "timeout", "try again")):
-                        time.sleep(2 * (attempt + 1)); continue
-                    # Quota / billing / other hard error → fall back to Gemini vision.
-                    print(f"  ⚠️  Vision (gpt-4o) error: {msg} — trying Gemini-vision fallback")
-                    openai_failed = True
-                    break
-                return json.loads(data["choices"][0]["message"]["content"])
-            except Exception:
-                time.sleep(1.5 * (attempt + 1))
-        else:
-            openai_failed = True
-    # ── Gemini-vision fallback ──
-    # Without this, the wrong-photo gate is completely offline whenever OpenAI is
-    # depleted (which has been the steady state). Gemini keeps the check alive.
-    if openai_failed:
-        gv = _gemini_vision_judge(prompt, b64, mime)
-        if gv:
-            print(f"  🔁 Vision judged via Gemini fallback")
-            return gv
-    return None
-
-def call_gemini(prompt, article_text, model="gemini-2.5-flash", max_tokens=800):
-    if not GEMINI_KEY:
-        return None
-    payload = {
-        "contents": [{"parts": [{"text": f"{prompt}\n\n---\n\n{article_text}"}]}],
-        "generationConfig": {
-            "temperature": 0.1,
-            "maxOutputTokens": max_tokens,
-            "responseMimeType": "application/json",
-            "thinkingConfig": {"thinkingBudget": 0}
-        }
-    }
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
-    r = subprocess.run(
-        ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=90
-    )
-    try:
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"  ⚠️  Gemini error: {data['error']['message'][:80]}")
-            return None
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        return json.loads(text)
-    except Exception as e:
-        print(f"  ⚠️  Gemini parse error: {e}")
-        return None
-
-def call_openai_text(prompt, article_text, model="gpt-4o-mini", max_tokens=2000):
-    """Call OpenAI without JSON mode — returns raw text (for article rewrites)."""
-    if not OPENAI_KEY:
-        return None
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": article_text}
-        ],
-        "max_tokens": max_tokens,
-        "temperature": 0.3,
-    }
-    r = subprocess.run(
-        ["curl", "-s", "https://api.openai.com/v1/chat/completions",
-         "-H", f"Authorization: Bearer {OPENAI_KEY}",
-         "-H", "Content-Type: application/json",
-         "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=120
-    )
-    try:
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"  ⚠️  OpenAI rewrite error: {data['error']['message'][:80]}")
-            return None
-        return data["choices"][0]["message"]["content"]
-    except Exception as e:
-        print(f"  ⚠️  OpenAI rewrite parse error: {e}")
-        return None
-
-def call_gemini_text(prompt, article_text, model="gemini-2.5-flash", max_tokens=2000):
-    """Call Gemini without JSON mode — returns raw text (for article rewrites)."""
-    if not GEMINI_KEY:
-        return None
-    payload = {
-        "contents": [{"parts": [{"text": f"{prompt}\n\n---\n\n{article_text}"}]}],
-        "generationConfig": {
-            "temperature": 0.3,
-            "maxOutputTokens": max_tokens,
-            "thinkingConfig": {"thinkingBudget": 0},
-        }
-    }
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
-    r = subprocess.run(
-        ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=120
-    )
-    try:
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"  ⚠️  Gemini rewrite error: {data['error']['message'][:80]}")
-            return None
-        return data["candidates"][0]["content"]["parts"][0]["text"]
-    except Exception as e:
-        print(f"  ⚠️  Gemini rewrite parse error: {e}")
-        return None
-
-# ── Prompts ──
-REVIEW_PROMPT = """You are an editorial quality reviewer for The Videshi, an Indian diaspora news platform for NRIs.
-
-The Videshi's USP is diaspora relevance — every article must matter to Indians living abroad (US, UK, Canada). An article with no genuine diaspora connection should NOT be published regardless of how well it is written.
-
-Review the article below and return a JSON object with these fields:
-
-{
-  "overall_score": <1-10>,
-  "embed_issues": [
-    {"url": "...", "problem": "irrelevant|broken|duplicate", "explanation": "..."}
-  ],
-  "image_match": {"score": <1-10>, "issue": "..." or null},
-  "diaspora_angle": {"present": true/false, "quality": <1-10>, "note": "..."},
-  "factual_flags": ["any internal contradictions or suspicious claims"],
-  "duplicate_embeds": ["URLs that appear more than once"],
-  "suggestions": ["1-2 actionable improvements"],
-  "verdict": "pass" | "flag" | "fail"
-}
-
-Rules:
-- "pass" = publishable as-is (score 7+)
-- "flag" = minor issues, could improve (score 4-6)  
-- "fail" = should not publish without fixes (score 1-3)
-- For embed_issues: check if each social media URL (instagram.com/reel/..., twitter.com/..., x.com/...) is topically relevant to the article's subject. A Sachin Tendulkar cricket post in a sprinting article = "irrelevant". 
-- For image_match: does the hero image description/entities match the article headline and topic?
-- Diaspora angle: does the article connect to NRI/diaspora readers? Is it forced or natural? If the story is purely India-domestic (local crime, local politics, city-level incidents) or generic international news with zero Indian/diaspora dimension, diaspora_angle quality should be 1-3 and verdict should be "fail".
-- For markets-finance: US/global financial stories are inherently relevant (NRIs live and invest in the US) — diaspora angle is implicit, score 7+. Only Indian market stories (Sensex, RBI) need an explicit diaspora connection.
-- CRITICAL: Check for **anachronistic dates and hallucinated facts**. If the article references past dates (e.g. "December 2023") for events that are clearly current/upcoming, that is a hallucination — instant FAIL. Cross-check any specific dates, scores, statistics, or quotes against the article's publish date and known reality. A World Cup 2026 article mentioning 2023 dates = fabricated content.
-- Be strict but fair. This is a real newsroom quality gate."""
-
-REVISE_PROMPT = """You are a senior editor at The Videshi, an Indian diaspora news platform for NRIs in the US, UK, and Canada.
-
-You are given an article and reviewer feedback. Your job is to REVISE the article to fix the flagged issues.
-
-RULES:
-- Keep the same headline, structure, and markdown format
-- Keep ALL social media embed URLs (lines starting with https://instagram.com or https://x.com) exactly as they are — do not remove, move, or modify them
-- Preserve the article's voice and factual content
-- Fix ONLY what the feedback asks for:
-  * If diaspora angle is weak → add 1-2 natural NRI-relevant sentences (how this affects Indians abroad, remittances, dual citizenship, travel, family ties, professional impact)
-  * If sources are thin → add context or attribution where possible
-  * If structure is weak → improve flow between sections
-  * If tone is off → adjust to professional but accessible news tone
-- Keep the article between 600-900 words
-- Output ONLY the revised article body in markdown. No preamble, no explanation, no "Here's the revised article" — just the article text.
-- Do NOT add fictional quotes or fabricated statistics"""
-
-SECOND_REVIEW_PROMPT = """You are an editorial quality reviewer for The Videshi, an Indian diaspora news platform.
-
-This article was flagged as "fail" by a first reviewer. Give your independent assessment.
-Return a JSON object with these fields:
-
-{
-  "overall_score": <1-10>,
-  "verdict": "pass" | "flag" | "fail",
-  "should_unpublish": true/false,
-  "reason": "brief explanation"
-}
-
-Only set should_unpublish to true if the article is genuinely harmful, completely off-topic, factually wrong in a dangerous way, or nonsensical. Most articles should be revised, not unpublished."""
-
-
-# ── Pre-checks (no LLM needed) ──
-def check_duplicate_embeds(body):
-    """Find duplicate social media URLs in the article body."""
-    ig_urls = re.findall(r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/[A-Za-z0-9_-]+/?', body)
-    x_urls = re.findall(r'https?://(?:www\.)?(?:twitter|x)\.com/\w+/status/\d+', body)
-    all_urls = ig_urls + x_urls
-    dupes = [url for url, count in Counter(all_urls).items() if count > 1]
-    return dupes
-
-
-def verify_embed_urls(body, published_at=None):
-    """Verify that social media embed URLs are actually live and not hallucinated.
-    
-    Checks:
-    1. X/Twitter: react-tweet API returns data (not null)
-    2. X/Twitter: tweet timestamp is within 60 days of article publish date (catches hallucinated old IDs)
-    3. Instagram: oEmbed API returns valid response
-    
-    Returns list of {"url": ..., "problem": "broken"|"hallucinated_old", "detail": ...}
-    """
+def check_duplicate_embeds(article):
+    """Check if embeds exist in both inline tags and social_embeds array."""
     issues = []
-    
-    # ── Check X/Twitter embeds ──
-    x_urls = re.findall(r'https?://(?:www\.)?(?:twitter|x)\.com/\w+/status/(\d+)', body)
-    for tweet_id in x_urls:
-        url = f"https://x.com/status/{tweet_id}"
-        # Find full URL in body for removal
-        full_url_match = re.search(r'https?://(?:www\.)?(?:twitter|x)\.com/\w+/status/' + tweet_id, body)
-        full_url = full_url_match.group(0) if full_url_match else url
-        
+    body = article.get("body", "") or ""
+    embeds = article.get("social_embeds") or []
+    if isinstance(embeds, str):
         try:
-            r = subprocess.run(
-                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10",
-                 f"https://react-tweet.vercel.app/api/tweet/{tweet_id}"],
-                capture_output=True, text=True, timeout=15
-            )
-            data = json.loads(r.stdout)
-            
-            if data.get("data") is None:
-                issues.append({"url": full_url, "problem": "broken", "detail": "react-tweet returned null (deleted/protected/nonexistent)"})
-                continue
-            
-            # Check tweet age — hallucinated tweets often have IDs from years ago
-            if published_at:
-                try:
-                    # Twitter snowflake → timestamp
-                    tweet_epoch_ms = (int(tweet_id) >> 22) + 1288834974657
-                    tweet_date = datetime.fromtimestamp(tweet_epoch_ms / 1000, tz=timezone.utc)
-                    
-                    if isinstance(published_at, str):
-                        pub_date = datetime.fromisoformat(published_at.replace("Z", "+00:00"))
-                    else:
-                        pub_date = published_at
-                    
-                    age_days = (pub_date - tweet_date).days
-                    if age_days > 60:
-                        issues.append({
-                            "url": full_url,
-                            "problem": "hallucinated_old",
-                            "detail": f"Tweet is from {tweet_date.strftime('%Y-%m-%d')} — {age_days} days before article. Likely hallucinated."
-                        })
-                except Exception:
-                    pass  # Can't parse date, skip age check
-                    
-        except Exception as e:
-            # Network error — don't flag, just skip
-            print(f"  ⚠️  Could not verify tweet {tweet_id}: {e}")
+            embeds = json.loads(embeds)
+        except:
+            embeds = []
     
-    # ── Check Instagram embeds ──
-    ig_urls = re.findall(r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/([A-Za-z0-9_-]+)', body)
-    for shortcode in ig_urls:
-        full_url_match = re.search(r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/' + re.escape(shortcode) + r'[^\s]*', body)
-        full_url = full_url_match.group(0) if full_url_match else f"https://instagram.com/p/{shortcode}"
-        
-        try:
-            r = subprocess.run(
-                ["curl", "-s", "--connect-timeout", "5", "--max-time", "10",
-                 "-A", "Mozilla/5.0",
-                 f"https://www.instagram.com/p/{shortcode}/embed/"],
-                capture_output=True, text=True, timeout=15
-            )
-            html = r.stdout or ""
-            # A removed/broken IG post returns HTTP 200 with a placeholder page
-            # ("The link to this photo or video may be broken, or the post may
-            # have been removed."), so a status check alone is not enough — we
-            # must inspect the page body for the removal markers.
-            low = html.lower()
-            if ("may be broken" in low or "post may have been removed" in low
-                    or "embedisbroken" in low.replace(" ", "")):
-                issues.append({"url": full_url, "problem": "broken",
-                               "detail": "Instagram embed shows removed/broken placeholder"})
-            elif len(html) < 2000 and "class=\"Embed" not in html:
-                # Unexpectedly tiny page with no embed scaffold → treat as broken.
-                issues.append({"url": full_url, "problem": "broken",
-                               "detail": f"Instagram embed page empty/invalid ({len(html)} bytes)"})
-        except Exception as e:
-            print(f"  ⚠️  Could not verify IG {shortcode}: {e}")
+    for e in embeds:
+        eurl = e.get("url", "") if isinstance(e, dict) else str(e)
+        if eurl and eurl in body:
+            issues.append(f"Duplicate embed: {eurl[:60]} appears both inline and in social_embeds")
+    return issues
+
+
+def check_hero_image(article):
+    """Flag generic stock images."""
+    issues = []
+    img = article.get("image_url") or article.get("hero_image_url") or ""
+    if not img:
+        issues.append("No hero image")
+    elif any(s in img.lower() for s in ["pexels.com", "unsplash.com", "pixabay.com", "shutterstock.com"]):
+        issues.append(f"Generic stock hero image: {img[:80]}")
+    return issues
+
+
+def check_embed_placement(article):
+    """Check if all embeds are clustered at the bottom."""
+    issues = []
+    body = article.get("body", "") or ""
+    
+    embed_positions = []
+    for pattern in [r'<youtube>', r'<twitter>', r'instagram\.com/p/', r'x\.com/\w+/status/']:
+        for m in re.finditer(pattern, body, re.IGNORECASE):
+            embed_positions.append(m.start())
+    
+    if not embed_positions:
+        return issues
+    
+    body_len = len(body)
+    if body_len == 0:
+        return issues
+    
+    # If all embeds are in the bottom 30% of the article
+    all_bottom = all(pos / body_len > 0.7 for pos in embed_positions)
+    if all_bottom and len(embed_positions) >= 1:
+        issues.append(f"All {len(embed_positions)} embed(s) placed in the bottom 30% — move higher for engagement")
+    
+    # Check clustering — are any two embeds within 200 chars of each other?
+    sorted_pos = sorted(embed_positions)
+    for i in range(len(sorted_pos) - 1):
+        if sorted_pos[i+1] - sorted_pos[i] < 200:
+            issues.append("Two embeds clustered within 200 chars of each other")
+            break
     
     return issues
 
-def check_duplicate_images(article, recent_articles):
-    """Check if this article's image is used by another recent article."""
-    img = article.get("image_url", "")
-    if not img:
-        return []
-    dupes = []
-    for other in recent_articles:
-        if other["id"] != article["id"] and other.get("image_url") == img:
-            dupes.append({"article_id": other["id"], "headline": other["headline"][:60]})
-    return dupes
 
-
-# ── Revision engine ──
-def revise_article(article, review_result, fix_mode=False):
-    """Send article + feedback to LLM for revision. Returns revised body or None."""
-    if not fix_mode:
-        return None
-
-    headline = article["headline"]
+def check_key_takeaways(article):
+    """Check if key takeaways are present."""
     body = article.get("body", "") or ""
-    vertical = article.get("vertical", "") or ""
-    
-    # Build feedback summary from review
-    feedback_parts = []
-    review = review_result.get("llm_review", {})
-    
-    if review.get("diaspora_angle", {}).get("quality", 10) < 7:
-        note = review["diaspora_angle"].get("note", "")
-        feedback_parts.append(f"DIASPORA ANGLE: Weak (score {review['diaspora_angle'].get('quality', '?')}/10). {note}")
-    
-    if review.get("image_match", {}).get("score", 10) < 6:
-        issue = review["image_match"].get("issue", "")
-        feedback_parts.append(f"IMAGE MATCH: Poor. {issue}")
-    
-    if review.get("factual_flags"):
-        feedback_parts.append(f"FACTUAL FLAGS: {'; '.join(review['factual_flags'][:3])}")
-    
-    if review.get("suggestions"):
-        feedback_parts.append(f"SUGGESTIONS: {'; '.join(review['suggestions'][:3])}")
-    
-    score = review.get("overall_score", 10)
-    feedback_parts.append(f"OVERALL SCORE: {score}/10")
-    
-    if not feedback_parts:
-        return None
-    
-    feedback = "\n".join(feedback_parts)
-    
-    article_text = f"""HEADLINE: {headline}
-VERTICAL: {vertical}
-
-REVIEWER FEEDBACK:
-{feedback}
-
-CURRENT ARTICLE BODY:
-{body}"""
-    
-    print(f"  🔄 Revising with Gemini 2.5 Flash...")
-    
-    # Use Gemini for revision (free tier), fall back to OpenAI
-    revised = call_gemini_text(REVISE_PROMPT, article_text, max_tokens=2500)
-    reviser = "gemini-2.5-flash"
-    
-    if not revised:
-        print(f"  🔄 Gemini unavailable, revising with GPT-4o-mini...")
-        revised = call_openai_text(REVISE_PROMPT, article_text, max_tokens=2500)
-        reviser = "gpt-4o-mini"
-    
-    if not revised:
-        print(f"  ❌ Revision failed — no LLM available")
-        return None
-    
-    # Basic sanity checks on the revised article
-    revised = revised.strip()
-    
-    # Remove any preamble the LLM might add
-    for prefix in ["Here's the revised article:", "Here is the revised article:", "Revised article:", "---"]:
-        if revised.lower().startswith(prefix.lower()):
-            revised = revised[len(prefix):].strip()
-    
-    # Check it's not drastically shorter (LLM sometimes truncates)
-    orig_words = len(body.split())
-    revised_words = len(revised.split())
-    if revised_words < orig_words * 0.5:
-        print(f"  ⚠️  Revision too short ({revised_words} words vs original {orig_words}).")
-        # Fallback to the other LLM
-        if reviser == "gemini-2.5-flash":
-            print(f"  🔄 Falling back to GPT-4o-mini for revision...")
-            revised = call_openai_text(REVISE_PROMPT, article_text, max_tokens=2500)
-            reviser = "gpt-4o-mini"
-        elif reviser == "gpt-4o-mini":
-            print(f"  🔄 Falling back to Gemini 2.5 Flash for revision...")
-            revised = call_gemini_text(REVISE_PROMPT, article_text, max_tokens=2500)
-            reviser = "gemini-2.5-flash"
-        if not revised:
-            print(f"  ❌ Fallback revision also failed. Skipping.")
-            return None
-        revised = revised.strip()
-        for prefix in ["Here's the revised article:", "Here is the revised article:", "Revised article:", "---"]:
-            if revised.lower().startswith(prefix.lower()):
-                revised = revised[len(prefix):].strip()
-        revised_words = len(revised.split())
-        if revised_words < orig_words * 0.5:
-            print(f"  ❌ Fallback also too short ({revised_words} words). Skipping.")
-            return None
-    
-    # Check embeds are preserved
-    orig_embeds = set(re.findall(r'https?://(?:www\.)?(?:instagram\.com|x\.com|twitter\.com)/\S+', body))
-    revised_embeds = set(re.findall(r'https?://(?:www\.)?(?:instagram\.com|x\.com|twitter\.com)/\S+', revised))
-    lost_embeds = orig_embeds - revised_embeds
-    if lost_embeds:
-        print(f"  ⚠️  Revision dropped embeds: {lost_embeds}. Re-appending them.")
-        for embed in lost_embeds:
-            revised += f"\n\n{embed}"
-    
-    # Patch in Supabase
-    status = sb_patch(article["id"], {"body": revised})
-    if status in (200, 204):
-        print(f"  ✅ Article revised by {reviser} ({revised_words} words)")
-        return {"reviser": reviser, "word_count": revised_words, "original_word_count": orig_words}
-    else:
-        print(f"  ❌ Supabase patch failed (HTTP {status})")
-        return None
+    if "key-takeaways" not in body and len(body.split()) > 300:
+        return ["Missing key takeaways section (article is 300+ words)"]
+    return []
 
 
-def handle_fail(article, review_openai, fix_mode=False):
-    """Handle a 'fail' verdict — get second opinion, revise or unpublish."""
-    if not fix_mode:
-        return "fail_no_action"
-    
-    headline = article["headline"]
+def check_duplicate_pull_quotes(article):
+    """Check for duplicate pull quotes."""
     body = article.get("body", "") or ""
-    
-    article_text = f"""HEADLINE: {headline}
-BODY:
-{body[:4000]}"""
-    
-    # Get second opinion from the OTHER model
-    print(f"  🔍 Getting second opinion for fail verdict...")
-    second = call_gemini(SECOND_REVIEW_PROMPT, article_text)
-    second_source = "gemini-2.5-flash"
-    if not second:
-        second = call_openai(SECOND_REVIEW_PROMPT, article_text)
-        second_source = "gpt-4o-mini"
-    
-    if second and second.get("should_unpublish") == True:
-        # Both agree: unpublish
-        status = sb_patch(article["id"], {"status": "archived"})
-        if status in (200, 204):
-            reason = second.get("reason", "consensus fail")
-            print(f"  🗑️  UNPUBLISHED (consensus: {reason})")
-            return f"unpublished: {reason}"
-        else:
-            print(f"  ❌ Failed to unpublish (HTTP {status})")
-            return "unpublish_failed"
-    else:
-        # Second reviewer disagrees — revise instead
-        if second:
-            print(f"  ↩️  Second reviewer says: {second.get('verdict','?')} (score {second.get('overall_score','?')}). Revising instead.")
-        return "revise"
+    quotes = re.findall(r'<blockquote class="pull-quote"><p>"([^"]+)"', body)
+    if len(quotes) != len(set(quotes)):
+        return ["Duplicate pull quote found"]
+    return []
 
 
-# ── Fiction / fabrication self-admission detector (no LLM, hard fail) ──
-# A real news article never tells the reader it is invented. If the body (or an
-# editor's note) admits the piece is fictional, imagined, or a speculative
-# scenario presented as if it were reported news, that's an absolute editorial
-# red line — archive it immediately, never publish, regardless of LLM score.
-# These patterns are deliberately specific so they don't trip on legitimate
-# reporting that merely *discusses* speculation (IPO speculation, analyst
-# scenarios, "speculative investment", etc.).
-_FICTION_ADMISSION_PATTERNS = [
-    r"this (?:article|piece|story|report) is (?:a )?(?:purely )?(?:work of )?fiction(?:al)?",
-    r"this (?:article|piece|story|report) is (?:purely )?(?:a )?hypothetical",
-    r"this (?:article|piece|story|report) is (?:purely )?speculative and (?:is )?not based on",
-    r"this (?:article|piece|story|report) (?:is|was) (?:entirely |purely )?(?:imagined|made up|invented|fabricated)",
-    r"(?:a )?(?:fictional|imagined|hypothetical|speculative) (?:account|scenario|narrative|depiction) (?:of|envisioning|imagining)",
-    r"(?:editor'?s? note|disclaimer)[:\s].{0,120}(?:fiction|fictional|hypothetical|imagined|not (?:based on|a real)|did not (?:happen|occur)|has not (?:happened|occurred))",
-    r"does not (?:depict|reflect|describe) (?:real|actual) events",
-    r"(?:these events|this) (?:has|have) not (?:yet )?(?:happened|occurred|taken place) (?:in reality|and (?:is|are) (?:purely )?(?:speculative|hypothetical|imagined))",
-    r"for (?:illustrative|entertainment|creative) purposes only",
-    r"any resemblance to (?:real|actual) (?:events|persons)",
-]
-_FICTION_ADMISSION_RE = re.compile("|".join(_FICTION_ADMISSION_PATTERNS), re.IGNORECASE)
-
-
-def detect_fiction_admission(body):
-    """Return the matched snippet if the body self-identifies as fiction, else None."""
-    if not body:
-        return None
-    m = _FICTION_ADMISSION_RE.search(body)
-    if not m:
-        return None
-    start = max(0, m.start() - 40)
-    end = min(len(body), m.end() + 40)
-    return body[start:end].strip()
-
-
-# ── Main review function ──
-def review_article(article, recent_articles, fix_mode=False, pre_publish=False):
-    """Review a single article with pre-checks + LLM review + auto-revision."""
-    headline = article["headline"]
+def check_youtube_relevance(article):
+    """Basic check: does YouTube title relate to the headline?"""
+    issues = []
     body = article.get("body", "") or ""
-    image_url = article.get("image_url", "") or ""
-    image_entities = article.get("image_entities", "") or ""
-    vertical = article.get("vertical", "") or ""
+    headline = (article.get("headline", "") or "").lower()
     
-    print(f"\n📝 Reviewing: {headline[:70]}...")
+    yt_urls = re.findall(r'<youtube>(https?://[^<]+)</youtube>', body)
+    for yt_url in yt_urls:
+        vid_id = re.search(r'[?&]v=([a-zA-Z0-9_-]+)', yt_url)
+        if not vid_id:
+            continue
+        try:
+            r = subprocess.run(
+                ["curl", "-sA", "TheVideshi/1.0",
+                 f"https://www.youtube.com/oembed?url={yt_url}&format=json"],
+                capture_output=True, text=True, timeout=10
+            )
+            data = json.loads(r.stdout)
+            yt_title = data.get("title", "").lower()
+            # Check overlap — at least 2 significant words should match
+            hw = {w for w in headline.split() if len(w) > 3}
+            yw = {w for w in yt_title.split() if len(w) > 3}
+            overlap = hw & yw
+            if len(overlap) < 1 and len(hw) > 2:
+                issues.append(f"Possibly irrelevant YouTube: \"{data.get('title', '?')[:60]}\" vs headline")
+        except:
+            pass
+    return issues
+
+
+# ── LLM review ──
+
+def llm_review(article, model="gpt-4o-mini"):
+    """GPT-4o-mini editorial review — costs ~$0.001 per article."""
+    if not OAI_KEY:
+        return None
     
+    headline = article.get("headline", "")
+    category = article.get("category", "")
+    body = article.get("body", "") or ""
+    # Truncate body for cost
+    body_preview = body[:3000] if len(body) > 3000 else body
+    # Strip HTML for cleaner prompt
+    body_text = re.sub(r'<[^>]+>', ' ', body_preview)
+    body_text = re.sub(r'\s+', ' ', body_text).strip()
+    
+    has_yt = bool(re.search(r'<youtube>', body))
+    has_tw = bool(re.search(r'x\.com/\w+/status/|twitter\.com/\w+/status/', body))
+    has_ig = bool(re.search(r'instagram\.com/p/', body))
+    embeds_summary = f"YouTube: {'yes' if has_yt else 'no'}, Tweet: {'yes' if has_tw else 'no'}, Instagram: {'yes' if has_ig else 'no'}"
+    
+    prompt = f"""You are an editorial QA reviewer for The Videshi, an Indian diaspora news site for NRIs.
+Review this article critically and give 2-4 specific, actionable suggestions to improve it.
+
+Focus on:
+1. Is the diaspora/NRI angle strong enough? (This is the site's USP)
+2. Would a specific social embed make this better? (e.g. "embed the official USCIS tweet about this policy")
+3. Is the headline compelling and specific?
+4. Any factual gaps or missing context that a reader would want?
+5. Is the content structure good? (progression, depth)
+
+Do NOT suggest generic improvements like "add more sources" or "make it more engaging."
+Only suggest things that would concretely improve THIS specific article.
+
+If the article is good, say so — don't force suggestions.
+
+Article:
+Headline: {headline}
+Category: {category}
+Current embeds: {embeds_summary}
+Body (first 3000 chars): {body_text[:2000]}
+
+Respond as JSON: {{"quality_score": 1-10, "suggestions": ["specific suggestion 1", ...], "embed_opportunities": ["specific embed idea if any"]}}"""
+
+    payload = json.dumps({
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.3,
+        "max_tokens": 500,
+        "response_format": {"type": "json_object"}
+    })
+    
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {OAI_KEY}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=30
+        )
+        data = json.loads(r.stdout)
+        content = data["choices"][0]["message"]["content"]
+        return json.loads(content)
+    except Exception as e:
+        print(f"     LLM error: {e}")
+        return None
+
+
+# ── Main ──
+
+def review_article(article, run_llm=True):
+    """Run all checks on one article. Returns dict of issues and suggestions."""
     result = {
         "id": article["id"],
-        "headline": headline,
+        "headline": article.get("headline", "")[:80],
         "slug": article.get("slug", ""),
-        "pre_checks": {},
+        "category": article.get("category", ""),
+        "structural_issues": [],
         "llm_review": None,
-        "actions_taken": [],
-        "revised": False,
-        "unpublished": False,
     }
     
-    # ── Pre-check 0: Fiction / fabrication self-admission (hard fail) ──
-    # An article that admits it's fictional/hypothetical/speculative-as-fact is
-    # an absolute editorial red line. Archive immediately — no LLM, no score, no
-    # publish. This is the moth-image equivalent for text fabrication.
-    fiction_snippet = detect_fiction_admission(body)
-    result["pre_checks"]["fiction_admission"] = fiction_snippet
-    if fiction_snippet:
-        print(f"  🚫 FICTION ADMISSION detected: …{fiction_snippet}…")
-        result["fiction_admission"] = True
-        if fix_mode and article.get("status") != "archived":
-            status = sb_patch(article["id"], {"status": "archived"})
-            if status in (200, 204):
-                result["unpublished"] = True
-                result["actions_taken"].append("ARCHIVED: self-admitted fiction/fabrication")
-                print(f"  🗑️  ARCHIVED — article self-identifies as fiction; never publish")
-            else:
-                print(f"  ⚠️ Failed to archive fiction article (HTTP {status})")
-        # Don't waste LLM budget reviewing a piece we're already killing.
-        return result
-
-    # ── Pre-check 1: Duplicate embeds ──
-    dup_embeds = check_duplicate_embeds(body)
-    result["pre_checks"]["duplicate_embeds"] = dup_embeds
-    if dup_embeds:
-        print(f"  🔁 Duplicate embeds: {dup_embeds}")
-        if fix_mode:
-            fixed_body = body
-            for url in dup_embeds:
-                parts = fixed_body.split(url)
-                if len(parts) > 2:
-                    fixed_body = parts[0] + url + url.join(parts[2:])
-            if fixed_body != body:
-                status = sb_patch(article["id"], {"body": fixed_body})
-                if status in (200, 204):
-                    result["actions_taken"].append(f"Removed duplicate embed(s)")
-                    print(f"  ✅ Fixed duplicate embeds")
-                    body = fixed_body
-                    article["body"] = body
+    # Structural checks
+    result["structural_issues"].extend(check_duplicate_embeds(article))
+    result["structural_issues"].extend(check_hero_image(article))
+    result["structural_issues"].extend(check_embed_placement(article))
+    result["structural_issues"].extend(check_key_takeaways(article))
+    result["structural_issues"].extend(check_duplicate_pull_quotes(article))
+    result["structural_issues"].extend(check_youtube_relevance(article))
     
-    # ── Pre-check 2: Duplicate images ──
-    dup_images = check_duplicate_images(article, recent_articles)
-    result["pre_checks"]["duplicate_images"] = dup_images
-    if dup_images:
-        print(f"  🖼️  Same image used on: {[d['headline'] for d in dup_images]}")
-    
-    # ── Pre-check 3: Verify embed URLs are live ──
-    broken_embeds = verify_embed_urls(body, article.get("published_at"))
-    result["pre_checks"]["broken_embeds"] = broken_embeds
-    if broken_embeds:
-        for be in broken_embeds:
-            print(f"  💀 Embed {be['problem']}: {be['url'][:60]} — {be['detail'][:60]}")
-        if fix_mode:
-            fixed_body = body
-            for be in broken_embeds:
-                url = be["url"]
-                # Remove the URL line and surrounding blank lines
-                fixed_body = re.sub(r'\n?\n?' + re.escape(url) + r'\n?\n?', '\n\n', fixed_body)
-            fixed_body = re.sub(r'\n{3,}', '\n\n', fixed_body)
-            if fixed_body != body:
-                status = sb_patch(article["id"], {"body": fixed_body})
-                if status in (200, 204):
-                    count = len(broken_embeds)
-                    result["actions_taken"].append(f"Removed {count} broken/hallucinated embed(s)")
-                    print(f"  ✅ Removed {count} broken/hallucinated embed(s)")
-                    body = fixed_body
-                    article["body"] = body
-
-    # ── Pre-check 4: Vision image match (looks at the actual photo) ──
-    # Only run when there's an image and we're gating publication, to keep cost down.
-    if image_url and (pre_publish or fix_mode):
-        vmatch = vision_image_match(article)
-        result["pre_checks"]["vision_image_match"] = vmatch
-        _verdict = (vmatch.get("verdict") if vmatch else "") or ""
-        if vmatch and _verdict.upper() == "MISMATCH":
-            shows = vmatch.get("what_photo_shows", "?")
-            print(f"  🖼️❌ Image MISMATCH — photo shows: {shows} | {vmatch.get('reason','')[:70]}")
-            result["image_mismatch"] = True
-            if fix_mode:
-                # Clear the bad image so the article can't publish with a wrong photo.
-                # A null image_url sends it back for re-sourcing on the next writer pass.
-                status = sb_patch(article["id"], {"image_url": ""})
-                if status in (200, 204):
-                    result["actions_taken"].append(f"Cleared mismatched image ({shows})")
-                    print(f"  ✅ Cleared mismatched image")
-                    image_url = ""
-                    article["image_url"] = ""
-        elif vmatch and _verdict.upper() == "UNVERIFIED":
-            # Image could not be downloaded/read → we genuinely don't know if it
-            # fits. Hold rather than fail open (the moth-image failure mode).
-            print(f"  🖼️🔒 Image UNVERIFIED — {vmatch.get('reason','')[:70]} (holding)")
-            result["image_unverified"] = True
-        elif vmatch:
-            print(f"  🖼️✅ Image OK — {vmatch.get('what_photo_shows','')}")
-
-    # ── Pre-check 5: Vision check on INLINE body images ──
-    # Decorative inline images (mostly Wikimedia) are matched off title-cased
-    # phrases and are frequently wrong subjects (album covers, wrong city/person).
-    # The hero (Pre-check 4) is separate; this scans images embedded in the body.
-    if (pre_publish or fix_mode):
-        inline_imgs = re.findall(r'!\[[^\]]*\]\((https?://[^)\s]+)\)', body)
-        bad_inline = []
-        for iurl in inline_imgs:
-            if iurl == image_url:  # hero already handled
-                continue
-            m = re.search(r'!\[([^\]]*)\]\(' + re.escape(iurl) + r'\)', body)
-            alt = m.group(1) if m else ""
-            iv = vision_image_match({
-                "headline": headline, "subheadline": article.get("subheadline", ""),
-                "image_url": iurl, "image_caption": alt,
-                "vertical": vertical, "category": article.get("category", ""),
-            })
-            if iv and (iv.get("verdict") or "").upper() == "MISMATCH":
-                bad_inline.append((iurl, iv.get("what_photo_shows", "")))
-                print(f"  🖼️❌ Inline image MISMATCH — {iv.get('what_photo_shows','?')} | {iv.get('reason','')[:60]}")
-        result["pre_checks"]["inline_image_mismatches"] = [u for u, _ in bad_inline]
-        if bad_inline and fix_mode:
-            new_body = body
-            for iurl, _ in bad_inline:
-                new_body = re.sub(r'\n*!\[[^\]]*\]\(' + re.escape(iurl) + r'\)\n*', '\n\n', new_body)
-            new_body = re.sub(r'\n{3,}', '\n\n', new_body)
-            if new_body != body:
-                status = sb_patch(article["id"], {"body": new_body})
-                if status in (200, 204):
-                    result["actions_taken"].append(f"Removed {len(bad_inline)} mismatched inline image(s)")
-                    print(f"  ✅ Removed {len(bad_inline)} mismatched inline image(s)")
-                    body = new_body
-                    article["body"] = body
-
-    # ── Build article text for LLM review ──
-    article_text = f"""HEADLINE: {headline}
-VERTICAL: {vertical}
-IMAGE URL: {image_url}
-IMAGE ENTITIES: {image_entities}
-
-BODY:
-{body[:4000]}"""
-    
-    # ── LLM Review (GPT-4o-mini primary) ──
-    llm_result = call_openai(REVIEW_PROMPT, article_text)
-    llm_source = "gpt-4o-mini"
-    
-    if not llm_result:
-        llm_result = call_gemini(REVIEW_PROMPT, article_text)
-        llm_source = "gemini-2.5-flash"
-    
-    if llm_result:
-        result["llm_review"] = llm_result
-        result["llm_source"] = llm_source
-        score = llm_result.get("overall_score", "?")
-        llm_verdict = llm_result.get("verdict", "?")
-        # Derive verdict from score — LLM sometimes returns wrong verdict for the score
-        if isinstance(score, (int, float)):
-            if score >= 7:
-                verdict = "pass"
-            elif score >= 4:
-                verdict = "flag"
-            else:
-                verdict = "fail"
-            if verdict != llm_verdict:
-                print(f"  ⚠️ LLM verdict '{llm_verdict}' overridden to '{verdict}' (score {score})")
-        else:
-            verdict = llm_verdict
-        
-        # Hard reject if diaspora angle is too weak — the story shouldn't have been written
-        diaspora_quality = llm_result.get("diaspora_angle", {}).get("quality", 10)
-        category = article.get("category", "")
-        if isinstance(diaspora_quality, (int, float)) and diaspora_quality <= 3 and category != "markets-finance":
-            if verdict == "pass":
-                verdict = "fail"
-                print(f"  ⚠️ Overridden to FAIL — diaspora angle quality {diaspora_quality}/10 (too weak for publication)")
-            elif verdict == "flag":
-                verdict = "fail"
-                print(f"  ⚠️ Overridden to FAIL — diaspora angle quality {diaspora_quality}/10 (too weak for publication)")
-
-        print(f"  📊 Score: {score}/10 | Verdict: {verdict} ({llm_source})")
-        
-        # ── Handle embed issues (remove irrelevant embeds) ──
-        if fix_mode and llm_result.get("embed_issues"):
-            for issue in llm_result["embed_issues"]:
-                if issue.get("problem") == "irrelevant" and issue.get("url"):
-                    url = issue["url"]
-                    fixed = body.replace(f"\n\n{url}\n\n", "\n\n")
-                    if fixed == body:
-                        fixed = body.replace(f"\n{url}\n", "\n")
-                    if fixed == body:
-                        fixed = body.replace(url, "")
-                    if fixed != body:
-                        status = sb_patch(article["id"], {"body": fixed})
-                        if status in (200, 204):
-                            result["actions_taken"].append(f"Removed irrelevant embed: {url[:60]}")
-                            print(f"  ✅ Removed irrelevant embed: {url[:60]}")
-                            body = fixed
-                            article["body"] = body
-        
-        # ── Handle verdict ──
-        if fix_mode and verdict == "pass":
-            # Pre-publish gate: promote passing articles to published
-            if pre_publish and article.get("status") == "review":
-                if result.get("image_mismatch"):
-                    # Vision check cleared a wrong photo; hold for re-sourcing, don't publish image-less.
-                    print(f"  🔒 Held in review — image was mismatched, awaiting re-source")
-                    result["actions_taken"].append("held: image mismatch")
-                elif result.get("image_unverified"):
-                    # Hero image could not be read → can't confirm it's right. Hold
-                    # rather than publish an unchecked photo (fail-closed).
-                    print(f"  🔒 Held in review — hero image unverifiable, awaiting recheck")
-                    result["actions_taken"].append("held: image unverified")
-                elif not (article.get("sources") or []):
-                    # No sources attached → hold rather than publish unsourced.
-                    # Zero-cost field check (no LLM). Writer's next pass re-fills sources.
-                    print(f"  🔒 Held in review — no sources attached, awaiting re-source")
-                    result["actions_taken"].append("held: no sources")
-                else:
-                    now_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                    status = sb_patch(article["id"], {"status": "published", "published_at": now_ts})
-                    if status in (200, 204):
-                        result["actions_taken"].append("promoted to published")
-                        print(f"  ✅ Promoted to published (score {score})")
-                    else:
-                        print(f"  ⚠️ Failed to promote (HTTP {status})")
-
-        elif fix_mode and verdict == "fail":
-            fail_result = handle_fail(article, llm_result, fix_mode)
-            if fail_result.startswith("unpublished"):
-                result["unpublished"] = True
-                result["actions_taken"].append(fail_result)
-            elif fail_result == "revise":
-                # Revise instead of unpublish
-                rev = revise_article(article, result, fix_mode)
-                if rev:
-                    result["revised"] = True
-                    result["actions_taken"].append(f"Revised by {rev['reviser']} ({rev['original_word_count']}→{rev['word_count']} words)")
-        
-        elif fix_mode and verdict == "flag":
-            # Flagged articles get revised
-            rev = revise_article(article, result, fix_mode)
-            if rev:
-                result["revised"] = True
-                result["actions_taken"].append(f"Revised by {rev['reviser']} ({rev['original_word_count']}→{rev['word_count']} words)")
-                # In pre-publish mode, revised flagged articles stay in 'review' for re-check next cycle
-                if pre_publish and article.get("status") == "review":
-                    print(f"  🔄 Stays in review — will be re-checked next cycle")
-        
-        # ── Print issues ──
-        if llm_result.get("embed_issues"):
-            for iss in llm_result["embed_issues"]:
-                print(f"  ⚠️  Embed: {iss.get('url','?')[:50]} — {iss.get('problem','?')}: {iss.get('explanation','')[:60]}")
-        if llm_result.get("factual_flags"):
-            for flag in llm_result["factual_flags"]:
-                print(f"  🚩 Factual: {flag[:80]}")
-        if llm_result.get("suggestions"):
-            for sug in llm_result["suggestions"]:
-                print(f"  💡 {sug[:80]}")
-    else:
-        print(f"  ❌ No LLM review available")
+    # LLM review
+    if run_llm:
+        result["llm_review"] = llm_review(article)
     
     return result
 
 
 def main():
-    fix_mode = "--fix" in sys.argv
-    pre_publish = "--pre-publish" in sys.argv
-    hours = 3
-    article_id = None
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--hours", type=int, default=12, help="Review articles from last N hours")
+    parser.add_argument("--max", type=int, default=10, help="Max articles to review")
+    parser.add_argument("--article-ids", type=str, help="Comma-separated article IDs")
+    parser.add_argument("--no-llm", action="store_true", help="Skip LLM review (structural only)")
+    parser.add_argument("--apply", action="store_true", help="Save report to file")
+    args = parser.parse_args()
     
-    for i, arg in enumerate(sys.argv):
-        if arg == "--hours" and i + 1 < len(sys.argv):
-            hours = int(sys.argv[i + 1])
-        if arg == "--id" and i + 1 < len(sys.argv):
-            article_id = sys.argv[i + 1]
+    print(f"═══ Article Quality Review ═══")
+    print(f"Time: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     
     # Fetch articles
-    select = "id,headline,subheadline,slug,body,image_url,image_caption,image_entities,vertical,category,published_at,status,sources"
-    
-    if article_id:
-        articles = sb_get(f"p2_articles?select={select}&id=eq.{article_id}")
-    elif pre_publish:
-        articles = sb_get(f"p2_articles?select={select}&status=eq.review&order=created_at.desc&limit=20")
+    if args.article_ids:
+        ids = [i.strip() for i in args.article_ids.split(",")]
+        articles = []
+        for aid in ids:
+            a = sb_get("p2_articles", {
+                "id": f"eq.{aid}",
+                "select": "id,headline,slug,category,body,social_embeds,image_url,published_at"
+            })
+            articles.extend(a)
     else:
-        cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
-        articles = sb_get(f"p2_articles?select={select}&status=eq.published&published_at=gte.{cutoff}&order=published_at.desc&limit=50")
+        cutoff = quote((datetime.now(timezone.utc) - timedelta(hours=args.hours)).isoformat(), safe='')
+        articles = sb_get("p2_articles", {
+            "status": "eq.published",
+            "published_at": f"gte.{cutoff}",
+            "select": "id,headline,slug,category,body,social_embeds,image_url,published_at",
+            "order": "published_at.desc",
+            "limit": str(args.max)
+        })
     
-    if not articles:
-        print("No articles found to review.")
-        return
+    print(f"Found {len(articles)} articles to review\n")
     
-    print(f"{'🔧 FIX MODE' if fix_mode else '👀 REVIEW ONLY'} — Found {len(articles)} articles")
-    
-    # Also fetch recent articles for image dedup check
-    recent_cutoff = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    recent_articles = sb_get(
-        f"p2_articles?select=id,headline,image_url&status=eq.published&published_at=gte.{recent_cutoff}&limit=500"
-    )
-    
-    # Review each article
     results = []
-    stats = {"pass": 0, "flag": 0, "fail": 0, "error": 0}
-    revision_count = 0
-    unpublish_count = 0
-    
     for article in articles:
-        result = review_article(article, recent_articles, fix_mode, pre_publish=pre_publish)
+        headline = article.get("headline", "")[:75]
+        print(f"  📰 {headline}")
+        
+        result = review_article(article, run_llm=not args.no_llm)
         results.append(result)
         
-        verdict = "error"
-        if result.get("llm_review"):
-            verdict = result["llm_review"].get("verdict", "error")
-        stats[verdict] = stats.get(verdict, 0) + 1
+        # Print structural issues
+        if result["structural_issues"]:
+            for issue in result["structural_issues"]:
+                print(f"     ⚠️  {issue}")
         
-        if result.get("revised"):
-            revision_count += 1
-        if result.get("unpublished"):
-            unpublish_count += 1
+        # Print LLM review
+        llm = result.get("llm_review")
+        if llm:
+            score = llm.get("quality_score", "?")
+            print(f"     Score: {score}/10")
+            for s in llm.get("suggestions", []):
+                print(f"     💡 {s}")
+            for e in llm.get("embed_opportunities", []):
+                if e:
+                    print(f"     🔗 {e}")
         
-        time.sleep(0.5)  # rate limit between articles
+        print()
     
     # Summary
-    print(f"\n{'='*60}")
-    print(f"REVIEW SUMMARY: {len(articles)} articles")
-    print(f"  ✅ Pass: {stats['pass']}")
-    print(f"  ⚠️  Flag: {stats['flag']}")
-    print(f"  ❌ Fail: {stats['fail']}")
-    print(f"  💀 Error: {stats['error']}")
+    total_issues = sum(len(r["structural_issues"]) for r in results)
+    avg_score = 0
+    scored = [r for r in results if r.get("llm_review") and r["llm_review"].get("quality_score")]
+    if scored:
+        avg_score = sum(r["llm_review"]["quality_score"] for r in scored) / len(scored)
     
-    if fix_mode:
-        total_mechanical = sum(
-            len([a for a in r.get("actions_taken", []) if "Removed" in a])
-            for r in results
-        )
-        total_broken_embeds = sum(
-            len(r.get("pre_checks", {}).get("broken_embeds", []))
-            for r in results
-        )
-        print(f"  🔧 Mechanical fixes (embeds): {total_mechanical}")
-        print(f"  💀 Broken/hallucinated embeds found: {total_broken_embeds}")
-        print(f"  📝 Articles revised: {revision_count}")
-        print(f"  🗑️  Articles unpublished: {unpublish_count}")
+    print(f"═══ Summary ═══")
+    print(f"Articles reviewed: {len(results)}")
+    print(f"Structural issues found: {total_issues}")
+    if scored:
+        print(f"Average quality score: {avg_score:.1f}/10")
+    
+    # Articles needing attention (score < 7 or structural issues)
+    attention = [r for r in results if 
+                 (r.get("llm_review") and r["llm_review"].get("quality_score", 10) < 7) or
+                 len(r["structural_issues"]) > 0]
+    if attention:
+        print(f"Articles needing attention: {len(attention)}")
+        for r in attention:
+            print(f"  • {r['headline']}")
     
     # Save report
-    report_path = os.path.expanduser("~/workspace/the-videshi-news/pipeline/review-report.json")
-    with open(report_path, "w") as f:
-        json.dump({
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "mode": "fix" if fix_mode else "review",
-            "stats": stats,
-            "revisions": revision_count,
-            "unpublished": unpublish_count,
-            "articles": results,
-        }, f, indent=2, default=str)
-    print(f"\nFull report: {report_path}")
+    if args.apply:
+        report_dir = os.path.expanduser("~/workspace/the-videshi-news/pipeline/reports")
+        os.makedirs(report_dir, exist_ok=True)
+        ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M")
+        report_path = os.path.join(report_dir, f"review-{ts}.json")
+        with open(report_path, "w") as f:
+            json.dump(results, f, indent=2, default=str)
+        print(f"\nReport saved: {report_path}")
+    
+    return results
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except SupabaseUnavailable as e:
-        print(f"SUPABASE_UNAVAILABLE: {e}", file=sys.stderr)
-        sys.exit(2)
+    main()
