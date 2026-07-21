@@ -919,7 +919,6 @@ def main():
                 # Verify tweet renders
                 if verify_tweet(tweet["id"]):
                     new_body = insert_embed_in_body(new_body, tweet["url"], "x")
-                    new_embeds.append({"url": tweet["url"], "platform": "x"})
                     changes.append(f"X(@{info.get('handle','?')})")
                     report["x_embeds"] += 1
                 else:
