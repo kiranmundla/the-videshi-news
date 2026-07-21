@@ -776,6 +776,176 @@ def has_embed(body, platform):
     return False
 
 
+# ─── Hero image upgrade ──────────────────────────────────────────────────────
+
+STOCK_DOMAINS = {"images.pexels.com", "images.unsplash.com", "pixabay.com",
+                 "cdn.pixabay.com", "media.istockphoto.com", "thumbs.dreamstime.com"}
+
+def _is_stock_hero(image_url):
+    """Check if an image URL is from a stock photo provider."""
+    if not image_url:
+        return False
+    url_lower = image_url.lower()
+    return any(d in url_lower for d in STOCK_DOMAINS)
+
+
+def _extract_distinctive_entities(headline):
+    """Extract distinctive proper nouns from a headline for strict matching.
+    Returns lowercase set of words specific enough to confirm same-story."""
+    GENERIC = {
+        "dead", "killed", "trapped", "injured", "dies", "death", "deaths",
+        "seven", "eight", "nine", "ten", "dozen", "dozens", "hundreds",
+        "two", "three", "four", "five", "six", "many", "several", "multiple",
+        "landslide", "earthquake", "flood", "fire", "crash", "blast", "attack",
+        "breaking", "news", "update", "report", "latest", "major", "massive",
+        "india", "us", "uk", "china",
+        "government", "minister", "president", "official", "police", "army",
+        "workers", "people", "victims", "rescue", "relief", "tunnel",
+        "construction", "under", "gas", "leak", "devastate",
+        "new", "old", "first", "last", "top", "best", "worst",
+        "says", "said", "announces", "launches", "wins", "loses",
+        "scores", "century", "final", "match", "game", "cup",
+        "million", "billion", "deal", "stake", "sells", "buys",
+        "changes", "cap", "visa", "ban", "rule", "rules", "plan",
+        "against", "after", "over", "into", "from", "with",
+    }
+    # Capitalized words (likely proper nouns)
+    words = re.findall(r'\b[A-Z][a-z]{2,}\b', headline)
+    # Acronyms (2+ uppercase letters) like USCIS, CRED, NASA
+    acronyms = re.findall(r'\b[A-Z]{2,}\b', headline)
+    entities = set()
+    for w in words:
+        if w.lower() not in GENERIC:
+            entities.add(w.lower())
+    for a in acronyms:
+        if a.lower() not in GENERIC:
+            entities.add(a.lower())
+    return entities
+
+
+def _download_and_upload_photo(photo_url, slug):
+    """Download a tweet photo, verify it's a real photograph (not a graphic card),
+    and upload to Supabase storage. Returns public URL or None."""
+    import hashlib
+    try:
+        dl = subprocess.run(
+            ["curl", "-sS", "--max-time", "10", "-o", "/tmp/_tweet_hero.jpg", photo_url],
+            capture_output=True, timeout=15,
+        )
+        if dl.returncode != 0:
+            return None
+
+        with open("/tmp/_tweet_hero.jpg", "rb") as f:
+            img_bytes = f.read()
+
+        if len(img_bytes) < 5000:
+            return None
+
+        # ── Graphic card detection ──
+        # Text cards on solid backgrounds have mostly near-black/near-white pixels.
+        try:
+            from PIL import Image
+            import io
+            img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+            w, h = img.size
+            cx, cy = w // 2, h // 2
+            crop = img.crop((max(0, cx-100), max(0, cy-100), min(w, cx+100), min(h, cy+100)))
+            pixels = list(crop.getdata())
+            total = len(pixels)
+            near_black = sum(1 for r, g, b in pixels if (r + g + b) / 3 < 30)
+            near_white = sum(1 for r, g, b in pixels if (r + g + b) / 3 > 225)
+            solid_pct = (near_black + near_white) / total
+            if solid_pct > 0.6:  # >60% solid = graphic card, not a photo
+                return None
+        except Exception:
+            pass
+
+        # Upload to Supabase storage
+        h_hash = hashlib.md5(img_bytes).hexdigest()[:8]
+        filename = f"tweet-hero-{slug[:40]}-{h_hash}.jpg"
+        url = f"{SB_URL}/storage/v1/object/article-images/{filename}"
+        result = subprocess.run(
+            ["curl", "-sS", "--max-time", "15", "-X", "POST", url,
+             "-H", f"apikey: {SB_KEY}",
+             "-H", f"Authorization: Bearer {SB_KEY}",
+             "-H", "Content-Type: image/jpeg",
+             "-H", "x-upsert: true",
+             "--data-binary", "@-"],
+            input=img_bytes, capture_output=True, timeout=20,
+        )
+        stdout = result.stdout.decode("utf-8", errors="replace") if isinstance(result.stdout, bytes) else result.stdout
+        if result.returncode == 0:
+            try:
+                resp_json = json.loads(stdout)
+                if "Key" in resp_json or "Id" in resp_json:
+                    return f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+            except Exception:
+                pass
+            if not stdout.strip():
+                return f"{SB_URL}/storage/v1/object/public/article-images/{filename}"
+        return None
+    except Exception as e:
+        print(f"     ⚠ Hero upload failed: {e}")
+        return None
+
+
+def try_hero_upgrade(article, all_tweets):
+    """If article has a stock hero, try to replace it with a real photo from tweets.
+
+    all_tweets: list of tweet dicts (already scored/filtered).
+    Returns dict with upgrade info, or None.
+
+    Uses two gates:
+      1. Entity gate: tweet text must mention a distinctive entity from headline
+      2. Graphic card filter: rejects text-on-solid-color images
+    """
+    image_url = article.get("image_url", "") or ""
+    if not _is_stock_hero(image_url):
+        return None
+
+    headline = article.get("headline", "")
+    slug = article.get("slug", "unknown")
+    entities = _extract_distinctive_entities(headline)
+
+    # Find best photo tweet by authority + followers, with entity match
+    photo_candidates = []
+    for tweet in all_tweets:
+        photos = tweet.get("photos", [])
+        if not photos:
+            continue
+        auth = source_authority(tweet)
+        if auth < 2:
+            continue
+        # Entity gate: tweet must mention at least one distinctive entity
+        if entities:
+            tweet_lower = tweet.get("text", "").lower()
+            if not any(e in tweet_lower for e in entities):
+                continue
+        photo_candidates.append((auth, tweet.get("followers", 0) or 0, photos[0], tweet))
+
+    if not photo_candidates:
+        return None
+
+    # Pick highest authority, then most followers
+    photo_candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
+    best_auth, best_followers, best_photo_url, best_tweet = photo_candidates[0]
+
+    new_hero_url = _download_and_upload_photo(best_photo_url, slug)
+    if not new_hero_url:
+        return None
+
+    handle = best_tweet.get("handle", "")
+    caption = f"Image: @{handle} via X" if handle else "Image via X"
+
+    return {
+        "old_hero": image_url,
+        "new_hero": new_hero_url,
+        "caption": caption,
+        "source_handle": f"@{handle}",
+        "source_photo": best_photo_url,
+    }
+
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def fetch_articles(article_ids=None, hours=3):
@@ -837,7 +1007,7 @@ def main():
     if ig_cache_empty:
         live_ig = prefetch_ig_for_articles(eligible[:args.max], registry)
 
-    report = {"processed": 0, "x_embeds": 0, "ig_embeds": 0, "yt_embeds": 0, "skipped": 0}
+    report = {"processed": 0, "x_embeds": 0, "ig_embeds": 0, "yt_embeds": 0, "hero_upgrades": 0, "skipped": 0}
 
     for article in eligible[:args.max]:
         headline = article["headline"]
