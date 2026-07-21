@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-enrich-on-publish.py — Enrich articles with social embeds at publish time.
+enrich-on-publish.py — Enrich articles with social embeds + hero image upgrade at publish time.
 
 Uses the cached handle posts (from refresh-embed-cache.py) for instant
 handle-based enrichment, plus live TwitterAPI.io search for articles
 without registry matches.
 
-This script does ONLY social embed enrichment (X, IG, YouTube).
-No hero images, inline images, trailers, or pull quotes.
+This script handles:
+  - X (Twitter) embed enrichment (cache + live search)
+  - Instagram embed enrichment (cache + Apify live)
+  - YouTube embed enrichment (Data API)
+  - Hero image upgrade: replaces Pexels/stock heroes with real photos from
+    authoritative tweets (with entity gate + graphic card filter)
 
 Usage:
   python3 -u enrich-on-publish.py --hours 3              # dry run, last 3h
@@ -780,14 +784,14 @@ def fetch_articles(article_ids=None, hours=3):
         # Fetch specific articles
         id_filter = ",".join(f'"{aid}"' for aid in article_ids)
         params = {
-            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at",
+            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
             "id": f"in.({','.join(article_ids)})",
             "status": "eq.published",
         }
     else:
         since = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
         params = {
-            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at",
+            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
             "status": "eq.published",
             "published_at": f"gte.{since}",
             "order": "published_at.desc",

@@ -301,7 +301,16 @@ def find_best_tweet(tweets, headline, body_500, min_score=5):
     best_score = 0
 
     for tweet in tweets:
-        score = score_tweet_relevance(tweet["text"], headline, body_500)
+        topic_score = score_tweet_relevance(tweet["text"], headline, body_500)
+        # Require minimum topic relevance of 5 before considering authority/photo bonuses.
+        # Scoring: entity name match (~1) + long-word bonus (+2) = ~3-4 baseline.
+        # Entity name + one coincidental verb (e.g. "build") = 4, NOT enough.
+        # A genuinely on-topic tweet has 3+ real keyword overlaps → score 5+.
+        # This prevents high-authority accounts (NVIDIA, Google) from embedding
+        # any random tweet just because they're verified with many followers.
+        if topic_score < 5:
+            continue
+        score = topic_score
         if tweet.get("photo_count", 0) > 0:
             score += 3
         authority = source_authority(tweet)
@@ -502,16 +511,15 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
             shortcode = scored[0][1]
             return shortcode, {"handle": handle, "name": m["name"]}
 
-        # Second pass: no topical match — embed the most recent post.
-        # IG captions are often just about the image itself, not the news story.
-        # Unlike X/Twitter, the value of an IG embed is showing the person/entity
-        # we're writing about — social proof and visual engagement. Since our
-        # registry contains entities that ARE the article subject (not news outlets
-        # covering random topics), their latest post is relevant to readers.
-        for post in posts:
-            sc = post.get("shortCode", "")
-            if sc:
-                return sc, {"handle": handle, "name": m["name"]}
+        # Second pass: no topical match — embed the most recent post ONLY for person handles.
+        # For org handles (NVIDIA, Google, etc.), the latest post is about some
+        # random product/announcement, not the article topic — irrelevant.
+        # For persons, showing their latest post adds social proof and visual engagement.
+        if m.get("group") == "persons":
+            for post in posts:
+                sc = post.get("shortCode", "")
+                if sc:
+                    return sc, {"handle": handle, "name": m["name"]}
 
     return None, None
 
@@ -711,7 +719,11 @@ def enrich_youtube(article, registry):
 
         for r in results:
             s = score_youtube_result(r, name, keywords)
-            if s >= 3 and (best_yt is None or s > best_yt["score"]):
+            # Require >= 5 AND at least 1 keyword match beyond entity name
+            # (entity name alone = +4, not enough for relevance)
+            title_lower = r["title"].lower()
+            kw_hits = sum(1 for kw in keywords if kw in title_lower)
+            if s >= 5 and kw_hits >= 1 and (best_yt is None or s > best_yt["score"]):
                 best_yt = {
                     "url": f"https://youtube.com/watch?v={r['videoId']}",
                     "title": r["title"],
@@ -728,25 +740,25 @@ def enrich_youtube(article, registry):
 
 # ─── Body insertion ──────────────────────────────────────────────────────────
 
+def _count_media_in_text(text):
+    """Count media elements (embeds, figures, YouTube tags) in a chunk of HTML."""
+    MEDIA_PATS = [
+        r'<figure[^>]*>',
+        r'<youtube>',
+        r'https?://(?:x|twitter)\.com/\w+/status/',
+        r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/',
+    ]
+    return sum(len(re.findall(p, text, re.IGNORECASE)) for p in MEDIA_PATS)
+
+
 def insert_embed_in_body(body, embed_url, platform="x"):
-    """Insert an embed URL/tag at a natural position in the article body (after 2nd </p>)."""
+    """Insert an embed as high as possible without clustering with existing media."""
+    from embed_placement import insert_embed_high
     if platform == "youtube":
         embed_line = f"\n\n<youtube>{embed_url}</youtube>\n"
     else:
         embed_line = f"\n\n{embed_url}\n"
-
-    p_ends = [m.end() for m in re.finditer(r'</p>', body, re.IGNORECASE)]
-    if len(p_ends) >= 2:
-        pos = p_ends[1]
-        return body[:pos] + embed_line + body[pos:]
-    elif len(p_ends) == 1:
-        pos = p_ends[0]
-        return body[:pos] + embed_line + body[pos:]
-    else:
-        paras = body.split("\n\n", 2)
-        if len(paras) >= 2:
-            return paras[0] + "\n\n" + paras[1] + embed_line + "\n\n" + (paras[2] if len(paras) > 2 else "")
-        return body + embed_line
+    return insert_embed_high(body, embed_line)
 
 
 def has_embed(body, platform):
@@ -828,6 +840,14 @@ def main():
         body = article.get("body") or ""
         category = article.get("category", "")
         social_embeds = article.get("social_embeds") or []
+        # Parse if string (DB may return JSONB as string); guard against corrupted data
+        if isinstance(social_embeds, str):
+            try:
+                social_embeds = json.loads(social_embeds)
+                if not isinstance(social_embeds, list):
+                    social_embeds = []
+            except (json.JSONDecodeError, TypeError):
+                social_embeds = []
 
         print(f"\n  📰 {headline[:75]}")
         print(f"     [{category}] embeds: {len(social_embeds)}")
@@ -836,24 +856,40 @@ def main():
         new_embeds = list(social_embeds)
         changes = []
 
+        # Collect all available embeds first, then insert in relevance order
+        # so the best match gets the highest placement. Video gets a small
+        # boost (+2) since it's inherently more engaging, but a high-relevance
+        # tweet or IG post can still outrank a mediocre video.
+        pending_embeds = []  # [(score, platform, embed_url, change_label)]
+
+        # ── YouTube enrichment ──
+        if not has_embed(body, "youtube"):
+            has_x = has_embed(body, "x")
+            has_ig = has_embed(body, "instagram")
+            if not (has_x and has_ig):
+                yt_url, info = enrich_youtube(article, registry)
+                if yt_url:
+                    yt_score = info.get("score", 5) + 2  # video engagement bonus
+                    print(f"     YT: {yt_url} — \"{info['title'][:50]}\" [score:{info['score']}→{yt_score}]")
+                    pending_embeds.append((yt_score, "youtube", yt_url, f"YT({info['entity'][:20]})"))
+                    report["yt_embeds"] += 1
+        else:
+            print(f"     YT: already has embed")
+
         # ── X enrichment ──
         if not has_embed(body, "x"):
-            # Try cache first
             tweet, info = enrich_x_from_cache(article, cache, registry)
             if tweet:
                 print(f"     X (cache): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
             else:
-                # Fallback to live search
                 tweet, info = enrich_x_from_search(article)
                 if tweet:
                     print(f"     X (search): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
 
             if tweet:
-                # Verify tweet renders
                 if verify_tweet(tweet["id"]):
-                    new_body = insert_embed_in_body(new_body, tweet["url"], "x")
-                    new_embeds.append({"url": tweet["url"], "platform": "x"})
-                    changes.append(f"X(@{info.get('handle','?')})")
+                    x_score = info.get("score", 5)
+                    pending_embeds.append((x_score, "x", tweet["url"], f"X(@{info.get('handle','?')})"))
                     report["x_embeds"] += 1
                 else:
                     print(f"     ⚠ Tweet verify failed")
@@ -866,35 +902,24 @@ def main():
             if shortcode:
                 ig_url = f"https://www.instagram.com/p/{shortcode}/"
                 source = "live" if live_ig else "cache"
-                print(f"     IG ({source}): @{info['handle']} → {ig_url}")
-                new_body = insert_embed_in_body(new_body, ig_url, "instagram")
-                new_embeds.append({"url": ig_url, "platform": "instagram"})
-                changes.append(f"IG(@{info['handle']})")
+                ig_score = info.get("score", 5)
+                print(f"     IG ({source}): @{info['handle']} → {ig_url} [score:{ig_score}]")
+                pending_embeds.append((ig_score, "instagram", ig_url, f"IG(@{info['handle']})"))
                 report["ig_embeds"] += 1
         else:
             print(f"     IG: already has embed")
 
-        # ── YouTube enrichment ──
-        if not has_embed(new_body, "youtube"):
-            # Skip if already has both X and IG embeds
-            has_x = has_embed(new_body, "x")
-            has_ig = has_embed(new_body, "instagram")
-            if not (has_x and has_ig):
-                yt_url, info = enrich_youtube(article, registry)
-                if yt_url:
-                    print(f"     YT: {yt_url} — \"{info['title'][:50]}\" [score:{info['score']}]")
-                    new_body = insert_embed_in_body(new_body, yt_url, "youtube")
-                    new_embeds.append({"url": yt_url, "platform": "youtube"})
-                    changes.append(f"YT({info['entity'][:20]})")
-                    report["yt_embeds"] += 1
-        else:
-            print(f"     YT: already has embed")
+        # Sort by relevance score descending — best match gets highest placement
+        pending_embeds.sort(key=lambda x: x[0], reverse=True)
+        for _score, platform, embed_url, change_label in pending_embeds:
+            new_body = insert_embed_in_body(new_body, embed_url, platform)
+            changes.append(change_label)
 
         # ── Apply changes ──
         if changes:
             change_desc = " + ".join(changes)
             if args.apply:
-                updates = {"body": new_body, "social_embeds": json.dumps(new_embeds)}
+                updates = {"body": new_body, "social_embeds": new_embeds}
                 if sb_patch(article["id"], updates):
                     print(f"     ✅ Embedded: {change_desc}")
                 else:
