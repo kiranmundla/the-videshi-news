@@ -188,6 +188,19 @@ def detect_category(title, description=""):
     return "news"
 
 
+# ── Category normalization (module-level so both LLM scorer and main can use) ──
+_CAT_NORMALIZE = {
+    "lifestyle": "lifestyle-health", "health": "lifestyle-health",
+    "finance": "markets-finance", "markets": "markets-finance",
+    "market": "markets-finance", "business": "markets-finance",
+    "nri": "nri-world", "world": "nri-world",
+    "tech": "technology", "cricket": "sports",
+    "bollywood": "entertainment", "movies": "entertainment",
+    "visa": "immigration", "h1b": "immigration",
+}
+_VALID_CATS = {"immigration","technology","news","entertainment","sports",
+               "markets-finance","nri-world","food","travel","lifestyle-health"}
+
 # ── Instagram handle reference for LLM ────────────────────────────────────────
 def _build_ig_handle_block():
     """Load IG handles + metadata from registry for injection into LLM prompt."""
