@@ -133,6 +133,8 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
   const avatarUrl = hiResAvatar(user.profile_image_url_https);
   const tweetUrl = `https://x.com/${user.screen_name}/status/${tweet.id_str}`;
   const hasPhotos = (tweet.photos?.length ?? 0) > 0;
+  const hasVideo = !!(tweet as any).video?.poster;
+  const hasMedia = hasPhotos || hasVideo;
   const bodyText = tweet.text?.replace(/https:\/\/t\.co\/\S+/g, "").trim();
 
   return (
@@ -190,10 +192,36 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
       {/* Photos */}
       {hasPhotos && <PhotoGrid photos={tweet.photos!} tweetUrl={tweetUrl} />}
 
-      {/* Text — always visible when no photos, collapsible when photos present */}
+      {/* Video thumbnail with play button */}
+      {hasVideo && !hasPhotos && (() => {
+        const video = (tweet as any).video;
+        return (
+          <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
+             style={{ display: "block", position: "relative", cursor: "pointer" }}>
+            <img
+              src={video.poster}
+              alt="Video thumbnail"
+              style={{ width: "100%", display: "block", objectFit: "cover" }}
+            />
+            <div style={{
+              position: "absolute", top: "50%", left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 60, height: 60, borderRadius: "50%",
+              background: "rgba(29, 161, 242, 0.9)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </a>
+        );
+      })()}
+
+      {/* Text — always visible when no media, collapsible when media present */}
       {bodyText && (
         <div style={{ padding: "0 16px" }}>
-          {(!hasPhotos || expanded) && (
+          {(!hasMedia || expanded) && (
             <p style={{
               fontSize: 15, lineHeight: 1.55, color: "rgba(255,255,255,0.85)",
               margin: "0 0 8px", whiteSpace: "pre-wrap", wordWrap: "break-word",
@@ -201,7 +229,7 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
               {bodyText}
             </p>
           )}
-          {hasPhotos && (
+          {hasMedia && (
             <button
               onClick={() => setExpanded(!expanded)}
               style={{
@@ -433,6 +461,8 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
   const bodyText = tweet.text?.replace(/https:\/\/t\.co\/\S+/g, "").trim();
   const tweetUrl = `https://x.com/${user.screen_name}/status/${tweet.id_str}`;
   const photos = tweet.photos ?? [];
+  const videoData = (tweet as any).video;
+  const hasVideo = !!(videoData?.poster);
 
   return (
     <div style={{ margin: "24px auto", maxWidth: 480 }}>
@@ -488,6 +518,27 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
                 }}
               />
             ))}
+          </div>
+        )}
+        {hasVideo && photos.length === 0 && (
+          <div style={{ position: "relative" }}>
+            <img
+              src={videoData.poster}
+              alt="Video thumbnail"
+              loading="lazy"
+              style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 400, background: "#f0eeeb" }}
+            />
+            <div style={{
+              position: "absolute", top: "50%", left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 48, height: 48, borderRadius: "50%",
+              background: "rgba(29, 161, 242, 0.9)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
           </div>
         )}
         <div style={{ padding: "10px 18px 14px", fontSize: 13, color: "#1d9bf0", fontWeight: 500 }}>
