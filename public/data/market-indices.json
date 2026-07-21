@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-21T01:27:36.801894+00:00",
+  "last_updated": "2026-07-21T01:57:32.150617+00:00",
   "indices": [
     {
       "symbol": "SPX",
@@ -22,7 +22,7 @@
       "name": "Sensex",
       "flag": "\ud83c\uddee\ud83c\uddf3",
       "value": 77708.52,
-      "change": -442.42,
+      "change": -442.41,
       "change_pct": -0.57
     },
     {
@@ -45,17 +45,17 @@
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4035.0,
-      "change": 7.2,
-      "change_pct": 0.18
+      "value": 4029.5,
+      "change": 1.7,
+      "change_pct": 0.04
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 57.4,
-      "change": 0.11,
-      "change_pct": 0.19
+      "value": 57.26,
+      "change": -0.03,
+      "change_pct": -0.05
     }
   ]
 }
