@@ -325,7 +325,7 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
 
   return (
     <figure className="my-6 flex flex-col items-center" ref={ref}>
-      <div style={{ maxWidth: 540, width: '100%', borderRadius: 8 }}>
+      <div style={{ maxWidth: 540, width: '100%', borderRadius: 8, position: 'relative', overflow: 'hidden' }}>
         <blockquote
           className="instagram-media"
           data-instgrm-permalink={permalink}
@@ -339,6 +339,7 @@ function InstagramEmbed({ url, caption }: { url: string; caption?: string }) {
             width: "100%",
             minWidth: 326,
             padding: 0,
+            marginBottom: -56,
           }}
         />
       </div>

@@ -386,9 +386,11 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
         a.get("google_cluster_size") or 0,
         a.get("event_at") or a["published_at"],
     ), reverse=True)
+    # Categories that should never be the homepage hero
+    _NO_FEATURED_CATS = {"food", "travel", "lifestyle-health"}
     featured = None
     for a in recent_24h:
-        if a["hero_image_url"]:
+        if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS:
             featured = article_without_body(a)
             break
     if not featured and recent_24h:

@@ -934,7 +934,6 @@ def main():
                 source = "live" if live_ig else "cache"
                 print(f"     IG ({source}): @{info['handle']} → {ig_url}")
                 new_body = insert_embed_in_body(new_body, ig_url, "instagram")
-                new_embeds.append({"url": ig_url, "platform": "instagram"})
                 changes.append(f"IG(@{info['handle']})")
                 report["ig_embeds"] += 1
         else:
@@ -950,7 +949,6 @@ def main():
                 if yt_url:
                     print(f"     YT: {yt_url} — \"{info['title'][:50]}\" [score:{info['score']}]")
                     new_body = insert_embed_in_body(new_body, yt_url, "youtube")
-                    new_embeds.append({"url": yt_url, "platform": "youtube"})
                     changes.append(f"YT({info['entity'][:20]})")
                     report["yt_embeds"] += 1
         else:

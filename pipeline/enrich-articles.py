@@ -1621,11 +1621,7 @@ def main():
                     else:
                         new_body = body + embed_tag
 
-                # Also update social_embeds JSON
-                existing_embeds = article.get("social_embeds") or []
-                existing_embeds.append({"url": best_yt["url"], "platform": "youtube"})
-
-                if update_article(article["id"], {"body": new_body, "social_embeds": json.dumps(existing_embeds)}):
+                if update_article(article["id"], {"body": new_body}):
                     print(f"     ✅ Embedded!")
                     yt_enriched += 1
                 else:
