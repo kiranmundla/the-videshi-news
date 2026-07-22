@@ -1,116 +1,128 @@
 [
   {
-    "slug": "inhaling-co2-cleared-alzheimers-proteins-early-human-trial",
-    "headline": "Inhaling CO2 Cleared Alzheimer's Proteins in Early Human Trial",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/inhaling-co2-cleared-alzheimers-proteins-early-human-trial.jpg"
-  },
-  {
-    "slug": "women-pcos-four-times-higher-heart-disease-risk-lancet",
-    "headline": "Women With PCOS Face Four Times Higher Risk of Heart Disease, Lancet Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/women-pcos-four-times-higher-heart-disease-risk-lancet.jpg"
-  },
-  {
-    "slug": "spains-world-cup-win-reshuffles-2026-ballon-dor-race",
-    "headline": "Spain's World Cup Win Reshuffles 2026 Ballon d'Or Race",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spains-world-cup-win-reshuffles-2026-ballon-dor-race.jpg"
-  },
-  {
-    "slug": "disney-cuts-hundreds-of-jobs-pixar-bearing-brunt",
-    "headline": "Disney Cuts Hundreds of Jobs With Pixar Bearing the Brunt",
+    "slug": "avengers-doomsday-record-breaking-pre-sales",
+    "headline": "Avengers: Doomsday Earns $16.5 Million in Record-Breaking First-Day Pre-Sales",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/disney-cuts-hundreds-of-jobs-pixar-bearing-brunt.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/avengers-doomsday-record-breaking-pre-sales.jpg"
   },
   {
-    "slug": "mtr-foods-quick-commerce-clean-labels-sambar-anthem",
-    "headline": "MTR Foods Bets on Quick Commerce, Clean Labels and a Viral Sambar Anthem",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mtr-foods-quick-commerce-clean-labels-sambar-anthem.jpg"
-  },
-  {
-    "slug": "rahul-gandhi-detained-modi-home-india-exam-protest",
-    "headline": "Rahul Gandhi Detained Outside Modi's Home Amid India Exam Protest",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rahul-gandhi-detained-modi-home-india-exam-protest.jpg"
-  },
-  {
-    "slug": "japan-protests-china-live-fire-naval-drill-pacific",
-    "headline": "Japan Protests China's Live-Fire Naval Drill in Disputed Pacific Waters",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/japan-protests-china-live-fire-naval-drill-pacific.jpg"
-  },
-  {
-    "slug": "indian-professionals-eb5-investor-visas-green-card-waits",
-    "headline": "Indian Professionals Turn to EB-5 Investor Visas as Green Card Waits Stretch Decades",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-professionals-eb5-investor-visas-green-card-waits.jpg"
-  },
-  {
-    "slug": "allahabad-hc-splits-bulldozer-ban-slams-normalised-corruption",
-    "headline": "Allahabad HC Splits on Bulldozer Ban, Slams India's 'Normalised Corruption'",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/allahabad-hc-splits-bulldozer-ban-slams-normalised-corruption.jpg"
-  },
-  {
-    "slug": "la-liga-tebas-calls-infantino-resign-fifa-world-cup",
-    "headline": "La Liga Chief Tebas Calls on FIFA's Infantino to Resign Over World Cup Overreach",
+    "slug": "hashmatullah-shahidi-resigns-afghanistan-odi-captain",
+    "headline": "Hashmatullah Shahidi Resigns as Afghanistan's ODI Captain Ahead of Ireland Series",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/la-liga-tebas-calls-infantino-resign-fifa-world-cup.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hashmatullah-shahidi-resigns-afghanistan-odi-captain.jpg"
   },
   {
-    "slug": "trump-booed-world-cup-jon-stewart-trophy-ceremony",
-    "headline": "Trump Booed, Mocked by Stewart After Crashing World Cup Trophy Ceremony",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-booed-world-cup-jon-stewart-trophy-ceremony.jpg"
+    "slug": "navi-mumbai-airport-first-export-cargo-flight-abu-dhabi",
+    "headline": "Konkan Guavas Fly to Gulf on Navi Mumbai Airport's First Export Cargo Flight",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/navi-mumbai-airport-first-export-cargo-flight-abu-dhabi.jpg"
   },
   {
-    "slug": "nvidia-discloses-stake-nebius-neocloud-stock-soaring",
-    "headline": "Nvidia Discloses 9.3% Stake in Nebius, Sending Neocloud Stock Soaring",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-discloses-stake-nebius-neocloud-stock-soaring.jpg"
+    "slug": "ultra-processed-foods-childhood-insulin-resistance-prediabetes",
+    "headline": "Ultra-Processed Foods in Childhood Linked to Insulin Resistance and Prediabetes Risk",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ultra-processed-foods-childhood-insulin-resistance-prediabetes.jpg"
   },
   {
-    "slug": "apple-patches-hide-my-email-flaw-exposed-real-addresses",
-    "headline": "Apple Patches Hide My Email Flaw That Exposed Real User Addresses",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-patches-hide-my-email-flaw-exposed-real-addresses.jpg"
-  },
-  {
-    "slug": "raghav-juyal-bhai-tera-star-hai-meta-bollywood-comedy",
-    "headline": "Raghav Juyal's 'Bhai Tera Star Hai' Takes Aim at Bollywood With Meta Humor and a Nod to Salman Khan",
+    "slug": "sony-pictures-cinerama-dome-arclight-hollywood-revival",
+    "headline": "Sony Pictures in Talks To Revive Hollywood's Iconic Cinerama Dome and ArcLight Complex",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/raghav-juyal-bhai-tera-star-hai-meta-bollywood-comedy.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sony-pictures-cinerama-dome-arclight-hollywood-revival.jpg"
   },
   {
-    "slug": "air-india-ranked-fourth-most-punctual-airline-june-2026",
-    "headline": "Air India Ranked Fourth Most Punctual Airline in the World for June 2026",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-ranked-fourth-most-punctual-airline-june-2026.jpg"
+    "slug": "newjeans-fourth-anniversary-return-four-member",
+    "headline": "NewJeans Returns as Four-Member Group on Fourth Debut Anniversary",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/newjeans-fourth-anniversary-return-four-member.jpg"
   },
   {
-    "slug": "air-india-a350-business-class-dazzles-domestic",
-    "headline": "Air India's A350 Business Class Dazzles Even on Short Domestic Hops",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-a350-business-class-dazzles-domestic.jpg"
+    "slug": "updated-heart-guidelines-expand-statin-eligibility-age-30",
+    "headline": "Updated U.S. Heart Guidelines Expand Statin Eligibility to Adults as Young as 30",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/updated-heart-guidelines-expand-statin-eligibility-age-30.jpg"
   },
   {
-    "slug": "meghalaya-lakadong-turmeric-processing-global-market",
-    "headline": "Meghalaya Bets Big on Lakadong Turmeric With Processing Push and Global Market Access",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meghalaya-lakadong-turmeric-processing-global-market.jpg"
+    "slug": "ben-stokes-century-durham-first-game-after-retirement",
+    "headline": "Ben Stokes Hits Match-Winning Century for Durham in First Game Since England Retirement",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ben-stokes-century-durham-first-game-after-retirement.jpg"
   },
   {
-    "slug": "sanjeev-kapoor-honey-chilli-baby-corn-recipe",
-    "headline": "Sanjeev Kapoor's Honey Chilli Baby Corn Brings the Indo-Chinese Classic Home",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sanjeev-kapoor-honey-chilli-baby-corn-recipe.jpg"
+    "slug": "rfk-jr-declares-cyclospora-outbreak-under-control-cases-top-7000",
+    "headline": "RFK Jr. Declares Cyclospora Outbreak 'Under Control' as Cases Top 7,000 Nationwide",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rfk-jr-declares-cyclospora-outbreak-under-control-cases-top-7000.jpg"
   },
   {
-    "slug": "india-russian-oil-imports-record-expired-waiver",
-    "headline": "India's Russian Oil Imports Hold Near Record Highs Despite Expired US Sanctions Waiver",
+    "slug": "yen-slides-past-163-four-decade-low-tokyo-intervention",
+    "headline": "Yen Slides Past 163 to Four-Decade Low as Tokyo Signals Readiness to Intervene",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-russian-oil-imports-record-expired-waiver.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yen-slides-past-163-four-decade-low-tokyo-intervention.jpg"
+  },
+  {
+    "slug": "arvind-raman-interim-us-ai-safety-chief-caisi",
+    "headline": "Arvind Raman Steps In as Interim US AI Safety Chief After Chris Fall's Exit",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/arvind-raman-interim-us-ai-safety-chief-caisi.jpg"
+  },
+  {
+    "slug": "us-ends-duration-of-status-student-visas-four-year-cap",
+    "headline": "US Ends 'Duration of Status' for Student Visas, Caps Stays at Four Years",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-ends-duration-of-status-student-visas-four-year-cap.jpg"
+  },
+  {
+    "slug": "trump-announces-100-percent-tariff-generic-drug-imports-august-2028",
+    "headline": "Trump Announces 100% Tariff on Generic Drug Imports Starting August 2028",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-announces-100-percent-tariff-generic-drug-imports-august-2028.jpg"
+  },
+  {
+    "slug": "hiit-workouts-reverse-cellular-aging-studies",
+    "headline": "HIIT Workouts Can Reverse Cellular Aging by Nearly a Decade, Studies Show",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hiit-workouts-reverse-cellular-aging-studies.jpg"
+  },
+  {
+    "slug": "us-labor-department-h1b-visa-fraud-probe-subpoenas",
+    "headline": "U.S. Labor Department Launches Sweeping H-1B Visa Fraud Probe With Dozens of Subpoenas",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-labor-department-h1b-visa-fraud-probe-subpoenas.jpg"
+  },
+  {
+    "slug": "intel-confirms-layoffs-data-center-unit-quarterly-earnings",
+    "headline": "Intel Confirms Fresh Layoffs in Data Center Unit Ahead of Quarterly Earnings",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/intel-confirms-layoffs-data-center-unit-quarterly-earnings.jpg"
+  },
+  {
+    "slug": "pakistan-asks-us-10-billion-currency-backstop-iran-mediation",
+    "headline": "Pakistan Asks US for $10 Billion Currency Backstop After Iran Mediation Role",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-asks-us-10-billion-currency-backstop-iran-mediation.jpg"
+  },
+  {
+    "slug": "us-measles-cases-near-35-year-record-2026",
+    "headline": "U.S. Measles Cases Nearly Match 35-Year Record With Five Months Left in 2026",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-measles-cases-near-35-year-record-2026.jpg"
+  },
+  {
+    "slug": "world-cup-final-61-million-us-viewers-smash-soccer-tv-records",
+    "headline": "World Cup Final Draws 61 Million U.S. Viewers, Smashing All Soccer TV Records",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-cup-final-61-million-us-viewers-smash-soccer-tv-records.jpg"
+  },
+  {
+    "slug": "cornyn-threatens-block-trump-ambassadors-pepfar-funding-cuts",
+    "headline": "Sen. Cornyn Threatens To Block Trump Ambassador Picks Over PEPFAR Funding Cuts",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cornyn-threatens-block-trump-ambassadors-pepfar-funding-cuts.jpg"
+  },
+  {
+    "slug": "uae-india-travel-air-suvidha-e-arrival-gold-rules-explained",
+    "headline": "UAE to India Travel: Air Suvidha 2.0, e-Arrival Card and New Gold Rules Explained",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uae-india-travel-air-suvidha-e-arrival-gold-rules-explained.jpg"
   }
 ]
