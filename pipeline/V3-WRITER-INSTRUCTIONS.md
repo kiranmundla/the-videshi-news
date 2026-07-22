@@ -95,16 +95,24 @@ Structure with clear `<h2>` subheadings. Must include:
    `GET /rest/v1/person_images?person_name_lower=eq.<lowercase name>&order=use_count.asc,last_used_at.asc.nullsfirst&limit=1`
    If match: use that `image_url`, then PATCH to update `use_count` and `last_used_at`.
 
-3. **Wikipedia REST API** — For person articles OR topic images:
+3. **YouTube thumbnail** — Search YouTube for the article's main entity + context keywords. Prefer official channels (e.g., EA Sports, UFC, company channels). Use `https://img.youtube.com/vi/{videoId}/maxresdefault.jpg`. The video title MUST contain the entity name (specificity gate — don't use random results). This is especially good for games, products, events, and named entities.
+
+4. **Wikipedia REST API** — For person articles OR topic images:
    ```
    GET https://en.wikipedia.org/api/rest_v1/page/summary/{encoded_name}
    User-Agent: TheVideshi/1.0 (thevideshi.com)
    ```
-   Use `originalimage.source` or `thumbnail.source`.
+   Use `originalimage.source` or `thumbnail.source`. Skip logos (.svg, .png with "logo" in filename). Skip disambiguation pages. Check the Wikipedia page's `description` field — if it describes something different from your article topic, don't use the image.
 
-4. **Wikimedia Commons** — Search for topic-relevant CC images.
+5. **Wikimedia Commons** — Search for topic-relevant CC images.
 
-5. **Pexels** — Last resort only. Avoid generic stock.
+6. **Pexels** — Last resort only. Avoid generic stock.
+
+**⚠️ IMAGE VALIDATION (MANDATORY before using any Wikipedia/Commons/Pexels image):**
+- Check the image filename/title — it must relate to your article topic, not just share a keyword. "UFC" in a filename like "OIF-UFC_5-1" is a Swedish football match, NOT the UFC organization or game. "Apple" in a filename could be the fruit, not the company.
+- For ambiguous terms (UFC, Apple, Mercury, etc.), use the FULL specific name in searches: "EA Sports UFC 6" not "UFC", "Apple Inc" not "Apple".
+- If the Wikipedia page's `description` says "sporting event", "album", "song", "film", "video game" — the image is likely a poster/cover/logo, not useful editorial photography. Skip it.
+- If uncertain whether an image matches, skip it and try the next source. A missing hero is better than a wrong one.
 
 **Image Caption Rules (STRICT):**
 - Two sentences. First: what the image shows. Second: the news context.
