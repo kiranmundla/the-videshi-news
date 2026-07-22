@@ -806,5 +806,15 @@
     "errors": 0,
     "hero_slug": "dhs-ends-duration-of-status-f1-j1-visas-four-year-cap",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-22T13:55:56.015719+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 22, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "air-india-launches-non-stop-delhi-toronto-flights-boeing-787-9",
+    "story_count": 5
   }
 ]
