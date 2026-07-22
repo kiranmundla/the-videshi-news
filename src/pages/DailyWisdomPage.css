@@ -42,7 +42,6 @@
   padding: 28px 32px;
   text-align: left;
   position: relative;
-  overflow: hidden;
   box-sizing: border-box;
   max-width: 100%;
 }

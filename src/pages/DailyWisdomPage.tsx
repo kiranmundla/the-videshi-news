@@ -80,18 +80,6 @@ const TEACHER_IMAGES: Record<string, string> = {
   "Sri M": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sri_M.jpg/330px-Sri_M.jpg",
 };
 
-// Spiritual event keywords for filtering
-const SPIRITUAL_EVENT_KEYWORDS = [
-  "yoga", "meditation", "vipassana", "spiritual", "satsang", "retreat",
-  "kirtan", "bhajan", "mantra", "mindfulness", "pranayama", "dharma",
-  "buddhist", "temple", "ashram", "guru", "swami", "sadhguru", "isha",
-  "art of living", "brahma kumaris", "iskcon", "hare krishna",
-  "dalai lama", "thich nhat hanh", "plum village", "goenka",
-  "amma", "deepak chopra", "eckhart tolle", "byron katie",
-  "sri sri", "mooji", "jay shetty", "pema chodron", "sri m",
-  "reiki", "sound healing", "breathwork", "kundalini", "wellness retreat",
-];
-
 function getTeacherImage(entry: WisdomEntry): string {
   return entry.teacher_image_url || TEACHER_IMAGES[entry.teacher_name] || entry.thumbnail_url || "";
 }
@@ -148,20 +136,31 @@ export default function DailyWisdomPage() {
 
         if (teachersData) setTeachers(teachersData as Teacher[]);
 
-        // Fetch spiritual events using keyword matching
-        const keywordFilter = SPIRITUAL_EVENT_KEYWORDS.slice(0, 20)
-          .map(kw => `title.ilike.%${kw}%`)
-          .join(",");
-
-        const { data: eventsData } = await supabase
+        // Fetch featured spiritual events (major teacher appearances, special programs)
+        // Priority: featured events from spiritual scraper, then any featured spiritual events
+        const { data: featuredData } = await supabase
           .from("events")
           .select("id,title,date,time,venue_name,city,state,image_url,ticket_url,slug")
           .gte("date", today)
-          .or(keywordFilter)
+          .eq("is_featured", true)
+          .or("category.eq.Spiritual,source.eq.spiritual-scraper")
           .order("date", { ascending: true })
           .limit(10);
 
-        if (eventsData) setSpiritualEvents(eventsData as SpiritualEvent[]);
+        if (featuredData && featuredData.length > 0) {
+          setSpiritualEvents(featuredData as SpiritualEvent[]);
+        } else {
+          // Fallback: any upcoming events from the spiritual scraper
+          const { data: scraperData } = await supabase
+            .from("events")
+            .select("id,title,date,time,venue_name,city,state,image_url,ticket_url,slug")
+            .gte("date", today)
+            .eq("source", "spiritual-scraper")
+            .order("date", { ascending: true })
+            .limit(10);
+
+          if (scraperData) setSpiritualEvents(scraperData as SpiritualEvent[]);
+        }
       } catch (err) {
         console.error("Failed to load daily wisdom:", err);
       } finally {
@@ -240,8 +239,8 @@ export default function DailyWisdomPage() {
         {spiritualEvents.length > 0 && (
           <section className="dw-events-section">
             <div className="dw-events-header">
-              <h2 className="dw-events-title">🧘 Spiritual Events Near You</h2>
-              <Link to="/events" className="dw-events-link">See all events →</Link>
+              <h2 className="dw-events-title">🧘 Featured Spiritual Events</h2>
+              <Link to="/events?category=Spiritual" className="dw-events-link">Find events near you →</Link>
             </div>
             <div className="dw-events-scroll">
               {spiritualEvents.map((evt) => (
