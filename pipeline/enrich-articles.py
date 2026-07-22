@@ -1013,7 +1013,15 @@ def article_has_inline_images(body):
 
 def article_has_pull_quote(body):
     """Check if article body already has a pull quote."""
-    return bool(re.search(r'>\s*\*\*["\u201c]', body or ""))
+    if not body:
+        return False
+    # Check for HTML blockquote pull quotes (current format)
+    if '<blockquote class="pull-quote">' in body:
+        return True
+    # Check for legacy markdown-style pull quotes
+    if re.search(r'>\s*\*\*["\u201c]', body):
+        return True
+    return False
 
 
 # ═══════════════════════════════════════════
