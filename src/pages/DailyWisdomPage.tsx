@@ -106,49 +106,42 @@ export default function DailyWisdomPage() {
       try {
         const today = new Date().toISOString().split("T")[0];
 
-        // Fetch today's entry
-        const { data: todayData } = await supabase
-          .from("daily_wisdom")
-          .select("*")
-          .eq("featured_date", today)
-          .eq("is_approved", true)
-          .limit(1)
-          .single();
+        // Run all queries in parallel instead of sequentially
+        const [todayRes, allRes, teachersRes, featuredRes] = await Promise.all([
+          supabase
+            .from("daily_wisdom")
+            .select("*")
+            .eq("featured_date", today)
+            .eq("is_approved", true)
+            .limit(1)
+            .single(),
+          supabase
+            .from("daily_wisdom")
+            .select("*")
+            .eq("is_approved", true)
+            .not("featured_date", "is", null)
+            .lte("featured_date", today)
+            .order("featured_date", { ascending: false }),
+          supabase
+            .from("spiritual_teachers")
+            .select("slug,name,tradition,image_url,is_org")
+            .order("name"),
+          supabase
+            .from("events")
+            .select("id,title,date,time,venue_name,city,state,image_url,ticket_url,slug")
+            .gte("date", today)
+            .eq("is_featured", true)
+            .or("category.eq.Spiritual,source.eq.spiritual-scraper")
+            .order("date", { ascending: true })
+            .limit(10),
+        ]);
 
-        if (todayData) setTodayEntry(todayData as WisdomEntry);
+        if (todayRes.data) setTodayEntry(todayRes.data as WisdomEntry);
+        if (allRes.data) setEntries(allRes.data as WisdomEntry[]);
+        if (teachersRes.data) setTeachers(teachersRes.data as Teacher[]);
 
-        // Fetch all past entries
-        const { data: allData } = await supabase
-          .from("daily_wisdom")
-          .select("*")
-          .eq("is_approved", true)
-          .not("featured_date", "is", null)
-          .lte("featured_date", today)
-          .order("featured_date", { ascending: false });
-
-        if (allData) setEntries(allData as WisdomEntry[]);
-
-        // Fetch all teachers
-        const { data: teachersData } = await supabase
-          .from("spiritual_teachers")
-          .select("slug,name,tradition,image_url,is_org")
-          .order("name");
-
-        if (teachersData) setTeachers(teachersData as Teacher[]);
-
-        // Fetch featured spiritual events (major teacher appearances, special programs)
-        // Priority: featured events from spiritual scraper, then any featured spiritual events
-        const { data: featuredData } = await supabase
-          .from("events")
-          .select("id,title,date,time,venue_name,city,state,image_url,ticket_url,slug")
-          .gte("date", today)
-          .eq("is_featured", true)
-          .or("category.eq.Spiritual,source.eq.spiritual-scraper")
-          .order("date", { ascending: true })
-          .limit(10);
-
-        if (featuredData && featuredData.length > 0) {
-          setSpiritualEvents(featuredData as SpiritualEvent[]);
+        if (featuredRes.data && featuredRes.data.length > 0) {
+          setSpiritualEvents(featuredRes.data as SpiritualEvent[]);
         } else {
           // Fallback: any upcoming events from the spiritual scraper
           const { data: scraperData } = await supabase
