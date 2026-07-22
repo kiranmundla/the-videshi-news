@@ -21,6 +21,7 @@ interface Teacher {
   origin: string | null;
   key_teachings: string | null;
   followers_desc: string | null;
+  books: { title: string; amazon_url?: string; year?: number; excerpt?: string }[] | null;
 }
 
 interface WisdomEntry {
@@ -234,6 +235,32 @@ export default function TeacherProfilePage() {
             <div className="tp-teachings-grid">
               {teachings.map((t, i) => (
                 <span key={i} className="tp-teaching-pill">{t}</span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Books */}
+        {teacher.books && teacher.books.length > 0 && (
+          <section className="tp-section">
+            <h2 className="tp-section-title">Books</h2>
+            <div className="tp-books-grid">
+              {teacher.books.map((book, i) => (
+                <a
+                  key={i}
+                  href={book.amazon_url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tp-book-card"
+                >
+                  <div className="tp-book-icon">📖</div>
+                  <div className="tp-book-info">
+                    <div className="tp-book-title">{book.title}</div>
+                    {book.year && <div className="tp-book-year">{book.year}</div>}
+                    {book.excerpt && <div className="tp-book-excerpt">{book.excerpt}</div>}
+                  </div>
+                  {book.amazon_url && <span className="tp-book-link">Amazon →</span>}
+                </a>
               ))}
             </div>
           </section>
