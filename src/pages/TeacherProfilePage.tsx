@@ -21,7 +21,7 @@ interface Teacher {
   origin: string | null;
   key_teachings: string | null;
   followers_desc: string | null;
-  books: { title: string; amazon_url?: string; year?: number; excerpt?: string }[] | null;
+  books: { title: string; amazon_url?: string; year?: number; excerpt?: string; cover_url?: string }[] | null;
 }
 
 interface WisdomEntry {
@@ -253,7 +253,12 @@ export default function TeacherProfilePage() {
                   rel="noopener noreferrer"
                   className="tp-book-card"
                 >
-                  <div className="tp-book-icon">📖</div>
+                  {book.cover_url ? (
+                    <img src={book.cover_url} alt={book.title} className="tp-book-cover"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                  ) : (
+                    <div className="tp-book-icon">📖</div>
+                  )}
                   <div className="tp-book-info">
                     <div className="tp-book-title">{book.title}</div>
                     {book.year && <div className="tp-book-year">{book.year}</div>}

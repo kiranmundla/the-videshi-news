@@ -188,6 +188,14 @@
   flex-shrink: 0;
   margin-top: 2px;
 }
+.tp-book-cover {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
 .tp-book-info {
   flex: 1;
   min-width: 0;
