@@ -171,18 +171,7 @@ export default function DailyWisdomPage() {
           )}
         </section>
 
-        {/* Tradition filter pills */}
-        <section className="dw-filters">
-          {traditions.map((t) => (
-            <button
-              key={t}
-              className={`dw-pill ${filter === t ? "dw-pill-active" : ""}`}
-              onClick={() => setFilter(t)}
-            >
-              {t === "all" ? "All Traditions" : `${TRADITION_ICONS[t] || ""} ${t}`}
-            </button>
-          ))}
-        </section>
+        {/* Tradition filter removed per design decision */}
 
         {/* Archive grid */}
         <section className="dw-archive">
