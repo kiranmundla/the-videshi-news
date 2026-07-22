@@ -228,6 +228,7 @@ export async function getFeaturedArticle(): Promise<Article | null> {
       .select(P2_COLS)
       .eq("status", "published")
       .gte("published_at", since)
+      .not("tags", "cs", '{"who is"}')
       .order("display_score", { ascending: false, nullsFirst: false })
       .order("published_at", { ascending: false })
       .order("id", { ascending: true });

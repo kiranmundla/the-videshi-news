@@ -19,7 +19,7 @@ import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
-import WhosXSpotlight from "@/components/homepage/WhosXSpotlight";
+import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpotlight";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
@@ -348,6 +348,9 @@ export default function IndexV2() {
   // ── Derive layout data ──
   const layout = useMemo(() => {
     const shownIds = new Set<string>();
+
+    // Exclude Who's Who spotlight articles from all pools
+    for (const sid of getSpotlightIds()) shownIds.add(sid);
 
     // Featured
     if (featured) shownIds.add(featured.id);
