@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 import "./DailyWisdomPage.css";
+import "./TeacherProfilePage.css";
 
 interface WisdomEntry {
   id: string;
@@ -19,6 +20,28 @@ interface WisdomEntry {
   video_id: string | null;
   featured_date: string | null;
   created_at: string;
+  teacher_slug: string | null;
+}
+
+interface Teacher {
+  slug: string;
+  name: string;
+  tradition: string;
+  image_url: string | null;
+  is_org: boolean;
+}
+
+interface SpiritualEvent {
+  id: string;
+  title: string;
+  date: string;
+  time: string | null;
+  venue_name: string | null;
+  city: string | null;
+  state: string | null;
+  image_url: string | null;
+  ticket_url: string | null;
+  slug: string | null;
 }
 
 const TRADITION_ICONS: Record<string, string> = {
@@ -53,7 +76,21 @@ const TEACHER_IMAGES: Record<string, string> = {
   "Pema Chödrön": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Pema_chodron_2007_cropped.jpg/330px-Pema_chodron_2007_cropped.jpg",
   "BK Shivani": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/BK_Shivani.jpg/330px-BK_Shivani.jpg",
   "Gaur Gopal Das": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/GaurGopal_Das.jpg/330px-GaurGopal_Das.jpg",
+  "S.N. Goenka": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/The_Kalyanmitra_Satyanarayan_Goenka_who_brought_Vipassana_Meditation_technique_to_India_after_2500_years_is_seen_with_his_wife_while_speaking_at_a_talk_on_%22Values_in_Education_-_Good_Governance_through_Vipassana_Meditation%22_in.jpg/330px-thumbnail.jpg",
+  "Sri M": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sri_M.jpg/330px-Sri_M.jpg",
 };
+
+// Spiritual event keywords for filtering
+const SPIRITUAL_EVENT_KEYWORDS = [
+  "yoga", "meditation", "vipassana", "spiritual", "satsang", "retreat",
+  "kirtan", "bhajan", "mantra", "mindfulness", "pranayama", "dharma",
+  "buddhist", "temple", "ashram", "guru", "swami", "sadhguru", "isha",
+  "art of living", "brahma kumaris", "iskcon", "hare krishna",
+  "dalai lama", "thich nhat hanh", "plum village", "goenka",
+  "amma", "deepak chopra", "eckhart tolle", "byron katie",
+  "sri sri", "mooji", "jay shetty", "pema chodron", "sri m",
+  "reiki", "sound healing", "breathwork", "kundalini", "wellness retreat",
+];
 
 function getTeacherImage(entry: WisdomEntry): string {
   return entry.teacher_image_url || TEACHER_IMAGES[entry.teacher_name] || entry.thumbnail_url || "";
@@ -64,16 +101,20 @@ function formatDate(dateStr: string): string {
   return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 }
 
+function formatEventDate(dateStr: string): string {
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+}
+
 export default function DailyWisdomPage() {
   const [entries, setEntries] = useState<WisdomEntry[]>([]);
   const [todayEntry, setTodayEntry] = useState<WisdomEntry | null>(null);
-  const [filter, setFilter] = useState<string>("all");
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const [spiritualEvents, setSpiritualEvents] = useState<SpiritualEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const traditions = ["all", "Hindu / Yoga", "Buddhist", "Interfaith / Modern", "Islamic", "Sikh"];
-
   useEffect(() => {
-    async function fetchWisdom() {
+    async function fetchAll() {
       try {
         const today = new Date().toISOString().split("T")[0];
 
@@ -88,7 +129,7 @@ export default function DailyWisdomPage() {
 
         if (todayData) setTodayEntry(todayData as WisdomEntry);
 
-        // Fetch all past/today entries for the archive
+        // Fetch all past entries
         const { data: allData } = await supabase
           .from("daily_wisdom")
           .select("*")
@@ -98,6 +139,29 @@ export default function DailyWisdomPage() {
           .order("featured_date", { ascending: false });
 
         if (allData) setEntries(allData as WisdomEntry[]);
+
+        // Fetch all teachers
+        const { data: teachersData } = await supabase
+          .from("spiritual_teachers")
+          .select("slug,name,tradition,image_url,is_org")
+          .order("name");
+
+        if (teachersData) setTeachers(teachersData as Teacher[]);
+
+        // Fetch spiritual events using keyword matching
+        const keywordFilter = SPIRITUAL_EVENT_KEYWORDS.slice(0, 20)
+          .map(kw => `title.ilike.%${kw}%`)
+          .join(",");
+
+        const { data: eventsData } = await supabase
+          .from("events")
+          .select("id,title,date,time,venue_name,city,state,image_url,ticket_url,slug")
+          .gte("date", today)
+          .or(keywordFilter)
+          .order("date", { ascending: true })
+          .limit(10);
+
+        if (eventsData) setSpiritualEvents(eventsData as SpiritualEvent[]);
       } catch (err) {
         console.error("Failed to load daily wisdom:", err);
       } finally {
@@ -105,23 +169,19 @@ export default function DailyWisdomPage() {
       }
     }
 
-    fetchWisdom();
+    fetchAll();
   }, []);
 
-  const filteredEntries = filter === "all"
-    ? entries
-    : entries.filter((e) => e.tradition === filter);
-
-  // Exclude today's entry from archive list
+  // Exclude today's entry from archive
   const archiveEntries = todayEntry
-    ? filteredEntries.filter((e) => e.id !== todayEntry.id)
-    : filteredEntries;
+    ? entries.filter((e) => e.id !== todayEntry.id)
+    : entries;
 
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Daily Wisdom — Spiritual Teachings | The Videshi</title>
-        <meta name="description" content="Daily curated wisdom from spiritual masters across traditions — Hindu, Buddhist, Sikh, Islamic, and modern interfaith teachings." />
+        <meta name="description" content="Daily curated wisdom from spiritual masters across traditions — Hindu, Buddhist, Sikh, Islamic, and modern interfaith teachings. Teacher profiles, events, and more." />
       </Helmet>
 
       <Masthead />
@@ -139,7 +199,7 @@ export default function DailyWisdomPage() {
             <div className="dw-today-card">
               <div className="dw-today-badge">Today's Wisdom</div>
               <div className="dw-today-inner">
-                <div className="dw-today-photo">
+                <Link to={todayEntry.teacher_slug ? `/daily-wisdom/teachers/${todayEntry.teacher_slug}` : "#"} className="dw-today-photo">
                   {getTeacherImage(todayEntry) ? (
                     <img src={getTeacherImage(todayEntry)} alt={todayEntry.teacher_name}
                       onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
@@ -148,13 +208,18 @@ export default function DailyWisdomPage() {
                       {TRADITION_ICONS[todayEntry.tradition] || "🙏"}
                     </div>
                   )}
-                </div>
+                </Link>
                 <div className="dw-today-content">
                   <blockquote className="dw-today-quote">
                     "{todayEntry.quote}"
                   </blockquote>
                   <div className="dw-today-attribution">
-                    <span className="dw-today-teacher">— {todayEntry.teacher_name}</span>
+                    <Link
+                      to={todayEntry.teacher_slug ? `/daily-wisdom/teachers/${todayEntry.teacher_slug}` : "#"}
+                      className="dw-today-teacher-link"
+                    >
+                      — {todayEntry.teacher_name}
+                    </Link>
                     <span className="dw-today-tradition" style={{ color: TRADITION_COLORS[todayEntry.tradition] }}>
                       {TRADITION_ICONS[todayEntry.tradition]} {todayEntry.tradition}
                     </span>
@@ -171,7 +236,66 @@ export default function DailyWisdomPage() {
           )}
         </section>
 
-        {/* Tradition filter removed per design decision */}
+        {/* Spiritual Events */}
+        {spiritualEvents.length > 0 && (
+          <section className="dw-events-section">
+            <div className="dw-events-header">
+              <h2 className="dw-events-title">🧘 Spiritual Events Near You</h2>
+              <Link to="/events" className="dw-events-link">See all events →</Link>
+            </div>
+            <div className="dw-events-scroll">
+              {spiritualEvents.map((evt) => (
+                <a key={evt.id}
+                  href={evt.ticket_url || `/events/${evt.slug}`}
+                  target={evt.ticket_url ? "_blank" : undefined}
+                  rel={evt.ticket_url ? "noopener noreferrer" : undefined}
+                  className="dw-event-card">
+                  {evt.image_url && (
+                    <img src={evt.image_url} alt="" className="dw-event-img"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                  )}
+                  <div className="dw-event-body">
+                    <div className="dw-event-name">{evt.title}</div>
+                    <div className="dw-event-details">
+                      {formatEventDate(evt.date)}
+                      {evt.city ? ` · ${evt.city}` : ""}
+                      {evt.state ? `, ${evt.state}` : ""}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Teachers Grid */}
+        {teachers.length > 0 && (
+          <section className="dw-events-section">
+            <div className="dw-events-header">
+              <h2 className="dw-events-title">Spiritual Masters & Teachers</h2>
+            </div>
+            <div className="dw-teachers-grid">
+              {teachers.map((t) => (
+                <Link key={t.slug} to={`/daily-wisdom/teachers/${t.slug}`} className="dw-teacher-card">
+                  <div className="dw-teacher-avatar">
+                    {(t.image_url || TEACHER_IMAGES[t.name]) ? (
+                      <img src={t.image_url || TEACHER_IMAGES[t.name]} alt={t.name}
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                    ) : (
+                      <div className="dw-teacher-avatar-ph">
+                        {TRADITION_ICONS[t.tradition] || "🙏"}
+                      </div>
+                    )}
+                  </div>
+                  <div className="dw-teacher-name">{t.name}</div>
+                  <div className="dw-teacher-tradition" style={{ color: TRADITION_COLORS[t.tradition] }}>
+                    {t.tradition}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Archive grid */}
         <section className="dw-archive">
@@ -179,14 +303,15 @@ export default function DailyWisdomPage() {
           {loading ? (
             <div className="dw-loading">Loading…</div>
           ) : archiveEntries.length === 0 ? (
-            <div className="dw-empty">
-              {filter !== "all" ? "No teachings yet for this tradition. Check back soon." : "More teachings coming soon."}
-            </div>
+            <div className="dw-empty">More teachings coming soon.</div>
           ) : (
             <div className="dw-archive-grid">
               {archiveEntries.map((entry) => (
                 <div key={entry.id} className="dw-archive-card">
-                  <div className="dw-archive-card-top">
+                  <Link
+                    to={entry.teacher_slug ? `/daily-wisdom/teachers/${entry.teacher_slug}` : "#"}
+                    className="dw-archive-card-top"
+                  >
                     <div className="dw-archive-photo">
                       {getTeacherImage(entry) ? (
                         <img src={getTeacherImage(entry)} alt={entry.teacher_name}
@@ -203,7 +328,7 @@ export default function DailyWisdomPage() {
                         {entry.tradition}
                       </div>
                     </div>
-                  </div>
+                  </Link>
                   <blockquote className="dw-archive-quote">
                     "{entry.quote}"
                   </blockquote>

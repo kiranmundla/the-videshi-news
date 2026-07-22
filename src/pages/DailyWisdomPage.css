@@ -117,6 +117,23 @@
 .dw-today-source:hover {
   text-decoration: underline;
 }
+.dw-today-teacher-link {
+  font-size: 15px;
+  font-weight: 700;
+  color: #3d3020;
+  text-decoration: none;
+}
+.dw-today-teacher-link:hover {
+  color: #A32D2F;
+  text-decoration: underline;
+}
+.dw-archive-card-top {
+  text-decoration: none;
+  color: inherit;
+}
+.dw-archive-card-top:hover .dw-archive-teacher {
+  color: #A32D2F;
+}
 
 /* Tradition filter pills */
 .dw-filters {

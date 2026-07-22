@@ -1,0 +1,431 @@
+/* ── Teacher Profile Page ── */
+
+.tp-breadcrumb {
+  padding: 16px 0 8px;
+}
+.tp-breadcrumb a {
+  font-size: 14px;
+  color: #A32D2F;
+  text-decoration: none;
+  font-weight: 600;
+}
+.tp-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.tp-hero {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 24px 0 32px;
+  border-bottom: 1px solid #eee;
+}
+.tp-hero-photo-wrap {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #D4A843;
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.3);
+}
+.tp-hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tp-hero-photo-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5ede0;
+  font-size: 48px;
+}
+.tp-hero-info {
+  flex: 1;
+  min-width: 0;
+}
+.tp-hero-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+.tp-hero-tradition {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.tp-hero-org {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+.tp-hero-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+}
+.tp-hero-followers {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0 12px;
+  line-height: 1.4;
+}
+.tp-hero-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.tp-link-yt {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.tp-link-yt:hover {
+  background: #fecaca;
+}
+.tp-link-web {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.tp-link-web:hover {
+  background: #bae6fd;
+}
+
+/* Sections */
+.tp-section {
+  padding: 28px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.tp-section:last-child {
+  border-bottom: none;
+}
+.tp-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+.tp-bio-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+/* Journey card */
+.tp-journey-card {
+  background: linear-gradient(135deg, #fdf8f0 0%, #f5ede0 100%);
+  border: 1px solid #e8dcc8;
+  border-radius: 12px;
+  padding: 24px;
+}
+.tp-journey-text {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #3d3020;
+  margin: 0;
+}
+
+/* Key teachings pills */
+.tp-teachings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tp-teaching-pill {
+  padding: 6px 14px;
+  background: #f9f5ef;
+  border: 1px solid #e8dcc8;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #5a4a30;
+  font-weight: 500;
+}
+
+/* Events */
+.tp-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tp-event-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: box-shadow 0.15s;
+}
+.tp-event-card:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.tp-event-date-badge {
+  flex-shrink: 0;
+  background: #A32D2F;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 60px;
+}
+.tp-event-info {
+  flex: 1;
+  min-width: 0;
+}
+.tp-event-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+.tp-event-venue {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+.tp-event-arrow {
+  color: #ccc;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Quotes list */
+.tp-quotes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tp-quote-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-left: 3px solid #D4A843;
+  border-radius: 8px;
+  padding: 20px;
+}
+.tp-quote-text {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #333;
+  font-style: italic;
+  margin: 0 0 12px;
+}
+.tp-quote-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tp-quote-date {
+  font-size: 12px;
+  color: #999;
+}
+.tp-quote-source {
+  font-size: 13px;
+  color: #A32D2F;
+  text-decoration: none;
+  font-weight: 600;
+}
+.tp-quote-source:hover {
+  text-decoration: underline;
+}
+.tp-empty {
+  font-size: 15px;
+  color: #888;
+}
+
+/* ── Spiritual Events Section on main DW page ── */
+.dw-events-section {
+  padding: 24px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.dw-events-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.dw-events-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+.dw-events-link {
+  font-size: 13px;
+  color: #A32D2F;
+  text-decoration: none;
+  font-weight: 600;
+}
+.dw-events-link:hover {
+  text-decoration: underline;
+}
+.dw-events-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.dw-events-scroll::-webkit-scrollbar {
+  display: none;
+}
+.dw-event-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.15s;
+}
+.dw-event-card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.dw-event-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  background: #f5ede0;
+}
+.dw-event-body {
+  padding: 12px 14px;
+}
+.dw-event-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.dw-event-details {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.3;
+}
+
+/* Teachers grid on main page */
+.dw-teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+.dw-teacher-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 10px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.dw-teacher-card:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  border-color: #D4A843;
+}
+.dw-teacher-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #D4A843;
+  margin-bottom: 8px;
+}
+.dw-teacher-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dw-teacher-avatar-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5ede0;
+  font-size: 24px;
+}
+.dw-teacher-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.dw-teacher-tradition {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .tp-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+  .tp-hero-photo-wrap {
+    width: 120px;
+    height: 120px;
+  }
+  .tp-hero-name {
+    font-size: 24px;
+  }
+  .tp-hero-meta {
+    justify-content: center;
+  }
+  .tp-hero-links {
+    justify-content: center;
+  }
+  .tp-journey-card {
+    padding: 18px;
+  }
+  .dw-teachers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .dw-teacher-card {
+    padding: 12px 6px;
+  }
+  .dw-teacher-avatar {
+    width: 52px;
+    height: 52px;
+  }
+  .dw-teacher-name {
+    font-size: 12px;
+  }
+}

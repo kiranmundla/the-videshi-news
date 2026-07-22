@@ -306,7 +306,7 @@ def upsert_teacher(t):
         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
         "-H", "Content-Type: application/json",
         "-H", "Prefer: resolution=merge-duplicates",
-        data
+        "-d", data
     ], capture_output=True, text=True)
     if result.returncode != 0 or "error" in result.stdout.lower():
         print(f"  ERROR: {result.stdout[:200]}")
