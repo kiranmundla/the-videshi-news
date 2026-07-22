@@ -1582,16 +1582,6 @@
    "priority": 3
   },
   {
-   "subject": "athletics",
-   "subject_type": "thing",
-   "tags": [
-    "athletics"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-   "priority": 3
-  },
-  {
    "subject": "inter state championships",
    "subject_type": "thing",
    "tags": [
@@ -3772,16 +3762,6 @@
    "priority": 2
   },
   {
-   "subject": "critical minerals",
-   "subject_type": "thing",
-   "tags": [
-    "critical minerals"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "01a15cfd-3ae6-4088-962e-083ba237426e",
-   "priority": 3
-  },
-  {
    "subject": "ai trade",
    "subject_type": "thing",
    "tags": [
@@ -3790,16 +3770,6 @@
    "first_seen": "2026-07-06T10:29:25Z",
    "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
    "priority": 2
-  },
-  {
-   "subject": "nifty 50",
-   "subject_type": "thing",
-   "tags": [
-    "nifty 50"
-   ],
-   "first_seen": "2026-07-06T10:29:25Z",
-   "article_id": "47ff7ffa-d8f0-437d-b530-6ef581f4c0cb",
-   "priority": 3
   },
   {
    "subject": "emerging markets",
@@ -7582,16 +7552,6 @@
    "priority": 3
   },
   {
-   "subject": "jfk airport",
-   "subject_type": "thing",
-   "tags": [
-    "jfk airport"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "9ebf8bb0-2830-41b7-8b82-c87ba124ff68",
-   "priority": 4
-  },
-  {
    "subject": "airport technology",
    "subject_type": "thing",
    "tags": [
@@ -7840,16 +7800,6 @@
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "5e65eb88-c638-4134-818b-866530c13863",
    "priority": 3
-  },
-  {
-   "subject": "vegetarian",
-   "subject_type": "thing",
-   "tags": [
-    "vegetarian"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 4
   },
   {
    "subject": "starter",
@@ -8552,46 +8502,6 @@
    "priority": 3
   },
   {
-   "subject": "Perseid meteor shower",
-   "subject_type": "thing",
-   "tags": [
-    "perseid meteor shower"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 4
-  },
-  {
-   "subject": "stargazing",
-   "subject_type": "thing",
-   "tags": [
-    "stargazing"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 4
-  },
-  {
-   "subject": "astronomy",
-   "subject_type": "thing",
-   "tags": [
-    "astronomy"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 4
-  },
-  {
-   "subject": "night sky",
-   "subject_type": "thing",
-   "tags": [
-    "night sky"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "54521b8d-a8a6-4bd8-b009-f1388431d94d",
-   "priority": 4
-  },
-  {
    "subject": "family activities",
    "subject_type": "thing",
    "tags": [
@@ -8870,16 +8780,6 @@
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
    "priority": 3
-  },
-  {
-   "subject": "indian professionals",
-   "subject_type": "thing",
-   "tags": [
-    "indian professionals"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "8afda825-f5ae-42bd-a9ca-f8216b544956",
-   "priority": 4
   },
   {
    "subject": "economic policy",
@@ -9162,16 +9062,6 @@
    "priority": 3
   },
   {
-   "subject": "fifa world cup",
-   "subject_type": "thing",
-   "tags": [
-    "fifa world cup"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "208d2c5b-9393-4dbd-865e-275b36818369",
-   "priority": 4
-  },
-  {
    "subject": "jan neta",
    "subject_type": "thing",
    "tags": [
@@ -9380,16 +9270,6 @@
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "ebb09572-1239-4b91-8ed1-74b88a6e8065",
    "priority": 3
-  },
-  {
-   "subject": "streaming",
-   "subject_type": "thing",
-   "tags": [
-    "streaming"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "ebb09572-1239-4b91-8ed1-74b88a6e8065",
-   "priority": 4
   },
   {
    "subject": "tulsi gabbard",
@@ -9662,16 +9542,6 @@
    "priority": 3
   },
   {
-   "subject": "Indian stock market",
-   "subject_type": "thing",
-   "tags": [
-    "indian stock market"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "391ed8a3-84af-49e6-aea7-10de9f6f75d3",
-   "priority": 4
-  },
-  {
    "subject": "NIM",
    "subject_type": "thing",
    "tags": [
@@ -9842,16 +9712,6 @@
    "priority": 3
   },
   {
-   "subject": "Parliament",
-   "subject_type": "thing",
-   "tags": [
-    "parliament"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "b6b0ac7f-1475-460f-875e-ff877accaea4",
-   "priority": 4
-  },
-  {
    "subject": "Dimple Yadav",
    "subject_type": "thing",
    "tags": [
@@ -10012,16 +9872,6 @@
    "priority": 3
   },
   {
-   "subject": "india health",
-   "subject_type": "thing",
-   "tags": [
-    "india health"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "85d7be66-6480-446d-902f-5b0c34765119",
-   "priority": 4
-  },
-  {
    "subject": "diaspora health",
    "subject_type": "thing",
    "tags": [
@@ -10120,16 +9970,6 @@
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "b05f9862-9a4b-456c-b2be-6ea87ec10fa8",
    "priority": 3
-  },
-  {
-   "subject": "matt damon",
-   "subject_type": "thing",
-   "tags": [
-    "matt damon"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "b05f9862-9a4b-456c-b2be-6ea87ec10fa8",
-   "priority": 5
   },
   {
    "subject": "tenet",
@@ -10310,16 +10150,6 @@
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "f14cb7f7-679f-4d3a-9b0c-936b9920fe6e",
    "priority": 3
-  },
-  {
-   "subject": "CPI",
-   "subject_type": "thing",
-   "tags": [
-    "cpi"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "f14cb7f7-679f-4d3a-9b0c-936b9920fe6e",
-   "priority": 4
   },
   {
    "subject": "FOMC",
@@ -10640,16 +10470,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "9fc68283-cc3f-41c3-b6b3-a0eede127434",
    "priority": 2
-  },
-  {
-   "subject": "Cockroach Janta Party",
-   "subject_type": "thing",
-   "tags": [
-    "cockroach janta party"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "9fc68283-cc3f-41c3-b6b3-a0eede127434",
-   "priority": 4
   },
   {
    "subject": "Reliance Industries",
@@ -11160,16 +10980,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "5a08f2c5-d0d5-4707-b70c-d9ee792d7a11",
    "priority": 2
-  },
-  {
-   "subject": "Pentagon",
-   "subject_type": "thing",
-   "tags": [
-    "pentagon"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "5a08f2c5-d0d5-4707-b70c-d9ee792d7a11",
-   "priority": 4
   },
   {
    "subject": "ULA",
@@ -12080,16 +11890,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "6c68b2ae-695f-4f2a-af8a-86a9a31c7dc8",
    "priority": 2
-  },
-  {
-   "subject": "Rahul Gandhi",
-   "subject_type": "person",
-   "tags": [
-    "rahul gandhi"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "a0c6bc07-ea0e-4adc-9323-8a003520f4a0",
-   "priority": 6
   },
   {
    "subject": "NEET protest",
