@@ -27,6 +27,7 @@ import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
+import AILeaderboard from "@/components/AILeaderboard";
 import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import ArticleCard from "@/components/ArticleCard";
 import CategorySubTopics, { hasSubTopics } from "@/components/homepage/CategorySubTopics";
@@ -526,6 +527,7 @@ export default function IndexV2() {
           /* ── Category-filtered view ── */
           <>
             <KeyUpdatesSection category={selectedCategory} />
+            {selectedCategory === "technology" && <AILeaderboard />}
             {selectedCategory === "technology" && <UpcomingTechEvents />}
             {catLoading ? (
               <div className="container py-12 text-center text-muted-foreground">Loading…</div>
