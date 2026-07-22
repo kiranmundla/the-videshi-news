@@ -262,6 +262,8 @@
 .dw-events-section {
   padding: 24px 0;
   border-bottom: 1px solid #f0f0f0;
+  overflow: hidden;
+  max-width: 100%;
 }
 .dw-events-header {
   display: flex;
@@ -291,6 +293,8 @@
   padding-bottom: 8px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .dw-events-scroll::-webkit-scrollbar {
   display: none;
@@ -339,6 +343,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 14px;
+  max-width: 100%;
 }
 .dw-teacher-card {
   display: flex;

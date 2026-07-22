@@ -178,7 +178,7 @@ export default function DailyWisdomPage() {
     : entries;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ overflowX: 'hidden' }}>
       <Helmet>
         <title>Daily Wisdom — Spiritual Teachings | The Videshi</title>
         <meta name="description" content="Daily curated wisdom from spiritual masters across traditions — Hindu, Buddhist, Sikh, Islamic, and modern interfaith teachings. Teacher profiles, events, and more." />

@@ -4,6 +4,10 @@
   max-width: 960px;
   margin: 0 auto;
   padding: 0 16px 48px;
+  overflow: hidden;
+  min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Hero */
@@ -38,6 +42,9 @@
   padding: 28px 32px;
   text-align: left;
   position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 .dw-today-badge {
   position: absolute;
