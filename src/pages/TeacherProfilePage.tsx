@@ -104,21 +104,20 @@ export default function TeacherProfilePage() {
         if (teacherData) {
           const name = (teacherData as Teacher).name;
           const orgName = (teacherData as Teacher).org_name;
-          // Search events by teacher name or org name
-          let eventQuery = supabase
+          // Search events by teacher name or org name in title or organizer
+          const searchTerms = [name];
+          if (orgName) searchTerms.push(orgName);
+          const orFilter = searchTerms
+            .flatMap(t => [`title.ilike.%${t}%`, `organizer.ilike.%${t}%`])
+            .join(",");
+
+          const { data: eventsData } = await supabase
             .from("events")
             .select("id,title,date,time,venue_name,city,state,image_url,ticket_url,slug")
             .gte("date", today)
+            .or(orFilter)
             .order("date", { ascending: true })
             .limit(6);
-
-          // Search for teacher name OR org name in title
-          const searchTerms = [name];
-          if (orgName) searchTerms.push(orgName);
-          const orFilter = searchTerms.map(t => `title.ilike.%${t}%`).join(",");
-          eventQuery = eventQuery.or(orFilter);
-
-          const { data: eventsData } = await eventQuery;
           if (eventsData) setEvents(eventsData as SpiritualEvent[]);
         }
       } catch (err) {
@@ -133,7 +132,7 @@ export default function TeacherProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col" style={{ overflowX: 'hidden' }}>
         <Masthead />
         <main className="dw-page"><div className="dw-loading">Loading…</div></main>
         <SiteFooter />
@@ -143,7 +142,7 @@ export default function TeacherProfilePage() {
 
   if (!teacher) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col" style={{ overflowX: 'hidden' }}>
         <Masthead />
         <main className="dw-page"><div className="dw-empty">Teacher not found.</div></main>
         <SiteFooter />
@@ -154,7 +153,7 @@ export default function TeacherProfilePage() {
   const teachings = teacher.key_teachings?.split(",").map(t => t.trim()) || [];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ overflowX: 'hidden' }}>
       <Helmet>
         <title>{teacher.name} — Daily Wisdom | The Videshi</title>
         <meta name="description" content={teacher.bio || `Spiritual teachings from ${teacher.name}`} />
