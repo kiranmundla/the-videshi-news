@@ -355,41 +355,21 @@ def load_registry():
 def match_article_to_handles(headline, body_500, category, entities):
     """
     Match article to registry handles. Strict rules:
-    - Multi-word names: ALL significant words must appear in HEADLINE
-    - Single-word names (BCCI, ISRO, Google): word boundary match in headline
-    - Names where stopword filtering leaves only 1 generic residual word are
-      REJECTED — e.g. "India Abroad" → filters "india", leaves "abroad" which
-      is too generic to match reliably. Require at least 2 original name words
-      to survive filtering, OR the single surviving word must be a proper noun
-      that doesn't appear in the generic-word blocklist.
+    - Person names: ALL significant words must appear in HEADLINE (not just body)
+    - Org names (single word like BCCI, ISRO): exact word boundary in headline or first 500 chars
+    - Category must overlap (a sports handle shouldn't match a tech article)
     - Skip generic words that cause false positives
     """
     headline_lower = headline.lower()
+    text_lower = (headline + " " + body_500).lower()
     
     # Words that cause false positive matches
-    STOPWORDS = {"india", "indian", "world", "national", "new", "south", "west",
-                 "east", "north", "global", "international", "daily", "times",
-                 "news", "the", "media", "group", "network", "digital"}
-
-    # Generic residual words that are too common to match alone after stopword
-    # filtering (prevents "India Abroad" matching on "abroad", "Open India"
-    # matching on "open", etc.)
-    GENERIC_RESIDUALS = {
-        "abroad", "open", "today", "live", "express", "online", "post",
-        "standard", "first", "star", "free", "press", "report", "watch",
-        "inside", "real", "forward", "point", "review", "show", "talk",
-        "take", "view", "voice", "wire", "print", "beat", "pulse", "buzz",
-        "hour", "minute", "central", "morning", "evening", "night",
-        "weekly", "monthly", "herald", "mirror", "gazette", "monitor",
-        "chronicle", "dispatch", "journal", "tribune", "sentinel",
-        "games", "sports", "tech", "film", "food", "travel", "health",
-        "money", "market", "trade", "business", "finance",
-    }
-
+    STOPWORDS = {"india", "indian", "world", "national", "new", "south", "west", "east", "north"}
+    
     matches = []
     for ent in entities:
+        name_lower = ent["name"].lower()
         words = ent["match_words"]
-        original_word_count = len(words)
         
         # Filter out stopwords from match
         sig_words = [w for w in words if w not in STOPWORDS]
@@ -398,17 +378,11 @@ def match_article_to_handles(headline, body_500, category, entities):
         
         if len(sig_words) >= 2:
             # Multi-word name (person/org): require ALL significant words in HEADLINE
-            if all(re.search(r'\b' + re.escape(w) + r'\b', headline_lower) for w in sig_words):
+            if all(w in headline_lower for w in sig_words):
                 matches.append(ent)
         elif len(sig_words) == 1 and len(sig_words[0]) >= 4:
-            word = sig_words[0]
-            # If the original name had multiple words but filtering reduced it
-            # to 1, that surviving word must NOT be generic — otherwise we get
-            # false positives like "India Abroad" matching "Watch From Abroad"
-            if original_word_count > 1 and word in GENERIC_RESIDUALS:
-                continue
-            # Single significant word: word boundary match in headline
-            if re.search(r'\b' + re.escape(word) + r'\b', headline_lower):
+            # Single significant word (BCCI, ISRO, Google): word boundary match in headline
+            if re.search(r'\b' + re.escape(sig_words[0]) + r'\b', headline_lower):
                 matches.append(ent)
     
     # Sort: persons before orgs, longer names first (more specific)
@@ -422,47 +396,23 @@ def score_relevance(tweet_text, headline, body_500):
     """
     Score how relevant a tweet is to an article. Returns 0-10.
     Checks keyword overlap between tweet text and article content.
-    Requires meaningful topical overlap — not just generic words.
     """
-    # Generic words that don't indicate topical relevance
-    NOISE_WORDS = {
-        "that", "this", "with", "from", "have", "been", "will", "just", "says",
-        "about", "their", "after", "what", "when", "more", "than", "also",
-        "india", "indian", "world", "could", "would", "should", "being",
-        "first", "year", "years", "make", "made", "over", "back", "into",
-        "like", "time", "best", "last", "next", "much", "many", "some",
-        "still", "even", "most", "only", "very", "good", "well", "such",
-        "take", "come", "know", "look", "want", "give", "call", "keep",
-        "going", "here", "there", "every", "other", "under", "great",
-        "watch", "game", "games", "team", "play", "match",
-    }
-
-    # Extract significant words from headline (skip noise)
+    # Extract significant words from headline
     headline_words = set(
         w.lower() for w in re.findall(r'[a-zA-Z]{4,}', headline)
-    ) - NOISE_WORDS
-
-    # Distinctive words: 6+ chars that are likely proper nouns or specific terms
-    distinctive_words = {w for w in headline_words if len(w) >= 6}
-
+    ) - {"that", "this", "with", "from", "have", "been", "will", "just", "says",
+         "about", "their", "after", "what", "when", "more", "than", "also"}
+    
     tweet_lower = tweet_text.lower()
-
+    
     # Count headline keywords found in tweet
-    total_hits = sum(1 for w in headline_words if w in tweet_lower)
-    distinctive_hits = sum(1 for w in distinctive_words if w in tweet_lower)
-
-    # Require at least 1 distinctive keyword match for any score
-    # (prevents matching on only generic 4-letter words)
-    if distinctive_hits == 0 and total_hits < 4:
-        return 0
-
-    score = total_hits
-
-    # Bonus for distinctive entity names (6+ chars)
-    if distinctive_hits >= 2:
-        score += 2
-
-    return min(score, 10)
+    matches = sum(1 for w in headline_words if w in tweet_lower)
+    
+    # Bonus for entity names
+    if any(w in tweet_lower for w in headline_words if len(w) > 5):
+        matches += 2
+    
+    return min(matches, 10)
 
 
 # ─── Verify tweet ─────────────────────────────────────────────────────────────
@@ -783,19 +733,13 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
                 photos = tweet.get("photo_count", 0) or 0
                 has_video = tweet.get("has_video", False)
                 
-                # Minimum KEYWORD relevance — tweet must be topically relevant
-                # BEFORE any media bonus. This prevents irrelevant tweets with
-                # videos/photos from passing on media bonus alone.
-                if score < 3:
-                    continue
-                
-                # Media bonus (only added AFTER keyword floor passes)
+                # Bonus for media (photos or video)
                 if has_video:
-                    score += 2
+                    score += 4  # Video is most engaging
                 elif photos > 0:
-                    score += 1
+                    score += 3
                 
-                # Final threshold
+                # Minimum relevance threshold — tweet must actually be about the article topic
                 if score < 5:
                     continue
                 
@@ -895,16 +839,10 @@ def run_enrichment(hours=24, apply=False, max_embeds=5):
             photos = tweet.get("photo_count", 0) or 0
             has_video = tweet.get("has_video", False)
             has_media = 1 if (has_video or photos > 0) else 0
-
-            # Minimum KEYWORD relevance before any bonuses
-            if score < 3:
-                continue
-
-            # Media bonus (capped, only after keyword floor)
             if has_video:
-                score += 2
+                score += 4  # Video is most engaging
             elif photos > 0:
-                score += 1
+                score += 3
 
             # Source authority gate — prefer official/credible sources
             authority = source_authority(tweet)

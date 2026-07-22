@@ -361,31 +361,9 @@ def load_registry():
 
 
 def find_matching_handles(headline, registry, platform="instagram"):
-    """Find registry handles that match an article headline.
-    
-    Strict matching: multi-word names require ALL significant words in headline.
-    Single-word residuals from stopword filtering are rejected if generic.
-    """
+    """Find registry handles that match an article headline."""
     matches = []
     headline_lower = headline.lower()
-
-    # Stopwords to filter from entity names
-    stopwords = {"the", "of", "in", "and", "for", "a", "an", "is", "at", "on", "to",
-                 "india", "indian", "world", "national", "new", "south", "west",
-                 "east", "north", "global", "daily", "times", "news", "media"}
-
-    # Generic residual words — too common to match alone after stopword filtering
-    GENERIC_RESIDUALS = {
-        "abroad", "open", "today", "live", "express", "online", "post",
-        "standard", "first", "star", "free", "press", "report", "watch",
-        "inside", "real", "forward", "point", "review", "show", "talk",
-        "take", "view", "voice", "wire", "print", "beat", "pulse", "buzz",
-        "hour", "minute", "central", "morning", "evening", "night",
-        "weekly", "monthly", "herald", "mirror", "gazette", "monitor",
-        "chronicle", "dispatch", "journal", "tribune", "sentinel",
-        "games", "sports", "tech", "film", "food", "travel", "health",
-        "money", "market", "trade", "business", "finance",
-    }
 
     for category, data in registry.items():
         if category.startswith("_"):
@@ -405,15 +383,11 @@ def find_matching_handles(headline, registry, platform="instagram"):
 
                 # Check if name appears in headline
                 name_parts = name.lower().split()
-                original_word_count = len([p for p in name_parts if len(p) > 2])
+                # Filter stopwords
+                stopwords = {"the", "of", "in", "and", "for", "a", "an", "is", "at", "on", "to"}
                 significant = [p for p in name_parts if p not in stopwords and len(p) > 2]
                 if not significant:
                     continue
-
-                # Reject single generic residuals from multi-word names
-                if len(significant) == 1 and original_word_count > 1:
-                    if significant[0] in GENERIC_RESIDUALS:
-                        continue
 
                 import re as _re_match
                 if all(_re_match.search(r'\b' + _re_match.escape(word) + r'\b', headline_lower) for word in significant):
@@ -455,27 +429,12 @@ def search_instagram_posts(handle, topic_keywords, limit=3):
         return []
 
     scored = []
-    # Words too generic to count as topic matches in IG captions
-    GENERIC_CAPTION_WORDS = {
-        "post", "new", "love", "like", "just", "today", "link", "bio",
-        "comment", "share", "follow", "check", "watch", "live", "story",
-        "come", "back", "best", "look", "make", "take", "about", "more",
-        "over", "real", "show", "time", "good", "join", "open", "here",
-        "know", "last", "next", "been", "stay", "feel", "made", "keep",
-    }
-    # Filter keywords to remove generic ones
-    strong_keywords = [kw for kw in keywords
-                       if kw.lower().strip('.,!?:;-') not in GENERIC_CAPTION_WORDS
-                       and len(kw) > 3]
-
     for post in posts:
         caption = (post.get('caption', '') or '').lower()
         if not caption:
             continue
-        # Count hits using ONLY strong (non-generic) keywords
-        hits = sum(1 for kw in strong_keywords if kw.lower().strip('.,!?:;-') in caption)
-        # Require at least 2 strong keyword hits, or 1 if very few strong keywords
-        if hits >= 2 or (hits >= 1 and len(strong_keywords) <= 2 and len(strong_keywords) > 0):
+        hits = sum(1 for kw in keywords if kw in caption)
+        if hits >= 2 or (hits >= 1 and len(keywords) <= 2):
             shortcode = post.get('shortCode', '')
             if shortcode:
                 scored.append((hits, shortcode))
