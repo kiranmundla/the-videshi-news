@@ -155,17 +155,41 @@ def validate(data):
 
 
 def save(article_id, data):
-    """Save enrichment to Supabase."""
+    """Save enrichment to Supabase. Also strips writer's key-takeaways div
+    from body to prevent duplicate rendering (frontend renders from the
+    key_takeaways jsonb column as vdc-takeaways)."""
     now = datetime.now(timezone.utc).isoformat()
+    patch_data = {
+        "data_cards": data.get("data_cards", []),
+        "key_takeaways": data.get("key_takeaways", []),
+        "enriched_at": now
+    }
+    # Strip writer's key-takeaways from body to avoid duplication
+    if data.get("key_takeaways"):
+        try:
+            import re
+            br = requests.get(
+                f"{SUPABASE_URL}/rest/v1/p2_articles",
+                headers=HEADERS_SB,
+                params={"id": f"eq.{article_id}", "select": "body"}
+            )
+            if br.status_code == 200:
+                body = br.json()[0].get("body", "")
+                if '<div class="key-takeaways">' in body:
+                    new_body = re.sub(
+                        r'<div class="key-takeaways"><ul>.*?</ul></div>',
+                        '', body, flags=re.DOTALL)
+                    new_body = re.sub(r'\n{3,}', '\n\n', new_body)
+                    if new_body != body:
+                        patch_data["body"] = new_body
+                        print(f"  ✂ Stripped duplicate key-takeaways from body")
+        except Exception as e:
+            print(f"  ⚠ Could not strip writer key-takeaways: {e}")
     r = requests.patch(
         f"{SUPABASE_URL}/rest/v1/p2_articles",
         headers=HEADERS_SB,
         params={"id": f"eq.{article_id}"},
-        json={
-            "data_cards": data.get("data_cards", []),
-            "key_takeaways": data.get("key_takeaways", []),
-            "enriched_at": now
-        }
+        json=patch_data
     )
     if r.status_code not in (200, 204):
         print(f"  Save error: {r.status_code} {r.text[:200]}")

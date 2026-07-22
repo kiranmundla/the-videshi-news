@@ -206,9 +206,37 @@ def fetch_wikipedia_image(subject, article_context=None):
                 "concept", "term", "phrase", "expression", "song",
                 "album", "single", "film", "television series",
                 "video game", "book", "novel", "poem",
+                # Newspapers / publications — images are front pages, not useful
+                "newspaper", "daily newspaper", "indian newspaper",
+                "english-language newspaper", "publication", "news media",
+                "magazine", "journal", "tabloid", "news agency",
+                "indian english-language daily newspaper",
+                "indian english-language newspaper",
+                # More generic categories
+                "sports competition", "tournament", "cup", "league",
+                "recurring sporting event", "annual sporting event",
+                "festival", "ceremony", "event",
+            }
+            # Also catch partial matches (wiki descriptions can be verbose)
+            _GENERIC_WIKI_DESC_KEYWORDS = {
+                "newspaper", "publication", "tabloid", "magazine",
+                "front page", "news agency", "media company",
             }
             if wiki_desc in _GENERIC_WIKI_DESCRIPTIONS:
                 print(f"    ⊘ Skipping Wikipedia image for '{subject}' — generic concept: '{wiki_desc}'")
+                return None
+            if any(kw in wiki_desc for kw in _GENERIC_WIKI_DESC_KEYWORDS):
+                print(f"    ⊘ Skipping Wikipedia image for '{subject}' — publication/media: '{wiki_desc}'")
+                return None
+
+            # Reject images whose URL contains known-bad patterns
+            # (newspaper scans, album covers, generic event logos)
+            _BAD_IMAGE_URL_PATTERNS = [
+                "front_page", "newspaper", "album_cover", "logo",
+                "Kitzbuehel_slalom", "Indian_Express",
+            ]
+            if any(pat.lower() in img.lower() for pat in _BAD_IMAGE_URL_PATTERNS):
+                print(f"    ⊘ Skipping Wikipedia image for '{subject}' — bad image URL pattern")
                 return None
 
             # If article context is provided, check the Wikipedia page shares
@@ -933,8 +961,11 @@ def insert_inline_images(body, images):
 def extract_pull_quote(body):
     """Find the most impactful sentence for a pull quote.
     Prefers sentences with quotes, strong language, or statistics."""
+    # Strip HTML tags for sentence analysis
+    text = re.sub(r'<[^>]+>', ' ', body)
+    text = re.sub(r'\s+', ' ', text).strip()
     # Split into sentences (simple approach)
-    sentences = re.split(r'(?<=[.!?])\s+', body)
+    sentences = re.split(r'(?<=[.!?])\s+', text)
     if len(sentences) < 5:
         return None
 
@@ -947,6 +978,13 @@ def extract_pull_quote(body):
             continue
         # Skip if it's already a quote block or image
         if sent.startswith(">") or sent.startswith("!["):
+            continue
+        # Skip sentence fragments — must end with proper punctuation
+        if not re.search(r'[.!?"\u201d]$', sent.strip()):
+            continue
+        # Skip sentences that look truncated (end mid-word or with abbreviation)
+        if re.search(r'\b[A-Z][a-z]?\."?$', sent.strip()):
+            # Ends like "Dr." or "Mr." — likely truncated
             continue
 
         score = 0
