@@ -1066,3 +1066,117 @@
     font-size: 15px;
   }
 }
+
+/* ── Daily Wisdom Card (Homepage) ── */
+.daily-wisdom-homepage {
+  max-width: 900px;
+  margin: 24px auto 8px;
+  padding: 0 16px;
+}
+
+.daily-wisdom-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #fdf8f0 0%, #f5ede0 100%);
+  border: 1px solid #e8dcc8;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+.daily-wisdom-card:hover {
+  box-shadow: 0 4px 20px rgba(163, 45, 47, 0.10);
+  transform: translateY(-1px);
+}
+
+/* Teacher photo frame */
+.daily-wisdom-photo {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #D4A843;
+  box-shadow: 0 2px 8px rgba(212, 168, 67, 0.25);
+}
+.daily-wisdom-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.daily-wisdom-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0e6d2;
+  font-size: 28px;
+}
+
+/* Content */
+.daily-wisdom-content {
+  flex: 1;
+  min-width: 0;
+}
+.daily-wisdom-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #A32D2F;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.daily-wisdom-icon {
+  font-size: 14px;
+}
+.daily-wisdom-quote {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #2d2418;
+  font-style: italic;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.daily-wisdom-teacher {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5a4a35;
+}
+.daily-wisdom-tradition {
+  font-weight: 400;
+  color: #8a7a65;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .daily-wisdom-homepage {
+    margin: 16px auto 4px;
+  }
+  .daily-wisdom-card {
+    padding: 16px;
+    gap: 14px;
+  }
+  .daily-wisdom-photo {
+    width: 60px;
+    height: 60px;
+  }
+  .daily-wisdom-quote {
+    font-size: 13.5px;
+    -webkit-line-clamp: 2;
+  }
+  .daily-wisdom-teacher {
+    font-size: 12px;
+  }
+}
