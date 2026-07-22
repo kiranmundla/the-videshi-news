@@ -1,0 +1,121 @@
+{
+  "updated_at": "2026-07-21",
+  "fetched_at": "2026-07-22T19:51:58Z",
+  "source": "Chatbot Arena (lmarena.ai)",
+  "source_url": "https://lmarena.ai/leaderboard",
+  "methodology": "Bradley-Terry ratings from crowdsourced blind comparisons",
+  "models": [
+    {
+      "rank": 1,
+      "model": "Claude Fable 5",
+      "model_key": "claude-fable-5",
+      "company": "Anthropic",
+      "org_key": "anthropic",
+      "rating": 1507,
+      "votes": 14646,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 2,
+      "model": "Claude Opus 4.6 (Thinking)",
+      "model_key": "claude-opus-4-6-thinking",
+      "company": "Anthropic",
+      "org_key": "anthropic",
+      "rating": 1505,
+      "votes": 63191,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 3,
+      "model": "Claude Opus 4.7 (Thinking)",
+      "model_key": "claude-opus-4-7-thinking",
+      "company": "Anthropic",
+      "org_key": "anthropic",
+      "rating": 1502,
+      "votes": 50683,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 4,
+      "model": "Claude Opus 4.6",
+      "model_key": "claude-opus-4-6",
+      "company": "Anthropic",
+      "org_key": "anthropic",
+      "rating": 1498,
+      "votes": 67037,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 5,
+      "model": "Muse Spark 1.1",
+      "model_key": "muse-spark-1.1",
+      "company": "Meta",
+      "org_key": "meta",
+      "rating": 1495,
+      "votes": 7927,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 6,
+      "model": "Claude Opus 4.7",
+      "model_key": "claude-opus-4-7",
+      "company": "Anthropic",
+      "org_key": "anthropic",
+      "rating": 1494,
+      "votes": 51788,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 7,
+      "model": "Muse Spark",
+      "model_key": "muse-spark",
+      "company": "Meta",
+      "org_key": "meta",
+      "rating": 1488,
+      "votes": 13565,
+      "change": null,
+      "license": "Proprietary"
+    },
+    {
+      "rank": 8,
+      "model": "Gemini 3.1 Pro Preview",
+      "model_key": "gemini-3.1-pro-preview",
+      "company": "Google",
+      "org_key": "google",
+      "rating": 1486,
+      "votes": 84631,
+      "change": null,
+      "license": "Proprietary",
+      "indian_leader": "Sundar Pichai, CEO"
+    },
+    {
+      "rank": 9,
+      "model": "Gemini 3 Pro",
+      "model_key": "gemini-3-pro",
+      "company": "Google",
+      "org_key": "google",
+      "rating": 1486,
+      "votes": 41268,
+      "change": null,
+      "license": "Proprietary",
+      "indian_leader": "Sundar Pichai, CEO"
+    },
+    {
+      "rank": 10,
+      "model": "Kimi K3",
+      "model_key": "kimi-k3",
+      "company": "Moonshot AI",
+      "org_key": "moonshot",
+      "rating": 1486,
+      "votes": 3619,
+      "change": null,
+      "license": "Proprietary"
+    }
+  ]
+}

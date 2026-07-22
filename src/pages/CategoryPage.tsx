@@ -11,6 +11,7 @@ import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import LoadMoreButton from "@/components/LoadMoreButton";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
+import AILeaderboard from "@/components/AILeaderboard";
 import { Article, getArticlesByCategory } from "@/lib/articles";
 import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
 import { getCategoryBySlug } from "@/lib/categories";
@@ -115,6 +116,7 @@ export default function CategoryPage() {
         {def.slug === "news" && <TechBuzz category="world" />}
         {def.slug === "news" && <TechBuzz category="india" />}
         {def.slug === "technology" && <TechBuzz category="tech" />}
+        {def.slug === "technology" && <AILeaderboard />}
         {/* {def.slug === "entertainment" && <CelebrityBuzz />} */}
         {def.slug === "sports" && <WorldCupTracker />}
         {def.slug === "sports" && <TechBuzz category="sports" />}
