@@ -246,13 +246,7 @@ export default function TeacherProfilePage() {
             <h2 className="tp-section-title">Books</h2>
             <div className="tp-books-grid">
               {teacher.books.map((book, i) => (
-                <a
-                  key={i}
-                  href={book.amazon_url || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tp-book-card"
-                >
+                <div key={i} className="tp-book-card">
                   {book.cover_url ? (
                     <img src={book.cover_url} alt={book.title} className="tp-book-cover"
                       onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
@@ -260,12 +254,15 @@ export default function TeacherProfilePage() {
                     <div className="tp-book-icon">📖</div>
                   )}
                   <div className="tp-book-info">
-                    <div className="tp-book-title">{book.title}</div>
+                    {book.amazon_url ? (
+                      <a href={book.amazon_url} target="_blank" rel="noopener noreferrer" className="tp-book-title-link">{book.title}</a>
+                    ) : (
+                      <div className="tp-book-title">{book.title}</div>
+                    )}
                     {book.year && <div className="tp-book-year">{book.year}</div>}
                     {book.excerpt && <div className="tp-book-excerpt">{book.excerpt}</div>}
                   </div>
-                  {book.amazon_url && <span className="tp-book-link">Amazon →</span>}
-                </a>
+                </div>
               ))}
             </div>
           </section>
