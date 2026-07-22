@@ -1,128 +1,122 @@
 [
   {
-    "slug": "avengers-doomsday-record-breaking-pre-sales",
-    "headline": "Avengers: Doomsday Earns $16.5 Million in Record-Breaking First-Day Pre-Sales",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/avengers-doomsday-record-breaking-pre-sales.jpg"
-  },
-  {
-    "slug": "hashmatullah-shahidi-resigns-afghanistan-odi-captain",
-    "headline": "Hashmatullah Shahidi Resigns as Afghanistan's ODI Captain Ahead of Ireland Series",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hashmatullah-shahidi-resigns-afghanistan-odi-captain.jpg"
-  },
-  {
-    "slug": "navi-mumbai-airport-first-export-cargo-flight-abu-dhabi",
-    "headline": "Konkan Guavas Fly to Gulf on Navi Mumbai Airport's First Export Cargo Flight",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/navi-mumbai-airport-first-export-cargo-flight-abu-dhabi.jpg"
-  },
-  {
-    "slug": "ultra-processed-foods-childhood-insulin-resistance-prediabetes",
-    "headline": "Ultra-Processed Foods in Childhood Linked to Insulin Resistance and Prediabetes Risk",
+    "slug": "delhi-high-court-flags-safety-concerns-hpv-vaccine-rollout",
+    "headline": "Delhi High Court Flags Safety Concerns in India’s HPV Vaccine Rollout for Girls",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ultra-processed-foods-childhood-insulin-resistance-prediabetes.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-high-court-flags-safety-concerns-hpv-vaccine-rollout.jpg"
   },
   {
-    "slug": "sony-pictures-cinerama-dome-arclight-hollywood-revival",
-    "headline": "Sony Pictures in Talks To Revive Hollywood's Iconic Cinerama Dome and ArcLight Complex",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sony-pictures-cinerama-dome-arclight-hollywood-revival.jpg"
-  },
-  {
-    "slug": "newjeans-fourth-anniversary-return-four-member",
-    "headline": "NewJeans Returns as Four-Member Group on Fourth Debut Anniversary",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/newjeans-fourth-anniversary-return-four-member.jpg"
-  },
-  {
-    "slug": "updated-heart-guidelines-expand-statin-eligibility-age-30",
-    "headline": "Updated U.S. Heart Guidelines Expand Statin Eligibility to Adults as Young as 30",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/updated-heart-guidelines-expand-statin-eligibility-age-30.jpg"
-  },
-  {
-    "slug": "ben-stokes-century-durham-first-game-after-retirement",
-    "headline": "Ben Stokes Hits Match-Winning Century for Durham in First Game Since England Retirement",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ben-stokes-century-durham-first-game-after-retirement.jpg"
-  },
-  {
-    "slug": "rfk-jr-declares-cyclospora-outbreak-under-control-cases-top-7000",
-    "headline": "RFK Jr. Declares Cyclospora Outbreak 'Under Control' as Cases Top 7,000 Nationwide",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rfk-jr-declares-cyclospora-outbreak-under-control-cases-top-7000.jpg"
-  },
-  {
-    "slug": "yen-slides-past-163-four-decade-low-tokyo-intervention",
-    "headline": "Yen Slides Past 163 to Four-Decade Low as Tokyo Signals Readiness to Intervene",
+    "slug": "tvs-motor-signals-potential-spin-off-tvs-credit",
+    "headline": "TVS Motor Signals Potential Spin-Off of TVS Credit Financial Services Arm",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yen-slides-past-163-four-decade-low-tokyo-intervention.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tvs-motor-signals-potential-spin-off-tvs-credit.jpg"
   },
   {
-    "slug": "arvind-raman-interim-us-ai-safety-chief-caisi",
-    "headline": "Arvind Raman Steps In as Interim US AI Safety Chief After Chris Fall's Exit",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/arvind-raman-interim-us-ai-safety-chief-caisi.jpg"
+    "slug": "honey-singh-gajar-ka-halwa-favourite-indian-dessert",
+    "headline": "Yo Yo Honey Singh Reveals Gajar Ka Halwa Is the Indian Sweet He Can Never Refuse",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/honey-singh-gajar-ka-halwa-favourite-indian-dessert.jpg"
   },
   {
-    "slug": "us-ends-duration-of-status-student-visas-four-year-cap",
-    "headline": "US Ends 'Duration of Status' for Student Visas, Caps Stays at Four Years",
+    "slug": "l1-visa-manager-loophole-reform-congress",
+    "headline": "L-1 Visa's 'Manager' Loophole Faces Growing Calls for Congressional Reform",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-ends-duration-of-status-student-visas-four-year-cap.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/l1-visa-manager-loophole-reform-congress.jpg"
   },
   {
-    "slug": "trump-announces-100-percent-tariff-generic-drug-imports-august-2028",
-    "headline": "Trump Announces 100% Tariff on Generic Drug Imports Starting August 2028",
+    "slug": "rohit-sharma-lords-century-reshuffles-icc-odi-rankings",
+    "headline": "Rohit Sharma's Lord's Century Reshuffles ICC ODI Rankings Battle",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rohit-sharma-lords-century-reshuffles-icc-odi-rankings.jpg"
+  },
+  {
+    "slug": "jana-nayagan-vijay-final-film-advance-booking-record",
+    "headline": "Jana Nayagan Eyes Record Opening as Vijay's Final Film Sells 600,000 Advance Tickets",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jana-nayagan-vijay-final-film-advance-booking-record.jpg"
+  },
+  {
+    "slug": "rbi-proposes-overhaul-foreign-investment-rules-control-test",
+    "headline": "RBI Proposes Sweeping Overhaul of Foreign Investment Rules With New Control Test",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-proposes-overhaul-foreign-investment-rules-control-test.jpg"
+  },
+  {
+    "slug": "trump-phased-tariffs-200-percent-generic-drug-imports",
+    "headline": "Trump Announces Phased Tariffs of Up to 200% on Generic Drug Imports",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-announces-100-percent-tariff-generic-drug-imports-august-2028.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-phased-tariffs-200-percent-generic-drug-imports.jpg"
   },
   {
-    "slug": "hiit-workouts-reverse-cellular-aging-studies",
-    "headline": "HIIT Workouts Can Reverse Cellular Aging by Nearly a Decade, Studies Show",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hiit-workouts-reverse-cellular-aging-studies.jpg"
-  },
-  {
-    "slug": "us-labor-department-h1b-visa-fraud-probe-subpoenas",
-    "headline": "U.S. Labor Department Launches Sweeping H-1B Visa Fraud Probe With Dozens of Subpoenas",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-labor-department-h1b-visa-fraud-probe-subpoenas.jpg"
-  },
-  {
-    "slug": "intel-confirms-layoffs-data-center-unit-quarterly-earnings",
-    "headline": "Intel Confirms Fresh Layoffs in Data Center Unit Ahead of Quarterly Earnings",
+    "slug": "phishing-platforms-bypass-microsoft-365-mfa-device-code",
+    "headline": "New Phishing Platforms Bypass Microsoft 365 MFA Using Device Code Attacks",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/intel-confirms-layoffs-data-center-unit-quarterly-earnings.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/phishing-platforms-bypass-microsoft-365-mfa-device-code.jpg"
   },
   {
-    "slug": "pakistan-asks-us-10-billion-currency-backstop-iran-mediation",
-    "headline": "Pakistan Asks US for $10 Billion Currency Backstop After Iran Mediation Role",
+    "slug": "samsung-launches-ai-health-assistant-wellness-race",
+    "headline": "Samsung Launches AI Health Assistant as Tech Giants Race to Own Your Wellness Data",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/samsung-launches-ai-health-assistant-wellness-race.jpg"
+  },
+  {
+    "slug": "delhi-tops-affordability-mumbai-leads-qs-student-city-rankings",
+    "headline": "Delhi Tops Global Affordability, Mumbai Leads India in QS Student City Rankings",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-asks-us-10-billion-currency-backstop-iran-mediation.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-tops-affordability-mumbai-leads-qs-student-city-rankings.jpg"
   },
   {
-    "slug": "us-measles-cases-near-35-year-record-2026",
-    "headline": "U.S. Measles Cases Nearly Match 35-Year Record With Five Months Left in 2026",
+    "slug": "china-recruits-high-schoolers-ai-labs-education-overhaul",
+    "headline": "China Recruits High Schoolers for AI Labs as Education Overhaul Reshapes Global Talent Race",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/china-recruits-high-schoolers-ai-labs-education-overhaul.jpg"
+  },
+  {
+    "slug": "covid-19-cases-rise-kolkata-monsoon-doctors-urge-vigilance",
+    "headline": "Covid-19 Cases Rise in Kolkata During Monsoon as Doctors Urge Vigilance",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-measles-cases-near-35-year-record-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/covid-19-cases-rise-kolkata-monsoon-doctors-urge-vigilance.jpg"
   },
   {
-    "slug": "world-cup-final-61-million-us-viewers-smash-soccer-tv-records",
-    "headline": "World Cup Final Draws 61 Million U.S. Viewers, Smashing All Soccer TV Records",
+    "slug": "dimension-capital-raises-800-million-for-third-fund-at-intersection-of-science-a",
+    "headline": "Dimension Capital Raises $800 Million for Third Fund at Intersection of Science and Compute",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dimension-capital-raises-800-million-for-third-fund-at-intersection-of-science-a.jpg"
+  },
+  {
+    "slug": "india-banks-on-boxing-athletics-and-weightlifting-to-extend-top-five-commonwealt",
+    "headline": "India Banks on Boxing, Athletics, and Weightlifting to Extend Top-Five Commonwealth Games Run",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-cup-final-61-million-us-viewers-smash-soccer-tv-records.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-banks-on-boxing-athletics-and-weightlifting-to-extend-top-five-commonwealt.jpg"
   },
   {
-    "slug": "cornyn-threatens-block-trump-ambassadors-pepfar-funding-cuts",
-    "headline": "Sen. Cornyn Threatens To Block Trump Ambassador Picks Over PEPFAR Funding Cuts",
+    "slug": "indian-origin-woman-arrested-in-canada-for-allegedly-defrauding-renters-of-over",
+    "headline": "Indian-Origin Woman Arrested in Canada for Allegedly Defrauding Renters of Over $60,000",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cornyn-threatens-block-trump-ambassadors-pepfar-funding-cuts.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-origin-woman-arrested-in-canada-for-allegedly-defrauding-renters-of-over.jpg"
   },
   {
-    "slug": "uae-india-travel-air-suvidha-e-arrival-gold-rules-explained",
-    "headline": "UAE to India Travel: Air Suvidha 2.0, e-Arrival Card and New Gold Rules Explained",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uae-india-travel-air-suvidha-e-arrival-gold-rules-explained.jpg"
+    "slug": "netflixs-a-toxic-love-story-unpacks-the-bizarre-true-crime-case-of-a-us-marshal",
+    "headline": "Netflix's 'A Toxic Love Story' Unpacks the Bizarre True Crime Case of a US Marshal, His Wife, and a Frame Job",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netflixs-a-toxic-love-story-unpacks-the-bizarre-true-crime-case-of-a-us-marshal.jpg"
+  },
+  {
+    "slug": "us-to-cut-aluminium-tariffs-in-bid-to-strengthen-defence-supply-chain",
+    "headline": "US to Cut Aluminium Tariffs in Bid to Strengthen Defence Supply Chain",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-to-cut-aluminium-tariffs-in-bid-to-strengthen-defence-supply-chain.jpg"
+  },
+  {
+    "slug": "nearly-half-of-indian-doctors-use-ai-in-practice-yet-69-say-they-want-to-quit-me",
+    "headline": "Nearly Half of Indian Doctors Use AI in Practice, Yet 69% Say They Want to Quit Medicine",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nearly-half-of-indian-doctors-use-ai-in-practice-yet-69-say-they-want-to-quit-me.jpg"
+  },
+  {
+    "slug": "perseid-meteor-shower-2026-where-and-when-to-watch-the-best-night-sky-show-of-th",
+    "headline": "Perseid Meteor Shower 2026: Where and When to Watch the Best Night Sky Show of the Year",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/perseid-meteor-shower-2026-where-and-when-to-watch-the-best-night-sky-show-of-th.jpg"
   }
 ]
