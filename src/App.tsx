@@ -87,6 +87,9 @@ const StoriesPage = React.lazy(() => import("./pages/StoriesPage.tsx"));
 const SubmitStoryPage = React.lazy(() => import("./pages/SubmitStoryPage.tsx"));
 const StoryDetailPage = React.lazy(() => import("./pages/StoryDetailPage.tsx"));
 
+// Daily Wisdom (Spirituality)
+const DailyWisdomPage = React.lazy(() => import("./pages/DailyWisdomPage.tsx"));
+
 // Admin (rarely visited — always lazy)
 const Admin = React.lazy(() => import("./pages/Admin.tsx"));
 const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard.tsx"));
@@ -189,6 +192,7 @@ const App = () => (
               <Route path="/stories" element={<StoriesPage />} />
               <Route path="/stories/submit" element={<SubmitStoryPage />} />
               <Route path="/stories/:slug" element={<StoryDetailPage />} />
+              <Route path="/daily-wisdom" element={<DailyWisdomPage />} />
               <Route path="/representatives" element={<LeadersPage />} />
               <Route path="/leaders" element={<LeadersPage />} />
               <Route path="/know-your-leader" element={<KnowYourLeaderPage />} />

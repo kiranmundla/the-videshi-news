@@ -20,6 +20,7 @@ import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpotlight";
+import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
@@ -552,6 +553,9 @@ export default function IndexV2() {
           /* ── Full homepage view ── */
           <>
         <HeroSection lead={featured} side={layout.heroSide} />
+
+        {/* Daily Wisdom — picture-framed spiritual quote */}
+        <DailyWisdomCard />
 
         {/* Just In — purely chronological, newest articles across all categories */}
         <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />

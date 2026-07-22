@@ -19,19 +19,19 @@ interface WisdomEntry {
 
 // Static teacher images — fallback when DB doesn't have one
 const TEACHER_IMAGES: Record<string, string> = {
-  "Sadhguru": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sadhguru_2020.jpg/440px-Sadhguru_2020.jpg",
-  "Sri Sri Ravi Shankar": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sri_Sri_Ravi_Shankar_2016.jpg/440px-Sri_Sri_Ravi_Shankar_2016.jpg",
-  "BK Shivani": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/BK_Shivani_at_Brahma_Kumaris.jpg/440px-BK_Shivani_at_Brahma_Kumaris.jpg",
-  "Gaur Gopal Das": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gaur_Gopal_Das.jpg/440px-Gaur_Gopal_Das.jpg",
-  "Mooji": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Mooji_in_Monte_Sahaja.jpg/440px-Mooji_in_Monte_Sahaja.jpg",
-  "Dalai Lama": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Dalailama1_20121014_4639.jpg/440px-Dalailama1_20121014_4639.jpg",
-  "Thich Nhat Hanh": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Thich_Nhat_Hanh_12_%28cropped%29.jpg/440px-Thich_Nhat_Hanh_12_%28cropped%29.jpg",
-  "Deepak Chopra": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Deepak_Chopra_2013_Shankbone.jpg/440px-Deepak_Chopra_2013_Shankbone.jpg",
-  "Jay Shetty": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Jay_Shetty_in_2019.jpg/440px-Jay_Shetty_in_2019.jpg",
-  "Eckhart Tolle": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Eckhart_Tolle_2013.jpg/440px-Eckhart_Tolle_2013.jpg",
-  "Omar Suleiman": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Omar_Suleiman_%28imam%29.jpg/440px-Omar_Suleiman_%28imam%29.jpg",
-  "Amma": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Amma_at_her_ashram.jpg/440px-Amma_at_her_ashram.jpg",
-  "Pema Chödrön": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Pema_Chodron.jpg/440px-Pema_Chodron.jpg",
+  "Sadhguru": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Sadhguru-Jaggi-Vasudev.jpg/330px-Sadhguru-Jaggi-Vasudev.jpg",
+  "Sri Sri Ravi Shankar": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Sri_Sri_Ravi_Shankar_-_new.jpg/330px-Sri_Sri_Ravi_Shankar_-_new.jpg",
+  "Mooji": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Mooji_Wikipedia_Photo.jpg/330px-Mooji_Wikipedia_Photo.jpg",
+  "Dalai Lama": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/The_Dalai_Lama_in_2012.jpg/330px-The_Dalai_Lama_in_2012.jpg",
+  "Thich Nhat Hanh": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Thich_Nhat_Hanh_12_%28cropped%29.jpg/330px-Thich_Nhat_Hanh_12_%28cropped%29.jpg",
+  "Deepak Chopra": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Deepak_Chopra_by_Gage_Skidmore.jpg/330px-Deepak_Chopra_by_Gage_Skidmore.jpg",
+  "Jay Shetty": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Jay_Shetty_Headshot_2021.jpg/330px-Jay_Shetty_Headshot_2021.jpg",
+  "Eckhart Tolle": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Eckhart_Tolle_front.jpg/330px-Eckhart_Tolle_front.jpg",
+  "Omar Suleiman": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/ImamOmarSuleiman2.jpg/330px-ImamOmarSuleiman2.jpg",
+  "Amma": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/M%C4%81t%C4%81_Amrit%C4%81nandamay%C4%AB_Dev%C4%AB.jpg/330px-M%C4%81t%C4%81_Amrit%C4%81nandamay%C4%AB_Dev%C4%AB.jpg",
+  "Pema Chödrön": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Pema_chodron_2007_cropped.jpg/330px-Pema_chodron_2007_cropped.jpg",
+  "BK Shivani": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/BK_Shivani.jpg/330px-BK_Shivani.jpg",
+  "Gaur Gopal Das": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/GaurGopal_Das.jpg/330px-GaurGopal_Das.jpg",
 };
 
 const TRADITION_ICONS: Record<string, string> = {
