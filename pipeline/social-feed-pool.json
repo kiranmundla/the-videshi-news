@@ -1,8 +1,16 @@
 {
-  "_refreshed_at": "2026-07-21T15:59:41.934113+00:00",
-  "_rotation_index": 26,
+  "_refreshed_at": "2026-07-22T06:57:35.637984+00:00",
+  "_rotation_index": 27,
   "handles": {
     "technology:sundarpichai": [
+      {
+        "tweet_url": "https://x.com/sundarpichai/status/2079782148605641102",
+        "handle": "sundarpichai",
+        "tweet_id": "2079782148605641102",
+        "category": "technology",
+        "text": "The numbers are in: 1.7B+ global viewers tuned in to @YouTube to watch World Cup-related videos during the tournament. \u26bd\ufe0f It was our most viewed World Cup ever on YouTube, bringing lifetime views of related content to over 200B!",
+        "published_at": "2026-07-22T04:14:39.000Z"
+      },
       {
         "tweet_url": "https://x.com/sundarpichai/status/2078988716950065383",
         "handle": "sundarpichai",
@@ -34,17 +42,17 @@
         "category": "technology",
         "text": "With just one year in orbit, the first FireSat satellite has already spotted wildfires invisible to existing satellites. After a successful launch early this morning, 3 more satellites joined the constellation, bringing us one step closer to our ultimate goal of near real-time wildfire updates every",
         "published_at": "2026-07-08T00:17:47.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/sundarpichai/status/2073436433415614491",
-        "handle": "sundarpichai",
-        "tweet_id": "2073436433415614491",
-        "category": "technology",
-        "text": "No matter how you spell it, 250 years of American innovation, ingenuity &amp; curiosity is something to celebrate. Have a happy &amp; safe 4th of July! https://t.co/3hzAP8FDJZ",
-        "published_at": "2026-07-04T15:59:02.000Z"
       }
     ],
     "technology:satyanadella": [
+      {
+        "tweet_url": "https://x.com/satyanadella/status/2079602597565280691",
+        "handle": "satyanadella",
+        "tweet_id": "2079602597565280691",
+        "category": "technology",
+        "text": "Really excited about our expanded partnership with @MistralAI, which is all about bringing customers more choice in how and where they deploy AI!",
+        "published_at": "2026-07-21T16:21:11.000Z"
+      },
       {
         "tweet_url": "https://x.com/satyanadella/status/2077063479232795024",
         "handle": "satyanadella",
@@ -76,17 +84,17 @@
         "category": "technology",
         "text": "Super to see GPT-5.6 with Work IQ come to Copilot Chat, Cowork, M365 apps, GitHub, and Foundry today.\n\nFrom multi-step agentic work to analysis and content creation, it brings stronger reasoning and higher-quality outputs without sacrificing efficiency. https://t.co/4AF2Pr48Yq",
         "published_at": "2026-07-09T20:35:46.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/satyanadella/status/2072708957077176563",
-        "handle": "satyanadella",
-        "tweet_id": "2072708957077176563",
-        "category": "technology",
-        "text": "The future of the firm is a learning loop in which human capital and token capital compound. \n \nWith our new Frontier Co., our ambition is to help every enterprise build its own AI capability, and to help create a frontier ecosystem where every organization can turn its knowledge, workflows, and jud",
-        "published_at": "2026-07-02T15:48:19.000Z"
       }
     ],
     "technology:sama": [
+      {
+        "tweet_url": "https://x.com/sama/status/2079661132302995790",
+        "handle": "sama",
+        "tweet_id": "2079661132302995790",
+        "category": "technology",
+        "text": "we had a significant security incident during evaluation of our models. we are sharing what we have learned so far. thanks to @huggingface for the partnership on this.\n\nhttps://t.co/2o2VfR6PIa",
+        "published_at": "2026-07-21T20:13:46.000Z"
+      },
       {
         "tweet_url": "https://x.com/sama/status/2078244242993164716",
         "handle": "sama",
@@ -110,48 +118,48 @@
         "category": "technology",
         "text": "we did not have our best last 12 months ever, which is mostly my fault, but we are about to have our best 12 months to date. the team is doing amazing work and i think you\u2019ll be very happy with what they\u2019ve got cooking for you.\n\ni am happy about this for many reasons, but mostly because i care about",
         "published_at": "2026-07-16T18:06:05.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/sama/status/2077489177374208000",
-        "handle": "sama",
-        "tweet_id": "2077489177374208000",
-        "category": "technology",
-        "text": "amazing to me that some people want the silent version\n\nhttps://t.co/jbdznnBx9Z",
-        "published_at": "2026-07-15T20:23:12.000Z"
       }
     ],
     "technology:elonmusk": [
       {
-        "tweet_url": "https://x.com/elonmusk/status/2079448786745631005",
+        "tweet_url": "https://x.com/elonmusk/status/2079821812930879874",
         "handle": "elonmusk",
-        "tweet_id": "2079448786745631005",
+        "tweet_id": "2079821812930879874",
         "category": "technology",
-        "text": "It\u2019s been this way for years",
-        "published_at": "2026-07-21T06:09:59.000Z"
+        "text": "Nationwide, it may be as much as 1000X higher. \n\nThis is why California and New York made showing ID to vote a literal crime!",
+        "published_at": "2026-07-22T06:52:16.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2079448540900647179",
+        "tweet_url": "https://x.com/elonmusk/status/2079821278681379159",
         "handle": "elonmusk",
-        "tweet_id": "2079448540900647179",
+        "tweet_id": "2079821278681379159",
         "category": "technology",
-        "text": "Grok is a solid workhorse",
-        "published_at": "2026-07-21T06:09:01.000Z"
+        "text": "Grok Imagine makes beautiful fashion",
+        "published_at": "2026-07-22T06:50:08.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2079446276299465185",
+        "tweet_url": "https://x.com/elonmusk/status/2079820895997366771",
         "handle": "elonmusk",
-        "tweet_id": "2079446276299465185",
+        "tweet_id": "2079820895997366771",
         "category": "technology",
-        "text": "SpaceX\u2019s massive corpus of world-class engineering data (excluding material blocked by ITAR) will be added during supplemental training of the 2T run.\n\nThis will dramatically improve Grok\u2019s engineering capabilities.",
-        "published_at": "2026-07-21T06:00:01.000Z"
+        "text": "The hypocrisy is what bothers me most",
+        "published_at": "2026-07-22T06:48:37.000Z"
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2079430412837757338",
+        "tweet_url": "https://x.com/elonmusk/status/2079820726476144749",
         "handle": "elonmusk",
-        "tweet_id": "2079430412837757338",
+        "tweet_id": "2079820726476144749",
         "category": "technology",
-        "text": "Try Grok Build, it\u2019s awesome!\n\nhttps://t.co/lOJK57wDP5",
-        "published_at": "2026-07-21T04:56:59.000Z"
+        "text": "Grok Build is adding features to help you track and improve token efficiency",
+        "published_at": "2026-07-22T06:47:57.000Z"
+      },
+      {
+        "tweet_url": "https://x.com/elonmusk/status/2079804227518599478",
+        "handle": "elonmusk",
+        "tweet_id": "2079804227518599478",
+        "category": "technology",
+        "text": "Getting this approval took a lot of work by the Tesla team",
+        "published_at": "2026-07-22T05:42:23.000Z"
       }
     ],
     "technology:tim_cook": [
@@ -408,6 +416,14 @@
     ],
     "technology:vijayshekhar": [
       {
+        "tweet_url": "https://x.com/vijayshekhar/status/2079806578996515215",
+        "handle": "vijayshekhar",
+        "tweet_id": "2079806578996515215",
+        "category": "technology",
+        "text": "Anthropic wasnt there, in this a year back !",
+        "published_at": "2026-07-22T05:51:44.000Z"
+      },
+      {
         "tweet_url": "https://x.com/vijayshekhar/status/2079525028031533433",
         "handle": "vijayshekhar",
         "tweet_id": "2079525028031533433",
@@ -430,14 +446,6 @@
         "category": "technology",
         "text": "Started the year with the highest ever EBITDA \ud83d\ude4f\ud83c\udffc",
         "published_at": "2026-07-20T16:55:55.000Z"
-      },
-      {
-        "tweet_url": "https://x.com/vijayshekhar/status/2079231048014299567",
-        "handle": "vijayshekhar",
-        "tweet_id": "2079231048014299567",
-        "category": "technology",
-        "text": "Coke gets new brand identity and they call it : Makes Coca-Cola more Coca-Cola. \nNew font. Nice look \ud83d\udc40  https://t.co/r2vBrYxpsq",
-        "published_at": "2026-07-20T15:44:46.000Z"
       }
     ],
     "entertainment:iamsrk": [
