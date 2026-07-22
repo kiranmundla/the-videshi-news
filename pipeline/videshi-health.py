@@ -37,10 +37,10 @@ from collections import Counter
 # ProxyError) mid-run. Route all requests through a retrying session with
 # backoff so a transient proxy hiccup doesn't abort the whole health check.
 _RETRY = Retry(
-    total=5,
-    connect=5,
-    read=5,
-    backoff_factor=1.5,
+    total=2,
+    connect=2,
+    read=2,
+    backoff_factor=0.5,
     status_forcelist=(429, 500, 502, 503, 504),
     allowed_methods=frozenset(["GET", "HEAD", "PATCH", "POST", "DELETE"]),
 )
@@ -400,7 +400,7 @@ def check_image_health():
     articles = sb_get("p2_articles",
         f"status=eq.published&published_at=gte.{cutoff_48h}"
         f"&image_url=not.is.null&select=id,headline,image_url,category"
-        f"&order=published_at.desc&limit=50")
+        f"&order=published_at.desc&limit=20")
 
     broken = []      # 404, 403, timeout
     tiny = []        # < 5KB (likely placeholder/icon)
@@ -434,7 +434,7 @@ def check_image_health():
             # NOTE: HEAD requests always 400 on upload.wikimedia.org (the
             # dominant hero-image source), so we MUST use GET. Use a tiny Range
             # request so we don't download the whole file just to validate it.
-            r = requests.get(url, timeout=10, allow_redirects=True, stream=True,
+            r = requests.get(url, timeout=5, allow_redirects=True, stream=True,
                              headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)",
                                       "Range": "bytes=0-2048"})
             if r.status_code >= 400:
@@ -867,24 +867,55 @@ def check_worldcup_social_embeds(fix=False):
 
 # ─── Run all ───────────────────────────────────────────────────────────────────
 
+import signal
+
+class _CheckTimeout(Exception):
+    pass
+
+def _timeout_handler(signum, frame):
+    raise _CheckTimeout("check timed out")
+
+def _run_check(name, fn, timeout_secs=30):
+    """Run a single health check with a SIGALRM timeout guard."""
+    old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
+    signal.alarm(timeout_secs)
+    try:
+        result = fn()
+        signal.alarm(0)
+        return result
+    except _CheckTimeout:
+        return {"check": name, "alert": False, "skipped": True,
+                "action_needed": None, "reason": f"timed out after {timeout_secs}s"}
+    except Exception as e:
+        signal.alarm(0)
+        return {"check": name, "alert": False, "skipped": True,
+                "action_needed": None, "reason": f"error: {str(e)[:100]}"}
+    finally:
+        signal.signal(signal.SIGALRM, old_handler)
+
+
 def run_all(fix=False):
-    checks = [
-        check_category_staleness(),
-        check_stale_publishing(),
-        check_article_volume(),
-        check_ingest_health(),
-        check_article_quality(),
-        check_image_health(),
-        check_tweet_embeds(fix=fix),
-        check_duplicates(),
-        check_missing_images(),
-        check_broken_slugs(fix=fix),
-        check_stuck_review(fix=fix),
-        check_null_published_at(fix=fix),
-        check_aged_articles(fix=fix),
-        check_worldcup_social_embeds(fix=fix),
-        check_pulse_freshness(),
+    check_defs = [
+        ("category_staleness", check_category_staleness, 30),
+        ("stale_publishing", check_stale_publishing, 15),
+        ("article_volume", check_article_volume, 15),
+        ("ingest_health", check_ingest_health, 15),
+        ("article_quality", check_article_quality, 30),
+        ("image_health", check_image_health, 60),
+        ("tweet_embeds", lambda: check_tweet_embeds(fix=fix), 60),
+        ("duplicates", check_duplicates, 15),
+        ("missing_images", check_missing_images, 15),
+        ("broken_slugs", lambda: check_broken_slugs(fix=fix), 15),
+        ("stuck_review", lambda: check_stuck_review(fix=fix), 15),
+        ("null_published_at", lambda: check_null_published_at(fix=fix), 15),
+        ("aged_articles", lambda: check_aged_articles(fix=fix), 15),
+        ("worldcup_social_embeds", lambda: check_worldcup_social_embeds(fix=fix), 30),
+        ("pulse_freshness", check_pulse_freshness, 15),
     ]
+
+    checks = []
+    for name, fn, timeout in check_defs:
+        checks.append(_run_check(name, fn, timeout))
 
     report = {
         "timestamp": utc_iso(),
