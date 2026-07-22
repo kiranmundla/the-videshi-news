@@ -19,6 +19,7 @@ import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
+import WhosXSpotlight from "@/components/homepage/WhosXSpotlight";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
@@ -551,6 +552,9 @@ export default function IndexV2() {
 
         {/* Just In — purely chronological, newest articles across all categories */}
         <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />
+
+        {/* Who's X — weekly spotlight */}
+        <WhosXSpotlight />
 
         {/* Visual Stories */}
         <ArticleCardDeck />
