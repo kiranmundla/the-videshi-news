@@ -5,6 +5,7 @@ import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 import "./DailyWisdomPage.css";
+import "./TeacherProfilePage.css";
 
 interface Teacher {
   slug: string;
