@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
 
-/* "Who's X" weekly spotlight — fetches the most recent published article
-   tagged "who is" and renders a prominent profile card on the homepage. */
+/* "Who's Who" — horizontal scroll of all "who is" profiles,
+   latest first, with the newest card rendered larger. */
 
 interface SpotlightArticle {
   id: string;
@@ -19,8 +19,28 @@ interface SpotlightArticle {
   focal_y?: number | null;
 }
 
+function extractName(headline: string): string | null {
+  const m = headline.match(/who\s+is\s+(.+?)[\?:—–\-]/i);
+  return m ? m[1].trim() : null;
+}
+
+function extractTagline(article: SpotlightArticle): string {
+  if (article.subheadline) return article.subheadline;
+  if (article.headline.includes("?"))
+    return article.headline.split("?").slice(1).join("?").trim();
+  return "";
+}
+
+/** IDs of articles in the spotlight, so the homepage can exclude them
+ *  from hero / category sections. Updated after fetch. */
+let _spotlightIds: string[] = [];
+export function getSpotlightIds(): string[] {
+  return _spotlightIds;
+}
+
 export default function WhosXSpotlight() {
-  const [article, setArticle] = useState<SpotlightArticle | null>(null);
+  const [articles, setArticles] = useState<SpotlightArticle[]>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     (async () => {
@@ -32,52 +52,60 @@ export default function WhosXSpotlight() {
         .eq("status", "published")
         .contains("tags", ["who is"])
         .order("published_at", { ascending: false })
-        .limit(1);
+        .limit(20);
 
-      if (data && data.length > 0) setArticle(data[0]);
+      if (data && data.length > 0) {
+        setArticles(data);
+        _spotlightIds = data.map((a: SpotlightArticle) => a.id);
+      }
     })();
   }, []);
 
-  if (!article) return null;
-
-  // Extract person name from headline — typically "Who Is <Name>? ..."
-  const nameMatch = article.headline.match(/who\s+is\s+(.+?)[\?:—–\-]/i);
-  const personName = nameMatch ? nameMatch[1].trim() : null;
-
-  // One-liner: use subheadline or first sentence-ish chunk of headline after the "?"
-  const tagline =
-    article.subheadline ||
-    (article.headline.includes("?")
-      ? article.headline.split("?").slice(1).join("?").trim()
-      : "");
-
-  const articleUrl = `/articles/${article.slug}`;
-  const hasImage = isValidImage(article.image_url);
+  if (articles.length === 0) return null;
 
   return (
     <section className="whos-x-section">
       <div className="container">
-        <Link to={articleUrl} className="whos-x-card">
-          {/* Photo */}
-          {hasImage && (
-            <div className="whos-x-photo">
-              <HeroImage
-                src={article.image_url!}
-                alt={personName || article.headline}
-                focalX={article.focal_x ?? 0.5}
-                focalY={article.focal_y ?? 0.5}
-              />
-            </div>
-          )}
+        <div className="whos-x-header">
+          <h2 className="whos-x-section-title">Who's Who</h2>
+          <span className="whos-x-section-sub">Notable people of Indian origin</span>
+        </div>
+        <div className="whos-x-scroll" ref={scrollRef}>
+          {articles.map((article, idx) => {
+            const personName = extractName(article.headline);
+            const tagline = extractTagline(article);
+            const articleUrl = `/articles/${article.slug}`;
+            const hasImage = isValidImage(article.image_url);
+            const isLatest = idx === 0;
 
-          {/* Text */}
-          <div className="whos-x-text">
-            <span className="whos-x-label">Who's</span>
-            {personName && <h2 className="whos-x-name">{personName}</h2>}
-            {tagline && <p className="whos-x-tagline">{tagline}</p>}
-            <span className="whos-x-cta">Read their story →</span>
-          </div>
-        </Link>
+            return (
+              <Link
+                to={articleUrl}
+                className={`whos-x-card ${isLatest ? "whos-x-card--featured" : "whos-x-card--compact"}`}
+                key={article.id}
+              >
+                {hasImage && (
+                  <div className="whos-x-photo">
+                    <HeroImage
+                      src={article.image_url!}
+                      alt={personName || article.headline}
+                      focalX={article.focal_x ?? 0.5}
+                      focalY={article.focal_y ?? 0.5}
+                    />
+                  </div>
+                )}
+                <div className="whos-x-text">
+                  <span className="whos-x-label">Who's</span>
+                  {personName && <h3 className="whos-x-name">{personName}</h3>}
+                  {isLatest && tagline && (
+                    <p className="whos-x-tagline">{tagline}</p>
+                  )}
+                  <span className="whos-x-cta">Read →</span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

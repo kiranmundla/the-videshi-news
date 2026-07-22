@@ -632,6 +632,49 @@ _YT_SKIP_TITLE_WORDS = {
     "#shorts", "tiktok", "roast", "exposed", "scam",
 }
 
+# Non-Latin script ranges (Devanagari, Telugu, Tamil, Bengali, Kannada, Malayalam,
+# Gujarati, Gurmukhi, Arabic, Thai, CJK, etc.)
+import unicodedata as _ud
+
+def _is_non_english_title(title: str) -> bool:
+    """Return True if >25% of alpha chars are non-Latin script."""
+    alpha_chars = [c for c in title if c.isalpha()]
+    if len(alpha_chars) < 3:
+        return False
+    non_latin = sum(1 for c in alpha_chars if _ud.category(c).startswith('L') and ord(c) > 0x024F)
+    return (non_latin / len(alpha_chars)) > 0.25
+
+
+def _check_yt_video_language(video_ids: list) -> dict:
+    """Check defaultAudioLanguage for a batch of video IDs. Returns {id: lang_code}."""
+    if not video_ids:
+        return {}
+    global _YT_QUOTA_USED
+    if _YT_QUOTA_USED >= _YT_QUOTA_LIMIT:
+        return {}
+    token = _get_youtube_access_token()
+    if not token:
+        return {}
+    try:
+        r = subprocess.run(
+            ["curl", "-sS",
+             "https://www.googleapis.com/youtube/v3/videos",
+             "-H", f"Authorization: Bearer {token}",
+             "-G",
+             "-d", "part=snippet",
+             "-d", f"id={','.join(video_ids[:10])}"],
+            capture_output=True, text=True, timeout=15,
+        )
+        _YT_QUOTA_USED += 1
+        data = json.loads(r.stdout)
+        result = {}
+        for item in data.get("items", []):
+            lang = item.get("snippet", {}).get("defaultAudioLanguage") or item.get("snippet", {}).get("defaultLanguage") or ""
+            result[item["id"]] = lang.lower()
+        return result
+    except:
+        return {}
+
 
 def score_youtube_result(result, entity_name, keywords):
     """Score YouTube result for relevance."""
@@ -718,6 +761,26 @@ def enrich_youtube(article, registry):
         query = f"{name} {' '.join(keywords[:3])}"
 
         results = search_youtube(query, max_results=5, published_after_days=60)
+        if not results:
+            continue
+
+        # ── English language filter ──
+        # Step 1: Drop results with non-Latin titles (Telugu, Hindi, etc.)
+        results = [r for r in results if not _is_non_english_title(r["title"])]
+        if not results:
+            continue
+
+        # Step 2: Check audio language via API for remaining candidates
+        video_ids = [r["videoId"] for r in results]
+        lang_map = _check_yt_video_language(video_ids)
+        # Keep videos that are English, unlabeled, or have no language data
+        english_results = []
+        for r in results:
+            lang = lang_map.get(r["videoId"], "")
+            if lang and not lang.startswith("en"):
+                continue  # skip confirmed non-English
+            english_results.append(r)
+        results = english_results
         if not results:
             continue
 
