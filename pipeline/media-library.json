@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-21T10:32:07Z",
+ "_updated": "2026-07-22T10:30:59Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -18611,6 +18611,138 @@
    "duration": null,
    "quality_score": 90.9,
    "added_date": "2026-07-21T10:32:07Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--rahul-gandhi--a1a578",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/rahul-gandhi-a1a578.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/rahul-gandhi-a1a578.jpg",
+   "subject": "Rahul Gandhi",
+   "subject_type": "person",
+   "caption": "Rahul Gandhi in Goa in 2016",
+   "attribution": "Wikimedia Commons / joegoauk Last Namegoa, CC BY-SA 2.0",
+   "license": "CC BY-SA 2.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rahul_Gandhi_in_Goa.jpg",
+   "tags": [
+    "rahul gandhi"
+   ],
+   "width": 4320,
+   "height": 3240,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-22T10:30:05Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--matt-damon--fcfd7f",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/matt-damon-fcfd7f.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/matt-damon-fcfd7f.jpg",
+   "subject": "matt damon",
+   "subject_type": "thing",
+   "caption": "Actor Matt Damon at the 74nd Berlin International Film Festival",
+   "attribution": "Wikimedia Commons / Harald Krichel, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Matt_Damon-60034.jpg",
+   "tags": [
+    "matt damon"
+   ],
+   "width": 3489,
+   "height": 3489,
+   "duration": null,
+   "quality_score": 84.1,
+   "added_date": "2026-07-22T10:30:12Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--jfk-airport--14c808",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/jfk-airport-14c808.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/jfk-airport-14c808.jpg",
+   "subject": "jfk airport",
+   "subject_type": "thing",
+   "caption": "TWA Flight Center, JFK Airport, NYC.",
+   "attribution": "Wikimedia Commons / w_lemay, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Constellation_Ballroom,_TWA_Flight_Center,_John_F._Kennedy_International_Airport,_Jamaica,_Queens,_New_York_City,_NY_-_48581144731.jpg",
+   "tags": [
+    "jfk airport"
+   ],
+   "width": 4032,
+   "height": 3024,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-22T10:30:43Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--vegetarian--ddc265",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/vegetarian-ddc265.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/vegetarian-ddc265.jpg",
+   "subject": "vegetarian",
+   "subject_type": "thing",
+   "caption": "Description on menu: \"1 Fried veggie sausage, 2 fried eggs, mushrooms, roasted vine tomato, baked beans, 1 hash brown and toast\"",
+   "attribution": "Wikimedia Commons / Andy Li, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Amore_Vegetarian_-_Amo_2026-03-10.jpg",
+   "tags": [
+    "vegetarian"
+   ],
+   "width": 3840,
+   "height": 2891,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-22T10:30:52Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--perseid-meteor-shower--b4f931",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/perseid-meteor-shower-b4f931.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/perseid-meteor-shower-b4f931.jpg",
+   "subject": "Perseid meteor shower",
+   "subject_type": "thing",
+   "caption": "A human, aligned with the Milky Way, looks at the stars from Oeschinensee (Switzerland) during Perseids in search of shooting stars.",
+   "attribution": "Wikimedia Commons / Giles Laurent, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:018_Human_looking_at_the_stars_during_Perseids_with_the_Milky_Way_in_the_background_Photo_by_Giles_Laurent.jpg",
+   "tags": [
+    "perseid meteor shower"
+   ],
+   "width": 3840,
+   "height": 2560,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-22T10:30:56Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--stargazing--5df1e7",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/stargazing-5df1e7.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/stargazing-5df1e7.jpg",
+   "subject": "stargazing",
+   "subject_type": "thing",
+   "caption": "Amateur astronomer gets ready to a night of stargazing in the Negev desert, Israel, with her mighty Dobsonian telescope",
+   "attribution": "Wikimedia Commons / Ilan Shimony, CC BY-SA 3.0",
+   "license": "CC BY-SA 3.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Amateur_astronomy_in_israel.jpg",
+   "tags": [
+    "stargazing"
+   ],
+   "width": 1704,
+   "height": 2272,
+   "duration": null,
+   "quality_score": 65.2,
+   "added_date": "2026-07-22T10:30:59Z",
    "last_used": null,
    "times_used": 0
   }
