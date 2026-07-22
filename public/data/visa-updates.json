@@ -9,6 +9,15 @@
     "source": "DHS / Federal Register / USA TODAY / WSJ / Washington Examiner"
   },
   {
+    "id": "uscis-public-charge-rule-revival",
+    "date": "2026-07-16",
+    "label": "Jul 16, 2026",
+    "headline": "USCIS revives 'public charge' rule \u2014 green card applicants using Medicaid, food stamps, housing vouchers face denials starting September 18",
+    "summary": "DHS published a final rule rescinding the Biden-era 2022 public charge regulation and restoring the broader Trump first-term criteria. Starting September 18, 2026, USCIS officers can weigh an applicant's use of Medicaid, SNAP (food stamps), housing vouchers, and other means-tested benefits when deciding whether the applicant is likely to become a 'public charge' \u2014 a factor in green card adjudication. The Biden rule had limited consideration to only cash welfare. About 588,000 applicants undergo public charge reviews annually. USCIS will roll out a revised Form I-485 and reject older versions filed on or after September 18. USCIS Director Edlow said the agency is 'restoring the basic principle that immigrants must be able to support themselves.' Benefits received by family members won't count as the applicant's own, but officers may consider them when assessing finances. Immigration advocates warn of a 'chilling effect' on hundreds of thousands of immigrant families, including many Indian green card holders, who may disenroll from benefits they or their US-citizen children are eligible for to avoid jeopardizing their applications.",
+    "severity": "high",
+    "source": "USCIS / DHS / CNN / Reuters / Daily Caller"
+  },
+  {
     "id": "state-dept-100k-green-card-bond-proposal",
     "date": "2026-07-15",
     "label": "Jul 15, 2026",
@@ -63,15 +72,6 @@
     "source": "USCIS / Federal Register / Holland & Hart / Ogletree Deakins"
   },
   {
-    "id": "b1b2-wait-times-surge-jun-2026",
-    "date": "2026-06-27",
-    "label": "Jun 27, 2026",
-    "headline": "US tourist visa wait times surge up to 36% at Indian consulates \u2014 Hyderabad and Mumbai now at 9.5 months",
-    "summary": "The State Department's June 18 global wait time update reveals a sharp spike in B1/B2 visitor visa interview waits at Indian posts. Hyderabad and Mumbai now average 9.5 months (next available: 9.5 and 10 months respectively), up from ~7 months a month earlier \u2014 among the longest globally. New Delhi climbed to 7.5 months avg (8.5 next available), up from 5.5 months. Chennai held at 5.5 months. Kolkata is the lone bright spot, improving to 4 months. The surge is attributed to expanded social media and digital footprint screening protocols in effect since December 15, 2025, which have slashed daily interview capacity and triggered mass appointment rescheduling \u2014 often pushing slots 90 to 120 days later. Work visa (H/L/O/P/Q) waits remain far shorter at 1.5\u20133.5 months, and student visa (F/M/J) waits are 1.5\u20132 months. With the $750 premium interview pilot launching July 1, India's consulates are among the most likely participating posts given the severity of their backlogs.",
-    "severity": "high",
-    "source": "US State Department / travel.state.gov / Bhasha Times"
-  },
-  {
     "id": "uscis-n400-naturalization-fee-increase-proposed",
     "date": "2026-06-23",
     "label": "Jun 23, 2026",
@@ -79,15 +79,6 @@
     "summary": "USCIS published a proposed rule in the Federal Register on June 23 that would increase the N-400 naturalization application fee from $760 to $1,330 for paper filers (75% increase) and from $710 to $1,280 for online filers (80% increase). The reduced fee option for low-income applicants ($380) and all fee waivers for both N-400 and N-336 forms would be eliminated entirely. The N-336 hearing request fee would rise from $830 to $1,475. DHS argues the increases align fees with actual adjudication costs under a 'beneficiary-pays' principle, contending prior administrations kept naturalization fees artificially low. Immigration advocates warn the steep hikes \u2014 especially eliminating waivers for low-income filers \u2014 could price out many legal permanent residents from citizenship. For Indian green card holders who waited years in the EB backlog and are now approaching naturalization eligibility, the timing compounds an already costly process. Public comments are due August 24, 2026, and a final rule could follow weeks later. Applicants considering naturalization may want to file before the rule takes effect.",
     "severity": "high",
     "source": "USCIS / Federal Register (91 FR 37500) / Fragomen / Ogletree Deakins / AILA"
-  },
-  {
-    "id": "student-visa-fixed-stay-omb-cleared",
-    "date": "2026-06-22",
-    "label": "Jun 22, 2026",
-    "headline": "White House clears rule to end 'Duration of Status' \u2014 US student visas to get fixed expiry dates, 4-year cap",
-    "summary": "The White House's Office of Management and Budget has completed its review of a DHS proposal that would scrap the decades-old 'Duration of Status' (D/S) framework for F-1 students, J-1 exchange visitors and certain I (foreign media) visa holders, replacing it with fixed admission periods capped at four years. Under D/S, students could stay as long as they remained enrolled and compliant, with no fixed end date; the new rule sets a hard expiry and requires applicants to file an extension of stay with USCIS to continue beyond it. With OMB clearance done, the rule is expected to be published in the Federal Register and move toward implementation later this year. Indian students \u2014 the largest international cohort in the US at ~363,000 in 2024-25 \u2014 are among the most affected, especially those in PhD, research-heavy or other multi-year programs that run past four years, who will now face extension filings, added documentation and biometrics, shorter post-completion grace periods (proposed cut from 60 to 30 days), and stricter rules on transferring schools or changing programs.",
-    "severity": "high",
-    "source": "DHS / OMB / Times of India / India Today"
   },
   {
     "id": "h1b-domestic-renewal-pilot-december-2026",
@@ -170,6 +161,15 @@
     "severity": "high",
     "source": "US Department of Justice / USA TODAY / Washington Examiner",
     "url": "/immigration"
+  },
+  {
+    "id": "uscis-adjustment-of-status-consular-only",
+    "date": "2026-05-22",
+    "label": "May 22, 2026",
+    "headline": "USCIS declares adjustment of status 'extraordinary relief' \u2014 most green card applicants must now process from home country",
+    "summary": "USCIS issued a sweeping policy memo on May 22 declaring that adjustment of status (AOS) under INA \u00a7245 \u2014 the decades-old process allowing people already in the US on temporary visas to apply for a green card without leaving \u2014 is now treated as 'extraordinary relief' granted only in limited cases. Most applicants on student, work, or tourist visas must return to their home country and complete immigrant visa processing through a US consulate abroad. USCIS spokesperson Zach Kahler said the policy restores 'the original intent of the law' and will 'free up limited USCIS resources.' The memo has no listed effective date, and practitioners assume it applies retroactively to pending applications. For Indian H-1B holders with approved I-140 petitions, this is a seismic change: instead of filing I-485 in the US while continuing to work, they may need to return to India for consular processing \u2014 risking employment gaps and complications given the massive EB backlogs. Immigration attorneys call it one of the most consequential policy shifts in decades.",
+    "severity": "high",
+    "source": "USCIS / Greenspoon Marder / Nolo / Mondaq"
   },
   {
     "id": "interview-waiver-eliminated",
