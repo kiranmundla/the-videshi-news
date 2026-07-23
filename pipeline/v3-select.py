@@ -631,6 +631,11 @@ def main():
                 stats["duplicate"] += 1
                 topic_statuses[t["id"]] = "rejected"
                 continue
+            # Minimum score floor — reject score 1-2 (weak/no diaspora connection)
+            if llm.get("score", 1) < 3:
+                stats["low_score"] = stats.get("low_score", 0) + 1
+                topic_statuses[t["id"]] = "rejected"
+                continue
             stats[coverage] = stats.get(coverage, 0) + 1
 
             # Build candidate
@@ -687,7 +692,7 @@ def main():
             stats["no_result"] += 1
             topic_statuses[t["id"]] = "pending"  # leave for next run
 
-    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats['no_result']} unscored")
+    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats.get('low_score', 0)} low-score rejected, {stats['no_result']} unscored")
 
     # Sort by score desc, then freshness, then signal count
     scored.sort(key=lambda x: (x.get("llm_score", 1), x["newest_signal"], x["signal_count"]), reverse=True)

@@ -132,6 +132,7 @@ Insert with `status="published"`. Required fields:
 - `image_url`, `image_caption`, `image_attribution`
 - `word_count`, `diaspora_angle` (1-sentence summary)
 - `topic_id` (from candidate JSON)
+- `llm_score` (from candidate JSON — the selector's relevance score, 1-5)
 - `published_at` (NOW), `article_type` (default 'breaking')
 
 ### 3f. Update topic status
