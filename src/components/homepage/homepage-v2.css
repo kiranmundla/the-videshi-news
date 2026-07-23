@@ -448,11 +448,11 @@
 
 /* ── Tweet quote strip — compact editorial style ── */
 .v2-tweet-quote {
-  flex: 0 0 260px;
-  min-width: 260px;
-  max-width: 260px;
+  flex: 0 0 320px;
+  min-width: 320px;
+  max-width: 320px;
   border-left: 3px solid #D4A843;
-  padding: 8px 14px;
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -465,20 +465,20 @@
 }
 
 .v2-tweet-quote-text {
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.55;
   color: #334155;
   font-style: italic;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
   letter-spacing: -0.01em;
 }
 
 .v2-tweet-quote-has-img .v2-tweet-quote-text {
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
 }
 
 .v2-tweet-quote-img {
@@ -489,7 +489,7 @@
 }
 .v2-tweet-quote-img img {
   width: 100%;
-  height: 80px;
+  height: 120px;
   object-fit: cover;
   display: block;
 }
@@ -543,9 +543,9 @@
 
 @media (max-width: 767px) {
   .v2-tweet-quote {
-    flex: 0 0 240px;
-    min-width: 240px;
-    max-width: 240px;
+    flex: 0 0 280px;
+    min-width: 280px;
+    max-width: 280px;
   }
 }
 
