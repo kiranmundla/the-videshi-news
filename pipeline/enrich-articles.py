@@ -1827,7 +1827,10 @@ def main():
         hero_fixed = 0
         for article in all_articles:
             img_url = article.get("image_url", "")
-            if not img_url or not img_url.startswith("http"):
+            if not img_url:
+                print(f"\n  ⚠ No image: {article['headline'][:50]}")
+                continue
+            if not img_url.startswith("http"):
                 # Relative path = definitely broken
                 print(f"\n  ⚠ Relative URL: {article['headline'][:50]}")
                 print(f"    → {img_url[:80]}")
