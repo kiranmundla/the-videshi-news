@@ -629,31 +629,41 @@ def main():
 
     # ── Step 3b: Hard dedup — reject topics whose title closely matches an already-published headline ──
     # This catches cases the LLM misses (same story resurfacing with near-identical wording)
+    # Pre-compute published headline bases and word sets ONCE for O(n+m) instead of O(n*m) regex calls
     topic_statuses = {}  # topic_id -> status to write back
     _pub_titles_lower = {(a.get("headline") or "").lower().strip() for a in recent_articles}
+    _strip_src_re = re.compile(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$')
+    _pub_bases = set()  # stripped base strings for exact match
+    _pub_word_sets = []  # list of (pub_base, frozenset_of_words) for overlap check
+    for pub in _pub_titles_lower:
+        pub_base = _strip_src_re.sub('', pub).strip()
+        if pub_base:
+            _pub_bases.add(pub_base)
+            p_words = frozenset(re.findall(r'[a-z]{3,}', pub_base)) - _dedup_stop
+            if p_words:
+                _pub_word_sets.append(p_words)
+
     _hard_dedup_count = 0
     for t in topics:
         t_title = (t.get("canonical_title") or "").lower().strip()
-        # Strip trailing " - SOURCE" (e.g. " - NDTV") for matching
-        t_base = re.sub(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$', '', t_title).strip()
-        for pub in _pub_titles_lower:
-            pub_base = re.sub(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$', '', pub).strip()
-            if not t_base or not pub_base:
-                continue
-            # Exact match after stripping source
-            if t_base == pub_base:
+        t_base = _strip_src_re.sub('', t_title).strip()
+        if not t_base:
+            continue
+        # Exact match after stripping source
+        if t_base in _pub_bases:
+            topic_statuses[t["id"]] = "rejected"
+            _hard_dedup_count += 1
+            continue
+        # High word overlap (>=80% of words match)
+        t_words = frozenset(re.findall(r'[a-z]{3,}', t_base)) - _dedup_stop
+        if not t_words:
+            continue
+        for p_words in _pub_word_sets:
+            overlap = len(t_words & p_words) / min(len(t_words), len(p_words))
+            if overlap >= 0.8:
                 topic_statuses[t["id"]] = "rejected"
                 _hard_dedup_count += 1
                 break
-            # High word overlap (>=80% of words match)
-            t_words = set(re.findall(r'[a-z]{3,}', t_base)) - _dedup_stop
-            p_words = set(re.findall(r'[a-z]{3,}', pub_base)) - _dedup_stop
-            if t_words and p_words:
-                overlap = len(t_words & p_words) / min(len(t_words), len(p_words))
-                if overlap >= 0.8:
-                    topic_statuses[t["id"]] = "rejected"
-                    _hard_dedup_count += 1
-                    break
     if _hard_dedup_count:
         print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
 

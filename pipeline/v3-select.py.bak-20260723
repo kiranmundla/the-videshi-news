@@ -549,10 +549,10 @@ def main():
     print(f"  Signal distribution: min={min(sig_counts)}, max={max(sig_counts)}, avg={sum(sig_counts)/len(sig_counts):.1f}")
 
     # ── Step 3: Load recent published articles for dedup ──────────────────────
-    # Two layers:
+    # Three layers:
     #  a) 14-day window sent to LLM for detailed new/update/duplicate classification
     #  b) 30-day headline keyword check to catch stories that resurface after weeks
-    #     (e.g. Kunal Shah/WhatsApp story published July 1, resurfaced July 20)
+    #  c) Published topic titles — catches same canonical story resurfacing across runs
     print(f"\n── Step 3: Loading recent articles for dedup ──")
     cutoff_14d = (NOW - timedelta(days=14)).isoformat()
     recent_articles = sb_get("p2_articles", {
@@ -565,15 +565,15 @@ def main():
         recent_articles = []
     print(f"  Recent articles (14d): {len(recent_articles)}")
 
-    # Layer b: fast headline keyword check against 30-day window
+    # Layer b: fast headline keyword check against 60-day window (extended from 30d)
     # Only loads the EXTRA articles beyond 14d, and only adds those matching a topic
-    cutoff_30d = (NOW - timedelta(days=30)).isoformat()
+    cutoff_60d = (NOW - timedelta(days=60)).isoformat()
     older_articles = sb_get("p2_articles", {
         "select": "headline,category,published_at",
-        "created_at": f"gte.{cutoff_30d}",
+        "created_at": f"gte.{cutoff_60d}",
         "status": "eq.published",
         "order": "created_at.desc",
-    }, range_header="1200-2499")
+    }, range_header="1200-3999")
     if not older_articles or isinstance(older_articles, dict):
         older_articles = []
 
@@ -589,23 +589,78 @@ def main():
             t_words = {w for w in re.findall(r'[a-z]{3,}', t_title)} - _dedup_stop
             if len(t_words) < 2:
                 continue
+            # Distinctive words = 6+ chars (proper nouns, specific terms)
+            t_distinctive = {w for w in t_words if len(w) >= 6}
             for oa in older_articles:
                 h_lower = (oa.get("headline") or "").lower()
                 h_words = {w for w in re.findall(r'[a-z]{3,}', h_lower)} - _dedup_stop
                 overlap = t_words & h_words
-                # 3+ distinctive keyword overlap = likely same story
-                if len(overlap) >= 3 and oa not in recent_articles:
+                h_distinctive = {w for w in h_words if len(w) >= 6}
+                distinctive_overlap = t_distinctive & h_distinctive
+                # Match if 3+ total keyword overlap OR 2+ distinctive (6+ char) overlap
+                if (len(overlap) >= 3 or len(distinctive_overlap) >= 2) and oa not in recent_articles:
                     recent_articles.append(oa)
                     added += 1
         if added:
-            print(f"  + {added} older headline(s) matched by keyword (30d)")
+            print(f"  + {added} older headline(s) matched by keyword (60d)")
+
+    # Layer c: Published topic titles from p2_topics (catches same canonical story)
+    cutoff_30d = (NOW - timedelta(days=30)).isoformat()
+    published_topics = sb_get("p2_topics", {
+        "select": "canonical_title",
+        "status": "eq.published",
+        "updated_at": f"gte.{cutoff_30d}",
+    }, range_header="0-499")
+    if published_topics and not isinstance(published_topics, dict):
+        topic_headlines = [{"headline": t.get("canonical_title", ""), "category": "unknown", "published_at": ""}
+                          for t in published_topics if t.get("canonical_title")]
+        # Add to dedup context (LLM will see these as already-published)
+        existing_headlines = {a.get("headline", "").lower() for a in recent_articles}
+        added_topics = 0
+        for th in topic_headlines:
+            if th["headline"].lower() not in existing_headlines:
+                recent_articles.append(th)
+                existing_headlines.add(th["headline"].lower())
+                added_topics += 1
+        if added_topics:
+            print(f"  + {added_topics} published topic title(s) added to dedup context")
 
     print(f"  Total dedup context: {len(recent_articles)} headlines")
 
+    # ── Step 3b: Hard dedup — reject topics whose title closely matches an already-published headline ──
+    # This catches cases the LLM misses (same story resurfacing with near-identical wording)
+    topic_statuses = {}  # topic_id -> status to write back
+    _pub_titles_lower = {(a.get("headline") or "").lower().strip() for a in recent_articles}
+    _hard_dedup_count = 0
+    for t in topics:
+        t_title = (t.get("canonical_title") or "").lower().strip()
+        # Strip trailing " - SOURCE" (e.g. " - NDTV") for matching
+        t_base = re.sub(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$', '', t_title).strip()
+        for pub in _pub_titles_lower:
+            pub_base = re.sub(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$', '', pub).strip()
+            if not t_base or not pub_base:
+                continue
+            # Exact match after stripping source
+            if t_base == pub_base:
+                topic_statuses[t["id"]] = "rejected"
+                _hard_dedup_count += 1
+                break
+            # High word overlap (>=80% of words match)
+            t_words = set(re.findall(r'[a-z]{3,}', t_base)) - _dedup_stop
+            p_words = set(re.findall(r'[a-z]{3,}', pub_base)) - _dedup_stop
+            if t_words and p_words:
+                overlap = len(t_words & p_words) / min(len(t_words), len(p_words))
+                if overlap >= 0.8:
+                    topic_statuses[t["id"]] = "rejected"
+                    _hard_dedup_count += 1
+                    break
+    if _hard_dedup_count:
+        print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
+
     # ── Step 4: LLM scoring + classification ──────────────────────────────────
-    # Only LLM-score topics that have loaded signals — the rest are auto-rejected
-    topics_with_loaded_signals = [t for t in topics if t.get("signals")]
-    topics_without_signals = [t for t in topics if not t.get("signals")]
+    # Only LLM-score topics that have loaded signals AND weren't hard-deduped
+    topics_with_loaded_signals = [t for t in topics if t.get("signals") and topic_statuses.get(t["id"]) != "rejected"]
+    topics_without_signals = [t for t in topics if not t.get("signals") and topic_statuses.get(t["id"]) != "rejected"]
     print(f"\n── Step 4: LLM scoring + coverage classification ──")
     print(f"  Topics with loaded signals: {len(topics_with_loaded_signals)} (scoring)")
     print(f"  Topics without signals: {len(topics_without_signals)} (auto-rejecting)")
@@ -613,7 +668,6 @@ def main():
 
     scored = []
     stats = {"new": 0, "update": 0, "duplicate": 0, "irrelevant": 0, "no_result": 0}
-    topic_statuses = {}  # topic_id -> status to write back
 
     # Auto-reject topics without signals
     for t in topics_without_signals:
