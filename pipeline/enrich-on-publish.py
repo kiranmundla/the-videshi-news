@@ -716,6 +716,13 @@ _YT_SKIP_TITLE_WORDS = {
     "compilation", "top 10", "top 5", "top 20", "meme", "memes", "funny",
     "prank", "reaction video", "fan edit", "whatsapp status",
     "#shorts", "tiktok", "roast", "exposed", "scam",
+    # Music / entertainment junk
+    "official audio", "official video", "music video", "lyrics", "lyric video",
+    "audio only", "full album", "mixtape", "beat", "instrumental", "karaoke",
+    "remix", "cover song", "dance cover", "fan cam", "fancam",
+    # Other irrelevant content types
+    "unboxing", "haul", "asmr", "mukbang", "gameplay", "walkthrough",
+    "let's play", "speedrun", "tutorial makeup",
 }
 
 # Non-Latin script ranges (Devanagari, Telugu, Tamil, Bengali, Kannada, Malayalam,
@@ -786,12 +793,24 @@ def score_youtube_result(result, entity_name, keywords):
         if skip_word in title_lower:
             score -= 5
 
-    official_words = {"official", "press conference", "interview", "statement",
-                      "announcement", "keynote", "launch", "podcast", "speech"}
-    for ow in official_words:
-        if ow in title_lower:
-            score += 1
-            break
+    # "official" bonus — but NOT for music content (official audio/video/music)
+    _music_official = {"official audio", "official music", "official video", "official mv"}
+    is_music_official = any(mo in title_lower for mo in _music_official)
+    if not is_music_official:
+        official_words = {"official", "press conference", "interview", "statement",
+                          "announcement", "keynote", "launch", "podcast", "speech"}
+        for ow in official_words:
+            if ow in title_lower:
+                score += 1
+                break
+
+    # Channel relevance penalty — if channel has zero overlap with entity or keywords,
+    # it's likely an unrelated channel (random music, gaming, etc.)
+    _channel_words = set(re.findall(r'[a-z]{3,}', channel_lower))
+    _entity_words = set(re.findall(r'[a-z]{3,}', entity_lower))
+    _all_relevant = _entity_words | set(keywords)
+    if _channel_words and not (_channel_words & _all_relevant):
+        score -= 2
 
     try:
         pub = datetime.fromisoformat(result["publishedAt"].replace("Z", "+00:00"))
@@ -872,11 +891,12 @@ def enrich_youtube(article, registry):
 
         for r in results:
             s = score_youtube_result(r, name, keywords)
-            # Require >= 5 AND at least 1 keyword match beyond entity name
-            # (entity name alone = +4, not enough for relevance)
+            # Require >= 6 AND at least 2 keyword matches beyond entity name
+            # Single-word entity names (Google, Apple, Meta) are too generic — require >= 8
             title_lower = r["title"].lower()
             kw_hits = sum(1 for kw in keywords if kw in title_lower)
-            if s >= 5 and kw_hits >= 1 and (best_yt is None or s > best_yt["score"]):
+            min_score = 8 if len(name.split()) == 1 else 6
+            if s >= min_score and kw_hits >= 2 and (best_yt is None or s > best_yt["score"]):
                 best_yt = {
                     "url": f"https://youtube.com/watch?v={r['videoId']}",
                     "title": r["title"],
