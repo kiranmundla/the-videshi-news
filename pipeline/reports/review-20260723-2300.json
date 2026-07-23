@@ -1,0 +1,203 @@
+[
+  {
+    "id": "ba5b2dd4-23a6-4657-8d5c-0553caa3a3d2",
+    "headline": "Anthony Joshua Returns to the Ring in Jeddah With India\u2019s Nishant Dev on Underca",
+    "slug": "anthony-joshua-returns-jeddah-nishant-dev-undercard",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian boxing fans or experts about Nishant Dev's participation in the undercard. This could highlight the significance of his presence for the Indian community abroad.",
+        "Provide more context about Nishant Dev, such as his background, previous fights, and what this opportunity means for him as an Indian boxer on an international stage. This would add depth to the article and engage the NRI audience.",
+        "Consider mentioning any Indian boxing organizations or communities that are supporting Nishant Dev, which could resonate with the diaspora and emphasize the connection between Indian culture and sports.",
+        "Include a brief section on how major boxing events like this one are perceived within the Indian diaspora, potentially discussing the growth of boxing in India and its appeal among NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nishant Dev or a relevant boxing organization that highlights his journey or excitement about fighting on the undercard. This would provide a personal touch and connect readers more closely to the athlete."
+      ]
+    }
+  },
+  {
+    "id": "201fad88-9b94-4ebf-a3bf-6cbc1f948ebe",
+    "headline": "Oil Surges Past $100 as Houthi Attacks on Saudi Tankers Open Second Front in Ira",
+    "slug": "oil-surges-past-100-houthi-attacks-saudi-tankers-red-sea",
+    "category": "news",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs working in the oil industry or those affected by rising oil prices, discussing how these developments impact their lives and investments.",
+        "Provide context on how fluctuations in oil prices could affect the Indian economy and, consequently, the Indian diaspora's financial interests, such as remittances or investments in India.",
+        "Clarify the implications of the Houthi attacks on global oil supply chains and how this could specifically impact Indian consumers or businesses, especially those reliant on oil imports.",
+        "Consider adding a section that discusses how geopolitical tensions in the Middle East might influence Indian foreign policy or the Indian diaspora's perception of these events."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any potential immigration policy changes that could arise from increased military tensions, as it may affect NRIs considering travel or relocation."
+      ]
+    }
+  },
+  {
+    "id": "a21cc8d6-6b10-4492-8242-285ff03c648d",
+    "headline": "Panthers Sign Cam Gill After Nic Scourton\u2019s Torn ACL Devastates Training Camp Op",
+    "slug": "panthers-sign-cam-gill-nic-scourton-torn-acl-training-camp",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or reactions from Indian or NRI fans of the Panthers or NFL, perhaps through social media comments or quotes from community leaders about Scourton's injury and Gill's signing.",
+        "Provide context on how the NFL's growing popularity in India and among the Indian diaspora could influence the reception of this news, including any relevant statistics or trends.",
+        "Enhance the article by embedding a tweet from the official NFL account or the Carolina Panthers regarding Scourton's injury or Gill's signing, which would provide authoritative context and engagement.",
+        "Consider restructuring the article to start with a brief overview of Scourton's impact on the team and the significance of his injury before diving into Gill's signing, creating a clearer narrative flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official NFL tweet about Scourton's injury or the Panthers' announcement regarding Gill's signing to provide immediate context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "4c0faeb0-a25c-442b-b0d9-6eb8f6380181",
+    "headline": "DOJ Withdraws Subpoenas Against New York Times Reporters After Judge\u2019s Sharp Reb",
+    "slug": "doj-withdraws-subpoenas-new-york-times-reporters-judge-rebuke",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including commentary or reactions from Indian diaspora organizations or NRIs who are involved in journalism or media advocacy, discussing how this case impacts press freedom for journalists globally, including those in India and the diaspora.",
+        "Provide additional context regarding how this legal decision may affect Indian journalists or media outlets, especially those operating in the U.S., to highlight the implications for the NRI community.",
+        "Consider adding a quote or perspective from an NRI journalist or media expert to provide a unique viewpoint on the significance of this case for press freedom and its relevance to the Indian diaspora.",
+        "Clarify the implications of the DOJ's actions on future journalistic practices, particularly for NRIs who may be concerned about their own rights and protections when reporting on sensitive topics."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent journalist or media organization discussing the implications of the DOJ's withdrawal of subpoenas, which would provide immediate context and enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "a4372b08-567d-4222-948d-e01bf895914c",
+    "headline": "Gold Drops $100 in Sharpest Daily Fall as Oil Spike Fuels Rate-Hike Fears",
+    "slug": "gold-drops-100-sharpest-daily-fall-oil-spike-rate-fears",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how fluctuations in gold prices and inflation impact NRIs who invest in gold as a hedge against currency depreciation or economic instability in India.",
+        "Provide context on how the current gold price drop compares to historical trends, especially in relation to the Indian market, where gold is a significant cultural and investment asset for NRIs.",
+        "Include perspectives or quotes from financial experts or NRIs who are affected by these changes, which would personalize the impact of the market fluctuations on the diaspora community."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Reserve Bank of India or a financial expert discussing the implications of rising oil prices and interest rate hikes on gold investments, which would provide real-time context and authority to the article."
+      ]
+    }
+  },
+  {
+    "id": "6e936478-a09d-41e1-bd03-41d0782f945d",
+    "headline": "New Zealand Races to Vaccinate Endangered Birds as Deadly H5N1 Reaches Its Shore",
+    "slug": "new-zealand-bird-flu-h5n1-endangered-species-vaccination",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from the Indian diaspora in New Zealand regarding the impact of H5N1 on local wildlife and conservation efforts. This could involve quotes from Indian environmentalists or community leaders who are engaged in wildlife conservation.",
+        "Provide additional context about how the Indian diaspora in New Zealand might be involved in or affected by conservation efforts, perhaps by highlighting any local initiatives or organizations that focus on wildlife protection and how NRIs can contribute.",
+        "Include a section that discusses the implications of H5N1 on global bird populations and how this might resonate with the Indian diaspora, especially those who may have a cultural or personal connection to wildlife and nature conservation.",
+        "Consider adding a brief overview of how avian influenza has affected bird populations in India or other regions significant to the Indian diaspora, creating a more direct connection to the audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official New Zealand Department of Conservation tweet about the vaccination efforts or the H5N1 outbreak to provide authoritative context and updates."
+      ]
+    }
+  },
+  {
+    "id": "622fe278-63ad-4482-9bf0-924f3ed36770",
+    "headline": "Eli Lilly's Triple-Agonist Drug Hits 22.6% Weight Loss, Clearing Path to FDA Fil",
+    "slug": "eli-lilly-retatrutide-22-percent-weight-loss-fda-filing",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian healthcare professionals or researchers working in obesity treatment, particularly those in the U.S. This would provide a relatable perspective for the NRI audience.",
+        "Add context regarding the impact of obesity and diabetes on the Indian diaspora, including statistics or studies that highlight these health issues within this community. This would give readers a clearer understanding of why this drug's development is relevant to them.",
+        "Consider discussing the implications of this drug's approval on healthcare access for NRIs, especially those living in the U.S. This could include potential insurance coverage issues or how it might affect health trends in the Indian community abroad.",
+        "Clarify the significance of the cardiovascular data presented, as this is crucial for understanding the overall safety profile of the drug. A brief explanation of how these findings might affect patient decisions, especially among those with existing cardiovascular concerns, would be beneficial."
+      ],
+      "embed_opportunities": [
+        "Embed the official FDA tweet or announcement regarding the review process for new obesity drugs, as this would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "d089714d-7eb0-4bd1-96cf-5e6d1ac94f6c",
+    "headline": "Meta Launches 'Call Us Dreamers' Campaign to Push Back Against AI Doomerism",
+    "slug": "meta-call-us-dreamers-ai-optimism-campaign",
+    "category": "nri-world",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)",
+      "Possibly irrelevant YouTube: \"Metacognigator | Music Video\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian NRIs who work in tech or AI, discussing how they view Meta's campaign and its implications for the global workforce, especially in India.",
+        "Provide context on how AI developments by companies like Meta could specifically impact the job market in India, which is a significant concern for the NRI community. This could include statistics or expert opinions on the potential effects of AI on employment in the Indian tech sector.",
+        "Add a section that explores how Indian NRIs can engage with or benefit from Meta's AI tools, perhaps through specific examples or case studies of Indian entrepreneurs or businesses utilizing AI effectively.",
+        "Consider restructuring the article to lead with the implications for the NRI community before diving into the details of the campaign itself, ensuring that the diaspora perspective is front and center."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Meta or Mark Zuckerberg that highlights their commitment to AI and its benefits, which would provide real-time context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "780051ba-455f-48c9-88c3-e7e0b3f3d110",
+    "headline": "Living Abroad No Shield: Court Orders NRI Couple in Germany to Face Dowry Trial",
+    "slug": "nri-couple-germany-court-order-dowry-case-trial",
+    "category": "immigration",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from legal experts or community leaders who specialize in NRI issues, particularly regarding dowry laws and their implications for NRIs. This would provide a more nuanced understanding of how such cases affect the Indian diaspora.",
+        "Provide additional context about the implications of this ruling for NRIs in similar situations, including any potential legal consequences or changes in how dowry cases might be handled for those living abroad.",
+        "Consider adding a brief section on how dowry laws are perceived and enforced in the diaspora, which would help readers understand the broader implications of this case for NRIs.",
+        "Clarify the timeline of events and legal proceedings to enhance the reader's understanding of the case's complexity and its significance for the NRI community."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a legal expert or an organization that discusses the implications of dowry laws for NRIs, which would provide additional context and authority to the article."
+      ]
+    }
+  },
+  {
+    "id": "83ca8909-9edb-4d9b-81e0-c1da3dc8f908",
+    "headline": "Your Visa Card May Include Free International Data You Don't Know About",
+    "slug": "visa-gigsky-free-esim-international-data-travel-perk",
+    "category": "immigration",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/164501/pexels-photo-164501.jpeg?auto=compress&c",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including testimonials or quotes from NRIs who have benefited from this Visa perk while traveling. This could provide a personal touch and highlight the relevance of the information to the Indian diaspora.",
+        "Add a section that discusses how this benefit can specifically help NRIs who frequently travel between India and the US, perhaps by including statistics on travel frequency or common communication challenges faced by this demographic.",
+        "Clarify the eligibility criteria for the Visa cards mentioned by providing a brief overview of how NRIs can obtain these cards or any specific considerations they should be aware of when applying from abroad.",
+        "Include a comparison with other mobile data options available to NRIs when traveling internationally, which could provide context on why this Visa benefit is particularly advantageous."
+      ],
+      "embed_opportunities": [
+        "Embed the official Visa announcement or promotional tweet about the partnership with GigSky to lend credibility and provide readers with direct access to more information."
+      ]
+    }
+  }
+]
