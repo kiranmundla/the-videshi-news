@@ -816,5 +816,15 @@
     "errors": 0,
     "hero_slug": "air-india-launches-non-stop-delhi-toronto-flights-boeing-787-9",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-23T13:55:56.059222+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 23, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "monsoon-fury-batters-gujarat-one-dead-1200-rescued",
+    "story_count": 5
   }
 ]
