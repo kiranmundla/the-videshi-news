@@ -63,6 +63,7 @@ OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
 EMBED_CATEGORIES = {
     "news", "sports", "entertainment", "technology",
     "nri-world", "immigration", "markets-finance", "travel", "food",
+    "lifestyle-health",
 }
 
 
