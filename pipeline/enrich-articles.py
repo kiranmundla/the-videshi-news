@@ -1372,7 +1372,7 @@ def get_recent_articles(hours=24, category=None):
     since = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
 
     params = {
-        "select": "id,headline,slug,category,image_url,image_caption,body,published_at",
+        "select": "id,headline,slug,category,image_url,image_caption,body,published_at,sources,topic_id",
         "status": "eq.published",
         "published_at": f"gte.{since}",
         "order": "published_at.desc",

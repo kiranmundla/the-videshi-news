@@ -127,17 +127,77 @@ def get_image_dimensions(img_bytes):
 
 # ── Source 1: og:image from source article URL ───────────────────────────────
 
+# Known generic/placeholder og:image patterns (site logos, default social cards)
+_OG_IMAGE_BLOCKLIST_PATTERNS = [
+    "logo", "default", "placeholder", "social-card", "meta-image",
+    "site-icon", "favicon", "brand-image", "og-default", "share-image",
+    "generic", "fallback", "no-image", "noimage", "missing",
+]
+_OG_IMAGE_BLOCKLIST_PATHS = [
+    "cdn.ncbi.nlm.nih.gov/pubmed/persistent/",
+    "static01.nyt.com/vi-assets/",  # NYT generic assets, not article images
+    "img.icons8.com/",
+]
+
+# Major news domains with high-quality editorial photos (preferred for og:image)
+_PREFERRED_NEWS_DOMAINS = {
+    "reuters.com", "bbc.com", "bbc.co.uk", "cnn.com", "ndtv.com",
+    "indianexpress.com", "thehindu.com", "hindustantimes.com",
+    "timesofindia.indiatimes.com", "theguardian.com", "nytimes.com",
+    "washingtonpost.com", "aljazeera.com", "apnews.com", "france24.com",
+    "livemint.com", "moneycontrol.com", "economictimes.indiatimes.com",
+    "firstpost.com", "theprint.in", "scroll.in", "thewire.in",
+    "news18.com", "cnbc.com", "bloomberg.com", "techcrunch.com",
+    "theverge.com", "wired.com", "arstechnica.com", "espncricinfo.com",
+    "cricbuzz.com", "skysports.com", "espn.com", "bbc.com/sport",
+    "sky.com", "abc.net.au", "cbc.ca", "globalnews.ca",
+}
+
+
+def _is_generic_og_image(img_url):
+    """Check if an og:image URL is a generic placeholder/logo rather than article-specific."""
+    if not img_url:
+        return True
+    lower = img_url.lower()
+    for pattern in _OG_IMAGE_BLOCKLIST_PATTERNS:
+        if pattern in lower:
+            return True
+    for path in _OG_IMAGE_BLOCKLIST_PATHS:
+        if path in lower:
+            return True
+    # Skip .gif (usually low-quality thumbnails or tracking pixels)
+    if lower.endswith(".gif"):
+        return True
+    return False
+
+
+def _og_image_domain_score(source_url):
+    """Score how much we trust og:images from this domain.
+    Higher = better quality photos expected.
+    """
+    try:
+        domain = urllib.parse.urlparse(source_url).netloc.replace("www.", "").lower()
+    except:
+        return 0
+    if domain in _PREFERRED_NEWS_DOMAINS:
+        return 3
+    # Any other real news domain
+    if any(tld in domain for tld in (".com", ".co.uk", ".in", ".ca", ".au")):
+        return 1
+    return 0
+
+
 def fetch_og_image(source_url):
     """Fetch og:image meta tag from a source article URL.
-    Returns image URL or None.
+    Returns image URL or None. Skips generic placeholders/logos.
     """
     if not source_url:
         return None
     
     try:
-        # Fetch just the head of the page (first 50KB should contain meta tags)
+        # Fetch the page head — no range limit (some sites reject range requests)
         result = subprocess.run(
-            ["curl", "-sS", "-L", "--max-time", "8", "-r", "0-51200",
+            ["curl", "-sS", "-L", "--max-time", "8",
              "-A", UA, source_url],
             capture_output=True, text=True, timeout=12
         )
@@ -162,9 +222,11 @@ def fetch_og_image(source_url):
                 if img_url.startswith("//"):
                     img_url = "https:" + img_url
                 elif img_url.startswith("/"):
-                    from urllib.parse import urlparse
-                    parsed = urlparse(source_url)
+                    parsed = urllib.parse.urlparse(source_url)
                     img_url = f"{parsed.scheme}://{parsed.netloc}{img_url}"
+                # Skip generic placeholder images
+                if _is_generic_og_image(img_url):
+                    continue
                 return img_url
         
         return None
@@ -646,7 +708,7 @@ def source_hero_image(article, used_images=None):
     
     Args:
         article: Dict with headline, slug, category, topic_id, image_search_query,
-                 image_entities, image_must_show
+                 image_entities, image_must_show. May also have 'sources' (list of URLs).
         used_images: Set of image URLs already used in this batch
     
     Returns:
@@ -669,24 +731,59 @@ def source_hero_image(article, used_images=None):
     attribution = "The Videshi"
     source_name = None
     
-    # ── Source 1: og:image from source articles ──────────────────────────
+    # ── Source 1: og:image from source articles (ranked by quality) ──────
     if not img_url:
-        source_urls = fetch_source_urls(topic_id) if topic_id else []
-        for src_url in source_urls[:3]:
+        # Gather source URLs: prefer article's own sources (already decoded),
+        # then fall back to signal URLs (may need Google News decoding)
+        all_source_urls = []
+        
+        # Article's sources field (already real URLs, no decoding needed)
+        article_sources = article.get("sources", [])
+        if isinstance(article_sources, str):
+            try:
+                article_sources = json.loads(article_sources)
+            except:
+                article_sources = []
+        if isinstance(article_sources, list):
+            for src in article_sources:
+                if isinstance(src, str) and src.startswith("http"):
+                    all_source_urls.append(src)
+                elif isinstance(src, dict) and src.get("url", "").startswith("http"):
+                    all_source_urls.append(src["url"])
+        
+        # Signal URLs (from p2_signals, may need Google News decoding)
+        if topic_id:
+            signal_urls = fetch_source_urls(topic_id)
+            for u in signal_urls:
+                if u not in all_source_urls:
+                    all_source_urls.append(u)
+        
+        # Collect all valid og:images with domain quality scores
+        og_candidates = []
+        for src_url in all_source_urls[:6]:
             og_img = fetch_og_image(src_url)
             if og_img and og_img not in used_images:
                 ok, ctype, _ = verify_image_url(og_img)
                 if ok:
-                    img_url = og_img
-                    # Attribution from source domain
+                    domain_score = _og_image_domain_score(src_url)
                     try:
                         domain = urllib.parse.urlparse(src_url).netloc.replace("www.", "")
-                        attribution = domain
                     except:
-                        attribution = "Source Article"
-                    source_name = "og:image"
-                    print(f"    ✓ og:image from {attribution}")
-                    break
+                        domain = "Source Article"
+                    og_candidates.append({
+                        "img_url": og_img,
+                        "domain": domain,
+                        "score": domain_score,
+                    })
+        
+        if og_candidates:
+            # Pick the best: prefer higher domain score
+            og_candidates.sort(key=lambda c: c["score"], reverse=True)
+            best = og_candidates[0]
+            img_url = best["img_url"]
+            attribution = best["domain"]
+            source_name = "og:image"
+            print(f"    ✓ og:image from {attribution} (score {best['score']}, {len(og_candidates)} candidates)")
     
     # ── Source 2: RSS feed images (stored in p2_signals) ─────────────────
     if not img_url and topic_id:

@@ -629,6 +629,7 @@ def main():
 
     # ── Step 3b: Hard dedup — reject topics whose title closely matches an already-published headline ──
     # This catches cases the LLM misses (same story resurfacing with near-identical wording)
+    topic_statuses = {}  # topic_id -> status to write back
     _pub_titles_lower = {(a.get("headline") or "").lower().strip() for a in recent_articles}
     _hard_dedup_count = 0
     for t in topics:
@@ -667,7 +668,6 @@ def main():
 
     scored = []
     stats = {"new": 0, "update": 0, "duplicate": 0, "irrelevant": 0, "no_result": 0}
-    topic_statuses = {}  # topic_id -> status to write back
 
     # Auto-reject topics without signals
     for t in topics_without_signals:
