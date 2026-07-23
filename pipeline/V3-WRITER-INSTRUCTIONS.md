@@ -73,48 +73,31 @@ Structure with clear `<h2>` subheadings. Must include:
 - For food: Indian-specific focus, recipes and cultural context
 - For entertainment: Cover both Bollywood and Hollywood with equal depth
 
-### 3d. Hero Image — Follow IMAGE-SOURCING-RULES.md strictly
+### 3d. Hero Image — Use image_sourcer.py (DO NOT source manually)
 
-**Source priority:**
-1. **og:image from source articles** — Check FIRST. The candidate JSON includes `topic_id`. Fetch original signal URLs, decode Google News redirects, and extract og:image:
-   ```
-   # Get signal URLs for this topic
-   GET /rest/v1/p2_signals?topic_id=eq.<topic_id>&select=original_url&limit=5&order=published_at.desc
-   ```
-   Each `original_url` is a Google News redirect. Decode it using `googlenewsdecoder`:
-   ```python
-   from googlenewsdecoder import new_decoderv1
-   result = new_decoderv1(gnews_url, interval=1)
-   actual_url = result["decoded_url"] if result.get("status") else None
-   ```
-   Then fetch the decoded URL and extract `<meta property="og:image" content="...">`.
-   Verify the image loads (curl -o /dev/null -w %{http_code}) before using.
-   This gives you the ACTUAL photo from the source article — always prefer this over stock.
+**Insert the article FIRST with `image_url` set to null**, then run the automated image sourcer:
 
-2. **person_images table** — For articles about a specific person:
-   `GET /rest/v1/person_images?person_name_lower=eq.<lowercase name>&order=use_count.asc,last_used_at.asc.nullsfirst&limit=1`
-   If match: use that `image_url`, then PATCH to update `use_count` and `last_used_at`.
+```bash
+cd ~/workspace/the-videshi-news/pipeline
+python3 -u image_sourcer.py --slug <article-slug> --apply
+```
 
-3. **YouTube thumbnail** — Search YouTube for the article's main entity + context keywords. Prefer official channels (e.g., EA Sports, UFC, company channels). Use `https://img.youtube.com/vi/{videoId}/maxresdefault.jpg`. The video title MUST contain the entity name (specificity gate — don't use random results). This is especially good for games, products, events, and named entities.
+This runs the full 7-source image chain automatically:
+1. og:image from source articles (decodes Google News URLs, ranks by domain quality)
+2. RSS feed thumbnails from p2_signals
+3. Media library cache (person_images table)
+4. YouTube thumbnails (entity-specific, with title match gate)
+5. Wikipedia person images
+6. Wikimedia Commons search
+7. Pexels fallback
 
-4. **Wikipedia REST API** — For person articles OR topic images:
-   ```
-   GET https://en.wikipedia.org/api/rest_v1/page/summary/{encoded_name}
-   User-Agent: TheVideshi/1.0 (thevideshi.com)
-   ```
-   Use `originalimage.source` or `thumbnail.source`. Skip logos (.svg, .png with "logo" in filename). Skip disambiguation pages. Check the Wikipedia page's `description` field — if it describes something different from your article topic, don't use the image.
+It also computes focal points for face-aware cropping and updates the DB directly.
 
-5. **Wikimedia Commons** — Search for topic-relevant CC images.
+The script outputs `IMAGE_RESULT:{...}` JSON with the result. Check the output to confirm it found an image.
 
-6. **Pexels** — Last resort only. Avoid generic stock.
+**If you need caption text for a specific article**, the sourcer uses the first entity name as a basic caption. For better captions, you can PATCH the `image_caption` field after the sourcer runs.
 
-**⚠️ IMAGE VALIDATION (MANDATORY before using any Wikipedia/Commons/Pexels image):**
-- Check the image filename/title — it must relate to your article topic, not just share a keyword. "UFC" in a filename like "OIF-UFC_5-1" is a Swedish football match, NOT the UFC organization or game. "Apple" in a filename could be the fruit, not the company.
-- For ambiguous terms (UFC, Apple, Mercury, etc.), use the FULL specific name in searches: "EA Sports UFC 6" not "UFC", "Apple Inc" not "Apple".
-- If the Wikipedia page's `description` says "sporting event", "album", "song", "film", "video game" — the image is likely a poster/cover/logo, not useful editorial photography. Skip it.
-- If uncertain whether an image matches, skip it and try the next source. A missing hero is better than a wrong one.
-
-**Image Caption Rules (STRICT):**
+**Image Caption Rules (when writing/updating captions):**
 - Two sentences. First: what the image shows. Second: the news context.
 - Factual, plain style. Describe what is literally in the image.
 - NO flowery bridging: "symbolizing," "reflects," "illustrating," "representing"
@@ -122,11 +105,10 @@ Structure with clear `<h2>` subheadings. Must include:
 - Person identity must match — exact name, recent/current photo
 - Example: "Indian Prime Minister Narendra Modi addresses Parliament during the Budget session. The government announced new tax incentives for returning NRIs."
 
-**Image URL:**
-Use the original source URL directly (Wikipedia, Wikimedia Commons, Pexels, og:image). Do NOT download, compress, or upload to Supabase Storage.
-
 **⚠️ CRITICAL — A wrong image is worse than no image:**
-If you cannot find a hero image that clearly matches the article topic, set `image_url` to null. A missing image is always better than a wrong one (e.g., a lion photo on an immigration article, a concert photo on a cricket story, a random street scene on a tech article). The enrichment pipeline will attempt to find a better image later.
+If the sourcer returns no image, leave `image_url` as null. A missing image is always better than a wrong one. The enrichment pipeline will attempt again later.
+
+**⚠️ DO NOT manually source images by calling Wikipedia/Pexels/og:image APIs yourself.** The script handles all of this with proper verification, Google News URL decoding, HTTP validation, and deduplication. Manual sourcing is slow, error-prone, and the #1 cause of missing hero images.
 
 ### 3e. Insert into p2_articles
 Insert with `status="published"`. Required fields:
@@ -163,6 +145,14 @@ timeout 600 python3 -u enrich-data-cards.py --since-hours 3 --limit 10 2>&1
 ```
 
 If any enrichment script fails, continue — the articles are already published and readable without enrichment.
+
+## Step 4.3 — Hero Image Backfill (safety net)
+After enrichment, backfill any articles that are still missing hero images:
+```bash
+cd ~/workspace/the-videshi-news/pipeline
+python3 -u image_sourcer.py --backfill --hours 3 --apply 2>&1
+```
+This catches any articles where the per-slug image sourcing failed or was skipped.
 
 ## Step 4.5 — Proofread (pre-publish QA)
 After enrichment, run the proofreader to catch irrelevant images, grammar errors, and formatting issues:
