@@ -242,9 +242,14 @@ def build_display(pool, article_tweets):
             if not tweets:
                 continue
 
-            # Rotate: pick a different tweet each run
+            # Rotate: pick a different tweet each run, prefer tweets with photos
             idx = rotation % len(tweets)
             pick = tweets[idx]
+            # If this pick has no photo, check if any tweet for this handle does
+            if not pick.get("photos"):
+                photo_tweets = [t for t in tweets if t.get("photos")]
+                if photo_tweets:
+                    pick = photo_tweets[rotation % len(photo_tweets)]
             display.append({
                 "tweet_url": pick["tweet_url"],
                 "handle": pick["handle"],

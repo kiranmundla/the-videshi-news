@@ -471,10 +471,14 @@
   font-style: italic;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
   letter-spacing: -0.01em;
+}
+
+.v2-tweet-quote-has-img .v2-tweet-quote-text {
+  -webkit-line-clamp: 3;
 }
 
 .v2-tweet-quote-img {

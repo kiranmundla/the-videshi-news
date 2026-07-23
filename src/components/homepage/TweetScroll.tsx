@@ -188,7 +188,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
               href={t.tweet_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="v2-tweet-quote group"
+              className={`v2-tweet-quote group${t.photos && t.photos.length > 0 ? " v2-tweet-quote-has-img" : ""}`}
             >
               {/* Tweet text as quote */}
               <p className="v2-tweet-quote-text">
