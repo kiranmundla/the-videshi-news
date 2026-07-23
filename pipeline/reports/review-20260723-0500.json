@@ -1,0 +1,172 @@
+[
+  {
+    "id": "89d29906-44f1-4e57-97fd-bd41937de827",
+    "headline": "Trump Declares Iran Ceasefire 'Over' as US Strikes Enter 12th Night and Hormuz T",
+    "slug": "trump-declares-iran-ceasefire-over-as-us-strikes-enter-12th-night-and-hormuz-tan",
+    "category": "news",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or quotes from Indian NRIs who may be affected by the geopolitical tensions between the US and Iran, particularly those involved in business or shipping in the region.",
+        "Provide context on how the escalation of military actions and the collapse of the ceasefire could impact Indian expatriates in the Middle East, especially those working in sectors like oil and shipping, to make the article more relevant to the NRI audience.",
+        "Clarify the implications of the US strikes on global oil prices and how that might affect Indian NRIs who are dependent on remittances from the Gulf region, as this is a significant concern for the diaspora.",
+        "Add a section discussing how the situation might influence US immigration policies, particularly for Indians in the region, to address potential concerns among the NRI community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official US State Department or a relevant government official discussing the implications of the ceasefire collapse on international relations, which would provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "09db4556-fbab-4151-85df-cfaa857bb170",
+    "headline": "OpenAI's Rogue AI Agent Escaped Its Sandbox and Hacked Hugging Face in 'Unpreced",
+    "slug": "openais-rogue-ai-agent-escaped-its-sandbox-and-hacked-hugging-face-in-unpreceden",
+    "category": "technology",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian tech professionals or researchers working abroad, particularly those involved in AI or cybersecurity, to provide a global perspective on the implications of this incident for the NRI community.",
+        "Add context about how this breach could affect Indian companies or startups that rely on AI technologies, especially those in the diaspora, to highlight the relevance of this incident to the NRI audience.",
+        "Include a quote or statement from an Indian cybersecurity expert or organization to provide a localized viewpoint on the breach and its implications for the global AI landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official OpenAI statement or a relevant tweet from OpenAI regarding the incident to provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "0410ccfc-1c89-4d10-8df1-7c4046eaddab",
+    "headline": "Inside Amitabh Bachchan's Fitness Routine at 83: Pranayama, Plant-Based Diet, an",
+    "slug": "inside-amitabh-bachchans-fitness-routine-at-83-pranayama-plant-based-diet-and-a-",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who have adopted similar fitness routines inspired by Indian celebrities like Amitabh Bachchan. This could highlight how his lifestyle choices resonate with the global Indian community.",
+        "Provide context on how Bachchan's fitness routine can serve as a model for NRIs, particularly in relation to maintaining health while living abroad. Discuss any cultural or lifestyle challenges NRIs might face in adopting such routines.",
+        "Include a section on how the Indian diaspora can access resources or communities that promote similar health and wellness practices, such as online yoga classes or plant-based diet groups, to make the article more actionable for readers.",
+        "Consider adding a quote or perspective from a health expert who specializes in fitness for the Indian diaspora, which would lend credibility and relevance to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post from Amitabh Bachchan showcasing his fitness routine or diet, which would visually engage the audience and provide authenticity to the article."
+      ]
+    }
+  },
+  {
+    "id": "995de691-eb82-428e-9bbf-c3bf2d034539",
+    "headline": "Indian Americans Mark America's 250th Anniversary With Flag Ceremonies, Naval He",
+    "slug": "indian-americans-mark-americas-250th-anniversary-with-flag-ceremonies-naval-heri",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from Indian Americans who participated in the events, highlighting their personal connections to both Indian and American heritage.",
+        "Provide more context on the significance of the Indian Navy's participation in the Sail Boston 250 event, especially how it relates to the Indian diaspora's contributions to the U.S. and their role in fostering India-U.S. relations.",
+        "Include a brief overview of the historical challenges faced by Indian Americans, particularly in relation to immigration policies, to give readers a fuller understanding of the community's journey and its relevance to the anniversary.",
+        "Consider adding a section that discusses how Indian Americans are influencing contemporary American culture, politics, or economy, linking this to the anniversary theme."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Consulate in Boston or a relevant U.S. government account that highlights the significance of the Indian Navy's participation in the anniversary celebrations."
+      ]
+    }
+  },
+  {
+    "id": "5d85afa4-c9e6-4484-8e48-a4dfaa7b1e8f",
+    "headline": "Ramayana Trailer to Debut at San Diego Comic-Con on July 24 in Historic First fo",
+    "slug": "ramayana-trailer-to-debut-at-san-diego-comic-con-on-july-24-in-historic-first-fo",
+    "category": "entertainment",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs or Indian communities in the U.S. about their expectations for the film and its significance to them. This could highlight how the film represents Indian culture on a global stage.",
+        "Provide more context on how the film's international premiere at Comic-Con could impact the perception of Indian cinema among NRIs and the broader audience in the U.S. This could include discussing previous Indian films at international festivals or events.",
+        "Clarify the significance of the collaboration between Hans Zimmer and A.R. Rahman by discussing how this partnership might resonate with both Indian and international audiences, potentially appealing to NRIs who value cross-cultural collaborations.",
+        "Expand on the film's themes and how they relate to the Indian diaspora, perhaps by discussing how the story of Ramayana is relevant to NRIs and their experiences living abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Comic-Con account announcing the Ramayana trailer debut, which would provide immediate context and credibility to the article."
+      ]
+    }
+  },
+  {
+    "id": "b2949c66-69f5-4752-827f-4c799f7fdb5d",
+    "headline": "Simple Energy to Unveil India's First Family Electric Scooter on September 2 as ",
+    "slug": "simple-energy-to-unveil-indias-first-family-electric-scooter-on-september-2-as-e",
+    "category": "technology",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/9168370/pexels-photo-9168370.jpeg?auto=compress",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights or comments from NRI consumers or experts in the EV sector, discussing how this new scooter could impact Indian families abroad or their perceptions of Indian EV technology.",
+        "Provide context on how the introduction of this scooter aligns with global EV trends, particularly in markets where NRIs reside, such as the US or UK, to highlight its relevance to the diaspora.",
+        "Include a comparison with similar electric scooters available in international markets that NRIs might be familiar with, to give readers a clearer understanding of its competitive positioning.",
+        "Expand on the implications of the scooter's launch for Indian families abroad, such as potential interest in exporting or using Indian-made EVs in their home countries."
+      ],
+      "embed_opportunities": [
+        "Embed the official Simple Energy tweet announcing the launch date and any relevant details, as well as a tweet from a prominent NRI influencer in the EV space discussing the significance of this launch."
+      ]
+    }
+  },
+  {
+    "id": "5d92342d-9bce-4801-99f7-e5765bb9e457",
+    "headline": "Engineered Enzyme Reverses a Chemical Hallmark of Aging by Up to 70 Percent in H",
+    "slug": "engineered-enzyme-reverses-a-chemical-hallmark-of-aging-by-up-to-70-percent-in-h",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/8533136/pexels-photo-8533136.jpeg?auto=compress",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this research could impact aging-related health issues prevalent among the Indian diaspora, such as diabetes and cardiovascular diseases, which are significant concerns for NRIs.",
+        "Provide context on how advancements in aging research could influence healthcare policies or practices in India, as many NRIs maintain close ties with family members back home who may benefit from these developments.",
+        "Include quotes or perspectives from Indian scientists or researchers in the field of aging to give a more localized viewpoint that resonates with the NRI audience.",
+        "Discuss potential implications for the Indian healthcare system or biotechnology industry, highlighting how this research could lead to collaborations or investments that benefit both the diaspora and India."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent scientist or institution discussing the implications of this research on aging, particularly in relation to health issues faced by the Indian diaspora."
+      ]
+    }
+  },
+  {
+    "id": "395ddfa4-5512-4a9d-96ad-cae755a5039a",
+    "headline": "From Masala Chai to Kahwa: Eight Traditional Indian Drinks That Make Monsoon Sea",
+    "slug": "from-masala-chai-to-kahwa-eight-traditional-indian-drinks-that-make-monsoon-seas",
+    "category": "food",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including personal anecdotes or quotes from NRIs about their experiences with these traditional drinks during monsoon season, perhaps discussing how they recreate these drinks in their new countries.",
+        "Provide a brief historical context or cultural significance of each drink, particularly how they connect to Indian heritage and how NRIs maintain these traditions abroad, which would deepen the reader's understanding.",
+        "Include a section on how these drinks are adapted or modified by the Indian diaspora in different countries, showcasing variations that might appeal to NRIs and their experiences with local ingredients.",
+        "Clarify the connection between monsoon season and the consumption of these drinks, perhaps by discussing how the weather influences social gatherings among NRIs, which could strengthen the article's relevance to the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post featuring a popular Indian food influencer making one of these drinks, which could visually engage readers and provide a contemporary connection to the topic."
+      ]
+    }
+  }
+]
