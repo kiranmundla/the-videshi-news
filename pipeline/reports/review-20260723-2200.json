@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1c0586a6-c92b-45c0-94f5-c0023d25d4bc",
+    "headline": "From Ladakh to Coorg: Five Off-Road Trails That Test India's Toughest Terrain",
+    "slug": "india-best-off-road-trails-ladakh-spiti-coorg-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who have experienced these off-road trails, discussing how these adventures connect them to their roots in India.",
+        "Provide a section that highlights how NRIs can access these trails, including information on travel packages, local guides, or community groups that cater to international travelers.",
+        "Add a brief comparison of off-roading experiences in India versus popular off-roading destinations abroad, which could resonate with NRIs looking for unique travel experiences.",
+        "Include practical tips for NRIs planning to visit these locations, such as best times to visit, necessary permits, or vehicle rental options."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from an adventure tourism operator or a popular travel influencer who has documented their off-roading experiences in these regions."
+      ]
+    }
+  },
+  {
+    "id": "c0d56acc-419c-40bd-9ab6-43d6b4df4918",
+    "headline": "Eater World's Fare Brought 20 Nations of Food to NYC During World Cup Weekend",
+    "slug": "eater-worlds-fare-nyc-world-cup-food-festival-2026",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including quotes or perspectives from Indian chefs or restaurant owners who participated in the event, discussing how they connect with the Indian diaspora in NYC and the significance of representing their culture through food.",
+        "Provide additional context about the significance of the FIFA World Cup for the Indian diaspora, such as how Indian communities engage with the event and any related cultural activities that took place in NYC during the same weekend.",
+        "Consider adding a section that highlights how food festivals like Eater World's Fare can foster community among NRIs and the importance of culinary representation for maintaining cultural ties.",
+        "Include a brief mention of any Indian food vendors or dishes featured at the festival to directly connect the content to the Indian diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Eater or a related food influencer showcasing highlights from the festival, which could provide visual context and enhance engagement."
+      ]
+    }
+  }
+]
