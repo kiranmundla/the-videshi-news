@@ -1,0 +1,204 @@
+[
+  {
+    "id": "6d9f5bdd-ec4b-4a02-a721-ff3dd25aba8c",
+    "headline": "The Perfect Quinoa Method: Why Saucepan Cooking Beats Every Other Technique",
+    "slug": "perfect-quinoa-method-saucepan-cooking-beats-every-technique",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/5817516/pexels-photo-5817516.jpeg",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Incorporate a section that discusses how quinoa is perceived and utilized in Indian diaspora cooking, perhaps including anecdotes or quotes from NRIs who have integrated quinoa into traditional dishes.",
+        "Add context about the nutritional benefits of quinoa, especially in relation to the dietary preferences of NRIs, who may be looking for healthier alternatives to traditional grains.",
+        "Include a brief mention of how quinoa is sourced and its availability in international markets, which could be particularly relevant for NRIs living in different countries.",
+        "Consider adding a comparison of quinoa's popularity in India versus its reception in other countries where NRIs reside, highlighting any cultural adaptations or recipes that have emerged."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a popular Indian chef or nutritionist discussing the benefits of quinoa, which could lend authority to the article and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "88bface7-a565-41bb-94ab-e71189e81ebd",
+    "headline": "Monsoon Fury Batters Gujarat: One Dead, Over 1,200 Rescued as South Gujarat Drow",
+    "slug": "monsoon-fury-batters-gujarat-one-dead-1200-rescued",
+    "category": "news",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have family in the affected regions, discussing their concerns and the impact of the floods on their loved ones.",
+        "Provide a brief historical context of monsoon flooding in Gujarat, particularly how it has affected the diaspora's perception of climate change and disaster preparedness in India.",
+        "Include information about how NRIs can assist or contribute to relief efforts, such as links to organizations or initiatives that are mobilizing support for flood victims."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Gujarat government or local authorities providing updates on the flood situation and rescue efforts."
+      ]
+    }
+  },
+  {
+    "id": "faa84435-41d3-4636-887c-4ca2c0d330f7",
+    "headline": "Two Fatal Shootings Expose Deep Flaws in ICE's Rapid Hiring and Officer Vetting",
+    "slug": "fatal-shootings-expose-flaws-ice-rapid-hiring-vetting",
+    "category": "immigration",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/36984942/pexels-photo-36984942.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who are affected by U.S. immigration policies, particularly those who may have experienced issues with ICE or have family members impacted by these policies.",
+        "Provide more context on how the rapid hiring of ICE officers and the resulting incidents might affect the Indian diaspora in the U.S., especially in terms of community safety and immigration enforcement.",
+        "Clarify the implications of the ICE hiring spree on the broader immigration landscape, particularly how it may affect NRIs looking to immigrate or those already in the U.S. who may be concerned about enforcement actions.",
+        "Include a section on how the Indian diaspora can engage with or respond to these developments, such as advocacy efforts or community organizing, to make the article more relevant to the audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any recent policy changes or statements about ICE's hiring practices to provide authoritative context.",
+        "Consider embedding relevant statistics or infographics that illustrate the impact of ICE's actions on immigrant communities, particularly those from India."
+      ]
+    }
+  },
+  {
+    "id": "09a02817-737d-41cc-b6e2-678ab3a8509f",
+    "headline": "India's Judoka Arun Kumar Pulled From Commonwealth Games After Failing Dope Test",
+    "slug": "indias-judoka-arun-kumar-pulled-from-cwg-after-doping",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian athletes or officials based in the diaspora, discussing how this incident impacts India's reputation in international sports and the perception of Indian athletes abroad.",
+        "Provide more context on the implications of this dope test for Arun Kumar's career and for Indian judo as a whole, especially in terms of how it might affect the diaspora's support for Indian athletes and the overall funding and sponsorship for sports in India.",
+        "Include a brief overview of the anti-doping policies in place for the Commonwealth Games, particularly how they affect Indian athletes, to give readers a clearer understanding of the stakes involved.",
+        "Mention any previous incidents of doping among Indian athletes to provide context and depth to the current situation, which could help readers understand the broader implications for the Indian sports community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Commonwealth Games Federation regarding their anti-doping policies or a statement about the importance of clean sport, which would enhance the article's credibility and relevance."
+      ]
+    }
+  },
+  {
+    "id": "5df11e9b-e09d-4c19-9574-e9df337a8e7b",
+    "headline": "Vijay's Farewell Film Jana Nayagan Opens to Packed Theaters and Mixed Reviews",
+    "slug": "vijay-farewell-jana-nayagan-packed-theaters-mixed-reviews",
+    "category": "entertainment",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs who attended the film's premiere or screenings abroad. This could highlight how Vijay's films resonate with the Indian diaspora and their cultural significance.",
+        "Provide more context on how Vijay's transition to politics might affect his fanbase, especially among NRIs, and what this film represents for them in terms of cultural identity and political engagement.",
+        "Clarify the significance of the film's release date in relation to any major cultural or political events that might resonate with the diaspora, enhancing the article's relevance to NRIs.",
+        "Include a brief section on how the film is being received in international markets, particularly in regions with significant Indian populations, to give readers a sense of its global impact."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from an NRI fan or a diaspora community leader discussing their thoughts on the film and its significance, which would provide a direct connection to the audience The Videshi serves."
+      ]
+    }
+  },
+  {
+    "id": "af7a1854-443b-4d6c-b50b-be7ba246485d",
+    "headline": "Pradhan's Old Post Praising Wangchuk Goes Viral Amid Hunger Strike Standoff",
+    "slug": "pradhans-old-post-praising-wangchuk-goes-viral-amid-hunger-strike",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs who are affected by the NEET paper leak or who have participated in the global demonstrations. This would highlight the international implications of the issue and connect it directly to the NRI community.",
+        "Provide more context on how the NEET paper leak specifically impacts Indian students abroad, particularly those preparing for medical exams and seeking to return to India for education. This would give readers a clearer understanding of the stakes involved.",
+        "Consider adding a section that discusses the historical relationship between the Indian government and the diaspora regarding educational policies, which would provide depth and context to the current situation.",
+        "Clarify the significance of the viral post by Pradhan by explaining how social media dynamics can influence political accountability, particularly among the diaspora who may feel disconnected from Indian politics."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Cockroach Janta Party (CJP) or a related organization that captures the sentiment of the protests and their relevance to the diaspora, enhancing the article's connection to global solidarity efforts."
+      ]
+    }
+  },
+  {
+    "id": "5a0f13e4-53c7-48ca-8464-74c1ba32fc85",
+    "headline": "Barcelona Complete \u20ac29 Million Signing of Karim Adeyemi From Borussia Dortmund",
+    "slug": "barcelona-sign-karim-adeyemi-borussia-dortmund",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the signing of Adeyemi might impact Indian football fans or NRI communities, especially those following La Liga or Bundesliga. Discuss potential viewership increases or fan engagement strategies that FC Barcelona might employ in India.",
+        "Provide context on how this transfer fits into the broader landscape of Indian football fandom, such as the growing interest in European leagues among NRIs and how clubs like Barcelona are marketing themselves to this demographic.",
+        "Include a brief mention of any Indian players or coaches in European football to create a connection with the diaspora audience, highlighting how Adeyemi's move could inspire young Indian footballers or fans.",
+        "Clarify the significance of the transfer in relation to the Indian diaspora's engagement with football, perhaps by mentioning any Indian football clubs or leagues that could benefit from increased visibility due to Barcelona's global brand."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from FC Barcelona or a relevant football analyst discussing the impact of Adeyemi's signing on the club's strategy, which could resonate with NRI fans."
+      ]
+    }
+  },
+  {
+    "id": "a76137a0-0882-4c22-8cce-11fb45379fd3",
+    "headline": "Visa Delays Are Killing Startups Across the US, UK and Canada \u2014 Here's What Foun",
+    "slug": "visa-delays-killing-startups-us-uk-canada-founders",
+    "category": "immigration",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/32269240/pexels-photo-32269240.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including more personal stories or quotes from Indian entrepreneurs in the US, UK, and Canada who are directly affected by these visa delays. This could help illustrate the emotional and professional impact of the immigration system on the NRI community.",
+        "Provide more context on how these visa delays specifically affect Indian-origin startups compared to other nationalities, possibly including statistics or studies that highlight the unique challenges faced by this demographic.",
+        "Consider adding a section that discusses potential policy changes or advocacy efforts led by the Indian diaspora to address these visa issues, which would resonate with the audience and align with the site's focus on NRI interests."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the new $100,000 fee on H-1B cases to provide readers with direct access to the source of this information."
+      ]
+    }
+  },
+  {
+    "id": "46cd4666-87c0-4af3-975c-78313834ba3d",
+    "headline": "How Millets Went From Humble Grain to Fine Dining Star Across India and Dubai",
+    "slug": "how-millets-went-from-humble-grain-to-fine-dining-star",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/27959280/pexels-photo-27959280.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian NRIs in Dubai who have embraced millet-based cuisine, discussing how this trend connects them to their roots or influences their culinary choices abroad.",
+        "Provide context on how the growing popularity of millets among Indian restaurants in Dubai specifically impacts the NRI community, perhaps by mentioning any local events or festivals celebrating Indian cuisine that feature millets.",
+        "Add a section that discusses the health benefits of millets, particularly in relation to the dietary preferences of NRIs who may be looking for healthier options in their diets.",
+        "Include a brief overview of how the Indian diaspora has historically influenced food trends in their respective countries, linking it to the current rise of millets in fine dining."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the UN or an official organization promoting the International Year of Millets to highlight the global significance of this trend."
+      ]
+    }
+  },
+  {
+    "id": "1cf23b38-a859-45de-9cf8-fde0e7b70c13",
+    "headline": "India Ships First Sea-Route Mango Consignment From UP to Dubai, Slashing Export ",
+    "slug": "india-ships-first-sea-route-mango-consignment-up-to-dubai",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs in the UAE who are excited about the availability of Indian mangoes in their local markets. This could highlight how this shipment impacts their cultural connection to India.",
+        "Add context about how this sea-route shipment could affect the prices and availability of Indian mangoes for NRIs living in the Gulf, potentially including a comparison with local mango varieties available in the UAE.",
+        "Include a brief section on the historical significance of mango exports for the Indian diaspora, particularly in the Gulf countries, to provide deeper context for the importance of this shipment.",
+        "Clarify the potential long-term implications of this shift to sea freight for Indian mango exports, especially how it may affect the NRI community's access to these products in the future."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Ministry of Commerce or APEDA announcing the shipment, which would provide official context and credibility to the article."
+      ]
+    }
+  }
+]
