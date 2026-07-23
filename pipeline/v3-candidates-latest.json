@@ -1,0 +1,912 @@
+{
+  "timestamp": "2026-07-23T15:35:43.187301+00:00",
+  "total_topics_evaluated": 1660,
+  "candidates": [
+    {
+      "topic_id": "88ee7b04-afc5-4772-b690-70c234a5bdb6",
+      "title": "Indian-Origin Google Techie Shot Dead By Husband At US Home, Son Injured - NDTV",
+      "description": "",
+      "category": "news",
+      "signal_count": 188,
+      "source_diversity": 16,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T13:58:08+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRjZEY0F2cjExU3hObm9IX0l1b1JPMFY4OUdPSUJvXzhoYVRpTnJnSklBZmJFMFpPbWVVN1FmakQtS0puWjNDSXhEUGlyNHROdFl4Z0N5MGZHTTBZT2ozRFdxdDc2d3JLZmEwMGZRZWc4b29XTDB3c2JUY2NBb2wwaVRWQzhCTWx2dEd4dGtvd3V2elZWMWhLUVhSeWQwUXc?oc=5",
+        "https://news.google.com/rss/articles/CBMitwFBVV95cUxQZ0gzS3lyQ21oV2RaQUFfNm15SE5aYnVKT2pVbGZWNktNMkZWem9wT0NTRHQzTVNxeEtzZEpwNmZWdU1DY3prYmJ2OUZWSWV5MklQa0ZxaGs5RzVDbjlacy04VjEtVUR1czNaTlBBYU9lSm9FVVRWQnlST0Y5LThZc1IxcjJpaE9oZXg3Mzh0RDZoTjJfd0hxeDhBRTNVVnNZMURBTkxMbFJvODNOVkg5VzdWWkZDcTA?oc=5",
+        "https://news.google.com/rss/articles/CBMi-gFBVV95cUxONnhYUFpjdkdGN1QtUnN5RXVLODNTYWY1U2w4cE9PamRsQmsxZTJIbzZRSUhDbFp4eVBvWmkxcDh0WklfQ2dXbXZIdk1ONlRDUmFMS18xWmFuZDRnR3MwNWd6ZWJReDZtc29PU3R4VHI4clE5d1cxZ0JGWGxKck5CeU9KQmZVZmlISEc3d1pWQy1SazR2X21hSnR3bnhxTmpZR0xvbkxLelN2WjJvNllIc1A3d0NzckM5aDVOV0NXblAxNXFwQ01DWGlwTzludndQOUgyVkRxbllmcHM1Y1hIc3JUOTR6a0xFWnBJOTVlZVhRb1NuRXlWelln?oc=5",
+        "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPdXBJa01Fem9oZkw1aWtvaHJfTnVXcV9xNVVtWUhNd3pxZ0oxSkVJSjhqNWxPOGM0b2NLZVMxZUR3ZjNJeUJoLUJKeEFiNmtwRjM1UW1PMzV6WE5PV0t3NWdfMDlpN0phMm44Nzc2a2Z2N25TdmpwWG14aHRHY0YxVTMtY2JxSURxNXlpWEZQVUgzT3Bhb2lZNUFxSGU4eE1NVjg4OFBocXM4aUpWM0ZGekhaX0EydGljVXlqZUdHQlhTTktBTnhHUi13aXFRTXNM?oc=5",
+        "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZUVsbi1BZFQwdzQ2RGZwdkFyVlpib2FHTllLMGpZS2ZhdU5Ec0E5TlQ0bS01OUhtYm53aF9QaFp5dGxvdGFqa2IzbmV0MTZONlBVbzdoM2tkLU9OLVVLZDJoQy1sUUV3b05ta2hra2Z3QVM3Vzhxd3BPTmo5eXh6MFdLZElhT3NKeU44dDd2b2FrZGVTM0pPZzNLTXpFdVhpZzU0NFkzeWJENDZWV3RiWWdhRGtTbmhzV3dlZTlqbW5kT2lyVDAtRDV3VEpMU0diUEhZZWxGdEpyUQ?oc=5",
+        "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUXBVbVBEU2hfT2d5RjczVVAyZHlPbVhxVVpFYXI3M19KcVVMeTBzTzEwMDQybXZMbWt4TlkzQUthU0hlM3FYRnNPMklCRk85QVEzUkZaLTV6bnVmRnF3cjROSDdDMjctMWJrd0tqVElzc1FodEV4V3liR3lwYktYZENYYnN6aEtwVDJvQW50VzQ3OTljQmRhMXdhLTA5VllIaXgtNGZqb2tIMXNROEdCUnIyVW5hZ2Y0b2k0UlN5RGxqTUFy0gHMAUFVX3lxTE9EamU0Z0dRS3BOREp3dXZIeHlLZVdSQjVtMkdLSFVoNmFNUk5jT2RVa05NejlvSW9MTGZSZXRDdDlldmJwMU41Z2RndTdIby1jaGtIRlhpUnRHV1NzNFZjVUNsV3ZwcW5mR1pxWlZDdEVlRGpmYy0walBlN0RCZXp0WTRGVlZ6Y2J5X3VEaEw4R3JYNTFUS1o0V3VwRWJWTmg3bFY2YkEtam5YZnV3Vjl3QlRyVXVhNUFRTjVORGlLTGlvUk1PLVRTaV9yYw?oc=5",
+        "https://news.google.com/rss/articles/CBMirAFBVV95cUxOcjFOLTdScllBbWN3X25XZHZkSnhNNmhDemcxWXJabGZqUXJESGRJWU5TZ0l3ekhvRkl3aDQ2S0hzNlBwWXREcGZnZXJPOGNDbU5MRXhuMUVibHpvdVRFTG1VM2h2UVB5Q1FSTk8tbm9CVjMxQXBzTTg5XzFFZExiOVc0TmdDN3FRanhtMTFMRnJlZmRtTmU5VkkzYkNvQWxNQjlXTktaQWRFV0hj?oc=5",
+        "https://news.google.com/rss/articles/CBMizwFBVV95cUxPUDhhWDBmeHJiblNXR2VjSW9mdjA2SFBuWnB3RDhER0dZdVZEUVp4MzJQQXRVTWZPN3VVWjFxajREUjhvS1hsWDl1VEVwYVlSc1FyM3lMcEpDWG1PR0JydmpDU0tvcWlUSExhTml3Z2ZnLUhfczRMWElwbGZtYzZzd2tiYTVsdmZwakFFQjZsRmg2ME1PbENDdTYzRTQ2RXNnZ01XQkR5ZGlnMktGU2VOYXUwMk91TjBQRFpqUDN6WGRFU2dnM0ttV2N2SFhPeTDSAdQBQVVfeXFMTVptM0oxbVdTU0xrRjF2REFjdGw1MmRacTl1WmtMNHdEeENoWndlNnZxS0ZLUEN0TXJ4UVh2b1JiMmUyd09DWktaX1MtaG5VVVRYcnU3Ql9TYUhPX1gxM0lvNFdBa19oaVpRTzROU25DMlRKYkpERW5uZG4wa0FhRzY2MmJPRUJTRlFXeGhHaldYVmdkak1yQThJQUlzSkdJREg5NTdUbDQybE9YOGhMbmN5Q2dKZEExNFBXVEdmZXdEa25ZV3FmY29LZGpYTTFySjdFZEk?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Infosys stock hits 52-week low at 10.33 USD - Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNRjZEY0F2cjExU3hObm9IX0l1b1JPMFY4OUdPSUJvXzhoYVRpTnJnSklBZmJFMFpPbWVVN1FmakQtS0puWjNDSXhEUGlyNHROdFl4Z0N5MGZHTTBZT2ozRFdxdDc2d3JLZmEwMGZRZWc4b29XTDB3c2JUY2NBb2wwaVRWQzhCTWx2dEd4dGtvd3V2elZWMWhLUVhSeWQwUXc?oc=5",
+          "source": "Investing.com"
+        },
+        {
+          "title": "Infosys names Ashiss Kumar Dash as CEO designate, Salil Parekh to step down in 2027 - Indian Television Dot Com",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQZ0gzS3lyQ21oV2RaQUFfNm15SE5aYnVKT2pVbGZWNktNMkZWem9wT0NTRHQzTVNxeEtzZEpwNmZWdU1DY3prYmJ2OUZWSWV5MklQa0ZxaGs5RzVDbjlacy04VjEtVUR1czNaTlBBYU9lSm9FVVRWQnlST0Y5LThZc1IxcjJpaE9oZXg3Mzh0RDZoTjJfd0hxeDhBRTNVVnNZMURBTkxMbFJvODNOVkg5VzdWWkZDcTA?oc=5",
+          "source": "Indian Television Dot Com"
+        },
+        {
+          "title": "Farm Watt Innovations Raises \u20b932.5 Crore Co-Led by IAN Alpha Fund and Rainmatter to Expand Biomass Supply Chain - Indian Startup Times",
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxONnhYUFpjdkdGN1QtUnN5RXVLODNTYWY1U2w4cE9PamRsQmsxZTJIbzZRSUhDbFp4eVBvWmkxcDh0WklfQ2dXbXZIdk1ONlRDUmFMS18xWmFuZDRnR3MwNWd6ZWJReDZtc29PU3R4VHI4clE5d1cxZ0JGWGxKck5CeU9KQmZVZmlISEc3d1pWQy1SazR2X21hSnR3bnhxTmpZR0xvbkxLelN2WjJvNllIc1A3d0NzckM5aDVOV0NXblAxNXFwQ01DWGlwTzludndQOUgyVkRxbllmcHM1Y1hIc3JUOTR6a0xFWnBJOTVlZVhRb1NuRXlWelln?oc=5",
+          "source": "Indian Startup Times"
+        },
+        {
+          "title": "Earnings call transcript: Infosys trims FY 2027 outlook as stock falls premarket - Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPdXBJa01Fem9oZkw1aWtvaHJfTnVXcV9xNVVtWUhNd3pxZ0oxSkVJSjhqNWxPOGM0b2NLZVMxZUR3ZjNJeUJoLUJKeEFiNmtwRjM1UW1PMzV6WE5PV0t3NWdfMDlpN0phMm44Nzc2a2Z2N25TdmpwWG14aHRHY0YxVTMtY2JxSURxNXlpWEZQVUgzT3Bhb2lZNUFxSGU4eE1NVjg4OFBocXM4aUpWM0ZGekhaX0EydGljVXlqZUdHQlhTTktBTnhHUi13aXFRTXNM?oc=5",
+          "source": "Investing.com"
+        },
+        {
+          "title": "India's Wipro Consumer Care International acquires Philippine personal care firm S Brands - The Standard (HK)",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNZUVsbi1BZFQwdzQ2RGZwdkFyVlpib2FHTllLMGpZS2ZhdU5Ec0E5TlQ0bS01OUhtYm53aF9QaFp5dGxvdGFqa2IzbmV0MTZONlBVbzdoM2tkLU9OLVVLZDJoQy1sUUV3b05ta2hra2Z3QVM3Vzhxd3BPTmo5eXh6MFdLZElhT3NKeU44dDd2b2FrZGVTM0pPZzNLTXpFdVhpZzU0NFkzeWJENDZWV3RiWWdhRGtTbmhzV3dlZTlqbW5kT2lyVDAtRDV3VEpMU0diUEhZZWxGdEpyUQ?oc=5",
+          "source": "The Standard (HK)"
+        },
+        {
+          "title": "Abhijeet Reveals The Advice He Gave Udit Narayan After Viral Kissing Controversy - NDTV",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOUXBVbVBEU2hfT2d5RjczVVAyZHlPbVhxVVpFYXI3M19KcVVMeTBzTzEwMDQybXZMbWt4TlkzQUthU0hlM3FYRnNPMklCRk85QVEzUkZaLTV6bnVmRnF3cjROSDdDMjctMWJrd0tqVElzc1FodEV4V3liR3lwYktYZENYYnN6aEtwVDJvQW50VzQ3OTljQmRhMXdhLTA5VllIaXgtNGZqb2tIMXNROEdCUnIyVW5hZ2Y0b2k0UlN5RGxqTUFy0gHMAUFVX3lxTE9EamU0Z0dRS3BOREp3dXZIeHlLZVdSQjVtMkdLSFVoNmFNUk5jT2RVa05NejlvSW9MTGZSZXRDdDlldmJwMU41Z2RndTdIby1jaGtIRlhpUnRHV1NzNFZjVUNsV3ZwcW5mR1pxWlZDdEVlRGpmYy0walBlN0RCZXp0WTRGVlZ6Y2J5X3VEaEw4R3JYNTFUS1o0V3VwRWJWTmg3bFY2YkEtam5YZnV3Vjl3QlRyVXVhNUFRTjVORGlLTGlvUk1PLVRTaV9yYw?oc=5",
+          "source": "NDTV"
+        },
+        {
+          "title": "'I'm really delighted with the role I've played here. We've taken the business from $10 billion to $20 billion' Outgoing CEO Salil Parekh opens up on his exit \ud83d\udcc9 Infosys trims guidance amid global uncertainty \ud83e\udd16 AI services post double-digit growth \u2014 here's what's - LinkedIn",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOcjFOLTdScllBbWN3X25XZHZkSnhNNmhDemcxWXJabGZqUXJESGRJWU5TZ0l3ekhvRkl3aDQ2S0hzNlBwWXREcGZnZXJPOGNDbU5MRXhuMUVibHpvdVRFTG1VM2h2UVB5Q1FSTk8tbm9CVjMxQXBzTTg5XzFFZExiOVc0TmdDN3FRanhtMTFMRnJlZmRtTmU5VkkzYkNvQWxNQjlXTktaQWRFV0hj?oc=5",
+          "source": "LinkedIn"
+        },
+        {
+          "title": "Kareena Kapoor Khan supports NEET 2026 Protest, backs students seeking Education Reforms - PTC Punjabi",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPUDhhWDBmeHJiblNXR2VjSW9mdjA2SFBuWnB3RDhER0dZdVZEUVp4MzJQQXRVTWZPN3VVWjFxajREUjhvS1hsWDl1VEVwYVlSc1FyM3lMcEpDWG1PR0JydmpDU0tvcWlUSExhTml3Z2ZnLUhfczRMWElwbGZtYzZzd2tiYTVsdmZwakFFQjZsRmg2ME1PbENDdTYzRTQ2RXNnZ01XQkR5ZGlnMktGU2VOYXUwMk91TjBQRFpqUDN6WGRFU2dnM0ttV2N2SFhPeTDSAdQBQVVfeXFMTVptM0oxbVdTU0xrRjF2REFjdGw1MmRacTl1WmtMNHdEeENoWndlNnZxS0ZLUEN0TXJ4UVh2b1JiMmUyd09DWktaX1MtaG5VVVRYcnU3Ql9TYUhPX1gxM0lvNFdBa19oaVpRTzROU25DMlRKYkpERW5uZG4wa0FhRzY2MmJPRUJTRlFXeGhHaldYVmdkak1yQThJQUlzSkdJREg5NTdUbDQybE9YOGhMbmN5Q2dKZEExNFBXVEdmZXdEa25ZV3FmY29LZGpYTTFySjdFZEk?oc=5",
+          "source": "PTC Punjabi"
+        },
+        {
+          "title": "Infosys Trims Growth Guidance; CFO Says Q1 Softness To Have 'Cascading Effect' - NDTV Profit",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQVFVhOTFtX0oyQS0yR3ZOVnFrNk95NTI4LUhaRkdFaFhXUTFNemxJY1RsN1AzbmNuREtDaFN3a1BRcm5fZEN3VVVrRmxKMkJqOHlQZlpPeDZKSnlyRlNQSUtCT00xbW5kMjRFaTZka1BRN2VHZ1ZNSmlocURHWlRka2x1LTFIb0lNZFNlbXZFbWhUMzMyM29ZcDQ0THk2SzZyUWNWTHl5MnBYMmlHdUFqbEpnRmtZLThKRmpQRzVybWJhaEM2Wm5B0gHPAUFVX3lxTE1POTh2MlVyQW5SSWt5LTdsU3FDalhSbnZvY1VpYVB3VWVhaUItOWo2SVN6WUZyYjhkUmt0cDI5TTBhN3JjRFRfRDlBSVVTUjJCUGQyaUxfTC1XV3VCX3l3a1lIbWpRdVc2c0c0bUJNSzNRbll6OUgyQU8yQ1J6b24xbTM0RE8wd1NXNXQtWWJWNHNsWVRvNVZ0RXE4eTM5Q0lfUTVhXzhBaTBuYUJmN181c0xJdXc3OXpnYXJhUFdiLU1Dd2V4ZjdJTkNQMDBVbw?oc=5",
+          "source": "NDTV Profit"
+        },
+        {
+          "title": "Infosys names insider Ashiss Kumar Dash next CEO, trims growth forecast - CNA",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNYUJlb3dDVzVnbnBESXo3VnRxdTd2ZzZVQWtNY3ZRZVNzOENpWXhUVEJXendWYThXVjF2S2JLWGVsV2g3bWN3UWlsWURQVWI4YjZnXzF0YWJMTU1yT2V6MWlETFdzUjNLa0xobnRubFIxV01ZeFJiZm5XWjdvVVN5dkd4cFNCbF9ZVjZyZVltN2gzMUxNeDdQUFdtZmZFTmVRaXk5YUdaUjROYWZzUHFaVnJPT2lzdmxBcG4w?oc=5",
+          "source": "CNA"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "This topic reports on the tragic death of an Indian-origin techie in the US, which is a significant concern for the diaspora community.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@indiainusa",
+          "type": "org",
+          "keywords": [
+            "Indian",
+            "community",
+            "USA"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "1807e927-df60-4a24-a3fa-3ca409bfec4d",
+      "title": "Commonwealth Games 2026 LIVE Updates, Day 1: Massive 'Doping' Setback For India, 2 Athletes Forced To Withdraw - NDTV Sports",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T13:51:27+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMizAFBVV95cUxPSkN0SFdaaDhYeWl2UE1URldDSnRfMnYwdk1JWlA0aU1oTGdPUXlocnhRMnduNGNRaVVFOTlONTliYk03Q1c2bGk4elhzdWRSMTZJUk5GN2gzbi1YaHBtRVdTS1IyOGg5b2tSLTZYV2VLUDVxdHVRMmQ0STN3MEJ4ZnU3Qmt2OUk1V0hNUzJQQm5kcEQ3dXZPbjMtWEJWVGQzaFhFa1hMVWJoVDMweDVLOEdqRGdPWFQ4SVVGU3BiMGNMb096X05xUHFsbG0?oc=5",
+        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNd0dKTm92VlJwMDJMWlBCcmVMSDVHSEkxcGM4MHhtd1VwQmhZYzhfMkFYeFpnZ0FLLXc4ZGlYWkpEWmVmbktHVDZFbmVhRzFtV0VxOVF3NXk3ZG41c2F2TFpQYWFDYS1oam9FNEhDdmJYNElBSXAzT3AyOGVXa3FmazVWRlMwZXZVWThkeUlzSmxiM0FJTjZCMG9pdVowem92ZHFranhocHNuZXJMWlE4ZU14NWN1N2VfbXBxaGN6V1FMMnp2MzM3UHVuOHRnQl9FdFBRMHRsdXZoVTNJTzBob0lyME1fRTcwbWfSAfABQVVfeXFMT2plb1dGTTNDTXJPR1RNYWNYTE92MmozV2psOWo1dFdrekxjM0RieE1vbVZTR0M3enFlWlBPT2FRMDFKYXRhdVJHOC11aHRzcGFNRlZCLVhkZGpiOEl6SnR6MS1KMGhYNk80bUNJY011YW5vMkwxeTdaRnd1aWkyVVZydGdiMG1oRk9HYzBPRVBkVWVvQl9tVTVlWGpXSElpbVFIMEVUVzFndDUySklSREtxVDBlZ19WR21zRWg2V0lVaVNlWkdTdTViTTVsRXlYUW1ZNnZPX2ljbm1zY1BFaVp4Rl90UmtQQlpHN0FyLXNY?oc=5",
+        "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQREJVZWxpdnRUU0RzYUpjbFdHelpPcEg4ZTc2VkJEeFlPVVI4TmhqY05QeUJFaE5fQkI4LWFtRURIVzh1SjVKV3p0c19vWlVhZGt0b29qTlVTSjJCc3laZHdMNHdVdW94b0dua1MzMTF2Qm9qaWp4TlRIQ1lVQ1RmUUdsZTd5amJyZlpQQXhVb2Z4S0pzM2kzT1hqNWJiOW5BVjFuOF9TdXJQZHNCbk1URGdidTNYYTAzUi1COW1YYi10cVV0ZGpVcW11SG5Ia3M2TlRjcU5heFNEWkQwaFBYbkJZNE9oR3ZJeXJzVUNVLWkzU0dM?oc=5",
+        "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPb3N5WkFPTDFFMWRMelRUcVl0azRkUVBqaU9zZHE0RnVCYngyTEg2WUZ3Z0pvUnFEMXV0a0M3bmNIX1Y4ZUtxYVZFa01fdkVmZE5XU2xJbXg3bnNRRVlaWTYzWmxnNjJycFVtUWtJTjNzQkhhZFFacnBMUWpmem1fRFk2Y1hpdFFDcjZkVEFEZXJRbGJILWo4WXN3WW1xU1o3LUJJczR3NU8?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "CWG 2026: What Is Lawn Bowls, How Is It Played? Rules, Scoring System Explained",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPSkN0SFdaaDhYeWl2UE1URldDSnRfMnYwdk1JWlA0aU1oTGdPUXlocnhRMnduNGNRaVVFOTlONTliYk03Q1c2bGk4elhzdWRSMTZJUk5GN2gzbi1YaHBtRVdTS1IyOGg5b2tSLTZYV2VLUDVxdHVRMmQ0STN3MEJ4ZnU3Qmt2OUk1V0hNUzJQQm5kcEQ3dXZPbjMtWEJWVGQzaFhFa1hMVWJoVDMweDVLOEdqRGdPWFQ4SVVGU3BiMGNMb096X05xUHFsbG0?oc=5",
+          "source": "NDTV Sports"
+        },
+        {
+          "title": "CWG 2026 LIVE Updates, Day 1: Rupa, Pinki win first set in Lawn Bowls against Malta",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNd0dKTm92VlJwMDJMWlBCcmVMSDVHSEkxcGM4MHhtd1VwQmhZYzhfMkFYeFpnZ0FLLXc4ZGlYWkpEWmVmbktHVDZFbmVhRzFtV0VxOVF3NXk3ZG41c2F2TFpQYWFDYS1oam9FNEhDdmJYNElBSXAzT3AyOGVXa3FmazVWRlMwZXZVWThkeUlzSmxiM0FJTjZCMG9pdVowem92ZHFranhocHNuZXJMWlE4ZU14NWN1N2VfbXBxaGN6V1FMMnp2MzM3UHVuOHRnQl9FdFBRMHRsdXZoVTNJTzBob0lyME1fRTcwbWfSAfABQVVfeXFMT2plb1dGTTNDTXJPR1RNYWNYTE92MmozV2psOWo1dFdrekxjM0RieE1vbVZTR0M3enFlWlBPT2FRMDFKYXRhdVJHOC11aHRzcGFNRlZCLVhkZGpiOEl6SnR6MS1KMGhYNk80bUNJY011YW5vMkwxeTdaRnd1aWkyVVZydGdiMG1oRk9HYzBPRVBkVWVvQl9tVTVlWGpXSElpbVFIMEVUVzFndDUySklSREtxVDBlZ19WR21zRWg2V0lVaVNlWkdTdTViTTVsRXlYUW1ZNnZPX2ljbm1zY1BFaVp4Rl90UmtQQlpHN0FyLXNY?oc=5",
+          "source": "Sportstar"
+        },
+        {
+          "title": "India at CWG 2026: Know Your Athlete - \u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200bRupa Rani Tirkey (Bowls)",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQREJVZWxpdnRUU0RzYUpjbFdHelpPcEg4ZTc2VkJEeFlPVVI4TmhqY05QeUJFaE5fQkI4LWFtRURIVzh1SjVKV3p0c19vWlVhZGt0b29qTlVTSjJCc3laZHdMNHdVdW94b0dua1MzMTF2Qm9qaWp4TlRIQ1lVQ1RmUUdsZTd5amJyZlpQQXhVb2Z4S0pzM2kzT1hqNWJiOW5BVjFuOF9TdXJQZHNCbk1URGdidTNYYTAzUi1COW1YYi10cVV0ZGpVcW11SG5Ia3M2TlRjcU5heFNEWkQwaFBYbkJZNE9oR3ZJeXJzVUNVLWkzU0dM?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Commonwealth Games: India beat Malta in tie-break in Bowls women\u2019s pairs event",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPb3N5WkFPTDFFMWRMelRUcVl0azRkUVBqaU9zZHE0RnVCYngyTEg2WUZ3Z0pvUnFEMXV0a0M3bmNIX1Y4ZUtxYVZFa01fdkVmZE5XU2xJbXg3bnNRRVlaWTYzWmxnNjJycFVtUWtJTjNzQkhhZFFacnBMUWpmem1fRFk2Y1hpdFFDcjZkVEFEZXJRbGJILWo4WXN3WW1xU1o3LUJJczR3NU8?oc=5",
+          "source": "The Indian Express"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The doping setback for Indian athletes at the Commonwealth Games is a significant issue for the Indian sports community and diaspora.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "38f2ce31-5211-480d-97a1-dd60e21d8661",
+      "title": "Risk of Parkinson\u2019s disease may increase with prolonged exposure to road traffic noise - The Guardian",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 5,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T13:04:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMikgFBVV95cUxQNXZkMHZjb1E4WElmbE9NMGhBN2hLZ19hUmNMQ3dUOV9YUUp1SjdQRGdWbWlEU0Vqek1YQUJ4TklQSWVMeEZ4bzlEdkpQdy1yRUdSVlQ2YkJqUklPV2Q1RGY0U3ZhblU1VEMwTWFndllDZ1kzbWpkSzFkT1BCd3dZVFJfSWdhTFJCMzJEMEdRaUhQdw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Living in a neighborhood with traffic noise may increase Parkinson's disease risk over time",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQNXZkMHZjb1E4WElmbE9NMGhBN2hLZ19hUmNMQ3dUOV9YUUp1SjdQRGdWbWlEU0Vqek1YQUJ4TklQSWVMeEZ4bzlEdkpQdy1yRUdSVlQ2YkJqUklPV2Q1RGY0U3ZhblU1VEMwTWFndllDZ1kzbWpkSzFkT1BCd3dZVFJfSWdhTFJCMzJEMEdRaUhQdw?oc=5",
+          "source": "Medical Xpress"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The link between road traffic noise and increased risk of Parkinson's disease is a significant public health concern that could impact many in the diaspora.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "089b0582-516e-4d7b-8dba-21fc47eb9dcb",
+      "title": "Russia revives 28,000-tonne Cold War nuclear giant with hypersonic missiles, returns to Arctic port - The Times of India",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T11:35:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiugFBVV95cUxNT2dUTENNX1VqUVBIM1UwTnNQX05CZ3NvZ2UycVEwRl9XaUllb1dsX3c0a3o2b3BOUGNNc2VFdUJIcnJDT3A1X0EwMmdJb2t2dTdxVkZvTjRuSE1KQWhsYUpMYURLd1EweHplenB3YlRBaW1WaG10RGlyZF9MMC05Q253R09yWjFudFhpNnZDN3pLalg2SDlSaXRfVXZ4ZU41S0hDS2E4QlJQZzNHaGpiVS1TWXVLUHVtM2fSAccBQVVfeXFMTjRiRlI2UW9qNHp3cFFpUkZDSHlVWUhmMTRGOHZDM0lOM0NPejFnTEJtWGRGYjBDcXJmNWp0R3lpckxyTXZFOTZoRDZsZHhpcFg3T1ZzUlZjM1pHTWhvZ1NESW5nbThFMy1yRFBKY2RGQmk0dU13cnRVa2l1Zk8yWWhreU1lT0hwN0hhSVJkMUVNOGhSekVha2VnekxidGpRbTQxRzg0VHgtaG5WeVFyaGhRTW5RRTBFX1hpMzlIM1JwWEtSSHBSMA?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Russia's Biggest Nuclear Battlecruiser Admiral Nakhimov Completes Sea Trials",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNT2dUTENNX1VqUVBIM1UwTnNQX05CZ3NvZ2UycVEwRl9XaUllb1dsX3c0a3o2b3BOUGNNc2VFdUJIcnJDT3A1X0EwMmdJb2t2dTdxVkZvTjRuSE1KQWhsYUpMYURLd1EweHplenB3YlRBaW1WaG10RGlyZF9MMC05Q253R09yWjFudFhpNnZDN3pLalg2SDlSaXRfVXZ4ZU41S0hDS2E4QlJQZzNHaGpiVS1TWXVLUHVtM2fSAccBQVVfeXFMTjRiRlI2UW9qNHp3cFFpUkZDSHlVWUhmMTRGOHZDM0lOM0NPejFnTEJtWGRGYjBDcXJmNWp0R3lpckxyTXZFOTZoRDZsZHhpcFg3T1ZzUlZjM1pHTWhvZ1NESW5nbThFMy1yRFBKY2RGQmk0dU13cnRVa2l1Zk8yWWhreU1lT0hwN0hhSVJkMUVNOGhSekVha2VnekxidGpRbTQxRzg0VHgtaG5WeVFyaGhRTW5RRTBFX1hpMzlIM1JwWEtSSHBSMA?oc=5",
+          "source": "Outlook India"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The revival of a Cold War nuclear giant by Russia is a major geopolitical development that could affect global security and the Indian diaspora's concerns.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "4cfe50b2-2853-4e96-a2de-be4426029e0c",
+      "title": "Supreme Court Lawyers Recite Preamble Amid Student Protests - Live Law",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T08:36:31+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSDBMVmxOS3FMd2xUUGk2UnNfcE9DYTJmZWJmN1o3V1ZpWUxUUUtlUGRrU2htNFRmeGc5MVRwN1NNVVZBbXhXMUNKRGRfWXBTc213VlVwcEhxWEdzbjhaYVFvTFhZS25VbGdQQzFxVGZnSFJVY3Q3bUlTMTFiOTVmTzF1ZlEzbVBzdGN1YTJXSUEwQzUxVm9PckgzaFdSM2ctTDliTjVDS0Z4bGdqZmV4Q3lxb3dpZXVCVk5uTWNmYy1TY0lRX2tGQzRhaXNEeDYzd1duaFdyc2NrTERpWU5kaTg2ZFRDYlZYSGfSAfABQVVfeXFMT0lDNDRMYTBWR2lQY2ZlSjdSUkVVWTNpTmZTX2VJOWhhNHR5NndOeFVlbGVJUFluanpZUWpNeHFCbXpGbjY0RFpRbzRxZFZ3MFFGLXhJaWRKNkJLc2JVWTAzT2gwWHFkQnFhS0ZGUktDUnlCVTRZMS1lbm1FdFFJNWlzMldlOHNMc0Nza0ZmRW9zTHRyNVBydnV0eTdWRnZ3ekZoMm9sb2dsWHRUMk5Gd2Q4WGk3bTh4cXJHbUtfY1JINVJwTjdDVlNqOHF5Z1FRbHZBVm91WjZyTGlhRlNrMzFoSXlQeTlDWXFZSzBIVTBO?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "SFI activists stage protest in Hassan, condemn police action against students in Delhi",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSDBMVmxOS3FMd2xUUGk2UnNfcE9DYTJmZWJmN1o3V1ZpWUxUUUtlUGRrU2htNFRmeGc5MVRwN1NNVVZBbXhXMUNKRGRfWXBTc213VlVwcEhxWEdzbjhaYVFvTFhZS25VbGdQQzFxVGZnSFJVY3Q3bUlTMTFiOTVmTzF1ZlEzbVBzdGN1YTJXSUEwQzUxVm9PckgzaFdSM2ctTDliTjVDS0Z4bGdqZmV4Q3lxb3dpZXVCVk5uTWNmYy1TY0lRX2tGQzRhaXNEeDYzd1duaFdyc2NrTERpWU5kaTg2ZFRDYlZYSGfSAfABQVVfeXFMT0lDNDRMYTBWR2lQY2ZlSjdSUkVVWTNpTmZTX2VJOWhhNHR5NndOeFVlbGVJUFluanpZUWpNeHFCbXpGbjY0RFpRbzRxZFZ3MFFGLXhJaWRKNkJLc2JVWTAzT2gwWHFkQnFhS0ZGUktDUnlCVTRZMS1lbm1FdFFJNWlzMldlOHNMc0Nza0ZmRW9zTHRyNVBydnV0eTdWRnZ3ekZoMm9sb2dsWHRUMk5Gd2Q4WGk3bTh4cXJHbUtfY1JINVJwTjdDVlNqOHF5Z1FRbHZBVm91WjZyTGlhRlNrMzFoSXlQeTlDWXFZSzBIVTBO?oc=5",
+          "source": "The Hindu"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The Supreme Court lawyers reciting the Preamble amid student protests highlights a significant moment in India's political landscape, resonating with the diaspora's interest in Indian democracy.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "549b9c1d-5acb-4c64-b86b-0faba9c25be2",
+      "title": "\u2018Our whole village went under water\u2019: The devastating impact of Assam floods - The Indian Express",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T02:00:17+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZ2dzQ1dyVXFfUmRpQXdmblNJeUdZRkNvbTJCdklYNUxxYThBMlRuaERjMWc1MklYSlJPVzZTV2NqOURhZTRtX3poWERNOTIxMWIyZ3JmWUZ4SFNuTXBmMl9aS0hZM3NEOXFNX0ZxLVI2aXJmdUFaOHFuVGdxRExTZnZKM1BPRVlpUWZHV0VjZTg1Sk9jT2FRaXhTQ0tTMnZjQlJVcTQxOER1RUVyMV9qak02Mjcya2la?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Assam Flood Toll Rises to 41, Over 7 L Hit as Monsoon Fury Continues",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZ2dzQ1dyVXFfUmRpQXdmblNJeUdZRkNvbTJCdklYNUxxYThBMlRuaERjMWc1MklYSlJPVzZTV2NqOURhZTRtX3poWERNOTIxMWIyZ3JmWUZ4SFNuTXBmMl9aS0hZM3NEOXFNX0ZxLVI2aXJmdUFaOHFuVGdxRExTZnZKM1BPRVlpUWZHV0VjZTg1Sk9jT2FRaXhTQ0tTMnZjQlJVcTQxOER1RUVyMV9qak02Mjcya2la?oc=5",
+          "source": "Deccan Chronicle"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The devastating impact of floods in Assam is a significant humanitarian issue that affects the Indian diaspora's awareness and concern for their homeland.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "d3b22a4a-baf4-4c67-8ad3-e1b495c4d5eb",
+      "title": "Regular Training Erases Parts of Muscle Aging Signature - Lifespan Research Institute",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 5,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-21T15:55:50+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPM2VXOE80eXljZ1Ezc2JtazVQRVUtOGZqZWF6Qmo4V293SnpQLWpUaS1wSUNneGtwaFhJVHJBMHNwNDRYcnR6UlNtY2tqdTFKaDUwY25nbHdwZERvVkNrNFVuVUV2a1MyejhiN3YtSVF1V1g5OGRNYTVwMkx2dHFPeGtSYmkzc0Jp0gGcAUFVX3lxTFBWSlpUX2FFWGJYZzBzWjgyOWFaTG9wSldZNG1xVXhLY05oRnFFdGpKeTF4Q19hR044cUlkNWlGa3AtY0NYdWdXU2lveEd5NVVOZExQaHN2MEo0aUFvOGl6LTI1NndhMkRTOUo2cUlXVVFHbHFIT1VFU05nSTRnb0F5ODV0SklNbEU5dlhpMDFscVZrMkJzTmpvQldYRQ?oc=5",
+        "https://news.google.com/rss/articles/CBMivAFBVV95cUxPY2h4QjBpeS1YQ2Nra3hLLUJBRVE4TlZNdm1CbUVzNmE2c1d0dlY4ejRBYWMta1JSV0xsaXlPZUtxbV8zeXBLMFFjUng1ZE1UTXJZNHFsZVgwMmFwWUlqWW5BYWtHTkQ2WHdzcXowMDZqZ3lqN3A1ZHNHUU1GUU4xMFRhM2lJOFNfNE1zSEQ2MDVfd0JaZ2tqMUFQUWZjVU5lWFNORlppb0hJdGo3eTc1QWN3azRQWFBmRDFlUA?oc=5",
+        "https://news.google.com/rss/articles/CBMijAFBVV95cUxOa1FYTjhHa29zbmxmYndFUER4OFQ4NnZycWlGVEpCY2puZDdQV0xfY3padkJ4RVh6aUdsZTREdkV2VU4tb0V0d3ItWElkeW1nNFdpWXJrVUhUcy1RTVVYREFLUDI5b18wTXM3UlAtTFZNRzJlQ0ZKNXBGQVFoWXl5RlNEV2VfS2dQVGdBTA?oc=5",
+        "https://news.google.com/rss/articles/CBMiggFBVV95cUxORkl2alVlUGJDQ2k4b2x5NmRCNTlMZlRFYjg3M3lIQzltUHZaaUFXYXp1ckxqVzYyMnBrQVVWemtoVXNvUldoamRCV0hPVXJvbllQV0Njb2lTOGlRZ29RQkVDaloxeGlKdi1jcVZMLUlVbjRZRk1NSWNHODhWRTg3TTNn?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Health Check: Preventing bone and muscle loss as you age",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPM2VXOE80eXljZ1Ezc2JtazVQRVUtOGZqZWF6Qmo4V293SnpQLWpUaS1wSUNneGtwaFhJVHJBMHNwNDRYcnR6UlNtY2tqdTFKaDUwY25nbHdwZERvVkNrNFVuVUV2a1MyejhiN3YtSVF1V1g5OGRNYTVwMkx2dHFPeGtSYmkzc0Jp0gGcAUFVX3lxTFBWSlpUX2FFWGJYZzBzWjgyOWFaTG9wSldZNG1xVXhLY05oRnFFdGpKeTF4Q19hR044cUlkNWlGa3AtY0NYdWdXU2lveEd5NVVOZExQaHN2MEo0aUFvOGl6LTI1NndhMkRTOUo2cUlXVVFHbHFIT1VFU05nSTRnb0F5ODV0SklNbEU5dlhpMDFscVZrMkJzTmpvQldYRQ?oc=5",
+          "source": "KBTX News 3"
+        },
+        {
+          "title": "New study suggests that middle-aged women may experience up to a 6% decrease in muscle mass",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPY2h4QjBpeS1YQ2Nra3hLLUJBRVE4TlZNdm1CbUVzNmE2c1d0dlY4ejRBYWMta1JSV0xsaXlPZUtxbV8zeXBLMFFjUng1ZE1UTXJZNHFsZVgwMmFwWUlqWW5BYWtHTkQ2WHdzcXowMDZqZ3lqN3A1ZHNHUU1GUU4xMFRhM2lJOFNfNE1zSEQ2MDVfd0JaZ2tqMUFQUWZjVU5lWFNORlppb0hJdGo3eTc1QWN3azRQWFBmRDFlUA?oc=5",
+          "source": "BusinessMole"
+        },
+        {
+          "title": "Half of \"Muscle Aging\" Isn't Aging at All, Study Finds",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOa1FYTjhHa29zbmxmYndFUER4OFQ4NnZycWlGVEpCY2puZDdQV0xfY3padkJ4RVh6aUdsZTREdkV2VU4tb0V0d3ItWElkeW1nNFdpWXJrVUhUcy1RTVVYREFLUDI5b18wTXM3UlAtTFZNRzJlQ0ZKNXBGQVFoWXl5RlNEV2VfS2dQVGdBTA?oc=5",
+          "source": "Yahoo"
+        },
+        {
+          "title": "Regular Training Erases Parts of Muscle Aging Signature - Lifespan Research Institute",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxORkl2alVlUGJDQ2k4b2x5NmRCNTlMZlRFYjg3M3lIQzltUHZaaUFXYXp1ckxqVzYyMnBrQVVWemtoVXNvUldoamRCV0hPVXJvbllQV0Njb2lTOGlRZ29RQkVDaloxeGlKdi1jcVZMLUlVbjRZRk1NSWNHODhWRTg3TTNn?oc=5",
+          "source": "Lifespan Research Institute"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The study on regular training erasing muscle aging signatures is groundbreaking and highly relevant to health-conscious individuals, including the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "005266bc-c44f-47b4-b792-a191681dd96e",
+      "title": "The New South Indian Restaurant Where Spices Rule in Flatiron - Eater New York",
+      "description": "",
+      "category": "food",
+      "signal_count": 91,
+      "source_diversity": 10,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T15:21:40+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMitAFBVV95cUxNY1dYYTQtRUtfR0hZNDRiR1pzcGpsQWFJUFoyRFpOWXd2dkZMb1ctTkNuckV0c2V4Skw2aHc2aGtKQkJQZ2ZCc0txVjlwcVpwUWZvR0NJbkp5MnFfS09TU1dmdHV3R21NU1Bsc1F0YXpOYUdXWDVKUVhfWUUxTlIyMENHTTVsZ0REclNTNldQNGltTVlrVnQwZEhuQXVsd21vRE9OYWFraWdxV3p4WWpMX3djRGk?oc=5",
+        "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQTk1ZZzRRcFE5RTZ0bmRuZUVCR2J2ZVBXTzJYeXZUakZTanBjR3hPT3BtTlRHeHBOaENET3FoTHRDcERYX0NYbDJhdmpYVmtRQ0dIOVhvTlpmbkM1c19BNEFtVXRmZkRnaWlIOFZQWE4tN0hJSGphY0Z0dlcyMERPV2dkZndxTV9Sd0hyNFlxOVJ2Y1NBWTdEbkJFc0VOSXBpaTMzMXhCc3lpMmEycFpEV0JaWDBiM09ZZHVn?oc=5",
+        "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkgyY3NEamxDM2NoR2o1RVZENENaWHYxWEgySVczdTFCYWFJZmpXWGlTR1hPZmEzQi0zZFBjVU1rNUJoMmt1aFpmd3hNei1YWmlaTEs4SDZVMEljQjFqZDZ5bzlfZGQtUHE5MlViMTNKRWlEd3hnTU16WkRsUl9zOUN2QUJXSV83ZHFLaEtmaXNqcmFHQXZTdGU3NFJ6RVREZlVrYk1lN3ZaR28taXhtT1lBcXRsZw?oc=5",
+        "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYlhWOG4zckN5UTFoV0NwSDAwdk03dmpxWER3SDNNQkZWNGtlU2VuT09SbWtBazJNRnZkbHpTZU9neXA1RE5kODl3UWJHLUtqeTQ3TnBjVlB5cWVrSlJURUlNa2Z6NUVxWmtPQVNOeVRXOXk2eVRFQ25QbjBBMHc3cUM5aEpieTFnOXdjcGcyTVBsQng1?oc=5",
+        "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNUERNQjYzWVU5WE80b1ZPLWM3TnpTZE5DUHJlM2diVmxSXzE1bzRzMlhrTWc0RTljcEtXRDUyd1NtZFVadjdFcVkxcWtGQjJUZFpOLXphTHlGaHRwRnZOSEpNdmRpU0RCVjRxSzVqdEpJeFlua2hhNmJGR25MOERSX3dTYnN2SHpiRzczSTFhRTdaS2xTR2syVHRKb1MzV1ctRmlvSmthYU0tWkFBdnoyekh5U3VGMnBzSjhwdXFJYlNtenJhZkNtdnhmQk9xZkYxcVN5Nlpvc2ROd9IB4AFBVV95cUxOQ2hRdE5VanZyLTBWSTNvNTkxd0hPV1NQX1U5Mm5CeHhSS0ZIOFpjVzV3amQtb0FDaUhMejdqVHNPWWRRYWdDVEMtVFlaY3dCQTh2MG9PWkdKRDV5NkViNHJxUTJoMmlwRGx1ajVEWFdkS05UbzR3WDhpbkZVbVB2M2ItVFktVnpfYk5kcG1adVZkblJiYW90NzF6WWJDTUFkSGk3czdtdklzM0xfV21ZQXJOVjR5WXhBOXhKWnB3WFcwYU9fZjNqeGZ2aUhyRVhLQjh5aHBuZGNsanU2UUdIcg?oc=5",
+        "https://news.google.com/rss/articles/CBMipwFBVV95cUxOQnJIOXdVWWRjbkE2RTJaX2duNlZnTzdVQVQ3dGxYeHR3aVpOM0lwQUhUc0NXeWNuNW5WNHhMd2pfQzZNbEppYW1ydV9aM3VrbFM1bF84QV9ENkZhQWpZRVRCQlNIXzh2RER2cXp0S1N4c3hzWklaM042YzIwam5MOTBFSzVtRmFYc2F5R0hBUHFOaERkYnQwWGFHRzZXZ1IzWnkxaFkyOA?oc=5",
+        "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQzRkZHNndGY2N0k0eVJJQlJ2SjJOeE5xVUlxalZXXzF3UVI1RXdHNF9qYUhGMDZPUGpFYjZVTW8yWG5hRnpHWlVYOE9qVmhZYlpBMkZ4M1I0SGdXQUQ4dmowQkxucms2S0NWZ1FpNzVhanlBamFYcVN6Y0tqUGNxVXBpOUZKV19WeWc?oc=5",
+        "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQeXFXclJDT29PRndQNVZTcUIzd1pWT1RoS1RrTENTSFc3dmVMenQ3LURRX1NFMUJKbjZuak4tNUh1akJ5Znd1c2ZjVEVLYld4R2F4djhPdHhQbGpTUU56ckxIOEVETzJabm9IeG55eU5wQVBwTzg4R1E3cmJ4cmhFZHAzZGZHNGwzUWg0UGMyXzdacV93S045a25BOVB6cnVTbzVHa2R2OVo?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Sooryavanshi\u2019s 18-ball fifty powers India past Zimbabwe in the first T20I - SportsAdda",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNY1dYYTQtRUtfR0hZNDRiR1pzcGpsQWFJUFoyRFpOWXd2dkZMb1ctTkNuckV0c2V4Skw2aHc2aGtKQkJQZ2ZCc0txVjlwcVpwUWZvR0NJbkp5MnFfS09TU1dmdHV3R21NU1Bsc1F0YXpOYUdXWDVKUVhfWUUxTlIyMENHTTVsZ0REclNTNldQNGltTVlrVnQwZEhuQXVsd21vRE9OYWFraWdxV3p4WWpMX3djRGk?oc=5",
+          "source": "SportsAdda"
+        },
+        {
+          "title": "Vaibhav Sooryavanshi Sizzles As India Finally Open Account In Shreyas Iyer-Era - NDTV Sports",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQTk1ZZzRRcFE5RTZ0bmRuZUVCR2J2ZVBXTzJYeXZUakZTanBjR3hPT3BtTlRHeHBOaENET3FoTHRDcERYX0NYbDJhdmpYVmtRQ0dIOVhvTlpmbkM1c19BNEFtVXRmZkRnaWlIOFZQWE4tN0hJSGphY0Z0dlcyMERPV2dkZndxTV9Sd0hyNFlxOVJ2Y1NBWTdEbkJFc0VOSXBpaTMzMXhCc3lpMmEycFpEV0JaWDBiM09ZZHVn?oc=5",
+          "source": "NDTV Sports"
+        },
+        {
+          "title": "Zimbabwe India Cricket - Dayton Daily News",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPWkgyY3NEamxDM2NoR2o1RVZENENaWHYxWEgySVczdTFCYWFJZmpXWGlTR1hPZmEzQi0zZFBjVU1rNUJoMmt1aFpmd3hNei1YWmlaTEs4SDZVMEljQjFqZDZ5bzlfZGQtUHE5MlViMTNKRWlEd3hnTU16WkRsUl9zOUN2QUJXSV83ZHFLaEtmaXNqcmFHQXZTdGU3NFJ6RVREZlVrYk1lN3ZaR28taXhtT1lBcXRsZw?oc=5",
+          "source": "Dayton Daily News"
+        },
+        {
+          "title": "India cruise past Zimbabwe to take T20I series lead - SABC Sport",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPYlhWOG4zckN5UTFoV0NwSDAwdk03dmpxWER3SDNNQkZWNGtlU2VuT09SbWtBazJNRnZkbHpTZU9neXA1RE5kODl3UWJHLUtqeTQ3TnBjVlB5cWVrSlJURUlNa2Z6NUVxWmtPQVNOeVRXOXk2eVRFQ25QbjBBMHc3cUM5aEpieTFnOXdjcGcyTVBsQng1?oc=5",
+          "source": "SABC Sport"
+        },
+        {
+          "title": "Amaal Malik accuses Tanishk Bagchi of plagiarising Saiyaara title track, doing paid PR - The Indian Express",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNUERNQjYzWVU5WE80b1ZPLWM3TnpTZE5DUHJlM2diVmxSXzE1bzRzMlhrTWc0RTljcEtXRDUyd1NtZFVadjdFcVkxcWtGQjJUZFpOLXphTHlGaHRwRnZOSEpNdmRpU0RCVjRxSzVqdEpJeFlua2hhNmJGR25MOERSX3dTYnN2SHpiRzczSTFhRTdaS2xTR2syVHRKb1MzV1ctRmlvSmthYU0tWkFBdnoyekh5U3VGMnBzSjhwdXFJYlNtenJhZkNtdnhmQk9xZkYxcVN5Nlpvc2ROd9IB4AFBVV95cUxOQ2hRdE5VanZyLTBWSTNvNTkxd0hPV1NQX1U5Mm5CeHhSS0ZIOFpjVzV3amQtb0FDaUhMejdqVHNPWWRRYWdDVEMtVFlaY3dCQTh2MG9PWkdKRDV5NkViNHJxUTJoMmlwRGx1ajVEWFdkS05UbzR3WDhpbkZVbVB2M2ItVFktVnpfYk5kcG1adVZkblJiYW90NzF6WWJDTUFkSGk3czdtdklzM0xfV21ZQXJOVjR5WXhBOXhKWnB3WFcwYU9fZjNqeGZ2aUhyRVhLQjh5aHBuZGNsanU2UUdIcg?oc=5",
+          "source": "The Indian Express"
+        },
+        {
+          "title": "Zimbabwe India Cricket - WV News",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOQnJIOXdVWWRjbkE2RTJaX2duNlZnTzdVQVQ3dGxYeHR3aVpOM0lwQUhUc0NXeWNuNW5WNHhMd2pfQzZNbEppYW1ydV9aM3VrbFM1bF84QV9ENkZhQWpZRVRCQlNIXzh2RER2cXp0S1N4c3hzWklaM042YzIwam5MOTBFSzVtRmFYc2F5R0hBUHFOaERkYnQwWGFHRzZXZ1IzWnkxaFkyOA?oc=5",
+          "source": "WV News"
+        },
+        {
+          "title": "ZIM vs IND T20 2026: Vaibhav Sooryavanshi\u2019s record fifty lands India back on winning track - olympics.com",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQzRkZHNndGY2N0k0eVJJQlJ2SjJOeE5xVUlxalZXXzF3UVI1RXdHNF9qYUhGMDZPUGpFYjZVTW8yWG5hRnpHWlVYOE9qVmhZYlpBMkZ4M1I0SGdXQUQ4dmowQkxucms2S0NWZ1FpNzVhanlBamFYcVN6Y0tqUGNxVXBpOUZKV19WeWc?oc=5",
+          "source": "olympics.com"
+        },
+        {
+          "title": "Zimbabwe India Cricket - goSkagit",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQeXFXclJDT29PRndQNVZTcUIzd1pWT1RoS1RrTENTSFc3dmVMenQ3LURRX1NFMUJKbjZuak4tNUh1akJ5Znd1c2ZjVEVLYld4R2F4djhPdHhQbGpTUU56ckxIOEVETzJabm9IeG55eU5wQVBwTzg4R1E3cmJ4cmhFZHAzZGZHNGwzUWg0UGMyXzdacV93S045a25BOVB6cnVTbzVHa2R2OVo?oc=5",
+          "source": "goSkagit"
+        },
+        {
+          "title": "Teenager Sooryavanshi blasts 50 off 18 as India cruises past Zimbabwe in T20 - Toronto Star",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNaXlqRHpBdDJkTHhHbmVPSHk5eS14dWxCOG5BYlh2d1VON1B4NnNhLVN4bzlob2pvOHVDcGl2dHIwZ2dwWFA3RFVfd1g1aHp1Z0pkOWQxOTJmSGk3dURJZ3FIMnBlRm1aMU1lejVxUmdsZkg1ZkxvWTN3TmU4VDBfSklKWHdiWV82V3N0YmxncDhnMDJRRWw2TVJ0TnBPdmZJb3hWbllwT2RLN2lxUFEwMEVzZmdjY2MtV0ZXRzdPVDVBX1VWdHVSbzZJSzZzUmdRWUo1Z2J4aGJyY2tyUHhrdlMxTjRtRGVwMVhrTEtTU0JTSko5MFltbA?oc=5",
+          "source": "Toronto Star"
+        },
+        {
+          "title": "The Oval to host WTC 2025-27 final from 9-13 June: India's qualification scenarios explained for reaching t... - Bhaskar English",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbHZzenVKRG5kaWp6Tmc0R3BPTVhEbENGN2NOQ1FZVnZUc0UwMndsMWV5QkdDTm00a3hvMlFEMXdFRU1wNTNzY1kwNDNLNURudVp0QVE5RGt3dFZoamJjbDhjTXV4RUJqRTB4eGpPVWVKdlR6QmZuUTBuNHpfQk05V000WWtvczJiX2FERVRyQkZaLUtTQVVTVmNvbHVEcUlmaGtXNmhkTzhPZ0xaTUlwY1FxVFRRYTA3Uzl3YlBBUmFhSVFQZHAzTURPb3JvLV9PUWIxQWhGanHSAd4BQVVfeXFMT2xIWHFpNld1WWtRcnNHZFJqTDZNTWNHMzBGWXN1YmxPaWl0eVdFZW1CMFFjeFlfQVBlM183NlFaLV9YSUU4U1hVd1hIWFIwaWNUX1N5blJBYnNhYjBFa2FfVEx5UnVkMXVmSV8wS3Z4YU1VV1VvamVYNTk3bWFnbjU1NlpxMlI5X0Z3cFJLTENUck9mUXVjVjdjcmppUG9GN3RtRHQ4Nm82Ml85LUpQcUEzb3ktc05PRUdCVVY1Vk90QU5zYjdXQ1NhY29NTjdzLXdidHlmX3ZjTnJmbXpB?oc=5",
+          "source": "Bhaskar English"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The opening of a new South Indian restaurant in New York highlights the growing popularity of Indian cuisine in the diaspora, appealing to readers interested in food and culture.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@eaterny",
+          "type": "org",
+          "keywords": [
+            "restaurant",
+            "food",
+            "New York"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "997f608f-4e2c-42a2-a30b-ed5fe6cdf147",
+      "title": "Google Cloud CEO Kurian says customers are spending 50% more as segment blows away expectations",
+      "description": "",
+      "category": "technology",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-07-23T15:21:36+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/07/23/google-cloud-kurian-revenue-earnings.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Google Cloud CEO Kurian says customers are spending 50% more as segment blows away expectations",
+          "url": "https://www.cnbc.com/2026/07/23/google-cloud-kurian-revenue-earnings.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The news about Infosys' CEO handover and its implications for AI and business strategy is crucial for the tech community, particularly for Indian professionals in the sector.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@infosys",
+          "type": "org",
+          "keywords": [
+            "Infosys",
+            "CEO",
+            "technology"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "659ee5b4-c4c9-464c-b352-dd20917f5c67",
+      "title": "Intel stock is down 27% from June record highs. How the chipmaker can reverse the slide",
+      "description": "",
+      "category": "technology",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-07-23T15:16:21+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/07/23/intel-is-down-27percent-from-june-record-highs-how-it-can-reverse-the-slide.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Intel stock is down 27% from June record highs. How the chipmaker can reverse the slide",
+          "url": "https://www.cnbc.com/2026/07/23/intel-is-down-27percent-from-june-record-highs-how-it-can-reverse-the-slide.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The appointment of Ashiss Kumar Dash as CEO-designate of Infosys is significant for the Indian tech industry and has implications for the global tech landscape, especially for Indian-origin professionals.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@infosys",
+          "type": "org",
+          "keywords": [
+            "Infosys",
+            "CEO",
+            "technology"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "a11c3b62-f1c5-4539-bb67-0f020e8d030a",
+      "title": "AI chip startup Etched defies skeptics, hits $10.3B valuation from big-name investors",
+      "description": "",
+      "category": "technology",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-07-23T15:00:00+00:00",
+      "source_urls": [
+        "https://techcrunch.com/2026/07/23/ai-chip-startup-etched-defies-skeptics-hits-10-3b-valuation-from-big-name-investors/"
+      ],
+      "all_signals": [
+        {
+          "title": "AI chip startup Etched defies skeptics, hits $10.3B valuation from big-name investors",
+          "url": "https://techcrunch.com/2026/07/23/ai-chip-startup-etched-defies-skeptics-hits-10-3b-valuation-from-big-name-investors/",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The valuation of AI chip startup Etched is significant for the tech industry and could impact Indian tech professionals.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "b1570df7-a662-4701-9d0f-b04966ab2589",
+      "title": "5 Things To Expect From Ranbir Kapoor-Led Ramayana's Grand Trailer",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-07-23T14:16:46+00:00",
+      "source_urls": [
+        "https://www.ndtv.com/entertainment/5-things-to-expect-from-ranbir-kapoor-led-ramayanas-grand-trailer-11810896#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "5 Things To Expect From Ranbir Kapoor-Led Ramayana's Grand Trailer",
+          "url": "https://www.ndtv.com/entertainment/5-things-to-expect-from-ranbir-kapoor-led-ramayanas-grand-trailer-11810896#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The anticipation around the Ramayana trailer featuring Ranbir Kapoor is significant for Bollywood fans in the diaspora.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@ranbirtankapoor",
+          "type": "person",
+          "keywords": [
+            "Ramayana",
+            "trailer",
+            "Bollywood"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "4e3cc917-a499-48e2-9d79-7ad8be1083b9",
+      "title": "West Asia war LIVE: International benchmark oil prices cross $100 per barrel - The Hindu",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 4,
+      "source_diversity": 2,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T13:52:28+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQU2JrYk00S2U3bE1YdjhmNTlSVEJzNzl1OGZyLUo4elFKZnl4SE8zclNkUUZtWUU2NW9VbzZuR1lDd2RoSXRGeksyeUpqMi1jMGJMa0lUOFhQaXBTWFp5RU1ERUQ3Q2gxRlBKa2xBeVlUZnJIWlprRmJtYnJpcEk3MmtGS0RIbnRfbXgyTmRGMDZRNnktNnlhaHhsX0o4QjJpUWwwZkluUGZBOC1BYTQwOWpRcDZVUjRXaDZRbVFrQnJ5MkRPT2FDX0doSEJCMGptVzRuVWxQaFhTUU9rYW42aGEwUjF1UzNM0gHvAUFVX3lxTE9jc0FxWkNDeklOb25xem1oYU55WEY3bmxvc1FqY2dLWnltYS1pQ1E4ckZQN01ualF5TE5JRU1ERkFzVklyRVJlN2V3aFRoZFpFMGZDbVA1aWpIeWZpdURzQjVfTmpTbUZIdUotSm5UcmJweHpsY09zU1VGOGtORFpFZ2hTdFFWMXlEbUZ3Wm1TRnNoYTJPLUlXZ05RaEljeDhrYVEydEp6MkI3dG1IWXpHcTFDTUpDTnhlQ3BiVWJPdmZUR215dXhObTdLS0Ryc2M5N01LOU1MRVdwSGt6Y2hKV29lMm43ZXlpMzFocDFN?oc=5",
+        "https://news.google.com/rss/articles/CBMiugFBVV95cUxPUVZaa0RudS1CTTRldHZCVXJES0plVUdXc1EybUFDU1Rtc0U0RU5yUHZ0QU9PQmllYXFWWGpGQndBLXMyWTZKY2RTSHc0Nk9OSjhOaG9Id3BLTjNScXZvOXRJLVFoNzhEbDBDR0VQcmlsMG1SRGxlaE5vNlNMMkhkbGlRWldhd1MtTWNEcXZBUzlWU2M2R1NEcDZJakk0YU5sQl9QZ2RpaWhBb19PRjdzQy1jZVFRdTZXZlE?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Brent oil's price briefly tops USD 100 per barrel, as stocks are set to drop on Wall Street",
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQU2JrYk00S2U3bE1YdjhmNTlSVEJzNzl1OGZyLUo4elFKZnl4SE8zclNkUUZtWUU2NW9VbzZuR1lDd2RoSXRGeksyeUpqMi1jMGJMa0lUOFhQaXBTWFp5RU1ERUQ3Q2gxRlBKa2xBeVlUZnJIWlprRmJtYnJpcEk3MmtGS0RIbnRfbXgyTmRGMDZRNnktNnlhaHhsX0o4QjJpUWwwZkluUGZBOC1BYTQwOWpRcDZVUjRXaDZRbVFrQnJ5MkRPT2FDX0doSEJCMGptVzRuVWxQaFhTUU9rYW42aGEwUjF1UzNM0gHvAUFVX3lxTE9jc0FxWkNDeklOb25xem1oYU55WEY3bmxvc1FqY2dLWnltYS1pQ1E4ckZQN01ualF5TE5JRU1ERkFzVklyRVJlN2V3aFRoZFpFMGZDbVA1aWpIeWZpdURzQjVfTmpTbUZIdUotSm5UcmJweHpsY09zU1VGOGtORFpFZ2hTdFFWMXlEbUZ3Wm1TRnNoYTJPLUlXZ05RaEljeDhrYVEydEp6MkI3dG1IWXpHcTFDTUpDTnhlQ3BiVWJPdmZUR215dXhObTdLS0Ryc2M5N01LOU1MRVdwSGt6Y2hKV29lMm43ZXlpMzFocDFN?oc=5",
+          "source": "The Hindu"
+        },
+        {
+          "title": "Oil price passes $100 a barrel again as Middle East conflict escalates",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPUVZaa0RudS1CTTRldHZCVXJES0plVUdXc1EybUFDU1Rtc0U0RU5yUHZ0QU9PQmllYXFWWGpGQndBLXMyWTZKY2RTSHc0Nk9OSjhOaG9Id3BLTjNScXZvOXRJLVFoNzhEbDBDR0VQcmlsMG1SRGxlaE5vNlNMMkhkbGlRWldhd1MtTWNEcXZBUzlWU2M2R1NEcDZJakk0YU5sQl9QZ2RpaWhBb19PRjdzQy1jZVFRdTZXZlE?oc=5",
+          "source": "The Guardian"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The rise in international oil prices due to the West Asia war has significant implications for the global economy, affecting the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "3d98ba2d-fc2a-45af-8544-8e0c73726c07",
+      "title": "Indian-origin Jerrssis Wadia and Aryan Sharma picked in Cricket Australia squads - Yahoo Sports",
+      "description": "",
+      "category": "sports",
+      "signal_count": 10,
+      "source_diversity": 2,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T13:30:09+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPNXBKNGc3NHR6RkJHQnpxM1VVcHh2MGgtYnhYcW5MaTY3QURfWDJkTWdqS2d4WUFONVRKbW9CTXV0T0Zld3RJLXNuckNhRVZGQWpxeDl0N2Zfc181M2Nna0I0aVcweFRpUzl6dlp4eU1JVlBLVFc1cWVyZ0k2TEl0ZkRtUWFqTGY1NUZRQ2h3WkwyVXRjdTMzNkIyZlFDVTBvNDN6dHMwcnBFYTJRQ0tJNlZ4em1QRHJnbUVZcU5RRHhBWmtkRGwxeUJHeDU2VjR5YThIeDV2eHU3YU02YWV4VzlzQ3hUd9IB6wFBVV95cUxOdWxYQ1JIcmhDYUg2ZkZNSmdZZ2luaUY2SXhneXROclNRd01LNEtEbWd0Z0lMRERSM2dpangydkNCQ1lRSDNMTE1pTGJtQlg4dDlHa0xjckJ3THBBd2VmVkxOeFc4dDRTUnZMU3JwR2pFMGplQm5naWRMYW1TVlI4dFlwTW4yV0xVdWUxaDhwV3Fpa0ZkYXd2MW9VcGFwS050UEg1QWtCMm9BX2ktUFBxTkRJS0xkNTFtekFPVnJTaFd2WllWdDVOSHIzeV9NWkc4c2FhdldicUN2a0dFQVRxdG13dWxPLXhhYnhV?oc=5",
+        "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNVERaY25EMzk4ZW5Uc3BESWF6WnBQQzF1dDc5b25hSVV6WmdSM1VhUGlnMFhVLW1wZWY4TzhEN2VqWkkwcmszY3pDYlJRY0VyTmpEVC1IbFFSNnd3TkFEekY5aFdPRU9DdTdvZ0VJN095bzJpY1E3Y0s4NFFydTBidFhTSHR5aUlfUWZ1Sl9vV1JSNl9qQ2JPaFVkc0d2cUlBUUpHbzZRd1UwbU1EXzRVWWNScVdTT3ZwX1BMSDNFNFE3UEhGRXdmRFFoWEhFOVU0R1IyU3dSRlZDaDlDTzcwdkExNkxQa1RjMkR6bV9sRjdMUXptTElxandReHJSN2Q3NWNEQVYzZ20?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "\u2018I\u2019m Not Gonna Blur\u2026.\u2019: Indian-American Doctor Hits Back At Racist Trolls Targeting Her Bindi; Internet Rea - News18",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPNXBKNGc3NHR6RkJHQnpxM1VVcHh2MGgtYnhYcW5MaTY3QURfWDJkTWdqS2d4WUFONVRKbW9CTXV0T0Zld3RJLXNuckNhRVZGQWpxeDl0N2Zfc181M2Nna0I0aVcweFRpUzl6dlp4eU1JVlBLVFc1cWVyZ0k2TEl0ZkRtUWFqTGY1NUZRQ2h3WkwyVXRjdTMzNkIyZlFDVTBvNDN6dHMwcnBFYTJRQ0tJNlZ4em1QRHJnbUVZcU5RRHhBWmtkRGwxeUJHeDU2VjR5YThIeDV2eHU3YU02YWV4VzlzQ3hUd9IB6wFBVV95cUxOdWxYQ1JIcmhDYUg2ZkZNSmdZZ2luaUY2SXhneXROclNRd01LNEtEbWd0Z0lMRERSM2dpangydkNCQ1lRSDNMTE1pTGJtQlg4dDlHa0xjckJ3THBBd2VmVkxOeFc4dDRTUnZMU3JwR2pFMGplQm5naWRMYW1TVlI4dFlwTW4yV0xVdWUxaDhwV3Fpa0ZkYXd2MW9VcGFwS050UEg1QWtCMm9BX2ktUFBxTkRJS0xkNTFtekFPVnJTaFd2WllWdDVOSHIzeV9NWkc4c2FhdldicUN2a0dFQVRxdG13dWxPLXhhYnhV?oc=5",
+          "source": "News18"
+        },
+        {
+          "title": "Indian-origin engineer Srinivasan Ambatipati named McNeese dean - Diya TV",
+          "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNVERaY25EMzk4ZW5Uc3BESWF6WnBQQzF1dDc5b25hSVV6WmdSM1VhUGlnMFhVLW1wZWY4TzhEN2VqWkkwcmszY3pDYlJRY0VyTmpEVC1IbFFSNnd3TkFEekY5aFdPRU9DdTdvZ0VJN095bzJpY1E3Y0s4NFFydTBidFhTSHR5aUlfUWZ1Sl9vV1JSNl9qQ2JPaFVkc0d2cUlBUUpHbzZRd1UwbU1EXzRVWWNScVdTT3ZwX1BMSDNFNFE3UEhGRXdmRFFoWEhFOVU0R1IyU3dSRlZDaDlDTzcwdkExNkxQa1RjMkR6bV9sRjdMUXptTElxandReHJSN2Q3NWNEQVYzZ20?oc=5",
+          "source": "Diya TV"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "This topic highlights the inclusion of Indian-origin players in Cricket Australia squads, which is significant for the Indian diaspora's interest in cricket.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@cricketcomau",
+          "type": "org",
+          "keywords": [
+            "Cricket",
+            "Australia",
+            "squad"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "9efcd8bf-b104-4513-b2b8-dca6032ea72e",
+      "title": "How to watch IND vs ZIM T20I 2026 live: Start time, TV channels and streaming details as Vaibhav Sooryavanshi returns - Yahoo Sports",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 2,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T12:15:23+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMieEFVX3lxTE44VHF1QVVRWjZQUlh1aEpLci05Znp4T1ZRcWxnai1qNWtZVTVIR2JmenU2emlYYVdwaFI3M2drTVZVYlZGVUNrY1V4UTQ1TzZiNF9KbUZFT2t4LXgxeW56WGU4SVFMUE5jZ0hIMHR2bzNUUHk4ekRVUg?oc=5",
+        "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQWlQMEtmdmFJeFJhaGVsMU5kblBHWHM5bkVLSHlKWDk0TEhOazV4cXRlUldxVzkwNzBLLXlpVFFDeUpsM2Q3eVFRM1hreUJtLXJib1FnTUlDNVFwQXFnakp6N1gxNjc1dk90SkhqcnhrREFLWHU1WndWbUR0Y05USWRPUk5XZlRYUFYzTV9SdUEzVG0wSGFQQ3ppdUtobk9haTNnYm42T0NKZ9IBuwFBVV95cUxOV3IzSGlzVFZ3YklJMllpNTVZajFTanVfbGtvZUlmU0tXdnk5MkUycHhQVTI1Y0Z1Y0ZmWGlTdW9FWlJBR0toQlROTmtQWHRKT1NDNmZXY3ZKRGtrU3g4Nlc2d3R6N3lfM0FzTmh6dXp4cWVXN2ltRVB3Z3JxU3VPWkhMX1RNZ3Y3M19DbGdsV0pFVVBGRENuSzFGdHh2R3RrZzMyeEtfakY4bU9HZlBLbVRSUXBPZ0FlNS00?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Cricket match player highlights | ZIM vs IND, 1st T20I, India tour of Zimbabwe 2026",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE44VHF1QVVRWjZQUlh1aEpLci05Znp4T1ZRcWxnai1qNWtZVTVIR2JmenU2emlYYVdwaFI3M2drTVZVYlZGVUNrY1V4UTQ1TzZiNF9KbUZFT2t4LXgxeW56WGU4SVFMUE5jZ0hIMHR2bzNUUHk4ekRVUg?oc=5",
+          "source": "Cricbuzz"
+        },
+        {
+          "title": "India hand Ashok Sharma a debut and bowl in opening T20I",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQWlQMEtmdmFJeFJhaGVsMU5kblBHWHM5bkVLSHlKWDk0TEhOazV4cXRlUldxVzkwNzBLLXlpVFFDeUpsM2Q3eVFRM1hreUJtLXJib1FnTUlDNVFwQXFnakp6N1gxNjc1dk90SkhqcnhrREFLWHU1WndWbUR0Y05USWRPUk5XZlRYUFYzTV9SdUEzVG0wSGFQQ3ppdUtobk9haTNnYm42T0NKZ9IBuwFBVV95cUxOV3IzSGlzVFZ3YklJMllpNTVZajFTanVfbGtvZUlmU0tXdnk5MkUycHhQVTI1Y0Z1Y0ZmWGlTdW9FWlJBR0toQlROTmtQWHRKT1NDNmZXY3ZKRGtrU3g4Nlc2d3R6N3lfM0FzTmh6dXp4cWVXN2ltRVB3Z3JxU3VPWkhMX1RNZ3Y3M19DbGdsV0pFVVBGRENuSzFGdHh2R3RrZzMyeEtfakY4bU9HZlBLbVRSUXBPZ0FlNS00?oc=5",
+          "source": "Cricinfo"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The details on how to watch the IND vs ZIM T20I match are important for cricket fans in the diaspora.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "79c3c96c-c820-4712-8764-512c2990ebf7",
+      "title": "Infosys posts 12% jump in Q1 profit, trims upper end of FY27 growth outlook - India Today",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T12:03:17+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMizgFBVV95cUxNRWZJcVJyQ1JQRTkxUVItSEEzdXJ1Z2E1VVNBVExwQ1hWeHkzNFdYZ3Q2RXRwWGdIeDlIMnMxbG9PMXk5R25FRjFpUkxmQy15eTB1VGlGRW5RZlV2ZlFyTVJFQlNmM3VtclJlN1RWbHNvdVNZRDMzeVZKanQ2TW52OGRCNGgtMEpaRUd0OVVxMFVFWWNabGxsWmlndWNzMFo2UkQxdVFqREg5WGVnRlB4OTF3N0E5SkFqSmE5VEM5RjBNdXZveGdRYzdfa0h6Z9IB0wFBVV95cUxQY2FPSk4xc3VkX3hoNXJRVm1QNFUxazRIOFBMUGVLRGN5T3pLTlk2emFGaXZOTUMzMjRtV1VaWTZ3T2M3aE15NU9XWEtmN0k3Y2E2ZVFiRktMbXdITVIydXlCUVJVWk1qZ3dZVE12dEZ5VThpVmJKYUt2dW5LM29HcU9VWko1bkdLSUF4cG5oMk11RXdBWkUwcm5RM3gtbUNzRUlHQ0pMb2syaFZwdVpXNmh4ZHpwWmNGUE8tQ0E0RjNjc3VHc2Z2VExTQmg2VVNoTEVR?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Infosys posts 12% jump in Q1 profit, trims upper end of FY27 growth outlook - India Today",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNRWZJcVJyQ1JQRTkxUVItSEEzdXJ1Z2E1VVNBVExwQ1hWeHkzNFdYZ3Q2RXRwWGdIeDlIMnMxbG9PMXk5R25FRjFpUkxmQy15eTB1VGlGRW5RZlV2ZlFyTVJFQlNmM3VtclJlN1RWbHNvdVNZRDMzeVZKanQ2TW52OGRCNGgtMEpaRUd0OVVxMFVFWWNabGxsWmlndWNzMFo2UkQxdVFqREg5WGVnRlB4OTF3N0E5SkFqSmE5VEM5RjBNdXZveGdRYzdfa0h6Z9IB0wFBVV95cUxQY2FPSk4xc3VkX3hoNXJRVm1QNFUxazRIOFBMUGVLRGN5T3pLTlk2emFGaXZOTUMzMjRtV1VaWTZ3T2M3aE15NU9XWEtmN0k3Y2E2ZVFiRktMbXdITVIydXlCUVJVWk1qZ3dZVE12dEZ5VThpVmJKYUt2dW5LM29HcU9VWko1bkdLSUF4cG5oMk11RXdBWkUwcm5RM3gtbUNzRUlHQ0pMb2syaFZwdVpXNmh4ZHpwWmNGUE8tQ0E0RjNjc3VHc2Z2VExTQmg2VVNoTEVR?oc=5",
+          "source": "India Today"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Infosys's Q1 profit jump and revised growth outlook is a major development affecting the Indian tech sector and diaspora investors.",
+      "coverage": "update",
+      "ig_handles": [
+        {
+          "handle": "@infosys",
+          "type": "org",
+          "keywords": [
+            "Infosys",
+            "Q1 results",
+            "profit"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "db7153df-2431-452a-883b-fd2e36652a51",
+      "title": "Trisha Krishnan Keeps It Casual In Blue Denim And White Tee At Vijay's Jana Nayagan Screening - NDTV",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 5,
+      "source_diversity": 3,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T10:36:22+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMitwJBVV95cUxPSllIRXE4NV9fSGxCNDhBQkRWcUpxTldRX3VaVURDZEtPMWRqNUF1dlQ5dHpPS0I2VjlpQzJmRVlNSTFLT3ZSYzN0UDJMazBIRFlPbnZUMzVSRkdiMEZJZ2RlME9lWWpZUUdIN2NVSWlGUEdRVmIxcE8tSHJkRXdVVjdoN3ZKU0hXTmhHQ2hnZF9CeEc0OHRHSFY0aTdUa0YtS1V4Ny1lMVFUck9mdUJTZFo2M3o3N3ZQbmljcXRIUFA1UHdacDBGVzA1N1NiTmd1d3Y1TTdwUDV4SWdRSi1XWEtGTnBqbmZUM25mNjJFRnFpa0JCcEV1ZXpocnJaTlE1T0tYbnFzbEdlanctcFJuMU9XTUtnUWRETXJFdHY4ZVBocG9RZ0dMMDByWkpoNkZkZmdyeFJEWQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQWE5vbmJCMDNfdUlpT1NmcTVLbjZyX0dOTDk3aWgtYUFwOFo4NS1Fbm93Zmt1V3QzU05oNXB0SmNmUDR3Nk9XbzVDSEJNaURfb3pEMl9ZWFk2d01kS1NBUzlmdzdWdE1HQnlndmM1STNLbFIya2FxOHZ4Y1Ywd0pueVFQOWJPVkxvdldZODRZZUNXZ2lSZi1HYS1fN1V0SGMxRHlsb2NRMVdjazhDTGRhMjJocG5mZTUxSXh0cTJ6dGE2NHB4SGp0SGE1T3JDYmtoUFNNRUNCVzNpOTNZcVVjSEdMejJBUUI3ZkNoWXFYR2J4a1pDekE?oc=5",
+        "https://news.google.com/rss/articles/CBMitwFBVV95cUxNUE92Qy1hSE1WcTVMTEMwQWgxLWE3U3M5cGdacFJHWVhfLWFGbU1FYU5sZ0JOVVNwa1o4RlFna29WeHFfVmNBNVoyMWxoa0FvcGVSTkJpNFc0dU5qd0ZfTFF5Ykw3S3hheTc0SlBwdmFhOVVoRkhlVVN3aW1uY2paWGhnS3d2WFR4cUM4NkM5cU5fR05WRnltV295d29BWHd0ZmdNQ0tnRmtlVzdlN2lnelNoOXBwd0E?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "'Jana Nayagan' makes history as Thalapathy Vijay becomes the first Indian actor to achieve 1 million pre-sales hat trick",
+          "url": "https://news.google.com/rss/articles/CBMitwJBVV95cUxPSllIRXE4NV9fSGxCNDhBQkRWcUpxTldRX3VaVURDZEtPMWRqNUF1dlQ5dHpPS0I2VjlpQzJmRVlNSTFLT3ZSYzN0UDJMazBIRFlPbnZUMzVSRkdiMEZJZ2RlME9lWWpZUUdIN2NVSWlGUEdRVmIxcE8tSHJkRXdVVjdoN3ZKU0hXTmhHQ2hnZF9CeEc0OHRHSFY0aTdUa0YtS1V4Ny1lMVFUck9mdUJTZFo2M3o3N3ZQbmljcXRIUFA1UHdacDBGVzA1N1NiTmd1d3Y1TTdwUDV4SWdRSi1XWEtGTnBqbmZUM25mNjJFRnFpa0JCcEV1ZXpocnJaTlE1T0tYbnFzbEdlanctcFJuMU9XTUtnUWRETXJFdHY4ZVBocG9RZ0dMMDByWkpoNkZkZmdyeFJEWQ?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Jana Nayagan movie review: Vijay\u2019s last film unravels under pressure of being Vijay\u2019s last film",
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQWE5vbmJCMDNfdUlpT1NmcTVLbjZyX0dOTDk3aWgtYUFwOFo4NS1Fbm93Zmt1V3QzU05oNXB0SmNmUDR3Nk9XbzVDSEJNaURfb3pEMl9ZWFk2d01kS1NBUzlmdzdWdE1HQnlndmM1STNLbFIya2FxOHZ4Y1Ywd0pueVFQOWJPVkxvdldZODRZZUNXZ2lSZi1HYS1fN1V0SGMxRHlsb2NRMVdjazhDTGRhMjJocG5mZTUxSXh0cTJ6dGE2NHB4SGp0SGE1T3JDYmtoUFNNRUNCVzNpOTNZcVVjSEdMejJBUUI3ZkNoWXFYR2J4a1pDekE?oc=5",
+          "source": "The Indian Express"
+        },
+        {
+          "title": "Jana Nayagan opens to full houses in Tiruchi",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNUE92Qy1hSE1WcTVMTEMwQWgxLWE3U3M5cGdacFJHWVhfLWFGbU1FYU5sZ0JOVVNwa1o4RlFna29WeHFfVmNBNVoyMWxoa0FvcGVSTkJpNFc0dU5qd0ZfTFF5Ykw3S3hheTc0SlBwdmFhOVVoRkhlVVN3aW1uY2paWGhnS3d2WFR4cUM4NkM5cU5fR05WRnltV295d29BWHd0ZmdNQ0tnRmtlVzdlN2lnelNoOXBwd0E?oc=5",
+          "source": "The Hindu"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Trisha Krishnan's appearance at a major film screening connects to Bollywood culture and the diaspora's interest in Indian cinema.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@trishtrashers",
+          "type": "person",
+          "keywords": [
+            "Trisha Krishnan",
+            "Bollywood",
+            "film screening"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "0a67a65b-4b21-416f-9b85-018cb2616644",
+      "title": "\u2018Beautiful news\u2019: John Cusack is the first Hollywood star to speak on CJP protests in India, shows solidarity | Hollywood - Hindustan Times",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 5,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T08:29:13+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMizAFBVV95cUxQSVFKcDNYMDVvNkl5aWJsaThJVUIyM3MwaDZRUU5BZnFTWXBUZVZpOHdWVkVVMnI5UFZjZVE5U2dkZ0hjRWlROEgtMURoNG53VC1JMFVFTEh3eW9DMFhMaXdFRG82UTZzck9PdXBscXZVeEIzbVNnS1B2Zkp1eFVlbDVFM0thc0lsSzlrcEM1T09vOFg2TERnNUp4aFZWMy1LZHVXelBlTnhScWZkc0xwUmt4aXVhdTYyd05GdlhQVlFvRVJIYWt2aWpJMUHSAdIBQVVfeXFMTWZDWThPSjFseEpQY2JCZ1JjOEYxRzBoT05MWGdBTHRQemFSdy1CSTA5QzkzQXpoU1hIUHRIVmtBeU9oYkZvRXRmZTNrTHdQLW5ReDBEUDZ4d2tqamstc2NadVVpcmQ0T0FCRk5pZ2JmYkh5eDhwWDJlVUx5UmxPb3V3ZjNXVmRlUFJ5RmhFM0xxb3lkN1UxT1RvamkzOGVzeGFaYWU2VVlQLXdtVy13WTBlVm5yQVJ1djVCT1NkU2lBeG9nNFhTa25PVXlXeW1LNEhR?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "'My favourite fellow cockroach': Hollywood actor John Cusack comes out in support of students protest in India",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQSVFKcDNYMDVvNkl5aWJsaThJVUIyM3MwaDZRUU5BZnFTWXBUZVZpOHdWVkVVMnI5UFZjZVE5U2dkZ0hjRWlROEgtMURoNG53VC1JMFVFTEh3eW9DMFhMaXdFRG82UTZzck9PdXBscXZVeEIzbVNnS1B2Zkp1eFVlbDVFM0thc0lsSzlrcEM1T09vOFg2TERnNUp4aFZWMy1LZHVXelBlTnhScWZkc0xwUmt4aXVhdTYyd05GdlhQVlFvRVJIYWt2aWpJMUHSAdIBQVVfeXFMTWZDWThPSjFseEpQY2JCZ1JjOEYxRzBoT05MWGdBTHRQemFSdy1CSTA5QzkzQXpoU1hIUHRIVmtBeU9oYkZvRXRmZTNrTHdQLW5ReDBEUDZ4d2tqamstc2NadVVpcmQ0T0FCRk5pZ2JmYkh5eDhwWDJlVUx5UmxPb3V3ZjNXVmRlUFJ5RmhFM0xxb3lkN1UxT1RvamkzOGVzeGFaYWU2VVlQLXdtVy13WTBlVm5yQVJ1djVCT1NkU2lBeG9nNFhTa25PVXlXeW1LNEhR?oc=5",
+          "source": "Mid-Day"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "John Cusack's support for the CJP protests in India represents a significant cultural moment and solidarity from a Hollywood figure, which resonates with the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@johncusack",
+          "type": "person",
+          "keywords": [
+            "CJP protests",
+            "solidarity",
+            "India"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "99be1568-0ff0-4d59-878c-83b315427a05",
+      "title": "Report: Former AEW champion \u201ccreative force\u201d behind Redemption match - Wrestleview.com",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 5,
+      "source_diversity": 2,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T01:50:03+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVm1CanpicHJfb0ZzaW8wZEFZX2U2OVoyZEZ3YWNMRUthNEdQVjBQdk9YUlkzYnIzTG03OTl2dEtBR0tsZGxOUU1semVqazIwbU05a2FnNjdFczRDcXJlMW9Lb05GVk1PQkkxd1M5Q1FiV2hpMGhkSnFpY280TjM0a0VqajZ3NUpzS2tEWGJyd3lLRUNMVnNZ?oc=5",
+        "https://news.google.com/rss/articles/CBMijwFBVV95cUxNSGZtbkw3bnVwUnFRdmxGNjQzVzM2Nm9USER5Vk5Id2dmTVZnZDI5Vlp3UzBIZWdrdERNUHcxakgwUHBzT09WdzltWENkbFBSWUVGY29nUmR5RklURWpaM0MtWlBIX3QyQUdIMjFKdGJXNkVQYk5TZzhTZ2hSUUM5bXRlelFiZzlPWkg3Smtzdw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Ladder Match Qualifying Bouts Set For 7/25 AEW Collision",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVm1CanpicHJfb0ZzaW8wZEFZX2U2OVoyZEZ3YWNMRUthNEdQVjBQdk9YUlkzYnIzTG03OTl2dEtBR0tsZGxOUU1semVqazIwbU05a2FnNjdFczRDcXJlMW9Lb05GVk1PQkkxd1M5Q1FiV2hpMGhkSnFpY280TjM0a0VqajZ3NUpzS2tEWGJyd3lLRUNMVnNZ?oc=5",
+          "source": "Fightful"
+        },
+        {
+          "title": "Tony Khan Adds 6-Way Ladder Match To AEW Redemption",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNSGZtbkw3bnVwUnFRdmxGNjQzVzM2Nm9USER5Vk5Id2dmTVZnZDI5Vlp3UzBIZWdrdERNUHcxakgwUHBzT09WdzltWENkbFBSWUVGY29nUmR5RklURWpaM0MtWlBIX3QyQUdIMjFKdGJXNkVQYk5TZzhTZ2hSUUM5bXRlelFiZzlPWkg3Smtzdw?oc=5",
+          "source": "Wrestling Inc."
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The report on a former AEW champion's involvement in a match is relevant to wrestling fans, including those in the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "4afe5af8-5c95-49d3-8936-6f07473ed5f2",
+      "title": "IPL founder Lalit Modi set to return to India after 16 years - India Today",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 4,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-22T10:44:49+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNdHNkbVNVUmpQSE1hWjJEMWxaZjc2M3hKOTBGYmd0bzRhQmVIVGZvanF6ZV9IYjU4cVZCemxKT2ZKTHNCeXZxNnFBVDdoVkVlTXEyWXNYaTVoclNsbVZiWVFqZEx2ZWl0M0FmZVU1VWdIRV82VE84S0JIMTdiNm1wZVN3R3B0UWlQbmU5OTJPLURjOXl6M2NlNHR6ejBRSzA0c1FhS1VyNjFGZGPSAbABQVVfeXFMTkc2NUZyQml3Um1DeHdSZ2NYOHJrdWdBQ0dabXZ2Nk1WaDM4MnBraWNkVGhwWnY2OEVHTjVheWtWVkpod280ck1JRG9tQU04RVdUN0FNMktpUmdqRGdNQlpjVDhoQjU4NXZ0VkR0dDhtVEthQ1NFMnN6TXZTdHhJclE0T3pWSDVNVktsSjhfTG1qcWJseXBVVXJIUEpPOW50QlhDWC04S0tLbDVpYUtWSXk?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Lalit Modi plans India visit after tribunal relief in IPL 2009 FEMA case",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNdHNkbVNVUmpQSE1hWjJEMWxaZjc2M3hKOTBGYmd0bzRhQmVIVGZvanF6ZV9IYjU4cVZCemxKT2ZKTHNCeXZxNnFBVDdoVkVlTXEyWXNYaTVoclNsbVZiWVFqZEx2ZWl0M0FmZVU1VWdIRV82VE84S0JIMTdiNm1wZVN3R3B0UWlQbmU5OTJPLURjOXl6M2NlNHR6ejBRSzA0c1FhS1VyNjFGZGPSAbABQVVfeXFMTkc2NUZyQml3Um1DeHdSZ2NYOHJrdWdBQ0dabXZ2Nk1WaDM4MnBraWNkVGhwWnY2OEVHTjVheWtWVkpod280ck1JRG9tQU04RVdUN0FNMktpUmdqRGdNQlpjVDhoQjU4NXZ0VkR0dDhtVEthQ1NFMnN6TXZTdHhJclE0T3pWSDVNVktsSjhfTG1qcWJseXBVVXJIUEpPOW50QlhDWC04S0tLbDVpYUtWSXk?oc=5",
+          "source": "ThePrint"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Lalit Modi's return to India after 16 years is significant news for the Indian diaspora, especially considering his controversial past and the implications for IPL and Indian cricket.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@lalitmodi",
+          "type": "person",
+          "keywords": [
+            "IPL",
+            "return",
+            "India"
+          ]
+        }
+      ]
+    },
+    {
+      "topic_id": "17e990ab-2826-472e-889a-513a0e281541",
+      "title": "Indian Students Going Abroad Drop 31% In Two Years, Government Data Reveals - NDTV",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-02-12T08:00:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxOb1lFa1NHUEtqQ3dUZkFWd0p1SDVOT2ZYUnRPNUI1Ym41LUI0VVJxVXQ2cFpOZjBLOEdtanFWRENBWC1KRkRNcGFYT0xURnFhNEdoRWxlQi1BVTI4NDlmLUdwa3lqazBfbldiRUp3bng0ekVkQ21hQ0NlY2RwZ0R2cWUtRnhmYzNkbTZna0tlTjhlZ1JXdUU1bGRQbTBnaThHYU00OTNCSm81dTN6aXFHdV9zQdIBuwFBVV95cUxNTENtbDlYclRGX0IyRkxnUkF1clVubE4wQkJRdDgwMlhhVkhEUFlPLUVrQUZTY05FSzhzVXQ1WHlaMkl6VGdxVy02RS1uUDFpWGV4bWtlY0dDQWE3dW5rWnp2SGVBekRhVkZqRWV5N0dCZWIzc0lLbThuanlya3NSY3FNblBjbE52TU1rejFtcFJpN1g1Tmt6eFBFZHlpR2QtQjZPNlQxRWwxZDZXWVhxRkI1U2h6REFkRG04?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Indian Students Going Abroad Drop 31% In Two Years, Government Data Reveals - NDTV",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOb1lFa1NHUEtqQ3dUZkFWd0p1SDVOT2ZYUnRPNUI1Ym41LUI0VVJxVXQ2cFpOZjBLOEdtanFWRENBWC1KRkRNcGFYT0xURnFhNEdoRWxlQi1BVTI4NDlmLUdwa3lqazBfbldiRUp3bng0ekVkQ21hQ0NlY2RwZ0R2cWUtRnhmYzNkbTZna0tlTjhlZ1JXdUU1bGRQbTBnaThHYU00OTNCSm81dTN6aXFHdV9zQdIBuwFBVV95cUxNTENtbDlYclRGX0IyRkxnUkF1clVubE4wQkJRdDgwMlhhVkhEUFlPLUVrQUZTY05FSzhzVXQ1WHlaMkl6VGdxVy02RS1uUDFpWGV4bWtlY0dDQWE3dW5rWnp2SGVBekRhVkZqRWV5N0dCZWIzc0lLbThuanlya3NSY3FNblBjbE52TU1rejFtcFJpN1g1Tmt6eFBFZHlpR2QtQjZPNlQxRWwxZDZXWVhxRkI1U2h6REFkRG04?oc=5",
+          "source": "NDTV"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The significant drop in Indian students going abroad is a critical issue for the diaspora and immigration policies.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "666e7661-c46a-460b-a5fa-d638eb6cff31",
+      "title": "US unveils global visa policy targeting cybercriminals and online scammers: What to know",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 2,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-07-23T15:25:25+00:00",
+      "source_urls": [
+        "https://www.livemint.com/news/us-news/us-unveils-global-visa-policy-targeting-cybercriminals-and-online-scammers-what-to-know-11784818704177.html"
+      ],
+      "all_signals": [
+        {
+          "title": "US unveils global visa policy targeting cybercriminals and online scammers: What to know",
+          "url": "https://www.livemint.com/news/us-news/us-unveils-global-visa-policy-targeting-cybercriminals-and-online-scammers-what-to-know-11784818704177.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The new global visa policy targeting cybercriminals and online scammers could impact Indian professionals and startups in the US, UK, and Canada.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "e711a569-7bee-4bec-8074-721065adeef4",
+      "title": "390 kg of gutkha seized in Villupuram, three held",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-07-23T15:22:59+00:00",
+      "source_urls": [
+        "https://www.thehindu.com/news/national/tamil-nadu/390-kg-of-gutkha-seized-in-villupuram-three-held/article71257712.ece"
+      ],
+      "all_signals": [
+        {
+          "title": "390 kg of gutkha seized in Villupuram, three held",
+          "url": "https://www.thehindu.com/news/national/tamil-nadu/390-kg-of-gutkha-seized-in-villupuram-three-held/article71257712.ece",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The story highlights the experiences of an Indian-origin woman in the US who shares her career journey after facing multiple layoffs, which resonates with the diaspora's challenges in the job market.",
+      "coverage": "new",
+      "ig_handles": []
+    },
+    {
+      "topic_id": "edce1ce1-2460-4549-be1c-471ee5d2e40e",
+      "title": "High Cholesterol? AIIMS Doctor Reveals Expert Tips For A Healthy Heart - ABP Live English",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 2,
+      "source_diversity": 2,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-07-23T13:02:46+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMingFBVV95cUxQX0Z6Yld5TVIwSXJmYmFBeU1EYU1RR01iZkxFU3FNWDdXc3h1Skh0OUR0bTFHN1Y1b0M4WXFqR3lRM1VZX0VCT29BcXk2SXk1M1ZGNHlDcmdaNFo0TWwwdy1OdTlRQTRoWkM2OTVrTHQ4eGFRREd3d2ZxVG1pem5ncXlqc2l0clZNNGNxdmxPdWZONk9VNmN6NG1GM1JIUdIBowFBVV95cUxOSURLejM2ZUoySUJvZURjWE13SWVSS29RV1NENG03LU9NbkVneHNoQ1ptTHFkM0RrS1hENmdCZ04yMmZUMzNORUx0ZTVjN0Y1bjU3VzVlb2tfRy1IbnJZdGlRRkZfWlg5MDZIbFdhY0k1Z0VmXzgzRDVrWHVET0FORWNlSXBhOU02TnpBRVJZb0h3VVR2VE02dTRsTFBMUlUtQjEw?oc=5",
+        "https://news.google.com/rss/articles/CBMikAJBVV95cUxPSnpUbWpQS2lIT2V3eldFUFNWWjFwOVpDVnl3TGdONERWWTB2OXA1b3dFLXVvTjl6NGZwb2piUk5lYVhzV2M4anlwRW1jZTJYdjFXeldWRmt4UmdXWmNoMWYxajN4UGFucVRiU0xaOWw2Yk5NQ1RJR285WXgyU2M1WmcyY0FWekEzUTF4YmRIMUgxUGgzbUo2S3FjX1J5Sl9vajlCOTNITjdhbmZFOGFXVWh4b0EwRGJOS1Raa2hTN21zcU9JUXVzT2JxLTFwMHN3TGhISi1oSzBqUGJfWWFDT1Q1RDhMOUFYZjc0Z2duRldTR1owYUN2NmNIWFVZbWJJVHBKaFJvY2NseXdJVXBGZA?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "High Cholesterol? AIIMS Doctor Reveals Expert Tips For A Healthy Heart - ABP Live English",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQX0Z6Yld5TVIwSXJmYmFBeU1EYU1RR01iZkxFU3FNWDdXc3h1Skh0OUR0bTFHN1Y1b0M4WXFqR3lRM1VZX0VCT29BcXk2SXk1M1ZGNHlDcmdaNFo0TWwwdy1OdTlRQTRoWkM2OTVrTHQ4eGFRREd3d2ZxVG1pem5ncXlqc2l0clZNNGNxdmxPdWZONk9VNmN6NG1GM1JIUdIBowFBVV95cUxOSURLejM2ZUoySUJvZURjWE13SWVSS29RV1NENG03LU9NbkVneHNoQ1ptTHFkM0RrS1hENmdCZ04yMmZUMzNORUx0ZTVjN0Y1bjU3VzVlb2tfRy1IbnJZdGlRRkZfWlg5MDZIbFdhY0k1Z0VmXzgzRDVrWHVET0FORWNlSXBhOU02TnpBRVJZb0h3VVR2VE02dTRsTFBMUlUtQjEw?oc=5",
+          "source": "ABP Live English"
+        },
+        {
+          "title": "Heart disease kills 32% people globally: WHO calls it the number 1 cause of death, shares how to protect yourself",
+          "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxPSnpUbWpQS2lIT2V3eldFUFNWWjFwOVpDVnl3TGdONERWWTB2OXA1b3dFLXVvTjl6NGZwb2piUk5lYVhzV2M4anlwRW1jZTJYdjFXeldWRmt4UmdXWmNoMWYxajN4UGFucVRiU0xaOWw2Yk5NQ1RJR285WXgyU2M1WmcyY0FWekEzUTF4YmRIMUgxUGgzbUo2S3FjX1J5Sl9vajlCOTNITjdhbmZFOGFXVWh4b0EwRGJOS1Raa2hTN21zcU9JUXVzT2JxLTFwMHN3TGhISi1oSzBqUGJfWWFDT1Q1RDhMOUFYZjc0Z2duRldTR1owYUN2NmNIWFVZbWJJVHBKaFJvY2NseXdJVXBGZA?oc=5",
+          "source": "Hindustan Times"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The expert tips for maintaining a healthy heart from an AIIMS doctor can resonate with the Indian diaspora's interest in health and wellness.",
+      "coverage": "new",
+      "ig_handles": []
+    }
+  ]
+}
