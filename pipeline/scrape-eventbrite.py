@@ -34,7 +34,7 @@ def supabase_post(table, rows):
     url = f"{SUPABASE_URL}/rest/v1/{table}"
     payload = json.dumps(rows)
     cmd = [
-        "curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
+        "curl", "-s", "-w", "\nHTTP_CODE: %{http_code}",
         "-X", "POST", url,
         "-H", f"apikey: {SUPABASE_KEY}",
         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
@@ -43,7 +43,13 @@ def supabase_post(table, rows):
         "-d", payload,
     ]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-    code = r.stdout.strip()
+    out = r.stdout.strip()
+    # Parse HTTP code from the last line
+    lines = out.rsplit("\n", 1)
+    code = lines[-1].replace("HTTP_CODE: ", "").strip() if len(lines) > 1 else out
+    if code not in ("200", "201"):
+        body = lines[0] if len(lines) > 1 else ""
+        print(f"    ⚠ Insert returned HTTP {code}: {body[:200]}", flush=True)
     return code in ("200", "201")
 
 def get_existing_fingerprints():
@@ -289,6 +295,8 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
         return None
 
     start_date = e.get("start_date", "")
+    if not start_date:
+        return None  # date is NOT NULL in DB; skip dateless events
     start_time = e.get("start_time", "")
     end_date = e.get("end_date", "")
 
