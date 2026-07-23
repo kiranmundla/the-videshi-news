@@ -31,7 +31,7 @@ def supabase_headers():
 def supabase_post(table, rows):
     """Insert rows, skip conflicts on slug."""
     import subprocess
-    url = f"{SUPABASE_URL}/rest/v1/{table}"
+    url = f"{SUPABASE_URL}/rest/v1/{table}?on_conflict=source,source_id"
     payload = json.dumps(rows)
     cmd = [
         "curl", "-s", "-w", "\nHTTP_CODE: %{http_code}",
@@ -44,11 +44,13 @@ def supabase_post(table, rows):
     ]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
     out = r.stdout.strip()
-    # Parse HTTP code from the last line
-    lines = out.rsplit("\n", 1)
-    code = lines[-1].replace("HTTP_CODE: ", "").strip() if len(lines) > 1 else out
+    # Extract HTTP status code from the tail "HTTP_CODE: NNN"
+    code = ""
+    if "HTTP_CODE: " in out:
+        code = out.split("HTTP_CODE: ")[-1].strip()
     if code not in ("200", "201"):
-        body = lines[0] if len(lines) > 1 else ""
+        # Log the response body (everything before the HTTP_CODE line)
+        body = out.split("\nHTTP_CODE:")[0].strip() if "\nHTTP_CODE:" in out else out
         print(f"    ⚠ Insert returned HTTP {code}: {body[:200]}", flush=True)
     return code in ("200", "201")
 
