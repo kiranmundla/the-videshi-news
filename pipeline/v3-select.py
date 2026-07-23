@@ -17,7 +17,7 @@ from urllib.parse import quote as urlquote
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ── Options ───────────────────────────────────────────────────────────────────
-PER_CAT_MAX = 2
+PER_CAT_MAX = 3
 OUT_PATH = "/tmp/v3-candidates.json"
 DRY_RUN = False
 
@@ -724,7 +724,7 @@ def main():
 
     # ── Step 5: Per-category caps ─────────────────────────────────────────────
     print(f"\n── Step 5: Per-category caps ──")
-    CAT_LIMITS = {"news": 3, "immigration": 3}
+    CAT_LIMITS = {"news": 5, "immigration": 5}
     balanced = []
     cat_counts = {}
     capped_ids = []
