@@ -161,6 +161,7 @@ def refresh_pool(pool):
                         "category": cat,
                         "text": text[:300],
                         "published_at": t.get("created_at", ""),
+                        "photos": t.get("photos", []),
                     })
                 if good:
                     handles_data[key] = good
@@ -252,6 +253,7 @@ def build_display(pool, article_tweets):
                 "article_slug": "",
                 "article_headline": pick.get("text", ""),
                 "published_at": pick.get("published_at", ""),
+                "photos": pick.get("photos", []),
             })
             seen_handles.add(handle.lower())
 

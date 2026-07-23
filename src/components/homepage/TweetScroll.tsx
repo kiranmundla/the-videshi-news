@@ -8,6 +8,7 @@ interface TweetEntry {
   category: string;
   article_slug: string;
   article_headline: string;
+  photos?: string[];
 }
 
 interface SocialFeed {
@@ -193,6 +194,17 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
               <p className="v2-tweet-quote-text">
                 "{getTweetText(t)}"
               </p>
+
+              {/* Tweet image thumbnail */}
+              {t.photos && t.photos.length > 0 && (
+                <div className="v2-tweet-quote-img">
+                  <img
+                    src={t.photos[0]}
+                    alt=""
+                    loading="lazy"
+                  />
+                </div>
+              )}
 
               {/* Attribution row */}
               <div className="v2-tweet-quote-attr">
