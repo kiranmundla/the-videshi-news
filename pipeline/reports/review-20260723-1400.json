@@ -1,0 +1,204 @@
+[
+  {
+    "id": "3153673b-aa1e-479a-ac2e-885769d3b7e5",
+    "headline": "Comcast Beats Q2 Estimates as Peacock Turns First Profit Ahead of NBCUniversal S",
+    "slug": "comcast-beats-q2-estimates-peacock-first-profit",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how Comcast's performance and Peacock's growth may affect Indian NRIs, particularly those in the entertainment industry or those who consume streaming content. Discuss any potential impacts on content availability or partnerships that may be relevant to this audience.",
+        "Provide context on how Peacock's profitability could influence the streaming landscape for Indian content, especially for NRIs who follow Bollywood or regional cinema. This could include mentioning any partnerships with Indian content creators or how Peacock's success might lead to more Indian films or shows being available on the platform.",
+        "Add a section that discusses the implications of the NBCUniversal spinoff for NRIs, particularly in terms of investment opportunities or changes in content strategy that could affect Indian audiences.",
+        "Clarify the competitive landscape by briefly mentioning how Peacock's growth compares to other streaming services popular among NRIs, such as Hotstar or Netflix India, to provide a clearer picture of its position in the market."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Comcast or NBCUniversal announcing Peacock's profitability, or a tweet discussing the implications of the NBCUniversal spinoff for international audiences."
+      ]
+    }
+  },
+  {
+    "id": "3c3e82a2-6119-4f2c-82c8-4db6daa3891c",
+    "headline": "GAO Report Spotlights Microplastics in Human Organs as Federal Policy Struggles ",
+    "slug": "gao-report-microplastics-human-organs-policy-gaps",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian scientists or researchers working on microplastics, as well as discussing how microplastics impact communities in India or among the Indian diaspora in the U.S.",
+        "Provide more context on how U.S. policies regarding microplastics could affect NRIs, particularly those who may have family or business ties in India, by discussing potential health implications or regulatory changes that could impact imported goods.",
+        "Clarify the timeline of the EPA's actions regarding microplastics, especially how the April 2026 addition to the Contaminant Candidate List aligns with current public health discussions, to give readers a clearer picture of ongoing developments.",
+        "Consider adding a section that discusses the implications of microplastics on global health, particularly in developing countries, which may resonate more with the Indian diaspora concerned about environmental issues back home."
+      ],
+      "embed_opportunities": [
+        "Embed the official EPA tweet regarding the Contaminant Candidate List update to provide readers with direct access to government information on this topic."
+      ]
+    }
+  },
+  {
+    "id": "d9ceff11-0cc2-4a93-9767-a035295375dc",
+    "headline": "IndiGo Swings to Rs 382 Crore Q1 Loss as Fuel Costs Surge 86%",
+    "slug": "indigo-swings-to-rs-382-crore-q1-loss-fuel-costs-surge",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how IndiGo's financial struggles may impact NRIs who rely on the airline for travel between India and their host countries. Discuss potential fare increases or service changes that could affect them directly.",
+        "Provide context on how fuel price fluctuations and currency depreciation affect not just IndiGo but also other airlines that serve the NRI market, perhaps by comparing with another airline popular among NRIs.",
+        "Add a quote or perspective from an NRI travel expert or industry analyst to give a broader view on how these financial results could influence travel trends among the Indian diaspora.",
+        "Include a section on how IndiGo's financial health could affect its international routes, which are crucial for NRIs, especially in terms of service quality and ticket pricing."
+      ],
+      "embed_opportunities": [
+        "Embed the official IndiGo tweet announcing their financial results or any relevant statements from their executives regarding future strategies.",
+        "Consider embedding a relevant tweet from an aviation analyst or industry expert discussing the implications of rising fuel costs on airlines, particularly those catering to the NRI market."
+      ]
+    }
+  },
+  {
+    "id": "8d20d2c6-70ec-4977-bb94-8db1c984d882",
+    "headline": "Most Americans Retire Earlier Than Planned and Wish They Had Saved More",
+    "slug": "most-americans-retire-earlier-than-planned-wish-saved-more",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/11350082/pexels-photo-11350082.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or anecdotes about NRIs and their retirement planning, particularly how their experiences may differ from those of American retirees. This could involve discussing the unique challenges NRIs face regarding retirement savings and planning, such as currency fluctuations, cross-border financial regulations, or cultural factors influencing retirement decisions.",
+        "Provide context on how the retirement trends discussed in the article may affect NRIs living abroad, especially those who plan to retire in India or maintain ties to their home country. This could include insights into how the financial landscape differs in India compared to the U.S. and what NRIs should consider when planning their retirement.",
+        "Include a section that discusses the implications of early retirement for NRIs, such as how it might affect their ability to support family members back in India or their access to healthcare services. This would provide a more comprehensive view of the topic from a diaspora perspective.",
+        "Clarify the connection between the statistics presented and actionable advice for NRIs. For instance, suggest specific strategies that NRIs can adopt to avoid the pitfalls highlighted in the article, such as working with financial advisors who specialize in cross-border retirement planning."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from TIAA Institute or a financial expert discussing the implications of early retirement, which could provide additional credibility and context to the article."
+      ]
+    }
+  },
+  {
+    "id": "6d9f5bdd-ec4b-4a02-a721-ff3dd25aba8c",
+    "headline": "The Perfect Quinoa Method: Why Saucepan Cooking Beats Every Other Technique",
+    "slug": "perfect-quinoa-method-saucepan-cooking-beats-every-technique",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/5817516/pexels-photo-5817516.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from Indian diaspora cooks who have adapted quinoa into their traditional recipes. This could highlight the cultural significance and versatility of quinoa in Indian cuisine.",
+        "Provide a brief historical context about quinoa's rise in popularity among Indian households and the diaspora. This could include its nutritional benefits and how it fits into modern dietary trends, especially for NRIs looking for healthy alternatives.",
+        "Consider adding a section that discusses how quinoa can be incorporated into traditional Indian dishes, making it more relatable for the audience. This could include recipes or serving suggestions that blend quinoa with Indian flavors.",
+        "Clarify the cooking methods by including a comparison table or bullet points summarizing the pros and cons of each method. This would enhance readability and provide quick reference for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from a popular Indian food influencer who has shared their quinoa recipes or cooking tips, which would resonate with the audience and provide a visual element."
+      ]
+    }
+  },
+  {
+    "id": "8a7bab80-b55f-49a7-8a34-0608ad2c56a3",
+    "headline": "Endometriosis Affects 190 Million Women. Science Is Finally Catching Up.",
+    "slug": "endometriosis-affects-190-million-women-science-catching-up",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/6542682/pexels-photo-6542682.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section discussing how endometriosis impacts the NRI community specifically, such as cultural stigmas, access to healthcare, or awareness in the diaspora. This will strengthen the article's relevance to the site's audience.",
+        "Add a quote or insight from a prominent NRI health expert or advocate in the field of women's health or endometriosis to provide a personal touch and connect the topic to the diaspora.",
+        "Include statistics or anecdotes about the prevalence of endometriosis among Indian women or the NRI community to provide context and make the issue more relatable for readers.",
+        "Discuss the implications of the research findings for women in the diaspora, including how they can advocate for better healthcare access and awareness in their communities."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or researcher discussing the recent findings on endometriosis or the NIH funding situation to provide real-time context and engagement."
+      ]
+    }
+  },
+  {
+    "id": "46cd4666-87c0-4af3-975c-78313834ba3d",
+    "headline": "How Millets Went From Humble Grain to Fine Dining Star Across India and Dubai",
+    "slug": "how-millets-went-from-humble-grain-to-fine-dining-star",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/27959280/pexels-photo-27959280.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian chefs or restaurateurs in the NRI community, particularly in Dubai, to discuss how they are incorporating millets into their menus and the reception from the local audience.",
+        "Provide more context on how the trend of millets is being received among the NRI community, especially in terms of health consciousness and sustainability, which are significant concerns for many NRIs.",
+        "Include a section that discusses the potential for millets in the global market, particularly in Western countries where health trends are shifting towards ancient grains, and how NRIs can leverage this trend in their culinary ventures.",
+        "Add a brief overview of the nutritional benefits of millets compared to other grains, as this information would be particularly relevant to health-conscious readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official UN tweet or announcement regarding the 2023 International Year of Millets to provide authoritative context and emphasize the global significance of the trend."
+      ]
+    }
+  },
+  {
+    "id": "1cf23b38-a859-45de-9cf8-fde0e7b70c13",
+    "headline": "India Ships First Sea-Route Mango Consignment From UP to Dubai, Slashing Export ",
+    "slug": "india-ships-first-sea-route-mango-consignment-up-to-dubai",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Emphasize the impact of this sea-route mango shipment on the Indian diaspora in the UAE, discussing how it could enhance access to authentic Indian mangoes for NRIs living there and potentially influence their purchasing decisions.",
+        "Provide context on how this development could affect the broader Indian agricultural export market and its implications for NRIs involved in agriculture or trade, perhaps by including quotes or insights from diaspora experts or business leaders.",
+        "Include a brief section on the historical significance of mango exports from India to the UAE, particularly focusing on the NRI community's role in promoting Indian mangoes abroad.",
+        "Clarify the potential economic benefits for Indian farmers and exporters, specifically mentioning how NRIs might invest in or support these agricultural initiatives."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Ministry of Commerce or APEDA announcing the shipment, which would lend credibility and provide real-time updates for readers interested in trade policies."
+      ]
+    }
+  },
+  {
+    "id": "88bface7-a565-41bb-94ab-e71189e81ebd",
+    "headline": "Monsoon Fury Batters Gujarat: One Dead, Over 1,200 Rescued as South Gujarat Drow",
+    "slug": "monsoon-fury-batters-gujarat-one-dead-1200-rescued",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have family in Gujarat, discussing their concerns and how they are responding to the crisis from abroad.",
+        "Provide context on how the monsoon season impacts the Indian diaspora, particularly in terms of remittances and support for affected families, to highlight the connection between the diaspora and the events in Gujarat.",
+        "Add a section that discusses the historical context of monsoon flooding in Gujarat, including past incidents and how they have affected both local residents and the diaspora, to give readers a deeper understanding of the situation.",
+        "Clarify the role of the NDRF and SDRF teams and how they are coordinated with local authorities, which could be of interest to NRIs wanting to understand the emergency response."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet about the red alert for heavy rainfall, as it would provide authoritative context and updates for readers."
+      ]
+    }
+  },
+  {
+    "id": "a76137a0-0882-4c22-8cce-11fb45379fd3",
+    "headline": "Visa Delays Are Killing Startups Across the US, UK and Canada \u2014 Here's What Foun",
+    "slug": "visa-delays-killing-startups-us-uk-canada-founders",
+    "category": "immigration",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/32269240/pexels-photo-32269240.jpeg"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including more personal stories or quotes from Indian entrepreneurs in the US, UK, and Canada who have faced visa delays. This could help illustrate the emotional and practical impact of these issues on the Indian diaspora community.",
+        "Provide additional context on how these visa delays specifically affect Indian-origin startups compared to other nationalities. This could include statistics or anecdotes that highlight the unique challenges faced by the Indian diaspora in navigating these immigration systems.",
+        "Consider adding a section that outlines specific actions Indian entrepreneurs can take to mitigate the impact of these visa delays, such as networking opportunities, support groups, or resources available within the Indian diaspora community.",
+        "Clarify the implications of the new $100,000 fee on H-1B cases by explaining how this will affect Indian entrepreneurs specifically, and whether there are any advocacy efforts from the Indian community to address these changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the new H-1B fee and lottery changes to provide readers with direct access to the source and enhance credibility.",
+        "Include a relevant tweet or post from a prominent Indian entrepreneur or immigration attorney discussing the impact of these visa delays, which could add a personal touch and further engage the audience."
+      ]
+    }
+  }
+]
