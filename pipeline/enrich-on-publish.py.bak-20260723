@@ -51,102 +51,17 @@ load_env(os.path.expanduser("~/workspace/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.twitterapi-io"))
 load_env(os.path.expanduser("~/workspace/.env.apify"))
 load_env(os.path.expanduser("~/workspace/.env.youtube"))
-load_env(os.path.expanduser("~/workspace/.env.openai"))
 
 SB_URL = os.environ.get("SUPABASE_URL", "")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 TWITTERAPI_IO_KEY = os.environ.get("TWITTERAPI_IO_KEY", "")
 TWITTERAPI_IO_BASE = os.environ.get("TWITTERAPI_IO_BASE", "https://api.twitterapi.io")
-OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
 
 # Categories eligible for social embeds
 EMBED_CATEGORIES = {
     "news", "sports", "entertainment", "technology",
     "nri-world", "immigration", "markets-finance", "travel", "food",
 }
-
-
-# ─── Key Takeaways generation ────────────────────────────────────────────────
-
-def generate_key_takeaways(headline, body):
-    """Generate 3-4 key takeaway bullet points from article headline + body using GPT-4o-mini."""
-    if not OPENAI_KEY:
-        return None
-    # Strip HTML tags for a clean text input
-    text = re.sub(r'<[^>]+>', ' ', body)
-    text = re.sub(r'\s+', ' ', text).strip()
-    # Limit to first ~2000 chars to save tokens
-    text = text[:2000]
-
-    prompt = f"""Given this news article headline and body, write 3-4 concise key takeaway bullet points.
-Each bullet should be a single sentence capturing an essential fact. Write so a busy reader gets the full picture in 10 seconds.
-Do NOT start bullets with "Key Takeaway:" or similar labels. Just the fact.
-
-Headline: {headline}
-
-Body: {text}
-
-Return ONLY a JSON array of strings, e.g. ["First takeaway.", "Second takeaway.", "Third takeaway."]"""
-
-    import tempfile
-    payload = json.dumps({
-        "model": "gpt-4o-mini",
-        "messages": [{"role": "user", "content": prompt}],
-        "response_format": {"type": "json_object"},
-        "max_tokens": 300,
-        "temperature": 0,
-    })
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
-        tmp.write(payload)
-        tmp_path = tmp.name
-
-    try:
-        cmd = [
-            "curl", "-sS", "--max-time", "30",
-            "-X", "POST", "https://api.openai.com/v1/chat/completions",
-            "-H", f"Authorization: Bearer {OPENAI_KEY}",
-            "-H", "Content-Type: application/json",
-            "-d", f"@{tmp_path}",
-        ]
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=40)
-        if r.returncode != 0:
-            return None
-
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"     ⚠ Key takeaways LLM error: {data['error'].get('message', '')}")
-            return None
-
-        content_str = data["choices"][0]["message"]["content"]
-        content = json.loads(content_str)
-        # Handle both {"takeaways": [...]} and direct [...]
-        if isinstance(content, list):
-            items = content
-        elif isinstance(content, dict):
-            # Try common keys
-            items = content.get("takeaways") or content.get("key_takeaways") or content.get("bullets") or content.get("items") or []
-            if not items:
-                # Take the first list value found
-                for v in content.values():
-                    if isinstance(v, list):
-                        items = v
-                        break
-        else:
-            return None
-
-        if not items or not isinstance(items, list):
-            return None
-
-        # Build HTML
-        li_items = "\n".join(f"<li>{item}</li>" for item in items if isinstance(item, str) and item.strip())
-        if not li_items:
-            return None
-        return f'<div class="key-takeaways"><ul>\n{li_items}\n</ul></div>'
-    except Exception as e:
-        print(f"     ⚠ Key takeaways error: {e}")
-        return None
-    finally:
-        os.unlink(tmp_path)
 
 # ─── Supabase helpers (curl-based) ────────────────────────────────────────────
 
@@ -1184,33 +1099,18 @@ def main():
         # ── Dedup pull quotes (LLM sometimes generates identical ones) ──
         pq_pat = re.compile(r'<blockquote class="pull-quote">.*?</blockquote>', re.DOTALL)
         _seen_pqs = set()
-        _pq_count = [0]  # mutable counter for closure
         def _dedup_pq(m):
             key = re.sub(r'\s+', ' ', m.group(0)).strip()
             if key in _seen_pqs:
                 return ''
             _seen_pqs.add(key)
-            _pq_count[0] += 1
-            if _pq_count[0] > 2:
-                return ''  # cap at 2 pull quotes
             return m.group(0)
         deduped_body = pq_pat.sub(_dedup_pq, new_body)
         if deduped_body != new_body:
-            orig_count = len(pq_pat.findall(new_body))
-            final_count = len(pq_pat.findall(deduped_body))
-            removed_count = orig_count - final_count
+            removed_count = len(pq_pat.findall(new_body)) - len(_seen_pqs)
             new_body = re.sub(r'\n{3,}', '\n\n', deduped_body)
-            changes.append(f"dedup {removed_count} pull quote(s) ({orig_count}→{final_count})")
-            print(f"     🔄 Removed {removed_count} pull quote(s) ({orig_count}→{final_count})")
-
-        # ── Key Takeaways — generate if missing ──
-        if 'key-takeaways' not in new_body and OPENAI_KEY:
-            kt_html = generate_key_takeaways(headline, new_body)
-            if kt_html:
-                # Prepend to body (strip leading whitespace first)
-                new_body = kt_html + "\n\n" + new_body.lstrip()
-                changes.append("key-takeaways")
-                print(f"     📋 Added key takeaways")
+            changes.append(f"dedup {removed_count} pull quote(s)")
+            print(f"     🔄 Removed {removed_count} duplicate pull quote(s)")
 
         # Collect all available embeds first, then insert in relevance order
         # so the best match gets the highest placement. Video gets a small

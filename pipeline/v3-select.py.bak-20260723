@@ -17,7 +17,7 @@ from urllib.parse import quote as urlquote
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ── Options ───────────────────────────────────────────────────────────────────
-PER_CAT_MAX = 2
+PER_CAT_MAX = 3
 OUT_PATH = "/tmp/v3-candidates.json"
 DRY_RUN = False
 
@@ -549,10 +549,10 @@ def main():
     print(f"  Signal distribution: min={min(sig_counts)}, max={max(sig_counts)}, avg={sum(sig_counts)/len(sig_counts):.1f}")
 
     # ── Step 3: Load recent published articles for dedup ──────────────────────
-    # Three layers:
+    # Two layers:
     #  a) 14-day window sent to LLM for detailed new/update/duplicate classification
     #  b) 30-day headline keyword check to catch stories that resurface after weeks
-    #  c) Published topic titles — catches same canonical story resurfacing across runs
+    #     (e.g. Kunal Shah/WhatsApp story published July 1, resurfaced July 20)
     print(f"\n── Step 3: Loading recent articles for dedup ──")
     cutoff_14d = (NOW - timedelta(days=14)).isoformat()
     recent_articles = sb_get("p2_articles", {
@@ -565,15 +565,15 @@ def main():
         recent_articles = []
     print(f"  Recent articles (14d): {len(recent_articles)}")
 
-    # Layer b: fast headline keyword check against 60-day window (extended from 30d)
+    # Layer b: fast headline keyword check against 30-day window
     # Only loads the EXTRA articles beyond 14d, and only adds those matching a topic
-    cutoff_60d = (NOW - timedelta(days=60)).isoformat()
+    cutoff_30d = (NOW - timedelta(days=30)).isoformat()
     older_articles = sb_get("p2_articles", {
         "select": "headline,category,published_at",
-        "created_at": f"gte.{cutoff_60d}",
+        "created_at": f"gte.{cutoff_30d}",
         "status": "eq.published",
         "order": "created_at.desc",
-    }, range_header="1200-3999")
+    }, range_header="1200-2499")
     if not older_articles or isinstance(older_articles, dict):
         older_articles = []
 
@@ -589,41 +589,16 @@ def main():
             t_words = {w for w in re.findall(r'[a-z]{3,}', t_title)} - _dedup_stop
             if len(t_words) < 2:
                 continue
-            # Distinctive words = 6+ chars (proper nouns, specific terms)
-            t_distinctive = {w for w in t_words if len(w) >= 6}
             for oa in older_articles:
                 h_lower = (oa.get("headline") or "").lower()
                 h_words = {w for w in re.findall(r'[a-z]{3,}', h_lower)} - _dedup_stop
                 overlap = t_words & h_words
-                h_distinctive = {w for w in h_words if len(w) >= 6}
-                distinctive_overlap = t_distinctive & h_distinctive
-                # Match if 3+ total keyword overlap OR 2+ distinctive (6+ char) overlap
-                if (len(overlap) >= 3 or len(distinctive_overlap) >= 2) and oa not in recent_articles:
+                # 3+ distinctive keyword overlap = likely same story
+                if len(overlap) >= 3 and oa not in recent_articles:
                     recent_articles.append(oa)
                     added += 1
         if added:
-            print(f"  + {added} older headline(s) matched by keyword (60d)")
-
-    # Layer c: Published topic titles from p2_topics (catches same canonical story)
-    cutoff_30d = (NOW - timedelta(days=30)).isoformat()
-    published_topics = sb_get("p2_topics", {
-        "select": "canonical_title",
-        "status": "eq.published",
-        "updated_at": f"gte.{cutoff_30d}",
-    }, range_header="0-499")
-    if published_topics and not isinstance(published_topics, dict):
-        topic_headlines = [{"headline": t.get("canonical_title", ""), "category": "unknown", "published_at": ""}
-                          for t in published_topics if t.get("canonical_title")]
-        # Add to dedup context (LLM will see these as already-published)
-        existing_headlines = {a.get("headline", "").lower() for a in recent_articles}
-        added_topics = 0
-        for th in topic_headlines:
-            if th["headline"].lower() not in existing_headlines:
-                recent_articles.append(th)
-                existing_headlines.add(th["headline"].lower())
-                added_topics += 1
-        if added_topics:
-            print(f"  + {added_topics} published topic title(s) added to dedup context")
+            print(f"  + {added} older headline(s) matched by keyword (30d)")
 
     print(f"  Total dedup context: {len(recent_articles)} headlines")
 
@@ -724,7 +699,7 @@ def main():
 
     # ── Step 5: Per-category caps ─────────────────────────────────────────────
     print(f"\n── Step 5: Per-category caps ──")
-    CAT_LIMITS = {"news": 3, "immigration": 3}
+    CAT_LIMITS = {"news": 5, "immigration": 5}
     balanced = []
     cat_counts = {}
     capped_ids = []

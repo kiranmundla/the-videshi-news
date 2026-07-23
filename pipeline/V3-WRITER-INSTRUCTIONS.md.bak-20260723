@@ -2,7 +2,7 @@
 
 ## Step 1 — Run V3 selector
 ```
-cd ~/workspace/the-videshi-news/pipeline && timeout 600 python3 -u v3-select.py --per-cat 2 2>&1
+cd ~/workspace/the-videshi-news/pipeline && timeout 600 python3 -u v3-select.py --per-cat 3 2>&1
 ```
 
 ## Step 2 — Read candidates
@@ -124,9 +124,6 @@ Structure with clear `<h2>` subheadings. Must include:
 
 **Image URL:**
 Use the original source URL directly (Wikipedia, Wikimedia Commons, Pexels, og:image). Do NOT download, compress, or upload to Supabase Storage.
-
-**⚠️ CRITICAL — A wrong image is worse than no image:**
-If you cannot find a hero image that clearly matches the article topic, set `image_url` to null. A missing image is always better than a wrong one (e.g., a lion photo on an immigration article, a concert photo on a cricket story, a random street scene on a tech article). The enrichment pipeline will attempt to find a better image later.
 
 ### 3e. Insert into p2_articles
 Insert with `status="published"`. Required fields:
