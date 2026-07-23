@@ -1,0 +1,220 @@
+[
+  {
+    "id": "b989bf9e-8f2d-4dc3-adef-663a91fcd4fd",
+    "headline": "Immigration Compliance Becomes the New Dealbreaker in Corporate M&A",
+    "slug": "immigration-compliance-new-dealbreaker-corporate-ma",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian diaspora business leaders who have faced similar challenges in M&A due to immigration compliance. This would provide a relatable context for NRIs and highlight the impact on their business dealings.",
+        "Provide more context on how these immigration compliance issues specifically affect NRIs or Indian businesses operating in the U.S. For example, discuss how the changes in immigration policy might influence investment decisions or business expansions for Indian entrepreneurs in the U.S.",
+        "Clarify the timeline and implications of the 'Enforcement Shift' mentioned in the article. Readers may benefit from understanding how these changes have evolved over time and what they mean for future M&A activities involving foreign-born workers.",
+        "Include a section that outlines potential strategies or best practices for NRIs and Indian businesses to navigate the current immigration landscape in M&A transactions, making the article more actionable for the target audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about recent immigration policy changes or enforcement actions to provide readers with direct access to authoritative information.",
+        "Consider embedding a relevant video or infographic that visually represents the impact of immigration compliance on M&A, which could enhance reader understanding and engagement."
+      ]
+    }
+  },
+  {
+    "id": "615f4cb1-b549-44cb-b395-5ce0c97dea8a",
+    "headline": "Instant Oats Dosa: A 15-Minute Breakfast That Skips the Overnight Fermentation",
+    "slug": "instant-oats-dosa-15-minute-breakfast-skips-overnight-fermentation",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/12392915/pexels-photo-12392915.jpeg",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how NRIs can adapt traditional Indian recipes to their local ingredients, perhaps mentioning specific brands or products available in Western countries that can be used as substitutes.",
+        "Provide context on the popularity of oats dosa among the Indian diaspora, perhaps by including quotes or anecdotes from NRIs who have incorporated this dish into their busy lifestyles, highlighting its convenience and health benefits.",
+        "Include a brief comparison of how traditional dosa is perceived in India versus its reception among the Indian diaspora, discussing any cultural adaptations or variations that have emerged.",
+        "Add a section on the nutritional benefits of oats dosa specifically for NRIs, addressing common dietary concerns within the diaspora community, such as heart health and weight management."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post featuring a popular food influencer making oats dosa to visually engage readers and provide a contemporary context.",
+        "Consider embedding a tweet from a health expert or nutritionist discussing the benefits of oats, which could add credibility to the nutritional claims made in the article."
+      ]
+    }
+  },
+  {
+    "id": "e3a2c74f-a9f9-4af5-8357-aa0d2a915413",
+    "headline": "British Airways Probes Food Poisoning After All Three Pilots Fall Ill on Hyderab",
+    "slug": "british-airways-probes-food-poisoning-after-all-three-pilots-fall-ill-on-hyderabad-flight",
+    "category": "travel",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs who frequently travel between India and the UK, discussing their concerns about food safety and hygiene in hotels abroad.",
+        "Provide more context about the implications of this incident for Indian travelers, especially NRIs, by discussing how food safety standards in India compare to those in the UK and what travelers should be aware of when flying from India.",
+        "Include a brief section on the potential impact of this incident on British Airways' reputation among Indian travelers, particularly NRIs, who may be concerned about flying with the airline after such an event.",
+        "Add a concluding paragraph that discusses how this incident might affect future travel policies or safety measures for airlines operating in and out of India, which would be relevant to the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from British Airways addressing the incident or any official statement regarding food safety protocols.",
+        "Consider embedding a video from a travel safety expert discussing food safety tips for travelers, particularly those flying from India."
+      ]
+    }
+  },
+  {
+    "id": "c4f41eb0-fcfa-48dd-a5e1-b206f7d6e0e8",
+    "headline": "Too Much Protein? These Warning Signs Say It's Time to Ease Up",
+    "slug": "too-much-protein-warning-signs-when-to-cut-back",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/15120889/pexels-photo-15120889.jpeg",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Incorporate a section discussing how the protein consumption trends in the U.S. might affect the Indian diaspora, particularly in terms of dietary habits and cultural perceptions of protein intake.",
+        "Provide context on how protein consumption is viewed in India compared to the U.S., perhaps mentioning traditional Indian diets and how they balance protein sources, which could resonate with the NRI audience.",
+        "Include testimonials or quotes from NRIs who have adapted their diets in response to the protein trend, offering a personal angle that connects the content to the diaspora experience.",
+        "Add a brief discussion on how the rise of protein products may influence food choices for NRIs living in the U.S., including any cultural adaptations they might make."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or dietitian discussing protein intake recommendations or trends, which could provide authoritative context and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "8554def6-c9ba-4d58-98be-7cc37182d29c",
+    "headline": "Travis Kalanick's Atoms Raises $1.7 Billion to Build Industrial AI Empire",
+    "slug": "travis-kalanick-atoms-raises-1-7-billion-industrial-ai",
+    "category": "technology",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how Kalanick's ventures, particularly Atoms, may impact Indian industries or the Indian diaspora's involvement in tech and innovation. This could include potential job creation or investment opportunities for NRIs in the tech sector.",
+        "Provide more context on the implications of Kalanick's funding for the global tech landscape, especially in relation to Indian startups or the NRI community's role in industrial AI. This could help readers understand why this news matters to them specifically.",
+        "Consider adding a section on how the advancements in industrial AI could affect the job market in India, particularly for NRIs looking to return or invest in their home country. This would provide a direct connection to the diaspora audience.",
+        "Include a quote or perspective from an NRI expert in technology or investment to give a more personal touch and relevance to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official Atoms announcement or a relevant tweet from Travis Kalanick discussing the vision for Atoms, which would provide direct insight into the company's goals and relevance."
+      ]
+    }
+  },
+  {
+    "id": "e1c03534-9ee6-4ef0-8b93-67a06a87ef55",
+    "headline": "Pichai Defends Google's AI Strategy as Investors Question Gemini Delays",
+    "slug": "pichai-defends-google-ai-strategy-investors-question-gemini-delays",
+    "category": "technology",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how Google's AI developments may impact Indian tech professionals or startups abroad, particularly those in the NRI community who may be involved in AI or tech sectors.",
+        "Provide context on how the delays in Google's AI models could affect Indian businesses or consumers, especially those relying on Google's services, to make the article more relevant to the NRI audience.",
+        "Consider adding a quote or opinion from an NRI tech expert or entrepreneur regarding Google's AI strategy and its implications for the global tech landscape, which would strengthen the article's connection to the diaspora.",
+        "Clarify the significance of the Gemini models by explaining how they compare to competitors' offerings, particularly in relation to the Indian market or NRI interests in technology."
+      ],
+      "embed_opportunities": [
+        "Embed the official Google AI blog post or announcement regarding the Gemini models to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "174af759-20d4-49a7-828e-f52f84036168",
+    "headline": "Indian Immigrant Arrested in US With $3 Million in Stolen Tungsten Powder",
+    "slug": "indian-immigrant-arrested-in-us-with-3-million-stolen-tungsten-powder",
+    "category": "immigration",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from the Indian community in the US regarding the implications of this incident on their reputation and immigration policies. This could involve quotes from community leaders or organizations.",
+        "Provide more context about the significance of tungsten oxide in both the US and India, especially in terms of trade relations and how incidents like this could affect perceptions of Indian immigrants in the US.",
+        "Clarify the potential implications of Kumar's case on future immigration policies, particularly for NRIs and undocumented immigrants, to provide readers with a more comprehensive understanding of the situation.",
+        "Include a brief section on the broader impact of such crimes on the Indian diaspora, discussing how they can affect public perception and policy towards immigrants."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the policy on issuing commercial driver's licenses to migrants, as this would provide direct context to the ongoing debate sparked by Kumar's arrest."
+      ]
+    }
+  },
+  {
+    "id": "0b16ef03-741c-4e31-93e1-2780bbb0adfc",
+    "headline": "SEBI's PMS Rule Review Puts NRI Investment Barriers in the Spotlight",
+    "slug": "sebi-pms-rule-review-nri-investment-barriers",
+    "category": "nri-world",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)",
+      "Possibly irrelevant YouTube: \"**SEBI Ka Bada Clarification! \ud83d\ude31 AIF Units Ko Mutual Fund Nah\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs who have faced challenges in investing in PMS, highlighting personal experiences or barriers they encountered.",
+        "Provide additional context on how the proposed changes to PMS regulations could specifically impact NRI investors, including potential benefits or drawbacks, to give readers a clearer understanding of the stakes involved.",
+        "Incorporate a comparison of PMS regulations in other countries with significant Indian diaspora populations, such as the UK or Canada, to illustrate how India's approach differs and what NRIs might expect elsewhere.",
+        "Clarify the timeline of SEBI's review process by including specific dates or milestones that NRIs should be aware of, which could help them prepare for potential changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEBI announcement or relevant tweets regarding the PMS rule review to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "55b4d96b-b9a1-45e1-b6c3-9ebee0ebfd27",
+    "headline": "Wall Street Braces for Fed Rate Hold, but Rate Hike Talk Grows Louder",
+    "slug": "wall-street-braces-for-fed-rate-hold-rate-hike-talk-grows-louder",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by incorporating insights or quotes from Indian economists or financial analysts based in the U.S. who can discuss how Fed policies impact the Indian diaspora, particularly in terms of remittances and investment opportunities.",
+        "Provide context on how changes in U.S. interest rates affect the Indian economy and the NRI community, particularly regarding real estate investments and business ventures in India.",
+        "Include a section on how NRIs can navigate potential financial implications of rate hikes, such as strategies for managing investments or savings in light of changing interest rates.",
+        "Clarify the timeline mentioned in the article, as it currently states '2026' and '2027' which may confuse readers; ensure that the dates align with the current year and context."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Federal Reserve or a financial expert discussing the implications of the upcoming rate decisions, which would provide real-time insights and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "68e63fec-93c9-40ef-ab49-9a58308a7c1d",
+    "headline": "Fatty Liver Disease Now Affects One in Three Adults Worldwide \u2014 and Most Don't K",
+    "slug": "fatty-liver-disease-one-in-three-adults-worldwide",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/4021772/pexels-photo-4021772.jpeg",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or anecdotes about how MASLD affects the Indian diaspora in countries like the USA, Canada, or the UK, particularly in relation to lifestyle factors prevalent in these communities.",
+        "Provide context on how the Indian diaspora can access healthcare resources or screenings for MASLD in their respective countries, which would be particularly relevant for NRIs concerned about their health.",
+        "Include quotes or insights from health professionals or researchers who specialize in liver diseases, especially those who have worked with the Indian diaspora, to add depth and authority to the article.",
+        "Discuss cultural dietary habits within the Indian diaspora that may contribute to the prevalence of MASLD, offering actionable advice on dietary changes that can help mitigate risks."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a health organization like WHO or a relevant Indian health ministry regarding the rising rates of MASLD and its implications for public health."
+      ]
+    }
+  }
+]
