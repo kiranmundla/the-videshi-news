@@ -36,6 +36,30 @@ export default function ImmigrationStrip({ articles }: Props) {
         </div>
         <div className="w-full h-0.5 mb-4" style={{ background: "#D4A843" }} />
 
+        {/* Quick-access tools */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {[
+            { to: "/immigration/green-card", icon: "📊", label: "Green Card Tracker" },
+            { to: "/immigration/visas", icon: "🔍", label: "Visa Bulletin" },
+            { to: "/immigration/consulate-wait-times", icon: "🏛️", label: "Wait Times" },
+            { to: "/immigration/h1b", icon: "💼", label: "H-1B Hub" },
+            { to: "/immigration/guides", icon: "📖", label: "Guides" },
+          ].map((t) => (
+            <Link
+              key={t.to}
+              to={t.to}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold transition-all hover:scale-[1.03]"
+              style={{
+                background: "rgba(212, 168, 67, 0.15)",
+                color: "#D4A843",
+                border: "1px solid rgba(212, 168, 67, 0.3)",
+              }}
+            >
+              <span>{t.icon}</span> {t.label}
+            </Link>
+          ))}
+        </div>
+
         {/* Cards — horizontal scroll with arrows */}
         <ScrollWrap className="v2-imm-scroll" arrowVariant="dark">
           {articles.map((a) => {
