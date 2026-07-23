@@ -964,12 +964,142 @@ def extract_rss_image(entry_xml_element):
 
 
 if __name__ == "__main__":
-    # Test the image chain
-    import sys
-    test_url = sys.argv[1] if len(sys.argv) > 1 else "https://en.wikipedia.org/api/rest_v1/page/summary/Narendra_Modi"
-    print(f"Testing og:image fetch for: {test_url}")
-    og = fetch_og_image(test_url)
-    print(f"  og:image: {og}")
-    if og:
-        ok, ct, _ = verify_image_url(og)
-        print(f"  Verified: {ok} ({ct})")
+    import sys, argparse
+
+    parser = argparse.ArgumentParser(description="Image sourcer for The Videshi articles")
+    parser.add_argument("--article-json", help="JSON string with article metadata")
+    parser.add_argument("--slug", help="Fetch article from DB by slug and source its image")
+    parser.add_argument("--backfill", action="store_true",
+                        help="Find recent articles missing hero images and source them")
+    parser.add_argument("--hours", type=int, default=6,
+                        help="Hours to look back for --backfill (default: 6)")
+    parser.add_argument("--apply", action="store_true",
+                        help="Actually update the DB (default: dry run)")
+    parser.add_argument("--test-url", help="Test og:image fetch for a URL")
+    args = parser.parse_args()
+
+    if args.test_url:
+        print(f"Testing og:image fetch for: {args.test_url}")
+        og = fetch_og_image(args.test_url)
+        print(f"  og:image: {og}")
+        if og:
+            ok, ct, _ = verify_image_url(og)
+            print(f"  Verified: {ok} ({ct})")
+
+    elif args.article_json:
+        article = json.loads(args.article_json)
+        url, attr, caption = source_hero_image(article)
+        result = {"image_url": url, "attribution": attr, "caption": caption}
+        if article.get("focal_x") is not None:
+            result["focal_x"] = article["focal_x"]
+            result["focal_y"] = article["focal_y"]
+        if article.get("img_w"):
+            result["img_w"] = article["img_w"]
+            result["img_h"] = article["img_h"]
+        print("IMAGE_RESULT:" + json.dumps(result))
+
+    elif args.slug:
+        # Fetch article from DB and source its image
+        r = subprocess.run(
+            ["curl", "-s",
+             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources&slug=eq.{args.slug}&limit=1",
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+            capture_output=True, text=True, timeout=10
+        )
+        rows = json.loads(r.stdout)
+        if not rows:
+            print(f"ERROR: No article found with slug '{args.slug}'")
+            sys.exit(1)
+        article = rows[0]
+        url, attr, caption = source_hero_image(article)
+        if url:
+            print(f"\n  Image found: {url[:80]}")
+            if args.apply:
+                patch = {"image_url": url, "image_attribution": attr}
+                if caption:
+                    patch["image_caption"] = caption
+                if article.get("focal_x") is not None:
+                    patch["focal_x"] = article["focal_x"]
+                    patch["focal_y"] = article["focal_y"]
+                pr = subprocess.run(
+                    ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
+                     "-X", "PATCH",
+                     f"{SUPABASE_URL}/rest/v1/p2_articles?slug=eq.{args.slug}",
+                     "-H", f"apikey: {SUPABASE_KEY}",
+                     "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+                     "-H", "Content-Type: application/json",
+                     "-H", "Prefer: return=minimal",
+                     "-d", json.dumps(patch)],
+                    capture_output=True, text=True, timeout=10
+                )
+                print(f"  DB update: HTTP {pr.stdout}")
+            else:
+                print("  (dry run — use --apply to update DB)")
+        else:
+            print("  No image found across all sources.")
+        result = {"image_url": url, "attribution": attr, "caption": caption}
+        print("IMAGE_RESULT:" + json.dumps(result))
+
+    elif args.backfill:
+        from datetime import datetime, timedelta, timezone
+        cutoff = (datetime.now(timezone.utc) - timedelta(hours=args.hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        print(f"Backfilling hero images for articles published since {cutoff}...")
+        encoded_cutoff = urllib.parse.quote(cutoff, safe='')
+        r = subprocess.run(
+            ["curl", "-s",
+             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources"
+             f"&status=eq.published&image_url=is.null&published_at=gte.{encoded_cutoff}"
+             f"&order=published_at.desc",
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+            capture_output=True, text=True, timeout=15
+        )
+        rows = json.loads(r.stdout)
+        if not rows:
+            print("No articles missing hero images.")
+            sys.exit(0)
+        print(f"Found {len(rows)} articles missing hero images.\n")
+        used = set()
+        fixed = 0
+        failed = 0
+        for article in rows:
+            url, attr, caption = source_hero_image(article, used_images=used)
+            if url:
+                used.add(url)
+                if args.apply:
+                    patch = {"image_url": url, "image_attribution": attr}
+                    if caption:
+                        patch["image_caption"] = caption
+                    if article.get("focal_x") is not None:
+                        patch["focal_x"] = article["focal_x"]
+                        patch["focal_y"] = article["focal_y"]
+                    pr = subprocess.run(
+                        ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
+                         "-X", "PATCH",
+                         f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article['id']}",
+                         "-H", f"apikey: {SUPABASE_KEY}",
+                         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+                         "-H", "Content-Type: application/json",
+                         "-H", "Prefer: return=minimal",
+                         "-d", json.dumps(patch)],
+                        capture_output=True, text=True, timeout=10
+                    )
+                    status = pr.stdout.strip()
+                    if status == "204":
+                        fixed += 1
+                        print(f"    ✅ DB updated")
+                    else:
+                        print(f"    ⚠ DB patch returned {status}")
+                else:
+                    fixed += 1
+                    print(f"    (dry run)")
+            else:
+                failed += 1
+
+        mode = "APPLIED" if args.apply else "DRY RUN"
+        print(f"\n{'='*50}")
+        print(f"Backfill complete ({mode}): {fixed} fixed, {failed} still missing out of {len(rows)}")
+
+    else:
+        parser.print_help()
