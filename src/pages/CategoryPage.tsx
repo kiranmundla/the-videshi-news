@@ -9,6 +9,8 @@ import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
+import NowInTheaters from "@/components/NowInTheaters";
+import StreamingPicks from "@/components/StreamingPicks";
 import LoadMoreButton from "@/components/LoadMoreButton";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import AILeaderboard from "@/components/AILeaderboard";
@@ -118,6 +120,8 @@ export default function CategoryPage() {
         {def.slug === "technology" && <TechBuzz category="tech" />}
         {def.slug === "technology" && <AILeaderboard />}
         {/* {def.slug === "entertainment" && <CelebrityBuzz />} */}
+        {def.slug === "entertainment" && <NowInTheaters />}
+        {def.slug === "entertainment" && <StreamingPicks />}
         {def.slug === "sports" && <WorldCupTracker />}
         {def.slug === "sports" && <TechBuzz category="sports" />}
 
