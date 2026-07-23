@@ -627,10 +627,39 @@ def main():
 
     print(f"  Total dedup context: {len(recent_articles)} headlines")
 
+    # ── Step 3b: Hard dedup — reject topics whose title closely matches an already-published headline ──
+    # This catches cases the LLM misses (same story resurfacing with near-identical wording)
+    _pub_titles_lower = {(a.get("headline") or "").lower().strip() for a in recent_articles}
+    _hard_dedup_count = 0
+    for t in topics:
+        t_title = (t.get("canonical_title") or "").lower().strip()
+        # Strip trailing " - SOURCE" (e.g. " - NDTV") for matching
+        t_base = re.sub(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$', '', t_title).strip()
+        for pub in _pub_titles_lower:
+            pub_base = re.sub(r'\s*[-–—]\s*[a-z0-9 ]{2,30}$', '', pub).strip()
+            if not t_base or not pub_base:
+                continue
+            # Exact match after stripping source
+            if t_base == pub_base:
+                topic_statuses[t["id"]] = "rejected"
+                _hard_dedup_count += 1
+                break
+            # High word overlap (>=80% of words match)
+            t_words = set(re.findall(r'[a-z]{3,}', t_base)) - _dedup_stop
+            p_words = set(re.findall(r'[a-z]{3,}', pub_base)) - _dedup_stop
+            if t_words and p_words:
+                overlap = len(t_words & p_words) / min(len(t_words), len(p_words))
+                if overlap >= 0.8:
+                    topic_statuses[t["id"]] = "rejected"
+                    _hard_dedup_count += 1
+                    break
+    if _hard_dedup_count:
+        print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
+
     # ── Step 4: LLM scoring + classification ──────────────────────────────────
-    # Only LLM-score topics that have loaded signals — the rest are auto-rejected
-    topics_with_loaded_signals = [t for t in topics if t.get("signals")]
-    topics_without_signals = [t for t in topics if not t.get("signals")]
+    # Only LLM-score topics that have loaded signals AND weren't hard-deduped
+    topics_with_loaded_signals = [t for t in topics if t.get("signals") and topic_statuses.get(t["id"]) != "rejected"]
+    topics_without_signals = [t for t in topics if not t.get("signals") and topic_statuses.get(t["id"]) != "rejected"]
     print(f"\n── Step 4: LLM scoring + coverage classification ──")
     print(f"  Topics with loaded signals: {len(topics_with_loaded_signals)} (scoring)")
     print(f"  Topics without signals: {len(topics_without_signals)} (auto-rejecting)")
