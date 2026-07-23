@@ -311,7 +311,7 @@ def build_topic_query(headline):
     return " ".join(keywords[:5])
 
 
-def live_search_x(query, max_results=20, hours=48):
+def live_search_x(query, max_results=10, hours=48):
     """Live search TwitterAPI.io (for topic-based search, not cached)."""
     if not TWITTERAPI_IO_KEY:
         return []
@@ -448,7 +448,7 @@ def enrich_x_from_search(article):
     if not topic_q:
         return None, None
 
-    tweets = live_search_x(topic_q, max_results=20, hours=48)
+    tweets = live_search_x(topic_q, max_results=10, hours=48)
     if not tweets:
         return None, None
 
@@ -1300,7 +1300,7 @@ def main():
             # Gather tweet candidates for hero photo (reuse topic search)
             topic_q = build_topic_query(headline)
             if topic_q:
-                hero_tweets = live_search_x(topic_q, max_results=20, hours=72)
+                hero_tweets = live_search_x(topic_q, max_results=10, hours=72)
                 if hero_tweets:
                     hero_upgrade = try_hero_upgrade(article, hero_tweets)
                     if hero_upgrade:
