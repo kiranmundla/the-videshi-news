@@ -1136,7 +1136,6 @@ def fetch_articles(article_ids=None, hours=3):
             "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
             "status": "eq.published",
             "published_at": f"gte.{since}",
-            "enriched_at": "is.null",
             "order": "published_at.desc",
             "limit": "50",
         }
@@ -1313,11 +1312,10 @@ def main():
                 print(f"     🖼 Hero: stock, but no topic query")
 
         # ── Apply changes ──
-        now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         if changes:
             change_desc = " + ".join(changes)
             if args.apply:
-                updates = {"body": new_body, "social_embeds": new_embeds, "enriched_at": now_utc}
+                updates = {"body": new_body, "social_embeds": new_embeds}
                 if hero_upgrade:
                     updates["image_url"] = hero_upgrade["new_hero"]
                     updates["image_caption"] = hero_upgrade["caption"]
@@ -1329,9 +1327,6 @@ def main():
                 print(f"     [DRY RUN] Would apply: {change_desc}")
             report["processed"] += 1
         else:
-            # No embeds found, but still mark as enriched so we don't re-search
-            if args.apply:
-                sb_patch(article["id"], {"enriched_at": now_utc})
             report["skipped"] += 1
 
     elapsed = time.time() - start
