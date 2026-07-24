@@ -94,8 +94,7 @@ export default function ArticleReactions({ articleId, initialReactions }: Articl
 
   return (
     <div className="py-5 border-t border-b" style={{ borderColor: "#E5E5E5" }}>
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mr-1">React</span>
+      <div className="flex items-center gap-1.5 md:gap-2">
         {REACTION_TYPES.map(({ key, emoji, label }) => {
           const count = counts[key] ?? 0;
           const isSelected = selected === key;
@@ -103,8 +102,9 @@ export default function ArticleReactions({ articleId, initialReactions }: Articl
             <button
               key={key}
               onClick={() => handleReact(key)}
+              title={label}
               className={`
-                inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm
+                inline-flex items-center gap-1 px-2 py-1.5 md:px-3 md:py-1.5 md:gap-1.5 rounded-full text-sm
                 transition-all duration-200 select-none
                 ${isSelected
                   ? "bg-neutral-100 border-2 border-neutral-400 cursor-pointer"
@@ -113,7 +113,7 @@ export default function ArticleReactions({ articleId, initialReactions }: Articl
               `}
             >
               <span className="text-base">{emoji}</span>
-              <span className={`text-[11px] ${isSelected ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+              <span className={`hidden md:inline text-[11px] ${isSelected ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
                 {label}
               </span>
               {count > 0 && (

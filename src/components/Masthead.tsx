@@ -116,17 +116,15 @@ function CategoryNavBar() {
           {routeSlug !== "" && (
           <div className="v2-home-cat-nav" style={{ padding: "0 4px" }}>
             <div className="v2-home-cat-nav-inner">
-              {HUB_NAV.map((item) => {
-                const isActive = routeSlug === item.slug || (item.slug === "" && routeSlug === "");
+              {NAV_CATEGORIES.map((item) => {
+                const isActive = routeSlug === item.slug;
                 return (
                   <Link
                     key={item.slug}
                     to={item.path}
                     ref={isActive ? activeRef : undefined}
                     className={`v2-home-cat-pill${isActive ? " active" : ""}`}
-                    style={{ display: "flex", alignItems: "center", gap: 5 }}
                   >
-                    {item.icon}
                     {item.label}
                   </Link>
                 );

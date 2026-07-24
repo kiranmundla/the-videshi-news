@@ -92,14 +92,14 @@
 /* ── Visual Polish — section dividers ── */
 .v2-main-sections > section {
   border-bottom: 1px solid #E5E5E5;
-  padding-bottom: 8px;
+  padding-bottom: 24px;
 }
 .v2-main-sections > section:last-child {
   border-bottom: none;
 }
 @media (min-width: 768px) {
   .v2-main-sections > section {
-    padding-bottom: 4px;
+    padding-bottom: 20px;
   }
 }
 
@@ -158,13 +158,13 @@
   .v2-scroll-arrow { display: none; }
 }
 
-/* ── Section spacing — tighter, polished feel ── */
+/* ── Section spacing ── */
 .v2-main-sections > section.mb-14 {
   margin-bottom: 36px;
 }
 @media (min-width: 768px) {
   .v2-main-sections > section.mb-14 {
-    margin-bottom: 20px;
+    margin-bottom: 32px;
   }
 }
 

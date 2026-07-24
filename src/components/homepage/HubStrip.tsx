@@ -67,21 +67,8 @@ const HUB_TILES = [
 export default function HubStrip() {
   return (
     <>
-      {/* Desktop: compact horizontal text nav */}
-      <nav className="hidden md:flex items-center justify-center bg-white border-b border-slate-200" style={{ height: 40 }}>
-        {HUB_TILES.map((t) => (
-          <Link
-            key={t.label}
-            to={t.to}
-            className="px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-500 hover:text-[#A32D2D] transition-colors"
-          >
-            {t.label}
-          </Link>
-        ))}
-      </nav>
-
-      {/* Mobile: circular icon grid */}
-      <nav className="v2-hub-strip v2-hub-strip-mobile">
+      {/* Mobile only: circular icon grid */}
+      <nav className="v2-hub-strip v2-hub-strip-mobile md:hidden">
         {HUB_TILES.map((t) => (
           <Link key={t.label} to={t.to} className="v2-hub-tile">
             <div className="v2-hub-icon-wrap">
