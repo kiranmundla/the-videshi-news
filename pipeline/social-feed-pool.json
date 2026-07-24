@@ -1,6 +1,6 @@
 {
-  "_refreshed_at": "2026-07-24T00:53:18.550651+00:00",
-  "_rotation_index": 37,
+  "_refreshed_at": "2026-07-24T01:31:50.784181+00:00",
+  "_rotation_index": 38,
   "handles": {
     "technology:sundarpichai": [
       {
@@ -2752,6 +2752,17 @@
     ],
     "world-leaders:whitehouse": [
       {
+        "tweet_url": "https://x.com/WhiteHouse/status/2080465214084919452",
+        "handle": "WhiteHouse",
+        "tweet_id": "2080465214084919452",
+        "category": "world-leaders",
+        "text": "America's comeback isn't slowing down. \ud83c\uddfa\ud83c\uddf8\ud83e\udd85\n\nThe Spring 2027 White House Internship Program puts you at the center of it all. \n\nLead. Serve your country. Make an impact. \n\nAPPLY NOW \u27a1\ufe0f https://t.co/L2F8TKta7s https://t.co/maKKe4GD27",
+        "published_at": "2026-07-24T01:28:54.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HN9KcC2WoAADQnj.jpg"
+        ]
+      },
+      {
         "tweet_url": "https://x.com/WhiteHouse/status/2080444993370550694",
         "handle": "WhiteHouse",
         "tweet_id": "2080444993370550694",
@@ -2791,20 +2802,6 @@
         "text": "President Trump Hosts the Los Angeles Dodgers, 2025 World Series Champions https://t.co/QUqCRBKhLG",
         "published_at": "2026-07-23T20:35:58.000Z",
         "photos": []
-      },
-      {
-        "tweet_url": "https://x.com/WhiteHouse/status/2080391460747116831",
-        "handle": "WhiteHouse",
-        "tweet_id": "2080391460747116831",
-        "category": "world-leaders",
-        "text": "RATEPAYER PROTECTION PLEDGE \u270d\ufe0f\ud83c\uddfa\ud83c\uddf8\n\n\"We're here today to continue the incredible progress we\u2019re making in communities nationwide to ensure that as new data centers go up... electricity bills for American families will actually come down.\" - President Donald J. Trump https://t.co/YMPQwiimi1",
-        "published_at": "2026-07-23T20:35:50.000Z",
-        "photos": [
-          "https://pbs.twimg.com/media/HN8IKucWYAA-Wie.jpg",
-          "https://pbs.twimg.com/media/HN8IKucWkAAmz80.jpg",
-          "https://pbs.twimg.com/media/HN8IKufXQAEgldj.jpg",
-          "https://pbs.twimg.com/media/HN8IKuhXoAATozn.jpg"
-        ]
       }
     ],
     "world-leaders:10downingstreet": [
@@ -3641,6 +3638,365 @@
         "published_at": "2026-03-26T04:21:25.000Z",
         "photos": [
           "https://pbs.twimg.com/media/HET0L-QbYAAMUdz.jpg"
+        ]
+      }
+    ],
+    "spirituality:eckharttolle": [
+      {
+        "tweet_url": "https://x.com/EckhartTolle/status/1984430187048812879",
+        "handle": "EckhartTolle",
+        "tweet_id": "1984430187048812879",
+        "category": "spirituality",
+        "text": "\"The more you are focused on time - past and future - the more you miss the Now, the most precious thing there is.\" - Eckhart Tolle https://t.co/kybGZan5yp",
+        "published_at": "2025-11-01T01:20:00.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/G4L6Z90XsAAMf_T.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/EckhartTolle/status/1984264344780050801",
+        "handle": "EckhartTolle",
+        "tweet_id": "1984264344780050801",
+        "category": "spirituality",
+        "text": "When we think the world is withholding something from us, we must ask ourselves whether or not we can offer that very thing from within. Eckhart discusses what you could be withholding from within and how we can respond to our aliveness & abundance around us. https://t.co/GDZFlpNoML",
+        "published_at": "2025-10-31T14:21:00.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/EckhartTolle/status/1983997083448439129",
+        "handle": "EckhartTolle",
+        "tweet_id": "1983997083448439129",
+        "category": "spirituality",
+        "text": "\u201cMost humans are never fully present in the now, because unconsciously they believe that the next moment must be more important than this one. But then you miss your whole life, which is never not now.\u201d - Eckhart Tolle https://t.co/d5Clj6SWdh",
+        "published_at": "2025-10-30T20:39:00.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/G4L6VPeWgAA4eC0.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/EckhartTolle/status/1983675212806693088",
+        "handle": "EckhartTolle",
+        "tweet_id": "1983675212806693088",
+        "category": "spirituality",
+        "text": "\u201cSome changes look negative on the surface but you will soon realize that space is being created in your life for something new to emerge.\u201d - Eckhart Tolle https://t.co/XgIE7nAuPi",
+        "published_at": "2025-10-29T23:20:00.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/G4L6QnSWEAAA8VD.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/EckhartTolle/status/1983284890511589614",
+        "handle": "EckhartTolle",
+        "tweet_id": "1983284890511589614",
+        "category": "spirituality",
+        "text": "\u201cWhenever you deeply accept this moment as it is \u2014 no matter what form it takes \u2014 you are still, you are at peace.\u201d - Eckhart Tolle https://t.co/BoBzfDDSZd",
+        "published_at": "2025-10-28T21:29:00.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/G4L5UsRWQAEsGly.jpg"
+        ]
+      }
+    ],
+    "spirituality:byronkatie": [
+      {
+        "tweet_url": "https://x.com/ByronKatie/status/1678465936129400840",
+        "handle": "ByronKatie",
+        "tweet_id": "1678465936129400840",
+        "category": "spirituality",
+        "text": "Where specifically does your ego attempt to outshine the heart? xo bk \u2764\ufe0f\n\nJoin me live every M, T, W from 9-10 am PT: https://t.co/FIIYj26ivN.\n\n#theworkofbyronkatie #byronkatie #ego #journaling #selfwork #shinebright #innerguidance #selflove https://t.co/gtFUXVmOyP",
+        "published_at": "2023-07-10T18:07:18.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/ByronKatie/status/1678094164695695360",
+        "handle": "ByronKatie",
+        "tweet_id": "1678094164695695360",
+        "category": "spirituality",
+        "text": "Join me live every M, T, W from 9-10 am PT on Zoom. Let's do The Work! xoxo bk \ud83d\udc9e https://t.co/FIIYj26ivN\n\n#theworkofbyronkatie #byronkatie #selfinquiry #personalchange #mentalhealthjourney #wellness #selfreflection #healingjourney #selflove #selfwork https://t.co/SrjDa1THz5",
+        "published_at": "2023-07-09T17:30:01.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/F0nJv-0WwAIpsI2.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/ByronKatie/status/1677690257398018048",
+        "handle": "ByronKatie",
+        "tweet_id": "1677690257398018048",
+        "category": "spirituality",
+        "text": "Love is the power. xoxo bk \ud83d\udc9e\n\nJoin me live every M, T, W from 9-10 am PT: https://t.co/FIIYj26ivN.\n\n#theworkofbyronkatie #byronkatie #love #selflove #selfwork #healingjourney #compassion #gratitude #spreadlove https://t.co/zBHn8X8fRJ",
+        "published_at": "2023-07-08T14:45:01.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/F0haZc4X0AED1ay.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/ByronKatie/status/1677378701724377103",
+        "handle": "ByronKatie",
+        "tweet_id": "1677378701724377103",
+        "category": "spirituality",
+        "text": "Join me live every M, T, W from 9-10 am PT on Zoom. xo bk \ud83d\udc9e\nhttps://t.co/FIIYj26ivN\n\n#theworkofbyronkatie #byronkatie #selfinquiry #personalchange #mentalhealthjourney #wellness #selfreflection #healingjourney #selflove #selfwork https://t.co/qIMuBfNNOR",
+        "published_at": "2023-07-07T18:07:01.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/F0c_CiFWYBk5F2_.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/ByronKatie/status/1677007118744838168",
+        "handle": "ByronKatie",
+        "tweet_id": "1677007118744838168",
+        "category": "spirituality",
+        "text": "New Pod Episode: \"Postpartum Depression, Potato Chips, and an Arrogant Husband\"\nListen at https://t.co/jU5NipQyFq\n\nOlivia has just had a child, she\u2019s tired, suffering from postpartum depression, and is in an angry argument with her husband. Let's do The Work!\n\n#byronkatiepodcast https://t.co/gdAS1e5",
+        "published_at": "2023-07-06T17:30:29.000Z",
+        "photos": []
+      }
+    ],
+    "spirituality:rupertspira": [
+      {
+        "tweet_url": "https://x.com/RupertSpira/status/2080276755323990354",
+        "handle": "RupertSpira",
+        "tweet_id": "2080276755323990354",
+        "category": "spirituality",
+        "text": "https://t.co/T5UfyKaHeT",
+        "published_at": "2026-07-23T13:00:02.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HMETBehXwAEEHON.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/RupertSpira/status/2079944558801195428",
+        "handle": "RupertSpira",
+        "tweet_id": "2079944558801195428",
+        "category": "spirituality",
+        "text": "Rupert leads a seven-day retreat in Italy, 29 Aug \u2013 5 Sept, at Mandali Retreat Centre. Livestream also available.\n\nhttps://t.co/UmaJbDmbEW https://t.co/7axgsOGOp3",
+        "published_at": "2026-07-22T15:00:00.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HNqs1GjXkAAOW7h.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/RupertSpira/status/2079914360680464705",
+        "handle": "RupertSpira",
+        "tweet_id": "2079914360680464705",
+        "category": "spirituality",
+        "text": "https://t.co/o11avWOJzZ",
+        "published_at": "2026-07-22T13:00:01.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HMES6C0X0AAWY9U.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/RupertSpira/status/2079702968790835415",
+        "handle": "RupertSpira",
+        "tweet_id": "2079702968790835415",
+        "category": "spirituality",
+        "text": "Rupert holds an evening meeting at Dartington Hall, Totnes, Thursday 23 July, 7\u20139pm.\n\nhttps://t.co/zREIqiMBIe https://t.co/QdYcNCw73b",
+        "published_at": "2026-07-21T23:00:01.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HNqvxIUXsAAeTPF.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/RupertSpira/status/2079623464265429163",
+        "handle": "RupertSpira",
+        "tweet_id": "2079623464265429163",
+        "category": "spirituality",
+        "text": "'All practices give the apparently separate self something to do in order to become or unite with infinite being. But it is already that.'\n\n'The Peace of Your True Nature' \u2014 now on Rupert's Substack.\n\nhttps://t.co/KIP4G3vuFd https://t.co/Oft2KxuCsI",
+        "published_at": "2026-07-21T17:44:06.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HNxOhJoW0AERq4l.jpg"
+        ]
+      }
+    ],
+    "spirituality:dandapanillc": [
+      {
+        "tweet_url": "https://x.com/DandapaniLLC/status/2080322877539131764",
+        "handle": "DandapaniLLC",
+        "tweet_id": "2080322877539131764",
+        "category": "spirituality",
+        "text": "Prolonged concentration on a thought eventually brings it into manifestation on the physical plane.",
+        "published_at": "2026-07-23T16:03:19.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/DandapaniLLC/status/2080292554566754744",
+        "handle": "DandapaniLLC",
+        "tweet_id": "2080292554566754744",
+        "category": "spirituality",
+        "text": "The question is not, \"Am I attached?\" The real question is, \"What am I attached to\u2014and is it helping me rise or pulling me down?\"",
+        "published_at": "2026-07-23T14:02:49.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/DandapaniLLC/status/2080277455701516699",
+        "handle": "DandapaniLLC",
+        "tweet_id": "2080277455701516699",
+        "category": "spirituality",
+        "text": "Most people waste time like it is an infinite resource that they have.",
+        "published_at": "2026-07-23T13:02:49.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/DandapaniLLC/status/2079961079128392165",
+        "handle": "DandapaniLLC",
+        "tweet_id": "2079961079128392165",
+        "category": "spirituality",
+        "text": "What we do for our kitchen sink but don\u2019t for our mind. \n https://t.co/srehlkVfyw",
+        "published_at": "2026-07-22T16:05:39.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/DandapaniLLC/status/2079960386426544265",
+        "handle": "DandapaniLLC",
+        "tweet_id": "2079960386426544265",
+        "category": "spirituality",
+        "text": "You are not at the mercy of your patterns; you can shape your subconscious as much as it has shaped you.",
+        "published_at": "2026-07-22T16:02:54.000Z",
+        "photos": []
+      }
+    ],
+    "spirituality:jayshetty": [
+      {
+        "tweet_url": "https://x.com/jayshetty/status/2080271712126455809",
+        "handle": "JayShetty",
+        "tweet_id": "2080271712126455809",
+        "category": "spirituality",
+        "text": "You didn\u2019t ask for too much\u2026 you were giving your love to someone that couldn\u2019t hold it \u2764\ufe0f https://t.co/V65EcnuHb1",
+        "published_at": "2026-07-23T12:40:00.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/jayshetty/status/2079909346532524199",
+        "handle": "JayShetty",
+        "tweet_id": "2079909346532524199",
+        "category": "spirituality",
+        "text": "They weren\u2019t invested in you\u2026 they were invested in what you gave \u2764\ufe0f https://t.co/EaGIZviYlb",
+        "published_at": "2026-07-22T12:40:05.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/jayshetty/status/2079546945962381424",
+        "handle": "JayShetty",
+        "tweet_id": "2079546945962381424",
+        "category": "spirituality",
+        "text": "Find your people \u2764\ufe0f https://t.co/cRyBdtqI5o",
+        "published_at": "2026-07-21T12:40:02.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/jayshetty/status/2079199649487790362",
+        "handle": "JayShetty",
+        "tweet_id": "2079199649487790362",
+        "category": "spirituality",
+        "text": "Chris Hemsworth on real friendships https://t.co/UNHXwer4Hz",
+        "published_at": "2026-07-20T13:40:00.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/jayshetty/status/2078097416239054895",
+        "handle": "JayShetty",
+        "tweet_id": "2078097416239054895",
+        "category": "spirituality",
+        "text": "Remember this \ud83d\ude4f https://t.co/hmrImYgf9i",
+        "published_at": "2026-07-17T12:40:07.000Z",
+        "photos": []
+      }
+    ],
+    "spirituality:osho": [
+      {
+        "tweet_url": "https://x.com/OSHO/status/2022661606530769144",
+        "handle": "Osho",
+        "tweet_id": "2022661606530769144",
+        "category": "spirituality",
+        "text": "We talk about love all the time. Especially on Valentine\u2019s Day... \ud83c\udf39\nBut how often do we talk about trust? \n\n\ud83d\udc49\ud83c\udffb Read the full article: https://t.co/94k3qmVY7j \n\n#meditation #osho #oshoquotes #osholove",
+        "published_at": "2026-02-14T13:18:00.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/OSHO/status/2015852493566099469",
+        "handle": "Osho",
+        "tweet_id": "2015852493566099469",
+        "category": "spirituality",
+        "text": "Too busy to meditate? You\u2019re exactly who this app is for. \ud83d\udd4a\ufe0f\u2728\n\nStart finding the stillness in your storm. Calm, clarity, and joy are just a tap away. \ud83d\udcf2 Download now and reclaim your inner peace. https://t.co/2MmsoVeHtu \n\n#osho #osholovers #meditation #meditate",
+        "published_at": "2026-01-26T18:21:01.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/OSHO/status/2015464517367439371",
+        "handle": "Osho",
+        "tweet_id": "2015464517367439371",
+        "category": "spirituality",
+        "text": "\ud83d\udcc5 8 weeks. 1 hour per week. Online &amp; live.\nhttps://t.co/VVuT6sE37i \n\nEver feel like joy should come naturally\u2026 but somehow it doesn\u2019t?\n\n\ud83d\udcac \u201cIf joy is a natural, ordinary human experience \u2014 what am I doing that prevents it from happening?\u201d \u2013 Amrito\n\n#OSHO #Joy #Meditation https://t.co/Bsm70INorA",
+        "published_at": "2026-01-25T16:39:21.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/OSHO/status/2014763641828946367",
+        "handle": "Osho",
+        "tweet_id": "2014763641828946367",
+        "category": "spirituality",
+        "text": "\u2728 \u201c...One lives silently, peacefully, and prepares himself for the eternal peace.\u201d Osho, The Zen Manifesto\n\n\ud83d\udcab Begin your meditation journey:\n\u2192 iOsho App: https://t.co/JrBhEZT3Jy\n\u2192 Online Courses: https://t.co/fMM3O4liiW\n\u2192 YouTube: https://t.co/FfG94zuRKk\n\n#Osho #Meditation https://t.co/Gvu5LqK7p6",
+        "published_at": "2026-01-23T18:14:19.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/OSHO/status/2014163862690427025",
+        "handle": "Osho",
+        "tweet_id": "2014163862690427025",
+        "category": "spirituality",
+        "text": "We carry the past like it\u2019s proof of who we are. \ud83e\uddf3 Old stories. Old labels. Old mistakes.\n\nOsho reminds us that the past only has power if we keep reliving it. \ud83c\udf31\n\n\ud83d\udc49\ud83c\udffb Read the full article: https://t.co/JrOjouGi50\n\n#meditation #osho",
+        "published_at": "2026-01-22T02:31:00.000Z",
+        "photos": []
+      }
+    ],
+    "spirituality:brahmakumaris": [
+      {
+        "tweet_url": "https://x.com/BrahmaKumaris/status/2080205935520489685",
+        "handle": "brahmakumaris",
+        "tweet_id": "2080205935520489685",
+        "category": "spirituality",
+        "text": "The mind keeps circling the problem, searching for answers from the same place where the confusion began.\n\nMeditation doesn't always remove the challenge\u2014it lifts your awareness above it.\n\nFrom a higher perspective, what once felt impossible becomes clearer. Sometimes, the solution isn't a new answe",
+        "published_at": "2026-07-23T08:18:38.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HN5gRKNbwAASmBJ.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/BrahmaKumaris/status/2080204629355491391",
+        "handle": "brahmakumaris",
+        "tweet_id": "2080204629355491391",
+        "category": "spirituality",
+        "text": "Life is always fair because every experience is shaped by the law of karma. Instead of blaming situations or feeling helpless, we can choose powerful thoughts and actions in the present, creating a brighter destiny with every moment.\n \nRead more to understand why life is always fair and how your pre",
+        "published_at": "2026-07-23T08:13:26.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/BrahmaKumaris/status/2079875664862384343",
+        "handle": "brahmakumaris",
+        "tweet_id": "2079875664862384343",
+        "category": "spirituality",
+        "text": "Anyone can feel peaceful while sitting alone in meditation.\n\nThe real test begins when someone misunderstands you, criticizes you, or doesn't behave the way you expected.\n\nYour relationships reveal how much you've truly practiced.\n\nEvery difficult person is not an obstacle\u2014they're an opportunity to ",
+        "published_at": "2026-07-22T10:26:15.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HN0zzDXbsAAyZEN.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/BrahmaKumaris/status/2079875364457693375",
+        "handle": "brahmakumaris",
+        "tweet_id": "2079875364457693375",
+        "category": "spirituality",
+        "text": "When we fill our consciousness with virtues like peace, love, joy and spiritual power, we naturally develop the inner strength to respond wisely to every situation. A soul that rules itself with virtues creates harmony within and radiates the same positivity to the world around it.\n \nRead more to di",
+        "published_at": "2026-07-22T10:25:03.000Z",
+        "photos": []
+      },
+      {
+        "tweet_url": "https://x.com/BrahmaKumaris/status/2079546441173967059",
+        "handle": "brahmakumaris",
+        "tweet_id": "2079546441173967059",
+        "category": "spirituality",
+        "text": "The world has enough people who know what to say.\n\nWhat it longs for is someone whose presence brings peace.\n\nWords may inspire for a moment, but your inner peace has the power to heal, comfort, and transform hearts without saying a single word.\n\nBecome the kind of soul people don't just listen to, ",
+        "published_at": "2026-07-21T12:38:02.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HNwIYGtaUAATFUb.jpg"
         ]
       }
     ]
