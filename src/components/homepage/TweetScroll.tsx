@@ -29,6 +29,10 @@ const DISPLAY_NAMES: Record<string, string> = {
   elonmusk: "Elon Musk",
   tim_cook: "Tim Cook",
   nandannilekani: "Nandan Nilekani",
+  anandmahindra: "Anand Mahindra",
+  nithin0dha: "Nithin Kamath",
+  nikesharora: "Nikesh Arora",
+  vijayshekhar: "Vijay Shekhar Sharma",
   // Bollywood
   iamsrk: "Shah Rukh Khan",
   priyankachopra: "Priyanka Chopra",
