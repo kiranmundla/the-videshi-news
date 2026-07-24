@@ -1,128 +1,128 @@
 [
   {
-    "slug": "india-uk-ceta-trade-deal-first-zero-duty-goods",
-    "headline": "India-UK Free Trade Deal Takes Effect, First Zero-Duty Goods Land in London",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-uk-ceta-trade-deal-first-zero-duty-goods.jpg"
-  },
-  {
-    "slug": "indienne-michelin-starred-indian-fine-dining-hudson-yards-nyc",
-    "headline": "Michelin-Starred Indienne Brings Indian Fine Dining to New York's Hudson Yards",
+    "slug": "chef-harpal-singh-sokhi-karigari-culinary-movement",
+    "headline": "How Chef Harpal Singh Sokhi Built Karigari Into a Culinary Movement",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indienne-michelin-starred-indian-fine-dining-hudson-yards-nyc.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chef-harpal-singh-sokhi-karigari-culinary-movement.jpg"
   },
   {
-    "slug": "indian-restaurants-nyc-hardest-reservations",
-    "headline": "Indian Restaurants Now Dominate NYC's Most Coveted Reservation Lists",
+    "slug": "asian-games-2026-cricket-draw-india-direct-knockout",
+    "headline": "Asian Games 2026 Cricket Draw Confirmed: India Get Direct Knockout Entry",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/asian-games-2026-cricket-draw-india-direct-knockout.jpg"
+  },
+  {
+    "slug": "chana-dal-vada-south-indian-snack-monsoon",
+    "headline": "Chana Dal Vada: The Crispy South Indian Snack Perfect for Monsoon Evenings",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-restaurants-nyc-hardest-reservations.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chana-dal-vada-south-indian-snack-monsoon.jpg"
   },
   {
-    "slug": "madhya-pradesh-passes-uniform-civil-code",
-    "headline": "Madhya Pradesh Becomes Fourth Indian State to Pass Uniform Civil Code",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/madhya-pradesh-passes-uniform-civil-code.jpg"
+    "slug": "india-six-medal-events-day-2-glasgow-commonwealth-games",
+    "headline": "India Eyes Six Medal Events on Action-Packed Day 2 at Glasgow Commonwealth Games",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-six-medal-events-day-2-glasgow-commonwealth-games.jpg"
   },
   {
-    "slug": "icmr-indiab-87-percent-indian-adults-abnormal-cholesterol",
-    "headline": "Nine in Ten Indian Adults Have Abnormal Cholesterol, Landmark ICMR Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/icmr-indiab-87-percent-indian-adults-abnormal-cholesterol.jpg"
-  },
-  {
-    "slug": "infosys-names-ashiss-kumar-dash-next-ceo",
-    "headline": "Infosys Names Three-Decade Veteran Ashiss Kumar Dash as Next CEO",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/infosys-names-ashiss-kumar-dash-next-ceo.jpg"
-  },
-  {
-    "slug": "dhs-rule-caps-j1-visa-four-years-disrupts-doctor-training",
-    "headline": "New DHS Rule Caps J-1 Visa Stays at Four Years, Disrupting Doctor Training Programs",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhs-rule-caps-j1-visa-four-years-disrupts-doctor-training.jpg"
-  },
-  {
-    "slug": "bee-venom-boosts-parkinsons-therapy-mouse-study",
-    "headline": "Bee Venom Boosts Standard Parkinson's Therapy in New Mouse Study",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bee-venom-boosts-parkinsons-therapy-mouse-study.jpg"
-  },
-  {
-    "slug": "daca-renewal-delays-leave-dreamers-in-limbo",
-    "headline": "DACA Renewal Delays Leave Hundreds of Thousands in Limbo Without Work or Protection",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/daca-renewal-delays-leave-dreamers-in-limbo.jpg"
-  },
-  {
-    "slug": "uk-backs-non-invasive-tests-endometriosis-diagnosis",
-    "headline": "UK Backs Two Non-Invasive Tests to Cut Nine-Year Endometriosis Diagnosis Wait",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-backs-non-invasive-tests-endometriosis-diagnosis.jpg"
-  },
-  {
-    "slug": "indian-green-card-holder-would-not-move-us-h1b-today",
-    "headline": "Indian Green Card Holder Says He Would Not Move to the US on an H-1B Visa Today",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-green-card-holder-would-not-move-us-h1b-today.jpg"
-  },
-  {
-    "slug": "nokia-123-shield-water-resistant-feature-phone",
-    "headline": "Nokia 123 Shield Brings Water Resistance and 19-Day Battery for Under ₹2,500",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nokia-123-shield-water-resistant-feature-phone.jpg"
-  },
-  {
-    "slug": "israel-gaza-strikes-west-bank-violence-surges",
-    "headline": "Israel's Near-Daily Gaza Strikes Kill Five More as West Bank Violence Surges",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/israel-gaza-strikes-west-bank-violence-surges.jpg"
-  },
-  {
-    "slug": "wiffy-raises-3-million-series-a-home-services",
-    "headline": "Mumbai-Based Wiffy Raises $3 Million to Expand AI-Powered Home Services Platform",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/wiffy-raises-3-million-series-a-home-services.jpg"
-  },
-  {
-    "slug": "jainam-jain-14-year-old-indian-ai-startup-burj-khalifa",
-    "headline": "Meet Jainam Jain, the 14-Year-Old Indian Running an AI Startup From Burj Khalifa",
+    "slug": "viswanathan-anand-first-indian-interim-fide-president",
+    "headline": "Viswanathan Anand Becomes First Indian to Lead World Chess Body as Interim FIDE President",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jainam-jain-14-year-old-indian-ai-startup-burj-khalifa.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/viswanathan-anand-first-indian-interim-fide-president.jpg"
   },
   {
-    "slug": "india-opens-cwg-2026-lawn-bowls-wins-doping-shadow",
-    "headline": "India Opens CWG 2026 With Two Lawn Bowls Wins Despite Doping Cloud Over Glasgow Campaign",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-opens-cwg-2026-lawn-bowls-wins-doping-shadow.jpg"
+    "slug": "us-global-visa-restrictions-cybercrime-sextortion",
+    "headline": "US Announces Global Visa Restrictions Targeting Cybercriminals and Sextortion Networks",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-global-visa-restrictions-cybercrime-sextortion.jpg"
   },
   {
-    "slug": "amazon-cuts-jobs-agi-unit-ai-investment-soars",
-    "headline": "Amazon Cuts Jobs in Its AGI Unit Even as AI Investment Soars",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/amazon-cuts-jobs-agi-unit-ai-investment-soars.jpg"
-  },
-  {
-    "slug": "mjf-aew-redemption-creative-force-kevin-knight",
-    "headline": "MJF Shaped AEW Redemption Main Event as Backstage Creative Force",
+    "slug": "tusshar-kapoor-welcome-to-the-jungle-ensemble-cost",
+    "headline": "Tusshar Kapoor Questions Cost of Mega Ensemble Films, Praises Ahmed Khan's Vision for Welcome to the Jungle",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mjf-aew-redemption-creative-force-kevin-knight.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tusshar-kapoor-welcome-to-the-jungle-ensemble-cost.jpg"
   },
   {
-    "slug": "iran-claims-strikes-destroyed-us-patriot-radar-gulf-bases",
-    "headline": "Iran Claims Strikes Destroyed US Patriot Systems and Radar at Gulf Bases",
+    "slug": "white-house-divided-chinese-ai-startups-warn-ban",
+    "headline": "White House Divided Over Chinese AI as Startups Warn Ban Would Kill Innovation",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/white-house-divided-chinese-ai-startups-warn-ban.jpg"
+  },
+  {
+    "slug": "iqoo-z11-lite-5g-launches-india-6500mah-battery",
+    "headline": "iQOO Z11 Lite 5G Launches in India With 6,500mAh Battery Starting at Rs 17,999",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iqoo-z11-lite-5g-launches-india-6500mah-battery.jpg"
+  },
+  {
+    "slug": "russian-hackers-zimbra-flaw-emails-2fa-no-clicks",
+    "headline": "Russian Hackers Stole Emails and 2FA Codes Via Zimbra Flaw With No User Clicks Required",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/russian-hackers-zimbra-flaw-emails-2fa-no-clicks.jpg"
+  },
+  {
+    "slug": "uk-pm-burnham-opens-no10-north-manchester-shift-power",
+    "headline": "UK PM Burnham Opens 'No10 North' in Manchester to Shift Power From London",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-pm-burnham-opens-no10-north-manchester-shift-power.jpg"
+  },
+  {
+    "slug": "air-india-saudia-deepen-partnership-new-mou",
+    "headline": "Air India and Saudia Deepen Partnership With New MOU Beyond Codeshare",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-saudia-deepen-partnership-new-mou.jpg"
+  },
+  {
+    "slug": "ai-wearables-at-home-diagnostics-redefining-wellness-2026",
+    "headline": "AI, Wearables, and At-Home Diagnostics Are Redefining Wellness in 2026",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-wearables-at-home-diagnostics-redefining-wellness-2026.jpg"
+  },
+  {
+    "slug": "india-cockroach-protesters-neet-paper-leak-crisis",
+    "headline": "India's 'Cockroach' Protesters Force Government Talks as NEET Paper Leak Crisis Deepens",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-claims-strikes-destroyed-us-patriot-radar-gulf-bases.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-cockroach-protesters-neet-paper-leak-crisis.jpg"
   },
   {
-    "slug": "pennsylvania-measles-snyder-county-lowes-exposure",
-    "headline": "Pennsylvania Measles Outbreak Spreads to Snyder County After Lowe's Exposure",
+    "slug": "iran-rejects-trump-ceasefire-us-strikes-shipping-routes",
+    "headline": "Iran Rejects Trump Ceasefire as US Strikes Enter Third Week, Shipping Routes Choked",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pennsylvania-measles-snyder-county-lowes-exposure.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-rejects-trump-ceasefire-us-strikes-shipping-routes.jpg"
   },
   {
-    "slug": "illness-crisis-uae-team-pogacar-tour-de-france",
-    "headline": "Illness Crisis Hits UAE Team as Pogačar Chases Historic Fifth Tour de France Title",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/illness-crisis-uae-team-pogacar-tour-de-france.jpg"
+    "slug": "india-overhauls-oci-rules-digital-first-system-stricter-compliance",
+    "headline": "India Overhauls OCI Rules With Digital-First System and Stricter Compliance",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-overhauls-oci-rules-digital-first-system-stricter-compliance.jpg"
+  },
+  {
+    "slug": "experimental-kras-vaccine-pancreatic-cancer-prevention-trial",
+    "headline": "Experimental KRAS Vaccine Shows Promise in First Human Pancreatic Cancer Prevention Trial",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/experimental-kras-vaccine-pancreatic-cancer-prevention-trial.jpg"
+  },
+  {
+    "slug": "canada-pgwp-refusal-rate-hits-25-percent-portal-flaws-indian-graduates",
+    "headline": "Canada PGWP Refusal Rate Hits 25% as Portal Flaws Trip Up Indian Graduates",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-pgwp-refusal-rate-hits-25-percent-portal-flaws-indian-graduates.jpg"
+  },
+  {
+    "slug": "adani-group-denies-airline-plans-after-reuters-reports-aviation-ambitions",
+    "headline": "Adani Group Denies Airline Plans After Reuters Reports Aviation Ambitions",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/adani-group-denies-airline-plans-after-reuters-reports-aviation-ambitions.jpg"
+  },
+  {
+    "slug": "v445-puppis-helium-nova-cosmic-bullets-30-million-kmh",
+    "headline": "V445 Puppis: Galaxy's Only Helium Nova Fires 'Cosmic Bullets' at 30 Million km/h",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/v445-puppis-helium-nova-cosmic-bullets-30-million-kmh.jpg"
+  },
+  {
+    "slug": "batman-caped-crusader-season-2-matthew-needham-joker-wunmi-mosaku",
+    "headline": "House of the Dragon Star Matthew Needham to Voice Joker in Batman: Caped Crusader Season 2",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/batman-caped-crusader-season-2-matthew-needham-joker-wunmi-mosaku.jpg"
   }
 ]
