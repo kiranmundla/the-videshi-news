@@ -1,0 +1,93 @@
+[
+  {
+    "id": "a1542b7e-84a8-43f4-95ea-94a94d1db90d",
+    "headline": "SpaceX Starship Flight 13 Targets Friday Launch After Engine Abort and Weather D",
+    "slug": "spacex-starship-flight-13-launch-engine-abort-weather-delays",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "9b28eb6c-a2a8-4137-bbaf-76354753298a",
+    "headline": "Nvidia, Microsoft and Meta Urge White House Against Restricting Open AI Models",
+    "slug": "nvidia-microsoft-meta-warn-white-house-against-open-ai-restrictions",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "b98acb8e-ac8f-4ec5-99f7-e96d14462dbf",
+    "headline": "India Summons Russia After Black Sea Missile Strike Kills Four Seafarers",
+    "slug": "india-summons-russia-black-sea-strike-kills-four-seafarers",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "6745b198-d0cd-4caa-b028-8eeb3203e852",
+    "headline": "China Brokers Pakistan-Iran Channel to Restart Diplomacy With Washington",
+    "slug": "china-brokers-pakistan-iran-channel-restart-talks-with-washington",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "fd74100e-0a7e-43b0-9152-d106ebc51fdb",
+    "headline": "Microsoft Blames Nine-Hour Microsoft 365 Outage on Maintenance Overload",
+    "slug": "microsoft-365-nine-hour-outage-maintenance-overload-july-2026",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "e99c8aa0-72b6-4a70-8fe1-2330d888411c",
+    "headline": "Tech Millionaires Are Reshaping the Luxury Market With Meteorites, Dinosaurs and",
+    "slug": "tech-wealth-boom-luxury-market-dinosaur-fossils-collectibles",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d4a14636-53f5-4a91-9763-5f0036cefe86",
+    "headline": "Rocket Lab Lands $266 Million Air Force Contract as Defense Wins Stack Up",
+    "slug": "rocket-lab-266-million-air-force-contract-haste-suborbital",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "05f28b64-130f-4a5d-82be-2e22dbcc0a3a",
+    "headline": "Tyson Fury Stops Mariusz Wach in Seventh Round, Clears Path to Joshua Showdown",
+    "slug": "tyson-fury-stops-mariusz-wach-seventh-round-joshua-showdown",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "bcbaa8a6-1387-42a4-a144-c3555a9004ca",
+    "headline": "Blade Runner 2099 Trailer Debuts at Comic-Con, Sets November Premiere on Prime V",
+    "slug": "blade-runner-2099-trailer-debuts-comic-con-november-premiere-prime-video",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "0236c3fc-7862-42d3-a888-146d8556e649",
+    "headline": "Barack Obama Surprises WNBA All-Stars at Presidential Center Practice",
+    "slug": "barack-obama-surprises-wnba-all-stars-presidential-center-chicago",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian diaspora members who may have been inspired by Obama's support for women's sports, or who have connections to the WNBA.",
+        "Provide context on how Obama's appearance at the WNBA All-Star practice reflects broader trends in sports and culture that resonate with the NRI community, such as the increasing visibility of women's sports globally.",
+        "Add a section discussing the significance of Obama's engagement with women's sports in relation to the Indian diaspora, perhaps by mentioning any Indian women athletes or initiatives that promote women's sports in India.",
+        "Clarify the connection between Obama's appearance and any potential implications for the NRI community, such as how this might influence perceptions of women's empowerment or sports participation among Indian women abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the WNBA or a notable player expressing their thoughts on Obama's visit, or a tweet from an Indian sports figure commenting on the event."
+      ]
+    }
+  }
+]
