@@ -42,7 +42,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
   if (!articles || articles.length === 0) return null;
 
   return (
-    <section className="mb-10">
+    <section className="mb-6">
       <div className="container">
         {/* Header */}
         <div className="flex items-center gap-2.5 mb-4">
