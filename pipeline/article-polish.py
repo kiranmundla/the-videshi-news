@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
-article-polish.py — Single GPT-4o-mini call per article combining:
+article-polish.py — Single LLM call per article combining:
   1. Key takeaways (structured JSON for key_takeaways column)
   2. Data cards (stat grids, comparisons, timelines for data_cards column)
   3. Proofread (grammar fixes, irrelevant image detection)
 
-Called by the writer at insert time. Replaces three separate GPT calls
-(enrich-on-publish key_takeaways, enrich-data-cards, proofread-article).
-review-articles.py remains as a later safety net.
+GPT-4o-mini primary, Gemini 2.5 Flash fallback.
+Called by the writer at insert time. review-articles.py remains as safety net.
 
 Usage:
   python3 -u article-polish.py --article-id <uuid>
@@ -33,10 +32,12 @@ def _load_env(path):
 
 _load_env("~/workspace/.env.supabase")
 _load_env("~/workspace/.env.openai")
+_load_env("~/workspace/.env.google-ai")
 
 SB_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 OAI_KEY = os.environ.get("OPENAI_API_KEY", "")
+GEMINI_KEY = os.environ.get("GOOGLE_AI_API_KEY", "")
 SB_HOST = SB_URL.replace("https://", "")
 
 
@@ -69,7 +70,6 @@ def sb_patch(article_id, data):
 
 
 def extract_images(body):
-    """Extract inline images for proofread context."""
     images = []
     for m in re.finditer(r'<img[^>]*?(?:alt=["\']([^"\']*)["\'])?[^>]*?(?:src=["\']([^"\']*)["\'])?[^>]*/?>',
                          body, re.IGNORECASE):
@@ -121,12 +121,88 @@ Return ONLY valid JSON:
 }}"""
 
 
-def polish_article(article):
-    """Single GPT-4o-mini call for takeaways + data cards + proofread."""
-    if not OAI_KEY:
-        print("     ⚠ No OpenAI key")
+# ── LLM Calls ──
+
+def _call_openai(prompt):
+    """GPT-4o-mini primary."""
+    payload = json.dumps({
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": prompt}],
+        "response_format": {"type": "json_object"},
+        "max_tokens": 2000,
+        "temperature": 0.1,
+    })
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
+        tmp.write(payload)
+        tmp_path = tmp.name
+    try:
+        r = subprocess.run(
+            ["curl", "-sS", "--max-time", "45",
+             "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {OAI_KEY}",
+             "-H", "Content-Type: application/json",
+             "-d", f"@{tmp_path}"],
+            capture_output=True, text=True, timeout=50
+        )
+        os.unlink(tmp_path)
+        if r.returncode != 0:
+            return None
+        data = json.loads(r.stdout)
+        if "error" in data:
+            print(f"     ⚠ GPT error: {data['error'].get('message', '')[:80]}")
+            return None
+        content = data["choices"][0]["message"]["content"]
+        result = json.loads(content)
+        usage = data.get("usage", {})
+        if usage:
+            cost = usage.get("prompt_tokens", 0) * 0.15 / 1e6 + usage.get("completion_tokens", 0) * 0.60 / 1e6
+            print(f"     Tokens: {usage.get('prompt_tokens',0)} in + {usage.get('completion_tokens',0)} out = ${cost:.4f}")
+        return result
+    except Exception as e:
+        print(f"     ⚠ GPT error: {e}")
+        try:
+            os.unlink(tmp_path)
+        except:
+            pass
         return None
 
+
+def _call_gemini(prompt):
+    """Gemini 2.5 Flash fallback — free tier, thinkingBudget:0 for clean JSON."""
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_KEY}"
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "responseMimeType": "application/json",
+            "maxOutputTokens": 2000,
+            "temperature": 0.1,
+            "thinkingConfig": {"thinkingBudget": 0}
+        }
+    })
+    try:
+        r = subprocess.run(
+            ["curl", "-sS", "--max-time", "45", "-X", "POST", url,
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=50
+        )
+        if r.returncode != 0:
+            return None
+        data = json.loads(r.stdout)
+        if "error" in data:
+            print(f"     ⚠ Gemini error: {data['error'].get('message', '')[:80]}")
+            return None
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        return json.loads(text)
+    except Exception as e:
+        print(f"     ⚠ Gemini error: {e}")
+        return None
+
+
+# ── Main Logic ──
+
+def polish_article(article):
+    """Single LLM call for takeaways + data cards + proofread. GPT primary, Gemini fallback."""
     headline = article.get("headline", "")
     category = article.get("category", "")
     body = article.get("body", "") or ""
@@ -147,54 +223,23 @@ def polish_article(article):
         images_block=images_block, body_text=body_text
     )
 
-    payload = json.dumps({
-        "model": "gpt-4o-mini",
-        "messages": [{"role": "user", "content": prompt}],
-        "response_format": {"type": "json_object"},
-        "max_tokens": 2000,
-        "temperature": 0.1,
-    })
+    # Try GPT-4o-mini first
+    if OAI_KEY:
+        result = _call_openai(prompt)
+        if result:
+            return result
+        print("     ↳ GPT failed, trying Gemini...")
 
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
-        tmp.write(payload)
-        tmp_path = tmp.name
+    # Gemini 2.5 Flash fallback
+    if GEMINI_KEY:
+        result = _call_gemini(prompt)
+        if result:
+            print("     (via Gemini)")
+            return result
 
-    try:
-        r = subprocess.run(
-            ["curl", "-sS", "--max-time", "45",
-             "https://api.openai.com/v1/chat/completions",
-             "-H", f"Authorization: Bearer {OAI_KEY}",
-             "-H", "Content-Type: application/json",
-             "-d", f"@{tmp_path}"],
-            capture_output=True, text=True, timeout=50
-        )
-        os.unlink(tmp_path)
-
-        if r.returncode != 0:
-            return None
-
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"     ⚠ GPT error: {data['error'].get('message', '')[:80]}")
-            return None
-
-        content = data["choices"][0]["message"]["content"]
-        result = json.loads(content)
-
-        usage = data.get("usage", {})
-        if usage:
-            cost = usage.get("prompt_tokens", 0) * 0.15 / 1e6 + usage.get("completion_tokens", 0) * 0.60 / 1e6
-            print(f"     Tokens: {usage.get('prompt_tokens',0)} in + {usage.get('completion_tokens',0)} out = ${cost:.4f}")
-
-        return result
-
-    except Exception as e:
-        print(f"     ⚠ error: {e}")
-        try:
-            os.unlink(tmp_path)
-        except:
-            pass
-        return None
+    if not OAI_KEY and not GEMINI_KEY:
+        print("     ⚠ No LLM keys available")
+    return None
 
 
 def apply_polish(article, result, dry_run=False):
@@ -223,7 +268,6 @@ def apply_polish(article, result, dry_run=False):
     body = article.get("body", "") or ""
     body_changed = False
 
-    # Remove irrelevant images
     to_remove = proofread.get("images_to_remove", [])
     if to_remove:
         img_matches = list(re.finditer(
@@ -236,7 +280,6 @@ def apply_polish(article, result, dry_run=False):
                 body_changed = True
                 changes.append(f"removed image {idx}")
 
-    # Text fixes
     fixes = proofread.get("text_fixes", [])
     n_fixed = 0
     for fix in fixes[:10]:
