@@ -68,20 +68,38 @@ TENNIS_KEYWORDS = [
 ]
 
 def _is_relevant_cricket(event: dict) -> bool:
-    """Check if a cricket event is relevant for diaspora audience."""
-    text = f"{event.get('strEvent', '')} {event.get('strLeague', '')}".lower()
-    # All international cricket is relevant
-    if any(kw in text for kw in CRICKET_KEYWORDS):
-        return True
-    # Any match involving India
+    """Check if a cricket event is relevant for diaspora audience.
+    
+    Only: India matches, ICC events, IPL, MLC. Skip regional/domestic
+    leagues (The Hundred, BBL, CPL, Global Super League, county cricket).
+    """
     home = (event.get("strHomeTeam") or "").lower()
     away = (event.get("strAwayTeam") or "").lower()
+    league = (event.get("strLeague") or "").lower()
+    event_name = (event.get("strEvent") or "").lower()
+    text = f"{event_name} {league}"
+
+    # Any match involving India national team
     if "india" in home or "india" in away:
         return True
-    # Major leagues (IPL, The Hundred, MLC, etc.) are always relevant
-    league = (event.get("strLeague") or "").lower()
-    if any(kw in league for kw in ["hundred", "premier league", "super league", "major league"]):
+
+    # ICC events (World Cup, Champions Trophy, WTC, T20 WC)
+    if "icc" in text or "world cup" in text or "champions trophy" in text or "world test" in text:
         return True
+
+    # IPL
+    if "ipl" in text or "indian premier league" in text:
+        return True
+
+    # MLC — US-based, directly relevant to diaspora
+    if "mlc" in text or "major league cricket" in text:
+        return True
+
+    # Asia Cup
+    if "asia cup" in text:
+        return True
+
+    # Skip everything else (The Hundred, BBL, CPL, GSL, county, etc.)
     return False
 
 def _is_relevant_soccer(event: dict) -> bool:
