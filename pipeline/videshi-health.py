@@ -658,15 +658,21 @@ def check_tweet_embeds(fix=False):
     # Fetch articles that contain x.com or twitter.com URLs in their body
     hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
 
+    # Limit to last 48h to keep verification time manageable (~1s per tweet).
+    # Without this, 200+ articles × 200+ tweets = ~200s, far exceeding the
+    # SIGALRM timeout and causing the full health script to hang.
+    cutoff_48h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=48))
+
     def _fetch_articles(body_filter):
         # Large body responses occasionally get truncated by the egress proxy
         # (ChunkedEncodingError). Retry a few times with backoff.
         params = {
             "select": "id,headline,slug,body,category",
             "status": "eq.published",
+            "published_at": f"gte.{cutoff_48h}",
             "body": f"ilike.*{body_filter}*",
             "order": "published_at.desc",
-            "limit": "200",
+            "limit": "50",
         }
         last_err = None
         for attempt in range(5):
