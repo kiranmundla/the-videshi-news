@@ -814,7 +814,13 @@ def main():
 
     _hard_dedup_count = 0
     _entity_dedup_count = 0
+    _skipped_no_signals = 0
     for t in topics:
+        # Skip topics without signals — they'll be auto-rejected in Step 4 anyway.
+        # This avoids the expensive O(n×m) word-overlap loop on 12K+ dead topics.
+        if not t.get("signals"):
+            _skipped_no_signals += 1
+            continue
         t_title = (t.get("canonical_title") or "").lower().strip()
         t_base = _strip_src_re.sub('', t_title).strip()
         if not t_base:
