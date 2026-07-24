@@ -248,6 +248,13 @@
   color: #c53030;
 }
 
+@media (min-width: 768px) {
+  .v2-happening-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 32px;
+  }
+}
 @media (max-width: 768px) {
   .v2-happening-strip {
     padding: 12px 0;
