@@ -739,7 +739,7 @@ def main():
         work worker world worry worst worth would write wrong yard yeah year yes
         yet you young your youth zero
         alert allege amid american announce annual arab are award bail beef billion
-        boot brew brief broker byte cafe canal cargo cent cheap chicken chinese
+        boot brew brief broker byte cabinet cafe canal cargo cent cheap chicken chinese
         coal coffee column confirm crew crude cyber defeat deliver deploy
         diesel dispute draft drone eager earlier elect elite emerge enact exert
         export extend extract fake fare ferry fiber fleet flour forge former
@@ -861,6 +861,8 @@ def main():
                     _entity_dedup_count += 1
                     print(f"    Entity dedup: '{t_title_orig[:80]}' ↔ '{_pub_headlines_original[i][:80]}' (shared: {shared_ents})")
                     break
+    if _skipped_no_signals:
+        print(f"  Skipped dedup: {_skipped_no_signals} topics (no signals, will be auto-rejected)")
     if _hard_dedup_count:
         print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
     if _entity_dedup_count:
