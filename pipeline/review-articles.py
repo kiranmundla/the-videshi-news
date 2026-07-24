@@ -55,6 +55,24 @@ SB_URL = _sb.get("SUPABASE_URL", "").rstrip("/").replace("https://", "")
 SB_KEY = _sb.get("SUPABASE_SERVICE_ROLE_KEY", "")
 OAI_KEY = _oai.get("OPENAI_API_KEY", "")
 
+# ── LLM review dedup (avoid re-reviewing same article) ──
+_REVIEWED_STATE_FILE = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.reviewed-articles.json")
+
+def _load_reviewed():
+    """Load set of already-LLM-reviewed article IDs."""
+    if not os.path.exists(_REVIEWED_STATE_FILE):
+        return set()
+    try:
+        with open(_REVIEWED_STATE_FILE) as f:
+            return set(json.load(f))
+    except:
+        return set()
+
+def _save_reviewed(state):
+    """Save reviewed article IDs."""
+    with open(_REVIEWED_STATE_FILE, "w") as f:
+        json.dump(list(state), f)
+
 def sb_get(endpoint, params=None):
     url = f"https://{SB_URL}/rest/v1/{endpoint}"
     if params:
@@ -308,13 +326,29 @@ def main():
     
     print(f"Found {len(articles)} articles to review\n")
     
+    # Load reviewed state to skip redundant LLM calls
+    reviewed_state = _load_reviewed()
+    
     results = []
+    llm_skipped = 0
     for article in articles:
         headline = article.get("headline", "")[:75]
-        print(f"  📰 {headline}")
+        aid = article.get("id", "")
         
-        result = review_article(article, run_llm=not args.no_llm)
+        # Decide whether to run LLM: skip if already reviewed (unless --article-ids forces it)
+        skip_llm = args.no_llm
+        if not skip_llm and not args.article_ids and aid in reviewed_state:
+            skip_llm = True
+            llm_skipped += 1
+        
+        print(f"  📰 {headline}" + (" (LLM cached)" if skip_llm and not args.no_llm else ""))
+        
+        result = review_article(article, run_llm=not skip_llm)
         results.append(result)
+        
+        # Mark as reviewed if LLM ran successfully
+        if not skip_llm and result.get("llm_review"):
+            reviewed_state.add(aid)
         
         # Print structural issues
         if result["structural_issues"]:
@@ -343,6 +377,8 @@ def main():
     
     print(f"═══ Summary ═══")
     print(f"Articles reviewed: {len(results)}")
+    if llm_skipped:
+        print(f"LLM reviews skipped (already reviewed): {llm_skipped}")
     print(f"Structural issues found: {total_issues}")
     if scored:
         print(f"Average quality score: {avg_score:.1f}/10")
@@ -365,6 +401,9 @@ def main():
         with open(report_path, "w") as f:
             json.dump(results, f, indent=2, default=str)
         print(f"\nReport saved: {report_path}")
+    
+    # Persist reviewed state
+    _save_reviewed(reviewed_state)
     
     return results
 
