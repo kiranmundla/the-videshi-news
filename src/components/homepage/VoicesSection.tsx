@@ -81,20 +81,73 @@ export default function VoicesSection({ stories }: Props) {
           who lived them.
         </p>
 
-        {/* Scroll strip */}
-        <ScrollWrap className="v2-voices-scroll">
+        {/* Mobile: scroll strip */}
+        <div className="md:hidden">
+          <ScrollWrap className="v2-voices-scroll">
+            {items.map((s) => (
+              <div
+                key={s.id}
+                className="flex-shrink-0 bg-white rounded-xl p-5 border"
+                style={{
+                  width: 300,
+                  minWidth: 300,
+                  borderColor: "hsl(var(--rule))",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                }}
+              >
+                {/* Author */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                    style={{ background: "#D4A843" }}
+                  >
+                    {s.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold" style={{ color: "#0B1D3A" }}>
+                      {s.author}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{s.route}</p>
+                  </div>
+                </div>
+
+                {/* Quote */}
+                <blockquote
+                  className="font-serif text-[14px] italic leading-relaxed mb-3 pl-3"
+                  style={{
+                    color: "#0B1D3A",
+                    borderLeft: "3px solid #D4A843",
+                  }}
+                >
+                  "{s.quote}"
+                </blockquote>
+
+                {/* Tag */}
+                <p
+                  className="text-[10px] font-bold tracking-[1.2px] uppercase"
+                  style={{ color: "#D4A843" }}
+                >
+                  {s.tag}
+                </p>
+              </div>
+            ))}
+          </ScrollWrap>
+        </div>
+
+        {/* Desktop: grid */}
+        <div className="hidden md:grid grid-cols-4 gap-5">
           {items.map((s) => (
             <div
               key={s.id}
-              className="flex-shrink-0 bg-white rounded-xl p-5 border"
+              className="bg-white rounded-xl p-5 border"
               style={{
-                width: 300,
-                minWidth: 300,
                 borderColor: "hsl(var(--rule))",
                 boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
               }}
             >
-              {/* Author */}
               <div className="flex items-center gap-3 mb-3">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white"
@@ -112,8 +165,6 @@ export default function VoicesSection({ stories }: Props) {
                   <p className="text-xs text-muted-foreground">{s.route}</p>
                 </div>
               </div>
-
-              {/* Quote */}
               <blockquote
                 className="font-serif text-[14px] italic leading-relaxed mb-3 pl-3"
                 style={{
@@ -123,8 +174,6 @@ export default function VoicesSection({ stories }: Props) {
               >
                 "{s.quote}"
               </blockquote>
-
-              {/* Tag */}
               <p
                 className="text-[10px] font-bold tracking-[1.2px] uppercase"
                 style={{ color: "#D4A843" }}
@@ -133,7 +182,7 @@ export default function VoicesSection({ stories }: Props) {
               </p>
             </div>
           ))}
-        </ScrollWrap>
+        </div>
       </div>
     </section>
   );

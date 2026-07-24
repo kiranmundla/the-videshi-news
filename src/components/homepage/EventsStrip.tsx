@@ -93,79 +93,97 @@ export default function EventsStrip({ events, userLat, userLng, userCity }: Prop
           </div>
         </div>
 
-        {/* Scroll strip */}
-        <ScrollWrap className="v2-events-scroll">
-          {upcoming.map((e) => {
+        {/* Mobile: scroll strip */}
+        <div className="md:hidden">
+          <ScrollWrap className="v2-events-scroll">
+            {upcoming.map((e) => {
+              const { month, day } = formatEventDate(e.date);
+              return (
+                <Link
+                  key={e.id}
+                  to={`/events/${e.slug || e.id}`}
+                  className="group flex-shrink-0 bg-white rounded-xl border overflow-hidden transition-transform hover:-translate-y-0.5"
+                  style={{
+                    width: 240,
+                    minWidth: 240,
+                    borderColor: "hsl(var(--rule))",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+                  }}
+                >
+                  <div
+                    className="flex items-center gap-3 px-4 py-3"
+                    style={{ borderBottom: "1px solid hsl(var(--rule))" }}
+                  >
+                    <div className="text-center leading-none" style={{ minWidth: 44 }}>
+                      <p className="text-[10px] font-bold tracking-[1px] uppercase" style={{ color: "#A32D2D" }}>{month}</p>
+                      <p className="text-[24px] font-extrabold" style={{ color: "#0B1D3A" }}>{day}</p>
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-serif text-[14px] font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">{e.title}</h4>
+                    </div>
+                  </div>
+                  <div className="px-4 py-2.5">
+                    <p className="text-xs text-muted-foreground line-clamp-1">
+                      {[e.venue_name, e.city, e.state].filter(Boolean).join(", ")}
+                    </p>
+                    <div className="flex items-center justify-between mt-1">
+                      {e.category && (
+                        <span className="text-[10px] font-bold tracking-[1px] uppercase" style={{ color: "#D4A843" }}>{e.category}</span>
+                      )}
+                      {e._dist !== null && e._dist !== undefined && (
+                        <span className="text-[10px] font-semibold" style={{ color: "#6B7280" }}>{formatDistance(e._dist)}</span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </ScrollWrap>
+        </div>
+
+        {/* Desktop: 4-column grid */}
+        <div className="hidden md:grid grid-cols-4 gap-5">
+          {upcoming.slice(0, 8).map((e) => {
             const { month, day } = formatEventDate(e.date);
             return (
               <Link
                 key={e.id}
                 to={`/events/${e.slug || e.id}`}
-                className="group flex-shrink-0 bg-white rounded-xl border overflow-hidden transition-transform hover:-translate-y-0.5"
+                className="group bg-white rounded-xl border overflow-hidden transition-transform hover:-translate-y-0.5"
                 style={{
-                  width: 240,
-                  minWidth: 240,
                   borderColor: "hsl(var(--rule))",
                   boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                 }}
               >
-                {/* Date badge */}
                 <div
                   className="flex items-center gap-3 px-4 py-3"
                   style={{ borderBottom: "1px solid hsl(var(--rule))" }}
                 >
-                  <div
-                    className="text-center leading-none"
-                    style={{ minWidth: 44 }}
-                  >
-                    <p
-                      className="text-[10px] font-bold tracking-[1px] uppercase"
-                      style={{ color: "#A32D2D" }}
-                    >
-                      {month}
-                    </p>
-                    <p
-                      className="text-[24px] font-extrabold"
-                      style={{ color: "#0B1D3A" }}
-                    >
-                      {day}
-                    </p>
+                  <div className="text-center leading-none" style={{ minWidth: 44 }}>
+                    <p className="text-[10px] font-bold tracking-[1px] uppercase" style={{ color: "#A32D2D" }}>{month}</p>
+                    <p className="text-[24px] font-extrabold" style={{ color: "#0B1D3A" }}>{day}</p>
                   </div>
                   <div className="min-w-0">
-                    <h4 className="font-serif text-[14px] font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">
-                      {e.title}
-                    </h4>
+                    <h4 className="font-serif text-[14px] font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors">{e.title}</h4>
                   </div>
                 </div>
-
-                {/* Location + distance */}
                 <div className="px-4 py-2.5">
                   <p className="text-xs text-muted-foreground line-clamp-1">
                     {[e.venue_name, e.city, e.state].filter(Boolean).join(", ")}
                   </p>
                   <div className="flex items-center justify-between mt-1">
                     {e.category && (
-                      <span
-                        className="text-[10px] font-bold tracking-[1px] uppercase"
-                        style={{ color: "#D4A843" }}
-                      >
-                        {e.category}
-                      </span>
+                      <span className="text-[10px] font-bold tracking-[1px] uppercase" style={{ color: "#D4A843" }}>{e.category}</span>
                     )}
                     {e._dist !== null && e._dist !== undefined && (
-                      <span
-                        className="text-[10px] font-semibold"
-                        style={{ color: "#6B7280" }}
-                      >
-                        {formatDistance(e._dist)}
-                      </span>
+                      <span className="text-[10px] font-semibold" style={{ color: "#6B7280" }}>{formatDistance(e._dist)}</span>
                     )}
                   </div>
                 </div>
               </Link>
             );
           })}
-        </ScrollWrap>
+        </div>
       </div>
     </section>
   );
