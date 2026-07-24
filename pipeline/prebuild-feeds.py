@@ -81,6 +81,7 @@ P2_COLS_NO_BODY = (
 INDIA_NEWS = {"slug": "news", "limit": 18}
 WORLD_NEWS = {"slug": "nri-world", "limit": 12}
 CATEGORY_SECTIONS = [
+    {"slug": "immigration", "limit": 12},
     {"slug": "markets-finance", "limit": 12},
     {"slug": "sports", "limit": 12},
     {"slug": "technology", "limit": 12},

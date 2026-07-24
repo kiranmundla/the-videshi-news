@@ -230,12 +230,6 @@ export default function IndexV2() {
           new Date(feedData.generated_at),
           (feedData.just_in ?? []) as Article[]
         );
-
-        // Fetch immigration separately (not in homepage-feed.json)
-        try {
-          const immArticles = await getArticlesByCategory("immigration", 12);
-          setSections((prev) => ({ ...prev, immigration: immArticles }));
-        } catch {}
       } catch {
         // Fallback to Supabase
         fetchFromSupabase();
