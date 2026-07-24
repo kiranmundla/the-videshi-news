@@ -826,5 +826,15 @@
     "errors": 0,
     "hero_slug": "monsoon-fury-batters-gujarat-one-dead-1200-rescued",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-24T13:55:56.515465+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 24, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "canada-pgwp-refusal-rate-hits-25-percent-portal-flaws-indian-graduates",
+    "story_count": 5
   }
 ]
