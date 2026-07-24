@@ -23,6 +23,7 @@ import HeroMedia from "@/components/HeroMedia";
 import SocialEmbeds from "@/components/SocialEmbeds";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
 import ArticleReactions from "@/components/ArticleReactions";
+import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
 import ChampionsTimeline from "@/components/ChampionsTimeline";
 
@@ -803,6 +804,9 @@ export default function ArticlePage() {
             </a>
           </section>
         )}
+
+        {/* Emoji reactions */}
+        <ArticleReactions articleId={article.id} initialReactions={article.reactions as Record<string, number> | undefined} />
 
         {related.length > 0 && (
           <section className="mt-8">

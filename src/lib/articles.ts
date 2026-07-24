@@ -36,6 +36,7 @@ export type Article = {
   img_w?: number | null;
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
+  reactions?: Record<string, number> | null;
 };
 
 type P2Row = {
@@ -65,10 +66,11 @@ type P2Row = {
   img_w?: number | null;
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
+  reactions?: Record<string, number> | null;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, social_embeds";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, social_embeds, reactions";
 
 const P2_LIST_COLS =
   "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, event_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
@@ -201,6 +203,7 @@ function mapRow(row: P2Row): Article {
     img_w: row.img_w ?? null,
     img_h: row.img_h ?? null,
     social_embeds: Array.isArray(row.social_embeds) ? row.social_embeds : [],
+    reactions: (row as any).reactions ?? {},
     // expose raw attribution for callers that want it separately
     // (kept on image_credit too for backwards compat)
     published_at: row.published_at ?? row.created_at,
