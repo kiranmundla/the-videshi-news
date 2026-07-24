@@ -124,44 +124,41 @@ Insert with `status="published"`. Required fields:
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`
 
-## Step 4 — Enrich articles (embeds, hero upgrade, inline images, data cards)
-After publishing, run enrichment on the articles you just wrote:
+## Step 4 — Polish articles (one GPT call: takeaways + data cards + proofread)
+After inserting each article, run the combined polish script on it:
 
 ```bash
 cd ~/workspace/the-videshi-news/pipeline
+set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; set +a
 
-# Load env
-set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; source ~/workspace/.env.google-ai; source ~/workspace/.env.pexels 2>/dev/null; source ~/workspace/.env.twitterapi-io; source ~/workspace/.env.apify; source ~/workspace/.env.youtube; set +a
-
-# PRIMARY: Social embeds (X, IG, YouTube) + hero image upgrade from tweet photos
-# This is the main enrichment — articles should look complete after this step
-timeout 180 python3 -u enrich-on-publish.py --hours 3 --apply 2>&1
-
-# Inline images + pull quotes (body enrichment, secondary polish)
-timeout 600 python3 -u enrich-articles.py --hours 3 --apply 2>&1
-
-# Data cards (navy infographic cards with stats)
-timeout 600 python3 -u enrich-data-cards.py --since-hours 3 --limit 10 2>&1
+# One GPT-4o-mini call per article: key_takeaways JSON, data_cards JSON, grammar/image proofread
+python3 -u article-polish.py --article-id <article_uuid> 2>&1
 ```
 
-If any enrichment script fails, continue — the articles are already published and readable without enrichment.
+This replaces three separate GPT calls (enrich-data-cards, enrich-on-publish key_takeaways, proofread-article) with a single call. Run it per article right after insert. If it fails, continue — the article is published and readable, and the review-articles safety net will catch issues later.
+
+## Step 4.2 — Enrich articles (social embeds, inline images)
+After polishing, run social embed enrichment (no GPT — just API lookups):
+
+```bash
+cd ~/workspace/the-videshi-news/pipeline
+set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; source ~/workspace/.env.google-ai; source ~/workspace/.env.pexels 2>/dev/null; source ~/workspace/.env.twitterapi-io; source ~/workspace/.env.apify; source ~/workspace/.env.youtube; set +a
+
+# Social embeds (X, IG, YouTube) + hero image upgrade from tweet photos
+timeout 180 python3 -u enrich-on-publish.py --hours 3 --apply 2>&1
+
+# Inline images + pull quotes (body enrichment)
+timeout 600 python3 -u enrich-articles.py --hours 3 --apply 2>&1
+```
+
+If any enrichment script fails, continue — articles are already published and readable.
 
 ## Step 4.3 — Hero Image Backfill (safety net)
-After enrichment, backfill any articles that are still missing hero images:
+After enrichment, backfill any articles still missing hero images:
 ```bash
 cd ~/workspace/the-videshi-news/pipeline
 python3 -u image_sourcer.py --backfill --hours 3 --apply 2>&1
 ```
-This catches any articles where the per-slug image sourcing failed or was skipped.
-
-## Step 4.5 — Proofread (pre-publish QA)
-After enrichment, run the proofreader to catch irrelevant images, grammar errors, and formatting issues:
-```bash
-cd ~/workspace/the-videshi-news/pipeline
-timeout 120 python3 -u proofread-article.py --hours 3 --apply 2>&1
-```
-
-This uses GPT-4o-mini to review each article like a senior editor. It removes irrelevant inline images and fixes grammar errors. It will NOT change factual content (names, numbers, dates). If it fails, continue.
 
 ## Step 5 — Rebuild feeds
 ```

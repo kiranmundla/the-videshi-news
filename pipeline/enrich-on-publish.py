@@ -1225,14 +1225,9 @@ def main():
             changes.append(f"dedup {removed_count} pull quote(s) ({orig_count}→{final_count})")
             print(f"     🔄 Removed {removed_count} pull quote(s) ({orig_count}→{final_count})")
 
-        # ── Key Takeaways — generate if missing ──
-        if 'key-takeaways' not in new_body and OPENAI_KEY:
-            kt_html = generate_key_takeaways(headline, new_body)
-            if kt_html:
-                # Prepend to body (strip leading whitespace first)
-                new_body = kt_html + "\n\n" + new_body.lstrip()
-                changes.append("key-takeaways")
-                print(f"     📋 Added key takeaways")
+        # ── Key Takeaways — skip, handled by article-polish.py at write time ──
+        # Legacy: generate_key_takeaways() was a separate GPT call here.
+        # Now article-polish.py does takeaways + data cards + proofread in one call.
 
         # Collect all available embeds first, then insert in relevance order
         # so the best match gets the highest placement. Video gets a small
