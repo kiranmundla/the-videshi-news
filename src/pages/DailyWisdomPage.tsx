@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
+import TweetScroll from "@/components/homepage/TweetScroll";
 import { supabase } from "@/integrations/supabase/client";
 import "./DailyWisdomPage.css";
 import "./TeacherProfilePage.css";
@@ -339,6 +340,8 @@ export default function DailyWisdomPage() {
             </div>
           )}
         </section>
+
+        <TweetScroll category="spirituality" label="Spiritual Leaders" />
       </main>
 
       <SiteFooter />

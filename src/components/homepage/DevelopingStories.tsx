@@ -95,7 +95,7 @@ export default function DevelopingStories() {
           return (
             <Link
               key={s.id}
-              to={`/stories/${s.slug}`}
+              to={`/developing/${s.slug}`}
               style={{
                 flex: "0 0 auto",
                 width: 240,

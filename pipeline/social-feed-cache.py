@@ -55,7 +55,8 @@ VVIP_HANDLES = {
     ],
     "spirituality": [
         "SadhguruJV", "DeepakChopra", "BKShivani", "SriMSpeaks",
-        "Amritanandamayi",
+        "Amritanandamayi", "EckhartTolle", "ByronKatie", "RupertSpira",
+        "DandapaniLLC", "JayShetty", "Osho", "brahmakumaris",
     ],
     "sports": [
         # Cricket

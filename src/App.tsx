@@ -198,7 +198,7 @@ const App = () => (
               <Route path="/stories/:slug" element={<StoryDetailPage />} />
               <Route path="/daily-wisdom" element={<DailyWisdomPage />} />
               <Route path="/daily-wisdom/teachers/:slug" element={<TeacherProfilePage />} />
-              <Route path="/stories/:slug" element={<StorylineTimeline />} />
+              <Route path="/developing/:slug" element={<StorylineTimeline />} />
               <Route path="/representatives" element={<LeadersPage />} />
               <Route path="/leaders" element={<LeadersPage />} />
               <Route path="/know-your-leader" element={<KnowYourLeaderPage />} />

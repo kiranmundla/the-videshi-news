@@ -37,6 +37,13 @@ const DISPLAY_NAMES: Record<string, string> = {
   bkshivani: "BK Shivani",
   srimspeaks: "Sri M",
   amritanandamayi: "Amma",
+  eckharttolle: "Eckhart Tolle",
+  byronkatie: "Byron Katie",
+  rupertspira: "Rupert Spira",
+  dandapanillc: "Dandapani",
+  jayshetty: "Jay Shetty",
+  osho: "Osho",
+  brahmakumaris: "Brahma Kumaris",
   // Bollywood
   iamsrk: "Shah Rukh Khan",
   priyankachopra: "Priyanka Chopra",

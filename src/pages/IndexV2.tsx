@@ -561,9 +561,8 @@ export default function IndexV2() {
         {/* Just In — purely chronological, newest articles across all categories */}
         <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />
 
-        {/* Daily Wisdom + Spiritual Leaders — paired below Just In */}
+        {/* Daily Wisdom — picture-framed spiritual quote */}
         <DailyWisdomCard />
-        <TweetScroll category="spirituality" label="Spiritual Leaders" />
 
         {/* Who's X — weekly spotlight */}
         <WhosXSpotlight />
