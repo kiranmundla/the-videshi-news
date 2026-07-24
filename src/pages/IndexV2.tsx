@@ -22,6 +22,7 @@ import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpotlight";
 import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
 import OnThisDay from "@/components/homepage/OnThisDay";
+import DailyQuiz from "@/components/homepage/DailyQuiz";
 import DevelopingStories from "@/components/homepage/DevelopingStories";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
@@ -561,6 +562,9 @@ export default function IndexV2() {
 
         {/* On This Day — daily diaspora history card */}
         <OnThisDay />
+
+        {/* Daily 7 Quiz */}
+        <DailyQuiz />
 
         {/* Who's X — weekly spotlight */}
         <WhosXSpotlight />
