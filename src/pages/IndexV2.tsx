@@ -21,6 +21,7 @@ import TweetScroll from "@/components/homepage/TweetScroll";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpotlight";
 import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
+import OnThisDay from "@/components/homepage/OnThisDay";
 import DevelopingStories from "@/components/homepage/DevelopingStories";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
@@ -557,6 +558,9 @@ export default function IndexV2() {
 
         {/* Daily Wisdom — picture-framed spiritual quote */}
         <DailyWisdomCard />
+
+        {/* On This Day — daily diaspora history card */}
+        <OnThisDay />
 
         {/* Who's X — weekly spotlight */}
         <WhosXSpotlight />
