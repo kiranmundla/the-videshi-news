@@ -778,7 +778,7 @@ def main():
         # comparatives (louder→loud), 3rd person (grows→grow), double-consonant
         # forms (spotted→spot via strip-3). Minimum stem length 4 to avoid
         # false matches on short roots (menon→men, sonam→son, sundar→sun).
-        if len(w) >= 5 and w[:-1] in _COMMON_ENGLISH:
+        if len(w) >= 4 and w[:-1] in _COMMON_ENGLISH:
             return True
         if len(w) >= 6 and w[:-2] in _COMMON_ENGLISH:
             return True
