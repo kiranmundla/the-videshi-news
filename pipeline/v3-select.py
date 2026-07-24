@@ -644,47 +644,103 @@ def main():
                 _pub_word_sets.append(p_words)
 
     # ── Step 3b-ii: Entity-aware dedup ──
-    # Extract multi-word named entities via overlapping 2-word pairs of capitalized words.
-    # If a topic shares a 2-word capitalized pair with a published headline (after stripping
-    # source names), it's the same story. "Anil Menon" in both → same story, full stop.
-    _source_suffix_re2 = re.compile(r'\s*[-–—|]\s*[A-Z][\w\s.&\'-]{2,40}$')  # strip " - Reuters", "| NDTV", etc.
-    _cap_word_re = re.compile(r'\b[A-Z][a-z]+\b')  # individual capitalized words
-    _generic_pairs = {
-        # Common 2-word title-case phrases that aren't named entities
-        "new york", "new delhi", "south asia", "north america", "south korea",
-        "north korea", "east asia", "west bengal", "san francisco", "los angeles",
-        "white house", "supreme court", "united states", "united kingdom",
-        "red sox", "blue jackets", "sri lanka", "hong kong",
-        # Common title-case verb+noun / adj+noun phrases
-        "trade deal", "trade pact", "free trade", "first mission", "first time",
-        "health risk", "death toll", "study finds", "study says", "new study",
-        "new report", "record breaking", "price hike", "last year", "next year",
-        "becomes first", "goes viral", "deal wins", "box office", "film awards",
-        "national film", "takes effect", "data breach", "space station",
-    }
+    # Extract 2-word NAME pairs from headlines. Headlines are title-cased, so every word
+    # is capitalized — we can't use capitalization to find entities. Instead, we require
+    # BOTH words to NOT be common English words. Only genuinely distinctive name-like
+    # pairs survive: "Anil Menon", "Lamine Yamal", "Sonam Wangchuk", "Virat Kohli".
+    # Common word pairs like "Profit Surges", "Natural Gas", "Golden Boot" are filtered.
+    # Recall losses (e.g. "Taylor Swift" where "swift" is common) are acceptable —
+    # the LLM dedup in Step 4 catches those.
+    _source_suffix_re2 = re.compile(r'\s*[-–—|]\s*[A-Z][\w\s.&\'-]{2,40}$')
+    _cap_word_re = re.compile(r'\b[A-Z][a-z]+\b')
+
+    # ~700 common English words that appear in news headlines — if EITHER word in a
+    # pair is in this set, the pair is NOT a named entity. Covers: nouns, verbs,
+    # adjectives, adverbs, prepositions, months, days, common news/sports/finance terms.
+    _COMMON_ENGLISH = frozenset("""
+        about above across after again against ahead air all along also always
+        among another any around back bad bank base become becomes becoming been
+        before behind being below best better between big bill billion black block
+        body bond boost both bottom break breaking brings broad budget build burn
+        buy call calls came can car card case cash cause change chief city claim
+        claims clash clear close club come comes cost could country court crash
+        cross cup cut daily data day dead deal death deep demand did dies does
+        done down draw drop drops due each early east effect end era even every
+        face faces fall falls far fast fear fight final find fire first five
+        force foreign form found four free fresh front full fund game gave get
+        gets give global goal goes gold golden good got great green grew grow
+        growing growth had half hand hard has have head health help her high
+        higher him his hit hits hold home hope hot house how hunt impact
+        inside into issue its job join jump just keen keep key kill kind lack
+        land large last late lead leader least left let life light like line
+        link list live long look lose loss lost loud low lower made main major
+        make makes man many mark market may meet men might million mind miss
+        month more most move much must name near need never new next night
+        nine north not now number off offer office old once one only open
+        order other out over own pace pack part pass past path pay peak pick
+        plan plant play plus point post power price prime profit pull push put
+        race rate reach real record red report rest return ride right rise risk
+        road role round rule run runs rush safe said sale save says score
+        season second security see seek seen sell send sent series set seven
+        share sharp shift show side sign since six slow small some south space
+        spend spent split spot stage stand star start state stay step still
+        stock stop story street strong study success super sure surge surges
+        sweep take takes talk target tax team ten test than that the their
+        them then there these they think third this those three through time
+        title today told too top total tough trade trial trip true trust try
+        turn two under until upon used value very want war watch way week well
+        went were west what when where which while white who why wide will
+        win wind wish with won word work world worst would year yet young
+        zero big bad good high low old new last first next best worst early
+        late great long short full half double triple single whole entire open
+        close hot cold hard soft fast slow deep wide flat dark clear sharp
+        strong tough rough wild raw fresh rich poor free fair rare fine safe
+        major minor key top chief prime main front left right north south east
+        west upper lower inner outer central global local national federal
+        general special public private personal social civil royal urban rural
+        daily weekly monthly annual quarter fiscal joint mutual record breaking
+        growing rising falling growing leading coming running sitting standing
+        working playing living moving going making taking giving getting
+        looking finding calling trying testing driving pushing pulling putting
+        adding setting running winning losing ending starting opening closing
+        seeking building helping meeting keeping calling posting holding
+        hike boot golden silver bronze grand blue gray mega ultra mini
+        mega billion million trillion thousand hundred dozen pair dozen
+        january february march april may june july august september
+        october november december monday tuesday wednesday thursday
+        friday saturday sunday spring summer autumn winter
+        says claims warns reveals finds shows suggests considers faces
+        raises hits drops falls rises beats wins scores ties leads trails
+        gains loses grows shrinks jumps dips soars slides climbs crashes
+        picks stocks shares bonds funds votes polls points drives fires
+        oil gas coal steel iron gold wheat corn rice sugar coffee cotton
+        data tech cyber cloud smart digital virtual online mobile app
+        food drink wine beer water juice diet meal kitchen table health
+        club league cup match game final semi quarter round play field
+        court track ring pool ball bat kick shot pass throw drive spin
+        film movie show book song band tour album series episode awards
+        school class test exam grade study paper report project plan
+        """.split())
+
     def _extract_named_entities(headline_original: str) -> frozenset:
-        """Extract all consecutive 2-word capitalized pairs from headline after stripping source."""
+        """Extract 2-word name pairs: adjacent capitalized words where BOTH are uncommon."""
         h = _source_suffix_re2.sub('', headline_original).strip()
         words = _cap_word_re.findall(h)
         pairs = set()
         for i in range(len(words) - 1):
-            # Only consecutive in original text (check they're adjacent)
+            a_low, b_low = words[i].lower(), words[i + 1].lower()
+            # Skip if either word is a common English word
+            if a_low in _COMMON_ENGLISH or b_low in _COMMON_ENGLISH:
+                continue
+            # Check adjacency in original text
             a_end = h.find(words[i]) + len(words[i])
             b_start = h.find(words[i + 1], a_end)
-            # Must be adjacent (only whitespace between)
             between = h[a_end:b_start]
             if between.strip() == "" and len(between) <= 2:
-                pair = f"{words[i].lower()} {words[i + 1].lower()}"
-                if pair not in _generic_pairs and len(pair) >= 5:
+                pair = f"{a_low} {b_low}"
+                if len(pair) >= 7:  # at least 3+3+space
                     pairs.add(pair)
         return frozenset(pairs)
-
-    # Also extract key acronyms (ISS, NASA, CTO, etc.)
-    _acro_re = re.compile(r'\b[A-Z]{2,}\b')
-    _generic_acronyms = {"US", "UK", "EU", "UN", "PM", "IT", "AI", "NRI", "NRIs", "GDP", "CEO",
-                         "THE", "AND", "FOR", "NOT", "BUT", "HAS", "NEW", "IST", "INC"}
-    def _extract_acronyms(headline: str) -> frozenset:
-        return frozenset(a.lower() for a in _acro_re.findall(headline) if a not in _generic_acronyms)
 
     # We need the original-case headlines for entity extraction
     _pub_headlines_original = [(a.get("headline") or "") for a in recent_articles]
