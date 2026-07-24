@@ -11,17 +11,6 @@ const REACTION_TYPES = [
 
 type ReactionKey = (typeof REACTION_TYPES)[number]["key"];
 
-/* ── Persistent anonymous visitor ID ── */
-function getVisitorId(): string {
-  const KEY = "videshi_visitor_id";
-  let id = localStorage.getItem(KEY);
-  if (!id) {
-    id = crypto.randomUUID();
-    localStorage.setItem(KEY, id);
-  }
-  return id;
-}
-
 function getLocalReactions(articleId: string): Set<ReactionKey> {
   try {
     const raw = localStorage.getItem(`reactions:${articleId}`);
@@ -76,13 +65,11 @@ export default function ArticleReactions({ articleId, initialReactions }: Articl
     setAnimating(key);
     setTimeout(() => setAnimating(null), 600);
 
-    // Persist with visitor ID for server-side dedup
+    // Persist
     try {
-      const visitorId = getVisitorId();
       const { data } = await supabase.rpc("increment_reaction", {
         p_article_id: articleId,
         p_reaction: key,
-        p_visitor_id: visitorId,
       });
       if (data) setCounts(data as Record<string, number>);
     } catch {
