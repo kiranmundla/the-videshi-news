@@ -18,7 +18,7 @@ function timeAgo(iso: string): string {
   return formatShortDate(iso);
 }
 
-export default function LeadListSection({ title, borderColor, categorySlug, articles, listCount = 3 }: Props) {
+export default function LeadListSection({ title, borderColor, categorySlug, articles, listCount = 5 }: Props) {
   if (articles.length === 0) return null;
 
   const [lead, ...rest] = articles;
@@ -47,13 +47,12 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
         </div>
 
         {/* Lead + list grid */}
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[5fr_3fr] gap-8 items-start">
           {/* Lead card */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
               <div
-                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5"
-                style={{ aspectRatio: "16/9" }}
+                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[4/3]"
               >
                 <HeroImage
                   src={lead.hero_image_url}

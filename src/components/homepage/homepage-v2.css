@@ -57,6 +57,12 @@
   letter-spacing: 0.02em;
 }
 
+@media (min-width: 768px) {
+  .v2-hub-strip-mobile {
+    display: none !important;
+  }
+}
+
 @media (max-width: 380px) {
   .v2-hub-icon {
     width: 50px;
@@ -90,6 +96,11 @@
 }
 .v2-main-sections > section:last-child {
   border-bottom: none;
+}
+@media (min-width: 768px) {
+  .v2-main-sections > section {
+    padding-bottom: 8px;
+  }
 }
 
 /* ── Shared scroll strip styling ────────── */
@@ -150,6 +161,11 @@
 /* ── Section spacing — tighter, polished feel ── */
 .v2-main-sections > section.mb-14 {
   margin-bottom: 48px;
+}
+@media (min-width: 768px) {
+  .v2-main-sections > section.mb-14 {
+    margin-bottom: 32px;
+  }
 }
 
 /* ── Trending Strip ─────────────────────── */
@@ -1063,6 +1079,40 @@
   opacity: 0.8;
 }
 
+/* Desktop: multi-column grid instead of horizontal scroll */
+@media (min-width: 768px) {
+  .whos-x-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+  .whos-x-card--featured,
+  .whos-x-card--compact {
+    width: auto;
+  }
+  .whos-x-card--featured .whos-x-photo {
+    height: 210px;
+  }
+  .whos-x-card--compact .whos-x-photo {
+    height: 190px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .whos-x-scroll {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .whos-x-scroll {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .whos-x-card--featured {
@@ -1175,6 +1225,34 @@
   color: #8a7a65;
   margin-left: 8px;
   font-size: 12px;
+}
+
+/* Desktop: compact full-width horizontal */
+@media (min-width: 768px) {
+  .daily-wisdom-homepage {
+    max-width: 100%;
+    margin: 10px auto 4px;
+  }
+  .daily-wisdom-card {
+    padding: 12px 20px;
+    gap: 16px;
+  }
+  .daily-wisdom-photo {
+    width: 60px;
+    height: 60px;
+  }
+  .daily-wisdom-quote {
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+    margin-bottom: 4px;
+  }
+  .daily-wisdom-label {
+    margin-bottom: 3px;
+    font-size: 10px;
+  }
+  .daily-wisdom-teacher {
+    font-size: 12px;
+  }
 }
 
 /* Mobile */

@@ -58,9 +58,9 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
           </h2>
         </div>
 
-        {/* Horizontal scroll strip */}
+        {/* ── Mobile: horizontal scroll strip ── */}
         <div
-          className="flex gap-4 overflow-x-auto pb-3 scrollbar-thin"
+          className="flex md:hidden gap-4 overflow-x-auto pb-3 scrollbar-thin"
           style={{ scrollSnapType: "x mandatory" }}
         >
           {articles.map((a) => (
@@ -70,7 +70,6 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
               className="group flex-shrink-0 block"
               style={{ width: 260, scrollSnapAlign: "start" }}
             >
-              {/* Image */}
               {isValidImage(a.hero_image_url) && (
                 <div
                   className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2"
@@ -86,8 +85,6 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
                   />
                 </div>
               )}
-
-              {/* Category + time */}
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="text-[10px] font-bold uppercase tracking-wider"
@@ -99,8 +96,55 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
                   {timeAgo(a.event_at || a.published_at)}
                 </span>
               </div>
+              <h3
+                className="text-[14px] font-semibold leading-snug text-foreground group-hover:text-primary transition-colors"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {a.title}
+              </h3>
+            </Link>
+          ))}
+        </div>
 
-              {/* Headline */}
+        {/* ── Desktop: 4-column grid ── */}
+        <div className="hidden md:grid grid-cols-4 gap-5">
+          {articles.slice(0, 8).map((a) => (
+            <Link
+              key={a.id}
+              to={`/articles/${a.slug}`}
+              className="group block"
+            >
+              {isValidImage(a.hero_image_url) && (
+                <div
+                  className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2"
+                  style={{ aspectRatio: "16/10" }}
+                >
+                  <HeroImage
+                    src={a.hero_image_url}
+                    alt={a.title}
+                    loading="lazy"
+                    focalX={a.focal_x}
+                    focalY={a.focal_y}
+                    className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                  />
+                </div>
+              )}
+              <div className="flex items-center gap-2 mb-1">
+                <span
+                  className="text-[10px] font-bold uppercase tracking-wider"
+                  style={{ color: CATEGORY_COLORS[a.category] || "#666" }}
+                >
+                  {CATEGORY_LABELS[a.category] || a.category}
+                </span>
+                <span className="text-[10px] text-muted-foreground">
+                  {timeAgo(a.event_at || a.published_at)}
+                </span>
+              </div>
               <h3
                 className="text-[14px] font-semibold leading-snug text-foreground group-hover:text-primary transition-colors"
                 style={{

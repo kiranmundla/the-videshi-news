@@ -50,13 +50,12 @@ export default function HeroSection({ lead, side }: Props) {
     <section className="pt-8 md:pt-10 pb-10 md:pb-14">
       <div className="container">
         <p className="text-[11px] font-bold tracking-[1.5px] uppercase text-muted-foreground mb-4">FEATURED</p>
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8 items-start">
           {/* Lead article */}
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasImage && (
               <div
-                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5"
-                style={{ aspectRatio: "16/9" }}
+                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[3/2]"
               >
                 <HeroImage
                   src={lead.hero_image_url}
@@ -77,7 +76,7 @@ export default function HeroSection({ lead, side }: Props) {
             </p>
             <h1
               className="font-serif font-extrabold leading-[1.2] mb-2.5 group-hover:text-primary transition-colors"
-              style={{ fontSize: "clamp(22px, 3vw, 32px)", color: "#0B1D3A" }}
+              style={{ fontSize: "clamp(22px, 3vw, 28px)", color: "#0B1D3A" }}
             >
               {lead.title}
             </h1>
@@ -100,7 +99,7 @@ export default function HeroSection({ lead, side }: Props) {
                 <Link
                   key={a.id}
                   to={`/articles/${a.slug}`}
-                  className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-stone-50 transition-colors rounded"
+                  className="group flex gap-3.5 py-3.5 md:py-2 border-b last:border-b-0 hover:bg-stone-50 transition-colors rounded"
                   style={{ borderColor: "hsl(var(--rule))" }}
                 >
                   {img && (

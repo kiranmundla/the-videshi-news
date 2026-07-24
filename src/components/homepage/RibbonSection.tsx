@@ -54,15 +54,59 @@ export default function RibbonSection({
           </Link>
         </div>
 
-        {/* Ribbon scroll with arrows */}
-        <ScrollWrap className="v2-ribbon-scroll">
-          {items.map((a) => {
+        {/* ── Mobile: horizontal scroll with arrows ── */}
+        <div className="md:hidden">
+          <ScrollWrap className="v2-ribbon-scroll">
+            {items.map((a) => {
+              const img = isValidImage(a.hero_image_url);
+              return (
+                <Link
+                  key={a.id}
+                  to={`/articles/${a.slug}`}
+                  className={`group block flex-shrink-0 ${isPortrait ? 'v2-ribbon-portrait' : 'v2-ribbon-landscape'}`}
+                >
+                  {img ? (
+                    <div
+                      className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2.5"
+                      style={{ aspectRatio: isPortrait ? "3/4" : "16/10" }}
+                    >
+                      <HeroImage
+                        src={a.hero_image_url}
+                        alt={a.title}
+                        loading="lazy"
+                        focalX={a.focal_x}
+                        focalY={a.focal_y}
+                        className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                      />
+                    </div>
+                  ) : null}
+                  <p
+                    className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
+                    style={{ color: borderColor }}
+                  >
+                    {a.category?.replace("-", " ")}
+                  </p>
+                  <h4 className="font-serif text-[14px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                    {a.title}
+                  </h4>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {timeAgo(a.published_at)}
+                  </p>
+                </Link>
+              );
+            })}
+          </ScrollWrap>
+        </div>
+
+        {/* ── Desktop: 4-column grid ── */}
+        <div className="hidden md:grid grid-cols-4 gap-5">
+          {items.slice(0, 8).map((a) => {
             const img = isValidImage(a.hero_image_url);
             return (
               <Link
                 key={a.id}
                 to={`/articles/${a.slug}`}
-                className={`group block flex-shrink-0 ${isPortrait ? 'v2-ribbon-portrait' : 'v2-ribbon-landscape'}`}
+                className="group block"
               >
                 {img ? (
                   <div
@@ -94,7 +138,7 @@ export default function RibbonSection({
               </Link>
             );
           })}
-        </ScrollWrap>
+        </div>
       </div>
     </section>
   );
