@@ -743,12 +743,12 @@ def main():
         coal coffee column confirm crew crude cyber defeat deliver deploy
         diesel dispute draft drone eager earlier elect elite emerge enact exert
         export extend extract fake fare ferry fiber fleet flour forge former
-        fossil fraud grill halt harvest herb hover immune import inquiry
+        fossil forecast fraud grill halt harvest herb hover immune import inquiry
         intact intern invest juice kerosene kidney laser lease lever lodge
         luxury maple margin merge metro mill mortar niche offset olive
         orchid onset orbit otter outlook oxide panel pasta patent pepper
         petrol pier plunge portray portrait portfolio pose potential probe profit
-        protein pulse quota radar rally reactor refine reform regime relay
+        protein pulse quota radar rally reactor refine reform regime relay revenue
         relief render renew rescue resort retire resume reveal ribbon rival roster
         rubber runway salon salute san sanction savor scandal sea secular seize
         saudi sensor sheriff shrimp siege silk silver sketch solar solemn sonar
