@@ -5,7 +5,7 @@
 /* The Videshi — editorial design system. All colors HSL. */
 @layer base {
   :root {
-    --background: 42 38% 96%;          /* warm cream #FAF8F3 */
+    --background: 0 0% 100%;             /* pure white #FFFFFF */
     --foreground: 0 0% 10%;            /* charcoal #1A1A1A */
 
     --card: 0 0% 100%;
@@ -15,16 +15,16 @@
     --popover-foreground: 0 0% 10%;
 
     --primary: 0 56% 41%;              /* deep red #A32D2D */
-    --primary-foreground: 42 38% 96%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 30% 92%;
+    --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 10%;
 
-    --muted: 42 20% 90%;
-    --muted-foreground: 0 0% 42%;      /* muted gray #6B6B6B */
+    --muted: 0 0% 93%;
+    --muted-foreground: 0 0% 40%;      /* muted gray #666666 */
 
     --accent: 0 56% 41%;
-    --accent-foreground: 42 38% 96%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 70% 45%;
     --destructive-foreground: 0 0% 100%;

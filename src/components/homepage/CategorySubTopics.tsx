@@ -274,7 +274,7 @@ function SubTopicGroup({
             <Link to={`/articles/${visible[0].slug}`} className="group block">
               {isValidImage(visible[0].hero_image_url) && (
                 <div
-                  className="w-full bg-stone-100 overflow-hidden rounded-lg mb-3"
+                  className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-3"
                   style={{ aspectRatio: "16/10" }}
                 >
                   <HeroImage
@@ -307,11 +307,11 @@ function SubTopicGroup({
               <Link
                 key={a.id}
                 to={`/articles/${a.slug}`}
-                className="group flex gap-3 py-3 border-b last:border-b-0 hover:bg-stone-50 transition-colors rounded"
+                className="group flex gap-3 py-3 border-b last:border-b-0 hover:bg-neutral-50 transition-colors rounded"
                 style={{ borderColor: "hsl(var(--rule))" }}
               >
                 {isValidImage(a.hero_image_url) && (
-                  <div className="w-[68px] min-w-[68px] h-[68px] bg-stone-100 rounded overflow-hidden">
+                  <div className="w-[68px] min-w-[68px] h-[68px] bg-neutral-100 rounded overflow-hidden">
                     <HeroImage
                       src={a.hero_image_url}
                       alt={a.title}

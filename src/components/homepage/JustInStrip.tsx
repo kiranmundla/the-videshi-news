@@ -72,7 +72,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
             >
               {isValidImage(a.hero_image_url) && (
                 <div
-                  className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2"
+                  className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2"
                   style={{ aspectRatio: "16/10" }}
                 >
                   <HeroImage
@@ -121,7 +121,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
             >
               {isValidImage(a.hero_image_url) && (
                 <div
-                  className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2"
+                  className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2"
                   style={{ aspectRatio: "16/10" }}
                 >
                   <HeroImage

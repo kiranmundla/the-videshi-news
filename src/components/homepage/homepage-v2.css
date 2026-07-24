@@ -170,8 +170,8 @@
 
 /* ── Trending Strip ─────────────────────── */
 .v2-trending-strip {
-  background: #FFFBF0;
-  border-bottom: 1px solid #F0E6CC;
+  background: #F8F8F8;
+  border-bottom: 1px solid #E5E5E5;
 }
 .v2-trending-strip-inner {
   display: flex;
@@ -334,15 +334,15 @@
 
 /* ── Newsletter CTA ─────────────────────── */
 .v2-newsletter {
-  background: #FFF8E7;
-  border-top: 1px solid #F0E6CC;
-  border-bottom: 1px solid #F0E6CC;
+  background: #F3F3F3;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
   padding: 28px 0;
 }
 
 /* ── Voices Teaser ──────────────────────── */
 .v2-voices-teaser {
-  background: linear-gradient(135deg, #FFFBF0, #FFF8E7);
+  background: linear-gradient(135deg, #F8F8F8, #F3F3F3);
   border-radius: 10px;
   padding: 20px 24px;
   border-left: 4px solid #D4A843;
@@ -371,10 +371,10 @@
 
 /* ── Voices section ─────────────────────── */
 .v2-voices-section {
-  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
+  background: linear-gradient(135deg, #F8F8F8 0%, #F3F3F3 100%);
   padding: 36px 0;
-  border-top: 1px solid #F0E6CC;
-  border-bottom: 1px solid #F0E6CC;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
 }
 .v2-voices-scroll {
   display: flex;
@@ -442,10 +442,10 @@
 
 /* ── Social / X tweet scroll strip ──────── */
 .v2-social-strip {
-  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E7 100%);
+  background: linear-gradient(135deg, #F8F8F8 0%, #F3F3F3 100%);
   padding: 20px 0 20px;
-  border-top: 1px solid #F0E6CC;
-  border-bottom: 1px solid #F0E6CC;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
   margin-top: -24px;
   margin-bottom: 48px;
 }

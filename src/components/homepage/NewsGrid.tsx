@@ -61,7 +61,7 @@ export default function NewsGrid({
                   className="group block flex-shrink-0 v2-ribbon-landscape"
                 >
                   {img ? (
-                    <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2" style={{ aspectRatio: "16/10" }}>
+                    <div className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2" style={{ aspectRatio: "16/10" }}>
                       <HeroImage
                         src={a.hero_image_url}
                         alt={a.title}
@@ -101,7 +101,7 @@ export default function NewsGrid({
                 className="group block"
               >
                 {img ? (
-                  <div className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2" style={{ aspectRatio: "16/10" }}>
+                  <div className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2" style={{ aspectRatio: "16/10" }}>
                     <HeroImage
                       src={a.hero_image_url}
                       alt={a.title}

@@ -52,7 +52,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
           <Link to={`/articles/${lead.slug}`} className="group block">
             {hasLeadImage && (
               <div
-                className="w-full bg-stone-100 dark:bg-stone-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[4/3]"
+                className="w-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[4/3]"
               >
                 <HeroImage
                   src={lead.hero_image_url}
@@ -91,11 +91,11 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                 <Link
                   key={a.id}
                   to={`/articles/${a.slug}`}
-                  className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-stone-50 transition-colors rounded"
+                  className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-neutral-50 transition-colors rounded"
                   style={{ borderColor: "hsl(var(--rule))" }}
                 >
                   {img && (
-                    <div className="w-[72px] min-w-[72px] h-[72px] bg-stone-100 rounded overflow-hidden">
+                    <div className="w-[72px] min-w-[72px] h-[72px] bg-neutral-100 rounded overflow-hidden">
                       <HeroImage
                         src={a.hero_image_url}
                         alt={a.title}

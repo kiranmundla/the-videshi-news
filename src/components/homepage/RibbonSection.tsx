@@ -67,7 +67,7 @@ export default function RibbonSection({
                 >
                   {img ? (
                     <div
-                      className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2.5"
+                      className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2.5"
                       style={{ aspectRatio: isPortrait ? "3/4" : "16/10" }}
                     >
                       <HeroImage
@@ -110,7 +110,7 @@ export default function RibbonSection({
               >
                 {img ? (
                   <div
-                    className="w-full bg-stone-100 overflow-hidden rounded-lg mb-2.5"
+                    className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2.5"
                     style={{ aspectRatio: isPortrait ? "3/4" : "16/10" }}
                   >
                     <HeroImage
