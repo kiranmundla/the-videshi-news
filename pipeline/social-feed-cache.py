@@ -34,7 +34,7 @@ DB_HEADERS = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 
-STRIP_CATEGORIES = ["technology", "entertainment", "sports", "news", "immigration", "world-leaders"]
+STRIP_CATEGORIES = ["technology", "sports", "news", "immigration", "world-leaders", "spirituality"]
 TWEETS_PER_CATEGORY = 999     # no cap — show every handle we have
 POOL_TWEETS_PER_HANDLE = 5    # tweets to cache per handle
 POOL_MAX_AGE_HOURS = 12       # re-fetch from TwitterAPI.io when pool is older (was 120h/5d with X API)
@@ -46,29 +46,16 @@ POOL_PATH = os.path.join(PIPELINE_DIR, "social-feed-pool.json")
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/social-feed.json")
 
 # VVIP person handles per category — comprehensive diaspora-relevant list
-# Pool refreshes every 5 days. Each handle costs ~$0.15/mo (5 tweets × $0.005 × 6 refreshes)
-# ~53 handles → ~$7.95/mo reads + $5.60 writes = ~$13.55/mo
+# Pool refreshes every 12h. Each handle costs ~$0.034/mo via TwitterAPI.io
+# ~51 handles → ~$1.73/mo
 VVIP_HANDLES = {
     "technology": [
         "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
-        "NandanNilekani", "bhash", "Nithin0dha", "NithinKamath",
-        "AnandMahindra", "NikeshArora", "vijayshekhar",
-        "RiteshAgarwal", "ajabordi",
+        "NandanNilekani", "NikeshArora", "ArvindKrishna",
     ],
-    "entertainment": [
-        # Bollywood A-list
-        "iamsrk", "priyankachopra", "akshaykumar",
-        "diljitdosanjh", "aliaa08", "SrBachchan",
-        "arrahman",
-        "BeingSalmanKhan", "shahidkapoor",
-        "juniorbachchan", "AnilKapoor", "ajaydevgn",
-        "FarOutAkhtar",
-        # South stars
-        "ssrajamouli", "tarak9999", "AlwaysRamCharan", "iamRashmika",
-        # New additions
-        "TheAaryanKartik", "VarunDhawan",
-        # Diaspora
-        "JayShetty",
+    "spirituality": [
+        "SadhguruJV", "DeepakChopra", "BKShivani", "SriMSpeaks",
+        "Amritanandamayi",
     ],
     "sports": [
         # Cricket

@@ -558,6 +558,7 @@ export default function IndexV2() {
 
         {/* Daily Wisdom — picture-framed spiritual quote */}
         <DailyWisdomCard />
+        <TweetScroll category="spirituality" label="Spiritual Leaders" />
 
         {/* Just In — purely chronological, newest articles across all categories */}
         <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />

@@ -29,10 +29,14 @@ const DISPLAY_NAMES: Record<string, string> = {
   elonmusk: "Elon Musk",
   tim_cook: "Tim Cook",
   nandannilekani: "Nandan Nilekani",
-  anandmahindra: "Anand Mahindra",
-  nithin0dha: "Nithin Kamath",
   nikesharora: "Nikesh Arora",
-  vijayshekhar: "Vijay Shekhar Sharma",
+  arvindkrishna: "Arvind Krishna",
+  // Spiritual leaders
+  sadhgurujv: "Sadhguru",
+  deepakchopra: "Deepak Chopra",
+  bkshivani: "BK Shivani",
+  srimspeaks: "Sri M",
+  amritanandamayi: "Amma",
   // Bollywood
   iamsrk: "Shah Rukh Khan",
   priyankachopra: "Priyanka Chopra",
