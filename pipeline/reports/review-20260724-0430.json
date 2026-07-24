@@ -1,0 +1,101 @@
+[
+  {
+    "id": "a69f69d9-a538-4d7e-a52f-b03e4dcbed64",
+    "headline": "India-UK Free Trade Deal Takes Effect, First Zero-Duty Goods Land in London",
+    "slug": "india-uk-ceta-trade-deal-first-zero-duty-goods",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or insights from Indian business owners or entrepreneurs in the UK who are directly impacted by the CETA. This could provide a personal touch and highlight the significance of the trade deal for the NRI community.",
+        "Provide more context on how the CETA specifically benefits NRIs living in the UK, such as potential job opportunities or changes in the cost of goods that might affect their daily lives.",
+        "Clarify the implications of the Double Contribution Convention for NRIs working in the UK, including how it affects their social security benefits and any potential long-term impacts on their financial planning.",
+        "Consider restructuring the article to start with a strong lead that emphasizes the immediate benefits for the NRI community, followed by a detailed explanation of the trade deal's broader implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official UK government tweet announcing the implementation of the CETA, which could provide authoritative context and engage readers with real-time updates.",
+        "Include a video or infographic summarizing the key benefits of the CETA for NRIs, which could enhance understanding and retention of the information presented."
+      ]
+    }
+  },
+  {
+    "id": "ef2bf95f-7f4a-4e01-9b2c-790980666652",
+    "headline": "Michelin-Starred Indienne Brings Indian Fine Dining to New York's Hudson Yards",
+    "slug": "indienne-michelin-starred-indian-fine-dining-hudson-yards-nyc",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian expatriates in New York who have experienced the restaurant. This could highlight how such fine dining options cater to their tastes and nostalgia for Indian cuisine.",
+        "Provide context on the significance of Indian fine dining in the U.S. and how it reflects the evolving culinary landscape, particularly for NRIs. This could include statistics on the growth of Indian restaurants in major cities or trends in Indian cuisine among the diaspora.",
+        "Include a brief section discussing the impact of Michelin recognition on Indian chefs and restaurants in the U.S., particularly how it influences dining choices among NRIs and their perceptions of Indian cuisine abroad.",
+        "Mention any upcoming events or collaborations that Indienne may have with Indian cultural organizations in New York, which could appeal to the NRI community and enhance the restaurant's connection to the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Michelin or a culinary influencer discussing the significance of Indienne's opening or the importance of Indian cuisine in the fine dining scene."
+      ]
+    }
+  },
+  {
+    "id": "a04259d3-1a2f-41e8-b3e7-a63213bbf4ab",
+    "headline": "Nine in Ten Indian Adults Have Abnormal Cholesterol, Landmark ICMR Study Finds",
+    "slug": "icmr-indiab-87-percent-indian-adults-abnormal-cholesterol",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how these cholesterol issues specifically affect Indian expatriates, particularly in countries with different dietary habits and healthcare systems. This could include statistics or anecdotes about NRI health trends or access to healthcare.",
+        "Add context about how the findings of the ICMR study relate to health risks for NRIs living abroad, particularly in regions with a high South Asian population, such as the UK, Canada, or the US. This could help NRIs understand the relevance of the study to their own health.",
+        "Revise the headline to make it more compelling and specific to the diaspora audience. For example, 'ICMR Study Reveals 90% of Indian Adults, Including NRIs, Face Abnormal Cholesterol Levels: A Call for Early Screening'.",
+        "Include a brief discussion on how the findings might influence health policies or screening recommendations for the Indian diaspora in foreign countries, which could provide valuable context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICMR tweet or announcement regarding the study to provide readers with direct access to the source and additional information.",
+        "Consider embedding a relevant infographic or video summarizing the study's findings, which could help visualize the data for readers."
+      ]
+    }
+  },
+  {
+    "id": "92c6c7bd-a388-4a03-b852-c6870c015073",
+    "headline": "Indian Restaurants Now Dominate NYC's Most Coveted Reservation Lists",
+    "slug": "indian-restaurants-nyc-hardest-reservations",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian chefs or restaurant owners in NYC who are part of the diaspora. Discuss how their cultural heritage influences their culinary offerings and the significance of their success in the context of the Indian community abroad.",
+        "Provide more context about the impact of the Indian diaspora on the culinary landscape in NYC. For example, include statistics or anecdotes about the growth of Indian restaurants in the city over the past decade, or how the diaspora has contributed to changing perceptions of Indian cuisine.",
+        "Consider adding a section that discusses how these restaurants are not just catering to Indian patrons but also attracting a diverse clientele. This could highlight the role of Indian cuisine in bridging cultural gaps and fostering community among different ethnic groups in NYC.",
+        "Include a brief mention of any challenges faced by these restaurants, such as sourcing authentic ingredients or navigating the competitive restaurant landscape in NYC, to provide a more rounded perspective."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a popular NYC food critic or influencer discussing the rise of Indian restaurants in the city, which could add credibility and a contemporary angle to the article."
+      ]
+    }
+  },
+  {
+    "id": "c7c8749a-ec2b-42cc-a8b0-a47761c0593a",
+    "headline": "Madhya Pradesh Becomes Fourth Indian State to Pass Uniform Civil Code",
+    "slug": "madhya-pradesh-passes-uniform-civil-code",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs regarding the implications of the UCC on their communities, especially those who may have family ties in Madhya Pradesh or are affected by similar laws abroad.",
+        "Provide context on how the UCC aligns or conflicts with existing laws in countries with significant Indian diaspora populations, such as the UK, Canada, or the US, to highlight its relevance for NRIs.",
+        "Include a brief section discussing the potential impact of the UCC on the Indian diaspora, particularly regarding marriage and inheritance laws, which may resonate with NRIs who navigate these issues in their own lives.",
+        "Clarify the exemptions for Scheduled Tribes by explaining how this might affect the overall implementation of the UCC and its reception among different communities in India."
+      ],
+      "embed_opportunities": [
+        "Embed the official Madhya Pradesh government announcement or a relevant tweet from the Chief Minister to provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]

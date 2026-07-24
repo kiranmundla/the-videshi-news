@@ -646,81 +646,145 @@ def main():
     # ── Step 3b-ii: Entity-aware dedup ──
     # Extract 2-word NAME pairs from headlines. Headlines are title-cased, so every word
     # is capitalized — we can't use capitalization to find entities. Instead, we require
-    # BOTH words to NOT be common English words. Only genuinely distinctive name-like
-    # pairs survive: "Anil Menon", "Lamine Yamal", "Sonam Wangchuk", "Virat Kohli".
-    # Common word pairs like "Profit Surges", "Natural Gas", "Golden Boot" are filtered.
+    # BOTH words to NOT be common English words (dictionary + suffix check). Only genuinely
+    # distinctive name-like pairs survive: "Anil Menon", "Lamine Yamal", "Virat Kohli".
+    # Common word pairs like "Profit Surges", "Weather Forecasts" are filtered.
     # Recall losses (e.g. "Taylor Swift" where "swift" is common) are acceptable —
     # the LLM dedup in Step 4 catches those.
     _source_suffix_re2 = re.compile(r'\s*[-–—|]\s*[A-Z][\w\s.&\'-]{2,40}$')
     _cap_word_re = re.compile(r'\b[A-Z][a-z]+\b')
 
-    # ~700 common English words that appear in news headlines — if EITHER word in a
-    # pair is in this set, the pair is NOT a named entity. Covers: nouns, verbs,
-    # adjectives, adverbs, prepositions, months, days, common news/sports/finance terms.
+    # Common English words — if EITHER word in a pair is here, the pair is not a name.
     _COMMON_ENGLISH = frozenset("""
-        about above across after again against ahead air all along also always
-        among another any around back bad bank base become becomes becoming been
-        before behind being below best better between big bill billion black block
-        body bond boost both bottom break breaking brings broad budget build burn
-        buy call calls came can car card case cash cause change chief city claim
-        claims clash clear close club come comes cost could country court crash
-        cross cup cut daily data day dead deal death deep demand did dies does
-        done down draw drop drops due each early east effect end era even every
-        face faces fall falls far fast fear fight final find fire first five
-        force foreign form found four free fresh front full fund game gave get
-        gets give global goal goes gold golden good got great green grew grow
-        growing growth had half hand hard has have head health help her high
-        higher him his hit hits hold home hope hot house how hunt impact
-        inside into issue its job join jump just keen keep key kill kind lack
-        land large last late lead leader least left let life light like line
-        link list live long look lose loss lost loud low lower made main major
-        make makes man many mark market may meet men might million mind miss
-        month more most move much must name near need never new next night
-        nine north not now number off offer office old once one only open
-        order other out over own pace pack part pass past path pay peak pick
-        plan plant play plus point post power price prime profit pull push put
-        race rate reach real record red report rest return ride right rise risk
-        road role round rule run runs rush safe said sale save says score
-        season second security see seek seen sell send sent series set seven
-        share sharp shift show side sign since six slow small some south space
-        spend spent split spot stage stand star start state stay step still
-        stock stop story street strong study success super sure surge surges
-        sweep take takes talk target tax team ten test than that the their
-        them then there these they think third this those three through time
-        title today told too top total tough trade trial trip true trust try
-        turn two under until upon used value very want war watch way week well
-        went were west what when where which while white who why wide will
-        win wind wish with won word work world worst would year yet young
-        zero big bad good high low old new last first next best worst early
-        late great long short full half double triple single whole entire open
-        close hot cold hard soft fast slow deep wide flat dark clear sharp
-        strong tough rough wild raw fresh rich poor free fair rare fine safe
-        major minor key top chief prime main front left right north south east
-        west upper lower inner outer central global local national federal
-        general special public private personal social civil royal urban rural
-        daily weekly monthly annual quarter fiscal joint mutual record breaking
-        growing rising falling growing leading coming running sitting standing
-        working playing living moving going making taking giving getting
-        looking finding calling trying testing driving pushing pulling putting
-        adding setting running winning losing ending starting opening closing
-        seeking building helping meeting keeping calling posting holding
-        hike boot golden silver bronze grand blue gray mega ultra mini
-        mega billion million trillion thousand hundred dozen pair dozen
-        january february march april may june july august september
-        october november december monday tuesday wednesday thursday
-        friday saturday sunday spring summer autumn winter
-        says claims warns reveals finds shows suggests considers faces
-        raises hits drops falls rises beats wins scores ties leads trails
-        gains loses grows shrinks jumps dips soars slides climbs crashes
-        picks stocks shares bonds funds votes polls points drives fires
-        oil gas coal steel iron gold wheat corn rice sugar coffee cotton
-        data tech cyber cloud smart digital virtual online mobile app
-        food drink wine beer water juice diet meal kitchen table health
-        club league cup match game final semi quarter round play field
-        court track ring pool ball bat kick shot pass throw drive spin
-        film movie show book song band tour album series episode awards
-        school class test exam grade study paper report project plan
-        """.split())
+        a about above across act add after again against age ago ahead aid aim air
+        all allow along also always among amount an and another answer any appear
+        apply area arm around arrive art as ask at away back bad bag bank bar base
+        be bear beat become bed been before begin behind believe below best better
+        between beyond big bill bit black block blow blue board body bomb bond book
+        boom boost born both bottom box boy brain brand break bring broad brought
+        brown budget build burn bus business busy but buy by call came camp can cap
+        car care carry case cash cast catch cause cell center central chain chair
+        chance change charge check chief child choice choose church city civil claim
+        class clean clear climb close club coach coal cold collect color come common
+        company compare complete concern condition consider contain control cool
+        copy core cost could count country couple course court cover crash create
+        crew crime cross crowd cry cup current cut daily damage dance danger dark
+        data date daughter day dead deal dear death debate decide decline deep
+        defend degree demand deny design despite detail develop die difficult
+        dinner direction discover discuss disease doctor does dog dollar done door
+        double doubt down draw dream drink drive drop drug dry during duty each
+        early earn earth ease east easy eat edge effect effort eight either elect
+        else emerge end enemy energy enjoy enough enter entire error especially
+        even evening event ever every evidence evil exactly example except
+        executive exist expect experience expert explain eye face fact fail fair
+        fall family far fast father fear federal feed feel few field fight figure
+        fill final finally financial find fine finger finish fire firm first fish
+        fit five fix flat floor fly follow food foot for force foreign forget form
+        former forward found four free fresh friend from front full fund future gain
+        game garden gas gate gather gave general get girl give glad glass go goal
+        goes gold golden gone good got govern grace grand green grew ground group
+        grow growth guard guess guide gun guy had hair half hall hand hang happen
+        happy hard has hat have he head health hear heart heat heavy help her here
+        high hill him his hit hold hole home hope hot hotel hour house how huge
+        human hundred hung hunt hurt husband idea if image impact important in
+        include increase indeed industry information inside instead interest into
+        invest iron island issue it its job join joint judge jump just keen keep key
+        kick kid kill kind king kitchen knew knock know labor lack lady laid land
+        language large last late later laugh launch law lay lead leader learn least
+        leave left legal less let letter level lie life lift light like likely limit
+        line link list listen little live local long look lord lose loss lost lot
+        loud love low lower luck lunch machine made main major make male man manage
+        many march mark market mass master match matter may maybe me meal mean
+        measure media medical meet member memory men mention middle might military
+        million mind minister minor minute miss model modern moment money month
+        more morning most mother mount mouth move much murder music must my name
+        nation national natural near nearly necessary need network never new news
+        next nice night nine no none nor normal north not note nothing notice now
+        number occur of off offer office officer official often oh oil old on once
+        one only onto open operation opportunity option or order other our out
+        outside over own pace page paid pain pair paper park part particular
+        partner party pass past path patient pattern pay peace people per percent
+        perform perhaps period person phase phone pick piece place plan plant play
+        player please plus point police policy political poor popular position
+        possible post pound power practice prepare present president pressure
+        pretty prevent price prime private probably problem produce product
+        program project promise protect prove provide public pull purpose push
+        put quality quarter question quick quickly quiet quite race raise range
+        rate rather reach read ready real reality reason receive record red reduce
+        region relate release remain remember remove report represent require
+        research resource respond rest result return reveal right ring rise risk
+        road rock role roll room round route row rule run rush safe said sale same
+        save saw say scene school science score season seat second section security
+        see seek seem sell send senior sense series serious serve service set
+        settle seven several shake shall shape share she ship shock shoot short
+        shot should shoulder shout show shut side sign significant similar simple
+        since sing single sir sister sit site situation six size skill skin small
+        smile so social society soldier some son song soon sort sound source south
+        southern space speak special specific speech spend sport spot spread
+        spring square staff stage stand standard star start state station stay
+        step stick still stock stop store story straight strategy street strike
+        strong structure student study stuff style subject success such suddenly
+        suffer suggest summer sun support sure surface surprise sweet system table
+        take talk target task tax teach team technology tell ten tend term test than
+        thank that the their them then there these they thing think third this
+        those though thought three through throw thus tie till time tiny to today
+        together told tomorrow tonight too tool top total touch tough toward town
+        track trade traditional train travel treat tree trial trip trouble true
+        trust truth try turn tv two type under understand union unit united until
+        up upon urban us use used usual valley value various very victim view
+        village violence visit voice vote wait walk wall want war watch water way
+        we weapon wear weather week weight well went were west western what whatever
+        when where whether which while white who whole whom whose why wide wife
+        wild will win wind window wish with within without woman wonder wood word
+        work worker world worry worst worth would write wrong yard yeah year yes
+        yet you young your youth zero
+        alert allege amid american announce annual arab are award bail beef billion
+        boot brew brief broker byte cafe canal cargo cent cheap chicken
+        coal coffee column confirm crew crude cyber defeat deliver deploy
+        diesel dispute draft drone eager earlier elect elite emerge enact exert
+        export extend extract fake fare ferry fiber fleet flour forge
+        fossil fraud grill halt harvest herb hover immune import inquiry
+        intact intern invest juice kerosene kidney laser lease lever lodge
+        luxury maple margin merge metro mill mortar niche offset olive
+        orchid onset orbit otter outlook oxide panel pasta patent pepper
+        petrol pier plunge portray portrait portfolio pose probe profit
+        protein pulse quota radar rally reactor refine reform regime relay
+        relief render renew rescue resort retire resume reveal ribbon rival roster
+        rubber runway salon salute sanction savor scandal secular seize
+        sensor sheriff shrimp siege silk silver sketch solar solemn sonar
+        spectrum spice spiral stagger static statue steer strand summit surge
+        super surplus suspend symptom tariff tender terrain textile tobacco
+        token torture transit trauma treaty troop trophy tunnel turmoil
+        tutor ultimate umbrella undergo unrest unveil upgrade uphold upset
+        vaccine venture verdict veteran vigor vintage wafer wheat widow
+        yield
+    """.split())
+
+    # Suffixes that mark common English words (verb forms, abstract nouns, adjectives).
+    # Any word ≥5 chars ending in these is treated as common, catching words the
+    # dictionary misses. Names almost never have these endings.
+    _COMMON_SUFFIXES = ('ing', 'tion', 'sion', 'ment', 'ness', 'ence', 'ance',
+                        'ity', 'ous', 'ious', 'ive', 'ful', 'less', 'ally',
+                        'ble', 'ical', 'ular', 'ated', 'ized', 'ling', 'ship')
+
+    def _is_common_word(w: str) -> bool:
+        """Check if lowercased word is common English (not a name)."""
+        if w in _COMMON_ENGLISH:
+            return True
+        if len(w) >= 5 and w.endswith(_COMMON_SUFFIXES):
+            return True
+        # Inflection stemming: strip 1-3 trailing chars and check if stem is common.
+        # Handles plurals (scores→score), past tense (crashed→crash, named→name),
+        # comparatives (louder→loud), 3rd person (grows→grow), double-consonant
+        # forms (spotted→spot via strip-3). Minimum stem length 4 to avoid
+        # false matches on short roots (menon→men, sonam→son, sundar→sun).
+        if len(w) >= 5 and w[:-1] in _COMMON_ENGLISH:
+            return True
+        if len(w) >= 6 and w[:-2] in _COMMON_ENGLISH:
+            return True
+        if len(w) >= 7 and w[:-3] in _COMMON_ENGLISH:
+            return True
+        return False
 
     def _extract_named_entities(headline_original: str) -> frozenset:
         """Extract 2-word name pairs: adjacent capitalized words where BOTH are uncommon."""
@@ -730,7 +794,7 @@ def main():
         for i in range(len(words) - 1):
             a_low, b_low = words[i].lower(), words[i + 1].lower()
             # Skip if either word is a common English word
-            if a_low in _COMMON_ENGLISH or b_low in _COMMON_ENGLISH:
+            if _is_common_word(a_low) or _is_common_word(b_low):
                 continue
             # Check adjacency in original text
             a_end = h.find(words[i]) + len(words[i])
