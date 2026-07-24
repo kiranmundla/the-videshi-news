@@ -79,7 +79,7 @@ export default function DevelopingStories() {
         .limit(10);
 
       if (cancelled || !rawStorylines) return;
-      const valid: any[] = rawStorylines.filter((s: any) => s.article_count >= 3);
+      const valid: any[] = rawStorylines.filter((s: any) => s.article_count >= 5);
       if (valid.length === 0) { setStories([]); return; }
 
       // 2) Fetch linked articles for all storylines in one query
