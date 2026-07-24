@@ -22,7 +22,7 @@ import {
 import HeroMedia from "@/components/HeroMedia";
 import SocialEmbeds from "@/components/SocialEmbeds";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
-import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
+import ArticleReactions from "@/components/ArticleReactions";
 import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
 import ChampionsTimeline from "@/components/ChampionsTimeline";
 

@@ -343,7 +343,7 @@ They are NOT interested in:
 - Niche bureaucratic/regulatory noise
 - Promo codes, coupon roundups, deal listicles, affiliate marketing content
 
-IMPORTANT: Be generous with food, entertainment, travel, and lifestyle stories — if a story has ANY Indian connection, score it at least 3.
+IMPORTANT: Be generous with food, travel, and lifestyle stories — if a story has ANY Indian connection, score it at least 3. For entertainment, require a clear Indian/diaspora connection (Bollywood, Indian-origin talent, India box office) — generic Western entertainment with no Indian link scores 1-2.
 
 SCORING GUIDE (be strict — 5 is rare):
 - 5: Breaking must-know news — major immigration policy change, Indian-origin person in global headlines, major India event affecting diaspora, critical public health/safety for US/UK
@@ -357,6 +357,7 @@ CATEGORY RULES:
 - technology = tech industry, startups, AI, cybersecurity, semiconductors, software, hardware. NOT consumer product comparisons, car reviews, or appliance roundups
 - sports = stories with genuine Indian/cricket/diaspora connection. US college football, MLB, or NFL stories need a real Indian link (Indian-origin player, team with Indian sponsor) — don't score high just because a school has "Indian" in the name
 - markets-finance = US/global markets first (FAANG, banks, Fed, macro). India markets (RBI, Sensex, IPOs) with diaspora investment angle
+- entertainment = Bollywood, South Indian cinema, Indian-origin actors/directors/musicians, OTT content with Indian cast or themes, and major Hollywood ONLY when there is a genuine Indian/diaspora connection (Indian-origin star, India box office, Indian remake). Generic Hollywood, Western music acts, WWE/AEW wrestling, Western reality TV, and non-Indian celebrity gossip with zero Indian connection should score 1-2
 
 COVERAGE CLASSIFICATION:
 You will receive ALREADY PUBLISHED headlines. For each new topic, classify:
