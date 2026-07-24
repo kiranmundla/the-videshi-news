@@ -644,36 +644,49 @@ def main():
                 _pub_word_sets.append(p_words)
 
     # ── Step 3b-ii: Entity-aware dedup ──
-    # Extract named entities (proper nouns) from published headlines for entity matching.
-    # If a topic shares 2+ distinctive entities with a published headline, it's a duplicate
-    # regardless of overall word overlap. "Anil Menon" + "ISS" = same story.
-    _entity_re = re.compile(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*")  # capitalized phrases
-    _generic_entities = {
-        "India", "Indian", "Indians", "Trump", "Modi", "Google", "Apple", "China",
-        "Washington", "London", "New York", "United States", "White House",
-        "Supreme Court", "Congress", "Senate", "House", "American", "British",
-        "Pakistan", "Canada", "Canadian", "Australian", "Global", "World",
-        "National", "International", "Federal", "Central", "South", "North",
-        "East", "West", "First", "New", "Big", "How", "Why", "What", "Here",
-        "Just", "Now", "The", "This", "That", "After", "Before", "Since",
+    # Extract multi-word named entities via overlapping 2-word pairs of capitalized words.
+    # If a topic shares a 2-word capitalized pair with a published headline (after stripping
+    # source names), it's the same story. "Anil Menon" in both → same story, full stop.
+    _source_suffix_re2 = re.compile(r'\s*[-–—|]\s*[A-Z][\w\s.&\'-]{2,40}$')  # strip " - Reuters", "| NDTV", etc.
+    _cap_word_re = re.compile(r'\b[A-Z][a-z]+\b')  # individual capitalized words
+    _generic_pairs = {
+        # Common 2-word title-case phrases that aren't named entities
+        "new york", "new delhi", "south asia", "north america", "south korea",
+        "north korea", "east asia", "west bengal", "san francisco", "los angeles",
+        "white house", "supreme court", "united states", "united kingdom",
+        "red sox", "blue jackets", "sri lanka", "hong kong",
+        # Common title-case verb+noun / adj+noun phrases
+        "trade deal", "trade pact", "free trade", "first mission", "first time",
+        "health risk", "death toll", "study finds", "study says", "new study",
+        "new report", "record breaking", "price hike", "last year", "next year",
     }
-    def _extract_entities(headline_original: str) -> frozenset:
-        """Extract distinctive named entities from a headline (original case)."""
-        raw = _entity_re.findall(headline_original)
-        ents = set()
-        for e in raw:
-            if e not in _generic_entities and len(e) >= 3:
-                ents.add(e.lower())
-        return frozenset(ents)
+    def _extract_named_entities(headline_original: str) -> frozenset:
+        """Extract all consecutive 2-word capitalized pairs from headline after stripping source."""
+        h = _source_suffix_re2.sub('', headline_original).strip()
+        words = _cap_word_re.findall(h)
+        pairs = set()
+        for i in range(len(words) - 1):
+            # Only consecutive in original text (check they're adjacent)
+            a_end = h.find(words[i]) + len(words[i])
+            b_start = h.find(words[i + 1], a_end)
+            # Must be adjacent (only whitespace between)
+            between = h[a_end:b_start]
+            if between.strip() == "" and len(between) <= 2:
+                pair = f"{words[i].lower()} {words[i + 1].lower()}"
+                if pair not in _generic_pairs and len(pair) >= 5:
+                    pairs.add(pair)
+        return frozenset(pairs)
+
+    # Also extract key acronyms (ISS, NASA, CTO, etc.)
+    _acro_re = re.compile(r'\b[A-Z]{2,}\b')
+    _generic_acronyms = {"US", "UK", "EU", "UN", "PM", "IT", "AI", "NRI", "NRIs", "GDP", "CEO",
+                         "THE", "AND", "FOR", "NOT", "BUT", "HAS", "NEW", "IST", "INC"}
+    def _extract_acronyms(headline: str) -> frozenset:
+        return frozenset(a.lower() for a in _acro_re.findall(headline) if a not in _generic_acronyms)
 
     # We need the original-case headlines for entity extraction
     _pub_headlines_original = [(a.get("headline") or "") for a in recent_articles]
-    _pub_entity_sets = [_extract_entities(h) for h in _pub_headlines_original]
-    # Also extract key acronyms/proper-nouns from lowercase (ISS, NASA, CTO, etc.)
-    _acro_re = re.compile(r'\b[A-Z]{2,}\b')
-    _generic_acronyms = {"US", "UK", "EU", "UN", "PM", "IT", "AI", "NRI", "NRIs", "GDP", "CEO", "THE"}
-    def _extract_acronyms(headline: str) -> frozenset:
-        return frozenset(a.lower() for a in _acro_re.findall(headline) if a not in _generic_acronyms)
+    _pub_entity_sets = [_extract_named_entities(h) for h in _pub_headlines_original]
 
     _pub_acro_sets = [_extract_acronyms(h) for h in _pub_headlines_original]
 
@@ -704,23 +717,22 @@ def main():
         if _matched:
             continue
 
-        # Entity-aware dedup: extract entities from the ORIGINAL-case topic title
+        # Entity-aware dedup: extract multi-word named entities from the ORIGINAL-case topic title
+        # Since we only extract multi-word entities now, any shared entity IS a person/org name match
         t_title_orig = t.get("canonical_title") or ""
-        t_ents = _extract_entities(t_title_orig)
+        t_ents = _extract_named_entities(t_title_orig)
         t_acros = _extract_acronyms(t_title_orig)
         if t_ents:
             for i, p_ents in enumerate(_pub_entity_sets):
                 if not p_ents:
                     continue
                 shared_ents = t_ents & p_ents
-                shared_acros = t_acros & _pub_acro_sets[i] if t_acros else frozenset()
-                # 2+ shared named entities, or 1 multi-word entity + 1 acronym
-                distinctive_matches = len(shared_ents) + len(shared_acros)
-                has_multiword = any(" " in e for e in shared_ents)  # e.g. "anil menon"
-                if distinctive_matches >= 2 or (has_multiword and distinctive_matches >= 1):
+                # A shared multi-word entity (person/org name) = same story
+                # e.g. "Anil Menon", "Uday Ruddarraju", "Galaxy Watch", "Avengers Doomsday"
+                if shared_ents:
                     topic_statuses[t["id"]] = "rejected"
                     _entity_dedup_count += 1
-                    print(f"    Entity dedup: '{t_title_orig[:80]}' ↔ '{_pub_headlines_original[i][:80]}' (shared: {shared_ents | shared_acros})")
+                    print(f"    Entity dedup: '{t_title_orig[:80]}' ↔ '{_pub_headlines_original[i][:80]}' (shared: {shared_ents})")
                     break
     if _hard_dedup_count:
         print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
