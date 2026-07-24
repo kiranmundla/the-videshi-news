@@ -84,6 +84,8 @@ export default function ThePulse() {
       const prev = getVotedOption(pollData.id);
       if (prev !== null) {
         setVotedIndex(prev);
+        // Animate bars after a tick for returning voters too
+        requestAnimationFrame(() => setAnimating(true));
       }
     } catch {
       setPoll(null);
