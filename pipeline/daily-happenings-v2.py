@@ -275,12 +275,18 @@ def get_earnings(date: str) -> list[dict]:
         print(f"  Earnings: {len(rows)} total, 0 from watchlist")
         return []
     
-    # Sort by name for consistency, show max 4
+    # Sort by name for consistency, show max 3
     matched.sort(key=lambda r: r.get("name", ""))
     
-    for r in matched[:4]:
+    for r in matched[:3]:
         symbol = r.get("symbol", "")
         name = r.get("name", "")
+        # Clean up corporate suffixes for shorter labels
+        for suffix in [", Inc.", " Inc.", ", Corp.", " Corp.", " Company", " Limited",
+                       ", Ltd.", " Ltd.", " Holdings", ", L.P.", " S.p.A.", " N.V."]:
+            name = name.replace(suffix, "")
+        name = name.strip().rstrip(",")
+        
         time_str = r.get("time", "")
         
         # Parse timing
@@ -295,14 +301,14 @@ def get_earnings(date: str) -> list[dict]:
         
         items.append({
             "emoji": "📊",
-            "label": f"{name} Earnings Report",
+            "label": f"{name} Earnings",
             "detail": detail,
             "category": "markets",
             "start_time_utc": None,
             "search_terms": [symbol.lower(), name.lower().split()[0]],
         })
     
-    print(f"  Earnings: {len(rows)} total, {len(matched)} from watchlist, showing {min(len(matched), 4)}")
+    print(f"  Earnings: {len(rows)} total, {len(matched)} from watchlist, showing {min(len(matched), 3)}")
     return items
 
 
@@ -315,18 +321,14 @@ US_MARKET_HOLIDAYS_2026 = {
 }
 
 def get_market_status(date: str) -> list[dict]:
-    """Deterministic US market open/close based on weekday + holidays."""
+    """Only show market status when it's notable (holiday closure)."""
     try:
         d = datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
         return []
     
-    # Weekend
-    if d.weekday() >= 5:
-        return []
-    
-    # Holiday
-    if date in US_MARKET_HOLIDAYS_2026:
+    # Holiday closure is noteworthy
+    if d.weekday() < 5 and date in US_MARKET_HOLIDAYS_2026:
         return [{
             "emoji": "🏛️",
             "label": "US Stock Markets Closed (Holiday)",
@@ -336,17 +338,8 @@ def get_market_status(date: str) -> list[dict]:
             "search_terms": [],
         }]
     
-    # Market open: 9:30 AM ET = 13:30 UTC
-    open_utc = f"{date}T13:30:00Z"
-    
-    return [{
-        "emoji": "📈",
-        "label": "US Stock Markets Open",
-        "detail": "NYSE, Nasdaq",
-        "category": "markets",
-        "start_time_utc": open_utc,
-        "search_terms": [],
-    }]
+    # Normal open days — not interesting enough to show
+    return []
 
 
 # ── 5. FESTIVALS & HOLIDAYS ─────────────────────────────────────────────────
