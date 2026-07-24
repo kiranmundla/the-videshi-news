@@ -489,7 +489,7 @@ def main():
 
     # ── Step 1: Load pending V3 topics ────────────────────────────────────────
     TOPIC_WINDOW_DAYS = 3
-    topic_cutoff = (datetime.utcnow() - timedelta(days=TOPIC_WINDOW_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    topic_cutoff = (datetime.now(timezone.utc) - timedelta(days=TOPIC_WINDOW_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
     print(f"\n── Step 1: Loading pending V3 topics (last {TOPIC_WINDOW_DAYS}d) ──")
     topics = []
     offset = 0
