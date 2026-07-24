@@ -11,20 +11,22 @@ const REACTION_TYPES = [
 
 type ReactionKey = (typeof REACTION_TYPES)[number]["key"];
 
-function getLocalReactions(articleId: string): Set<ReactionKey> {
+function getLocalReaction(articleId: string): ReactionKey | null {
   try {
-    const raw = localStorage.getItem(`reactions:${articleId}`);
-    return raw ? new Set(JSON.parse(raw)) : new Set();
+    const raw = localStorage.getItem(`reaction:${articleId}`);
+    return raw as ReactionKey | null;
   } catch {
-    return new Set();
+    return null;
   }
 }
 
-function saveLocalReaction(articleId: string, key: ReactionKey) {
+function saveLocalReaction(articleId: string, key: ReactionKey | null) {
   try {
-    const existing = getLocalReactions(articleId);
-    existing.add(key);
-    localStorage.setItem(`reactions:${articleId}`, JSON.stringify([...existing]));
+    if (key) {
+      localStorage.setItem(`reaction:${articleId}`, key);
+    } else {
+      localStorage.removeItem(`reaction:${articleId}`);
+    }
   } catch {}
 }
 
@@ -35,14 +37,12 @@ interface ArticleReactionsProps {
 
 export default function ArticleReactions({ articleId, initialReactions }: ArticleReactionsProps) {
   const [counts, setCounts] = useState<Record<string, number>>(initialReactions ?? {});
-  const [reacted, setReacted] = useState<Set<ReactionKey>>(new Set());
-  const [animating, setAnimating] = useState<string | null>(null);
+  const [selected, setSelected] = useState<ReactionKey | null>(null);
 
   useEffect(() => {
-    setReacted(getLocalReactions(articleId));
+    setSelected(getLocalReaction(articleId));
   }, [articleId]);
 
-  // Fetch latest counts on mount if no initial data
   useEffect(() => {
     if (initialReactions) return;
     (async () => {
@@ -56,56 +56,73 @@ export default function ArticleReactions({ articleId, initialReactions }: Articl
   }, [articleId, initialReactions]);
 
   const handleReact = useCallback(async (key: ReactionKey) => {
-    if (reacted.has(key)) return;
+    const prev = selected;
 
-    // Optimistic update
-    setCounts((prev) => ({ ...prev, [key]: (prev[key] ?? 0) + 1 }));
-    setReacted((prev) => new Set(prev).add(key));
-    saveLocalReaction(articleId, key);
-    setAnimating(key);
-    setTimeout(() => setAnimating(null), 600);
+    if (key === prev) {
+      // Undo — toggle off
+      setCounts((c) => ({ ...c, [key]: Math.max((c[key] ?? 0) - 1, 0) }));
+      setSelected(null);
+      saveLocalReaction(articleId, null);
 
-    // Persist
-    try {
-      const { data } = await supabase.rpc("increment_reaction", {
-        p_article_id: articleId,
-        p_reaction: key,
+      try {
+        const { data } = await (supabase as any).rpc("set_reaction", {
+          p_article_id: articleId,
+          p_old_reaction: key,
+        });
+        if (data) setCounts(data as Record<string, number>);
+      } catch {}
+    } else {
+      // Select new (and deselect old if any)
+      setCounts((c) => {
+        const next = { ...c, [key]: (c[key] ?? 0) + 1 };
+        if (prev) next[prev] = Math.max((c[prev] ?? 0) - 1, 0);
+        return next;
       });
-      if (data) setCounts(data as Record<string, number>);
-    } catch {
-      // Optimistic update stays — acceptable for reactions
+      setSelected(key);
+      saveLocalReaction(articleId, key);
+
+      try {
+        const { data } = await (supabase as any).rpc("set_reaction", {
+          p_article_id: articleId,
+          p_new_reaction: key,
+          p_old_reaction: prev ?? undefined,
+        });
+        if (data) setCounts(data as Record<string, number>);
+      } catch {}
     }
-  }, [articleId, reacted]);
+  }, [articleId, selected]);
 
   return (
-    <div className="flex flex-wrap items-center gap-2 py-5 border-t border-b" style={{ borderColor: "#E5E5E5" }}>
-      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mr-1">React</span>
-      {REACTION_TYPES.map(({ key, emoji, label }) => {
-        const count = counts[key] ?? 0;
-        const hasReacted = reacted.has(key);
-        return (
-          <button
-            key={key}
-            onClick={() => handleReact(key)}
-            disabled={hasReacted}
-            title={label}
-            className={`
-              inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm
-              transition-all duration-200 select-none
-              ${hasReacted
-                ? "bg-neutral-100 border border-neutral-300 opacity-80 cursor-default"
-                : "bg-white border border-neutral-200 hover:border-neutral-400 hover:shadow-sm cursor-pointer active:scale-95"
-              }
-              ${animating === key ? "scale-110" : ""}
-            `}
-          >
-            <span className={`text-base ${animating === key ? "animate-bounce" : ""}`}>{emoji}</span>
-            {count > 0 && (
-              <span className="text-xs font-medium text-muted-foreground tabular-nums">{count}</span>
-            )}
-          </button>
-        );
-      })}
+    <div className="py-5 border-t border-b" style={{ borderColor: "#E5E5E5" }}>
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mr-1">React</span>
+        {REACTION_TYPES.map(({ key, emoji, label }) => {
+          const count = counts[key] ?? 0;
+          const isSelected = selected === key;
+          return (
+            <button
+              key={key}
+              onClick={() => handleReact(key)}
+              className={`
+                inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm
+                transition-all duration-200 select-none
+                ${isSelected
+                  ? "bg-neutral-100 border-2 border-neutral-400 cursor-pointer"
+                  : "bg-white border border-neutral-200 hover:border-neutral-400 hover:shadow-sm cursor-pointer active:scale-95"
+                }
+              `}
+            >
+              <span className="text-base">{emoji}</span>
+              <span className={`text-[11px] ${isSelected ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                {label}
+              </span>
+              {count > 0 && (
+                <span className="text-[11px] font-medium text-muted-foreground tabular-nums">{count}</span>
+              )}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
