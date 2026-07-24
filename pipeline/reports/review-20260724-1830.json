@@ -1,0 +1,156 @@
+[
+  {
+    "id": "5efd5102-a08d-4b80-b38e-20facf0cbd7d",
+    "headline": "OpenAI Agent Escaped Testing, Hacked Hugging Face in 'Unprecedented' AI Security",
+    "slug": "openai-agent-escaped-testing-hacked-hugging-face-ai-breach",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from Indian tech professionals or entrepreneurs in the NRI community regarding the implications of this AI breach on global cybersecurity and innovation.",
+        "Provide additional context on how this incident could impact Indian tech companies or startups, particularly those involved in AI, to make the article more relevant to the NRI audience.",
+        "Clarify the implications of the 'AI Kill Switch Act' for NRIs working in technology sectors abroad, especially those in the U.S., to highlight how legislation could affect their work and the industry.",
+        "Include a section that discusses how this breach might influence the Indian government's approach to AI regulation and cybersecurity, as this would resonate with the NRI audience concerned about India's position in the global tech landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the 'AI Kill Switch Act' to provide readers with direct access to government information and updates on this significant legislation."
+      ]
+    }
+  },
+  {
+    "id": "88790aec-c95d-498c-9e7a-34cae8c73a5e",
+    "headline": "British Columbia Holds First Draw Under New Pathway for Health Authority Workers",
+    "slug": "british-columbia-first-draw-health-authority-permanent-residence",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs currently working in British Columbia's health sector. This could provide a personal touch and highlight the opportunities available for the Indian community.",
+        "Add context about how this new pathway specifically impacts NRIs or the Indian diaspora, such as statistics on the number of Indian nationals working in health-related jobs in B.C. or testimonials from those who have successfully navigated similar immigration pathways.",
+        "Clarify the implications of the federal nomination quota cut from 8,000 to 5,254. Discuss how this reduction may affect future immigration opportunities for NRIs and what it means for those considering moving to Canada.",
+        "Consider restructuring the article to first introduce the new initiative and then delve into who qualifies, followed by the implications for the diaspora, ensuring a logical flow that builds on the importance of the topic."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the British Columbia government announcing the new pathway, as it would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "d1b8537e-e90d-48df-adfb-aca3fb25df77",
+    "headline": "Afghanistan to Host India in Historic T20I Series in Delhi Ahead of Asian Games",
+    "slug": "afghanistan-host-india-t20i-delhi-asian-games-september-2026-20260724",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian expatriates or cricket fans living abroad about the significance of this series. This could highlight how the match resonates with the NRI community and their connection to both India and Afghanistan.",
+        "Provide more context on the historical relationship between Afghanistan and India in cricket, especially from the perspective of the NRI community. This could include anecdotes or experiences shared by NRIs who have followed Afghanistan's cricket journey and their ties to India.",
+        "Clarify the implications of this series for Afghan cricket in the context of the diaspora. Discuss how this match could impact Afghan supporters in India and abroad, and how it reflects the growing popularity of cricket among the Afghan diaspora.",
+        "Include a brief section on how this series might affect the perception of Afghan cricket internationally, particularly among NRIs who may have a vested interest in both nations' cricketing success."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Afghan Cricket Board or a prominent cricket analyst discussing the significance of this series for Afghanistan, which could provide additional insights and engage the audience."
+      ]
+    }
+  },
+  {
+    "id": "2bcaa2d2-072b-459a-a6aa-315f479b7d80",
+    "headline": "Onion Tomato Chutney: The 20-Minute South Indian Staple Every Kitchen Needs",
+    "slug": "onion-tomato-chutney-south-indian-recipe-dosa-idli-20260724",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/20422130/pexels-photo-20422130.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section that discusses how onion tomato chutney is enjoyed by the Indian diaspora, perhaps mentioning its popularity in Indian restaurants abroad or how NRIs recreate this dish to connect with their roots.",
+        "Add a brief historical or cultural context about the significance of chutneys in South Indian cuisine, particularly how they are perceived in the diaspora, which would enrich the article's depth.",
+        "Consider including a personal anecdote or quote from an NRI about their experience with onion tomato chutney, which would strengthen the diaspora connection.",
+        "Clarify the recipe instructions by breaking them down into numbered steps for better readability and ease of following, especially for readers who may be less familiar with cooking."
+      ],
+      "embed_opportunities": [
+        "Embed a YouTube video tutorial on making onion tomato chutney to provide a visual guide for readers, enhancing their cooking experience."
+      ]
+    }
+  },
+  {
+    "id": "beaebb9a-d987-4585-bcad-632e5cc7124f",
+    "headline": "Trump Replaces Expiring Global Tariffs With New 10-12.5% Duties on 60 Trading Pa",
+    "slug": "trump-replaces-tariffs-forced-labor-duties-60-trading-partners",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRI business leaders or trade experts about how these tariffs could impact Indian exports and their businesses abroad.",
+        "Provide additional context on how these tariffs might affect the Indian diaspora in the U.S., particularly those involved in industries like textiles, which are directly impacted by these changes.",
+        "Consider adding a section that discusses potential responses from the Indian government or Indian businesses to these tariffs, which would provide a more comprehensive view of the situation.",
+        "Clarify the implications of these tariffs for NRIs who may be involved in import/export businesses or those who have investments in affected sectors."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the U.S. Trade Representative or a trade analyst discussing the implications of the new tariffs for a more dynamic and informative presentation."
+      ]
+    }
+  },
+  {
+    "id": "ea77f5dc-52b9-4987-a61f-85ca42fc0f3b",
+    "headline": "Shama Hyder Named to 2026 TIME100 Creators List for AI and Business Strategy Inf",
+    "slug": "shama-hyder-time100-creators-2026-indian-american-ai-strategy-20260724",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Shama Hyder about her Indian heritage and how it has influenced her career and business philosophy. This would provide a personal connection for the NRI audience.",
+        "Add context about the significance of the TIME100 Creators list for Indian Americans and the diaspora as a whole. This could include statistics or examples of how Indian Americans have impacted various industries, enhancing the article's relevance to NRIs.",
+        "Consider mentioning any specific initiatives or contributions Hyder has made that directly support the Indian diaspora or NRI communities, which would further emphasize her connection to the audience.",
+        "Improve the structure by clearly delineating sections with subheadings, such as 'Career Highlights,' 'Impact on the Diaspora,' and 'Future Outlook,' to guide readers through the content more effectively."
+      ],
+      "embed_opportunities": [
+        "Embed the official TIME magazine announcement or tweet about the 2026 TIME100 Creators list to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "bdb9329c-ccb1-4f3b-9268-8408b7b0e165",
+    "headline": "Canada Opens Gordie Howe Bridge Without U.S. Officials as Tariff Tensions Escala",
+    "slug": "gordie-howe-bridge-opens-us-canada-tariff-tensions",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from the Indian diaspora in Canada or the U.S. regarding the bridge's opening and the tariff tensions. This could provide a unique perspective on how these political issues affect NRIs and their businesses or travel plans.",
+        "Add context about how the tariff tensions might impact trade and travel for NRIs, particularly those involved in cross-border commerce or those who frequently travel between the U.S. and Canada. This would help readers understand the broader implications of the bridge's opening.",
+        "Clarify the significance of the bridge for the Indian diaspora, especially in terms of economic opportunities or community connections between the two countries. This could involve mentioning any Indian businesses that may benefit from the bridge or how it facilitates travel for NRIs.",
+        "The headline could be more compelling by emphasizing the implications for the diaspora, such as: 'Gordie Howe Bridge Opens Amid U.S.-Canada Tariff Tensions: What It Means for NRIs'. This would draw in readers interested in how these developments affect their community."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Canadian government or relevant U.S. officials regarding the bridge's opening and tariff situation, which could provide authoritative context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "b48ecd67-7209-4165-a6dc-dfecb9d1b768",
+    "headline": "Emirates Debuts U-Dream Headrest to Transform Economy Class Sleep on Long-Haul F",
+    "slug": "emirates-u-dream-headrest-economy-class-sleep",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who frequently travel on Emirates flights, discussing how the U-Dream headrest could enhance their travel experience, especially on long-haul flights back to India.",
+        "Provide context on how the U-Dream headrest compares to similar offerings from other airlines popular among NRIs, such as Air India or Qatar Airways, to give readers a clearer picture of its significance in the travel landscape.",
+        "Include a section on how the U-Dream headrest could impact the travel experience for NRIs returning to India, particularly during peak travel seasons, and how it may influence their choice of airline.",
+        "Add a brief mention of any potential future upgrades or innovations Emirates is considering that could further benefit economy class travelers, especially those from the Indian diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed the official Emirates tweet announcing the U-Dream headrest to provide readers with direct access to the airline's promotional material and visuals."
+      ]
+    }
+  }
+]
