@@ -91,6 +91,9 @@ const StoryDetailPage = React.lazy(() => import("./pages/StoryDetailPage.tsx"));
 const DailyWisdomPage = React.lazy(() => import("./pages/DailyWisdomPage.tsx"));
 const TeacherProfilePage = React.lazy(() => import("./pages/TeacherProfilePage.tsx"));
 
+// Developing Stories (Storyline timelines)
+const StorylineTimeline = React.lazy(() => import("./pages/StorylineTimeline.tsx"));
+
 // Admin (rarely visited — always lazy)
 const Admin = React.lazy(() => import("./pages/Admin.tsx"));
 const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard.tsx"));
@@ -195,6 +198,7 @@ const App = () => (
               <Route path="/stories/:slug" element={<StoryDetailPage />} />
               <Route path="/daily-wisdom" element={<DailyWisdomPage />} />
               <Route path="/daily-wisdom/teachers/:slug" element={<TeacherProfilePage />} />
+              <Route path="/stories/:slug" element={<StorylineTimeline />} />
               <Route path="/representatives" element={<LeadersPage />} />
               <Route path="/leaders" element={<LeadersPage />} />
               <Route path="/know-your-leader" element={<KnowYourLeaderPage />} />
