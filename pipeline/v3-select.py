@@ -659,6 +659,8 @@ def main():
         "trade deal", "trade pact", "free trade", "first mission", "first time",
         "health risk", "death toll", "study finds", "study says", "new study",
         "new report", "record breaking", "price hike", "last year", "next year",
+        "becomes first", "goes viral", "deal wins", "box office", "film awards",
+        "national film", "takes effect", "data breach", "space station",
     }
     def _extract_named_entities(headline_original: str) -> frozenset:
         """Extract all consecutive 2-word capitalized pairs from headline after stripping source."""
@@ -688,7 +690,7 @@ def main():
     _pub_headlines_original = [(a.get("headline") or "") for a in recent_articles]
     _pub_entity_sets = [_extract_named_entities(h) for h in _pub_headlines_original]
 
-    _pub_acro_sets = [_extract_acronyms(h) for h in _pub_headlines_original]
+
 
     _hard_dedup_count = 0
     _entity_dedup_count = 0
@@ -721,7 +723,6 @@ def main():
         # Since we only extract multi-word entities now, any shared entity IS a person/org name match
         t_title_orig = t.get("canonical_title") or ""
         t_ents = _extract_named_entities(t_title_orig)
-        t_acros = _extract_acronyms(t_title_orig)
         if t_ents:
             for i, p_ents in enumerate(_pub_entity_sets):
                 if not p_ents:
