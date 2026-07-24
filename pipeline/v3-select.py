@@ -579,12 +579,13 @@ def main():
     if not older_articles or isinstance(older_articles, dict):
         older_articles = []
 
+    _dedup_stop = {"the","and","for","with","from","that","this","will","has","have",
+                   "been","after","about","over","says","said","more","than","also",
+                   "new","india","indian","how","why","what","when","where","who",
+                   "could","would","first","last","may","get","set","into","most"}
+
     if older_articles and topics:
         # Find older headlines that share distinctive keywords with incoming topics
-        _dedup_stop = {"the","and","for","with","from","that","this","will","has","have",
-                       "been","after","about","over","says","said","more","than","also",
-                       "new","india","indian","how","why","what","when","where","who",
-                       "could","would","first","last","may","get","set","into","most"}
         added = 0
         for t in topics:
             t_title = (t.get("canonical_title") or "").lower()
