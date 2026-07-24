@@ -196,32 +196,78 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
         </div>
 
         {/* Quote strip scroll */}
-        <ScrollWrap className="v2-social-scroll">
-          {displayTweets.map((t) => (
+        {/* Mobile: horizontal scroll */}
+        <div className="md:hidden">
+          <ScrollWrap className="v2-social-scroll">
+            {displayTweets.map((t) => (
+              <a
+                key={t.tweet_id}
+                href={t.tweet_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`v2-tweet-quote group${t.photos && t.photos.length > 0 ? " v2-tweet-quote-has-img" : ""}`}
+              >
+                {/* Tweet text as quote */}
+                <p className="v2-tweet-quote-text">
+                  "{getTweetText(t)}"
+                </p>
+
+                {/* Tweet image thumbnail */}
+                {t.photos && t.photos.length > 0 && (
+                  <div className="v2-tweet-quote-img">
+                    <img
+                      src={t.photos[0]}
+                      alt=""
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                {/* Attribution row */}
+                <div className="v2-tweet-quote-attr">
+                  <div className="v2-tweet-quote-avatar">
+                    {getInitials(t.handle)}
+                  </div>
+                  <div className="v2-tweet-quote-meta">
+                    <span className="v2-tweet-quote-name">
+                      {getDisplayName(t.handle)}
+                    </span>
+                    <span className="v2-tweet-quote-handle">@{t.handle}</span>
+                  </div>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="13"
+                    height="13"
+                    fill="#94A3B8"
+                    className="flex-shrink-0 ml-auto opacity-50 group-hover:opacity-100 transition-opacity"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </div>
+              </a>
+            ))}
+          </ScrollWrap>
+        </div>
+
+        {/* Desktop: 3-column grid */}
+        <div className="hidden md:grid grid-cols-3 gap-4">
+          {displayTweets.slice(0, 6).map((t) => (
             <a
               key={t.tweet_id}
               href={t.tweet_url}
               target="_blank"
               rel="noopener noreferrer"
               className={`v2-tweet-quote group${t.photos && t.photos.length > 0 ? " v2-tweet-quote-has-img" : ""}`}
+              style={{ flex: "none", width: "auto", minWidth: 0 }}
             >
-              {/* Tweet text as quote */}
               <p className="v2-tweet-quote-text">
                 "{getTweetText(t)}"
               </p>
-
-              {/* Tweet image thumbnail */}
               {t.photos && t.photos.length > 0 && (
                 <div className="v2-tweet-quote-img">
-                  <img
-                    src={t.photos[0]}
-                    alt=""
-                    loading="lazy"
-                  />
+                  <img src={t.photos[0]} alt="" loading="lazy" />
                 </div>
               )}
-
-              {/* Attribution row */}
               <div className="v2-tweet-quote-attr">
                 <div className="v2-tweet-quote-avatar">
                   {getInitials(t.handle)}
@@ -244,7 +290,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
               </div>
             </a>
           ))}
-        </ScrollWrap>
+        </div>
       </div>
     </section>
   );

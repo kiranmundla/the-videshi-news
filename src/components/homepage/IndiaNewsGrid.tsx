@@ -56,7 +56,7 @@ export default function IndiaNewsGrid({ articles }: Props) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {articles.slice(0, 8).map((a) => {
               const img = isValidImage(a.hero_image_url);
               return (

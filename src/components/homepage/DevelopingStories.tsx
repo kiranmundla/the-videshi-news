@@ -146,7 +146,7 @@ export default function DevelopingStories() {
       </div>
 
       {/* Storylines grid — 2-col on desktop, stacked on mobile */}
-      <div className="container grid grid-cols-1 md:grid-cols-2" style={{ padding: "0 16px", gap: 12 }}>
+      <div className="container grid grid-cols-1 md:grid-cols-2 items-start" style={{ padding: "0 16px", gap: 12 }}>
         {stories.map((s, idx) => {
           const catColor = CATEGORY_COLORS[s.category || ""] || "#6D6D6D";
           const catLabel = CATEGORY_LABELS[s.category || ""] || (s.category || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
