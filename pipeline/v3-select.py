@@ -739,24 +739,24 @@ def main():
         work worker world worry worst worth would write wrong yard yeah year yes
         yet you young your youth zero
         alert allege amid american announce annual arab are award bail beef billion
-        boot brew brief broker byte cafe canal cargo cent cheap chicken
+        boot brew brief broker byte cafe canal cargo cent cheap chicken chinese
         coal coffee column confirm crew crude cyber defeat deliver deploy
         diesel dispute draft drone eager earlier elect elite emerge enact exert
-        export extend extract fake fare ferry fiber fleet flour forge
+        export extend extract fake fare ferry fiber fleet flour forge former
         fossil fraud grill halt harvest herb hover immune import inquiry
         intact intern invest juice kerosene kidney laser lease lever lodge
         luxury maple margin merge metro mill mortar niche offset olive
         orchid onset orbit otter outlook oxide panel pasta patent pepper
-        petrol pier plunge portray portrait portfolio pose probe profit
+        petrol pier plunge portray portrait portfolio pose potential probe profit
         protein pulse quota radar rally reactor refine reform regime relay
         relief render renew rescue resort retire resume reveal ribbon rival roster
-        rubber runway salon salute sanction savor scandal secular seize
-        sensor sheriff shrimp siege silk silver sketch solar solemn sonar
+        rubber runway salon salute san sanction savor scandal sea secular seize
+        saudi sensor sheriff shrimp siege silk silver sketch solar solemn sonar
         spectrum spice spiral stagger static statue steer strand summit surge
         super surplus suspend symptom tariff tender terrain textile tobacco
         token torture transit trauma treaty troop trophy tunnel turmoil
         tutor ultimate umbrella undergo unrest unveil upgrade uphold upset
-        vaccine venture verdict veteran vigor vintage wafer wheat widow
+        vaccine venture verdict veteran video vigor vintage viral wafer wheat widow
         yield
     """.split())
 
