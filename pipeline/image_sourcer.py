@@ -214,7 +214,8 @@ def fetch_og_image(source_url):
         for pattern in patterns:
             match = re.search(pattern, html, re.IGNORECASE)
             if match:
-                img_url = match.group(1).strip()
+                import html as _html
+                img_url = _html.unescape(match.group(1).strip())
                 # Skip data URIs and tiny placeholders
                 if img_url.startswith("data:"):
                     continue
