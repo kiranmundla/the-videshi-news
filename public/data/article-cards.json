@@ -1,128 +1,128 @@
 [
   {
-    "slug": "indian-origin-cricketers-wadia-sharma-cricket-australia",
-    "headline": "Indian-Origin Cricketers Wadia, Sharma Named in Cricket Australia Squads",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-origin-cricketers-wadia-sharma-cricket-australia.jpg"
+    "slug": "india-uk-ceta-trade-deal-first-zero-duty-goods",
+    "headline": "India-UK Free Trade Deal Takes Effect, First Zero-Duty Goods Land in London",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-uk-ceta-trade-deal-first-zero-duty-goods.jpg"
   },
   {
-    "slug": "regular-exercise-erases-half-muscle-aging-signature",
-    "headline": "Regular Exercise Erases Half of Muscle Aging's Molecular Signature, Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/regular-exercise-erases-half-muscle-aging-signature.jpg"
-  },
-  {
-    "slug": "kidilum-brings-kerala-coastal-cuisine-to-nyc-flatiron",
-    "headline": "Kidilum Brings Kerala Coastal Cuisine to New York's Flatiron District",
+    "slug": "indienne-michelin-starred-indian-fine-dining-hudson-yards-nyc",
+    "headline": "Michelin-Starred Indienne Brings Indian Fine Dining to New York's Hudson Yards",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kidilum-brings-kerala-coastal-cuisine-to-nyc-flatiron.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indienne-michelin-starred-indian-fine-dining-hudson-yards-nyc.jpg"
   },
   {
-    "slug": "infosys-q1-profit-jumps-trims-fy27-growth-outlook",
-    "headline": "Infosys Q1 Profit Jumps 12% but Trimmed Growth Outlook Signals Caution",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/infosys-q1-profit-jumps-trims-fy27-growth-outlook.jpg"
+    "slug": "indian-restaurants-nyc-hardest-reservations",
+    "headline": "Indian Restaurants Now Dominate NYC's Most Coveted Reservation Lists",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-restaurants-nyc-hardest-reservations.jpg"
   },
   {
-    "slug": "traffic-noise-parkinsons-risk-64-percent-dutch-study",
-    "headline": "Traffic Noise May Raise Parkinson's Risk by 64 Percent, Dutch Study Finds",
+    "slug": "madhya-pradesh-passes-uniform-civil-code",
+    "headline": "Madhya Pradesh Becomes Fourth Indian State to Pass Uniform Civil Code",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/madhya-pradesh-passes-uniform-civil-code.jpg"
+  },
+  {
+    "slug": "icmr-indiab-87-percent-indian-adults-abnormal-cholesterol",
+    "headline": "Nine in Ten Indian Adults Have Abnormal Cholesterol, Landmark ICMR Study Finds",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/traffic-noise-parkinsons-risk-64-percent-dutch-study.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/icmr-indiab-87-percent-indian-adults-abnormal-cholesterol.jpg"
   },
   {
-    "slug": "google-cloud-kurian-82-percent-revenue-growth-q2-2026",
-    "headline": "Google Cloud Posts 82% Revenue Surge as Kerala-Born CEO Thomas Kurian Cements AI Dominance",
+    "slug": "infosys-names-ashiss-kumar-dash-next-ceo",
+    "headline": "Infosys Names Three-Decade Veteran Ashiss Kumar Dash as Next CEO",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/infosys-names-ashiss-kumar-dash-next-ceo.jpg"
+  },
+  {
+    "slug": "dhs-rule-caps-j1-visa-four-years-disrupts-doctor-training",
+    "headline": "New DHS Rule Caps J-1 Visa Stays at Four Years, Disrupting Doctor Training Programs",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhs-rule-caps-j1-visa-four-years-disrupts-doctor-training.jpg"
+  },
+  {
+    "slug": "bee-venom-boosts-parkinsons-therapy-mouse-study",
+    "headline": "Bee Venom Boosts Standard Parkinson's Therapy in New Mouse Study",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bee-venom-boosts-parkinsons-therapy-mouse-study.jpg"
+  },
+  {
+    "slug": "daca-renewal-delays-leave-dreamers-in-limbo",
+    "headline": "DACA Renewal Delays Leave Hundreds of Thousands in Limbo Without Work or Protection",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/daca-renewal-delays-leave-dreamers-in-limbo.jpg"
+  },
+  {
+    "slug": "uk-backs-non-invasive-tests-endometriosis-diagnosis",
+    "headline": "UK Backs Two Non-Invasive Tests to Cut Nine-Year Endometriosis Diagnosis Wait",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-backs-non-invasive-tests-endometriosis-diagnosis.jpg"
+  },
+  {
+    "slug": "indian-green-card-holder-would-not-move-us-h1b-today",
+    "headline": "Indian Green Card Holder Says He Would Not Move to the US on an H-1B Visa Today",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-green-card-holder-would-not-move-us-h1b-today.jpg"
+  },
+  {
+    "slug": "nokia-123-shield-water-resistant-feature-phone",
+    "headline": "Nokia 123 Shield Brings Water Resistance and 19-Day Battery for Under ₹2,500",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/google-cloud-kurian-82-percent-revenue-growth-q2-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nokia-123-shield-water-resistant-feature-phone.jpg"
   },
   {
-    "slug": "house-votes-214-208-rebuke-trump-iran-war-powers",
-    "headline": "House Votes 214-208 to Rebuke Trump's Iran War Powers",
+    "slug": "israel-gaza-strikes-west-bank-violence-surges",
+    "headline": "Israel's Near-Daily Gaza Strikes Kill Five More as West Bank Violence Surges",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/house-votes-214-208-rebuke-trump-iran-war-powers.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/israel-gaza-strikes-west-bank-violence-surges.jpg"
   },
   {
-    "slug": "qatarenergy-extends-lng-force-majeure-hormuz-crisis",
-    "headline": "QatarEnergy Extends LNG Force Majeure as Hormuz Closure Deepens Global Energy Crisis",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/qatarenergy-extends-lng-force-majeure-hormuz-crisis.jpg"
-  },
-  {
-    "slug": "ben-gvir-al-aqsa-tisha-bav-status-quo-breach",
-    "headline": "Ben Gvir Enters Al-Aqsa Compound on Tisha B'Av, Praises Jewish Prayer",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ben-gvir-al-aqsa-tisha-bav-status-quo-breach.jpg"
-  },
-  {
-    "slug": "blackstone-earnings-surge-ai-bets-power-record-empire",
-    "headline": "Blackstone Earnings Surge 26% as AI Bets Power Record $1.35 Trillion Empire",
+    "slug": "wiffy-raises-3-million-series-a-home-services",
+    "headline": "Mumbai-Based Wiffy Raises $3 Million to Expand AI-Powered Home Services Platform",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/blackstone-earnings-surge-ai-bets-power-record-empire.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/wiffy-raises-3-million-series-a-home-services.jpg"
   },
   {
-    "slug": "indian-students-abroad-drop-31-percent-two-years",
-    "headline": "Indian Students Going Abroad for Higher Education Drop 31% in Two Years",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-students-abroad-drop-31-percent-two-years.jpg"
-  },
-  {
-    "slug": "us-jobless-claims-hit-lowest-since-1969",
-    "headline": "US Jobless Claims Plunge to 187,000, Lowest Level Since 1969",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-jobless-claims-hit-lowest-since-1969.jpg"
-  },
-  {
-    "slug": "karnataka-demands-neet-abolition-parameshwara-writes-modi",
-    "headline": "Karnataka Demands NEET Abolition as Deputy CM Parameshwara Writes to PM Modi",
+    "slug": "jainam-jain-14-year-old-indian-ai-startup-burj-khalifa",
+    "headline": "Meet Jainam Jain, the 14-Year-Old Indian Running an AI Startup From Burj Khalifa",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-demands-neet-abolition-parameshwara-writes-modi.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jainam-jain-14-year-old-indian-ai-startup-burj-khalifa.jpg"
   },
   {
-    "slug": "air-india-restore-daily-delhi-dhaka-flights-july-29",
-    "headline": "Air India to Restore Daily Delhi-Dhaka Flights From July 29 as Visa Services Resume",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-restore-daily-delhi-dhaka-flights-july-29.jpg"
+    "slug": "india-opens-cwg-2026-lawn-bowls-wins-doping-shadow",
+    "headline": "India Opens CWG 2026 With Two Lawn Bowls Wins Despite Doping Cloud Over Glasgow Campaign",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-opens-cwg-2026-lawn-bowls-wins-doping-shadow.jpg"
   },
   {
-    "slug": "california-worker-protection-laws-ice-workplace",
-    "headline": "California's Worker Protection Laws Shield Employees From ICE Overreach at the Workplace",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-worker-protection-laws-ice-workplace.jpg"
+    "slug": "amazon-cuts-jobs-agi-unit-ai-investment-soars",
+    "headline": "Amazon Cuts Jobs in Its AGI Unit Even as AI Investment Soars",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/amazon-cuts-jobs-agi-unit-ai-investment-soars.jpg"
   },
   {
-    "slug": "canada-first-express-entry-draw-skilled-military-recruits",
-    "headline": "Canada Issues First-Ever Express Entry Draw for Skilled Military Recruits",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-first-express-entry-draw-skilled-military-recruits.jpg"
+    "slug": "mjf-aew-redemption-creative-force-kevin-knight",
+    "headline": "MJF Shaped AEW Redemption Main Event as Backstage Creative Force",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mjf-aew-redemption-creative-force-kevin-knight.jpg"
   },
   {
-    "slug": "august-visa-bulletin-no-relief-indian-green-card-applicants",
-    "headline": "August Visa Bulletin Brings No Relief for Indian Green Card Applicants",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/august-visa-bulletin-no-relief-indian-green-card-applicants.jpg"
-  },
-  {
-    "slug": "india-rejects-pakistan-disinformation-asean-forum-manila",
-    "headline": "India Rejects Pakistan's 'State-Sponsored Disinformation' at ASEAN Forum in Manila",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-rejects-pakistan-disinformation-asean-forum-manila.jpg"
-  },
-  {
-    "slug": "india-medical-seat-mafia-courts-target-nri-quota-fraud",
-    "headline": "India's Medical Seat Mafia Under Fire as Courts Target NRI Quota Fraud",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-medical-seat-mafia-courts-target-nri-quota-fraud.jpg"
-  },
-  {
-    "slug": "nancy-guthrie-ransom-note-excerpts-revealed-crime-junkie-podcast",
-    "headline": "Nancy Guthrie Ransom Note Excerpts Revealed on Crime Junkie Podcast",
+    "slug": "iran-claims-strikes-destroyed-us-patriot-radar-gulf-bases",
+    "headline": "Iran Claims Strikes Destroyed US Patriot Systems and Radar at Gulf Bases",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nancy-guthrie-ransom-note-excerpts-revealed-crime-junkie-podcast.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-claims-strikes-destroyed-us-patriot-radar-gulf-bases.jpg"
   },
   {
-    "slug": "india-diaspora-dollar-inflows-rupee-slides-oil-middle-east",
-    "headline": "India Pulls In $20 Billion From Diaspora, but Oil Surge Keeps Rupee Pinned Near Record Low",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-diaspora-dollar-inflows-rupee-slides-oil-middle-east.jpg"
+    "slug": "pennsylvania-measles-snyder-county-lowes-exposure",
+    "headline": "Pennsylvania Measles Outbreak Spreads to Snyder County After Lowe's Exposure",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pennsylvania-measles-snyder-county-lowes-exposure.jpg"
+  },
+  {
+    "slug": "illness-crisis-uae-team-pogacar-tour-de-france",
+    "headline": "Illness Crisis Hits UAE Team as Pogačar Chases Historic Fifth Tour de France Title",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/illness-crisis-uae-team-pogacar-tour-de-france.jpg"
   }
 ]
