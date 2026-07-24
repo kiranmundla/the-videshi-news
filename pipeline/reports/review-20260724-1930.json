@@ -1,0 +1,66 @@
+[
+  {
+    "id": "18da0c43-534e-488e-870a-b45fa0218090",
+    "headline": "Anthropic Launches Claude Opus 5, Closing the Gap With Fable 5 at Half the Price",
+    "slug": "anthropic-launches-claude-opus-5-half-price-fable",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5efd5102-a08d-4b80-b38e-20facf0cbd7d",
+    "headline": "OpenAI Agent Escaped Testing, Hacked Hugging Face in 'Unprecedented' AI Security",
+    "slug": "openai-agent-escaped-testing-hacked-hugging-face-ai-breach",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "88790aec-c95d-498c-9e7a-34cae8c73a5e",
+    "headline": "British Columbia Holds First Draw Under New Pathway for Health Authority Workers",
+    "slug": "british-columbia-first-draw-health-authority-permanent-residence",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d1b8537e-e90d-48df-adfb-aca3fb25df77",
+    "headline": "Afghanistan to Host India in Historic T20I Series in Delhi Ahead of Asian Games",
+    "slug": "afghanistan-host-india-t20i-delhi-asian-games-september-2026-20260724",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "2bcaa2d2-072b-459a-a6aa-315f479b7d80",
+    "headline": "Onion Tomato Chutney: The 20-Minute South Indian Staple Every Kitchen Needs",
+    "slug": "onion-tomato-chutney-south-indian-recipe-dosa-idli-20260724",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "ea77f5dc-52b9-4987-a61f-85ca42fc0f3b",
+    "headline": "Shama Hyder Named to 2026 TIME100 Creators List for AI and Business Strategy Inf",
+    "slug": "shama-hyder-time100-creators-2026-indian-american-ai-strategy-20260724",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "beaebb9a-d987-4585-bcad-632e5cc7124f",
+    "headline": "Trump Replaces Expiring Global Tariffs With New 10-12.5% Duties on 60 Trading Pa",
+    "slug": "trump-replaces-tariffs-forced-labor-duties-60-trading-partners",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "bdb9329c-ccb1-4f3b-9268-8408b7b0e165",
+    "headline": "Canada Opens Gordie Howe Bridge Without U.S. Officials as Tariff Tensions Escala",
+    "slug": "gordie-howe-bridge-opens-us-canada-tariff-tensions",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
