@@ -44,12 +44,11 @@ def load_env(*paths):
                         k, v = line.split("=", 1)
                         os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-load_env("~/workspace/.env.supabase", "~/workspace/.env.openai", "~/workspace/.env.google-ai")
+load_env("~/workspace/.env.supabase", "~/workspace/.env.openai")
 
 SB_URL = os.environ.get("SUPABASE_URL", "")
 SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
-GOOGLE_AI_KEY = os.environ.get("GOOGLE_AI_API_KEY", "")
 
 if not SB_URL or not SB_KEY:
     print("ERROR: Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY")
@@ -130,53 +129,6 @@ def llm_call(payload_dict, label="LLM call", timeout=50):
         return None, None, f"JSON parse error: {e}"
     except Exception as e:
         return None, None, str(e)
-    finally:
-        os.unlink(tmp_path)
-
-
-def gemini_llm_call(messages_content, max_tokens=2000, label="Gemini call", timeout=60):
-    """Fallback: Call Gemini 2.5 Flash via Google AI API. Returns (parsed_content, usage_dict, error_string)."""
-    if not GOOGLE_AI_KEY:
-        return None, None, "No Google AI API key"
-
-    import tempfile
-    payload = json.dumps({
-        "contents": [{"parts": [{"text": messages_content}]}],
-        "generationConfig": {
-            "responseMimeType": "application/json",
-            "maxOutputTokens": max_tokens,
-            "temperature": 0,
-            "thinkingConfig": {"thinkingBudget": 0},
-        },
-    })
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
-        tmp.write(payload)
-        tmp_path = tmp.name
-
-    try:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GOOGLE_AI_KEY}"
-        cmd = [
-            "curl", "-sS", "--max-time", str(timeout),
-            "-X", "POST", url,
-            "-H", "Content-Type: application/json",
-            "-d", f"@{tmp_path}",
-        ]
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 10)
-        if r.returncode != 0:
-            return None, None, f"curl error (rc={r.returncode})"
-
-        data = json.loads(r.stdout)
-        if "error" in data:
-            return None, None, data["error"].get("message", str(data["error"]))
-
-        usage = data.get("usageMetadata", {})
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        content = json.loads(text)
-        return content, usage, None
-    except json.JSONDecodeError as e:
-        return None, None, f"Gemini JSON parse error: {e}"
-    except Exception as e:
-        return None, None, f"Gemini error: {e}"
     finally:
         os.unlink(tmp_path)
 
@@ -422,7 +374,7 @@ Headlines not in any group are unique stories. Empty groups array if no merges f
 
 def llm_score_topics(topics_with_signals, recent_articles):
     """Batch-score topics via GPT-4o-mini. Returns dict of topic_index -> result."""
-    if not topics_with_signals or (not OPENAI_KEY and not GOOGLE_AI_KEY):
+    if not topics_with_signals or not OPENAI_KEY:
         return {}
 
     # Build published context
@@ -467,11 +419,6 @@ def llm_score_topics(topics_with_signals, recent_articles):
             content, usage2, error = llm_call(payload, label=f"score_{batch_start}_retry", timeout=60)
             if usage2:
                 cost += usage2.get("prompt_tokens", 0) * 0.15 / 1_000_000 + usage2.get("completion_tokens", 0) * 0.6 / 1_000_000
-
-        if error and GOOGLE_AI_KEY:
-            # Fallback to Gemini 2.5 Flash
-            gemini_prompt = payload["messages"][0]["content"]
-            content, usage_g, error = gemini_llm_call(gemini_prompt, max_tokens=max(len(batch) * 130, 2000), label=f"gemini_score_{batch_start}", timeout=60)
 
         if error:
             return batch_start, {}, cost, error
@@ -1036,21 +983,17 @@ def main():
             topic_statuses[c["topic_id"]] = "rejected"
 
     # ── Step 6: Final LLM dedup on capped candidates ─────────────────────────
-    if len(balanced) > 1 and (OPENAI_KEY or GOOGLE_AI_KEY):
+    if len(balanced) > 1 and OPENAI_KEY:
         print(f"\n── Step 6: Final LLM dedup ({len(balanced)} candidates) ──")
         survivor_titles = [c["title"][:120] for c in balanced]
         lines = [f"{i+1}. {t}" for i, t in enumerate(survivor_titles)]
-        dedup_payload = {
+        content, usage, error = llm_call({
             "model": "gpt-4o-mini",
             "messages": [{"role": "user", "content": MERGE_PROMPT + "\n\nHeadlines:\n" + "\n".join(lines)}],
             "response_format": {"type": "json_object"},
             "max_tokens": 1000,
             "temperature": 0,
-        }
-        content, usage, error = llm_call(dedup_payload, label="final_dedup")
-        if error and GOOGLE_AI_KEY:
-            dedup_prompt = dedup_payload["messages"][0]["content"]
-            content, usage, error = gemini_llm_call(dedup_prompt, max_tokens=1000, label="gemini_final_dedup")
+        }, label="final_dedup")
         if not error and content:
             groups = content.get("groups", [])
             drop_indices = set()
