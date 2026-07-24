@@ -643,7 +643,42 @@ def main():
             if p_words:
                 _pub_word_sets.append(p_words)
 
+    # ── Step 3b-ii: Entity-aware dedup ──
+    # Extract named entities (proper nouns) from published headlines for entity matching.
+    # If a topic shares 2+ distinctive entities with a published headline, it's a duplicate
+    # regardless of overall word overlap. "Anil Menon" + "ISS" = same story.
+    _entity_re = re.compile(r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*")  # capitalized phrases
+    _generic_entities = {
+        "India", "Indian", "Indians", "Trump", "Modi", "Google", "Apple", "China",
+        "Washington", "London", "New York", "United States", "White House",
+        "Supreme Court", "Congress", "Senate", "House", "American", "British",
+        "Pakistan", "Canada", "Canadian", "Australian", "Global", "World",
+        "National", "International", "Federal", "Central", "South", "North",
+        "East", "West", "First", "New", "Big", "How", "Why", "What", "Here",
+        "Just", "Now", "The", "This", "That", "After", "Before", "Since",
+    }
+    def _extract_entities(headline_original: str) -> frozenset:
+        """Extract distinctive named entities from a headline (original case)."""
+        raw = _entity_re.findall(headline_original)
+        ents = set()
+        for e in raw:
+            if e not in _generic_entities and len(e) >= 3:
+                ents.add(e.lower())
+        return frozenset(ents)
+
+    # We need the original-case headlines for entity extraction
+    _pub_headlines_original = [(a.get("headline") or "") for a in recent_articles]
+    _pub_entity_sets = [_extract_entities(h) for h in _pub_headlines_original]
+    # Also extract key acronyms/proper-nouns from lowercase (ISS, NASA, CTO, etc.)
+    _acro_re = re.compile(r'\b[A-Z]{2,}\b')
+    _generic_acronyms = {"US", "UK", "EU", "UN", "PM", "IT", "AI", "NRI", "NRIs", "GDP", "CEO", "THE"}
+    def _extract_acronyms(headline: str) -> frozenset:
+        return frozenset(a.lower() for a in _acro_re.findall(headline) if a not in _generic_acronyms)
+
+    _pub_acro_sets = [_extract_acronyms(h) for h in _pub_headlines_original]
+
     _hard_dedup_count = 0
+    _entity_dedup_count = 0
     for t in topics:
         t_title = (t.get("canonical_title") or "").lower().strip()
         t_base = _strip_src_re.sub('', t_title).strip()
@@ -658,14 +693,39 @@ def main():
         t_words = frozenset(re.findall(r'[a-z]{3,}', t_base)) - _dedup_stop
         if not t_words:
             continue
+        _matched = False
         for p_words in _pub_word_sets:
             overlap = len(t_words & p_words) / min(len(t_words), len(p_words))
             if overlap >= 0.8:
                 topic_statuses[t["id"]] = "rejected"
                 _hard_dedup_count += 1
+                _matched = True
                 break
+        if _matched:
+            continue
+
+        # Entity-aware dedup: extract entities from the ORIGINAL-case topic title
+        t_title_orig = t.get("canonical_title") or ""
+        t_ents = _extract_entities(t_title_orig)
+        t_acros = _extract_acronyms(t_title_orig)
+        if t_ents:
+            for i, p_ents in enumerate(_pub_entity_sets):
+                if not p_ents:
+                    continue
+                shared_ents = t_ents & p_ents
+                shared_acros = t_acros & _pub_acro_sets[i] if t_acros else frozenset()
+                # 2+ shared named entities, or 1 multi-word entity + 1 acronym
+                distinctive_matches = len(shared_ents) + len(shared_acros)
+                has_multiword = any(" " in e for e in shared_ents)  # e.g. "anil menon"
+                if distinctive_matches >= 2 or (has_multiword and distinctive_matches >= 1):
+                    topic_statuses[t["id"]] = "rejected"
+                    _entity_dedup_count += 1
+                    print(f"    Entity dedup: '{t_title_orig[:80]}' ↔ '{_pub_headlines_original[i][:80]}' (shared: {shared_ents | shared_acros})")
+                    break
     if _hard_dedup_count:
         print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
+    if _entity_dedup_count:
+        print(f"  Entity dedup rejected: {_entity_dedup_count} topics (named entity overlap with published)")
 
     # ── Step 4: LLM scoring + classification ──────────────────────────────────
     # Only LLM-score topics that have loaded signals AND weren't hard-deduped

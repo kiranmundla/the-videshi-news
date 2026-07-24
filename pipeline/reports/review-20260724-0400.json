@@ -1,0 +1,97 @@
+[
+  {
+    "id": "a69f69d9-a538-4d7e-a52f-b03e4dcbed64",
+    "headline": "India-UK Free Trade Deal Takes Effect, First Zero-Duty Goods Land in London",
+    "slug": "india-uk-ceta-trade-deal-first-zero-duty-goods",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian expatriates in the UK who are directly affected by the trade deal, such as business owners or members of the Indian community, to illustrate the real-world impact on NRIs.",
+        "Provide additional context about how the trade deal specifically benefits NRIs in terms of business opportunities, investment potential, or job creation, which would resonate more with the diaspora audience.",
+        "Clarify the significance of the Double Contribution Convention for Indian workers in the UK, explaining how it impacts their financial obligations and what it means for their families back in India.",
+        "Include a brief section on potential challenges or criticisms of the trade deal that NRIs might be concerned about, such as competition for jobs or market access issues, to provide a balanced view."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian High Commission in the UK announcing the trade deal's implementation, which would provide authoritative context and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "ef2bf95f-7f4a-4e01-9b2c-790980666652",
+    "headline": "Michelin-Starred Indienne Brings Indian Fine Dining to New York's Hudson Yards",
+    "slug": "indienne-michelin-starred-indian-fine-dining-hudson-yards-nyc",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian expatriates in New York who have experienced the restaurant, highlighting their perspectives on how it represents Indian culture and cuisine abroad.",
+        "Provide context about the significance of Michelin stars for Indian restaurants in the U.S. and how this impacts the perception of Indian cuisine among NRIs and the broader American audience.",
+        "Include a section on how the opening of Indienne New York fits into the larger trend of Indian fine dining establishments in the U.S., perhaps mentioning other notable Indian chefs or restaurants that have made similar strides.",
+        "Discuss any potential challenges or opportunities for Indian chefs in the U.S. market, particularly for NRIs looking to establish or support Indian culinary ventures."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Chef Sujan Sarkar or the restaurant's official account announcing the opening, which could include reactions from the community or notable figures in the culinary world."
+      ]
+    }
+  },
+  {
+    "id": "a04259d3-1a2f-41e8-b3e7-a63213bbf4ab",
+    "headline": "Nine in Ten Indian Adults Have Abnormal Cholesterol, Landmark ICMR Study Finds",
+    "slug": "icmr-indiab-87-percent-indian-adults-abnormal-cholesterol",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific recommendations for NRIs regarding cholesterol screening, such as how they can access healthcare services in their host countries or the importance of discussing their South Asian ancestry with healthcare providers abroad.",
+        "Provide context on how the findings of the ICMR study may impact the health of the Indian diaspora, particularly in countries with high Indian populations, such as the USA, Canada, and the UK, where lifestyle factors may differ significantly from those in India.",
+        "Include quotes or insights from health experts or organizations that cater to the Indian diaspora, which could provide a more personal touch and relevance to the NRI audience.",
+        "Discuss potential cultural or dietary factors specific to the Indian diaspora that may contribute to the high rates of dyslipidemia, offering a more comprehensive understanding of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the ICMR or relevant health organizations that highlights the study's findings, which could provide credibility and direct readers to more information.",
+        "Consider embedding a video or infographic that explains cholesterol levels and their implications for health, tailored for the Indian diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "92c6c7bd-a388-4a03-b852-c6870c015073",
+    "headline": "Indian Restaurants Now Dominate NYC's Most Coveted Reservation Lists",
+    "slug": "indian-restaurants-nyc-hardest-reservations",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from Indian expatriates or NRIs who have experienced the dining scene in NYC. This could provide personal insights into how these restaurants resonate with their cultural identity.",
+        "Add context about how the rise of Indian restaurants in NYC reflects broader trends in the diaspora, such as the increasing influence of Indian culture in global culinary spaces. This could include statistics on the NRI population in NYC or mention of Indian chefs who have gained prominence internationally.",
+        "Consider discussing the impact of these dining trends on the Indian community in NYC, such as how these restaurants serve as cultural hubs or gathering places for NRIs, which would deepen the article's relevance to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent Indian chef or food critic discussing the rise of Indian restaurants in NYC, or a tweet from the NYC tourism board highlighting this culinary trend."
+      ]
+    }
+  },
+  {
+    "id": "c7c8749a-ec2b-42cc-a8b0-a47761c0593a",
+    "headline": "Madhya Pradesh Becomes Fourth Indian State to Pass Uniform Civil Code",
+    "slug": "madhya-pradesh-passes-uniform-civil-code",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from NRIs regarding the implications of the UCC in India. This could include quotes from Indian expatriates or experts on how such laws affect their ties to India and their views on family law.",
+        "Provide more context on how the UCC might impact NRIs, particularly in terms of marriage and inheritance laws for those who may have family in India. This could include a brief analysis of how the UCC aligns or conflicts with existing laws in countries where many NRIs reside.",
+        "Clarify the exemptions for Scheduled Tribes in the context of the UCC, as this could be a significant point of interest for NRIs who may have tribal affiliations or connections to these communities.",
+        "Include a brief overview of the historical context of the UCC in India, explaining why it has been a contentious issue and how it has evolved over time. This would provide readers with a deeper understanding of the significance of this recent legislation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Madhya Pradesh government or the Chief Minister announcing the passage of the UCC, as this would provide direct insight into the government's stance and messaging on the issue."
+      ]
+    }
+  }
+]
