@@ -1,0 +1,182 @@
+[
+  {
+    "id": "8df376de-09d2-4305-9b57-3974f1489f39",
+    "headline": "Wall Street Edges Higher as Earnings Beat Expectations Despite Middle East Tensi",
+    "slug": "wall-street-edges-higher-earnings-beat-expectations-middle-east-tensions",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who are affected by the economic conditions in both the US and India. This could provide a personal touch and highlight the implications of US market trends on the Indian diaspora.",
+        "Add context regarding how the geopolitical tensions in the Middle East specifically impact Indian NRIs, such as potential changes in remittance flows or investment strategies. This would provide a more comprehensive view for readers who are part of the diaspora.",
+        "Consider restructuring the article to lead with the implications for the NRI community before diving into the broader market analysis. This could help engage readers more effectively by addressing their specific interests right away."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the US Treasury or a financial analyst discussing the potential tariff deal with the EU, as this could provide real-time insights and enhance the article's relevance."
+      ]
+    }
+  },
+  {
+    "id": "6a32f390-670d-4d90-b805-7283389bbabd",
+    "headline": "Indian Food Fair Returns to Salt Lake City's Liberty Park on August 15 for Indep",
+    "slug": "indian-food-fair-salt-lake-city-liberty-park-august-15-independence-day",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian-Americans in Utah about the significance of the Food Fair and how it connects them to their heritage.",
+        "Provide more context on how the Indian Food Fair fosters community ties among NRIs and the impact of such events on cultural preservation in the diaspora.",
+        "Include a section on how the event has evolved over the years and its importance in the context of the Indian diaspora's growth in Utah, perhaps by including statistics or comparisons to other regions.",
+        "Clarify the date mentioned in the headline and body; it currently states August 15, 2026, which may confuse readers if they expect the event to be in 2023."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Association of Utah promoting the event or sharing highlights from previous fairs to enhance community engagement."
+      ]
+    }
+  },
+  {
+    "id": "b88b17a2-2ac6-457c-87c3-485c3e3fef5d",
+    "headline": "Activist Sonam Wangchuk Ends 26-Day Hunger Strike as India's 'Cockroach' Protest",
+    "slug": "sonam-wangchuk-ends-hunger-strike-cockroach-protest-movement-intensifies",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs regarding the protest and Sonam Wangchuk's hunger strike. This could highlight how the Indian diaspora views the situation and its implications for India.",
+        "Provide additional context about the NEET exam paper leak scandal and its impact on Indian students abroad, particularly those preparing for medical exams in India. This would help NRIs understand the stakes involved.",
+        "Clarify the significance of the 'Cockroach' protest movement and its relevance to the diaspora. Explain how this movement might affect NRIs' perceptions of governance in India and their engagement with Indian politics.",
+        "Consider restructuring the article to start with a more compelling lead that emphasizes the urgency of the protests and their implications for young Indians, both in India and abroad."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Education or a relevant government official regarding the NEET scandal or the concessions made to Wangchuk, providing readers with direct access to official statements."
+      ]
+    }
+  },
+  {
+    "id": "c7194471-322b-4abf-9c0d-57a90730d3ac",
+    "headline": "Indian Markets Extend Losing Streak to Fifth Session as Oil Prices and Earnings ",
+    "slug": "indian-markets-extend-losing-streak-fifth-session-oil-prices-earnings",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how the current market conditions and oil price fluctuations specifically impact NRI investors, such as their investment strategies or remittance patterns back to India.",
+        "Provide context on how the weakening rupee affects NRIs who may be investing in Indian markets or sending money back home, potentially including a quote from a financial expert focused on NRI investments.",
+        "Add a section that discusses how global market trends, particularly in the US or UK, may influence NRI investment decisions in India, thereby linking the article more closely to the interests of the diaspora.",
+        "Include a brief analysis of how the current situation compares to previous market downturns and what historical data suggests for NRI investors looking to navigate these challenges."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any recent policy changes that might affect NRIs or Indian expatriates, as this could provide valuable context for readers interested in immigration and investment opportunities."
+      ]
+    }
+  },
+  {
+    "id": "e507485a-c6b7-40c6-adad-5f3a25b6d301",
+    "headline": "UAE Travel Alert: US, UK, Canada and Australia Renew Middle East Warnings as Air",
+    "slug": "uae-travel-alert-us-uk-canada-australia-renew-middle-east-warnings",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who frequently travel to or through the UAE, discussing how these travel warnings impact their plans and perceptions of safety.",
+        "Provide context about how the travel advisories specifically affect NRIs living in the UAE or those planning to visit, such as potential impacts on business travel, family visits, or tourism-related activities.",
+        "Include a section that outlines what NRIs can do if they are currently in the UAE or planning to travel there, such as tips for staying informed or alternative travel arrangements.",
+        "Clarify the implications of the travel advisories on the NRI community, such as how these warnings might affect their ability to return to India or travel to other destinations."
+      ],
+      "embed_opportunities": [
+        "Embed the official travel advisory tweets from the US State Department, UK Foreign Office, and other relevant agencies to provide readers with direct access to the latest updates."
+      ]
+    }
+  },
+  {
+    "id": "b4e6ab10-80d0-4d65-a48d-b63de71a1669",
+    "headline": "'Mega Masters' Hearings Pack Immigration Courts as Administration Pushes to Acce",
+    "slug": "mega-masters-hearings-immigration-courts-accelerate-deportations",
+    "category": "immigration",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/33497885/pexels-photo-33497885.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian diaspora organizations or leaders regarding how these 'mega masters' hearings impact Indian immigrants specifically. This would highlight the unique concerns of the NRI community.",
+        "Provide context on how these changes in immigration policy might affect NRIs who may have family members or friends in the U.S. facing these hearings. This could include statistics on the number of Indian immigrants affected or personal stories that resonate with the diaspora audience.",
+        "Clarify the timeline of the proposed changes, especially the tripling of fees for immigration court filings. Mention when these changes are expected to take effect and how they might impact ongoing cases for NRIs.",
+        "Enhance the content structure by breaking up the text with subheadings that guide the reader through the article, such as 'Impact on Immigrants,' 'Legal Representation Challenges,' and 'Future Implications for the Indian Diaspora.' This would improve readability and help readers find specific information more easily."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent immigration advocacy group or an official USCIS tweet that discusses these policy changes, providing readers with direct access to official communications and updates."
+      ]
+    }
+  },
+  {
+    "id": "e294c52e-6c54-4c3a-8e0b-0127770c94b8",
+    "headline": "US Updates H-1B Debarred Employer List: Four Companies Now Barred From Sponsorin",
+    "slug": "us-updates-h1b-debarred-employer-list-four-companies-barred",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a brief section that discusses how these debarred employers specifically impact Indian professionals in the US, perhaps with anecdotes or statistics about the number of Indian workers affected.",
+        "Provide more context about the implications of being on the debarred employer list for Indian professionals, such as how it affects their job search or visa status, to better inform readers about the stakes involved.",
+        "Consider adding a quote from an immigration expert or an Indian professional who has navigated the H-1B process, which could add depth and a personal touch to the article.",
+        "Clarify the timeline of the debarment periods mentioned in the article, as it may confuse readers. A simple table or timeline graphic could help illustrate when each company is barred and for how long."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the updated H-1B debarred employer list to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "a2653812-dd51-463f-8db7-4a8a8d0f8fd8",
+    "headline": "Thirteen Killed Including Infant as Landslide Crushes Taxi in Himachal Pradesh's",
+    "slug": "thirteen-killed-landslide-crushes-taxi-himachal-pradesh-lahaul-spiti",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from NRIs or Indian diaspora organizations regarding the impact of such tragedies on the community, especially those with ties to Himachal Pradesh.",
+        "Provide context about the frequency of landslides in Himachal Pradesh and how this affects NRIs who may have family or property in the region, which would resonate more with the audience.",
+        "Include a brief section on how NRIs can assist or contribute to relief efforts, perhaps by linking to organizations involved in disaster relief in India.",
+        "Clarify the timeline of events leading up to the landslide, including how long the passengers were stranded and the conditions that led to the landslide, to provide a more comprehensive understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Himachal Pradesh government or local authorities regarding the incident or ongoing rescue efforts to provide real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "d099ff8d-d6b1-4e01-a1b1-afe4bebb0394",
+    "headline": "ICC Members Vote to Dismiss Prosecutor Karim Khan Over Sexual Misconduct Allegat",
+    "slug": "icc-members-vote-dismiss-prosecutor-karim-khan-sexual-misconduct",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from Indian NRIs who work in international law or human rights advocacy. This could provide insights on how the dismissal of Khan might impact international legal frameworks that affect India and its diaspora.",
+        "Provide context on how the ICC's actions and the dismissal of Khan may influence global perceptions of justice and accountability, particularly in relation to issues that resonate with the Indian diaspora, such as human rights violations in conflict zones.",
+        "Clarify the implications of the U.S. sanctions on ICC officials for NRIs involved in international law or human rights work, as this could directly affect their professional landscape and engagement with global legal institutions.",
+        "Expand on the reactions from the Indian government or Indian legal experts regarding Khan's dismissal and the broader implications for international law, which would be particularly relevant for the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from an Indian legal expert or human rights advocate commenting on the implications of Khan's dismissal for international law, particularly in relation to India."
+      ]
+    }
+  },
+  {
+    "id": "18da0c43-534e-488e-870a-b45fa0218090",
+    "headline": "Anthropic Launches Claude Opus 5, Closing the Gap With Fable 5 at Half the Price",
+    "slug": "anthropic-launches-claude-opus-5-half-price-fable",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
