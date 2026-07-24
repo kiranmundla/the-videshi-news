@@ -229,6 +229,8 @@ export default function DailyWisdomPage() {
           )}
         </section>
 
+        <TweetScroll category="spirituality" label="Spiritual Leaders" />
+
         {/* Spiritual Events */}
         {spiritualEvents.length > 0 && (
           <section className="dw-events-section">
@@ -340,8 +342,6 @@ export default function DailyWisdomPage() {
             </div>
           )}
         </section>
-
-        <TweetScroll category="spirituality" label="Spiritual Leaders" />
       </main>
 
       <SiteFooter />
