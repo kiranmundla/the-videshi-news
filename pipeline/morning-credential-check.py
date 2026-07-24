@@ -54,17 +54,10 @@ def check_x():
             return ("X (Twitter)", "DEAD", f"auth failed {me.status_code}")
         if me.status_code != 200:
             return ("X (Twitter)", "WARN", f"users/me {me.status_code}")
-        uid = me.json().get("data", {}).get("id")
-        # metered endpoint -> reveals credit depletion (402)
-        r = oauth.get(f"https://api.twitter.com/2/users/{uid}/tweets",
-                      params={"max_results": 5}, timeout=30)
-        if r.status_code == 402:
-            return ("X (Twitter)", "DEAD", "402 CreditsDepleted (metered reads)")
-        if r.status_code == 429:
-            return ("X (Twitter)", "WARN", "429 rate-limited (transient)")
-        if r.status_code == 200:
-            return ("X (Twitter)", "HEALTHY", "auth + credits OK")
-        return ("X (Twitter)", "WARN", f"tweets read {r.status_code}")
+        # NOTE: Removed metered tweet read (was $0.005/read). users/me is sufficient
+        # to verify auth works. Credit depletion for POSTS will surface as 402 when
+        # x-autopost tries to create tweets. Reads are now on TwitterAPI.io.
+        return ("X (Twitter)", "HEALTHY", "auth OK (posting creds valid)")
     except Exception as e:
         return ("X (Twitter)", "WARN", f"probe error: {e}")
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Prototype: render a 'social post card' reel scene (1080x1920) from a real X post.
+"""DEPRECATED PROTOTYPE — uses official X API for reads. Do not use.
+Prototype: render a 'social post card' reel scene (1080x1920) from a real X post.
 Brand-styled (navy/gold) frame around the post photo, with avatar, name, handle,
 platform badge, and a 'via @handle on X' attribution line. Read-only test."""
 import os, json, subprocess, textwrap

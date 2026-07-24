@@ -108,13 +108,21 @@ def get_user_id(handle):
     return None
 
 
-# ─── Fetch tweets ─────────────────────────────────────────────────────────────
+# ─── Fetch tweets (DEPRECATED — use fetch_recent_tweets_twitterapiio) ─────────
+# WARNING: This function uses the OFFICIAL X API which costs $0.005/tweet read.
+# Use fetch_recent_tweets_twitterapiio() below instead — same data, 33× cheaper.
+# Kept only for backward compatibility with archived scripts. Do NOT use in new code.
+# Migrated 2026-07-23.
 
 def fetch_recent_tweets(handle, hours=48, max_results=10):
     """
+    DEPRECATED: Use fetch_recent_tweets_twitterapiio() instead.
+    This uses the expensive official X API ($0.005/read vs $0.00015/read).
     Fetch recent tweets from a handle via X API v2.
     Returns list of dicts with id, text, created_at, photos (list of URLs), has_video.
     """
+    import warnings
+    warnings.warn("fetch_recent_tweets() uses expensive X API reads. Use fetch_recent_tweets_twitterapiio() instead.", DeprecationWarning, stacklevel=2)
     uid = get_user_id(handle)
     if not uid:
         return []
@@ -273,8 +281,9 @@ def fetch_recent_tweets_twitterapiio(handle, max_results=5):
 def best_photo_tweet(handle, hours=48, topic_keywords=None):
     """
     Get the single best tweet to embed: prefer photos, then relevance, then recency.
+    Uses TwitterAPI.io for reads (migrated 2026-07-23).
     """
-    tweets = fetch_recent_tweets(handle, hours=hours)
+    tweets = fetch_recent_tweets_twitterapiio(handle, max_results=10)
     if not tweets:
         return None
 
@@ -301,123 +310,132 @@ def best_photo_tweet(handle, hours=48, topic_keywords=None):
 
 def search_topic_posts(query, hours=72, max_results=10, verified_only=True, min_likes=50, require_media=True):
     """
-    Topic search across ALL of X (not a single timeline) via the recent-search
-    endpoint. Returns posts that have usable still media — either a photo OR a
-    video/GIF PREVIEW FRAME (so the strongest video clips become usable cards).
+    Topic search across ALL of X via TwitterAPI.io advanced_search endpoint.
+    Returns posts that have usable still media — either a photo OR a video/GIF
+    preview frame (so the strongest video clips become usable cards).
 
-    Filters to high-quality sources the way the "Top" tab does: verified authors
-    and/or a minimum like floor. Each result dict matches the shape the reel
-    pipeline expects from best_photo_tweet(), plus author identity fields:
+    Migrated from official X API to TwitterAPI.io on 2026-07-23
+    ($0.00015/tweet vs $0.005/tweet — 33× cheaper).
+
+    Filters to high-quality sources: verified authors and/or a minimum like
+    floor. Each result dict matches the shape the reel pipeline expects from
+    best_photo_tweet(), plus author identity fields:
         {id, text, created_at, photos[], photo_count, has_video, url, likes,
          retweets, impressions, name, handle, avatar, verified}
-    Never raises — returns [] on any error (incl. 402/no-credits).
+    Never raises — returns [] on any error.
     """
-    try:
-        sess = get_oauth_session()
-    except Exception as e:
-        print(f"X search: auth failed: {e}", file=sys.stderr)
+    if not _TWITTERAPI_IO_KEY:
+        print("search_topic_posts: TWITTERAPI_IO_KEY not set", file=sys.stderr)
         return []
 
-    start_time = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    # Drop retweets/replies, English. Media is required for reel cards
-    # (require_media=True) but optional for text embeds (require_media=False).
+    import subprocess as _sp
+
+    # Build the query with filters
     media_clause = "has:media " if require_media else ""
     full_query = f"({query}) {media_clause}-is:retweet -is:reply lang:en"
-    params = {
-        "query": full_query,
-        "max_results": min(max(max_results, 10), 100),
-        "start_time": start_time,
-        "sort_order": "relevancy",
-        "tweet.fields": "created_at,public_metrics,attachments,author_id",
-        "expansions": "attachments.media_keys,author_id",
-        "media.fields": "type,url,preview_image_url,width,height,variants,duration_ms",
-        "user.fields": "name,username,profile_image_url,verified,verified_type,public_metrics",
-    }
+
     try:
-        resp = sess.get("https://api.twitter.com/2/tweets/search/recent",
-                        params=params, timeout=25)
+        cmd = [
+            "curl", "-sS", "--max-time", "15",
+            f"{_TWITTERAPI_IO_BASE}/twitter/tweet/advanced_search",
+            "-H", f"X-API-Key: {_TWITTERAPI_IO_KEY}",
+            "-G",
+            "--data-urlencode", f"query={full_query}",
+            "-d", "queryType=Latest",
+        ]
+        proc = _sp.run(cmd, capture_output=True, text=True, timeout=20)
+        if proc.returncode != 0 or not proc.stdout.strip():
+            print(f"search_topic_posts: curl failed rc={proc.returncode}", file=sys.stderr)
+            return []
+        data = json.loads(proc.stdout)
     except Exception as e:
-        print(f"X search: request failed: {e}", file=sys.stderr)
+        print(f"search_topic_posts: request failed: {e}", file=sys.stderr)
         return []
 
-    if resp.status_code != 200:
-        print(f"X search error {resp.status_code}: {resp.text[:200]}", file=sys.stderr)
+    raw_tweets = data.get("tweets", [])
+    if not raw_tweets:
         return []
 
-    data = resp.json()
-    tweets_raw = data.get("data", [])
-    if x_spend and tweets_raw: x_spend.add(reads=len(tweets_raw))
-    media_map = {m["media_key"]: m for m in data.get("includes", {}).get("media", [])}
-    users_map = {u["id"]: u for u in data.get("includes", {}).get("users", [])}
-
-    def _best_mp4(m):
-        """Pick the highest-bitrate mp4 variant; return (url, width, height, duration_s)."""
-        variants = [v for v in (m.get("variants") or []) if v.get("content_type") == "video/mp4" and v.get("url")]
-        if not variants:
-            return None
-        best = max(variants, key=lambda v: v.get("bit_rate", 0))
-        return {
-            "url": best["url"],
-            "width": m.get("width", 0),
-            "height": m.get("height", 0),
-            "duration": round((m.get("duration_ms", 0) or 0) / 1000.0, 1),
-        }
-
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
     results = []
-    for t in tweets_raw:
-        media_keys = t.get("attachments", {}).get("media_keys", [])
+    for t in raw_tweets[:max_results * 2]:  # fetch extra, filter down
+        # Time filter
+        created_str = t.get("createdAt", "")
+        created_at_iso = ""
+        if created_str:
+            try:
+                created = datetime.strptime(created_str, "%a %b %d %H:%M:%S %z %Y")
+                if created < cutoff:
+                    continue
+                created_at_iso = created.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+            except ValueError:
+                created_at_iso = created_str
+
+        # Extract media
         photos, has_video, video = [], False, None
-        for mk in media_keys:
-            m = media_map.get(mk)
-            if not m:
-                continue
-            if m["type"] == "photo":
-                if m.get("url"):
-                    photos.append(m["url"])
-            elif m["type"] in ("video", "animated_gif"):
+        for media in (t.get("extendedEntities", {}).get("media", []) or []):
+            mtype = media.get("type", "")
+            if mtype == "photo":
+                url = media.get("media_url_https", "")
+                if url:
+                    photos.append(url)
+            elif mtype in ("video", "animated_gif"):
                 has_video = True
-                # Use the video's poster frame as a still fallback for the card.
-                if m.get("preview_image_url"):
-                    photos.append(m["preview_image_url"])
-                # Capture the playable MP4 (highest-bitrate variant). First video wins.
+                # Use preview as still fallback
+                preview = media.get("media_url_https", "")
+                if preview:
+                    photos.append(preview)
+                # Capture best mp4 variant
                 if video is None:
-                    video = _best_mp4(m)
+                    variants = [v for v in (media.get("video_info", {}).get("variants", []) or [])
+                                if v.get("content_type") == "video/mp4" and v.get("url")]
+                    if variants:
+                        best_v = max(variants, key=lambda v: v.get("bitrate", 0))
+                        video = {
+                            "url": best_v["url"],
+                            "width": media.get("originalWidth", 0) or media.get("sizes", {}).get("large", {}).get("w", 0),
+                            "height": media.get("originalHeight", 0) or media.get("sizes", {}).get("large", {}).get("h", 0),
+                            "duration": round((media.get("video_info", {}).get("duration_millis", 0) or 0) / 1000.0, 1),
+                        }
+
         if require_media and not photos and not video:
-            continue  # no usable media at all (reel cards need a still)
+            continue
 
-        author = users_map.get(t.get("author_id"), {})
-        is_verified = bool(author.get("verified")) or author.get("verified_type") in ("blue", "business", "government")
-        metrics = t.get("public_metrics", {})
-        likes = metrics.get("like_count", 0) or 0
-        followers = (author.get("public_metrics", {}) or {}).get("followers_count", 0) or 0
+        author = t.get("author", {})
+        handle = author.get("userName", "")
+        is_verified = bool(author.get("isVerified")) or bool(author.get("isBlueVerified"))
+        likes = t.get("likeCount", 0) or 0
+        followers = author.get("followers", 0) or 0
 
-        # Quality gate: keep verified authors, OR unverified only if they clear a
-        # higher engagement/reach bar (avoids surfacing random low-quality posts).
+        # Quality gate
         if verified_only and not is_verified:
             if likes < max(min_likes * 10, 500) and followers < 50000:
                 continue
         elif not is_verified and likes < min_likes:
             continue
 
-        handle = author.get("username", "")
         results.append({
-            "id": t["id"],
+            "id": t.get("id", ""),
             "text": t.get("text", ""),
-            "created_at": t.get("created_at", ""),
+            "created_at": created_at_iso,
             "photos": photos,
             "photo_count": len(photos),
             "has_video": has_video,
-            "video": video,  # {url,width,height,duration} of best playable mp4, or None
-            "url": f"https://x.com/{handle or 'i'}/status/{t['id']}",
+            "video": video,
+            "url": t.get("url", f"https://x.com/{handle or 'i'}/status/{t.get('id', '')}"),
             "likes": likes,
-            "retweets": metrics.get("retweet_count", 0) or 0,
-            "impressions": metrics.get("impression_count", 0) or 0,
+            "retweets": t.get("retweetCount", 0) or 0,
+            "impressions": t.get("viewCount", 0) or 0,
             "name": author.get("name", "") or (f"@{handle}" if handle else ""),
             "handle": handle,
-            "avatar": author.get("profile_image_url", "").replace("_normal", "_400x400"),
+            "avatar": (author.get("profilePicture", "") or "").replace("_normal", "_400x400"),
             "verified": is_verified,
             "followers": followers,
         })
+
+        if len(results) >= max_results:
+            break
+
     return results
 
 
@@ -474,7 +492,7 @@ if __name__ == "__main__":
             print(f"No tweets from @{args.handle} in last {args.hours}h")
         sys.exit(0)
 
-    tweets = fetch_recent_tweets(args.handle, hours=args.hours)
+    tweets = fetch_recent_tweets_twitterapiio(args.handle)
 
     if args.photos_only:
         tweets = [t for t in tweets if t["photo_count"] > 0]

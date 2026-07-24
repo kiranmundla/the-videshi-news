@@ -2988,7 +2988,7 @@ def _load_media_library_lookup():
 
 
 def _x_profile(handle):
-    """Fetch {name, avatar} for an X handle (free users lookup), cached to disk."""
+    """Fetch {name, avatar} for an X handle via TwitterAPI.io, cached to disk."""
     cache = {}
     try:
         if os.path.exists(_x_profile_cache_path):
@@ -2999,14 +2999,30 @@ def _x_profile(handle):
     if hl in cache:
         return cache[hl]
     try:
-        mod = _load_fetch_tweets_module()
-        sess = mod.get_oauth_session()
-        r = sess.get(f"https://api.twitter.com/2/users/by/username/{handle}",
-                     params={"user.fields": "profile_image_url,name"}, timeout=15)
-        if r.status_code == 200:
-            data = r.json().get("data", {})
+        tapi_key = os.environ.get("TWITTERAPI_IO_KEY", "")
+        if not tapi_key:
+            # Try loading env
+            _env_path = os.path.expanduser("~/workspace/.env.twitterapi-io")
+            if os.path.exists(_env_path):
+                with open(_env_path) as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith("#") and "=" in line:
+                            k, v = line.split("=", 1)
+                            os.environ[k.strip()] = v.strip()
+                tapi_key = os.environ.get("TWITTERAPI_IO_KEY", "")
+        if not tapi_key:
+            return {"name": "", "avatar": ""}
+        r = subprocess.run(
+            ["curl", "-sS", "--max-time", "10",
+             "https://api.twitterapi.io/twitter/user/info",
+             "-H", f"X-API-Key: {tapi_key}",
+             "-G", "--data-urlencode", f"userName={handle}"],
+            capture_output=True, text=True, timeout=15)
+        if r.returncode == 0 and r.stdout.strip():
+            data = json.loads(r.stdout).get("data", json.loads(r.stdout))
             prof = {"name": data.get("name", ""),
-                    "avatar": (data.get("profile_image_url", "") or "").replace("_normal", "_400x400")}
+                    "avatar": (data.get("profilePicture", "") or "").replace("_normal", "_400x400")}
             cache[hl] = prof
             try:
                 json.dump(cache, open(_x_profile_cache_path, "w"), indent=2)
@@ -5409,7 +5425,7 @@ def _embed_to_post(emb):
             handle = emb.get("handle")
             post = None
             try:
-                tweets = mod.fetch_recent_tweets(handle, hours=24 * 14)
+                tweets = mod.fetch_recent_tweets_twitterapiio(handle, max_results=10)
             except Exception as e:
                 print(f"  ⚠️ X embed fetch failed for @{handle}: {e}")
                 tweets = []

@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
 Refresh tech-buzz.json (the Pulse strips: India/World/Tech/Sports Pulse)
-DETERMINISTICALLY from the funded X API — no flaky web-search scraping.
+DETERMINISTICALLY via TwitterAPI.io — cheap reads ($0.15/1K tweets).
 
-Why this exists:
-  The old `videshi-power-pulse` cron asked an agent to Google `site:x.com`
-  for each leader's latest tweet. That failed ~half the time → cards fell
-  back to "Follow @handle for the latest updates." We have a funded X API
-  (OAuth1 user-context in ~/workspace/.env.twitter) that reads timelines
-  cleanly, so use it directly.
+History:
+  Originally used the official X API (OAuth1 user-context). Migrated to
+  TwitterAPI.io on 2026-07-23 to eliminate expensive reads ($0.005/tweet on
+  the official API vs $0.00015/tweet on TwitterAPI.io — 33× cheaper).
+  The official X API is now reserved ONLY for writes (posting tweets).
 
 Behavior per leader:
-  - Pull recent original tweets (no RT/replies) via fetch_recent_tweets().
+  - Pull recent original tweets (no RT/replies) via TwitterAPI.io.
   - Use the most recent one with real text.
   - If the API returns nothing (inactive/protected/deceased account, or a
     transient error), KEEP the existing real post if there is one, so we
@@ -25,10 +24,6 @@ Schema (frontend reads leader.posts[0].text — do not change shape):
    "lastUpdated":ISO,"last_updated":ISO}
 """
 import json, os, sys, time
-try:
-    import x_spend
-except Exception:
-    x_spend = None
 from datetime import datetime, timezone, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -66,42 +61,11 @@ def is_placeholder(post):
 
 
 def fetch_latest_original(handle, max_results=10):
-    """Latest original tweets (no RT/replies), NO time window — returns the
-    person's genuine most-recent words even if they post infrequently.
-    This is the behavior the Pulse strips originally had."""
-    uid = ft.get_user_id(handle)
-    if not uid:
-        return []
-    sess = ft.get_oauth_session()
-    params = {
-        "max_results": max(5, min(max_results, 100)),
-        "tweet.fields": "created_at,attachments,text,public_metrics",
-        "expansions": "attachments.media_keys",
-        "media.fields": "type,url,preview_image_url",
-        "exclude": "retweets,replies",
-    }
-    r = sess.get(f"https://api.twitter.com/2/users/{uid}/tweets", params=params, timeout=20)
-    if r.status_code != 200:
-        print(f"  X API {r.status_code} for {handle}: {r.text[:120]}", file=sys.stderr)
-        return []
-    data = r.json()
-    raw = data.get("data", [])
-    if x_spend and raw:
-        x_spend.add(reads=len(raw))
-    media_map = {m["media_key"]: m for m in data.get("includes", {}).get("media", [])}
-    out = []
-    for t in raw:
-        photos = []
-        for mk in t.get("attachments", {}).get("media_keys", []):
-            m = media_map.get(mk)
-            if m and m.get("type") == "photo":
-                photos.append(m.get("url", ""))
-        out.append({
-            "id": t["id"], "text": t.get("text", ""),
-            "created_at": t.get("created_at", ""), "photos": photos,
-            "url": f"https://x.com/{handle}/status/{t['id']}",
-        })
-    return out
+    """Latest original tweets (no RT/replies) via TwitterAPI.io.
+    Returns the person's genuine most-recent words even if they post
+    infrequently. TwitterAPI.io already filters RTs and replies."""
+    tweets = ft.fetch_recent_tweets_twitterapiio(handle, max_results=max_results)
+    return tweets
 
 
 def pick_best(tweets):
@@ -202,16 +166,12 @@ def main():
     out_leaders = []
     fresh = kept = placeheld = rotated = 0
 
-    if x_spend and x_spend.over_budget():
-        print(f"X-BUDGET ceiling reached ({x_spend.status_line()}); skipping pulse refresh (keeping existing tiles).")
-        return
-
     for ld in leaders:
         name0 = ld["name"]; h0 = HANDLE_OVERRIDE.get(name0) or existing_handle.get(name0) or ld["handle"]
-        # Not in this run's rotation OR over budget -> NO API call.
+        # Not in this run's rotation -> NO API call.
         # Rotate the displayed tweet through this leader's stored pool (free),
         # so the tile still changes daily even without a fresh fetch.
-        if id(ld) not in due or (x_spend and x_spend.over_budget()):
+        if id(ld) not in due:
             pool = pools.get(name0, [])
             cur_post = existing.get(name0) or {}
             if len(pool) > 1:
