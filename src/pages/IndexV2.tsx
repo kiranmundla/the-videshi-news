@@ -23,6 +23,7 @@ import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpot
 import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
 import OnThisDay from "@/components/homepage/OnThisDay";
 import DailyQuiz from "@/components/homepage/DailyQuiz";
+import ThePulse from "@/components/homepage/ThePulse";
 import DevelopingStories from "@/components/homepage/DevelopingStories";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
@@ -509,7 +510,9 @@ export default function IndexV2() {
       <HubStrip />
 
       {/* 4. Market Ticker */}
-      <MarketTicker />
+      <div className="container">
+        <MarketTicker />
+      </div>
 
       {/* 5. Happening Today */}
       <HappeningToday />
@@ -565,6 +568,9 @@ export default function IndexV2() {
 
         {/* Daily 7 Quiz */}
         <DailyQuiz />
+
+        {/* The Pulse — community poll */}
+        <ThePulse />
 
         {/* Who's X — weekly spotlight */}
         <WhosXSpotlight />
