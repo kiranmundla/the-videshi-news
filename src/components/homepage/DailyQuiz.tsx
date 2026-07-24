@@ -18,13 +18,23 @@ interface QuizData {
 
 /* ── Day themes ── */
 const DAY_THEMES: Record<number, string> = {
-  1: "Immigration & Policy",
+  1: "Bollywood & Indian Cinema",
   2: "Technology & Startups",
-  3: "Bollywood & Entertainment",
+  3: "Geography & Travel",
   4: "Indian History & Culture",
-  5: "Sports & Cricket",
-  6: "Geography & Travel",
+  5: "Food & Regional Cuisines",
+  6: "Sports & Cricket",
   0: "Mixed Weekly Review",
+};
+
+const DAY_NAMES: Record<number, string> = {
+  1: "🎬 Movie Monday",
+  2: "💻 Tech Tuesday",
+  3: "🌍 Wanderlust Wednesday",
+  4: "⏪ Throwback Thursday",
+  5: "🍛 Foodie Friday",
+  6: "🏏 Sports Saturday",
+  0: "🐙 Surprise Sunday",
 };
 
 /* ── localStorage helpers ── */
@@ -176,6 +186,7 @@ export default function DailyQuiz() {
 
   /* ── Preview state ── */
   if (state === "preview") {
+    const dayName = DAY_NAMES[new Date().getDay()] || quiz.day_theme;
     return (
       <section className="mb-14">
         <div className="container">
@@ -184,14 +195,14 @@ export default function DailyQuiz() {
             style={{ border: "1px solid #E5E5E5" }}
           >
             <div
-              className="px-5 py-4 flex items-center justify-between"
+              className="px-5 py-3 flex items-center justify-between"
               style={{ background: "#0B1D3A" }}
             >
               <div>
                 <h3 className="text-white font-serif font-bold text-lg">
                   Daily 7
                 </h3>
-                <p className="text-white/60 text-xs mt-0.5">{quiz.day_theme}</p>
+                <p className="text-white/60 text-xs mt-0.5">{dayName}</p>
               </div>
               <div className="flex items-center gap-3">
                 {streak > 0 && (
@@ -204,13 +215,13 @@ export default function DailyQuiz() {
                 </span>
               </div>
             </div>
-            <div className="px-5 py-5 text-center">
-              <p className="text-sm text-muted-foreground mb-4">
+            <div className="px-5 py-3 text-center">
+              <p className="text-sm text-muted-foreground mb-3">
                 Test your knowledge with today's quiz
               </p>
               <button
                 onClick={() => setState("playing")}
-                className="px-6 py-2.5 rounded-lg text-sm font-semibold text-white transition-colors"
+                className="px-6 py-2 rounded-lg text-sm font-semibold text-white transition-colors"
                 style={{ background: "#A32D2D" }}
               >
                 Start Quiz →
@@ -226,6 +237,7 @@ export default function DailyQuiz() {
   if (state === "playing") {
     const q = quiz.questions[currentQ];
     const isCorrect = selected !== null && selected === q.correct_index;
+    const dayName = DAY_NAMES[new Date().getDay()] || quiz.day_theme;
 
     return (
       <section className="mb-14">
@@ -236,11 +248,11 @@ export default function DailyQuiz() {
           >
             {/* Header */}
             <div
-              className="px-5 py-3 flex items-center justify-between"
+              className="px-5 py-2.5 flex items-center justify-between"
               style={{ background: "#0B1D3A" }}
             >
               <span className="text-white/80 text-xs font-semibold">
-                {quiz.day_theme}
+                {dayName}
               </span>
               <div className="flex items-center gap-2">
                 {quiz.questions.map((_, i) => (
@@ -266,7 +278,7 @@ export default function DailyQuiz() {
             </div>
 
             {/* Question */}
-            <div className="px-5 py-5">
+            <div className="px-5 py-3">
               <div className="flex items-start gap-2 mb-1">
                 <span
                   className="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded"
@@ -288,11 +300,11 @@ export default function DailyQuiz() {
                   {q.difficulty}
                 </span>
               </div>
-              <p className="font-serif font-bold text-base md:text-lg leading-snug mb-4">
+              <p className="font-serif font-bold text-base md:text-lg leading-snug mb-3">
                 {q.question}
               </p>
 
-              <div className="grid gap-2">
+              <div className="grid gap-1.5">
                 {q.options.map((opt, i) => {
                   let bg = "bg-white";
                   let border = "border-neutral-200";
@@ -319,7 +331,7 @@ export default function DailyQuiz() {
                       key={i}
                       onClick={() => handleAnswer(i)}
                       disabled={selected !== null}
-                      className={`w-full text-left px-4 py-3 rounded-lg border text-sm transition-all ${bg} ${border} ${text} ${
+                      className={`w-full text-left px-3 py-2 rounded-lg border text-sm transition-all ${bg} ${border} ${text} ${
                         selected === null
                           ? "hover:border-neutral-400 hover:shadow-sm cursor-pointer active:scale-[0.99]"
                           : "cursor-default"
@@ -337,7 +349,7 @@ export default function DailyQuiz() {
               {/* Explanation */}
               {showExplanation && (
                 <div
-                  className="mt-3 px-4 py-3 rounded-lg text-sm"
+                  className="mt-2 px-3 py-2 rounded-lg text-sm"
                   style={{
                     background: isCorrect ? "#f0fdf4" : "#fef2f2",
                     borderLeft: `3px solid ${isCorrect ? "#4ade80" : "#f87171"}`,
@@ -357,6 +369,7 @@ export default function DailyQuiz() {
   }
 
   /* ── Result state ── */
+  const dayName = DAY_NAMES[new Date().getDay()] || quiz.day_theme;
   return (
     <section className="mb-14">
       <div className="container">
@@ -365,36 +378,36 @@ export default function DailyQuiz() {
           style={{ border: "1px solid #E5E5E5" }}
         >
           <div
-            className="px-5 py-4 text-center"
+            className="px-5 py-3 text-center"
             style={{ background: "#0B1D3A" }}
           >
-            <span className="text-4xl block mb-1">{getScoreEmoji(score)}</span>
+            <span className="text-3xl block mb-1">{getScoreEmoji(score)}</span>
             <h3 className="text-white font-serif font-bold text-xl">
               {score}/7
             </h3>
             <p className="text-white/60 text-sm">{getScoreMessage(score)}</p>
           </div>
-          <div className="px-5 py-5">
-            <div className="flex items-center justify-center gap-4 mb-4">
+          <div className="px-5 py-4">
+            <div className="flex items-center justify-center gap-4 mb-3">
               {streak > 0 && (
                 <span className="text-sm font-semibold text-amber-600">
                   🔥 {streak} day streak
                 </span>
               )}
               <span className="text-sm text-muted-foreground">
-                {quiz.day_theme}
+                {dayName}
               </span>
             </div>
 
             {/* Answer summary */}
-            <div className="grid gap-1.5 mb-5">
+            <div className="grid gap-1 mb-4">
               {quiz.questions.map((q, i) => {
                 const userAnswer = answers[i];
                 const correct = userAnswer === q.correct_index;
                 return (
                   <div
                     key={i}
-                    className="flex items-start gap-2 text-sm py-1.5"
+                    className="flex items-start gap-2 text-sm py-1"
                   >
                     <span className="mt-0.5 shrink-0">
                       {correct ? "✅" : "❌"}
@@ -421,7 +434,7 @@ export default function DailyQuiz() {
                 {copied ? "Copied! ✓" : "Share Score"}
               </button>
             </div>
-            <p className="text-center text-xs text-muted-foreground mt-3">
+            <p className="text-center text-xs text-muted-foreground mt-2">
               Come back tomorrow for a new quiz!
             </p>
           </div>
