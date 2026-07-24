@@ -65,7 +65,6 @@ const MAX_INLINE_ARTICLES = 4;
 
 export default function DevelopingStories() {
   const [stories, setStories] = useState<Storyline[]>([]);
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     let cancelled = false;
@@ -77,7 +76,7 @@ export default function DevelopingStories() {
         .select("id, title, slug, summary, category, status, article_count, last_article_at")
         .in("status", ["active", "emerging"])
         .order("last_article_at", { ascending: false })
-        .limit(8);
+        .limit(10);
 
       if (cancelled || !rawStorylines) return;
       const valid: any[] = rawStorylines.filter((s: any) => s.article_count >= 3);
@@ -118,23 +117,12 @@ export default function DevelopingStories() {
       }));
 
       setStories(enriched);
-      // Auto-expand the first storyline
-      if (enriched.length > 0) setExpanded(new Set([enriched[0].id]));
     })();
 
     return () => { cancelled = true; };
   }, []);
 
   if (stories.length === 0) return null;
-
-  const toggleExpand = (id: string) => {
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
 
   return (
     <section style={{ padding: "12px 0 8px" }}>
@@ -162,7 +150,6 @@ export default function DevelopingStories() {
         {stories.map((s, idx) => {
           const catColor = CATEGORY_COLORS[s.category || ""] || "#6D6D6D";
           const catLabel = CATEGORY_LABELS[s.category || ""] || (s.category || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-          const isExpanded = expanded.has(s.id);
           const isFirst = idx === 0;
           const heroArticle = s.articles[0];
           const heroImage = isFirst && heroArticle?.image_url ? heroArticle.image_url : null;
@@ -181,7 +168,7 @@ export default function DevelopingStories() {
               }}
             >
               {/* Hero image for first storyline only */}
-              {heroImage && isExpanded && (
+              {heroImage && (
                 <Link to={`/articles/${heroArticle.slug}`} style={{ display: "block" }}>
                   <div style={{
                     width: "100%", height: 180, overflow: "hidden",
@@ -196,13 +183,10 @@ export default function DevelopingStories() {
                 </Link>
               )}
 
-              {/* Storyline header — clickable to expand/collapse */}
+              {/* Storyline header */}
               <div
-                onClick={() => toggleExpand(s.id)}
                 style={{
                   padding: "12px 14px",
-                  cursor: "pointer",
-                  userSelect: "none",
                 }}
               >
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
@@ -242,21 +226,11 @@ export default function DevelopingStories() {
                       </span>
                     </div>
                   </div>
-
-                  {/* Expand/collapse chevron */}
-                  <span style={{
-                    fontSize: 16, color: "hsl(var(--muted-foreground))",
-                    transition: "transform 0.2s",
-                    transform: isExpanded ? "rotate(180deg)" : "rotate(0)",
-                    marginTop: 2, flexShrink: 0,
-                  }}>
-                    ▾
-                  </span>
                 </div>
               </div>
 
               {/* Inline timeline of articles */}
-              {isExpanded && displayArticles.length > 0 && (
+              {displayArticles.length > 0 && (
                 <div style={{
                   padding: "0 14px 12px",
                   borderTop: "1px solid hsl(var(--rule) / 0.12)",
