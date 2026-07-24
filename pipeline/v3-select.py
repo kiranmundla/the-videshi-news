@@ -488,13 +488,15 @@ def main():
     print(f"{'='*60}")
 
     # ── Step 1: Load pending V3 topics ────────────────────────────────────────
-    print(f"\n── Step 1: Loading pending V3 topics ──")
+    TOPIC_WINDOW_DAYS = 3
+    topic_cutoff = (datetime.utcnow() - timedelta(days=TOPIC_WINDOW_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    print(f"\n── Step 1: Loading pending V3 topics (last {TOPIC_WINDOW_DAYS}d) ──")
     topics = []
     offset = 0
     while True:
         page = sb_get("p2_topics", {
             "select": "id,canonical_title,signal_count,status,created_at,last_signal_at",
-            "last_signal_at": "not.is.null",
+            "last_signal_at": f"gte.{topic_cutoff}",
             "status": "eq.pending",
             "evaluated_at": "is.null",  # only topics not yet evaluated
             "order": "last_signal_at.desc",
@@ -506,7 +508,7 @@ def main():
             break
         offset += 1000
 
-    print(f"  Found {len(topics)} pending topics")
+    print(f"  Found {len(topics)} pending topics (window: {topic_cutoff})")
     if not topics:
         print("  Nothing to do.")
         json.dump({"candidates": [], "timestamp": NOW_ISO}, open(OUT_PATH, "w"))
