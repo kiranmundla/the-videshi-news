@@ -1,0 +1,198 @@
+#!/bin/bash
+# Videshi mechanical cron runner
+# Runs pipeline scripts that need zero AI judgment
+# Logs output to ~/workspace/cron-logs/
+# Errors are picked up by the Hatch health cron
+
+LOGDIR="$HOME/workspace/cron-logs"
+mkdir -p "$LOGDIR"
+
+REPO="$HOME/workspace/the-videshi-news"
+ENV="$HOME/workspace"
+
+run_job() {
+  local job_id="$1"
+  shift
+  local logfile="$LOGDIR/${job_id}.log"
+  local ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+  
+  echo "[$ts] START $job_id" >> "$logfile"
+  
+  # Run the command, capture exit code
+  eval "$@" >> "$logfile" 2>&1
+  local rc=$?
+  
+  ts=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+  if [ $rc -eq 0 ]; then
+    echo "[$ts] OK $job_id (exit $rc)" >> "$logfile"
+  else
+    echo "[$ts] FAIL $job_id (exit $rc)" >> "$logfile"
+    # Write to error log for health cron to pick up
+    echo "[$ts] $job_id exit=$rc" >> "$LOGDIR/_errors.log"
+  fi
+  
+  # Keep last 500 lines per job
+  tail -500 "$logfile" > "$logfile.tmp" && mv "$logfile.tmp" "$logfile"
+}
+
+case "$1" in
+
+  ## === HOURLY (was 1h Hatch crons) ===
+
+  live)
+    run_job "live" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u videshi-pib-photos.py ingest 2>&1 | tail -3; \
+      python3 -u videshi-markets.py 2>&1 | tail -3; \
+      python3 -u videshi-market-charts.py 2>&1 | tail -3; \
+      python3 -u videshi-ipl.py 2>&1 | tail -3; \
+      python3 -u videshi-snapshots.py 2>&1 | tail -3"
+    ;;
+
+  v2-ingest)
+    run_job "v2-ingest" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
+      timeout 1200 python3 -u v3-ingest.py"
+    ;;
+
+  visa-alerts)
+    run_job "visa-alerts" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.resend; set +a; \
+      python3 pipeline/visa-alert-sender.py"
+    ;;
+
+  ## === EVERY 6H ===
+
+  dedupe-body-images)
+    run_job "dedupe-body-images" "cd $HOME/workspace/videshi-tools && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u dedupe-body-images.py --apply --days 1 2>&1 | tail -30"
+    ;;
+
+  ping-google)
+    run_job "ping-google" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 pipeline/ping-google.py --recent 4"
+    ;;
+
+  gmail-scanner)
+    run_job "gmail-scanner" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 pipeline/gmail-scanner.py && \
+      python3 pipeline/email-signal-ingest.py"
+    ;;
+
+  ## === EVERY 12H ===
+
+  celebrity-buzz)
+    run_job "celebrity-buzz" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 celeb-buzz-refresh.py && \
+      cd $REPO && git add -A public/data/celebrity-buzz.json && \
+      git diff --cached --quiet || git commit -m 'data: celeb buzz refresh' && git push origin main"
+    ;;
+
+  ## === EVERY 16H ===
+
+  article-cards)
+    run_job "article-cards" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 pipeline/article-cards.py --limit 21 && \
+      git add -A public/data/article-cards* && \
+      git diff --cached --quiet || git commit -m 'data: article cards refresh' && git push origin main"
+    ;;
+
+  ## === DAILY ===
+
+  events-cleanup)
+    run_job "events-cleanup" "set -a; source $ENV/.env.supabase; set +a; \
+      curl -sS -X POST 'https://api.supabase.com/v1/projects/lboecaekpynbpyijrbfz/database/query' \
+        -H \"Authorization: Bearer \$SUPABASE_ACCESS_TOKEN\" \
+        -H 'Content-Type: application/json' \
+        -d '{\"query\": \"DELETE FROM events WHERE date < CURRENT_DATE;\"}'"
+    ;;
+
+  directory-enrich)
+    run_job "directory-enrich" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
+      python3 -u pipeline/enrich-directory.py --limit 1000"
+    ;;
+
+  credential-check)
+    run_job "credential-check" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.twitter; source $ENV/.env.youtube; \
+      source $ENV/.env.openai; set +a; \
+      timeout 180 python3 -u morning-credential-check.py"
+    ;;
+
+  scrape-sulekha)
+    run_job "scrape-sulekha" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      DAY=\$(python3 -c 'from datetime import datetime; print(datetime.now().weekday())'); \
+      python3 -u pipeline/scrape-sulekha.py --day \"\$DAY\""
+    ;;
+
+  scrape-eventbrite)
+    run_job "scrape-eventbrite" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 pipeline/scrape-eventbrite.py"
+    ;;
+
+  scrape-meetup)
+    run_job "scrape-meetup" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 pipeline/scrape-meetup.py"
+    ;;
+
+  scrape-allevents)
+    run_job "scrape-allevents" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      DAY=\$(( \$(date +%u) - 1 )); \
+      python3 -u scrape-allevents.py --day \$DAY"
+    ;;
+
+  media-library)
+    run_job "media-library" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u media-library-source.py"
+    ;;
+
+  ## === WEEKLY ===
+
+  snapshots-refresh)
+    run_job "snapshots-refresh" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.pexels; set +a; \
+      python3 -u videshi-snapshots.py --refresh && \
+      cd $REPO && git add -A public/data/snapshots-pool.json && \
+      git diff --cached --quiet || git commit -m 'data: snapshots refresh' && git push origin main"
+    ;;
+
+  ai-rankings)
+    run_job "ai-rankings" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u pipeline/scrape-ai-rankings.py --top 10 && \
+      git add -A public/data/ai-rankings.json && \
+      git diff --cached --quiet || git commit -m 'data: AI rankings refresh' && git push origin main"
+    ;;
+
+  ## === STATUS ===
+
+  status)
+    echo "=== Recent errors ==="
+    tail -20 "$LOGDIR/_errors.log" 2>/dev/null || echo "No errors"
+    echo ""
+    echo "=== Last run times ==="
+    for f in "$LOGDIR"/*.log; do
+      [ -f "$f" ] || continue
+      name=$(basename "$f" .log)
+      [ "$name" = "_errors" ] && continue
+      last=$(grep -E "^\[.*\] (OK|FAIL)" "$f" | tail -1)
+      echo "  $name: $last"
+    done
+    ;;
+
+  *)
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|status}"
+    exit 1
+    ;;
+esac

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "6c44d982-456e-4a4a-8b2c-a6d7b8fed385",
+    "headline": "Google Pixel 11 Faces $100 Price Hike as RAM Strategy Shifts Across Lineup",
+    "slug": "google-pixel-11-price-hike-ram-strategy-shift",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5a6d58e7-bae1-4001-89df-aeb9a583496a",
+    "headline": "India Approves First Dengue Vaccine as Monsoon Season Drives Fresh Outbreaks",
+    "slug": "india-approves-first-dengue-vaccine-qdenga-takeda",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "a3a24603-6efe-41d0-b3df-10135bd22ab5",
+    "headline": "Substance in Houston ICE Shooting Van Tested Negative for Drugs, Prosecutor Conf",
+    "slug": "houston-ice-shooting-van-substance-negative-drugs-test",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "77e0ea6e-6d7b-4c4c-83dc-4847472cba9c",
+    "headline": "Nvidia and SK Group Unveil $500 Billion AI Initiative at South Korea Summit",
+    "slug": "nvidia-sk-group-500-billion-ai-initiative-south-korea-summit",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d9611d5f-df6a-419a-b1bb-a4d651e8f7a8",
+    "headline": "Meta Launches Standalone Seller App for Facebook Marketplace and Free Verificati",
+    "slug": "meta-launches-seller-app-facebook-marketplace-free-verification",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "21c6b7f2-9c6c-4b12-9c30-c4df29be2b9c",
+    "headline": "Trump Orders Warning Signs Outside Smithsonian Over 'Inaccurate' History Exhibit",
+    "slug": "trump-orders-smithsonian-warning-signs-history-exhibits",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
