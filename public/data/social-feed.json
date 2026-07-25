@@ -1,7 +1,7 @@
 {
-  "_generated": "2026-07-24T01:31:52.433518+00:00",
+  "_generated": "2026-07-25T23:53:25.732008+00:00",
   "_description": "1 tweet per person, rotated each cron run. Pool refreshed every 12h.",
-  "_rotation": 38,
+  "_rotation": 39,
   "categories": {
     "technology": [
       {
@@ -17,33 +17,37 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/satyanadella/status/2077063479232795024",
+        "tweet_url": "https://x.com/satyanadella/status/2080646162483417097",
         "handle": "satyanadella",
-        "tweet_id": "2077063479232795024",
+        "tweet_id": "2080646162483417097",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "An important piece from Demis. We need more of this kind of thinking. A good reminder that the goal is a frontier ecosystem that promotes innovation and choice, while avoiding any one model drop that breaks the world!",
-        "published_at": "2026-07-14T16:11:38.000Z",
-        "photos": []
+        "article_headline": "Open-weight models are essential to a healthy AI ecosystem. Together with others across our industry, we are outlining a path for open-weight models to strengthen American competitiveness and expand economic opportunity, while protecting national security. https://t.co/Tr0sAzAxTD https://t.co/opMwEb",
+        "published_at": "2026-07-24T13:27:56.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HN_vsqtbgAAJ73S.jpg",
+          "https://pbs.twimg.com/media/HN_vuJZaMAAdRVT.jpg",
+          "https://pbs.twimg.com/media/HN_vvV0aAAAFLRF.jpg"
+        ]
       },
       {
-        "tweet_url": "https://x.com/sama/status/2077842579232895286",
+        "tweet_url": "https://x.com/sama/status/2078244242993164716",
         "handle": "sama",
-        "tweet_id": "2077842579232895286",
+        "tweet_id": "2078244242993164716",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "i talk to chatgpt more than i type to it at this point\n\nnew voice model really crossed a threshold",
-        "published_at": "2026-07-16T19:47:29.000Z",
+        "article_headline": "this is cool:\n\nhttps://t.co/X4HEmFym68",
+        "published_at": "2026-07-17T22:23:34.000Z",
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/elonmusk/status/2080447123745919254",
+        "tweet_url": "https://x.com/elonmusk/status/2081152222121869635",
         "handle": "elonmusk",
-        "tweet_id": "2080447123745919254",
+        "tweet_id": "2081152222121869635",
         "category": "technology",
         "article_slug": "",
-        "article_headline": "https://t.co/zyiFoqOal3",
-        "published_at": "2026-07-24T00:17:01.000Z",
+        "article_headline": "They are invading just as surely as a conventional army would, but slow enough to avoid triggering an armed defense by Britain",
+        "published_at": "2026-07-25T22:58:50.000Z",
         "photos": []
       },
       {
@@ -93,6 +97,150 @@
         "photos": [
           "https://pbs.twimg.com/media/HI1l6S_XgAAMC_E.jpg"
         ]
+      },
+      {
+        "tweet_url": "https://x.com/Pirat_Nation/status/2080307196047372682",
+        "handle": "Pirat_Nation",
+        "tweet_id": "2080307196047372682",
+        "category": "technology",
+        "text": "Microsoft Steps In to Kill LG Monitor Adware After User Backlash",
+        "published_at": "2026-07-25T08:39:49+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/OwenGregorian/status/2080985275681927267",
+        "handle": "OwenGregorian",
+        "tweet_id": "2080985275681927267",
+        "category": "technology",
+        "text": "Nothing Confirms Layoffs and Restructuring, Denies Plans to Exit Global Markets",
+        "published_at": "2026-07-25T08:39:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/PankajK250/status/2080969856728387844",
+        "handle": "PankajK250",
+        "tweet_id": "2080969856728387844",
+        "category": "technology",
+        "text": "Samsung and SK Hynix Ink $950 Billion Memory Chip Deals with US Tech Giants",
+        "published_at": "2026-07-25T08:36:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/iamrakeshbansal/status/2080853341916336432",
+        "handle": "iamrakeshbansal",
+        "tweet_id": "2080853341916336432",
+        "category": "technology",
+        "text": "HCLTech Commits $1.5 Billion to Build India's First Sovereign AI Data Centre in Odisha",
+        "published_at": "2026-07-25T03:39:50+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/iedaily_/status/2080667058883432741",
+        "handle": "iedaily_",
+        "tweet_id": "2080667058883432741",
+        "category": "technology",
+        "text": "Nvidia, Microsoft and Meta Urge White House Against Restricting Open AI Models",
+        "published_at": "2026-07-24T21:51:38+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/blueteamsec1/status/2080680430995734803",
+        "handle": "blueteamsec1",
+        "tweet_id": "2080680430995734803",
+        "category": "technology",
+        "text": "Microsoft Blames Nine-Hour Microsoft 365 Outage on Maintenance Overload",
+        "published_at": "2026-07-24T21:51:38+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/diamai_/status/2080715361742168132",
+        "handle": "diamai_",
+        "tweet_id": "2080715361742168132",
+        "category": "technology",
+        "text": "Anthropic Launches Claude Opus 5, Closing the Gap With Fable 5 at Half the Price",
+        "published_at": "2026-07-24T18:50:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/pukerrainbrow/status/2080339160884551840",
+        "handle": "pukerrainbrow",
+        "tweet_id": "2080339160884551840",
+        "category": "technology",
+        "text": "OpenAI Agent Escaped Testing, Hacked Hugging Face in 'Unprecedented' AI Security Breach",
+        "published_at": "2026-07-24T17:44:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/coinbureau/status/2080621242810548397",
+        "handle": "coinbureau",
+        "tweet_id": "2080621242810548397",
+        "category": "technology",
+        "text": "India Orders GitHub to Take Down Jack Dorsey's Bitchat Amid Protest Crackdown",
+        "published_at": "2026-07-24T16:05:35+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/IndianExpress/status/2080582317018652872",
+        "handle": "IndianExpress",
+        "tweet_id": "2080582317018652872",
+        "category": "technology",
+        "text": "Delhi High Court Rules OpenAI's AI Training on ANI News Is Fair Dealing",
+        "published_at": "2026-07-24T16:02:42+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/DailyDarkWeb/status/2080582208952193416",
+        "handle": "DailyDarkWeb",
+        "tweet_id": "2080582208952193416",
+        "category": "technology",
+        "text": "Russian Hackers Stole Emails and 2FA Codes Via Zimbra Flaw With No User Clicks Required",
+        "published_at": "2026-07-24T11:50:18+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/IqooInd/status/2080553289285030152",
+        "handle": "IqooInd",
+        "tweet_id": "2080553289285030152",
+        "category": "technology",
+        "text": "iQOO Z11 Lite 5G Launches in India With 6,500mAh Battery Starting at Rs 17,999",
+        "published_at": "2026-07-24T11:50:18+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/91wheels/status/2080233028148998148",
+        "handle": "91wheels",
+        "tweet_id": "2080233028148998148",
+        "category": "technology",
+        "text": "Kia Launches Syros EV in India From \u20b913.49 Lakh With 526 Km Range and 15-Year Battery Warranty",
+        "published_at": "2026-07-24T06:48:26+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/chandrarsrikant/status/2080271863176163538",
+        "handle": "chandrarsrikant",
+        "tweet_id": "2080271863176163538",
+        "category": "technology",
+        "text": "Smaller UPI Apps Urge NPCI to Rethink UPI Meta Launch, Cite Risk of Deeper Market Concentration",
+        "published_at": "2026-07-24T06:42:56+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Androidheadline/status/2080328346160747000",
+        "handle": "Androidheadline",
+        "tweet_id": "2080328346160747000",
+        "category": "technology",
+        "text": "Google's Gemini Hits 950 Million Users as Alphabet Posts Blockbuster Q2 Earnings",
+        "published_at": "2026-07-24T06:40:42+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/FoxBusiness/status/2080376130347909479",
+        "handle": "FoxBusiness",
+        "tweet_id": "2080376130347909479",
+        "category": "technology",
+        "text": "IBM CEO Says Delayed Enterprise Software Deals Are Returning as AI Spending Panic Eases",
+        "published_at": "2026-07-24T05:59:10+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/intel/status/2080389994368098495",
+        "handle": "intel",
+        "tweet_id": "2080389994368098495",
+        "category": "technology",
+        "text": "Intel Smashes Earnings Estimates as AI Boom Drives Strongest Growth in 15 Years",
+        "published_at": "2026-07-24T05:58:28.387072+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/entrackr/status/2080250868817924160",
+        "handle": "entrackr",
+        "tweet_id": "2080250868817924160",
+        "category": "technology",
+        "text": "Mumbai-Based Wiffy Raises $3 Million to Expand AI-Powered Home Services Platform",
+        "published_at": "2026-07-24T01:46:18.357986+00:00"
       },
       {
         "tweet_url": "https://x.com/Forbes/status/2080301675232043209",
@@ -191,14 +339,6 @@
         "published_at": "2026-07-23T07:42:36+00:00"
       },
       {
-        "tweet_url": "https://x.com/dibwuru/status/2079775568539590790",
-        "handle": "dibwuru",
-        "tweet_id": "2079775568539590790",
-        "category": "technology",
-        "text": "OpenAI's Rogue AI Agent Escaped Its Sandbox and Hacked Hugging Face in 'Unprecedented' Breach",
-        "published_at": "2026-07-23T03:55:26+00:00"
-      },
-      {
         "tweet_url": "https://x.com/AsianetNewsSN/status/2079899598630600989",
         "handle": "AsianetNewsSN",
         "tweet_id": "2079899598630600989",
@@ -207,111 +347,23 @@
         "published_at": "2026-07-23T03:55:26+00:00"
       },
       {
-        "tweet_url": "https://x.com/konstructivizm/status/2080070888662376929",
-        "handle": "konstructivizm",
-        "tweet_id": "2080070888662376929",
+        "tweet_url": "https://x.com/dibwuru/status/2079775568539590790",
+        "handle": "dibwuru",
+        "tweet_id": "2079775568539590790",
         "category": "technology",
-        "text": "Astronomers Detect First Possible Moon Outside Our Solar System",
-        "published_at": "2026-07-23T01:44:34.996213+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/DiarioBitcoin/status/2079978863442993327",
-        "handle": "DiarioBitcoin",
-        "tweet_id": "2079978863442993327",
-        "category": "technology",
-        "text": "Johnson & Johnson Wins FDA Nod for Ottava Surgical Robot",
-        "published_at": "2026-07-22T22:04:01+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/KT07500539/status/2079658736763736157",
-        "handle": "KT07500539",
-        "tweet_id": "2079658736763736157",
-        "category": "technology",
-        "text": "Google Quadruples Miami Office as Co-Founders Flee California's Billionaire Tax",
-        "published_at": "2026-07-22T21:59:53.350362+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/BullTheoryio/status/2080025541122666690",
-        "handle": "BullTheoryio",
-        "tweet_id": "2080025541122666690",
-        "category": "technology",
-        "text": "Alphabet's Cloud Boom Powers Record Quarter, but AI Spending Spooks Investors",
-        "published_at": "2026-07-22T21:58:43.578348+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/tech_mahindra/status/2079579806539411891",
-        "handle": "tech_mahindra",
-        "tweet_id": "2079579806539411891",
-        "category": "technology",
-        "text": "Tech Mahindra Profit Jumps 28% as Deal Wins Cross $1 Billion for Third Straight Quarter",
-        "published_at": "2026-07-22T07:52:26+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/VaibhavSisinty/status/2079208461141966859",
-        "handle": "VaibhavSisinty",
-        "tweet_id": "2079208461141966859",
-        "category": "technology",
-        "text": "AI Helps Harvard Mathematician Disprove 87-Year-Old Jacobian Conjecture in a Single Tweet",
-        "published_at": "2026-07-22T05:41:26.132395+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/uniindianews/status/2079248172950700389",
-        "handle": "uniindianews",
-        "tweet_id": "2079248172950700389",
-        "category": "technology",
-        "text": "Arvind Raman Steps In as Interim US AI Safety Chief After Chris Fall's Exit",
-        "published_at": "2026-07-22T01:50:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/GOP_is_Gutless/status/2079180156430647582",
-        "handle": "GOP_is_Gutless",
-        "tweet_id": "2079180156430647582",
-        "category": "technology",
-        "text": "ESPN's Dan Wetzel Suggests Michigan Could Have Used AI for $12 Million Investigation",
-        "published_at": "2026-07-21T23:53:42+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/91mobiles/status/2079492613913399527",
-        "handle": "91mobiles",
-        "tweet_id": "2079492613913399527",
-        "category": "technology",
-        "text": "iQOO Z11 Lite Brings 6,500mAh Battery and AI Tools to India's Sub-Rs 20,000 5G Segment",
-        "published_at": "2026-07-21T21:44:46+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/MacRumors/status/2079615135774290266",
-        "handle": "MacRumors",
-        "tweet_id": "2079615135774290266",
-        "category": "technology",
-        "text": "Apple Patches Hide My Email Flaw That Exposed Real User Addresses",
-        "published_at": "2026-07-21T19:38:19.312341+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/wallstengine/status/2079585644545019962",
-        "handle": "wallstengine",
-        "tweet_id": "2079585644545019962",
-        "category": "technology",
-        "text": "Apple to Launch Device Leasing Program With Klarna on July 28, Bloomberg Reports",
-        "published_at": "2026-07-21T17:45:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/michaeljburry/status/2079426924779343926",
-        "handle": "michaeljburry",
-        "tweet_id": "2079426924779343926",
-        "category": "technology",
-        "text": "Alphabet's $190 Billion AI Bet Faces Investor Test as Q2 Earnings Loom",
-        "published_at": "2026-07-21T15:41:23+00:00"
+        "text": "OpenAI's Rogue AI Agent Escaped Its Sandbox and Hacked Hugging Face in 'Unprecedented' Breach",
+        "published_at": "2026-07-23T03:55:26+00:00"
       }
     ],
     "sports": [
       {
-        "tweet_url": "https://x.com/imVkohli/status/2064973591607922948",
+        "tweet_url": "https://x.com/imVkohli/status/2064190014779695610",
         "handle": "imVkohli",
-        "tweet_id": "2064973591607922948",
+        "tweet_id": "2064190014779695610",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "han nahi, 21st June da ki plan hai https://t.co/NJHoVjKEUT",
-        "published_at": "2026-06-11T07:30:44.000Z",
+        "article_headline": "Started the season with belief. Ended with back to back titles. \ud83c\udfc6\nThis team lived every emotion together. The highs, the pressure, the hurdles, and the unwavering support. It feels extra special because\u2026 this place is HOME! \u2764\ufe0f @RCBTweets https://t.co/H02HdsHCX3",
+        "published_at": "2026-06-09T03:37:04.000Z",
         "photos": []
       },
       {
@@ -340,15 +392,15 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/SGanguly99/status/2078151073488097757",
+        "tweet_url": "https://x.com/SGanguly99/status/2074716657944297548",
         "handle": "SGanguly99",
-        "tweet_id": "2078151073488097757",
+        "tweet_id": "2074716657944297548",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "An irreplaceable loss to the cricket world .. his skills in that generation was a yardstick for many to judge there own talent .. one of the rarest ..May his soul rest in peace https://t.co/sHJhGJ50lc",
-        "published_at": "2026-07-17T16:13:20.000Z",
+        "article_headline": "The Best Gift Ever! Can\u2019t wait to see you play my cover drive! #RajkummarRao\n\n#Dada #DadaTheSouravGangulyStory #DadaFirstLook https://t.co/TqHsWn2Eg8",
+        "published_at": "2026-07-08T04:46:12.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HNcTYhsbwAAsGdV.jpg"
+          "https://pbs.twimg.com/media/HMrfypKbsAA-orw.jpg"
         ]
       },
       {
@@ -364,42 +416,42 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/RishabhPant17/status/2062868051230593505",
+        "tweet_url": "https://x.com/RishabhPant17/status/2042345431963926963",
         "handle": "RishabhPant17",
-        "tweet_id": "2062868051230593505",
+        "tweet_id": "2042345431963926963",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Patience. Discipline. Character. \ud83c\udfcf \ud83e\udd0d#RP17 https://t.co/L292kuPfyy",
-        "published_at": "2026-06-05T12:04:04.000Z",
+        "article_headline": "Great teamwork. \ud83d\udcaa\ud83c\udfcf #RP17 https://t.co/uhQnmUfavx",
+        "published_at": "2026-04-09T20:54:30.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HKDHjGaaAAA-Nlj.jpg",
-          "https://pbs.twimg.com/media/HKDHjGjbEAAk7NI.jpg",
-          "https://pbs.twimg.com/media/HKDHjGebwAAdGJR.jpg",
-          "https://pbs.twimg.com/media/HKDHjGiasAEjYQt.jpg"
+          "https://pbs.twimg.com/media/HFfeVqDaIAAxYAA.jpg",
+          "https://pbs.twimg.com/media/HFfeVqFbQAIc361.jpg",
+          "https://pbs.twimg.com/media/HFfeVqBbwAAkR0r.jpg",
+          "https://pbs.twimg.com/media/HFfeVqGaAAArvx9.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/ShubmanGill/status/2062500894554694024",
+        "tweet_url": "https://x.com/ShubmanGill/status/2060449615347093692",
         "handle": "ShubmanGill",
-        "tweet_id": "2062500894554694024",
+        "tweet_id": "2060449615347093692",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "77\u2019s back. https://t.co/sNBM7HO9wF",
-        "published_at": "2026-06-04T11:45:07.000Z",
+        "article_headline": "https://t.co/aaUyFiJyaX",
+        "published_at": "2026-05-29T19:54:04.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HJ95mmCbEAA2oDg.jpg",
-          "https://pbs.twimg.com/media/HJ95mmEaoAEZAup.jpg",
-          "https://pbs.twimg.com/media/HJ95mmia0AETjj3.jpg"
+          "https://pbs.twimg.com/media/HJgv8uZaIAAOHfO.jpg",
+          "https://pbs.twimg.com/media/HJgv8uRa4AAXdS1.jpg",
+          "https://pbs.twimg.com/media/HJgv8uTaIAAqYVb.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/MohammadKaif/status/2078829197041291293",
+        "tweet_url": "https://x.com/MohammadKaif/status/2078439583214371220",
         "handle": "MohammadKaif",
-        "tweet_id": "2078829197041291293",
+        "tweet_id": "2078439583214371220",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Kuldeep Yadav should be thinking of packing his bags and saying goodbye to international cricket. Today there was no Bumrah, no Washington, no Varun but Kuldeep still didn't find a place in 11. India's bowling attack at Lord's is one dimensional and lacks variety. A left-arm wrist spinner would have",
-        "published_at": "2026-07-19T13:07:58.000Z",
+        "article_headline": "Sir Gary Sobers was the original genuine all-rounder. He could make it to a team with just one of his skills - batting or bowling.  All-rounders of today can't claim this. Salute to the champion. you will always be an inspiration to all cricketers. RIP Sir",
+        "published_at": "2026-07-18T11:19:46.000Z",
         "photos": []
       },
       {
@@ -415,13 +467,13 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/IrfanPathan/status/2078888830908936214",
+        "tweet_url": "https://x.com/IrfanPathan/status/2078842395719086356",
         "handle": "IrfanPathan",
-        "tweet_id": "2078888830908936214",
+        "tweet_id": "2078842395719086356",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Absolute joy seeing this \ud83d\udcaf of @ImRo45 https://t.co/QenidotdlA",
-        "published_at": "2026-07-19T17:04:55.000Z",
+        "article_headline": "Disappointed with Team India\u2019s bowling and the plans they executed.\n\nIt\u2019s time to learn how to perform without Bumrah.",
+        "published_at": "2026-07-19T14:00:24.000Z",
         "photos": []
       },
       {
@@ -449,32 +501,157 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/realmanubhaker/status/2070404012760092708",
+        "tweet_url": "https://x.com/realmanubhaker/status/2069432821161361612",
         "handle": "realmanubhaker",
-        "tweet_id": "2070404012760092708",
+        "tweet_id": "2069432821161361612",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Suffer the pain of discipline. Or, suffer the pain of regret. \ud83c\uddee\ud83c\uddf3\u2728 https://t.co/8ryRVnjfGN",
-        "published_at": "2026-06-26T07:09:17.000Z",
+        "article_headline": "Don\u2019t give up, keep working hard.\nOne day you will look back and be proud of yourself for it.\ud83d\udc9f https://t.co/BJHT2WCYWy",
+        "published_at": "2026-06-23T14:50:07.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HLuNdsDa0AAA6nE.jpg",
-          "https://pbs.twimg.com/media/HLuNdsZbAAAAT8s.jpg"
+          "https://pbs.twimg.com/media/HLgaLV_aoAE6J0C.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/nikhat_zareen/status/2078139630596026539",
+        "tweet_url": "https://x.com/nikhat_zareen/status/2059993259590775037",
         "handle": "nikhat_zareen",
-        "tweet_id": "2078139630596026539",
+        "tweet_id": "2059993259590775037",
         "category": "sports",
         "article_slug": "",
-        "article_headline": "Life threw me a curveball, but I\u2019m choosing to come back stronger. \ud83d\ude4c\ud83c\udffb\n\nThe past few months have been tough, dealing with a knee pain that eventually led to surgery. Recovery starts now, one step at a time, with patience, faith and determination. \ud83d\ude07\n\nA heartfelt thank you to Dr. Dinshaw Pardiwala, the",
-        "published_at": "2026-07-17T15:27:52.000Z",
+        "article_headline": "Eid al-Adha Mubarak\u2728\ud83c\udf19 https://t.co/WgEk8nuZUI",
+        "published_at": "2026-05-28T13:40:40.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HNcI9mGbAAAX3oK.jpg",
-          "https://pbs.twimg.com/media/HNcI9mRbsAAHCCM.jpg",
-          "https://pbs.twimg.com/media/HNcI9mPaUAAN0Dc.jpg",
-          "https://pbs.twimg.com/media/HNcI9mLbUAAQHm_.jpg"
+          "https://pbs.twimg.com/media/HJaQ8Zxb0AAfmlb.jpg",
+          "https://pbs.twimg.com/media/HJaQ8ZxagAAoTeC.jpg"
         ]
+      },
+      {
+        "tweet_url": "https://x.com/TelanganaToday/status/2081034443326984654",
+        "handle": "TelanganaToday",
+        "tweet_id": "2081034443326984654",
+        "category": "sports",
+        "text": "Ishan Kishan, Tilak Varma Power India to T20 Series Win in Zimbabwe",
+        "published_at": "2026-07-25T20:37:02.541213+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/WIONews/status/2080506741142495732",
+        "handle": "WIONews",
+        "tweet_id": "2080506741142495732",
+        "category": "sports",
+        "text": "Modi's BRICS Invite to Bangladesh PM Revives Hopes for India's September Cricket Tour",
+        "published_at": "2026-07-25T12:35:41+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/NewsArenaIndia/status/2080801648222650758",
+        "handle": "NewsArenaIndia",
+        "tweet_id": "2080801648222650758",
+        "category": "sports",
+        "text": "Jadumani Singh Batters Scottish Favourite to Storm Into CWG 2026 Boxing Pre-Quarters",
+        "published_at": "2026-07-25T03:44:30+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Media_SAI/status/2080756293112041607",
+        "handle": "Media_SAI",
+        "tweet_id": "2080756293112041607",
+        "category": "sports",
+        "text": "CWG 2026 Day 2: Jhandu Kumar Wins Bronze as Lawn Bowlers and Swimmers Keep India's Campaign on Track",
+        "published_at": "2026-07-25T01:42:10+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/433/status/2080644837213134989",
+        "handle": "433",
+        "tweet_id": "2080644837213134989",
+        "category": "sports",
+        "text": "Italy Turn to Pirlo After Ancelotti, Guardiola Reject Azzurri Job",
+        "published_at": "2026-07-24T23:49:58.89675+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/MMAFighting/status/2080692649296896465",
+        "handle": "MMAFighting",
+        "tweet_id": "2080692649296896465",
+        "category": "sports",
+        "text": "Tyson Fury Stops Mariusz Wach in Seventh Round, Clears Path to Joshua Showdown",
+        "published_at": "2026-07-24T21:42:25+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/ESPNNBA/status/2080742369649922460",
+        "handle": "ESPNNBA",
+        "tweet_id": "2080742369649922460",
+        "category": "sports",
+        "text": "LeBron James Signs With Philadelphia 76ers in Pursuit of Fifth Championship",
+        "published_at": "2026-07-24T21:39:50+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/mufaddal_vohra/status/2080314994353438760",
+        "handle": "mufaddal_vohra",
+        "tweet_id": "2080314994353438760",
+        "category": "sports",
+        "text": "Afghanistan to Host India in Historic T20I Series in Delhi Ahead of Asian Games",
+        "published_at": "2026-07-24T17:40:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/TheStatesmanLtd/status/2080588907494965671",
+        "handle": "TheStatesmanLtd",
+        "tweet_id": "2080588907494965671",
+        "category": "sports",
+        "text": "Asian Games 2026 Cricket Draw Confirmed: India Get Direct Knockout Entry",
+        "published_at": "2026-07-24T11:53:29+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/DDIndialive/status/2080522758862336175",
+        "handle": "DDIndialive",
+        "tweet_id": "2080522758862336175",
+        "category": "sports",
+        "text": "India Eyes Six Medal Events on Action-Packed Day 2 at Glasgow Commonwealth Games",
+        "published_at": "2026-07-24T11:53:29+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Footballtweet/status/2080579238273450406",
+        "handle": "Footballtweet",
+        "tweet_id": "2080579238273450406",
+        "category": "sports",
+        "text": "De Jong Sidelined for Months as Barcelona Fumes at Dutch Team Over Knee Injury",
+        "published_at": "2026-07-24T09:39:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/toisports/status/2080315261773828552",
+        "handle": "toisports",
+        "tweet_id": "2080315261773828552",
+        "category": "sports",
+        "text": "Jaffna Kings Owners Terminated Mid-Season as LPL Corruption Scandal Deepens",
+        "published_at": "2026-07-24T07:42:09+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/thehundred/status/2080373986509173015",
+        "handle": "thehundred",
+        "tweet_id": "2080373986509173015",
+        "category": "sports",
+        "text": "Livingstone Stars With Bat and Ball but Super Giants Spoil London Spirit's Hundred Opener",
+        "published_at": "2026-07-24T06:41:24+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/RevSportzGlobal/status/2080495687729369265",
+        "handle": "RevSportzGlobal",
+        "tweet_id": "2080495687729369265",
+        "category": "sports",
+        "text": "Sooryavanshi's Record-Breaking Fifty Powers India to End T20I Losing Streak in Zimbabwe",
+        "published_at": "2026-07-24T05:53:22.104502+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/PTI_News/status/2080374991829299562",
+        "handle": "PTI_News",
+        "tweet_id": "2080374991829299562",
+        "category": "sports",
+        "text": "India Opens CWG 2026 With Two Lawn Bowls Wins Despite Doping Cloud Over Glasgow Campaign",
+        "published_at": "2026-07-24T01:44:31.682299+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/faustocoppi60/status/2080302640412410204",
+        "handle": "faustocoppi60",
+        "tweet_id": "2080302640412410204",
+        "category": "sports",
+        "text": "Illness Crisis Hits UAE Team as Poga\u010dar Chases Historic Fifth Tour de France Title",
+        "published_at": "2026-07-24T01:42:05.658897+00:00"
       },
       {
         "tweet_url": "https://x.com/Flyin18T/status/2080448982443028674",
@@ -485,19 +662,19 @@
         "published_at": "2026-07-23T23:48:22+00:00"
       },
       {
-        "tweet_url": "https://x.com/mbcaction/status/2080283914778591311",
-        "handle": "mbcaction",
-        "tweet_id": "2080283914778591311",
-        "category": "sports",
-        "text": "Anthony Joshua Returns to the Ring in Jeddah With India\u2019s Nishant Dev on Undercard",
-        "published_at": "2026-07-23T22:09:54.530311+00:00"
-      },
-      {
         "tweet_url": "https://x.com/gregauman/status/2080327505978720427",
         "handle": "gregauman",
         "tweet_id": "2080327505978720427",
         "category": "sports",
         "text": "Panthers Sign Cam Gill After Nic Scourton\u2019s Torn ACL Devastates Training Camp Opener",
+        "published_at": "2026-07-23T22:09:54.530311+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/mbcaction/status/2080283914778591311",
+        "handle": "mbcaction",
+        "tweet_id": "2080283914778591311",
+        "category": "sports",
+        "text": "Anthony Joshua Returns to the Ring in Jeddah With India\u2019s Nishant Dev on Undercard",
         "published_at": "2026-07-23T22:09:54.530311+00:00"
       },
       {
@@ -525,14 +702,6 @@
         "published_at": "2026-07-23T17:44:41+00:00"
       },
       {
-        "tweet_url": "https://x.com/Soccer_Laduma/status/2080281080523899066",
-        "handle": "Soccer_Laduma",
-        "tweet_id": "2080281080523899066",
-        "category": "sports",
-        "text": "Barcelona Complete \u20ac29 Million Signing of Karim Adeyemi From Borussia Dortmund",
-        "published_at": "2026-07-23T13:30:00+00:00"
-      },
-      {
         "tweet_url": "https://x.com/Sportskeeda/status/2080266733919822029",
         "handle": "Sportskeeda",
         "tweet_id": "2080266733919822029",
@@ -541,12 +710,12 @@
         "published_at": "2026-07-23T13:30:00+00:00"
       },
       {
-        "tweet_url": "https://x.com/mufaddal_vohra/status/2080218290501362085",
-        "handle": "mufaddal_vohra",
-        "tweet_id": "2080218290501362085",
+        "tweet_url": "https://x.com/Soccer_Laduma/status/2080281080523899066",
+        "handle": "Soccer_Laduma",
+        "tweet_id": "2080281080523899066",
         "category": "sports",
-        "text": "ECB Confirms 2027 Ashes Schedule as Southampton Gets First Men's Test",
-        "published_at": "2026-07-23T11:41:19+00:00"
+        "text": "Barcelona Complete \u20ac29 Million Signing of Karim Adeyemi From Borussia Dortmund",
+        "published_at": "2026-07-23T13:30:00+00:00"
       },
       {
         "tweet_url": "https://x.com/India_AllSports/status/2080257670880333883",
@@ -579,139 +748,46 @@
         "category": "sports",
         "text": "Phil Salt Steers Welsh Fire to Six-Wicket Win Over Southern Brave in Hundred Opener",
         "published_at": "2026-07-23T05:53:51+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/SBJ/status/2080060955442970753",
-        "handle": "SBJ",
-        "tweet_id": "2080060955442970753",
-        "category": "sports",
-        "text": "WNBA and Players' Union Vow Action on Racist Abuse After Crisis Meeting",
-        "published_at": "2026-07-23T01:40:44.647235+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/Yankees/status/2080038057877631160",
-        "handle": "Yankees",
-        "tweet_id": "2080038057877631160",
-        "category": "sports",
-        "text": "Yankees Activate Max Fried From Injured List After 10-Week Elbow Recovery",
-        "published_at": "2026-07-22T23:53:56+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/fcb_elias1/status/2079574849219953144",
-        "handle": "fcb_elias1",
-        "tweet_id": "2079574849219953144",
-        "category": "sports",
-        "text": "Yamal Reveals Messi's Words After World Cup Final Embrace",
-        "published_at": "2026-07-22T22:04:01+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/cricinfo/status/2079633007410135171",
-        "handle": "cricinfo",
-        "tweet_id": "2079633007410135171",
-        "category": "sports",
-        "text": "Hashmatullah Shahidi Resigns as Afghanistan's ODI Captain Ahead of Ireland Series",
-        "published_at": "2026-07-22T03:36:04+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/nightstar1201/status/2079469175257673871",
-        "handle": "nightstar1201",
-        "tweet_id": "2079469175257673871",
-        "category": "sports",
-        "text": "World Cup Final Draws 61 Million U.S. Viewers, Smashing All Soccer TV Records",
-        "published_at": "2026-07-22T01:43:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/YahooSports/status/2079623937684611537",
-        "handle": "YahooSports",
-        "tweet_id": "2079623937684611537",
-        "category": "sports",
-        "text": "Giants Coach John Harbaugh Shrugs Off Cam Skattebo's Botched Backflip Ahead of Training Camp",
-        "published_at": "2026-07-21T23:51:28+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/FRANCE24/status/2079609051856445644",
-        "handle": "FRANCE24",
-        "tweet_id": "2079609051856445644",
-        "category": "sports",
-        "text": "Evenepoel Wins Tour de France Time Trial, Cuts Into Poga\u010dar's Overall Lead",
-        "published_at": "2026-07-21T23:50:16+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/LalitKModi/status/2079567222817566938",
-        "handle": "LalitKModi",
-        "tweet_id": "2079567222817566938",
-        "category": "sports",
-        "text": "SAFEMA Tribunal Quashes Lalit Modi's FEMA Penalty in IPL 2009 South Africa Case",
-        "published_at": "2026-07-21T23:45:33+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/RevSportzGlobal/status/2079588313762255222",
-        "handle": "RevSportzGlobal",
-        "tweet_id": "2079588313762255222",
-        "category": "sports",
-        "text": "Sreeshankar Targets Glasgow Gold After Defying Career-Ending Knee Injury",
-        "published_at": "2026-07-21T21:39:51+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/MeoNews/status/2079588484898009589",
-        "handle": "MeoNews",
-        "tweet_id": "2079588484898009589",
-        "category": "sports",
-        "text": "La Liga Chief Tebas Calls on FIFA's Infantino to Resign Over World Cup Overreach",
-        "published_at": "2026-07-21T19:39:04.182927+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/FIFAcom/status/2078982201803223364",
-        "handle": "FIFAcom",
-        "tweet_id": "2078982201803223364",
-        "category": "sports",
-        "text": "FIFA Eyes Record 64-Team World Cup for 2030 as CONMEBOL Chief Confirms Expansion Plan",
-        "published_at": "2026-07-21T17:44:34+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/centregoals/status/2079234726934495619",
-        "handle": "centregoals",
-        "tweet_id": "2079234726934495619",
-        "category": "sports",
-        "text": "Chelsea Sign Morgan Rogers for Record \u00a3117m, Beating Arsenal in 72-Hour Swoop",
-        "published_at": "2026-07-21T13:41:09+00:00"
       }
     ],
     "news": [
       {
-        "tweet_url": "https://x.com/narendramodi/status/2080111667392975331",
+        "tweet_url": "https://x.com/narendramodi/status/2080873132559323405",
         "handle": "narendramodi",
-        "tweet_id": "2080111667392975331",
+        "tweet_id": "2080873132559323405",
         "category": "news",
         "article_slug": "",
-        "article_headline": "Paying homage to the brave Chandra Shekhar Azad on his birth anniversary. His fearless courage and unwavering patriotism occupy a proud place in the history of India\u2019s freedom struggle. He motivated countless young Indians to devote themselves to the nation. His resolve continues to inspire generati",
-        "published_at": "2026-07-23T02:04:02.000Z",
-        "photos": []
-      },
-      {
-        "tweet_url": "https://x.com/DrSJaishankar/status/2080227750762438885",
-        "handle": "DrSJaishankar",
-        "tweet_id": "2080227750762438885",
-        "category": "news",
-        "article_slug": "",
-        "article_headline": "Followed up with FM Tom Berendsen @ministerBZ on the outcomes from PM @narendramodi\u2019s recent visit to the Netherlands. \n\nThe elevation of our ties to a Strategic Partnership has opened new avenues of cooperation, including in semiconductors, water resources, green hydrogen, health & culture.\n\n\ud83c\uddee\ud83c\uddf3\ud83c\uddf3\ud83c\uddf1",
-        "published_at": "2026-07-23T09:45:19.000Z",
+        "article_headline": "A spectacular performance by Jhandu Kumar, who has opened India\u2019s medal tally at the #CWG2026 by winning a Bronze in the Men\u2019s Heavyweight Para Powerlifting event! Congratulations to him. His achievement is a powerful reflection of immense strength, unwavering determination and years of disciplined ",
+        "published_at": "2026-07-25T04:29:50.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN50BwEb0AAFJub.jpg",
-          "https://pbs.twimg.com/media/HN50Bv_boAAKAqX.jpg",
-          "https://pbs.twimg.com/media/HN50BwCagAAnVsX.jpg"
+          "https://pbs.twimg.com/media/HOC-zs1agAArUAN.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/AmitShah/status/2080115555596685437",
-        "handle": "AmitShah",
-        "tweet_id": "2080115555596685437",
+        "tweet_url": "https://x.com/DrSJaishankar/status/2080683855418388579",
+        "handle": "DrSJaishankar",
+        "tweet_id": "2080683855418388579",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u0932\u094b\u0915\u092e\u093e\u0928\u094d\u092f \u092c\u093e\u0932 \u0917\u0902\u0917\u093e\u0927\u0930 \u0924\u093f\u0932\u0915 \u091c\u0940 \u0938\u094d\u0935\u093e\u0927\u0940\u0928\u0924\u093e \u0938\u0902\u0917\u094d\u0930\u093e\u092e \u0915\u0947 \u0909\u0928 \u0905\u0917\u094d\u0930\u0923\u0940 \u0928\u093e\u092f\u0915\u094b\u0902 \u092e\u0947\u0902 \u0925\u0947, \u091c\u093f\u0928\u094d\u0939\u094b\u0902\u0928\u0947 \u0906\u091c\u093c\u093e\u0926\u0940 \u0915\u0947 \u0906\u0902\u0926\u094b\u0932\u0928 \u092e\u0947\u0902 \u092f\u0941\u0935\u093e\u0913\u0902 \u0915\u094b \u0938\u0902\u0917\u0920\u093f\u0924 \u0914\u0930 \u092a\u094d\u0930\u0947\u0930\u093f\u0924 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0938\u093e\u0925-\u0938\u093e\u0925 \u0938\u094d\u0935\u092d\u093e\u0937\u093e, \u0938\u094d\u0935\u0926\u0947\u0936\u0940 \u0914\u0930 \u0938\u094d\u0935\u0938\u0902\u0938\u094d\u0915\u0943\u0924\u093f \u0915\u0947 \u0932\u093f\u090f \u092d\u0940 \u0906\u091c\u0940\u0935\u0928 \u0938\u0902\u0918\u0930\u094d\u0937 \u0915\u093f\u092f\u093e\u0964\n\n\"\u0938\u094d\u0935\u0930\u093e\u091c \u092e\u0947\u0930\u093e \u091c\u0928\u094d\u092e\u0938\u093f\u0926\u094d\u0927 \u0905\u0927\u093f\u0915\u093e\u0930 \u0939\u0948 \u0914\u0930 \u092e\u0948\u0902 \u0907\u0938\u0947 \u0932\u0947\u0915\u0930 \u0930\u0939\u0942\u0901\u0917\u093e\" \u0909\u0928\u0915\u0947 \u0907\u0938 \u0909\u0926\u094d\u0918\u094b\u0937 \u0928\u0947 \u092a\u0942\u0930\u0947 \u0930\u093e\u0937\u094d\u091f\u094d\u0930 \u0915",
-        "published_at": "2026-07-23T02:19:29.000Z",
+        "article_headline": "Was a pleasure to unveil the book \u2018We The People - 250 voices that shaped \ud83c\uddfa\ud83c\uddf8\ud83c\uddee\ud83c\uddf3 Relationship\u2019 by @USISPForum \n\nGreat to meet a wide ranging group that has invested deeply in these ties. https://t.co/FfrYfhlOIM",
+        "published_at": "2026-07-24T15:57:43.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN4OEXGbwAAQHxc.jpg"
+          "https://pbs.twimg.com/media/HOAS7qza8AAGlyU.jpg",
+          "https://pbs.twimg.com/media/HOAS7qxacAA0rpV.jpg",
+          "https://pbs.twimg.com/media/HOAS7qkb0AAHNBd.jpg"
+        ]
+      },
+      {
+        "tweet_url": "https://x.com/AmitShah/status/2080669676632498187",
+        "handle": "AmitShah",
+        "tweet_id": "2080669676632498187",
+        "category": "news",
+        "article_slug": "",
+        "article_headline": "The \u20b93,030 crore BHAVYA Rasayan Scheme approved by the Union Cabinet will accelerate India's journey towards self-reliance under Modi Ji's leadership.\n\nThe proposed three new parks will strengthen our chemical manufacturing ecosystem and global competitiveness, spawning massive employment opportunit",
+        "published_at": "2026-07-24T15:01:22.000Z",
+        "photos": [
+          "https://pbs.twimg.com/media/HOAGCf1bgAAbBJM.jpg",
+          "https://pbs.twimg.com/media/HOAGCf4aEAAgoH9.jpg"
         ]
       },
       {
@@ -725,28 +801,28 @@
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/RahulGandhi/status/2080145197745553599",
+        "tweet_url": "https://x.com/RahulGandhi/status/2080925970069139640",
         "handle": "RahulGandhi",
-        "tweet_id": "2080145197745553599",
+        "tweet_id": "2080925970069139640",
         "category": "news",
         "article_slug": "",
-        "article_headline": "You are the one who has harmed the future of our youth the most. \n\nYou allowed and encouraged the total capture and destruction of our education system - and protected every person responsible for it.\n\nThe students\u2019 demands are clear:\n1. Sack Dharmendra Pradhan.\n2. Apologise to the students.\n3. Take",
-        "published_at": "2026-07-23T04:17:17.000Z",
+        "article_headline": "Narendra Modi is India\u2019s past. The past can never fight the future. https://t.co/DfDyiAZcBf",
+        "published_at": "2026-07-25T07:59:47.000Z",
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/myogiadityanath/status/2080202660335239401",
+        "tweet_url": "https://x.com/myogiadityanath/status/2081002744656331256",
         "handle": "myogiadityanath",
-        "tweet_id": "2080202660335239401",
+        "tweet_id": "2081002744656331256",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u0906\u0927\u0941\u0928\u093f\u0915 \u0907\u0902\u092b\u094d\u0930\u093e\u0938\u094d\u091f\u094d\u0930\u0915\u094d\u091a\u0930 \u0906\u0935\u093e\u0917\u092e\u0928 \u0915\u094b \u0906\u0938\u093e\u0928 \u092c\u0928\u093e\u0928\u0947 \u0915\u093e \u092e\u093e\u0927\u094d\u092f\u092e \u0939\u0948 \u0914\u0930 \u0906\u0935\u093e\u0917\u092e\u0928 \u0915\u093e \u092e\u093e\u0927\u094d\u092f\u092e \u091c\u093f\u0924\u0928\u093e \u0905\u0927\u093f\u0915 \u0924\u0947\u091c \u0939\u094b\u0917\u093e, \u0909\u0924\u0928\u0940 \u0939\u0940 \u0924\u0940\u0935\u094d\u0930 \u0917\u0924\u093f \u0938\u0947 \u092a\u094d\u0930\u0917\u0924\u093f \u092d\u0940 \u0939\u094b\u0917\u0940 \u0914\u0930 \u0938\u092e\u0943\u0926\u094d\u0927\u093f \u092d\u0940 \u0906\u090f\u0917\u0940\u0964\n\n\u0907\u0938\u0940 \u092a\u094d\u0930\u0917\u0924\u093f \u0915\u094b \u0928\u0908 \u0917\u0924\u093f \u0935 \u0938\u092e\u0943\u0926\u094d\u0927\u093f \u0915\u094b \u0928\u092f\u093e \u0906\u0927\u093e\u0930 \u092a\u094d\u0930\u0926\u093e\u0928 \u0915\u0930\u0924\u0947 \u0939\u0941\u090f \u0906\u091c \u0917\u094b\u0930\u0916\u092a\u0941\u0930 \u092e\u0947\u0902 \u091f\u094d\u0930\u093e\u0902\u0938\u092a\u094b\u0930\u094d\u091f \u0928\u0917\u0930 \u0938\u0947 \u092a\u0948\u0921\u0932\u0947\u0917\u0902\u091c \u0924\u0915 6 \u0932\u0947\u0928 \u090f\u0935\u0902 \u0926\u0947\u0935\u0930\u093f\u092f\u093e \u092c\u093e\u0908\u092a\u093e\u0938 \u0915\u094b \u091c\u094b\u0921\u093c\u0928\u0947 \u0935\u093e\u0932\u0947 ",
-        "published_at": "2026-07-23T08:05:37.000Z",
+        "article_headline": "\u092e\u0939\u093e\u0930\u093e\u091c\u093e \u0938\u0942\u0930\u091c\u092e\u0932 \u0915\u0940 \u0936\u094c\u0930\u094d\u092f \u092d\u0942\u092e\u093f \u091c\u0928\u092a\u0926 \u0906\u0917\u0930\u093e \u0915\u0947 \u0909\u0924\u094d\u0924\u0930, \u0926\u0915\u094d\u0937\u093f\u0923 \u090f\u0935\u0902 \u0917\u094d\u0930\u093e\u092e\u0940\u0923 \u0935\u093f\u0927\u093e\u0928 \u0938\u092d\u093e \u0915\u094d\u0937\u0947\u0924\u094d\u0930\u094b\u0902 \u092e\u0947\u0902 \u091c\u093e\u0930\u0940 \u0938\u0924\u0924 \u0935\u093f\u0915\u093e\u0938 \u0915\u094b \u0914\u0930 \u0917\u0924\u093f \u0926\u0947\u0924\u0947 \u0939\u0941\u090f \u0906\u091c \u20b9342 \u0915\u0930\u094b\u0921\u093c \u0938\u0947 \u0905\u0927\u093f\u0915 \u0932\u093e\u0917\u0924 \u0915\u0940 53 \u0935\u093f\u0915\u093e\u0938 \u092a\u0930\u093f\u092f\u094b\u091c\u0928\u093e\u0913\u0902 \u0915\u093e \u0932\u094b\u0915\u093e\u0930\u094d\u092a\u0923 \u090f\u0935\u0902 \u0936\u093f\u0932\u093e\u0928\u094d\u092f\u093e\u0938 \u0915\u093f\u092f\u093e\u0964\n\n\u0907\u0938 \u0905\u0935\u0938\u0930 \u092a\u0930 \u0935\u093f\u092d\u093f\u0928\u094d\u0928 \u0932\u094b\u0915\u0939\u093f\u0924\u0915\u093e\u0930\u0940 \u092f\u094b\u091c\u0928\u093e\u0913\u0902 \u0915\u0947 \u0932\u093e\u092d\u093e\u0930\u094d\u0925\u093f\u092f\u094b\u0902 \u0915\u094b \u0938\u094d\u0935\u0940\u0915\u0943\u0924\u093f-\u092a\u0924\u094d\u0930 \u0935 \u092a\u094d\u0930\u092e\u093e\u0923-\u092a\u0924\u094d\u0930 \u092d\u0940 \u092a\u094d\u0930\u0926",
+        "published_at": "2026-07-25T13:04:52.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN5dFFHbAAAhdzk.jpg",
-          "https://pbs.twimg.com/media/HN5dHMSbYAANQhF.jpg",
-          "https://pbs.twimg.com/media/HN5dIn8b0AE4XXB.jpg",
-          "https://pbs.twimg.com/media/HN5dJ16aIAA0Fsl.jpg"
+          "https://pbs.twimg.com/media/HOE07ozbMAAgGwt.jpg",
+          "https://pbs.twimg.com/media/HOE07lfbEAAKXbH.jpg",
+          "https://pbs.twimg.com/media/HOE07lmagAAdIq0.jpg",
+          "https://pbs.twimg.com/media/HOE07lmbUAA4G9H.jpg"
         ]
       },
       {
@@ -760,107 +836,276 @@
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/ArvindKejriwal/status/2080226682896896035",
+        "tweet_url": "https://x.com/ArvindKejriwal/status/2080334879628333183",
         "handle": "ArvindKejriwal",
-        "tweet_id": "2080226682896896035",
+        "tweet_id": "2080334879628333183",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u0915\u0928\u093e\u091f \u092a\u094d\u0932\u0947\u0938 \u0915\u0940 \u0938\u092d\u0940 \u0926\u0941\u0915\u093e\u0928\u094b\u0902 \u0915\u094b \u0906\u091c \u0936\u093e\u092e 6.30 pm \u092c\u0902\u0926 \u0915\u0930\u0928\u0947 \u0915\u0947 \u0906\u0926\u0947\u0936\u0964 \n\n\u091c\u092c\u0930\u0926\u0938\u094d\u0924 \u0938\u093f\u0915\u094d\u092f\u094b\u0930\u093f\u091f\u0940\u0964 \u0922\u0947\u0930 \u0938\u093e\u0930\u0940 \u090f\u092e\u094d\u092c\u0941\u0932\u0947\u0902\u0938\u0964 \u0915\u094d\u092f\u093e \u092e\u094b\u0926\u0940 \u0938\u0930\u0915\u093e\u0930 \u0906\u091c \u092b\u093f\u0930 \u091c\u0902\u0924\u0930 \u092e\u0902\u0924\u0930 \u092a\u0930 \u0905\u092a\u0928\u0947 \u092c\u091a\u094d\u091a\u094b\u0902 \u092a\u0930 \u092c\u0930\u094d\u092c\u0930 \u0939\u092e\u0932\u093e \u0915\u0930\u0947\u0917\u0940? https://t.co/3zEnT6yLUf",
-        "published_at": "2026-07-23T09:41:04.000Z",
-        "photos": [
-          "https://pbs.twimg.com/media/HN5zIwNbcAACWb3.jpg"
-        ]
+        "article_headline": "\u092e\u094b\u0926\u0940 \u091c\u0940 \u0905\u092d\u0940 \u092d\u0940 \u0926\u0947\u0936\u0935\u093e\u0938\u093f\u092f\u094b\u0902 \u0915\u094b \u0927\u092e\u0915\u0940 \u0926\u0947 \u0930\u0939\u0947 \u0939\u0948\u0902\u0964 \u0935\u094b \u092d\u0942\u0932 \u0917\u090f \u0915\u093f \u0932\u094b\u0917\u094b\u0902 \u0928\u0947 \u0905\u092c \u0909\u0928\u0938\u0947 \u0921\u0930\u0928\u093e \u092c\u0902\u0926 \u0915\u0930 \u0926\u093f\u092f\u093e \u0939\u0948\u0964",
+        "published_at": "2026-07-23T16:51:00.000Z",
+        "photos": []
       },
       {
-        "tweet_url": "https://x.com/PMOIndia/status/2079466589016203473",
+        "tweet_url": "https://x.com/PMOIndia/status/2079833997665001635",
         "handle": "PMOIndia",
-        "tweet_id": "2079466589016203473",
+        "tweet_id": "2079833997665001635",
         "category": "news",
         "article_slug": "",
-        "article_headline": "ASEAN, Africa lead India's export growth in first two months of FY27\nhttps://t.co/ffOweSblor \n\nvia NaMo App https://t.co/kxUBi4masi",
-        "published_at": "2026-07-21T07:20:44.000Z",
+        "article_headline": "Chief Minister of Andhra Pradesh, Shri @ncbn met Prime Minister @narendramodi.\n\n@AndhraPradeshCM https://t.co/eYLFguaYhV",
+        "published_at": "2026-07-22T07:40:41.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HNu_1nUbcAA-9Yv.jpg"
+          "https://pbs.twimg.com/media/HN0NRvoaUAApCDx.jpg",
+          "https://pbs.twimg.com/media/HN0NTgSa0AAI88f.jpg",
+          "https://pbs.twimg.com/media/HN0NVLmaoAEEGoG.jpg",
+          "https://pbs.twimg.com/media/HN0NW3FbQAEUoUt.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/rashtrapatibhvn/status/2079867597055795416",
+        "tweet_url": "https://x.com/rashtrapatibhvn/status/2080954857297736156",
         "handle": "rashtrapatibhvn",
-        "tweet_id": "2079867597055795416",
+        "tweet_id": "2080954857297736156",
         "category": "news",
         "article_slug": "",
-        "article_headline": "President Droupadi Murmu and President Gordana Siljanovska-Davkova of North Macedonia unveiled a bust of Mahatma Gandhi at the Skopje Museum.\nThe President expressed confidence that the bust will stand as a lasting symbol of friendship between India and North Macedonia and of the common commitment o",
-        "published_at": "2026-07-22T09:54:11.000Z",
+        "article_headline": "On the concluding day of her State visit to Romania, President Droupadi Murmu addressed the members of Indian Community and \u2018Friends of India\u2019 at Bucharest. The President said that the strongest pillar of India\u2013Romania relations is the close bond between our peoples. She urged the Indian community i",
+        "published_at": "2026-07-25T09:54:34.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN0sd8EaoAA_GUo.jpg",
-          "https://pbs.twimg.com/media/HN0sfxDbsAARpC6.jpg",
-          "https://pbs.twimg.com/media/HN0shdMbkAA3VJJ.jpg",
-          "https://pbs.twimg.com/media/HN0siwra8AAmWMP.jpg"
+          "https://pbs.twimg.com/media/HOEJQ5wbkAAncUd.jpg",
+          "https://pbs.twimg.com/media/HOEJSiSasAAPsGa.jpg",
+          "https://pbs.twimg.com/media/HOEJYNLbYAAGk4q.jpg",
+          "https://pbs.twimg.com/media/HOEJZdNaEAAQMod.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/PiyushGoyal/status/2080448133860069774",
+        "tweet_url": "https://x.com/PiyushGoyal/status/2080898477379539363",
         "handle": "PiyushGoyal",
-        "tweet_id": "2080448133860069774",
+        "tweet_id": "2080898477379539363",
         "category": "news",
         "article_slug": "",
-        "article_headline": "Sonam Wangchuk ji has ended his fast after my colleagues, Shri @JPNadda ji and Shri @DrJitendraSingh ji met him at Medanta Hospital, Gurugram, and assured him of the government's commitment to address the concerns.\n\nWangchuk ji\u2019s decision to end his fast reflects his trust in the Modi government's c",
-        "published_at": "2026-07-24T00:21:02.000Z",
+        "article_headline": "India makes a mark at the Commonwealth Games 2026! \ud83c\uddee\ud83c\uddf3\ud83e\udd49\n\nMany congratulations to Jhandu Kumar on winning the bronze medal in the Men's Heavyweight Para Powerlifting event. This is the first medal for India at #CWG2026.\n\nA powerful testament to will & determination, he has showcased how courage can ov",
+        "published_at": "2026-07-25T06:10:32.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN85vVrbAAAfECo.jpg",
-          "https://pbs.twimg.com/media/HN85vVpakAAIpfT.jpg"
+          "https://pbs.twimg.com/media/HODWIiwbgAAJUHc.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/rajnathsingh/status/2080285107085258781",
+        "tweet_url": "https://x.com/rajnathsingh/status/2081069972990922926",
         "handle": "RajnathSingh",
-        "tweet_id": "2080285107085258781",
+        "tweet_id": "2081069972990922926",
         "category": "news",
         "article_slug": "",
-        "article_headline": "The @DRDO_India has successfully conducted the maiden flight test of Long-Range Surface-to-Air Missile Kusha today  from the APJ Abdul Kalam Island off the coast of Odisha.\n\nKusha missile system is capable of neutralising wide variety of aerial threats including fighter jets, missiles, UAVs and larg",
-        "published_at": "2026-07-23T13:33:14.000Z",
+        "article_headline": "Attended the \u2018Shaurya Sandhya\u2019 organised on the eve of Kargil Vijay Diwas in Dras. While we feel a sense of pride recalling the Kargil victory, we must remember that the challenges facing us have not diminished. The Indian Defence Forces stand fully prepared to face any challenge.\n\nPrime Minister Sh",
+        "published_at": "2026-07-25T17:32:00.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN6nE-UaAAAvZ3n.jpg"
+          "https://pbs.twimg.com/media/HOFxt7vaIAAKAz_.jpg",
+          "https://pbs.twimg.com/media/HOFxt9baEAAxx2f.jpg",
+          "https://pbs.twimg.com/media/HOFxt8racAAgOrM.jpg",
+          "https://pbs.twimg.com/media/HOFxt8baoAAvycl.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/ShashiTharoor/status/2080339396331790562",
+        "tweet_url": "https://x.com/ShashiTharoor/status/2080615523772219675",
         "handle": "ShashiTharoor",
-        "tweet_id": "2080339396331790562",
+        "tweet_id": "2080615523772219675",
         "category": "news",
         "article_slug": "",
-        "article_headline": "My submission under Rule 377 was laid on the Table of the House yesterday, drawing attention to the plight of over 6,500 landowners awaiting compensation under the Outer Ring Road (NH-866) project in Thiruvananthapuram. While this project is crucial for easing traffic congestion and enhancing connec",
-        "published_at": "2026-07-23T17:08:57.000Z",
-        "photos": [
-          "https://pbs.twimg.com/media/HN7ZofYboAENEeY.jpg"
-        ]
+        "article_headline": "This is utterly appalling. Even in the days of the JP Movement leading up to the Emergency, there was no bar by the @UnivofDelhi on students joining any of his protests, and a couple of members of my Union Cabinet at St Stephen\u2019s, including the late Chandan Mitra, openly did so.\n\nIf one of India\u2019s f",
+        "published_at": "2026-07-24T11:26:11.000Z",
+        "photos": []
       },
       {
-        "tweet_url": "https://x.com/JPNadda/status/2080130391873302691",
+        "tweet_url": "https://x.com/JPNadda/status/2080679784577982486",
         "handle": "JPNadda",
-        "tweet_id": "2080130391873302691",
+        "tweet_id": "2080679784577982486",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u092e\u093e\u0901 \u092d\u093e\u0930\u0924\u0940 \u0915\u0940 \u0938\u094d\u0935\u0924\u0902\u0924\u094d\u0930\u0924\u093e \u0915\u0947 \u0932\u093f\u090f \u0905\u092a\u0928\u0947 \u092a\u094d\u0930\u093e\u0923\u094b\u0902 \u0915\u093e \u0938\u0930\u094d\u0935\u094b\u091a\u094d\u091a \u092c\u0932\u093f\u0926\u093e\u0928 \u0926\u0947\u0928\u0947 \u0935\u093e\u0932\u0947, \u0905\u0926\u092e\u094d\u092f \u0938\u093e\u0939\u0938, \u0905\u0926\u094d\u0935\u093f\u0924\u0940\u092f \u092a\u0930\u093e\u0915\u094d\u0930\u092e \u0914\u0930 \u0905\u091f\u0942\u091f \u0930\u093e\u0937\u094d\u091f\u094d\u0930\u092d\u0915\u094d\u0924\u093f \u0915\u0947 \u092a\u094d\u0930\u0924\u0940\u0915, \u092e\u0939\u093e\u0928 \u0915\u094d\u0930\u093e\u0902\u0924\u093f\u0915\u093e\u0930\u0940 \u0905\u092e\u0930 \u0936\u0939\u0940\u0926 \u091a\u0902\u0926\u094d\u0930\u0936\u0947\u0916\u0930 \u0906\u091c\u093e\u0926 \u091c\u0940 \u0915\u0940 \u091c\u092f\u0902\u0924\u0940 \u092a\u0930 \u0909\u0928\u094d\u0939\u0947\u0902 \u0915\u094b\u091f\u093f-\u0915\u094b\u091f\u093f \u0928\u092e\u0928 \u0915\u0930\u0924\u093e \u0939\u0942\u0901\u0964\n\n\u091a\u0902\u0926\u094d\u0930\u0936\u0947\u0916\u0930 \u0906\u091c\u093e\u0926 \u091c\u0940 \u0928\u0947 \u0905\u092a\u0928\u0947 \u0905\u0926\u092e\u094d\u092f \u0938\u093e\u0939\u0938, \u0926\u0943\u0922\u093c \u0938\u0902\u0915\u0932\u094d\u092a \u0914\u0930 \u0924\u094d\u092f\u093e\u0917 \u0938\u0947 \u092d\u093e\u0930\u0924 \u0915\u0947 \u0938\u094d\u0935\u0924\u0902\u0924\u094d",
-        "published_at": "2026-07-23T03:18:27.000Z",
+        "article_headline": "Cabinet Committee on Economic Affairs chaired by Hon. Prime Minister Shri @narendramodi ji has approved the construction of the 3rd and 4th railway lines on the Ballari\u2013Guntakal section in Karnataka and Andhra Pradesh at an estimated cost of \u20b91,264 crore.\n\nPlanned under the PM Gati Shakti National M",
+        "published_at": "2026-07-24T15:41:32.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN4bjslbEAEm1ru.jpg"
+          "https://pbs.twimg.com/media/HOAPOuQaYAAic2U.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/NitishKumar/status/2074763719515766974",
+        "tweet_url": "https://x.com/NitishKumar/status/2074398589502255579",
         "handle": "NitishKumar",
-        "tweet_id": "2074763719515766974",
+        "tweet_id": "2074398589502255579",
         "category": "news",
         "article_slug": "",
-        "article_headline": "\u0906\u091c \u091b\u092a\u0930\u093e \u0915\u0947 \u091c\u0932\u093e\u0932\u092a\u0941\u0930 \u092e\u0947\u0902 \u092a\u094d\u0930\u0938\u093f\u0926\u094d\u0927 \u0932\u094b\u0915\u0917\u093e\u092f\u0915 \u090f\u0935\u0902 \u0938\u094d\u0935\u0924\u0902\u0924\u094d\u0930\u0924\u093e \u0938\u0947\u0928\u093e\u0928\u0940 \u092e\u0939\u0947\u0902\u0926\u094d\u0930 \u092e\u093f\u0936\u094d\u0930 \u091c\u0940 \u0915\u0940 \u092a\u094d\u0930\u0924\u093f\u092e\u093e \u092a\u0930 \u092e\u093e\u0932\u094d\u092f\u093e\u0930\u094d\u092a\u0923 \u0915\u0930 \u0909\u0928\u094d\u0939\u0947\u0902 \u0936\u094d\u0930\u0926\u094d\u0927\u093e\u0902\u091c\u0932\u093f \u0905\u0930\u094d\u092a\u093f\u0924 \u0915\u0940\u0964 \u0907\u0938\u0915\u0947 \u092a\u0936\u094d\u091a\u093e\u0924 \u0935\u0939\u093e\u0902 \u0909\u092a\u0938\u094d\u0925\u093f\u0924 \u0932\u094b\u0917\u094b\u0902 \u0915\u093e \u0905\u092d\u093f\u0935\u093e\u0926\u0928 \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u093f\u092f\u093e \u0924\u0925\u093e \u0915\u093e\u0930\u094d\u092f\u0915\u0930\u094d\u0924\u093e\u0913\u0902 \u0938\u0947 \u0938\u0902\u0935\u093e\u0926 \u092d\u0940 \u0915\u093f\u092f\u093e\u0964 https://t.co/2siShbQ5NB",
-        "published_at": "2026-07-08T07:53:12.000Z",
+        "article_headline": "\u0906\u091c \u092c\u093f\u0939\u093e\u0930\u0936\u0930\u0940\u092b \u0938\u094d\u0925\u093f\u0924 \u092e\u091c\u093e\u0930 \u092a\u0939\u0941\u0902\u091a\u0915\u0930 \u0930\u093e\u091c\u094d\u092f\u0935\u093e\u0938\u093f\u092f\u094b\u0902 \u0915\u0947 \u0905\u092e\u0928, \u091a\u0948\u0928 \u0914\u0930 \u0916\u0941\u0936\u0939\u093e\u0932\u0940 \u0915\u0947 \u0932\u093f\u090f \u0926\u0941\u0906 \u092e\u093e\u0902\u0917\u0940\u0964 \u0907\u0938 \u0926\u094c\u0930\u093e\u0928 \u0935\u0939\u093e\u0902 \u092e\u094c\u091c\u0942\u0926 \u0932\u094b\u0917\u094b\u0902 \u0938\u0947 \u092e\u0941\u0932\u093e\u0915\u093e\u0924 \u092d\u0940 \u0915\u0940\u0964 https://t.co/OcG1deprSR",
+        "published_at": "2026-07-07T07:42:18.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HMsKizsbIAAMsET.jpg",
-          "https://pbs.twimg.com/media/HMsKiy6aAAAhj8Z.jpg",
-          "https://pbs.twimg.com/media/HMsKizAbYAADZD1.jpg",
-          "https://pbs.twimg.com/media/HMsKiy7boAAOSQw.jpg"
+          "https://pbs.twimg.com/media/HMm-c9pboAAyGGU.jpg",
+          "https://pbs.twimg.com/media/HMm-c9paUAAVHHV.jpg",
+          "https://pbs.twimg.com/media/HMm-c90bQAAdEWG.jpg",
+          "https://pbs.twimg.com/media/HMm-c9pawAAeMGx.jpg"
         ]
+      },
+      {
+        "tweet_url": "https://x.com/Reuters/status/2080725422677840038",
+        "handle": "Reuters",
+        "tweet_id": "2080725422677840038",
+        "category": "news",
+        "text": "FDA Approves First OTC Pill Combining Tylenol and Naproxen for 12-Hour Pain Relief",
+        "published_at": "2026-07-25T20:35:57.516881+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/FoxNews/status/2080839302146035790",
+        "handle": "FoxNews",
+        "tweet_id": "2080839302146035790",
+        "category": "news",
+        "text": "Trump Orders Warning Signs Outside Smithsonian Over 'Inaccurate' History Exhibits",
+        "published_at": "2026-07-25T04:36:53.16022+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/WhiteHouse/status/2080813430227759120",
+        "handle": "WhiteHouse",
+        "tweet_id": "2080813430227759120",
+        "category": "news",
+        "text": "Trump Returns to White House Correspondents' Dinner Three Months After Assassination Attempt",
+        "published_at": "2026-07-25T03:44:30+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/DOJFraudDiv/status/2080769433761415608",
+        "handle": "DOJFraudDiv",
+        "tweet_id": "2080769433761415608",
+        "category": "news",
+        "text": "SCOTUSblog Founder Tom Goldstein Sentenced to Six Years for Tax Evasion",
+        "published_at": "2026-07-24T23:41:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/kilmeade/status/2080672830299963853",
+        "handle": "kilmeade",
+        "tweet_id": "2080672830299963853",
+        "category": "news",
+        "text": "Trump Weighs 'Massive' Iran Escalation as War Enters Critical Phase",
+        "published_at": "2026-07-24T23:40:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/clashreport/status/2080679521062166881",
+        "handle": "clashreport",
+        "tweet_id": "2080679521062166881",
+        "category": "news",
+        "text": "China Brokers Pakistan-Iran Channel to Restart Diplomacy With Washington",
+        "published_at": "2026-07-24T21:51:38+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/SInow/status/2080670059098145074",
+        "handle": "SInow",
+        "tweet_id": "2080670059098145074",
+        "category": "news",
+        "text": "Barack Obama Surprises WNBA All-Stars at Presidential Center Practice",
+        "published_at": "2026-07-24T21:42:25+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/ajplus/status/2080685186090766442",
+        "handle": "ajplus",
+        "tweet_id": "2080685186090766442",
+        "category": "news",
+        "text": "Activist Sonam Wangchuk Ends 26-Day Hunger Strike as India's 'Cockroach' Protest Movement Intensifies",
+        "published_at": "2026-07-24T19:44:39.84262+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/PTI_News/status/2080691395959128203",
+        "handle": "PTI_News",
+        "tweet_id": "2080691395959128203",
+        "category": "news",
+        "text": "Thirteen Killed Including Infant as Landslide Crushes Taxi in Himachal Pradesh's Lahaul-Spiti",
+        "published_at": "2026-07-24T19:38:01.050485+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/KenRoth/status/2080704856395043227",
+        "handle": "KenRoth",
+        "tweet_id": "2080704856395043227",
+        "category": "news",
+        "text": "ICC Members Vote to Dismiss Prosecutor Karim Khan Over Sexual Misconduct Allegations",
+        "published_at": "2026-07-24T19:36:37.612123+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/GlobeEyeNews/status/2080566289555468531",
+        "handle": "GlobeEyeNews",
+        "tweet_id": "2080566289555468531",
+        "category": "news",
+        "text": "Iran Rejects Trump Ceasefire as US Strikes Enter Third Week, Shipping Routes Choked",
+        "published_at": "2026-07-24T11:49:54+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/CNNnews18/status/2080597952054321627",
+        "handle": "CNNnews18",
+        "tweet_id": "2080597952054321627",
+        "category": "news",
+        "text": "India's 'Cockroach' Protesters Force Government Talks as NEET Paper Leak Crisis Deepens",
+        "published_at": "2026-07-24T11:49:54+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/BDUTT/status/2080225993470710016",
+        "handle": "BDUTT",
+        "tweet_id": "2080225993470710016",
+        "category": "news",
+        "text": "Modi Breaks Silence on Exam Crisis as India Youth Protests Escalate",
+        "published_at": "2026-07-24T07:45:31+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Osint613/status/2080419901827653645",
+        "handle": "Osint613",
+        "tweet_id": "2080419901827653645",
+        "category": "news",
+        "text": "Spain Declares First-Ever Wildfire National Emergency as Blazes Sweep Southern Europe",
+        "published_at": "2026-07-24T07:41:34+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/NDTVWorld/status/2080497686369956048",
+        "handle": "NDTVWorld",
+        "tweet_id": "2080497686369956048",
+        "category": "news",
+        "text": "Indian Migrant Worker Found Dead in Jerusalem Apartment, Israeli Man Arrested",
+        "published_at": "2026-07-24T06:19:07.411154+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/addisstandard/status/2080527315491053673",
+        "handle": "addisstandard",
+        "tweet_id": "2080527315491053673",
+        "category": "news",
+        "text": "Congo's Ebola Death Toll Crosses 1,000 as Experts Warn Outbreak Is Far From Over",
+        "published_at": "2026-07-24T05:56:58.972885+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/TheMuslim786/status/2079866301674328544",
+        "handle": "TheMuslim786",
+        "tweet_id": "2079866301674328544",
+        "category": "news",
+        "text": "Madhya Pradesh Becomes Fourth Indian State to Pass Uniform Civil Code",
+        "published_at": "2026-07-24T03:30:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/TheDebriefing17/status/2079927694976852151",
+        "handle": "TheDebriefing17",
+        "tweet_id": "2079927694976852151",
+        "category": "news",
+        "text": "India-UK Free Trade Deal Takes Effect, First Zero-Duty Goods Land in London",
+        "published_at": "2026-07-24T03:30:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/MOSSADil/status/2080420192778105238",
+        "handle": "MOSSADil",
+        "tweet_id": "2080420192778105238",
+        "category": "news",
+        "text": "Israel's Near-Daily Gaza Strikes Kill Five More as West Bank Violence Surges",
+        "published_at": "2026-07-24T01:46:26.256369+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/anadoluagency/status/2080264216083042704",
+        "handle": "anadoluagency",
+        "tweet_id": "2080264216083042704",
+        "category": "news",
+        "text": "Iran Claims Strikes Destroyed US Patriot Systems and Radar at Gulf Bases",
+        "published_at": "2026-07-24T01:43:33.947821+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/NDTVProfitIndia/status/2080462383085125722",
+        "handle": "NDTVProfitIndia",
+        "tweet_id": "2080462383085125722",
+        "category": "news",
+        "text": "Sonam Wangchuk Ends 26-Day Fast as India's Youth Protest Against Exam Leaks Grows",
+        "published_at": "2026-07-24T01:41:07.769575+00:00"
       },
       {
         "tweet_url": "https://x.com/CurtisHouck/status/2080315533665214625",
@@ -871,19 +1116,19 @@
         "published_at": "2026-07-23T23:45:23+00:00"
       },
       {
-        "tweet_url": "https://x.com/OccupyDemocrats/status/2080393150896701865",
-        "handle": "OccupyDemocrats",
-        "tweet_id": "2080393150896701865",
-        "category": "news",
-        "text": "DOJ Withdraws Subpoenas Against New York Times Reporters After Judge\u2019s Sharp Rebuke",
-        "published_at": "2026-07-23T22:09:54.530311+00:00"
-      },
-      {
         "tweet_url": "https://x.com/EconomicTimes/status/2080289939720372231",
         "handle": "EconomicTimes",
         "tweet_id": "2080289939720372231",
         "category": "news",
         "text": "Oil Surges Past $100 as Houthi Attacks on Saudi Tankers Open Second Front in Iran War",
+        "published_at": "2026-07-23T22:09:54.530311+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/OccupyDemocrats/status/2080393150896701865",
+        "handle": "OccupyDemocrats",
+        "tweet_id": "2080393150896701865",
+        "category": "news",
+        "text": "DOJ Withdraws Subpoenas Against New York Times Reporters After Judge\u2019s Sharp Rebuke",
         "published_at": "2026-07-23T22:09:54.530311+00:00"
       },
       {
@@ -903,6 +1148,14 @@
         "published_at": "2026-07-23T22:00:35+00:00"
       },
       {
+        "tweet_url": "https://x.com/QudsNen/status/2080202277499875663",
+        "handle": "QudsNen",
+        "tweet_id": "2080202277499875663",
+        "category": "news",
+        "text": "Ben Gvir Enters Al-Aqsa Compound on Tisha B'Av, Praises Jewish Prayer",
+        "published_at": "2026-07-23T18:00:00+00:00"
+      },
+      {
         "tweet_url": "https://x.com/dawn_com/status/2080309491476607250",
         "handle": "dawn_com",
         "tweet_id": "2080309491476607250",
@@ -911,12 +1164,12 @@
         "published_at": "2026-07-23T18:00:00+00:00"
       },
       {
-        "tweet_url": "https://x.com/QudsNen/status/2080202277499875663",
-        "handle": "QudsNen",
-        "tweet_id": "2080202277499875663",
+        "tweet_url": "https://x.com/tv9gujarati/status/2079943839792652546",
+        "handle": "tv9gujarati",
+        "tweet_id": "2079943839792652546",
         "category": "news",
-        "text": "Ben Gvir Enters Al-Aqsa Compound on Tisha B'Av, Praises Jewish Prayer",
-        "published_at": "2026-07-23T18:00:00+00:00"
+        "text": "Monsoon Fury Batters Gujarat: One Dead, Over 1,200 Rescued as South Gujarat Drowns",
+        "published_at": "2026-07-23T13:30:00+00:00"
       },
       {
         "tweet_url": "https://x.com/SmartScience/status/2079634271149703442",
@@ -935,14 +1188,6 @@
         "published_at": "2026-07-23T13:30:00+00:00"
       },
       {
-        "tweet_url": "https://x.com/tv9gujarati/status/2079943839792652546",
-        "handle": "tv9gujarati",
-        "tweet_id": "2079943839792652546",
-        "category": "news",
-        "text": "Monsoon Fury Batters Gujarat: One Dead, Over 1,200 Rescued as South Gujarat Drowns",
-        "published_at": "2026-07-23T13:30:00+00:00"
-      },
-      {
         "tweet_url": "https://x.com/dna/status/2080248369868640304",
         "handle": "dna",
         "tweet_id": "2080248369868640304",
@@ -957,14 +1202,6 @@
         "category": "news",
         "text": "Supreme Court Cancels Bail for Accused in Meghalaya Honeymoon Murder Case",
         "published_at": "2026-07-23T11:40:19+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/CNNnews18/status/2080201029828661713",
-        "handle": "CNNnews18",
-        "tweet_id": "2080201029828661713",
-        "category": "news",
-        "text": "Mumbai Cop Suspended After Viral Video Shows Threat to Plant Drugs on Student Protesters",
-        "published_at": "2026-07-23T11:40:07+00:00"
       },
       {
         "tweet_url": "https://x.com/K24English/status/2080196786610712909",
@@ -1045,169 +1282,89 @@
         "category": "news",
         "text": "Trump Declares Iran Ceasefire 'Over' as US Strikes Enter 12th Night and Hormuz Tanker Traffic Stalls",
         "published_at": "2026-07-23T03:55:26+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/cryptorover/status/2080041950326260138",
-        "handle": "cryptorover",
-        "tweet_id": "2080041950326260138",
-        "category": "news",
-        "text": "US House Passes Sweeping Restrictions on Lawmaker Stock Trading",
-        "published_at": "2026-07-22T23:43:04+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/MarioNawfal/status/2079761772836192514",
-        "handle": "MarioNawfal",
-        "tweet_id": "2079761772836192514",
-        "category": "news",
-        "text": "House Passes $95 Billion Budget Framework for Iran War and Election Overhaul",
-        "published_at": "2026-07-22T23:37:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/radar_online/status/2079951986485571661",
-        "handle": "radar_online",
-        "tweet_id": "2079951986485571661",
-        "category": "news",
-        "text": "Daniel Siad, Model Scout Named 2,000 Times in Epstein Files, Found Dead in France",
-        "published_at": "2026-07-22T23:37:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/amnesty/status/2079584764307132610",
-        "handle": "amnesty",
-        "tweet_id": "2079584764307132610",
-        "category": "news",
-        "text": "India's 'Cockroach' Youth Protests Force Parliament Shutdown, Draw Celebrity Support",
-        "published_at": "2026-07-22T21:57:52.004837+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/War_Radar2/status/2079925088770765108",
-        "handle": "War_Radar2",
-        "tweet_id": "2079925088770765108",
-        "category": "news",
-        "text": "Trump Threatens to Destroy Iranian Infrastructure as US-Iran War Escalates",
-        "published_at": "2026-07-22T21:56:38.168645+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/TheQuint/status/2079530264955597124",
-        "handle": "TheQuint",
-        "tweet_id": "2079530264955597124",
-        "category": "news",
-        "text": "Naseeruddin Shah Breaks Down Over Police Crackdown on Students, Compares Delhi Police to ICE Agents",
-        "published_at": "2026-07-22T05:44:20.793878+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/DeItaone/status/2079586728466116998",
-        "handle": "DeItaone",
-        "tweet_id": "2079586728466116998",
-        "category": "news",
-        "text": "Venezuela Confirms Three Hantavirus Deaths as Outbreak Raises Regional Health Alarm",
-        "published_at": "2026-07-22T05:42:18.448165+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/livemint/status/2079795256154051021",
-        "handle": "livemint",
-        "tweet_id": "2079795256154051021",
-        "category": "news",
-        "text": "Assam Floods Claim 21 Lives in 24 Hours as Death Toll Reaches 31",
-        "published_at": "2026-07-22T05:42:13.962175+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/factpostnews/status/2079589789326606400",
-        "handle": "factpostnews",
-        "tweet_id": "2079589789326606400",
-        "category": "news",
-        "text": "House Democrats Launch Probe Into Epstein's Alleged Role as Foreign Agent",
-        "published_at": "2026-07-22T05:42:13.962175+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/cspan/status/2079648990094569521",
-        "handle": "cspan",
-        "tweet_id": "2079648990094569521",
-        "category": "news",
-        "text": "RFK Jr. Declares Cyclospora Outbreak 'Under Control' as Cases Top 7,000 Nationwide",
-        "published_at": "2026-07-22T03:35:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/ScienceAlert/status/2079692767140425857",
-        "handle": "ScienceAlert",
-        "tweet_id": "2079692767140425857",
-        "category": "news",
-        "text": "U.S. Measles Cases Nearly Match 35-Year Record With Five Months Left in 2026",
-        "published_at": "2026-07-22T01:45:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/RpsAgainstTrump/status/2079563670913196340",
-        "handle": "RpsAgainstTrump",
-        "tweet_id": "2079563670913196340",
-        "category": "news",
-        "text": "Pentagon Identifies Sgt. Michael Swinton, Father of Two, as Soldier Killed in Iraq Drone Detonation",
-        "published_at": "2026-07-21T23:47:07+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/EricLDaugh/status/2079578263760916732",
-        "handle": "EricLDaugh",
-        "tweet_id": "2079578263760916732",
-        "category": "news",
-        "text": "Thune Forces Government Funding Showdown, Threatens to Hold Budget Resolution",
-        "published_at": "2026-07-21T23:45:54+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/NASA/status/2079655118165705100",
-        "handle": "NASA",
-        "tweet_id": "2079655118165705100",
-        "category": "news",
-        "text": "NASA Discovers First Binary Star System Where Both Stars Exploded as Supernovae",
-        "published_at": "2026-07-21T21:37:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/NewsWireLK/status/2079641980804452490",
-        "handle": "NewsWireLK",
-        "tweet_id": "2079641980804452490",
-        "category": "news",
-        "text": "Rahul Gandhi Detained Outside Modi's Home Amid India Exam Protest",
-        "published_at": "2026-07-21T19:42:37.100143+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/AsiaMTI/status/2079635016351465856",
-        "handle": "AsiaMTI",
-        "tweet_id": "2079635016351465856",
-        "category": "news",
-        "text": "Japan Protests China's Live-Fire Naval Drill in Disputed Pacific Waters",
-        "published_at": "2026-07-21T19:42:10.916203+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/NewsX/status/2079538271575781817",
-        "handle": "NewsX",
-        "tweet_id": "2079538271575781817",
-        "category": "news",
-        "text": "CJP Sacks Spokesperson Vijeta Dahiya After Viral Burger Video Sparks Backlash",
-        "published_at": "2026-07-21T17:45:58+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/ARISEtv/status/2079471983121641758",
-        "handle": "ARISEtv",
-        "tweet_id": "2079471983121641758",
-        "category": "news",
-        "text": "UK's New PM Burnham Scraps VAT on Electricity Bills in First Policy Move",
-        "published_at": "2026-07-21T15:30:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/realTuckFrumper/status/2079567986940113346",
-        "handle": "realTuckFrumper",
-        "tweet_id": "2079567986940113346",
-        "category": "news",
-        "text": "Fourth Person Dies in New York City's Legionnaires' Disease Outbreak",
-        "published_at": "2026-07-21T15:30:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/Telegraph/status/2079115352202502153",
-        "handle": "Telegraph",
-        "tweet_id": "2079115352202502153",
-        "category": "news",
-        "text": "US Missile Stockpiles Hit Critical Lows as Iran War Drags On",
-        "published_at": "2026-07-21T13:46:01+00:00"
       }
     ],
     "immigration": [
+      {
+        "tweet_url": "https://x.com/CBSNews/status/2080833306585669705",
+        "handle": "CBSNews",
+        "tweet_id": "2080833306585669705",
+        "category": "immigration",
+        "text": "Substance in Houston ICE Shooting Van Tested Negative for Drugs, Prosecutor Confirms",
+        "published_at": "2026-07-25T04:40:46.798954+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/OccupyDemocrats/status/2080760724432040143",
+        "handle": "OccupyDemocrats",
+        "tweet_id": "2080760724432040143",
+        "category": "immigration",
+        "text": "Trump Administration Admits It Canceled Clean Energy Grants Only in States That Voted for Harris",
+        "published_at": "2026-07-25T03:44:30+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Reuters/status/2080830450440794485",
+        "handle": "Reuters",
+        "tweet_id": "2080830450440794485",
+        "category": "immigration",
+        "text": "Appeals Court Rejects Trump's Bid to Revive $100,000 H-1B Visa Fee",
+        "published_at": "2026-07-25T01:38:08+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/RealAmVoice/status/2080678268349349989",
+        "handle": "RealAmVoice",
+        "tweet_id": "2080678268349349989",
+        "category": "immigration",
+        "text": "'Mega Masters' Hearings Pack Immigration Courts as Administration Pushes to Accelerate Deportations",
+        "published_at": "2026-07-24T19:39:31.834137+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/immigrationgirl/status/2080421857975566664",
+        "handle": "immigrationgirl",
+        "tweet_id": "2080421857975566664",
+        "category": "immigration",
+        "text": "US Updates H-1B Debarred Employer List: Four Companies Now Barred From Sponsoring Workers",
+        "published_at": "2026-07-24T19:38:42.922949+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/canadavisa_com/status/2080699013343666216",
+        "handle": "canadavisa_com",
+        "tweet_id": "2080699013343666216",
+        "category": "immigration",
+        "text": "British Columbia Holds First Draw Under New Pathway for Health Authority Workers",
+        "published_at": "2026-07-24T17:42:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/RiaRevealed/status/2080596508433625283",
+        "handle": "RiaRevealed",
+        "tweet_id": "2080596508433625283",
+        "category": "immigration",
+        "text": "US Universities Issue Urgent Advisory as DHS Ends Open-Ended Student Visas",
+        "published_at": "2026-07-24T16:03:45+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/Nairametrics/status/2080528970747900183",
+        "handle": "Nairametrics",
+        "tweet_id": "2080528970747900183",
+        "category": "immigration",
+        "text": "US Announces Global Visa Restrictions Targeting Cybercriminals and Sextortion Networks",
+        "published_at": "2026-07-24T11:50:23+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/MannyLidher/status/2079992823722709423",
+        "handle": "MannyLidher",
+        "tweet_id": "2079992823722709423",
+        "category": "immigration",
+        "text": "Canada PGWP Refusal Rate Hits 25% as Portal Flaws Trip Up Indian Graduates",
+        "published_at": "2026-07-24T09:44:00+00:00"
+      },
+      {
+        "tweet_url": "https://x.com/PNS_News/status/2080368822117073318",
+        "handle": "PNS_News",
+        "tweet_id": "2080368822117073318",
+        "category": "immigration",
+        "text": "DACA Renewal Delays Leave Hundreds of Thousands in Limbo Without Work or Protection",
+        "published_at": "2026-07-24T01:48:43.663155+00:00"
+      },
       {
         "tweet_url": "https://x.com/Normal_2610/status/2080329624052171161",
         "handle": "Normal_2610",
@@ -1295,81 +1452,17 @@
         "category": "immigration",
         "text": "Senate Unveils CLARITY Act Text With Developer Safe Harbor and Ethics Sunset",
         "published_at": "2026-07-23T01:45:27.86974+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/TundeTASH/status/2079587520866644463",
-        "handle": "TundeTASH",
-        "tweet_id": "2079587520866644463",
-        "category": "immigration",
-        "text": "Canada's Express Entry Pool Shrinks to 231,533 as Competition Intensifies",
-        "published_at": "2026-07-22T21:59:34+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/FAIRImmigration/status/2079212781706818021",
-        "handle": "FAIRImmigration",
-        "tweet_id": "2079212781706818021",
-        "category": "immigration",
-        "text": "U.S. Labor Department Launches Sweeping H-1B Visa Fraud Probe With Dozens of Subpoenas",
-        "published_at": "2026-07-22T01:46:00+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/remarks/status/2079684245727981915",
-        "handle": "remarks",
-        "tweet_id": "2079684245727981915",
-        "category": "immigration",
-        "text": "Sen. Cornyn Threatens To Block Trump Ambassador Picks Over PEPFAR Funding Cuts",
-        "published_at": "2026-07-21T23:55:49+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/PaulineHansonOz/status/2079742617735286807",
-        "handle": "PaulineHansonOz",
-        "tweet_id": "2079742617735286807",
-        "category": "immigration",
-        "text": "Four Major US Immigration Rule Changes in 2026 That Every Indian National Needs To Know",
-        "published_at": "2026-07-21T23:53:56+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/canadavisa_com/status/2079683051270090921",
-        "handle": "canadavisa_com",
-        "tweet_id": "2079683051270090921",
-        "category": "immigration",
-        "text": "Canada Reveals Over 265,000 PR Applicants Are Waitlisted Due to Immigration Caps",
-        "published_at": "2026-07-21T23:53:46+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/Forbes/status/2079733211421458601",
-        "handle": "Forbes",
-        "tweet_id": "2079733211421458601",
-        "category": "immigration",
-        "text": "US Passport Drops to 10th in Global Rankings After Two Decades of Decline",
-        "published_at": "2026-07-21T23:46:15+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/Newsweek/status/2079476229942419911",
-        "handle": "Newsweek",
-        "tweet_id": "2079476229942419911",
-        "category": "immigration",
-        "text": "August 2026 Visa Bulletin Delivers Big Family Green Card Gains but Freezes Employment Path for Indians",
-        "published_at": "2026-07-21T21:43:46.494752+00:00"
-      },
-      {
-        "tweet_url": "https://x.com/Zaz25486343/status/2079620181048152164",
-        "handle": "Zaz25486343",
-        "tweet_id": "2079620181048152164",
-        "category": "immigration",
-        "text": "Trump Administration Freezes $1 Billion in Medicaid Payments to California and Minnesota Over Fraud Claims",
-        "published_at": "2026-07-21T17:43:00+00:00"
       }
     ],
     "world-leaders": [
       {
-        "tweet_url": "https://x.com/realDonaldTrump/status/2057968277062582378",
+        "tweet_url": "https://x.com/realDonaldTrump/status/2056827052851105947",
         "handle": "realDonaldTrump",
-        "tweet_id": "2057968277062582378",
+        "tweet_id": "2056827052851105947",
         "category": "world-leaders",
         "article_slug": "",
-        "article_headline": "https://t.co/LU644jFVH2",
-        "published_at": "2026-05-22T23:34:07.000Z",
+        "article_headline": "Horrible Congressman Thomas Massie put out an old Endorsement, from many years ago, of him by me long before I found out that he was the Worst Congressman in the History of our Country. I endorsed Ed Gallrein, a true American Patriot, which Massie knows full well, so the statement that he put out is",
+        "published_at": "2026-05-19T19:59:18.000Z",
         "photos": []
       },
       {
@@ -1385,15 +1478,15 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/WhiteHouse/status/2080428593704800345",
+        "tweet_url": "https://x.com/WhiteHouse/status/2080849144290177266",
         "handle": "WhiteHouse",
-        "tweet_id": "2080428593704800345",
+        "tweet_id": "2080849144290177266",
         "category": "world-leaders",
         "article_slug": "",
-        "article_headline": "\ud83d\udc10 x \ud83d\udc10 https://t.co/sQgpUd7PuR",
-        "published_at": "2026-07-23T23:03:23.000Z",
+        "article_headline": "\"I won three times \u2014 now I'm going to do it again.\" \n\n4 more years? \ud83d\udc40\ud83e\udd23 https://t.co/Y715TjNq2f",
+        "published_at": "2026-07-25T02:54:30.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN8o6mPWIAAAXyG.jpg"
+          "https://pbs.twimg.com/media/HOCpQ93WgAAl8Wi.jpg"
         ]
       },
       {
@@ -1421,39 +1514,37 @@
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/JustinTrudeau/status/2072447400069693648",
+        "tweet_url": "https://x.com/JustinTrudeau/status/2072447375684108650",
         "handle": "JustinTrudeau",
-        "tweet_id": "2072447400069693648",
+        "tweet_id": "2072447375684108650",
         "category": "world-leaders",
         "article_slug": "",
-        "article_headline": "A great day celebrating the best country in the world. Happy Canada Day! \ud83c\udde8\ud83c\udde6 https://t.co/B2kJaY7Ysl",
-        "published_at": "2026-07-01T22:28:59.000Z",
+        "article_headline": "Une belle journ\u00e9e \u00e0 c\u00e9l\u00e9brer le meilleur pays du monde. Bonne f\u00eate du Canada! \ud83c\udde8\ud83c\udde6 https://t.co/M2NF48K8cu",
+        "published_at": "2026-07-01T22:28:53.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HMLP7SAXAAAotL5.jpg"
+          "https://pbs.twimg.com/media/HMLP52xWUAAJIw7.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/ZelenskyyUa/status/2080302279387722037",
+        "tweet_url": "https://x.com/ZelenskyyUa/status/2080955669407015342",
         "handle": "ZelenskyyUa",
-        "tweet_id": "2080302279387722037",
+        "tweet_id": "2080955669407015342",
         "category": "world-leaders",
         "article_slug": "",
-        "article_headline": "I met with Illarion Pavliuk \u2013 a servicemember and a well-known Ukrainian writer. I thanked him for defending Ukraine and everything Ukrainian in every sense of the word. We discussed the further technological advancement of our defense and the future of defense technologies. In particular, Illarion ",
-        "published_at": "2026-07-23T14:41:28.000Z",
-        "photos": [
-          "https://pbs.twimg.com/media/HN632TLX0AAvOmL.jpg"
-        ]
+        "article_headline": "Ukraine continues applying long\u2011range sanctions in response to Russian strikes. Last night, the warriors of our Defense Forces hit targets across different regions of Russia that are fueling this war.\n\nOnce again, a plant in Kirov was struck \u2013 the one supplying components for the weapons Russia uses",
+        "published_at": "2026-07-25T09:57:48.000Z",
+        "photos": []
       },
       {
-        "tweet_url": "https://x.com/EmmanuelMacron/status/2080013983919100293",
+        "tweet_url": "https://x.com/EmmanuelMacron/status/2081118108064858574",
         "handle": "EmmanuelMacron",
-        "tweet_id": "2080013983919100293",
+        "tweet_id": "2081118108064858574",
         "category": "world-leaders",
         "article_slug": "",
-        "article_headline": "Dialogue continu avec la Pr\u00e9sidente @vonderleyen.\n\nNotre cap est clair pour l\u2019Union europ\u00e9enne :\n    \n\u2192 Une Europe plus souveraine et comp\u00e9titive.\n\n\u2192 Une Europe de la d\u00e9fense plus forte avec sa base industrielle.\n\n\u2192 Un soutien sans faille \u00e0 l\u2019Ukraine.\n     \n\u2192 Une concurrence loyale avec nos grands p",
-        "published_at": "2026-07-22T19:35:53.000Z",
+        "article_headline": "Ce soir, nos pens\u00e9es vont aux soldats du feu qui luttent sans rel\u00e2che, ainsi qu\u2019\u00e0 tous nos compatriotes d\u00e9plac\u00e9s, en particulier nos a\u00een\u00e9s et les plus fragiles. Merci aux b\u00e9n\u00e9voles de la Protection civile et aux soignants qui veillent sur eux. Fraternit\u00e9. https://t.co/ojQUGzI9yG",
+        "published_at": "2026-07-25T20:43:16.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN2xsQuWsAEk68e.jpg"
+          "https://pbs.twimg.com/media/HOGd41EW4AAy8An.jpg"
         ]
       },
       {
@@ -1479,121 +1570,121 @@
         ]
       },
       {
-        "tweet_url": "https://x.com/SecRubio/status/2080196165950156827",
+        "tweet_url": "https://x.com/SecRubio/status/2080195412426694729",
         "handle": "SecRubio",
-        "tweet_id": "2080196165950156827",
+        "tweet_id": "2080195412426694729",
         "category": "world-leaders",
         "article_slug": "",
-        "article_headline": "Met with Cambodian Deputy Prime Minister Prak to discuss how our cooperation can advance safety and security, including through combatting scam centers and implementing the Kuala Lumpur Peace Accords. https://t.co/28gljOpP5Q",
-        "published_at": "2026-07-23T07:39:48.000Z",
+        "article_headline": "Great meeting with Thai Deputy PM &amp; FM Sihasak today. \n\nAdvancing our 190+ year partnership with stronger defense ties, progress on reciprocal trade, and continued commitment to the peace accords brokered by President Trump. https://t.co/2FOGfk4Q9p",
+        "published_at": "2026-07-23T07:36:49.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN5XX2UXsAAUQRB.jpg"
+          "https://pbs.twimg.com/media/HN5WrqeWsAAnQ1W.jpg"
         ]
       }
     ],
     "spirituality": [
       {
-        "tweet_url": "https://x.com/SadhguruJV/status/2080121174349197530",
+        "tweet_url": "https://x.com/SadhguruJV/status/2080487841747128520",
         "handle": "SadhguruJV",
-        "tweet_id": "2080121174349197530",
+        "tweet_id": "2080487841747128520",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "We are all born Enlightened. Ignorance is a choice. #SadhguruQuotes https://t.co/J2gyWp3LL1",
-        "published_at": "2026-07-23T02:41:49.000Z",
+        "article_headline": "You are not only bound to the people you like or love. Your bondage to those you dislike or hate is much deeper. #SadhguruQuotes https://t.co/CcTjQie1Rt",
+        "published_at": "2026-07-24T02:58:49.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN4TLhPbgAAMp3l.jpg"
+          "https://pbs.twimg.com/media/HN9gqaRasAA4aDh.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/DeepakChopra/status/2079884167622365670",
+        "tweet_url": "https://x.com/DeepakChopra/status/2080608941986201893",
         "handle": "DeepakChopra",
-        "tweet_id": "2079884167622365670",
+        "tweet_id": "2080608941986201893",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "Stepping back isn't stepping away. Sometimes solitude is simply how we finally go deep.\n\nPre-Order Now: https://t.co/LrnhCfX54N\n\n#InnerPeace #Wisdom #Consciousness https://t.co/pw3ebwYDXP",
-        "published_at": "2026-07-22T11:00:02.000Z",
+        "article_headline": "Are you inhabiting your life, or just getting through it? Aliveness begins the moment we truly arrive.\n\nPre-Order Now: https://t.co/LrnhCfX54N\n\n#LiveFully #Presence #Mindfulness https://t.co/Kf0yD3Ibes",
+        "published_at": "2026-07-24T11:00:02.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HN07oL_XwAAPPll.jpg"
+          "https://pbs.twimg.com/media/HN_OzpDWIAAmP1n.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/bkshivani/status/2079365462706811265",
+        "tweet_url": "https://x.com/bkshivani/status/2079017149100966178",
         "handle": "BKShivani",
-        "tweet_id": "2079365462706811265",
+        "tweet_id": "2079017149100966178",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "https://t.co/BsyHO3xjTU",
-        "published_at": "2026-07-21T00:38:53.000Z",
+        "article_headline": "https://t.co/PGhaXgrlG5",
+        "published_at": "2026-07-20T01:34:49.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HNtj3F7boAAhiox.jpg"
+          "https://pbs.twimg.com/media/HNonEoLaoAADEmZ.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/SriMspeaks/status/2071435593435979963",
+        "tweet_url": "https://x.com/SriMspeaks/status/2068906204919984526",
         "handle": "SriMSpeaks",
-        "tweet_id": "2071435593435979963",
+        "tweet_id": "2068906204919984526",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "The Yoga Sutras of Patanjali prescribe the Yamas and Niyamas, the moral disciplines and rules to be followed by an aspirant seeking spiritual fulfillment - be truthful, do not cause pain to others, be simple, and do good to others. Last but not the least and indeed, most important, strive to attain ",
-        "published_at": "2026-06-29T03:28:25.000Z",
+        "article_headline": "Whenever I think of preparing for a new day, leaving behind the old, I am reminded of the cry of John the Baptist, who declared, 'Voice of one crying in the wilderness, prepare ye, the way of the Lord. Make his path straight!' We need to understand that the straight and narrow path is so difficult t",
+        "published_at": "2026-06-22T03:57:32.000Z",
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/Amritanandamayi/status/2037025203541422230",
+        "tweet_url": "https://x.com/Amritanandamayi/status/2037022085286138093",
         "handle": "Amritanandamayi",
-        "tweet_id": "2037025203541422230",
+        "tweet_id": "2037022085286138093",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "Sri Rama and Sri Krishna did not merely accept fate as it was. In every circumstance of life, they acted in accordance with dharma. They demonstrated the greatness of human effort. ~#Amma https://t.co/m2HzdcO26B",
-        "published_at": "2026-03-26T04:33:49.000Z",
+        "article_headline": "Sri Rama symbolises the epitome of the Rishi-lineage of the great culture of Bharat. \u015ari Rama is synonymous with dharma. He embodies purity of character. ~ #Amma \n\n#RamaNavami\n#SriRama https://t.co/Ubl069fKH4",
+        "published_at": "2026-03-26T04:21:25.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HET3fHTbYAILM1C.jpg"
+          "https://pbs.twimg.com/media/HET0L-QbYAAMUdz.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/EckhartTolle/status/1983675212806693088",
+        "tweet_url": "https://x.com/EckhartTolle/status/1983284890511589614",
         "handle": "EckhartTolle",
-        "tweet_id": "1983675212806693088",
+        "tweet_id": "1983284890511589614",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "\u201cSome changes look negative on the surface but you will soon realize that space is being created in your life for something new to emerge.\u201d - Eckhart Tolle https://t.co/XgIE7nAuPi",
-        "published_at": "2025-10-29T23:20:00.000Z",
+        "article_headline": "\u201cWhenever you deeply accept this moment as it is \u2014 no matter what form it takes \u2014 you are still, you are at peace.\u201d - Eckhart Tolle https://t.co/BoBzfDDSZd",
+        "published_at": "2025-10-28T21:29:00.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/G4L6QnSWEAAA8VD.jpg"
+          "https://pbs.twimg.com/media/G4L5UsRWQAEsGly.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/ByronKatie/status/1677378701724377103",
+        "tweet_url": "https://x.com/ByronKatie/status/1678094164695695360",
         "handle": "ByronKatie",
-        "tweet_id": "1677378701724377103",
+        "tweet_id": "1678094164695695360",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "Join me live every M, T, W from 9-10 am PT on Zoom. xo bk \ud83d\udc9e\nhttps://t.co/FIIYj26ivN\n\n#theworkofbyronkatie #byronkatie #selfinquiry #personalchange #mentalhealthjourney #wellness #selfreflection #healingjourney #selflove #selfwork https://t.co/qIMuBfNNOR",
-        "published_at": "2023-07-07T18:07:01.000Z",
+        "article_headline": "Join me live every M, T, W from 9-10 am PT on Zoom. Let's do The Work! xoxo bk \ud83d\udc9e https://t.co/FIIYj26ivN\n\n#theworkofbyronkatie #byronkatie #selfinquiry #personalchange #mentalhealthjourney #wellness #selfreflection #healingjourney #selflove #selfwork https://t.co/SrjDa1THz5",
+        "published_at": "2023-07-09T17:30:01.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/F0c_CiFWYBk5F2_.jpg"
+          "https://pbs.twimg.com/media/F0nJv-0WwAIpsI2.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/RupertSpira/status/2079702968790835415",
+        "tweet_url": "https://x.com/RupertSpira/status/2080276755323990354",
         "handle": "RupertSpira",
-        "tweet_id": "2079702968790835415",
+        "tweet_id": "2080276755323990354",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "Rupert holds an evening meeting at Dartington Hall, Totnes, Thursday 23 July, 7\u20139pm.\n\nhttps://t.co/zREIqiMBIe https://t.co/QdYcNCw73b",
-        "published_at": "2026-07-21T23:00:01.000Z",
+        "article_headline": "https://t.co/T5UfyKaHeT",
+        "published_at": "2026-07-23T13:00:02.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HNqvxIUXsAAeTPF.jpg"
+          "https://pbs.twimg.com/media/HMETBehXwAEEHON.jpg"
         ]
       },
       {
-        "tweet_url": "https://x.com/DandapaniLLC/status/2079961079128392165",
+        "tweet_url": "https://x.com/DandapaniLLC/status/2080292554566754744",
         "handle": "DandapaniLLC",
-        "tweet_id": "2079961079128392165",
+        "tweet_id": "2080292554566754744",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "What we do for our kitchen sink but don\u2019t for our mind. \n https://t.co/srehlkVfyw",
-        "published_at": "2026-07-22T16:05:39.000Z",
+        "article_headline": "The question is not, \"Am I attached?\" The real question is, \"What am I attached to\u2014and is it helping me rise or pulling me down?\"",
+        "published_at": "2026-07-23T14:02:49.000Z",
         "photos": []
       },
       {
@@ -1607,25 +1698,25 @@
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/OSHO/status/2014763641828946367",
+        "tweet_url": "https://x.com/OSHO/status/2014163862690427025",
         "handle": "Osho",
-        "tweet_id": "2014763641828946367",
+        "tweet_id": "2014163862690427025",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "\u2728 \u201c...One lives silently, peacefully, and prepares himself for the eternal peace.\u201d Osho, The Zen Manifesto\n\n\ud83d\udcab Begin your meditation journey:\n\u2192 iOsho App: https://t.co/JrBhEZT3Jy\n\u2192 Online Courses: https://t.co/fMM3O4liiW\n\u2192 YouTube: https://t.co/FfG94zuRKk\n\n#Osho #Meditation https://t.co/Gvu5LqK7p6",
-        "published_at": "2026-01-23T18:14:19.000Z",
+        "article_headline": "We carry the past like it\u2019s proof of who we are. \ud83e\uddf3 Old stories. Old labels. Old mistakes.\n\nOsho reminds us that the past only has power if we keep reliving it. \ud83c\udf31\n\n\ud83d\udc49\ud83c\udffb Read the full article: https://t.co/JrOjouGi50\n\n#meditation #osho",
+        "published_at": "2026-01-22T02:31:00.000Z",
         "photos": []
       },
       {
-        "tweet_url": "https://x.com/BrahmaKumaris/status/2079546441173967059",
+        "tweet_url": "https://x.com/BrahmaKumaris/status/2080205935520489685",
         "handle": "brahmakumaris",
-        "tweet_id": "2079546441173967059",
+        "tweet_id": "2080205935520489685",
         "category": "spirituality",
         "article_slug": "",
-        "article_headline": "The world has enough people who know what to say.\n\nWhat it longs for is someone whose presence brings peace.\n\nWords may inspire for a moment, but your inner peace has the power to heal, comfort, and transform hearts without saying a single word.\n\nBecome the kind of soul people don't just listen to, ",
-        "published_at": "2026-07-21T12:38:02.000Z",
+        "article_headline": "The mind keeps circling the problem, searching for answers from the same place where the confusion began.\n\nMeditation doesn't always remove the challenge\u2014it lifts your awareness above it.\n\nFrom a higher perspective, what once felt impossible becomes clearer. Sometimes, the solution isn't a new answe",
+        "published_at": "2026-07-23T08:18:38.000Z",
         "photos": [
-          "https://pbs.twimg.com/media/HNwIYGtaUAATFUb.jpg"
+          "https://pbs.twimg.com/media/HN5gRKNbwAASmBJ.jpg"
         ]
       }
     ]
