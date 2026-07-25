@@ -1,0 +1,67 @@
+[
+  {
+    "id": "6c44d982-456e-4a4a-8b2c-a6d7b8fed385",
+    "headline": "Google Pixel 11 Faces $100 Price Hike as RAM Strategy Shifts Across Lineup",
+    "slug": "google-pixel-11-price-hike-ram-strategy-shift",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3941a9c3-50f2-4696-9f84-59ac28dd328a",
+    "headline": "CWG 2026 Day 2: Jhandu Kumar Wins Bronze as Lawn Bowlers and Swimmers Keep India",
+    "slug": "cwg-2026-day-2-jhandu-kumar-bronze-india-lawn-bowls-para-powerlifting",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs regarding Jhandu Kumar's achievement and how it resonates with the Indian community abroad, perhaps highlighting any celebrations or events organized by the diaspora in response to the Commonwealth Games.",
+        "Provide context on how the performances of Indian athletes at the Commonwealth Games impact the perception of India in the global sports arena, particularly among NRIs who may feel a connection to their homeland's achievements.",
+        "Consider adding a section that discusses the significance of these achievements for the Indian diaspora, such as how they inspire younger generations of Indians abroad to engage in sports or contribute to India's growing reputation in international competitions.",
+        "Include a brief overview of the historical performance of Indian athletes at the Commonwealth Games, especially in para sports, to give readers a sense of progress and context."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Commonwealth Games account celebrating Jhandu Kumar's victory or a related highlight from the event to enhance the article's engagement."
+      ]
+    }
+  },
+  {
+    "id": "f5f785c6-4427-42c2-9ed7-00b63d7cf698",
+    "headline": "Moody's Warns AI Spending Threatens Big Tech Credit as Google's Cash Flow Turns ",
+    "slug": "moodys-warns-ai-spending-threatens-big-tech-credit-as-google-cash-flow-turns-negative",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian tech professionals or investors in the U.S. who are affected by these developments in big tech spending and credit ratings. This would provide a more personal connection to the NRI audience.",
+        "Add context regarding how these financial changes may impact Indian tech startups or companies that rely on big tech partnerships, as many NRIs are involved in these sectors. This would help the diaspora understand the broader implications of the news.",
+        "Consider restructuring the article to start with the implications of Google's cash flow situation for the tech industry, followed by Moody's analysis, and then conclude with potential impacts on the NRI community and Indian tech professionals.",
+        "Include a brief section on how these developments could influence investment strategies for NRIs, particularly those with stakes in tech companies or who are considering investments in AI-related ventures."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Moody's or a financial analyst discussing the implications of AI spending on big tech, which would provide real-time insights and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "60be2fd5-e0c5-4bef-9af8-0cfed2873181",
+    "headline": "Appeals Court Rejects Trump's Bid to Revive $100,000 H-1B Visa Fee",
+    "slug": "appeals-court-rejects-trump-bid-to-revive-100000-h1b-visa-fee",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian tech professionals or companies that rely on H-1B visas, discussing how the fee impacts their ability to hire talent from India and the broader implications for the Indian diaspora in the U.S.",
+        "Provide more context about the potential long-term effects of the court's decision on the H-1B visa program, particularly how it might influence future immigration policies and the job market for NRIs in the tech and healthcare sectors.",
+        "Clarify the timeline of events by including a brief overview of the history of H-1B visa fees and any previous legal challenges, which would help readers understand the significance of this ruling in the broader context of immigration policy.",
+        "Include a section that addresses how this ruling may affect future applicants for H-1B visas from India, including any potential changes in application processes or costs."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the H-1B visa fee changes to provide readers with direct access to authoritative information on the topic."
+      ]
+    }
+  }
+]
