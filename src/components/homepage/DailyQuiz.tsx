@@ -370,7 +370,6 @@ export default function DailyQuiz() {
 
   /* ── Result state ── */
   const dayName = DAY_NAMES[new Date().getDay()] || quiz.day_theme;
-  const [showAnswers, setShowAnswers] = useState(false);
   return (
     <section className="mb-14">
       <div className="container">
@@ -400,49 +399,31 @@ export default function DailyQuiz() {
               </span>
             </div>
 
-            {/* Collapsed: toggle to show answers */}
-            <button
-              onClick={() => setShowAnswers((v) => !v)}
-              className="w-full flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors py-1 mb-3"
-            >
-              {showAnswers ? "Hide Questions" : "See Questions & Answers"}
-              <svg
-                className={`w-3.5 h-3.5 transition-transform ${showAnswers ? "rotate-180" : ""}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {/* Answer summary — collapsible */}
-            {showAnswers && (
-              <div className="grid gap-1 mb-4">
-                {quiz.questions.map((q, i) => {
-                  const userAnswer = answers[i];
-                  const correct = userAnswer === q.correct_index;
-                  return (
-                    <div
-                      key={i}
-                      className="flex items-start gap-2 text-sm py-1"
-                    >
-                      <span className="mt-0.5 shrink-0">
-                        {correct ? "✅" : "❌"}
-                      </span>
-                      <div className="min-w-0">
-                        <p className="font-medium leading-snug">{q.question}</p>
-                        {!correct && (
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            Answer: {q.options[q.correct_index]}
-                          </p>
-                        )}
-                      </div>
+            {/* Answer summary */}
+            <div className="grid gap-1 mb-4">
+              {quiz.questions.map((q, i) => {
+                const userAnswer = answers[i];
+                const correct = userAnswer === q.correct_index;
+                return (
+                  <div
+                    key={i}
+                    className="flex items-start gap-2 text-sm py-1"
+                  >
+                    <span className="mt-0.5 shrink-0">
+                      {correct ? "✅" : "❌"}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="font-medium leading-snug">{q.question}</p>
+                      {!correct && (
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Answer: {q.options[q.correct_index]}
+                        </p>
+                      )}
                     </div>
-                  );
-                })}
-              </div>
-            )}
+                  </div>
+                );
+              })}
+            </div>
 
             <div className="flex items-center justify-center gap-3">
               <button
