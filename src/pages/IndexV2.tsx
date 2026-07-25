@@ -35,7 +35,6 @@ import AILeaderboard from "@/components/AILeaderboard";
 import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import ArticleCard from "@/components/ArticleCard";
 import CategorySubTopics, { hasSubTopics } from "@/components/homepage/CategorySubTopics";
-import SponsoredBanner from "@/components/SponsoredBanner";
 import "@/components/homepage/homepage-v2.css";
 
 import {
@@ -599,7 +598,6 @@ export default function IndexV2() {
         <TweetScroll category="technology" />
 
         {/* 11. Entertainment (horizontal ribbon — portrait, 8 cards) */}
-        <SponsoredBanner />
         <RibbonSection
           title="Entertainment"
           borderColor="#AD1457"
