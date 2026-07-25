@@ -1,0 +1,164 @@
+[
+  {
+    "id": "6c44d982-456e-4a4a-8b2c-a6d7b8fed385",
+    "headline": "Google Pixel 11 Faces $100 Price Hike as RAM Strategy Shifts Across Lineup",
+    "slug": "google-pixel-11-price-hike-ram-strategy-shift",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5d3990a2-a239-48f9-8b28-21a49bf10830",
+    "headline": "Trump Returns to White House Correspondents' Dinner Three Months After Assassina",
+    "slug": "trump-returns-whca-dinner-three-months-after-assassination-attempt",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives on how the assassination attempt and Trump's return to the dinner may impact NRIs' views on U.S. politics and their engagement with American media.",
+        "Provide context on how the White House Correspondents' Dinner is perceived by the Indian diaspora, including any notable NRIs who have attended in the past or commented on the event.",
+        "Expand on the implications of the security measures taken at the event, particularly how they reflect broader trends in political safety that may concern NRIs living in the U.S. and abroad.",
+        "Include a quote or reaction from an NRI journalist or commentator regarding the significance of the event and Trump's remarks, to give a more personal touch and relevance to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official White House tweet regarding the security measures or the event itself to provide authoritative context.",
+        "Consider embedding a relevant video clip from the dinner that highlights Trump's speech or the security concerns raised, which could enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "aa6bebe8-c395-47b1-9873-d5a6cc005aac",
+    "headline": "Trump Administration Admits It Canceled Clean Energy Grants Only in States That ",
+    "slug": "trump-admin-admits-canceling-clean-energy-grants-harris-states-only",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs regarding the impact of these funding cuts on clean energy initiatives in India or how similar policies might affect their investments back home.",
+        "Provide context on how these funding cuts could affect clean energy projects that involve Indian companies or NRIs, potentially including quotes from industry experts or diaspora leaders.",
+        "Clarify the timeline of events, particularly the significance of the October 2025 date mentioned, as it seems to be a typographical error. This could confuse readers about the timeline of the Trump administration's actions.",
+        "Include a brief explanation of how clean energy funding impacts global climate initiatives, especially in relation to India's commitments, to give readers a broader understanding of the implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the implications of these funding cuts on immigration policies or the clean energy sector, which could provide additional context for NRIs interested in the intersection of immigration and environmental policy."
+      ]
+    }
+  },
+  {
+    "id": "a2b7e145-6a0d-4c8f-9934-26ed1c44b3fb",
+    "headline": "Nasdaq Drops 2.1% for the Week as AI Spending Fears Hammer Memory Chip Stocks",
+    "slug": "nasdaq-drops-2-percent-weekly-loss-memory-chip-selloff-ai-spending",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian tech professionals or investors in the US regarding the impact of AI spending on the tech market. This could provide a unique perspective relevant to NRIs.",
+        "Add a section discussing how fluctuations in the Nasdaq and memory chip stocks could affect Indian investors or companies with ties to the US market, particularly those involved in technology or semiconductor manufacturing.",
+        "Provide context on how the performance of the Nasdaq and specific stocks like Sandisk and Micron might influence investment strategies for NRIs, especially those looking to diversify their portfolios.",
+        "Include a brief analysis of how the current market conditions might affect remittances or investments from NRIs back to India, linking the financial performance to the broader economic implications for the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed the official Nasdaq Twitter account's tweet about the weekly performance to provide real-time updates and credibility.",
+        "Consider embedding a relevant video from a financial analyst discussing the implications of AI spending on memory chip stocks, which could enhance understanding for readers."
+      ]
+    }
+  },
+  {
+    "id": "f3249161-30e6-4134-91bd-c3e3181a3805",
+    "headline": "Jadumani Singh Batters Scottish Favourite to Storm Into CWG 2026 Boxing Pre-Quar",
+    "slug": "jadumani-singh-batters-scottish-favourite-cwg-2026-boxing",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs in the UK who may have attended the match or are following Jadumani's journey. This could highlight the connection between the Indian diaspora and Indian athletes competing abroad.",
+        "Provide more context about how Jadumani's performance impacts the perception of Indian boxing within the NRI community, especially in relation to the Commonwealth Games and how they view Indian athletes on international platforms.",
+        "Add a brief section on the significance of the Commonwealth Games for NRIs and how events like these foster a sense of pride and connection to India for those living abroad.",
+        "Include a comparison of Jadumani's achievements with other Indian boxers who have competed in the Commonwealth Games, particularly those who have a strong following among the NRI community."
+      ],
+      "embed_opportunities": [
+        "Embed the official Commonwealth Games tweet announcing Jadumani's victory or a highlight clip of his match to provide visual context and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "d8f48930-a1bb-4351-93b2-c10b0bd28292",
+    "headline": "Ramayana Trailer Postponed as Sony Pictures Signs On for Global Distribution",
+    "slug": "ramayana-trailer-postponed-sony-pictures-global-distribution",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs or Indian communities abroad regarding their anticipation for the film and its global significance. This could highlight how the Ramayana's international release resonates with their cultural identity.",
+        "Add context about the significance of the Ramayana in Indian culture and how its global distribution could impact the perception of Indian cinema among international audiences, particularly in the diaspora.",
+        "Consider restructuring the article to first introduce the cultural significance of the Ramayana before diving into the details of the trailer postponement. This would provide readers with a clearer understanding of why this news is important.",
+        "Include a brief section discussing the implications of this partnership with Sony Pictures for future Indian films, especially those targeting the NRI audience, to provide depth and context."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a prominent NRI figure or cultural organization expressing their thoughts on the global release of the Ramayana, which would enhance the article's connection to the diaspora."
+      ]
+    }
+  },
+  {
+    "id": "385a0045-76ac-436c-beb5-bbba058e8df6",
+    "headline": "Amarnath Yatra Resumes After Six-Day Weather Halt as Monsoon Recedes in Kashmir",
+    "slug": "amarnath-yatra-resumes-six-day-weather-halt-monsoon-kashmir",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including information on how NRIs can participate in the Amarnath Yatra, such as travel packages, virtual participation options, or community events organized by Indian diaspora groups in various countries.",
+        "Provide more context about the significance of the Amarnath Yatra for NRIs, including testimonials or quotes from diaspora members who have participated in the pilgrimage, to enhance the emotional connection.",
+        "Add a section discussing the impact of the pilgrimage's disruption on the diaspora, such as how it affects their plans to visit India or participate in cultural events related to the Yatra.",
+        "Clarify the timeline and logistics for NRIs planning to visit the Amarnath Yatra, including travel advisories, safety measures, and any necessary permits or registrations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Jammu and Kashmir tourism department or the India Meteorological Department regarding the resumption of the Yatra and safety measures in place."
+      ]
+    }
+  },
+  {
+    "id": "44eb0e20-2a52-4504-89d7-cf6d2d2eb29e",
+    "headline": "Sons of Immigrant Killed by ICE in Houston Demand Independent Investigation",
+    "slug": "sons-immigrant-killed-ice-houston-demand-investigation",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from the Indian diaspora regarding immigration enforcement and its implications for immigrant communities in the U.S. This could help connect the story to the NRI audience more effectively.",
+        "Provide additional context about the broader implications of ICE actions on immigrant families, particularly focusing on how such incidents affect the diaspora community and their views on U.S. immigration policies.",
+        "Clarify the timeline and details of the incidents mentioned, particularly the previous high-profile shootings, to give readers a more comprehensive understanding of the pattern of violence and its impact on immigrant communities.",
+        "Include quotes or statements from NRI organizations or leaders that address the ongoing immigration issues, which would resonate with the diaspora audience and provide a more global perspective on the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding immigration enforcement policies to provide readers with direct information from the agency and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "a113fcdf-e410-4732-924e-cce3bfb666b6",
+    "headline": "HCLTech Commits $1.5 Billion to Build India's First Sovereign AI Data Centre in ",
+    "slug": "hcltech-announces-1-5-billion-ai-data-centre-odisha-sarvam",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs in the tech industry about the significance of this investment for India's global tech positioning and how it might influence their own businesses or investments back home.",
+        "Provide context about how this investment aligns with the Indian government's initiatives to attract foreign investment and promote technology development, which could resonate with NRIs who are interested in contributing to India's growth.",
+        "Include a section discussing potential implications for the Indian diaspora, such as job opportunities for NRIs in the tech sector or how this investment might affect tech startups that NRIs are involved with.",
+        "Clarify the potential impact of this data center on the global AI landscape, particularly how it positions India in relation to other countries, which would be of interest to NRIs looking to understand the broader implications of such investments."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from HCLTech announcing the investment, as it would provide direct insight into the company's perspective and enhance the article's credibility."
+      ]
+    }
+  }
+]
