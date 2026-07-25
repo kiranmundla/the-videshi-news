@@ -23,7 +23,7 @@ const DAY_THEMES: Record<number, string> = {
   3: "Geography & Travel",
   4: "Indian History & Culture",
   5: "Food & Regional Cuisines",
-  6: "Sports & Cricket",
+  6: "Sports & Indian Athletes",
   0: "Mixed Weekly Review",
 };
 
