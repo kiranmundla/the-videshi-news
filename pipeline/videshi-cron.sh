@@ -177,6 +177,15 @@ case "$1" in
 
   ## === STATUS ===
 
+
+  pulse-refresh)
+    run_job "pulse-refresh" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.twitterapi-io; set +a; \
+      python3 -u refresh-pulse-xapi.py && \
+      cd $REPO && git add -A public/data/tech-buzz.json && \
+      git diff --cached --quiet || git commit -m 'data: pulse refresh' && git push origin main"
+    ;;
+
   status)
     echo "=== Recent errors ==="
     tail -20 "$LOGDIR/_errors.log" 2>/dev/null || echo "No errors"
@@ -192,7 +201,7 @@ case "$1" in
     ;;
 
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|pulse-refresh|status}"
     exit 1
     ;;
 esac
