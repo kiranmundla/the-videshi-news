@@ -110,6 +110,8 @@ export default function ThePulse() {
     setVotes(newVotes);
     setVotedIndex(optionIndex);
     saveVote(poll.id, optionIndex);
+    setJustVoted(true);
+    setShowResults(true);
 
     // Animate after a tick
     requestAnimationFrame(() => {
@@ -153,6 +155,8 @@ export default function ThePulse() {
   if (loading || !poll) return null;
 
   const hasVoted = votedIndex !== null;
+  // On page refresh with existing vote, start collapsed; during live vote session, stays expanded
+  const [showResults, setShowResults] = useState(false);
 
   return (
     <section className="mb-14">
@@ -195,8 +199,34 @@ export default function ThePulse() {
             {poll.question}
           </h3>
 
-          {/* Options */}
-          <div className="space-y-2.5">
+          {/* Already voted — collapsed toggle */}
+          {hasVoted && !showResults && (
+            <button
+              onClick={() => { setShowResults(true); requestAnimationFrame(() => setAnimating(true)); }}
+              className="w-full flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors py-2 mb-1"
+            >
+              See Results
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Options / Results */}
+          {(!hasVoted || showResults) && (
+            <>
+              {hasVoted && (
+                <button
+                  onClick={() => setShowResults(false)}
+                  className="w-full flex items-center justify-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors py-1 mb-2"
+                >
+                  Hide Results
+                  <svg className="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              )}
+              <div className="space-y-2.5">
             {poll.options.map((option, idx) => {
               const pct = getPercentage(idx);
               const isLeading = idx === leadingIndex && totalVotes > 0;
@@ -267,8 +297,9 @@ export default function ThePulse() {
                 </div>
               );
             })}
-          </div>
-
+              </div>
+            </>
+          )}
           {/* Footer — vote count after voting */}
           {hasVoted && (
             <p className="text-xs text-gray-400 mt-3 text-center">
