@@ -200,8 +200,27 @@ case "$1" in
     done
     ;;
 
+  catchup)
+    # Run on container boot (@reboot) — catch up on hourly jobs missed during freeze
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup starting" >> "$LOGDIR/catchup.log"
+    run_job "live" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u videshi-pib-photos.py ingest 2>&1 | tail -3; \
+      python3 -u videshi-markets.py 2>&1 | tail -3; \
+      python3 -u videshi-market-charts.py 2>&1 | tail -3; \
+      python3 -u videshi-ipl.py 2>&1 | tail -3; \
+      python3 -u videshi-snapshots.py 2>&1 | tail -3"
+    run_job "v2-ingest" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
+      timeout 1200 python3 -u v3-ingest.py"
+    run_job "visa-alerts" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.resend; set +a; \
+      timeout 120 python3 -u pipeline/visa-alert-sender.py"
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup done" >> "$LOGDIR/catchup.log"
+    ;;
+
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|pulse-refresh|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|pulse-refresh|catchup|status}"
     exit 1
     ;;
 esac

@@ -5,6 +5,7 @@ interface SponsoredListing {
   title: string;
   description: string;
   image_url: string;
+  photos: string[];
   contact_name: string;
   contact_email: string;
   slug: string;
@@ -13,6 +14,7 @@ interface SponsoredListing {
 
 export default function SponsoredBanner() {
   const [listing, setListing] = useState<SponsoredListing | null>(null);
+  const [activePhoto, setActivePhoto] = useState(0);
 
   useEffect(() => {
     fetch("/data/classifieds.json")
@@ -22,38 +24,66 @@ export default function SponsoredBanner() {
           (c: any) => c.category === "Sponsored" && c.status === "active"
         );
         if (sponsored.length > 0) {
-          // Pick a random one if multiple
           setListing(sponsored[Math.floor(Math.random() * sponsored.length)]);
         }
       })
       .catch(() => {});
   }, []);
 
+  // Auto-rotate photos every 3s
+  useEffect(() => {
+    if (!listing?.photos?.length || listing.photos.length <= 1) return;
+    const timer = setInterval(() => {
+      setActivePhoto((p) => (p + 1) % listing.photos.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [listing]);
+
   if (!listing) return null;
 
-  const truncatedDesc = listing.description.length > 160
-    ? listing.description.slice(0, 160).replace(/\s+\S*$/, "") + "…"
+  const photos = listing.photos?.length ? listing.photos : listing.image_url ? [listing.image_url] : [];
+  const truncatedDesc = listing.description.length > 180
+    ? listing.description.slice(0, 180).replace(/\s+\S*$/, "") + "…"
     : listing.description;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 my-6">
-      <div className="relative overflow-hidden rounded-xl border border-stone-200 bg-gradient-to-r from-stone-50 to-amber-50/30">
+    <div className="mx-auto max-w-5xl px-4 my-8">
+      <div className="relative overflow-hidden rounded-xl border border-stone-200 bg-gradient-to-r from-stone-50 to-amber-50/30 shadow-sm">
         <div className="flex flex-col sm:flex-row items-stretch">
-          {/* Image */}
-          {listing.image_url && (
-            <div className="sm:w-48 w-full h-48 sm:h-auto flex-shrink-0">
-              <img
-                src={listing.image_url}
-                alt={listing.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+          {/* Photo carousel */}
+          {photos.length > 0 && (
+            <div className="relative sm:w-64 w-full h-80 sm:h-auto flex-shrink-0 overflow-hidden bg-stone-100">
+              {photos.map((url, i) => (
+                <img
+                  key={url}
+                  src={url}
+                  alt={`${listing.title} - photo ${i + 1}`}
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+                  style={{ opacity: i === activePhoto ? 1 : 0 }}
+                  loading={i === 0 ? "eager" : "lazy"}
+                />
+              ))}
+              {photos.length > 1 && (
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10">
+                  {photos.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActivePhoto(i)}
+                      className={`h-1.5 rounded-full transition-all ${
+                        i === activePhoto
+                          ? "bg-white w-4"
+                          : "bg-white/50 hover:bg-white/70 w-1.5"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
           {/* Content */}
-          <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="flex-1 p-5 sm:p-6 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-2.5">
               <span className="text-[10px] font-semibold tracking-widest uppercase text-amber-700 bg-amber-100 px-2 py-0.5 rounded">
                 Sponsored
               </span>
@@ -63,10 +93,10 @@ export default function SponsoredBanner() {
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-semibold text-[#0B1D3A] leading-snug mb-1.5">
+            <h3 className="text-base sm:text-lg font-semibold text-[#0B1D3A] leading-snug mb-2">
               {listing.title}
             </h3>
-            <p className="text-sm text-stone-600 leading-relaxed mb-3">
+            <p className="text-sm text-stone-600 leading-relaxed mb-4">
               {truncatedDesc}
             </p>
             <a
@@ -81,8 +111,8 @@ export default function SponsoredBanner() {
           </div>
         </div>
 
-        {/* Subtle branding */}
-        <div className="absolute top-2 right-3 text-[9px] text-stone-300 tracking-wide uppercase">
+        {/* Ad marker */}
+        <div className="absolute top-2.5 right-3 text-[9px] text-stone-300 tracking-wide uppercase">
           Ad
         </div>
       </div>
