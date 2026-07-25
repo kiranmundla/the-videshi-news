@@ -27,15 +27,23 @@ export default class ChunkErrorBoundary extends React.Component<
 
     if (isChunkError) {
       const key = "chunk_reload_ts";
+      const count = Number(sessionStorage.getItem(key + "_n") || 0);
       const last = Number(sessionStorage.getItem(key) || 0);
-      // Auto-reload once per 30 seconds max to prevent loops
-      if (Date.now() - last > 30_000) {
+      const elapsed = Date.now() - last;
+
+      // Auto-reload up to 3 times with increasing delay, then show prompt
+      if (count < 3 && elapsed > 5_000) {
         sessionStorage.setItem(key, String(Date.now()));
+        sessionStorage.setItem(key + "_n", String(count + 1));
         // Cache-busting navigation — reload() can re-serve stale chunks on mobile
         const url = new URL(window.location.href);
         url.searchParams.set("_cb", String(Date.now()));
         window.location.replace(url.toString());
         return;
+      }
+      // Reset counter after 2 minutes so future errors can auto-reload again
+      if (elapsed > 120_000) {
+        sessionStorage.setItem(key + "_n", "0");
       }
     }
   }
@@ -45,11 +53,12 @@ export default class ChunkErrorBoundary extends React.Component<
       return (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "60vh", gap: 16, fontFamily: "var(--font-sans, sans-serif)" }}>
           <p style={{ color: "hsl(var(--muted-foreground))", fontSize: 15 }}>
-            A newer version is available.
+            Something went wrong loading this page.
           </p>
           <button
             onClick={() => {
-              // Cache-busting hard navigation
+              // Reset retry counter and hard reload
+              sessionStorage.setItem("chunk_reload_ts_n", "0");
               const url = new URL(window.location.href);
               url.searchParams.set("_cb", String(Date.now()));
               window.location.replace(url.toString());
