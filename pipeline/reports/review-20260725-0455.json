@@ -1,0 +1,138 @@
+[
+  {
+    "id": "6c44d982-456e-4a4a-8b2c-a6d7b8fed385",
+    "headline": "Google Pixel 11 Faces $100 Price Hike as RAM Strategy Shifts Across Lineup",
+    "slug": "google-pixel-11-price-hike-ram-strategy-shift",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5a6d58e7-bae1-4001-89df-aeb9a583496a",
+    "headline": "India Approves First Dengue Vaccine as Monsoon Season Drives Fresh Outbreaks",
+    "slug": "india-approves-first-dengue-vaccine-qdenga-takeda",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how the approval of QDENGA may impact Indian communities abroad, particularly in regions with significant NRI populations, such as the Middle East and the UK, where dengue outbreaks may also affect them.",
+        "Provide context on the implications of this vaccine approval for NRIs traveling to India during the monsoon season, including any recommendations or guidelines for vaccination before travel.",
+        "Include statistics or quotes from health officials or diaspora health organizations that address the concerns of NRIs regarding dengue, which would provide a more personal and relatable perspective for the audience.",
+        "Clarify the timeline for when QDENGA will be available in India and whether there are plans for distribution in countries with large Indian populations, which would be relevant for NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of Health regarding the approval of QDENGA to provide authoritative context and updates.",
+        "Consider embedding a video from a health expert discussing the importance of the dengue vaccine for both residents and NRIs traveling to India."
+      ]
+    }
+  },
+  {
+    "id": "a3a24603-6efe-41d0-b3df-10135bd22ab5",
+    "headline": "Substance in Houston ICE Shooting Van Tested Negative for Drugs, Prosecutor Conf",
+    "slug": "houston-ice-shooting-van-substance-negative-drugs-test",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from the Indian diaspora regarding immigration policies in the U.S. and how incidents like this impact their communities. This could involve quotes from Indian immigrant advocacy groups or personal stories from NRIs who have faced similar situations.",
+        "Provide more context about the implications of this incident for immigrant communities, particularly how it might affect perceptions of ICE and law enforcement among NRIs. This could include statistics or expert opinions on the broader impact of such incidents on immigrant safety and rights.",
+        "Consider restructuring the article to include a section that specifically addresses the NRI community's concerns about immigration enforcement, perhaps with a subheading that highlights this focus. This would help in creating a more defined narrative that resonates with the site's audience.",
+        "Add a concluding paragraph that discusses potential policy implications or calls to action for the NRI community, encouraging readers to engage with advocacy efforts or share their own experiences related to immigration enforcement."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from an Indian diaspora organization or an immigration rights group that comments on the incident, providing a direct connection to the NRI perspective."
+      ]
+    }
+  },
+  {
+    "id": "77e0ea6e-6d7b-4c4c-83dc-4847472cba9c",
+    "headline": "Nvidia and SK Group Unveil $500 Billion AI Initiative at South Korea Summit",
+    "slug": "nvidia-sk-group-500-billion-ai-initiative-south-korea-summit",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian tech professionals or entrepreneurs in the U.S. who are involved in AI or semiconductor industries, discussing how this initiative might impact their work or the broader NRI community.",
+        "Provide context on how this $500 billion initiative could influence the global tech landscape, particularly for Indian companies or startups in the AI sector, which would resonate with the NRI audience.",
+        "Consider adding a section that discusses the implications of this partnership for Indian NRIs working in technology, such as potential job opportunities or collaborations that may arise from this initiative.",
+        "Clarify the timeline and specific benefits for the NRI community, such as how advancements in AI and memory technology could affect Indian tech firms or investments in the U.S."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Nvidia or SK Group announcing the initiative, as it would provide authenticity and a direct connection to the companies involved."
+      ]
+    }
+  },
+  {
+    "id": "d9611d5f-df6a-419a-b1bb-a4d651e8f7a8",
+    "headline": "Meta Launches Standalone Seller App for Facebook Marketplace and Free Verificati",
+    "slug": "meta-launches-seller-app-facebook-marketplace-free-verification",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how the new Seller app could benefit Indian sellers or businesses in the diaspora, particularly in terms of reaching customers back in India or connecting with other NRIs.",
+        "Provide context on how the free verification badge could impact trust and safety for NRIs who use Facebook Marketplace to sell goods, especially in relation to cross-border transactions.",
+        "Include a section on how these changes might affect Indian users specifically, such as potential implications for Indian e-commerce or how the app could be used by NRIs looking to sell items to family or friends in India.",
+        "Add a quote or perspective from an NRI seller or expert in the Indian e-commerce space to give a personal touch and enhance relatability for the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official Meta announcement or a relevant tweet from Meta that discusses the new features, which would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "21c6b7f2-9c6c-4b12-9c30-c4df29be2b9c",
+    "headline": "Trump Orders Warning Signs Outside Smithsonian Over 'Inaccurate' History Exhibit",
+    "slug": "trump-orders-smithsonian-warning-signs-history-exhibits",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian NRIs regarding the implications of this executive order on cultural representation and historical narratives in the U.S. This could involve quotes or perspectives from Indian-American historians or community leaders.",
+        "Provide context on how this executive order may affect museums and cultural institutions that cater to the Indian diaspora in the U.S. This could include a discussion on how similar actions might influence the portrayal of Indian history and culture in American institutions.",
+        "Expand on the implications of the executive order for NRIs who may visit the Smithsonian or engage with American history. Discuss how this might affect their understanding of American identity and history, especially in the context of their own cultural backgrounds.",
+        "Clarify the potential legal or political ramifications of this executive order, particularly how it might influence future administrations or policies affecting cultural institutions, which could be of interest to the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any related immigration policies or historical context that may connect to the broader narrative of American history and its representation, which could resonate with the NRI audience."
+      ]
+    }
+  },
+  {
+    "id": "5d3990a2-a239-48f9-8b28-21a49bf10830",
+    "headline": "Trump Returns to White House Correspondents' Dinner Three Months After Assassina",
+    "slug": "trump-returns-whca-dinner-three-months-after-assassination-attempt",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "44eb0e20-2a52-4504-89d7-cf6d2d2eb29e",
+    "headline": "Sons of Immigrant Killed by ICE in Houston Demand Independent Investigation",
+    "slug": "sons-immigrant-killed-ice-houston-demand-investigation",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "385a0045-76ac-436c-beb5-bbba058e8df6",
+    "headline": "Amarnath Yatra Resumes After Six-Day Weather Halt as Monsoon Recedes in Kashmir",
+    "slug": "amarnath-yatra-resumes-six-day-weather-halt-monsoon-kashmir",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d8f48930-a1bb-4351-93b2-c10b0bd28292",
+    "headline": "Ramayana Trailer Postponed as Sony Pictures Signs On for Global Distribution",
+    "slug": "ramayana-trailer-postponed-sony-pictures-global-distribution",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
