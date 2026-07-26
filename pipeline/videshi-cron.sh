@@ -104,6 +104,18 @@ case "$1" in
 
   ## === DAILY ===
 
+
+  topic-cleanup)
+    run_job "topic-cleanup" "set -a; source $ENV/.env.supabase; set +a; \
+      CUTOFF=\$(date -u -d '3 days ago' '+%Y-%m-%dT%H:%M:%SZ'); \
+      curl -sS -X PATCH \"https://\${SUPABASE_URL#https://}/rest/v1/p2_topics?status=eq.pending&created_at=lt.\${CUTOFF}\" \
+        -H \"apikey: \$SUPABASE_SERVICE_ROLE_KEY\" \
+        -H \"Authorization: Bearer \$SUPABASE_SERVICE_ROLE_KEY\" \
+        -H 'Content-Type: application/json' \
+        -H 'Prefer: count=exact' \
+        -d '{\"status\":\"rejected\",\"evaluated_at\":\"'\"\$(date -u '+%Y-%m-%dT%H:%M:%SZ')\"'\"}' \
+        -w '\\nHTTP %{http_code}' -D /dev/stderr 2>&1 | tail -3"
+    ;;
   events-cleanup)
     run_job "events-cleanup" "set -a; source $ENV/.env.supabase; set +a; \
       curl -sS -X POST 'https://api.supabase.com/v1/projects/lboecaekpynbpyijrbfz/database/query' \

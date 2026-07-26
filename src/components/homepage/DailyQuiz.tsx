@@ -60,6 +60,8 @@ function saveCompletedQuiz(score: number, answers: number[]) {
     JSON.stringify({ date: getTodayKey(), score, answers })
   );
   updateStreak(score);
+  // Record completion server-side for engagement tracking
+  supabase.rpc("record_quiz_completion", { p_quiz_date: getTodayKey() }).then();
 }
 
 function getStreak(): number {
