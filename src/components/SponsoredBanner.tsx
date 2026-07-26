@@ -93,20 +93,13 @@ export default function SponsoredBanner() {
                 </span>
               )}
             </div>
-            <h3 className="text-base sm:text-lg font-semibold text-[#0B1D3A] leading-snug mb-2">
-              {listing.title}
-            </h3>
-            <p className="text-sm text-stone-600 leading-relaxed mb-4">
-              {truncatedDesc}
-            </p>
-            <a
-              href={`/classifieds/${listing.slug}`}
-              className="inline-flex items-center text-sm font-medium text-[#A32D2F] hover:text-[#8a2426] transition-colors"
-            >
-              Learn more
-              <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+            <a href={`/classifieds/${listing.slug}`} className="block group">
+              <h3 className="text-base sm:text-lg font-semibold text-[#0B1D3A] leading-snug mb-2 group-hover:text-[#A32D2F] transition-colors">
+                {listing.title}
+              </h3>
+              <p className="text-sm text-stone-600 leading-relaxed mb-4">
+                {truncatedDesc}
+              </p>
             </a>
           </div>
         </div>

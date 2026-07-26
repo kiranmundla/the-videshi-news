@@ -934,7 +934,21 @@ export default function ClassifiedDetailPage() {
                 <span className="text-lg">📋</span> Details
               </h2>
               <p className="whitespace-pre-wrap text-foreground/80 leading-relaxed text-sm">
-                {item.description}
+                {item.description.split(/(https?:\/\/[^\s]+|(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)?)/).map((part, i) =>
+                  /^(https?:\/\/|(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})/.test(part) ? (
+                    <a
+                      key={i}
+                      href={part.startsWith("http") ? part : `https://${part}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline break-all"
+                    >
+                      {part}
+                    </a>
+                  ) : (
+                    <span key={i}>{part}</span>
+                  )
+                )}
               </p>
             </div>
           )}
