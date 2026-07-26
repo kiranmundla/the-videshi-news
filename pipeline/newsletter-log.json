@@ -846,5 +846,15 @@
     "errors": 0,
     "hero_slug": "samsung-sk-hynix-950-billion-memory-chip-deals-us-tech",
     "story_count": 5
+  },
+  {
+    "sent_at": "2026-07-26T14:00:10.094447+00:00Z",
+    "subject": "The Videshi Weekly \u2014 Jul 19\u201326, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "fda-approves-otc-tylenol-naproxen-combination-pill",
+    "story_count": 8,
+    "event_count": 5
   }
 ]
