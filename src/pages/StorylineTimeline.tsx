@@ -40,6 +40,7 @@ interface Storyline {
   article_count: number;
   first_article_at: string | null;
   last_article_at: string | null;
+  metadata: any | null;
 }
 
 interface LinkedArticle {
@@ -61,6 +62,88 @@ function formatDateShort(iso: string | null): string {
   if (!iso) return "";
   const d = new Date(iso);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+/* ── Medal Tracker Card ───────────────────────────────────────────────── */
+function MedalTracker({ data }: { data: any }) {
+  if (!data) return null;
+  const { gold = 0, silver = 0, bronze = 0, total = 0, updated, medalists = [] } = data;
+
+  return (
+    <div style={{
+      marginBottom: 24, borderRadius: 12,
+      background: "linear-gradient(135deg, #0B1D3A 0%, #1a3a5c 100%)",
+      padding: "20px 24px", color: "#fff",
+    }}>
+      {/* Header row */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 20 }}>🇮🇳</span>
+          <span style={{ fontSize: 16, fontWeight: 700, letterSpacing: "0.02em" }}>India Medal Tally</span>
+        </div>
+        {updated && (
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>
+            Updated {new Date(updated + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+          </span>
+        )}
+      </div>
+
+      {/* Medal counts */}
+      <div style={{ display: "flex", gap: 12, marginBottom: medalists.length > 0 ? 18 : 0 }}>
+        {[
+          { emoji: "🥇", count: gold, label: "Gold", bg: "rgba(255,215,0,0.15)", border: "rgba(255,215,0,0.3)" },
+          { emoji: "🥈", count: silver, label: "Silver", bg: "rgba(192,192,192,0.15)", border: "rgba(192,192,192,0.3)" },
+          { emoji: "🥉", count: bronze, label: "Bronze", bg: "rgba(205,127,50,0.15)", border: "rgba(205,127,50,0.3)" },
+        ].map(m => (
+          <div key={m.label} style={{
+            flex: 1, textAlign: "center", padding: "12px 8px",
+            borderRadius: 8, background: m.bg, border: `1px solid ${m.border}`,
+          }}>
+            <div style={{ fontSize: 22, marginBottom: 2 }}>{m.emoji}</div>
+            <div style={{ fontSize: 24, fontWeight: 800, lineHeight: 1 }}>{m.count}</div>
+            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.6)", marginTop: 2, textTransform: "uppercase", letterSpacing: "0.05em" }}>{m.label}</div>
+          </div>
+        ))}
+        <div style={{
+          flex: 1, textAlign: "center", padding: "12px 8px",
+          borderRadius: 8, background: "rgba(212,168,67,0.15)", border: "1px solid rgba(212,168,67,0.3)",
+        }}>
+          <div style={{ fontSize: 22, marginBottom: 2 }}>🏅</div>
+          <div style={{ fontSize: 24, fontWeight: 800, lineHeight: 1 }}>{total}</div>
+          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.6)", marginTop: 2, textTransform: "uppercase", letterSpacing: "0.05em" }}>Total</div>
+        </div>
+      </div>
+
+      {/* Medalist list */}
+      {medalists.length > 0 && (
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 14 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            Medalists
+          </div>
+          {medalists.map((m: any, i: number) => (
+            <div key={i} style={{
+              display: "flex", alignItems: "center", gap: 8,
+              padding: "6px 0",
+              borderBottom: i < medalists.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+            }}>
+              <span style={{ fontSize: 16, flex: "0 0 24px", textAlign: "center" }}>
+                {m.medal === "gold" ? "🥇" : m.medal === "silver" ? "🥈" : "🥉"}
+              </span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 14, fontWeight: 600 }}>{m.name}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)" }}>
+                  {m.sport} — {m.event}
+                </div>
+              </div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", flex: "0 0 auto" }}>
+                {m.date ? new Date(m.date + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" }) : ""}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function StorylineTimeline() {
@@ -194,6 +277,11 @@ export default function StorylineTimeline() {
             )}
           </div>
         </div>
+
+        {/* Medal Tracker (if available) */}
+        {storyline.metadata?.medal_tracker && (
+          <MedalTracker data={storyline.metadata.medal_tracker} />
+        )}
 
         {/* Timeline */}
         <div style={{ position: "relative" }}>
