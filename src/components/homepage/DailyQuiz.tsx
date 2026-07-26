@@ -39,7 +39,8 @@ const DAY_NAMES: Record<number, string> = {
 
 /* ── localStorage helpers ── */
 function getTodayKey(): string {
-  return new Date().toISOString().slice(0, 10);
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
 function getCompletedQuiz(): { date: string; score: number; answers: number[] } | null {
@@ -73,7 +74,8 @@ function updateStreak(score: number) {
   try {
     const streakData = JSON.parse(localStorage.getItem("daily7_streak_data") || "{}");
     const today = getTodayKey();
-    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    const yd = new Date(Date.now() - 86400000);
+    const yesterday = `${yd.getFullYear()}-${String(yd.getMonth() + 1).padStart(2, "0")}-${String(yd.getDate()).padStart(2, "0")}`;
 
     if (score >= 4) {
       if (streakData.lastDate === yesterday || streakData.lastDate === today) {
