@@ -186,24 +186,52 @@ def check_category_staleness():
 # ─── Check 2: Global stale publishing ─────────────────────────────────────────
 
 def check_stale_publishing():
-    """Check if no articles at all were published in the last 6 hours
-    while unprocessed signals exist."""
-    cutoff_6h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=6))
+    """Check if no articles were published in the last 8 hours.
+    Also check if the system cron daemon is alive (drives ingest)."""
+    import subprocess
+
+    # --- Cron daemon health ---
+    cron_alive = True
+    cron_restarted = False
+    try:
+        result = subprocess.run(["pgrep", "-x", "cron"], capture_output=True)
+        cron_alive = result.returncode == 0
+        if not cron_alive:
+            subprocess.run(["sudo", "service", "cron", "start"],
+                           capture_output=True, timeout=10)
+            result2 = subprocess.run(["pgrep", "-x", "cron"], capture_output=True)
+            cron_restarted = result2.returncode == 0
+    except Exception:
+        pass
+
+    # --- Article freshness (8h window, no signal dependency) ---
+    cutoff_8h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=8))
     recent = sb_get("p2_articles",
-        f"status=eq.published&published_at=gte.{cutoff_6h}&select=id&limit=1")
+        f"status=eq.published&published_at=gte.{cutoff_8h}&select=id&limit=1")
     has_recent = len(recent) > 0
 
     cutoff_48h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=48))
     unprocessed = sb_get_count("p2_signals",
         f"is_processed=eq.false&published_at=gte.{cutoff_48h}")
 
-    stale = not has_recent and unprocessed > 0
+    stale = not has_recent  # flag even without waiting signals
+    action = None
+    if not cron_alive and not cron_restarted:
+        action = "CRITICAL: system cron daemon dead and could not restart"
+    elif not cron_alive and cron_restarted:
+        action = "system cron daemon was dead — auto-restarted"
+    elif stale:
+        action = "no articles in 8h — pipeline may be stalled"
+
     return {
         "check": "stale_publishing",
         "stale": stale,
         "has_recent_articles": has_recent,
         "unprocessed_signals": unprocessed,
-        "action_needed": "trigger_writer — pipeline stalled" if stale else None,
+        "cron_daemon_alive": cron_alive or cron_restarted,
+        "cron_daemon_restarted": cron_restarted,
+        "alert": stale or not cron_alive,
+        "action_needed": action,
     }
 
 

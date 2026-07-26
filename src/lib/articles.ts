@@ -144,6 +144,17 @@ function formatAuthorFromSources(raw: unknown): string {
   if (typeof raw === "string") {
     const trimmed = raw.trim();
     if (!trimmed) return "Diaspora Desk";
+    // Handle Postgres array literal format: {"val1","val2"}
+    if (trimmed.startsWith("{") && trimmed.endsWith("}") && !trimmed.startsWith("{\"")) {
+      // Simple postgres array — split on comma
+      const items = trimmed.slice(1, -1).split(",").map(s => s.replace(/^"|"$/g, "").trim()).filter(Boolean);
+      return extractNames(items);
+    }
+    // Also handle postgres array with quoted URLs: {"url1","url2"}
+    if (trimmed.startsWith("{\"") && trimmed.endsWith("\"}")) {
+      const items = trimmed.slice(1, -1).split(/","/).map(s => s.replace(/^"|"$/g, "").trim()).filter(Boolean);
+      return extractNames(items);
+    }
     // Try to parse JSON
     try {
       const parsed = JSON.parse(trimmed);
