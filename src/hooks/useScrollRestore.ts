@@ -2,11 +2,10 @@
  * App-wide scroll position save/restore for SPA back-button navigation.
  *
  * How it works:
- * - On every scroll (debounced), saves `window.scrollY` keyed by the current pathname
- *   into sessionStorage. This means every page's scroll position is remembered.
- * - When a page mounts, if the navigation was a POP (back/forward button),
- *   it restores the saved position. If it was a PUSH (new navigation), it scrolls to top.
- * - Uses popstate events to detect back/forward navigation.
+ * - Continuously tracks scrollY in a ref and saves to sessionStorage on scroll (debounced).
+ * - On link clicks, eagerly saves the current scroll position BEFORE React Router navigates.
+ * - On back/forward (popstate), restores saved position with staggered retries + MutationObserver.
+ * - On forward navigation, scrolls to top.
  *
  * Usage: Call `useScrollRestore()` once in App.tsx or the root layout.
  */
@@ -42,6 +41,8 @@ export default function useScrollRestore() {
   const prevPathRef = useRef(location.pathname);
   const isPopRef = useRef(false);
   const restoreCleanupRef = useRef<(() => void) | null>(null);
+  // Keep a live reference to the current scroll position + pathname
+  const lastScrollRef = useRef({ pathname: location.pathname, y: 0 });
 
   // Disable browser's built-in scroll restoration — we handle it ourselves
   useEffect(() => {
@@ -59,10 +60,29 @@ export default function useScrollRestore() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  // Save scroll position continuously (debounced)
+  // Eagerly save scroll position on link clicks BEFORE navigation
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest?.("a");
+      if (!target) return;
+      const href = target.getAttribute("href");
+      // Only save for internal navigation links (not external, not anchors)
+      if (href && href.startsWith("/") && !href.startsWith("//")) {
+        const map = getScrollMap();
+        map[lastScrollRef.current.pathname] = window.scrollY;
+        saveScrollMap(map);
+      }
+    };
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, []);
+
+  // Track scroll position continuously in ref + save debounced to sessionStorage
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     const onScroll = () => {
+      // Always update ref immediately (no debounce)
+      lastScrollRef.current = { pathname: location.pathname, y: window.scrollY };
       clearTimeout(timer);
       timer = setTimeout(() => {
         const map = getScrollMap();
@@ -75,10 +95,13 @@ export default function useScrollRestore() {
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", onScroll);
-      // Final save on unmount
-      const map = getScrollMap();
-      map[location.pathname] = window.scrollY;
-      saveScrollMap(map);
+      // Final save on unmount — use the ref value which was captured BEFORE navigation
+      const { pathname, y } = lastScrollRef.current;
+      if (pathname === location.pathname) {
+        const map = getScrollMap();
+        map[pathname] = y;
+        saveScrollMap(map);
+      }
     };
   }, [location.pathname]);
 
@@ -97,13 +120,12 @@ export default function useScrollRestore() {
       const savedY = map[location.pathname];
       if (savedY != null && savedY > 0) {
         // Pages load async content (articles, embeds, images, etc.) that
-        // grows the page height over 1-3 seconds. The old rAF approach
-        // gave up after ~320ms. Use staggered timeouts over 3s plus a
-        // MutationObserver that fires whenever new DOM nodes render.
+        // grows the page height over 1-3 seconds. Use staggered timeouts
+        // over 5s plus a MutationObserver that fires whenever new DOM nodes render.
         let cancelled = false;
         const delays = [
           0, 50, 100, 150, 200, 300, 400, 500, 700, 900,
-          1200, 1500, 2000, 2500, 3000,
+          1200, 1500, 2000, 2500, 3000, 4000, 5000,
         ];
         const timers: ReturnType<typeof setTimeout>[] = [];
 
@@ -130,8 +152,8 @@ export default function useScrollRestore() {
             childList: true,
             subtree: true,
           });
-          // Disconnect observer after 4 seconds
-          timers.push(setTimeout(() => observer?.disconnect(), 4000));
+          // Disconnect observer after 6 seconds
+          timers.push(setTimeout(() => observer?.disconnect(), 6000));
         } catch {}
 
         restoreCleanupRef.current = () => {
@@ -146,6 +168,8 @@ export default function useScrollRestore() {
     }
 
     prevPathRef.current = location.pathname;
+    // Update ref for the new page
+    lastScrollRef.current = { pathname: location.pathname, y: 0 };
 
     return () => {
       restoreCleanupRef.current?.();
