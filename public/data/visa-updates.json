@@ -1,5 +1,23 @@
 [
   {
+    "id": "first-circuit-denies-100k-h1b-fee-stay",
+    "date": "2026-07-25",
+    "label": "Jul 25, 2026",
+    "headline": "First Circuit denies Trump bid to revive $100K H-1B fee \u2014 appeals court says government unlikely to win",
+    "summary": "The First Circuit Court of Appeals on Friday denied the Trump administration's emergency motion to stay Judge Sorokin's June 8 ruling that struck down the $100,000 H-1B fee as an unlawful tax. The three-judge panel ruled the government has not shown it is likely to succeed on appeal, citing a 1989 Supreme Court precedent requiring clear congressional authorization for such financial burdens. The ruling means the fee is no longer enforceable \u2014 reversing the temporary stay granted by Sorokin on June 12 that had kept the fee in effect. The case (California v. Mullin, No. 26-01699) was brought by 20 Democratic-led states. Parallel challenges remain pending in California and D.C. federal courts. While the full appeal on the merits is still ahead, the First Circuit's skepticism is a strong signal. Meanwhile, Sen. Tim Sheehy (R-MT) introduced the 'End H-1B Abuse Act' in the Senate the same day, seeking to codify the $100K fee in law and bypass the constitutional objection.",
+    "severity": "high",
+    "source": "First Circuit Court of Appeals / Reuters / Bloomberg Law / The Hindu BusinessLine"
+  },
+  {
+    "id": "senate-end-h1b-abuse-act-introduced",
+    "date": "2026-07-24",
+    "label": "Jul 24, 2026",
+    "headline": "Senate bill seeks 3-year H-1B visa suspension, codifies $100K fee \u2014 companion to House version escalates legislative push",
+    "summary": "Sen. Tim Sheehy (R-MT) introduced the 'End H-1B Abuse Act' in the Senate, mirroring Rep. Eli Crane's April House bill. The legislation would pause all new H-1B visas for three years, permanently replace the lottery with a wage-based selection system, codify the $100,000 petition fee struck down by courts, ban concurrent employment and third-party staffing models, end the 'dual intent' provision that lets H-1B holders pursue green cards, prevent H-class visa holders from bringing dependents, bar federal agencies from sponsoring visa holders, and eliminate Optional Practical Training (OPT) for students. The bill is backed by the Federation for American Immigration Reform (FAIR). While unlikely to pass in its current form, the Senate companion signals growing bipartisan-adjacent momentum to fundamentally reshape the H-1B program that employs hundreds of thousands of Indian tech professionals.",
+    "severity": "high",
+    "source": "Sen. Tim Sheehy / The Hindu BusinessLine / FAIR"
+  },
+  {
     "id": "august-2026-visa-bulletin-india",
     "date": "2026-07-21",
     "label": "Jul 21, 2026",
@@ -151,25 +169,6 @@
     "summary": "One day after Judge Sorokin struck down Trumps $100K H-1B fee as an unauthorized tax, Rep. Mike Kennedy (R-UT) introduced the PROTECT Act to codify the same fee at the congressional level \u2014 bypassing the constitutional objection by making it an explicit act of Congress. The bill requires H-1B employers to pay the greater of prevailing wages or $100K base. Even with the court victory, the legislative push means the fee fight is far from over for Indian tech workers.",
     "severity": "high",
     "source": "Daily Caller / Rep. Mike Kennedy (R-UT)"
-  },
-  {
-    "id": "state-dept-750-premium-visa-service",
-    "date": "2026-06-09",
-    "label": "Jun 9, 2026",
-    "headline": "State Dept launches $750 \"premium\" B1/B2 visa service \u2014 interview within 10 days",
-    "summary": "The State Department will offer a $750 add-on for B-1/B-2 visa applicants to schedule an interview within 10 business days \u2014 on top of the $185 base fee. The pilot runs July 1 through Dec 31 at select embassies/consulates (to be announced). Timed to ease FIFA World Cup 2026 visa backlogs. Critical for India where B1/B2 waits range from 5.5 months (Delhi/Chennai) to 7.5 months (Mumbai). Does NOT guarantee visa approval \u2014 only faster interview scheduling.",
-    "severity": "high",
-    "source": "US State Department / AP / Bloomberg Law"
-  },
-  {
-    "id": "doj-denaturalization-h1b-india",
-    "date": "2026-06-08",
-    "label": "Jun 8, 2026",
-    "headline": "DOJ launches largest denaturalization push in modern history \u2014 Indian H-1B fraud case among 17 stripped of citizenship",
-    "summary": "The Department of Justice filed denaturalization actions in federal courts against 17 naturalized citizens, in what the Washington Examiner called the largest coordinated denaturalization campaign in modern US history. Among them is Neeraj Sharma, 50, an India-born owner of New Jersey IT staffing firm Magnavision LLC, who filed 11 fraudulent H-1B petitions with forged corporate letterhead and then concealed the fraud on his 2017 naturalization application. Acting AG Todd Blanche said the DOJ now maintains a 'zero-tolerance policy' for abuse of the naturalization process. Denaturalization, averaging just 11 cases/year from 1990-2017, is being sharply expanded \u2014 a direct warning to naturalized Indian citizens who obtained status through visa or immigration misrepresentation.",
-    "severity": "high",
-    "source": "US Department of Justice / USA TODAY / Washington Examiner",
-    "url": "/immigration"
   },
   {
     "id": "interview-waiver-eliminated",
