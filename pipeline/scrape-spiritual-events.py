@@ -72,6 +72,12 @@ class TextExtractor(HTMLParser):
             self.skip = True
         if tag in ('br', 'p', 'div', 'h1', 'h2', 'h3', 'h4', 'li', 'tr', 'td', 'th'):
             self.text.append('\n')
+        # Preserve link URLs so the LLM can find ticket/registration links
+        if tag == 'a':
+            attrs_dict = dict(attrs)
+            href = attrs_dict.get('href', '')
+            if href and href.startswith('http'):
+                self.text.append(f' [link: {href}] ')
 
     def handle_endtag(self, tag):
         if tag in ('script', 'style', 'noscript'):
@@ -286,7 +292,7 @@ def make_slug(title, city, date_str):
     slug = re.sub(r'[^a-z0-9]+', '-', raw.lower()).strip('-')
     return slug[:120]
 
-def upsert_event(event, org, teacher, is_featured_source):
+def upsert_event(event, org, teacher, is_featured_source, source_url=None):
     """Upsert a single event to Supabase."""
     title = event.get('title', '').strip()
     date_str = event.get('date', '')
@@ -309,6 +315,9 @@ def upsert_event(event, org, teacher, is_featured_source):
     # Featured = source says featured AND LLM confirms teacher is personally present
     is_featured = is_featured_source and event.get('is_major_teacher_appearance', False)
 
+    # Use LLM-extracted ticket_url, fall back to source page URL
+    ticket_url = event.get('ticket_url') or source_url
+
     record = {
         'title': title,
         'date': date_str,
@@ -319,7 +328,7 @@ def upsert_event(event, org, teacher, is_featured_source):
         'state': event.get('state'),
         'category': 'Spiritual',
         'description': event.get('description'),
-        'ticket_url': event.get('ticket_url'),
+        'ticket_url': ticket_url,
         'price_range': event.get('price_range'),
         'organizer': org,
         'artist_info': teacher,
@@ -432,7 +441,7 @@ def main():
             sid = make_source_id(org, ev.get('title', ''), ev.get('date', ''))
 
             is_new = sid not in existing_ids
-            ok = upsert_event(ev, org, teacher, is_featured)
+            ok = upsert_event(ev, org, teacher, is_featured, source_url=url)
 
             if ok:
                 if is_new:
