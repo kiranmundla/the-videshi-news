@@ -51,6 +51,7 @@ const CAT_EMOJI: Record<string, string> = {
   Entertainment: "🎶",
   Technology: "🚀",
   Shopping: "🛍️",
+  Spiritual: "🧘",
   Other: "📌",
 };
 
@@ -69,6 +70,7 @@ const CAT_FALLBACK_IMG: Record<string, string> = {
   Entertainment: "/images/events/entertainment.jpg",
   Technology: "/images/events/technology.jpg",
   Shopping: "/images/events/cultural.jpg",
+  Spiritual: "/images/events/religious.jpg",
   Other: "/images/events/other.jpg",
 };
 
@@ -91,6 +93,7 @@ const CAT_BADGE_COLORS: Record<string, string> = {
   Entertainment: "bg-pink-100 text-pink-700",
   Technology: "bg-cyan-100 text-cyan-700",
   Shopping: "bg-rose-100 text-rose-700",
+  Spiritual: "bg-violet-100 text-violet-700",
   Other: "bg-gray-100 text-gray-700",
 };
 

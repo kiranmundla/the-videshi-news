@@ -1,0 +1,24 @@
+[
+  {
+    "id": "304d10fe-9a08-4464-8070-4b04f5140bd4",
+    "headline": "Who Is Shailesh Jejurikar? The Mumbai Boy Who Shared a Classroom With Satya Nade",
+    "slug": "who-is-shailesh-jejurikar-first-indian-born-ceo-procter-gamble",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/36779551/pexels-photo-36779551.jpeg?auto=compre",
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Shailesh Jejurikar about his experiences as an NRI and how his Indian upbringing influenced his leadership style at P&G. This would provide a more personal connection to the Indian diaspora.",
+        "Add a section that discusses the significance of Jejurikar's appointment for the Indian diaspora, particularly how it reflects the growing influence of Indian professionals in global corporate leadership roles. This could include statistics or trends related to Indian executives in Fortune 500 companies.",
+        "Provide context on the challenges and opportunities that Indian NRIs face in corporate America, particularly in light of Jejurikar's ascent to CEO. This could help readers understand the broader implications of his success.",
+        "Consider revising the headline to make it more compelling and specific, such as 'Shailesh Jejurikar: From Mumbai Classroom to CEO of P&G \u2014 A Triumph for the Indian Diaspora.' This would better highlight the significance of his journey."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Procter & Gamble announcing Jejurikar's appointment, as well as a tweet from Satya Nadella congratulating him, to provide real-time context and enhance reader engagement."
+      ]
+    }
+  }
+]

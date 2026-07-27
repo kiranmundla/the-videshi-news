@@ -359,7 +359,9 @@ def upsert_event(event, org, teacher, is_featured_source):
             return False
 
     stdout = result.stdout.strip()
-    if result.returncode != 0 or ('error' in stdout.lower() and 'duplicate' not in stdout.lower()):
+    # Detect Supabase error responses: JSON with "code" + "message" keys, or curl failure
+    is_error = result.returncode != 0 or ('"code"' in stdout and '"message"' in stdout) or ('error' in stdout.lower())
+    if is_error and 'duplicate' not in stdout.lower():
         print(f"  Upsert failed for '{title}': {stdout[:200]}", file=sys.stderr)
         return False
 
