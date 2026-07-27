@@ -33,7 +33,6 @@ export default function FridayLaughs() {
 
   return (
     <section className="container py-8 md:py-12">
-      {/* Section header */}
       <div className="flex items-center gap-3 mb-6">
         <h2 className="font-serif text-2xl md:text-3xl text-foreground">Friday Laughs</h2>
         <span className="text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-800">
@@ -41,62 +40,72 @@ export default function FridayLaughs() {
         </span>
       </div>
 
-      {/* Featured comic */}
       {selected && (
         <div className="mb-6">
           <button
             onClick={() => setExpanded(true)}
             className="w-full rounded-xl overflow-hidden border border-border bg-secondary/30 cursor-zoom-in"
           >
-            <img
-              src={selected.image_url}
-              alt={selected.title}
-              className="w-full"
-              loading="lazy"
-            />
+            <img src={selected.image_url} alt={selected.title} className="w-full" loading="lazy" />
           </button>
-          <p className="mt-3 font-serif text-lg font-semibold text-foreground">
-            {selected.title}
-          </p>
+          <p className="mt-3 font-serif text-lg font-semibold text-foreground">{selected.title}</p>
           <p className="text-sm text-muted-foreground mt-1">
-            {new Date(selected.published_at).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
+            {new Date(selected.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
           </p>
         </div>
       )}
 
-      {/* Lightbox — pinch to zoom */}
+      {/* Lightbox — same pattern as Snapshots: opaque bg, native pinch-to-zoom */}
       {expanded && selected && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          style={{
+            position: "fixed",
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.95)",
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            animation: "snapFadeIn 0.15s ease-out",
+          }}
           onClick={() => setExpanded(false)}
         >
+          <style>{`@keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
           <button
             onClick={() => setExpanded(false)}
-            className="absolute top-4 right-4 text-white text-2xl font-bold w-10 h-10 flex items-center justify-center z-50"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-          <div
-            className="overflow-auto max-h-[90vh] max-w-[95vw]"
-            style={{ touchAction: "pinch-zoom", WebkitOverflowScrolling: "touch" }}
-            onClick={(e) => e.stopPropagation()}
-          >
+            style={{
+              position: "absolute", top: 12, right: 16, zIndex: 10000,
+              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              fontSize: 20, display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >×</button>
+          <div onClick={(e) => e.stopPropagation()} style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0 20px" }}>
             <img
               src={selected.image_url}
               alt={selected.title}
-              className="block max-w-[92vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
-              style={{ touchAction: "pinch-zoom" }}
+              draggable={false}
+              style={{
+                maxWidth: "calc(100vw - 40px)",
+                maxHeight: "calc(100vh - 100px)",
+                objectFit: "contain",
+                borderRadius: "8px",
+                userSelect: "none",
+                WebkitUserSelect: "none",
+              } as React.CSSProperties}
             />
           </div>
+          <p style={{
+            color: "#fff", fontSize: "14px", fontWeight: 600,
+            fontFamily: "var(--font-sans, sans-serif)",
+            textAlign: "center", padding: "12px 20px 0", margin: 0,
+          }}>
+            {selected.title}
+          </p>
         </div>
       )}
 
-      {/* Scroll strip of past comics */}
       {comics.length > 1 && (
         <div className="flex gap-3 overflow-x-auto pb-4" style={{ WebkitOverflowScrolling: "touch" }}>
           {comics.map((c) => (
@@ -110,15 +119,8 @@ export default function FridayLaughs() {
               }`}
               style={{ width: 140 }}
             >
-              <img
-                src={c.image_url}
-                alt={c.title}
-                className="w-full aspect-[16/9] object-cover"
-                loading="lazy"
-              />
-              <p className="text-xs font-medium text-foreground px-2 py-1.5 truncate">
-                {c.title}
-              </p>
+              <img src={c.image_url} alt={c.title} className="w-full aspect-[16/9] object-cover" loading="lazy" />
+              <p className="text-xs font-medium text-foreground px-2 py-1.5 truncate">{c.title}</p>
             </button>
           ))}
         </div>

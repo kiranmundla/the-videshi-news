@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 
 type Props = {
   src?: string | null;
@@ -13,7 +13,6 @@ type Props = {
   focalX?: number | null;
   focalY?: number | null;
   onOrientationDetected?: (orientation: "landscape" | "portrait") => void;
-  /** Set false to disable tap-to-expand (default true) */
   zoomable?: boolean;
 };
 
@@ -69,29 +68,45 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
         onClick={zoomable ? () => setExpanded(true) : undefined}
       />
 
+      {/* Lightbox — same pattern as Snapshots: opaque bg, native pinch-to-zoom */}
       {zoomable && expanded && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          style={{
+            position: "fixed",
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.95)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            animation: "snapFadeIn 0.15s ease-out",
+          }}
           onClick={() => setExpanded(false)}
         >
+          <style>{`@keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
           <button
             onClick={() => setExpanded(false)}
-            className="absolute top-4 right-4 text-white text-2xl font-bold w-10 h-10 flex items-center justify-center z-50"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-          <div
-            className="overflow-auto max-h-[90vh] max-w-[95vw]"
-            style={{ touchAction: "pinch-zoom", WebkitOverflowScrolling: "touch" }}
-            onClick={(e) => e.stopPropagation()}
-          >
+            style={{
+              position: "absolute", top: 12, right: 16, zIndex: 10000,
+              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
+              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
+              fontSize: 20, display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >×</button>
+          <div onClick={(e) => e.stopPropagation()} style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0 20px" }}>
             <img
               src={src as string}
               alt={alt}
-              className="block max-w-[92vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
+              draggable={false}
               referrerPolicy="no-referrer"
-              style={{ touchAction: "pinch-zoom" }}
+              style={{
+                maxWidth: "calc(100vw - 40px)",
+                maxHeight: "calc(100vh - 100px)",
+                objectFit: "contain",
+                borderRadius: "8px",
+                userSelect: "none",
+                WebkitUserSelect: "none",
+              } as React.CSSProperties}
             />
           </div>
         </div>
