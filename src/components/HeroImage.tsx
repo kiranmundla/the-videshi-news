@@ -56,9 +56,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
     onOrientationDetected?.(ratio > 1.2 ? "landscape" : "portrait");
   }, [onOrientationDetected, className, hasFocal]);
 
-  const handleDoubleTap = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
+  const handleDoubleTap = useCallback(() => {
     const now = Date.now();
     if (now - lastTapRef.current < 400) {
       setZoomed((z) => !z);
@@ -114,7 +112,8 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
                 zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
               }`}
               referrerPolicy="no-referrer"
-              onClick={handleDoubleTap}
+              onTouchStart={handleDoubleTap}
+              onDoubleClick={() => setZoomed((z) => !z)}
             />
           </div>
         </div>
