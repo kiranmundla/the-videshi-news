@@ -15,17 +15,28 @@ export default function FridayLaughs() {
   const [selected, setSelected] = useState<Comic | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [zoomed, setZoomed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   const lastTapRef = useRef(0);
 
-  const handleImageTap = useCallback(() => {
-    const now = Date.now();
-    if (now - lastTapRef.current < 400) {
-      setZoomed((z) => !z);
-      lastTapRef.current = 0;
-    } else {
-      lastTapRef.current = now;
-    }
-  }, []);
+  // Attach native touchstart listener directly to the image element
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img || !expanded) return;
+
+    const handler = (e: TouchEvent) => {
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lastTapRef.current < 400) {
+        setZoomed((z) => !z);
+        lastTapRef.current = 0;
+      } else {
+        lastTapRef.current = now;
+      }
+    };
+
+    img.addEventListener("touchstart", handler, { passive: false });
+    return () => img.removeEventListener("touchstart", handler);
+  }, [expanded, zoomed]);
 
   useEffect(() => {
     supabase
@@ -80,36 +91,47 @@ export default function FridayLaughs() {
         </div>
       )}
 
-      {/* Lightbox overlay — tap to open, double-tap to zoom */}
+      {/* Lightbox overlay */}
       {expanded && selected && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex flex-col bg-black/70 backdrop-blur-sm"
           onClick={() => { setExpanded(false); setZoomed(false); }}
         >
-          <button
-            onClick={() => { setExpanded(false); setZoomed(false); }}
-            className="absolute top-4 right-4 text-white text-2xl font-bold w-10 h-10 flex items-center justify-center z-50"
-            aria-label="Close"
-          >
-            ✕
-          </button>
+          {/* Top bar */}
+          <div className="flex items-center justify-between px-4 py-3 shrink-0" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setZoomed((z) => !z)}
+              className="text-white text-sm font-semibold px-3 py-1.5 rounded-full bg-white/20 active:bg-white/30"
+            >
+              {zoomed ? "Zoom Out" : "Zoom In"}
+            </button>
+            <button
+              onClick={() => { setExpanded(false); setZoomed(false); }}
+              className="text-white text-2xl font-bold w-10 h-10 flex items-center justify-center"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Image area */}
           <div
-            className={`transition-all duration-200 ${
-              zoomed ? "overflow-auto max-h-[95vh] max-w-[95vw]" : "flex items-center justify-center px-4"
-            }`}
+            className="flex-1 overflow-auto"
             style={{ WebkitOverflowScrolling: "touch" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={selected.image_url}
-              alt={selected.title}
-              className={`block rounded-lg shadow-2xl transition-all duration-200 ${
-                zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
-              }`}
-              style={{ touchAction: "none" }}
-              onTouchStart={handleImageTap}
-              onDoubleClick={() => setZoomed((z) => !z)}
-            />
+            <div className={zoomed ? "" : "h-full flex items-center justify-center px-4"}>
+              <img
+                ref={imgRef}
+                src={selected.image_url}
+                alt={selected.title}
+                className={`block rounded-lg shadow-2xl transition-all duration-200 ${
+                  zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
+                }`}
+                style={{ touchAction: "none" }}
+                onDoubleClick={() => setZoomed((z) => !z)}
+              />
+            </div>
           </div>
         </div>
       )}
