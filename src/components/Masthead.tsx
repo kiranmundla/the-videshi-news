@@ -129,21 +129,7 @@ function CategoryNavBar() {
                   </Link>
                 );
               })}
-              {/* Hub section links (desktop) */}
-              <span className="hidden md:inline-block w-px h-4 bg-foreground/15 mx-2 shrink-0 self-center" />
-              {HUB_NAV.filter(h => h.slug !== "").map((hub) => {
-                const isActive = routeSlug === hub.slug;
-                return (
-                  <Link
-                    key={hub.slug}
-                    to={hub.path}
-                    className={`v2-home-cat-pill hidden md:inline-flex items-center gap-1${isActive ? " active" : ""}`}
-                  >
-                    <span className="w-3 h-3 opacity-50" style={{ display: "inline-flex" }}>{hub.icon}</span>
-                    {hub.label}
-                  </Link>
-                );
-              })}
+              {/* Hub section links removed — HubStrip tiles render on desktop now */}
             </div>
           </div>
           )}

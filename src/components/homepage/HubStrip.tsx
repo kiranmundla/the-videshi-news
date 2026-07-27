@@ -65,44 +65,17 @@ const HUB_TILES = [
 ];
 
 export default function HubStrip() {
-  /* Skip "News" on desktop — user is already on the news site */
-  const desktopTiles = HUB_TILES.filter((t) => t.to !== "/");
-
   return (
-    <>
-      {/* Mobile: circular icon grid */}
-      <nav className="v2-hub-strip v2-hub-strip-mobile md:hidden">
-        {HUB_TILES.map((t) => (
-          <Link key={t.label} to={t.to} className="v2-hub-tile">
-            <div className="v2-hub-icon-wrap">
-              <span className="v2-hub-dot" />
-              {t.icon}
-            </div>
-            <span className="v2-hub-label">{t.label}</span>
-          </Link>
-        ))}
-      </nav>
-
-      {/* Desktop: same bold icon style as mobile */}
-      <nav className="hidden md:block" style={{ borderBottom: "1px solid hsl(var(--rule) / 0.4)" }}>
-        <div className="container flex items-center justify-center gap-8 py-3">
-          {desktopTiles.map((t) => (
-            <Link
-              key={t.label}
-              to={t.to}
-              className="flex items-center gap-2.5 group no-underline"
-            >
-              <div className="v2-hub-icon-wrap" style={{ width: 36, height: 36 }}>
-                <span className="v2-hub-dot" />
-                {t.icon}
-              </div>
-              <span className="text-xs font-semibold tracking-widest uppercase text-foreground/70 group-hover:text-foreground transition-colors">
-                {t.label}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </nav>
-    </>
+    <nav className="v2-hub-strip">
+      {HUB_TILES.map((t) => (
+        <Link key={t.label} to={t.to} className="v2-hub-tile">
+          <div className="v2-hub-icon-wrap">
+            <span className="v2-hub-dot" />
+            {t.icon}
+          </div>
+          <span className="v2-hub-label">{t.label}</span>
+        </Link>
+      ))}
+    </nav>
   );
 }

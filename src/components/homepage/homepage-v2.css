@@ -58,8 +58,10 @@
 }
 
 @media (min-width: 768px) {
-  .v2-hub-strip-mobile {
-    display: none !important;
+  .v2-hub-strip {
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 10px 16px;
   }
 }
 
