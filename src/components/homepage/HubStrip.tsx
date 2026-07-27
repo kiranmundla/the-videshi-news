@@ -83,25 +83,22 @@ export default function HubStrip() {
         ))}
       </nav>
 
-      {/* Desktop: compact text links with icons */}
+      {/* Desktop: same bold icon style as mobile */}
       <nav className="hidden md:block" style={{ borderBottom: "1px solid hsl(var(--rule) / 0.4)" }}>
-        <div className="container flex items-center gap-1 py-1.5">
-          {desktopTiles.map((t, i) => (
+        <div className="container flex items-center justify-center gap-8 py-3">
+          {desktopTiles.map((t) => (
             <Link
               key={t.label}
               to={t.to}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-md text-xs tracking-wide text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
+              className="flex items-center gap-2.5 group no-underline"
             >
-              <span className="w-3.5 h-3.5 opacity-60" style={{ display: "inline-flex" }}>
-                {/* Re-stroke in currentColor for desktop */}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "100%", height: "100%" }}>
-                  {t.to === "/directory" && <><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><line x1="10" y1="8" x2="14" y2="8"/><line x1="10" y1="10.5" x2="14" y2="10.5"/></>}
-                  {t.to === "/events" && <><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></>}
-                  {t.to === "/classifieds" && <><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/></>}
-                  {t.to === "/stories" && <><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></>}
-                </svg>
+              <div className="v2-hub-icon-wrap" style={{ width: 36, height: 36 }}>
+                <span className="v2-hub-dot" />
+                {t.icon}
+              </div>
+              <span className="text-xs font-semibold tracking-widest uppercase text-foreground/70 group-hover:text-foreground transition-colors">
+                {t.label}
               </span>
-              <span className="smallcaps" style={{ fontSize: "0.65rem" }}>{t.label}</span>
             </Link>
           ))}
         </div>

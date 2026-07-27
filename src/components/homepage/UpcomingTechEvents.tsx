@@ -104,7 +104,7 @@ export default function UpcomingTechEvents() {
             return (
               <Link
                 key={e.id}
-                to={`/events/${e.slug}`}
+                to={`/events/${e.slug || e.id}`}
                 style={{
                   flex: "0 0 auto",
                   width: 180,
