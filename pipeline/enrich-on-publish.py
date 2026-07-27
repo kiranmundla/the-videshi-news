@@ -1391,18 +1391,18 @@ def main():
         else:
             print(f"     X: already has embed")
 
-        # ── IG enrichment ──
-        if not has_embed(body, "instagram"):
-            shortcode, info = enrich_ig_from_cache(article, cache, registry, live_ig=live_ig)
-            if shortcode:
-                ig_url = f"https://www.instagram.com/p/{shortcode}/"
-                source = "live" if live_ig else "cache"
-                ig_score = info.get("score", 5)
-                print(f"     IG ({source}): @{info['handle']} → {ig_url} [score:{ig_score}]")
-                pending_embeds.append((ig_score, "instagram", ig_url, f"IG(@{info['handle']})"))
-                report["ig_embeds"] += 1
-        else:
-            print(f"     IG: already has embed")
+        # ── IG enrichment — DISABLED until IG API tokens are refreshed ──
+        #         if not has_embed(body, "instagram"):
+        #             shortcode, info = enrich_ig_from_cache(article, cache, registry, live_ig=live_ig)
+        #             if shortcode:
+        #                 ig_url = f"https://www.instagram.com/p/{shortcode}/"
+        #                 source = "live" if live_ig else "cache"
+        #                 ig_score = info.get("score", 5)
+        #                 print(f"     IG ({source}): @{info['handle']} → {ig_url} [score:{ig_score}]")
+        #                 pending_embeds.append((ig_score, "instagram", ig_url, f"IG(@{info['handle']})"))
+        #                 report["ig_embeds"] += 1
+        #         else:
+        #             print(f"     IG: already has embed")
 
         # Sort by relevance score descending — best match gets highest placement
         pending_embeds.sort(key=lambda x: x[0], reverse=True)
