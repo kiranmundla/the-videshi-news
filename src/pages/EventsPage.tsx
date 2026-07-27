@@ -453,56 +453,18 @@ function CategoryDiscoveryGrid({
 }
 
 function DiscoverySection({
-  preFilteredEvents,
-  categoryCounts,
-  selectedCategory,
+  dateCounts,
+  dateTotalCount,
   selectedDate,
-  loading,
   onDateSelect,
-  onCategorySelect,
 }: {
-  preFilteredEvents: (EventWithDistance | EventItem)[];
-  categoryCounts: Record<string, number>;
-  selectedCategory: string | null;
+  dateCounts: Record<string, number>;
+  dateTotalCount: number;
   selectedDate: DateFilterKey;
-  loading: boolean;
   onDateSelect: (key: DateFilterKey) => void;
-  onCategorySelect: (cat: string | null) => void;
 }) {
-  /* Time/date cards need global counts (not filtered by location/date),
-     so we do a lightweight independent query for those only. */
-  const [dateCounts, setDateCounts] = useState<Record<string, number>>({});
-  const [totalEvents, setTotalEvents] = useState(0);
-  const [dateLoaded, setDateLoaded] = useState(false);
-
-  useEffect(() => {
-    const today = new Date().toISOString().slice(0, 10);
-    supabaseRaw
-      .from("events")
-      .select("id,date")
-      .gte("date", today)
-      .limit(5000)
-      .then(({ data }: { data: { id: string; date: string }[] | null }) => {
-        if (!data) { setDateLoaded(true); return; }
-        setTotalEvents(data.length);
-        const dc: Record<string, number> = {};
-        for (const key of ["today", "tomorrow", "weekend", "week", "month"] as DateFilterKey[]) {
-          const range = getDateFilterRange(key);
-          if (range) {
-            dc[key || ""] = data.filter((e) => e.date >= range.from && e.date <= range.to).length;
-          }
-        }
-        setDateCounts(dc);
-        setDateLoaded(true);
-      });
-  }, []);
-
   return (
-    <>
-      {dateLoaded && (
-        <DateDiscoveryCards counts={dateCounts} total={totalEvents} selected={selectedDate} onSelect={onDateSelect} />
-      )}
-    </>
+    <DateDiscoveryCards counts={dateCounts} total={dateTotalCount} selected={selectedDate} onSelect={onDateSelect} />
   );
 }
 
@@ -577,6 +539,8 @@ function SmartSearchChips({ chips, onClear }: { chips: string[]; onClear: () => 
 export default function EventsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allFetchedEvents, setAllFetchedEvents] = useState<(EventWithDistance | EventItem)[]>([]);
+  /** Events after location/search filters but BEFORE date filter — used for date card counts */
+  const [eventsBeforeDateFilter, setEventsBeforeDateFilter] = useState<(EventWithDistance | EventItem)[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -761,15 +725,17 @@ export default function EventsPage() {
 
   /* --- Client-side smart filter (location + date + search, NO category) --- */
   const applySmartFilters = useCallback(
-    (data: EventItem[]): EventItem[] => {
+    (data: EventItem[], skipDate = false): EventItem[] => {
       let filtered = data;
 
-      // Date filter (from URL param or smart search)
-      const dateRange = getDateFilterRange(effectiveDateFilter);
-      if (dateRange) {
-        filtered = filtered.filter(
-          (e) => e.date >= dateRange.from && e.date <= dateRange.to,
-        );
+      // Date filter (from URL param or smart search) — skipped when computing pre-date counts
+      if (!skipDate) {
+        const dateRange = getDateFilterRange(effectiveDateFilter);
+        if (dateRange) {
+          filtered = filtered.filter(
+            (e) => e.date >= dateRange.from && e.date <= dateRange.to,
+          );
+        }
       }
 
       // Smart search: city hints
@@ -815,6 +781,11 @@ export default function EventsPage() {
       // Near Me mode: fetch ALL events, sort by distance, then apply smart filters client-side
       getAllUpcomingEvents(null, undefined).then((data) => {
         if (fetchVersionRef.current !== version) return; // stale
+        // Pre-date: location/search filters only (for date card counts)
+        const preDateFiltered = applySmartFilters(data, true);
+        const preDateSorted = sortEventsByDistance(preDateFiltered, userCoords.lat, userCoords.lng);
+        setEventsBeforeDateFilter(preDateSorted);
+        // Full: location/search + date filter
         const smartFiltered = applySmartFilters(data);
         const sorted = sortEventsByDistance(smartFiltered, userCoords.lat, userCoords.lng);
         setAllFetchedEvents(sorted);
@@ -832,6 +803,9 @@ export default function EventsPage() {
     ) {
       getAllUpcomingEvents(null, undefined).then((data) => {
         if (fetchVersionRef.current !== version) return; // stale
+        // Pre-date: location/search filters only (for date card counts)
+        setEventsBeforeDateFilter(applySmartFilters(data, true));
+        // Full: location/search + date filter
         const smartFiltered = applySmartFilters(data);
         setAllFetchedEvents(smartFiltered);
         setIsClientFiltered(true);
@@ -844,6 +818,7 @@ export default function EventsPage() {
       getEventsMultiCategory(filterCity, null, PAGE_SIZE, 0, searchQuery || undefined).then((data) => {
         if (fetchVersionRef.current !== version) return; // stale
         setAllFetchedEvents(data);
+        setEventsBeforeDateFilter(data); // server-side fetch has no date filter to skip
         setIsClientFiltered(false);
         setHasMore(data.length === PAGE_SIZE);
         setLoading(false);
@@ -857,6 +832,22 @@ export default function EventsPage() {
 
   /** Stage 1 result: events BEFORE category filter (used for category counts) */
   const preFilteredEvents = allFetchedEvents;
+
+  /** Compute date card counts from pre-date events (location-aware, not global) */
+  const dateCounts = useMemo(() => {
+    const dc: Record<string, number> = {};
+    for (const key of ["today", "tomorrow", "weekend", "week", "month"] as const) {
+      const range = getDateFilterRange(key);
+      if (range) {
+        dc[key] = eventsBeforeDateFilter.filter(
+          (e) => e.date >= range.from && e.date <= range.to,
+        ).length;
+      }
+    }
+    return dc;
+  }, [eventsBeforeDateFilter]);
+
+  const dateTotalCount = eventsBeforeDateFilter.length;
 
   /** Compute category counts from Stage 1 */
   const categoryCounts = useMemo(() => {
@@ -1020,13 +1011,10 @@ export default function EventsPage() {
 
         {/* Discovery: Time Cards (BookMyShow-style) */}
         <DiscoverySection
-          preFilteredEvents={preFilteredEvents}
-          categoryCounts={categoryCounts}
-          selectedCategory={categoryParam}
+          dateCounts={dateCounts}
+          dateTotalCount={dateTotalCount}
           selectedDate={dateFilterParam}
-          loading={loading}
           onDateSelect={setDateFilter}
-          onCategorySelect={setCategoryFilter}
         />
 
         {/* Visual category cards */}
