@@ -24,6 +24,7 @@ import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
 import OnThisDay from "@/components/homepage/OnThisDay";
 import DailyQuiz from "@/components/homepage/DailyQuiz";
 import ThePulse from "@/components/homepage/ThePulse";
+import FridayLaughs from "@/components/homepage/FridayLaughs";
 import DevelopingStories from "@/components/homepage/DevelopingStories";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import JustInStrip from "@/components/homepage/JustInStrip";
@@ -609,6 +610,7 @@ export default function IndexV2() {
         />
         <NowInTheaters />
         <StreamingPicks />
+        <FridayLaughs />
 
         {/* 12. India News + Trending Sidebar */}
         <IndiaNewsGrid
