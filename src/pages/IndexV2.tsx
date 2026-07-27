@@ -292,7 +292,7 @@ export default function IndexV2() {
           if (evResp.ok) ev = await evResp.json();
         } catch {}
 
-        // Build just_in from all pools (purely chronological, most recent 8)
+        // Build just_in from all pools (purely chronological, most recent 20 candidates)
         const allPool = [
           ...newsPool, ...nriPool, ...techPool, ...entPool,
           ...marketsPool, ...sportsPool, ...immPool,
@@ -304,7 +304,7 @@ export default function IndexV2() {
             const bTime = new Date(b.event_at || b.published_at).getTime();
             return bTime - aTime;
           })
-          .slice(0, 8);
+          .slice(0, 20);
 
         applyData(f, sp, ev, new Date(), allPool);
       } catch {

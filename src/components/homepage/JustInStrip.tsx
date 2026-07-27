@@ -113,7 +113,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
 
         {/* ── Desktop: 4-column grid ── */}
         <div className="hidden md:grid grid-cols-4 gap-5">
-          {articles.slice(0, 8).map((a) => (
+          {articles.slice(0, 12).map((a) => (
             <Link
               key={a.id}
               to={`/articles/${a.slug}`}
