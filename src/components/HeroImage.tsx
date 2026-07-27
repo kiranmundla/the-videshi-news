@@ -112,6 +112,7 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
                 zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
               }`}
               referrerPolicy="no-referrer"
+              style={{ touchAction: "none" }}
               onTouchStart={handleDoubleTap}
               onDoubleClick={() => setZoomed((z) => !z)}
             />

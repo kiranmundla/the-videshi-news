@@ -106,6 +106,7 @@ export default function FridayLaughs() {
               className={`block rounded-lg shadow-2xl transition-all duration-200 ${
                 zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
               }`}
+              style={{ touchAction: "none" }}
               onTouchStart={handleImageTap}
               onDoubleClick={() => setZoomed((z) => !z)}
             />
