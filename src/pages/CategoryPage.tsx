@@ -30,6 +30,7 @@ export default function CategoryPage() {
   const [hasMore, setHasMore] = useState(true);
   const [fadeFrom, setFadeFrom] = useState(0);
   const [keyUpdateSlugs, setKeyUpdateSlugs] = useState<Set<string>>(new Set());
+  const [subFilter, setSubFilter] = useState("all");
 
   useEffect(() => {
     if (!def?.hasPipeline) {
@@ -41,6 +42,7 @@ export default function CategoryPage() {
     setLoading(true);
     setHasMore(true);
     setFadeFrom(0);
+    setSubFilter("all");
 
     // Fetch key update slugs for highlighting
     if (def?.slug) {
@@ -122,6 +124,32 @@ export default function CategoryPage() {
         {/* {def.slug === "entertainment" && <CelebrityBuzz />} */}
         {def.slug === "entertainment" && <NowInTheaters />}
         {def.slug === "entertainment" && <StreamingPicks />}
+        {def.slug === "entertainment" && (() => {
+          const SUBS = [
+            { key: "all", label: "All" },
+            { key: "bollywood", label: "Bollywood", tags: ["bollywood"] },
+            { key: "hollywood", label: "Hollywood", tags: ["hollywood"] },
+            { key: "south-cinema", label: "South Cinema", tags: ["tamil cinema", "tollywood", "kollywood", "mollywood", "south indian cinema", "telugu cinema", "malayalam cinema", "kannada cinema"] },
+            { key: "streaming", label: "Streaming", tags: ["streaming", "ott", "netflix", "prime video", "disney+", "apple tv", "hotstar"] },
+            { key: "box-office", label: "Box Office", tags: ["box office", "box-office"] },
+          ];
+          return (
+            <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 20, marginBottom: 8, WebkitOverflowScrolling: "touch" as any }}>
+              {SUBS.map((s) => (
+                <button key={s.key} onClick={() => setSubFilter(s.key)} style={{
+                  padding: "7px 16px", borderRadius: 20, fontSize: 13, fontWeight: 600,
+                  letterSpacing: "0.05em", textTransform: "uppercase" as any,
+                  background: subFilter === s.key ? "#1a1a1a" : "transparent",
+                  color: subFilter === s.key ? "#fff" : "#1a1a1a",
+                  border: "1px solid #1a1a1a",
+                  whiteSpace: "nowrap" as any, flexShrink: 0, cursor: "pointer",
+                }}>
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          );
+        })()}
         {def.slug === "sports" && <WorldCupTracker />}
         {def.slug === "sports" && <TechBuzz category="sports" />}
 
@@ -193,11 +221,27 @@ export default function CategoryPage() {
             )}
             {def.slug === "technology" && <UpcomingTechEvents />}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
-              {articles.map((a, i) => (
-                <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
-                  <ArticleCard article={a} variant="card" hideCategory isKeyUpdate={keyUpdateSlugs.has(a.slug)} />
-                </div>
-              ))}
+              {(() => {
+                const SUBS_MAP: Record<string, string[]> = {
+                  bollywood: ["bollywood"],
+                  hollywood: ["hollywood"],
+                  "south-cinema": ["tamil cinema", "tollywood", "kollywood", "mollywood", "south indian cinema", "telugu cinema", "malayalam cinema", "kannada cinema"],
+                  streaming: ["streaming", "ott", "netflix", "prime video", "disney+", "apple tv", "hotstar"],
+                  "box-office": ["box office", "box-office"],
+                };
+                const filtered = subFilter === "all" || def?.slug !== "entertainment"
+                  ? articles
+                  : articles.filter((a) => {
+                      const articleTags = ((a as any).tags || []).map((t: string) => t.toLowerCase().trim());
+                      const matchTags = SUBS_MAP[subFilter] || [];
+                      return articleTags.some((t: string) => matchTags.includes(t));
+                    });
+                return filtered.map((a, i) => (
+                  <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
+                    <ArticleCard article={a} variant="card" hideCategory isKeyUpdate={keyUpdateSlugs.has(a.slug)} />
+                  </div>
+                ));
+              })()}
             </div>
 
             <LoadMoreButton
