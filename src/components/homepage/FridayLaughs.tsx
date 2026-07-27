@@ -13,6 +13,7 @@ interface Comic {
 export default function FridayLaughs() {
   const [comics, setComics] = useState<Comic[]>([]);
   const [selected, setSelected] = useState<Comic | null>(null);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     supabase
@@ -43,14 +44,17 @@ export default function FridayLaughs() {
       {/* Featured comic */}
       {selected && (
         <div className="mb-6">
-          <div className="rounded-xl overflow-hidden border border-border bg-secondary/30">
+          <button
+            onClick={() => setExpanded(true)}
+            className="w-full rounded-xl overflow-hidden border border-border bg-secondary/30 cursor-zoom-in"
+          >
             <img
               src={selected.image_url}
               alt={selected.title}
               className="w-full"
               loading="lazy"
             />
-          </div>
+          </button>
           <p className="mt-3 font-serif text-lg font-semibold text-foreground">
             {selected.title}
           </p>
@@ -61,6 +65,28 @@ export default function FridayLaughs() {
               year: "numeric",
             })}
           </p>
+        </div>
+      )}
+
+      {/* Fullscreen overlay */}
+      {expanded && selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setExpanded(false)}
+        >
+          <button
+            onClick={() => setExpanded(false)}
+            className="absolute top-4 right-4 text-white text-3xl font-bold z-50 w-10 h-10 flex items-center justify-center"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <img
+            src={selected.image_url}
+            alt={selected.title}
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
 
