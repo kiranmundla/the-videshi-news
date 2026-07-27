@@ -86,7 +86,6 @@ export default function HeroSection({ lead, side }: Props) {
               </p>
             )}
             <p className="text-xs text-muted-foreground">
-              {lead.author ? `By ${lead.author} · ` : ""}
               {rt} min read · {timeAgo(lead.published_at)}
             </p>
           </Link>
