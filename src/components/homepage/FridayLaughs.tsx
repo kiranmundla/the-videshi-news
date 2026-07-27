@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Comic {
@@ -14,6 +14,17 @@ export default function FridayLaughs() {
   const [comics, setComics] = useState<Comic[]>([]);
   const [selected, setSelected] = useState<Comic | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
+  const lastTapRef = useRef(0);
+
+  const handleImageTap = useCallback((e: React.TouchEvent | React.MouseEvent) => {
+    e.stopPropagation();
+    const now = Date.now();
+    if (now - lastTapRef.current < 300) {
+      setZoomed((z) => !z);
+    }
+    lastTapRef.current = now;
+  }, []);
 
   useEffect(() => {
     supabase
@@ -68,16 +79,16 @@ export default function FridayLaughs() {
         </div>
       )}
 
-      {/* Fullscreen overlay — pinch-to-zoom on mobile */}
+      {/* Fullscreen overlay — double-tap to zoom */}
       {expanded && selected && (
         <div
           className="fixed inset-0 z-50 bg-black flex flex-col"
-          onClick={() => setExpanded(false)}
+          onClick={() => { setExpanded(false); setZoomed(false); }}
         >
           <div className="flex items-center justify-between px-4 py-3 shrink-0">
             <p className="text-white font-semibold text-sm truncate mr-4">{selected.title}</p>
             <button
-              onClick={() => setExpanded(false)}
+              onClick={() => { setExpanded(false); setZoomed(false); }}
               className="text-white text-2xl font-bold w-10 h-10 flex items-center justify-center shrink-0"
               aria-label="Close"
             >
@@ -86,14 +97,16 @@ export default function FridayLaughs() {
           </div>
           <div
             className="flex-1 overflow-auto"
-            onClick={(e) => e.stopPropagation()}
             style={{ WebkitOverflowScrolling: "touch" }}
           >
             <img
               src={selected.image_url}
               alt={selected.title}
-              className="w-[200vw] md:w-full md:max-w-4xl md:mx-auto block"
-              style={{ touchAction: "manipulation" }}
+              className={`block transition-all duration-200 ${
+                zoomed ? "w-[250vw] md:w-[180vw]" : "w-full md:max-w-4xl md:mx-auto"
+              }`}
+              onClick={handleImageTap}
+              onTouchEnd={handleImageTap}
             />
           </div>
         </div>
