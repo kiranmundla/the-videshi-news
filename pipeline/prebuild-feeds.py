@@ -359,6 +359,26 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     since_72h = (now - timedelta(hours=72)).isoformat()
     since_7d = (now - timedelta(days=7)).isoformat()
 
+    # Fetch article IDs already in active developing stories — exclude from featured/hero
+    storyline_article_ids: set[str] = set()
+    if url and key:
+        try:
+            active_storylines = fetch_table(url, key, "storylines",
+                                            select="id",
+                                            filters={"status": "in.(emerging,active,cooling)"})
+            if active_storylines:
+                sl_ids = [s["id"] for s in active_storylines]
+                for sl_id in sl_ids:
+                    links = fetch_table(url, key, "storyline_articles",
+                                        select="article_id",
+                                        filters={"storyline_id": f"eq.{sl_id}"})
+                    for link in links:
+                        storyline_article_ids.add(link["article_id"])
+            if storyline_article_ids:
+                print(f"  📰 Excluding {len(storyline_article_ids)} developing-story articles from featured/hero")
+        except Exception as e:
+            print(f"  ⚠️  Could not fetch storyline articles: {e}")
+
     # Group articles by category
     by_cat: dict[str, list[dict]] = {}
     for a in articles:
@@ -367,7 +387,7 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
 
     def get_category_articles(slug: str, limit: int) -> list[dict]:
         """Get articles for a category, sorted by freshness (newest first), preferring recent (72h), fallback to 7d."""
-        pool = by_cat.get(slug, [])
+        pool = [a for a in by_cat.get(slug, []) if a["id"] not in storyline_article_ids]
         recent = [a for a in pool if a["published_at"] >= since_72h]
         recent.sort(key=lambda a: a["published_at"], reverse=True)
         if len(recent) >= 3:
@@ -391,7 +411,7 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     _NO_FEATURED_CATS = {"food", "travel", "lifestyle-health"}
     featured = None
     for a in recent_24h:
-        if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS:
+        if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS and a["id"] not in storyline_article_ids:
             featured = article_without_body(a)
             break
     if not featured and recent_24h:
