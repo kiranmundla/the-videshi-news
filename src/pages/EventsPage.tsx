@@ -242,74 +242,6 @@ function DateFilterBar({
 }
 
 /* ------------------------------------------------------------------ */
-/* Dynamic Category Pills with Counts                                 */
-/* ------------------------------------------------------------------ */
-function DynamicCategoryPills({
-  counts,
-  selected,
-  onSelect,
-}: {
-  counts: Record<string, number>;
-  selected: string | null;
-  onSelect: (cat: string | null) => void;
-}) {
-  /* Sort categories by count (descending), then alphabetically */
-  const sortedCategories = useMemo(() => {
-    return Object.entries(counts)
-      .filter(([, count]) => count > 0)
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .map(([cat]) => cat);
-  }, [counts]);
-
-  const total = useMemo(
-    () => Object.values(counts).reduce((s, c) => s + c, 0),
-    [counts],
-  );
-
-  if (sortedCategories.length === 0) return null;
-
-  return (
-    <div className="flex items-center gap-1.5 mb-4 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
-      {/* All pill */}
-      <button
-        onClick={() => onSelect(null)}
-        className={`flex-shrink-0 inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full transition-colors whitespace-nowrap ${
-          selected === null
-            ? "bg-primary text-primary-foreground shadow-sm"
-            : "bg-muted/50 text-foreground/70 hover:bg-muted"
-        }`}
-      >
-        🎪 All
-        <span className={`ml-0.5 ${selected === null ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
-          ({total})
-        </span>
-      </button>
-
-      {sortedCategories.map((cat) => {
-        const isActive = selected === cat;
-        const emoji = CAT_EMOJI[cat] || "📌";
-        return (
-          <button
-            key={cat}
-            onClick={() => onSelect(isActive ? null : cat)}
-            className={`flex-shrink-0 inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-full transition-colors whitespace-nowrap ${
-              isActive
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "bg-muted/50 text-foreground/70 hover:bg-muted"
-            }`}
-          >
-            {emoji} {cat}
-            <span className={`ml-0.5 ${isActive ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
-              ({counts[cat]})
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /* Featured Events Carousel                                           */
 /* ------------------------------------------------------------------ */
 function FeaturedCarouselCard({ event }: { event: EventItem }) {
@@ -449,9 +381,11 @@ function TimeDiscoveryCards({
 
 function CategoryDiscoveryGrid({
   counts,
+  selected,
   onSelect,
 }: {
   counts: Record<string, number>;
+  selected: string | null;
   onSelect: (cat: string | null) => void;
 }) {
   const sortedCategories = useMemo(() => {
@@ -461,45 +395,64 @@ function CategoryDiscoveryGrid({
       .map(([cat, count]) => ({ cat, count }));
   }, [counts]);
 
+  const total = useMemo(
+    () => Object.values(counts).reduce((s, c) => s + c, 0),
+    [counts],
+  );
+
   if (sortedCategories.length === 0) return null;
 
   return (
-    <section className="mb-8">
-      <div className="flex items-center gap-3 mb-4">
-        <h2 className="font-serif text-xl md:text-2xl text-foreground whitespace-nowrap">
-          Browse Events By Category
-        </h2>
-        <div className="h-px flex-1 bg-border" />
-      </div>
-      <p className="text-sm text-muted-foreground mb-4 -mt-2">
-        Find events that match your interests
-      </p>
+    <section className="mb-4">
+      <div className="flex overflow-x-auto gap-2.5 pb-2 -mx-1 px-1 scrollbar-hide">
+        {/* All card */}
+        <button
+          onClick={() => onSelect(null)}
+          className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+            selected === null
+              ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
+              : ""
+          }`}
+        >
+          <div className="w-[110px] sm:w-[130px] aspect-[4/3] relative bg-gradient-to-br from-[#0B1D3A] to-[#A32D2F]">
+            <div className="absolute inset-0 p-3 flex flex-col justify-end">
+              <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">
+                🎪 All
+              </span>
+              <span className="text-white/80 text-xs font-medium mt-1 drop-shadow">
+                {total} Events
+              </span>
+            </div>
+          </div>
+        </button>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-        {sortedCategories.slice(0, 8).map(({ cat, count }) => {
+        {sortedCategories.map(({ cat, count }) => {
           const emoji = CAT_EMOJI[cat] || "📌";
           const imgSrc = CAT_FALLBACK_IMG[cat] || CAT_FALLBACK_IMG["Other"];
+          const isActive = selected === cat;
           return (
             <button
               key={cat}
-              onClick={() => onSelect(cat)}
-              className="group relative rounded-xl overflow-hidden text-left transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/40"
+              onClick={() => onSelect(isActive ? null : cat)}
+              className={`flex-shrink-0 group relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+                isActive
+                  ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
+                  : ""
+              }`}
             >
-              <div className="aspect-[4/3] relative">
+              <div className="w-[110px] sm:w-[130px] aspect-[4/3] relative">
                 <img
                   src={imgSrc}
                   alt={cat}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                 />
-                {/* Dark overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-                {/* Content */}
-                <div className="absolute inset-0 p-3 sm:p-4 flex flex-col justify-end">
-                  <span className="text-white text-base sm:text-lg font-bold font-serif leading-tight drop-shadow-lg">
+                <div className="absolute inset-0 p-3 flex flex-col justify-end">
+                  <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">
                     {emoji} {cat}
                   </span>
-                  <span className="text-white/80 text-xs sm:text-sm font-medium mt-1 drop-shadow">
+                  <span className="text-white/80 text-xs font-medium mt-1 drop-shadow">
                     {count} {count === 1 ? "Event" : "Events"}
                   </span>
                 </div>
@@ -513,27 +466,34 @@ function CategoryDiscoveryGrid({
 }
 
 function DiscoverySection({
+  preFilteredEvents,
+  categoryCounts,
+  selectedCategory,
+  loading,
   onDateSelect,
   onCategorySelect,
 }: {
+  preFilteredEvents: (EventWithDistance | EventItem)[];
+  categoryCounts: Record<string, number>;
+  selectedCategory: string | null;
+  loading: boolean;
   onDateSelect: (key: DateFilterKey) => void;
   onCategorySelect: (cat: string | null) => void;
 }) {
+  /* Time cards need global counts (not filtered by location/date),
+     so we do a lightweight independent query for those only. */
   const [timeCounts, setTimeCounts] = useState<Record<string, number>>({});
-  const [catCounts, setCatCounts] = useState<Record<string, number>>({});
-  const [loaded, setLoaded] = useState(false);
+  const [timeLoaded, setTimeLoaded] = useState(false);
 
   useEffect(() => {
     const today = new Date().toISOString().slice(0, 10);
     supabaseRaw
       .from("events")
-      .select("id,date,category")
+      .select("id,date")
       .gte("date", today)
       .limit(5000)
-      .then(({ data }: { data: { id: string; date: string; category: string | null }[] | null }) => {
-        if (!data) { setLoaded(true); return; }
-
-        // Compute time-based counts
+      .then(({ data }: { data: { id: string; date: string }[] | null }) => {
+        if (!data) { setTimeLoaded(true); return; }
         const tc: Record<string, number> = {};
         for (const key of ["today", "tomorrow", "weekend"] as DateFilterKey[]) {
           const range = getDateFilterRange(key);
@@ -542,28 +502,17 @@ function DiscoverySection({
           }
         }
         setTimeCounts(tc);
-
-        // Compute category counts
-        const cc: Record<string, number> = {};
-        for (const e of data) {
-          const cat = e.category || "Other";
-          cc[cat] = (cc[cat] || 0) + 1;
-        }
-        setCatCounts(cc);
-        setLoaded(true);
+        setTimeLoaded(true);
       });
   }, []);
 
-  if (!loaded) return null;
-
-  const hasTimeEvents = Object.values(timeCounts).some((c) => c > 0);
+  const hasTimeEvents = timeLoaded && Object.values(timeCounts).some((c) => c > 0);
 
   return (
     <>
       {hasTimeEvents && (
         <TimeDiscoveryCards counts={timeCounts} onSelect={onDateSelect} />
       )}
-      <CategoryDiscoveryGrid counts={catCounts} onSelect={onCategorySelect} />
     </>
   );
 }
@@ -991,8 +940,12 @@ export default function EventsPage() {
         {/* Featured Events Carousel */}
         <FeaturedEventsSection />
 
-        {/* Discovery: Time Cards + Category Grid (BookMyShow-style) */}
+        {/* Discovery: Time Cards (BookMyShow-style) */}
         <DiscoverySection
+          preFilteredEvents={preFilteredEvents}
+          categoryCounts={categoryCounts}
+          selectedCategory={categoryParam}
+          loading={loading}
           onDateSelect={setDateFilter}
           onCategorySelect={setCategoryFilter}
         />
@@ -1084,9 +1037,9 @@ export default function EventsPage() {
         {/* Date quick-filter pills */}
         <DateFilterBar selected={dateFilterParam} onSelect={setDateFilter} />
 
-        {/* Dynamic category pills with counts */}
+        {/* Visual category cards (replaces old text pills) */}
         {!loading && (
-          <DynamicCategoryPills
+          <CategoryDiscoveryGrid
             counts={categoryCounts}
             selected={categoryParam}
             onSelect={setCategoryFilter}
