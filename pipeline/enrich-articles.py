@@ -1653,9 +1653,8 @@ def main():
 
     # ── 3. SOCIAL EMBED ENRICHMENT ──
     if run_embeds:
-        # X/Twitter enrichment is handled by enrich-on-publish.py (cheap per-handle lookups).
-        # Do NOT call tweet-enricher.py here — it uses expensive advanced_search (~300 credits/call).
-        # run_tweet_enricher(hours=args.hours, apply=apply)
+        # Topic search for tweet embeds in articles
+        run_tweet_enricher(hours=args.hours, apply=apply)
 
         # Instagram embed enrichment — all categories
         print("\n══ Instagram Embed Enrichment ══")
