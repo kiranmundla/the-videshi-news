@@ -331,9 +331,11 @@ const TIME_CARD_STYLES: { key: DateFilterKey; label: string; sublabel: string; g
 
 function TimeDiscoveryCards({
   counts,
+  selected,
   onSelect,
 }: {
   counts: Record<string, number>;
+  selected: DateFilterKey;
   onSelect: (key: DateFilterKey) => void;
 }) {
   return (
@@ -354,8 +356,12 @@ function TimeDiscoveryCards({
           return (
             <button
               key={card.key}
-              onClick={() => onSelect(card.key)}
-              className="flex-shrink-0 w-[160px] sm:w-[200px] rounded-xl overflow-hidden text-left transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/40"
+              onClick={() => onSelect(selected === card.key ? null : card.key)}
+              className={`flex-shrink-0 w-[160px] sm:w-[200px] rounded-xl overflow-hidden text-left transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+                selected === card.key
+                  ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
+                  : ""
+              }`}
             >
               <div
                 className="p-5 h-[120px] sm:h-[140px] flex flex-col justify-end"
@@ -469,6 +475,7 @@ function DiscoverySection({
   preFilteredEvents,
   categoryCounts,
   selectedCategory,
+  selectedDate,
   loading,
   onDateSelect,
   onCategorySelect,
@@ -476,6 +483,7 @@ function DiscoverySection({
   preFilteredEvents: (EventWithDistance | EventItem)[];
   categoryCounts: Record<string, number>;
   selectedCategory: string | null;
+  selectedDate: DateFilterKey;
   loading: boolean;
   onDateSelect: (key: DateFilterKey) => void;
   onCategorySelect: (cat: string | null) => void;
@@ -511,7 +519,7 @@ function DiscoverySection({
   return (
     <>
       {hasTimeEvents && (
-        <TimeDiscoveryCards counts={timeCounts} onSelect={onDateSelect} />
+        <TimeDiscoveryCards counts={timeCounts} selected={selectedDate} onSelect={onDateSelect} />
       )}
     </>
   );
@@ -927,31 +935,42 @@ export default function EventsPage() {
         .scrollbar-hide::-webkit-scrollbar { display: none; }
       `}</style>
       <main className="events-main container flex-1 pt-8 md:pt-10 pb-16">
-        {/* Header */}
+        {/* Header — title + Post/Manage links right-aligned */}
         <div className="mb-6">
-          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
-            Events
-          </h1>
-          <p className="text-muted-foreground text-lg">
-            Indian concerts, festivals, cultural events &amp; community gatherings across the US
-          </p>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-2">
+                Events
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                Indian concerts, festivals, cultural events &amp; community gatherings across the US
+              </p>
+            </div>
+            <div className="flex items-center gap-3 flex-shrink-0 pt-1">
+              <Link
+                to="/events/submit"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                Post Your Event
+              </Link>
+              <Link
+                to="/events/submit?mode=manage"
+                className="text-xs text-muted-foreground hover:text-primary transition-colors whitespace-nowrap hidden sm:inline"
+              >
+                Manage my events
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Featured Events Carousel */}
         <FeaturedEventsSection />
 
-        {/* Discovery: Time Cards (BookMyShow-style) */}
-        <DiscoverySection
-          preFilteredEvents={preFilteredEvents}
-          categoryCounts={categoryCounts}
-          selectedCategory={categoryParam}
-          loading={loading}
-          onDateSelect={setDateFilter}
-          onCategorySelect={setCategoryFilter}
-        />
-
-        {/* Search + Location controls — one row on desktop, stacked on mobile */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+        {/* Search + Location controls */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
           {/* Search bar */}
           <div className="relative flex-1 max-w-md">
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -1013,31 +1032,20 @@ export default function EventsPage() {
             </select>
           </div>
           </div>
-
-          {/* Submit Event link */}
-          <div className="flex items-center gap-3">
-            <Link
-              to="/events/submit"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-primary border border-primary/30 hover:bg-primary/5 rounded-lg transition-colors whitespace-nowrap"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
-              Post Your Event
-            </Link>
-            <Link
-              to="/events/submit?mode=manage"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors whitespace-nowrap"
-            >
-              Manage my events
-            </Link>
-          </div>
         </div>
 
-        {/* Date quick-filter pills */}
-        <DateFilterBar selected={dateFilterParam} onSelect={setDateFilter} />
+        {/* Discovery: Time Cards (BookMyShow-style) */}
+        <DiscoverySection
+          preFilteredEvents={preFilteredEvents}
+          categoryCounts={categoryCounts}
+          selectedCategory={categoryParam}
+          selectedDate={dateFilterParam}
+          loading={loading}
+          onDateSelect={setDateFilter}
+          onCategorySelect={setCategoryFilter}
+        />
 
-        {/* Visual category cards (replaces old text pills) */}
+        {/* Visual category cards */}
         {!loading && (
           <CategoryDiscoveryGrid
             counts={categoryCounts}
