@@ -17,13 +17,16 @@ export default function FridayLaughs() {
   const [zoomed, setZoomed] = useState(false);
   const lastTapRef = useRef(0);
 
-  const handleImageTap = useCallback((e: React.TouchEvent | React.MouseEvent) => {
+  const handleImageTap = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     const now = Date.now();
-    if (now - lastTapRef.current < 300) {
+    if (now - lastTapRef.current < 400) {
       setZoomed((z) => !z);
+      lastTapRef.current = 0;
+    } else {
+      lastTapRef.current = now;
     }
-    lastTapRef.current = now;
   }, []);
 
   useEffect(() => {
@@ -106,7 +109,6 @@ export default function FridayLaughs() {
                 zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
               }`}
               onClick={handleImageTap}
-              onTouchEnd={handleImageTap}
             />
           </div>
         </div>
