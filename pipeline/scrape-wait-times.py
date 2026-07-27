@@ -63,15 +63,30 @@ def parse_months(text):
 def fetch_wait_times():
     """Fetch and parse the State Dept wait times page."""
     url = "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html"
-    headers = {"User-Agent": "TheVideshi/1.0 (immigration news)"}
-    if _requests:
-        r = _requests.get(url, headers=headers, timeout=30)
-        r.raise_for_status()
-        html = r.text
-    else:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            html = resp.read().decode("utf-8")
+    # travel.state.gov blocks requests/urllib from this server (IP-blocked, returns 403).
+    # Use curl with a browser-like UA as primary, fall back to requests/urllib.
+    import subprocess as _sp
+    try:
+        cp = _sp.run(
+            ["curl", "-sL", "-A",
+             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+             "--max-time", "30", url],
+            capture_output=True, text=True, timeout=45)
+        if cp.returncode == 0 and len(cp.stdout) > 1000:
+            html = cp.stdout
+        else:
+            raise RuntimeError(f"curl failed rc={cp.returncode} len={len(cp.stdout)}")
+    except Exception as curl_err:
+        print(f"curl fetch failed ({curl_err}), trying requests...")
+        headers = {"User-Agent": "TheVideshi/1.0 (immigration news)"}
+        if _requests:
+            r = _requests.get(url, headers=headers, timeout=30)
+            r.raise_for_status()
+            html = r.text
+        else:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                html = resp.read().decode("utf-8")
     
     results = []
     now = datetime.now(timezone.utc).isoformat()
