@@ -73,7 +73,7 @@ export default function ImmigrationStrip({ articles }: Props) {
                 >
                   <div className="w-full bg-white/[0.08] overflow-hidden" style={{ aspectRatio: "16/10" }}>
                     {img ? (
-                      <HeroImage
+                      <HeroImage zoomable={false}
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"
@@ -115,7 +115,7 @@ export default function ImmigrationStrip({ articles }: Props) {
               >
                 <div className="w-full bg-white/[0.08] overflow-hidden" style={{ aspectRatio: "16/10" }}>
                   {img ? (
-                    <HeroImage
+                    <HeroImage zoomable={false}
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"

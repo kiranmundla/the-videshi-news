@@ -277,7 +277,7 @@ function SubTopicGroup({
                   className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-3"
                   style={{ aspectRatio: "16/10" }}
                 >
-                  <HeroImage
+                  <HeroImage zoomable={false}
                     src={visible[0].hero_image_url}
                     alt={visible[0].title}
                     loading="lazy"
@@ -312,7 +312,7 @@ function SubTopicGroup({
               >
                 {isValidImage(a.hero_image_url) && (
                   <div className="w-[68px] min-w-[68px] h-[68px] bg-neutral-100 rounded overflow-hidden">
-                    <HeroImage
+                    <HeroImage zoomable={false}
                       src={a.hero_image_url}
                       alt={a.title}
                       loading="lazy"

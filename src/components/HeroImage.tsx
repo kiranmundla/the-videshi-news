@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 
 type Props = {
   src?: string | null;
@@ -13,6 +13,8 @@ type Props = {
   focalX?: number | null;
   focalY?: number | null;
   onOrientationDetected?: (orientation: "landscape" | "portrait") => void;
+  /** Set false to disable tap-to-expand (default true) */
+  zoomable?: boolean;
 };
 
 export function isValidImage(src?: string | null): boolean {
@@ -32,8 +34,11 @@ export function isValidImage(src?: string | null): boolean {
   return true;
 }
 
-export default function HeroImage({ src, alt, className = "", loading = "lazy", fetchPriority, style, width, height, focalX, focalY, onOrientationDetected }: Props) {
+export default function HeroImage({ src, alt, className = "", loading = "lazy", fetchPriority, style, width, height, focalX, focalY, onOrientationDetected, zoomable = true }: Props) {
   const [failed, setFailed] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
+  const lastTapRef = useRef(0);
 
   // Build object-position from focal point data (pipeline-computed)
   const hasFocal = focalX != null && focalY != null && !(focalX === 0.5 && focalY === 0.5);
@@ -45,29 +50,73 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
     const img = e.currentTarget;
     const ratio = img.naturalWidth / img.naturalHeight;
     const portrait = ratio < 0.87;
-    // For portrait images without pipeline focal data, shift to top so faces aren't cropped.
     if (!hasFocal && portrait && className.includes("object-cover")) {
       img.style.objectPosition = "top center";
     }
     onOrientationDetected?.(ratio > 1.2 ? "landscape" : "portrait");
   }, [onOrientationDetected, className, hasFocal]);
 
+  const handleDoubleTap = useCallback((e: React.TouchEvent | React.MouseEvent) => {
+    e.stopPropagation();
+    const now = Date.now();
+    if (now - lastTapRef.current < 300) {
+      setZoomed((z) => !z);
+    }
+    lastTapRef.current = now;
+  }, []);
+
   if (!isValidImage(src) || failed) return null;
 
   return (
-    <img
-      src={src as string}
-      alt={alt}
-      loading={loading}
-      fetchPriority={fetchPriority}
-      decoding={loading === "lazy" ? "async" : undefined}
-      referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
-      onLoad={handleLoad}
-      className={className}
-      style={{...focalStyle, ...style}}
-      width={width}
-      height={height}
-    />
+    <>
+      <img
+        src={src as string}
+        alt={alt}
+        loading={loading}
+        fetchPriority={fetchPriority}
+        decoding={loading === "lazy" ? "async" : undefined}
+        referrerPolicy="no-referrer"
+        onError={() => setFailed(true)}
+        onLoad={handleLoad}
+        className={`${className}${zoomable ? " cursor-zoom-in" : ""}`}
+        style={{...focalStyle, ...style}}
+        width={width}
+        height={height}
+        onClick={zoomable ? () => setExpanded(true) : undefined}
+      />
+
+      {zoomable && expanded && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          onClick={() => { setExpanded(false); setZoomed(false); }}
+        >
+          <button
+            onClick={() => { setExpanded(false); setZoomed(false); }}
+            className="absolute top-4 right-4 text-white text-2xl font-bold w-10 h-10 flex items-center justify-center z-50"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <div
+            className={`transition-all duration-200 ${
+              zoomed ? "overflow-auto max-h-[95vh] max-w-[95vw]" : "flex items-center justify-center px-4"
+            }`}
+            style={{ WebkitOverflowScrolling: "touch" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={src as string}
+              alt={alt}
+              className={`block rounded-lg shadow-2xl transition-all duration-200 ${
+                zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
+              }`}
+              referrerPolicy="no-referrer"
+              onClick={handleDoubleTap}
+              onTouchEnd={handleDoubleTap}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

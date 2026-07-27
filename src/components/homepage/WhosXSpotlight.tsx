@@ -92,7 +92,7 @@ export default function WhosXSpotlight() {
                 >
                   {hasImage && (
                     <div className="w-[280px] flex-shrink-0 overflow-hidden">
-                      <HeroImage
+                      <HeroImage zoomable={false}
                         src={article.image_url!}
                         alt={personName || article.headline}
                         focalX={article.focal_x ?? 0.5}
@@ -136,7 +136,7 @@ export default function WhosXSpotlight() {
               >
                 {hasImage && (
                   <div className="whos-x-photo">
-                    <HeroImage
+                    <HeroImage zoomable={false}
                       src={article.image_url!}
                       alt={personName || article.headline}
                       focalX={article.focal_x ?? 0.5}

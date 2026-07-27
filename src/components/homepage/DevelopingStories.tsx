@@ -174,7 +174,7 @@ export default function DevelopingStories() {
                     width: "100%", height: 180, overflow: "hidden",
                     background: "hsl(var(--muted) / 0.3)",
                   }}>
-                    <HeroImage
+                    <HeroImage zoomable={false}
                       src={heroImage}
                       alt=""
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}

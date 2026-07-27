@@ -54,7 +54,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
               <div
                 className="w-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[4/3]"
               >
-                <HeroImage
+                <HeroImage zoomable={false}
                   src={lead.hero_image_url}
                   alt={lead.title}
                   loading="lazy"
@@ -96,7 +96,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                 >
                   {img && (
                     <div className="w-[72px] min-w-[72px] h-[72px] bg-neutral-100 rounded overflow-hidden">
-                      <HeroImage
+                      <HeroImage zoomable={false}
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"

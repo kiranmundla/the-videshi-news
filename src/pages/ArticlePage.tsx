@@ -7,6 +7,7 @@ import rehypeRaw from "rehype-raw";
 import SocialEmbed, { detectSocialUrl, MinimalTweetEmbed } from "@/components/SocialEmbed";
 import XOfficialEmbed from "@/components/XOfficialEmbed";
 import SocialPhotoStrip, { parseSocialPhotos } from "@/components/SocialPhotoStrip";
+import HeroImage from "@/components/HeroImage";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -311,7 +312,7 @@ function MarkdownWithEmbeds({
       if (heroImageUrl && norm(src) === norm(heroImageUrl)) {
         return null;
       }
-      return <img src={src} alt={alt || title} loading="lazy" referrerPolicy="no-referrer" />;
+      return <HeroImage src={src} alt={alt || title} loading="lazy" className="w-full rounded-lg" />;
     },
   };
 

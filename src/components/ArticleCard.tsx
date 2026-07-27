@@ -191,7 +191,7 @@ export default function ArticleCard({
     return (
       <Link to={href} onClick={saveScroll} className="group flex gap-4 items-start">
         {hasImage && (
-          <HeroImage
+          <HeroImage zoomable={false}
             src={article.hero_image_url}
             alt={article.title}
             focalX={article.focal_x}
@@ -257,7 +257,7 @@ export default function ArticleCard({
       >
         <figure>
           <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden">
-            <HeroImage
+            <HeroImage zoomable={false}
               src={article.hero_image_url}
               alt={article.title}
               focalX={article.focal_x}
@@ -356,7 +356,7 @@ export default function ArticleCard({
     return (
       <Link to={href} onClick={saveScroll} className="group flex gap-4">
         <div className="w-[120px] md:w-[160px] flex-shrink-0">
-          <HeroImage
+          <HeroImage zoomable={false}
             src={article.hero_image_url}
             alt={article.title}
             focalX={article.focal_x}
@@ -408,7 +408,7 @@ export default function ArticleCard({
       ) : (
         <figure className="w-full">
           <div className="w-full aspect-[16/9] bg-stone-100 overflow-hidden rounded-lg">
-            <HeroImage
+            <HeroImage zoomable={false}
               src={article.hero_image_url}
               alt={article.title}
               focalX={article.focal_x}

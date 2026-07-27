@@ -67,7 +67,7 @@ export default function IndiaNewsGrid({ articles }: Props) {
                 >
                   {img ? (
                     <div className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2 aspect-[16/10] md:aspect-[16/9]">
-                      <HeroImage
+                      <HeroImage zoomable={false}
                         src={a.hero_image_url}
                         alt={a.title}
                         loading="lazy"

@@ -75,7 +75,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
                   className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2"
                   style={{ aspectRatio: "16/10" }}
                 >
-                  <HeroImage
+                  <HeroImage zoomable={false}
                     src={a.hero_image_url}
                     alt={a.title}
                     loading="lazy"
@@ -124,7 +124,7 @@ export default function JustInStrip({ articles }: { articles: Article[] }) {
                   className="w-full bg-neutral-100 overflow-hidden rounded-lg mb-2"
                   style={{ aspectRatio: "16/10" }}
                 >
-                  <HeroImage
+                  <HeroImage zoomable={false}
                     src={a.hero_image_url}
                     alt={a.title}
                     loading="lazy"

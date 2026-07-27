@@ -79,31 +79,31 @@ export default function FridayLaughs() {
         </div>
       )}
 
-      {/* Fullscreen overlay — double-tap to zoom */}
+      {/* Lightbox overlay — tap to open, double-tap to zoom */}
       {expanded && selected && (
         <div
-          className="fixed inset-0 z-50 bg-black flex flex-col"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
           onClick={() => { setExpanded(false); setZoomed(false); }}
         >
-          <div className="flex items-center justify-between px-4 py-3 shrink-0">
-            <p className="text-white font-semibold text-sm truncate mr-4">{selected.title}</p>
-            <button
-              onClick={() => { setExpanded(false); setZoomed(false); }}
-              className="text-white text-2xl font-bold w-10 h-10 flex items-center justify-center shrink-0"
-              aria-label="Close"
-            >
-              ✕
-            </button>
-          </div>
+          <button
+            onClick={() => { setExpanded(false); setZoomed(false); }}
+            className="absolute top-4 right-4 text-white text-2xl font-bold w-10 h-10 flex items-center justify-center z-50"
+            aria-label="Close"
+          >
+            ✕
+          </button>
           <div
-            className="flex-1 overflow-auto"
+            className={`transition-all duration-200 ${
+              zoomed ? "overflow-auto max-h-[95vh] max-w-[95vw]" : "flex items-center justify-center px-4"
+            }`}
             style={{ WebkitOverflowScrolling: "touch" }}
+            onClick={(e) => e.stopPropagation()}
           >
             <img
               src={selected.image_url}
               alt={selected.title}
-              className={`block transition-all duration-200 ${
-                zoomed ? "w-[250vw] md:w-[180vw]" : "w-full md:max-w-4xl md:mx-auto"
+              className={`block rounded-lg shadow-2xl transition-all duration-200 ${
+                zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
               }`}
               onClick={handleImageTap}
               onTouchEnd={handleImageTap}
