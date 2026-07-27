@@ -680,7 +680,7 @@ export default function ArticlePage() {
               processedHtml = processedHtml.replace(
                 /!\[([^\]]*)\]\((https?:\/\/[^)]+)\)/g,
                 (_: string, alt: string, url: string) => {
-                  return `<figure style="margin:28px 0;text-align:center"><img src="${url}" alt="${alt}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">${alt}</figcaption></figure>`;
+                  return `<figure style="margin:28px auto;text-align:center"><img src="${url}" alt="${alt}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">${alt}</figcaption></figure>`;
                 }
               );
 

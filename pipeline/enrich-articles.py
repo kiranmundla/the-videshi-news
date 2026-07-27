@@ -1010,7 +1010,7 @@ def insert_inline_images(body, images, max_cap=2):
             idx = min(step * (i + 1), len(paragraphs) - 1)
             if is_html:
                 cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
-                img_md = f'\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
+                img_md = f'\n<figure style="margin:28px auto;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
             else:
                 img_md = f"\n![{caption}]({url})\n"
             paragraphs.insert(idx, img_md)
@@ -1054,7 +1054,7 @@ def insert_inline_images(body, images, max_cap=2):
 
         if is_html:
             cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
-            img_md = f'\n\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
+            img_md = f'\n\n<figure style="margin:28px auto;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
         else:
             img_md = f"\n\n![{caption}]({url})\n"
 

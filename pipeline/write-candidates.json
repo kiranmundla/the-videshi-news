@@ -1,0 +1,82 @@
+{
+  "candidates": [
+    {
+      "topic_id": "26b5eb68-e1b7-4fd2-8bb2-eb193885ddc0",
+      "title": "New rule for asylum seekers in the US: 'No interview, straight deportation'",
+      "category": "immigration",
+      "llm_score": 5
+    },
+    {
+      "topic_id": "f997d1ca-3f83-4fbb-89da-4a06b22f7e82",
+      "title": "Army mess in Srinagar inaugurates 'Dhurandhar bar' with motifs from Ranveer Singh film",
+      "category": "entertainment",
+      "llm_score": 5
+    },
+    {
+      "topic_id": "75c59eb8-06b7-4eab-aa1e-2a0dc12b0ac6",
+      "title": "Japanese author Keigo Higashino dies at 68",
+      "category": "nri-world",
+      "llm_score": 5
+    },
+    {
+      "topic_id": "9343bb1b-f558-44d3-aa99-929ed59f1e84",
+      "title": "China Fields Medals triumph raises bigger math questions",
+      "category": "nri-world",
+      "llm_score": 5
+    },
+    {
+      "topic_id": "6ec0a77f-1a57-4f97-a3b1-bb24e51f1c18",
+      "title": "GCAP For India: Leonardo CEO Says Join 6th-Gen UK-Japan-Italy Fighter Jet Program",
+      "category": "nri-world",
+      "llm_score": 5
+    },
+    {
+      "topic_id": "812bc15a-8f52-4b97-90ef-f32f74eae098",
+      "title": "Chennai Love Story Box Office Collection Day 3",
+      "category": "entertainment",
+      "llm_score": 5
+    },
+    {
+      "topic_id": "2aed9aae-b8e2-4d25-8e72-f29a143f5e09",
+      "title": "Tata Sons profit rises 21.8%, Air India losses double to Rs 22,238 crore",
+      "category": "markets-finance",
+      "llm_score": 4
+    },
+    {
+      "topic_id": "6e08fe3c-beaf-485e-891e-d2c93d383ba1",
+      "title": "Oil tanker explodes in Strait of Hormuz after hitting naval mine",
+      "category": "news",
+      "llm_score": 4
+    },
+    {
+      "topic_id": "7cf8ed62-5f09-4289-ace9-4e5a58ed9be4",
+      "title": "Sen. Cortez Masto Introduces Fairness for Immigrant Families Act to Block DACA Deportations",
+      "category": "immigration",
+      "llm_score": 4
+    },
+    {
+      "topic_id": "bae460b0-1eb9-4e26-a1bb-58e41f56c4ec",
+      "title": "Wipro Partners With Databricks to Enable Enterprises to Modernize Data and Deploy AI at Scale",
+      "category": "technology",
+      "llm_score": 4
+    },
+    {
+      "topic_id": "0a4c838b-b25e-40d9-9bfa-b3ae0eeb4f5e",
+      "title": "The Great Indian Spice Battle: Why Gujarat And Rajasthan Are Fighting Over Jeera",
+      "category": "food",
+      "llm_score": 3
+    },
+    {
+      "topic_id": "b83c79b0-2a26-4488-b15f-74a5e1019eca",
+      "title": "Tourism Ministry, Air India sign MoU to boost global promotion of India under Incredible India",
+      "category": "travel",
+      "llm_score": 4
+    }
+  ],
+  "skipped": [
+    {"topic_id": "99ce77d1", "reason": "DUP: AU Small Finance Bank NRI rates already published"},
+    {"topic_id": "2ec3695c", "reason": "DUP: India-Zimbabwe T20 series win already published"},
+    {"topic_id": "3b0284da", "reason": "INTERNAL DUP: Same Wipro-Databricks story"},
+    {"topic_id": "f704f261", "reason": "DUP: Canada student work rules already published"}
+  ]
+}

@@ -224,7 +224,13 @@ def load_registry():
 
 def match_handles(headline, registry, platform):
     """Match article headline to registry handles for a platform.
-    Returns list of {name, handle, category, platform}."""
+    Returns list of {name, handle, category, platform}.
+    
+    For persons: matches if the last name (last significant word) appears in the
+    headline as a word. This handles headlines like "Modi Plans..." matching
+    "Narendra Modi". Tweet relevance scoring (min_score=5) filters false positives.
+    
+    For organizations: requires ALL significant name parts to match (stricter)."""
     headline_lower = headline.lower()
     matches = []
 
@@ -244,14 +250,37 @@ def match_handles(headline, registry, platform):
                 if not significant:
                     continue
 
-                if all(re.search(r'\b' + re.escape(w) + r'\b', headline_lower) for w in significant):
-                    matches.append({
-                        "name": name,
-                        "handle": handle.lower(),
-                        "category": category,
-                        "platform": platform,
-                        "group": group,  # "persons" or "organizations"
-                    })
+                if group == "persons":
+                    # For persons: match if the last significant name part (surname) is
+                    # found as a whole word in the headline. This handles "Modi", "Kohli",
+                    # "Pichai" etc. Relevance scoring filters false positives downstream.
+                    surname = significant[-1]
+                    if len(surname) >= 4 and re.search(r'\b' + re.escape(surname) + r'\b', headline_lower):
+                        matches.append({
+                            "name": name,
+                            "handle": handle.lower(),
+                            "category": category,
+                            "platform": platform,
+                            "group": group,
+                        })
+                    elif all(re.search(r'\b' + re.escape(w) + r'\b', headline_lower) for w in significant):
+                        matches.append({
+                            "name": name,
+                            "handle": handle.lower(),
+                            "category": category,
+                            "platform": platform,
+                            "group": group,
+                        })
+                else:
+                    # Organizations: all parts must match (stricter to avoid false hits)
+                    if all(re.search(r'\b' + re.escape(w) + r'\b', headline_lower) for w in significant):
+                        matches.append({
+                            "name": name,
+                            "handle": handle.lower(),
+                            "category": category,
+                            "platform": platform,
+                            "group": group,
+                        })
 
     return matches
 
@@ -435,6 +464,95 @@ def enrich_x_from_cache(article, cache, registry):
         best, score = find_best_tweet(tweets, headline, body_500, min_score=5)
         if best:
             return best, {"source": "cache", "handle": handle, "name": m["name"], "score": score}
+
+    return None, None
+
+
+
+def _fetch_handle_tweets_live(handle, max_results=10):
+    """Fetch recent tweets from a specific handle via cheap /user/last_tweets endpoint (~15 credits).
+    Returns list of tweet dicts compatible with find_best_tweet()."""
+    if not TWITTERAPI_IO_KEY:
+        return []
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", "--max-time", "15",
+             f"{TWITTERAPI_IO_BASE}/twitter/user/last_tweets",
+             "-H", f"X-API-Key: {TWITTERAPI_IO_KEY}",
+             "-G",
+             "--data-urlencode", f"userName={handle}"],
+            capture_output=True, text=True, timeout=20,
+        )
+        if result.returncode != 0 or not result.stdout.strip():
+            return []
+        data = json.loads(result.stdout)
+    except Exception:
+        return []
+
+    raw_tweets = data.get("data", {}).get("tweets", []) or data.get("tweets", [])
+    if not raw_tweets:
+        return []
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=48)
+    results = []
+    for t in raw_tweets[:max_results]:
+        if t.get("retweeted_tweet") or (t.get("text", "")).startswith("RT @"):
+            continue
+        if t.get("isReply"):
+            continue
+        created_str = t.get("createdAt", "")
+        try:
+            created = datetime.strptime(created_str, "%a %b %d %H:%M:%S %z %Y")
+            if created < cutoff:
+                continue
+        except (ValueError, TypeError):
+            pass
+
+        media_list = t.get("extendedEntities", {}).get("media", [])
+        photos = [m.get("media_url_https", "") for m in media_list if m.get("type") == "photo"]
+        has_video = any(m.get("type") in ("video", "animated_gif") for m in media_list)
+        author = t.get("author", {})
+        handle_actual = author.get("userName", handle)
+
+        results.append({
+            "id": t.get("id", ""),
+            "text": t.get("text", ""),
+            "created_at": created_str,
+            "photos": photos,
+            "photo_count": len(photos),
+            "has_video": has_video,
+            "url": t.get("url", f"https://x.com/{handle_actual}/status/{t.get('id', '')}"),
+            "likes": t.get("likeCount", 0) or 0,
+            "retweets": t.get("retweetCount", 0) or 0,
+            "views": t.get("viewCount", 0) or 0,
+            "verified": author.get("isBlueVerified", False),
+            "handle": handle_actual,
+            "followers": author.get("followers", 0) or 0,
+        })
+
+    return results
+
+
+def enrich_x_from_handle_live(article, registry):
+    """Try per-handle X enrichment via cheap live API (~15 credits per handle).
+    Called when cache misses but article has matched handles.
+    Returns (tweet, source_info) or (None, None)."""
+    headline = article["headline"]
+    body_500 = (article.get("body") or "")[:500]
+
+    x_matches = match_handles(headline, registry, "x")
+    if not x_matches:
+        return None, None
+
+    for m in x_matches[:3]:
+        handle = m["handle"]
+        tweets = _fetch_handle_tweets_live(handle, max_results=10)
+        if not tweets:
+            continue
+
+        best, score = find_best_tweet(tweets, headline, body_500, min_score=5)
+        if best:
+            return best, {"source": "handle_live", "handle": handle, "name": m["name"], "score": score}
 
     return None, None
 
@@ -1250,14 +1368,18 @@ def main():
             print(f"     YT: already has embed")
 
         # ── X enrichment ──
+        # Priority: 1) cache (free) → 2) per-handle live lookup (cheap, ~15 credits)
+        # Expensive topic search removed — cost/hit ratio was near zero.
         if not has_embed(body, "x"):
             tweet, info = enrich_x_from_cache(article, cache, registry)
             if tweet:
                 print(f"     X (cache): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
             else:
-                tweet, info = enrich_x_from_search(article)
+                tweet, info = enrich_x_from_handle_live(article, registry)
                 if tweet:
-                    print(f"     X (search): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
+                    print(f"     X (handle): @{info['handle']} → {tweet['url'][:60]} [score:{info['score']}]")
+                else:
+                    print(f"     X: no handle match — skipping (topic search disabled to save credits)")
 
             if tweet:
                 if verify_tweet(tweet["id"]):
@@ -1289,23 +1411,27 @@ def main():
             changes.append(change_label)
 
         # ── Hero image upgrade ──
+        # Try per-handle photos first (cheap), then topic search (expensive, last resort)
         hero_upgrade = None
         image_url = article.get("image_url", "") or ""
         if _is_stock_hero(image_url):
-            # Gather tweet candidates for hero photo (reuse topic search)
-            topic_q = build_topic_query(headline)
-            if topic_q:
-                hero_tweets = live_search_x(topic_q, max_results=10, hours=72)
-                if hero_tweets:
-                    hero_upgrade = try_hero_upgrade(article, hero_tweets)
-                    if hero_upgrade:
-                        changes.append(f"Hero({hero_upgrade['source_handle']})")
-                        report["hero_upgrades"] += 1
-                        print(f"     🖼 Hero upgrade: {hero_upgrade['source_handle']} → {hero_upgrade['new_hero'][:60]}")
-                    else:
-                        print(f"     🖼 Hero: stock, but no valid photo tweet found")
+            hero_tweets = []
+            # Try matched handles (cheap, ~15 credits per handle)
+            x_matches = match_handles(headline, registry, "x")
+            for m in (x_matches or [])[:2]:
+                handle_tweets = _fetch_handle_tweets_live(m["handle"], max_results=10)
+                hero_tweets.extend(handle_tweets)
+            # Expensive topic search removed — cost/hit ratio was near zero.
+            if hero_tweets:
+                hero_upgrade = try_hero_upgrade(article, hero_tweets)
+                if hero_upgrade:
+                    changes.append(f"Hero({hero_upgrade['source_handle']})")
+                    report["hero_upgrades"] += 1
+                    print(f"     🖼 Hero upgrade: {hero_upgrade['source_handle']} → {hero_upgrade['new_hero'][:60]}")
+                else:
+                    print(f"     🖼 Hero: stock, but no valid photo tweet found")
             else:
-                print(f"     🖼 Hero: stock, but no topic query")
+                print(f"     🖼 Hero: stock, but no tweets found")
 
         # ── Apply changes ──
         now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
