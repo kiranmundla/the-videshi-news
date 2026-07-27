@@ -310,7 +310,7 @@ function FeaturedCarouselCard({ event }: { event: EventItem }) {
 /* Discovery Sections (BookMyShow-style)                              */
 /* ------------------------------------------------------------------ */
 
-/** Date filter card definitions */
+/** Date filter card definitions — compact, same size as category cards */
 const DATE_CARD_STYLES: { key: DateFilterKey; label: string; emoji: string; gradient: string }[] = [
   { key: null,       label: "All",        emoji: "📅", gradient: "linear-gradient(135deg, #374151 0%, #1f2937 100%)" },
   { key: "today",    label: "Today",      emoji: "☀️",  gradient: "linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)" },
@@ -320,66 +320,27 @@ const DATE_CARD_STYLES: { key: DateFilterKey; label: string; emoji: string; grad
   { key: "month",    label: "This Month", emoji: "🗓️",  gradient: "linear-gradient(135deg, #4a1942 0%, #2d1b69 100%)" },
 ];
 
-/* ------------------------------------------------------------------ */
-/* Combined Filter Cards Strip (date + category in one row)           */
-/* ------------------------------------------------------------------ */
-function FilterCardsStrip({
-  dateCounts,
-  dateTotalCount,
-  categoryCounts,
-  selectedDate,
-  selectedCategory,
-  onDateSelect,
-  onCategorySelect,
+function DateDiscoveryCards({
+  counts,
+  total,
+  selected,
+  onSelect,
 }: {
-  dateCounts: Record<string, number>;
-  dateTotalCount: number;
-  categoryCounts: Record<string, number>;
-  selectedDate: DateFilterKey;
-  selectedCategory: string | null;
-  onDateSelect: (key: DateFilterKey) => void;
-  onCategorySelect: (cat: string | null) => void;
+  counts: Record<string, number>;
+  total: number;
+  selected: DateFilterKey;
+  onSelect: (key: DateFilterKey) => void;
 }) {
-  const sortedCategories = useMemo(() => {
-    return Object.entries(categoryCounts)
-      .filter(([, count]) => count > 0)
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .map(([cat, count]) => ({ cat, count }));
-  }, [categoryCounts]);
-
-  const handleDateClick = useCallback((key: DateFilterKey) => {
-    // If clicking the already-active date card (not All), deselect → go to All
-    if (key !== null && selectedDate === key) {
-      onDateSelect(null);
-    } else {
-      onDateSelect(key);
-    }
-    onCategorySelect(null); // clear category when selecting a date
-  }, [selectedDate, onDateSelect, onCategorySelect]);
-
-  const handleCategoryClick = useCallback((cat: string) => {
-    if (selectedCategory === cat) {
-      onCategorySelect(null); // deselect → show all categories
-    } else {
-      onCategorySelect(cat);
-    }
-    onDateSelect(null); // clear date when selecting a category
-  }, [selectedCategory, onDateSelect, onCategorySelect]);
-
-  // "All" is active when neither date (other than null) nor category is selected
-  const allActive = selectedDate === null && selectedCategory === null;
-
   return (
     <section className="mb-4">
-      <div className="flex overflow-x-auto gap-2.5 pb-2 -mx-1 px-1 scrollbar-hide items-start">
-        {/* ── Date cards ── */}
+      <div className="flex overflow-x-auto gap-2.5 pb-2 -mx-1 px-1 scrollbar-hide">
         {DATE_CARD_STYLES.map((card) => {
-          const count = card.key === null ? dateTotalCount : (dateCounts[card.key || ""] || 0);
-          const isActive = card.key === null ? allActive : (selectedDate === card.key && selectedCategory === null);
+          const count = card.key === null ? total : (counts[card.key || ""] || 0);
+          const isActive = selected === card.key;
           return (
             <button
-              key={`date-${card.key ?? "all"}`}
-              onClick={() => handleDateClick(card.key)}
+              key={card.key ?? "all"}
+              onClick={() => onSelect(isActive && card.key !== null ? null : card.key)}
               className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
                 isActive
                   ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
@@ -400,19 +361,66 @@ function FilterCardsStrip({
             </button>
           );
         })}
+      </div>
+    </section>
+  );
+}
 
-        {/* ── Subtle divider ── */}
-        <div className="flex-shrink-0 w-px bg-border/60 self-stretch my-2" />
+function CategoryDiscoveryGrid({
+  counts,
+  selected,
+  onSelect,
+}: {
+  counts: Record<string, number>;
+  selected: string | null;
+  onSelect: (cat: string | null) => void;
+}) {
+  const sortedCategories = useMemo(() => {
+    return Object.entries(counts)
+      .filter(([, count]) => count > 0)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([cat, count]) => ({ cat, count }));
+  }, [counts]);
 
-        {/* ── Category cards ── */}
+  const total = useMemo(
+    () => Object.values(counts).reduce((s, c) => s + c, 0),
+    [counts],
+  );
+
+  if (sortedCategories.length === 0) return null;
+
+  return (
+    <section className="mb-4">
+      <div className="flex overflow-x-auto gap-2.5 pb-2 -mx-1 px-1 scrollbar-hide">
+        {/* All card */}
+        <button
+          onClick={() => onSelect(null)}
+          className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+            selected === null
+              ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
+              : ""
+          }`}
+        >
+          <div className="w-[110px] sm:w-[130px] aspect-[4/3] relative bg-gradient-to-br from-[#0B1D3A] to-[#A32D2F]">
+            <div className="absolute inset-0 p-3 flex flex-col justify-end">
+              <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">
+                🎪 All
+              </span>
+              <span className="text-white/80 text-xs font-medium mt-1 drop-shadow">
+                {total} Events
+              </span>
+            </div>
+          </div>
+        </button>
+
         {sortedCategories.map(({ cat, count }) => {
           const emoji = CAT_EMOJI[cat] || "📌";
           const imgSrc = CAT_FALLBACK_IMG[cat] || CAT_FALLBACK_IMG["Other"];
-          const isActive = selectedCategory === cat;
+          const isActive = selected === cat;
           return (
             <button
-              key={`cat-${cat}`}
-              onClick={() => handleCategoryClick(cat)}
+              key={cat}
+              onClick={() => onSelect(isActive ? null : cat)}
               className={`flex-shrink-0 group relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
                 isActive
                   ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
@@ -441,6 +449,60 @@ function FilterCardsStrip({
         })}
       </div>
     </section>
+  );
+}
+
+function DiscoverySection({
+  preFilteredEvents,
+  categoryCounts,
+  selectedCategory,
+  selectedDate,
+  loading,
+  onDateSelect,
+  onCategorySelect,
+}: {
+  preFilteredEvents: (EventWithDistance | EventItem)[];
+  categoryCounts: Record<string, number>;
+  selectedCategory: string | null;
+  selectedDate: DateFilterKey;
+  loading: boolean;
+  onDateSelect: (key: DateFilterKey) => void;
+  onCategorySelect: (cat: string | null) => void;
+}) {
+  /* Time/date cards need global counts (not filtered by location/date),
+     so we do a lightweight independent query for those only. */
+  const [dateCounts, setDateCounts] = useState<Record<string, number>>({});
+  const [totalEvents, setTotalEvents] = useState(0);
+  const [dateLoaded, setDateLoaded] = useState(false);
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    supabaseRaw
+      .from("events")
+      .select("id,date")
+      .gte("date", today)
+      .limit(5000)
+      .then(({ data }: { data: { id: string; date: string }[] | null }) => {
+        if (!data) { setDateLoaded(true); return; }
+        setTotalEvents(data.length);
+        const dc: Record<string, number> = {};
+        for (const key of ["today", "tomorrow", "weekend", "week", "month"] as DateFilterKey[]) {
+          const range = getDateFilterRange(key);
+          if (range) {
+            dc[key || ""] = data.filter((e) => e.date >= range.from && e.date <= range.to).length;
+          }
+        }
+        setDateCounts(dc);
+        setDateLoaded(true);
+      });
+  }, []);
+
+  return (
+    <>
+      {dateLoaded && (
+        <DateDiscoveryCards counts={dateCounts} total={totalEvents} selected={selectedDate} onSelect={onDateSelect} />
+      )}
+    </>
   );
 }
 
@@ -522,8 +584,6 @@ export default function EventsPage() {
   const fetchVersionRef = useRef(0);
   /** Whether the current result set was fetched client-side (all events loaded) */
   const [isClientFiltered, setIsClientFiltered] = useState(false);
-  /** Events after location/search filters but BEFORE date filter — used for date card counts */
-  const [eventsBeforeDateFilter, setEventsBeforeDateFilter] = useState<(EventWithDistance | EventItem)[]>([]);
 
   /* --- Search state --- */
   const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
@@ -701,17 +761,15 @@ export default function EventsPage() {
 
   /* --- Client-side smart filter (location + date + search, NO category) --- */
   const applySmartFilters = useCallback(
-    (data: EventItem[], skipDate = false): EventItem[] => {
+    (data: EventItem[]): EventItem[] => {
       let filtered = data;
 
-      // Date filter (from URL param or smart search) — skip when computing date card counts
-      if (!skipDate) {
-        const dateRange = getDateFilterRange(effectiveDateFilter);
-        if (dateRange) {
-          filtered = filtered.filter(
-            (e) => e.date >= dateRange.from && e.date <= dateRange.to,
-          );
-        }
+      // Date filter (from URL param or smart search)
+      const dateRange = getDateFilterRange(effectiveDateFilter);
+      if (dateRange) {
+        filtered = filtered.filter(
+          (e) => e.date >= dateRange.from && e.date <= dateRange.to,
+        );
       }
 
       // Smart search: city hints
@@ -757,11 +815,6 @@ export default function EventsPage() {
       // Near Me mode: fetch ALL events, sort by distance, then apply smart filters client-side
       getAllUpcomingEvents(null, undefined).then((data) => {
         if (fetchVersionRef.current !== version) return; // stale
-        // Events with location/search filters but NO date filter — for date card counts
-        const noDateFiltered = applySmartFilters(data, true);
-        const noDateSorted = sortEventsByDistance(noDateFiltered, userCoords.lat, userCoords.lng);
-        setEventsBeforeDateFilter(noDateSorted);
-        // Events with ALL filters including date — for display
         const smartFiltered = applySmartFilters(data);
         const sorted = sortEventsByDistance(smartFiltered, userCoords.lat, userCoords.lng);
         setAllFetchedEvents(sorted);
@@ -779,8 +832,6 @@ export default function EventsPage() {
     ) {
       getAllUpcomingEvents(null, undefined).then((data) => {
         if (fetchVersionRef.current !== version) return; // stale
-        const noDateFiltered = applySmartFilters(data, true);
-        setEventsBeforeDateFilter(noDateFiltered);
         const smartFiltered = applySmartFilters(data);
         setAllFetchedEvents(smartFiltered);
         setIsClientFiltered(true);
@@ -793,7 +844,6 @@ export default function EventsPage() {
       getEventsMultiCategory(filterCity, null, PAGE_SIZE, 0, searchQuery || undefined).then((data) => {
         if (fetchVersionRef.current !== version) return; // stale
         setAllFetchedEvents(data);
-        setEventsBeforeDateFilter(data); // no client-side date filter in this mode
         setIsClientFiltered(false);
         setHasMore(data.length === PAGE_SIZE);
         setLoading(false);
@@ -817,22 +867,6 @@ export default function EventsPage() {
     });
     return counts;
   }, [preFilteredEvents]);
-
-  /** Compute date counts from events BEFORE date filter (but after location/search) */
-  const dateCounts = useMemo(() => {
-    const dc: Record<string, number> = {};
-    for (const key of ["today", "tomorrow", "weekend", "week", "month"] as const) {
-      const range = getDateFilterRange(key);
-      if (range) {
-        dc[key] = eventsBeforeDateFilter.filter(
-          (e) => e.date >= range.from && e.date <= range.to,
-        ).length;
-      }
-    }
-    return dc;
-  }, [eventsBeforeDateFilter]);
-
-  const dateTotalCount = eventsBeforeDateFilter.length;
 
   /** Stage 2: apply the URL category filter to get displayed events */
   const displayedEvents = useMemo(() => {
@@ -984,16 +1018,23 @@ export default function EventsPage() {
           </div>
         </div>
 
-        {/* Combined date + category filter cards */}
+        {/* Discovery: Time Cards (BookMyShow-style) */}
+        <DiscoverySection
+          preFilteredEvents={preFilteredEvents}
+          categoryCounts={categoryCounts}
+          selectedCategory={categoryParam}
+          selectedDate={dateFilterParam}
+          loading={loading}
+          onDateSelect={setDateFilter}
+          onCategorySelect={setCategoryFilter}
+        />
+
+        {/* Visual category cards */}
         {!loading && (
-          <FilterCardsStrip
-            dateCounts={dateCounts}
-            dateTotalCount={dateTotalCount}
-            categoryCounts={categoryCounts}
-            selectedDate={dateFilterParam}
-            selectedCategory={categoryParam}
-            onDateSelect={setDateFilter}
-            onCategorySelect={setCategoryFilter}
+          <CategoryDiscoveryGrid
+            counts={categoryCounts}
+            selected={categoryParam}
+            onSelect={setCategoryFilter}
           />
         )}
 
