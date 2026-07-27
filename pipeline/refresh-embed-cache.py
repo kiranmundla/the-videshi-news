@@ -2,7 +2,7 @@
 """
 refresh-embed-cache.py — Refresh the social embed handle cache.
 
-Reads all X and IG handles from social-embed-registry.json, fetches their
+Reads all X and IG handles from Supabase social_accounts table, fetches their
 recent posts via TwitterAPI.io and Apify, and writes the results to
 pipeline/cache/embed_cache.json so enrich-on-publish.py can do instant
 handle-based enrichment without live API calls.
@@ -24,7 +24,8 @@ import re
 from datetime import datetime, timezone, timedelta
 
 _dir = os.path.dirname(os.path.abspath(__file__))
-REGISTRY_PATH = os.path.join(_dir, "social-embed-registry.json")
+sys.path.insert(0, _dir)
+from social_registry import collect_handles  # DB-backed
 CACHE_DIR = os.path.join(_dir, "cache")
 CACHE_PATH = os.path.join(CACHE_DIR, "embed_cache.json")
 
@@ -49,28 +50,7 @@ APIFY_API_TOKEN = os.environ.get("APIFY_API_TOKEN", "")
 
 
 # ─── Registry ────────────────────────────────────────────────────────────────
-
-def collect_handles():
-    """Read registry and return unique X handles and IG handles."""
-    with open(REGISTRY_PATH) as f:
-        registry = json.load(f)
-
-    x_handles = set()
-    ig_handles = set()
-
-    for category, data in registry.items():
-        if category.startswith("_") or not isinstance(data, dict):
-            continue
-        for group in ("persons", "organizations"):
-            for entry in data.get(group, []):
-                x = entry.get("x")
-                ig = entry.get("instagram")
-                if x:
-                    x_handles.add(x.lower())
-                if ig:
-                    ig_handles.add(ig.lower())
-
-    return sorted(x_handles), sorted(ig_handles)
+# collect_handles() is now imported from social_registry
 
 
 # ─── X / TwitterAPI.io (cheap /user/last_tweets endpoint) ─────────────────────

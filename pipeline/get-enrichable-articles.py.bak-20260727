@@ -29,13 +29,13 @@ HEADERS = {
     'apikey': SUPABASE_KEY,
     'Authorization': f'Bearer {SUPABASE_KEY}',
 }
-sys.path.insert(0, os.path.expanduser('~/workspace/the-videshi-news/pipeline'))
-from social_registry import load_registry as _load_registry_raw  # DB-backed
+REGISTRY_PATH = os.path.expanduser('~/workspace/the-videshi-news/pipeline/social-embed-registry.json')
 
 EMBED_CATEGORIES = ['news', 'sports', 'entertainment', 'technology', 'nri-world']
 
 def load_registry():
-    data = _load_registry_raw()
+    with open(REGISTRY_PATH) as f:
+        data = json.load(f)
     lookup = {}
     for cat, entries in data.items():
         if cat.startswith('_') or not isinstance(entries, dict):

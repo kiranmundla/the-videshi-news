@@ -7,10 +7,22 @@ SB = os.environ["SUPABASE_URL"]
 KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 H = {"apikey": KEY, "Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
 
-# Load registry from Supabase
-sys.path.insert(0, os.path.dirname(__file__))
-from social_registry import load_name_to_handles
-handles = load_name_to_handles()
+# Load registry
+with open(os.path.join(os.path.dirname(__file__), "social-embed-registry.json")) as f:
+    reg = json.load(f)
+
+# Build name→handles lookup across ALL categories
+handles = {}
+for cat_key, cat_val in reg.items():
+    if not isinstance(cat_val, dict):
+        continue
+    for person in cat_val.get("persons", []):
+        name = person["name"]
+        handles[name.lower()] = {
+            "name": name,
+            "instagram": person.get("instagram"),
+            "x": person.get("x"),
+        }
 
 def find_celebrities(headline, body):
     """Find registry celebrities mentioned in article. Full name match only."""

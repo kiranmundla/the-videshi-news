@@ -63,8 +63,7 @@ OAI_KEY = os.environ.get("OPENAI_API_KEY", "")
 TWITTERAPI_IO_BASE = "https://api.twitterapi.io"
 
 VERIFY_SCRIPT = os.path.join(_dir, "verify-tweet.sh")
-sys.path.insert(0, _dir)
-from social_registry import load_registry as _load_registry_raw  # DB-backed
+REGISTRY_PATH = os.path.join(_dir, "social-embed-registry.json")
 
 # Categories where embeds make sense
 EMBED_CATEGORIES = {"news", "sports", "entertainment", "technology", "nri-world", "immigration"}
@@ -324,7 +323,8 @@ def _sanitize_topic_query(q):
 # ─── Registry matching ────────────────────────────────────────────────────────
 
 def load_registry():
-    registry = _load_registry_raw()
+    with open(REGISTRY_PATH) as f:
+        registry = json.load(f)
     
     entities = []
     for cat, data in registry.items():

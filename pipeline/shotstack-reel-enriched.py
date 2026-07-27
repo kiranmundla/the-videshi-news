@@ -2039,7 +2039,7 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
 # SOCIAL CARD SCENE — a real X post (photo + attribution) in the brand frame
 # ═══════════════════════════════════════════════════════════════════════════════
 # Additive, high-priority media source for AT MOST ONE scene per reel. When an
-# article's subject matches a curated handle in social-embed-registry.json and
+# article's subject matches a curated handle in Supabase social_accounts table and
 # that account has a recent photo post relevant to the story, we render the post
 # as a branded "ON THE FEED" card instead of generic stock. The registry is the
 # allowlist (verified/official accounts only). Scope: X only (Threads/IG later).
@@ -2070,7 +2070,7 @@ SOCIAL_CARD_MIN_LIKES = int(os.environ.get("VIDESHI_SOCIAL_MIN_LIKES", "50"))
 # publisher/official, not a meme/fan repost account (X "blue" verification is
 # purchasable, so the `verified` flag alone is not enough). A post's video is
 # accepted only when its handle is in the curated allowlist below:
-#   1. our own social-embed-registry.json + pulse-leaders.json (people/orgs we vet)
+#   1. our own Supabase social_accounts table + pulse-leaders.json (people/orgs we vet)
 #   2. a hand-maintained set of news/sports/official wire + desk handles
 # AND it is not caught by the meme/fan blocklist pattern. Toggle with
 # VIDESHI_SOCIAL_VIDEO_PUBLISHER_ONLY=0 to fall back to verified-only.
@@ -2118,6 +2118,15 @@ def _build_video_handle_allowlist():
         return _VIDEO_ALLOWLIST_CACHE
     allow = set(SOCIAL_VIDEO_PUBLISHER_HANDLES)
 
+    # Add all X handles from DB registry
+    try:
+        sys.path.insert(0, str(PIPELINE_DIR))
+        from social_registry import load_x_handle_set
+        allow.update(load_x_handle_set())
+    except Exception:
+        pass
+
+    # Also harvest pulse-leaders.json (still file-based)
     def _harvest(path):
         try:
             with open(PIPELINE_DIR / path) as fh:
@@ -2137,7 +2146,6 @@ def _build_video_handle_allowlist():
                     walk(x)
         walk(data)
 
-    _harvest("social-embed-registry.json")
     _harvest("pulse-leaders.json")
     _VIDEO_ALLOWLIST_CACHE = allow
     return allow
@@ -2212,7 +2220,7 @@ def _load_fetch_tweets_module():
 
 
 def _load_social_registry():
-    """Load social-embed-registry.json once; return flat list of dicts with the
+    """Load social accounts from Supabase; return flat list of dicts with the
     entry's available platform handles: {name, handle, category, kind, x,
     threads, instagram}. `handle` mirrors the X handle for backward-compat with
     the original X-only matcher; entries are included if they have ANY platform
@@ -2220,32 +2228,14 @@ def _load_social_registry():
     global _social_registry_cache
     if _social_registry_cache is not None:
         return _social_registry_cache
-    out = []
     try:
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
-        with open(path) as f:
-            d = json.load(f)
-        for cat, v in d.items():
-            if cat.startswith("_"):
-                continue
-            if isinstance(v, dict):
-                for kind in ("persons", "organizations"):
-                    for e in (v.get(kind) or []):
-                        if not isinstance(e, dict):
-                            continue
-                        x = (e.get("x") or "").lstrip("@") or None
-                        threads = (e.get("threads") or "").lstrip("@") or None
-                        instagram = (e.get("instagram") or "").lstrip("@") or None
-                        if not (x or threads or instagram):
-                            continue
-                        out.append({"name": e.get("name", ""),
-                                    "handle": x or threads or instagram,
-                                    "category": cat, "kind": kind,
-                                    "x": x, "threads": threads, "instagram": instagram})
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from social_registry import load_flat_entries
+        _social_registry_cache = load_flat_entries()
     except Exception as e:
         print(f"  ⚠️ social registry load failed: {e}")
-    _social_registry_cache = out
-    return out
+        _social_registry_cache = []
+    return _social_registry_cache
 
 
 _media_lib_lookup_mod = None

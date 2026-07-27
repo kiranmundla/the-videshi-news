@@ -9,7 +9,7 @@ pipeline/media-library-queue.json. The sourcing cron then fills them.
 
 Extraction approach (lightweight, no LLM round-trip):
   1. tags column            → keyword subjects (subject_type guessed)
-  2. registry person match  → social_registry.py (Supabase social_accounts table) + pulse-leaders.json
+  2. registry person match  → social-embed-registry.json + pulse-leaders.json
                               names found in headline/body  → subject_type=person
   3. PLACES gazetteer match → known Indian/diaspora cities/states/countries
                               → subject_type=place
@@ -30,8 +30,7 @@ import requests
 import media_library_store as store
 
 PIPELINE_DIR = store.PIPELINE_DIR
-sys.path.insert(0, PIPELINE_DIR)
-from social_registry import load_registry_names as _load_reg_names  # DB-backed
+REGISTRY = os.path.join(PIPELINE_DIR, "social-embed-registry.json")
 PULSE = os.path.join(PIPELINE_DIR, "pulse-leaders.json")
 
 SUPABASE_URL = store.SUPABASE_URL
@@ -132,7 +131,15 @@ def _is_valid_subject(subj):
 def load_registry_names():
     names = []
     try:
-        names = list(_load_reg_names())
+        data = json.load(open(REGISTRY))
+        for cat, entries in data.items():
+            if cat.startswith("_") or not isinstance(entries, dict):
+                continue
+            for grp in ("persons", "organizations"):
+                for e in entries.get(grp, []):
+                    if e.get("name"):
+                        st = "person" if grp == "persons" else "thing"
+                        names.append((e["name"], st))
     except Exception as e:
         print(f"  ⚠ registry load: {e}")
     try:

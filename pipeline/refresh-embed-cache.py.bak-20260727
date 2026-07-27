@@ -73,39 +73,47 @@ def collect_handles():
     return sorted(x_handles), sorted(ig_handles)
 
 
-# ─── X / TwitterAPI.io ────────────────────────────────────────────────────────
+# ─── X / TwitterAPI.io (cheap /user/last_tweets endpoint) ─────────────────────
 
 def fetch_x_handle(handle, hours=48, max_results=20):
-    """Fetch recent tweets from a handle via TwitterAPI.io using curl."""
+    """Fetch recent tweets from a handle via TwitterAPI.io /user/last_tweets (cheap endpoint).
+    
+    Uses /twitter/user/last_tweets (~15 credits) instead of /twitter/tweet/advanced_search
+    (up to 300 credits). Same return format as before.
+    """
     if not TWITTERAPI_IO_KEY:
         return []
 
-    query = f"from:{handle}"
     try:
         result = subprocess.run(
-            ["curl", "-sS",
-             f"{TWITTERAPI_IO_BASE}/twitter/tweet/advanced_search",
+            ["curl", "-sS", "--max-time", "15",
+             f"{TWITTERAPI_IO_BASE}/twitter/user/last_tweets",
              "-H", f"X-API-Key: {TWITTERAPI_IO_KEY}",
              "-G",
-             "--data-urlencode", f"query={query}",
-             "-d", "queryType=Latest"],
-            capture_output=True, text=True, timeout=15,
+             "--data-urlencode", f"userName={handle}"],
+            capture_output=True, text=True, timeout=20,
         )
         if result.returncode != 0:
-            print(f"  ⚠ curl error for @{handle}: {result.stderr[:120]}")
+            print(f"  \u26a0 curl error for @{handle}: {result.stderr[:120]}")
             return []
         data = json.loads(result.stdout)
     except Exception as e:
-        print(f"  ⚠ Error fetching @{handle}: {e}")
+        print(f"  \u26a0 Error fetching @{handle}: {e}")
         return []
 
-    raw_tweets = data.get("tweets", [])
+    raw_tweets = data.get("data", {}).get("tweets", []) or data.get("tweets", [])
     if not raw_tweets:
         return []
 
     cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
     posts = []
     for t in raw_tweets[:max_results]:
+        # Skip retweets and replies
+        if t.get("retweeted_tweet") or (t.get("text", "")).startswith("RT @"):
+            continue
+        if t.get("isReply"):
+            continue
+
         created_str = t.get("createdAt", "")
         try:
             created = datetime.strptime(created_str, "%a %b %d %H:%M:%S %z %Y")
@@ -118,7 +126,7 @@ def fetch_x_handle(handle, hours=48, max_results=20):
         photos = [m.get("media_url_https", "") for m in media_list if m.get("type") == "photo"]
         has_video = any(m.get("type") in ("video", "animated_gif") for m in media_list)
         author = t.get("author", {})
-        handle_actual = author.get("userName", "")
+        handle_actual = author.get("userName", handle)
 
         posts.append({
             "id": t.get("id", ""),

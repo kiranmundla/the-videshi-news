@@ -32,8 +32,7 @@ import argparse
 from datetime import datetime, timezone, timedelta
 
 _dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, _dir)
-from social_registry import load_registry  # DB-backed social accounts
+REGISTRY_PATH = os.path.join(_dir, "social-embed-registry.json")
 CACHE_PATH = os.path.join(_dir, "cache", "embed_cache.json")
 VERIFY_SCRIPT = os.path.join(_dir, "verify-tweet.sh")
 
@@ -218,9 +217,9 @@ def load_cache():
 # ─── Registry ────────────────────────────────────────────────────────────────
 
 def load_registry():
-    """Load the social embed registry from Supabase."""
-    from social_registry import load_registry as _lr
-    return _lr()
+    """Load the social embed registry."""
+    with open(REGISTRY_PATH) as f:
+        return json.load(f)
 
 
 def match_handles(headline, registry, platform):

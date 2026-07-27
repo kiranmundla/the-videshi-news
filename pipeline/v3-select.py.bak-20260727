@@ -251,10 +251,12 @@ _VALID_CATS = {"immigration","technology","news","entertainment","sports",
 
 # ── Instagram handle reference for LLM ────────────────────────────────────────
 def _build_ig_handle_block():
-    """Load IG handles + metadata from DB registry for injection into LLM prompt."""
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from social_registry import load_registry
-    registry = load_registry()
+    """Load IG handles + metadata from registry for injection into LLM prompt."""
+    reg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
+    if not os.path.exists(reg_path):
+        return ""
+    with open(reg_path) as f:
+        registry = json.load(f)
     lines = []
     seen = set()
     for cat, data in registry.items():
@@ -280,9 +282,23 @@ def _build_ig_handle_block():
 _IG_HANDLE_BLOCK = _build_ig_handle_block()
 
 def _build_ig_name_lookup():
-    """Build handle→full_name dict from DB registry for post-GPT name verification."""
-    from social_registry import get_handle_name_map
-    return get_handle_name_map("instagram")
+    """Build handle→full_name dict from registry for post-GPT name verification."""
+    reg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
+    if not os.path.exists(reg_path):
+        return {}
+    with open(reg_path) as f:
+        registry = json.load(f)
+    lookup = {}
+    for cat, data in registry.items():
+        if cat.startswith("_") or not isinstance(data, dict):
+            continue
+        for group in ("persons", "organizations"):
+            for entry in data.get(group, []):
+                ig = (entry.get("instagram") or "").lower()
+                name = entry.get("name") or ""
+                if ig and name:
+                    lookup[ig] = name
+    return lookup
 
 _IG_NAME_LOOKUP = _build_ig_name_lookup()
 

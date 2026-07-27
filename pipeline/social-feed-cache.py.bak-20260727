@@ -45,13 +45,61 @@ PIPELINE_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline")
 POOL_PATH = os.path.join(PIPELINE_DIR, "social-feed-pool.json")
 OUTPUT_PATH = os.path.expanduser("~/workspace/the-videshi-news/public/data/social-feed.json")
 
-# VVIP person handles and company handles — loaded from Supabase social_accounts table
-sys.path.insert(0, PIPELINE_DIR)
-from social_registry import load_vvip_handles, load_company_handles
-VVIP_HANDLES = load_vvip_handles()
-COMPANY_HANDLES = load_company_handles()
+# VVIP person handles per category — comprehensive diaspora-relevant list
+# Pool refreshes every 12h. Each handle costs ~$0.034/mo via TwitterAPI.io
+# ~51 handles → ~$1.73/mo
+VVIP_HANDLES = {
+    "technology": [
+        "sundarpichai", "satyanadella", "sama", "elonmusk", "tim_cook",
+        "NandanNilekani", "NikeshArora", "ArvindKrishna",
+    ],
+    "spirituality": [
+        "SadhguruJV", "DeepakChopra", "BKShivani", "SriMSpeaks",
+        "Amritanandamayi", "EckhartTolle", "ByronKatie", "RupertSpira",
+        "DandapaniLLC", "JayShetty", "Osho", "brahmakumaris",
+    ],
+    "sports": [
+        # Cricket
+        "imVkohli", "ImRo45", "sachin_rt",
+        "SGanguly99", "harbhajan_singh", "RishabhPant17", "ShubmanGill",
+        "MohammadKaif", "ajinkyarahane88", "IrfanPathan",
+        # Olympic / other sports
+        "Neeraj_chopra1", "Pvsindhu1",
+        "realmanubhaker", "nikhat_zareen",
+    ],
+    "news": [
+        # Indian leaders
+        "narendramodi", "DrSJaishankar", "AmitShah", "nsitharaman",
+        "RahulGandhi", "myogiadityanath", "MamataOfficial", "ArvindKejriwal",
+        "PMOIndia", "rashtrapatibhvn", "PiyushGoyal", "RajnathSingh",
+        "ShashiTharoor", "JPNadda", "NitishKumar",
+    ],
+    "world-leaders": [
+        # US
+        "realDonaldTrump", "VP", "WhiteHouse",
+        # UK
+        "10DowningStreet", "RishiSunak",
+        # Canada
+        "JustinTrudeau",
+        # Europe & other
+        "ZelenskyyUa", "EmmanuelMacron",
+        "BarackObama", "MichelleObama", "SecRubio",
+    ],
+    "immigration": [],
+}
+
+COMPANY_HANDLES = {
+    "nvidia", "openai", "google", "microsoft", "meta", "apple", "amazon", "ibm",
+    "googledeepmind", "anthropic", "tesla", "spacex", "infosys", "tcs", "wipro",
+    "tatamotors", "reliancejio", "netflix", "netflixindia", "netflix_insouth",
+    "icc", "bcci", "fifaworldcup", "formula1", "nba", "nfl",
+    "sportstarweb", "bwfscore", "airnewsalerts", "moneycontrolcom",
+    "indianembassyus", "robot2trade1", "1lsbongofficial",
+}
 
 # ─── Pool management ─────────────────────────────────────────────────────────
+
+sys.path.insert(0, PIPELINE_DIR)
 
 def load_pool():
     if os.path.exists(POOL_PATH):

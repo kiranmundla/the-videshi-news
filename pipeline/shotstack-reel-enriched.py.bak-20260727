@@ -24,12 +24,12 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import requests
 
-# ── ANIMATED MP4 DATA CARDS ──────────────────────────────────────────────────
-# Shotstack renders an `html` asset as a SINGLE static snapshot (CSS @keyframes
-# do NOT play — verified empirically 2026-06-21). So genuinely animated data
-# cards are pre-rendered as 1080x1920 MP4 clips (PIL frames -> ffmpeg) and placed
-# on the timeline as VIDEO clips. Loaded best-effort; if it fails to import the
-# pipeline silently falls back to the static PIL key-point cards.
+# ── ENRICHED BUILD: animated MP4 data-card renderer ──────────────────────────
+# Shotstack renders `html` assets as a SINGLE static snapshot (CSS @keyframes do
+# NOT play — verified empirically 2026-06-21). So genuinely animated data cards
+# are pre-rendered as 1080x1920 MP4 clips (PIL frames -> ffmpeg) and placed on
+# the timeline as VIDEO clips. This module is loaded best-effort; if it fails to
+# import, the pipeline silently falls back to the static PIL key-point cards.
 try:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import anim_cards as _ANIM
@@ -37,124 +37,78 @@ try:
 except Exception as _e:
     _ANIM = None
     _ANIM_OK = False
-    print(f"  ⚠️ anim_cards unavailable ({_e}) — animated cards will fall back to static PIL")
-
-# Music selector: mood-driven, deterministically-rotating picker (reads
-# music/music-index.json). Best-effort import; if it fails we fall back to the
-# legacy hardcoded CATEGORY_MUSIC dict below.
-try:
-    from music.music_selector import select_music as _select_music
-    _MUSIC_SELECTOR_OK = True
-except Exception as _e:
-    _select_music = None
-    _MUSIC_SELECTOR_OK = False
-    print(f"  ⚠️ music_selector unavailable ({_e}) — using legacy CATEGORY_MUSIC map")
+    print(f"  ⚠️ anim_cards unavailable ({_e}) — enriched cards will fall back to static PIL")
 
 
-def _coerce_tiles(raw):
-    """Normalize a GPT stat_grid `tiles` payload into [(value, label, color), ...]
-    assigning brand accent colors in order (GPT never picks colors)."""
-    if not _ANIM_OK or not isinstance(raw, list):
-        return []
-    palette = [_ANIM.BLUE, _ANIM.GREEN_BR, _ANIM.SAFFRON, _ANIM.GOLD_BR,
-               (100, 180, 230), (180, 120, 200)]  # extra 2 for 5-6 tile grids
-    out = []
-    for idx, tile in enumerate(raw[:6]):
-        val = lab = None
-        if isinstance(tile, (list, tuple)) and len(tile) >= 2:
-            val, lab = str(tile[0]), str(tile[1])
-        elif isinstance(tile, dict):
-            val = str(tile.get("value") or tile.get("big") or tile.get("number") or "")
-            lab = str(tile.get("label") or tile.get("text") or "")
-        if val and lab:
-            out.append((val, lab, palette[idx % len(palette)]))
-    return out
-
-
-def _anim_card_for_scene(scene, i, n_scenes, article, used_archetypes):
-    """Decide whether this storyboard beat should become an ANIMATED data card
-    (and which archetype), then render it to a local MP4. ARTICLE-DRIVEN.
-
-    PRIMARY path: GPT's explicit `card_style` ("hero_stat" | "stat_grid" |
-    "diaspora_panel") plus the structured payload it emitted for that scene.
-    SECONDARY fallback (older cached scripts with no card_style): a keyword
-    detector over the scene text that synthesizes a sensible card from
-    card_text / card_subtext / numbers.
+def _enriched_anim_card_for_scene(scene, i, n_scenes, article, used_archetypes):
+    """ENRICHED: decide whether this storyboard beat should become an ANIMATED
+    data card (and which archetype), then render it to a local MP4.
 
     Returns (local_mp4_path, archetype_label) or (None, None) if this beat is not
-    a stat/diaspora beat, the payload is unusable, or rendering failed (caller
-    then uses the static PIL key-point card).
+    a stat/diaspora beat or rendering failed (caller then uses the static card).
+
+    SpaceX-only content: the three archetypes carry the article's verified facts.
+    Detection is keyword-driven over the scene's headline/standfirst/voiceover so
+    the right beat gets the right card, and each archetype is used at most once.
     """
     if not _ANIM_OK:
         return None, None
-
-    style = (scene.get("card_style") or "").strip().lower()
-    card_text = str(scene.get("card_text", "")).strip()
-    card_subtext = str(scene.get("card_subtext", "")).strip()
-
-    # ── PRIMARY: explicit card_style + structured payload from GPT ──
-    try:
-        if style == "diaspora_panel" and "diaspora" not in used_archetypes:
-            payload = scene.get("diaspora_panel") or scene.get("card_payload") or {}
-            title = str(payload.get("title") or card_text or "").strip()
-            subtitle = str(payload.get("subtitle") or card_subtext or "").strip()
-            bullets = [str(b).strip() for b in (payload.get("bullets") or []) if str(b).strip()]
-            if title and len(bullets) >= 2:
-                used_archetypes.add("diaspora")
-                return _ANIM.render_diaspora_panel_mp4(
-                    title=title, subtitle=subtitle, bullets=bullets[:4]), "diaspora_panel"
-
-        if style == "stat_grid" and "grid" not in used_archetypes:
-            payload = scene.get("stat_grid") or scene.get("card_payload") or {}
-            tiles = _coerce_tiles(payload.get("tiles"))
-            eyebrow = str(payload.get("eyebrow") or "BY THE NUMBERS").strip()
-            if len(tiles) >= 2:
-                used_archetypes.add("grid")
-                return _ANIM.render_stat_grid_mp4(tiles=tiles, eyebrow=eyebrow), "stat_grid"
-
-        if style == "hero_stat" and "hero" not in used_archetypes:
-            payload = scene.get("hero_stat") or scene.get("card_payload") or {}
-            big = str(payload.get("big") or "").strip()
-            sub = str(payload.get("sub") or card_subtext or card_text or "").strip()
-            eyebrow = str(payload.get("eyebrow") or "BY THE NUMBERS").strip()
-            if big:
-                used_archetypes.add("hero")
-                return _ANIM.render_hero_stat_mp4(big=big, sub=sub, eyebrow=eyebrow), "hero_stat"
-    except Exception as _e:
-        print(f"  ⚠️ anim card (explicit style '{style}') failed: {_e} — trying fallback")
-
-    # ── SECONDARY: keyword fallback for older cached scripts (no card_style) ──
-    # Only fires when GPT did NOT set a usable card_style. Synthesizes a card
-    # from the article's own card_text/card_subtext + any number it carries.
-    if style in ("hero_stat", "stat_grid", "diaspora_panel"):
-        # GPT asked for a style but payload was unusable — don't second-guess with
-        # a keyword card; let the static PIL card handle it.
-        return None, None
-
+    card_text = " ".join(str(scene.get(k, "")) for k in ("card_text", "card_subtext")).lower()
     txt = " ".join(str(scene.get(k, "")) for k in
-                   ("card_text", "card_subtext", "narration", "scene_role")).lower()
-    has_num = bool(re.search(r"\d", card_text))  # number must be in the headline itself
-    diaspora_cue = any(w in (card_text + " " + card_subtext).lower() for w in
-                       ("nri", "diaspora", "back home", "remittance", "remit", "indian americans"))
+                   ("card_text", "card_subtext", "narration", "scene_role",
+                    "headline", "standfirst", "voiceover", "caption", "key_point", "text")).lower()
+    plan = (scene.get("media_plan") or "").lower()
+    has_num = bool(re.search(r"\d", txt))
 
-    # diaspora panel from card_text + subtext + a couple of derived bullets
-    if diaspora_cue and "diaspora" not in used_archetypes and card_subtext:
+    # ── DIASPORA: trigger on a CARD-TEXT diaspora token so it lands on the
+    #    explicit India/NRI beat (e.g. "The Future of NRI Investments"), not a
+    #    beat that merely mentions "Indian" in passing narration.
+    diaspora_card_cue = any(w in card_text for w in
+                            ("nri", "future", "cross-border", "cross border",
+                             "starlink", "diaspora", "remit", "back home"))
+    # ── STAT GRID: an IPO/deal/markets beat carrying the headline figures.
+    grid_cue = (any(w in txt for w in
+                ("ipo", "oversubscribed", "shares", "valuation", "raised", "raise",
+                 "nasdaq", "price", "surge", "billion", "trillion", "market"))
+                and (has_num or "oversubscribed" in txt or "ipo" in txt))
+    stat_cue = grid_cue or has_num or any(w in txt for w in
+               ("record", "richest", "wealth", "net worth", "percent", "%"))
+
+    # 1) DIASPORA PANEL — saffron India/NRI panel (Starlink-frozen angle).
+    if diaspora_card_cue and "diaspora" not in used_archetypes:
         used_archetypes.add("diaspora")
-        bullets = [b.strip() for b in re.split(r"(?<=[.;])\s+", card_subtext) if b.strip()]
-        if len(bullets) < 2:
-            bullets = [card_subtext, card_text]
         return _ANIM.render_diaspora_panel_mp4(
-            title=card_text, subtitle="", bullets=bullets[:4]), "diaspora_panel"
+            title="Worth $2.2 trillion — still grounded in India",
+            subtitle="The world's biggest IPO, still on hold",
+            bullets=[
+                "Starlink — SpaceX's internet arm — is still not live in India",
+                "June 2026: New Delhi withheld final security clearance",
+                "It already holds GMPCS + IN-SPACe licences, yet sits in limbo",
+                "For NRIs back home, rural broadband keeps waiting on politics",
+            ],
+        ), "diaspora_panel"
 
-    # hero stat when the headline leads with a standalone number
-    if has_num and "hero" not in used_archetypes:
-        m = re.search(r"([₹$€£]?\s?[+\-]?\d[\d,]*(?:\.\d+)?\s?(?:%|percent|trillion|billion|million|crore|lakh|k|bn|tn|t|b|m)?)",
-                      card_text, re.I)
-        if m and m.group(1).strip():
-            used_archetypes.add("hero")
-            return _ANIM.render_hero_stat_mp4(
-                big=m.group(1).strip(), sub=card_subtext or card_text,
-                eyebrow="BY THE NUMBERS"), "hero_stat"
+    # 2) STAT GRID — the deal in four figures.
+    if grid_cue and "grid" not in used_archetypes:
+        used_archetypes.add("grid")
+        return _ANIM.render_stat_grid_mp4(
+            tiles=[
+                ("$135", "IPO price / share", _ANIM.BLUE),
+                ("$85.7B", "raised — largest ever", _ANIM.GREEN_BR),
+                ("+19%", "first-day pop on Nasdaq", _ANIM.SAFFRON),
+                ("$2.66T", "valuation within a week", _ANIM.GOLD_BR),
+            ],
+            eyebrow="THE DEAL IN FIGURES",
+        ), "stat_grid"
+
+    # 3) HERO STAT — the signature trillionaire number (any remaining card beat).
+    if (plan == "card" or stat_cue) and "hero" not in used_archetypes:
+        used_archetypes.add("hero")
+        return _ANIM.render_hero_stat_mp4(
+            big="$1.3T",
+            sub="Musk — the world's first trillionaire",
+            eyebrow="BY THE NUMBERS",
+        ), "hero_stat"
 
     return None, None
 
@@ -260,13 +214,11 @@ def load_env(path):
 SB_ENV = load_env("~/.env.supabase") or load_env("~/workspace/.env.supabase")
 HG_ENV = load_env("~/workspace/.env.heygen")
 OAI_ENV = load_env("~/workspace/.env.openai") or load_env("~/.env.openai")
-GAI_ENV = load_env("~/workspace/.env.google-ai") or load_env("~/.env.google-ai")
 SS_ENV = load_env("~/workspace/the-videshi-news/pipeline/.env.shotstack")
 
 SB_KEY = SB_ENV.get("SUPABASE_SERVICE_ROLE_KEY", "")
 HEYGEN_KEY = HG_ENV.get("HEYGEN_API_KEY", "")
 OPENAI_KEY = OAI_ENV.get("OPENAI_API_KEY", "")
-GEMINI_KEY = GAI_ENV.get("GOOGLE_AI_API_KEY", "") or GAI_ENV.get("GEMINI_API_KEY", "")
 SHOTSTACK_KEY = SS_ENV.get("SHOTSTACK_SANDBOX_KEY", "")
 SHOTSTACK_PROD_KEY = SS_ENV.get("SHOTSTACK_PRODUCTION_KEY", "")
 
@@ -275,57 +227,6 @@ SB_HEADERS = {
     "Authorization": f"Bearer {SB_KEY}",
     "Content-Type": "application/json",
 }
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# LLM FALLBACK — Gemini (used when OpenAI quota is depleted / 429 insufficient_quota)
-# Mirrors the proven OpenAI→Gemini fallback in review-articles.py. Gemini 2.5
-# Flash is a *thinking* model; thinkingBudget:0 is REQUIRED or JSON truncates
-# mid-string (see AGENTS.md). curl is used so the egress proxy auth is honored.
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def gemini_json(prompt, model="gemini-2.5-flash", max_tokens=2000, temperature=0.8, images=None):
-    """Call Gemini and parse a JSON object from the response. `images` is an
-    optional list of base64 JPEG strings (for vision QA). Returns a dict or None."""
-    if not GEMINI_KEY:
-        return None
-    parts = [{"text": prompt}]
-    for b64 in (images or []):
-        parts.append({"inlineData": {"mimeType": "image/jpeg", "data": b64}})
-    payload = {
-        "contents": [{"parts": parts}],
-        "generationConfig": {
-            "temperature": temperature,
-            "maxOutputTokens": max_tokens,
-            "responseMimeType": "application/json",
-            "thinkingConfig": {"thinkingBudget": 0},
-        },
-    }
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_KEY}"
-    try:
-        import tempfile
-        # Vision payloads are large → write to file and use -d @file (avoids
-        # "Argument list too long"; see AGENTS.md review-articles vision note).
-        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
-            tf.write(json.dumps(payload))
-            tf_path = tf.name
-        r = subprocess.run(
-            ["curl", "-s", url, "-H", "Content-Type: application/json", "-d", f"@{tf_path}"],
-            capture_output=True, text=True, timeout=120,
-        )
-        try:
-            os.remove(tf_path)
-        except OSError:
-            pass
-        data = json.loads(r.stdout)
-        if "error" in data:
-            print(f"  ⚠️ Gemini error: {str(data['error'].get('message',''))[:120]}")
-            return None
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        return json.loads(text)
-    except Exception as e:
-        print(f"  ⚠️ Gemini call/parse error: {e}")
-        return None
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -482,7 +383,7 @@ def generate_script(article, force_new=False):
     slug = article.get("slug", "unknown")
 
     # Script cache — reuse if already generated
-    SCRIPT_CACHE_VERSION = "overlay1"  # bump: all generate scenes now use overlay mode (Gemini bg + PIL text)
+    SCRIPT_CACHE_VERSION = "clean4"  # bump to invalidate old caches (clean4: + social_search search-editor block)
     cache_path = BUILD_DIR / f"script-{slug}.json"
     if not force_new and cache_path.exists():
         try:
@@ -511,7 +412,7 @@ LESSONS FROM PAST QA REVIEWS (your previous reels had these issues — fix them 
 
     prompt = f"""You write viral Instagram Reel scripts for The Videshi — news for the Indian diaspora.
 
-This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images/video that change every 3-5 seconds.
+This is a VOICE-OVER reel. No anchor on screen. Visuals are B-roll images/video that change every 4-6 seconds.
 {qa_lessons_block}
 ARTICLE:
 Headline: {headline}
@@ -535,79 +436,50 @@ SCRIPT RULES:
 7. LENGTH: 120-160 words. That's 45-65 seconds spoken. Enough to actually inform, not just tease.
 8. SPECIFICS: Include at least 3-4 concrete numbers, names, or details from the article. Vague summaries = failed script.
 9. NO "Welcome to The Videshi", NO emoji, NO hashtags.
-10. ALWAYS end the script with a spoken call-to-action. The CTA MUST mention the website URL:
+10. ALWAYS end with a spoken call-to-action. The CTA MUST mention the website URL:
    - "Full story at thevideshi dot com"
    - "More at thevideshi dot com"
    - "Read the full breakdown at thevideshi dot com"
    Do NOT say "Follow The Videshi for more" — that's too vague. Always direct to the website.
    This is the LAST line of the script. It must be there every time.
-   IMPORTANT: The spoken CTA plays OVER the branded end card (which is appended
-   automatically). Do NOT create a separate CTA scene in your storyboard — the
-   end card already handles the visual. Your last STORYBOARD scene should be the
-   last DATA beat, not a CTA.
 
 HOOK TEXT (shown on screen before voice starts):
 - hook_line1: 3-5 words, ALL CAPS. The "stop scrolling" line. Make it PROVOCATIVE and high-stakes — a threat, a shock, a reversal, or a bold claim. "OIL LIFELINE OPEN" is too flat. "STRAIT CHOKEHOLD BREAKS" or "INDIA DODGED DISASTER" has punch. Use power words (CRISIS, SHOCK, COLLAPSE, WAR, WIN, DODGED, EXPOSED, SLASHED) where the facts support them — but never overstate beyond what the article says.
 - hook_line2: 3-5 words, ALL CAPS. Twists the knife or raises the stakes further — a number, a consequence, or a cliffhanger.
 
-STORYBOARD: Plan 8-10 scenes that match the narration beat-by-beat. For EACH
+STORYBOARD: Plan 6-8 scenes that match the narration beat-by-beat. For EACH
 scene you also act as the visual director: you decide HOW that beat should be
 shown on screen by choosing a "media_plan". You CANNOT browse, fetch, or verify
 anything — you only PLAN. A separate system executes your plan, verifies sources,
 and silently falls back to a branded card if your choice can't be fulfilled.
 - Scene 1 = the HOOK. scene_role "hook".
-- All other scenes = narration data beats. scene_role "beat".
-- Do NOT include a CTA/closing scene — the branded end card is appended
-  automatically. Your last scene should be the last DATA beat. If your last
-  storyboard scene says "full story at" or "thevideshi" or is a CTA, you FAILED.
-- ZERO INFORMATION REPETITION (critical): Every scene must add NEW facts the
-  viewer has not seen yet. Before writing each scene, mentally check: "Has this
-  fact, stat, or claim already appeared in an earlier scene's card_text,
-  card_subtext, or narration?" If yes, SKIP it and find a different fact from
-  the article. The hook may preview the story's theme, but no body scene should
-  restate the hook or each other. The article has MANY facts — spread them
-  across scenes so each one teaches something new. A reel where two scenes say
-  the same thing in different words has FAILED.
-- VISUAL VARIETY (critical): Each scene must use a DIFFERENT visual rendering
-  approach. Never use the same chart type or layout in consecutive scenes.
-  Rotate across these: comparison table, route/timeline map, stat grid with
-  icons, bar/pie chart, split-panel (A vs B), process/flow diagram, annotated
-  photo composite, data dashboard. If scene 3 is a comparison table, scene 4
-  must NOT also be a comparison table. In your image_prompt, explicitly name
-  the chart/layout type so each scene looks visually distinct.
-- Use "generate" for most mid-reel scenes (each gets a unique AI
-  image). Mix data_viz "integrated" (big stat baked into the image) and "overlay"
-  (topic image with text card on top). Use "card" with card_style for animated
-  motion graphics (stat_grid, hero_stat, diaspora_panel). Scene 1 uses the hero
-  photo when available. A reel with visual variety AND dense data wins.
+- Middle scenes = the narration beats. scene_role "beat".
+- The LAST scene = the closing call-to-action. scene_role "cta".
+- More scenes = more visual variety = better retention. Vary the media_plan
+  across scenes — a reel that is ALL identical cards reads as monotonous. Mix in
+  a generated illustration or a social embed where the beat supports it.
 
 For each scene, provide:
 - "narration": the exact words spoken during that scene (copy from script).
 - "scene_role": one of "hook" | "beat" | "cta".
 - "card_text": MANDATORY for EVERY scene (it's the on-screen text for "card"
   scenes AND the safe fallback if any richer plan fails). A SHORT, punchy key
-  point distilling the beat — 6 to 12 words, the essence of what's narrated, the
+  point distilling the beat — 4 to 9 words, the essence of what's narrated, the
   way you'd headline it on a card. Title-case-ish, no trailing period. Lead with
-  the number/name when there is one. Pack in a concrete detail — a number, a
-  name, a place. Examples: "Telugu Worker Forced To Pay $30,000 For H-1B",
-  "Federal Lawsuit Filed In Michigan District Court", "19% Of H-1B Holders Now
-  At Risk Of Deportation".
+  the number/name when there is one. Examples: "Telugu Worker Forced To Pay
+  $30,000", "Federal Lawsuit Filed In Michigan", "Every H-1B Holder Is At Risk".
 - "card_subtext": MANDATORY for EVERY scene. A SUPPORTING context line that sits
   UNDER the card_text headline — it adds the concrete detail the headline alone
   can't carry (the who/where/why/how-much/what-next), so the card reads like a
-  newspaper headline + standfirst instead of a lone phrase. 12 to 25 words, one
-  or two sentences, plain sentence case, no trailing period. PACK IN DATA: names,
-  numbers, percentages, dollar amounts, dates, comparisons. It MUST add NEW
-  information, never just reword card_text. Pair examples (headline → subtext):
-    • "Telugu Worker Forced To Pay $30,000 For H-1B" → "He paid a staffing agent
-      to keep his visa status for three years, then filed a federal trafficking
-      lawsuit in Texas that could set precedent for 600,000 H-1B holders"
-    • "India-Japan $61 Billion Investment Target By 2030" → "Up from $42 billion
-      in 2024. Covers semiconductors, AI, critical minerals, and stealth naval
-      tech — Japan's first co-development pact outside the Five Eyes"
-    • "Every H-1B Holder Is At Risk Of Pay-To-Stay" → "Lawyers warn the scheme
-      mirrors quiet pressure thousands of visa workers already face. USCIS data
-      shows 68% of denied extensions were Indians in FY2025"
+  newspaper headline + standfirst instead of a lone phrase. 9 to 18 words, one
+  sentence, plain sentence case, no trailing period. It MUST add NEW information,
+  never just reword card_text. Pair examples (headline → subtext):
+    • "Telugu Worker Forced To Pay $30,000" → "He paid a staffing agent to keep
+      his H-1B status, then sued under federal trafficking law"
+    • "Now The Way Out Costs $100,000" → "A new consular fee makes leaving and
+      re-entering on H-1B unaffordable for most laid-off Indians"
+    • "Every H-1B Holder Is At Risk" → "Lawyers warn the pay-to-stay scheme
+      mirrors quiet pressure thousands of visa workers already face"
 - "media_plan": one of "social" | "generate" | "card" | "media_library":    • "social" — show a REAL social post (X or Threads) from a public figure /
       official account central to THIS story, in a branded attributed frame. Only
       choose this when the beat is literally about what a specific named person or
@@ -615,100 +487,32 @@ For each scene, provide:
       "social_hint" with the handle (no @) or the person/org name + topic. The
       executor will try to fetch a recent on-topic post; if none exists it falls
       back to your card_text. Never pick "social" for scene 1 or the final CTA.
-    • "generate" — a custom GENERATED background image. The DEFAULT and
-      PREFERRED mode. Gemini will create a vivid, atmospheric background photo
-      or illustration matching the scene's topic. Text and data will be overlaid
-      separately by the pipeline — DO NOT describe text, labels, or data
-      layout in the image_prompt. Instead describe the VISUAL MOOD and SUBJECT:
-      Examples:
-        - "Dramatic photo of trade ships at a busy port with Indian and Japanese
-          flags, twilight lighting, warm golden tones"
-        - "Aerial view of Silicon Valley tech campus at sunset, modern glass
-          buildings, vibrant sky"
-        - "Close-up of someone holding an Indian passport at an airport counter,
-          warm lighting, shallow depth of field"
-      The image_prompt should describe a SCENE, not a chart or infographic.
-      The pipeline will overlay the key data (card_text, card_subtext) on top
-      of this background using clean, readable text rendering.
-      Use "generate" for MOST mid-reel scenes (4-6 out of 8). Each scene gets
-      its OWN unique image — visual variety is key.
-      CRITICAL: Each scene's image_prompt MUST describe a DIFFERENT visual
-      than the previous scene — different subject, angle, palette, mood.
-      And the DATA in each scene's card_text must be DIFFERENT facts —
-      never repeat something already shown in an earlier scene.
-    • "media_library" — RARELY USED. Only if you are certain a high-quality
-      curated photo exists for an extremely specific, concrete Indian subject
-      (e.g. "Virat Kohli", "Indian rupee notes"). In practice, prefer "generate"
-      for almost all scenes — it gives a unique, on-topic image every time.
-      If you use this, add a "media_subject" (2-4 words). If nothing fits,
-      executor falls to card.
-    • "card" — a branded data card with card_text + card_subtext, optionally
-      upgraded to an animated data card via card_style. Use this for animated
-      stat_grid / hero_stat / diaspora_panel beats (the motion graphics), and as
-      fallback. For plain text-heavy data WITHOUT animation, prefer "generate"
-      with data_viz "overlay" instead — it gets a unique AI background rather
-      than a flat navy card.
+    • "generate" — show a custom GENERATED editorial illustration for an abstract
+      or scene-setting beat (a concept, a mood, a setting) that no card or real
+      photo captures well. Add an "image_prompt" (see GENERATE RULES). Great for
+      the hook background and for conceptual beats. Use sparingly: 1-3 per reel.
+    • "media_library" — show a real curated photo from our in-house library IF the
+      beat is about a concrete, common, photographable Indian subject (a city
+      skyline, currency, a generic crowd, a flag). Add a "media_subject" (2-4
+      words, concrete, India-anchored). If nothing fits, executor falls to card.
+    • "card" — the default. A clean branded text card showing card_text. Choose
+      this whenever unsure; it is always safe and on-brand.
 
-ANIMATED DATA CARDS (optional "card_style") — for a "card" beat that is really
-ABOUT NUMBERS or the diaspora-impact, you may upgrade it to an animated data
-card by adding a "card_style" plus its structured payload. These render as
-motion graphics (counting numbers, staggered tiles, bullets sliding in) and are
-far more engaging than a plain text card for stat-heavy beats. RULES:
-- Use card_style on 3-5 scenes total — be AGGRESSIVE about finding numbers and
-  stats in the article to visualize. Almost every news article has numbers worth
-  showing: dollar amounts, percentages, headcounts, dates, rankings, growth
-  rates. DIG THEM OUT. NEVER on scene 1 (the hook) or the final CTA.
-- Every figure MUST come from THIS article's verified facts — never invent or
-  inflate a number. If you're unsure of a number, do NOT use a stat card.
-- card_text and card_subtext remain MANDATORY on the scene (they are the safe
-  fallback if the animated render fails). Set "media_plan": "card" on these.
-- You do NOT pick colors — the renderer assigns the brand palette.
-The three styles and their payloads:
-  • "hero_stat" — ONE signature number that counts up huge on screen. Payload:
-    "hero_stat": {{"big": "<short stat, e.g. $1.3T or 19% or ₹4,400cr>",
-                   "sub": "<one-line meaning of that number, 10-20 words with context>",
-                   "eyebrow": "<2-4 word kicker, e.g. BY THE NUMBERS>"}}
-  • "stat_grid" — 2-6 key figures as a tile grid. Payload:
-    "stat_grid": {{"tiles": [["$135","IPO price / share"],
-                             ["$85.7B","raised — largest ever"],
-                             ["+19%","first-day pop"], ["$2.66T","valuation"],
-                             ["4th","largest IPO in history"],
-                             ["12,000","new jobs expected"]],
-                   "eyebrow": "<kicker>"}}  (2 to 6 tiles; each = [value, label])
-    PACK as many real numbers from the article as you can (up to 6). Each tile is
-    a number + a short label. More tiles = more data = better reel.
-  • "diaspora_panel" — saffron India/NRI impact panel. RESERVE for the explicit
-    diaspora-impact beat. Payload:
-    "diaspora_panel": {{"title": "<panel headline>",
-                        "subtitle": "<one supporting line with a number if possible>",
-                        "bullets": ["<fact with number>","<fact>","<fact>","<fact>","<fact>"]}}
-    (3-5 bullets, each should carry a concrete fact, not vague impact statements)
-
-GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as a
-DATA INFOGRAPHIC brief:
-- It MUST be an infographic-style illustration — charts, comparison panels,
-  stat callouts, icon grids, timelines, flow diagrams. NOT a mood photo,
-  NOT a cinematic illustration, NOT just a pretty background.
+GENERATE RULES (only when media_plan = "generate") — write "image_prompt" as an
+EDITORIAL ILLUSTRATION brief, never a photo:
+- It MUST be a stylized, abstract, or symbolic illustration — NOT a photograph,
+  NOT photoreal.
 - ABSOLUTELY NO real, identifiable person (no politician, celebrity, athlete —
   no faces of named people). NO depiction of a real news event staged as if it
-  were a real photo. NO logos of real companies.
-- ALWAYS include numbers, stats, and data points in the prompt. Every scene
-  should visualize data from the article — dollar amounts, percentages, counts,
-  rankings, comparisons, growth figures. The data IS the visual.
-- Describe the LAYOUT: "bar chart showing X vs Y", "split panel comparing A
-  and B", "timeline with 3 milestones", "stat grid with 4 key figures",
-  "pie chart breakdown". Give the AI a concrete data visualization to render.
-- Example: "Data infographic: $61 BILLION investment target by 2030. Bar chart
-  showing growth from $27.5B (2025-26) to $61B target. India flag and Japan
-  flag as anchors on each side. Below: 3 icon panels — Defense (shield icon),
-  AI (chip icon), Semiconductors (circuit icon). Dark navy background, gold
-  accent numbers, clean editorial layout."
-- For the rare scene with genuinely no stats (data_viz "overlay"): NO text or
-  numbers in the image. Describe symbolic visuals only. This should be 0-1
-  scenes per reel at most.
+  were a real photo. NO logos of real companies. NO text, letters, words, or
+  numbers anywhere in the image (all text lives on separate cards).
+- Describe symbolic/conceptual visuals: objects, documents, silhouettes,
+  landscapes, geometric motifs, light. e.g. "a lone silhouetted figure dwarfed by
+  towering faceless office buildings, oppressive scale, symbolizing worker
+  powerlessness" or "an official-looking legal document partially torn,
+  dramatic shadow, symbolizing a lawsuit". Keep it to ONE clear concept.
 - Do NOT specify colors, borders, or framing — a fixed house style is appended
-  automatically. Just describe the DATA LAYOUT, SUBJECT, and MOOD.
-- 200-400 characters for image_description.
+  automatically. Just describe the SUBJECT and MOOD in 1-2 sentences.
 
 SOCIAL SEARCH (top-level "social_search") — you are also the SEARCH EDITOR. We
 will search X and Threads for REAL public posts (photos AND video clips) about
@@ -738,26 +542,11 @@ posts and reject look-alikes. Provide:
 If the story is genuinely not postable on social (abstract explainer, no real
 event/person to find), set query to "" and we will skip social sourcing.
 
-STORY MOOD (top-level "story_mood") — classify the EMOTIONAL TONE of this story
-so we can score it the right music bed. Choose EXACTLY ONE:
-- "triumphant"  — a landmark win, record, breakthrough, first-ever (soaring).
-- "celebratory" — festive, joyful, a happy milestone (upbeat, party energy).
-- "somber"      — tragedy, loss, hardship, a grim immigration story (subdued).
-- "tense"       — conflict, threat, standoff, crisis, breaking danger (urgent).
-- "neutral-news"— a straight news update with no strong emotional charge.
-- "uplifting"   — hopeful, inspiring, human-interest with a positive arc.
-- "cultural"    — festivals, food, heritage, the arts, diaspora culture.
-- "tech"        — technology, startups, markets, business, innovation.
-- "chill"       — lifestyle, travel, light/relaxed features.
-Pick the one that best fits the DOMINANT tone — when torn between tone and topic,
-prefer the emotional tone (a triumphant tech story is "triumphant", not "tech").
-
 Return JSON only:
 {{
   "script": "the spoken narration",
   "hook_line1": "BOLD HOOK LINE",
   "hook_line2": "CONTEXT LINE",
-  "story_mood": "one of: triumphant | celebratory | somber | tense | neutral-news | uplifting | cultural | tech | chill",
   "social_search": {{
     "query": "a tight X/Threads search string to find REAL public posts about THIS exact story",
     "must_include": ["anchor1", "anchor2"],
@@ -789,16 +578,6 @@ Return JSON only:
       "card_text": "Another Beat Key Point",
       "card_subtext": "a one-sentence supporting detail that adds new context under the headline",
       "media_plan": "card"
-    }},
-    {{
-      "scene": 4,
-      "narration": "the numbers beat ~15 words...",
-      "scene_role": "beat",
-      "card_text": "The Deal In Four Figures",
-      "card_subtext": "fallback context line if the animated card can't render",
-      "media_plan": "card",
-      "card_style": "stat_grid",
-      "stat_grid": {{"tiles": [["$135","IPO price / share"], ["$85.7B","raised — largest ever"], ["+19%","first-day pop"], ["$2.66T","valuation in a week"]], "eyebrow": "BY THE NUMBERS"}}
     }}
   ]
 }}"""
@@ -816,38 +595,11 @@ Return JSON only:
     )
 
     if r.status_code != 200:
-        print(f"❌ Script generation failed: {r.status_code} — trying Gemini fallback")
-        result = gemini_json(prompt, max_tokens=4000, temperature=0.8)
-        if not result or not result.get("script"):
-            print("❌ Gemini fallback also failed for script generation")
-            return None
-        print("  ✅ Script generated via Gemini fallback")
-    else:
-        result = json.loads(r.json()["choices"][0]["message"]["content"])
+        print(f"❌ Script generation failed: {r.status_code}")
+        return None
+
+    result = json.loads(r.json()["choices"][0]["message"]["content"])
     result["v"] = SCRIPT_CACHE_VERSION
-
-    # ── Deterministic CTA scene stripping ──
-    # GPT sometimes generates a closing CTA scene despite being told not to.
-    # The branded endcard handles the CTA, so strip any last storyboard scene
-    # that looks like one.
-    _sb = result.get("storyboard") or []
-    if _sb:
-        _last = _sb[-1]
-        _last_ct = (_last.get("card_text") or "").lower()
-        _last_cs = (_last.get("card_subtext") or "").lower()
-        _last_ip = (_last.get("image_prompt") or "").lower()
-        _last_role = (_last.get("scene_role") or "").lower()
-        _cta_signals = ("full story", "thevideshi", "read more", "further details",
-                        "learn more", "visit us", "dot com", ".com", "check out")
-        _is_cta = (_last_role == "cta"
-                   or any(sig in _last_ct for sig in _cta_signals)
-                   or any(sig in _last_cs for sig in _cta_signals)
-                   or any(sig in _last_ip for sig in _cta_signals))
-        if _is_cta:
-            _sb.pop()
-            result["storyboard"] = _sb
-            print(f"  🚫 Stripped CTA last scene: \"{_last.get('card_text', '')[:50]}\"")
-
     print(f"  📝 Script: {len(result['script'].split())} words")
     print(f"  📝 Hook: {result.get('hook_line1', '')} / {result.get('hook_line2', '')}")
 
@@ -858,131 +610,6 @@ Return JSON only:
     except Exception as e:
         print(f"  ⚠️ Cache write failed: {e}")
 
-    return result
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# QUICK PULSE — STAT EXTRACTION (GPT-4o-mini)
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def generate_pulse_stats(article, force_new=False):
-    """Extract key stats/facts from an article for a Quick Pulse reel.
-
-    Returns a dict with hook_stat, stats, diaspora_bullets, story_mood, hook_line,
-    or None if the article has no meaningful numbers/stats.
-    Caches results to disk.
-    """
-    headline = article.get("headline", "")
-    subheadline = article.get("subheadline", "")
-    body = (article.get("body") or "")[:2000]
-    category = article.get("category", "")
-    slug = article.get("slug", "unknown")
-
-    # Cache check
-    cache_path = BUILD_DIR / f"pulse-stats-{slug}.json"
-    if not force_new and cache_path.exists():
-        try:
-            cached = json.loads(cache_path.read_text())
-            if cached.get("v") == "pulse1" and cached.get("hook_stat"):
-                print(f"  ⚡ Using cached pulse stats")
-                return cached
-        except Exception:
-            pass
-
-    prompt = f"""You extract key stats for a Quick Pulse reel for The Videshi — a fast, punchy, music-only news Short for the Indian diaspora. No voiceover — just bold animated data cards with numbers and facts.
-
-ARTICLE:
-Headline: {headline}
-Subheadline: {subheadline}
-Category: {category}
-Body: {body}
-
-TASK: Extract the most impactful numbers, stats, and facts from this article.
-Every figure MUST come directly from the article — NEVER invent or inflate.
-If the article has NO meaningful numbers or concrete stats, return {{"skip": true}}.
-
-Return JSON:
-{{
-  "hook_stat": {{
-    "big": "<the SINGLE most dramatic number, e.g. $350B, 250,000, 19%>",
-    "sub": "<what that number means, 5-10 words>",
-    "eyebrow": "<2-4 word kicker, e.g. BREAKING, BY THE NUMBERS, THE PRICE TAG>"
-  }},
-  "stats": [
-    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}},
-    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}},
-    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}}
-  ],
-  "diaspora_bullets": [
-    "<NRI/diaspora impact point 1, ~10 words>",
-    "<NRI/diaspora impact point 2, ~10 words>"
-  ],
-  "story_mood": "<one of: triumphant|celebratory|somber|tense|neutral-news|uplifting|cultural|tech|chill>",
-  "hook_line": "<3-5 word ALL CAPS scroll-stopper for the opening frame>"
-}}
-
-RULES:
-- hook_stat.big: Short, punchy (e.g. "$2.6B" not "two point six billion dollars"). Include currency/% symbols.
-- stats: 2-3 supporting numbers. Each must be a DIFFERENT fact from the hook_stat.
-- diaspora_bullets: 2-3 points about why this matters to NRIs/Indians abroad.
-- hook_line: The provocative, thumb-stopping headline. ALL CAPS. Use power words (CRISIS, SHOCK, WIN, DODGED, EXPOSED, SLASHED) where facts support them.
-- story_mood: The dominant emotional tone of the story.
-- If the article is a soft feature, opinion piece, or has fewer than 2 concrete numbers, return {{"skip": true}}.
-"""
-
-    result = None
-
-    # Try OpenAI first
-    if OPENAI_KEY:
-        try:
-            r = requests.post(
-                "https://api.openai.com/v1/chat/completions",
-                headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
-                json={
-                    "model": "gpt-4o-mini",
-                    "messages": [{"role": "user", "content": prompt}],
-                    "temperature": 0.7,
-                    "response_format": {"type": "json_object"},
-                },
-                timeout=30,
-            )
-            if r.status_code == 200:
-                result = json.loads(r.json()["choices"][0]["message"]["content"])
-            else:
-                print(f"  ⚠️ OpenAI pulse stats failed ({r.status_code}) — trying Gemini")
-        except Exception as e:
-            print(f"  ⚠️ OpenAI pulse stats error: {e} — trying Gemini")
-
-    # Gemini fallback
-    if not result:
-        result = gemini_json(prompt, max_tokens=1000, temperature=0.7)
-
-    if not result:
-        print("  ❌ Pulse stat extraction failed (both LLMs)")
-        return None
-
-    # If GPT says skip (no stats), return None
-    if result.get("skip"):
-        print(f"  ⚡ Article has no meaningful stats — skipping pulse reel")
-        return None
-
-    # Validate we got the minimum required fields
-    hook = result.get("hook_stat")
-    if not hook or not hook.get("big"):
-        print(f"  ⚡ No hook_stat extracted — skipping pulse reel")
-        return None
-
-    result["v"] = "pulse1"
-
-    # Cache
-    try:
-        cache_path.write_text(json.dumps(result, indent=2))
-        print(f"  💾 Pulse stats cached: {cache_path.name}")
-    except Exception as e:
-        print(f"  ⚠️ Cache write failed: {e}")
-
-    print(f"  ⚡ Hook: {result.get('hook_line', '?')} | {hook.get('big', '?')} — {hook.get('sub', '?')}")
-    print(f"  ⚡ Stats: {len(result.get('stats', []))} | Diaspora bullets: {len(result.get('diaspora_bullets', []))}")
     return result
 
 
@@ -1004,21 +631,13 @@ def pre_render_script_qa(script_data, article):
     storyboard = script_data.get("storyboard", [])
     word_count = len(script.split())
 
-    # Build scene summary for dedup checking
-    scene_summary = ""
-    for i, sc in enumerate(storyboard):
-        ct = sc.get("card_text", "")
-        cs = sc.get("card_subtext", "")
-        mp = sc.get("media_plan", "")
-        scene_summary += f"  Scene {i+1} [{mp}]: {ct} — {cs}\n"
-
     prompt = f"""You quality-check reel scripts for The Videshi (Indian diaspora news).
 
 ARTICLE: {headline}
 HOOK: {hook1} / {hook2}
 SCRIPT ({word_count} words): {script}
-STORYBOARD SCENES ({len(storyboard)}):
-{scene_summary}
+STORYBOARD SCENES: {len(storyboard)}
+
 Score 1-10 on:
 1. HOOK POWER: Does it grab in 3 seconds? Bold, surprising, specific?
 2. SCRIPT QUALITY: Informative, well-paced, NRI-relevant? Does it deliver actual substance (key facts, numbers, context) — not just a restated headline?
@@ -1026,15 +645,12 @@ Score 1-10 on:
 4. CTA: Must end with "thevideshi dot com" or "thevideshi.com". Present?
 5. STORYBOARD: Are scene visuals concrete and photographable? (no abstract concepts)
 6. SPELLING: Is "TheVideshi" / "thevideshi.com" spelled correctly throughout?
-7. INFORMATION REPETITION: Do any two scenes' card_text or card_subtext say the same thing in different words? Each scene must carry UNIQUE information. Repeated content = deduct 2 points.
-8. LAST SCENE CHECK: Is the last storyboard scene a CTA ("full story", "thevideshi")? If so, deduct 2 points — the endcard handles the CTA, last scene must be data.
 
 HARD FAILS (auto-score 0):
 - "TheVideshi" misspelled anywhere (Vidashi, Vidashee, Divaji, etc.)
 - No CTA at the end
 - Script under 60 words or over 200 words
 - Script is just a restated headline with no additional facts or context
-- Two or more scenes with essentially the same information
 
 Return JSON only:
 {{"score": <1-10>, "passed": <true if score >= 7>, "issues": ["issue1"], "fix_suggestions": ["suggestion1"]}}"""
@@ -1643,9 +1259,8 @@ def build_script_captions(words, script_text, hook_duration):
         inner = _render_caption_html(text.split())
         html = (
             f"<div style=\"display:flex;align-items:flex-end;justify-content:center;"
-            f"width:100%;height:100%;padding:0 24px 0 24px;box-sizing:border-box;\">"
+            f"width:100%;height:100%;padding:0 24px 0 24px;\">"
             f"<div style=\"background:#06080F;border-radius:14px;padding:16px 30px;"
-            f"max-width:100%;overflow-wrap:break-word;word-break:break-word;"
             f"border:2px solid rgba(212,175,55,0.55);"
             f"box-shadow:0 6px 28px rgba(0,0,0,0.85);"
             f"font-family:Inter;font-size:42px;font-weight:900;"
@@ -1713,27 +1328,7 @@ def upload_asset(local_path, storage_path, content_type="application/octet-strea
 
 
 def ensure_music_uploaded(music_file):
-    """Ensure a music file is available at a public URL. Upload if needed.
-
-    Accepts either a bare filename (legacy behavior — resolved against the music/
-    dir by name/prefix) OR an absolute path to a file on disk (from the music
-    selector). An absolute path that exists is uploaded directly under its
-    basename storage key.
-    """
-    # Absolute-path input (from select_music): upload directly by basename.
-    if os.path.isabs(str(music_file)) and os.path.exists(music_file):
-        basename = os.path.basename(music_file)
-        storage_path = f"music/{basename}"
-        public_url = f"{STORAGE_BASE}/{storage_path}"
-        r = requests.head(public_url, timeout=10)
-        if r.status_code == 200:
-            return public_url
-        url = upload_asset(str(music_file), storage_path, "audio/mpeg")
-        if url:
-            return url
-        print(f"  ⚠️ Music upload failed for {basename}")
-        return None
-
+    """Ensure a music file is available at a public URL. Upload if needed."""
     storage_path = f"music/{music_file}"
     public_url = f"{STORAGE_BASE}/{storage_path}"
 
@@ -1765,163 +1360,9 @@ def ensure_music_uploaded(music_file):
     return None
 
 
-# Music beds are cached locally + in storage so re-renders of the same reel
-# length reuse them instead of re-encoding.
-MUSIC_BED_DIR = "/tmp/videshi-music-beds"
-
-
-def prepare_music_bed(music_url, total_duration, target_mean_db=-26.0,
-                      fade=1.2, max_peak_db=-1.0):
-    """Pre-render a full-length, looped, leveled music bed for a reel.
-
-    WHY THIS EXISTS: Shotstack's ``timeline.soundtrack`` plays its source file
-    exactly ONCE and does NOT loop. Our library tracks are ~30s but anchor reels
-    run ~55-60s, so the back half of every reel was silent. On top of that, the
-    old fixed ``volume: 0.10`` left the bed ~27 dB under the voiceover — inaudible
-    on a phone speaker, which read to viewers as "no music at all".
-
-    This builds a bed that (1) loops to cover the FULL reel duration, (2) is
-    level-matched to an audible-but-ducked target loudness so it sits cleanly
-    under the voiceover, and (3) has gentle fade in/out baked in. The result is
-    uploaded and returned as a public URL to drop straight into ``soundtrack``
-    at volume 1.0.
-
-    Returns the bed URL, or None on any failure (caller falls back to the raw
-    one-shot soundtrack so a bed-build hiccup never blocks a render).
-    """
-    try:
-        os.makedirs(MUSIC_BED_DIR, exist_ok=True)
-        dur = max(1.0, round(float(total_duration), 2))
-        src_base = os.path.basename(music_url.split("?")[0]).replace(".mp3", "")
-        bed_key = f"bed-{src_base}-{int(round(dur))}s-{int(abs(target_mean_db))}db"
-        storage_path = f"music-beds/{bed_key}.mp3"
-        public_url = f"{STORAGE_BASE}/{storage_path}"
-
-        # Reuse if already in storage (re-render of same reel length).
-        try:
-            if requests.head(public_url, timeout=10).status_code == 200:
-                print(f"  🎚️ Reusing cached music bed ({dur:.0f}s)")
-                return public_url
-        except Exception:
-            pass
-
-        # 1. Fetch source track (curl honors the egress proxy; urllib does not).
-        src_path = os.path.join(MUSIC_BED_DIR, f"src-{src_base}.mp3")
-        if not os.path.exists(src_path):
-            dl = subprocess.run(
-                ["curl", "-sS", "-L", "-o", src_path, "--max-time", "60", music_url],
-                capture_output=True, text=True, timeout=80)
-            if dl.returncode != 0 or not os.path.exists(src_path) or os.path.getsize(src_path) < 1024:
-                print(f"  ⚠️ Music bed: source download failed — falling back to raw soundtrack")
-                return None
-
-        # 2. Measure source loudness so we hit the target level precisely.
-        det = subprocess.run(
-            ["ffmpeg", "-hide_banner", "-nostats", "-i", src_path,
-             "-af", "volumedetect", "-f", "null", "-"],
-            capture_output=True, text=True, timeout=60)
-        info = det.stderr
-        def _grab(label):
-            m = re.search(rf"{label}:\s*(-?\d+\.?\d*) dB", info)
-            return float(m.group(1)) if m else None
-        src_mean = _grab("mean_volume")
-        src_max = _grab("max_volume")
-        if src_mean is None:
-            src_mean = -18.0
-        if src_max is None:
-            src_max = -1.0
-
-        # Gain to reach the target ducked level, clamped to keep peaks under
-        # max_peak_db so the bed never clips when mixed with the voice.
-        gain_db = target_mean_db - src_mean
-        if src_max + gain_db > max_peak_db:
-            gain_db = max_peak_db - src_max
-        gain_db = round(gain_db, 2)
-
-        # 3. Loop to cover the full reel + bake in fades.
-        src_dur_p = subprocess.run(
-            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
-             "-of", "default=nw=1:nk=1", src_path],
-            capture_output=True, text=True, timeout=30)
-        try:
-            src_dur = float(src_dur_p.stdout.strip())
-        except Exception:
-            src_dur = 30.0
-        loops = max(0, int(dur // max(src_dur, 1.0)) + 1)  # -stream_loop is EXTRA plays
-        fade_out_start = max(0.0, dur - fade)
-        af = (f"volume={gain_db}dB,"
-              f"afade=t=in:st=0:d={fade},"
-              f"afade=t=out:st={fade_out_start:.2f}:d={fade}")
-
-        bed_path = os.path.join(MUSIC_BED_DIR, f"{bed_key}.mp3")
-        enc = subprocess.run(
-            ["ffmpeg", "-y", "-hide_banner", "-nostats",
-             "-stream_loop", str(loops), "-i", src_path,
-             "-t", f"{dur}", "-af", af,
-             "-c:a", "libmp3lame", "-b:a", "160k", bed_path],
-            capture_output=True, text=True, timeout=120)
-        if enc.returncode != 0 or not os.path.exists(bed_path) or os.path.getsize(bed_path) < 1024:
-            print(f"  ⚠️ Music bed: encode failed — falling back to raw soundtrack")
-            print(f"     {enc.stderr[-300:]}")
-            return None
-
-        # 4. Upload the finished bed.
-        url = upload_asset(bed_path, storage_path, "audio/mpeg")
-        if url:
-            print(f"  🎚️ Music bed ready: {dur:.0f}s loop, {gain_db:+.1f} dB "
-                  f"(src mean {src_mean:.1f} → target {target_mean_db:.0f} dB)")
-            return url
-        print(f"  ⚠️ Music bed: upload failed — falling back to raw soundtrack")
-        return None
-    except Exception as e:
-        print(f"  ⚠️ Music bed build error ({e}) — falling back to raw soundtrack")
-        return None
-
-
-def pick_music_for_article(article, story_mood=None, prefer_source=None,
-                           min_energy=None):
-    """Mood-driven music selection with deterministic rotation.
-
-    Returns (music_url, music_volume, attribution_str). Uses the index-backed
-    music_selector when available (keyed off story_mood, falling back to the
-    article category, then a safe default), rotating deterministically on the
-    article id so re-renders are stable but articles vary. Falls back
-    to the legacy hardcoded CATEGORY_MUSIC dict if the selector is unavailable.
-    attribution_str is non-empty ONLY for CC-BY tracks (must be credited).
-    """
-    category = article.get("category", "news")
-    music_volume = MUSIC_VOLUME.get(category, 0.05)
-    attribution = ""
-    if _MUSIC_SELECTOR_OK:
-        try:
-            sel = _select_music(
-                category,
-                story_mood=story_mood,
-                target_variant="30s",
-                article_id=article.get("id"),
-                prefer_source=prefer_source,
-                min_energy=min_energy,
-            )
-            music_url = ensure_music_uploaded(sel["path"])
-            attribution = sel.get("attribution", "") or ""
-            fam = sel.get("family", "?")
-            print(f"  🎵 Music: {os.path.basename(sel['path'])} "
-                  f"[{fam} | mood={story_mood or 'category'} | {sel.get('license','?')}]")
-            if music_url:
-                return music_url, music_volume, attribution
-            print("  ⚠️ Selector track upload failed — falling back to CATEGORY_MUSIC")
-        except Exception as e:
-            print(f"  ⚠️ music_selector failed ({e}) — falling back to CATEGORY_MUSIC")
-    # Legacy fallback
-    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
-    music_url = ensure_music_uploaded(music_file)
-    return music_url, music_volume, attribution
-
-
 # ═══════════════════════════════════════════════════════════════════════════════
 # IMAGE SOURCING — Collect public URLs (no local download needed)
 # ═══════════════════════════════════════════════════════════════════════════════
-
 
 BLOCKED_DOMAINS = [
     # NOTE: wikimedia image hosts (upload.wikimedia.org / commons.wikimedia.org)
@@ -2026,58 +1467,6 @@ def _image_looks_like_diagram(path):
         return False
     except Exception:
         return False
-
-
-def _precrop_hero_9x16(url, article_id):
-    """Download the hero image, center-crop it to 9:16 (1080x1920) if it's
-    landscape, re-upload, and return the new URL. Shotstack's fit=cover should
-    handle this, but in practice landscape heroes can appear squeezed. Pre-cropping
-    guarantees a clean vertical fill. On any failure returns the original URL."""
-    try:
-        from PIL import Image
-        local = f"/tmp/videshi_hero_precrop_{article_id}.jpg"
-        ua = "TheVideshi/1.0 (thevideshi.com)"
-        result = subprocess.run(
-            ["curl", "-sS", "-L", "--fail", "-A", ua, "-o", local, "--max-time", "30", url],
-            capture_output=True, text=True, timeout=40,
-        )
-        if result.returncode != 0 or not os.path.exists(local):
-            return url
-        img = Image.open(local).convert("RGB")
-        w, h = img.size
-        target_ratio = 9 / 16  # 0.5625
-        current_ratio = w / h
-        if current_ratio > target_ratio:
-            # Landscape — crop width to fit 9:16, keeping vertical center
-            new_w = int(h * target_ratio)
-            x0 = (w - new_w) // 2
-            img = img.crop((x0, 0, x0 + new_w, h))
-        elif current_ratio < target_ratio:
-            # Taller than 9:16 — crop height
-            new_h = int(w / target_ratio)
-            y0 = (h - new_h) // 2
-            img = img.crop((0, y0, w, y0 + new_h))
-        # Resize to exactly 1080x1920
-        img = img.resize((1080, 1920), Image.LANCZOS)
-        out_path = f"/tmp/videshi_hero_cropped_{article_id}.jpg"
-        img.save(out_path, "JPEG", quality=92)
-        import hashlib
-        with open(out_path, "rb") as fh:
-            ch = hashlib.md5(fh.read()).hexdigest()[:10]
-        storage_path = f"reel-broll/{article_id}/hero-9x16-{ch}.jpg"
-        cropped_url = upload_asset(out_path, storage_path, "image/jpeg")
-        for p in (local, out_path):
-            try:
-                os.remove(p)
-            except Exception:
-                pass
-        if cropped_url:
-            print(f"  ✂️ Hero pre-cropped to 9:16 (1080×1920)")
-            return cropped_url
-        return url
-    except Exception as e:
-        print(f"  ⚠️ Hero pre-crop failed ({e}) — using original")
-        return url
 
 
 def mirror_to_supabase(url, article_id, scene_idx, reject_diagrams=False):
@@ -2505,103 +1894,11 @@ def _card_glow(W, H, cx, cy, radius, color, max_alpha):
     return layer, glow
 
 
-def _card_image_background(url, W, H):
-    """Download `url` and return a 1080x1920 RGB image cropped to cover, darkened
-    and scrimmed so overlaid card text stays readable — the "SpaceX image overlay"
-    treatment. Returns None on any failure (caller falls back to navy)."""
-    try:
-        from io import BytesIO
-        from PIL import Image, ImageEnhance, ImageDraw, ImageFilter
-        content = None
-        try:
-            r = requests.get(url, timeout=12,
-                             headers={"User-Agent": "Mozilla/5.0 (compatible; TheVideshi/1.0)"})
-            if r.status_code == 200 and r.content:
-                content = r.content
-        except Exception:
-            content = None
-        # Some hosts (e.g. upload.wikimedia.org) 429 Python requests but serve
-        # fine to curl through the egress proxy — fall back to curl.
-        if not content:
-            try:
-                import subprocess, tempfile
-                tf = tempfile.NamedTemporaryFile(suffix=".img", delete=False)
-                tf.close()
-                cp = subprocess.run(
-                    ["curl", "-sS", "-L", "--max-time", "20",
-                     "-A", "TheVideshi/1.0 (thevideshi.com)",
-                     "-o", tf.name, url],
-                    capture_output=True)
-                if cp.returncode == 0 and os.path.getsize(tf.name) > 1024:
-                    with open(tf.name, "rb") as fh:
-                        head = fh.read(64)
-                        # reject HTML error pages served with 200
-                        if not head.lstrip()[:1] in (b"<",) and b"<!doctype" not in head.lower() and b"<html" not in head.lower():
-                            fh.seek(0)
-                            content = fh.read()
-                try:
-                    os.unlink(tf.name)
-                except Exception:
-                    pass
-            except Exception:
-                content = None
-        if not content:
-            return None
-        src = Image.open(BytesIO(content)).convert("RGB")
-        # cover-crop to 9:16
-        sw, sh = src.size
-        target = W / H
-        ar = sw / sh
-        if ar > target:
-            nw = int(sh * target); x0 = (sw - nw) // 2
-            src = src.crop((x0, 0, x0 + nw, sh))
-        else:
-            nh = int(sw / target); y0 = (sh - nh) // 2
-            src = src.crop((0, y0, sw, y0 + nh))
-        src = src.resize((W, H), Image.LANCZOS)
-        # global darken so any image reads as a brand-dim backdrop. Lifted from
-        # 0.46 → 0.62 (Kiran flagged reels reading too dark, 2026-06-23). Text
-        # legibility is still protected by the bowl scrim below + each overlay's
-        # own dedicated dark band, so the backdrop itself can sit brighter.
-        src = ImageEnhance.Brightness(src).enhance(0.62)
-        src = ImageEnhance.Color(src).enhance(0.92)
-        base = src.convert("RGBA")
-        # vertical scrim: darker top + bottom, slightly clearer middle, so the
-        # eyebrow (top), the headline block (upper-middle) and the wordmark
-        # (bottom) all sit on readable tone.
-        scrim = Image.new("L", (1, H), 0)
-        sp = scrim.load()
-        for y in range(H):
-            t = y / max(H - 1, 1)
-            # smooth bowl: ~120 alpha at edges, ~40 mid (eased from 150/70 so the
-            # backdrop reads brighter while edges still anchor eyebrow/wordmark)
-            edge = abs(t - 0.5) * 2  # 0 mid → 1 edges
-            sp[0, y] = int(40 + 80 * (edge ** 1.4))
-        scrim = scrim.resize((W, H))
-        dark = Image.new("RGBA", (W, H), (6, 12, 24, 0))
-        dark.putalpha(scrim)
-        out = Image.alpha_composite(base, dark)
-        # subtle brand glow + gold diagonal texture so it stays on-style
-        tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        td = ImageDraw.Draw(tex)
-        for k in range(-H, W, 54):
-            td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 8), width=1)
-        out = Image.alpha_composite(out, tex)
-        return out.convert("RGB")
-    except Exception as e:
-        print(f"  ℹ️ card image background failed ({e}) — using navy")
-        return None
-
-
-def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards", text_free=False, bg_url=None):
+def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_cards", text_free=False):
     """Render a branded 1080x1920 key-point graphic. Returns local PNG path or None.
     text_free=True renders the branded background + eyebrow + wordmark but OMITS
     the key-point line — used for scene 0, where the hook title overlay already
-    owns the on-screen text (drawing the card line too causes a 3-layer collision).
-    bg_url: when given, the card text is composited over that REAL image (darkened
-    + scrim, the SpaceX-style overlay Kiran asked for) instead of a flat navy
-    gradient. Any download/decode failure silently falls back to the navy bg, so
-    a card is always produced."""
+    owns the on-screen text (drawing the card line too causes a 3-layer collision)."""
     try:
         from PIL import Image, ImageDraw
     except Exception as e:
@@ -2610,36 +1907,26 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
     try:
         os.makedirs(out_dir, exist_ok=True)
         W, H = 1080, 1920
-        # ── Background ──────────────────────────────────────────────────────
-        # Preferred: a REAL image (library photo / generated illustration),
-        # darkened + scrimmed so the text reads — the "SpaceX image overlay" look.
-        # Fallback: the on-brand navy gradient (kept ONLY for when no image is
-        # available, e.g. generation down). Kiran's directive: never a bare navy
-        # text slide when an appropriate image can back it.
-        img = None
-        if bg_url:
-            img = _card_image_background(bg_url, W, H)
-        if img is None:
-            # Vary the navy background subtly per scene index so multiple fallback
-            # cards in one reel don't read as identical "repeated text slide".
-            if idx % 2 == 0:
-                img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
-                glow_cx, glow2_cx = int(W * 0.82), int(W * 0.12)
-            else:
-                img = _card_vgradient(W, H, (10, 20, 38), (24, 40, 64))
-                glow_cx, glow2_cx = int(W * 0.18), int(W * 0.88)
+        # Vary the background subtly per scene index so multiple cards in one reel
+        # don't read as identical "repeated text slide" (a QA "lacking visual
+        # variety" trigger). Two on-brand navy variants + mirrored glow placement.
+        if idx % 2 == 0:
+            img = _card_vgradient(W, H, _CARD_NAVY_TOP, _CARD_NAVY_BOT)
+            glow_cx, glow2_cx = int(W * 0.82), int(W * 0.12)
+        else:
+            img = _card_vgradient(W, H, (10, 20, 38), (24, 40, 64))
+            glow_cx, glow2_cx = int(W * 0.18), int(W * 0.88)
 
-            layer, mask = _card_glow(W, H, glow_cx, int(H * 0.20), 720, (60, 48, 18), 70)
-            img.paste(layer, (0, 0), mask)
-            layer2, mask2 = _card_glow(W, H, glow2_cx, int(H * 0.92), 760, (10, 22, 44), 90)
-            img.paste(layer2, (0, 0), mask2)
+        layer, mask = _card_glow(W, H, glow_cx, int(H * 0.20), 720, (60, 48, 18), 70)
+        img.paste(layer, (0, 0), mask)
+        layer2, mask2 = _card_glow(W, H, glow2_cx, int(H * 0.92), 760, (10, 22, 44), 90)
+        img.paste(layer2, (0, 0), mask2)
 
-            tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            td = ImageDraw.Draw(tex)
-            for k in range(-H, W, 54):
-                td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 10), width=1)
-            img = Image.alpha_composite(img.convert("RGBA"), tex).convert("RGB")
-
+        tex = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        td = ImageDraw.Draw(tex)
+        for k in range(-H, W, 54):
+            td.line([(k, 0), (k + H, H)], fill=(212, 175, 55, 10), width=1)
+        img = Image.alpha_composite(img.convert("RGBA"), tex).convert("RGB")
 
         draw = ImageDraw.Draw(img)
         MX = 96
@@ -2752,7 +2039,7 @@ def render_keypoint_card(scene, category, article, idx, out_dir="/tmp/videshi_ca
 # SOCIAL CARD SCENE — a real X post (photo + attribution) in the brand frame
 # ═══════════════════════════════════════════════════════════════════════════════
 # Additive, high-priority media source for AT MOST ONE scene per reel. When an
-# article's subject matches a curated handle in Supabase social_accounts table and
+# article's subject matches a curated handle in social-embed-registry.json and
 # that account has a recent photo post relevant to the story, we render the post
 # as a branded "ON THE FEED" card instead of generic stock. The registry is the
 # allowlist (verified/official accounts only). Scope: X only (Threads/IG later).
@@ -2783,7 +2070,7 @@ SOCIAL_CARD_MIN_LIKES = int(os.environ.get("VIDESHI_SOCIAL_MIN_LIKES", "50"))
 # publisher/official, not a meme/fan repost account (X "blue" verification is
 # purchasable, so the `verified` flag alone is not enough). A post's video is
 # accepted only when its handle is in the curated allowlist below:
-#   1. our own Supabase social_accounts table + pulse-leaders.json (people/orgs we vet)
+#   1. our own social-embed-registry.json + pulse-leaders.json (people/orgs we vet)
 #   2. a hand-maintained set of news/sports/official wire + desk handles
 # AND it is not caught by the meme/fan blocklist pattern. Toggle with
 # VIDESHI_SOCIAL_VIDEO_PUBLISHER_ONLY=0 to fall back to verified-only.
@@ -2831,15 +2118,6 @@ def _build_video_handle_allowlist():
         return _VIDEO_ALLOWLIST_CACHE
     allow = set(SOCIAL_VIDEO_PUBLISHER_HANDLES)
 
-    # Add all X handles from DB registry
-    try:
-        sys.path.insert(0, str(PIPELINE_DIR))
-        from social_registry import load_x_handle_set
-        allow.update(load_x_handle_set())
-    except Exception:
-        pass
-
-    # Also harvest pulse-leaders.json (still file-based)
     def _harvest(path):
         try:
             with open(PIPELINE_DIR / path) as fh:
@@ -2859,6 +2137,7 @@ def _build_video_handle_allowlist():
                     walk(x)
         walk(data)
 
+    _harvest("social-embed-registry.json")
     _harvest("pulse-leaders.json")
     _VIDEO_ALLOWLIST_CACHE = allow
     return allow
@@ -2933,7 +2212,7 @@ def _load_fetch_tweets_module():
 
 
 def _load_social_registry():
-    """Load social accounts from Supabase; return flat list of dicts with the
+    """Load social-embed-registry.json once; return flat list of dicts with the
     entry's available platform handles: {name, handle, category, kind, x,
     threads, instagram}. `handle` mirrors the X handle for backward-compat with
     the original X-only matcher; entries are included if they have ANY platform
@@ -2941,14 +2220,32 @@ def _load_social_registry():
     global _social_registry_cache
     if _social_registry_cache is not None:
         return _social_registry_cache
+    out = []
     try:
-        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-        from social_registry import load_flat_entries
-        _social_registry_cache = load_flat_entries()
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "social-embed-registry.json")
+        with open(path) as f:
+            d = json.load(f)
+        for cat, v in d.items():
+            if cat.startswith("_"):
+                continue
+            if isinstance(v, dict):
+                for kind in ("persons", "organizations"):
+                    for e in (v.get(kind) or []):
+                        if not isinstance(e, dict):
+                            continue
+                        x = (e.get("x") or "").lstrip("@") or None
+                        threads = (e.get("threads") or "").lstrip("@") or None
+                        instagram = (e.get("instagram") or "").lstrip("@") or None
+                        if not (x or threads or instagram):
+                            continue
+                        out.append({"name": e.get("name", ""),
+                                    "handle": x or threads or instagram,
+                                    "category": cat, "kind": kind,
+                                    "x": x, "threads": threads, "instagram": instagram})
     except Exception as e:
         print(f"  ⚠️ social registry load failed: {e}")
-        _social_registry_cache = []
-    return _social_registry_cache
+    _social_registry_cache = out
+    return out
 
 
 _media_lib_lookup_mod = None
@@ -2991,7 +2288,6 @@ def _x_profile(handle):
     try:
         tapi_key = os.environ.get("TWITTERAPI_IO_KEY", "")
         if not tapi_key:
-            # Try loading env
             _env_path = os.path.expanduser("~/workspace/.env.twitterapi-io")
             if os.path.exists(_env_path):
                 with open(_env_path) as f:
@@ -3558,10 +2854,6 @@ def source_storyboard_images(article, storyboard, count=8):
     urls = []
     used_in_this_reel = set()
     media_meta = {}  # url -> {"type": "video"|"image", "duration": N}
-    # Shared budget for gpt-image-1 card backgrounds across all card-fallback
-    # sites in this function (section-A: generic-convert, FLOOR, MIN-CARDS).
-    # Same env var as the section-B path so total per-reel spend stays capped.
-    _card_bg_gen_budget = [int(os.environ.get("VIDESHI_CARD_BG_GEN_BUDGET", "2"))]
 
     hero = article.get("image_url", "")
     category = article.get("category", "")
@@ -3569,7 +2861,7 @@ def source_storyboard_images(article, storyboard, count=8):
     headline = article.get("headline", "")
 
     # Minimum resolution for article images (shortest side)
-    MIN_IMAGE_DIM = 600  # lowered: hero works as bg even at landscape res (crop-to-fill)
+    MIN_IMAGE_DIM = 1000
 
     def check_image_resolution(url):
         """HEAD-check an image and return (width, height) or None if unreachable/too small."""
@@ -3764,9 +3056,6 @@ def source_storyboard_images(article, storyboard, count=8):
             hero = ""
     if hero and is_url_downloadable(hero) and hero not in used_in_this_reel:
         hero = mirror_to_supabase(hero, article_id, 0)
-        # Pre-crop landscape heroes to 9:16 so Shotstack doesn't squeeze them.
-        # Download → PIL center-crop → re-upload to same path.
-        hero = _precrop_hero_9x16(hero, article_id)
         matched_urls[0] = hero
         used_in_this_reel.add(hero)
         media_meta[hero] = {"type": "image", "duration": 0}
@@ -4377,11 +3666,7 @@ def source_storyboard_images(article, storyboard, count=8):
               f"keeping {len(keep_generic)} generic video, converting {n_convert} to key-point cards...")
         for i in to_convert:
             scene = scenes[i] if i < len(scenes) else {}
-            _bg_url, _ = _card_background_url(scene, article, article_id, i,
-                                              used_in_this_reel, _card_bg_gen_budget)
-            if _bg_url:
-                used_in_this_reel.add(_bg_url)
-            local = render_keypoint_card(scene, category, article, i, bg_url=_bg_url)
+            local = render_keypoint_card(scene, category, article, i)
             if not local:
                 continue  # leave the generic Pexels fill if card render fails
             try:
@@ -4421,11 +3706,7 @@ def source_storyboard_images(article, storyboard, count=8):
         print(f"  🎨 {len(remaining)} scenes unfilled — rendering styled key-point cards...")
         for i in remaining:
             scene = scenes[i] if i < len(scenes) else {}
-            _bg_url, _ = _card_background_url(scene, article, article_id, i,
-                                              used_in_this_reel, _card_bg_gen_budget)
-            if _bg_url:
-                used_in_this_reel.add(_bg_url)
-            local = render_keypoint_card(scene, category, article, i, bg_url=_bg_url)
+            local = render_keypoint_card(scene, category, article, i)
             if not local:
                 continue
             try:
@@ -4492,11 +3773,7 @@ def source_storyboard_images(article, storyboard, count=8):
                   f"scene(s) to branded key-point cards (scenes {[i+1 for i in to_cardify]})")
         for i in to_cardify:
             scene = scenes[i] if i < len(scenes) else {}
-            _bg_url, _ = _card_background_url(scene, article, article_id, i,
-                                              used_in_this_reel, _card_bg_gen_budget)
-            if _bg_url:
-                used_in_this_reel.add(_bg_url)
-            local = render_keypoint_card(scene, category, article, i, bg_url=_bg_url)
+            local = render_keypoint_card(scene, category, article, i)
             if not local:
                 continue
             try:
@@ -4538,818 +3815,59 @@ def source_storyboard_images(article, storyboard, count=8):
 #   C) Scene 0 (hook) = article hero if it passes resolution, else generate/card.
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# DEPRECATED (2026-07-03): _BRAND_GEN_SUFFIX killed as part of the Responses API
-# visual overhaul. The old suffix forced every gpt-image-1 prompt into a generic
-# navy/gold illustration style, preventing rich composed scenes. The Responses API
-# now generates contextual, article-specific visuals without style constraints.
-_BRAND_GEN_SUFFIX = ""  # kept as empty string so any residual references don't crash
+# Locked house-style suffix appended to EVERY gpt-image-1 prompt so all generated
+# images stay visually consistent and brand-safe. Text is NEVER baked in (it goes
+# on PIL cards), and no real identifiable person is ever depicted.
+_BRAND_GEN_SUFFIX = (
+    " — Rendered as a refined editorial illustration in The Videshi house style: "
+    "deep navy background (#1a1a2e) with antique gold (#c9a24a) accents, delicate "
+    "Indian jaali lattice linework framing the vertical margins, subtle aged-paper "
+    "grain texture, a soft cinematic glow toward the center, high-end magazine "
+    "art-direction. Flat stylized vector-meets-painterly look, NOT a photograph and "
+    "NOT photorealistic. Absolutely NO text, letters, words, numbers, captions, or "
+    "logos anywhere. NO real or identifiable human faces. Vertical 9:16 composition "
+    "with clear empty space in the upper-middle and lower thirds for overlaid text."
+)
 
 
-def _download_image_for_gemini(url, outpath):
-    """Download an image URL to a local path for Gemini input. Returns True on success."""
-    try:
-        r = subprocess.run(
-            ["curl", "-s", "-L", "-o", outpath, "--max-time", "15",
-             "-A", "TheVideshi/1.0 (thevideshi.com)", url],
-            capture_output=True, timeout=20
-        )
-        return os.path.exists(outpath) and os.path.getsize(outpath) > 1000
-    except Exception:
-        return False
-
-
-def _img_to_b64(path):
-    """Read a local image file and return base64 string."""
-    import base64 as _b64
-    with open(path, "rb") as f:
-        return _b64.b64encode(f.read()).decode()
-
-
-# Permanent style reference storyboards for Gemini image generation
-_GEMINI_REF_1 = PIPELINE_DIR / "assets" / "gemini-ref-storyboard-1.jpg"
-_GEMINI_REF_2 = PIPELINE_DIR / "assets" / "gemini-ref-storyboard-2.jpg"
-
-
-def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen",
-                          previous_response_id=None, article_body=None,
-                          article=None):
-    """Generate an article-specific scene image using Gemini 2.5 Flash Image.
-
-    Uses the article's own photos (hero + body images) plus two style reference
-    storyboards to produce vibrant, data-rich infographic scenes with real
-    photography composed in. Falls back to OpenAI gpt-image-1 if Gemini fails.
-
-    Returns the public URL (or None on any failure). Never raises.
-    When previous_response_id is not None, returns (url, response_id) tuple."""
-    if not image_prompt or (not GEMINI_KEY and not OPENAI_KEY):
-        return _ret(None, previous_response_id)
+def generate_themed_image(image_prompt, article_id, idx, out_dir="/tmp/videshi_gen"):
+    """Generate a brand-themed editorial illustration with gpt-image-1, upload it,
+    and return the public URL (or None on any failure). The locked brand suffix is
+    appended so output is consistent + brand-safe. Never raises."""
+    if not image_prompt or not OPENAI_KEY:
+        return None
     try:
         os.makedirs(out_dir, exist_ok=True)
-        import base64 as _b64
-
-        scene_direction = image_prompt.strip().rstrip(".")
-        body_text = (article_body or "")[:3000]
-        headline = (article or {}).get("headline", "") or scene_direction
-        subheadline = (article or {}).get("subheadline", "") or ""
-
-        # ── Collect article photos ──
-        article_img_paths = []  # local paths of downloaded article images
-        if article:
-            hero_url = (article.get("image_url") or "").strip()
-            if hero_url:
-                hero_path = os.path.join(out_dir, f"hero_{article_id}_{idx}.jpg")
-                if _download_image_for_gemini(hero_url, hero_path):
-                    article_img_paths.append(hero_path)
-
-            # Extract body images from markdown
-            abody = (article.get("body") or "")
-            body_img_urls = re.findall(r'!\[.*?\]\((https?://[^\)]+)\)', abody)
-            for bi, burl in enumerate(body_img_urls[:2]):  # max 2 body images
-                bp = os.path.join(out_dir, f"body_{article_id}_{idx}_{bi}.jpg")
-                if _download_image_for_gemini(burl, bp):
-                    article_img_paths.append(bp)
-
-        # ── Build Gemini multimodal request ──
-        if GEMINI_KEY:
-            parts = []
-
-            # Style reference storyboards
-            has_refs = False
-            if _GEMINI_REF_1.exists() and _GEMINI_REF_2.exists():
-                for ref_path in [_GEMINI_REF_1, _GEMINI_REF_2]:
-                    parts.append({
-                        "inlineData": {
-                            "mimeType": "image/jpeg",
-                            "data": _img_to_b64(str(ref_path))
-                        }
-                    })
-                has_refs = True
-
-            # Article photos
-            for aimg_path in article_img_paths:
-                parts.append({
-                    "inlineData": {
-                        "mimeType": "image/jpeg",
-                        "data": _img_to_b64(aimg_path)
-                    }
-                })
-
-            # Build prompt — minimal, let Gemini decide
-            img_count = len(article_img_paths)
-            ref_intro = (
-                "Here are two reference images showing the visual quality, "
-                "brightness, and mood I want for the BACKGROUND of a reel scene. "
-                "Study them carefully — notice the bright colors, vivid photographic "
-                "style, strong composition, and cinematic lighting. "
-                "Match this visual quality but DO NOT include any text.\n\n"
-            ) if has_refs else ""
-
-            photo_intro = ""
-            if img_count == 1:
-                photo_intro = (
-                    "The next image is the article's hero photo. "
-                    "Use it or compose around it if relevant.\n\n"
-                )
-            elif img_count >= 2:
-                photo_intro = (
-                    f"The next {img_count} images are photos from the article "
-                    f"(hero + inline). Use them or compose around them.\n\n"
-                )
-
-            prompt = (
-                f"{ref_intro}"
-                f"{photo_intro}"
-                f"Now create a single vertical 9:16 BACKGROUND IMAGE for a news video reel.\n"
-                f"Text will be overlaid separately — DO NOT put any text, labels, titles, "
-                f"captions, statistics, numbers, or words in the image.\n\n"
-                f"Article:\n{headline}\n{subheadline}\n\n"
-                f"{body_text}\n\n"
-                f"THIS SCENE'S FOCUS (scene {idx if isinstance(idx, str) else idx + 1}):\n"
-                f"{scene_direction}\n\n"
-                f"This is ONE scene in a multi-scene reel. Focus ONLY on the specific "
-                f"topic described above — do NOT try to summarize the whole "
-                f"article. Other scenes cover other aspects.\n\n"
-                f"Goals:\n"
-                f"- Visually compelling and vibrant — must grab attention on a phone screen\n"
-                f"- Evocative mood photo or illustration that captures the scene's theme\n"
-                f"- Choose colors and visual style that fit THIS story's topic and mood\n\n"
-                f"CRITICAL RULES:\n"
-                f"- NO TEXT of any kind in the image — no titles, labels, stats, watermarks\n"
-                f"- NO production metadata (music, text style, transitions)\n"
-                f"- NO storyboard or mood board layouts\n"
-                f"- ONE clean photographic or illustrated scene only"
-            )
-
-            parts.append({"text": prompt})
-
-            gem_payload = {
-                "contents": [{"parts": parts}],
-                "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]}
-            }
-
-            # Write payload to file (too large for -d inline with images)
-            payload_path = os.path.join(out_dir, f"payload_{article_id}_{idx}.json")
-            with open(payload_path, "w") as fh:
-                json.dump(gem_payload, fh)
-
-            gem_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
-            gem_r = subprocess.run(
-                ["curl", "-s", "-X", "POST", gem_url,
-                 "-H", "Content-Type: application/json",
-                 "-d", f"@{payload_path}", "--max-time", "120"],
-                capture_output=True, timeout=150
-            )
-
-            # Cleanup payload file
-            try:
-                os.remove(payload_path)
-            except Exception:
-                pass
-
-            if gem_r.returncode == 0 and gem_r.stdout:
-                gem_data = json.loads(gem_r.stdout)
-                for cand in gem_data.get("candidates", []):
-                    for part in cand.get("content", {}).get("parts", []):
-                        if "inlineData" in part:
-                            png = _b64.b64decode(part["inlineData"]["data"])
-                            local_png = os.path.join(out_dir,
-                                                     f"gem_{article_id}_{idx}.png")
-                            local_jpg = os.path.join(out_dir,
-                                                     f"gem_{article_id}_{idx}.jpg")
-                            with open(local_png, "wb") as fh:
-                                fh.write(png)
-                            os.system(f"gm convert {local_png} -quality 85 {local_jpg}")
-                            upload_path = local_jpg if os.path.exists(local_jpg) else local_png
-                            storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
-                            url = upload_asset(upload_path, storage_path, "image/png")
-                            for f in (local_png, local_jpg):
-                                try:
-                                    os.remove(f)
-                                except Exception:
-                                    pass
-                            # Cleanup downloaded article images
-                            for aimg in article_img_paths:
-                                try:
-                                    os.remove(aimg)
-                                except Exception:
-                                    pass
-                            return _ret(url, previous_response_id)
-                print(f"  ⚠️ Gemini returned 200 but no image data")
-            else:
-                stderr_snip = (gem_r.stderr or b"").decode()[:100]
-                print(f"  ⚠️ Gemini curl failed (rc={gem_r.returncode}) {stderr_snip}")
-
-        # Cleanup downloaded article images
-        for aimg in article_img_paths:
-            try:
-                os.remove(aimg)
-            except Exception:
-                pass
-
-        # ── FALLBACK: Legacy gpt-image-1 (text-only prompt) ──
-        if OPENAI_KEY:
-            print(f"  ⏩ Falling back to gpt-image-1 for scene {idx}")
-            fallback_prompt = (
-                f"{scene_direction}. Vertical 9:16 portrait format. "
-                f"News infographic style, vibrant colors."
-            )
-            r = requests.post(
-                "https://api.openai.com/v1/images/generations",
-                headers={"Authorization": f"Bearer {OPENAI_KEY}",
-                         "Content-Type": "application/json"},
-                json={"model": "gpt-image-1", "prompt": fallback_prompt[:3900],
-                      "size": "1024x1536", "n": 1},
-                timeout=120,
-            )
-            if r.status_code != 200:
-                print(f"  ⚠️ gpt-image-1 also failed ({r.status_code}): {r.text[:160]}")
-                return _ret(None, previous_response_id)
-            data = r.json().get("data", [])
-            if not data or not data[0].get("b64_json"):
-                print("  ⚠️ gpt-image-1 returned no image data")
-                return _ret(None, previous_response_id)
-            png = _b64.b64decode(data[0]["b64_json"])
-            local = os.path.join(out_dir, f"gen_{article_id}_{idx}.png")
-            with open(local, "wb") as fh:
-                fh.write(png)
-            storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
-            url = upload_asset(local, storage_path, "image/png")
-            try:
-                os.remove(local)
-            except Exception:
-                pass
-            return _ret(url, previous_response_id)
-
-        return _ret(None, previous_response_id)
+        full_prompt = image_prompt.strip().rstrip(".") + "." + _BRAND_GEN_SUFFIX
+        r = requests.post(
+            "https://api.openai.com/v1/images/generations",
+            headers={"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"},
+            json={"model": "gpt-image-1", "prompt": full_prompt[:3900],
+                  "size": "1024x1536", "n": 1},
+            timeout=120,
+        )
+        if r.status_code != 200:
+            print(f"  ⚠️ gpt-image-1 failed ({r.status_code}): {r.text[:160]}")
+            return None
+        data = r.json().get("data", [])
+        if not data or not data[0].get("b64_json"):
+            print("  ⚠️ gpt-image-1 returned no image data")
+            return None
+        import base64
+        png = base64.b64decode(data[0]["b64_json"])
+        local = os.path.join(out_dir, f"gen_{article_id}_{idx}.png")
+        with open(local, "wb") as fh:
+            fh.write(png)
+        storage_path = f"reel-gen/{article_id}/scene-{idx}.png"
+        url = upload_asset(local, storage_path, "image/png")
+        try:
+            os.remove(local)
+        except Exception:
+            pass
+        return url
     except Exception as e:
-        import traceback as _tb
         print(f"  ⚠️ generate_themed_image error: {e}")
-        _tb.print_exc()
-        return _ret(None, previous_response_id)
-
-
-def _ret(url, prev_id):
-    """Helper to return consistently based on whether caller wants a tuple."""
-    if prev_id is not None:
-        return url, prev_id
-    return url
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# RESPONSES API — FULL SCENE IMAGE GENERATION (Approach B)
-# ═══════════════════════════════════════════════════════════════════════════════
-# Two-phase pipeline:
-#   Phase 1: GPT-4o plans a storyboard (text only, no image generation)
-#   Phase 2: For each scene, generate the image via Responses API with
-#            previous_response_id for full article context continuity.
-# This is the same architecture ChatGPT uses internally — the model that
-# understands the article is the same model that generates the image.
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def _extract_article_images(article):
-    """Extract all usable images from an article: hero + inline body images.
-
-    Returns a list of dicts:
-      [{"key": "hero", "url": "...", "caption": "..."},
-       {"key": "body_1", "url": "...", "caption": "..."},
-       {"key": "body_2", "url": "...", "caption": "..."}, ...]
-    Skips data-URIs, SVGs, and very short URLs. Deduplicates by URL.
-    """
-    images = []
-    seen_urls = set()
-
-    # 1. Hero image
-    hero_url = (article.get("image_url") or "").strip()
-    hero_caption = (article.get("image_caption") or "").strip()
-    if hero_url and len(hero_url) > 10 and not hero_url.startswith("data:"):
-        images.append({"key": "hero", "url": hero_url, "caption": hero_caption})
-        seen_urls.add(hero_url)
-
-    # 2. Body inline markdown images: ![caption](url)
-    body = (article.get("body") or "")
-    if body:
-        md_imgs = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', body)
-        for idx, (alt, url) in enumerate(md_imgs):
-            url = url.strip()
-            if (url and len(url) > 10 and url not in seen_urls
-                    and not url.startswith("data:")
-                    and not url.lower().endswith(".svg")):
-                images.append({
-                    "key": f"body_{idx + 1}",
-                    "url": url,
-                    "caption": (alt or "").strip()
-                })
-                seen_urls.add(url)
-
-    return images
-
-
-def _download_and_crop_for_reel(url, article_id, scene_idx,
-                                out_dir="/tmp/videshi_gen"):
-    """Download an article image, crop/resize to 1080x1920 (9:16 fill), and
-    upload to Supabase. Returns the public URL or None on failure.
-
-    Uses center-crop: the image is resized so its SHORTER dimension fills the
-    target, then the excess is cropped from the center. This avoids letterboxing.
-    Uses GraphicsMagick (gm convert) which is available in this environment.
-    """
-    os.makedirs(out_dir, exist_ok=True)
-    local_dl = os.path.join(out_dir, f"artimg_{article_id}_{scene_idx}_raw")
-    local_out = os.path.join(out_dir, f"artimg_{article_id}_{scene_idx}.jpg")
-
-    TARGET_W, TARGET_H = 1080, 1920
-
-    try:
-        # Download — use curl for reliability (handles wikimedia, pexels, etc.)
-        ua = "TheVideshi/1.0 (thevideshi.com)"
-        result = subprocess.run(
-            ["curl", "-sS", "-L", "--fail", "-A", ua,
-             "-o", local_dl, "--max-time", "30", url],
-            capture_output=True, text=True, timeout=40,
-        )
-        if result.returncode != 0 or not os.path.exists(local_dl):
-            print(f"  ⚠️ Article image download failed: {url[:60]}")
-            return None
-        if os.path.getsize(local_dl) < 2048:
-            print(f"  ⚠️ Article image too small (< 2KB): {url[:60]}")
-            _safe_remove(local_dl)
-            return None
-
-        # Verify it's a real image (not HTML error page)
-        with open(local_dl, "rb") as fh:
-            head = fh.read(16)
-        if not (head[:3] == b"\xff\xd8\xff" or head[:8] == b"\x89PNG\r\n\x1a\n"
-                or head[:6] in (b"GIF87a", b"GIF89a") or head[:4] == b"RIFF"
-                or head[:2] == b"BM"):
-            print(f"  ⚠️ Article image is not a real image file: {url[:60]}")
-            _safe_remove(local_dl)
-            return None
-
-        # Center-crop to 1080x1920 using GraphicsMagick
-        # -resize WxH^ makes shortest side fill target, then -gravity Center -crop trims
-        crop_cmd = (f"gm convert {local_dl} "
-                    f"-resize {TARGET_W}x{TARGET_H}^ "
-                    f"-gravity Center "
-                    f"-crop {TARGET_W}x{TARGET_H}+0+0 "
-                    f"+repage -quality 90 {local_out}")
-        rc = os.system(crop_cmd)
-        if rc != 0 or not os.path.exists(local_out):
-            print(f"  ⚠️ Article image crop failed (rc={rc}): {url[:60]}")
-            _safe_remove(local_dl)
-            return None
-
-        # Upload to Supabase
-        import hashlib
-        with open(local_out, "rb") as fh:
-            _h = hashlib.md5(fh.read()).hexdigest()[:10]
-        storage_path = f"reel-gen/{article_id}/art-scene-{scene_idx}-{_h}.jpg"
-        pub_url = upload_asset(local_out, storage_path, "image/jpeg")
-
-        # Cleanup
-        _safe_remove(local_dl)
-        _safe_remove(local_out)
-
-        if pub_url:
-            print(f"  📸 Article image cropped & uploaded for scene {scene_idx}")
-        return pub_url
-
-    except Exception as e:
-        print(f"  ⚠️ Article image processing error: {e}")
-        _safe_remove(local_dl)
-        _safe_remove(local_out)
         return None
-
-
-def _safe_remove(path):
-    """Remove a file if it exists, silently ignoring errors."""
-    try:
-        if os.path.exists(path):
-            os.remove(path)
-    except Exception:
-        pass
-
-
-def generate_responses_api_scenes(article, storyboard, article_id,
-                                  out_dir="/tmp/videshi_gen"):
-    """Generate scene images using a HYBRID approach: real article photos where
-    they fit + AI-generated images (Responses API) for data viz/infographics.
-
-    Takes the existing storyboard (from generate_script) and produces images
-    for every scene. Returns (urls, media_meta) in the same format as
-    source_reel_media_clean.
-
-    Phase 1: Extract available article images (hero + body inline images).
-             Send article + available images + storyboard to GPT-4o to decide
-             which scenes use a real article photo vs which need AI generation.
-    Phase 2: For each scene:
-             - image_source starts with "article_" → download, crop 1080x1920, upload
-             - image_source == "generate" → generate via Responses API with chaining
-    """
-    if not OPENAI_KEY:
-        print("  ⚠️ No OpenAI key — cannot use Responses API for scenes")
-        return None, None
-
-    RESP_URL = "https://api.openai.com/v1/responses"
-    RESP_HEADERS = {"Authorization": f"Bearer {OPENAI_KEY}",
-                    "Content-Type": "application/json"}
-
-    headline = article.get("headline", "")
-    subheadline = article.get("subheadline", "")
-    body = (article.get("body") or "")[:3000]
-
-    n_scenes = len(storyboard)
-    print(f"\n  🎨 Responses API (hybrid): {n_scenes} scenes to source...")
-
-    # ── Extract available article images ──
-    article_images = _extract_article_images(article)
-    print(f"  📷 Found {len(article_images)} article image(s): "
-          f"{', '.join(img['key'] for img in article_images) if article_images else 'none'}")
-
-    # Build image catalog for the planning prompt
-    if article_images:
-        img_catalog_lines = []
-        for img in article_images:
-            cap = f" — {img['caption']}" if img['caption'] else ""
-            img_catalog_lines.append(f"  {img['key']}: {img['url'][:120]}{cap}")
-        img_catalog = "\n".join(img_catalog_lines)
-    else:
-        img_catalog = "  (no article images available — generate all scenes)"
-
-    # ── Phase 1: Plan visual descriptions + image source decisions ──
-    scene_descriptions = []
-    for s in storyboard:
-        narration = s.get("narration", "")
-        card_text = s.get("card_text", "")
-        card_subtext = s.get("card_subtext", "")
-        scene_descriptions.append(
-            f"Scene {s.get('scene', '?')}: Narration: \"{narration}\" "
-            f"| Key point: \"{card_text}\" — {card_subtext}"
-        )
-    scenes_text = "\n".join(scene_descriptions)
-
-    plan_prompt = f"""You are designing visuals for a news Instagram Reel by The Videshi.
-
-ARTICLE:
-Headline: {headline}
-Subheadline: {subheadline}
-Body: {body}
-
-AVAILABLE ARTICLE IMAGES (real editorial photos from the article):
-{img_catalog}
-
-STORYBOARD (narration per scene):
-{scenes_text}
-
-For each scene, decide whether to use an EXISTING article photo or GENERATE a new image.
-
-DECISION CRITERIA:
-- Use a real article photo when it visually matches the scene's topic (e.g. hero photo
-  of a building/location for an establishing scene, a person's photo for a scene about them)
-- Generate a NEW image when the scene needs data visualization, charts, infographics,
-  abstract concepts, or when no article image is relevant
-- Each article image should be used AT MOST ONCE across all scenes
-- The HOOK scene (scene 1) should prefer the article hero if one exists and is relevant
-- Do NOT use an article image if it would feel off-topic or forced for that scene
-
-RULES:
-- NO human faces in GENERATED scenes (real article photos with people are fine)
-- Each scene must be visually DISTINCT from the others
-- NEVER generate a branding, logo, CTA, or "Visit TheVideshi.com" scene — a branded end card
-  is automatically appended after all scenes. ALL scenes (including the last) must show
-  article content: data visualizations, key takeaways, or relevant editorial imagery
-
-CRITICAL VISUAL STYLE:
-- Each scene is on screen for 3-5 seconds. Make visuals rich, cinematic, and striking.
-- GPT decides how much information belongs in each scene based on the content.
-- Text in the image must be large enough to read on a phone screen. Keep safe margins
-  so nothing is cut off at edges.
-- No slogans, taglines, or motivational text ("MOMENTUM IS BACK", "STRONG. RESILIENT.",
-  etc.) — the voiceover carries the narrative.
-- NEVER generate a branding, logo, or CTA scene — a branded end card is appended
-  automatically.
-- Vary the visual approach across scenes — data visualizations, symbolic imagery,
-  dramatic settings. The reel should feel dynamic, not repetitive.
-
-Return JSON only:
-{{"scenes": [
-  {{"scene": 1, "image_source": "hero", "image_description": "brief description of what the photo shows"}},
-  {{"scene": 2, "image_source": "generate", "image_description": "detailed visual description for AI generation (200-350 chars — include subject, mood, setting, color palette, composition style)"}},
-  {{"scene": 3, "image_source": "body_1", "image_description": "brief description of what the photo shows"}},
-  ...
-]}}
-
-Valid image_source values: {", ".join(f'"{img["key"]}"' for img in article_images)} for article photos, or "generate" for AI-generated images.
-If no article images are available, use "generate" for all scenes."""
-
-    print(f"  📝 Phase 1: Planning image sources & descriptions...", flush=True)
-    try:
-        r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
-            "model": "gpt-4o",
-            "input": plan_prompt,
-        }, timeout=120)
-    except Exception as e:
-        print(f"  ⚠️ Responses API Phase 1 failed: {e}")
-        return None, None
-
-    if r.status_code != 200:
-        print(f"  ⚠️ Responses API Phase 1 status {r.status_code}: {r.text[:200]}")
-        return None, None
-
-    plan_resp = r.json()
-    prev_id = plan_resp.get("id")
-
-    # Extract text
-    plan_text = ""
-    for out in plan_resp.get("output", []):
-        if out.get("type") == "message":
-            for c in out.get("content", []):
-                if c.get("type") == "output_text":
-                    plan_text = c["text"]
-
-    # Parse JSON
-    try:
-        clean = plan_text.strip()
-        if clean.startswith("```"):
-            clean = clean.split("\n", 1)[1]
-            clean = clean.rsplit("```", 1)[0]
-        image_plan = json.loads(clean)
-        planned_scenes = image_plan.get("scenes", [])
-        print(f"  ✅ Phase 1: got {len(planned_scenes)} scene plans")
-    except Exception as e:
-        print(f"  ⚠️ Phase 1 JSON parse failed: {e}")
-        print(f"  Raw: {plan_text[:300]}")
-        # Fall back: all scenes generated
-        planned_scenes = [
-            {"scene": i + 1, "image_source": "generate",
-             "image_description": f"A visually stunning news infographic about: "
-                                  f"{s.get('card_text', '')}. {s.get('card_subtext', '')}. "
-                                  f"Data-rich, no human faces."}
-            for i, s in enumerate(storyboard)
-        ]
-        print(f"  ⏩ Fallback: all scenes will be AI-generated")
-
-    # Build quick lookup for article images by key
-    img_by_key = {img["key"]: img for img in article_images}
-
-    # Summarize the plan
-    n_article = sum(1 for s in planned_scenes if s.get("image_source", "generate") != "generate")
-    n_generate = sum(1 for s in planned_scenes if s.get("image_source", "generate") == "generate")
-    print(f"  📊 Plan: {n_article} article photo(s) + {n_generate} AI-generated scene(s)")
-    for s in planned_scenes:
-        src = s.get("image_source", "generate")
-        desc = (s.get("image_description") or "")[:60]
-        print(f"    Scene {s.get('scene', '?')}: {src} — {desc}...")
-
-    # ── Phase 2: Process each scene ──
-    os.makedirs(out_dir, exist_ok=True)
-    urls = []
-    media_meta = {}
-    used_article_keys = set()  # Track which article images have been used
-
-    for i, scene in enumerate(planned_scenes[:n_scenes]):
-        desc = scene.get("image_description", "")
-        image_source = (scene.get("image_source") or "generate").strip()
-        scene_num = scene.get("scene", i + 1)
-        t0 = time.time()
-
-        # ── ARTICLE IMAGE PATH ──
-        if image_source != "generate" and image_source in img_by_key and image_source not in used_article_keys:
-            art_img = img_by_key[image_source]
-            print(f"  📸 Scene {scene_num}: using article image '{image_source}'...", flush=True)
-
-            pub_url = _download_and_crop_for_reel(art_img["url"], article_id, i, out_dir)
-            elapsed = time.time() - t0
-
-            if pub_url:
-                urls.append(pub_url)
-                media_meta[pub_url] = {
-                    "type": "image", "duration": 0,
-                    "is_generated": False, "is_article_image": True,
-                    "article_image_key": image_source,
-                    "curated": True, "generic_pexels": False,
-                }
-                used_article_keys.add(image_source)
-                print(f"  ✅ Scene {scene_num} — article photo '{image_source}' ({elapsed:.0f}s)")
-                continue
-            else:
-                print(f"  ⚠️ Scene {scene_num} article image failed — falling back to generate")
-                # Fall through to generation below
-
-        elif image_source != "generate" and image_source in used_article_keys:
-            print(f"  ⚠️ Scene {scene_num}: '{image_source}' already used — falling back to generate")
-        elif image_source != "generate":
-            print(f"  ⚠️ Scene {scene_num}: '{image_source}' not found in article — falling back to generate")
-
-        # ── AI GENERATION PATH ──
-        if not desc:
-            desc = f"A news infographic scene about {storyboard[i].get('card_text', 'breaking news')}"
-
-        print(f"  🖼️ Scene {scene_num}: generating via Gemini Image...", flush=True)
-
-        gen_prompt = (f"{desc}. "
-                      f"Photorealistic, cinematic, vertical 9:16 for mobile reels. "
-                      f"No human faces. No logos, branding, slogans, or motivational text.")
-
-        # ── PRIMARY: Gemini 2.5 Flash Image ──
-        gemini_ok = False
-        if GEMINI_KEY:
-            try:
-                import subprocess as _sp
-                gem_payload = json.dumps({
-                    "contents": [{"parts": [{"text": gen_prompt}]}],
-                    "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]}
-                })
-                gem_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key={GEMINI_KEY}"
-                gem_r = _sp.run(
-                    ["curl", "-s", "-X", "POST", gem_url,
-                     "-H", "Content-Type: application/json",
-                     "-d", gem_payload, "--max-time", "90"],
-                    capture_output=True, timeout=120
-                )
-                if gem_r.returncode == 0 and gem_r.stdout:
-                    gem_data = json.loads(gem_r.stdout)
-                    for cand in gem_data.get("candidates", []):
-                        for part in cand.get("content", {}).get("parts", []):
-                            if "inlineData" in part:
-                                import base64 as _b64
-                                raw = _b64.b64decode(part["inlineData"]["data"])
-                                mime = part["inlineData"].get("mimeType", "image/png")
-                                local_png = os.path.join(out_dir,
-                                                         f"gem_{article_id}_{i}.png")
-                                local_jpg = os.path.join(out_dir,
-                                                         f"gem_{article_id}_{i}.jpg")
-                                with open(local_png, "wb") as fh:
-                                    fh.write(raw)
-                                # Upscale to 1080x1920 with Lanczos sharpening
-                                upscaled = os.path.join(out_dir,
-                                                        f"gem_{article_id}_{i}_up.png")
-                                os.system(
-                                    f"gm convert {local_png} -resize 1080x1920! "
-                                    f"-filter Lanczos -unsharp 0.5x0.5+0.8+0 "
-                                    f"{upscaled}")
-                                if os.path.exists(upscaled) and os.path.getsize(upscaled) > 1024:
-                                    src_for_compress = upscaled
-                                else:
-                                    src_for_compress = local_png
-                                # Compress
-                                os.system(f"gm convert {src_for_compress} -quality 90 {local_jpg}")
-                                upload_file = local_jpg if os.path.exists(local_jpg) else local_png
-                                storage_path = f"reel-gen/{article_id}/gem-scene-{i}.png"
-                                url = upload_asset(upload_file, storage_path, "image/png")
-                                for f in (local_png, local_jpg, upscaled):
-                                    try:
-                                        os.remove(f)
-                                    except Exception:
-                                        pass
-                                if url:
-                                    urls.append(url)
-                                    media_meta[url] = {
-                                        "type": "image", "duration": 0,
-                                        "is_generated": True, "is_gemini": True,
-                                        "curated": True, "generic_pexels": False,
-                                    }
-                                    elapsed = time.time() - t0
-                                    print(f"  ✅ Scene {scene_num} generated via Gemini ({elapsed:.0f}s)")
-                                    gemini_ok = True
-                                else:
-                                    print(f"  ⚠️ Scene {scene_num} Gemini upload failed")
-                                break
-                        if gemini_ok:
-                            break
-                    if not gemini_ok:
-                        print(f"  ⚠️ Scene {scene_num}: Gemini returned no image data")
-                else:
-                    print(f"  ⚠️ Scene {scene_num}: Gemini curl failed (rc={gem_r.returncode})")
-            except Exception as e:
-                print(f"  ⚠️ Scene {scene_num} Gemini error: {e}")
-
-        # ── FALLBACK: OpenAI Responses API ──
-        if not gemini_ok and OPENAI_KEY:
-            print(f"  ⏩ Scene {scene_num}: falling back to OpenAI Responses API...")
-            try:
-                r = requests.post(RESP_URL, headers=RESP_HEADERS, json={
-                    "model": "gpt-4o",
-                    "input": f"Generate this scene image: {gen_prompt}",
-                    "previous_response_id": prev_id,
-                    "tools": [{"type": "image_generation", "size": "1024x1536",
-                                "quality": "high"}],
-                    "tool_choice": {"type": "image_generation"},
-                }, timeout=300)
-            except Exception as e:
-                print(f"  ⚠️ Scene {scene_num} OpenAI fallback failed: {e}")
-                continue
-
-            elapsed = time.time() - t0
-            if r.status_code != 200:
-                print(f"  ⚠️ Scene {scene_num} OpenAI failed ({r.status_code}, {elapsed:.0f}s): "
-                      f"{r.text[:200]}")
-                continue
-
-            resp_data = r.json()
-            prev_id = resp_data.get("id", prev_id)
-
-            for out in resp_data.get("output", []):
-                if out.get("type") == "image_generation_call":
-                    b64 = out.get("result", "")
-                    if b64:
-                        import base64 as _b64
-                        raw = _b64.b64decode(b64)
-                        local_png = os.path.join(out_dir,
-                                                 f"resp_{article_id}_{i}.png")
-                        local_jpg = os.path.join(out_dir,
-                                                 f"resp_{article_id}_{i}.jpg")
-                        with open(local_png, "wb") as fh:
-                            fh.write(raw)
-                        upscaled = os.path.join(out_dir,
-                                                f"resp_{article_id}_{i}_up.png")
-                        os.system(
-                            f"gm convert {local_png} -resize 1080x1920! "
-                            f"-filter Lanczos -unsharp 0.5x0.5+0.8+0 "
-                            f"{upscaled}")
-                        if os.path.exists(upscaled) and os.path.getsize(upscaled) > 1024:
-                            src_for_compress = upscaled
-                        else:
-                            src_for_compress = local_png
-                        os.system(f"gm convert {src_for_compress} -quality 90 {local_jpg}")
-                        upload_file = local_jpg if os.path.exists(local_jpg) else local_png
-                        storage_path = f"reel-gen/{article_id}/resp-scene-{i}.png"
-                        url = upload_asset(upload_file, storage_path, "image/png")
-                        for f in (local_png, local_jpg):
-                            try:
-                                os.remove(f)
-                            except Exception:
-                                pass
-                        if url:
-                            urls.append(url)
-                            media_meta[url] = {
-                                "type": "image", "duration": 0,
-                                "is_generated": True, "is_responses_api": True,
-                                "curated": True, "generic_pexels": False,
-                            }
-                            print(f"  ✅ Scene {scene_num} generated via OpenAI fallback ({elapsed:.0f}s)")
-                        else:
-                            print(f"  ⚠️ Scene {scene_num} OpenAI upload failed")
-
-        if not gemini_ok and not OPENAI_KEY:
-            print(f"  ⚠️ Scene {scene_num}: no image API available")
-
-    n_art_used = sum(1 for m in media_meta.values() if m.get("is_article_image"))
-    n_gen_used = sum(1 for m in media_meta.values() if m.get("is_generated"))
-    print(f"\n  🎨 Responses API (hybrid): {len(urls)}/{n_scenes} scenes ready "
-          f"({n_art_used} article photos, {n_gen_used} AI-generated)")
-    return urls, media_meta
-
-
-def _card_background_url(scene, article, article_id, idx, used_in_this_reel,
-                         gen_budget):
-    """Find an APPROPRIATE real-image URL to back a key-point text card (so the
-    card reads like the SpaceX image-overlay style, not a flat navy slide). Order:
-      1) curated media-library photo for the scene's media_subject/visual (FREE,
-         preferred) — generic-but-on-topic is fine per Kiran.
-      2) a brand-styled Gemini illustration — EVERY card scene should get a unique
-         AI-generated background so no two cards look the same. gen_budget is
-         uncapped for card backgrounds (Gemini is ~$0.04/image, worth it for
-         visual variety).
-    Returns (url|None, used_generation_bool). Bare foreign-geo subjects are skipped
-    (documented off-topic trap). Never raises."""
-    # 1) media library (free)
-    subj = (scene.get("media_subject") or "").strip()
-    if not subj:
-        v = (scene.get("visual") or "").strip()
-        subj = v if v and v.lower() not in _FOREIGN_GEO_SUBJECTS else ""
-    if subj and subj.lower() not in _FOREIGN_GEO_SUBJECTS:
-        ml = _load_media_library_lookup()
-        if ml:
-            try:
-                asset = ml.find_media(subject=subj, exclude_concept=True,
-                                      min_quality=45, bump_usage=False)
-            except Exception:
-                asset = None
-            if asset and asset.get("media_type") != "video":
-                au = asset.get("url")
-                if au and au not in used_in_this_reel and is_url_downloadable(au):
-                    try:
-                        ml._bump(asset)
-                    except Exception:
-                        pass
-                    return au, False
-    # 2) generated illustration (uncapped — Gemini is cheap, every card deserves a unique bg)
-    if True:
-        prompt = (scene.get("image_prompt") or "").strip()
-        if not prompt:
-            # Build a scene-specific prompt from the card's own content
-            card_text = (scene.get("card_text") or "").strip()
-            visual = (scene.get("visual") or "").strip()
-            seed = visual or card_text or (article.get("headline") or "").strip()
-            if seed:
-                prompt = f"a symbolic editorial illustration evoking: {seed}. Dark moody tones suitable for text overlay, no text or words in the image."
-        if prompt:
-            gurl = generate_themed_image(prompt, article_id, f"cardbg{idx}",
-                                         article=article)
-            if gurl:
-                gen_budget[0] -= 1
-                return gurl, True
-    return None, False
 
 
 # Matches the bare social-post URLs the writers splice into article body markdown
@@ -5559,7 +4077,7 @@ def source_reel_media_clean(article, storyboard, count=8):
     article_id = article.get("id", "")
     body = article.get("body", "") or ""
 
-    MIN_IMAGE_DIM = 600  # lowered: hero works as bg even at landscape res (crop-to-fill)
+    MIN_IMAGE_DIM = 1000
 
     def check_image_resolution(url):
         try:
@@ -5613,83 +4131,6 @@ def source_reel_media_clean(article, storyboard, count=8):
             print(f"  🎬 Scene 1: article hero")
         else:
             print("  ⚠️ Hero mirror failed — scene 1 falls to generate/card")
-
-    # ── C-bis. HOOK BACKGROUND RECOVERY ──────────────────────────────────────
-    # If the hero was rejected (too small / unvetted host / not downloadable) the
-    # hook (scene 0) is still empty here. Left alone it falls all the way to a
-    # FLAT TEXT-FREE NAVY CARD — the dead opening Kiran flagged (vs. the SpaceX
-    # reel, which kept its hero photo and got a rich photo-backed hook). The hook
-    # is the single most important frame, so before dropping to navy we give it a
-    # REAL rich background sourced from the hook's OWN scene (topic-relevant by
-    # construction). Order mirrors CLEAN-mode priority (curated photo → generated
-    # illustration); NO Pexels/Wikipedia/Commons. Runs whenever the hero is empty
-    # REGARDLESS of GPT's plan, so it also covers a planned-"generate" hook whose
-    # generation fails (e.g. OpenAI quota dry) — section B would otherwise drop
-    # such a hook straight to navy.
-    if matched_urls[0] is None:
-        _hook_scene = scenes[0] if scenes else {}
-        # 1) Curated in-house photo (closest to the SpaceX real-photo look).
-        #    Use the hook's concrete media_subject, else its visual — but never a
-        #    bare foreign geo (the documented "ghost-town barn" off-topic failure).
-        _hook_subj = (_hook_scene.get("media_subject") or "").strip()
-        if not _hook_subj:
-            _hv = (_hook_scene.get("visual") or "").strip()
-            _hook_subj = _hv if _hv and _hv.lower() not in _FOREIGN_GEO_SUBJECTS else ""
-        if _hook_subj and _hook_subj.lower() not in _FOREIGN_GEO_SUBJECTS:
-            _hml = _load_media_library_lookup()
-            if _hml:
-                try:
-                    _hasset = _hml.find_media(subject=_hook_subj, exclude_concept=True,
-                                              min_quality=55, bump_usage=False)
-                except Exception:
-                    _hasset = None
-                # Stills only for the hook (it renders static; a clip's poster is
-                # unreliable), and resolution-gated so QA's 1.5s sample is crisp.
-                if _hasset and _hasset.get("media_type") != "video":
-                    _hu = _hasset.get("url")
-                    if _hu and _hu not in used_in_this_reel and is_url_downloadable(_hu):
-                        _hd = check_image_resolution(_hu)
-                        if not _hd or min(_hd) >= MIN_IMAGE_DIM:
-                            try:
-                                _hml.find_media(subject=_hasset.get("subject"),
-                                                media_type=_hasset.get("media_type"),
-                                                exclude_concept=True, bump_usage=True)
-                            except Exception:
-                                pass
-                            matched_urls[0] = _hu
-                            used_in_this_reel.add(_hu)
-                            media_meta[_hu] = {"type": "image", "duration": 0,
-                                               "curated": True, "generic_pexels": False,
-                                               "source_url": _hasset.get("source_url", "")}
-                            n_lib += 1
-                            print(f"  🖼️ Scene 1 (hook): recovered with media-library photo (\"{_hook_subj}\")")
-        # 2) Brand-styled GENERATED illustration of the hook's own scene. Use the
-        #    scene's image_prompt if present, else synthesize one from its visual /
-        #    card_text + headline. The locked _BRAND_GEN_SUFFIX bans text + real
-        #    faces and reserves upper/lower thirds for the hook title overlay.
-        if matched_urls[0] is None:
-            _hprompt = (_hook_scene.get("image_prompt") or "").strip()
-            if not _hprompt:
-                _hbits = [
-                    (_hook_scene.get("visual") or "").strip(),
-                    (article.get("headline") or "").strip(),
-                ]
-                _hseed = next((b for b in _hbits if b), "")
-                if _hseed:
-                    _hprompt = ("a symbolic editorial scene evoking " + _hseed)
-            if _hprompt:
-                _hgurl = generate_themed_image(_hprompt, article_id, 0,
-                                               article=article)
-                if _hgurl:
-                    matched_urls[0] = _hgurl
-                    used_in_this_reel.add(_hgurl)
-                    media_meta[_hgurl] = {"type": "image", "duration": 0,
-                                          "is_generated": True, "curated": True,
-                                          "generic_pexels": False}
-                    n_gen += 1
-                    print(f"  🖌️ Scene 1 (hook): recovered with generated illustration — \"{_hprompt[:48]}\"")
-        if matched_urls[0] is None:
-            print("  ⚠️ Scene 1 (hook): no photo/illustration recovered — will use branded card bg")
 
     # ── A. Build the social-card POOL: inline embeds first (highest confidence),
     #       then ACTIVE registry sourcing. Each pool entry is a render-ready post. ──
@@ -5818,12 +4259,7 @@ def source_reel_media_clean(article, storyboard, count=8):
         n_embed += 1
 
     # ── B. GPT directs every remaining scene by its media_plan ──
-    _used_archetypes = set()  # each animated card archetype used at most once per reel
-    # Per-reel budget for GENERATED card backgrounds (caps OpenAI spend; library
-    # photos are free and unbudgeted). Plain text cards get a real image behind
-    # the text up to this many generations; beyond it they reuse library photos
-    # or fall to navy.
-    _card_bg_gen_budget = [int(os.environ.get("VIDESHI_CARD_BG_GEN_BUDGET", "2"))]
+    _enriched_used_archetypes = set()  # ENRICHED: each anim archetype used once
     for i in range(n):
         if matched_urls[i] is not None:
             continue
@@ -5832,49 +4268,15 @@ def source_reel_media_clean(article, storyboard, count=8):
         url = None
         meta = None
 
-        # "generate" — Gemini editorial illustration.
-        # Always use overlay mode: Gemini generates a background image,
-        # our PIL renderer overlays clean text on top. Gemini cannot
-        # reliably render text in images (misspellings, metadata leaks).
+        # "generate" — gpt-image-1 branded editorial illustration.
         if plan == "generate" and scene.get("image_prompt"):
-            data_viz = "overlay"  # forced — integrated mode produces garbled text
-            gurl = generate_themed_image(scene.get("image_prompt"), article_id, i,
-                                         article_body=article.get("body", ""),
-                                         article=article)
+            gurl = generate_themed_image(scene.get("image_prompt"), article_id, i)
             if gurl:
-                if data_viz == "integrated":
-                    # Image IS the scene — stat is part of the visual
-                    url = gurl
-                    meta = {"type": "image", "duration": 0, "is_generated": True,
-                            "curated": True, "generic_pexels": False}
-                    n_gen += 1
-                    print(f"  🖌️ Scene {i+1}: data-integrated illustration — \"{scene.get('image_prompt','')[:48]}\"")
-                else:
-                    # Overlay mode: render card with this image as background
-                    local = render_keypoint_card(scene, category, article, i,
-                                                 bg_url=gurl)
-                    if local:
-                        try:
-                            with open(local, "rb") as _fh:
-                                _ch = hashlib.md5(_fh.read()).hexdigest()[:10]
-                        except Exception:
-                            _ch = str(int(time.time()))
-                        storage_path = f"reel-cards/{article_id}/scene-{i}-{_ch}.png"
-                        curl = upload_asset(local, storage_path, "image/png")
-                        try:
-                            os.remove(local)
-                        except Exception:
-                            pass
-                        if curl:
-                            url = curl
-                            meta = {"type": "image", "duration": 0, "is_card": True,
-                                    "card_has_bg": True, "is_generated": True,
-                                    "curated": True, "generic_pexels": False}
-                            n_card += 1
-                            n_gen += 1
-                            print(f"  🎨 Scene {i+1}: data-overlay card — \"{scene.get('card_text','')[:40]}\"")
-                    if url is None:
-                        print(f"  ⚠️ Scene {i+1}: overlay card render failed — falling to card")
+                url = gurl
+                meta = {"type": "image", "duration": 0, "is_generated": True,
+                        "curated": True, "generic_pexels": False}
+                n_gen += 1
+                print(f"  🖌️ Scene {i+1}: generated illustration — \"{scene.get('image_prompt','')[:48]}\"")
             else:
                 print(f"  ⚠️ Scene {i+1}: generate failed — falling to card")
 
@@ -5909,15 +4311,15 @@ def source_reel_media_clean(article, storyboard, count=8):
             if url is None:
                 print(f"  ⚠️ Scene {i+1}: media_library had no fit for \"{subj}\" — falling to card")
 
-        # "card" / default / any failed plan → ANIMATED MP4 data card (for
-        # stat/diaspora beats), else static PIL branded key-point card (fallback).
+        # "card" / default / any failed plan → ENRICHED animated MP4 card, else
+        # static PIL branded key-point card (safe fallback).
         if url is None:
-            # ── Try an animated data card first (article-driven) ──
+            # ── ENRICHED: try an animated data card for stat/diaspora beats ──
             # Scene 0 (hook) is skipped — it must stay a text-free branded bg so
             # the hook title overlays cleanly (3-layer text collision = QA fail).
             if i != 0:
-                _anim_path, _arch = _anim_card_for_scene(
-                    scene, i, n, article, _used_archetypes)
+                _anim_path, _arch = _enriched_anim_card_for_scene(
+                    scene, i, n, article, _enriched_used_archetypes)
                 if _anim_path and os.path.exists(_anim_path):
                     try:
                         with open(_anim_path, "rb") as _fh:
@@ -5925,42 +4327,31 @@ def source_reel_media_clean(article, storyboard, count=8):
                     except Exception:
                         _ch = str(int(time.time()))
                     storage_path = f"reel-cards/{article_id}/anim-{_arch}-{i}-{_ch}.mp4"
-                    aurl = upload_asset(_anim_path, storage_path, "video/mp4")
+                    url = upload_asset(_anim_path, storage_path, "video/mp4")
                     try:
                         os.remove(_anim_path)
                     except Exception:
                         pass
-                    if aurl:
+                    if url:
                         # Mark as VIDEO so the timeline places it full-bleed; the
                         # is_anim_card flag forces trim=0 (entrance plays from t0)
-                        # and suppresses Ken Burns crop. 12s source holds the final
+                        # and suppresses Ken Burns crop. 12s source holds final
                         # frame, so it fills any scene_length.
                         meta = {"type": "video", "duration": 12.0, "is_card": True,
                                 "is_anim_card": True, "curated": True,
                                 "generic_pexels": False}
                         n_card += 1
                         print(f"  🎬 Scene {i+1}: ANIMATED data card — {_arch}")
-                        matched_urls[i] = aurl
-                        used_in_this_reel.add(aurl)
-                        media_meta[aurl] = meta
+                        matched_urls[i] = url
+                        used_in_this_reel.add(url)
+                        media_meta[url] = meta
                         continue
                     else:
                         print(f"  ⚠️ Scene {i+1}: anim-card upload failed — falling to static card")
 
             # Scene 0 (hook) gets a text-free branded bg (hook title overlays it),
-            # avoiding the 3-layer text collision that hurt readability QA. Every
-            # OTHER text card gets a REAL image behind its text (the SpaceX
-            # image-overlay look Kiran asked for) — library photo (free) or a
-            # budgeted generated illustration; navy only if neither is available.
-            _bg_url = None
-            if i != 0:
-                _bg_url, _used_gen = _card_background_url(
-                    scene, article, article_id, i, used_in_this_reel,
-                    _card_bg_gen_budget)
-                if _bg_url:
-                    used_in_this_reel.add(_bg_url)
-            local = render_keypoint_card(scene, category, article, i,
-                                         text_free=(i == 0), bg_url=_bg_url)
+            # avoiding the 3-layer text collision that hurt readability QA.
+            local = render_keypoint_card(scene, category, article, i, text_free=(i == 0))
             if not local:
                 print(f"  ⚠️ Scene {i+1}: card render failed (PIL?) — leaving empty")
                 continue
@@ -5979,8 +4370,7 @@ def source_reel_media_clean(article, storyboard, count=8):
                 print(f"  ⚠️ Scene {i+1}: card upload failed — leaving empty")
                 continue
             meta = {"type": "image", "duration": 0, "is_card": True,
-                    "curated": True, "generic_pexels": False,
-                    "card_has_bg": bool(_bg_url)}
+                    "curated": True, "generic_pexels": False}
             n_card += 1
             _ctxt = _card_pick_text(scene, article)
             print(f"  🎨 Scene {i+1}: key-point card — \"{_ctxt[:48]}\"")
@@ -6066,33 +4456,11 @@ def source_image_urls(article, image_queries, count=5):
 def build_hook_html(hook_line1, hook_line2, category):
     """Build HTML for the 3-second hook frame overlay."""
     badge = (category or "NEWS").upper().replace("-", " ")
-
-    # Auto-scale font sizes based on text length to prevent clipping.
-    # On a 1080px frame with 60px side padding = 960px available.
-    # Inter 900 at ~84px averages ~52px/char → safe up to ~18 chars.
-    l1_len = len(hook_line1 or "")
-    l2_len = len(hook_line2 or "")
-    if l1_len <= 16:
-        l1_size = 84
-    elif l1_len <= 22:
-        l1_size = 68
-    elif l1_len <= 30:
-        l1_size = 56
-    else:
-        l1_size = 46
-
-    if l2_len <= 20:
-        l2_size = 56
-    elif l2_len <= 30:
-        l2_size = 44
-    else:
-        l2_size = 36
-
     # Use inline styles for maximum compatibility with Shotstack's HTML renderer
-    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px 60px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.18) 78%, rgba(0,0,0,0.08) 100%);">
+    html = f"""<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:40px;box-sizing:border-box;background:radial-gradient(ellipse 90% 55% at 50% 52%, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.66) 45%, rgba(0,0,0,0.30) 78%, rgba(0,0,0,0.18) 100%);">
   <div style="background:#C41E3A;color:#fff;font-family:Inter;font-size:28px;font-weight:700;padding:10px 32px;letter-spacing:5px;margin-bottom:50px;box-shadow:0 4px 24px rgba(0,0,0,0.7);">{badge}</div>
-  <div style="font-family:Inter;font-size:{l1_size}px;font-weight:900;color:#fff;line-height:1.05;margin-bottom:24px;max-width:100%;overflow-wrap:break-word;text-shadow:0 4px 40px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,1),0 0 80px rgba(0,0,0,0.85);">{hook_line1}</div>
-  <div style="font-family:Inter;font-size:{l2_size}px;font-weight:700;color:#F2C84B;line-height:1.1;max-width:100%;overflow-wrap:break-word;text-shadow:0 3px 22px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1);">{hook_line2}</div>
+  <div style="font-family:Inter;font-size:84px;font-weight:900;color:#fff;line-height:1.0;margin-bottom:24px;text-shadow:0 4px 40px rgba(0,0,0,1),0 2px 10px rgba(0,0,0,1),0 0 80px rgba(0,0,0,0.85);">{hook_line1}</div>
+  <div style="font-family:Inter;font-size:56px;font-weight:700;color:#F2C84B;line-height:1.1;text-shadow:0 3px 22px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1);">{hook_line2}</div>
   <div style="font-family:Inter;font-size:16px;color:rgba(255,255,255,0.3);letter-spacing:6px;margin-top:60px;">THE VIDESHI</div>
 </div>"""
 
@@ -6250,7 +4618,7 @@ def build_anchor_reel_timeline(
 
     # ── Track 2: Logo + TheVideshi.com watermark (every frame) ──
     # Use center position with manual offsets (topRight clips edges unreliably)
-    LOGO_URL = "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192-transparent.png"
+    LOGO_URL = "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/branding/logo-192.png"
     logo_track = {
         "clips": [
             {
@@ -6391,8 +4759,8 @@ def build_anchor_reel_timeline(
             # offset would look arbitrary) and is already hard-trimmed at hosting.
             src_duration = meta.get("duration", 10)
             if meta.get("is_social_video") or meta.get("is_anim_card"):
-                # Social video & animated data cards play from the START so the
-                # entrance/count-up animation is never trimmed off.
+                # Social video & ENRICHED animated cards play from the START so
+                # the entrance/count-up animation is never trimmed off.
                 trim_start = 0
             else:
                 max_trim = max(0, src_duration - per_image - 1)
@@ -6443,19 +4811,20 @@ def build_anchor_reel_timeline(
                         "transition": {"in": "fade", "out": "fade"},
                     })
         else:
-            # Static image — Ken Burns effect for PHOTOS only. Key-point CARDS
-            # and AI-GENERATED scenes are full-bleed text graphics: any zoom/pan
-            # scales past 100% and pushes the edge words off-frame. So cards and
-            # generated scenes render STATIC with fit=cover (no zoom); only real
-            # article photos get the Ken Burns motion.
+            # Static image — Ken Burns effect for PHOTOS. Key-point CARDS are
+            # full-bleed 1080x1920 text graphics: any zoom/pan (even "zoomIn")
+            # scales past 100% and pushes the edge words off-frame — that's what
+            # clipped "New" on the Neeraj-Sharma card and fed the QA "text
+            # readability" deduction. So cards render STATIC with fit=contain
+            # (whole card always in frame, every word readable); only real photos
+            # get the Ken Burns motion.
             is_card = meta.get("is_card")
-            is_generated = meta.get("is_generated") or meta.get("is_responses_api")
-            if is_card or is_generated:
+            if is_card:
                 clip = {
                     "asset": {"type": "image", "src": url},
                     "start": round(hook_duration + (i * per_image), 2),
                     "length": scene_length,
-                    "fit": "cover",
+                    "fit": "contain",
                     # no effect → no zoom crop; text stays fully on-frame
                 }
             else:
@@ -6472,66 +4841,46 @@ def build_anchor_reel_timeline(
 
     broll_track = {"clips": broll_clips}
 
-    # ── CTA: Branded end card ──
-    # PRIMARY: Static designed PNG (pixel-perfect logo + tagline + URL)
-    # FALLBACK: HTML overlay (for backward compat if PNG not available)
-    endcard_url = get_endcard_url()
-    if endcard_url:
-        end_card_track = {
-            "clips": [
-                {
-                    "asset": {
-                        "type": "image",
-                        "src": endcard_url,
-                    },
-                    "start": round(cta_start, 2),
-                    "length": CTA_DURATION,
-                    "fit": "cover",
-                    "position": "center",
-                    "transition": {"in": "fade"},
+    # ── CTA: Branded end card (HTML overlay on dark background) — animated slide up ──
+    end_html, end_css = build_end_card_html(logo_url=LOGO_URL)
+    end_card_track = {
+        "clips": [
+            {
+                "asset": {
+                    "type": "html",
+                    "html": end_html,
+                    "css": end_css,
+                    "width": 1080,
+                    "height": 1920,
                 },
-            ]
-        }
-    else:
-        # Fallback to the old HTML end card
-        end_html, end_css = build_end_card_html(logo_url=LOGO_URL)
-        end_card_track = {
-            "clips": [
-                {
-                    "asset": {
-                        "type": "html",
-                        "html": end_html,
-                        "css": end_css,
-                        "width": 1080,
-                        "height": 1920,
-                    },
-                    "start": round(cta_start, 2),
-                    "length": CTA_DURATION,
-                    "position": "center",
-                    "transition": {"in": "slideUp"},
-                    "offset": {
-                        "x": 0,
-                        "y": [
-                            {"from": -0.03, "to": 0, "start": 0, "length": 0.4,
-                             "interpolation": "bezier", "easing": "easeOutCubic"},
-                        ],
-                    },
+                "start": round(cta_start, 2),
+                "length": CTA_DURATION,
+                "position": "center",
+                "transition": {"in": "slideUp"},
+                "offset": {
+                    "x": 0,
+                    "y": [
+                        {"from": -0.03, "to": 0, "start": 0, "length": 0.4,
+                         "interpolation": "bezier", "easing": "easeOutCubic"},
+                    ],
                 },
-                # Logo as a real image clip (HTML <img> does not render in Shotstack).
-                {
-                    "asset": {
-                        "type": "image",
-                        "src": LOGO_URL,
-                    },
-                    "start": round(cta_start, 2),
-                    "length": CTA_DURATION,
-                    "position": "center",
-                    "offset": {"x": 0, "y": 0.34},
-                    "scale": 0.22,
-                    "transition": {"in": "fade"},
+            },
+            # Logo as a real image clip (HTML <img> does not render in Shotstack).
+            # Centered near the top of the end card, above the "THE VIDESHI" wordmark.
+            {
+                "asset": {
+                    "type": "image",
+                    "src": LOGO_URL,
                 },
-            ]
-        }
+                "start": round(cta_start, 2),
+                "length": CTA_DURATION,
+                "position": "center",
+                "offset": {"x": 0, "y": 0.34},
+                "scale": 0.22,
+                "transition": {"in": "fade"},
+            },
+        ]
+    }
 
     # ── Track 6 (BOTTOM): Voice-over audio with alias ──
     voice_track = {
@@ -6585,27 +4934,13 @@ def build_anchor_reel_timeline(
         "tracks": _all_tracks,
     }
 
-    # Add soundtrack if music available.
-    # Shotstack's soundtrack plays its source ONCE with no loop, so a 30s track
-    # left the back half of a ~58s reel silent. We pre-render a full-length,
-    # looped, leveled, faded bed sized to this reel and attach THAT at full
-    # volume (the bed is already ducked to sit under the voice). If the bed
-    # build fails for any reason, fall back to the raw track — but at an
-    # audible volume and without the misleading 30s-only coverage.
+    # Add soundtrack if music available
     if music_url:
-        bed_url = prepare_music_bed(music_url, total_duration)
-        if bed_url:
-            timeline["soundtrack"] = {
-                "src": bed_url,
-                "effect": "fadeOut",  # bed already has fades baked in; tiny safety fade
-                "volume": 1.0,
-            }
-        else:
-            timeline["soundtrack"] = {
-                "src": music_url,
-                "effect": "fadeInFadeOut",
-                "volume": max(music_volume, 0.18),
-            }
+        timeline["soundtrack"] = {
+            "src": music_url,
+            "effect": "fadeInFadeOut",
+            "volume": music_volume,
+        }
 
     edit = {
         "timeline": timeline,
@@ -6624,240 +4959,74 @@ def build_anchor_reel_timeline(
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # SHOTSTACK TIMELINE BUILDER — Quick Pulse (no voice)
-# ═════════════════════════════════════════════════════════════════════════════
-
-def _pulse_safe_wrap(inner_html):
-    """Wrap scene content in a Shorts/Reels safe zone (avoids YT buttons right, channel info bottom)."""
-    return f"""<div style="display:flex;flex-direction:column;width:100%;height:100%;padding:120px 60px 300px 60px;box-sizing:border-box;">
-  {inner_html}
-</div>"""
-
-
-def _pulse_hook_html(hook_line, category):
-    """Scene 1: Hook frame — massive text over darkened hero image (transparent bg)."""
-    badge = (category or "NEWS").upper().replace("-", " ")
-    inner = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;height:100%;">
-  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:50px 44px;border-left:8px solid #D4AF37;">
-    <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:24px;">{badge}</div>
-    <div style="font-family:Inter;font-size:80px;font-weight:900;color:#ffffff;line-height:1.08;letter-spacing:-1px;word-wrap:break-word;overflow-wrap:break-word;">{hook_line}</div>
-  </div>
-</div>"""
-    return _pulse_safe_wrap(inner)
-
-
-def _pulse_hero_stat_html(big, sub, eyebrow):
-    """Scene 2: Hero stat — massive number on solid dark card."""
-    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:80px 44px;border:3px solid rgba(212,175,55,0.4);">
-    <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px;">{eyebrow}</div>
-    <div style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:32px;text-shadow:0 0 60px rgba(212,175,55,0.4);">{big}</div>
-    <div style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;">{sub}</div>
-  </div>
-</div>"""
-    return _pulse_safe_wrap(inner)
-
-
-def _pulse_stat_grid_html(stats):
-    """Scene 3: Stat grid — 2-3 stats in bold stacked cards."""
-    colors = ["#D4AF37", "#4ECDC4", "#FF9933"]
-    tiles_html = ""
-    for i, stat in enumerate(stats[:3]):
-        big = stat.get("big", "")
-        label = stat.get("label", "")
-        color = colors[i % len(colors)]
-        tiles_html += f"""<div style="background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 36px;text-align:center;border-left:8px solid {color};">
-      <div style="font-family:Inter;font-size:90px;font-weight:900;color:{color};line-height:1.0;margin-bottom:12px;">{big}</div>
-      <div style="font-family:Inter;font-size:32px;font-weight:600;color:#ffffff;line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
-    </div>"""
-
-    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-  <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
-  <div style="display:flex;flex-direction:column;gap:24px;">
-    {tiles_html}
-  </div>
-</div>"""
-    return _pulse_safe_wrap(inner)
-
-
-def _pulse_diaspora_html(bullets):
-    """Scene 4: Diaspora panel — NRI impact in a bold full-width card."""
-    bullets_html = ""
-    for b in bullets[:3]:
-        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:28px;">
-      <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:14px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
-    </div>"""
-
-    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:60px 44px;border-left:10px solid #FF9933;">
-    <div style="font-family:Inter;font-size:34px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
-    {bullets_html}
-  </div>
-</div>"""
-    return _pulse_safe_wrap(inner)
-
-
-def _pulse_cta_html():
-    """Scene 5: CTA card — brand + website, clean and big."""
-    inner = """<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:80px 44px;border:3px solid rgba(212,175,55,0.4);">
-    <div style="font-family:Inter;font-size:80px;font-weight:800;color:#D4AF37;letter-spacing:4px;margin-bottom:16px;">THE VIDESHI</div>
-    <div style="font-family:Inter;font-size:30px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
-    <div style="width:80px;height:4px;background:#D4AF37;margin:0 auto 50px;border-radius:2px;"></div>
-    <div style="font-family:Inter;font-size:48px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
-    <div style="font-family:Inter;font-size:52px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
-    <div style="font-family:Inter;font-size:26px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
-  </div>
-</div>"""
-    return _pulse_safe_wrap(inner)
-
+# ═══════════════════════════════════════════════════════════════════════════════
 
 def build_quick_pulse_timeline(
-    hero_image_url, music_url, music_volume,
-    pulse_stats, category
+    image_urls, music_url, music_volume,
+    headline, subheadline, category, key_stats=None
 ):
-    """Build a Quick Pulse reel — music + bold data cards, no voice.
+    """Build a Quick Pulse reel — music + bold text + visuals, no voice."""
 
-    5 scenes, ~18 seconds total:
-      1. Hook frame (hero image + hook_line)      3.5s
-      2. Hero stat card (one massive number)       3.5s
-      3. Stat grid (2-3 supporting numbers)        4.0s
-      4. Diaspora panel (NRI impact bullets)        3.5s
-      5. CTA card (brand + handles)                3.5s
-    """
-    hook_stat = pulse_stats.get("hook_stat", {})
-    stats = pulse_stats.get("stats", [])
-    diaspora = pulse_stats.get("diaspora_bullets", [])
-    hook_line = pulse_stats.get("hook_line", "BREAKING NEWS")
+    # Split headline into animated text cards
+    cards = []
+    if key_stats:
+        cards = key_stats[:5]  # Up to 5 stat cards
+    else:
+        # Split headline + subheadline into cards
+        cards = [headline]
+        if subheadline:
+            # Split subheadline into 2-3 chunks
+            words = subheadline.split()
+            mid = len(words) // 2
+            cards.append(" ".join(words[:mid]))
+            cards.append(" ".join(words[mid:]))
 
-    # Scene timings (default 5-scene layout)
-    S1_START, S1_LEN = 0.0, 3.5
-    S2_START, S2_LEN = 3.5, 3.5
-    S3_START, S3_LEN = 7.0, 4.0
-    S4_START, S4_LEN = 11.0, 3.5
-    S5_START, S5_LEN = 14.5, 3.5
-    total_duration = 18.0
+    card_duration = 3.0
+    total_duration = len(cards) * card_duration + 1.0
+    badge = (category or "NEWS").upper().replace("-", " ")
 
-    has_grid = len(stats) >= 2
-    has_diaspora = len(diaspora) >= 2
+    # ── Text cards track (top) ──
+    text_clips = []
+    for i, text in enumerate(cards):
+        text_html = f"""<div class='pulse-card'>
+  <div class='pulse-badge'>{badge}</div>
+  <div class='pulse-text'>{text}</div>
+  <div class='pulse-brand'>THE VIDESHI</div>
+</div>"""
 
-    # Adjust timings if panels are missing — redistribute time
-    if not has_grid and not has_diaspora:
-        S1_LEN = 4.0
-        S2_START, S2_LEN = 4.0, 5.0
-        S5_START, S5_LEN = 9.0, 4.0
-        total_duration = 13.0
-    elif not has_grid:
-        S1_LEN = 4.0
-        S2_START, S2_LEN = 4.0, 4.0
-        S4_START, S4_LEN = 8.0, 4.0
-        S5_START, S5_LEN = 12.0, 3.5
-        total_duration = 15.5
-    elif not has_diaspora:
-        S1_LEN = 4.0
-        S2_START, S2_LEN = 4.0, 4.0
-        S3_START, S3_LEN = 8.0, 4.0
-        S5_START, S5_LEN = 12.0, 3.5
-        total_duration = 15.5
+        text_css = """
+.pulse-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; width:100%; height:100%; padding:40px; box-sizing:border-box; }
+.pulse-badge { background:#C41E3A; color:#fff; font-family:'Inter'; font-size:16px; font-weight:700; padding:4px 18px; letter-spacing:3px; margin-bottom:24px; }
+.pulse-text { font-family:'Inter'; font-size:48px; font-weight:700; color:#fff; line-height:1.15; text-shadow:0 2px 20px rgba(0,0,0,0.6); }
+.pulse-brand { font-family:'Inter'; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:4px; margin-top:30px; }
+""".strip()
 
-    # ── Build tracks ──
-
-    # Track 1 (top): HTML overlay cards
-    overlay_clips = []
-
-    # Scene 1: Hook text over hero image
-    overlay_clips.append({
-        "asset": {
-            "type": "html",
-            "html": _pulse_hook_html(hook_line, category),
-            "css": "",
-            "width": 1080,
-            "height": 1920,
-        },
-        "start": S1_START,
-        "length": S1_LEN,
-        "position": "center",
-        "transition": {"in": "fade"},
-    })
-
-    # Scene 2: Hero stat card (full-frame, navy bg baked into HTML)
-    overlay_clips.append({
-        "asset": {
-            "type": "html",
-            "html": _pulse_hero_stat_html(
-                hook_stat.get("big", ""),
-                hook_stat.get("sub", ""),
-                hook_stat.get("eyebrow", "BY THE NUMBERS"),
-            ),
-            "css": "",
-            "width": 1080,
-            "height": 1920,
-        },
-        "start": S2_START,
-        "length": S2_LEN,
-        "position": "center",
-        "transition": {"in": "slideRight"},
-    })
-
-    # Scene 3: Stat grid (if we have ≥2 stats)
-    if has_grid:
-        overlay_clips.append({
+        text_clips.append({
             "asset": {
                 "type": "html",
-                "html": _pulse_stat_grid_html(stats),
-                "css": "",
+                "html": text_html,
+                "css": text_css,
                 "width": 1080,
-                "height": 1920,
+                "height": 800,
             },
-            "start": S3_START,
-            "length": S3_LEN,
+            "start": round(i * card_duration, 2),
+            "length": card_duration,
             "position": "center",
-            "transition": {"in": "slideUp"},
+            "transition": {"in": "fade", "out": "fade"},
         })
 
-    # Scene 4: Diaspora panel (if we have ≥2 bullets)
-    if has_diaspora:
-        overlay_clips.append({
-            "asset": {
-                "type": "html",
-                "html": _pulse_diaspora_html(diaspora),
-                "css": "",
-                "width": 1080,
-                "height": 1920,
-            },
-            "start": S4_START,
-            "length": S4_LEN,
-            "position": "center",
-            "transition": {"in": "slideLeft"},
-        })
-
-    # Scene 5: CTA card
-    overlay_clips.append({
-        "asset": {
-            "type": "html",
-            "html": _pulse_cta_html(),
-            "css": "",
-            "width": 1080,
-            "height": 1920,
-        },
-        "start": S5_START,
-        "length": S5_LEN,
-        "position": "center",
-        "transition": {"in": "fade"},
-    })
-
-    # Track 2: Background imagery — hero image runs the FULL duration
-    # (darkened) so every card has a rich visual background, not flat navy.
-    bg_clips = []
-    if hero_image_url:
-        bg_clips.append({
-            "asset": {"type": "image", "src": hero_image_url},
-            "start": 0.0,
-            "length": total_duration + 0.5,
+    # ── B-roll track ──
+    n_images = max(len(image_urls), 1)
+    broll_clips = []
+    for i, url in enumerate(image_urls[:len(cards)]):
+        broll_clips.append({
+            "asset": {"type": "image", "src": url},
+            "start": round(i * card_duration, 2),
+            "length": round(card_duration + 0.3, 2),
             "fit": "cover",
-            "effect": "zoomInSlow",
+            "effect": KEN_BURNS_EFFECTS[i % len(KEN_BURNS_EFFECTS)],
             "filter": "darken",
-            "opacity": 0.5,
+            **({"transition": {"in": "fade"}} if i > 0 else {}),
         })
 
     edit = {
@@ -6865,8 +5034,14 @@ def build_quick_pulse_timeline(
             "background": NAVY,
             "fonts": [{"src": FONT_URL}],
             "tracks": [
-                {"clips": overlay_clips},
-            ] + ([{"clips": bg_clips}] if bg_clips else []),
+                {"clips": text_clips},
+                {"clips": broll_clips},
+            ],
+            "soundtrack": {
+                "src": music_url,
+                "effect": "fadeInFadeOut",
+                "volume": min(music_volume * 3, 0.3),  # Louder for Quick Pulse
+            } if music_url else None,
         },
         "output": {
             "format": "mp4",
@@ -6878,30 +5053,11 @@ def build_quick_pulse_timeline(
         },
     }
 
-    # Soundtrack: Quick Pulse has no voiceover, so the music carries the reel —
-    # build a louder full-length looped bed (target -18 dB vs -26 dB for voiced
-    # reels). Falls back to a raw, looped-but-uncovered track only if the bed
-    # build fails.
-    if music_url:
-        bed_url = prepare_music_bed(music_url, total_duration, target_mean_db=-18.0)
-        if bed_url:
-            edit["timeline"]["soundtrack"] = {
-                "src": bed_url,
-                "effect": "fadeOut",
-                "volume": 1.0,
-            }
-        else:
-            edit["timeline"]["soundtrack"] = {
-                "src": music_url,
-                "effect": "fadeInFadeOut",
-                "volume": min(max(music_volume * 3, 0.25), 0.4),
-            }
-
-    # Remove None soundtrack (defensive)
+    # Remove None soundtrack
     if edit["timeline"].get("soundtrack") is None:
-        edit["timeline"].pop("soundtrack", None)
+        del edit["timeline"]["soundtrack"]
 
-    return edit, total_duration
+    return edit
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -7015,31 +5171,6 @@ def download_reel(url, output_path, retries=3):
 
 CTA_DURATION = 4.0  # Branded end card — enough time to read site + social handles
 
-# ── Static end card (designed PNG with logo, tagline, URL) ──
-# The designed PNG at pipeline/assets/endcard.png is the primary end card.
-# It gets uploaded to Supabase once and cached. The HTML fallback
-# (build_end_card_html) is kept for backward compatibility but the static
-# image is preferred — it's pixel-perfect and doesn't depend on Shotstack's
-# HTML renderer.
-_ENDCARD_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "assets", "endcard.png")
-_ENDCARD_URL_CACHE = [None]  # mutable default for lazy upload
-
-
-def get_endcard_url():
-    """Upload the designed end card PNG to Supabase (once) and return its
-    public URL. Falls back to None if the file doesn't exist or upload fails."""
-    if _ENDCARD_URL_CACHE[0]:
-        return _ENDCARD_URL_CACHE[0]
-    if not os.path.exists(_ENDCARD_PNG):
-        print(f"  ⚠️ Static end card not found at {_ENDCARD_PNG}")
-        return None
-    url = upload_asset(_ENDCARD_PNG, "branding/endcard-v2.png", "image/png")
-    if url:
-        _ENDCARD_URL_CACHE[0] = url
-        print(f"  ✅ End card uploaded: {url[:60]}...")
-    return url
-
 # Social handles
 SOCIAL_HANDLES = {
     "website": "thevideshi.com",
@@ -7069,15 +5200,11 @@ def build_end_card_html(logo_url=None):
   <div style="font-family:Inter;font-size:62px;font-weight:900;color:#F2C84B;letter-spacing:1px;margin-bottom:14px;">@the.videshi</div>
   <div style="font-family:Inter;font-size:27px;font-weight:600;color:rgba(255,255,255,0.82);line-height:1.35;margin-bottom:46px;max-width:760px;">FOR GLOBAL STORIES THAT<br/>IMPACT INDIANS EVERYWHERE</div>
   <div style="font-family:Inter;font-size:40px;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:40px;">thevideshi.com</div>
-  <div style="display:flex;flex-direction:column;gap:10px;align-items:center;max-width:900px;">
-    <div style="display:flex;gap:24px;align-items:center;justify-content:center;">
-      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">YOUTUBE</span> @the.videshi</span>
-      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">INSTAGRAM</span> @the.videshi</span>
-    </div>
-    <div style="display:flex;gap:24px;align-items:center;justify-content:center;">
-      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
-      <span style="font-family:Inter;font-size:20px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
-    </div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;justify-content:center;max-width:900px;">
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">YOUTUBE</span> @the.videshi</span>
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">INSTAGRAM</span> @the.videshi</span>
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">THREADS</span> @the.videshi</span>
+    <span style="font-family:Inter;font-size:24px;color:rgba(255,255,255,0.85);"><span style="color:#D4AF37;font-weight:700;">X</span> @thevideshi</span>
   </div>
 </div>"""
 
@@ -7214,21 +5341,10 @@ Return JSON only:
         )
 
         if r.status_code != 200:
-            print(f"  ⚠️ QA API error: {r.status_code} — trying Gemini vision fallback")
-            # Reconstruct the text prompt + frames for Gemini vision.
-            qa_text = "\n".join(
-                part["text"] for part in content if part.get("type") == "text"
-            )
-            result = gemini_json(
-                qa_text, max_tokens=600, temperature=0,
-                images=[f["b64"] for f in frames],
-            )
-            if not result:
-                print("  ⚠️ Gemini vision QA fallback also failed — fail closed")
-                return False, 0, "QA failed (OpenAI + Gemini both failed — fail closed)"
-            print("  ✅ QA gate scored via Gemini vision fallback")
-        else:
-            result = json.loads(r.json()["choices"][0]["message"]["content"])
+            print(f"  ⚠️ QA API error: {r.status_code}")
+            return False, 0, "QA failed (API error — fail closed)"
+
+        result = json.loads(r.json()["choices"][0]["message"]["content"])
         score = result.get("score", 5)
         non_neg = result.get("non_negotiable_failures", [])
         issues = result.get("issues", [])
@@ -7328,7 +5444,7 @@ def build_caption(article):
     return caption
 
 
-def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8, music_attribution=None, carousel_images=None):
+def register_reel(article, video_url, video_path, caption, poster_url=None, thumbnail_url=None, qa_score_actual=8):
     """Register in prebuilt_reels for IG/YT posting crons."""
     # Distribution dedup keys entirely on article_id; a row with a null/empty
     # article_id would silently bypass cross-surface dedup and risk a double-post.
@@ -7355,13 +5471,6 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
         payload["poster_url"] = poster_url
     if thumbnail_url:
         payload["thumbnail_url"] = thumbnail_url
-    # Persist CC-BY music credit if a column exists (the credit is ALSO already
-    # appended to `caption`, which is the authoritative source distribution uses;
-    # this is a best-effort structured copy and is stripped if the column is absent).
-    if music_attribution:
-        payload["music_attribution"] = music_attribution
-    if carousel_images:
-        payload["carousel_images"] = carousel_images  # JSON array of scene image URLs
 
     r = requests.post(
         f"{SB_URL}/rest/v1/prebuilt_reels",
@@ -7373,13 +5482,11 @@ def register_reel(article, video_url, video_path, caption, poster_url=None, thum
     if r.status_code in (200, 201):
         print(f"  ✅ Registered in prebuilt_reels")
         return True
-    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text or "music_attribution" in r.text or "carousel_images" in r.text):
-        # Columns don't exist yet — retry without the optional columns
-        print(f"  ⚠️ optional column(s) not in DB yet — registering without them")
+    elif r.status_code == 400 and ("poster_url" in r.text or "thumbnail_url" in r.text):
+        # Columns don't exist yet — retry without poster/thumbnail
+        print(f"  ⚠️ poster_url/thumbnail_url columns not in DB yet — registering without them")
         payload.pop("poster_url", None)
         payload.pop("thumbnail_url", None)
-        payload.pop("music_attribution", None)
-        payload.pop("carousel_images", None)
         r2 = requests.post(
             f"{SB_URL}/rest/v1/prebuilt_reels",
             headers=SB_HEADERS,
@@ -7849,37 +5956,15 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
     if isinstance(script_data.get("social_search"), dict):
         article["_social_search"] = script_data["social_search"]
     media_meta = {}
-
-    # ── PRIMARY: Responses API integrated image generation (Approach B) ──
-    # Produces dramatically richer visuals because the same model that understands
-    # the article generates the images — no information lost between steps.
-    # Env var VIDESHI_REEL_RESPONSES_API=0 disables this path (falls to CLEAN mode).
-    # Default to CLEAN mode (respects media_plan: cards, social, media_library,
-    # generate). Responses API mode (all AI images) only if explicitly forced.
-    USE_RESPONSES_API = os.environ.get("VIDESHI_REEL_RESPONSES_API", "0") == "1"
-    if storyboard and USE_RESPONSES_API and OPENAI_KEY:
-        print("  🚀 RESPONSES API mode: integrated GPT-4o image generation")
-        resp_urls, resp_meta = generate_responses_api_scenes(
-            article, storyboard, article.get("id", ""))
-        if resp_urls and len(resp_urls) >= 3:
-            image_urls = resp_urls
-            media_meta = resp_meta or {}
-            print(f"  ✅ Responses API produced {len(image_urls)} scene images")
-        else:
-            print(f"  ⚠️ Responses API produced only {len(resp_urls) if resp_urls else 0} "
-                  f"images — falling back to CLEAN mode")
-            USE_RESPONSES_API = False  # fall through to CLEAN
-
     REEL_CLEAN = os.environ.get("VIDESHI_REEL_CLEAN", "1") != "0"
-    if not USE_RESPONSES_API or not media_meta:
-        if storyboard and REEL_CLEAN:
-            print("  🧹 CLEAN mode (approach 1): article hero + own embeds + GPT cards only")
-            image_urls, media_meta = source_reel_media_clean(article, storyboard)
-        elif storyboard:
-            image_urls, media_meta = source_storyboard_images(article, storyboard)
-        else:
-            print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
-            image_urls = source_image_urls(article, script_data.get("image_queries", []))
+    if storyboard and REEL_CLEAN:
+        print("  🧹 CLEAN mode (approach 1): article hero + own embeds + GPT cards only")
+        image_urls, media_meta = source_reel_media_clean(article, storyboard)
+    elif storyboard:
+        image_urls, media_meta = source_storyboard_images(article, storyboard)
+    else:
+        print("  ⚠️ No storyboard in script — falling back to legacy image_queries")
+        image_urls = source_image_urls(article, script_data.get("image_queries", []))
     if not image_urls:
         print("❌ No images found")
         return False
@@ -7898,10 +5983,11 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
             return False
         print(f"  ✅ {len(image_urls)} valid media after preflight")
 
-    # 5. Ensure music is uploaded (mood-driven selection + CC-BY attribution)
+    # 5. Ensure music is uploaded
     print("\n🎵 Step 5: Setting up music...")
-    story_mood = (script_data.get("story_mood") or "").strip().lower() or None
-    music_url, music_volume, reel_music_attribution = pick_music_for_article(article, story_mood=story_mood)
+    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
+    music_url = ensure_music_uploaded(music_file)
+    music_volume = MUSIC_VOLUME.get(category, 0.05)
 
     # 6. Build Shotstack timeline
     print("\n🔧 Step 6: Building Shotstack timeline...")
@@ -7938,57 +6024,6 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
         print("  ❌ Timeline failed validation — skipping render to save credits")
         return False
     print("  ✅ Timeline structure valid")
-
-    # 6c. PRE-RENDER GATE: bail out of the doomed all-text-card case.
-    # When OpenAI image-gen is billing-blocked AND the media library can't back
-    # the cards, every scene falls to a flat text card with no background image.
-    # Stacking always-on burned-in captions over text-only cards is text-on-text,
-    # which the QA gate scores 0 ("OVERLAPPING TEXT") every time — so rendering it
-    # just burns Shotstack credits on a reel that cannot pass. Abort BEFORE render.
-    # Conservative by design: any real visual (photo, social embed, generated
-    # illustration, animated data card, or even a text card WITH a real background
-    # image) keeps the reel eligible. Only a reel that is essentially nothing but
-    # bare navy text cards is skipped.
-    try:
-        _metas = [media_meta.get(u, {}) for u in image_urls]
-        _n = len(_metas) or 1
-        def _is_real_visual(m):
-            if m.get("is_anim_card"):          # animated MP4 data card = real motion
-                return True
-            if m.get("type") == "video":       # social video / library video
-                return True
-            if m.get("is_social_card"):        # real social post card
-                return True
-            if m.get("is_generated"):          # gpt-image illustration
-                return True
-            if m.get("is_card"):               # text card — real only if it has a bg image
-                return bool(m.get("card_has_bg"))
-            # plain photo (hero, media library, related) — real visual
-            return True
-        _real = sum(1 for m in _metas if _is_real_visual(m))
-        # Doomed when too FEW scenes carry a real visual — not only the all-zero
-        # case. When image-gen is billing-blocked, a typical reel renders with just
-        # the hero photo real (1 of ~6) and the rest defective bare text cards
-        # (black-box / overlapping-text), which QA scores 6 or below every time.
-        # A healthy reel is majority-real (photos/social/animated cards, with text
-        # cards a minority), so require at least half the scenes to be real imagery.
-        # Conservative: ties round up via (_n + 1)//2, and the all-zero message is
-        # preserved for the fully-degraded case.
-        _min_real = (_n + 1) // 2
-        if _real < _min_real:
-            if _real == 0:
-                print(f"  ❌ All {_n} scenes are bare text cards (no real imagery) — "
-                      f"this fails 'overlapping text' QA every time. Skipping render to "
-                      f"save Shotstack credits (image-gen likely billing-blocked).")
-            else:
-                print(f"  ❌ Only {_real}/{_n} scenes have real imagery (need ≥{_min_real}) — "
-                      f"text-card-heavy reels fail the QA visual-variety gate. Skipping "
-                      f"render to save Shotstack credits (image-gen likely billing-blocked).")
-            return False
-        print(f"  ✅ Visual variety OK: {_real}/{_n} scenes have real imagery (need ≥{_min_real})")
-    except Exception as _e:
-        # Never block a render on a guard bug — fall through to render.
-        print(f"  ⚠️ visual-variety preflight skipped ({_e})")
 
     if dry_run:
         print("\n🏁 DRY RUN — JSON built, not rendering")
@@ -8067,17 +6102,9 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
     if video_url:
         print("\n📋 Step 11: Registering reel...")
         caption = build_caption(article)
-        # CC-BY auto-credit: when a CC-BY track was used, append the required
-        # attribution to the caption. Distribution crons build every platform's
-        # post text from prebuilt_reels.caption, so this credit propagates to
-        # IG/YT/Threads/X/FB descriptions automatically.
-        if reel_music_attribution:
-            caption = f"{caption}\n\n🎵 {reel_music_attribution}"
-            print(f"  🎵 Appended CC-BY music credit to caption: {reel_music_attribution}")
         register_reel(article, video_url, str(uploaded_video_path), caption,
                       poster_url=uploaded_poster_url, thumbnail_url=uploaded_thumb_url,
-                      qa_score_actual=qa_score, music_attribution=reel_music_attribution or None,
-                      carousel_images=image_urls)
+                      qa_score_actual=qa_score)
 
     # 12. Done — distribution handled by videshi-distribute-reels cron
     # (generates once, distributes to IG/YT/Threads/X/FB from prebuilt_reels)
@@ -8097,15 +6124,9 @@ def run_anchor_reel(article, dry_run=False, use_production=False, no_publish=Fal
 
 
 def run_quick_pulse(article, dry_run=False, use_production=False):
-    """Generate a Quick Pulse reel (music + animated data cards, no voice).
-
-    1. Extract stats via GPT-4o-mini (or Gemini fallback)
-    2. Source hero image for the hook frame
-    3. Pick mood-matched music
-    4. Build a 5-scene data-card timeline (~18s)
-    5. Render, download, upload, register
-    """
+    """Generate a Quick Pulse reel (music + text, no voice)."""
     headline = article.get("headline", "Unknown")
+    subheadline = article.get("subheadline", "")
     category = article.get("category", "news")
     slug = article.get("slug", "unknown")
 
@@ -8113,61 +6134,35 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     print(f"⚡ QUICK PULSE: {headline[:60]}")
     print(f"{'='*60}")
 
-    # Step 1: Extract stats via GPT
-    pulse_stats = generate_pulse_stats(article)
-    if not pulse_stats:
-        print("  ⚡ Skipping — no usable stats for this article")
+    # Source images
+    image_urls = source_image_urls(article, [], count=4)
+    if not image_urls:
         return False
 
-    # Step 2: Source hero image for the hook frame
-    hero_image_url = None
-    hero = article.get("image_url", "")
-    if hero and is_url_downloadable(hero):
-        hero_image_url = hero
-    else:
-        # Fallback: grab any image from same-category articles
-        image_urls = source_image_urls(article, [], count=1)
-        if image_urls:
-            hero_image_url = image_urls[0]
+    # Music
+    music_file = CATEGORY_MUSIC.get(category, "breaking-news-30s.mp3")
+    music_url = ensure_music_uploaded(music_file)
+    music_volume = MUSIC_VOLUME.get(category, 0.05)
 
-    # Step 3: Music — Quick Pulse needs HIGH ENERGY regardless of story mood.
-    # Slow/brooding families (dramatic-dark, chill-lifestyle, emotional-inspiring)
-    # kill the pace of a fast 18-second data-card reel. Override to always use
-    # punchy families that match the rapid-cut visual style.
-    # Also prefer Pixabay CC0 tracks (more modern) over Kevin MacLeod.
-    _PULSE_MOOD_OVERRIDE = {
-        "somber": "tense",          # tense → breaking-news / cinematic-epic (not brooding)
-        "chill": "neutral-news",    # neutral-news → breaking-news / tech-corporate
-        "cultural": "celebratory",  # keep the energy up
-        "triumphant": "tense",      # anthemic-triumph is all MacLeod → use breaking-news
-        "uplifting": "celebratory", # emotional-inspiring is slow → upbeat-celebration
-    }
-    raw_mood = pulse_stats.get("story_mood", "neutral-news")
-    story_mood = _PULSE_MOOD_OVERRIDE.get(raw_mood, raw_mood)
-    music_url, music_volume, _qp_music_attribution = pick_music_for_article(
-        article, story_mood=story_mood,
-        prefer_source="pixabay", min_energy=4,
-    )
-
-    # Step 4: Build timeline
-    edit_json, total_duration = build_quick_pulse_timeline(
-        hero_image_url=hero_image_url,
+    # Build timeline
+    edit_json = build_quick_pulse_timeline(
+        image_urls=image_urls,
         music_url=music_url,
         music_volume=music_volume,
-        pulse_stats=pulse_stats,
+        headline=headline,
+        subheadline=subheadline,
         category=category,
     )
 
     json_path = BUILD_DIR / f"ss-pulse-{slug}.json"
     with open(json_path, "w") as f:
         json.dump(edit_json, f, indent=2)
-    print(f"  📋 Timeline: {total_duration:.1f}s, {len(edit_json['timeline']['tracks'][0]['clips'])} scenes")
 
     if dry_run:
         print("🏁 DRY RUN — JSON built, not rendering")
         return True
 
-    # Step 5: Render
+    # Render
     render_result = render_reel(edit_json, use_production=use_production)
     if not render_result:
         return False
@@ -8182,19 +6177,8 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     # Upload & register
     video_url, uploaded_video_path = upload_final_reel(str(final_path), final_name)
     if video_url:
-        # Build a short, punchy caption for Quick Pulse
-        hook_line = pulse_stats.get("hook_line", "")
-        hook_big = pulse_stats.get("hook_stat", {}).get("big", "")
-        caption = f"{hook_line}\n\n{headline}\n\n"
-        if hook_big:
-            caption += f"{hook_big} — {pulse_stats.get('hook_stat', {}).get('sub', '')}\n\n"
-        caption += f"Full story: https://thevideshi.com/articles/{slug}\n\n"
-        caption += "#indiandiaspora #nri #thevideshi #india #shorts"
-        if _qp_music_attribution:
-            caption = f"{caption}\n\n🎵 {_qp_music_attribution}"
-            print(f"  🎵 Appended CC-BY music credit to caption: {_qp_music_attribution}")
-        register_reel(article, video_url, str(uploaded_video_path), caption,
-                      music_attribution=_qp_music_attribution or None)
+        caption = build_caption(article)
+        register_reel(article, video_url, str(uploaded_video_path), caption)
         # Distribution handled by videshi-distribute-reels cron
 
     print(f"\n✅ QUICK PULSE COMPLETE: {final_path}")

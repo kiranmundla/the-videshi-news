@@ -794,10 +794,98 @@ def _wikimedia_filename(url):
     return fname
 
 
-def find_inline_images(headline, body, hero_url=""):
-    """Find up to 3 inline Wikipedia images for entities in the article.
-    Returns list of (entity, image_url, caption) tuples."""
-    entities = extract_entities(headline, body)
+# ── Visual-category subject extraction (food, travel, entertainment, lifestyle) ──
+_VISUAL_CATEGORIES = {"food", "travel", "entertainment", "lifestyle-health"}
+
+
+def extract_visual_subjects(headline, body, category):
+    """Use GPT-4o-mini to extract 3-5 specific visual subjects from a
+    food/travel/entertainment/lifestyle article — places, landmarks, dishes,
+    restaurants, or venues that would benefit from a photo.
+
+    Returns a list of subject name strings, most photogenic first.
+    Falls back to an empty list on any error (caller will use regex extractor).
+    """
+    # Strip HTML and truncate body to keep prompt cheap
+    body_text = re.sub(r'<[^>]+>', ' ', body)
+    body_text = re.sub(r'\s+', ' ', body_text).strip()[:1200]
+
+    prompt_system = (
+        "You extract specific named visual subjects from articles for photo illustration. "
+        "Return ONLY a JSON array of 3-5 strings. Each string must be a specific "
+        "proper name of a well-known place, landmark, monument, palace, fort, temple, "
+        "national park, heritage site, famous dish, or iconic venue that is likely to "
+        "have a Wikipedia page with a good photo. "
+        "Prioritize famous landmarks and heritage sites over restaurant names or brand names. "
+        "Be specific: 'Amer Fort' not 'a fort in Rajasthan', 'Falaknuma Palace' not 'palace in Hyderabad'. "
+        "Omit generic terms, people's names, countries, cities, and restaurant brand names that are unlikely to have Wikipedia photos."
+    )
+    prompt_user = f"Category: {category}\nHeadline: {headline}\n\nArticle excerpt:\n{body_text}"
+
+    openai_key = os.environ.get("OPENAI_API_KEY", "")
+    if not openai_key:
+        print("    ⚠ No OPENAI_API_KEY — skipping visual subject extraction")
+        return []
+
+    try:
+        import subprocess as _sp
+        payload = json.dumps({
+            "model": "gpt-4o-mini",
+            "messages": [
+                {"role": "system", "content": prompt_system},
+                {"role": "user", "content": prompt_user},
+            ],
+            "temperature": 0.2,
+            "max_tokens": 200,
+        })
+        result = _sp.run(
+            ["curl", "-s", "-X", "POST", "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {openai_key}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=30,
+        )
+        if result.returncode != 0:
+            print(f"    ⚠ GPT curl failed: {result.stderr[:100]}")
+            return []
+
+        resp = json.loads(result.stdout)
+        content = resp.get("choices", [{}])[0].get("message", {}).get("content", "")
+        # Parse JSON array from response (may be wrapped in ```json ... ```)
+        content = content.strip()
+        if content.startswith("```"):
+            content = re.sub(r'^```(?:json)?\s*', '', content)
+            content = re.sub(r'\s*```$', '', content)
+        subjects = json.loads(content)
+        if isinstance(subjects, list):
+            subjects = [s for s in subjects if isinstance(s, str) and len(s) > 2]
+            print(f"    🎨 Visual subjects ({category}): {subjects}")
+            return subjects[:6]
+    except Exception as e:
+        print(f"    ⚠ Visual subject extraction error: {e}")
+
+    return []
+
+
+def find_inline_images(headline, body, hero_url="", category=None):
+    """Find inline Wikipedia images for entities in the article.
+    Returns list of (entity, image_url, caption) tuples.
+
+    For visual categories (food, travel, entertainment, lifestyle-health),
+    uses GPT to extract specific places/landmarks/venues. For other categories,
+    uses the regex-based entity extractor. Visual categories get up to 3 images;
+    others get up to 2.
+    """
+    # Choose entity source based on category
+    if category and category in _VISUAL_CATEGORIES:
+        entities = extract_visual_subjects(headline, body, category)
+        if not entities:
+            # Fallback to regex extractor
+            entities = extract_entities(headline, body)
+        max_images = 3
+    else:
+        entities = extract_entities(headline, body)
+        max_images = 2
     results = []
     hero_norm = (hero_url or "").split("?")[0].lower()
     # Extract hero filename for cross-host comparison (Supabase vs Wikimedia)
@@ -810,10 +898,32 @@ def find_inline_images(headline, body, hero_url=""):
     body_text = re.sub(r'\s+', ' ', body_text).strip()
 
     for entity in entities:
-        if len(results) >= 3:
+        if len(results) >= max_images:
             break
 
         img_url = fetch_wikipedia_image(entity, article_context=headline + " " + body_text[:500])
+
+        # For visual categories, fall back to Wikimedia Commons search if
+        # Wikipedia page summary has no image (e.g. lesser-known venues)
+        if not img_url and category and category in _VISUAL_CATEGORIES:
+            commons = search_wikimedia_commons(entity, limit=5)
+            entity_lower = entity.lower()
+            entity_words = [w.lower() for w in entity.split() if len(w) > 2]
+            for c in commons:
+                title = (c.get("title") or "").lower()
+                # Require at least 2 entity words in the title, or the full
+                # entity name, to avoid false matches like "Adaa Khan" for "Adaa"
+                matching_words = sum(1 for w in entity_words if w in title)
+                full_match = entity_lower in title
+                if full_match or (len(entity_words) > 1 and matching_words >= 2) or (len(entity_words) == 1 and matching_words == 1 and len(entity_lower) >= 5):
+                    # Extra guard: reject obvious person photos (portrait, award, headshot)
+                    _person_hints = {"award", "portrait", "headshot", "actor", "actress", "khan,", "singer", "politician"}
+                    if any(h in title for h in _person_hints):
+                        continue
+                    img_url = c.get("url")
+                    print(f"    📷 Commons fallback for '{entity}': {title[:60]}")
+                    break
+
         if not img_url:
             continue
 
@@ -871,20 +981,20 @@ def _count_media_elements(text):
     return sum(len(re.findall(p, text, re.IGNORECASE)) for p in pats)
 
 
-def insert_inline_images(body, images):
+def insert_inline_images(body, images, max_cap=2):
     """Insert inline images distributed across article sections.
 
     Uses H2 sections to spread images out — one per section max, placed in
-    sections that have the fewest existing media elements. Caps at 2 inline
-    images per article to avoid visual clutter.
+    sections that have the fewest existing media elements. Caps at max_cap
+    inline images per article (default 2, visual categories pass 3).
     """
     if not images:
         return body
 
     is_html = _is_html_body(body)
 
-    # Cap at 2 inline images per article
-    images = images[:2]
+    # Cap at max_cap inline images per article
+    images = images[:max_cap]
 
     # Split body into sections by <h2> tags
     h2_splits = list(re.finditer(r'<h2[^>]*>', body, re.IGNORECASE))
@@ -900,7 +1010,7 @@ def insert_inline_images(body, images):
             idx = min(step * (i + 1), len(paragraphs) - 1)
             if is_html:
                 cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
-                img_md = f'\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
+                img_md = f'\n<figure style="margin:28px auto;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
             else:
                 img_md = f"\n![{caption}]({url})\n"
             paragraphs.insert(idx, img_md)
@@ -944,7 +1054,7 @@ def insert_inline_images(body, images):
 
         if is_html:
             cap_escaped = caption.replace("&", "&amp;").replace("<", "&lt;").replace('"', "&quot;")
-            img_md = f'\n\n<figure style="margin:28px 0;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
+            img_md = f'\n\n<figure style="margin:28px auto;text-align:center"><img src="{url}" alt="{cap_escaped}" style="max-width:100%;border-radius:8px" loading="lazy"><figcaption style="font-size:0.85rem;color:#666;margin-top:8px">{caption}</figcaption></figure>\n'
         else:
             img_md = f"\n\n![{caption}]({url})\n"
 
@@ -1543,7 +1653,7 @@ def main():
 
     # ── 3. SOCIAL EMBED ENRICHMENT ──
     if run_embeds:
-        # Run tweet enricher
+        # Topic search for tweet embeds in articles
         run_tweet_enricher(hours=args.hours, apply=apply)
 
         # Instagram embed enrichment — all categories
@@ -1789,9 +1899,11 @@ def main():
 
             # Add inline images if needed
             if not has_images:
-                images = find_inline_images(headline, body, hero_url)
+                cat = article.get("category", "")
+                images = find_inline_images(headline, body, hero_url, category=cat)
                 if images:
-                    new_body = insert_inline_images(new_body, images)
+                    max_cap = 3 if cat in _VISUAL_CATEGORIES else 2
+                    new_body = insert_inline_images(new_body, images, max_cap=max_cap)
                     changes.append(f"{len(images)} inline image(s)")
                 else:
                     print(f"     — No relevant inline images found")

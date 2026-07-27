@@ -44,8 +44,7 @@ HEADERS = {
     'Content-Type': 'application/json',
 }
 VERIFY_SCRIPT = os.path.expanduser('~/workspace/the-videshi-news/pipeline/verify-tweet.sh')
-sys.path.insert(0, os.path.expanduser('~/workspace/the-videshi-news/pipeline'))
-from social_registry import load_registry as _load_registry_raw  # DB-backed
+REGISTRY_PATH = os.path.expanduser('~/workspace/the-videshi-news/pipeline/social-embed-registry.json')
 
 # Load X API credentials (OAuth1 user-context) so we can use the same X-search
 # path the reel pipeline uses, instead of scraping DuckDuckGo (now bot-blocked).
@@ -84,7 +83,8 @@ MAX_ENRICHMENTS_PER_RUN = 2  # budget cap (X reads); was 5
 
 # --- Load handle registry ---
 def load_registry():
-    data = _load_registry_raw()
+    with open(REGISTRY_PATH) as f:
+        data = json.load(f)
     # Build a flat lookup: name -> handle
     lookup = {}
     for cat, entries in data.items():

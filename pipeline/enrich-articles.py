@@ -382,10 +382,10 @@ def find_better_image(headline, current_url):
 # ═══════════════════════════════════════════
 
 def load_registry():
-    """Load social embed registry."""
-    path = os.path.join(PIPELINE_DIR, "social-embed-registry.json")
-    with open(path) as f:
-        return json.load(f)
+    """Load social embed registry from Supabase."""
+    sys.path.insert(0, PIPELINE_DIR)
+    from social_registry import load_registry as _lr
+    return _lr()
 
 
 def find_matching_handles(headline, registry, platform="instagram"):
