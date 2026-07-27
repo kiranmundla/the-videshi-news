@@ -569,8 +569,11 @@ export function sortEventsByDistance(
     return { ...e, distanceMiles };
   });
 
+  // Filter out events beyond 100 miles
+  const nearby = withDist.filter((e) => (e.distanceMiles ?? 9999) <= 100);
+
   // Primary sort: distance, secondary: date
-  withDist.sort((a, b) => {
+  nearby.sort((a, b) => {
     const da = a.distanceMiles ?? 9999;
     const db = b.distanceMiles ?? 9999;
     // If both within 20 miles of each other, sort by date first
@@ -581,7 +584,7 @@ export function sortEventsByDistance(
     return da - db;
   });
 
-  return withDist;
+  return nearby;
 }
 
 /**
