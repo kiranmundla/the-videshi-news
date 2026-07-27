@@ -356,7 +356,7 @@ def parse_trunk_show(html: str, slug: str) -> dict | None:
         "venue_name": venue,
         "latitude": lat,
         "longitude": lng,
-        "category": "Cultural",
+        "category": "Shopping",
         "source": SOURCE,
         "source_id": page_url,
         "image_url": None,
