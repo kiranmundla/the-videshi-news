@@ -169,6 +169,12 @@ case "$1" in
       python3 -u media-library-source.py"
     ;;
 
+  detect-storylines)
+    run_job "detect-storylines" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
+      python3 -u detect-storylines.py"
+    ;;
+
   ## === WEEKLY ===
 
   snapshots-refresh)
@@ -232,7 +238,7 @@ case "$1" in
     ;;
 
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|pulse-refresh|catchup|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|pulse-refresh|catchup|status}"
     exit 1
     ;;
 esac
