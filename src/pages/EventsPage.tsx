@@ -304,77 +304,52 @@ function FeaturedCarouselCard({ event }: { event: EventItem }) {
 /* Discovery Sections (BookMyShow-style)                              */
 /* ------------------------------------------------------------------ */
 
-/** Gradient palettes for time-based cards */
-const TIME_CARD_STYLES: { key: DateFilterKey; label: string; sublabel: string; gradient: string; darkGradient: string }[] = [
-  {
-    key: "today",
-    label: "Plan for Today",
-    sublabel: "Happening now",
-    gradient: "linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)",
-    darkGradient: "linear-gradient(135deg, #7a2123 0%, #a8862f 100%)",
-  },
-  {
-    key: "tomorrow",
-    label: "Plan for Tomorrow",
-    sublabel: "Coming up next",
-    gradient: "linear-gradient(135deg, #0B1D3A 0%, #A32D2F 100%)",
-    darkGradient: "linear-gradient(135deg, #091529 0%, #7a2123 100%)",
-  },
-  {
-    key: "weekend",
-    label: "Weekend Plans",
-    sublabel: "Make it count",
-    gradient: "linear-gradient(135deg, #D4A843 0%, #0B1D3A 100%)",
-    darkGradient: "linear-gradient(135deg, #a8862f 0%, #091529 100%)",
-  },
+/** Date filter card definitions — compact, same size as category cards */
+const DATE_CARD_STYLES: { key: DateFilterKey; label: string; emoji: string; gradient: string }[] = [
+  { key: null,       label: "All",        emoji: "📅", gradient: "linear-gradient(135deg, #374151 0%, #1f2937 100%)" },
+  { key: "today",    label: "Today",      emoji: "☀️",  gradient: "linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)" },
+  { key: "tomorrow", label: "Tomorrow",   emoji: "🌅", gradient: "linear-gradient(135deg, #0B1D3A 0%, #A32D2F 100%)" },
+  { key: "weekend",  label: "Weekend",    emoji: "🎉", gradient: "linear-gradient(135deg, #D4A843 0%, #0B1D3A 100%)" },
+  { key: "week",     label: "This Week",  emoji: "📆", gradient: "linear-gradient(135deg, #1e3a5f 0%, #2d5a3f 100%)" },
+  { key: "month",    label: "This Month", emoji: "🗓️",  gradient: "linear-gradient(135deg, #4a1942 0%, #2d1b69 100%)" },
 ];
 
-function TimeDiscoveryCards({
+function DateDiscoveryCards({
   counts,
+  total,
   selected,
   onSelect,
 }: {
   counts: Record<string, number>;
+  total: number;
   selected: DateFilterKey;
   onSelect: (key: DateFilterKey) => void;
 }) {
   return (
-    <section className="mb-8">
-      <div className="flex items-center gap-3 mb-4">
-        <h2 className="font-serif text-xl md:text-2xl text-foreground whitespace-nowrap">
-          Best Events This Week
-        </h2>
-        <div className="h-px flex-1 bg-border" />
-      </div>
-      <p className="text-sm text-muted-foreground mb-4 -mt-2">
-        Monday to Sunday, we got you covered
-      </p>
-
-      <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
-        {TIME_CARD_STYLES.map((card) => {
-          const count = counts[card.key || ""] || 0;
+    <section className="mb-4">
+      <div className="flex overflow-x-auto gap-2.5 pb-2 -mx-1 px-1 scrollbar-hide">
+        {DATE_CARD_STYLES.map((card) => {
+          const count = card.key === null ? total : (counts[card.key || ""] || 0);
+          const isActive = selected === card.key;
           return (
             <button
-              key={card.key}
-              onClick={() => onSelect(selected === card.key ? null : card.key)}
-              className={`flex-shrink-0 w-[160px] sm:w-[200px] rounded-xl overflow-hidden text-left transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
-                selected === card.key
+              key={card.key ?? "all"}
+              onClick={() => onSelect(isActive && card.key !== null ? null : card.key)}
+              className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+                isActive
                   ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
                   : ""
               }`}
             >
               <div
-                className="p-5 h-[120px] sm:h-[140px] flex flex-col justify-end"
+                className="w-[110px] sm:w-[130px] aspect-[4/3] relative p-3 flex flex-col justify-end"
                 style={{ background: card.gradient }}
               >
-                <span className="text-white/70 text-xs font-medium uppercase tracking-wider mb-1">
-                  {card.sublabel}
+                <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">
+                  {card.emoji} {card.label}
                 </span>
-                <span className="text-white text-lg sm:text-xl font-bold font-serif leading-tight">
-                  {card.label}
-                </span>
-                <span className="text-white/80 text-sm font-medium mt-1.5">
-                  {count > 0 ? `${count}+ Events` : "View Events"}
+                <span className="text-white/80 text-xs font-medium mt-1 drop-shadow">
+                  {count} {count === 1 ? "Event" : "Events"}
                 </span>
               </div>
             </button>
@@ -488,10 +463,11 @@ function DiscoverySection({
   onDateSelect: (key: DateFilterKey) => void;
   onCategorySelect: (cat: string | null) => void;
 }) {
-  /* Time cards need global counts (not filtered by location/date),
+  /* Time/date cards need global counts (not filtered by location/date),
      so we do a lightweight independent query for those only. */
-  const [timeCounts, setTimeCounts] = useState<Record<string, number>>({});
-  const [timeLoaded, setTimeLoaded] = useState(false);
+  const [dateCounts, setDateCounts] = useState<Record<string, number>>({});
+  const [totalEvents, setTotalEvents] = useState(0);
+  const [dateLoaded, setDateLoaded] = useState(false);
 
   useEffect(() => {
     const today = new Date().toISOString().slice(0, 10);
@@ -501,25 +477,24 @@ function DiscoverySection({
       .gte("date", today)
       .limit(5000)
       .then(({ data }: { data: { id: string; date: string }[] | null }) => {
-        if (!data) { setTimeLoaded(true); return; }
-        const tc: Record<string, number> = {};
-        for (const key of ["today", "tomorrow", "weekend"] as DateFilterKey[]) {
+        if (!data) { setDateLoaded(true); return; }
+        setTotalEvents(data.length);
+        const dc: Record<string, number> = {};
+        for (const key of ["today", "tomorrow", "weekend", "week", "month"] as DateFilterKey[]) {
           const range = getDateFilterRange(key);
           if (range) {
-            tc[key || ""] = data.filter((e) => e.date >= range.from && e.date <= range.to).length;
+            dc[key || ""] = data.filter((e) => e.date >= range.from && e.date <= range.to).length;
           }
         }
-        setTimeCounts(tc);
-        setTimeLoaded(true);
+        setDateCounts(dc);
+        setDateLoaded(true);
       });
   }, []);
 
-  const hasTimeEvents = timeLoaded && Object.values(timeCounts).some((c) => c > 0);
-
   return (
     <>
-      {hasTimeEvents && (
-        <TimeDiscoveryCards counts={timeCounts} selected={selectedDate} onSelect={onDateSelect} />
+      {dateLoaded && (
+        <DateDiscoveryCards counts={dateCounts} total={totalEvents} selected={selectedDate} onSelect={onDateSelect} />
       )}
     </>
   );
@@ -694,21 +669,24 @@ export default function EventsPage() {
   }, [setCityFilter, setSearchParams]);
 
   const setCategoryFilter = useCallback((cat: string | null) => {
+    const y = window.scrollY;
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (cat) next.set("category", cat); else next.delete("category");
-      // Remove old "tab" param if it still exists
       next.delete("tab");
       return next;
     }, { replace: true });
+    requestAnimationFrame(() => window.scrollTo(0, y));
   }, [setSearchParams]);
 
   const setDateFilter = useCallback((when: DateFilterKey) => {
+    const y = window.scrollY;
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (when) next.set("when", when); else next.delete("when");
       return next;
     }, { replace: true });
+    requestAnimationFrame(() => window.scrollTo(0, y));
   }, [setSearchParams]);
 
   /* --- Debounced search handler --- */

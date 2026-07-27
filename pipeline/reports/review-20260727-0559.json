@@ -1,0 +1,40 @@
+[
+  {
+    "id": "e222cd1e-ec4f-4265-b7cb-5402e088ce68",
+    "headline": "Indian-Origin US Lawmakers Urge Diaspora to Enter Politics as Anti-India Hate Ri",
+    "slug": "indian-origin-us-lawmakers-urge-diaspora-enter-politics-anti-india-hate",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian-Americans who have successfully entered politics or are currently running for office. This would provide relatable examples and inspire readers to consider political involvement.",
+        "Add context about the specific anti-India incidents mentioned, such as the flag-tearing incident in Frisco, Texas. Providing more details about the incident and its implications would help readers understand the urgency of the lawmakers' call to action.",
+        "Consider including statistics or data about the representation of Indian-Americans in politics compared to other ethnic groups. This would provide a clearer picture of the current political landscape and the importance of increased participation from the diaspora.",
+        "Include a brief overview of the Foundation for India and Indian Diaspora Studies (FIIDS) and its role in supporting Indian-Americans in politics. This would give readers insight into the resources available for those interested in pursuing political careers."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any recent immigration policies that may affect Indian-Americans, as this would provide relevant context for the discussion on political engagement."
+      ]
+    }
+  },
+  {
+    "id": "d13f854b-ae3c-4580-a4c0-beed7707a6f9",
+    "headline": "Indian Diamond Trader Dhiru Ramani Freed in Mali After Family Pays \u20ac4 Million Ra",
+    "slug": "indian-diamond-trader-dhiru-ramani-freed-mali-4-million-euro-ransom",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from other Indian NRIs in the diamond and mining industries, particularly those with operations in Africa. This could provide a broader perspective on the implications of the kidnapping for the NRI community involved in similar businesses.",
+        "Add context about the safety and security challenges faced by Indian nationals working in Africa, particularly in the mining sector. This could include statistics or anecdotes that illustrate the risks and how they impact the diaspora community.",
+        "Clarify the role of the Indian government in such situations. Including information on how the government typically responds to kidnappings of Indian nationals abroad could provide valuable context for readers, especially NRIs concerned about safety.",
+        "Discuss the potential impact of this incident on future business operations for Indian nationals in Africa, particularly in the diamond and mining sectors. This could help NRIs understand the broader implications of the kidnapping."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of External Affairs or a relevant government agency regarding their stance or actions taken in response to the kidnapping incident."
+      ]
+    }
+  }
+]
