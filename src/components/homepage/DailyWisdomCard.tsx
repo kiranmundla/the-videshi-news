@@ -93,6 +93,7 @@ export default function DailyWisdomCard() {
 
   return (
     <section className="daily-wisdom-homepage">
+      <div className="container">
       <Link to="/daily-wisdom" className="daily-wisdom-card">
         {/* Left: teacher photo in a frame */}
         <div className="daily-wisdom-photo">
@@ -127,6 +128,7 @@ export default function DailyWisdomCard() {
           </div>
         </div>
       </Link>
+      </div>
     </section>
   );
 }

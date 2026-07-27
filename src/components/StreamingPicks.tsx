@@ -236,6 +236,7 @@ export default function StreamingPicks() {
 
   return (
     <section className="mt-6 mb-4">
+      <div className="container">
       <div
         className="flex items-center gap-3 mb-3 pb-2"
         style={{ borderBottom: "1px solid rgba(173,20,87,0.25)" }}
@@ -260,6 +261,7 @@ export default function StreamingPicks() {
           />
         ))}
       </ScrollWrap>
+      </div>
     </section>
   );
 }

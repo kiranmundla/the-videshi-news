@@ -253,6 +253,7 @@ export default function NowInTheaters() {
 
   return (
     <section className="mt-6 mb-2">
+      <div className="container">
       <div
         className="flex items-center gap-3 mb-3 pb-2"
         style={{ borderBottom: "1px solid rgba(173,20,87,0.25)" }}
@@ -277,6 +278,7 @@ export default function NowInTheaters() {
           />
         ))}
       </ScrollWrap>
+      </div>
     </section>
   );
 }

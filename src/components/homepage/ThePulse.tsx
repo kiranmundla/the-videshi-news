@@ -160,6 +160,7 @@ export default function ThePulse() {
 
   return (
     <section className="mb-14">
+      <div className="container">
       <div className="rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm">
         {/* Header */}
         <div
@@ -308,6 +309,7 @@ export default function ThePulse() {
             </p>
           )}
         </div>
+      </div>
       </div>
     </section>
   );
