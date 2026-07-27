@@ -111,17 +111,10 @@ CITIES = [
 
 
 # ---------------------------------------------------------------------------
-# Content fingerprint for cross-source dedup
+# Content fingerprint — uses shared cross-source module
 # ---------------------------------------------------------------------------
 
-def content_fingerprint(date_str: str, time_str: str = "", lat=None, lon=None, venue: str = "") -> str:
-    """Generate a fingerprint from date+time+location for cross-source dedup."""
-    lat_r = round(float(lat), 3) if lat else 0
-    lon_r = round(float(lon), 3) if lon else 0
-    norm_venue = re.sub(r'[^a-z0-9]', '', (venue or '').lower())
-    time_norm = (time_str or '00:00')[:5]
-    raw = f"{date_str}|{time_norm}|{lat_r}|{lon_r}|{norm_venue}"
-    return hashlib.sha256(raw.encode()).hexdigest()[:16]
+from event_dedup import content_fingerprint, get_all_fingerprints
 
 
 def slugify(text: str) -> str:
@@ -252,7 +245,7 @@ def parse_event(item: dict, city: dict) -> dict | None:
     slug = slugify(f"{title}-{locality or city['display']}-{date_str}-{time_part}-{slug_suffix}")
 
     # Fingerprint
-    fp = content_fingerprint(date_str, time_str or "", lat, lon, venue_name)
+    fp = content_fingerprint(title, date_str, locality or city["display"])
 
     return {
         "title": title,
@@ -284,14 +277,13 @@ def parse_event(item: dict, city: dict) -> dict | None:
 def get_existing(source: str = "sulekha"):
     """Get existing source_urls and content_fingerprints for dedup."""
     existing_urls = set()
-    existing_fingerprints = set()
 
     if not SB_URL or not SB_KEY:
-        return existing_urls, existing_fingerprints
+        return existing_urls, set()
 
     try:
         r = requests.get(
-            f"{REST}/events?select=source_id,content_fingerprint&limit=10000",
+            f"{REST}/events?select=source_id&limit=10000",
             headers={
                 "apikey": SB_KEY,
                 "Authorization": f"Bearer {SB_KEY}",
@@ -302,10 +294,11 @@ def get_existing(source: str = "sulekha"):
             for e in r.json():
                 if e.get("source_id"):
                     existing_urls.add(e["source_id"])
-                if e.get("content_fingerprint"):
-                    existing_fingerprints.add(e["content_fingerprint"])
     except Exception as e:
         print(f"⚠ Failed to fetch existing events: {e}")
+
+    # Cross-source fingerprints via shared module (uses curl)
+    existing_fingerprints = get_all_fingerprints()
 
     return existing_urls, existing_fingerprints
 

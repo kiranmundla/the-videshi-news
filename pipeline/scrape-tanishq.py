@@ -139,13 +139,10 @@ CITY_GEO = {
 # Helpers
 # ---------------------------------------------------------------------------
 
-def content_fingerprint(date_str: str, time_str: str = "", lat=None, lon=None, venue: str = "") -> str:
-    lat_r = round(float(lat), 3) if lat else 0
-    lon_r = round(float(lon), 3) if lon else 0
-    norm_venue = re.sub(r'[^a-z0-9]', '', (venue or '').lower())
-    time_norm = (time_str or '00:00')[:5]
-    raw = f"{date_str}|{time_norm}|{lat_r}|{lon_r}|{norm_venue}"
-    return hashlib.sha256(raw.encode()).hexdigest()[:16]
+def content_fingerprint(title: str, date_str: str, city: str) -> str:
+    """Cross-source dedup fingerprint — delegates to shared module."""
+    from event_dedup import content_fingerprint as _fp
+    return _fp(title, date_str, city)
 
 
 def slugify(text: str) -> str:
@@ -341,7 +338,7 @@ def parse_trunk_show(html: str, slug: str) -> dict | None:
         description += f" Venue: {venue}."
 
     page_url = f"{BASE_URL}/{slug}.html"
-    fp = content_fingerprint(start_date, start_time or "", lat, lng, venue)
+    fp = content_fingerprint(f"Tanishq Trunk Show — {city_display}", start_date, city_display)
     slug_hash = hashlib.md5(f"{slug}|{start_date}".encode()).hexdigest()[:6]
     event_slug = slugify(f"tanishq-trunk-show-{city_display}-{start_date}-{slug_hash}")
 
@@ -392,19 +389,21 @@ def sb_curl(method: str, endpoint: str, data=None, params: str = "") -> tuple:
 
 def get_existing():
     existing_urls = set()
-    existing_fps = set()
     if not SB_URL or not SB_KEY:
-        return existing_urls, existing_fps
+        return existing_urls, set()
     try:
-        rc, out = sb_curl("GET", "events", params="select=source_id,content_fingerprint&limit=10000")
+        rc, out = sb_curl("GET", "events", params="select=source_id&limit=10000")
         if rc == 0 and out.strip().startswith("["):
             for e in json.loads(out):
                 if e.get("source_id"):
                     existing_urls.add(e["source_id"])
-                if e.get("content_fingerprint"):
-                    existing_fps.add(e["content_fingerprint"])
     except Exception as e:
         print(f"⚠ Failed to fetch existing events: {e}")
+
+    # Cross-source fingerprints via shared module (uses curl)
+    from event_dedup import get_all_fingerprints
+    existing_fps = get_all_fingerprints()
+
     return existing_urls, existing_fps
 
 

@@ -55,20 +55,9 @@ def supabase_post(table, rows):
     return code in ("200", "201")
 
 def get_existing_fingerprints():
-    """Fetch existing content_fingerprints from events table."""
-    import subprocess
-    url = f"{SUPABASE_URL}/rest/v1/events?select=content_fingerprint&source=eq.eventbrite&limit=5000"
-    cmd = [
-        "curl", "-s", url,
-        "-H", f"apikey: {SUPABASE_KEY}",
-        "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-    ]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-    try:
-        rows = json.loads(r.stdout)
-        return {row["content_fingerprint"] for row in rows if row.get("content_fingerprint")}
-    except:
-        return set()
+    """Fetch ALL content_fingerprints from events table (cross-source)."""
+    from event_dedup import get_all_fingerprints
+    return get_all_fingerprints()
 
 # ── 50 US states + DC ─────────────────────────────────────────────────────
 STATES = [
@@ -240,10 +229,7 @@ def make_slug(title: str, city: str, start_date: str, event_id: str) -> str:
     return slug[:120]
 
 
-def content_fingerprint(title: str, start_date: str, city: str) -> str:
-    """Same fingerprint formula as other scrapers."""
-    raw = f"{title.lower().strip()}|{start_date}|{city.lower().strip()}"
-    return hashlib.md5(raw.encode()).hexdigest()
+from event_dedup import content_fingerprint
 
 
 def map_category(tags: list) -> str:

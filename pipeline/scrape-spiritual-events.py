@@ -29,6 +29,7 @@ import time
 from datetime import datetime, date
 from html.parser import HTMLParser
 from urllib.parse import quote
+from event_dedup import content_fingerprint as compute_fingerprint, get_all_fingerprints
 
 # ── Env ──────────────────────────────────────────────────────────────────────
 
@@ -336,6 +337,7 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None):
         'source_id': sid,
         'slug': slug,
         'is_featured': is_featured,
+        'content_fingerprint': compute_fingerprint(title, date_str, event.get('city', '')),
     }
 
     # Remove None values
@@ -401,7 +403,9 @@ def main():
     print(f"{'='*60}")
 
     existing_ids = get_existing_source_ids()
+    existing_fps = get_all_fingerprints()
     print(f"Existing spiritual events in DB: {len(existing_ids)}")
+    print(f"Cross-source fingerprints loaded: {len(existing_fps)}")
 
     total_new = 0
     total_updated = 0
@@ -440,6 +444,13 @@ def main():
         for ev in events:
             sid = make_source_id(org, ev.get('title', ''), ev.get('date', ''))
 
+            # Cross-source fingerprint check
+            fp = compute_fingerprint(ev.get('title', ''), ev.get('date', ''), ev.get('city', ''))
+            if sid not in existing_ids and fp in existing_fps:
+                print(f"  ⏭ Cross-source dup: {ev.get('title', '')[:50]}")
+                total_skipped += 1
+                continue
+
             is_new = sid not in existing_ids
             ok = upsert_event(ev, org, teacher, is_featured, source_url=url)
 
@@ -447,6 +458,7 @@ def main():
                 if is_new:
                     total_new += 1
                     existing_ids.add(sid)
+                    existing_fps.add(fp)
                 else:
                     total_updated += 1
 

@@ -121,7 +121,8 @@ case "$1" in
       curl -sS -X POST 'https://api.supabase.com/v1/projects/lboecaekpynbpyijrbfz/database/query' \
         -H \"Authorization: Bearer \$SUPABASE_ACCESS_TOKEN\" \
         -H 'Content-Type: application/json' \
-        -d '{\"query\": \"DELETE FROM events WHERE date < CURRENT_DATE;\"}'"
+        -d '{\"query\": \"DELETE FROM events WHERE date < CURRENT_DATE;\"}' && \
+      cd $REPO/pipeline && python3 -u event_dedup.py clean"
     ;;
 
   directory-enrich)
