@@ -368,6 +368,209 @@ function FeaturedCarouselCard({ event }: { event: EventItem }) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Discovery Sections (BookMyShow-style)                              */
+/* ------------------------------------------------------------------ */
+
+/** Gradient palettes for time-based cards */
+const TIME_CARD_STYLES: { key: DateFilterKey; label: string; sublabel: string; gradient: string; darkGradient: string }[] = [
+  {
+    key: "today",
+    label: "Plan for Today",
+    sublabel: "Happening now",
+    gradient: "linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)",
+    darkGradient: "linear-gradient(135deg, #7a2123 0%, #a8862f 100%)",
+  },
+  {
+    key: "tomorrow",
+    label: "Plan for Tomorrow",
+    sublabel: "Coming up next",
+    gradient: "linear-gradient(135deg, #0B1D3A 0%, #A32D2F 100%)",
+    darkGradient: "linear-gradient(135deg, #091529 0%, #7a2123 100%)",
+  },
+  {
+    key: "weekend",
+    label: "Weekend Plans",
+    sublabel: "Make it count",
+    gradient: "linear-gradient(135deg, #D4A843 0%, #0B1D3A 100%)",
+    darkGradient: "linear-gradient(135deg, #a8862f 0%, #091529 100%)",
+  },
+];
+
+function TimeDiscoveryCards({
+  counts,
+  onSelect,
+}: {
+  counts: Record<string, number>;
+  onSelect: (key: DateFilterKey) => void;
+}) {
+  return (
+    <section className="mb-8">
+      <div className="flex items-center gap-3 mb-4">
+        <h2 className="font-serif text-xl md:text-2xl text-foreground whitespace-nowrap">
+          Best Events This Week
+        </h2>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+      <p className="text-sm text-muted-foreground mb-4 -mt-2">
+        Monday to Sunday, we got you covered
+      </p>
+
+      <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
+        {TIME_CARD_STYLES.map((card) => {
+          const count = counts[card.key || ""] || 0;
+          return (
+            <button
+              key={card.key}
+              onClick={() => onSelect(card.key)}
+              className="flex-shrink-0 w-[160px] sm:w-[200px] rounded-xl overflow-hidden text-left transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/40"
+            >
+              <div
+                className="p-5 h-[120px] sm:h-[140px] flex flex-col justify-end"
+                style={{ background: card.gradient }}
+              >
+                <span className="text-white/70 text-xs font-medium uppercase tracking-wider mb-1">
+                  {card.sublabel}
+                </span>
+                <span className="text-white text-lg sm:text-xl font-bold font-serif leading-tight">
+                  {card.label}
+                </span>
+                <span className="text-white/80 text-sm font-medium mt-1.5">
+                  {count > 0 ? `${count}+ Events` : "View Events"}
+                </span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function CategoryDiscoveryGrid({
+  counts,
+  onSelect,
+}: {
+  counts: Record<string, number>;
+  onSelect: (cat: string | null) => void;
+}) {
+  const sortedCategories = useMemo(() => {
+    return Object.entries(counts)
+      .filter(([, count]) => count > 0)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([cat, count]) => ({ cat, count }));
+  }, [counts]);
+
+  if (sortedCategories.length === 0) return null;
+
+  return (
+    <section className="mb-8">
+      <div className="flex items-center gap-3 mb-4">
+        <h2 className="font-serif text-xl md:text-2xl text-foreground whitespace-nowrap">
+          Browse Events By Category
+        </h2>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+      <p className="text-sm text-muted-foreground mb-4 -mt-2">
+        Find events that match your interests
+      </p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {sortedCategories.slice(0, 8).map(({ cat, count }) => {
+          const emoji = CAT_EMOJI[cat] || "📌";
+          const imgSrc = CAT_FALLBACK_IMG[cat] || CAT_FALLBACK_IMG["Other"];
+          return (
+            <button
+              key={cat}
+              onClick={() => onSelect(cat)}
+              className="group relative rounded-xl overflow-hidden text-left transition-transform hover:scale-[1.03] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/40"
+            >
+              <div className="aspect-[4/3] relative">
+                <img
+                  src={imgSrc}
+                  alt={cat}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+                {/* Dark overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                {/* Content */}
+                <div className="absolute inset-0 p-3 sm:p-4 flex flex-col justify-end">
+                  <span className="text-white text-base sm:text-lg font-bold font-serif leading-tight drop-shadow-lg">
+                    {emoji} {cat}
+                  </span>
+                  <span className="text-white/80 text-xs sm:text-sm font-medium mt-1 drop-shadow">
+                    {count} {count === 1 ? "Event" : "Events"}
+                  </span>
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function DiscoverySection({
+  onDateSelect,
+  onCategorySelect,
+}: {
+  onDateSelect: (key: DateFilterKey) => void;
+  onCategorySelect: (cat: string | null) => void;
+}) {
+  const [timeCounts, setTimeCounts] = useState<Record<string, number>>({});
+  const [catCounts, setCatCounts] = useState<Record<string, number>>({});
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    supabaseRaw
+      .from("events")
+      .select("id,date,category")
+      .gte("date", today)
+      .limit(5000)
+      .then(({ data }: { data: { id: string; date: string; category: string | null }[] | null }) => {
+        if (!data) { setLoaded(true); return; }
+
+        // Compute time-based counts
+        const tc: Record<string, number> = {};
+        for (const key of ["today", "tomorrow", "weekend"] as DateFilterKey[]) {
+          const range = getDateFilterRange(key);
+          if (range) {
+            tc[key || ""] = data.filter((e) => e.date >= range.from && e.date <= range.to).length;
+          }
+        }
+        setTimeCounts(tc);
+
+        // Compute category counts
+        const cc: Record<string, number> = {};
+        for (const e of data) {
+          const cat = e.category || "Other";
+          cc[cat] = (cc[cat] || 0) + 1;
+        }
+        setCatCounts(cc);
+        setLoaded(true);
+      });
+  }, []);
+
+  if (!loaded) return null;
+
+  const hasTimeEvents = Object.values(timeCounts).some((c) => c > 0);
+
+  return (
+    <>
+      {hasTimeEvents && (
+        <TimeDiscoveryCards counts={timeCounts} onSelect={onDateSelect} />
+      )}
+      <CategoryDiscoveryGrid counts={catCounts} onSelect={onCategorySelect} />
+    </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Featured Events Carousel                                           */
+/* ------------------------------------------------------------------ */
 function FeaturedEventsSection() {
   const [featured, setFeatured] = useState<EventItem[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -787,6 +990,12 @@ export default function EventsPage() {
 
         {/* Featured Events Carousel */}
         <FeaturedEventsSection />
+
+        {/* Discovery: Time Cards + Category Grid (BookMyShow-style) */}
+        <DiscoverySection
+          onDateSelect={setDateFilter}
+          onCategorySelect={setCategoryFilter}
+        />
 
         {/* Search + Location controls — one row on desktop, stacked on mobile */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
