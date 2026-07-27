@@ -68,25 +68,34 @@ export default function FridayLaughs() {
         </div>
       )}
 
-      {/* Fullscreen overlay */}
+      {/* Fullscreen overlay — pinch-to-zoom on mobile */}
       {expanded && selected && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          className="fixed inset-0 z-50 bg-black flex flex-col"
           onClick={() => setExpanded(false)}
         >
-          <button
-            onClick={() => setExpanded(false)}
-            className="absolute top-4 right-4 text-white text-3xl font-bold z-50 w-10 h-10 flex items-center justify-center"
-            aria-label="Close"
-          >
-            ✕
-          </button>
-          <img
-            src={selected.image_url}
-            alt={selected.title}
-            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          <div className="flex items-center justify-between px-4 py-3 shrink-0">
+            <p className="text-white font-semibold text-sm truncate mr-4">{selected.title}</p>
+            <button
+              onClick={() => setExpanded(false)}
+              className="text-white text-2xl font-bold w-10 h-10 flex items-center justify-center shrink-0"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+          <div
+            className="flex-1 overflow-auto"
             onClick={(e) => e.stopPropagation()}
-          />
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
+            <img
+              src={selected.image_url}
+              alt={selected.title}
+              className="w-[200vw] md:w-full md:max-w-4xl md:mx-auto block"
+              style={{ touchAction: "manipulation" }}
+            />
+          </div>
         </div>
       )}
 
