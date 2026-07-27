@@ -169,7 +169,7 @@ export default function DevelopingStories() {
             >
               {/* Hero image for first storyline only */}
               {heroImage && (
-                <Link to={`/articles/${heroArticle.slug}`} style={{ display: "block" }}>
+                <Link to={`/developing/${s.slug}`} style={{ display: "block" }}>
                   <div style={{
                     width: "100%", height: 180, overflow: "hidden",
                     background: "hsl(var(--muted) / 0.3)",
@@ -191,12 +191,14 @@ export default function DevelopingStories() {
               >
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <span style={{
-                      fontSize: 15, fontWeight: 700, lineHeight: 1.3,
-                      color: "hsl(var(--foreground))",
-                    }}>
-                      {s.title}
-                    </span>
+                    <Link to={`/developing/${s.slug}`} style={{ textDecoration: "none", color: "inherit" }}>
+                      <span style={{
+                        fontSize: 15, fontWeight: 700, lineHeight: 1.3,
+                        color: "hsl(var(--foreground))",
+                      }}>
+                        {s.title}
+                      </span>
+                    </Link>
 
                     {/* Meta row */}
                     <div style={{
