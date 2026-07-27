@@ -194,6 +194,12 @@ case "$1" in
       git diff --cached --quiet || git commit -m 'data: AI rankings refresh' && git push origin main"
     ;;
 
+  scrape-temples)
+    run_job "scrape-temples" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u scrape-temples.py"
+    ;;
+
   ## === STATUS ===
 
 
@@ -287,11 +293,17 @@ case "$1" in
       }
     done
 
+    # Weekly jobs — run if >9d stale
+    is_stale scrape-temples 216 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: scrape-temples" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" scrape-temples
+    }
+
     echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup done" >> "$LOG"
     ;;
 
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|media-library|snapshots-refresh|ai-rankings|pulse-refresh|catchup|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|catchup|status}"
     exit 1
     ;;
 esac
