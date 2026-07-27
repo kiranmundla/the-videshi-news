@@ -96,8 +96,18 @@ async function loadEventsCache(): Promise<EventItem[] | null> {
  * Generate a deterministic slug from title + date.
  * Used both for URL generation and lookup matching.
  */
-export function generateSlug(_title?: string, _date?: string): string {
-  return crypto.randomUUID();
+export function generateSlug(title?: string, date?: string): string {
+  // Fallback only — prefer event.id or event.slug when available
+  if (!title) return crypto.randomUUID();
+  const base = title
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60)
+    .replace(/-+$/, "");
+  const datePart = date ? `-${date}` : "";
+  return `${base}${datePart}`;
 }
 
 /**
@@ -288,12 +298,12 @@ export async function getEventBySlug(slug: string): Promise<EventItem | null> {
     // Direct slug match
     const direct = cached.find((e) => e.slug === slug);
     if (direct) return direct;
-    // Computed slug fallback
-    const computed = cached.find((e) => generateSlug(e.title, e.date) === slug);
-    if (computed) return computed;
+    // ID match (events linked by id instead of slug)
+    const byId = cached.find((e) => e.id === slug);
+    if (byId) return byId;
   }
 
-  // Fallback: Supabase — try direct slug lookup first
+  // Supabase — try direct slug lookup first
   const { data: directMatch } = await supabase
     .from("events")
     .select(EVENT_COLS)
@@ -304,18 +314,18 @@ export async function getEventBySlug(slug: string): Promise<EventItem | null> {
     return directMatch[0] as EventItem;
   }
 
-  // Fallback: fetch all events and match computed slug
-  const data = await queryWithFallback((cols: string) => {
-    return supabase
-      .from("events")
-      .select(cols)
-      .order("date", { ascending: true });
-  });
+  // Try by id
+  const { data: idMatch } = await supabase
+    .from("events")
+    .select(EVENT_COLS)
+    .eq("id", slug)
+    .limit(1);
 
-  const match = (data as EventItem[]).find(
-    (e) => generateSlug(e.title, e.date) === slug
-  );
-  return match || null;
+  if (idMatch && idMatch.length > 0) {
+    return idMatch[0] as EventItem;
+  }
+
+  return null;
 }
 
 /**

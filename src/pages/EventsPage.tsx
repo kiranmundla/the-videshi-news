@@ -10,7 +10,7 @@ import {
   EventItem,
   EventWithDistance,
   formatEventDate,
-  generateSlug,
+
   sortEventsByDistance,
   getAllUpcomingEvents,
   getFeaturedEvents,
@@ -197,7 +197,7 @@ function EventCard({ event, distance }: { event: EventItem; distance?: number })
     </article>
   );
 
-  const eventSlug = event.slug || generateSlug(event.title, event.date);
+  const eventSlug = event.slug || event.id;
 
   return (
     <Link to={`/events/${eventSlug}`} className="block no-underline">
@@ -252,7 +252,7 @@ function DateFilterBar({
 /* ------------------------------------------------------------------ */
 function FeaturedCarouselCard({ event }: { event: EventItem }) {
   const dateStr = formatEventDate(event.date, event.end_date);
-  const slug = event.slug || generateSlug(event.title, event.date);
+  const slug = event.slug || event.id;
 
   return (
     <Link
