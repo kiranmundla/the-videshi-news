@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface Comic {
@@ -14,29 +14,6 @@ export default function FridayLaughs() {
   const [comics, setComics] = useState<Comic[]>([]);
   const [selected, setSelected] = useState<Comic | null>(null);
   const [expanded, setExpanded] = useState(false);
-  const [zoomed, setZoomed] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-  const lastTapRef = useRef(0);
-
-  // Attach native touchstart listener directly to the image element
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img || !expanded) return;
-
-    const handler = (e: TouchEvent) => {
-      e.preventDefault();
-      const now = Date.now();
-      if (now - lastTapRef.current < 400) {
-        setZoomed((z) => !z);
-        lastTapRef.current = 0;
-      } else {
-        lastTapRef.current = now;
-      }
-    };
-
-    img.addEventListener("touchstart", handler, { passive: false });
-    return () => img.removeEventListener("touchstart", handler);
-  }, [expanded, zoomed]);
 
   useEffect(() => {
     supabase
@@ -91,47 +68,30 @@ export default function FridayLaughs() {
         </div>
       )}
 
-      {/* Lightbox overlay */}
+      {/* Lightbox — pinch to zoom */}
       {expanded && selected && (
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-black/70 backdrop-blur-sm"
-          onClick={() => { setExpanded(false); setZoomed(false); }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          onClick={() => setExpanded(false)}
         >
-          {/* Top bar */}
-          <div className="flex items-center justify-between px-4 py-3 shrink-0" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setZoomed((z) => !z)}
-              className="text-white text-sm font-semibold px-3 py-1.5 rounded-full bg-white/20 active:bg-white/30"
-            >
-              {zoomed ? "Zoom Out" : "Zoom In"}
-            </button>
-            <button
-              onClick={() => { setExpanded(false); setZoomed(false); }}
-              className="text-white text-2xl font-bold w-10 h-10 flex items-center justify-center"
-              aria-label="Close"
-            >
-              ✕
-            </button>
-          </div>
-
-          {/* Image area */}
+          <button
+            onClick={() => setExpanded(false)}
+            className="absolute top-4 right-4 text-white text-2xl font-bold w-10 h-10 flex items-center justify-center z-50"
+            aria-label="Close"
+          >
+            ✕
+          </button>
           <div
-            className="flex-1 overflow-auto"
-            style={{ WebkitOverflowScrolling: "touch" }}
+            className="overflow-auto max-h-[90vh] max-w-[95vw]"
+            style={{ touchAction: "pinch-zoom", WebkitOverflowScrolling: "touch" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className={zoomed ? "" : "h-full flex items-center justify-center px-4"}>
-              <img
-                ref={imgRef}
-                src={selected.image_url}
-                alt={selected.title}
-                className={`block rounded-lg shadow-2xl transition-all duration-200 ${
-                  zoomed ? "w-[250vw] md:w-[150vw]" : "max-w-[92vw] max-h-[80vh] object-contain"
-                }`}
-                style={{ touchAction: "none" }}
-                onDoubleClick={() => setZoomed((z) => !z)}
-              />
-            </div>
+            <img
+              src={selected.image_url}
+              alt={selected.title}
+              className="block max-w-[92vw] max-h-[85vh] object-contain rounded-lg shadow-2xl"
+              style={{ touchAction: "pinch-zoom" }}
+            />
           </div>
         </div>
       )}
