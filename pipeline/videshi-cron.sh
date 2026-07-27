@@ -219,22 +219,74 @@ case "$1" in
     ;;
 
   catchup)
-    # Run on container boot (@reboot) — catch up on hourly jobs missed during freeze
-    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup starting" >> "$LOGDIR/catchup.log"
-    run_job "live" "cd $REPO/pipeline && \
-      set -a; source $ENV/.env.supabase; set +a; \
-      python3 -u videshi-pib-photos.py ingest 2>&1 | tail -3; \
-      python3 -u videshi-markets.py 2>&1 | tail -3; \
-      python3 -u videshi-market-charts.py 2>&1 | tail -3; \
-      python3 -u videshi-ipl.py 2>&1 | tail -3; \
-      python3 -u videshi-snapshots.py 2>&1 | tail -3"
-    run_job "v2-ingest" "cd $REPO/pipeline && \
-      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
-      timeout 1200 python3 -u v3-ingest.py"
-    run_job "visa-alerts" "cd $REPO && \
-      set -a; source $ENV/.env.supabase; source $ENV/.env.resend; set +a; \
-      timeout 120 python3 -u pipeline/visa-alert-sender.py"
-    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup done" >> "$LOGDIR/catchup.log"
+    # Run on boot (@reboot) — check every job and run if overdue
+    LOG="$LOGDIR/catchup.log"
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup starting" >> "$LOG"
+
+    is_stale() {
+      # Usage: is_stale <job_name> <max_age_hours>
+      local job="$1" max_hours="$2"
+      local logfile="$LOGDIR/${job}.log"
+      [ ! -f "$logfile" ] && return 0
+      local last_ok=$(grep -E "^\[.*\] (OK|START)" "$logfile" | tail -1 | grep -oP '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}')
+      [ -z "$last_ok" ] && return 0
+      local last_epoch=$(date -d "$last_ok" +%s 2>/dev/null)
+      [ -z "$last_epoch" ] && return 0
+      local now_epoch=$(date +%s)
+      local age_hours=$(( (now_epoch - last_epoch) / 3600 ))
+      [ "$age_hours" -ge "$max_hours" ] && return 0
+      return 1
+    }
+
+    # Hourly jobs
+    is_stale live 2 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: live" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" live
+    }
+    is_stale v2-ingest 2 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: v2-ingest" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" v2-ingest
+    }
+    is_stale visa-alerts 2 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: visa-alerts" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" visa-alerts
+    }
+
+    # Every 6h jobs
+    is_stale dedupe-body-images 8 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: dedupe-body-images" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" dedupe-body-images
+    }
+    is_stale ping-google 8 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: ping-google" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" ping-google
+    }
+    is_stale gmail-scanner 8 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: gmail-scanner" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" gmail-scanner
+    }
+
+    # Every 12h jobs
+    is_stale celebrity-buzz 14 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: celebrity-buzz" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" celebrity-buzz
+    }
+    is_stale pulse-refresh 14 && {
+      echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: pulse-refresh" >> "$LOG"
+      "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" pulse-refresh
+    }
+
+    # Daily jobs — run if >26h stale
+    for job in events-cleanup topic-cleanup directory-enrich credential-check \
+               scrape-meetup scrape-allevents scrape-sulekha scrape-eventbrite \
+               media-library detect-storylines article-cards; do
+      is_stale "$job" 26 && {
+        echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: $job" >> "$LOG"
+        "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" "$job"
+      }
+    done
+
+    echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Boot catchup done" >> "$LOG"
     ;;
 
   *)
