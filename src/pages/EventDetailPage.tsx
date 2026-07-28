@@ -425,10 +425,8 @@ export default function EventDetailPage() {
   const venueZip = event.zip_code || "";
   const cityState = [event.city, event.state].filter(Boolean).join(", ");
   const mapsQuery = [event.venue_name, venueStreet, cityState, venueZip].filter(Boolean).join(", ");
-  // Prefer lat/lng for Google Maps link when available (exact location)
-  const mapsHref = event.latitude && event.longitude
-    ? `https://www.google.com/maps/search/?api=1&query=${event.latitude},${event.longitude}`
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
+  // Always use readable address for Google Maps link (not raw coordinates)
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
 
   // Descriptions
   const longDesc = event.long_description?.replace(/\s*(Read below:?|Read more:?)\s*$/i, "").trim() || null;
