@@ -276,11 +276,14 @@ function ProgramCard({ program }: { program: KidsProgram }) {
 
 /* ---------- Pill ---------- */
 
-function Pill({ label, icon, active, count, onClick, color }: {
-  label: string; icon?: string; active: boolean; count?: number; onClick: () => void; color?: string;
+function Pill({ label, icon, active, count, onClick, color, size = "md" }: {
+  label: string; icon?: string; active: boolean; count?: number; onClick: () => void; color?: string; size?: "md" | "sm";
 }) {
+  const sz = size === "sm"
+    ? "px-2.5 py-1 text-[11px]"
+    : "px-3 py-1.5 text-xs";
   return (
-    <button onClick={onClick} className={`flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${active ? "text-white border-transparent" : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"}`}
+    <button onClick={onClick} className={`flex-shrink-0 ${sz} font-medium rounded-full border transition-colors whitespace-nowrap ${active ? "text-white border-transparent" : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"}`}
       style={active ? { backgroundColor: color || "#A32D2F" } : undefined}>
       {icon && <span className="mr-1">{icon}</span>}{label}
       {count !== undefined && count > 0 && <span className="ml-1 opacity-70">({count})</span>}
@@ -318,12 +321,14 @@ export default function KidsPage() {
 
   const setParam = useCallback(
     (key: string, val: string | null, alsoReset?: string[]) => {
+      const y = window.scrollY;
       setSearchParams((prev) => {
         const next = new URLSearchParams(prev);
         if (!val) next.delete(key); else next.set(key, val);
         (alsoReset || []).forEach((k) => next.delete(k));
         return next;
       }, { replace: true });
+      requestAnimationFrame(() => window.scrollTo(0, y));
     },
     [setSearchParams],
   );
@@ -563,7 +568,7 @@ export default function KidsPage() {
               <button key={tab.key}
                 onClick={() => setParam("tab", tab.key, ["sub", "ssub"])}
                 className={`px-4 py-2.5 text-sm font-semibold rounded-t-lg transition-colors whitespace-nowrap ${active ? "bg-card border border-b-0 border-border text-foreground -mb-px" : "text-muted-foreground hover:text-foreground"}`}>
-                <span className="mr-1.5">{tab.icon}</span>{tab.label}
+                <span className="mr-1.5 text-lg">{tab.icon}</span>{tab.label}
               </button>
             );
           })}
@@ -571,7 +576,7 @@ export default function KidsPage() {
 
         {/* ═══════ SUBCATEGORY PILLS ═══════ */}
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-4">
-          <Pill label="All" active={!activeSub} onClick={() => setParam("sub", null, ["ssub"])} />
+          <Pill label="All" icon="✨" active={!activeSub} onClick={() => setParam("sub", null, ["ssub"])} />
           {activeTab.subcategories.map((sub) => (
             <Pill key={sub.key} label={sub.label} icon={sub.icon} active={activeSub?.key === sub.key}
               count={subCounts[sub.key]} onClick={() => setParam("sub", sub.key, ["ssub"])} />
@@ -581,10 +586,10 @@ export default function KidsPage() {
         {/* ═══════ SUB-SUBCATEGORY PILLS (e.g. Sports → Cricket/Tennis) ═══════ */}
         {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-6">
-            <Pill label="All" active={!activeSubSub} onClick={() => setParam("ssub", null)} color="#0B1D3A" />
+            <Pill label="All" icon="🏅" active={!activeSubSub} onClick={() => setParam("ssub", null)} color="#0B1D3A" size="sm" />
             {activeSub.subsubs.map((ss) => (
               <Pill key={ss.key} label={ss.label} icon={ss.icon} active={activeSubSub?.key === ss.key}
-                onClick={() => setParam("ssub", ss.key)} color="#0B1D3A" />
+                onClick={() => setParam("ssub", ss.key)} color="#0B1D3A" size="sm" />
             ))}
           </div>
         )}
