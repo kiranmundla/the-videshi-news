@@ -362,7 +362,7 @@ function FilterCard({ label, icon, subtitle, active, count, onClick, size = "md"
   const ring = active ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg" : "";
   const imgSrc = imgKey ? KIDS_CAT_IMG[imgKey] : undefined;
 
-  const aspectClass = size === "lg" || size === "md" ? "aspect-[4/3]" : size === "sm" ? "aspect-[3/2]" : "aspect-[2/1]";
+  const aspectClass = size === "xs" ? "aspect-[3/2]" : "aspect-[4/3]";
   const textClass = size === "lg" || size === "md" ? "text-[13px] sm:text-sm" : "text-[11px]";
   const iconClass = size === "lg" || size === "md" ? "text-base" : "text-sm";
 
@@ -669,7 +669,8 @@ export default function KidsPage() {
         {/* ═══════ SUBCATEGORY CARDS ═══════ */}
         {activeTab.subcategories.filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0).length > 0 && (
           <div className="mb-4">
-            <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{activeTab.label}</p>
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
               <FilterCard label="All" icon="✨" size="sm" active={!activeSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("sub", null, ["ssub"])} />
