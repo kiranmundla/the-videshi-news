@@ -318,6 +318,7 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
         venue_name = ""
         venue_city = ""
         venue_state = state["abbr"]
+        street_address = ""
         lat = None
         lon = None
 
@@ -325,6 +326,7 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
             venue_name = venue.get("name", "")
             venue_city = venue.get("city", "") or ""
             venue_state = venue.get("state", state["abbr"]) or state["abbr"]
+            street_address = venue.get("address", "") or ""
             lat = venue.get("lat")
             lon = venue.get("lng") or venue.get("lon")
 
@@ -371,6 +373,7 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
             "latitude": _lat,
             "longitude": _lon,
             "content_fingerprint": fp,
+            "street_address": street_address[:300] if street_address else None,
         })
 
     return events

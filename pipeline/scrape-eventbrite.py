@@ -29,7 +29,7 @@ def supabase_headers():
     }
 
 def supabase_post(table, rows):
-    """Insert rows, skip conflicts on slug."""
+    """Upsert rows, merging updates on conflict."""
     import subprocess
     url = f"{SUPABASE_URL}/rest/v1/{table}?on_conflict=source,source_id"
     payload = json.dumps(rows)
@@ -39,7 +39,7 @@ def supabase_post(table, rows):
         "-H", f"apikey: {SUPABASE_KEY}",
         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
         "-H", "Content-Type: application/json",
-        "-H", "Prefer: return=minimal,resolution=ignore-duplicates",
+        "-H", "Prefer: return=minimal,resolution=merge-duplicates",
         "-d", payload,
     ]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)

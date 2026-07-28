@@ -294,8 +294,21 @@ def scrape_listing_page(city: dict, keyword: str) -> list:
     return events
 
 
+def strip_html(text: str) -> str:
+    """Strip HTML tags and decode entities."""
+    text = re.sub(r'<br\s*/?>', '\n', text)
+    text = re.sub(r'</p>', '\n', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    text = text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+    text = text.replace('&#39;', "'").replace('&quot;', '"').replace('&nbsp;', ' ')
+    # Collapse whitespace but preserve paragraph breaks
+    text = re.sub(r'[ \t]+', ' ', text)
+    text = re.sub(r'\n\s*\n', '\n\n', text)
+    return text.strip()
+
+
 def fetch_event_details(event_url: str) -> dict | None:
-    """Fetch individual event page and extract JSON-LD structured data."""
+    """Fetch individual event page and extract JSON-LD + HTML description."""
     try:
         resp = requests.get(event_url, headers={"User-Agent": UA}, timeout=20)
         if resp.status_code != 200:
@@ -311,17 +324,34 @@ def fetch_event_details(event_url: str) -> dict | None:
         html, re.DOTALL
     )
 
+    json_ld = None
     for block in blocks:
         try:
             data = json.loads(block)
             if isinstance(data, list):
                 for item in data:
                     if item.get("@type") == "Event":
-                        return item
+                        json_ld = item
+                        break
             elif isinstance(data, dict) and data.get("@type") == "Event":
-                return data
+                json_ld = data
+            if json_ld:
+                break
         except json.JSONDecodeError:
             continue
+
+    if json_ld:
+        # Extract full description from HTML (richer than JSON-LD summary)
+        desc_match = re.search(
+            r'<div\s+class="event-description-html">\s*(.*?)\s*</div>',
+            html, re.DOTALL
+        )
+        if desc_match:
+            full_desc = strip_html(desc_match.group(1))
+            if len(full_desc) > len(json_ld.get("description", "")):
+                json_ld["_full_description"] = full_desc
+
+        return json_ld
 
     # Fallback: try to extract from HTML meta tags
     meta = {}
@@ -355,7 +385,12 @@ def process_event(card: dict, city: dict) -> dict | None:
         description = details.get("og:description", "")
         image_url = details.get("og:image", "")
         lat, lon = None, None
-        end_date = None
+        end_date_str = None
+        street_address = ""
+        zip_code = ""
+        full_description = description
+        addr_city = city["display"]
+        addr_state = city["state"]
     else:
         # Rich JSON-LD data
         title = details.get("name", name)
@@ -374,13 +409,22 @@ def process_event(card: dict, city: dict) -> dict | None:
         lat = float(geo.get("latitude")) if geo.get("latitude") else None
         lon = float(geo.get("longitude")) if geo.get("longitude") else None
 
-        # Try to get city/state from address
+        # Extract street address and zip from JSON-LD (PostalAddress)
+        street_address = ""
+        zip_code = ""
         if isinstance(address, dict):
             addr_city = address.get("addressLocality", city["display"])
             addr_state = address.get("addressRegion", city["state"])
+            street_address = address.get("streetAddress", "")
+            zip_code = address.get("postalCode", "")
         else:
             addr_city = city["display"]
             addr_state = city["state"]
+
+        # Use full HTML description if available (richer than JSON-LD summary)
+        full_description = details.get("_full_description", "")
+        if not full_description or len(full_description) < len(description):
+            full_description = description
 
     if not date_str:
         return None
@@ -393,22 +437,22 @@ def process_event(card: dict, city: dict) -> dict | None:
     except:
         return None
 
-    event_city = addr_city if 'addr_city' in dir() else city["display"]
-    event_state = addr_state if 'addr_state' in dir() else city["state"]
+    event_city = addr_city
+    event_state = addr_state
 
     fp = content_fingerprint(title, date_str, event_city)
 
     return {
         "title": title,
         "date": date_str,
-        "end_date": end_date_str if 'end_date_str' in dir() and end_date_str else None,
+        "end_date": end_date_str if end_date_str else None,
         "time": time_str or "",
         "venue_name": venue_name,
         "city": event_city,
         "state": event_state,
-        "category": categorize(title, description),
+        "category": categorize(title, full_description),
         "description": description[:500] if description else title,
-        "long_description": description[:2000] if description else None,
+        "long_description": full_description[:2000] if full_description else None,
         "image_url": image_url,
         "ticket_url": event_url,
         "source": "allevents",
@@ -418,6 +462,8 @@ def process_event(card: dict, city: dict) -> dict | None:
         "latitude": lat,
         "longitude": lon,
         "content_fingerprint": fp,
+        "street_address": street_address[:300] if street_address else None,
+        "zip_code": zip_code[:20] if zip_code else None,
     }
 
 
