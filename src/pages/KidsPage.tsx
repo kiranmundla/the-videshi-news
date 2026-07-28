@@ -671,22 +671,20 @@ export default function KidsPage() {
           <Skeleton n={6} />
         ) : (
           <>
-            {/* --- Results Toggle Tabs --- */}
+            {/* --- Results Toggle Cards --- */}
             {(filteredPlaces.length > 0 || filteredPrograms.length > 0) && (
-              <div className="flex gap-1 mb-6 border-b border-border">
+              <div className="flex flex-wrap gap-2.5 mb-6">
                 {filteredPlaces.length > 0 && (
-                  <button
-                    onClick={() => { setResultView("places"); setShowAllPlaces(false); }}
-                    className={`px-4 py-2.5 text-sm font-semibold rounded-t-lg transition-colors whitespace-nowrap ${resultView === "places" ? "bg-card border border-b-0 border-border text-foreground -mb-px" : "text-muted-foreground hover:text-foreground"}`}>
-                    📍 Near You ({filteredPlaces.length})
-                  </button>
+                  <FilterCard label={`Near You`} icon="📍" size="sm" 
+                    active={resultView === "places"} count={filteredPlaces.length}
+                    gradient="linear-gradient(135deg, #0B1D3A 0%, #1e3a5f 100%)"
+                    onClick={() => { setResultView("places"); setShowAllPlaces(false); }} />
                 )}
                 {filteredPrograms.length > 0 && (
-                  <button
-                    onClick={() => { setResultView("programs"); setShowAllPrograms(false); }}
-                    className={`px-4 py-2.5 text-sm font-semibold rounded-t-lg transition-colors whitespace-nowrap ${resultView === "programs" ? "bg-card border border-b-0 border-border text-foreground -mb-px" : "text-muted-foreground hover:text-foreground"}`}>
-                    🏆 Programs ({filteredPrograms.length})
-                  </button>
+                  <FilterCard label={`Programs`} icon="🏆" size="sm"
+                    active={resultView === "programs"} count={filteredPrograms.length}
+                    gradient="linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)"
+                    onClick={() => { setResultView("programs"); setShowAllPrograms(false); }} />
                 )}
               </div>
             )}
