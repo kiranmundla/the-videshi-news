@@ -116,7 +116,7 @@ def enrich_allevents(event):
     url = event.get("ticket_url", "")
     # If ticket_url isn't an allevents URL, reconstruct it from source_id
     if not url or "allevents.in" not in url:
-        sid = event.get("source_id", "")
+        sid = event.get("source_id") or ""
         ae_id = sid.replace("allevents_", "") if sid.startswith("allevents_") else ""
         if not ae_id:
             return None
@@ -208,7 +208,7 @@ def enrich_eventbrite(event):
             data = json.loads(block)
             if isinstance(data, list):
                 data = data[0] if data else {}
-            if data.get("@type") == "Event":
+            if "Event" in str(data.get("@type", "")):
                 # Description
                 desc = data.get("description", "")
                 if desc and len(desc) > 100:
@@ -316,7 +316,7 @@ def enrich_meetup(event):
             data = json.loads(block)
             if isinstance(data, list):
                 data = data[0] if data else {}
-            if data.get("@type") == "Event":
+            if "Event" in str(data.get("@type", "")):
                 loc = data.get("location", {})
                 if isinstance(loc, dict):
                     addr = loc.get("address", {})

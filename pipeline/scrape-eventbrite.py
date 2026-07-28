@@ -12,7 +12,7 @@ Usage:
   python3 scrape-eventbrite.py --dry-run    # Don't insert into DB
 """
 
-import os, sys, json, re, time, hashlib, argparse, traceback
+import os, sys, json, re, time, hashlib, argparse, traceback, subprocess
 from datetime import datetime, date
 from urllib.parse import quote
 
@@ -395,6 +395,132 @@ def scrape_state(state: dict, existing_fps: set) -> list:
     return all_events
 
 
+# ── Detail page enrichment ─────────────────────────────────────────────────
+
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+
+
+def strip_html(html_text):
+    """Convert HTML to plain text, preserving paragraph breaks."""
+    if not html_text:
+        return ""
+    text = re.sub(r'<br\s*/?>', '\n', html_text)
+    text = re.sub(r'</p>', '\n', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    text = text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+    text = text.replace('&#39;', "'").replace('&quot;', '"').replace('&nbsp;', ' ')
+    text = re.sub(r'[ \t]+', ' ', text)
+    text = re.sub(r'\n\s*\n', '\n\n', text)
+    return text.strip()
+
+
+def enrich_from_detail_page(event: dict) -> dict:
+    """Visit event's Eventbrite page to extract full description + address from JSON-LD."""
+    url = event.get("ticket_url", "")
+    if not url:
+        return event
+
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "-L", "--max-time", "15",
+             "-H", f"User-Agent: {UA}",
+             "-H", "Accept: text/html",
+             url],
+            capture_output=True, text=True, timeout=25
+        )
+        if r.returncode != 0 or not r.stdout or len(r.stdout) < 1000:
+            return event
+        html = r.stdout
+    except Exception:
+        return event
+
+    # 1. JSON-LD for description + address
+    for block in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, re.DOTALL):
+        try:
+            data = json.loads(block)
+            if isinstance(data, list):
+                data = data[0] if data else {}
+            if "Event" not in str(data.get("@type", "")):
+                continue
+            # Description
+            desc = data.get("description", "")
+            if desc and len(desc) > 100:
+                cleaned = strip_html(desc)
+                if len(cleaned) > len(event.get("long_description") or ""):
+                    event["long_description"] = cleaned[:5000]
+            # Address
+            loc = data.get("location", {})
+            if isinstance(loc, dict):
+                addr = loc.get("address", {})
+                if isinstance(addr, dict):
+                    street = addr.get("streetAddress", "")
+                    postal = addr.get("postalCode", "")
+                    if street and not event.get("street_address"):
+                        event["street_address"] = street[:300]
+                    if postal and not event.get("zip_code"):
+                        event["zip_code"] = postal[:20]
+            break
+        except (json.JSONDecodeError, KeyError):
+            continue
+
+    # 2. __SERVER_DATA__ for richer description if JSON-LD didn't have one
+    if not event.get("long_description"):
+        start = html.find("window.__SERVER_DATA__")
+        if start >= 0:
+            eq_pos = html.find("=", start)
+            brace_start = html.find("{", eq_pos)
+            if brace_start >= 0:
+                depth = 0
+                end = brace_start
+                for i in range(brace_start, min(len(html), brace_start + 500000)):
+                    if html[i] == "{": depth += 1
+                    elif html[i] == "}": depth -= 1
+                    if depth == 0:
+                        end = i
+                        break
+                try:
+                    server_data = json.loads(html[brace_start:end + 1])
+                    components = server_data.get("components", {})
+                    for path_key in ["eventDescription", "listing_event"]:
+                        if path_key in components:
+                            comp = components[path_key]
+                            desc = comp.get("description", {})
+                            if isinstance(desc, dict):
+                                html_desc = desc.get("html", "") or desc.get("text", "")
+                            else:
+                                html_desc = str(desc) if desc else ""
+                            if html_desc and len(html_desc) > 100:
+                                cleaned = strip_html(html_desc)
+                                if len(cleaned) > len(event.get("long_description") or ""):
+                                    event["long_description"] = cleaned[:5000]
+                            break
+                except (json.JSONDecodeError, KeyError):
+                    pass
+
+    return event
+
+
+def enrich_events(events: list) -> list:
+    """Enrich a list of events with detail page data."""
+    if not events:
+        return events
+    enriched = 0
+    for i, ev in enumerate(events):
+        needs_desc = not ev.get("long_description") or len(ev.get("long_description", "")) < 100
+        needs_addr = not ev.get("street_address")
+        if needs_desc or needs_addr:
+            ev = enrich_from_detail_page(ev)
+            events[i] = ev
+            got_desc = bool(ev.get("long_description") and len(ev["long_description"]) > 100)
+            got_addr = bool(ev.get("street_address"))
+            if got_desc or got_addr:
+                enriched += 1
+            time.sleep(0.5)  # Rate limit
+    if enriched:
+        print(f"  📝 Enriched {enriched}/{len(events)} events from detail pages")
+    return events
+
+
 # ── Main ──────────────────────────────────────────────────────────────────
 
 def main():
@@ -438,6 +564,9 @@ def main():
     for state in states:
         try:
             events = scrape_state(state, existing_fps)
+            # Enrich events with full descriptions + addresses from detail pages
+            if events:
+                events = enrich_events(events)
             total_found_state = len(events)
             total_found += total_found_state
 

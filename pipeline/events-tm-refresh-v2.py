@@ -99,21 +99,64 @@ def fetch_tm(keyword, state_code=None, size=20):
         if result.returncode != 0:
             return []
         data = json.loads(result.stdout)
-        return data.get("events", [])
+        # Handle raw TM API format (_embedded.events) or simplified (events)
+        events = data.get("events", [])
+        if not events:
+            events = data.get("_embedded", {}).get("events", [])
+        return events
     except Exception as e:
         print(f"  Error: {keyword}/{state_code}: {e}")
         return []
 
 def event_to_row(evt):
+    # Handle raw TM API format
     title = evt.get("name", "").strip()
-    city = evt.get("city", "")
-    state = evt.get("state", "")
-    date = evt.get("date", "")
-    tm_time = evt.get("time", "")
-    venue = evt.get("venue", "")
+    tm_id = evt.get("id", "")
+
+    # Venue and location from nested _embedded.venues
+    venues = evt.get("_embedded", {}).get("venues", [])
+    venue_data = venues[0] if venues else {}
+
+    venue = venue_data.get("name", "") or evt.get("venue", "")
+    city = venue_data.get("city", {}).get("name", "") or evt.get("city", "")
+    state = venue_data.get("state", {}).get("stateCode", "") or evt.get("state", "")
+
+    # Address from venue data
+    street_address = venue_data.get("address", {}).get("line1", "")
+    zip_code = venue_data.get("postalCode", "")
+
+    # Coordinates from venue data
+    loc = venue_data.get("location", {})
+    latitude = loc.get("latitude")
+    longitude = loc.get("longitude")
+    if latitude:
+        try: latitude = float(latitude)
+        except: latitude = None
+    if longitude:
+        try: longitude = float(longitude)
+        except: longitude = None
+
+    # Date/time
+    dates = evt.get("dates", {}).get("start", {})
+    date = dates.get("localDate", "") or evt.get("date", "")
+    tm_time = dates.get("localTime", "") or evt.get("time", "")
+
+    # Ticket URL
     ticket_url = evt.get("url", "")
-    price = evt.get("price_range", "")
-    tm_id = evt.get("id", "") or evt.get("hex_id", "")
+
+    # Price
+    price_ranges = evt.get("priceRanges", [])
+    price = ""
+    if price_ranges:
+        pr = price_ranges[0]
+        lo = pr.get("min")
+        hi = pr.get("max")
+        if lo and hi:
+            price = f"${lo:.0f} - ${hi:.0f}" if lo != hi else f"${lo:.0f}"
+        elif lo:
+            price = f"From ${lo:.0f}"
+    if not price:
+        price = evt.get("price_range", "")
 
     if not tm_id:
         tm_id = hashlib.md5(f"{title}_{date}_{city}".encode()).hexdigest()[:16]
@@ -142,6 +185,10 @@ def event_to_row(evt):
         "ticket_url": ticket_url,
         "price_range": price or None,
         "slug": slug,
+        "street_address": street_address or None,
+        "zip_code": zip_code or None,
+        "latitude": latitude,
+        "longitude": longitude,
     }
 
 def get_existing_source_ids():
