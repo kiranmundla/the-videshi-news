@@ -146,7 +146,9 @@ function categoryFallbackImg(category?: string | null): string {
 
 function PhotoGallery({ images, label }: { images: string[]; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  if (!images.length) return null;
+  const [failedSet, setFailedSet] = useState<Set<number>>(new Set());
+  const validImages = images.filter((_, i) => !failedSet.has(i));
+  if (!validImages.length) return null;
 
   const scroll = (dir: number) => {
     const el = ref.current;
@@ -161,13 +163,14 @@ function PhotoGallery({ images, label }: { images: string[]; label: string }) {
         className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-2"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
-        {images.map((url, i) => (
+        {images.map((url, i) => failedSet.has(i) ? null : (
           <div key={i} className="flex-shrink-0 snap-start w-[80%] sm:w-[55%] md:w-[40%] rounded-xl overflow-hidden">
             <img
               src={url}
               alt={`${label} — photo ${i + 1}`}
               className="w-full h-48 sm:h-56 object-cover bg-white/5"
               loading="lazy"
+              onError={() => setFailedSet(prev => new Set([...prev, i]))}
             />
           </div>
         ))}
@@ -424,6 +427,10 @@ export default function EventDetailPage() {
   const venueZip = event.zip_code || "";
   const cityState = [event.city, event.state].filter(Boolean).join(", ");
   const mapsQuery = [event.venue_name, venueStreet, cityState, venueZip].filter(Boolean).join(", ");
+  // Prefer lat/lng for Google Maps link when available (exact location)
+  const mapsHref = event.latitude && event.longitude
+    ? `https://www.google.com/maps/search/?api=1&query=${event.latitude},${event.longitude}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
 
   // Descriptions
   const longDesc = event.long_description?.replace(/\s*(Read below:?|Read more:?)\s*$/i, "").trim() || null;
@@ -658,7 +665,7 @@ export default function EventDetailPage() {
                       {fullAddress && <p className="text-white/45 text-sm mt-1">{fullAddress}</p>}
                     </div>
                     <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`}
+                      href={mapsHref}
                       target="_blank" rel="noopener noreferrer"
                       className="flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-white/[0.06] text-white/60 hover:bg-white/10 hover:text-white/80 transition-all"
                     >
@@ -740,7 +747,10 @@ export default function EventDetailPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      {/* Override theme vars so footer is visible on dark event bg */}
+      <div style={{ "--foreground": "0 0% 85%", "--muted-foreground": "0 0% 55%", "--border": "0 0% 20%" } as React.CSSProperties}>
+        <SiteFooter />
+      </div>
     </div>
   );
 }
