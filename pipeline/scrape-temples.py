@@ -755,6 +755,14 @@ def main():
             sources_fail += 1
             continue
 
+        # Extract og:image as fallback for events without per-event images
+        og_image = None
+        og_m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html, re.IGNORECASE)
+        if not og_m:
+            og_m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html, re.IGNORECASE)
+        if og_m:
+            og_image = og_m.group(1).strip()
+
         # Parse events
         try:
             events = parse_fn(html, src)
@@ -781,6 +789,10 @@ def main():
             if fp in existing_fps:
                 total_skipped_dup += 1
                 continue
+
+            # Use og:image as fallback if no per-event image
+            if not ev.get("image_url") and og_image:
+                ev["image_url"] = og_image
 
             if args.dry_run:
                 print(f"     → {ev['date']} | {ev['title'][:50]}")

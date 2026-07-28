@@ -185,7 +185,7 @@ for url, center in VIPASSANA_CENTERS:
 # ── Fetch page ───────────────────────────────────────────────────────────────
 
 def fetch_page(url):
-    """Fetch URL with curl, return text content."""
+    """Fetch URL with curl, return (text_content, og_image_url)."""
     try:
         result = subprocess.run(
             ['curl', '-sS', '-L', '-A', 'TheVideshi/1.0 (thevideshi.com)',
@@ -194,19 +194,28 @@ def fetch_page(url):
         )
         if result.returncode != 0:
             print(f"  curl error for {url}: {result.stderr[:200]}", file=sys.stderr)
-            return None
+            return None, None
         html = result.stdout
         if not html or len(html) < 100:
             print(f"  Empty/tiny response from {url}", file=sys.stderr)
-            return None
+            return None, None
+
+        # Extract og:image before stripping HTML
+        og_image = None
+        og_match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html, re.IGNORECASE)
+        if not og_match:
+            og_match = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', html, re.IGNORECASE)
+        if og_match:
+            og_image = og_match.group(1).strip()
+
         text = html_to_text(html)
         # Truncate to ~6000 chars to stay within LLM context budget
         if len(text) > 6000:
             text = text[:6000]
-        return text
+        return text, og_image
     except Exception as e:
         print(f"  Exception fetching {url}: {e}", file=sys.stderr)
-        return None
+        return None, None
 
 # ── LLM extraction ───────────────────────────────────────────────────────────
 
@@ -293,7 +302,7 @@ def make_slug(title, city, date_str):
     slug = re.sub(r'[^a-z0-9]+', '-', raw.lower()).strip('-')
     return slug[:120]
 
-def upsert_event(event, org, teacher, is_featured_source, source_url=None):
+def upsert_event(event, org, teacher, is_featured_source, source_url=None, og_image=None):
     """Upsert a single event to Supabase."""
     title = event.get('title', '').strip()
     date_str = event.get('date', '')
@@ -337,6 +346,7 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None):
         'source_id': sid,
         'slug': slug,
         'is_featured': is_featured,
+        'image_url': og_image,
         'content_fingerprint': compute_fingerprint(title, date_str, event.get('city', '')),
     }
 
@@ -422,7 +432,7 @@ def main():
         print(f"\n[{i+1}/{total_sources}] {org} — {url}")
 
         # Fetch page
-        text = fetch_page(url)
+        text, og_image = fetch_page(url)
         if not text:
             print(f"  ⚠ Could not fetch page, skipping")
             continue
@@ -452,7 +462,7 @@ def main():
                 continue
 
             is_new = sid not in existing_ids
-            ok = upsert_event(ev, org, teacher, is_featured, source_url=url)
+            ok = upsert_event(ev, org, teacher, is_featured, source_url=url, og_image=og_image)
 
             if ok:
                 if is_new:
