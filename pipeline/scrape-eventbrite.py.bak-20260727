@@ -292,6 +292,8 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
     venue = e.get("primary_venue") or {}
     venue_name = venue.get("name", "")
     addr = venue.get("address", {}) or {}
+    street_address = addr.get("address_1", "")
+    zip_code = addr.get("postal_code", "")
     event_city = addr.get("city", "")
     event_state = addr.get("region", state_abbr)
     lat = addr.get("latitude")
@@ -321,6 +323,9 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
     fp = content_fingerprint(name, start_date, event_city or "unknown")
     category = map_category(e.get("tags", []))
 
+    # Full description from search data (often empty; backfill script enriches later)
+    full_desc = (e.get("full_description") or "").strip()
+
     row = {
         "title": name[:300],
         "date": start_date or None,
@@ -331,6 +336,7 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
         "state": event_state or None,
         "category": category,
         "description": summary[:2000] if summary else None,
+        "long_description": full_desc[:5000] if full_desc else None,
         "image_url": image_url or None,
         "ticket_url": url or None,
         "source": "eventbrite",
@@ -341,6 +347,8 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
         "latitude": float(lat) if lat else None,
         "longitude": float(lng) if lng else None,
         "content_fingerprint": fp,
+        "street_address": street_address[:300] if street_address else None,
+        "zip_code": zip_code[:20] if zip_code else None,
     }
     return row
 

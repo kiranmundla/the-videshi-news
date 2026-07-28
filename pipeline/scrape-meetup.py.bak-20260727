@@ -350,7 +350,7 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
 
         _lat = float(lat) if lat else None
         _lon = float(lon) if lon else None
-        fp = content_fingerprint(date_str, time_str or "", _lat, _lon, venue_name)
+        fp = content_fingerprint(title, date_str, venue_city or group_city or "")
 
         events.append({
             "title": title,
@@ -377,18 +377,10 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
 
 
 # ---------------------------------------------------------------------------
-# Cross-source content fingerprint (date + time + location)
+# Cross-source content fingerprint — use shared module
 # ---------------------------------------------------------------------------
 
-def content_fingerprint(date_str: str, time_str: str = "", lat=None, lon=None, venue: str = "") -> str:
-    """Generate a fingerprint from date+time+location for cross-source dedup.
-    Two events at the same place and same time = duplicate regardless of source."""
-    lat_r = round(float(lat), 3) if lat else 0
-    lng_r = round(float(lon), 3) if lon else 0
-    norm_venue = re.sub(r'[^a-z0-9]', '', (venue or '').lower())
-    time_norm = (time_str or '00:00')[:5]
-    raw = f"{date_str}|{time_norm}|{lat_r}|{lng_r}|{norm_venue}"
-    return hashlib.sha256(raw.encode()).hexdigest()[:16]
+from event_dedup import content_fingerprint, get_all_fingerprints
 
 
 # ---------------------------------------------------------------------------
@@ -399,11 +391,10 @@ def get_existing_events() -> tuple:
     """Get set of existing source_ids, (title_lower, date) tuples, and content_fingerprints for dedup."""
     existing_ids = set()
     existing_title_dates = set()
-    existing_fingerprints = set()
 
     try:
         resp = requests.get(
-            f"{REST}/events?select=source_id,title,date,content_fingerprint&limit=5000",
+            f"{REST}/events?select=source_id,title,date&limit=5000",
             headers={
                 "apikey": SB_KEY,
                 "Authorization": f"Bearer {SB_KEY}",
@@ -417,10 +408,11 @@ def get_existing_events() -> tuple:
                 if e.get("title") and e.get("date"):
                     t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
                     existing_title_dates.add((t, e["date"]))
-                if e.get("content_fingerprint"):
-                    existing_fingerprints.add(e["content_fingerprint"])
     except Exception as e:
         print(f"  ⚠ Could not fetch existing events: {e}")
+
+    # Cross-source fingerprints via shared module (uses curl)
+    existing_fingerprints = get_all_fingerprints()
 
     return existing_ids, existing_title_dates, existing_fingerprints
 
@@ -450,12 +442,12 @@ def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, exis
     t = re.sub(r'[^a-z0-9]', '', event["title"].lower())
     if (t, event["date"]) in existing_title_dates:
         return True
-    # Cross-source content fingerprint
+    # Cross-source content fingerprint (unified: title+date+city)
     if existing_fingerprints:
         fp = content_fingerprint(
-            event["date"], event.get("time", ""),
-            event.get("latitude"), event.get("longitude"),
-            event.get("venue_name", "")
+            event["title"],
+            event["date"],
+            event.get("city", "")
         )
         if fp in existing_fingerprints:
             return True

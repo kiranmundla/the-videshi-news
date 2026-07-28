@@ -114,15 +114,27 @@ def update_event(event_id, updates):
 def enrich_allevents(event):
     """Fetch AllEvents detail page, extract full description + address from JSON-LD + HTML."""
     url = event.get("ticket_url", "")
-    if not url:
+    # If ticket_url isn't an allevents URL, reconstruct it from source_id
+    if not url or "allevents.in" not in url:
+        sid = event.get("source_id", "")
+        ae_id = sid.replace("allevents_", "") if sid.startswith("allevents_") else ""
+        if not ae_id:
+            return None
+        # Can't reconstruct full URL without city slug, skip
         return None
 
     try:
-        import requests
-        resp = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if resp.status_code != 200:
+        r = subprocess.run(
+            ["curl", "-s", "-L", "--max-time", "20", "--max-redirs", "5",
+             "-H", f"User-Agent: {UA}",
+             "-H", "Accept: text/html,application/xhtml+xml",
+             "-H", "Accept-Language: en-US,en;q=0.9",
+             url],
+            capture_output=True, text=True, timeout=30
+        )
+        if r.returncode != 0 or not r.stdout or len(r.stdout) < 2000:
             return None
-        html = resp.text
+        html = r.stdout
     except Exception as e:
         print(f"    Fetch error: {e}")
         return None
@@ -283,11 +295,14 @@ def enrich_meetup(event):
         return None
 
     try:
-        import requests
-        resp = requests.get(url, headers={"User-Agent": UA}, timeout=15)
-        if resp.status_code != 200:
+        r = subprocess.run(
+            ["curl", "-s", "-L", "--max-time", "15", "--max-redirs", "5",
+             "-H", f"User-Agent: {UA}", url],
+            capture_output=True, text=True, timeout=25
+        )
+        if r.returncode != 0 or not r.stdout or len(r.stdout) < 1000:
             return None
-        html = resp.text
+        html = r.stdout
     except Exception as e:
         print(f"    Fetch error: {e}")
         return None

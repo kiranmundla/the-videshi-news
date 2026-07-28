@@ -424,8 +424,12 @@ export default function EventDetailPage() {
     || (event.venue_name?.includes(",") ? event.venue_name.split(",").slice(1).join(",").trim() : "");
   const venueZip = event.zip_code || "";
   const cityState = [event.city, event.state].filter(Boolean).join(", ");
-  const mapsQuery = [event.venue_name, venueStreet, cityState, venueZip].filter(Boolean).join(", ");
-  // Always use readable address for Google Maps link (not raw coordinates)
+  // Build Google Maps query: prefer street address (most reliable), fall back to coordinates, then venue name
+  const mapsQuery = venueStreet
+    ? [venueStreet, cityState, venueZip].filter(Boolean).join(", ")
+    : event.latitude && event.longitude
+      ? `${event.latitude},${event.longitude}`
+      : [event.venue_name, cityState].filter(Boolean).join(", ");
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`;
 
   // Descriptions
