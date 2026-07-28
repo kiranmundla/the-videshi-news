@@ -139,8 +139,6 @@ const CAT_FALLBACK_IMG: Record<string, string> = {
 function categoryFallbackImg(category?: string | null): string {
   return CAT_FALLBACK_IMG[category || "Other"] || CAT_FALLBACK_IMG["Other"];
 }
-  );
-}
 
 /* ── Photo Gallery (horizontal scroll) ──────────────────────────── */
 
