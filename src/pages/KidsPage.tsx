@@ -17,22 +17,22 @@ import {
 /* ------------------------------------------------------------------ */
 
 const CATEGORIES = [
-  "All",
-  "Academic Competitions",
-  "Math",
-  "Science & STEM",
-  "Robotics",
-  "Coding & CS",
-  "Chess",
-  "College Prep",
-  "Summer Programs",
-  "Sports",
-  "Dance",
-  "Music",
-  "Language",
-  "Cultural & Arts",
-  "Cultural & Religious",
-  "Volunteering",
+  { key: "All", icon: "📋" },
+  { key: "Academic Competitions", icon: "🏆" },
+  { key: "Math", icon: "🔢" },
+  { key: "Science & STEM", icon: "🧪" },
+  { key: "Robotics", icon: "🤖" },
+  { key: "Coding & CS", icon: "💻" },
+  { key: "Chess", icon: "♟️" },
+  { key: "College Prep", icon: "📝" },
+  { key: "Summer Programs", icon: "☀️" },
+  { key: "Sports", icon: "⚽" },
+  { key: "Dance", icon: "💃" },
+  { key: "Music", icon: "🎵" },
+  { key: "Language", icon: "🗣️" },
+  { key: "Cultural & Arts", icon: "🎨" },
+  { key: "Cultural & Religious", icon: "🪔" },
+  { key: "Volunteering", icon: "🤝" },
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -55,11 +55,10 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 const AGE_GROUPS = [
-  { key: "all", label: "All Ages", short: "All" },
-  { key: "preschool", label: "Preschool", short: "Pre-K", sub: "Ages 3–5" },
-  { key: "elementary", label: "Elementary", short: "K–5", sub: "Grades K–5" },
-  { key: "middle_school", label: "Middle School", short: "6–8", sub: "Grades 6–8" },
-  { key: "high_school", label: "High School", short: "9–12", sub: "Grades 9–12" },
+  { key: "preschool", label: "Preschool", sub: "Ages 3–5", icon: "🧒" },
+  { key: "elementary", label: "Elementary", sub: "Grades K–5", icon: "📖" },
+  { key: "middle_school", label: "Middle School", sub: "Grades 6–8", icon: "🔬" },
+  { key: "high_school", label: "High School", sub: "Grades 9–12", icon: "🎓" },
 ];
 
 type LocationFilter = "all" | "online" | "nearme";
@@ -305,14 +304,14 @@ function ResultsSummary({
   userState,
 }: {
   count: number;
-  ageGroup: string;
+  ageGroup: string | null;
   category: string;
   locationFilter: LocationFilter;
   userState: string | undefined;
 }) {
   const parts: string[] = [];
   if (category !== "All") parts.push(category);
-  if (ageGroup !== "all") {
+  if (ageGroup) {
     const ag = AGE_GROUPS.find((a) => a.key === ageGroup);
     if (ag) parts.push(`for ${ag.label}`);
   }
@@ -341,7 +340,7 @@ export default function KidsPage() {
   const [deadlines, setDeadlines] = useState<KidsDeadline[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [selectedAge, setSelectedAge] = useState("all");
+  const [selectedAge, setSelectedAge] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [locationFilter, setLocationFilter] = useState<LocationFilter>("all");
 
@@ -372,7 +371,7 @@ export default function KidsPage() {
     let list = programs;
 
     // Age group
-    if (selectedAge !== "all") {
+    if (selectedAge) {
       list = list.filter(
         (p) =>
           Array.isArray(p.age_groups) && p.age_groups.includes(selectedAge),
@@ -397,7 +396,7 @@ export default function KidsPage() {
   /* ---- dynamic category counts (respecting age + location filters) ---- */
   const categoryCounts = useMemo(() => {
     let base = programs;
-    if (selectedAge !== "all") {
+    if (selectedAge) {
       base = base.filter(
         (p) =>
           Array.isArray(p.age_groups) && p.age_groups.includes(selectedAge),
@@ -418,12 +417,12 @@ export default function KidsPage() {
 
   /* ---- clear all filters ---- */
   const hasActiveFilters =
-    selectedAge !== "all" ||
+    selectedAge !== null ||
     selectedCategory !== "All" ||
     locationFilter !== "all";
 
   function clearFilters() {
-    setSelectedAge("all");
+    setSelectedAge(null);
     setSelectedCategory("All");
     setLocationFilter("all");
   }
@@ -461,37 +460,29 @@ export default function KidsPage() {
 
         {/* ───────── FILTER BAR ───────── */}
         <div className="mb-8 space-y-5">
-          {/* Row 1: Age group */}
+          {/* Row 1: Age group — icon cards */}
           <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
               Age Group
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {AGE_GROUPS.map((ag) => {
                 const active = selectedAge === ag.key;
                 return (
                   <button
                     key={ag.key}
-                    onClick={() => setSelectedAge(ag.key)}
-                    className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all ${
+                    onClick={() => setSelectedAge(active ? null : ag.key)}
+                    className={`relative rounded-xl border-2 p-4 sm:p-5 text-left transition-all hover:shadow-md ${
                       active
-                        ? "text-white border-[#0B1D3A] shadow-sm"
-                        : "bg-card text-foreground border-border hover:border-[#D4A843]/60 hover:shadow-sm"
+                        ? "border-[#D4A843] bg-[#D4A843]/5 shadow-sm"
+                        : "border-border bg-card hover:border-[#D4A843]/40"
                     }`}
-                    style={
-                      active ? { backgroundColor: "#0B1D3A" } : undefined
-                    }
                   >
-                    {ag.label}
-                    {ag.sub && (
-                      <span
-                        className={`ml-1.5 text-xs ${
-                          active ? "opacity-70" : "text-muted-foreground"
-                        }`}
-                      >
-                        {ag.sub}
-                      </span>
-                    )}
+                    <span className="text-2xl sm:text-3xl block mb-2">{ag.icon}</span>
+                    <h3 className="font-serif text-sm sm:text-base font-semibold text-foreground leading-snug">
+                      {ag.label}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">{ag.sub}</p>
                   </button>
                 );
               })}
@@ -508,12 +499,12 @@ export default function KidsPage() {
               className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide"
             >
               {CATEGORIES.map((cat) => {
-                const active = selectedCategory === cat;
-                const count = categoryCounts[cat] ?? 0;
+                const active = selectedCategory === cat.key;
+                const count = categoryCounts[cat.key] ?? 0;
                 return (
                   <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    key={cat.key}
+                    onClick={() => setSelectedCategory(cat.key)}
                     className={`flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
                       active
                         ? "text-white border-[#A32D2F]"
@@ -523,7 +514,7 @@ export default function KidsPage() {
                       active ? { backgroundColor: "#A32D2F" } : undefined
                     }
                   >
-                    {cat}
+                    {cat.icon} {cat.key}
                     {count > 0 && (
                       <span className="ml-1 opacity-70">({count})</span>
                     )}
@@ -567,6 +558,7 @@ export default function KidsPage() {
                         : undefined
                     }
                   >
+                  {opt.key === "all" && "🌐 "}
                     {opt.key === "online" && "💻 "}
                     {opt.key === "nearme" && "📍 "}
                     {opt.label}
