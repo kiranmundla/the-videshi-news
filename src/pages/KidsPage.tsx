@@ -77,9 +77,9 @@ const CATEGORY_TREE: TopCategory[] = [
     label: "Academics",
     icon: "📚",
     subcategories: [
-      { key: "math", label: "Math", icon: "🔢", localCategories: ["Math Enrichment"], programCategories: ["Math", "Academic Competitions"] },
+      { key: "math", label: "Math", icon: "🔢", localCategories: ["Math Enrichment"], programCategories: ["Math"] },
       { key: "science_stem", label: "Science & STEM", icon: "🧪", localCategories: [], programCategories: ["Science & STEM"] },
-      { key: "spelling_debate", label: "Spelling & Debate", icon: "🗯️", localCategories: [], programCategories: [] },
+      { key: "spelling_debate", label: "Spelling & Debate", icon: "🗯️", localCategories: [], programCategories: ["Academic Competitions"] },
       { key: "robotics_comp", label: "Robotics Competitions", icon: "🤖", localCategories: [], programCategories: ["Robotics"] },
       { key: "business", label: "Business (DECA/FBLA)", icon: "💼", localCategories: [], programCategories: [] },
       { key: "test_prep", label: "Test Prep", icon: "📝", localCategories: [], programCategories: ["College Prep"] },
@@ -324,29 +324,65 @@ const DEFAULT_GRADIENT = "linear-gradient(135deg, #374151 0%, #1f2937 100%)";
 
 /* ---------- Unified FilterCard ---------- */
 
-function FilterCard({ label, icon, subtitle, active, count, onClick, size = "md", gradient }: {
+/* --- Image map for filter card backgrounds --- */
+const KIDS_CAT_IMG: Record<string, string> = {
+  preschool: "/images/kids/preschool.jpg",
+  elementary: "/images/kids/elementary.jpg",
+  middle_school: "/images/kids/middle_school.jpg",
+  high_school: "/images/kids/high_school.jpg",
+  extracurriculars: "/images/kids/extracurriculars.jpg",
+  academics: "/images/kids/academics.jpg",
+  daycare: "/images/kids/daycare.jpg",
+  sports: "/images/kids/sports.jpg",
+  dance: "/images/kids/dance.jpg",
+  music: "/images/kids/music.jpg",
+  art: "/images/kids/art.jpg",
+  coding_robotics: "/images/kids/coding.jpg",
+  language_culture: "/images/kids/language.jpg",
+  chess: "/images/kids/chess.jpg",
+  volunteering: "/images/kids/volunteering.jpg",
+  math: "/images/kids/math.jpg",
+  science_stem: "/images/kids/science.jpg",
+  spelling_debate: "/images/kids/spelling.jpg",
+  robotics_comp: "/images/kids/robotics.jpg",
+  business: "/images/kids/academics.jpg",
+  test_prep: "/images/kids/test_prep.jpg",
+  college_counseling: "/images/kids/college.jpg",
+  tutoring: "/images/kids/tutoring.jpg",
+  daycare_all: "/images/kids/daycare.jpg",
+  near_you: "/images/kids/near_you.jpg",
+  programs: "/images/kids/programs.jpg",
+};
+
+function FilterCard({ label, icon, subtitle, active, count, onClick, size = "md", gradient, imgKey }: {
   label: string; icon: string; subtitle?: string; active: boolean; count?: number; onClick: () => void;
-  size?: "lg" | "md" | "sm" | "xs"; gradient?: string;
+  size?: "lg" | "md" | "sm" | "xs"; gradient?: string; imgKey?: string;
 }) {
   const bg = gradient || DEFAULT_GRADIENT;
   const ring = active ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg" : "";
+  const imgSrc = imgKey ? KIDS_CAT_IMG[imgKey] : undefined;
 
-  /* Fixed-width compact cards like Events page */
-  const sizeClasses = {
-    lg: "w-[130px] sm:w-[150px]",
-    md: "w-[110px] sm:w-[130px]",
-    sm: "w-[110px] sm:w-[130px]",
-    xs: "w-[100px] sm:w-[110px]",
-  };
+  const aspectClass = size === "lg" || size === "md" ? "aspect-[4/3]" : size === "sm" ? "aspect-[3/2]" : "aspect-[2/1]";
+  const textClass = size === "lg" || size === "md" ? "text-[13px] sm:text-sm" : "text-[11px]";
+  const iconClass = size === "lg" || size === "md" ? "text-base" : "text-sm";
 
   return (
     <button onClick={onClick}
-      className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
-      <div className={`${sizeClasses[size]} aspect-[4/3] relative p-3 flex flex-col justify-end`} style={{ background: bg }}>
-        <span className={`drop-shadow-lg block ${size === "lg" ? "text-xl mb-0.5" : size === "xs" ? "text-sm" : "text-base mb-0.5"}`}>{icon}</span>
-        <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">{label}</span>
-        {subtitle && <span className="text-white/80 text-xs font-medium mt-0.5 drop-shadow">{subtitle}</span>}
-        {count !== undefined && count > 0 && <span className="text-white/80 text-xs font-medium mt-0.5 drop-shadow">{count} {count === 1 ? "result" : "results"}</span>}
+      className={`group relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
+      <div className={`${aspectClass} relative overflow-hidden`}
+        style={imgSrc ? undefined : { background: bg }}>
+        {imgSrc && (
+          <>
+            <img src={imgSrc} alt={label} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+          </>
+        )}
+        <div className="absolute inset-0 p-2 flex flex-col justify-end">
+          <span className={`drop-shadow-lg block ${iconClass} mb-0.5`}>{icon}</span>
+          <span className={`text-white ${textClass} font-bold font-serif leading-tight drop-shadow-lg line-clamp-2`}>{label}</span>
+          {subtitle && <span className="text-white/80 text-[10px] font-medium mt-0.5 drop-shadow">{subtitle}</span>}
+          {count !== undefined && count > 0 && <span className="text-white/80 text-[10px] font-medium mt-0.5 drop-shadow">{count}</span>}
+        </div>
       </div>
     </button>
   );
@@ -598,13 +634,16 @@ export default function KidsPage() {
           </div>
         </div>
 
+        {/* ═══════ CLOSING SOON ═══════ */}
+        {!loading && <ClosingSoonStrip deadlines={deadlines} />}
+
         {/* ═══════ AGE SELECTOR ═══════ */}
-        <div className="mb-6">
+        <div className="mb-8">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Age Group</p>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="grid grid-cols-4 gap-2">
             {AGE_GROUPS.map((ag) => (
               <FilterCard key={ag.key} label={ag.label} icon={ag.icon} subtitle={ag.sub} size="lg"
-                active={selectedAge === ag.key} gradient={AGE_GRADIENTS[ag.key]}
+                active={selectedAge === ag.key} gradient={AGE_GRADIENTS[ag.key]} imgKey={ag.key}
                 onClick={() => setParam("age", selectedAge === ag.key ? null : ag.key, ["sub", "ssub"])} />
             ))}
           </div>
@@ -616,12 +655,12 @@ export default function KidsPage() {
         </div>
 
         {/* ═══════ MAIN CATEGORY ═══════ */}
-        <div className="mb-5">
+        <div className="mb-6">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Category</p>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="grid grid-cols-3 gap-2">
             {visibleTabs.map((tab) => (
               <FilterCard key={tab.key} label={tab.label} icon={tab.icon} size="md"
-                active={activeTab.key === tab.key} gradient={TAB_GRADIENTS[tab.key]}
+                active={activeTab.key === tab.key} gradient={TAB_GRADIENTS[tab.key]} imgKey={tab.key}
                 onClick={() => setParam("tab", tab.key, ["sub", "ssub"])} />
             ))}
           </div>
@@ -629,8 +668,8 @@ export default function KidsPage() {
 
         {/* ═══════ SUBCATEGORY CARDS ═══════ */}
         {activeTab.subcategories.filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0).length > 0 && (
-          <div className="mb-5">
-            <div className="flex flex-wrap gap-2">
+          <div className="mb-4">
+            <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5">
               <FilterCard label="All" icon="✨" size="sm" active={!activeSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("sub", null, ["ssub"])} />
@@ -639,7 +678,7 @@ export default function KidsPage() {
                 .map((sub) => (
                   <FilterCard key={sub.key} label={sub.label} icon={sub.icon} size="sm"
                     active={activeSub?.key === sub.key} count={subCounts[sub.key]}
-                    gradient={SUB_GRADIENTS[sub.key]}
+                    gradient={SUB_GRADIENTS[sub.key]} imgKey={sub.key}
                     onClick={() => setParam("sub", sub.key, ["ssub"])} />
                 ))}
             </div>
@@ -649,22 +688,19 @@ export default function KidsPage() {
         {/* ═══════ SUB-SUBCATEGORY CARDS (e.g. Sports → Cricket/Tennis) ═══════ */}
         {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
           <div className="mb-6">
-            <div className="flex flex-wrap gap-1.5">
+            <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5">
               <FilterCard label="All" icon="🏅" size="xs" active={!activeSubSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("ssub", null)} />
               {activeSub.subsubs.map((ss) => (
                 <FilterCard key={ss.key} label={ss.label} icon={ss.icon} size="xs"
                   active={activeSubSub?.key === ss.key}
-                  gradient={SUBSUB_GRADIENTS[ss.key]}
+                  gradient={SUBSUB_GRADIENTS[ss.key]} imgKey={ss.key}
                   onClick={() => setParam("ssub", ss.key)} />
               ))}
             </div>
           </div>
         )}
-
-        {/* ═══════ CLOSING SOON ═══════ */}
-        {!loading && <ClosingSoonStrip deadlines={deadlines} />}
 
         {/* ═══════ RESULTS ═══════ */}
         {loading ? (
@@ -677,13 +713,13 @@ export default function KidsPage() {
                 {filteredPlaces.length > 0 && (
                   <FilterCard label={`Near You`} icon="📍" size="sm" 
                     active={resultView === "places"} count={filteredPlaces.length}
-                    gradient="linear-gradient(135deg, #0B1D3A 0%, #1e3a5f 100%)"
+                    gradient="linear-gradient(135deg, #0B1D3A 0%, #1e3a5f 100%)" imgKey="near_you"
                     onClick={() => { setResultView("places"); setShowAllPlaces(false); }} />
                 )}
                 {filteredPrograms.length > 0 && (
                   <FilterCard label={`Programs`} icon="🏆" size="sm"
                     active={resultView === "programs"} count={filteredPrograms.length}
-                    gradient="linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)"
+                    gradient="linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)" imgKey="programs"
                     onClick={() => { setResultView("programs"); setShowAllPrograms(false); }} />
                 )}
               </div>
