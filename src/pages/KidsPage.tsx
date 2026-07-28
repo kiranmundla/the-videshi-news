@@ -274,19 +274,50 @@ function ProgramCard({ program }: { program: KidsProgram }) {
   );
 }
 
-/* ---------- Pill ---------- */
+/* ---------- Unified FilterCard ---------- */
 
-function Pill({ label, icon, active, count, onClick, color, size = "md" }: {
-  label: string; icon?: string; active: boolean; count?: number; onClick: () => void; color?: string; size?: "md" | "sm";
+function FilterCard({ label, icon, subtitle, active, count, onClick, size = "md" }: {
+  label: string; icon: string; subtitle?: string; active: boolean; count?: number; onClick: () => void;
+  size?: "lg" | "md" | "sm" | "xs";
 }) {
-  const sz = size === "sm"
-    ? "px-2.5 py-1 text-[11px]"
-    : "px-3 py-1.5 text-xs";
+  const base = "rounded-xl border-2 text-left transition-all cursor-pointer select-none";
+  const activeStyle = "border-[#D4A843] bg-[#D4A843]/5 shadow-sm";
+  const inactiveStyle = "border-border bg-card hover:border-[#D4A843]/40 hover:shadow-md";
+
+  if (size === "lg") {
+    return (
+      <button onClick={onClick} className={`${base} p-4 sm:p-5 ${active ? activeStyle : inactiveStyle}`}>
+        <span className="text-2xl sm:text-3xl block mb-2">{icon}</span>
+        <h3 className="font-serif text-sm sm:text-base font-semibold text-foreground leading-snug">{label}</h3>
+        {subtitle && <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>}
+      </button>
+    );
+  }
+
+  if (size === "md") {
+    return (
+      <button onClick={onClick} className={`${base} px-4 py-3 flex items-center gap-2.5 ${active ? activeStyle : inactiveStyle}`}>
+        <span className="text-xl">{icon}</span>
+        <span className="text-sm font-semibold text-foreground">{label}</span>
+      </button>
+    );
+  }
+
+  if (size === "sm") {
+    return (
+      <button onClick={onClick} className={`${base} px-3 py-2 flex items-center gap-2 ${active ? activeStyle : inactiveStyle}`}>
+        <span className="text-base">{icon}</span>
+        <span className="text-xs font-medium text-foreground">{label}</span>
+        {count !== undefined && count > 0 && <span className="text-[10px] text-muted-foreground ml-auto">({count})</span>}
+      </button>
+    );
+  }
+
+  /* xs */
   return (
-    <button onClick={onClick} className={`flex-shrink-0 ${sz} font-medium rounded-full border transition-colors whitespace-nowrap ${active ? "text-white border-transparent" : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"}`}
-      style={active ? { backgroundColor: color || "#A32D2F" } : undefined}>
-      {icon && <span className="mr-1">{icon}</span>}{label}
-      {count !== undefined && count > 0 && <span className="ml-1 opacity-70">({count})</span>}
+    <button onClick={onClick} className={`${base} px-2.5 py-1.5 flex items-center gap-1.5 ${active ? activeStyle : inactiveStyle}`}>
+      <span className="text-sm">{icon}</span>
+      <span className="text-[11px] font-medium text-foreground">{label}</span>
     </button>
   );
 }
@@ -561,36 +592,46 @@ export default function KidsPage() {
         </div>
 
         {/* ═══════ MAIN CATEGORY TABS ═══════ */}
-        <div className="flex gap-2 mb-4 border-b border-border pb-1">
-          {visibleTabs.map((tab) => {
-            const active = activeTab.key === tab.key;
-            return (
-              <button key={tab.key}
-                onClick={() => setParam("tab", tab.key, ["sub", "ssub"])}
-                className={`px-4 py-2.5 text-sm font-semibold rounded-t-lg transition-colors whitespace-nowrap ${active ? "bg-card border border-b-0 border-border text-foreground -mb-px" : "text-muted-foreground hover:text-foreground"}`}>
-                <span className="mr-1.5 text-lg">{tab.icon}</span>{tab.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ═══════ SUBCATEGORY PILLS ═══════ */}
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-4">
-          <Pill label="All" icon="✨" active={!activeSub} onClick={() => setParam("sub", null, ["ssub"])} />
-          {activeTab.subcategories.map((sub) => (
-            <Pill key={sub.key} label={sub.label} icon={sub.icon} active={activeSub?.key === sub.key}
-              count={subCounts[sub.key]} onClick={() => setParam("sub", sub.key, ["ssub"])} />
-          ))}
-        </div>
-
-        {/* ═══════ SUB-SUBCATEGORY PILLS (e.g. Sports → Cricket/Tennis) ═══════ */}
-        {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-6">
-            <Pill label="All" icon="🏅" active={!activeSubSub} onClick={() => setParam("ssub", null)} color="#0B1D3A" size="sm" />
-            {activeSub.subsubs.map((ss) => (
-              <Pill key={ss.key} label={ss.label} icon={ss.icon} active={activeSubSub?.key === ss.key}
-                onClick={() => setParam("ssub", ss.key)} color="#0B1D3A" size="sm" />
+        <div className="mb-5">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Category</p>
+          <div className="flex flex-wrap gap-2.5">
+            {visibleTabs.map((tab) => (
+              <FilterCard key={tab.key} label={tab.label} icon={tab.icon} size="md"
+                active={activeTab.key === tab.key}
+                onClick={() => setParam("tab", tab.key, ["sub", "ssub"])} />
             ))}
+          </div>
+        </div>
+
+        {/* ═══════ SUBCATEGORY CARDS ═══════ */}
+        {activeTab.subcategories.filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0).length > 0 && (
+          <div className="mb-5">
+            <div className="flex flex-wrap gap-2">
+              <FilterCard label="All" icon="✨" size="sm" active={!activeSub}
+                onClick={() => setParam("sub", null, ["ssub"])} />
+              {activeTab.subcategories
+                .filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0)
+                .map((sub) => (
+                  <FilterCard key={sub.key} label={sub.label} icon={sub.icon} size="sm"
+                    active={activeSub?.key === sub.key} count={subCounts[sub.key]}
+                    onClick={() => setParam("sub", sub.key, ["ssub"])} />
+                ))}
+            </div>
+          </div>
+        )}
+
+        {/* ═══════ SUB-SUBCATEGORY CARDS (e.g. Sports → Cricket/Tennis) ═══════ */}
+        {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-1.5">
+              <FilterCard label="All" icon="🏅" size="xs" active={!activeSubSub}
+                onClick={() => setParam("ssub", null)} />
+              {activeSub.subsubs.map((ss) => (
+                <FilterCard key={ss.key} label={ss.label} icon={ss.icon} size="xs"
+                  active={activeSubSub?.key === ss.key}
+                  onClick={() => setParam("ssub", ss.key)} />
+              ))}
+            </div>
           </div>
         )}
 
