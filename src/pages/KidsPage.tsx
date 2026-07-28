@@ -331,51 +331,22 @@ function FilterCard({ label, icon, subtitle, active, count, onClick, size = "md"
   const bg = gradient || DEFAULT_GRADIENT;
   const ring = active ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg" : "";
 
-  if (size === "lg") {
-    return (
-      <button onClick={onClick}
-        className={`relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
-        <div className="aspect-[4/3] p-4 flex flex-col justify-end" style={{ background: bg }}>
-          <span className="text-2xl sm:text-3xl block mb-1 drop-shadow-lg">{icon}</span>
-          <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">{label}</span>
-          {subtitle && <span className="text-white/70 text-[11px] font-medium mt-0.5 drop-shadow">{subtitle}</span>}
-        </div>
-      </button>
-    );
-  }
+  /* Fixed-width compact cards like Events page */
+  const sizeClasses = {
+    lg: "w-[130px] sm:w-[150px]",
+    md: "w-[110px] sm:w-[130px]",
+    sm: "w-[110px] sm:w-[130px]",
+    xs: "w-[100px] sm:w-[110px]",
+  };
 
-  if (size === "md") {
-    return (
-      <button onClick={onClick}
-        className={`relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
-        <div className="aspect-[5/3] p-3 flex flex-col justify-end" style={{ background: bg }}>
-          <span className="text-xl block mb-0.5 drop-shadow-lg">{icon}</span>
-          <span className="text-white text-[13px] font-bold font-serif leading-tight drop-shadow-lg">{label}</span>
-        </div>
-      </button>
-    );
-  }
-
-  if (size === "sm") {
-    return (
-      <button onClick={onClick}
-        className={`relative rounded-lg overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
-        <div className="aspect-[5/3] p-2.5 flex flex-col justify-end" style={{ background: bg }}>
-          <span className="text-base block mb-0.5 drop-shadow-lg">{icon}</span>
-          <span className="text-white text-[11px] font-semibold leading-tight drop-shadow-lg">{label}</span>
-          {count !== undefined && count > 0 && <span className="text-white/70 text-[10px] font-medium mt-0.5 drop-shadow">{count}</span>}
-        </div>
-      </button>
-    );
-  }
-
-  /* xs */
   return (
     <button onClick={onClick}
-      className={`relative rounded-lg overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
-      <div className="aspect-[5/3] p-2 flex flex-col justify-end" style={{ background: bg }}>
-        <span className="text-sm block drop-shadow-lg">{icon}</span>
-        <span className="text-white text-[10px] font-semibold leading-tight drop-shadow-lg">{label}</span>
+      className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${ring}`}>
+      <div className={`${sizeClasses[size]} aspect-[4/3] relative p-3 flex flex-col justify-end`} style={{ background: bg }}>
+        <span className={`drop-shadow-lg block ${size === "lg" ? "text-xl mb-0.5" : size === "xs" ? "text-sm" : "text-base mb-0.5"}`}>{icon}</span>
+        <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">{label}</span>
+        {subtitle && <span className="text-white/80 text-xs font-medium mt-0.5 drop-shadow">{subtitle}</span>}
+        {count !== undefined && count > 0 && <span className="text-white/80 text-xs font-medium mt-0.5 drop-shadow">{count} {count === 1 ? "result" : "results"}</span>}
       </div>
     </button>
   );
@@ -630,7 +601,7 @@ export default function KidsPage() {
         {/* ═══════ AGE SELECTOR ═══════ */}
         <div className="mb-6">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Age Group</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div className="flex flex-wrap gap-2.5">
             {AGE_GROUPS.map((ag) => (
               <FilterCard key={ag.key} label={ag.label} icon={ag.icon} subtitle={ag.sub} size="lg"
                 active={selectedAge === ag.key} gradient={AGE_GRADIENTS[ag.key]}
@@ -647,7 +618,7 @@ export default function KidsPage() {
         {/* ═══════ MAIN CATEGORY ═══════ */}
         <div className="mb-5">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Category</p>
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="flex flex-wrap gap-2.5">
             {visibleTabs.map((tab) => (
               <FilterCard key={tab.key} label={tab.label} icon={tab.icon} size="md"
                 active={activeTab.key === tab.key} gradient={TAB_GRADIENTS[tab.key]}
@@ -659,7 +630,7 @@ export default function KidsPage() {
         {/* ═══════ SUBCATEGORY CARDS ═══════ */}
         {activeTab.subcategories.filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0).length > 0 && (
           <div className="mb-5">
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-2">
+            <div className="flex flex-wrap gap-2">
               <FilterCard label="All" icon="✨" size="sm" active={!activeSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("sub", null, ["ssub"])} />
@@ -678,7 +649,7 @@ export default function KidsPage() {
         {/* ═══════ SUB-SUBCATEGORY CARDS (e.g. Sports → Cricket/Tennis) ═══════ */}
         {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
           <div className="mb-6">
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
+            <div className="flex flex-wrap gap-1.5">
               <FilterCard label="All" icon="🏅" size="xs" active={!activeSubSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("ssub", null)} />
