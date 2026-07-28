@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
@@ -340,9 +340,32 @@ export default function KidsPage() {
   const [deadlines, setDeadlines] = useState<KidsDeadline[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [selectedAge, setSelectedAge] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [locationFilter, setLocationFilter] = useState<LocationFilter>("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  /* Read initial filter state from URL params */
+  const selectedAge = searchParams.get("age") || null;
+  const selectedCategory = searchParams.get("cat") || "All";
+  const locationFilter = (searchParams.get("loc") || "all") as LocationFilter;
+
+  /* Update URL params when filters change */
+  const updateFilter = useCallback(
+    (key: string, value: string | null) => {
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev);
+        if (!value || value === "All" || value === "all") {
+          next.delete(key);
+        } else {
+          next.set(key, value);
+        }
+        return next;
+      }, { replace: true });
+    },
+    [setSearchParams],
+  );
+
+  const setSelectedAge = (v: string | null) => updateFilter("age", v);
+  const setSelectedCategory = (v: string) => updateFilter("cat", v === "All" ? null : v);
+  const setLocationFilter = (v: LocationFilter) => updateFilter("loc", v === "all" ? null : v);
 
   const { location: userLocation } = useUserLocation();
   const userState = userLocation?.region;
@@ -422,9 +445,7 @@ export default function KidsPage() {
     locationFilter !== "all";
 
   function clearFilters() {
-    setSelectedAge(null);
-    setSelectedCategory("All");
-    setLocationFilter("all");
+    setSearchParams({}, { replace: true });
   }
 
   const categoryScrollRef = useRef<HTMLDivElement>(null);
