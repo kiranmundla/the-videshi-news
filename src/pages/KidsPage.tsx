@@ -538,7 +538,7 @@ export default function KidsPage() {
 
         {/* ═══════ AGE SELECTOR ═══════ */}
         <div className="mb-8">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">My child is in</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Age Group</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {AGE_GROUPS.map((ag) => {
               const active = selectedAge === ag.key;
