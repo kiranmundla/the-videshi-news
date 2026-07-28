@@ -115,19 +115,30 @@ function HeroImage({ src, title }: { src: string; title: string }) {
   );
 }
 
-/* ── Gradient Banner (no image fallback) ────────────────────────── */
+/* ── Category fallback images (same as EventsPage) ─────────────── */
 
-function GradientBanner({ emoji, category }: { emoji: string; category: string }) {
-  return (
-    <div
-      className="relative w-full rounded-2xl overflow-hidden flex items-center justify-center"
-      style={{ height: "220px", background: "linear-gradient(135deg, #0B1D3A 0%, #1a2a4a 50%, #0B1D3A 100%)" }}
-    >
-      <div className="text-center">
-        <span className="text-6xl block mb-2">{emoji}</span>
-        <span className="text-sm font-semibold uppercase tracking-[0.2em] text-white/30">{category}</span>
-      </div>
-    </div>
+const CAT_FALLBACK_IMG: Record<string, string> = {
+  Cultural: "/images/events/cultural.jpg",
+  Music: "/images/events/music.jpg",
+  Food: "/images/events/food.jpg",
+  Sports: "/images/events/sports.jpg",
+  Community: "/images/events/community.jpg",
+  Festival: "/images/events/festival.jpg",
+  Comedy: "/images/events/comedy.jpg",
+  Dance: "/images/events/dance.jpg",
+  Religious: "/images/events/religious.jpg",
+  Education: "/images/events/education.jpg",
+  Competition: "/images/events/competition.jpg",
+  Entertainment: "/images/events/entertainment.jpg",
+  Technology: "/images/events/technology.jpg",
+  Shopping: "/images/events/cultural.jpg",
+  Spiritual: "/images/events/religious.jpg",
+  Other: "/images/events/other.jpg",
+};
+
+function categoryFallbackImg(category?: string | null): string {
+  return CAT_FALLBACK_IMG[category || "Other"] || CAT_FALLBACK_IMG["Other"];
+}
   );
 }
 
@@ -480,11 +491,7 @@ export default function EventDetailPage() {
         <div className="max-w-3xl mx-auto pt-6 sm:pt-10 pb-20 space-y-8">
 
           {/* ━━━ 1. HERO IMAGE or GRADIENT BANNER ━━━ */}
-          {event.image_url ? (
-            <HeroImage src={event.image_url} title={event.title} />
-          ) : (
-            <GradientBanner emoji={catEmoji} category={event.category || "Event"} />
-          )}
+          <HeroImage src={event.image_url || categoryFallbackImg(event.category)} title={event.title} />
 
           {/* ━━━ 2. PILLS ROW ━━━ */}
           <div className="flex flex-wrap items-center gap-2">
