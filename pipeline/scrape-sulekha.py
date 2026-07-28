@@ -3,9 +3,10 @@
 scrape-sulekha.py — Scrape Indian events from Sulekha Events
 and upsert them into the Supabase `events` table.
 
-Sulekha embeds JSON-LD structured data (schema.org/Event) directly in each
-city page, giving us clean title, dates, venue, geo, price, images, and
-organizer data with zero HTML parsing.
+Two-phase approach:
+  1. City listing pages: discover events via JSON-LD structured data
+  2. Detail pages: visit each new event's page to extract the full
+     description, street address, zip code, and richer metadata
 
 Usage:
     python3 scrape-sulekha.py              # Full scrape (today's day slice)
@@ -44,11 +45,6 @@ HEADERS = {
     "User-Agent": "TheVideshi/1.0 (thevideshi.com; diaspora event aggregator)"
 }
 
-# Sulekha URL pattern: https://events.sulekha.com/indian-events-in-{city-slug}
-# City slugs use Sulekha's format: lowercase, hyphens
-# Sulekha geo-locates by IP and ignores the URL city — we must send a
-# `sulusrloc` cookie with the city/state/zip/coords to force the right city.
-# Cookie format: "united states::US::{City}::::{State}::{zip}::{lat}::{lng}::0"
 CITIES = [
     # Batch 0 (Mon)
     {"slug": "san-francisco", "display": "San Francisco", "state": "CA", "st": "California", "zip": "94102", "lat": 37.7749, "lng": -122.4194},
@@ -112,16 +108,14 @@ CITIES = [
     {"slug": "hartford", "display": "Hartford", "state": "CT", "st": "Connecticut", "zip": "06101", "lat": 41.7658, "lng": -72.6734},
 ]
 
-
 # ---------------------------------------------------------------------------
-# Content fingerprint — uses shared cross-source module
+# Shared imports
 # ---------------------------------------------------------------------------
 
 from event_dedup import content_fingerprint, get_all_fingerprints
 
 
 def slugify(text: str) -> str:
-    """Create URL-safe slug from text."""
     s = text.lower().strip()
     s = re.sub(r'[^\w\s-]', '', s)
     s = re.sub(r'[\s_]+', '-', s)
@@ -129,15 +123,91 @@ def slugify(text: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Scrape Sulekha city page
+# Category detection from event content
+# ---------------------------------------------------------------------------
+
+CATEGORY_KEYWORDS = {
+    "Dance": [
+        "garba", "dandiya", "raas", "navratri", "kathak",
+        "bharatanatyam", "bhangra", "dance competition", "dance night",
+    ],
+    "Music": [
+        "concert", "live music", "singer", "singing", "qawwali",
+        "ghazal", "carnatic", "hindustani", "bhajan", "sufi night",
+        "musical", "unplugged",
+    ],
+    "Comedy": [
+        "comedy", "standup", "stand-up", "comedian", "laughs",
+        "comedy show", "comic",
+    ],
+    "Religious": [
+        "temple", "puja", "pooja", "prayer", "kirtan", "satsang",
+        "mandir", "gurudwara", "mosque", "aarti", "ganesh",
+        "durga", "ram navami", "janmashtami",
+    ],
+    "Spiritual": [
+        "meditation", "mindfulness", "inner peace", "spiritual",
+        "vipassana", "dhamma", "yoga retreat",
+    ],
+    "Festival": [
+        "diwali", "holi", "eid", "onam", "pongal", "baisakhi",
+        "ugadi", "lohri", "mela", "festival", "makar sankranti",
+    ],
+    "Food": [
+        "food festival", "cooking", "chef", "dinner gala",
+        "brunch", "tasting", "culinary",
+    ],
+    "Cultural": [
+        "cultural", "heritage", "exhibition", "art show",
+        "film screening", "movie", "play", "drama", "theater",
+        "theatre", "literary",
+    ],
+    "Sports": [
+        "cricket", "kabaddi", "badminton", "tournament",
+        "marathon", "run ", "yoga", "sports",
+    ],
+    "Education": [
+        "workshop", "seminar", "webinar", "training",
+        "hackathon", "conference", "summit", "symposium",
+    ],
+    "Community": [
+        "meetup", "networking", "fundraiser", "volunteer",
+        "charity", "gala", "reunion", "mixer",
+    ],
+    "Shopping": [
+        "trunk show", "exhibition sale", "jewelry",
+        "fashion show", "bazaar", "sale event",
+    ],
+}
+
+
+def detect_category(title: str, description: str) -> str:
+    """Detect event category from title and description keywords.
+    Title matches take priority over description matches."""
+    title_lower = title.lower()
+    text = f"{title} {description}".lower()
+
+    for category, keywords in CATEGORY_KEYWORDS.items():
+        for kw in keywords:
+            if kw in title_lower:
+                return category
+
+    for category, keywords in CATEGORY_KEYWORDS.items():
+        for kw in keywords:
+            if kw in text:
+                return category
+
+    return "Entertainment"
+
+
+# ---------------------------------------------------------------------------
+# Phase 1: Scrape city listing page for event URLs + basic data
 # ---------------------------------------------------------------------------
 
 def scrape_city(city: dict, session: requests.Session) -> list:
-    """Scrape events from a Sulekha city page using JSON-LD structured data."""
     url = f"https://events.sulekha.com/indian-events-in-{city['slug']}"
     events = []
 
-    # Sulekha geo-locates by IP, ignoring URL. Force the city with a location cookie.
     loc_cookie = f"united states::US::{city['display']}::::{city['st']}::{city['zip']}::{city['lat']}::{city['lng']}::0"
     cookies = {"sulusrloc": loc_cookie}
 
@@ -150,7 +220,6 @@ def scrape_city(city: dict, session: requests.Session) -> list:
         print(f"  ⚠ Request failed for {city['display']}: {e}")
         return events
 
-    # Extract JSON-LD from <script type="application/ld+json">
     ld_matches = re.findall(
         r'<script\s+type="application/ld\+json">\s*([\s\S]*?)\s*</script>',
         r.text, re.IGNORECASE
@@ -162,103 +231,82 @@ def scrape_city(city: dict, session: requests.Session) -> list:
         except json.JSONDecodeError:
             continue
 
-        # ld_data can be a single event or an array
         items = ld_data if isinstance(ld_data, list) else [ld_data]
 
         for item in items:
             if item.get("@type") != "Event":
                 continue
-
             try:
-                ev = parse_event(item, city)
+                ev = parse_listing_event(item, city)
                 if ev:
                     events.append(ev)
             except Exception as e:
                 print(f"  ⚠ Parse error: {e}")
-                continue
 
     return events
 
 
-def parse_event(item: dict, city: dict) -> dict | None:
-    """Parse a JSON-LD Event item into our events table schema."""
+def parse_listing_event(item: dict, city: dict) -> dict | None:
     title = (item.get("name") or "").strip()
     if not title:
         return None
 
-    # Dates
     start = item.get("startDate", "")
     end = item.get("endDate", "")
     date_str = start[:10] if start else None
     time_str = None
     if start and "T" in start:
         time_str = start.split("T")[1][:5]
-
     end_date = end[:10] if end else None
-    end_time = None
-    if end and "T" in end:
-        end_time = end.split("T")[1][:5]
-
     if not date_str:
         return None
 
-    # Location
     location = item.get("location", {})
     venue_name = location.get("name", "")
     address_obj = location.get("address", {})
-    street = address_obj.get("streetAddress", "")
-    locality = address_obj.get("addressLocality", "")
-    region = address_obj.get("addressRegion", "")
-    postal = address_obj.get("postalCode", "")
-    address = ", ".join(filter(None, [street, locality, region, postal]))
+    street = address_obj.get("streetAddress", "").strip()
+    locality = address_obj.get("addressLocality", "").strip()
+    region = address_obj.get("addressRegion", "").strip()
+    postal = address_obj.get("postalCode", "").strip()
 
     geo = location.get("geo", {})
     lat = geo.get("latitude")
     lon = geo.get("longitude")
 
-    # Description — truncate to 200 chars
-    desc = (item.get("description") or title)[:200]
+    listing_desc = (item.get("description") or "").strip()
 
-    # Image
     images = item.get("image", [])
     image_url = images[0] if isinstance(images, list) and images else (images if isinstance(images, str) else None)
 
-    # Price
     offers = item.get("offers", {})
     price_val = offers.get("price")
     price = f"${price_val}" if price_val else None
 
-    # Ticket URL
     ticket_url = offers.get("url", "")
-
-    # Source URL (event detail page)
     source_url = item.get("url", "")
 
-    # Organizer
     organizer_obj = item.get("organizer", {})
-    organizer = organizer_obj.get("name", "")
+    organizer = organizer_obj.get("name", "").strip()
 
-    # Category — default to Entertainment for Sulekha events
-    category = "Entertainment"
+    category = detect_category(title, listing_desc)
 
-    # Build slug — append time + short hash of source URL for uniqueness
-    # (multi-day events at same venue can share title+city+date)
     slug_suffix = hashlib.md5((source_url or "").encode()).hexdigest()[:6]
-    time_part = (time_str or "").replace(":", "")[:4]  # e.g. "1900"
+    time_part = (time_str or "").replace(":", "")[:4]
     slug = slugify(f"{title}-{locality or city['display']}-{date_str}-{time_part}-{slug_suffix}")
 
-    # Fingerprint
     fp = content_fingerprint(title, date_str, locality or city["display"])
 
     return {
         "title": title,
-        "description": desc,
+        "description": listing_desc or title,
         "date": date_str,
         "time": time_str,
         "end_date": end_date,
         "city": locality or city["display"],
         "state": region or city["state"],
         "venue_name": venue_name,
+        "street_address": street or None,
+        "zip_code": postal or None,
         "latitude": lat,
         "longitude": lon,
         "category": category,
@@ -270,27 +318,112 @@ def parse_event(item: dict, city: dict) -> dict | None:
         "organizer": organizer,
         "slug": slug,
         "content_fingerprint": fp,
+        "_detail_url": source_url,
     }
 
 
 # ---------------------------------------------------------------------------
-# Get existing events for dedup
+# Phase 2: Enrich each event by visiting its detail page
 # ---------------------------------------------------------------------------
 
-def get_existing(source: str = "sulekha"):
-    """Get existing source_urls and content_fingerprints for dedup."""
-    existing_urls = set()
+def enrich_from_detail(event: dict, session: requests.Session) -> dict:
+    url = event.get("_detail_url", "")
+    if not url:
+        return event
 
+    try:
+        r = session.get(url, headers=HEADERS, timeout=15)
+        if r.status_code != 200:
+            print(f"    ⚠ Detail page HTTP {r.status_code}")
+            return event
+    except Exception as e:
+        print(f"    ⚠ Detail page failed: {e}")
+        return event
+
+    html = r.text
+
+    # Full event description
+    long_desc = extract_event_description(html)
+    if long_desc:
+        event["long_description"] = long_desc
+        # Use first meaningful paragraph as short description
+        first_para = long_desc.split("\n")[0].strip()
+        if len(first_para) > 20:
+            event["description"] = first_para[:500]
+
+    # Street address and zip from detail page structured data
+    street_match = re.search(r'"streetAddress"\s*:\s*"([^"]+)"', html)
+    postal_match = re.search(r'"postalCode"\s*:\s*"([^"]+)"', html)
+    if street_match:
+        event["street_address"] = street_match.group(1).strip()
+    if postal_match:
+        event["zip_code"] = postal_match.group(1).strip()
+
+    # Re-detect category with full description for better accuracy
+    if long_desc:
+        event["category"] = detect_category(event["title"], long_desc)
+
+    # og:image as fallback if listing didn't have one
+    if not event.get("image_url"):
+        og_img = re.search(r"og:image['\"]?\s+content=['\"]([^'\"]+)", html)
+        if og_img:
+            event["image_url"] = og_img.group(1).strip()
+
+    return event
+
+
+def extract_event_description(html: str) -> str | None:
+    """Extract full event description from Sulekha detail page.
+    Content lives between 'Event Description' heading and T&C / boilerplate."""
+    idx_start = html.find("Event Description")
+    if idx_start < 0:
+        og = re.search(r"og:description['\"]?\s+content=['\"]([^'\"]+)", html)
+        return og.group(1).strip() if og else None
+
+    chunk = html[idx_start:]
+
+    end_markers = [
+        "Terms &amp; Conditions",
+        "Terms & Conditions",
+        "Why buy with Sulekha",
+    ]
+    end_idx = len(chunk)
+    for marker in end_markers:
+        pos = chunk.find(marker)
+        if 0 < pos < end_idx:
+            end_idx = pos
+
+    desc_html = chunk[:end_idx]
+
+    text = re.sub(r'<br\s*/?>', '\n', desc_html)
+    text = re.sub(r'<[^>]+>', '\n', text)
+    text = re.sub(r'\n\s*\n+', '\n', text).strip()
+
+    if text.startswith("Event Description"):
+        text = text[len("Event Description"):].strip()
+
+    lines = [line.strip() for line in text.split('\n') if line.strip()]
+    text = '\n'.join(lines)
+
+    if len(text) < 50:
+        return None
+
+    return text[:5000]
+
+
+# ---------------------------------------------------------------------------
+# Dedup
+# ---------------------------------------------------------------------------
+
+def get_existing():
+    existing_urls = set()
     if not SB_URL or not SB_KEY:
         return existing_urls, set()
 
     try:
         r = requests.get(
             f"{REST}/events?select=source_id&limit=10000",
-            headers={
-                "apikey": SB_KEY,
-                "Authorization": f"Bearer {SB_KEY}",
-            },
+            headers={"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"},
             timeout=15
         )
         if r.status_code == 200:
@@ -300,23 +433,21 @@ def get_existing(source: str = "sulekha"):
     except Exception as e:
         print(f"⚠ Failed to fetch existing events: {e}")
 
-    # Cross-source fingerprints via shared module (uses curl)
     existing_fingerprints = get_all_fingerprints()
-
     return existing_urls, existing_fingerprints
 
 
 # ---------------------------------------------------------------------------
-# Upsert events
+# Upsert
 # ---------------------------------------------------------------------------
 
 def upsert_events(events: list) -> int:
-    """Upsert events into Supabase."""
     if not events:
         return 0
 
     total = 0
     for ev in events:
+        ev_clean = {k: v for k, v in ev.items() if not k.startswith("_")}
         try:
             r = requests.post(
                 f"{REST}/events",
@@ -326,13 +457,12 @@ def upsert_events(events: list) -> int:
                     "Content-Type": "application/json",
                     "Prefer": "resolution=merge-duplicates",
                 },
-                json=ev,
+                json=ev_clean,
                 timeout=15
             )
             if r.status_code in (200, 201):
                 total += 1
             else:
-                # Try without slug conflict (upsert on source_url)
                 try:
                     r2 = requests.post(
                         f"{REST}/events",
@@ -341,7 +471,7 @@ def upsert_events(events: list) -> int:
                             "Authorization": f"Bearer {SB_KEY}",
                             "Content-Type": "application/json",
                         },
-                        json=ev,
+                        json=ev_clean,
                         timeout=15
                     )
                     if r2.status_code in (200, 201):
@@ -361,11 +491,12 @@ def upsert_events(events: list) -> int:
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape Sulekha events for Indian diaspora")
-    parser.add_argument("--dry-run", action="store_true", help="Print events without inserting")
-    parser.add_argument("--city", type=str, default=None, help="Single city slug (e.g. 'houston')")
-    parser.add_argument("--day", type=int, choices=range(7), default=None,
-                        help="Day-of-week batch (0=Mon..6=Sun). Full cycle = 1 week.")
+    parser = argparse.ArgumentParser(description="Scrape Sulekha events")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--city", type=str, default=None)
+    parser.add_argument("--day", type=int, choices=range(7), default=None)
+    parser.add_argument("--skip-detail", action="store_true",
+                        help="Skip detail page enrichment (faster, less data)")
     args = parser.parse_args()
 
     if not args.dry_run and (not SB_URL or not SB_KEY):
@@ -382,7 +513,6 @@ def main():
         cities = [c for i, c in enumerate(CITIES) if i % 7 == args.day]
         print(f"📅 Day {args.day} batch: {', '.join(c['display'] for c in cities)} ({len(cities)} cities)")
 
-    # Get existing events for dedup
     existing_urls, existing_fingerprints = set(), set()
     if not args.dry_run:
         existing_urls, existing_fingerprints = get_existing()
@@ -395,16 +525,15 @@ def main():
     skipped_url = 0
     skipped_fp = 0
 
+    # Phase 1: Discover events from listing pages
     for city in cities:
         print(f"📍 {city['display']}, {city['state']}...")
         events = scrape_city(city, session)
 
         for ev in events:
-            # Source-level skip
             if ev["source_id"] in existing_urls:
                 skipped_url += 1
                 continue
-            # Cross-source fingerprint dedup
             if ev.get("content_fingerprint") and ev["content_fingerprint"] in existing_fingerprints:
                 skipped_fp += 1
                 continue
@@ -415,13 +544,29 @@ def main():
                 existing_fingerprints.add(ev["content_fingerprint"])
 
         print(f"   Found {len(events)} events")
-        time.sleep(1.5)  # Rate limit
+        time.sleep(1.5)
 
     print(f"\n📊 Total new: {len(all_events)} | Skipped (URL): {skipped_url} | Skipped (fingerprint): {skipped_fp}")
 
+    # Phase 2: Enrich from detail pages
+    if all_events and not args.skip_detail:
+        print(f"\n📄 Enriching {len(all_events)} events from detail pages...\n")
+        enriched = 0
+        for i, ev in enumerate(all_events):
+            print(f"  [{i+1}/{len(all_events)}] {ev['title'][:50]}...")
+            enrich_from_detail(ev, session)
+            if ev.get("long_description"):
+                enriched += 1
+            time.sleep(1.0)
+        print(f"\n📊 Enriched {enriched}/{len(all_events)} with full descriptions")
+
     if args.dry_run:
         for ev in all_events:
-            print(f"  🎪 {ev['title'][:60]} | {ev['date']} | {ev['city']}, {ev['state']} | {ev.get('price', 'Free')}")
+            desc_len = len(ev.get("long_description") or "")
+            addr = ev.get("street_address") or "no address"
+            zc = ev.get("zip_code") or "no zip"
+            print(f"  🎪 {ev['title'][:55]} | {ev['date']} | {ev['city']}, {ev['state']}")
+            print(f"     Cat: {ev['category']} | Addr: {addr} | Zip: {zc} | Desc: {desc_len} chars")
         print(f"\n🏁 Dry run complete — {len(all_events)} events would be inserted")
     else:
         inserted = upsert_events(all_events)
