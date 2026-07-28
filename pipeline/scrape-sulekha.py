@@ -61,6 +61,9 @@ CITIES = [
     {"slug": "milwaukee", "display": "Milwaukee", "state": "WI", "st": "Wisconsin", "zip": "53201", "lat": 43.0389, "lng": -87.9065},
     # Batch 1 (Tue)
     {"slug": "san-jose", "display": "San Jose", "state": "CA", "st": "California", "zip": "95101", "lat": 37.3382, "lng": -121.8863},
+    {"slug": "santa-clara", "display": "Santa Clara", "state": "CA", "st": "California", "zip": "95050", "lat": 37.3541, "lng": -121.9552},
+    {"slug": "milpitas", "display": "Milpitas", "state": "CA", "st": "California", "zip": "95035", "lat": 37.4323, "lng": -121.8996},
+    {"slug": "cupertino", "display": "Cupertino", "state": "CA", "st": "California", "zip": "95014", "lat": 37.3230, "lng": -122.0322},
     {"slug": "seattle", "display": "Seattle", "state": "WA", "st": "Washington", "zip": "98101", "lat": 47.6062, "lng": -122.3321},
     {"slug": "miami", "display": "Miami", "state": "FL", "st": "Florida", "zip": "33101", "lat": 25.7617, "lng": -80.1918},
     {"slug": "charlotte", "display": "Charlotte", "state": "NC", "st": "North Carolina", "zip": "28201", "lat": 35.2271, "lng": -80.8431},
