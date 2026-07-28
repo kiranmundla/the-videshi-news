@@ -11,12 +11,22 @@ const supabase = supabaseTyped as unknown as {
 export interface KidsProgram {
   id: string;
   name: string;
+  slug: string;
   organization: string | null;
   category: string | null;
   description: string | null;
+  long_description: string | null;
   website_url: string | null;
+  registration_url: string | null;
+  age_range: string | null;
   grade_range: string | null;
+  grade_min: number | null;
+  grade_max: number | null;
+  age_groups: string[];
   cost: string | null;
+  format: string | null;
+  annual_cycle: string | null;
+  locations: string | null;
   is_indian_org: boolean;
   is_featured: boolean;
   created_at: string;
@@ -211,4 +221,25 @@ export async function fetchKidsCamps(): Promise<KidsCamp[]> {
   // De-duplicate by title similarity and sort by date
   camps.sort((a, b) => a.date.localeCompare(b.date));
   return camps;
+}
+
+export async function fetchKidsProgramBySlug(slug: string): Promise<KidsProgram | null> {
+  try {
+    const { data, error } = await supabase
+      .from("kids_programs")
+      .select("*")
+      .eq("slug", slug)
+      .limit(1);
+
+    if (error) {
+      console.error("Failed to fetch program by slug:", error);
+      return null;
+    }
+
+    const rows = data as KidsProgram[] | null;
+    return rows && rows.length > 0 ? rows[0] : null;
+  } catch (err) {
+    console.error("Failed to fetch program by slug:", err);
+    return null;
+  }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
@@ -22,8 +23,17 @@ const PROGRAM_CATEGORIES = [
   "Math",
   "Science & STEM",
   "Robotics",
-  "Cultural & Arts",
+  "Coding & CS",
+  "Chess",
+  "College Prep",
+  "Summer Programs",
+  "Sports",
+  "Dance",
+  "Music",
   "Language",
+  "Cultural & Arts",
+  "Cultural & Religious",
+  "Volunteering",
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -31,9 +41,26 @@ const CATEGORY_COLORS: Record<string, string> = {
   Math: "bg-indigo-100 text-indigo-700",
   "Science & STEM": "bg-emerald-100 text-emerald-700",
   Robotics: "bg-cyan-100 text-cyan-700",
+  "Coding & CS": "bg-violet-100 text-violet-700",
+  Chess: "bg-slate-100 text-slate-700",
+  "College Prep": "bg-rose-100 text-rose-700",
+  "Summer Programs": "bg-orange-100 text-orange-700",
+  Sports: "bg-lime-100 text-lime-700",
+  Dance: "bg-pink-100 text-pink-700",
+  Music: "bg-purple-100 text-purple-700",
   "Cultural & Arts": "bg-purple-100 text-purple-700",
   Language: "bg-amber-100 text-amber-700",
+  "Cultural & Religious": "bg-yellow-100 text-yellow-700",
+  Volunteering: "bg-teal-100 text-teal-700",
+  "Summer Camps": "bg-orange-100 text-orange-700",
 };
+
+const AGE_GROUPS = [
+  { key: "preschool", label: "Preschool", ages: "Ages 3–5", emoji: "🧒" },
+  { key: "elementary", label: "Elementary", ages: "Grades K–5", emoji: "📖" },
+  { key: "middle_school", label: "Middle School", ages: "Grades 6–8", emoji: "🔬" },
+  { key: "high_school", label: "High School", ages: "Grades 9–12", emoji: "🎓" },
+];
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                            */
@@ -166,75 +193,65 @@ function ProgramCard({ program }: { program: KidsProgram }) {
   const catColor =
     CATEGORY_COLORS[program.category || ""] || "bg-gray-100 text-gray-700";
 
-  const card = (
-    <div
-      className={`group rounded-lg border bg-card p-4 sm:p-5 transition-all hover:shadow-md hover:border-[#D4A843]/50 flex flex-col h-full ${
-        program.is_featured ? "ring-1 ring-[#D4A843]/40" : "border-border"
-      }`}
+  return (
+    <Link
+      to={`/kids/programs/${program.slug}`}
+      className="block no-underline h-full"
     >
-      {program.is_featured && (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 text-[10px] font-semibold mb-2 w-fit">
-          ⭐ Featured
-        </span>
-      )}
-      <h3 className="font-serif text-base font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-[#A32D2F] transition-colors mb-1.5">
-        {program.name}
-      </h3>
-      {program.organization && (
-        <p className="text-xs text-muted-foreground mb-2 truncate">
-          {program.organization}
-        </p>
-      )}
-
-      <div className="flex flex-wrap gap-1.5 mb-2">
-        {program.category && (
-          <span
-            className={`inline-block px-2 py-0.5 rounded text-[11px] font-medium ${catColor}`}
-          >
-            {program.category}
-          </span>
-        )}
-        {program.is_indian_org && (
-          <span className="inline-block px-2 py-0.5 rounded text-[11px] font-medium bg-orange-100 text-orange-700">
-            🇮🇳 Indian Community
-          </span>
-        )}
-      </div>
-
-      {program.grade_range && (
-        <p className="text-xs text-muted-foreground mb-1.5">
-          🎒 Grades {program.grade_range}
-        </p>
-      )}
-
-      {program.description && (
-        <p className="text-sm text-muted-foreground line-clamp-3 mb-3 flex-1">
-          {program.description}
-        </p>
-      )}
-
-      <div className="mt-auto pt-2">
-        <span className="text-sm font-medium text-[#A32D2F] group-hover:underline">
-          Learn More →
-        </span>
-      </div>
-    </div>
-  );
-
-  if (program.website_url) {
-    return (
-      <a
-        href={program.website_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block no-underline h-full"
+      <div
+        className={`group rounded-lg border bg-card p-4 sm:p-5 transition-all hover:shadow-md hover:border-[#D4A843]/50 flex flex-col h-full ${
+          program.is_featured ? "ring-1 ring-[#D4A843]/40" : "border-border"
+        }`}
       >
-        {card}
-      </a>
-    );
-  }
+        {program.is_featured && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 text-[10px] font-semibold mb-2 w-fit">
+            ⭐ Featured
+          </span>
+        )}
+        <h3 className="font-serif text-base font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-[#A32D2F] transition-colors mb-1.5">
+          {program.name}
+        </h3>
+        {program.organization && (
+          <p className="text-xs text-muted-foreground mb-2 truncate">
+            {program.organization}
+          </p>
+        )}
 
-  return card;
+        <div className="flex flex-wrap gap-1.5 mb-2">
+          {program.category && (
+            <span
+              className={`inline-block px-2 py-0.5 rounded text-[11px] font-medium ${catColor}`}
+            >
+              {program.category}
+            </span>
+          )}
+          {program.is_indian_org && (
+            <span className="inline-block px-2 py-0.5 rounded text-[11px] font-medium bg-orange-100 text-orange-700">
+              🇮🇳 Indian Community
+            </span>
+          )}
+        </div>
+
+        {program.grade_range && (
+          <p className="text-xs text-muted-foreground mb-1.5">
+            🎒 Grades {program.grade_range}
+          </p>
+        )}
+
+        {program.description && (
+          <p className="text-sm text-muted-foreground line-clamp-3 mb-3 flex-1">
+            {program.description}
+          </p>
+        )}
+
+        <div className="mt-auto pt-2">
+          <span className="text-sm font-medium text-[#A32D2F] group-hover:underline">
+            Learn More →
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -385,6 +402,7 @@ export default function KidsPage() {
   const [camps, setCamps] = useState<KidsCamp[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState<string | null>(null);
 
   useEffect(() => {
     async function load() {
@@ -406,11 +424,21 @@ export default function KidsPage() {
     load();
   }, []);
 
-  /* Category filter */
+  /* Category + age group filter */
   const filteredPrograms = useMemo(() => {
-    if (selectedCategory === "All") return programs;
-    return programs.filter((p) => p.category === selectedCategory);
-  }, [programs, selectedCategory]);
+    let filtered = programs;
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter((p) => p.category === selectedCategory);
+    }
+    if (selectedAgeGroup) {
+      filtered = filtered.filter(
+        (p) =>
+          Array.isArray(p.age_groups) &&
+          p.age_groups.includes(selectedAgeGroup)
+      );
+    }
+    return filtered;
+  }, [programs, selectedCategory, selectedAgeGroup]);
 
   /* Category counts */
   const categoryCounts = useMemo(() => {
@@ -438,7 +466,7 @@ export default function KidsPage() {
 
       <main className="container flex-1 pt-8 md:pt-10 pb-16" style={{ maxWidth: 1200 }}>
         {/* Page Header */}
-        <div className="mb-10">
+        <div className="mb-12">
           <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-2">
             🎓 Kids &amp; Education
           </h1>
@@ -448,8 +476,62 @@ export default function KidsPage() {
           </p>
         </div>
 
+        {/* ───────── AGE GROUP CARDS ───────── */}
+        <section className="mb-14">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            {AGE_GROUPS.map((ag) => {
+              const count = programs.filter(
+                (p) =>
+                  Array.isArray(p.age_groups) &&
+                  p.age_groups.includes(ag.key)
+              ).length;
+              return (
+                <button
+                  key={ag.key}
+                  onClick={() => {
+                    setSelectedAgeGroup(
+                      selectedAgeGroup === ag.key ? null : ag.key
+                    );
+                    setSelectedCategory("All");
+                  }}
+                  className={`group relative rounded-xl border-2 p-5 sm:p-6 text-left transition-all hover:shadow-lg ${
+                    selectedAgeGroup === ag.key
+                      ? "border-[#D4A843] bg-[#D4A843]/5 shadow-md"
+                      : "border-border bg-card hover:border-[#D4A843]/40"
+                  }`}
+                >
+                  <span className="text-3xl sm:text-4xl block mb-3">
+                    {ag.emoji}
+                  </span>
+                  <h3 className="font-serif text-base sm:text-lg font-semibold text-foreground leading-snug mb-1">
+                    {ag.label}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    {ag.ages}
+                  </p>
+                  {count > 0 && (
+                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold bg-muted/30 text-muted-foreground">
+                      {count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          {selectedAgeGroup && (
+            <div className="mt-3 text-center">
+              <button
+                onClick={() => setSelectedAgeGroup(null)}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                ✕ Clear age filter
+              </button>
+            </div>
+          )}
+        </section>
+
         {/* ───────── SECTION 1: Registration Deadlines ───────── */}
-        <section className="mb-12">
+        <section className="mb-14">
           <SectionHeader
             title="⏰ Upcoming Deadlines"
             subtitle="Don't miss these registration windows — sorted by urgency"
@@ -469,21 +551,24 @@ export default function KidsPage() {
         </section>
 
         {/* ───────── SECTION 2: Programs Directory ───────── */}
-        <section className="mb-12">
+        <section className="mb-14">
           <SectionHeader
             title="📚 Browse Programs"
             subtitle="Find the right program for your child"
           />
 
           {/* Category filter pills */}
-          <div className="flex flex-wrap gap-2 mb-5">
+          <div className="flex flex-wrap gap-2 mb-6">
             {PROGRAM_CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat;
               const count = categoryCounts[cat] || 0;
               return (
                 <button
                   key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+                  onClick={() => {
+                    setSelectedCategory(cat);
+                    if (cat !== "All") setSelectedAgeGroup(null);
+                  }}
                   className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
                     isActive
                       ? "text-white border-[#A32D2F]"
@@ -503,16 +588,26 @@ export default function KidsPage() {
           {loading ? (
             <ProgramSkeleton />
           ) : filteredPrograms.length === 0 ? (
-            <div className="text-center py-12">
+            <div className="text-center py-14">
               <p className="text-3xl mb-3">📖</p>
               <p className="text-muted-foreground">
-                {selectedCategory === "All"
+                {selectedCategory === "All" && !selectedAgeGroup
                   ? "Programs coming soon — check back!"
+                  : selectedAgeGroup
+                  ? `No programs found for this age group${selectedCategory !== "All" ? ` in ${selectedCategory}` : ""}`
                   : `No ${selectedCategory} programs listed yet`}
               </p>
+              {(selectedAgeGroup || selectedCategory !== "All") && (
+                <button
+                  onClick={() => { setSelectedCategory("All"); setSelectedAgeGroup(null); }}
+                  className="mt-3 text-sm text-[#A32D2F] hover:underline"
+                >
+                  Clear all filters
+                </button>
+              )}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {filteredPrograms.map((p) => (
                 <ProgramCard key={p.id} program={p} />
               ))}

@@ -93,6 +93,7 @@ const TeacherProfilePage = React.lazy(() => import("./pages/TeacherProfilePage.t
 
 // Kids & Education
 const KidsPage = React.lazy(() => import("./pages/KidsPage.tsx"));
+const KidsProgramPage = React.lazy(() => import("./pages/KidsProgramPage.tsx"));
 
 // Developing Stories (Storyline timelines)
 const StorylineTimeline = React.lazy(() => import("./pages/StorylineTimeline.tsx"));
@@ -202,6 +203,7 @@ const App = () => (
               <Route path="/daily-wisdom" element={<DailyWisdomPage />} />
               <Route path="/daily-wisdom/teachers/:slug" element={<TeacherProfilePage />} />
               <Route path="/kids" element={<KidsPage />} />
+              <Route path="/kids/programs/:slug" element={<KidsProgramPage />} />
               <Route path="/developing/:slug" element={<StorylineTimeline />} />
               <Route path="/representatives" element={<LeadersPage />} />
               <Route path="/leaders" element={<LeadersPage />} />
