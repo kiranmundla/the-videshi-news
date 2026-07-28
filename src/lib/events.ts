@@ -30,6 +30,8 @@ export type EventItem = {
   is_featured: boolean | null;
   venue_images: string[] | null;
   seatmap_url: string | null;
+  street_address: string | null;
+  zip_code: string | null;
   created_at?: string | null;
 };
 
@@ -38,7 +40,7 @@ const BASE_COLS = "id,title,date,time,end_date,venue_name,city,state,category,de
 
 // Extended columns (added by migration-event-detail.sql)
 // If the migration hasn't been run yet, we fall back to BASE_COLS
-const EVENT_COLS = BASE_COLS + ",long_description,artist_info,venue_info,slug,latitude,longitude,is_featured,venue_images,seatmap_url";
+const EVENT_COLS = BASE_COLS + ",long_description,artist_info,venue_info,slug,latitude,longitude,is_featured,venue_images,seatmap_url,street_address,zip_code";
 
 /**
  * Run a query with EVENT_COLS; if it fails (columns don't exist yet),
@@ -62,6 +64,8 @@ async function queryWithFallback(buildQuery: (cols: string) => any): Promise<any
       latitude: null,
       longitude: null,
       is_featured: null,
+      street_address: null,
+      zip_code: null,
     }));
   }
   if (error) {

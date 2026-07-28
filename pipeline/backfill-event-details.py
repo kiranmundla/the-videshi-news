@@ -146,10 +146,13 @@ def fetch_eventbrite_details(url):
                 address = location.get("address", {})
                 if isinstance(address, dict):
                     street = address.get("streetAddress", "")
+                    postal = address.get("postalCode", "")
                     venue_name = location.get("name", "")
-                    if street and street not in venue_name:
-                        result["venue_name"] = f"{venue_name}, {street}" if venue_name else street
-                    elif venue_name:
+                    if street:
+                        result["street_address"] = street
+                    if postal:
+                        result["zip_code"] = postal
+                    if venue_name:
                         result["venue_name"] = venue_name
         except (json.JSONDecodeError, KeyError):
             pass
@@ -275,13 +278,13 @@ def fetch_allevents_details(url):
 # ── DB helpers ───────────────────────────────────────────────────────────────
 
 def fetch_events_to_backfill(source, limit):
-    """Fetch events that need backfilling (no long_description, have ticket_url)."""
+    """Fetch events that need backfilling (no long_description OR no street_address, have ticket_url)."""
     url = (
         f"{SUPABASE_URL}/rest/v1/events"
         f"?source=eq.{source}"
-        f"&long_description=is.null"
+        f"&or=(long_description.is.null,street_address.is.null)"
         f"&ticket_url=not.is.null"
-        f"&select=id,title,ticket_url,venue_name,date"
+        f"&select=id,title,ticket_url,venue_name,date,long_description,street_address,zip_code"
         f"&order=date.asc"
         f"&limit={limit}"
     )
@@ -370,9 +373,17 @@ def main():
 
         # Build update payload
         patch = {}
-        if details.get("long_description"):
+        if details.get("long_description") and not ev.get("long_description"):
             patch["long_description"] = details["long_description"]
             print(f"  📝 Description: {len(details['long_description'])} chars")
+
+        if details.get("street_address") and not ev.get("street_address"):
+            patch["street_address"] = details["street_address"]
+            print(f"  📍 Address: {details['street_address']}")
+
+        if details.get("zip_code") and not ev.get("zip_code"):
+            patch["zip_code"] = details["zip_code"]
+            print(f"  📮 Zip: {details['zip_code']}")
 
         if details.get("venue_name"):
             # Only update if the new name has more info (contains address)

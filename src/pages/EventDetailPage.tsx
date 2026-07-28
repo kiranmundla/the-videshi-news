@@ -94,7 +94,11 @@ function isPastEvent(dateStr: string): boolean {
 }
 
 /** Split venue_name into name and street address if it contains a comma */
-function parseVenueParts(venueName: string | null): { name: string; address: string } {
+function parseVenueParts(venueName: string | null, streetAddr?: string | null): { name: string; address: string } {
+  // Prefer the dedicated street_address field
+  if (streetAddr) {
+    return { name: venueName || "", address: streetAddr };
+  }
   if (!venueName) return { name: "", address: "" };
   const idx = venueName.indexOf(",");
   if (idx < 0) return { name: venueName, address: "" };
@@ -457,7 +461,8 @@ export default function EventDetailPage() {
   const dateStr = formatEventDateLong(event.date, event.end_date);
   const past = isPastEvent(event.date);
   const catEmoji = CAT_EMOJI[event.category || "Other"] || "📌";
-  const { name: venueName, address: venueStreet } = parseVenueParts(event.venue_name);
+  const { name: venueName, address: venueStreet } = parseVenueParts(event.venue_name, event.street_address);
+  const venueZip = event.zip_code || "";
   const fullLocation = [venueName, event.city, event.state].filter(Boolean).join(", ");
   const mapsQuery = [event.venue_name, event.city, event.state].filter(Boolean).join(", ");
 
@@ -498,7 +503,7 @@ export default function EventDetailPage() {
             ...(event.ticket_url ? { url: event.ticket_url } : {}),
             location: {
               "@type": "Place", name: venueName || "",
-              address: { "@type": "PostalAddress", ...(venueStreet ? { streetAddress: venueStreet } : {}), addressLocality: event.city || "", addressRegion: event.state || "" },
+              address: { "@type": "PostalAddress", ...(venueStreet ? { streetAddress: venueStreet } : {}), addressLocality: event.city || "", addressRegion: event.state || "", ...(venueZip ? { postalCode: venueZip } : {}) },
             },
             ...(event.organizer ? { organizer: { "@type": "Organization", name: event.organizer } } : {}),
             ...(buildOffers(event) ? { offers: buildOffers(event) } : {}),
@@ -569,7 +574,7 @@ export default function EventDetailPage() {
                   <div>
                     <p className="text-sm font-semibold text-white/90">{venueName}</p>
                     <p className="text-xs text-white/50">
-                      {venueStreet ? `${venueStreet}, ` : ""}{[event.city, event.state].filter(Boolean).join(", ")}
+                      {venueStreet ? `${venueStreet}, ` : ""}{[event.city, event.state].filter(Boolean).join(", ")}{venueZip ? ` ${venueZip}` : ""}
                     </p>
                   </div>
                 </div>
@@ -723,7 +728,7 @@ export default function EventDetailPage() {
                   <div className="min-w-0">
                     {venueName && <p className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">{venueName}</p>}
                     {venueStreet && <p className="text-white/50 text-xs">{venueStreet}</p>}
-                    <p className="text-white/50 text-xs">{[event.city, event.state].filter(Boolean).join(", ")}</p>
+                    <p className="text-white/50 text-xs">{[event.city, event.state].filter(Boolean).join(", ")}{venueZip ? ` ${venueZip}` : ""}</p>
                     <p className="text-[#D4A843] text-xs mt-1 font-medium group-hover:underline">Get Directions →</p>
                   </div>
                 </a>

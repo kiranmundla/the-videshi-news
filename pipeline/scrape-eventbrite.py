@@ -292,10 +292,8 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
     venue = e.get("primary_venue") or {}
     venue_name = venue.get("name", "")
     addr = venue.get("address", {}) or {}
-    address_1 = addr.get("address_1", "")
-    # Include street address in venue_name: "Santana Row, 377 Santana Row"
-    if address_1 and address_1 not in venue_name:
-        venue_name = f"{venue_name}, {address_1}" if venue_name else address_1
+    street_address = addr.get("address_1", "")
+    zip_code = addr.get("postal_code", "")
     event_city = addr.get("city", "")
     event_state = addr.get("region", state_abbr)
     lat = addr.get("latitude")
@@ -349,6 +347,8 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
         "latitude": float(lat) if lat else None,
         "longitude": float(lng) if lng else None,
         "content_fingerprint": fp,
+        "street_address": street_address[:300] if street_address else None,
+        "zip_code": zip_code[:20] if zip_code else None,
     }
     return row
 
