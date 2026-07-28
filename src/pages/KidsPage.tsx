@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import Masthead from "@/components/Masthead";
@@ -11,12 +11,21 @@ import {
   type KidsProgram,
   type KidsDeadline,
 } from "@/lib/kidsPrograms";
+import {
+  fetchLocalPlaces,
+  distanceMiles,
+  placeMatchesAge,
+  LOCAL_CATEGORIES,
+  CATEGORY_GRADIENTS,
+  LOCAL_CATEGORY_COLORS,
+  type KidsLocalPlace,
+} from "@/lib/kidsLocalPlaces";
 
 /* ------------------------------------------------------------------ */
 /* Constants                                                          */
 /* ------------------------------------------------------------------ */
 
-const CATEGORIES = [
+const PROGRAM_CATEGORIES = [
   { key: "All", icon: "📋" },
   { key: "Academic Competitions", icon: "🏆" },
   { key: "Math", icon: "🔢" },
@@ -35,7 +44,7 @@ const CATEGORIES = [
   { key: "Volunteering", icon: "🤝" },
 ];
 
-const CATEGORY_COLORS: Record<string, string> = {
+const PROGRAM_CATEGORY_COLORS: Record<string, string> = {
   "Academic Competitions": "bg-blue-100 text-blue-700",
   Math: "bg-indigo-100 text-indigo-700",
   "Science & STEM": "bg-emerald-100 text-emerald-700",
@@ -51,7 +60,6 @@ const CATEGORY_COLORS: Record<string, string> = {
   Language: "bg-amber-100 text-amber-700",
   "Cultural & Religious": "bg-yellow-100 text-yellow-700",
   Volunteering: "bg-teal-100 text-teal-700",
-  "Summer Camps": "bg-orange-100 text-orange-700",
 };
 
 const AGE_GROUPS = [
@@ -61,7 +69,8 @@ const AGE_GROUPS = [
   { key: "high_school", label: "High School", sub: "Grades 9–12", icon: "🎓" },
 ];
 
-type LocationFilter = "all" | "online" | "nearme";
+const PLACES_INITIAL = 9;
+const PROGRAMS_INITIAL = 6;
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                            */
@@ -74,55 +83,60 @@ function daysUntil(dateStr: string): number {
   return Math.ceil((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 }
 
-/** Check if a program matches the "online" location filter */
-function isOnlineProgram(p: KidsProgram): boolean {
-  const fmt = (p.format || "").toLowerCase();
-  const loc = (p.locations || "").toLowerCase();
-  return fmt === "online" || fmt === "hybrid" || loc.includes("online");
+function mapsUrl(place: KidsLocalPlace): string {
+  if (place.latitude && place.longitude) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`;
+  }
+  if (place.address) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+      `${place.address}, ${place.city}, ${place.state}`,
+    )}`;
+  }
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${place.name} ${place.city} ${place.state}`,
+  )}`;
 }
 
-/** Check if a program is available in a given US state (or "nationwide") */
-function isNearUser(p: KidsProgram, userState: string | undefined): boolean {
-  if (!userState) return true; // can't filter without state
-  const loc = (p.locations || "").toLowerCase();
-  const fmt = (p.format || "").toLowerCase();
-  const st = userState.toLowerCase();
-  return (
-    loc.includes(st) ||
-    loc.includes("nationwide") ||
-    loc.includes("national") ||
-    loc.includes("all states") ||
-    fmt === "online" ||
-    fmt === "hybrid" ||
-    loc.includes("online")
-  );
+function telUrl(phone: string): string {
+  return `tel:${phone.replace(/[^\d+]/g, "")}`;
 }
 
 /* ------------------------------------------------------------------ */
 /* Closing-Soon Strip                                                 */
 /* ------------------------------------------------------------------ */
 
-function ClosingSoonStrip({ deadlines }: { deadlines: KidsDeadline[] }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const urgent = deadlines.filter((d) => {
+function ClosingSoonStrip({
+  deadlines,
+  selectedAge,
+}: {
+  deadlines: KidsDeadline[];
+  selectedAge: string | null;
+}) {
+  let urgent = deadlines.filter((d) => {
     const days = daysUntil(d.deadline_date);
     return days >= 0 && days <= 14;
-  }).slice(0, 5);
+  });
 
+  // Filter by age group if selected (match program's age_groups via category heuristic)
+  if (selectedAge && urgent.length > 0) {
+    // We don't have age_groups on deadlines, so keep all when filtered
+    // Future: join with program age_groups
+  }
+
+  urgent = urgent.slice(0, 6);
   if (urgent.length === 0) return null;
 
   return (
-    <section className="mb-10">
+    <section className="mb-12">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-lg">🔔</span>
         <h2 className="font-serif text-lg font-semibold text-foreground">
-          Closing Soon
+          Don't Miss — Registration Closing Soon
         </h2>
         <div className="h-px flex-1 bg-border" />
       </div>
 
       <div
-        ref={scrollRef}
         className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide"
         style={{ scrollSnapType: "x mandatory" }}
       >
@@ -153,8 +167,8 @@ function ClosingSoonStrip({ deadlines }: { deadlines: KidsDeadline[] }) {
                   {days === 0
                     ? "Today!"
                     : days === 1
-                    ? "Tomorrow!"
-                    : `${days} days left`}
+                      ? "Tomorrow!"
+                      : `${days} days left`}
                 </span>
               </div>
 
@@ -196,12 +210,168 @@ function ClosingSoonStrip({ deadlines }: { deadlines: KidsDeadline[] }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Local Place Card                                                   */
+/* ------------------------------------------------------------------ */
+
+function LocalPlaceCard({
+  place,
+  userLat,
+  userLng,
+}: {
+  place: KidsLocalPlace;
+  userLat?: number;
+  userLng?: number;
+}) {
+  const catIcon =
+    LOCAL_CATEGORIES.find((c) => c.key === place.category)?.icon || "📍";
+  const gradient =
+    CATEGORY_GRADIENTS[place.category] || "from-gray-400 to-gray-300";
+  const catColor =
+    LOCAL_CATEGORY_COLORS[place.category] || "bg-gray-100 text-gray-700";
+
+  const dist =
+    userLat && userLng && place.latitude && place.longitude
+      ? distanceMiles(userLat, userLng, place.latitude, place.longitude)
+      : null;
+
+  const addressLine = place.address
+    ? `${place.address}, ${place.city}, ${place.state}${place.zip_code ? ` ${place.zip_code}` : ""}`
+    : `${place.city}, ${place.state}`;
+
+  return (
+    <div className="group rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:border-[#D4A843]/50 flex flex-col h-full">
+      {/* Image / gradient header */}
+      {place.image_url ? (
+        <div className="h-36 sm:h-40 overflow-hidden">
+          <img
+            src={place.image_url}
+            alt={place.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div
+          className={`h-28 sm:h-32 bg-gradient-to-br ${gradient} flex items-center justify-center`}
+        >
+          <span className="text-4xl opacity-80">{catIcon}</span>
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1">
+        {/* Badges */}
+        <div className="flex flex-wrap gap-1.5 mb-2">
+          <span
+            className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold ${catColor}`}
+          >
+            {catIcon} {place.category}
+          </span>
+          {place.is_indian_focused && (
+            <span className="inline-block px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 text-[10px] font-semibold">
+              🇮🇳 Indian Community
+            </span>
+          )}
+        </div>
+
+        {/* Name */}
+        <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug line-clamp-2 mb-1.5">
+          {place.name}
+        </h3>
+
+        {/* Rating */}
+        {place.rating && (
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="text-amber-500 text-sm">⭐</span>
+            <span className="text-sm font-medium text-foreground">
+              {place.rating}
+            </span>
+            {place.review_count && (
+              <span className="text-xs text-muted-foreground">
+                ({place.review_count} reviews)
+              </span>
+            )}
+            {dist !== null && (
+              <span className="text-xs text-muted-foreground ml-auto">
+                {dist < 1 ? "< 1 mi" : `${dist.toFixed(1)} mi`}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Distance if no rating */}
+        {!place.rating && dist !== null && (
+          <div className="text-xs text-muted-foreground mb-2">
+            📍 {dist < 1 ? "< 1 mi away" : `${dist.toFixed(1)} mi away`}
+          </div>
+        )}
+
+        {/* Description */}
+        {place.description && (
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
+            {place.description}
+          </p>
+        )}
+
+        {/* Address */}
+        <div className="text-xs text-muted-foreground mb-1">
+          <span className="mr-1">📍</span>
+          {addressLine}
+        </div>
+
+        {/* Age range */}
+        {place.age_range && (
+          <div className="text-xs text-muted-foreground mb-3">
+            <span className="mr-1">🎒</span>
+            Ages {place.age_range}
+          </div>
+        )}
+
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* Action buttons */}
+        <div className="flex items-center gap-2 pt-3 border-t border-border/50">
+          <a
+            href={mapsUrl(place)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors"
+          >
+            🗺️ Directions
+          </a>
+          {place.website && (
+            <a
+              href={place.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors"
+            >
+              🌐 Website
+            </a>
+          )}
+          {place.phone && (
+            <a
+              href={telUrl(place.phone)}
+              className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors"
+            >
+              📞 Call
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Program Card                                                       */
 /* ------------------------------------------------------------------ */
 
 function ProgramCard({ program }: { program: KidsProgram }) {
   const catColor =
-    CATEGORY_COLORS[program.category || ""] || "bg-gray-100 text-gray-700";
+    PROGRAM_CATEGORY_COLORS[program.category || ""] ||
+    "bg-gray-100 text-gray-700";
 
   return (
     <Link
@@ -213,7 +383,6 @@ function ProgramCard({ program }: { program: KidsProgram }) {
           program.is_featured ? "ring-1 ring-[#D4A843]/40" : "border-border"
         }`}
       >
-        {/* Badges row */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {program.is_featured && (
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 text-[10px] font-semibold">
@@ -227,19 +396,16 @@ function ProgramCard({ program }: { program: KidsProgram }) {
           )}
         </div>
 
-        {/* Title */}
         <h3 className="font-serif text-base sm:text-[17px] font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-[#A32D2F] transition-colors mb-1.5">
           {program.name}
         </h3>
 
-        {/* Organization */}
         {program.organization && (
           <p className="text-xs text-muted-foreground mb-3 truncate">
             {program.organization}
           </p>
         )}
 
-        {/* Category pill */}
         {program.category && (
           <div className="mb-3">
             <span
@@ -250,21 +416,18 @@ function ProgramCard({ program }: { program: KidsProgram }) {
           </div>
         )}
 
-        {/* Meta row */}
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-3">
           {program.age_range && <span>🎒 {program.age_range}</span>}
           {program.format && <span>📍 {program.format}</span>}
           {program.cost && <span>💰 {program.cost}</span>}
         </div>
 
-        {/* Description */}
         {program.description && (
           <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1">
             {program.description}
           </p>
         )}
 
-        {/* CTA */}
         <div className="mt-auto pt-2">
           <span className="text-sm font-medium text-[#A32D2F] group-hover:underline">
             Learn More →
@@ -276,58 +439,81 @@ function ProgramCard({ program }: { program: KidsProgram }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Loading Skeleton                                                   */
+/* Filter Pill                                                        */
 /* ------------------------------------------------------------------ */
 
-function GridSkeleton() {
+function FilterPill({
+  label,
+  icon,
+  active,
+  count,
+  onClick,
+  color,
+}: {
+  label: string;
+  icon?: string;
+  active: boolean;
+  count?: number;
+  onClick: () => void;
+  color?: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
+        active
+          ? "text-white border-transparent"
+          : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
+      }`}
+      style={active ? { backgroundColor: color || "#A32D2F" } : undefined}
+    >
+      {icon && <span className="mr-1">{icon}</span>}
+      {label}
+      {count !== undefined && count > 0 && (
+        <span className="ml-1 opacity-70">({count})</span>
+      )}
+    </button>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Grid Skeleton                                                      */
+/* ------------------------------------------------------------------ */
+
+function GridSkeleton({ count = 6 }: { count?: number }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="h-56 rounded-xl bg-muted/20 animate-pulse"
-        />
+      {[...Array(count)].map((_, i) => (
+        <div key={i} className="h-56 rounded-xl bg-muted/20 animate-pulse" />
       ))}
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Results Summary                                                    */
+/* Section Header                                                     */
 /* ------------------------------------------------------------------ */
 
-function ResultsSummary({
-  count,
-  ageGroup,
-  category,
-  locationFilter,
-  userState,
+function SectionHeader({
+  icon,
+  title,
+  subtitle,
 }: {
-  count: number;
-  ageGroup: string | null;
-  category: string;
-  locationFilter: LocationFilter;
-  userState: string | undefined;
+  icon: string;
+  title: string;
+  subtitle: string;
 }) {
-  const parts: string[] = [];
-  if (category !== "All") parts.push(category);
-  if (ageGroup) {
-    const ag = AGE_GROUPS.find((a) => a.key === ageGroup);
-    if (ag) parts.push(`for ${ag.label}`);
-  }
-  if (locationFilter === "online") parts.push("· Online");
-  if (locationFilter === "nearme" && userState)
-    parts.push(`· Near ${userState}`);
-
-  const label = parts.length > 0 ? parts.join(" ") : "";
-
   return (
-    <p className="text-sm text-muted-foreground mb-6">
-      Showing{" "}
-      <span className="font-semibold text-foreground">{count}</span>{" "}
-      {count === 1 ? "program" : "programs"}
-      {label ? ` ${label}` : ""}
-    </p>
+    <div className="mb-6">
+      <div className="flex items-center gap-2 mb-1.5">
+        <span className="text-xl">{icon}</span>
+        <h2 className="font-serif text-xl sm:text-2xl font-semibold text-foreground">
+          {title}
+        </h2>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+      <p className="text-sm text-muted-foreground">{subtitle}</p>
+    </div>
   );
 }
 
@@ -336,50 +522,53 @@ function ResultsSummary({
 /* ------------------------------------------------------------------ */
 
 export default function KidsPage() {
+  /* ---- data state ---- */
   const [programs, setPrograms] = useState<KidsProgram[]>([]);
   const [deadlines, setDeadlines] = useState<KidsDeadline[]>([]);
+  const [localPlaces, setLocalPlaces] = useState<KidsLocalPlace[]>([]);
   const [loading, setLoading] = useState(true);
 
+  /* ---- shared filter: age ---- */
   const [searchParams, setSearchParams] = useSearchParams();
-
-  /* Read initial filter state from URL params */
   const selectedAge = searchParams.get("age") || null;
-  const selectedCategory = searchParams.get("cat") || "All";
-  const locationFilter = (searchParams.get("loc") || "all") as LocationFilter;
 
-  /* Update URL params when filters change */
-  const updateFilter = useCallback(
-    (key: string, value: string | null) => {
+  const setSelectedAge = useCallback(
+    (v: string | null) => {
       setSearchParams((prev) => {
         const next = new URLSearchParams(prev);
-        if (!value || value === "All" || value === "all") {
-          next.delete(key);
-        } else {
-          next.set(key, value);
-        }
+        if (!v) next.delete("age");
+        else next.set("age", v);
         return next;
       }, { replace: true });
     },
     [setSearchParams],
   );
 
-  const setSelectedAge = (v: string | null) => updateFilter("age", v);
-  const setSelectedCategory = (v: string) => updateFilter("cat", v === "All" ? null : v);
-  const setLocationFilter = (v: LocationFilter) => updateFilter("loc", v === "all" ? null : v);
+  /* ---- local places filters ---- */
+  const [localCategory, setLocalCategory] = useState("All");
+  const [localCity, setLocalCity] = useState("All");
+  const [indianOnly, setIndianOnly] = useState(false);
+  const [showAllPlaces, setShowAllPlaces] = useState(false);
 
+  /* ---- programs filters ---- */
+  const [programCategory, setProgramCategory] = useState("All");
+  const [showAllPrograms, setShowAllPrograms] = useState(false);
+
+  /* ---- location ---- */
   const { location: userLocation } = useUserLocation();
-  const userState = userLocation?.region;
 
   /* ---- data load ---- */
   useEffect(() => {
     async function load() {
       try {
-        const [p, d] = await Promise.all([
+        const [p, d, lp] = await Promise.all([
           fetchKidsPrograms(),
           fetchKidsDeadlines(50),
+          fetchLocalPlaces(),
         ]);
         setPrograms(p);
         setDeadlines(d);
+        setLocalPlaces(lp);
       } catch (err) {
         console.error("Failed to load kids data:", err);
       } finally {
@@ -389,35 +578,107 @@ export default function KidsPage() {
     load();
   }, []);
 
-  /* ---- filtering ---- */
+  /* ---- compute cities from data ---- */
+  const cities = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const p of localPlaces) {
+      const c = p.city || "Other";
+      counts[c] = (counts[c] || 0) + 1;
+    }
+    return Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([name, count]) => ({ name, count }));
+  }, [localPlaces]);
+
+  /* ---- filtered local places ---- */
+  const filteredPlaces = useMemo(() => {
+    let list = localPlaces;
+
+    // Age filter
+    if (selectedAge) {
+      list = list.filter((p) => placeMatchesAge(p.age_range, selectedAge));
+    }
+
+    // Category
+    if (localCategory !== "All") {
+      list = list.filter((p) => p.category === localCategory);
+    }
+
+    // City
+    if (localCity !== "All") {
+      list = list.filter((p) => p.city === localCity);
+    }
+
+    // Indian only
+    if (indianOnly) {
+      list = list.filter((p) => p.is_indian_focused);
+    }
+
+    // Add distance if user location available
+    if (userLocation?.latitude && userLocation?.longitude) {
+      list = list.map((p) => ({
+        ...p,
+        distance_miles:
+          p.latitude && p.longitude
+            ? distanceMiles(
+                userLocation.latitude,
+                userLocation.longitude,
+                p.latitude,
+                p.longitude,
+              )
+            : undefined,
+      }));
+      // Sort by distance (places with distance first, then by rating)
+      list.sort((a, b) => {
+        if (a.distance_miles != null && b.distance_miles != null) {
+          return a.distance_miles - b.distance_miles;
+        }
+        if (a.distance_miles != null) return -1;
+        if (b.distance_miles != null) return 1;
+        return (b.rating || 0) - (a.rating || 0);
+      });
+    }
+
+    return list;
+  }, [
+    localPlaces,
+    selectedAge,
+    localCategory,
+    localCity,
+    indianOnly,
+    userLocation,
+  ]);
+
+  /* ---- category counts for local places (respecting age/city/indian) ---- */
+  const localCatCounts = useMemo(() => {
+    let base = localPlaces;
+    if (selectedAge) base = base.filter((p) => placeMatchesAge(p.age_range, selectedAge));
+    if (localCity !== "All") base = base.filter((p) => p.city === localCity);
+    if (indianOnly) base = base.filter((p) => p.is_indian_focused);
+    const counts: Record<string, number> = { All: base.length };
+    for (const p of base) {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    }
+    return counts;
+  }, [localPlaces, selectedAge, localCity, indianOnly]);
+
+  /* ---- filtered programs ---- */
   const filteredPrograms = useMemo(() => {
     let list = programs;
-
-    // Age group
     if (selectedAge) {
       list = list.filter(
         (p) =>
           Array.isArray(p.age_groups) && p.age_groups.includes(selectedAge),
       );
     }
-
-    // Category
-    if (selectedCategory !== "All") {
-      list = list.filter((p) => p.category === selectedCategory);
+    if (programCategory !== "All") {
+      list = list.filter((p) => p.category === programCategory);
     }
-
-    // Location
-    if (locationFilter === "online") {
-      list = list.filter(isOnlineProgram);
-    } else if (locationFilter === "nearme") {
-      list = list.filter((p) => isNearUser(p, userState));
-    }
-
     return list;
-  }, [programs, selectedAge, selectedCategory, locationFilter, userState]);
+  }, [programs, selectedAge, programCategory]);
 
-  /* ---- dynamic category counts (respecting age + location filters) ---- */
-  const categoryCounts = useMemo(() => {
+  /* ---- program category counts ---- */
+  const programCatCounts = useMemo(() => {
     let base = programs;
     if (selectedAge) {
       base = base.filter(
@@ -425,30 +686,34 @@ export default function KidsPage() {
           Array.isArray(p.age_groups) && p.age_groups.includes(selectedAge),
       );
     }
-    if (locationFilter === "online") {
-      base = base.filter(isOnlineProgram);
-    } else if (locationFilter === "nearme") {
-      base = base.filter((p) => isNearUser(p, userState));
-    }
     const counts: Record<string, number> = { All: base.length };
     for (const p of base) {
       const cat = p.category || "Other";
       counts[cat] = (counts[cat] || 0) + 1;
     }
     return counts;
-  }, [programs, selectedAge, locationFilter, userState]);
+  }, [programs, selectedAge]);
 
-  /* ---- clear all filters ---- */
+  /* ---- display slices ---- */
+  const placesToShow = showAllPlaces
+    ? filteredPlaces
+    : filteredPlaces.slice(0, PLACES_INITIAL);
+  const programsToShow = showAllPrograms
+    ? filteredPrograms
+    : filteredPrograms.slice(0, PROGRAMS_INITIAL);
+
   const hasActiveFilters =
     selectedAge !== null ||
-    selectedCategory !== "All" ||
-    locationFilter !== "all";
+    localCategory !== "All" ||
+    localCity !== "All" ||
+    indianOnly ||
+    programCategory !== "All";
 
-  function clearFilters() {
-    setSearchParams({}, { replace: true });
-  }
-
-  const categoryScrollRef = useRef<HTMLDivElement>(null);
+  /* ---- reset section filters when age changes ---- */
+  useEffect(() => {
+    setShowAllPlaces(false);
+    setShowAllPrograms(false);
+  }, [selectedAge]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -456,7 +721,7 @@ export default function KidsPage() {
         <title>Kids &amp; Education — The Videshi</title>
         <meta
           name="description"
-          content="Programs, competitions, camps & resources for K-12 students in the Indian American community. Filter by age, category, and location."
+          content="Activities, classes, programs & competitions for K-12 students in the Indian American community. Find what's right for your child."
         />
         <link rel="canonical" href="https://www.thevideshi.com/kids" />
       </Helmet>
@@ -468,181 +733,303 @@ export default function KidsPage() {
         className="container flex-1 pt-8 md:pt-10 pb-16"
         style={{ maxWidth: 1200 }}
       >
-        {/* ───────── PAGE HEADER ───────── */}
+        {/* ═══════════ PAGE HEADER ═══════════ */}
         <div className="mb-10 md:mb-12">
           <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-3">
             🎓 Kids &amp; Education
           </h1>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl leading-relaxed">
-            Programs, competitions, cultural activities &amp; resources for
-            K-12 students in the Indian American community
+            Everything for your child's growth — from activities near you to
+            competitions they'll thrive in
           </p>
         </div>
 
-        {/* ───────── FILTER BAR ───────── */}
-        <div className="mb-8 space-y-5">
-          {/* Row 1: Age group — icon cards */}
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-              Age Group
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {AGE_GROUPS.map((ag) => {
-                const active = selectedAge === ag.key;
-                return (
-                  <button
-                    key={ag.key}
-                    onClick={() => setSelectedAge(active ? null : ag.key)}
-                    className={`relative rounded-xl border-2 p-4 sm:p-5 text-left transition-all hover:shadow-md ${
-                      active
-                        ? "border-[#D4A843] bg-[#D4A843]/5 shadow-sm"
-                        : "border-border bg-card hover:border-[#D4A843]/40"
-                    }`}
-                  >
-                    <span className="text-2xl sm:text-3xl block mb-2">{ag.icon}</span>
-                    <h3 className="font-serif text-sm sm:text-base font-semibold text-foreground leading-snug">
-                      {ag.label}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-0.5">{ag.sub}</p>
-                  </button>
-                );
-              })}
-            </div>
+        {/* ═══════════ AGE SELECTOR ═══════════ */}
+        <div className="mb-10">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+            My child is in
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {AGE_GROUPS.map((ag) => {
+              const active = selectedAge === ag.key;
+              return (
+                <button
+                  key={ag.key}
+                  onClick={() => setSelectedAge(active ? null : ag.key)}
+                  className={`relative rounded-xl border-2 p-4 sm:p-5 text-left transition-all hover:shadow-md ${
+                    active
+                      ? "border-[#D4A843] bg-[#D4A843]/5 shadow-sm"
+                      : "border-border bg-card hover:border-[#D4A843]/40"
+                  }`}
+                >
+                  <span className="text-2xl sm:text-3xl block mb-2">
+                    {ag.icon}
+                  </span>
+                  <h3 className="font-serif text-sm sm:text-base font-semibold text-foreground leading-snug">
+                    {ag.label}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {ag.sub}
+                  </p>
+                </button>
+              );
+            })}
           </div>
-
-          {/* Row 2: Category pills — horizontal scroll on mobile */}
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
-              Category
-            </p>
-            <div
-              ref={categoryScrollRef}
-              className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide"
-            >
-              {CATEGORIES.map((cat) => {
-                const active = selectedCategory === cat.key;
-                const count = categoryCounts[cat.key] ?? 0;
-                return (
-                  <button
-                    key={cat.key}
-                    onClick={() => setSelectedCategory(cat.key)}
-                    className={`flex-shrink-0 px-3 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
-                      active
-                        ? "text-white border-[#A32D2F]"
-                        : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
-                    }`}
-                    style={
-                      active ? { backgroundColor: "#A32D2F" } : undefined
-                    }
-                  >
-                    {cat.icon} {cat.key}
-                    {count > 0 && (
-                      <span className="ml-1 opacity-70">({count})</span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Row 3: Location filter */}
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
-              Availability
-            </p>
-            <div className="flex gap-2">
-              {(
-                [
-                  { key: "all" as const, label: "All Locations" },
-                  { key: "online" as const, label: "Online" },
-                  {
-                    key: "nearme" as const,
-                    label: userState ? `Near Me · ${userState}` : "Near Me",
-                  },
-                ] as const
-              ).map((opt) => {
-                const active = locationFilter === opt.key;
-                return (
-                  <button
-                    key={opt.key}
-                    onClick={() => setLocationFilter(opt.key)}
-                    className={`px-3.5 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
-                      active
-                        ? "text-white border-[#0B1D3A]"
-                        : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
-                    }`}
-                    style={
-                      active && opt.key !== "all"
-                        ? { backgroundColor: "#0B1D3A" }
-                        : active
-                        ? { backgroundColor: "#0B1D3A" }
-                        : undefined
-                    }
-                  >
-                  {opt.key === "all" && "🌐 "}
-                    {opt.key === "online" && "💻 "}
-                    {opt.key === "nearme" && "📍 "}
-                    {opt.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Clear filters */}
-          {hasActiveFilters && (
+          {selectedAge && (
             <button
-              onClick={clearFilters}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setSelectedAge(null)}
+              className="mt-3 text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
-              ✕ Clear all filters
+              ✕ Show all ages
             </button>
           )}
         </div>
 
-        {/* ───────── CLOSING SOON STRIP ───────── */}
-        {!loading && <ClosingSoonStrip deadlines={deadlines} />}
+        {/* ═══════════ CLOSING SOON ═══════════ */}
+        {!loading && (
+          <ClosingSoonStrip deadlines={deadlines} selectedAge={selectedAge} />
+        )}
 
-        {/* ───────── RESULTS ───────── */}
-        <section>
+        {/* ═══════════ NEAR YOU ═══════════ */}
+        <section className="mb-14">
+          <SectionHeader
+            icon="📍"
+            title="Classes & Activities Near You"
+            subtitle="Local programs, classes & activities in the Bay Area"
+          />
+
           {loading ? (
-            <GridSkeleton />
+            <GridSkeleton count={6} />
           ) : (
             <>
-              <ResultsSummary
-                count={filteredPrograms.length}
-                ageGroup={selectedAge}
-                category={selectedCategory}
-                locationFilter={locationFilter}
-                userState={userState}
-              />
+              {/* Category pills */}
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-3">
+                {LOCAL_CATEGORIES.filter(
+                  (c) => c.key === "All" || (localCatCounts[c.key] || 0) > 0,
+                ).map((cat) => (
+                  <FilterPill
+                    key={cat.key}
+                    label={cat.key}
+                    icon={cat.icon}
+                    active={localCategory === cat.key}
+                    count={localCatCounts[cat.key]}
+                    onClick={() => {
+                      setLocalCategory(cat.key);
+                      setShowAllPlaces(false);
+                    }}
+                  />
+                ))}
+              </div>
 
-              {filteredPrograms.length === 0 ? (
-                <div className="text-center py-20">
-                  <p className="text-4xl mb-4">📭</p>
-                  <p className="text-muted-foreground text-base mb-1">
-                    No programs match your current filters
-                  </p>
-                  <p className="text-muted-foreground text-sm mb-5 opacity-70">
-                    Try broadening your age group, category, or location
+              {/* City pills + Indian toggle */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+                  <FilterPill
+                    label="All Bay Area"
+                    active={localCity === "All"}
+                    onClick={() => {
+                      setLocalCity("All");
+                      setShowAllPlaces(false);
+                    }}
+                    color="#0B1D3A"
+                  />
+                  {cities.slice(0, 8).map((c) => (
+                    <FilterPill
+                      key={c.name}
+                      label={c.name}
+                      active={localCity === c.name}
+                      count={c.count}
+                      onClick={() => {
+                        setLocalCity(c.name);
+                        setShowAllPlaces(false);
+                      }}
+                      color="#0B1D3A"
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => {
+                    setIndianOnly(!indianOnly);
+                    setShowAllPlaces(false);
+                  }}
+                  className={`flex-shrink-0 ml-auto px-3 py-1.5 text-xs font-medium rounded-full border transition-colors whitespace-nowrap ${
+                    indianOnly
+                      ? "bg-orange-600 text-white border-transparent"
+                      : "bg-card text-muted-foreground border-border hover:border-orange-300 hover:text-orange-700"
+                  }`}
+                >
+                  🇮🇳 Indian Community
+                </button>
+              </div>
+
+              {/* Results count */}
+              <p className="text-sm text-muted-foreground mb-5">
+                Showing{" "}
+                <span className="font-semibold text-foreground">
+                  {showAllPlaces
+                    ? filteredPlaces.length
+                    : Math.min(filteredPlaces.length, PLACES_INITIAL)}
+                </span>
+                {!showAllPlaces && filteredPlaces.length > PLACES_INITIAL && (
+                  <span> of {filteredPlaces.length}</span>
+                )}{" "}
+                {filteredPlaces.length === 1 ? "place" : "places"}
+                {localCategory !== "All" && ` in ${localCategory}`}
+                {localCity !== "All" && ` · ${localCity}`}
+              </p>
+
+              {filteredPlaces.length === 0 ? (
+                <div className="text-center py-12 rounded-xl bg-muted/10 border border-dashed border-border">
+                  <p className="text-3xl mb-3">🔍</p>
+                  <p className="text-muted-foreground text-sm mb-1">
+                    No places match your current filters
                   </p>
                   <button
-                    onClick={clearFilters}
-                    className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition-colors"
-                    style={{ backgroundColor: "#A32D2F" }}
+                    onClick={() => {
+                      setLocalCategory("All");
+                      setLocalCity("All");
+                      setIndianOnly(false);
+                    }}
+                    className="mt-3 text-xs font-medium hover:underline"
+                    style={{ color: "#A32D2F" }}
                   >
-                    Show All Programs
+                    Clear filters
                   </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                  {filteredPrograms.map((p) => (
-                    <ProgramCard key={p.id} program={p} />
-                  ))}
-                </div>
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                    {placesToShow.map((p) => (
+                      <LocalPlaceCard
+                        key={p.id}
+                        place={p}
+                        userLat={userLocation?.latitude}
+                        userLng={userLocation?.longitude}
+                      />
+                    ))}
+                  </div>
+
+                  {filteredPlaces.length > PLACES_INITIAL && (
+                    <div className="text-center mt-6">
+                      <button
+                        onClick={() => setShowAllPlaces(!showAllPlaces)}
+                        className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all"
+                      >
+                        {showAllPlaces
+                          ? "Show fewer"
+                          : `Show all ${filteredPlaces.length} places`}
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </>
           )}
+        </section>
+
+        {/* ═══════════ PROGRAMS & COMPETITIONS ═══════════ */}
+        <section className="mb-14">
+          <SectionHeader
+            icon="🏆"
+            title="Programs & Competitions"
+            subtitle="National competitions and organizations your child can join"
+          />
+
+          {loading ? (
+            <GridSkeleton count={6} />
+          ) : (
+            <>
+              {/* Category pills */}
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-6">
+                {PROGRAM_CATEGORIES.filter(
+                  (c) =>
+                    c.key === "All" || (programCatCounts[c.key] || 0) > 0,
+                ).map((cat) => (
+                  <FilterPill
+                    key={cat.key}
+                    label={cat.key}
+                    icon={cat.icon}
+                    active={programCategory === cat.key}
+                    count={programCatCounts[cat.key]}
+                    onClick={() => {
+                      setProgramCategory(cat.key);
+                      setShowAllPrograms(false);
+                    }}
+                    color="#A32D2F"
+                  />
+                ))}
+              </div>
+
+              {/* Results count */}
+              <p className="text-sm text-muted-foreground mb-5">
+                Showing{" "}
+                <span className="font-semibold text-foreground">
+                  {showAllPrograms
+                    ? filteredPrograms.length
+                    : Math.min(filteredPrograms.length, PROGRAMS_INITIAL)}
+                </span>
+                {!showAllPrograms &&
+                  filteredPrograms.length > PROGRAMS_INITIAL && (
+                    <span> of {filteredPrograms.length}</span>
+                  )}{" "}
+                {filteredPrograms.length === 1 ? "program" : "programs"}
+                {programCategory !== "All" && ` in ${programCategory}`}
+              </p>
+
+              {filteredPrograms.length === 0 ? (
+                <div className="text-center py-12 rounded-xl bg-muted/10 border border-dashed border-border">
+                  <p className="text-3xl mb-3">📭</p>
+                  <p className="text-muted-foreground text-sm mb-1">
+                    No programs match your current filters
+                  </p>
+                  <button
+                    onClick={() => setProgramCategory("All")}
+                    className="mt-3 text-xs font-medium hover:underline"
+                    style={{ color: "#A32D2F" }}
+                  >
+                    Show all programs
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                    {programsToShow.map((p) => (
+                      <ProgramCard key={p.id} program={p} />
+                    ))}
+                  </div>
+
+                  {filteredPrograms.length > PROGRAMS_INITIAL && (
+                    <div className="text-center mt-6">
+                      <button
+                        onClick={() => setShowAllPrograms(!showAllPrograms)}
+                        className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all"
+                      >
+                        {showAllPrograms
+                          ? "Show fewer"
+                          : `Show all ${filteredPrograms.length} programs`}
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </>
+          )}
+        </section>
+
+        {/* ═══════════ PARENT READS (coming soon) ═══════════ */}
+        <section className="mb-10">
+          <SectionHeader
+            icon="📰"
+            title="Guides for Parents"
+            subtitle="Expert guides to help you navigate your child's educational journey"
+          />
+          <div className="text-center py-12 rounded-xl bg-muted/5 border border-dashed border-border">
+            <p className="text-3xl mb-3">📚</p>
+            <p className="text-muted-foreground text-sm">
+              Coming soon — guides on competitions, college prep, extracurriculars & more
+            </p>
+          </div>
         </section>
       </main>
 
