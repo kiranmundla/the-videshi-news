@@ -136,10 +136,10 @@ function daysUntil(d: string): number {
 }
 
 function mapsUrl(p: KidsLocalPlace): string {
-  if (p.latitude && p.longitude)
-    return `https://www.google.com/maps/dir/?api=1&destination=${p.latitude},${p.longitude}`;
   if (p.address)
     return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${p.address}, ${p.city}, ${p.state}`)}`;
+  if (p.latitude && p.longitude)
+    return `https://www.google.com/maps/dir/?api=1&destination=${p.latitude},${p.longitude}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.name} ${p.city} ${p.state}`)}`;
 }
 

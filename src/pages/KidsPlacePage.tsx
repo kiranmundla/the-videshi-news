@@ -125,10 +125,10 @@ export default function KidsPlacePage() {
   const catColor = LOCAL_CATEGORY_COLORS[place.category] || "bg-gray-100 text-gray-700";
   const catEmoji = CATEGORY_EMOJI[place.category] || "📍";
   const fullAddress = [place.address, place.city, place.state, place.zip_code].filter(Boolean).join(", ");
-  const mapsUrl = place.latitude && place.longitude
-    ? `https://www.google.com/maps/search/?api=1&query=${place.latitude},${place.longitude}`
-    : fullAddress
-      ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`
+  const mapsUrl = fullAddress
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`
+    : place.latitude && place.longitude
+      ? `https://www.google.com/maps/search/?api=1&query=${place.latitude},${place.longitude}`
       : null;
 
   return (
