@@ -104,6 +104,15 @@ export default function KidsGuidePage() {
       <Helmet>
         <title>{guide.title} — The Videshi</title>
         <meta name="description" content={guide.summary} />
+        <meta property="og:title" content={`${guide.title} — The Videshi`} />
+        <meta property="og:description" content={guide.summary} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://www.thevideshi.com/kids/guides/${guide.slug}`} />
+        <meta property="og:site_name" content="The Videshi" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`${guide.title} — The Videshi`} />
+        <meta name="twitter:description" content={guide.summary} />
+        <link rel="canonical" href={`https://www.thevideshi.com/kids/guides/${guide.slug}`} />
       </Helmet>
 
       <Masthead />

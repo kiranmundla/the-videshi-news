@@ -35,6 +35,23 @@ const STATIC_PAGES = [
   { loc: "/technology/indian-it", priority: "0.7", changefreq: "daily" },
   { loc: "/stories", priority: "0.6", changefreq: "weekly" },
   { loc: "/world-cup", priority: "0.9", changefreq: "hourly" },
+  { loc: "/kids", priority: "0.8", changefreq: "weekly" },
+  { loc: "/kids/guides/math-competitions", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/spelling-bee", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/getting-into-robotics", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/chess-for-kids", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/coding-for-kids", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/tennis-for-kids", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/cricket-in-the-us", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/debate-and-public-speaking", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/indian-dance-for-kids", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/music-education-for-kids", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/science-olympiad-and-stem", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/youth-sports-in-the-us", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/sat-act-prep", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/college-counseling-guide", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/volunteering-and-community-service", priority: "0.7", changefreq: "monthly" },
+  { loc: "/kids/guides/heritage-language-programs", priority: "0.7", changefreq: "monthly" },
 ];
 
 const CATEGORIES = [
