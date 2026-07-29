@@ -838,6 +838,212 @@ Start with a school chess club or ChessKid. See if the spark is there. If your c
 *Check official websites for the most current information: [uschess.org](https://uschess.org) for US Chess tournaments and membership, [chesskid.com](https://chesskid.com) for kids' online play, and [lichess.org](https://lichess.org) for free practice.*`
       }
     ]
+  },
+  {
+    topic: "coding",
+    slug: "coding-for-kids",
+    title: "Coding & CS for Kids — From Scratch to Competitions",
+    emoji: "💻",
+    description: "From Scratch to Python to USACO — the coding path for kids, free resources, structured programs, and how coding competitions work.",
+    sections: [
+      { heading: `Why Coding Matters`, body: `Let's skip the "coding is the new literacy" cliché and get to what actually matters: coding teaches kids how to break big problems into small ones. That skill — decomposition — transfers to essay writing, science projects, and eventually job interviews. It's not about turning every kid into a software engineer.
+
+What coding genuinely builds:
+
+- **Structured thinking** — Writing a program forces you to think step-by-step. There's no hand-waving past logic errors; the computer does exactly what you tell it, which teaches precision.
+- **Debugging as a life skill** — Finding and fixing bugs is really about diagnosing why something isn't working. Kids learn to read error messages, test hypotheses, and isolate problems — skills that apply far beyond a screen.
+- **Creative expression** — A kid who builds a game in Scratch or a website about their favorite hobby is creating something from nothing. That's fundamentally different from consuming content.
+- **Career optionality** — Even if your child never writes code professionally, understanding how software works is increasingly relevant in medicine, law, finance, design, and research. CS majors from top universities have median starting salaries above $100K.
+
+A word of balance: coding isn't magic, and it's not for every kid at every age. A 6-year-old who'd rather draw or play outside isn't "falling behind." The best time to start is when the kid is curious, not when parents feel anxious.` },
+      { heading: `The Coding Path by Age`, body: `There's no single right path, but here's a realistic progression that matches how most kids develop:
+
+| Age / Grade | Language & Tools | What They're Doing | Platforms |
+|---|---|---|---|
+| K–2 (ages 5–7) | ScratchJr, block-based | Drag-and-drop storytelling, simple animations | ScratchJr app, Code.org Course A–C |
+| 3–5 (ages 8–10) | Scratch, block-based | Building games, interactive stories, basic logic (loops, conditionals) | Scratch (scratch.mit.edu), Code.org Course D–F, Tynker |
+| 6–8 (ages 11–13) | Python, JavaScript | Text-based coding, simple projects (calculators, quizzes, web pages) | Codecademy, freeCodeCamp, Replit, Khan Academy |
+| 9–10 (ages 14–15) | Python, Java, C++ | Data structures, algorithms, AP CS A prep, first competitions | USACO training pages, LeetCode, CodingBat |
+| 11–12 (ages 16–18) | Java/C++, advanced topics | AP CS A, competitive programming, passion projects, portfolios | Codeforces, USACO, GitHub, MIT OpenCourseWare |
+
+**Key transitions:**
+
+- **Scratch → Python** (around age 10–11) is the biggest jump. Some kids take to it naturally; others need a bridge. Programs like Code.org's App Lab or Google's CS First can ease the transition.
+- **Python → Java/C++** usually happens when kids get serious about competitions (USACO uses C++, Java, or Python) or start AP CS A (which uses Java).
+- **Don't rush it.** A kid who spends two years mastering Scratch and building creative projects is better prepared than one who's pushed into Python at age 8 and burns out.
+
+For self-learners, **Code.org** remains the best free starting point — it's used in 70%+ of US schools and has courses from pre-reader through AP level. **Scratch** (from MIT) is the gold standard for visual coding. For text-based languages, **Codecademy** and **freeCodeCamp** are both free and self-paced.` },
+      { heading: `Competition Landscape`, body: `Competitive programming is a distinct skill from building projects. It's about solving algorithmic puzzles under time pressure — closer to math olympiads than to app development. Some kids thrive on it; others prefer building real things. Both paths are valid.
+
+### USACO (USA Computing Olympiad)
+
+The premier competition for pre-college students in the US. In the 2025 January contest alone, **9,450 participants submitted solutions** from 100+ countries, with **4,276 from the USA**.
+
+| Division | Description | What It Takes |
+|---|---|---|
+| **Bronze** | Entry level — basic programming, simple loops and arrays | Know one language (Python/Java/C++), basic problem-solving |
+| **Silver** | Intermediate — binary search, sorting, graphs basics | ~3–6 months of focused practice after Bronze |
+| **Gold** | Advanced — dynamic programming, advanced graph algorithms | Serious commitment, typically 6–12 months from Silver |
+| **Platinum** | Elite — ~255–350 participants per contest | Years of dedicated training, often with coaching |
+
+The 2025–2026 season had three online contests plus a proctored US Open championship. Languages used: C++ (~63%), Python (~14%), Java (~12%). C++ dominates at higher levels due to speed advantages.
+
+### ACSL (American Computer Science League)
+
+More accessible than USACO, with a team-based format. Now in its 48th year, with **8,000+ students** participating globally. Five divisions from Elementary (grades 3–6) through Senior (grades 10–12). Each season has 4 contests covering CS theory (number systems, Boolean algebra, graph theory) plus programming problems. Great for students who want CS competition exposure without pure algorithmic intensity.
+
+### Other Competitions Worth Knowing
+
+- **Codeforces** — Free online platform with regular contests (multiple per week). Rated system lets you track progress. Popular with competitive programmers worldwide, including many high schoolers preparing for USACO/IOI.
+- **Hackathons** — Team events (12–48 hours) where kids build real projects. Major League Hacking (MLH) runs events for high schoolers. More about creativity and execution than algorithmic puzzles.
+- **Harker Programming Invitational** — Bay Area-based annual contest with invited speakers (held by Harker School in San Jose).
+- **HP CodeWars** — Sponsored by HP, team-based high school competition.
+- **Google Code Jam** — Was discontinued in 2023. No direct replacement, but Google still sponsors various coding initiatives.
+
+**Competitive coding vs. building projects:** Competitions test algorithmic thinking under pressure. Building projects (apps, websites, games) develops software engineering skills — design, collaboration, user experience. College admissions value both, but a portfolio of real projects often tells a more compelling story than a competition score alone.` },
+      { heading: `Structured Programs & Camps`, body: `If your kid benefits from structure and instruction, here are the major options — with honest assessments:
+
+### National Programs
+
+**Code Ninjas** (franchise, in-person)
+- Ages 5–14. Game-based curriculum at physical centers.
+- Summer camps: **$225–$359/week** for half-day sessions.
+- Multiple Bay Area locations (San Jose, Fremont, Dublin, Cupertino).
+- Good for: Beginners who need a social, gamified environment. Curriculum is engaging but not deep — think of it as a gateway, not a long-term path.
+
+**iD Tech** (in-person camps at universities)
+- Ages 7–17. Week-long day or overnight camps on college campuses.
+- Bay Area locations: Stanford, Santa Clara University ($1,129–$1,149/week for day camps), SF State ($1,149/week).
+- Two-week intensive academies for ages 13–18: **$4,399+** (overnight).
+- Good for: Summer immersion experience. Kids get a taste of campus life alongside coding. Quality varies by instructor.
+
+**Juni Learning** (online, 1:1 tutoring)
+- Ages 7–18. Weekly 50-minute private sessions over Zoom.
+- **$275–$299/month** (4 sessions). Instructors are US university students.
+- Covers Scratch through Python, Java, C++, web development, and AP CS.
+- Good for: Kids who want personalized pacing and accountability. Pricey for what amounts to ~3.3 hours of instruction per month.
+
+**CodeWizardsHQ** (online, small group)
+- Ages 8–18. Live small-group classes, structured semester curriculum.
+- **$179–$299/month** depending on level (3-month course commitments).
+- Good for: Families who want structure without 1:1 pricing.
+
+### Bay Area Specific
+
+**X-Camp Academy** (Silicon Valley, online & in-person)
+- Competitive programming focused, grades 5–12. Specifically targets USACO advancement.
+- Track record: **75+ students advanced to USACO Platinum**, 400+ to Silver or above. 3 out of 4 students on the 2025 US IOI team were X-Camp students.
+- Best for serious competitive programmers. This is where Bay Area kids go when they're targeting Gold/Platinum.
+
+**SiliconValley4U** (San Jose area)
+- USACO prep courses: ~**$999 for 20 hours** (10 sessions).
+- Also offers Python, Java, and general CS courses.
+
+**Breakout Mentors** (Bay Area, online + in-person)
+- 1:1 mentorship with Stanford/Berkeley engineering students.
+- **$85+/hour**, 90-minute weekly sessions. Offers USACO prep track.
+- Good for: Families who want high-quality mentors and flexible curriculum.
+
+### Online Alternatives (Lower Cost)
+- **Outschool** — Marketplace with live group classes, $10–$60/session. Quality varies wildly; check reviews carefully.
+- **Art of Problem Solving (AoPS)** — Outstanding for math-inclined kids. Their CS courses are rigorous and well-structured.` },
+      { heading: `Free Resources That Actually Work`, body: `You can go surprisingly far without spending a dollar. Here's what's genuinely useful, organized by level:
+
+### Beginners (Ages 5–10)
+- **Code.org** — The single best free resource for young beginners. Hour of Code activities for first exposure, then structured courses (Course A through F) that take kids from pre-reader to basic programming concepts. Used in most US elementary schools. No account needed to start.
+- **Scratch** (scratch.mit.edu) — MIT's block-based platform. Free forever. The community aspect is huge — kids can share projects, remix others' work, and learn by exploring. Over 130 million projects shared.
+- **CS Unplugged** (csunplugged.org) — Activities that teach CS concepts without any computer. Sorting algorithms with cards, binary numbers with dots. Great for classrooms and families who want to limit screen time while still teaching computational thinking.
+
+### Intermediate (Ages 10–14)
+- **Khan Academy** — Free computing courses including Intro to JS, Intro to HTML/CSS, and Intro to SQL. The interactive coding environment with instant feedback is excellent. Also has AP CS Principles content.
+- **freeCodeCamp** — Entirely free, project-based web development curriculum. Better for ages 12+ due to text-heavy format. Certifications in Responsive Web Design, JavaScript, Python, and more. Over 40,000 graduates working in tech.
+- **Codecademy (free tier)** — Basic courses in Python, JavaScript, HTML/CSS. The free tier is limited but enough to learn fundamentals. Paid Pro plan runs ~$20/month if you want more.
+- **Replit** — Free online coding environment. No setup needed — just open a browser and start coding in Python, Java, JavaScript, or 50+ other languages. Has built-in AI assistant and multiplayer features for collaboration.
+
+### Advanced (Ages 14–18)
+- **USACO Training Pages** (train.usaco.org) — Free problem sets organized by topic, from basic to IOI-level. The official training resource for USACO preparation.
+- **Codeforces** (codeforces.com) — Free competitive programming platform with regular contests and thousands of practice problems. Rating system helps track progress.
+- **MIT OpenCourseWare** — Free university-level CS courses. "Introduction to Computer Science and Programming Using Python" (6.0001) is accessible to strong high schoolers. Full lecture videos, problem sets, and exams.
+- **GitHub Student Developer Pack** — Free for students (with .edu email or student ID verification). Includes free domain names, cloud credits, developer tools worth hundreds of dollars. Essential for portfolio building.
+- **The Odin Project** — Free, open-source full-stack web development curriculum. More structured than freeCodeCamp, with a clear learning path through HTML/CSS, JavaScript, Ruby, and Node.js.` },
+      { heading: `Costs & Time Commitment`, body: `Here's what coding education actually costs at different levels of commitment:
+
+| Path | Monthly Cost | Time/Week | Best For |
+|---|---|---|---|
+| **Self-study (free resources)** | $0 | 2–5 hours | Self-motivated kids with parental guidance |
+| **Online group classes** | $60–$180/month | 1–3 hours + homework | Kids who need structure but not 1:1 attention |
+| **1:1 online tutoring** | $275–$400/month | 1–1.5 hours + practice | Kids who need personalized pacing |
+| **In-person coding centers** | $150–$300/month (ongoing) | 1–2 hours/week | Younger kids who benefit from social learning |
+| **Summer camps (day)** | $250–$1,150/week | Full or half day | Summer exposure and enrichment |
+| **Competitive USACO prep** | $200–$500/month | 5–10+ hours | Serious competitors targeting Silver+ |
+| **Private USACO coaching** | $85–$150/hour | 3–5 hours + practice | Students targeting Gold/Platinum |
+
+### What's Worth Paying For
+
+**Worth it:**
+- A good teacher or mentor when your kid is stuck at a plateau (especially Scratch→Python transition or USACO Silver→Gold)
+- Summer camp as a one-time experience to build excitement and social connections
+- AP CS A prep if the school doesn't offer it or the teacher is weak
+
+**Probably not worth it:**
+- Monthly coding center subscriptions for kids who can self-study with free resources
+- Expensive camps every summer — one or two is plenty; the rest of the time, self-directed projects teach more
+- USACO coaching before the kid has genuinely exhausted free resources (USACO training pages, Codeforces practice)
+
+### Time Reality Check
+
+For casual learning, 2–3 hours per week is plenty. For competitive programming at the USACO Silver/Gold level, expect 5–10 hours per week of practice — comparable to a serious sport or instrument. Platinum-level competitors often train 10–15+ hours per week during contest season. Make sure your kid is driving the commitment, not you.` },
+      { heading: `South Asian & Diaspora Context`, body: `Let's be honest about the cultural dynamics:
+
+**Coding and Indian-American families** — There's a strong pipeline. South Asian Americans are heavily represented in tech leadership (CEOs of Google, Microsoft, Adobe, IBM), and this creates both genuine inspiration and intense pressure. Many Bay Area Indian families start their kids on coding early, and the community networks (WhatsApp groups, temple community boards, desi parent forums) are active in sharing information about programs, competitions, and "what worked for so-and-so's kid."
+
+**The positive side:**
+- Community knowledge-sharing is genuinely useful. When a parent in your network has navigated USACO Bronze to Gold, that advice is gold.
+- Cultural emphasis on education means resources and time are often prioritized. Kids in South Asian families frequently have access to tutoring, camps, and structured programs.
+- Representation matters. Kids seeing people who look like them leading tech companies makes the path feel attainable.
+- Indian coding culture runs deep — IIT entrance exams, competitive programming traditions, and a strong engineering ethos translate into real community expertise.
+
+**What to watch for:**
+- **Comparison culture** — "Sharma ji ka beta made USACO Platinum" can create toxic pressure. Every kid's timeline is different. A kid who builds a creative Scratch project at 10 is not "behind" a kid doing USACO Bronze at 10.
+- **Coding ≠ the only STEM path** — Some South Asian families treat coding as the default extracurricular. But a kid who's passionate about biology, writing, or music isn't making a mistake by not coding.
+- **Resume padding vs. genuine interest** — Signing up for every CS competition to pad a college application is transparent to admissions officers. Depth in one area (a meaningful project, a real contribution to open source, a competition where you genuinely improved) matters more than a list of participation certificates.
+- **Gender dynamics** — South Asian families sometimes unconsciously push sons toward coding more than daughters. Girls who code deserve the same encouragement and resources.
+
+**Bay Area-specific:** The concentration of tech-industry South Asian parents in cities like Cupertino, Fremont, Dublin, and San Jose creates an especially intense environment. Programs like X-Camp Academy in Silicon Valley have strong South Asian enrollment. This can be motivating or pressuring depending on the kid — know which one your child is experiencing.
+
+**Success stories worth knowing:** Arvind Krishna (IBM), Sundar Pichai (Google), and Satya Nadella (Microsoft) all started with foundational CS education. Closer to home, many Indian-American teens have reached USACO Platinum and IOI — but remember, these are the visible peaks of a much larger base of kids who learned to code, enjoyed it, and went on to fulfilling careers without ever making a national team.` },
+      { heading: `Honest Take — Pros, Cons & What to Watch For`, body: `### The Good
+- Coding is one of the most **accessible** high-skill activities. Free resources are genuinely excellent — unlike violin or tennis, you can reach a high level without expensive equipment or coaching.
+- It builds **transferable problem-solving skills** that help in math, science, and logical reasoning.
+- It's **portfolio-friendly** — a 15-year-old can build and ship a real app that thousands of people use. Few other activities offer that kind of tangible output.
+- **College admissions** value CS, especially when demonstrated through projects or competitions. But it's the depth that matters, not the activity itself.
+
+### The Concerns
+- **Screen time** — Yes, coding means more screen time. For younger kids (under 10), balance this with CS Unplugged activities and strict time boundaries. A kid who codes for 30 minutes and plays outside for an hour is doing fine.
+- **Competitive coding burnout** — USACO prep can become all-consuming. Watch for signs: loss of interest in coding for fun, anxiety before contests, defining self-worth by division level. If your kid dreads practice, step back.
+- **The "grind" mindset** — Some programs and parent communities promote grinding through hundreds of LeetCode problems. For adults preparing for job interviews, that's rational. For a 13-year-old, it can kill curiosity. Protect your kid's sense of wonder.
+- **Sedentary lifestyle** — Coding is sitting. Make sure physical activity is non-negotiable alongside any coding program.
+
+### Competition Path vs. Project Path
+
+These are genuinely different tracks:
+
+| | Competition Path | Project Path |
+|---|---|---|
+| **Skills developed** | Algorithms, optimization, speed | Design, collaboration, real-world problem solving |
+| **Looks like** | USACO, Codeforces, ACSL | Apps, websites, open source contributions, hackathons |
+| **College value** | Strong signal if high achievement | Strong signal if projects are substantial and real |
+| **Career prep** | Good for quant, algo roles | Better for most software engineering roles |
+| **Risk** | Burnout, narrow skill set | Lack of CS fundamentals, scattered effort |
+
+The best approach? Let your kid try both and see what resonates. Many successful CS students did some competitive programming AND built projects. The key is genuine engagement, not checking boxes.
+
+### When to Push, When to Back Off
+
+- **Push (gently):** When your kid likes coding but hits a frustrating plateau. The Scratch→Python transition is hard. Getting stuck on USACO Bronze for two contests is normal. Encouragement through struggle builds resilience.
+- **Back off:** When coding becomes a source of family conflict. When your kid is doing it to please you, not themselves. When every conversation about coding turns into a negotiation.
+- **The test:** Would your kid code if you never mentioned it again? If yes, you're in good shape. If no, have an honest conversation about whether this is their thing or yours.` }
+    ]
   }
 ];
 
