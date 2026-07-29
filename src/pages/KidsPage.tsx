@@ -239,6 +239,7 @@ function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat
         {place.age_range && <div className="text-xs text-muted-foreground mb-2">🎒 Ages {place.age_range}</div>}
         <div className="flex-1" />
         <div className="flex items-center gap-2 pt-3 border-t border-border/50">
+          <Link to={`/kids/places/${place.slug}`} className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-semibold text-[#A32D2F] bg-red-50 hover:bg-red-100 transition-colors no-underline">View Details →</Link>
           <a href={mapsUrl(place)} target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🗺️ Directions</a>
           {place.website && <a href={place.website} target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🌐 Website</a>}
           {place.phone && <a href={`tel:${place.phone.replace(/[^\d+]/g, "")}`} className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">📞 Call</a>}
