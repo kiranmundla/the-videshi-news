@@ -1766,6 +1766,179 @@ Keep an eye on:
 
 Tennis is an outstanding sport for kids — physically, mentally, and as a college differentiator. The key is matching the investment (time, money, intensity) to your child's genuine interest level. A kid who plays twice a week, does a few local tournaments a year, and makes the high school team will get 90% of the benefits at 10% of the cost of the elite track. Not every player needs to chase a national ranking to have tennis be a meaningful, lasting part of their life.` }
     ]
+  },
+  {
+    topic: "debate",
+    slug: "debate-and-public-speaking",
+    title: "Debate & Public Speaking for Kids",
+    emoji: "🗯️",
+    description: "National History Bee, Model UN, speech & debate leagues — how to develop communication skills and the competitive landscape.",
+    sections: [
+      { heading: `Why Debate & Public Speaking?`, body: `If there's one extracurricular that pays dividends across every career path, it's speech and debate. The skills are foundational: constructing an argument, thinking on your feet, reading an audience, staying composed under pressure, and communicating complex ideas clearly. These aren't nice-to-haves — they're the skills that separate people who have good ideas from people who can actually make things happen.
+
+College admissions officers consistently rank speech and debate among the most respected extracurriculars. The NSDA (National Speech & Debate Association) is one of the oldest honor societies in the country, and membership signals intellectual rigor. Students who reach elimination rounds at national-circuit tournaments or earn bids to the Tournament of Champions (TOC) at the University of Kentucky demonstrate a level of research, reasoning, and poise that stands out on applications.
+
+But the benefits go well beyond college apps. Debate teaches kids to engage with perspectives they disagree with — they'll argue both sides of a resolution across different rounds. It builds research literacy, since competitive debaters learn to find, evaluate, and cite evidence at a level most adults never reach. Public speaking events like Original Oratory and Extemporaneous Speaking build the kind of confident communication that translates directly to job interviews, presentations, and leadership roles.
+
+For students who are naturally introverted or anxious about speaking up, structured speech and debate provides a scaffolded way to build confidence. The format gives them rules, preparation time, and clear expectations — it's not "just wing it in front of the class." Many top debaters describe themselves as shy kids who found their voice through the activity.` },
+      { heading: `The Competition Landscape`, body: `The competitive speech and debate world is organized around a few major governing bodies and tournament circuits:
+
+**NSDA (National Speech & Debate Association)** — The largest and most established organization, with over 140,000 student members. Schools join as member programs, and students earn points by competing at NSDA-sanctioned tournaments throughout the year. The season culminates at the NSDA National Tournament each June, where 54 national champions are crowned across debate and speech events. It's often called the "Olympics of speech and debate."
+
+**Tournament of Champions (TOC)** — Held annually at the University of Kentucky, this is the most prestigious invitational tournament. Students must earn "bids" by reaching elimination rounds at select national-circuit tournaments. Qualifying for TOC is a significant achievement — most debaters who attend are nationally ranked.
+
+**CHSSA (California High School Speech Association)** — California's state-level organization. In the Bay Area, two leagues feed into CHSSA:
+- **Coast Forensic League (CFL)** — covers San Mateo, Santa Clara, Santa Cruz, Monterey, and San Benito counties
+- **Golden Gate Speech Association (GGSA)** — covers Alameda, Contra Costa, San Francisco, Marin, and surrounding counties
+
+Students compete at league tournaments, qualify for the CHSSA State Tournament, and can also qualify for NSDA Nationals through district qualifying tournaments.
+
+**Model United Nations (MUN)** — A parallel competitive track where students simulate UN diplomacy. Major Bay Area conferences include Berkeley Model United Nations (BMUN, ~2,000+ delegates) and Stanford Model United Nations Conference (SMUNC). MUN develops similar skills — research, public speaking, negotiation — but in a diplomatic simulation format rather than head-to-head debate.
+
+**National History Bee & Bowl** — A quiz-bowl style competition focused on history, with regional and national rounds. Less about persuasion, more about deep historical knowledge, but it builds research and quick-recall skills.
+
+**How tournaments work:** Most debate tournaments run on a weekend (Saturday, sometimes Friday–Saturday). Students compete in 4–6 preliminary rounds, and top performers advance to elimination rounds (octafinals, quarterfinals, semifinals, finals). Speech events typically have 3 preliminary rounds with a final round. Results are posted on Tabroom.com, the standard tournament management platform.` },
+      { heading: `Types of Debate & Speech Events`, body: `One of the best things about speech and debate is the sheer variety of events. There's genuinely something for every personality type:
+
+### Debate Events
+
+| Event | Format | Best For |
+|---|---|---|
+| **Public Forum (PF)** | 2v2 debate on current events topics that change monthly | Students who like teamwork, current events, and accessible argumentation |
+| **Lincoln-Douglas (LD)** | 1v1 debate on philosophical/value-based resolutions | Independent thinkers who enjoy ethics, philosophy, and deep research |
+| **Policy (CX)** | 2v2 debate with extensive evidence, fast-paced delivery | Detail-oriented researchers who thrive on depth and intensity |
+| **Congressional Debate** | Students simulate a legislative session, giving speeches for/against bills | Those who like politics, current events, and structured speaking |
+| **Parliamentary (Parli)** | 2v2 debate with limited prep time, no outside evidence | Quick thinkers who are comfortable improvising |
+| **World Schools** | 3v3 international-style debate mixing prepared and impromptu rounds | Students interested in global issues and a more conversational style |
+
+**Public Forum** is by far the most popular entry point — the topics are accessible (drawn from current news), it's team-based, and the speaking style is conversational rather than rapid-fire. **Lincoln-Douglas** attracts students who prefer working solo and enjoy philosophical depth. **Policy** is the most research-intensive and has the steepest learning curve, but its alumni are disproportionately represented at top law schools.
+
+### Speech Events
+
+| Event | What It Involves |
+|---|---|
+| **Original Oratory (OO)** | Write and deliver a 10-minute persuasive speech on a topic you care about |
+| **Extemporaneous Speaking (Extemp)** | Draw a current-events question, prep for 30 minutes, deliver a 7-minute speech with no notes |
+| **Dramatic Interpretation (DI)** | Perform a cutting from published dramatic literature (no props/costumes) |
+| **Humorous Interpretation (HI)** | Perform a cutting from published comedic literature |
+| **Duo Interpretation** | Two performers present a published piece together (no touching/eye contact) |
+| **Informative Speaking** | Research and present a 10-minute informational speech with visual aids |
+| **Program Oral Interpretation (POI)** | Combine poetry, prose, and drama around a unifying theme |
+
+**Extemp** is excellent for students who read the news voraciously and think well under pressure. **Original Oratory** suits passionate writers who want to advocate for a cause. **Interpretation events** are perfect for theater kids who want a competitive outlet. Many students compete in both a debate and a speech event — coaches often encourage this.` },
+      { heading: `How to Get Started`, body: `**Middle school is the typical entry point**, though some programs start as early as 4th–5th grade with introductory public speaking and parliamentary debate. Here's a practical path:
+
+**Step 1: Check your school.** Many middle and high schools have debate teams or speech and debate clubs. Ask the activities office or search your school's club list. If your school has an NSDA-affiliated program, you're set — the coach will handle registration and tournament entries.
+
+**Step 2: If your school doesn't have a team**, you have options:
+- **Start one.** The NSDA provides free resources and advocacy kits for students who want to launch a program. You need a faculty advisor and the school's support. NSDA middle school membership is $75/year for the school, $10 per student.
+- **Join a community program.** In the Bay Area, several independent academies offer competitive training:
+  - **Young Genius / Bay Area Speech and Debate Academy** (Cupertino) — offers Congressional Debate, Public Forum, Parliamentary, and speech classes for elementary through high school. One of the most established Bay Area programs
+  - **Athens Debate** (Cupertino/West San Jose) — summer and year-round programs starting at elementary level, $525/week for summer camps
+  - **ModernBrain** — offers online and in-person coaching across multiple debate formats
+
+**Step 3: Build foundational skills first.** Before diving into competitive formats:
+- Practice reading news daily — Extemp and Public Forum both require current-events fluency
+- Work on basic speech delivery: eye contact, pacing, vocal variety, eliminating filler words
+- Learn to outline an argument: claim, warrant (reasoning), impact (why it matters)
+- Start with prepared speeches before moving to impromptu formats
+
+**Step 4: Attend a tournament.** Most leagues have novice divisions specifically for first-year competitors. Tabroom.com lists upcoming tournaments searchable by region. Your first tournament will be overwhelming — that's normal. The learning curve is steep for the first 3–4 tournaments, then it clicks.
+
+**Step 5: Find a practice partner or study group.** Debate is inherently social. Even Lincoln-Douglas debaters need someone to practice against. Many teams do regular practice rounds (called "drills") after school 2–3 times per week.` },
+      { heading: `Programs & Resources`, body: `### Summer Debate Camps
+
+Summer camps are the fastest way to level up. They compress months of learning into 1–3 weeks of intensive coaching, practice rounds, and lectures from college debaters and coaches.
+
+| Camp | Location | Duration | Cost (approx.) | Notes |
+|---|---|---|---|---|
+| **Stanford National Forensic Institute (SNFI)** | Stanford University | 2–3 weeks | Varies by session; commuter and residential options | One of the most prestigious camps on the West Coast. All debate formats plus speech events |
+| **Education Unlimited Debate at Stanford** | Stanford University | 2 weeks | $2,585 (extended day) – $3,950 (overnight) | Covers PF, LD, Policy, Parli, Interp, and Extemp. Grades 9–12 |
+| **Education Unlimited Public Speaking Institute** | Stanford University | 1 week | $1,770–$2,495 | For elementary and middle school students — great intro program |
+| **Victory Briefs Institute (VBI)** | Various locations | 2–3 weeks | ~$2,000–$4,000 | Top-tier LD camp; also offers PF. Highly competitive and skills-focused |
+| **Northwestern Debate Institute (NDI)** | Northwestern University | 2–4 weeks | ~$2,500–$5,000 | Strong for Policy debate |
+| **Capitol Debate** | UC Berkeley, Yale, UCLA, and others | 2 weeks per session | Varies | Multi-campus program for ages 8–17. Broader public speaking focus |
+| **Cornell International Debate Camp** | Cornell University | 1 week | $3,750 (residential), $1,000 (commuter) | Middle and high school. Smaller program with personalized coaching |
+
+### Bay Area Local Programs (Year-Round)
+
+- **Young Genius / Bay Area Speech and Debate Academy** (Cupertino) — year-round classes in Congressional, Public Forum, Parliamentary debate and speech events. Full-day summer camps ~$1,127/week, half-day ~$640/week
+- **Athens Debate** (Cupertino/West San Jose) — elementary through high school, summer camps at $525/week
+- **Sacred Heart Prep Speech & Debate Camp** (San Francisco) — rising 7th–9th graders, ~$475–525 for one week
+- School teams at Monta Vista, Lynbrook, Mission San Jose, Harker, Basis, Gunn, and many other Bay Area schools have strong competitive programs
+
+### Free & Low-Cost Resources
+
+- **NSDA Learning Center** (speechanddebate.org) — 1,000+ free resources including topic analyses, lecture videos, and practice drills for NSDA members
+- **Tabroom.com** — tournament registration, results, and pairings. Essential for competitive debaters
+- **BestDelegate.com** — comprehensive Model UN resources, conference reviews, and preparation guides
+- **Champion Briefs / Victory Briefs** — monthly topic analyses and evidence files (paid, ~$20–40/topic)
+- **YouTube** — NSDA posts national final rounds. Watching top competitors is one of the best free ways to learn` },
+      { heading: `Costs & Time Commitment`, body: `### Costs
+
+Debate can range from very affordable (school team, local tournaments) to expensive (national circuit + summer camps):
+
+| Expense | Typical Cost |
+|---|---|
+| NSDA school membership | $149/year (HS), $75/year (MS). Starting 2026–27, moving to flat $349/year covering school + unlimited students |
+| NSDA student membership | $20 one-time (HS), $10 one-time (MS) |
+| Local tournament entry | $15–50 per tournament (often covered by school) |
+| National-circuit tournament entry | $50–100+ per tournament |
+| Travel for away tournaments | $200–1,000+ per trip (hotel, transport, meals) |
+| Evidence subscriptions (PF/LD) | $20–40 per topic, or ~$200–400/year for full subscriptions |
+| Private coaching | $50–150/hour |
+| Summer camps | $525–$4,000 depending on program, length, and residential vs. commuter |
+| NSDA Nationals travel | $1,000–3,000+ (varies by location — Fort Lauderdale, Phoenix, Des Moines have been recent hosts) |
+
+**The budget-friendly path:** Join your school's team, compete at local CFL/GGSA tournaments (entry fees often covered by the school), use free NSDA resources, and skip private coaching. Total out-of-pocket: under $100/year.
+
+**The national-circuit path:** Summer camp ($2,000–4,000), monthly evidence subscriptions ($200–400/year), travel to 6–10 tournaments including out-of-state invitationals ($3,000–8,000/year), and possibly private coaching ($2,000–5,000/year). Some families spend $10,000+ per year at the highest levels.
+
+### Time Commitment
+
+- **Casual/local competitor:** 3–5 hours/week of practice + 4–6 weekend tournaments per year
+- **Serious competitor:** 8–15 hours/week of research, drilling, and practice rounds + 10–15 tournaments per year
+- **National-circuit competitor:** 15–25+ hours/week during the season + 15–20+ tournaments, including multi-day travel weekends
+
+Tournament weekends are full-day commitments. A typical local tournament runs 8 AM to 5 PM on Saturday. National-circuit invitationals often span Friday through Sunday. This is a real consideration for families — debate can consume most weekends from September through March.` },
+      { heading: `South Asian & Diaspora Context`, body: `South Asian Americans have a remarkably strong presence in competitive speech and debate, and it's only growing.
+
+**Representation at the top levels.** Indian-American students have won NSDA national titles across multiple events. In 2018, Devesh Kodnani and Ishan Maunder from Mission San Jose High School (Fremont, CA — right in the Bay Area) won the NSDA National Championship in Public Forum Debate. That same year, Ishan Bhatt won the national title in Lincoln-Douglas Debate. Indian-American students regularly qualify for and place at the Tournament of Champions, and names like Arrman Kapoor (Team USA Debate member, 23 TOC bids) demonstrate the depth of South Asian talent in the activity.
+
+This isn't a coincidence. Several cultural factors contribute:
+
+**Oratory traditions run deep.** Public speaking, storytelling, and rhetorical skill are valued across South Asian cultures — from classical traditions of debate in Indian philosophy (the *shastrartha* tradition) to the emphasis many families place on articulate self-expression. Many South Asian families see debate as a natural extension of these values.
+
+**Community networks matter.** In the Bay Area especially, word-of-mouth drives participation. When families in Fremont, Cupertino, or San Jose see peers' children succeeding in debate, it creates a positive feedback loop. Local programs like Young Genius in Cupertino serve a heavily South Asian student body.
+
+**Bridging cultures.** Debate gives diaspora kids a structured way to engage with American civic life while drawing on the intellectual rigor their families value. Events like Extemporaneous Speaking require deep engagement with U.S. and world politics. Original Oratory lets students share personal narratives — many winning orations by South Asian students address identity, immigration, and cultural bridging.
+
+**The Model UN connection.** South Asian American students are heavily represented in Bay Area Model UN programs. Schools like Monta Vista, Lynbrook, and Mission San Jose consistently send strong delegations to BMUN and SMUNC. The diplomatic simulation format resonates with families interested in international relations and global awareness.
+
+**A practical note:** The debate community in the Bay Area is genuinely diverse, and South Asian students will find plenty of representation among competitors, coaches, and judges. It's one of the few activities where being deeply informed, articulate, and intellectually ambitious is unambiguously rewarded.` },
+      { heading: `Honest Take`, body: `Speech and debate is one of the most rewarding extracurriculars available — but it's not without real trade-offs. Here's what to weigh honestly:
+
+**The good:**
+- The skills transfer to everything. Job interviews, presentations, negotiations, writing — debate alumni consistently credit the activity with their professional communication ability
+- It's one of the few activities that rewards intellectual depth and hard work regardless of physical ability, family wealth, or natural talent (at the entry level, at least)
+- The community is tight-knit. Many debaters form lifelong friendships forged during long tournament days and late-night prep sessions
+- College admissions impact is real and well-documented. Reaching elimination rounds at major tournaments is a meaningful differentiator
+
+**The hard truths:**
+- **Time is the biggest cost.** Full weekends consumed by tournaments, plus daily research and practice, can crowd out everything else. This is especially intense for Policy debaters who do hours of evidence cutting per day during the season
+- **Judging can be subjective.** Unlike math competitions with clear right answers, debate rounds depend on judge interpretation. Losing a round you thought you clearly won is a routine frustration. Learning to accept this is part of the experience — but it's genuinely hard for perfectionists
+- **The national circuit is expensive.** The gap between a casual local competitor and a nationally competitive debater often comes down to family resources — for camp tuition, travel, private coaching, and evidence subscriptions. Some programs offer scholarships, and the NSDA has financial assistance, but the disparity is real
+- **Burnout is common.** The most dedicated debaters — the ones traveling every weekend, prepping late on school nights, and treating every tournament as high-stakes — burn out by junior or senior year. Watch for signs: declining interest, dreading tournaments, falling grades
+- **Not every kid needs to compete.** The skills of public speaking — structuring ideas, projecting confidence, handling Q&A — are valuable for every student. But the competitive tournament circuit is intense, time-consuming, and stressful. It's perfectly valid to take a public speaking class, join Toastmasters, or practice through school presentations without ever entering a tournament
+
+**When to pump the brakes:**
+- If a student's grades are suffering because of tournament travel and prep time
+- If they dread tournaments but feel pressure (from parents, coaches, or peers) to keep competing
+- If the activity is causing real anxiety rather than productive nervousness
+- If it's crowding out other interests they genuinely care about
+
+**The bottom line:** Debate builds exceptional communicators and critical thinkers. The competitive path is demanding but deeply rewarding for students who are genuinely engaged. Just make sure the kid is driving — this works best when the motivation comes from them, not from a parent's college-prep checklist.` }
+    ]
   }
 ];
 
