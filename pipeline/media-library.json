@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-24T10:32:02Z",
+ "_updated": "2026-07-29T00:00:41Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -19931,6 +19931,50 @@
    "duration": null,
    "quality_score": 90.9,
    "added_date": "2026-07-24T10:32:02Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--tiger-shroff--759bd6",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/tiger-shroff-759bd6.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/tiger-shroff-759bd6.jpg",
+   "subject": "Tiger Shroff",
+   "subject_type": "person",
+   "caption": "Bengal tiger (Panthera tigris tigris, Felidae, Carnivora) in Sanjay Dubri Tiger Reserve, Madhya Pradesh, India.",
+   "attribution": "Wikimedia Commons / Tisha Mukherjee, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bengal_tiger_in_Sanjay_Dubri_Tiger_Reserve_December_2024_by_Tisha_Mukherjee_11.jpg",
+   "tags": [
+    "tiger shroff"
+   ],
+   "width": 4391,
+   "height": 2927,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-29T00:00:28Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "person--tiger-shroff--41437c",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/tiger-shroff-41437c.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/person/tiger-shroff-41437c.jpg",
+   "subject": "Tiger Shroff",
+   "subject_type": "person",
+   "caption": "Bengal tiger (Panthera tigris tigris, Felidae, Carnivora) in Sanjay Dubri Tiger Reserve, Madhya Pradesh, India.",
+   "attribution": "Wikimedia Commons / Tisha Mukherjee, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bengal_tiger_in_Sanjay_Dubri_Tiger_Reserve_December_2024_by_Tisha_Mukherjee_15.jpg",
+   "tags": [
+    "tiger shroff"
+   ],
+   "width": 3525,
+   "height": 2349,
+   "duration": null,
+   "quality_score": 84.6,
+   "added_date": "2026-07-29T00:00:41Z",
    "last_used": null,
    "times_used": 0
   }
