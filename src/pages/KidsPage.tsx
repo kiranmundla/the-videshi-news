@@ -472,7 +472,7 @@ export default function KidsPage() {
   const [showAllPlaces, setShowAllPlaces] = useState(false);
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [resultView, setResultView] = useState<"places" | "programs">("places");
+
 
   /* ---- data load ---- */
   useEffect(() => {
@@ -609,7 +609,7 @@ export default function KidsPage() {
   const programsToShow = showAllPrograms ? filteredPrograms : filteredPrograms.slice(0, RESULTS_LIMIT);
 
   /* ---- reset show-all on filter changes ---- */
-  useEffect(() => { setShowAllPlaces(false); setShowAllPrograms(false); setResultView(filteredPlaces.length > 0 ? "places" : "programs"); }, [selectedAge, selectedTab, selectedSub, selectedSubSub, searchText]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { setShowAllPlaces(false); setShowAllPrograms(false); }, [selectedAge, selectedTab, selectedSub, selectedSubSub, searchText]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* ================================================================ */
   /* RENDER                                                           */
@@ -728,27 +728,93 @@ export default function KidsPage() {
           <Skeleton n={6} />
         ) : (
           <>
-            {/* --- Results Toggle Cards --- */}
-            {(filteredPlaces.length > 0 || filteredPrograms.length > 0) && (
-              <div className="flex flex-wrap gap-2.5 mb-6">
-                {filteredPlaces.length > 0 && (
-                  <FilterCard label={`Near You`} icon="📍" size="sm" 
-                    active={resultView === "places"} count={filteredPlaces.length}
-                    gradient="linear-gradient(135deg, #0B1D3A 0%, #1e3a5f 100%)" imgKey="near_you"
-                    onClick={() => { setResultView("places"); setShowAllPlaces(false); }} />
+            {/* --- 1. Getting Started Guides (contextual) --- */}
+            {(() => {
+              const ALL_GUIDES = [
+                { keys: ["sports", "cricket"], icon: "🏏", title: "Cricket in the US — A Parent's Guide", summary: "Finding cricket leagues, USA Cricket youth programs, equipment, and how the competitive pathway works for young cricketers in America." },
+                { keys: ["sports", "tennis"], icon: "🎾", title: "Tennis for Kids — Getting on the Court", summary: "USTA junior pathway, local academies, tournament structure, costs, and what it takes to play competitively from elementary through high school." },
+                { keys: ["sports"], icon: "🏅", title: "Youth Sports in the US", summary: "Club vs. rec leagues, travel teams, tryout seasons, and how to balance competitive sports with academics — a practical overview for parents." },
+                { keys: ["dance"], icon: "💃", title: "Indian Classical & Contemporary Dance", summary: "Bharatanatyam, Kathak, Bollywood, and more — finding the right dance school, exam pathways, and performance opportunities." },
+                { keys: ["music"], icon: "🎵", title: "Music Education for Kids", summary: "Instruments, vocal training, Indian classical vs. Western — how to choose, what to expect, and the path from lessons to performances and competitions." },
+                { keys: ["coding_robotics", "robotics_comp"], icon: "🤖", title: "Getting Into Robotics", summary: "FIRST LEGO League, VEX, and beyond — the robotics competition landscape, costs, team structure, and how to get started from elementary through high school." },
+                { keys: ["coding_robotics"], icon: "💻", title: "Coding & CS for Kids", summary: "From Scratch to Python to USACO — the coding path for kids, free resources, structured programs, and how coding competitions work." },
+                { keys: ["chess"], icon: "♟️", title: "Chess for Kids — Why It Matters", summary: "How chess builds critical thinking, the tournament path from local to nationals, and finding the right chess program for your child." },
+                { keys: ["math"], icon: "🔢", title: "Math Competitions — The Complete Path", summary: "From Math Kangaroo to AMC/AIME, here's how to get your child started on the competitive math track and what to expect at each level." },
+                { keys: ["science_stem"], icon: "🧪", title: "Science Olympiad & STEM Competitions", summary: "A guide to Science Olympiad, science fairs, and STEM programs — how to find the right fit and prepare your child for success." },
+                { keys: ["spelling_debate"], icon: "🐝", title: "Spelling Bee — From School to Nationals", summary: "Everything parents need to know about spelling bees: South Asian Spelling Bee, Scripps, NSF — the preparation path, costs, and what makes it rewarding." },
+                { keys: ["spelling_debate"], icon: "🗯️", title: "Debate & Public Speaking", summary: "National History Bee, Model UN, speech & debate leagues — how to develop communication skills and the competitive landscape." },
+                { keys: ["test_prep"], icon: "📝", title: "SAT/ACT Prep — What Actually Works", summary: "An honest look at prep options — free vs. paid, self-study vs. courses, timeline, and how to maximize your child's score without burnout." },
+                { keys: ["college_counseling"], icon: "🎓", title: "College Counseling — When & How to Start", summary: "Navigating the college admissions process — when to start, what counselors do, essay prep, and how to choose between independent and school counselors." },
+                { keys: ["volunteering"], icon: "🤝", title: "Volunteering & Community Service", summary: "Finding meaningful volunteer opportunities, tracking hours, and how community service strengthens college applications and builds character." },
+                { keys: ["language_culture"], icon: "🌍", title: "Heritage Language & Cultural Programs", summary: "Why heritage languages matter, finding the right program (Hindi, Tamil, Telugu, etc.), and cultural immersion opportunities for diaspora kids." },
+              ];
+              const matchKey = activeSubSub?.key || activeSub?.key;
+              const visibleGuides = matchKey
+                ? ALL_GUIDES.filter((g) => g.keys.includes(matchKey))
+                : ALL_GUIDES;
+              if (visibleGuides.length === 0) return null;
+              return (
+                <section className="mb-10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-lg">📖</span>
+                    <h2 className="font-serif text-lg sm:text-xl font-semibold text-foreground">Getting Started{matchKey ? "" : " — Guides for Parents"}</h2>
+                    <div className="h-px flex-1 bg-border" />
+                  </div>
+                  {!matchKey && (
+                    <p className="text-sm text-muted-foreground mb-5 max-w-2xl">
+                      Not sure where to begin? These guides cover the competitive landscape, preparation path, costs, and how each activity helps your child.
+                    </p>
+                  )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {visibleGuides.map((guide, i) => (
+                      <div key={i} className="rounded-xl border border-border bg-card p-5 sm:p-6 hover:shadow-md hover:border-[#D4A843]/50 transition-all">
+                        <div className="flex items-start gap-3 mb-3">
+                          <span className="text-2xl flex-shrink-0">{guide.icon}</span>
+                          <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug">{guide.title}</h3>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{guide.summary}</p>
+                        <p className="mt-3 text-xs text-muted-foreground italic">Full guide coming soon</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              );
+            })()}
+
+            {/* --- 2. Competitions & Programs --- */}
+            {filteredPrograms.length > 0 && (
+              <section className="mb-12">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">🏆</span>
+                  <h2 className="font-serif text-lg sm:text-xl font-semibold text-foreground">Competitions &amp; Programs</h2>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+                <p className="text-sm text-muted-foreground mb-5">
+                  {filteredPrograms.length} {filteredPrograms.length === 1 ? "program" : "programs"} found
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                  {programsToShow.map((p) => (
+                    <ProgramCard key={p.id} program={p} />
+                  ))}
+                </div>
+                {filteredPrograms.length > RESULTS_LIMIT && (
+                  <div className="text-center mt-6">
+                    <button onClick={() => setShowAllPrograms(!showAllPrograms)} className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all">
+                      {showAllPrograms ? "Show fewer" : `Show all ${filteredPrograms.length} programs`}
+                    </button>
+                  </div>
                 )}
-                {filteredPrograms.length > 0 && (
-                  <FilterCard label={`Programs`} icon="🏆" size="sm"
-                    active={resultView === "programs"} count={filteredPrograms.length}
-                    gradient="linear-gradient(135deg, #A32D2F 0%, #D4A843 100%)" imgKey="programs"
-                    onClick={() => { setResultView("programs"); setShowAllPrograms(false); }} />
-                )}
-              </div>
+              </section>
             )}
 
-            {/* --- Near You (shown when places tab active) --- */}
-            {resultView === "places" && filteredPlaces.length > 0 && (
+            {/* --- 3. Classes Near You --- */}
+            {filteredPlaces.length > 0 && (
               <section className="mb-12">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">📍</span>
+                  <h2 className="font-serif text-lg sm:text-xl font-semibold text-foreground">Classes Near You</h2>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
                 <p className="text-sm text-muted-foreground mb-5">
                   {filteredPlaces.length} {filteredPlaces.length === 1 ? "place" : "places"} found
                   {nearMeActive && locationLabel ? ` · ${locationLabel}` : " · Bay Area"}
@@ -768,27 +834,6 @@ export default function KidsPage() {
               </section>
             )}
 
-            {/* --- Programs (shown when programs tab active) --- */}
-            {resultView === "programs" && filteredPrograms.length > 0 && (
-              <section className="mb-12">
-                <p className="text-sm text-muted-foreground mb-5">
-                  {filteredPrograms.length} {filteredPrograms.length === 1 ? "program" : "programs"} found
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                  {programsToShow.map((p) => (
-                    <ProgramCard key={p.id} program={p} />
-                  ))}
-                </div>
-                {filteredPrograms.length > RESULTS_LIMIT && (
-                  <div className="text-center mt-6">
-                    <button onClick={() => setShowAllPrograms(!showAllPrograms)} className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all">
-                      {showAllPrograms ? "Show fewer" : `Show all ${filteredPrograms.length} programs`}
-                    </button>
-                  </div>
-                )}
-              </section>
-            )}
-
             {/* Empty state */}
             {filteredPlaces.length === 0 && filteredPrograms.length === 0 && (
               <div className="text-center py-16 rounded-xl bg-muted/5 border border-dashed border-border">
@@ -798,41 +843,6 @@ export default function KidsPage() {
             )}
           </>
         )}
-
-        {/* ═══════ GETTING STARTED GUIDES ═══════ */}
-        <section className="mb-10 mt-8">
-          <div className="flex items-center gap-2 mb-5">
-            <span className="text-lg">📖</span>
-            <h2 className="font-serif text-lg sm:text-xl font-semibold text-foreground">Getting Started — Guides for Parents</h2>
-            <div className="h-px flex-1 bg-border" />
-          </div>
-          <p className="text-sm text-muted-foreground mb-6 max-w-2xl">
-            Not sure where to begin? These guides cover the competitive landscape, preparation path, costs, and how each activity helps your child.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { icon: "🔢", title: "Math Competitions — The Complete Path", summary: "From Math Kangaroo to AMC/AIME, here's how to get your child started on the competitive math track and what to expect at each level." },
-              { icon: "🐝", title: "Spelling Bee — From School to Nationals", summary: "Everything parents need to know about spelling bees: South Asian Spelling Bee, Scripps, NSF — the preparation path, costs, and what makes it rewarding." },
-              { icon: "🧪", title: "Science Olympiad & STEM Competitions", summary: "A guide to Science Olympiad, science fairs, and STEM programs — how to find the right fit and prepare your child for success." },
-              { icon: "🤖", title: "Getting Into Robotics", summary: "FIRST LEGO League, VEX, and beyond — the robotics competition landscape, costs, team structure, and how to get started from elementary through high school." },
-              { icon: "♟️", title: "Chess for Kids — Why It Matters", summary: "How chess builds critical thinking, the tournament path from local to nationals, and finding the right chess program for your child." },
-              { icon: "💻", title: "Coding & CS for Kids", summary: "From Scratch to Python to USACO — the coding path for kids, free resources, structured programs, and how coding competitions work." },
-              { icon: "🏏", title: "Cricket in the US — A Parent's Guide", summary: "Finding cricket leagues, USA Cricket youth programs, equipment, and how the competitive pathway works for young cricketers in America." },
-              { icon: "💃", title: "Indian Classical & Contemporary Dance", summary: "Bharatanatyam, Kathak, Bollywood, and more — finding the right dance school, exam pathways, and performance opportunities." },
-              { icon: "📝", title: "SAT/ACT Prep — What Actually Works", summary: "An honest look at prep options — free vs. paid, self-study vs. courses, timeline, and how to maximize your child's score without burnout." },
-              { icon: "🗯️", title: "Debate & Public Speaking", summary: "National History Bee, Model UN, speech & debate leagues — how to develop communication skills and the competitive landscape." },
-            ].map((guide, i) => (
-              <div key={i} className="rounded-xl border border-border bg-card p-5 sm:p-6 hover:shadow-md hover:border-[#D4A843]/50 transition-all">
-                <div className="flex items-start gap-3 mb-3">
-                  <span className="text-2xl flex-shrink-0">{guide.icon}</span>
-                  <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug">{guide.title}</h3>
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">{guide.summary}</p>
-                <p className="mt-3 text-xs text-muted-foreground italic">Full guide coming soon</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
       </main>
       <SiteFooter />
