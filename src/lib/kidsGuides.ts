@@ -398,6 +398,219 @@ The kids who go furthest are almost always the ones who genuinely enjoy words. T
 *Dates shown are approximate for the 2026–2027 cycle. Check official websites for the most current information: [spellingbee.com](https://spellingbee.com) for Scripps, [northsouth.org](https://northsouth.org) for NSF, [southasianspellingbee.com](https://southasianspellingbee.com) for SASB.*`
       }
     ]
+  },
+  {
+    topic: "robotics",
+    slug: "getting-into-robotics",
+    title: "Getting Into Robotics",
+    icon: "🤖",
+    summary: "FIRST LEGO League, VEX, and beyond — the robotics competition landscape, costs, team structure, and how to get started from elementary through high school.",
+    sections: [
+      {
+        heading: "Why Robotics?",
+        content: `If there's one extracurricular that makes kids feel like they're building the future, it's robotics. And unlike most academic competitions, robotics is genuinely a team sport — your child will learn to collaborate, divide work, handle deadlines, and deal with things breaking at the worst possible moment.
+
+What kids actually gain:
+
+- **Engineering thinking.** Robotics forces kids to go from idea to working machine. They learn to design, prototype, test, fail, and iterate — the actual engineering process, not a textbook version of it.
+- **Coding with a purpose.** Programming a robot to follow a line or pick up an object is more motivating than coding exercises on a screen. Kids learn logic, sensors, and control systems because they can *see* their code working (or not).
+- **Teamwork under pressure.** Competition day means debugging a robot that worked perfectly at home but now refuses to cooperate. Kids learn to problem-solve together, stay calm, and adapt — skills that transfer to everything.
+- **Presentation and communication.** Most robotics programs include judging sessions where teams present their engineering process, innovation projects, and team dynamics. This builds confidence and public speaking ability.
+
+The scale of competitive robotics has grown enormously. **FIRST** (For Inspiration and Recognition of Science and Technology) alone now involves over **350,000 students** on more than **32,600 teams** worldwide. In 2026, the FIRST Robotics Competition fielded **3,724 teams** across 30 countries, with an estimated **93,500 high school students** participating. VEX Robotics runs a parallel ecosystem of similar scale. Robotics is no longer a niche — it's one of the biggest STEM activities in the country.`
+      },
+      {
+        heading: "The Competition Landscape",
+        content: `There are two major ecosystems — **FIRST** and **VEX** — plus a handful of smaller programs. Here's how they break down.
+
+### FIRST Programs (the dominant ecosystem)
+
+**FIRST LEGO League (FLL)** — The most popular entry point. Teams of up to 8 students build autonomous robots using LEGO kits to complete missions on a themed playing field in 2.5-minute matches. There's also an innovation project where teams research a real-world problem and present a solution.
+
+- **Grades K–2:** Introduction to STEM concepts through guided building. Registration: **$250** for an 8-student team. Non-competitive showcase format.
+- **Grades 3–5:** Hands-on building and basic coding. Registration: **$285** for 8 students. Participate in showcase festivals.
+- **Grades 6–8 (Challenge):** The competitive tier. Registration: **$425** for 8 students. Teams compete at regional qualifiers with the chance to advance to state and world championships.
+- **Required kits:** LEGO Education Computer Science & AI kits ($340–$2,249 depending on configuration) plus an annual game set (~$35). Kits are reusable year to year.
+- **Time commitment:** 1.5–3 hours/week from September through competition in December–March.
+- **Note:** The 2026–2027 BIOGLOW season will be the final season of the current FLL format. FIRST is transitioning to "Future Edition" with new technology.
+
+**FIRST Tech Challenge (FTC)** — The step up from FLL. Teams of **8–15 students in grades 7–12** design, build, and program robots using more advanced hardware (metal, motors, sensors, Android-based control systems). Robots compete in alliance-based matches on a 12' × 12' field.
+
+- **Registration:** **$325** per team per season.
+- **Starter robot investment:** ~**$1,500** (driver kit $295, control hub $350, build kit $660). Many parts are reusable.
+- **Total startup cost:** ~**$1,800** for a new team. Returning teams spend ~$500–1,000/year.
+- **Season:** Kickoff in September, scrimmages November, qualifying tournaments January, state championships February, World Championship in April.
+- **Why it's popular:** FTC hits a sweet spot — more technical than FLL but far more affordable and manageable than FRC. Robot fits in an 18"×18"×18" cube. Teams can operate out of a classroom, garage, or basement.
+
+**FIRST Robotics Competition (FRC)** — The big leagues. Teams of **10–30+ students in grades 9–12** build industrial-sized robots (up to 125 lbs) with real motors, pneumatics, and vision systems. This is serious engineering with professional-grade tools and adult mentors who are often working engineers.
+
+- **Registration:** **$6,500** per team per season (includes Kit of Parts and one regional event).
+- **Total budget:** Rookie teams should plan for **$15,000–$20,000**. Veteran teams commonly spend **$30,000–$50,000+** including additional events, travel, and custom parts.
+- **Season:** Kickoff in January, followed by an intense **6-week build season** where the robot must be designed, built, and tested. Regional competitions begin in late February.
+- **Time commitment:** During build season, expect 15–25+ hours/week. It's essentially a part-time job. Many teams meet 4–5 days a week.
+- **Why it matters:** FRC is the most prestigious youth robotics program in the world. It opens doors to engineering scholarships, and FIRST alumni get access to exclusive college and career opportunities.
+
+### VEX Robotics (the other major ecosystem)
+
+**VEX IQ** — For elementary and middle school students. Teams build robots using snap-together plastic components (no tools needed). Competitions include both teamwork challenges (two teams cooperate) and individual robot skills runs.
+
+- **Registration:** **$200** per team (US).
+- **Starter kit:** ~**$400–$500** for a VEX IQ kit.
+- **Event fees:** ~$50–75 per tournament.
+- **Great for:** Younger kids (grades 3–8) who want to build and compete without the LEGO ecosystem.
+
+**VEX V5 Robotics Competition (V5RC)** — For middle and high school students. More advanced metal construction with motors, sensors, and custom programming. Alliance-based gameplay similar to FTC.
+
+- **Registration:** **$200** per team.
+- **Starter kit:** ~**$600–$900** for a V5 kit.
+- **Event fees:** ~$50–75 per tournament.
+- **How it compares to FTC:** VEX has more tournaments available (easier to find events) and a lower cost of entry. FTC has a more open design ecosystem and uses industry-standard programming.
+
+### Other Programs Worth Knowing
+
+- **RoboCup Junior** — International competition with divisions in soccer, rescue, and onstage performance. Less common in the US but popular globally.
+- **BotBall** — Autonomous robot challenge for middle and high school teams. Smaller community but well-regarded.
+- **Wonder League (by Wonder Workshop)** — For grades 1–6 using Dash and Dot robots. Fully virtual competition. Good for very young beginners.`
+      },
+      {
+        heading: "The Typical Path — What's Realistic",
+        content: `**Grades K–3: Exploration.** At this age, the goal is just to see if your child likes building and problem-solving with robots. FIRST LEGO League (K–2) and VEX IQ are gentle introductions. At-home kits like LEGO SPIKE Essential or Wonder Workshop's Dash robot are great for exploring without committing to a team.
+
+**Grades 4–6: Getting Serious.** This is when most kids join their first real team. FLL Challenge (grades 3–5 and 6–8) or VEX IQ are the main options. Kids learn to work on a team, follow a season schedule, and experience the excitement of competition day. Many schools have teams; if yours doesn't, community teams are easy to find or start.
+
+**Grades 7–9: The Transition.** Students who love robotics typically move from FLL to FTC or from VEX IQ to VEX V5. This is a significant step up in complexity — real programming, metal construction, strategic gameplay. Some students also start exploring FRC teams as freshmen.
+
+**Grades 9–12: The Full Experience.** FRC is the pinnacle for students willing to make the commitment. The 6-week build season is intense but transformative. Students who go through FRC often describe it as the most impactful experience of their high school years — more than any class. Students who prefer a less time-intensive option stick with FTC or VEX V5.
+
+**The honest truth:** Not every robotics kid needs to do FRC. FTC and VEX V5 offer excellent experiences with much less time and money required. The "right" level depends on your child's interest, your family's capacity, and what teams are available nearby. A student who does FLL through 8th grade and FTC through high school has had a fantastic robotics journey.`
+      },
+      {
+        heading: "How to Get Started — Practical Steps",
+        content: `### Finding a Team
+
+- **FIRST team locator:** Go to firstinspires.org and use the "Find a Team" tool. Enter your zip code to see FLL, FTC, and FRC teams near you.
+- **VEX team locator:** robotevents.com has a team finder.
+- **Ask at school:** Many middle and high schools have robotics teams (often as after-school clubs). If your school doesn't have one, a teacher or parent can register a new team.
+- **Community teams:** Libraries, community centers, and STEM organizations often host robotics teams. Some are affiliated with schools; others are independent.
+
+### Starting a Team
+
+If there's no team nearby, starting one is more doable than you'd think — especially for FLL and VEX IQ:
+- You need **2 adult coaches** (no technical background required — you learn alongside the kids)
+- Register on firstinspires.org or robotevents.com
+- Order the required kit
+- Find a meeting space (classroom, garage, library room)
+- Recruit 4–8 kids
+
+FIRST provides free coach training and a full curriculum. Many first-year coaches are parents who've never touched a robot before.
+
+### At-Home Exploration (before or alongside a team)
+
+- **LEGO SPIKE Essential** (ages 6+) — $359. The same platform used in FLL.
+- **LEGO SPIKE Prime** (ages 10+) — $399. Used in FLL Challenge.
+- **VEX GO** (ages 6+) — ~$250. Classroom-oriented snap-together kit.
+- **Wonder Workshop Dash** (ages 6+) — ~$150. Friendly coding robot, good for beginners.
+- **Arduino/Raspberry Pi projects** (ages 12+) — $30–80. For self-directed learners who want to go deeper into electronics and programming.
+
+### Parent Involvement
+
+Robotics is probably the most parent-involved STEM activity. Unlike math competitions where you drop off your kid, robotics teams actively need adult help:
+- **Coaches:** Lead the team, manage logistics, guide (not do) the work.
+- **Mentors:** Engineers, programmers, or other professionals who provide technical guidance.
+- **Volunteers:** Event day needs referees, judges, field resetters, and logistics help.
+
+If you have any engineering or technical background, your help will be especially valued. But even without it, teams always need people to handle logistics, fundraising, and team management.`
+      },
+      {
+        heading: "What It Costs — The Real Numbers",
+        content: `Let's be straightforward: robotics can be expensive. But the range is wide, and there are ways to participate affordably.
+
+| Program | Registration | Startup Equipment | Annual Cost (Returning) |
+|---|---|---|---|
+| FLL (K–2) | $250/team of 8 | $340–$2,249 (kits) | ~$35 (annual set) |
+| FLL (3–5) | $285/team of 8 | $340–$2,249 (kits) | ~$35 (annual set) |
+| FLL Challenge (6–8) | $425/team of 8 | $340–$2,249 (kits) | ~$35 (annual set) |
+| FTC | $325/team | ~$1,500 (robot parts) | $500–$1,000 |
+| FRC | $6,500/team | $5,000–$15,000 (parts + tools) | $10,000–$50,000+ |
+| VEX IQ | $200/team | $400–$500 (kit) | $200 + events |
+| VEX V5 | $200/team | $600–$900 (kit) | $200 + events |
+
+**Per-student costs** matter more than team totals:
+- **FLL:** $50–200/student depending on team size and kit sharing.
+- **FTC:** $200–500/student for a typical team.
+- **FRC:** $500–2,000+/student for a well-funded team (often offset by sponsorships).
+- **VEX:** $100–300/student.
+
+### Grants and Sponsorships
+
+- **FIRST team grants:** FIRST distributes grants from corporate sponsors (Qualcomm, Google, John Deere, etc.). New and underserved teams are prioritized.
+- **VEX fee waivers:** Schools and nonprofits with 6+ teams may qualify for registration fee waivers.
+- **Corporate sponsorships:** FRC teams commonly approach local businesses for sponsorships. Many companies have STEM sponsorship budgets.
+- **DonorsChoose:** Teachers can create projects to fund robotics equipment.
+
+**Bottom line:** FLL and VEX IQ are very affordable — comparable to a sport registration fee. FTC is moderate. FRC is a significant financial commitment but most teams fundraise heavily to cover it.`
+      },
+      {
+        heading: "The South Asian Community Connection",
+        content: `Indian-American families have embraced robotics as a natural extension of the community's strong STEM orientation. While there's no single "South Asian Robotics Bee" equivalent, the participation is substantial and growing.
+
+**What you'll notice:**
+- In the Bay Area, many FLL and FTC teams have significant South Asian participation — both as students and as parent coaches/mentors.
+- Indian-origin engineers are heavily represented among adult mentors, bringing professional expertise to teams.
+- Community organizations and temples sometimes sponsor or host robotics teams.
+- WhatsApp parent groups are a common way families find teams and share information about registrations and events.
+
+**The advantage for your family:** If you're in a tech-heavy area like the Bay Area, Seattle, or Austin, there's likely a robotics team nearby with families from similar backgrounds. The parent-mentor model means your professional network can directly benefit your child's team.
+
+**A note on team culture:** One thing that makes robotics special is its emphasis on *Gracious Professionalism* — FIRST's principle that teams should compete fiercely but treat each other with respect. Teams regularly help competitors fix their robots. If your child has only experienced individual academic competitions, the collaborative culture of robotics can be a welcome change.`
+      },
+      {
+        heading: "The Honest Take — Is This Right for Your Child?",
+        content: `### Signs your child might love robotics
+- They build things for fun — LEGO, cardboard, anything they can get their hands on
+- They're curious about how machines work (taking things apart is a good sign)
+- They enjoy working with others on projects
+- They can handle frustration — robots break, code fails, things don't work the first (or fifth) time
+- They like both the technical and creative sides of problem-solving
+
+### Signs to reconsider
+- They strongly prefer working alone — robotics is fundamentally a team activity
+- They're already overcommitted — adding FTC or especially FRC to a packed schedule can lead to burnout
+- They want instant gratification — robotics rewards patience and iteration
+- They (or you) aren't ready for the time commitment, especially for FRC
+
+### The time commitment conversation
+This is the big one. Be honest with yourself about what your family can handle:
+- **FLL:** 1.5–3 hours/week for ~5 months. Very manageable.
+- **FTC:** 3–6 hours/week for ~7 months. Moderate commitment.
+- **FRC:** 15–25+ hours/week during the 6-week build season, plus ongoing meetings. This is a *major* commitment that affects the whole family — evening and weekend schedules, driving to the workshop, volunteering at events.
+
+Many FRC parents describe it as "the sport you didn't expect." It can be incredibly rewarding, but go in with eyes open about the time and energy involved.
+
+### Team dynamics matter
+Unlike individual competitions, your child's experience in robotics depends heavily on the team they're on. A great team with good mentors and a positive culture can be life-changing. A poorly run team with checked-out mentors or cliquey dynamics can be miserable. Before committing:
+- Visit the team during a meeting
+- Talk to other parents
+- Ask how work is divided (does everyone get hands-on time, or do a few kids dominate?)
+- Check if the team has a track record of student retention`
+      },
+      {
+        heading: "Key Dates to Know (2026–2027 Season)",
+        content: `| Program | Registration Opens | Season Starts | Key Competition Dates |
+|---|---|---|---|
+| FLL (all divisions) | May 2026 | August–September 2026 | Regionals: Nov–Mar / Worlds: Apr 2027 |
+| FTC | May 2026 | September 2026 (Kickoff) | Qualifiers: Nov–Jan / States: Feb / Worlds: Apr 2027 |
+| FRC | May 2026 | January 2027 (Kickoff + 6-week build) | Regionals: Late Feb–Apr / Worlds: Apr 2027 |
+| VEX IQ | June 2026 | Varies by region | Tournaments: Oct–Feb / States: Feb–Mar / Worlds: Apr–May 2027 |
+| VEX V5 | June 2026 | Varies by region | Tournaments: Oct–Feb / States: Feb–Mar / Worlds: Apr–May 2027 |
+
+**Pro tip:** Registration fills up fast, especially for popular local events. Register your team in May–June if possible. For FLL, many regions cap the number of teams at qualifiers, and late registrants may not get a competition slot.
+
+**For parents exploring options:** Attend a local robotics competition as a spectator first. FIRST and VEX events are free to watch and incredibly exciting. Seeing the energy, the teamwork, and the robots in action is the best way to decide if this is right for your family. Find events at firstinspires.org or robotevents.com.
+
+*Check official websites for the most current information: [firstinspires.org](https://firstinspires.org) for all FIRST programs, [robotevents.com](https://robotevents.com) for VEX competitions.*`
+      }
+    ]
   }
 ];
 
