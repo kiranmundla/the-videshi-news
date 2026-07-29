@@ -353,6 +353,14 @@ const KIDS_CAT_IMG: Record<string, string> = {
   daycare_all: "/images/kids/daycare.jpg",
   near_you: "/images/kids/near_you.jpg",
   programs: "/images/kids/programs.jpg",
+  cricket: "/images/kids/cricket.jpg",
+  tennis: "/images/kids/tennis.jpg",
+  badminton: "/images/kids/badminton.jpg",
+  swimming: "/images/kids/swimming.jpg",
+  soccer: "/images/kids/soccer.jpg",
+  basketball: "/images/kids/basketball.jpg",
+  martial_arts: "/images/kids/martial_arts.jpg",
+  gymnastics: "/images/kids/gymnastics.jpg",
 };
 
 function FilterCard({ label, icon, subtitle, active, count, onClick, size = "md", gradient, imgKey }: {
