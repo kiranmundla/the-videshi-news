@@ -25,7 +25,7 @@ import {
 /* CATEGORY HIERARCHY                                                 */
 /* ================================================================== */
 
-type SubSub = { key: string; label: string; icon: string; localCategory: string };
+type SubSub = { key: string; label: string; icon: string; localCategory: string; programKeyword?: string };
 type Subcategory = {
   key: string;
   label: string;
@@ -53,14 +53,14 @@ const CATEGORY_TREE: TopCategory[] = [
         localCategories: ["Cricket", "Swimming", "Martial Arts", "Gymnastics", "Tennis", "Badminton", "Basketball", "Soccer"],
         programCategories: ["Sports"],
         subsubs: [
-          { key: "cricket", label: "Cricket", icon: "🏏", localCategory: "Cricket" },
-          { key: "tennis", label: "Tennis", icon: "🎾", localCategory: "Tennis" },
-          { key: "badminton", label: "Badminton", icon: "🏸", localCategory: "Badminton" },
-          { key: "swimming", label: "Swimming", icon: "🏊", localCategory: "Swimming" },
-          { key: "soccer", label: "Soccer", icon: "⚽", localCategory: "Soccer" },
-          { key: "basketball", label: "Basketball", icon: "🏀", localCategory: "Basketball" },
-          { key: "martial_arts", label: "Martial Arts", icon: "🥋", localCategory: "Martial Arts" },
-          { key: "gymnastics", label: "Gymnastics", icon: "🤸", localCategory: "Gymnastics" },
+          { key: "cricket", label: "Cricket", icon: "🏏", localCategory: "Cricket", programKeyword: "cricket" },
+          { key: "tennis", label: "Tennis", icon: "🎾", localCategory: "Tennis", programKeyword: "tennis" },
+          { key: "badminton", label: "Badminton", icon: "🏸", localCategory: "Badminton", programKeyword: "badminton" },
+          { key: "swimming", label: "Swimming", icon: "🏊", localCategory: "Swimming", programKeyword: "swimming" },
+          { key: "soccer", label: "Soccer", icon: "⚽", localCategory: "Soccer", programKeyword: "soccer" },
+          { key: "basketball", label: "Basketball", icon: "🏀", localCategory: "Basketball", programKeyword: "basketball" },
+          { key: "martial_arts", label: "Martial Arts", icon: "🥋", localCategory: "Martial Arts", programKeyword: "martial" },
+          { key: "gymnastics", label: "Gymnastics", icon: "🤸", localCategory: "Gymnastics", programKeyword: "gymnast" },
         ],
       },
       { key: "dance", label: "Dance", icon: "💃", localCategories: ["Dance"], programCategories: ["Dance"] },
@@ -557,6 +557,16 @@ export default function KidsPage() {
       list = [];
     }
 
+    // Sub-subcategory keyword filter (e.g. Tennis under Sports)
+    if (activeSubSub?.programKeyword) {
+      const kw = activeSubSub.programKeyword.toLowerCase();
+      list = list.filter((p) =>
+        p.name.toLowerCase().includes(kw) ||
+        (p.description || "").toLowerCase().includes(kw) ||
+        (p.subcategory || "").toLowerCase().includes(kw),
+      );
+    }
+
     if (selectedAge) {
       list = list.filter((p) => Array.isArray(p.age_groups) && p.age_groups.includes(selectedAge));
     }
@@ -570,7 +580,7 @@ export default function KidsPage() {
     }
 
     return list;
-  }, [programs, targetProgCats, selectedAge, searchLower]);
+  }, [programs, targetProgCats, activeSubSub, selectedAge, searchLower]);
 
   /* ---- subcategory counts ---- */
   const subCounts = useMemo(() => {

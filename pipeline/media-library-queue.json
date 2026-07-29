@@ -322,16 +322,6 @@
    "priority": 2
   },
   {
-   "subject": "Tiger Shroff",
-   "subject_type": "person",
-   "tags": [
-    "tiger shroff"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "f16ea512-ebf9-4dfd-96af-5a1fa2fc0e68",
-   "priority": 6
-  },
-  {
    "subject": "Janhvi Kapoor",
    "subject_type": "person",
    "tags": [
@@ -4312,16 +4302,6 @@
    "priority": 2
   },
   {
-   "subject": "generative ai",
-   "subject_type": "thing",
-   "tags": [
-    "generative ai"
-   ],
-   "first_seen": "2026-07-08T10:29:24Z",
-   "article_id": "7ac22869-aaca-487f-9b66-fdd5b3784ac4",
-   "priority": 3
-  },
-  {
    "subject": "ai boom",
    "subject_type": "thing",
    "tags": [
@@ -5312,26 +5292,6 @@
    "priority": 2
   },
   {
-   "subject": "semaglutide",
-   "subject_type": "thing",
-   "tags": [
-    "semaglutide"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "2efcd9b8-fe18-46ea-b519-dc27bc85d04f",
-   "priority": 3
-  },
-  {
-   "subject": "glp 1",
-   "subject_type": "thing",
-   "tags": [
-    "glp 1"
-   ],
-   "first_seen": "2026-07-11T10:29:23Z",
-   "article_id": "2efcd9b8-fe18-46ea-b519-dc27bc85d04f",
-   "priority": 3
-  },
-  {
    "subject": "indian pharma",
    "subject_type": "thing",
    "tags": [
@@ -5562,16 +5522,6 @@
    "priority": 2
   },
   {
-   "subject": "maritime",
-   "subject_type": "thing",
-   "tags": [
-    "maritime"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "6b54174c-8b87-4b3b-9395-f5800cc49669",
-   "priority": 3
-  },
-  {
    "subject": "signature rule",
    "subject_type": "thing",
    "tags": [
@@ -5740,16 +5690,6 @@
    "first_seen": "2026-07-12T10:29:26Z",
    "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
    "priority": 2
-  },
-  {
-   "subject": "oil imports",
-   "subject_type": "thing",
-   "tags": [
-    "oil imports"
-   ],
-   "first_seen": "2026-07-12T10:29:26Z",
-   "article_id": "7cf0a0a8-3edd-4996-a8a3-d01709fd2f71",
-   "priority": 3
   },
   {
    "subject": "michelin stars",
@@ -6102,16 +6042,6 @@
    "priority": 2
   },
   {
-   "subject": "neurology",
-   "subject_type": "thing",
-   "tags": [
-    "neurology"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "b37ed113-103c-4018-9bd3-6342739964de",
-   "priority": 3
-  },
-  {
    "subject": "ongc",
    "subject_type": "thing",
    "tags": [
@@ -6210,16 +6140,6 @@
    "first_seen": "2026-07-13T10:29:23Z",
    "article_id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
    "priority": 2
-  },
-  {
-   "subject": "fema",
-   "subject_type": "thing",
-   "tags": [
-    "fema"
-   ],
-   "first_seen": "2026-07-13T10:29:23Z",
-   "article_id": "b4a93bb7-a92d-4378-9002-6ad997b791d7",
-   "priority": 3
   },
   {
    "subject": "ohio",
@@ -6762,16 +6682,6 @@
    "priority": 2
   },
   {
-   "subject": "kia",
-   "subject_type": "thing",
-   "tags": [
-    "kia"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "2e0500e6-4a0c-4e00-abc0-f3bf9823f199",
-   "priority": 3
-  },
-  {
    "subject": "affordable ev",
    "subject_type": "thing",
    "tags": [
@@ -6810,16 +6720,6 @@
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "eaa41c96-db13-4917-b86c-cfe6f3d3b095",
    "priority": 2
-  },
-  {
-   "subject": "intellectual property",
-   "subject_type": "thing",
-   "tags": [
-    "intellectual property"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "e1391d91-a079-4552-a746-28bc6cfca22f",
-   "priority": 3
   },
   {
    "subject": "mass extinction",
@@ -6922,16 +6822,6 @@
    "priority": 2
   },
   {
-   "subject": "tech industry",
-   "subject_type": "thing",
-   "tags": [
-    "tech industry"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "0be07e9b-1512-4f36-b278-04ae14382516",
-   "priority": 3
-  },
-  {
    "subject": "daylight saving time",
    "subject_type": "thing",
    "tags": [
@@ -6960,16 +6850,6 @@
    "first_seen": "2026-07-15T10:29:26Z",
    "article_id": "2a27fe6a-89a5-41a7-a9ae-6d57b820f15f",
    "priority": 2
-  },
-  {
-   "subject": "ai spending",
-   "subject_type": "thing",
-   "tags": [
-    "ai spending"
-   ],
-   "first_seen": "2026-07-15T10:29:26Z",
-   "article_id": "a1e9d20e-eda9-4522-8031-427cb2b1ceee",
-   "priority": 3
   },
   {
    "subject": "software stocks",
@@ -7142,16 +7022,6 @@
    "priority": 2
   },
   {
-   "subject": "Amundi",
-   "subject_type": "thing",
-   "tags": [
-    "amundi"
-   ],
-   "first_seen": "2026-07-17T10:29:25Z",
-   "article_id": "2bb1957a-c38f-4a2c-9a15-b5669b321599",
-   "priority": 3
-  },
-  {
    "subject": "State Bank of India SBI logo",
    "subject_type": "concept",
    "tags": [
@@ -7180,16 +7050,6 @@
    "first_seen": "2026-07-17T10:29:25Z",
    "article_id": "bb505145-d7cf-46c4-9ba8-9515566827ae",
    "priority": 1
-  },
-  {
-   "subject": "Red Sea",
-   "subject_type": "thing",
-   "tags": [
-    "red sea"
-   ],
-   "first_seen": "2026-07-17T10:29:25Z",
-   "article_id": "bee4edd9-62d5-4f77-9cf0-9c93d0f45205",
-   "priority": 3
   },
   {
    "subject": "Bab el Mandeb",
@@ -7289,16 +7149,6 @@
    ],
    "first_seen": "2026-07-18T10:29:25Z",
    "article_id": "462cc59c-1cf8-4d27-b3ce-d6672b22b026",
-   "priority": 3
-  },
-  {
-   "subject": "ColorOS",
-   "subject_type": "thing",
-   "tags": [
-    "coloros"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "1d673262-e408-4ee3-81a8-04353ee57fda",
    "priority": 3
   },
   {

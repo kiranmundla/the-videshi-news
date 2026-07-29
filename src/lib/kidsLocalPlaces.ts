@@ -89,6 +89,18 @@ export const LOCAL_CATEGORY_COLORS: Record<string, string> = {
 /* Data fetching                                                      */
 /* ------------------------------------------------------------------ */
 
+export async function fetchLocalPlaceBySlug(slug: string): Promise<KidsLocalPlace | null> {
+  try {
+    const { data, error } = await supabase
+      .from("kids_local_places")
+      .select("*")
+      .eq("slug", slug)
+      .single();
+    if (error || !data) return null;
+    return data as KidsLocalPlace;
+  } catch { return null; }
+}
+
 export async function fetchLocalPlaces(): Promise<KidsLocalPlace[]> {
   try {
     const { data, error } = await supabase
