@@ -1064,6 +1064,15 @@ def main():
     else:
         print(f"\n── Step 6: Final LLM dedup — skipped (≤1 candidate) ──")
 
+    # ── Write candidates JSON FIRST (before DB updates, so timeout doesn't lose them) ──
+    output = {
+        "timestamp": NOW_ISO,
+        "total_topics_evaluated": len(topics),
+        "candidates": balanced,
+    }
+    with open(OUT_PATH, "w") as f:
+        json.dump(output, f, indent=2)
+
     # ── Step 7: Batch-update topic statuses ───────────────────────────────────
     print(f"\n── Step 7: Updating topic statuses ──")
     if not DRY_RUN:
@@ -1102,14 +1111,7 @@ def main():
     else:
         print(f"  [DRY RUN] Would update {len(topic_statuses)} topics")
 
-    # ── Output ────────────────────────────────────────────────────────────────
-    output = {
-        "timestamp": NOW_ISO,
-        "total_topics_evaluated": len(topics),
-        "candidates": balanced,
-    }
-    with open(OUT_PATH, "w") as f:
-        json.dump(output, f, indent=2)
+    # (candidates JSON already written before Step 7)
 
     elapsed = time.time() - t0
     print(f"\n{'='*60}")
