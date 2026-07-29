@@ -373,7 +373,8 @@ For each topic, provide:
 3. "coverage": "new" | "update" | "duplicate"
 4. "category": one of the categories above
 5. "reason": 1-sentence explanation
-6. "ig_handles": array of objects for ALL Instagram handles directly connected to this story.
+6. "kids_relevant": true ONLY if the story is specifically about K-12 education, youth competitions (spelling bee, science olympiad, math competitions, robotics), Indian-American kids' achievements, or education policy directly affecting school-age children. NOT for: student visa/immigration news, college admissions, crime involving minors, or generic "student" mentions.
+7. "ig_handles": array of objects for ALL Instagram handles directly connected to this story.
 Each object: {"handle": "@x", "type": "person" or "org", "keywords": ["word1", "word2", "word3"]}
 - type: "person" for individuals, "org" for everything else (companies, teams, leagues, govt bodies)
 - keywords: 3-5 words likely to appear in that handle's IG caption about this topic (not news headline words)
@@ -390,7 +391,7 @@ WHO TO EXCLUDE:
 
 Pick from KNOWN HANDLES when possible. The list is NOT exhaustive — suggest new handles if you are CERTAIN the person/org has an active IG and you know the exact handle. When in doubt, leave it out. Return up to 5, most relevant first. Return [] if none.
 
-Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person", "keywords": ["google", "ceo", "ai"]}, {"handle": "@google", "type": "org", "keywords": ["google", "ai", "search"]}]},...]}\n"""
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "kids_relevant": false, "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person", "keywords": ["google", "ceo", "ai"]}, {"handle": "@google", "type": "org", "keywords": ["google", "ai", "search"]}]},...]}\n"""
 
 MERGE_PROMPT = """You are grouping news headlines that cover the SAME underlying story or event.
 
@@ -491,6 +492,7 @@ def llm_score_topics(topics_with_signals, recent_articles):
                     "score": item.get("score", 1) if item.get("relevant", True) else 0,
                     "category": norm_cat,
                     "reason": item.get("reason", ""),
+                    "kids_relevant": item.get("kids_relevant", False),
                     "ig_handles": item.get("ig_handles", []),
                 }
         return batch_start, results, cost, None
@@ -992,6 +994,7 @@ def main():
                 "llm_reason": llm["reason"],
                 "coverage": coverage,
                 "ig_handles": [h for h in llm.get("ig_handles", []) if _verify_handle_name(h.get("handle", ""), t["canonical_title"], h.get("type", "person"))],
+                "kids_relevant": llm.get("kids_relevant", False),
             })
             topic_statuses[t["id"]] = "selected"
         else:

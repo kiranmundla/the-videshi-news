@@ -6,6 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import { useUserLocation } from "@/hooks/useUserLocation";
+import { fetchKidsArticles, type Article } from "@/lib/articles";
 import {
   fetchKidsPrograms,
   fetchKidsDeadlines,
@@ -476,14 +477,15 @@ export default function KidsPage() {
   const [showAllPlaces, setShowAllPlaces] = useState(false);
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [kidsArticles, setKidsArticles] = useState<Article[]>([]);
 
 
   /* ---- data load ---- */
   useEffect(() => {
     (async () => {
       try {
-        const [p, d, lp] = await Promise.all([fetchKidsPrograms(), fetchKidsDeadlines(50), fetchLocalPlaces()]);
-        setPrograms(p); setDeadlines(d); setLocalPlaces(lp);
+        const [p, d, lp, ka] = await Promise.all([fetchKidsPrograms(), fetchKidsDeadlines(50), fetchLocalPlaces(), fetchKidsArticles()]);
+        setPrograms(p); setDeadlines(d); setLocalPlaces(lp); setKidsArticles(ka);
       } catch (err) { console.error("Kids data load failed:", err); }
       finally { setLoading(false); }
     })();
@@ -850,6 +852,50 @@ export default function KidsPage() {
                     </button>
                   </div>
                 )}
+              </section>
+            )}
+
+            {/* --- 4. Latest Stories --- */}
+            {kidsArticles.length > 0 && (
+              <section className="mb-12">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">📰</span>
+                  <h2 className="font-serif text-lg sm:text-xl font-semibold text-foreground">Latest Stories</h2>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+                <p className="text-sm text-muted-foreground mb-5">
+                  News and achievements in kids' education and competitions
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                  {kidsArticles.slice(0, 9).map((article) => (
+                    <Link
+                      key={article.id}
+                      to={`/article/${article.slug}`}
+                      className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-md transition-all duration-200"
+                    >
+                      {article.imageUrl && (
+                        <div className="aspect-[16/9] overflow-hidden">
+                          <img
+                            src={article.imageUrl}
+                            alt=""
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      <div className="p-4">
+                        <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-[#A32D2F] transition-colors mb-2">
+                          {article.headline}
+                        </h3>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <span className="px-2 py-0.5 rounded-full bg-muted/30 font-medium capitalize">{article.category?.replace("-", " ") || "News"}</span>
+                          <span>·</span>
+                          <time>{new Date(article.publishedAt || "").toLocaleDateString("en-US", { month: "short", day: "numeric" })}</time>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               </section>
             )}
 

@@ -269,6 +269,7 @@ def process_article(article):
         "slug": slug,
         "category": article["category"],
         "vertical": article["category"],
+        "kids_relevant": article.get("kids_relevant", False),
         "tags": article.get("tags", []),
         "sources": article.get("sources", []),
         "image_url": image_url,

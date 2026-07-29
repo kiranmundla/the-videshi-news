@@ -876,5 +876,15 @@
     "errors": 0,
     "hero_slug": "keigo-higashino-japanese-mystery-novelist-dies-68",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-29T13:55:56.740044+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 29, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "toyota-launches-9th-gen-hilux-india-from-rs-32-lakh",
+    "story_count": 5
   }
 ]

@@ -494,3 +494,19 @@ export async function getArticlesByCategory(
 
   return (data as P2Row[]).map(mapRow);
 }
+
+export async function fetchKidsArticles(limit = 20): Promise<Article[]> {
+  const { data, error } = await supabase
+    .from("p2_articles")
+    .select(P2_COLS)
+    .eq("status", "published")
+    .eq("kids_relevant", true)
+    .order("published_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    console.error("[articles] fetchKidsArticles", error);
+    return [];
+  }
+  return (data as P2Row[]).map(mapRow);
+}

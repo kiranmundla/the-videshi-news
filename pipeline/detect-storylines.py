@@ -82,6 +82,17 @@ def sb_post(path, data):
         return None
 
 
+def sb_delete(path, params=""):
+    """DELETE from Supabase REST API via curl."""
+    url = f"{SUPABASE_URL}/rest/v1/{path}?{params}" if params else f"{SUPABASE_URL}/rest/v1/{path}"
+    cmd = ["curl", "-sS", "--max-time", "30",
+           "-X", "DELETE", url,
+           "-H", f"apikey: {SUPABASE_KEY}",
+           "-H", f"Authorization: Bearer {SUPABASE_KEY}"]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=40)
+    return r.returncode == 0
+
+
 def sb_patch(path, data, params=""):
     """PATCH Supabase REST API via curl."""
     import tempfile
@@ -391,6 +402,123 @@ def link_article_to_storyline(storyline_id, article_id, article, dry_run=False):
         sb_patch("storylines", {"article_count": len(linked)}, f"id=eq.{storyline_id}")
 
 
+def merge_similar_storylines(dry_run=False):
+    """Find and merge storylines that cover the same event."""
+    storylines = fetch_storylines(("emerging", "active"))
+    if len(storylines) < 2:
+        print("    ℹ️  Fewer than 2 storylines, nothing to merge")
+        return 0
+
+    # Build context for LLM
+    sl_ctx = []
+    for s in storylines:
+        sl_ctx.append({
+            "id": s["id"],
+            "title": s["title"],
+            "status": s["status"],
+            "article_count": s.get("article_count", 0),
+            "category": s.get("category", ""),
+        })
+
+    messages = [
+        {"role": "system", "content": """You are a news editor reviewing storylines for duplicates.
+Two storylines should be MERGED when they cover the SAME specific event or narrative, just described differently.
+For example:
+- "India Overhauls OCI Rules" + "India Launches Digital e-OCI Card" = SAME event, merge
+- "H-1B Visa Freeze Bill" + "House Republicans Propose H-1B Visa Pause" = SAME legislative push, merge
+- "Canada Express Entry Draws" + "Canada PGWP Refusal Rate" = DIFFERENT topics, do NOT merge
+
+Only merge when they are clearly the same event. When in doubt, keep them separate.
+
+Return JSON:
+{"merge_pairs": [{"keep_id": "id-of-larger-or-better-titled", "remove_id": "id-of-smaller-or-redundant"}]}
+Return empty array if no merges needed."""},
+        {"role": "user", "content": json.dumps({"storylines": sl_ctx})},
+    ]
+
+    result, err = llm_call(messages, label="merge check")
+    if err:
+        print(f"    ⚠️  Merge LLM error: {err}")
+        return 0
+
+    pairs = result.get("merge_pairs", [])
+    if not pairs:
+        print("    ℹ️  No duplicate storylines found")
+        return 0
+
+    merged = 0
+    sl_by_id = {s["id"]: s for s in storylines}
+
+    for pair in pairs:
+        keep_id = pair.get("keep_id")
+        remove_id = pair.get("remove_id")
+        if not keep_id or not remove_id:
+            continue
+        if keep_id not in sl_by_id or remove_id not in sl_by_id:
+            continue
+
+        keep = sl_by_id[keep_id]
+        remove = sl_by_id[remove_id]
+
+        if dry_run:
+            print(f"    🔀 [DRY RUN] Would merge '{remove['title']}' → '{keep['title']}'")
+            merged += 1
+            continue
+
+        # Reassign articles from remove → keep
+        ok = sb_patch(
+            "storyline_articles",
+            {"storyline_id": keep_id},
+            f"storyline_id=eq.{remove_id}"
+        )
+        if not ok:
+            print(f"    ⚠️  Failed to reassign articles from '{remove['title']}'")
+            continue
+
+        # Recalculate counts and dates for the kept storyline
+        linked = sb_get("storyline_articles",
+                        f"storyline_id=eq.{keep_id}&select=article_id,p2_articles(published_at)")
+        new_count = len(linked) if isinstance(linked, list) else keep.get("article_count", 0)
+        dates = []
+        if isinstance(linked, list):
+            for r in linked:
+                pa = (r.get("p2_articles") or {}).get("published_at")
+                if pa:
+                    dates.append(pa)
+
+        update_data = {
+            "article_count": new_count,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        }
+        if new_count >= ACTIVE_THRESHOLD:
+            update_data["status"] = "active"
+        if dates:
+            update_data["first_article_at"] = min(dates)
+            update_data["last_article_at"] = max(dates)
+
+        # Merge metadata (keep medal_tracker etc from either side)
+        keep_meta = keep.get("metadata") or {}
+        remove_meta = remove.get("metadata") or {}
+        if remove_meta:
+            for k, v in remove_meta.items():
+                if k not in keep_meta:
+                    keep_meta[k] = v
+            update_data["metadata"] = keep_meta
+
+        sb_patch("storylines", update_data, f"id=eq.{keep_id}")
+
+        # Delete the empty storyline
+        sb_delete("storylines", f"id=eq.{remove_id}")
+
+        print(f"    🔀 Merged '{remove['title']}' → '{keep['title']}' ({new_count} articles)")
+        merged += 1
+
+        # Remove from map so we don't double-merge
+        del sl_by_id[remove_id]
+
+    return merged
+
+
 def update_lifecycle(dry_run=False):
     """Update storyline statuses based on last_article_at."""
     now = datetime.now(timezone.utc)
@@ -575,11 +703,17 @@ def main():
 
     print(f"\n  🏷️  Created {created} new storylines")
 
-    # 8. Update lifecycle
+    # 8. Merge duplicate storylines
+    print("\n  🔀 Merging duplicate storylines...")
+    merge_count = merge_similar_storylines(dry_run=args.dry_run)
+    if merge_count:
+        print(f"  🔀 Merged {merge_count} duplicate storyline(s)")
+
+    # 9. Update lifecycle
     print("\n  🔄 Updating lifecycle...")
     update_lifecycle(dry_run=args.dry_run)
 
-    # 9. Update summaries for active storylines
+    # 10. Update summaries for active storylines
     print("\n  📝 Updating summaries...")
     update_summaries(dry_run=args.dry_run)
 

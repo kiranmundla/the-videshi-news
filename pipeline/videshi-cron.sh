@@ -173,7 +173,8 @@ case "$1" in
   detect-storylines)
     run_job "detect-storylines" "cd $REPO/pipeline && \
       set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
-      python3 -u detect-storylines.py"
+      python3 -u detect-storylines.py && \
+      python3 -u update-medal-tally.py"
     ;;
 
   ## === WEEKLY ===
