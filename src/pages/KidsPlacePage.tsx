@@ -125,11 +125,14 @@ export default function KidsPlacePage() {
   const catColor = LOCAL_CATEGORY_COLORS[place.category] || "bg-gray-100 text-gray-700";
   const catEmoji = CATEGORY_EMOJI[place.category] || "📍";
   const fullAddress = [place.address, place.city, place.state, place.zip_code].filter(Boolean).join(", ");
-  const mapsUrl = fullAddress
-    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`
+  const directionsUrl = place.address
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${place.address}, ${place.city}, ${place.state} ${place.zip_code || ""}`.trim())}`
     : place.latitude && place.longitude
-      ? `https://www.google.com/maps/search/?api=1&query=${place.latitude},${place.longitude}`
+      ? `https://www.google.com/maps/dir/?api=1&destination=${place.latitude},${place.longitude}`
       : null;
+  const addressMapUrl = fullAddress
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name}, ${fullAddress}`)}`
+    : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -193,7 +196,7 @@ export default function KidsPlacePage() {
           <div className="rounded-xl border border-border bg-card p-6 md:p-8">
             <h2 className="font-serif text-lg font-semibold text-foreground mb-2">Details</h2>
             <div className="divide-y divide-border/50">
-              <InfoRow icon="📍" label="Address" value={fullAddress || null} href={mapsUrl || undefined} />
+              <InfoRow icon="📍" label="Address" value={fullAddress || null} href={addressMapUrl || undefined} />
               <InfoRow icon="🎒" label="Ages" value={place.age_range} />
               <InfoRow icon="📞" label="Phone" value={place.phone} href={place.phone ? `tel:${place.phone}` : undefined} />
               <InfoRow icon="🌐" label="Website" value={place.website ? place.website.replace(/^https?:\/\/(www\.)?/, "") : null} href={place.website || undefined} />
@@ -204,8 +207,8 @@ export default function KidsPlacePage() {
 
         {/* ── Action Buttons ────────────────────────────── */}
         <section className="mb-12 flex flex-wrap gap-3">
-          {mapsUrl && (
-            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+          {directionsUrl && (
+            <a href={directionsUrl} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-base font-semibold text-white transition-all hover:opacity-90 shadow-sm"
               style={{ backgroundColor: "#A32D2F" }}>
               🗺️ Directions
