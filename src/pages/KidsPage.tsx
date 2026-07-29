@@ -732,22 +732,22 @@ export default function KidsPage() {
             {/* --- 1. Getting Started Guides (contextual) --- */}
             {(() => {
               const ALL_GUIDES = [
-                { keys: ["sports", "cricket"], icon: "🏏", title: "Cricket in the US — A Parent's Guide", summary: "Finding cricket leagues, USA Cricket youth programs, equipment, and how the competitive pathway works for young cricketers in America." },
-                { keys: ["sports", "tennis"], icon: "🎾", title: "Tennis for Kids — Getting on the Court", summary: "USTA junior pathway, local academies, tournament structure, costs, and what it takes to play competitively from elementary through high school." },
-                { keys: ["sports"], icon: "🏅", title: "Youth Sports in the US", summary: "Club vs. rec leagues, travel teams, tryout seasons, and how to balance competitive sports with academics — a practical overview for parents." },
-                { keys: ["dance"], icon: "💃", title: "Indian Classical & Contemporary Dance", summary: "Bharatanatyam, Kathak, Bollywood, and more — finding the right dance school, exam pathways, and performance opportunities." },
-                { keys: ["music"], icon: "🎵", title: "Music Education for Kids", summary: "Instruments, vocal training, Indian classical vs. Western — how to choose, what to expect, and the path from lessons to performances and competitions." },
-                { keys: ["coding_robotics", "robotics_comp"], icon: "🤖", title: "Getting Into Robotics", summary: "FIRST LEGO League, VEX, and beyond — the robotics competition landscape, costs, team structure, and how to get started from elementary through high school." },
-                { keys: ["coding_robotics"], icon: "💻", title: "Coding & CS for Kids", summary: "From Scratch to Python to USACO — the coding path for kids, free resources, structured programs, and how coding competitions work." },
-                { keys: ["chess"], icon: "♟️", title: "Chess for Kids — Why It Matters", summary: "How chess builds critical thinking, the tournament path from local to nationals, and finding the right chess program for your child." },
-                { keys: ["math"], icon: "🔢", title: "Math Competitions — The Complete Path", summary: "From Math Kangaroo to AMC/AIME, here's how to get your child started on the competitive math track and what to expect at each level." },
-                { keys: ["science_stem"], icon: "🧪", title: "Science Olympiad & STEM Competitions", summary: "A guide to Science Olympiad, science fairs, and STEM programs — how to find the right fit and prepare your child for success." },
-                { keys: ["spelling_debate"], icon: "🐝", title: "Spelling Bee — From School to Nationals", summary: "Everything parents need to know about spelling bees: South Asian Spelling Bee, Scripps, NSF — the preparation path, costs, and what makes it rewarding." },
-                { keys: ["spelling_debate"], icon: "🗯️", title: "Debate & Public Speaking", summary: "National History Bee, Model UN, speech & debate leagues — how to develop communication skills and the competitive landscape." },
-                { keys: ["test_prep"], icon: "📝", title: "SAT/ACT Prep — What Actually Works", summary: "An honest look at prep options — free vs. paid, self-study vs. courses, timeline, and how to maximize your child's score without burnout." },
-                { keys: ["college_counseling"], icon: "🎓", title: "College Counseling — When & How to Start", summary: "Navigating the college admissions process — when to start, what counselors do, essay prep, and how to choose between independent and school counselors." },
-                { keys: ["volunteering"], icon: "🤝", title: "Volunteering & Community Service", summary: "Finding meaningful volunteer opportunities, tracking hours, and how community service strengthens college applications and builds character." },
-                { keys: ["language_culture"], icon: "🌍", title: "Heritage Language & Cultural Programs", summary: "Why heritage languages matter, finding the right program (Hindi, Tamil, Telugu, etc.), and cultural immersion opportunities for diaspora kids." },
+                { keys: ["sports", "cricket"], guideTopic: "cricket", icon: "🏏", title: "Cricket in the US — A Parent's Guide", summary: "Finding cricket leagues, USA Cricket youth programs, equipment, and how the competitive pathway works for young cricketers in America." },
+                { keys: ["sports", "tennis"], guideTopic: "tennis", icon: "🎾", title: "Tennis for Kids — Getting on the Court", summary: "USTA junior pathway, local academies, tournament structure, costs, and what it takes to play competitively from elementary through high school." },
+                { keys: ["sports"], guideTopic: "sports", icon: "🏅", title: "Youth Sports in the US", summary: "Club vs. rec leagues, travel teams, tryout seasons, and how to balance competitive sports with academics — a practical overview for parents." },
+                { keys: ["dance"], guideTopic: "dance", icon: "💃", title: "Indian Classical & Contemporary Dance", summary: "Bharatanatyam, Kathak, Bollywood, and more — finding the right dance school, exam pathways, and performance opportunities." },
+                { keys: ["music"], guideTopic: "music", icon: "🎵", title: "Music Education for Kids", summary: "Instruments, vocal training, Indian classical vs. Western — how to choose, what to expect, and the path from lessons to performances and competitions." },
+                { keys: ["coding_robotics", "robotics_comp"], guideTopic: "robotics", icon: "🤖", title: "Getting Into Robotics", summary: "FIRST LEGO League, VEX, and beyond — the robotics competition landscape, costs, team structure, and how to get started from elementary through high school." },
+                { keys: ["coding_robotics"], guideTopic: "coding", icon: "💻", title: "Coding & CS for Kids", summary: "From Scratch to Python to USACO — the coding path for kids, free resources, structured programs, and how coding competitions work." },
+                { keys: ["chess"], guideTopic: "chess", icon: "♟️", title: "Chess for Kids — Why It Matters", summary: "How chess builds critical thinking, the tournament path from local to nationals, and finding the right chess program for your child." },
+                { keys: ["math"], guideTopic: "math", icon: "🔢", title: "Math Competitions — The Complete Path", summary: "From Math Kangaroo to AMC/AIME, here's how to get your child started on the competitive math track and what to expect at each level." },
+                { keys: ["science_stem"], guideTopic: "science_stem", icon: "🧪", title: "Science Olympiad & STEM Competitions", summary: "A guide to Science Olympiad, science fairs, and STEM programs — how to find the right fit and prepare your child for success." },
+                { keys: ["spelling_debate"], guideTopic: "spelling", icon: "🐝", title: "Spelling Bee — From School to Nationals", summary: "Everything parents need to know about spelling bees: South Asian Spelling Bee, Scripps, NSF — the preparation path, costs, and what makes it rewarding." },
+                { keys: ["spelling_debate"], guideTopic: "debate", icon: "🗯️", title: "Debate & Public Speaking", summary: "National History Bee, Model UN, speech & debate leagues — how to develop communication skills and the competitive landscape." },
+                { keys: ["test_prep"], guideTopic: "test_prep", icon: "📝", title: "SAT/ACT Prep — What Actually Works", summary: "An honest look at prep options — free vs. paid, self-study vs. courses, timeline, and how to maximize your child's score without burnout." },
+                { keys: ["college_counseling"], guideTopic: "college_counseling", icon: "🎓", title: "College Counseling — When & How to Start", summary: "Navigating the college admissions process — when to start, what counselors do, essay prep, and how to choose between independent and school counselors." },
+                { keys: ["volunteering"], guideTopic: "volunteering", icon: "🤝", title: "Volunteering & Community Service", summary: "Finding meaningful volunteer opportunities, tracking hours, and how community service strengthens college applications and builds character." },
+                { keys: ["language_culture"], guideTopic: "language_culture", icon: "🌍", title: "Heritage Language & Cultural Programs", summary: "Why heritage languages matter, finding the right program (Hindi, Tamil, Telugu, etc.), and cultural immersion opportunities for diaspora kids." },
               ];
               const matchKey = activeSubSub?.key || activeSub?.key;
               const visibleGuides = matchKey
@@ -768,7 +768,7 @@ export default function KidsPage() {
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {visibleGuides.map((guide, i) => {
-                      const fullGuide = getGuideByTopic(guide.keys[0]);
+                      const fullGuide = getGuideByTopic(guide.guideTopic);
                       const guideSlug = fullGuide?.slug;
                       const Wrapper = guideSlug ? Link : 'div' as any;
                       const wrapperProps = guideSlug ? { to: `/kids/guides/${guideSlug}` } : {};

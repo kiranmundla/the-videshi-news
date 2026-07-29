@@ -202,7 +202,7 @@ The students who go furthest in math competitions are almost always the ones who
     ]
   },
   {
-    topic: "spelling_debate",
+    topic: "spelling",
     slug: "spelling-bee",
     title: "Spelling Bee — From School to Nationals",
     icon: "🐝",
