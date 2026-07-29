@@ -200,6 +200,204 @@ The students who go furthest in math competitions are almost always the ones who
 *Dates shown are for the 2026–2027 cycle. Check official websites for the most current information: [maa.org](https://maa.org) for AMC, [mathcounts.org](https://mathcounts.org) for MATHCOUNTS, [mathkangaroo.org](https://mathkangaroo.org) for Math Kangaroo, [moems.org](https://moems.org) for MOEMS.*`
       }
     ]
+  },
+  {
+    topic: "spelling_debate",
+    slug: "spelling-bee",
+    title: "Spelling Bee — From School to Nationals",
+    icon: "🐝",
+    summary: "Everything parents need to know about spelling bees: South Asian Spelling Bee, Scripps, NSF — the preparation path, costs, and what makes it rewarding.",
+    sections: [
+      {
+        heading: "Why Spelling Bees?",
+        content: `Spelling bees are one of those rare activities where a child stands alone on a stage, listens carefully, asks the right questions, and performs under pressure — all skills that matter far beyond spelling.
+
+What kids actually gain:
+
+- **Vocabulary and language depth.** Serious spellers don't just memorize letter sequences. They learn Greek and Latin roots, language patterns, and etymology. A child who knows that "pneumo-" means lung and "-itis" means inflammation understands medical terminology, not just how to spell "pneumonitis." That kind of structural language knowledge pays dividends in reading comprehension, standardized tests, and writing — for years.
+- **Discipline and study habits.** Preparing for a spelling bee teaches kids how to build a study routine, break a large task into smaller pieces, and stick with something over months. These are the same skills they'll need for any academic pursuit.
+- **Poise and public performance.** Standing at a microphone in front of an audience, staying calm, asking for a definition or language of origin — that's public speaking practice in disguise. Many parents report that spelling bees gave their shy child a new kind of confidence.
+
+The numbers reflect how popular this has become. The **Scripps National Spelling Bee** — the big one — drew **247 spellers** to its 2026 national finals in Washington, D.C., representing all 50 states and five countries. But those 247 are the tip of the iceberg: an estimated **11 million students** participate in school-level spelling bees across the country each year through the Scripps program, with schools paying $199 each to enroll. Add in the South Asian Spelling Bee, North South Foundation bees, and dozens of regional and community competitions, and spelling bees are one of the most accessible academic competitions in America.`
+      },
+      {
+        heading: "The Competition Landscape",
+        content: `There are three major spelling bee pathways worth knowing about. Each has a different format, audience, and feel.
+
+### Scripps National Spelling Bee — The Big One
+
+This is the competition you see on ESPN. Founded in 1925, it's the oldest and most prestigious spelling bee in the country.
+
+**How it works:** Your child's school enrolls in the Scripps program ($199 per school, or $135 for homeschool families). The school runs a classroom bee, then a school bee. The school champion advances to a regional bee (typically February–March), organized by a local sponsor (often a newspaper or media company). Regional champions earn an **all-expenses-paid trip** to Bee Week in Washington, D.C., held every May.
+
+**Eligibility:** Students must not have passed beyond 8th grade or turned 15 before August 31 of that school year. That's it — no minimum age or grade.
+
+**Format (2026):** Preliminary rounds include spelling and vocabulary from the *Words of the Champions* study guide (4,000 words). Later rounds draw from the full Merriam-Webster Unabridged Dictionary — essentially unlimited. The 2026 finals featured a 90-second "spell-off" tiebreaker where finalists raced to spell as many words as possible.
+
+**What the winner gets:** $52,500 cash, the Scripps Cup trophy, reference works from Merriam-Webster and Britannica, and $1,000 in Delta Air Lines credits.
+
+**Cost to families:** Essentially free for students. The school pays $199 to enroll. Regional bees are typically free for qualified spellers. Scripps covers travel, lodging, and event access for national qualifiers and one guardian.
+
+### South Asian Spelling Bee (SASB)
+
+Run by the South Asian Education Foundation (SAEF), this is the community's own competition and it matters a lot to many families.
+
+**How it works:** Virtual regionals are held across 5 city-named rounds (you can join any regardless of location — cities are just scheduling labels). Top spellers from each regional advance to the national finals. There's also the **SAS-Bee** wildcard pathway: up to 100 students apply ($75 application fee), 20 are shortlisted, and the first 12 to confirm get a seat at finals ($250 finals fee).
+
+**Eligibility:** Under 15 years old, with at least one parent or grandparent of South Asian descent (India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Afghanistan, or Maldives).
+
+**Registration:** $50 per speller for regionals. Includes a practice word list.
+
+**Why it matters:** The SASB is broadcast on Sony Entertainment Television (SET) Asia to over 120 countries. For many Indian-American kids, this is their first on-stage competitive spelling experience in a familiar community setting. The atmosphere is supportive, and it's a great stepping stone to Scripps.
+
+### North South Foundation (NSF) Spelling Bee
+
+NSF runs academic contests across 75+ chapters in the US, with all registration fees going toward scholarships for underprivileged students in India. The spelling bee is one of several subjects offered (they also run math, science, geography, vocabulary, and public speaking contests).
+
+**How it works:** Regional contests are held at local chapters each spring. Top-ranked students are invited to the National Finals in summer, where they compete for scholarships and trophies.
+
+**Levels:** Junior Spelling Bee (grades 1–3) and Senior Spelling Bee (grades 4–8). NSF provides 1,000 practice words after registration.
+
+**Cost:** $40 per contest for regionals, $60 for national finals.
+
+**Why it's special:** NSF bees are deeply embedded in the Indian-American community. They're run entirely by volunteers, and participating means your child is also contributing to education funding in India. Many families do NSF alongside Scripps — the two don't conflict.
+
+### Other Spelling Bees
+
+- **98thPercentile National Spelling Bee** — Free, online, for grades 3–8. A low-pressure way to try competitive spelling.
+- **School and district bees** — Many school districts run their own independent spelling programs outside of Scripps.
+- **Community and temple bees** — Hindu temples, cultural organizations, and community groups often host informal spelling bees. Great for very young beginners.`
+      },
+      {
+        heading: "The Typical Path — What's Realistic",
+        content: `**Grades 1–3: Discovery.** Most kids encounter spelling bees through their school's classroom bee. At this age, the goal is simply exposure. If your child enjoys word games, puzzles, or reading, try the NSF Junior Spelling Bee or a community bee. Don't start formal prep — just encourage reading and curiosity about words.
+
+**Grades 3–5: Building the Foundation.** This is when many serious spellers begin. If your school is enrolled in Scripps, your child can compete in the school bee. Start with the *Words of the Champions* list — it's free and it's the official source for early rounds. Many families also register for NSF and SASB around this age. This is when kids learn study techniques: flashcards, root words, language-of-origin patterns.
+
+**Grades 5–7: The Competitive Window.** This is peak spelling bee age. Students have enough vocabulary foundation to tackle harder words, and they still have multiple years of eligibility left. A child who makes it to their regional Scripps bee in 5th or 6th grade has two or three more chances to advance. Most national-level spellers hit their stride in this range.
+
+**Grade 8: Last Shot.** Eighth grade is the final year of eligibility for Scripps. Many of the strongest competitors are 8th graders on their third or fourth trip to regionals. The 2026 Scripps champion, Shrey Parikh, was a 14-year-old 8th grader who had been a finalist two years earlier.
+
+**The honest truth:** Most school-level spellers won't make it past regionals, and that's completely normal. Only about 250 students reach the national Scripps finals out of millions who participate at the school level. The value is in the journey — the vocabulary gained, the study habits built, the confidence from performing on stage.`
+      },
+      {
+        heading: "How to Prepare — What Actually Works",
+        content: `### The Official Study Materials (start here — they're free)
+
+- ***Words of the Champions*** — Scripps' own 4,000-word study guide, organized by difficulty. This is the source for preliminary and early rounds. If your child masters this list, they'll be well-prepared through school and often through regional bees. Download it free from spellingbee.com after your school enrolls.
+- **School Spelling Bee Study List** — A 450-word subset of *Words of the Champions*, designed for classroom and school-level bees.
+- **NSF practice words** — 1,000 words provided after registration. Good parallel practice.
+
+### Study Methods That Work
+
+**Root words and etymology** — This is the single most important technique for advancing beyond school-level bees. English borrows from dozens of languages, and each has patterns:
+- Latin roots: "-tion," "-ment," "-ible" / "-able"
+- Greek roots: "ph" for "f" sound, "psych-," "chron-"
+- French origins: "-ette," "-esque," "-eau"
+- German/Dutch: "-stein," "sch-" combinations
+
+Once your child recognizes that a word comes from Greek, they can predict its spelling patterns even if they've never seen it before. This is how elite spellers handle words from the Unabridged Dictionary.
+
+**Ask the right questions** — In competition, spellers can ask for the definition, part of speech, language of origin, alternate pronunciations, and use in a sentence. Practicing *how* to use these clues is as important as memorizing words.
+
+**Daily practice routine** — 15–30 minutes daily beats 2-hour weekend cramming. Use flashcards (physical or apps like Quizlet), have someone quiz you aloud, and write words down — the physical act of writing helps memory.
+
+### Paid Resources
+
+- **SpellPundit** — A popular online platform specifically for competitive spellers. Word lists, practice tests, and analytics. Subscriptions run roughly **$50–150/year** depending on the plan.
+- **Hexco Academic** — Publishes study guides organized by language of origin and difficulty. Books are **$15–40 each**.
+- **Spelling coaches and tutoring** — Some families hire private spelling coaches, typically **$50–100+/hour**. This is common among families aiming for nationals but absolutely not necessary for a great experience at school and regional levels.
+- **Spelling Bee Ninja** (spellingbee.ninja) — Free online tool with practice modes and word lists.`
+      },
+      {
+        heading: "What It Costs — The Real Numbers",
+        content: `Spelling bees are among the most affordable academic competitions. Here's what families actually spend:
+
+| Item | Cost |
+|---|---|
+| Scripps (through school) | Free to students ($199 paid by school) |
+| Scripps (homeschool) | $135 per family |
+| SASB Regional | $50 per speller |
+| SASB SAS-Bee (wildcard) | $75 application + $250 if selected |
+| NSF Regional | $40 per contest |
+| NSF National Finals | $60 |
+| 98thPercentile Bee | Free |
+
+### Total Annual Spend by Level
+
+**Casual participant (school bee only):** $0. Your school's enrollment covers everything.
+
+**Active competitor (Scripps + NSF + SASB):** $90–150/year in registration fees. Add $50–100 for study materials. Total: **$140–250/year**.
+
+**Serious contender (adding coaching/resources):** Registration fees + SpellPundit subscription + study guides + optional tutoring: **$500–2,000+/year**.
+
+**If your child reaches Scripps Nationals:** Travel and lodging are covered by Scripps for the speller and one guardian. You'd only pay for additional family members who want to attend.
+
+**Bottom line:** A student can compete in three different spelling bees for under $150/year. The investment is time and effort, not money.`
+      },
+      {
+        heading: "The South Asian Connection",
+        content: `Let's talk about the elephant in the room: Indian-American kids have dominated the Scripps National Spelling Bee for three decades. **31 of the last 37 Scripps champions have been of Indian heritage.** Every single winner since 2008 has been Indian-American. In the 2026 finals, 5 of 9 finalists came from Indian immigrant families.
+
+This isn't an accident, and it's not about any inherent advantage. It's about community infrastructure:
+
+- **A culture of preparation.** Indian-American families tend to start early, study systematically, and treat spelling bees as a serious pursuit — not just a school activity.
+- **Community networks.** WhatsApp groups, parent study circles, and informal coaching networks share word lists, study tips, and motivation. When your child sees friends and cousins competing, it normalizes the effort.
+- **Organizations built for the community.** The South Asian Spelling Bee and North South Foundation exist specifically because the community invested in building competition infrastructure. NSF alone has 75+ chapters across the US.
+- **A proven pathway.** When families see kids from similar backgrounds succeeding at the highest level, it creates a virtuous cycle of participation and aspiration.
+
+This community strength is something to celebrate — and to leverage. If you're an Indian-American parent, chances are someone in your circle has navigated this path and can share practical advice.
+
+But it also creates pressure. Not every kid from an Indian family wants to do spelling bees, and that's perfectly fine. The community's success shouldn't become an obligation for your child.`
+      },
+      {
+        heading: "The Honest Take — Is This Right for Your Child?",
+        content: `### Signs your child might love spelling bees
+- They're a voracious reader who notices unusual words
+- They enjoy word games, crossword puzzles, or Wordle
+- They're curious about *why* words are spelled the way they are
+- They don't mind memorization — or even find it satisfying
+- They can handle being on stage (or want to learn how)
+
+### Signs to reconsider
+- They're doing it because everyone else in the community is
+- They get deeply upset by making mistakes in front of others
+- They hate memorization and prefer creative or hands-on activities
+- The preparation feels like punishment, not practice
+
+### The pressure conversation
+In communities where spelling bees are popular, there's real social pressure to participate and excel. Kids hear about who made regionals, who went to nationals, who won trophies. For some children, this motivates them. For others, it creates anxiety and a sense of inadequacy.
+
+Watch for these burnout signs:
+- Crying or refusing to study before competitions
+- Anxiety that disrupts sleep or school performance
+- Tying their self-worth to competition results
+- Losing interest in reading — the thing that usually feeds spelling ability
+
+### Our honest advice
+Let your child try a school spelling bee or a low-stakes community bee first. If they come home excited and ask to study more words, you have your answer. If they shrug and say it was fine, maybe spelling isn't their thing — and that's okay. There are dozens of other ways for a bright kid to develop discipline, vocabulary, and confidence.
+
+The kids who go furthest are almost always the ones who genuinely enjoy words. The ones who ask "where does this word come from?" before asking "how do I spell it?" You can't force that curiosity, but you can nurture it by reading together, playing word games, and making language fun long before any competition enters the picture.`
+      },
+      {
+        heading: "Key Dates to Know (2026–2027 School Year)",
+        content: `| Event | Key Date |
+|---|---|
+| Scripps school enrollment opens | August 2026 |
+| Scripps early bird enrollment deadline | Late September 2026 |
+| Scripps enrollment deadline | January 30, 2027 |
+| NSF Regional contests | Spring 2027 (chapter-specific) |
+| Scripps Regional bees | February–March 2027 |
+| SASB Virtual Regionals | Spring 2027 (check southasianspellingbee.com) |
+| NSF National Finals registration opens | June 2027 |
+| Scripps Bee Week (Nationals) | Late May 2027 |
+| NSF National Finals | Summer 2027 |
+
+**Pro tip for new families:** The school enrollment deadline in January is the hardest one to recover from if you miss it. If your school isn't enrolled in Scripps, talk to a teacher or administrator in September — don't wait. For NSF and SASB, registration typically opens a few months before regionals and fills up, so sign up early.
+
+*Dates shown are approximate for the 2026–2027 cycle. Check official websites for the most current information: [spellingbee.com](https://spellingbee.com) for Scripps, [northsouth.org](https://northsouth.org) for NSF, [southasianspellingbee.com](https://southasianspellingbee.com) for SASB.*`
+      }
+    ]
   }
 ];
 
