@@ -26,7 +26,7 @@ import { getGuideByTopic } from "@/lib/kidsGuides";
 /* CATEGORY HIERARCHY                                                 */
 /* ================================================================== */
 
-type SubSub = { key: string; label: string; icon: string; localCategory: string; programKeyword?: string };
+type SubSub = { key: string; label: string; icon: string; localCategory: string; programKeyword?: string; programKeywordExclude?: string };
 type Subcategory = {
   key: string;
   label: string;
@@ -52,11 +52,12 @@ const CATEGORY_TREE: TopCategory[] = [
     subcategories: [
       {
         key: "sports", label: "Sports", icon: "⚽",
-        localCategories: ["Cricket", "Swimming", "Martial Arts", "Gymnastics", "Tennis", "Badminton", "Basketball", "Soccer"],
+        localCategories: ["Cricket", "Swimming", "Martial Arts", "Gymnastics", "Tennis", "Table Tennis", "Badminton", "Basketball", "Soccer"],
         programCategories: ["Sports"],
         subsubs: [
           { key: "cricket", label: "Cricket", icon: "🏏", localCategory: "Cricket", programKeyword: "cricket" },
-          { key: "tennis", label: "Tennis", icon: "🎾", localCategory: "Tennis", programKeyword: "tennis" },
+          { key: "tennis", label: "Tennis", icon: "🎾", localCategory: "Tennis", programKeyword: "tennis", programKeywordExclude: "table tennis|ping pong" },
+          { key: "table_tennis", label: "Table Tennis", icon: "🏓", localCategory: "Table Tennis", programKeyword: "table tennis|ping pong" },
           { key: "badminton", label: "Badminton", icon: "🏸", localCategory: "Badminton", programKeyword: "badminton" },
           { key: "swimming", label: "Swimming", icon: "🏊", localCategory: "Swimming", programKeyword: "swimming" },
           { key: "soccer", label: "Soccer", icon: "⚽", localCategory: "Soccer", programKeyword: "soccer" },
@@ -315,6 +316,7 @@ const SUB_GRADIENTS: Record<string, string> = {
 const SUBSUB_GRADIENTS: Record<string, string> = {
   cricket: "linear-gradient(135deg, #15803d 0%, #14532d 100%)",
   tennis: "linear-gradient(135deg, #ca8a04 0%, #a16207 100%)",
+  table_tennis: "linear-gradient(135deg, #059669 0%, #047857 100%)",
   badminton: "linear-gradient(135deg, #0891b2 0%, #155e75 100%)",
   swimming: "linear-gradient(135deg, #0284c7 0%, #0c4a6e 100%)",
   soccer: "linear-gradient(135deg, #16a34a 0%, #15803d 100%)",
@@ -357,6 +359,7 @@ const KIDS_CAT_IMG: Record<string, string> = {
   programs: "/images/kids/programs.jpg",
   cricket: "/images/kids/cricket.jpg",
   tennis: "/images/kids/tennis.jpg",
+  table_tennis: "/images/kids/tennis.jpg",
   badminton: "/images/kids/badminton.jpg",
   swimming: "/images/kids/swimming.jpg",
   soccer: "/images/kids/soccer.jpg",
@@ -570,11 +573,16 @@ export default function KidsPage() {
 
     // Sub-subcategory or subcategory keyword filter (e.g. Tennis under Sports, Spelling under Academic Competitions)
     const kwSource = activeSubSub?.programKeyword || activeSub?.programKeyword;
+    const kwExclude = activeSubSub?.programKeywordExclude;
     if (kwSource) {
       const keywords = kwSource.toLowerCase().split("|");
+      const excludeKeywords = kwExclude ? kwExclude.toLowerCase().split("|") : [];
       list = list.filter((p) => {
         const haystack = `${p.name} ${p.description || ""} ${p.subcategory || ""}`.toLowerCase();
-        return keywords.some((kw) => haystack.includes(kw));
+        const matches = keywords.some((kw) => haystack.includes(kw));
+        if (!matches) return false;
+        if (excludeKeywords.length > 0 && excludeKeywords.some((ekw) => haystack.includes(ekw))) return false;
+        return true;
       });
     }
 

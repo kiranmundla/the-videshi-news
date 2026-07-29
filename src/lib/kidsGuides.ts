@@ -846,7 +846,7 @@ Start with a school chess club or ChessKid. See if the spark is there. If your c
     emoji: "💻",
     description: "From Scratch to Python to USACO — the coding path for kids, free resources, structured programs, and how coding competitions work.",
     sections: [
-      { heading: `Why Coding Matters`, body: `Let's skip the "coding is the new literacy" cliché and get to what actually matters: coding teaches kids how to break big problems into small ones. That skill — decomposition — transfers to essay writing, science projects, and eventually job interviews. It's not about turning every kid into a software engineer.
+      { heading: `Why Coding Matters`, content: `Let's skip the "coding is the new literacy" cliché and get to what actually matters: coding teaches kids how to break big problems into small ones. That skill — decomposition — transfers to essay writing, science projects, and eventually job interviews. It's not about turning every kid into a software engineer.
 
 What coding genuinely builds:
 
@@ -856,7 +856,7 @@ What coding genuinely builds:
 - **Career optionality** — Even if your child never writes code professionally, understanding how software works is increasingly relevant in medicine, law, finance, design, and research. CS majors from top universities have median starting salaries above $100K.
 
 A word of balance: coding isn't magic, and it's not for every kid at every age. A 6-year-old who'd rather draw or play outside isn't "falling behind." The best time to start is when the kid is curious, not when parents feel anxious.` },
-      { heading: `The Coding Path by Age`, body: `There's no single right path, but here's a realistic progression that matches how most kids develop:
+      { heading: `The Coding Path by Age`, content: `There's no single right path, but here's a realistic progression that matches how most kids develop:
 
 | Age / Grade | Language & Tools | What They're Doing | Platforms |
 |---|---|---|---|
@@ -873,7 +873,7 @@ A word of balance: coding isn't magic, and it's not for every kid at every age. 
 - **Don't rush it.** A kid who spends two years mastering Scratch and building creative projects is better prepared than one who's pushed into Python at age 8 and burns out.
 
 For self-learners, **Code.org** remains the best free starting point — it's used in 70%+ of US schools and has courses from pre-reader through AP level. **Scratch** (from MIT) is the gold standard for visual coding. For text-based languages, **Codecademy** and **freeCodeCamp** are both free and self-paced.` },
-      { heading: `Competition Landscape`, body: `Competitive programming is a distinct skill from building projects. It's about solving algorithmic puzzles under time pressure — closer to math olympiads than to app development. Some kids thrive on it; others prefer building real things. Both paths are valid.
+      { heading: `Competition Landscape`, content: `Competitive programming is a distinct skill from building projects. It's about solving algorithmic puzzles under time pressure — closer to math olympiads than to app development. Some kids thrive on it; others prefer building real things. Both paths are valid.
 
 ### USACO (USA Computing Olympiad)
 
@@ -901,7 +901,7 @@ More accessible than USACO, with a team-based format. Now in its 48th year, with
 - **Google Code Jam** — Was discontinued in 2023. No direct replacement, but Google still sponsors various coding initiatives.
 
 **Competitive coding vs. building projects:** Competitions test algorithmic thinking under pressure. Building projects (apps, websites, games) develops software engineering skills — design, collaboration, user experience. College admissions value both, but a portfolio of real projects often tells a more compelling story than a competition score alone.` },
-      { heading: `Structured Programs & Camps`, body: `If your kid benefits from structure and instruction, here are the major options — with honest assessments:
+      { heading: `Structured Programs & Camps`, content: `If your kid benefits from structure and instruction, here are the major options — with honest assessments:
 
 ### National Programs
 
@@ -947,7 +947,7 @@ More accessible than USACO, with a team-based format. Now in its 48th year, with
 ### Online Alternatives (Lower Cost)
 - **Outschool** — Marketplace with live group classes, $10–$60/session. Quality varies wildly; check reviews carefully.
 - **Art of Problem Solving (AoPS)** — Outstanding for math-inclined kids. Their CS courses are rigorous and well-structured.` },
-      { heading: `Free Resources That Actually Work`, body: `You can go surprisingly far without spending a dollar. Here's what's genuinely useful, organized by level:
+      { heading: `Free Resources That Actually Work`, content: `You can go surprisingly far without spending a dollar. Here's what's genuinely useful, organized by level:
 
 ### Beginners (Ages 5–10)
 - **Code.org** — The single best free resource for young beginners. Hour of Code activities for first exposure, then structured courses (Course A through F) that take kids from pre-reader to basic programming concepts. Used in most US elementary schools. No account needed to start.
@@ -966,7 +966,7 @@ More accessible than USACO, with a team-based format. Now in its 48th year, with
 - **MIT OpenCourseWare** — Free university-level CS courses. "Introduction to Computer Science and Programming Using Python" (6.0001) is accessible to strong high schoolers. Full lecture videos, problem sets, and exams.
 - **GitHub Student Developer Pack** — Free for students (with .edu email or student ID verification). Includes free domain names, cloud credits, developer tools worth hundreds of dollars. Essential for portfolio building.
 - **The Odin Project** — Free, open-source full-stack web development curriculum. More structured than freeCodeCamp, with a clear learning path through HTML/CSS, JavaScript, Ruby, and Node.js.` },
-      { heading: `Costs & Time Commitment`, body: `Here's what coding education actually costs at different levels of commitment:
+      { heading: `Costs & Time Commitment`, content: `Here's what coding education actually costs at different levels of commitment:
 
 | Path | Monthly Cost | Time/Week | Best For |
 |---|---|---|---|
@@ -993,7 +993,7 @@ More accessible than USACO, with a team-based format. Now in its 48th year, with
 ### Time Reality Check
 
 For casual learning, 2–3 hours per week is plenty. For competitive programming at the USACO Silver/Gold level, expect 5–10 hours per week of practice — comparable to a serious sport or instrument. Platinum-level competitors often train 10–15+ hours per week during contest season. Make sure your kid is driving the commitment, not you.` },
-      { heading: `South Asian & Diaspora Context`, body: `Let's be honest about the cultural dynamics:
+      { heading: `South Asian & Diaspora Context`, content: `Let's be honest about the cultural dynamics:
 
 **Coding and Indian-American families** — There's a strong pipeline. South Asian Americans are heavily represented in tech leadership (CEOs of Google, Microsoft, Adobe, IBM), and this creates both genuine inspiration and intense pressure. Many Bay Area Indian families start their kids on coding early, and the community networks (WhatsApp groups, temple community boards, desi parent forums) are active in sharing information about programs, competitions, and "what worked for so-and-so's kid."
 
@@ -1012,7 +1012,7 @@ For casual learning, 2–3 hours per week is plenty. For competitive programming
 **Bay Area-specific:** The concentration of tech-industry South Asian parents in cities like Cupertino, Fremont, Dublin, and San Jose creates an especially intense environment. Programs like X-Camp Academy in Silicon Valley have strong South Asian enrollment. This can be motivating or pressuring depending on the kid — know which one your child is experiencing.
 
 **Success stories worth knowing:** Arvind Krishna (IBM), Sundar Pichai (Google), and Satya Nadella (Microsoft) all started with foundational CS education. Closer to home, many Indian-American teens have reached USACO Platinum and IOI — but remember, these are the visible peaks of a much larger base of kids who learned to code, enjoyed it, and went on to fulfilling careers without ever making a national team.` },
-      { heading: `Honest Take — Pros, Cons & What to Watch For`, body: `### The Good
+      { heading: `Honest Take — Pros, Cons & What to Watch For`, content: `### The Good
 - Coding is one of the most **accessible** high-skill activities. Free resources are genuinely excellent — unlike violin or tennis, you can reach a high level without expensive equipment or coaching.
 - It builds **transferable problem-solving skills** that help in math, science, and logical reasoning.
 - It's **portfolio-friendly** — a 15-year-old can build and ship a real app that thousands of people use. Few other activities offer that kind of tangible output.
@@ -1052,7 +1052,7 @@ The best approach? Let your kid try both and see what resonates. Many successful
     emoji: "🎾",
     description: "USTA junior pathway, local academies, tournament structure, costs, and what it takes to play competitively from elementary through high school.",
     sections: [
-      { heading: `Why Tennis?`, body: `Tennis is one of the few sports a child can pick up at age five and still be playing at eighty-five. That alone makes it worth a serious look. But the benefits go well beyond longevity.
+      { heading: `Why Tennis?`, content: `Tennis is one of the few sports a child can pick up at age five and still be playing at eighty-five. That alone makes it worth a serious look. But the benefits go well beyond longevity.
 
 **Physical development.** Tennis builds agility, hand-eye coordination, footwork, and cardiovascular endurance in a way few other youth sports match. Because points are short, explosive bursts followed by recovery, kids develop both fast-twitch and aerobic fitness simultaneously.
 
@@ -1063,7 +1063,7 @@ The best approach? Let your kid try both and see what resonates. Many successful
 **College pathway.** Tennis is one of the strongest college scholarship sports, especially for students who also have strong academics. There are roughly 2,000 men's and women's college tennis roster spots across NCAA Divisions I, II, and III, plus NAIA schools. Because many top international players skip college, American junior players with solid rankings and good grades have real opportunities. A UTR (Universal Tennis Rating) of 8-10 for boys or 6-8 for girls, combined with strong academics, opens doors at competitive D3 and some D1 programs.
 
 **A lifetime sport.** Unlike football or gymnastics, tennis doesn't have an expiration date. Kids who learn proper technique early carry it for life — through high school teams, college clubs, adult leagues, and weekend doubles with friends decades later.` },
-      { heading: `The USTA Junior Pathway`, body: `The United States Tennis Association (USTA) runs the structured junior competitive system in the US. Understanding how it works helps parents plan their child's trajectory.
+      { heading: `The USTA Junior Pathway`, content: `The United States Tennis Association (USTA) runs the structured junior competitive system in the US. Understanding how it works helps parents plan their child's trajectory.
 
 ### Age Divisions
 
@@ -1102,7 +1102,7 @@ Alongside USTA rankings, the **UTR (Universal Tennis Rating)** has become increa
 ### Net Generation (Beginner Program)
 
 For kids just starting out, **USTA Net Generation** ([netgeneration.usta.com](https://netgeneration.usta.com)) is the official entry point. It connects families with local certified coaches and programs that use age-appropriate equipment (smaller rackets, lower-compression balls, shorter courts). Many Bay Area parks and clubs are Net Generation providers.` },
-      { heading: `Getting Started`, body: `### When to Start
+      { heading: `Getting Started`, content: `### When to Start
 
 Most coaches recommend introducing tennis between **ages 5 and 7** with structured play. Before age 5, general movement and coordination activities (running, catching, throwing) are more valuable than sport-specific training. Kids who start tennis at 6–7 with proper coaching can be tournament-ready by 9–10.
 
@@ -1138,7 +1138,7 @@ Avoid going all-in on private coaching too early. Kids burn out when tennis beco
 | Shoes | Any court shoes | Tennis-specific | Tennis-specific |
 
 Don't overspend on rackets for beginners — kids outgrow them quickly. A decent starter racket from Wilson, Babolat, or Head runs $25–$50. Tennis shoes matter more than the racket; proper lateral support prevents ankle injuries.` },
-      { heading: `Local Academies & Programs (Bay Area)`, body: `The Bay Area has a strong junior tennis ecosystem. Here's an overview of program types and some well-known options:
+      { heading: `Local Academies & Programs (Bay Area)`, content: `The Bay Area has a strong junior tennis ecosystem. Here's an overview of program types and some well-known options:
 
 ### Full-Time Academies & Clubs
 
@@ -1177,7 +1177,7 @@ Nearly every club and many parks offer tennis day camps during summer, ranging f
 | Club membership + junior program | $200–$500/month | Varies |
 | Summer camp (half-day) | $200–$350/week | Mon–Fri |
 | Summer camp (full-day) | $400–$600/week | Mon–Fri |` },
-      { heading: `Costs & Time Commitment`, body: `Tennis costs can range from very affordable to eye-watering, depending on how seriously your child pursues competition. Here's a realistic breakdown.
+      { heading: `Costs & Time Commitment`, content: `Tennis costs can range from very affordable to eye-watering, depending on how seriously your child pursues competition. Here's a realistic breakdown.
 
 ### The Casual Player (Ages 6–12, recreational)
 
@@ -1222,7 +1222,7 @@ At the highest levels — kids chasing national rankings, playing L2/L1 tourname
 | Elite/nationally ranked | 15–25 | 6–10 |
 
 The jump from recreational to competitive is where families need to make an honest decision about budget and priorities. A child can have a wonderful, character-building tennis experience at the $1,000–$3,000/year level without ever chasing a national ranking.` },
-      { heading: `Competition Structure & College Path`, body: `### Tournament Pathway
+      { heading: `Competition Structure & College Path`, content: `### Tournament Pathway
 
 A typical competitive junior's tournament journey looks like this:
 
@@ -1265,7 +1265,7 @@ Tennis recruiting has shifted significantly in recent years. Here's the current 
 - [ITA (Intercollegiate Tennis Association)](https://www.wearecollegetennis.com) — College tennis rankings and resources.
 
 **The academic advantage:** Tennis is one sport where strong academics genuinely open doors. A player with a UTR of 8 and a 3.8 GPA / 1400+ SAT has real options at excellent academic D3 schools (Emory, Pomona, Johns Hopkins, CMU, Chicago) that offer generous need-based financial aid.` },
-      { heading: `South Asian & Diaspora Context`, body: `### A Growing Heritage
+      { heading: `South Asian & Diaspora Context`, content: `### A Growing Heritage
 
 Tennis has deep roots in South Asian sports culture. **Leander Paes** dominated doubles for two decades, winning 18 Grand Slam doubles titles. **Sania Mirza** broke barriers as one of the top women's doubles players in the world. **Rohan Bopanna** won the 2024 Australian Open mixed doubles at age 43. **Sumit Nagal** has been making strides in men's singles. These players are household names for Indian families, and their success has inspired a generation of Indian-American kids to pick up rackets.
 
@@ -1291,7 +1291,7 @@ Keep an eye on:
 - **USTA NorCal community events** — Free clinics and play days, often in areas with large South Asian populations (Fremont, Cupertino, Sunnyvale).
 - **Local temple and community center tournaments** — Informal events that are great for beginners.
 - **India Day / Diwali festival tennis events** — Some community organizations organize tennis exhibitions or mini-tournaments at cultural festivals.` },
-      { heading: `Honest Take`, body: `### What We Like
+      { heading: `Honest Take`, content: `### What We Like
 
 - **Lifetime value.** Few sports offer a return on investment as long as tennis. A kid who learns proper strokes at 8 has a sport for life.
 - **Character building.** The individual accountability of tennis — calling your own lines, managing emotions, problem-solving alone on court — builds genuine resilience.
@@ -1319,14 +1319,14 @@ Tennis is an outstanding sport for kids — physically, mentally, and as a colle
     emoji: "🏏",
     description: "Finding cricket leagues, USA Cricket youth programs, equipment, and how the competitive pathway works for young cricketers in America.",
     sections: [
-      { heading: `Why Cricket?`, body: `Cricket in the United States is no longer just a weekend hobby for nostalgic dads — it's a genuinely growing sport with real infrastructure, professional leagues, and a competitive pathway that didn't exist even five years ago.
+      { heading: `Why Cricket?`, content: `Cricket in the United States is no longer just a weekend hobby for nostalgic dads — it's a genuinely growing sport with real infrastructure, professional leagues, and a competitive pathway that didn't exist even five years ago.
 
 The turning point was the **2024 ICC T20 World Cup**, co-hosted by the US and West Indies. For the first time, cricket's biggest stage came to American soil — and the USA team pulled off one of the great upsets in cricket history, beating Pakistan in the group stage. That single match did more for American cricket awareness than a decade of grassroots efforts. It showed kids that playing for Team USA in cricket is a real, achievable goal.
 
 Since then, **Major League Cricket (MLC)** has grown into a legitimate professional league. The 2026 season featured six franchises — San Francisco Unicorns, LA Knight Riders, Washington Freedom, MI New York, Seattle Orcas, and Texas Super Kings — with global superstars like Virat Kohli, Sunil Narine, Steve Smith, and Trent Boult on rosters. The MLC final was played at the Oakland Coliseum, right here in the Bay Area. Cricket on American TV, in American stadiums, with American players in the lineup — that's not a dream anymore.
 
 For South Asian families, cricket offers something unique: a sport where your child's cultural heritage is an *advantage*, not something to explain. But this isn't just about nostalgia. The ICC has added cricket to the **2028 Los Angeles Olympics**, and USA Cricket has declared its goal of becoming a Full ICC Member by 2030. The pathway is real and getting more structured every year.` },
-      { heading: `The US Cricket Landscape`, body: `**USA Cricket** (usacricket.org) is the national governing body, recognized by the ICC. It oversees the national teams, sanctions leagues, and runs the youth development pathway. The organization has grown significantly since the T20 World Cup, with a stated goal of achieving ICC Full Membership by 2030.
+      { heading: `The US Cricket Landscape`, content: `**USA Cricket** (usacricket.org) is the national governing body, recognized by the ICC. It oversees the national teams, sanctions leagues, and runs the youth development pathway. The organization has grown significantly since the T20 World Cup, with a stated goal of achieving ICC Full Membership by 2030.
 
 Here's how the ecosystem is structured:
 
@@ -1341,7 +1341,7 @@ Here's how the ecosystem is structured:
 The **Minor League T20**, announced in 2026, is a franchise-based tournament with 27 teams across the country. Each team must reserve two spots for U19 players — a direct pipeline for talented youth. Players in the minor league earn between $75–$250 per game depending on category, with marquee players earning $3,000–$6,000 per season.
 
 The biggest shift from five years ago: there's now a *visible* pathway from backyard cricket to professional contracts. It's still developing, but the structure exists. IPL franchises like Delhi Capitals and Mumbai Indians (through MI New York) are actively investing in US-based academies, creating connections to global professional ecosystems.` },
-      { heading: `Youth Programs & Leagues`, body: `USA Cricket runs a **Junior Cricket Pathway** organized through regional "Hubs." In the Bay Area, the **USAC Bay Area Hub** runs competitions at multiple age groups — U10, U13, U15, and U19. Hub tournaments are the primary route into zonal and national selections.
+      { heading: `Youth Programs & Leagues`, content: `USA Cricket runs a **Junior Cricket Pathway** organized through regional "Hubs." In the Bay Area, the **USAC Bay Area Hub** runs competitions at multiple age groups — U10, U13, U15, and U19. Hub tournaments are the primary route into zonal and national selections.
 
 ### Bay Area Academies & Clubs
 
@@ -1364,7 +1364,7 @@ The Bay Area is one of the strongest youth cricket regions in the country, thank
 ### Indoor Facilities
 
 California's year-round weather helps, but indoor cricket nets are available at several Bay Area facilities for off-season and evening practice. Check with CCA and BCA for current net-booking availability.` },
-      { heading: `How to Get Started`, body: `### Best Age to Start
+      { heading: `How to Get Started`, content: `### Best Age to Start
 
 Most academies accept kids from **age 6**, starting with soft-ball cricket that focuses on basic skills — throwing, catching, hitting, and running. Competitive leather-ball cricket typically begins around **age 10–11**. There's no "too late" — many successful US cricket players picked up the sport in their teens, especially if they have athletic backgrounds in baseball or other sports.
 
@@ -1397,7 +1397,7 @@ For beginners (soft-ball cricket), you need almost nothing — most academies pr
 ### Finding a Club
 
 Search on **usacricket.org** for recognized leagues in your area, or look up CCA, BCA, or BACA directly. Most clubs hold open registration in spring and fall. Your child can also try cricket at local park district programs — several Bay Area cities run introductory programs.` },
-      { heading: `Costs & Time Commitment`, body: `Cricket is generally **less expensive** than many competitive US sports (travel baseball, club soccer, competitive swimming), but costs vary widely between casual and serious play.
+      { heading: `Costs & Time Commitment`, content: `Cricket is generally **less expensive** than many competitive US sports (travel baseball, club soccer, competitive swimming), but costs vary widely between casual and serious play.
 
 ### Registration & Coaching Fees
 
@@ -1427,7 +1427,7 @@ Search on **usacricket.org** for recognized leagues in your area, or look up CCA
 ### The Bottom Line
 
 For a casual player doing one academy season: **~$400–$700/year** all-in. For a competitive player doing year-round training and tournaments: **$2,000–$5,000/year**. Still considerably cheaper than competitive travel baseball or club soccer at equivalent levels.` },
-      { heading: `Competition Pathway`, body: `The pathway from backyard cricket to representing the USA is becoming clearer every year. Here's how it works:
+      { heading: `Competition Pathway`, content: `The pathway from backyard cricket to representing the USA is becoming clearer every year. Here's how it works:
 
 ### Youth Pathway
 
@@ -1454,7 +1454,7 @@ College cricket is still a club sport, not NCAA-sanctioned — but with cricket 
 ### Key Dates
 
 USA Cricket Hub seasons typically run **spring through fall**. National championships and talent ID events happen in **summer (June–August)**. Academy registrations usually open in **January–March** for spring and **August–September** for fall.` },
-      { heading: `South Asian & Diaspora Context`, body: `Let's be honest: the South Asian community is the backbone of cricket in America. The vast majority of youth cricket players, coaches, league organizers, and fans in the US come from Indian, Pakistani, Sri Lankan, and Bangladeshi families. This is a sport where your child's cultural background is a genuine advantage.
+      { heading: `South Asian & Diaspora Context`, content: `Let's be honest: the South Asian community is the backbone of cricket in America. The vast majority of youth cricket players, coaches, league organizers, and fans in the US come from Indian, Pakistani, Sri Lankan, and Bangladeshi families. This is a sport where your child's cultural background is a genuine advantage.
 
 ### The Cultural Bridge
 
@@ -1475,7 +1475,7 @@ Beyond organized academies, cricket thrives in the South Asian community through
 Indian-American kids who play cricket often have a head start: they've watched IPL and international cricket, they understand the sport intuitively, and they have access to coaching from community members who played at serious levels back home. Many of the top youth coaches in Bay Area academies are former first-class or state-level players from India.
 
 But the advantage goes both ways. Because cricket is still growing in the US, the competition pool is smaller than in India or Australia. A talented kid in the Bay Area has a realistic shot at making zonal and even national age-group teams — something that would be astronomically harder in Mumbai or Melbourne.` },
-      { heading: `Honest Take — Pros, Cons & What to Watch For`, body: `### The Good
+      { heading: `Honest Take — Pros, Cons & What to Watch For`, content: `### The Good
 
 - **Rapidly growing infrastructure.** MLC, Minor League Cricket, the Collegiate Cricket League, and the 2028 Olympics are creating real structure. This is not the same dead-end sport it was in the US ten years ago.
 - **Lower competition = higher opportunity.** A committed young player in the US has a realistic chance at national-level representation. The talent pool, while growing, is far smaller than in traditional cricket countries.
@@ -1507,7 +1507,7 @@ For South Asian families in the Bay Area, the combination of strong local academ
     emoji: "🎾",
     description: "USTA junior pathway, local academies, tournament structure, costs, and what it takes to play competitively from elementary through high school.",
     sections: [
-      { heading: `Why Tennis?`, body: `Tennis is one of the few sports a child can pick up at age five and still be playing at eighty-five. That alone makes it worth a serious look. But the benefits go well beyond longevity.
+      { heading: `Why Tennis?`, content: `Tennis is one of the few sports a child can pick up at age five and still be playing at eighty-five. That alone makes it worth a serious look. But the benefits go well beyond longevity.
 
 **Physical development.** Tennis builds agility, hand-eye coordination, footwork, and cardiovascular endurance in a way few other youth sports match. Because points are short, explosive bursts followed by recovery, kids develop both fast-twitch and aerobic fitness simultaneously.
 
@@ -1518,7 +1518,7 @@ For South Asian families in the Bay Area, the combination of strong local academ
 **College pathway.** Tennis is one of the strongest college scholarship sports, especially for students who also have strong academics. There are roughly 2,000 men's and women's college tennis roster spots across NCAA Divisions I, II, and III, plus NAIA schools. Because many top international players skip college, American junior players with solid rankings and good grades have real opportunities. A UTR (Universal Tennis Rating) of 8-10 for boys or 6-8 for girls, combined with strong academics, opens doors at competitive D3 and some D1 programs.
 
 **A lifetime sport.** Unlike football or gymnastics, tennis doesn't have an expiration date. Kids who learn proper technique early carry it for life — through high school teams, college clubs, adult leagues, and weekend doubles with friends decades later.` },
-      { heading: `The USTA Junior Pathway`, body: `The United States Tennis Association (USTA) runs the structured junior competitive system in the US. Understanding how it works helps parents plan their child's trajectory.
+      { heading: `The USTA Junior Pathway`, content: `The United States Tennis Association (USTA) runs the structured junior competitive system in the US. Understanding how it works helps parents plan their child's trajectory.
 
 ### Age Divisions
 
@@ -1557,7 +1557,7 @@ Alongside USTA rankings, the **UTR (Universal Tennis Rating)** has become increa
 ### Net Generation (Beginner Program)
 
 For kids just starting out, **USTA Net Generation** ([netgeneration.usta.com](https://netgeneration.usta.com)) is the official entry point. It connects families with local certified coaches and programs that use age-appropriate equipment (smaller rackets, lower-compression balls, shorter courts). Many Bay Area parks and clubs are Net Generation providers.` },
-      { heading: `Getting Started`, body: `### When to Start
+      { heading: `Getting Started`, content: `### When to Start
 
 Most coaches recommend introducing tennis between **ages 5 and 7** with structured play. Before age 5, general movement and coordination activities (running, catching, throwing) are more valuable than sport-specific training. Kids who start tennis at 6–7 with proper coaching can be tournament-ready by 9–10.
 
@@ -1593,7 +1593,7 @@ Avoid going all-in on private coaching too early. Kids burn out when tennis beco
 | Shoes | Any court shoes | Tennis-specific | Tennis-specific |
 
 Don't overspend on rackets for beginners — kids outgrow them quickly. A decent starter racket from Wilson, Babolat, or Head runs $25–$50. Tennis shoes matter more than the racket; proper lateral support prevents ankle injuries.` },
-      { heading: `Local Academies & Programs (Bay Area)`, body: `The Bay Area has a strong junior tennis ecosystem. Here's an overview of program types and some well-known options:
+      { heading: `Local Academies & Programs (Bay Area)`, content: `The Bay Area has a strong junior tennis ecosystem. Here's an overview of program types and some well-known options:
 
 ### Full-Time Academies & Clubs
 
@@ -1632,7 +1632,7 @@ Nearly every club and many parks offer tennis day camps during summer, ranging f
 | Club membership + junior program | $200–$500/month | Varies |
 | Summer camp (half-day) | $200–$350/week | Mon–Fri |
 | Summer camp (full-day) | $400–$600/week | Mon–Fri |` },
-      { heading: `Costs & Time Commitment`, body: `Tennis costs can range from very affordable to eye-watering, depending on how seriously your child pursues competition. Here's a realistic breakdown.
+      { heading: `Costs & Time Commitment`, content: `Tennis costs can range from very affordable to eye-watering, depending on how seriously your child pursues competition. Here's a realistic breakdown.
 
 ### The Casual Player (Ages 6–12, recreational)
 
@@ -1677,7 +1677,7 @@ At the highest levels — kids chasing national rankings, playing L2/L1 tourname
 | Elite/nationally ranked | 15–25 | 6–10 |
 
 The jump from recreational to competitive is where families need to make an honest decision about budget and priorities. A child can have a wonderful, character-building tennis experience at the $1,000–$3,000/year level without ever chasing a national ranking.` },
-      { heading: `Competition Structure & College Path`, body: `### Tournament Pathway
+      { heading: `Competition Structure & College Path`, content: `### Tournament Pathway
 
 A typical competitive junior's tournament journey looks like this:
 
@@ -1720,7 +1720,7 @@ Tennis recruiting has shifted significantly in recent years. Here's the current 
 - [ITA (Intercollegiate Tennis Association)](https://www.wearecollegetennis.com) — College tennis rankings and resources.
 
 **The academic advantage:** Tennis is one sport where strong academics genuinely open doors. A player with a UTR of 8 and a 3.8 GPA / 1400+ SAT has real options at excellent academic D3 schools (Emory, Pomona, Johns Hopkins, CMU, Chicago) that offer generous need-based financial aid.` },
-      { heading: `South Asian & Diaspora Context`, body: `### A Growing Heritage
+      { heading: `South Asian & Diaspora Context`, content: `### A Growing Heritage
 
 Tennis has deep roots in South Asian sports culture. **Leander Paes** dominated doubles for two decades, winning 18 Grand Slam doubles titles. **Sania Mirza** broke barriers as one of the top women's doubles players in the world. **Rohan Bopanna** won the 2024 Australian Open mixed doubles at age 43. **Sumit Nagal** has been making strides in men's singles. These players are household names for Indian families, and their success has inspired a generation of Indian-American kids to pick up rackets.
 
@@ -1746,7 +1746,7 @@ Keep an eye on:
 - **USTA NorCal community events** — Free clinics and play days, often in areas with large South Asian populations (Fremont, Cupertino, Sunnyvale).
 - **Local temple and community center tournaments** — Informal events that are great for beginners.
 - **India Day / Diwali festival tennis events** — Some community organizations organize tennis exhibitions or mini-tournaments at cultural festivals.` },
-      { heading: `Honest Take`, body: `### What We Like
+      { heading: `Honest Take`, content: `### What We Like
 
 - **Lifetime value.** Few sports offer a return on investment as long as tennis. A kid who learns proper strokes at 8 has a sport for life.
 - **Character building.** The individual accountability of tennis — calling your own lines, managing emotions, problem-solving alone on court — builds genuine resilience.
@@ -1774,14 +1774,14 @@ Tennis is an outstanding sport for kids — physically, mentally, and as a colle
     emoji: "🗯️",
     description: "National History Bee, Model UN, speech & debate leagues — how to develop communication skills and the competitive landscape.",
     sections: [
-      { heading: `Why Debate & Public Speaking?`, body: `If there's one extracurricular that pays dividends across every career path, it's speech and debate. The skills are foundational: constructing an argument, thinking on your feet, reading an audience, staying composed under pressure, and communicating complex ideas clearly. These aren't nice-to-haves — they're the skills that separate people who have good ideas from people who can actually make things happen.
+      { heading: `Why Debate & Public Speaking?`, content: `If there's one extracurricular that pays dividends across every career path, it's speech and debate. The skills are foundational: constructing an argument, thinking on your feet, reading an audience, staying composed under pressure, and communicating complex ideas clearly. These aren't nice-to-haves — they're the skills that separate people who have good ideas from people who can actually make things happen.
 
 College admissions officers consistently rank speech and debate among the most respected extracurriculars. The NSDA (National Speech & Debate Association) is one of the oldest honor societies in the country, and membership signals intellectual rigor. Students who reach elimination rounds at national-circuit tournaments or earn bids to the Tournament of Champions (TOC) at the University of Kentucky demonstrate a level of research, reasoning, and poise that stands out on applications.
 
 But the benefits go well beyond college apps. Debate teaches kids to engage with perspectives they disagree with — they'll argue both sides of a resolution across different rounds. It builds research literacy, since competitive debaters learn to find, evaluate, and cite evidence at a level most adults never reach. Public speaking events like Original Oratory and Extemporaneous Speaking build the kind of confident communication that translates directly to job interviews, presentations, and leadership roles.
 
 For students who are naturally introverted or anxious about speaking up, structured speech and debate provides a scaffolded way to build confidence. The format gives them rules, preparation time, and clear expectations — it's not "just wing it in front of the class." Many top debaters describe themselves as shy kids who found their voice through the activity.` },
-      { heading: `The Competition Landscape`, body: `The competitive speech and debate world is organized around a few major governing bodies and tournament circuits:
+      { heading: `The Competition Landscape`, content: `The competitive speech and debate world is organized around a few major governing bodies and tournament circuits:
 
 **NSDA (National Speech & Debate Association)** — The largest and most established organization, with over 140,000 student members. Schools join as member programs, and students earn points by competing at NSDA-sanctioned tournaments throughout the year. The season culminates at the NSDA National Tournament each June, where 54 national champions are crowned across debate and speech events. It's often called the "Olympics of speech and debate."
 
@@ -1798,7 +1798,7 @@ Students compete at league tournaments, qualify for the CHSSA State Tournament, 
 **National History Bee & Bowl** — A quiz-bowl style competition focused on history, with regional and national rounds. Less about persuasion, more about deep historical knowledge, but it builds research and quick-recall skills.
 
 **How tournaments work:** Most debate tournaments run on a weekend (Saturday, sometimes Friday–Saturday). Students compete in 4–6 preliminary rounds, and top performers advance to elimination rounds (octafinals, quarterfinals, semifinals, finals). Speech events typically have 3 preliminary rounds with a final round. Results are posted on Tabroom.com, the standard tournament management platform.` },
-      { heading: `Types of Debate & Speech Events`, body: `One of the best things about speech and debate is the sheer variety of events. There's genuinely something for every personality type:
+      { heading: `Types of Debate & Speech Events`, content: `One of the best things about speech and debate is the sheer variety of events. There's genuinely something for every personality type:
 
 ### Debate Events
 
@@ -1826,7 +1826,7 @@ Students compete at league tournaments, qualify for the CHSSA State Tournament, 
 | **Program Oral Interpretation (POI)** | Combine poetry, prose, and drama around a unifying theme |
 
 **Extemp** is excellent for students who read the news voraciously and think well under pressure. **Original Oratory** suits passionate writers who want to advocate for a cause. **Interpretation events** are perfect for theater kids who want a competitive outlet. Many students compete in both a debate and a speech event — coaches often encourage this.` },
-      { heading: `How to Get Started`, body: `**Middle school is the typical entry point**, though some programs start as early as 4th–5th grade with introductory public speaking and parliamentary debate. Here's a practical path:
+      { heading: `How to Get Started`, content: `**Middle school is the typical entry point**, though some programs start as early as 4th–5th grade with introductory public speaking and parliamentary debate. Here's a practical path:
 
 **Step 1: Check your school.** Many middle and high schools have debate teams or speech and debate clubs. Ask the activities office or search your school's club list. If your school has an NSDA-affiliated program, you're set — the coach will handle registration and tournament entries.
 
@@ -1846,7 +1846,7 @@ Students compete at league tournaments, qualify for the CHSSA State Tournament, 
 **Step 4: Attend a tournament.** Most leagues have novice divisions specifically for first-year competitors. Tabroom.com lists upcoming tournaments searchable by region. Your first tournament will be overwhelming — that's normal. The learning curve is steep for the first 3–4 tournaments, then it clicks.
 
 **Step 5: Find a practice partner or study group.** Debate is inherently social. Even Lincoln-Douglas debaters need someone to practice against. Many teams do regular practice rounds (called "drills") after school 2–3 times per week.` },
-      { heading: `Programs & Resources`, body: `### Summer Debate Camps
+      { heading: `Programs & Resources`, content: `### Summer Debate Camps
 
 Summer camps are the fastest way to level up. They compress months of learning into 1–3 weeks of intensive coaching, practice rounds, and lectures from college debaters and coaches.
 
@@ -1874,7 +1874,7 @@ Summer camps are the fastest way to level up. They compress months of learning i
 - **BestDelegate.com** — comprehensive Model UN resources, conference reviews, and preparation guides
 - **Champion Briefs / Victory Briefs** — monthly topic analyses and evidence files (paid, ~$20–40/topic)
 - **YouTube** — NSDA posts national final rounds. Watching top competitors is one of the best free ways to learn` },
-      { heading: `Costs & Time Commitment`, body: `### Costs
+      { heading: `Costs & Time Commitment`, content: `### Costs
 
 Debate can range from very affordable (school team, local tournaments) to expensive (national circuit + summer camps):
 
@@ -1901,7 +1901,7 @@ Debate can range from very affordable (school team, local tournaments) to expens
 - **National-circuit competitor:** 15–25+ hours/week during the season + 15–20+ tournaments, including multi-day travel weekends
 
 Tournament weekends are full-day commitments. A typical local tournament runs 8 AM to 5 PM on Saturday. National-circuit invitationals often span Friday through Sunday. This is a real consideration for families — debate can consume most weekends from September through March.` },
-      { heading: `South Asian & Diaspora Context`, body: `South Asian Americans have a remarkably strong presence in competitive speech and debate, and it's only growing.
+      { heading: `South Asian & Diaspora Context`, content: `South Asian Americans have a remarkably strong presence in competitive speech and debate, and it's only growing.
 
 **Representation at the top levels.** Indian-American students have won NSDA national titles across multiple events. In 2018, Devesh Kodnani and Ishan Maunder from Mission San Jose High School (Fremont, CA — right in the Bay Area) won the NSDA National Championship in Public Forum Debate. That same year, Ishan Bhatt won the national title in Lincoln-Douglas Debate. Indian-American students regularly qualify for and place at the Tournament of Champions, and names like Arrman Kapoor (Team USA Debate member, 23 TOC bids) demonstrate the depth of South Asian talent in the activity.
 
@@ -1916,7 +1916,7 @@ This isn't a coincidence. Several cultural factors contribute:
 **The Model UN connection.** South Asian American students are heavily represented in Bay Area Model UN programs. Schools like Monta Vista, Lynbrook, and Mission San Jose consistently send strong delegations to BMUN and SMUNC. The diplomatic simulation format resonates with families interested in international relations and global awareness.
 
 **A practical note:** The debate community in the Bay Area is genuinely diverse, and South Asian students will find plenty of representation among competitors, coaches, and judges. It's one of the few activities where being deeply informed, articulate, and intellectually ambitious is unambiguously rewarded.` },
-      { heading: `Honest Take`, body: `Speech and debate is one of the most rewarding extracurriculars available — but it's not without real trade-offs. Here's what to weigh honestly:
+      { heading: `Honest Take`, content: `Speech and debate is one of the most rewarding extracurriculars available — but it's not without real trade-offs. Here's what to weigh honestly:
 
 **The good:**
 - The skills transfer to everything. Job interviews, presentations, negotiations, writing — debate alumni consistently credit the activity with their professional communication ability
@@ -1947,7 +1947,7 @@ This isn't a coincidence. Several cultural factors contribute:
     emoji: "💃",
     description: "Bharatanatyam, Kathak, Bollywood, and more — finding the right dance school, exam pathways, and performance opportunities.",
     sections: [
-      { heading: `Why Dance?`, body: `Indian dance is one of the most powerful ways for kids in the diaspora to build a living connection to their heritage — not through textbooks or weekend lectures, but through movement, music, and storytelling that's been refined over centuries.
+      { heading: `Why Dance?`, content: `Indian dance is one of the most powerful ways for kids in the diaspora to build a living connection to their heritage — not through textbooks or weekend lectures, but through movement, music, and storytelling that's been refined over centuries.
 
 The physical benefits are real and significant. Classical Indian dance builds core strength, flexibility, balance, and stamina. Bharatanatyam's aramandi (half-sitting position) develops leg strength comparable to athletic training. Kathak's spins and footwork build cardiovascular endurance. These aren't gentle stretching classes — serious classical training is physically demanding.
 
@@ -1958,7 +1958,7 @@ There's also the confidence factor. A child who can command a stage through expr
 For diaspora families specifically, dance offers something unique: it gives kids a reason to engage with Indian languages (most compositions are in Telugu, Tamil, Hindi, or Sanskrit), mythology (the stories behind abhinaya pieces), and music (ragas, talas). It's cultural education that doesn't feel like homework.
 
 And it's not just classical. Bollywood and fusion dance have exploded in popularity, offering a more accessible, social, and contemporary entry point that still connects kids to Indian culture — just through a different lens.` },
-      { heading: `Dance Forms Explained`, body: `**Bharatanatyam** — Originally from Tamil Nadu, this is the most widely taught classical form in the US. Known for its geometric lines, strong footwork, and expressive storytelling. The aramandi (bent-knee) base position is its signature. Best started between ages 5-8. Compositions are typically in Tamil, Telugu, or Sanskrit. This is the form most likely to have multiple schools in any given US metro area.
+      { heading: `Dance Forms Explained`, content: `**Bharatanatyam** — Originally from Tamil Nadu, this is the most widely taught classical form in the US. Known for its geometric lines, strong footwork, and expressive storytelling. The aramandi (bent-knee) base position is its signature. Best started between ages 5-8. Compositions are typically in Tamil, Telugu, or Sanskrit. This is the form most likely to have multiple schools in any given US metro area.
 
 **Kathak** — From North India, Kathak is characterized by rapid spins (chakkar), intricate footwork with ankle bells (ghungroo), and storytelling that blends Hindu and Mughal traditions. More upright than Bharatanatyam, with flowing movements. Can start at ages 5-7. Compositions in Hindi, Urdu, or Braj Bhasha. Fewer schools in the US than Bharatanatyam, but strong communities in major metros.
 
@@ -1973,7 +1973,7 @@ And it's not just classical. Bollywood and fusion dance have exploded in popular
 **Contemporary Fusion** — Choreography that blends classical Indian technique with modern dance, hip-hop, or Western contemporary. Growing rapidly through competition circuits and social media. Appeals to older kids and teens who want creative freedom while drawing on Indian movement vocabulary.
 
 Most diaspora families gravitate toward Bharatanatyam or Kathak for classical training, and Bollywood for a more casual or social experience. The "right" form often depends on family background, available teachers in your area, and what resonates with the child.` },
-      { heading: `The Training Path`, body: `Classical Indian dance is a long-term commitment — there's no way around it. Here's what the typical journey looks like:
+      { heading: `The Training Path`, content: `Classical Indian dance is a long-term commitment — there's no way around it. Here's what the typical journey looks like:
 
 **Years 1-2: Foundation** — Learning basic postures, hand gestures (mudras), simple footwork patterns (adavus in Bharatanatyam, tatkars in Kathak), and introductory compositions. Classes are usually once a week, 60-90 minutes. Kids learn namaskaram (salutation), basic rhythmic patterns, and start developing the physical conditioning needed for the form. At this stage, practice at home is 15-20 minutes a few times a week.
 
@@ -1992,7 +1992,7 @@ Most diaspora families gravitate toward Bharatanatyam or Kathak for classical tr
 The lack of standardized certification means quality varies significantly between schools. A student's ability is ultimately judged by their performance, their guru's reputation, and — for classical forms — their arangetram.
 
 **Bollywood and fusion** follow a much more flexible path. There's no equivalent of the arangetram, no multi-year commitment required, and students can participate in competitions or performances at any level. Training is typically project-based: learn a routine, perform it, move to the next one.` },
-      { heading: `Finding the Right School`, body: `Choosing a dance school — and more importantly, a guru — is one of the most consequential decisions in this journey. Here's what to evaluate:
+      { heading: `Finding the Right School`, content: `Choosing a dance school — and more importantly, a guru — is one of the most consequential decisions in this journey. Here's what to evaluate:
 
 **The Teacher's Background** — In classical dance, the guru's own training lineage matters. Ask: Where did they train? Under whom? How many years? Do they still perform? A teacher who actively performs and continues learning will bring a different energy than one who stopped dancing years ago. Look for teachers who have completed their own arangetram and ideally have trained students through theirs.
 
@@ -2013,7 +2013,7 @@ The lack of standardized certification means quality varies significantly betwee
 **Temple-Based vs. Independent Schools** — Temple-based classes are often more affordable and convenient but may have larger class sizes and less intensive training. Independent schools/academies typically offer more focused, rigorous instruction but at higher cost. Both can be excellent — it depends on the specific teacher.
 
 **Red Flags** — Be cautious of schools that rush students to arangetram before they're ready (under 6-7 years of training), teachers who discourage parents from watching classes entirely, or programs with no clear curriculum progression. Also watch for schools that focus exclusively on competition wins rather than foundational technique.` },
-      { heading: `Costs & Time Commitment`, body: `Let's talk real numbers:
+      { heading: `Costs & Time Commitment`, content: `Let's talk real numbers:
 
 **Monthly Tuition**
 - Group classes: **$80-150/month** for weekly classes (most common)
@@ -2051,7 +2051,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
 | Pre-Arangetram (6-12 months) | 2-3 classes + extra rehearsals | 60-90 min daily | building to the big one |
 
 **Bollywood/Fusion** is significantly less demanding: typically one class per week, practice before performances only, and no multi-year arc required. Competition teams practice more intensively (2-3x/week during competition season).` },
-      { heading: `Competitions & Performance Opportunities`, body: `Performance is where dance comes alive. Here are the main avenues:
+      { heading: `Competitions & Performance Opportunities`, content: `Performance is where dance comes alive. Here are the main avenues:
 
 **Major Festivals & Events**
 - **Cleveland Thyagaraja Aradhana Festival** (Cleveland, OH) — The largest Indian classical music and dance festival in North America. Having your student perform here is a significant credential. Competitive and invitational.
@@ -2081,7 +2081,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
 - Document everything: video recordings of performances are essential for applications
 
 **Online Platforms** — Post-pandemic, virtual showcases and Instagram/YouTube have become legitimate performance venues. Many young dancers build audiences online, which can open doors to live performance invitations.` },
-      { heading: `South Asian & Diaspora Context`, body: `Indian dance in America carries layers that don't exist in India. Understanding them helps families navigate the experience:
+      { heading: `South Asian & Diaspora Context`, content: `Indian dance in America carries layers that don't exist in India. Understanding them helps families navigate the experience:
 
 **Cultural Preservation** — For many diaspora families, enrolling kids in classical dance is as much about cultural transmission as artistic development. Dance class becomes a space where kids hear Indian languages, learn mythology, understand musical traditions, and interact with other Indian-American children. This cultural anchoring is valuable — but it works best when it's a natural byproduct, not the entire motivation. Kids who sense they're being forced into dance "for culture" often resist.
 
@@ -2094,7 +2094,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
 **Connecting with Non-Indian Audiences** — One of the unique opportunities for diaspora dancers is bringing Indian dance to broader audiences. School performances, community events, and multicultural festivals let young dancers serve as cultural ambassadors. This builds pride and presentation skills that go far beyond dance technique.
 
 **The Identity Question** — For second-generation kids, Indian dance can become a crucial part of how they understand and express their identity. It gives them something concrete and beautiful that connects them to their heritage — something they can own, not just hear about from parents. When the experience is positive, it becomes a source of pride they carry into adulthood, long after the last performance.` },
-      { heading: `Honest Take`, body: `Here's what no brochure will tell you:
+      { heading: `Honest Take`, content: `Here's what no brochure will tell you:
 
 **The commitment is real.** Classical Indian dance is not a casual hobby you try for a semester. If you're going the Bharatanatyam or Kathak route, you're looking at 7-10 years to reach arangetram. That's a commitment that spans elementary school through high school. Many families start enthusiastically and hit a wall around year 4-5, when academics intensify, other activities compete for time, and the novelty wears off. Have honest conversations early about expectations.
 
@@ -2116,7 +2116,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
     emoji: "💃",
     description: "Bharatanatyam, Kathak, Bollywood, and more — finding the right dance school, exam pathways, and performance opportunities.",
     sections: [
-      { heading: `Why Dance?`, body: `Indian dance is one of the most powerful ways for kids in the diaspora to build a living connection to their heritage — not through textbooks or weekend lectures, but through movement, music, and storytelling that's been refined over centuries.
+      { heading: `Why Dance?`, content: `Indian dance is one of the most powerful ways for kids in the diaspora to build a living connection to their heritage — not through textbooks or weekend lectures, but through movement, music, and storytelling that's been refined over centuries.
 
 The physical benefits are real and significant. Classical Indian dance builds core strength, flexibility, balance, and stamina. Bharatanatyam's aramandi (half-sitting position) develops leg strength comparable to athletic training. Kathak's spins and footwork build cardiovascular endurance. These aren't gentle stretching classes — serious classical training is physically demanding.
 
@@ -2127,7 +2127,7 @@ There's also the confidence factor. A child who can command a stage through expr
 For diaspora families specifically, dance offers something unique: it gives kids a reason to engage with Indian languages (most compositions are in Telugu, Tamil, Hindi, or Sanskrit), mythology (the stories behind abhinaya pieces), and music (ragas, talas). It's cultural education that doesn't feel like homework.
 
 And it's not just classical. Bollywood and fusion dance have exploded in popularity, offering a more accessible, social, and contemporary entry point that still connects kids to Indian culture — just through a different lens.` },
-      { heading: `Dance Forms Explained`, body: `**Bharatanatyam** — Originally from Tamil Nadu, this is the most widely taught classical form in the US. Known for its geometric lines, strong footwork, and expressive storytelling. The aramandi (bent-knee) base position is its signature. Best started between ages 5-8. Compositions are typically in Tamil, Telugu, or Sanskrit. This is the form most likely to have multiple schools in any given US metro area.
+      { heading: `Dance Forms Explained`, content: `**Bharatanatyam** — Originally from Tamil Nadu, this is the most widely taught classical form in the US. Known for its geometric lines, strong footwork, and expressive storytelling. The aramandi (bent-knee) base position is its signature. Best started between ages 5-8. Compositions are typically in Tamil, Telugu, or Sanskrit. This is the form most likely to have multiple schools in any given US metro area.
 
 **Kathak** — From North India, Kathak is characterized by rapid spins (chakkar), intricate footwork with ankle bells (ghungroo), and storytelling that blends Hindu and Mughal traditions. More upright than Bharatanatyam, with flowing movements. Can start at ages 5-7. Compositions in Hindi, Urdu, or Braj Bhasha. Fewer schools in the US than Bharatanatyam, but strong communities in major metros.
 
@@ -2142,7 +2142,7 @@ And it's not just classical. Bollywood and fusion dance have exploded in popular
 **Contemporary Fusion** — Choreography that blends classical Indian technique with modern dance, hip-hop, or Western contemporary. Growing rapidly through competition circuits and social media. Appeals to older kids and teens who want creative freedom while drawing on Indian movement vocabulary.
 
 Most diaspora families gravitate toward Bharatanatyam or Kathak for classical training, and Bollywood for a more casual or social experience. The "right" form often depends on family background, available teachers in your area, and what resonates with the child.` },
-      { heading: `The Training Path`, body: `Classical Indian dance is a long-term commitment — there's no way around it. Here's what the typical journey looks like:
+      { heading: `The Training Path`, content: `Classical Indian dance is a long-term commitment — there's no way around it. Here's what the typical journey looks like:
 
 **Years 1-2: Foundation** — Learning basic postures, hand gestures (mudras), simple footwork patterns (adavus in Bharatanatyam, tatkars in Kathak), and introductory compositions. Classes are usually once a week, 60-90 minutes. Kids learn namaskaram (salutation), basic rhythmic patterns, and start developing the physical conditioning needed for the form. At this stage, practice at home is 15-20 minutes a few times a week.
 
@@ -2161,7 +2161,7 @@ Most diaspora families gravitate toward Bharatanatyam or Kathak for classical tr
 The lack of standardized certification means quality varies significantly between schools. A student's ability is ultimately judged by their performance, their guru's reputation, and — for classical forms — their arangetram.
 
 **Bollywood and fusion** follow a much more flexible path. There's no equivalent of the arangetram, no multi-year commitment required, and students can participate in competitions or performances at any level. Training is typically project-based: learn a routine, perform it, move to the next one.` },
-      { heading: `Finding the Right School`, body: `Choosing a dance school — and more importantly, a guru — is one of the most consequential decisions in this journey. Here's what to evaluate:
+      { heading: `Finding the Right School`, content: `Choosing a dance school — and more importantly, a guru — is one of the most consequential decisions in this journey. Here's what to evaluate:
 
 **The Teacher's Background** — In classical dance, the guru's own training lineage matters. Ask: Where did they train? Under whom? How many years? Do they still perform? A teacher who actively performs and continues learning will bring a different energy than one who stopped dancing years ago. Look for teachers who have completed their own arangetram and ideally have trained students through theirs.
 
@@ -2182,7 +2182,7 @@ The lack of standardized certification means quality varies significantly betwee
 **Temple-Based vs. Independent Schools** — Temple-based classes are often more affordable and convenient but may have larger class sizes and less intensive training. Independent schools/academies typically offer more focused, rigorous instruction but at higher cost. Both can be excellent — it depends on the specific teacher.
 
 **Red Flags** — Be cautious of schools that rush students to arangetram before they're ready (under 6-7 years of training), teachers who discourage parents from watching classes entirely, or programs with no clear curriculum progression. Also watch for schools that focus exclusively on competition wins rather than foundational technique.` },
-      { heading: `Costs & Time Commitment`, body: `Let's talk real numbers:
+      { heading: `Costs & Time Commitment`, content: `Let's talk real numbers:
 
 **Monthly Tuition**
 - Group classes: **$80-150/month** for weekly classes (most common)
@@ -2220,7 +2220,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
 | Pre-Arangetram (6-12 months) | 2-3 classes + extra rehearsals | 60-90 min daily | building to the big one |
 
 **Bollywood/Fusion** is significantly less demanding: typically one class per week, practice before performances only, and no multi-year arc required. Competition teams practice more intensively (2-3x/week during competition season).` },
-      { heading: `Competitions & Performance Opportunities`, body: `Performance is where dance comes alive. Here are the main avenues:
+      { heading: `Competitions & Performance Opportunities`, content: `Performance is where dance comes alive. Here are the main avenues:
 
 **Major Festivals & Events**
 - **Cleveland Thyagaraja Aradhana Festival** (Cleveland, OH) — The largest Indian classical music and dance festival in North America. Having your student perform here is a significant credential. Competitive and invitational.
@@ -2250,7 +2250,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
 - Document everything: video recordings of performances are essential for applications
 
 **Online Platforms** — Post-pandemic, virtual showcases and Instagram/YouTube have become legitimate performance venues. Many young dancers build audiences online, which can open doors to live performance invitations.` },
-      { heading: `South Asian & Diaspora Context`, body: `Indian dance in America carries layers that don't exist in India. Understanding them helps families navigate the experience:
+      { heading: `South Asian & Diaspora Context`, content: `Indian dance in America carries layers that don't exist in India. Understanding them helps families navigate the experience:
 
 **Cultural Preservation** — For many diaspora families, enrolling kids in classical dance is as much about cultural transmission as artistic development. Dance class becomes a space where kids hear Indian languages, learn mythology, understand musical traditions, and interact with other Indian-American children. This cultural anchoring is valuable — but it works best when it's a natural byproduct, not the entire motivation. Kids who sense they're being forced into dance "for culture" often resist.
 
@@ -2263,7 +2263,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
 **Connecting with Non-Indian Audiences** — One of the unique opportunities for diaspora dancers is bringing Indian dance to broader audiences. School performances, community events, and multicultural festivals let young dancers serve as cultural ambassadors. This builds pride and presentation skills that go far beyond dance technique.
 
 **The Identity Question** — For second-generation kids, Indian dance can become a crucial part of how they understand and express their identity. It gives them something concrete and beautiful that connects them to their heritage — something they can own, not just hear about from parents. When the experience is positive, it becomes a source of pride they carry into adulthood, long after the last performance.` },
-      { heading: `Honest Take`, body: `Here's what no brochure will tell you:
+      { heading: `Honest Take`, content: `Here's what no brochure will tell you:
 
 **The commitment is real.** Classical Indian dance is not a casual hobby you try for a semester. If you're going the Bharatanatyam or Kathak route, you're looking at 7-10 years to reach arangetram. That's a commitment that spans elementary school through high school. Many families start enthusiastically and hit a wall around year 4-5, when academics intensify, other activities compete for time, and the novelty wears off. Have honest conversations early about expectations.
 
@@ -2285,7 +2285,7 @@ The arangetram cost often surprises families. It's essentially producing a priva
     emoji: "🎵",
     description: "Instruments, vocal training, Indian classical vs. Western — how to choose, what to expect, and the path from lessons to performances and competitions.",
     sections: [
-      { heading: `Why Music?`, body: `Music education is one of the strongest investments you can make in a child's development — and the research backs it up convincingly.
+      { heading: `Why Music?`, content: `Music education is one of the strongest investments you can make in a child's development — and the research backs it up convincingly.
 
 **Cognitive Benefits**
 
@@ -2302,7 +2302,7 @@ Admissions officers consistently note that sustained musical commitment signals 
 **A Lifelong Skill**
 
 Unlike many childhood activities, music stays with you. An adult who learned piano at 7 can still sit down and play at 70. The social, therapeutic, and creative benefits of music extend well beyond school — it's one of the few enrichment activities with a genuine lifetime return.` },
-      { heading: `Indian Classical vs. Western — Choosing a Path`, body: `For Indian-American families, this is often the first big decision: do we go Indian classical, Western, or both?
+      { heading: `Indian Classical vs. Western — Choosing a Path`, content: `For Indian-American families, this is often the first big decision: do we go Indian classical, Western, or both?
 
 ### Indian Classical: Carnatic vs. Hindustani
 
@@ -2334,7 +2334,7 @@ Yes — but be realistic about time. A child doing Carnatic vocal and piano will
 | College visibility | Unique differentiator | More widely recognized |
 | Finding teachers | Diaspora network, fewer options | Abundant, standardized |
 | Cost | Often lower per lesson | Varies widely |` },
-      { heading: `The Training Path`, body: `### Indian Classical Progression
+      { heading: `The Training Path`, content: `### Indian Classical Progression
 
 Carnatic and Hindustani training follows a traditional, gradual path:
 
@@ -2374,7 +2374,7 @@ Western music has well-defined grading systems:
 | 13+ | 45-60+ minutes |
 
 These are minimums for steady progress. Competition-track students often practice more.` },
-      { heading: `Finding the Right Teacher`, body: `The teacher makes or breaks music education. A technically brilliant musician who can't connect with a 7-year-old is worse than a good-enough musician who keeps kids engaged.
+      { heading: `Finding the Right Teacher`, content: `The teacher makes or breaks music education. A technically brilliant musician who can't connect with a 7-year-old is worse than a good-enough musician who keeps kids engaged.
 
 ### Indian Classical: The Guru Tradition
 
@@ -2405,7 +2405,7 @@ Traditionally, Indian classical music is learned from a single guru over many ye
 - No clear progression plan — just "learning songs" without building technique
 - Dismissive of the child's interests ("You should play what I assign, not what you want")
 - Pressuring expensive competitions or performances before the child is ready` },
-      { heading: `Costs & Time Commitment`, body: `Music education costs vary widely. Here's a realistic breakdown:
+      { heading: `Costs & Time Commitment`, content: `Music education costs vary widely. Here's a realistic breakdown:
 
 ### Lesson Costs
 
@@ -2461,7 +2461,7 @@ Beyond daily practice (15-60 min depending on age and level), factor in:
 - Ensemble rehearsals (orchestra, band): 1-2 hours/week during school year
 
 Indian classical generally costs less per lesson but demands consistent long-term commitment. Western has higher per-lesson costs but more flexible on/off ramps.` },
-      { heading: `Competitions & Performance Opportunities`, body: `Performing is where practice becomes real. Both traditions offer rich opportunities.
+      { heading: `Competitions & Performance Opportunities`, content: `Performing is where practice becomes real. Both traditions offer rich opportunities.
 
 ### Western Music
 
@@ -2499,7 +2499,7 @@ Indian classical generally costs less per lesson but demands consistent long-ter
 ### Combined Opportunities
 
 Some organizations and events welcome both traditions. South Asian arts festivals, multicultural showcases, and school talent shows are great for kids studying Indian classical to gain performance confidence in a wider setting.` },
-      { heading: `South Asian & Diaspora Context`, body: `Indian-American kids have a genuinely unique advantage: access to two of the world's richest musical traditions simultaneously. This isn't just a nice talking point — it's a real differentiator.
+      { heading: `South Asian & Diaspora Context`, content: `Indian-American kids have a genuinely unique advantage: access to two of the world's richest musical traditions simultaneously. This isn't just a nice talking point — it's a real differentiator.
 
 ### Music as Cultural Preservation
 
@@ -2533,7 +2533,7 @@ Kids trained in both Indian and Western traditions develop exceptional musical f
 - A broader repertoire for college auditions and performance opportunities
 
 This dual fluency is increasingly valued in music programs at top universities.` },
-      { heading: `Honest Take`, body: `Let's talk about what no music school brochure will tell you.
+      { heading: `Honest Take`, content: `Let's talk about what no music school brochure will tell you.
 
 ### The Practice Battle
 
@@ -2585,7 +2585,7 @@ Music, at its best, is a gift you give your child for life. It teaches disciplin
     emoji: "🧪",
     description: "A guide to Science Olympiad, science fairs, and STEM programs — how to find the right fit and prepare your child for success.",
     sections: [
-      { heading: `Why STEM Competitions?`, body: `Science competitions do something a classroom rarely can: they put kids in situations where they have to **design experiments, build devices, and defend their conclusions** — not just memorize facts for a test. That shift from passive learning to active problem-solving is what makes these programs transformative.
+      { heading: `Why STEM Competitions?`, content: `Science competitions do something a classroom rarely can: they put kids in situations where they have to **design experiments, build devices, and defend their conclusions** — not just memorize facts for a test. That shift from passive learning to active problem-solving is what makes these programs transformative.
 
 There are broadly two flavors of STEM competition:
 
@@ -2597,7 +2597,7 @@ Both carry serious weight in college admissions. Top placements at Science Olymp
 But the real value goes beyond résumés. Students who do well in STEM competitions tend to develop **scientific intuition** — the ability to look at a problem, form a hypothesis, and figure out how to test it. That's a skill that pays off whether they end up in medicine, engineering, research, law, or entrepreneurship.
 
 For younger kids (elementary and early middle school), the goal isn't competition — it's **curiosity**. Science fairs at the school level, informal robotics clubs, and programs like Science Olympiad's trial events are low-pressure ways to see if your child lights up around experimentation. The competitive track can come later.` },
-      { heading: `The Competition Landscape`, body: `Here's a breakdown of the major STEM competitions, from team-based to individual research:
+      { heading: `The Competition Landscape`, content: `Here's a breakdown of the major STEM competitions, from team-based to individual research:
 
 ### Science Olympiad
 - **What**: Team competition with 23 events spanning life science, earth science, physical science, technology, and inquiry
@@ -2636,7 +2636,7 @@ These are extremely selective — the IPhO/IChO/IBO teams are 4–5 students eac
 - **JSHS (Junior Science & Humanities Symposium)** — Research competition for grades 9–12, sponsored by the Department of Defense. Regional → national, with scholarship prizes
 - **Broadcom MASTERS** — For middle schoolers (grades 6–8). Top 300 from affiliated science fairs → 30 finalists. Good stepping stone before high school research
 - **FIRST Robotics** — Not a pure science competition but heavily STEM-oriented. FRC (high school) and FTC (middle/high school) teams are widespread in the Bay Area` },
-      { heading: `Science Olympiad Deep Dive`, body: `Science Olympiad is the most common entry point into competitive STEM, and for good reason: it's school-based, team-oriented, and covers an enormous range of science and engineering topics.
+      { heading: `Science Olympiad Deep Dive`, content: `Science Olympiad is the most common entry point into competitive STEM, and for good reason: it's school-based, team-oriented, and covers an enormous range of science and engineering topics.
 
 ### How It Works
 Each team has **15 members** who compete across **23 events**. Events rotate and change each year, but they fall into a few categories:
@@ -2671,7 +2671,7 @@ Each event is typically done by a **pair of students** (sometimes three). A well
 
 ### Bay Area Strength
 California is one of the most competitive Science Olympiad states. Bay Area schools like Mission San Jose, Monta Vista, Lynbrook, and Harker regularly place at the state and national level. If your child's school doesn't have a team, they can often join a nearby school's team or help start one — Science Olympiad provides resources for new team formation at [soinc.org](https://www.soinc.org/start-a-team).` },
-      { heading: `Science Fairs`, body: `Science fairs have a different rhythm than team competitions. Instead of studying for tests and building standardized devices, your child picks a **research question**, designs an experiment, collects data, and presents findings. It's the closest thing to real scientific research a pre-college student can do.
+      { heading: `Science Fairs`, content: `Science fairs have a different rhythm than team competitions. Instead of studying for tests and building standardized devices, your child picks a **research question**, designs an experiment, collects data, and presents findings. It's the closest thing to real scientific research a pre-college student can do.
 
 ### The Pathway
 1. **School Science Fair** (usually January–February) — Most elementary and middle schools host one. Participation may be required or optional.
@@ -2708,7 +2708,7 @@ For serious science fair projects (especially at the high school level targeting
 - **Choosing a topic that's too broad.** "How does pollution affect plants?" is a topic, not a project. Narrow it.
 - **Skipping the literature review.** If someone already answered your question, you need to know that before you start.
 - **Over-relying on a parent or mentor.** Judges interview the student. If the student can't explain the statistics or methodology, it's obvious.` },
-      { heading: `Getting Started`, body: `The right entry point depends on your child's age and whether they're drawn to team competition or independent research.
+      { heading: `Getting Started`, content: `The right entry point depends on your child's age and whether they're drawn to team competition or independent research.
 
 ### Elementary School (Grades K–5)
 This is the **exploration phase** — no pressure, just exposure.
@@ -2741,7 +2741,7 @@ Not every student has a school Science Olympiad team or a science-fair-friendly 
 - **Form a team** — Science Olympiad allows new teams. You need a coach (often a parent or teacher) and 15 members.
 - **Independent research** — A student can do a science fair project without school sponsorship, though they'll need a regional fair that accepts independent entries.
 - **Online competitions** — Science Bowl practice, virtual Science Olympiad invitationals, and online Olympiad prep communities (Art of Problem Solving forums) are all accessible from anywhere.` },
-      { heading: `Costs & Time Commitment`, body: `STEM competitions span a huge range — from nearly free team activities to expensive summer research programs. Here's what to expect:
+      { heading: `Costs & Time Commitment`, content: `STEM competitions span a huge range — from nearly free team activities to expensive summer research programs. Here's what to expect:
 
 ### Science Olympiad
 - **Team registration fee**: $60–$120 per year (covers state/national membership)
@@ -2779,7 +2779,7 @@ Not every student has a school Science Olympiad team or a science-fair-friendly 
 | Private lab internships | $2,000–$5,000+ | Varies widely; vet carefully |
 
 **The real cost is often time, not money.** A student doing Science Olympiad, a science fair project, and a summer program is looking at a near year-round commitment. That's fine if they love it — but make sure it's their choice, not a checklist item.` },
-      { heading: `South Asian & Diaspora Context`, body: `Indian-American students are disproportionately represented at the top of nearly every major STEM competition — and the Bay Area South Asian community is a big reason why.
+      { heading: `South Asian & Diaspora Context`, content: `Indian-American students are disproportionately represented at the top of nearly every major STEM competition — and the Bay Area South Asian community is a big reason why.
 
 ### The Numbers
 - At the **Regeneron Science Talent Search**, Indian-American students regularly make up 20–30% of the 40 finalists, despite being ~1.5% of the US population. In some years, they've been close to half.
@@ -2807,7 +2807,7 @@ The same cultural strengths can become pressure points:
 - **IACF (Indian American Community Foundation)** — Sponsors STEM scholarships
 - **Local temple youth groups (BAPS, ISKCON, Hindu temples)** — Some organize science competition prep alongside cultural programs
 - **WhatsApp parent groups** — The unofficial backbone of Bay Area South Asian STEM networking. Ask around; someone in your child's school community is already in one.` },
-      { heading: `Honest Take`, body: `STEM competitions can be incredible experiences. They can also be stressful, political, and not what they seem. Here's the unfiltered version:
+      { heading: `Honest Take`, content: `STEM competitions can be incredible experiences. They can also be stressful, political, and not what they seem. Here's the unfiltered version:
 
 ### The Good
 - **Science Olympiad is genuinely fun.** The team aspect, the variety of events, the energy at tournaments — most kids who do it love it. It's one of the few STEM activities that's both rigorous and social.
@@ -2844,7 +2844,7 @@ The bottom line: STEM competitions at their best produce kids who love science, 
     emoji: "🏅",
     description: "Club vs. rec leagues, travel teams, tryout seasons, and how to balance competitive sports with academics — a practical overview for parents.",
     sections: [
-      { heading: `Why Youth Sports?`, body: `Youth sports are one of the most effective ways to build physical health, social skills, and mental resilience in children — and the research backs it up. Kids who play organized sports show better cardiovascular fitness, stronger bone density, and lower rates of childhood obesity. But the benefits go well beyond the physical.
+      { heading: `Why Youth Sports?`, content: `Youth sports are one of the most effective ways to build physical health, social skills, and mental resilience in children — and the research backs it up. Kids who play organized sports show better cardiovascular fitness, stronger bone density, and lower rates of childhood obesity. But the benefits go well beyond the physical.
 
 Team sports teach collaboration, conflict resolution, and how to handle both winning and losing with grace. Individual sports like swimming or track build self-discipline and goal-setting habits. Across the board, young athletes learn time management out of necessity — balancing practice schedules with homework is a crash course in prioritization.
 
@@ -2853,7 +2853,7 @@ There's also a meaningful connection between sports and academic performance. Th
 For immigrant families, sports serve an additional purpose: they're one of the fastest ways for kids to build friendships, integrate into school culture, and develop confidence in social settings. A kid who might be quiet in a classroom often finds their voice on a soccer field or a basketball court.
 
 That said, it's worth being honest from the start: youth sports in the US can be intense, expensive, and time-consuming. The key is finding the right level of involvement for your child's age, interest, and temperament — not chasing trophies or scholarship dreams before they've had a chance to simply enjoy playing.` },
-      { heading: `Understanding the US Youth Sports System`, body: `If you grew up in India, the youth sports system in the US will look very different from what you're used to. In India, school sports and state-level academies are the primary pathway. In the US, the system is fragmented across recreational leagues, club/travel teams, and school teams — each with its own structure, cost, and commitment level.
+      { heading: `Understanding the US Youth Sports System`, content: `If you grew up in India, the youth sports system in the US will look very different from what you're used to. In India, school sports and state-level academies are the primary pathway. In the US, the system is fragmented across recreational leagues, club/travel teams, and school teams — each with its own structure, cost, and commitment level.
 
 **Recreational (Rec) Leagues** are run by cities, parks departments, or community organizations like the YMCA and local soccer associations. They're the entry point for most kids. Everyone makes the team, practices are 1–2 times per week, games are on weekends, and seasons run 8–12 weeks. Emphasis is on participation, fun, and basic skill development. Costs are low — typically $100–$300 per season including a jersey. This is where most kids aged 4–10 should start.
 
@@ -2864,7 +2864,7 @@ That said, it's worth being honest from the start: youth sports in the US can be
 **Age Divisions**: Most sports use birth-year groupings (U8, U10, U12, etc.). "U10" means under 10 — all players must be younger than 10 by a specific cutoff date (usually August 1 or January 1, depending on the sport). This matters for tryouts and team placement.
 
 **Seasonal Structure**: Unlike India where cricket or sports happen year-round in an unstructured way, US youth sports follow defined seasons. Fall sports include soccer, football, cross country, and volleyball. Winter covers basketball, swimming, and wrestling. Spring brings baseball/softball, lacrosse, track & field, and tennis. Summer is for camps, clinics, and tournament travel. Many club programs now run year-round, which is where overcommitment becomes a risk.` },
-      { heading: `Popular Sports & What They Involve`, body: `Here's a quick overview of the most common youth sports in the US, what they actually involve, and what to expect:
+      { heading: `Popular Sports & What They Involve`, content: `Here's a quick overview of the most common youth sports in the US, what they actually involve, and what to expect:
 
 **Soccer** — The most popular youth sport in America, with over 3 million registered players. Fall and spring seasons for rec; year-round for club. Rec costs $100–$200/season. Club costs $1,500–$7,000+/year. Great entry sport for younger kids. College scholarship potential exists but is highly competitive — about 6–8% of high school players compete at the NCAA level.
 
@@ -2881,7 +2881,7 @@ That said, it's worth being honest from the start: youth sports in the US can be
 **Lacrosse** — One of the fastest-growing sports in the US, especially on the West Coast and East Coast. Spring sport with fall club seasons. Higher equipment costs ($300–$500 for gear). About 14–15% of high school lacrosse players compete at the NCAA level — one of the highest transition rates of any sport.
 
 **Football** — Deeply embedded in American culture. Fall sport only, primarily through schools and pop-warner leagues. Free or very low cost through schools, but concerns about concussion risk are real and worth discussing with your pediatrician.` },
-      { heading: `The Club/Travel Team Reality`, body: `Club and travel teams are where youth sports in the US shift from casual to serious — and where families need to go in with eyes wide open.
+      { heading: `The Club/Travel Team Reality`, content: `Club and travel teams are where youth sports in the US shift from casual to serious — and where families need to go in with eyes wide open.
 
 **How Tryouts Work**: Most club teams hold tryouts in late spring (April–June) for fall sports and late summer/early fall for winter sports. Tryouts typically span 2–3 sessions over a week. Kids are evaluated on skills, athleticism, coachability, and sometimes attitude. Results can be emotional — not every kid makes the team they want, and some don't make any team. It's worth preparing your child for both outcomes.
 
@@ -2892,7 +2892,7 @@ That said, it's worth being honest from the start: youth sports in the US can be
 **The Competitive vs. Recreational Mindset**: Club sports attract families with varying expectations. Some genuinely want their child to develop skills and compete at a high level. Others join because they feel rec leagues aren't challenging enough but don't realize the commitment level. Before committing, ask the coach directly: How many tournaments per season? What's the expected practice attendance? Is there a mandatory play policy, or do only the best players get significant game time? How much travel is involved?
 
 **When to Join**: Most sports development experts recommend keeping kids in rec leagues until ages 10–12, then considering club if the child shows genuine interest, aptitude, and a desire for more competition. Joining club at age 7 or 8 is usually unnecessary and can lead to early burnout. The exception is sports like gymnastics or figure skating where early training is structurally required due to the nature of the sport.` },
-      { heading: `Costs & Time Commitment`, body: `Youth sports costs in the US range from very affordable to shockingly expensive. Here's an honest breakdown:
+      { heading: `Costs & Time Commitment`, content: `Youth sports costs in the US range from very affordable to shockingly expensive. Here's an honest breakdown:
 
 ### Recreational Leagues
 - **Registration**: $75–$300 per season
@@ -2922,7 +2922,7 @@ That said, it's worth being honest from the start: youth sports in the US can be
 The Aspen Institute reports the average American family spends nearly $900/year on a child's primary sport. But that average includes rec-level participation. For competitive club families, the real number is $3,000–$6,000+ per child, per sport.
 
 **Time is the other currency.** A competitive club athlete is often at practice 3–4 evenings per week and has games or tournaments every weekend. Add homework, and there's very little free time left. For families with multiple children in different sports, the logistical burden falls heavily on parents — especially in the Bay Area, where practice facilities can be 20–40 minutes apart in traffic.` },
-      { heading: `College Athletic Recruiting`, body: `Let's start with the number that every parent needs to internalize: **only about 2% of high school athletes receive any NCAA athletic scholarship.** Most of those scholarships are partial, not full rides. The dream of a "full-ride athletic scholarship" is real but statistically rare.
+      { heading: `College Athletic Recruiting`, content: `Let's start with the number that every parent needs to internalize: **only about 2% of high school athletes receive any NCAA athletic scholarship.** Most of those scholarships are partial, not full rides. The dream of a "full-ride athletic scholarship" is real but statistically rare.
 
 ### NCAA Divisions Explained
 - **Division I (D1)**: ~350 schools. Highest level of competition. Full and partial athletic scholarships available. Major time commitment — 20+ hours/week during season. Schools like Stanford, Cal, UCLA, USC.
@@ -2951,7 +2951,7 @@ College recruiting starts earlier than most families expect. For highly recruite
 
 ### NIL (Name, Image, Likeness)
 Since 2021, college athletes can profit from their name, image, and likeness through endorsements, social media, and appearances. While NIL deals are most common in football and basketball, athletes in all sports can benefit — especially those with a social media presence. This is still evolving rapidly.` },
-      { heading: `South Asian & Diaspora Context`, body: `South Asian families have historically prioritized academics over athletics — and for understandable reasons. Many first-generation immigrants came to the US through educational and professional achievement, and that pathway shaped how they think about their children's futures. But attitudes are shifting, and shifting fast.
+      { heading: `South Asian & Diaspora Context`, content: `South Asian families have historically prioritized academics over athletics — and for understandable reasons. Many first-generation immigrants came to the US through educational and professional achievement, and that pathway shaped how they think about their children's futures. But attitudes are shifting, and shifting fast.
 
 According to the Aspen Institute's State of Play report, regular sports participation among Asian American youth aged 6–12 reached 42% in 2022, the highest rate since at least 2012. More South Asian kids are playing organized sports than ever before, driven by a combination of cultural assimilation, growing awareness of the holistic benefits of athletics, and kids themselves pushing for it.
 
@@ -2968,7 +2968,7 @@ According to the Aspen Institute's State of Play report, regular sports particip
 **The Academic-Athletic Balance**: This is the central tension for many diaspora families. The good news is that it doesn't have to be either/or. Rec and moderate club involvement (10–12 hours/week including travel) is compatible with strong academics. The challenge comes at the elite level, where 20+ hours/week can genuinely crowd out study time. The key is honest self-assessment: Is your child on a realistic path to college athletics, or is the time investment disproportionate to the likely outcome?
 
 **Community Resources**: Bay Area South Asian communities are increasingly organizing sports leagues and tournaments — from cricket leagues in Fremont and Sunnyvale to soccer clubs with significant Indian-American membership. These can be great entry points where kids feel culturally comfortable while building athletic skills.` },
-      { heading: `Honest Take`, body: `Youth sports can be one of the best things in a child's life — or one of the most stressful. Here's the unfiltered reality.
+      { heading: `Honest Take`, content: `Youth sports can be one of the best things in a child's life — or one of the most stressful. Here's the unfiltered reality.
 
 **The "Going Pro" Delusion**: Fewer than 2% of NCAA athletes go on to play professionally. That means the vast majority of youth athletes — no matter how talented they are at age 12 — will not play sports for a living. Invest in sports for the experience, the character development, and the health benefits. Not for a future career.
 
@@ -2992,7 +2992,7 @@ According to the Aspen Institute's State of Play report, regular sports particip
     emoji: "📝",
     description: "An honest look at prep options — free vs. paid, self-study vs. courses, timeline, and how to maximize your child's score without burnout.",
     sections: [
-      { heading: `Why Standardized Tests Still Matter`, body: `The test-optional wave that swept through college admissions during COVID led many families to wonder: do SAT and ACT scores even matter anymore? The short answer — yes, and increasingly so.
+      { heading: `Why Standardized Tests Still Matter`, content: `The test-optional wave that swept through college admissions during COVID led many families to wonder: do SAT and ACT scores even matter anymore? The short answer — yes, and increasingly so.
 
 After a brief experiment with test-optional policies, a growing number of elite institutions have returned to requiring scores. **MIT** reinstated its testing requirement in 2022, followed by **Dartmouth**, **Georgetown**, **Yale**, **Brown**, **Harvard**, and the entire **University of California** system (which now uses scores for placement and scholarships even if not for admission). By the 2025–26 cycle, over two dozen top-50 universities had moved back to test-required or test-recommended status.
 
@@ -3010,7 +3010,7 @@ Why the reversal? Admissions offices found that standardized test scores — for
 - The student has documented learning differences and the school explicitly de-emphasizes testing
 
 The practical reality: submitting a strong score almost always helps, and not submitting when you could have raises questions. For most competitive applicants, preparing well for the SAT or ACT is still time well spent.` },
-      { heading: `SAT vs ACT — Which One?`, body: `Every college in the US accepts both the SAT and ACT equally — there is no preference. The choice comes down to which test format suits your child's strengths.
+      { heading: `SAT vs ACT — Which One?`, content: `Every college in the US accepts both the SAT and ACT equally — there is no preference. The choice comes down to which test format suits your child's strengths.
 
 ### SAT (College Board)
 - **Sections:** Reading & Writing (combined into one score) and Math
@@ -3042,7 +3042,7 @@ Don't guess — diagnose. Have your child take one full-length practice SAT and 
 **Can you take both?** Yes, and some students do — but most prep experts recommend picking one and going deep. Splitting focus between two different formats dilutes preparation time. The exception: if diagnostic scores are genuinely close, take each once and submit whichever is stronger.
 
 Free diagnostics: **Khan Academy** offers full SAT practice tests. The **ACT** website has free practice tests as well. Many local libraries and test-prep centers offer free diagnostic sessions.` },
-      { heading: `When to Start & The Ideal Timeline`, body: `Timing matters more than most families realize. Start too early and motivation fizzles. Start too late and there's no room for retakes.
+      { heading: `When to Start & The Ideal Timeline`, content: `Timing matters more than most families realize. Start too early and motivation fizzles. Start too late and there's no room for retakes.
 
 ### The Standard Timeline
 
@@ -3069,7 +3069,7 @@ Free diagnostics: **Khan Academy** offers full SAT practice tests. The **ACT** w
 
 ### For Early Starters
 Some students take the SAT or ACT as early as 8th or 9th grade through talent search programs (Duke TIP, Johns Hopkins CTY). These scores don't count for college applications but can qualify students for enrichment programs and summer courses.` },
-      { heading: `Prep Options Compared`, body: `The test prep industry is enormous — worth over $1.5 billion annually in the US alone. Here's what's actually available, what it costs, and what works.
+      { heading: `Prep Options Compared`, content: `The test prep industry is enormous — worth over $1.5 billion annually in the US alone. Here's what's actually available, what it costs, and what works.
 
 ### 1. Self-Study (Free to ~$50)
 - **Khan Academy SAT Prep:** Completely free, officially partnered with College Board. Personalized practice based on PSAT results or diagnostic. Includes full-length practice tests, video lessons, and targeted drills. **This is genuinely excellent** — multiple studies show students who complete 20+ hours of Khan Academy practice improve by an average of 100+ points
@@ -3097,7 +3097,7 @@ Some students take the SAT or ACT as early as 8th or 9th grade through talent se
 
 ### The Honest Assessment
 The data consistently shows that **what** you do matters more than **how much** you spend. A disciplined student doing 40 hours of Khan Academy will typically outscore a student who passively sat through a $3,000 prep course. The key variable is active practice — working through real questions, reviewing mistakes in detail, and doing full timed tests.` },
-      { heading: `What Actually Moves the Needle`, body: `After decades of test prep research, the evidence is clear on what works and what doesn't.
+      { heading: `What Actually Moves the Needle`, content: `After decades of test prep research, the evidence is clear on what works and what doesn't.
 
 ### The Three Things That Actually Matter
 
@@ -3124,7 +3124,7 @@ Many students know the material but run out of time. The fix isn't "go faster" �
 - **Cramming:** Test skills build over weeks, not days. Weekend boot camps rarely deliver lasting improvement
 - **Over-testing without review:** Taking 20 practice tests but never analyzing mistakes is just repeatedly measuring the same gaps
 - **Ignoring the format:** Knowing calculus doesn't help if you can't answer SAT math questions in the SAT's specific style. Format familiarity matters as much as content knowledge` },
-      { heading: `Costs & Time Commitment`, body: `### Full Cost Breakdown
+      { heading: `Costs & Time Commitment`, content: `### Full Cost Breakdown
 
 | Resource | Cost | Notes |
 |---|---|---|
@@ -3160,7 +3160,7 @@ Most students should plan for **2–4 months** of focused preparation, peaking a
 
 ### Cost-Effectiveness Verdict
 Khan Academy's free SAT prep delivers roughly 80% of the benefit of paid options for 0% of the cost. If you're going to spend money, private tutoring targeting specific weaknesses gives the best return per dollar — better than generic group courses where half the material may cover things your child already knows.` },
-      { heading: `South Asian & Diaspora Context`, body: `Test prep holds a particular cultural weight in South Asian families, and the Bay Area amplifies it.
+      { heading: `South Asian & Diaspora Context`, content: `Test prep holds a particular cultural weight in South Asian families, and the Bay Area amplifies it.
 
 ### The Community Test-Prep Culture
 In many South Asian households, standardized test scores carry enormous symbolic weight. A 1500+ SAT or 34+ ACT isn't just a college application data point — it becomes a social currency, discussed at dinner parties, shared on family WhatsApp groups, and compared among cousins. This cultural intensity around scores is both a strength (it drives serious preparation) and a source of real harm (when a 1350 feels like a failure).
@@ -3182,7 +3182,7 @@ Signs that test prep has crossed from productive to harmful:
 - They're comparing themselves to outlier peers (the friend who scored a 1580) rather than evaluating their own application holistically
 
 A reality check: admissions officers at top universities have said repeatedly that the difference between a 1480 and a 1530 rarely matters. What matters is whether the score clears the school's general range — and then everything else in the application takes over. Spending six months chasing 50 more points that won't change an admissions decision is time that could have gone toward a meaningful extracurricular, a compelling essay, or simply being a teenager.` },
-      { heading: `Honest Take`, body: `### The Pros
+      { heading: `Honest Take`, content: `### The Pros
 - Standardized tests are one of the few parts of the college application that are **entirely within the student's control**. Unlike teacher recommendations or school rigor, you can directly improve your score through effort
 - Strong scores open doors to **merit scholarships** — even at schools that are test-optional for admissions. Many state universities tie scholarship tiers directly to SAT/ACT ranges, potentially saving tens of thousands of dollars
 - Good prep builds **transferable skills**: reading comprehension, time management under pressure, strategic test-taking — all useful beyond the SAT itself
@@ -3219,14 +3219,14 @@ The best possible test prep outcome isn't a perfect 1600. It's a strong score ac
     emoji: "🎓",
     description: "Navigating the college admissions process — when to start, what counselors do, essay prep, and how to choose between independent and school counselors.",
     sections: [
-      { heading: `Why College Counseling?`, body: `College admissions in the United States has become dramatically more competitive and complex over the past two decades. Top universities now receive record-breaking application numbers — schools like Stanford, MIT, and the Ivies regularly see acceptance rates below 5%. Even strong state universities like UC Berkeley and UCLA admit fewer than 10% of applicants to popular majors. For families navigating this landscape, expert guidance can make the difference between a strategic, well-paced process and a stressful, last-minute scramble.
+      { heading: `Why College Counseling?`, content: `College admissions in the United States has become dramatically more competitive and complex over the past two decades. Top universities now receive record-breaking application numbers — schools like Stanford, MIT, and the Ivies regularly see acceptance rates below 5%. Even strong state universities like UC Berkeley and UCLA admit fewer than 10% of applicants to popular majors. For families navigating this landscape, expert guidance can make the difference between a strategic, well-paced process and a stressful, last-minute scramble.
 
 The core problem is capacity. The national student-to-school-counselor ratio stands at **372:1** as of the 2024–25 school year, according to the American School Counselor Association (ASCA). California is worse at **432:1** — nearly double the recommended ratio of 250:1. In practice, this means your child's school counselor is juggling hundreds of students, handling mental health crises, course scheduling, and disciplinary issues alongside college advising. Many counselors can dedicate only **20–30 minutes per student** to college guidance across the entire application season.
 
 About **17% of U.S. high schools** — serving roughly 643,700 students — don't have a school counselor at all. Even at well-resourced schools, counselors may not have deep knowledge of specific programs, niche scholarships, or the nuances of holistic admissions at selective institutions.
 
 College counseling — whether from a school counselor, an independent educational consultant (IEC), a community organization, or a knowledgeable parent — provides structure to a process that spans years. It helps students build a coherent narrative, identify best-fit schools, manage deadlines across multiple application platforms, and avoid common pitfalls that sink otherwise strong applications.` },
-      { heading: `When to Start`, body: `The most common mistake families make is starting too late. Many parents think college prep begins in 11th grade. By then, some of the most impactful decisions — course selection, extracurricular depth, summer planning — are already locked in. Here's a realistic grade-by-grade timeline:
+      { heading: `When to Start`, content: `The most common mistake families make is starting too late. Many parents think college prep begins in 11th grade. By then, some of the most impactful decisions — course selection, extracurricular depth, summer planning — are already locked in. Here's a realistic grade-by-grade timeline:
 
 ### 8th Grade: Lay the Foundation
 - Choose the most rigorous high school track available (IB, AP, honors)
@@ -3260,7 +3260,7 @@ College counseling — whether from a school counselor, an independent education
 - **April–May:** Compare offers. Commit by May 1 (National Decision Day)
 
 The students who feel least stressed during senior year are the ones who started thinking about this in 9th or 10th grade — not in terms of obsessive planning, but in terms of making intentional choices about how they spend their time.` },
-      { heading: `School Counselors vs. Independent Counselors`, body: `Understanding what each type of counselor provides — and where the gaps are — helps families make smart decisions about whether to invest in outside help.
+      { heading: `School Counselors vs. Independent Counselors`, content: `Understanding what each type of counselor provides — and where the gaps are — helps families make smart decisions about whether to invest in outside help.
 
 ### School Counselors
 **What they provide:** Course selection guidance, transcript processing, recommendation letters, basic college list suggestions, financial aid paperwork support, and connections to college rep visits at school.
@@ -3283,7 +3283,7 @@ Not every family can afford independent counseling, and that's fine. Strong free
 - **Khan Academy:** Free SAT prep (official College Board partner) and college admissions resources
 - **School-based programs:** AVID, Upward Bound, and TRIO programs provide structured college preparation at no cost
 - **Library workshops:** Many public libraries host free college application workshops in the fall` },
-      { heading: `What Good Counseling Covers`, body: `Whether you're working with a school counselor, an independent consultant, or guiding your student yourself, here's what effective college counseling addresses:
+      { heading: `What Good Counseling Covers`, content: `Whether you're working with a school counselor, an independent consultant, or guiding your student yourself, here's what effective college counseling addresses:
 
 ### School List Building
 A balanced list typically includes 8–12 schools across three tiers: **reach** (acceptance rate well below your student's profile), **target** (reasonable match), and **likely** (strong chance of admission, and the student would genuinely be happy attending). Good counselors research specific programs, campus culture, and outcomes — not just rankings. They push back when a list is all reaches or all safeties.
@@ -3302,7 +3302,7 @@ For schools that offer interviews (Georgetown, many liberal arts colleges, some 
 
 ### Red Flags in Bad Counselors
 Avoid anyone who: guarantees admission to specific schools, encourages students to misrepresent activities or background, writes essays for students, pushes only brand-name schools regardless of fit, or uses high-pressure sales tactics. Ethical counselors are transparent about what they can and cannot control.` },
-      { heading: `Costs`, body: `Independent college counseling is a significant investment, and pricing varies wildly based on location, counselor experience, and scope of service.
+      { heading: `Costs`, content: `Independent college counseling is a significant investment, and pricing varies wildly based on location, counselor experience, and scope of service.
 
 ### Full-Package Counseling (Comprehensive, Multi-Year)
 - **Mid-range:** $3,000–$6,000 for junior/senior year guidance including school list, essay help, and application management
@@ -3327,7 +3327,7 @@ Avoid anyone who: guarantees admission to specific schools, encourages students 
 
 ### Is It Worth the Money?
 Research is mixed. Paying $10,000 for counseling doesn't buy a $10,000 improvement in outcomes — the student's academic record, activities, and essays still drive the decision. Where independent counseling adds genuine value is in **strategy** (knowing which schools are realistic targets), **organization** (managing 10+ applications across different platforms with different deadlines), and **reducing family stress** (outsourcing the project management of a high-stakes, months-long process). For families unfamiliar with the U.S. system, the knowledge gap alone often justifies the investment.` },
-      { heading: `The Essay & Application Process`, body: `Most students apply through one or more of three major platforms, each with its own format, deadlines, and quirks.
+      { heading: `The Essay & Application Process`, content: `Most students apply through one or more of three major platforms, each with its own format, deadlines, and quirks.
 
 ### Common App
 Used by **1,000+ colleges and universities**. Students fill out one core application — personal information, activities list (up to 10), honors (up to 5), and one **personal statement** (650 words, choosing from 7 prompts). Individual schools then add their own **supplemental essays**, ranging from one short paragraph to 3–4 full essays. The Common App opens August 1 each year.
@@ -3355,7 +3355,7 @@ Holistic review at selective schools weighs multiple factors. Roughly in order o
 - **December–January:** Finish and submit Regular Decision applications. UC PIQs due November 30
 
 Start early. Essay quality drops dramatically when students write supplements the night before the deadline — and admissions officers can tell.` },
-      { heading: `South Asian & Diaspora Context`, body: `The college admissions conversation hits differently in South Asian families. Understanding the cultural dynamics at play can help families navigate the process more thoughtfully.
+      { heading: `South Asian & Diaspora Context`, content: `The college admissions conversation hits differently in South Asian families. Understanding the cultural dynamics at play can help families navigate the process more thoughtfully.
 
 ### The "T20 or Bust" Mentality
 In many Indian-American communities, there's intense focus on a narrow set of roughly 20 elite schools — the Ivies, Stanford, MIT, Caltech, Duke, and a handful of others. This creates enormous pressure on students and distorts decision-making. The reality: there are **hundreds** of excellent universities in the U.S. where students get outstanding educations, strong career outcomes, and genuine fit. A student thriving at University of Michigan, Georgia Tech, UT Austin, or UC San Diego is not a consolation story — these are world-class institutions.
@@ -3375,7 +3375,7 @@ South Asian communities in the Bay Area and other metros have built robust infor
 
 ### The Legacy of Test-Score Focus
 Many South Asian families emphasize standardized test scores because that's the system they know from India (JEE, NEET, board exams). The U.S. holistic admissions model is fundamentally different — scores are one factor among many, and the UC system has gone entirely test-blind. This cultural gap is where counseling (formal or informal) adds the most value for diaspora families: understanding what the American system actually values.` },
-      { heading: `Honest Take`, body: `### Expensive Counselors Don't Guarantee Results
+      { heading: `Honest Take`, content: `### Expensive Counselors Don't Guarantee Results
 Let's be direct: no amount of money spent on counseling guarantees admission to a specific school. Admissions at the most selective universities involves factors no counselor can control — institutional priorities, class composition goals, yield modeling, and genuine randomness. Students with $50,000 counselors get rejected from their top choices regularly. Students with no counselor at all get into Harvard. The process has an irreducible element of unpredictability.
 
 What counseling *can* do is help you put your best application forward, avoid avoidable mistakes, and build a balanced list so you have great options regardless of which reach schools say yes.
@@ -3403,14 +3403,14 @@ Start early, stay organized, be authentic, and keep perspective. The goal isn't 
     emoji: "🤝",
     description: "Finding meaningful volunteer opportunities, tracking hours, and how community service strengthens college applications and builds character.",
     sections: [
-      { heading: `Why Volunteering?`, body: `Community service is one of those rare activities that genuinely benefits everyone involved — the community gets help, and your child develops empathy, resilience, and a sense of agency that no classroom lesson can replicate. For younger kids (ages 8–12), volunteering builds an understanding that the world extends beyond their immediate circle. For teens, it becomes a proving ground for leadership, time management, and real-world problem-solving.
+      { heading: `Why Volunteering?`, content: `Community service is one of those rare activities that genuinely benefits everyone involved — the community gets help, and your child develops empathy, resilience, and a sense of agency that no classroom lesson can replicate. For younger kids (ages 8–12), volunteering builds an understanding that the world extends beyond their immediate circle. For teens, it becomes a proving ground for leadership, time management, and real-world problem-solving.
 
 College admissions officers consistently rank sustained community engagement among the most compelling extracurriculars. It's not about checking a box — admissions readers at selective universities have said they can immediately tell the difference between a student who volunteered because they cared and one who showed up to pad a resume. Genuine, long-term service demonstrates maturity, initiative, and the kind of civic-mindedness that universities want on their campuses.
 
 But here's the more important reason: kids who volunteer regularly report higher levels of life satisfaction and lower rates of anxiety and depression. Research from the Corporation for National and Community Service has found that volunteers have a 27% higher likelihood of finding employment, partly because service builds soft skills — communication, teamwork, adaptability — that translate directly into professional life.
 
 The key distinction is **intrinsic vs. extrinsic motivation**. Kids who volunteer because they genuinely care about a cause stick with it longer, get more out of it, and produce more meaningful outcomes than those pushed into it purely for college applications. As a parent, your job isn't to assign volunteering — it's to help your child find a cause they actually care about. That might be animal welfare, food insecurity, environmental conservation, or tutoring younger kids. When the motivation is intrinsic, everything else — the hours, the leadership, the college application narrative — follows naturally.` },
-      { heading: `Types of Volunteering`, body: `Volunteering isn't one-size-fits-all, and the best fit depends on your child's age, interests, and comfort level. Here's a breakdown of the major categories:
+      { heading: `Types of Volunteering`, content: `Volunteering isn't one-size-fits-all, and the best fit depends on your child's age, interests, and comfort level. Here's a breakdown of the major categories:
 
 **Direct Service** is the most common type — hands-on work where your child interacts directly with the people or cause they're serving. This includes:
 - **Food banks & meal programs**: Sorting donations at Second Harvest of Silicon Valley, serving meals at shelters, or helping with community food drives. Many accept volunteers as young as 10 (with a parent).
@@ -3437,7 +3437,7 @@ The key distinction is **intrinsic vs. extrinsic motivation**. Kids who voluntee
 | 9–12 | Food bank sorting, peer tutoring, animal shelter helper programs, environmental cleanups |
 | 13–15 | Hospital volunteering, mentoring, advocacy campaigns, skilled volunteering |
 | 16–18 | Independent projects, board membership on youth advisory councils, intensive summer programs |` },
-      { heading: `Finding Opportunities`, body: `The hardest part of volunteering for most families isn't motivation — it's finding the right fit. Here's where to look:
+      { heading: `Finding Opportunities`, content: `The hardest part of volunteering for most families isn't motivation — it's finding the right fit. Here's where to look:
 
 **Online Platforms**
 - **VolunteerMatch** (volunteermatch.org): The largest database of volunteer opportunities in the US. Filter by location, cause, age, and whether it's virtual or in-person. Bay Area listings are extensive.
@@ -3465,7 +3465,7 @@ Temples, gurdwaras, mosques, and churches often have ongoing service programs th
 
 **City & County Programs**
 Many Bay Area cities run youth volunteer programs through Parks & Recreation departments. Check your city's website — Fremont, Dublin, Sunnyvale, and San Jose all offer seasonal and year-round youth service opportunities.` },
-      { heading: `Starting Your Own Project`, body: `Sometimes the most meaningful volunteering happens when a student identifies a gap and fills it themselves. This is also, not coincidentally, the kind of initiative that college admissions officers find most compelling — it demonstrates leadership, creativity, and genuine commitment in a way that joining an existing program simply can't.
+      { heading: `Starting Your Own Project`, content: `Sometimes the most meaningful volunteering happens when a student identifies a gap and fills it themselves. This is also, not coincidentally, the kind of initiative that college admissions officers find most compelling — it demonstrates leadership, creativity, and genuine commitment in a way that joining an existing program simply can't.
 
 **When to Start Your Own Project**
 - Existing organizations don't address the specific issue your child cares about
@@ -3492,7 +3492,7 @@ Many Bay Area cities run youth volunteer programs through Parks & Recreation dep
 - Social media (Instagram, especially) is a powerful tool for recruiting volunteers and documenting impact.
 
 The key insight: **sustainability matters more than scale.** A tutoring program that runs reliably every Saturday for two years is far more impressive — and impactful — than a one-time event that raised a lot of money.` },
-      { heading: `Tracking Hours & Building a Record`, body: `How you document volunteer work matters almost as much as the work itself — not because documentation is the point, but because a well-maintained record tells a coherent story when it's time for college applications, scholarship essays, or award nominations.
+      { heading: `Tracking Hours & Building a Record`, content: `How you document volunteer work matters almost as much as the work itself — not because documentation is the point, but because a well-maintained record tells a coherent story when it's time for college applications, scholarship essays, or award nominations.
 
 **Tracking Tools**
 - **x2VOL** (x2vol.com): The most widely used digital platform for tracking community service hours. Many Bay Area high schools use it officially. Students log hours, supervisors verify, and the system generates reports. If your school uses x2VOL, use it — admissions offices recognize it.
@@ -3517,7 +3517,7 @@ What matters for college applications:
 - **Reflection**: Can you speak authentically about what you learned?
 
 **The President's Volunteer Service Award (PVSA)** is a recognized credential for students with significant hours (100+ for teens). It's administered through certifying organizations — ask your school counselor or local nonprofit if they can certify your hours.` },
-      { heading: `Costs & Time Commitment`, body: `One of the best things about volunteering is that most genuine service is free. You show up, you help, you leave. But the landscape has gotten more complicated with the rise of paid programs and service trips, so here's what to know:
+      { heading: `Costs & Time Commitment`, content: `One of the best things about volunteering is that most genuine service is free. You show up, you help, you leave. But the landscape has gotten more complicated with the rise of paid programs and service trips, so here's what to know:
 
 **Free Volunteering (the majority)**
 Local food banks, tutoring programs, environmental cleanups, library volunteering, hospital programs, shelter work — these cost nothing beyond transportation. Many organizations even provide meals for volunteers during shifts. This is where the most meaningful, sustained service happens.
@@ -3549,7 +3549,7 @@ This isn't to say all service trips are bad — some are genuinely valuable, esp
 | Summer intensive | 20–40 hrs/week | Full-time summer programs or student-led initiatives |
 
 The sweet spot for most high schoolers is **2–4 hours per week** during the school year with increased involvement during summers. This is sustainable, meaningful, and leaves room for academics and other activities.` },
-      { heading: `South Asian & Diaspora Context`, body: `Community service has deep roots in South Asian traditions — the concept of **seva** (selfless service) in Sikh, Hindu, and Jain traditions, **zakat** and **sadaqah** in Islam, and **dāna** in Buddhist philosophy all emphasize giving without expectation of return. For diaspora families, volunteering offers a unique opportunity to connect these cultural values with American civic engagement.
+      { heading: `South Asian & Diaspora Context`, content: `Community service has deep roots in South Asian traditions — the concept of **seva** (selfless service) in Sikh, Hindu, and Jain traditions, **zakat** and **sadaqah** in Islam, and **dāna** in Buddhist philosophy all emphasize giving without expectation of return. For diaspora families, volunteering offers a unique opportunity to connect these cultural values with American civic engagement.
 
 **Temple, Gurdwara & Mosque-Based Service**
 Religious institutions are often the most accessible entry point for South Asian families:
@@ -3581,7 +3581,7 @@ Many diaspora families combine summer visits to India with service work. This ca
 - These trips are especially powerful for second-generation kids reconnecting with their heritage while contributing to communities their families came from
 
 The diaspora lens adds genuine depth to a student's service narrative. A South Asian American teen who volunteers at a gurdwara langar, tutors recent immigrants in English, and raises funds for education in rural India isn't just checking boxes — they're living at the intersection of two cultures and using that position to serve both.` },
-      { heading: `Honest Take`, body: `Let's be real about what works, what doesn't, and what the volunteering landscape actually looks like for kids and teens today.
+      { heading: `Honest Take`, content: `Let's be real about what works, what doesn't, and what the volunteering landscape actually looks like for kids and teens today.
 
 **The Resume Padding Problem**
 Yes, many students volunteer primarily for college applications. Admissions officers know this, and they can tell. The student who lists 12 different volunteer activities with 5 hours each is far less compelling than one who spent 200 hours over three years at a single organization. If your child's primary motivation is college apps, that's okay as a starting point — but help them find something they might actually care about. Motivation often follows action: kids who start volunteering reluctantly sometimes discover a genuine passion.
@@ -3631,7 +3631,7 @@ The unsexy truth: the volunteers who make the biggest difference are the ones wh
     emoji: "🌍",
     description: "Why heritage languages matter, finding the right program (Hindi, Tamil, Telugu, etc.), and cultural immersion opportunities for diaspora kids.",
     sections: [
-      { heading: `Why Heritage Languages Matter`, body: `Learning a heritage language isn't just about preserving tradition — it rewires how kids think, strengthens family bonds, and opens doors that monolingual English never will.
+      { heading: `Why Heritage Languages Matter`, content: `Learning a heritage language isn't just about preserving tradition — it rewires how kids think, strengthens family bonds, and opens doors that monolingual English never will.
 
 **Cognitive advantages are real and well-documented.** Bilingual children consistently show stronger executive function — the ability to switch between tasks, filter distractions, and hold competing information in mind. A growing body of neuroscience research shows that managing two language systems exercises the brain's prefrontal cortex in ways that benefit problem-solving, mental flexibility, and even math reasoning. These aren't small effects. Bilingual kids often outperform monolinguals on tasks requiring creative thinking and cognitive control.
 
@@ -3640,7 +3640,7 @@ The unsexy truth: the volunteers who make the biggest difference are the ones wh
 **The career angle is increasingly relevant.** India's economy is now the world's fifth largest, and companies doing business across South Asia actively seek professionals who speak Indian languages. Heritage speakers who maintain fluency have a genuine edge in fields like international business, diplomacy, journalism, tech, and healthcare. Federal agencies also designate Hindi and Urdu as critical languages through the STARTALK program, funded by the National Security Agency.
 
 **Language loss is faster than most families realize.** Research from the American Academy of Arts and Sciences found that among U.S.-born children of two foreign-born parents, 70% adopt English-only preferences — even though 87% grew up hearing another language at home. By the third generation, fewer than 9% maintain balanced bilingualism. The pattern is consistent: full fluency among immigrants, partial skills among their children, near-disappearance by grandchildren. Every generation that doesn't actively invest in language maintenance accelerates this loss.` },
-      { heading: `Indian Languages in the US — What's Available`, body: `India has 22 officially recognized languages and hundreds of dialects, but in the American diaspora, the landscape of what you can actually learn is uneven. Some languages have robust school networks; others require real detective work to find instruction.
+      { heading: `Indian Languages in the US — What's Available`, content: `India has 22 officially recognized languages and hundreds of dialects, but in the American diaspora, the landscape of what you can actually learn is uneven. Some languages have robust school networks; others require real detective work to find instruction.
 
 **Hindi** has the most established infrastructure by far. Weekend Hindi schools operate in virtually every major metro area with a significant Indian population. Chinmaya Mission's Balavihar programs, Hindu temple schools, and standalone organizations like Shishu Bharati (which has taught over 1,000 students across its branches) all offer structured Hindi curricula. Hindi is also the only Indian language with an AP exam, making it the easiest to earn formal academic credit for. Online resources are also most abundant for Hindi — from apps to YouTube channels to structured courses.
 
@@ -3655,7 +3655,7 @@ The unsexy truth: the volunteers who make the biggest difference are the ones wh
 **Urdu** shares spoken form with Hindi but uses a different script (Nastaliq). STARTALK programs specifically include Urdu alongside Hindi, and some Islamic schools offer Urdu instruction. For families wanting both spoken fluency and script literacy, it's worth clarifying which script the program teaches.
 
 **Sanskrit** occupies a unique niche — taught more for religious and cultural literacy than daily communication. Many Balavihar programs include basic Sanskrit alongside their primary language offerings.` },
-      { heading: `Types of Programs`, body: `Heritage language programs range from structured weekend schools to informal family co-ops. Understanding the options helps you find the right fit for your child's age, temperament, and your family's goals.
+      { heading: `Types of Programs`, content: `Heritage language programs range from structured weekend schools to informal family co-ops. Understanding the options helps you find the right fit for your child's age, temperament, and your family's goals.
 
 ### Weekend Language Schools
 These are the backbone of heritage language instruction in the US. Typically held at temples, community centers, or rented school facilities on Saturday or Sunday mornings, they run September through May (mirroring the school year) for 1.5 to 3 hours per session.
@@ -3681,7 +3681,7 @@ Summer language camps combine language instruction with cultural activities — 
 - **STARTALK** grants, funded by the National Security Agency, support free or low-cost summer Hindi and Urdu programs for middle and high school students. Programs like Kean University's offer up to 6 college credits based on proficiency testing.
 - Many states, including California, allow students to earn **World Language competency credits** by passing a proficiency exam in any heritage language — even those not taught at their school. This means a student fluent in Kannada or Malayalam can earn high school graduation credits.
 - The **Seal of Biliteracy**, available in 40+ states including California, recognizes students who demonstrate proficiency in English and another language on their high school diploma.` },
-      { heading: `Finding the Right Program`, body: `Not all heritage language programs are created equal. Here's what to evaluate before committing your Saturday mornings.
+      { heading: `Finding the Right Program`, content: `Not all heritage language programs are created equal. Here's what to evaluate before committing your Saturday mornings.
 
 **Native-speaking teachers matter more than credentials.** The best heritage language teachers are native speakers who understand the specific challenges diaspora kids face — code-switching, limited vocabulary for academic topics, resistance to "boring" grammar drills. A teacher who grew up speaking Tamil in Chennai and understands why your 8-year-old keeps slipping into English mid-sentence will be far more effective than someone with a linguistics degree but no cultural context.
 
@@ -3702,7 +3702,7 @@ The Bay Area is one of the best places in the US for heritage language learning,
 - **Public libraries** in Santa Clara County sometimes host language exchange groups and cultural programs
 
 **Ask other parents.** The most reliable way to find a good program is word of mouth within your language community. Local WhatsApp and Facebook groups for specific language communities (Bay Area Tamil Parents, Bay Area Telugu Association, etc.) are goldmines for current recommendations.` },
-      { heading: `Costs & Time Commitment`, body: `Heritage language learning is a long game. Here's what it actually takes in terms of money and time.
+      { heading: `Costs & Time Commitment`, content: `Heritage language learning is a long game. Here's what it actually takes in terms of money and time.
 
 ### Costs
 | Program Type | Typical Cost |
@@ -3734,7 +3734,7 @@ This depends heavily on how you define fluency and how much home exposure the ch
 The honest truth: most diaspora kids who attend weekend school for a few years will achieve functional conversational ability — they can talk to grandparents, understand songs and movies, and navigate basic interactions in India. Full literacy is a higher bar that fewer reach, but even partial proficiency is enormously valuable.
 
 **The earlier you start, the easier it is.** Children under 7 acquire pronunciation and grammar patterns almost effortlessly. Waiting until middle school means fighting against both linguistic hardening and social resistance.` },
-      { heading: `Cultural Programs Beyond Language`, body: `Language is the gateway, but cultural fluency requires more. A child who speaks Hindi but has never heard the Ramayana, cooked dal, or celebrated Diwali beyond a school presentation is missing the ecosystem that gives language its meaning.
+      { heading: `Cultural Programs Beyond Language`, content: `Language is the gateway, but cultural fluency requires more. A child who speaks Hindi but has never heard the Ramayana, cooked dal, or celebrated Diwali beyond a school presentation is missing the ecosystem that gives language its meaning.
 
 ### Religious & Spiritual Education
 - **Hindu temple programs** (Balavihar, Sunday schools) teach mythology, values, and basic prayers in Sanskrit or regional languages. These are often the first place diaspora kids encounter their heritage language in a structured setting.
@@ -3760,7 +3760,7 @@ Nothing replaces immersion. Extended visits to India — ideally 3–4 weeks or 
 
 ### Pravasi Bharatiya Divas & Youth Programs
 The Indian government's **Know India Programme** and **Pravasi Bharatiya Divas** events are designed specifically for diaspora youth (ages 18–30) to reconnect with Indian heritage through organized visits. While these target older youth, awareness of them helps families plan long-term cultural engagement.` },
-      { heading: `South Asian & Diaspora Context`, body: `Heritage language maintenance in the Indian diaspora follows patterns that are well-documented, surprisingly predictable, and — if you understand them — manageable.
+      { heading: `South Asian & Diaspora Context`, content: `Heritage language maintenance in the Indian diaspora follows patterns that are well-documented, surprisingly predictable, and — if you understand them — manageable.
 
 ### The Three-Generation Timeline
 Linguists call it the "three-generation shift," and it holds remarkably true across immigrant communities worldwide. First generation: fully fluent, speaks the heritage language at home. Second generation: understands and speaks conversationally but prefers English, may not read or write. Third generation: may know a few words, food names, and greetings, but cannot hold a conversation. Data from the American Academy of Arts and Sciences confirms this — by the third generation, 98% of heritage-language households prefer English.
@@ -3795,7 +3795,7 @@ The families that succeed at long-term heritage language maintenance share commo
 - **Video calls with family in India** as a regular routine, not just holidays
 - **Trips to India** framed as adventures, not obligations
 - **Community events** where the child has a peer group that speaks the language` },
-      { heading: `Honest Take`, body: `Let's be real about what heritage language learning looks like for most diaspora families — the rewards, the struggles, and the decisions you'll actually face.
+      { heading: `Honest Take`, content: `Let's be real about what heritage language learning looks like for most diaspora families — the rewards, the struggles, and the decisions you'll actually face.
 
 ### What's Genuinely Great
 - **The grandparent connection is irreplaceable.** A child who can joke with their nani in Hindi, hear their thatha's stories in Tamil, or understand their dadaji's wisdom in Gujarati has access to a relationship that no amount of translation can replicate. This alone makes the investment worthwhile.
