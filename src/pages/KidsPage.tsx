@@ -32,6 +32,7 @@ type Subcategory = {
   icon: string;
   localCategories: string[];
   programCategories: string[];
+  programKeyword?: string;
   subsubs?: SubSub[];
 };
 type TopCategory = {
@@ -79,7 +80,7 @@ const CATEGORY_TREE: TopCategory[] = [
     subcategories: [
       { key: "math", label: "Math", icon: "🔢", localCategories: ["Math Enrichment"], programCategories: ["Math"] },
       { key: "science_stem", label: "Science & STEM", icon: "🧪", localCategories: [], programCategories: ["Science & STEM"] },
-      { key: "spelling_debate", label: "Spelling & Debate", icon: "🗯️", localCategories: [], programCategories: ["Academic Competitions"] },
+      { key: "spelling_debate", label: "Spelling & Debate", icon: "🗯️", localCategories: [], programCategories: ["Academic Competitions"], programKeyword: "spell|debate" },
       { key: "robotics_comp", label: "Robotics Competitions", icon: "🤖", localCategories: [], programCategories: ["Robotics"] },
       { key: "business", label: "Business (DECA/FBLA)", icon: "💼", localCategories: [], programCategories: [] },
       { key: "test_prep", label: "Test Prep", icon: "📝", localCategories: [], programCategories: ["College Prep"] },
@@ -566,14 +567,14 @@ export default function KidsPage() {
       list = [];
     }
 
-    // Sub-subcategory keyword filter (e.g. Tennis under Sports)
-    if (activeSubSub?.programKeyword) {
-      const kw = activeSubSub.programKeyword.toLowerCase();
-      list = list.filter((p) =>
-        p.name.toLowerCase().includes(kw) ||
-        (p.description || "").toLowerCase().includes(kw) ||
-        (p.subcategory || "").toLowerCase().includes(kw),
-      );
+    // Sub-subcategory or subcategory keyword filter (e.g. Tennis under Sports, Spelling under Academic Competitions)
+    const kwSource = activeSubSub?.programKeyword || activeSub?.programKeyword;
+    if (kwSource) {
+      const keywords = kwSource.toLowerCase().split("|");
+      list = list.filter((p) => {
+        const haystack = `${p.name} ${p.description || ""} ${p.subcategory || ""}`.toLowerCase();
+        return keywords.some((kw) => haystack.includes(kw));
+      });
     }
 
     if (selectedAge) {
@@ -589,7 +590,7 @@ export default function KidsPage() {
     }
 
     return list;
-  }, [programs, targetProgCats, activeSubSub, selectedAge, searchLower]);
+  }, [programs, targetProgCats, activeSub, activeSubSub, selectedAge, searchLower]);
 
   /* ---- subcategory counts ---- */
   const subCounts = useMemo(() => {
