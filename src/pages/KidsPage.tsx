@@ -20,6 +20,7 @@ import {
   LOCAL_CATEGORY_COLORS,
   type KidsLocalPlace,
 } from "@/lib/kidsLocalPlaces";
+import { getGuideByTopic } from "@/lib/kidsGuides";
 
 /* ================================================================== */
 /* CATEGORY HIERARCHY                                                 */
@@ -766,16 +767,26 @@ export default function KidsPage() {
                     </p>
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {visibleGuides.map((guide, i) => (
-                      <div key={i} className="rounded-xl border border-border bg-card p-5 sm:p-6 hover:shadow-md hover:border-[#D4A843]/50 transition-all">
-                        <div className="flex items-start gap-3 mb-3">
-                          <span className="text-2xl flex-shrink-0">{guide.icon}</span>
-                          <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug">{guide.title}</h3>
-                        </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{guide.summary}</p>
-                        <p className="mt-3 text-xs text-muted-foreground italic">Full guide coming soon</p>
-                      </div>
-                    ))}
+                    {visibleGuides.map((guide, i) => {
+                      const fullGuide = getGuideByTopic(guide.keys[0]);
+                      const guideSlug = fullGuide?.slug;
+                      const Wrapper = guideSlug ? Link : 'div' as any;
+                      const wrapperProps = guideSlug ? { to: `/kids/guides/${guideSlug}` } : {};
+                      return (
+                        <Wrapper key={i} {...wrapperProps} className={`rounded-xl border border-border bg-card p-5 sm:p-6 hover:shadow-md hover:border-[#D4A843]/50 transition-all ${guideSlug ? 'cursor-pointer' : ''}`}>
+                          <div className="flex items-start gap-3 mb-3">
+                            <span className="text-2xl flex-shrink-0">{guide.icon}</span>
+                            <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug">{guide.title}</h3>
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{guide.summary}</p>
+                          {guideSlug ? (
+                            <p className="mt-3 text-xs font-medium text-[#D4A843]">Read the full guide →</p>
+                          ) : (
+                            <p className="mt-3 text-xs text-muted-foreground italic">Full guide coming soon</p>
+                          )}
+                        </Wrapper>
+                      );
+                    })}
                   </div>
                 </section>
               );
