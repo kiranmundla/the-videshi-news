@@ -186,9 +186,26 @@ function ListingCard({ listing, distance }: { listing: DirectoryListing; distanc
 }
 
 /* ------------------------------------------------------------------ */
-/* Category Tab Bar                                                   */
+/* Category gradient map for icon cards                               */
 /* ------------------------------------------------------------------ */
-function CategoryTabBar({
+const CATEGORY_GRADIENTS: Record<string, string> = {
+  "Doctors & Healthcare": "linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%)",
+  "Attorneys & Immigration": "linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%)",
+  "Real Estate": "linear-gradient(135deg, #059669 0%, #064e3b 100%)",
+  "Tax & Accounting": "linear-gradient(135deg, #d97706 0%, #92400e 100%)",
+  "Catering & Food": "linear-gradient(135deg, #ea580c 0%, #9a3412 100%)",
+  "Yoga & Wellness": "linear-gradient(135deg, #0d9488 0%, #134e4a 100%)",
+  "Beauty & Grooming": "linear-gradient(135deg, #db2777 0%, #831843 100%)",
+  "Education & Tutoring": "linear-gradient(135deg, #4f46e5 0%, #312e81 100%)",
+  "Religious Services": "linear-gradient(135deg, #7c3aed 0%, #581c87 100%)",
+  "Home Services": "linear-gradient(135deg, #475569 0%, #1e293b 100%)",
+  "Daycare & Childcare": "linear-gradient(135deg, #ca8a04 0%, #713f12 100%)",
+};
+
+/* ------------------------------------------------------------------ */
+/* Category Icon Cards (replaces old tab bar)                         */
+/* ------------------------------------------------------------------ */
+function CategoryIconCards({
   selected,
   onSelect,
 }: {
@@ -197,37 +214,54 @@ function CategoryTabBar({
 }) {
   return (
     <div className="overflow-x-auto scrollbar-none -mx-4 px-4">
-      <div className="flex items-center gap-1 pb-1 min-w-max">
-      <button
-        onClick={() => onSelect(null)}
-        className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
-          selected === null
-            ? "text-foreground"
-            : "text-muted-foreground hover:text-foreground/70"
-        }`}
-      >
-        All
-        {selected === null && (
-          <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
-        )}
-      </button>
-      {DIRECTORY_CATEGORIES.map((cat) => (
+      <div className="flex gap-2.5 pb-2 min-w-max">
+        {/* All card */}
         <button
-          key={cat}
-          onClick={() => onSelect(cat)}
-          className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors rounded-t-md ${
-            selected === cat
-              ? "text-foreground"
-              : "text-muted-foreground hover:text-foreground/70"
+          onClick={() => onSelect(null)}
+          className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+            selected === null
+              ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
+              : ""
           }`}
         >
-          <span className="mr-1.5">{CATEGORY_ICONS[cat]}</span>
-          {cat}
-          {selected === cat && (
-            <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full" />
-          )}
+          <div
+            className="w-[100px] sm:w-[120px] aspect-[4/3] relative p-3 flex flex-col justify-end"
+            style={{ background: "linear-gradient(135deg, #0B1D3A 0%, #A32D2F 100%)" }}
+          >
+            <span className="text-white text-sm sm:text-base font-bold font-serif leading-tight drop-shadow-lg">
+              📋 All
+            </span>
+          </div>
         </button>
-      ))}
+
+        {DIRECTORY_CATEGORIES.map((cat) => {
+          const emoji = CATEGORY_ICONS[cat] || "📌";
+          const gradient = CATEGORY_GRADIENTS[cat] || "linear-gradient(135deg, #374151 0%, #1f2937 100%)";
+          const isActive = selected === cat;
+          // Shorten label for card display
+          const shortLabel = cat.replace(/ & /g, " & ").replace("Attorneys & Immigration", "Attorneys").replace("Doctors & Healthcare", "Doctors").replace("Education & Tutoring", "Education").replace("Daycare & Childcare", "Daycare").replace("Beauty & Grooming", "Beauty").replace("Yoga & Wellness", "Wellness").replace("Catering & Food", "Food").replace("Home Services", "Home Svcs").replace("Religious Services", "Religious").replace("Tax & Accounting", "Tax & CPA");
+          return (
+            <button
+              key={cat}
+              onClick={() => onSelect(isActive ? null : cat)}
+              className={`flex-shrink-0 relative rounded-xl overflow-hidden text-left transition-all hover:scale-[1.03] active:scale-[0.98] focus:outline-none ${
+                isActive
+                  ? "ring-2 ring-[#D4A843] ring-offset-2 ring-offset-background shadow-lg"
+                  : ""
+              }`}
+            >
+              <div
+                className="w-[100px] sm:w-[120px] aspect-[4/3] relative p-3 flex flex-col justify-end"
+                style={{ background: gradient }}
+              >
+                <span className="text-2xl mb-1 drop-shadow-lg">{emoji}</span>
+                <span className="text-white text-xs sm:text-sm font-bold font-serif leading-tight drop-shadow-lg">
+                  {shortLabel}
+                </span>
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -607,9 +641,9 @@ export default function DirectoryPage() {
           </div>
         </div>
 
-        {/* Category tabs */}
-        <div className="border-b border-border mb-2 overflow-x-auto scrollbar-none">
-          <CategoryTabBar selected={categoryFilter} onSelect={setCategoryFilter} />
+        {/* Category icon cards */}
+        <div className="mb-3">
+          <CategoryIconCards selected={categoryFilter} onSelect={setCategoryFilter} />
         </div>
 
         {/* Subcategory tabs (shown for categories with subcategories) */}
