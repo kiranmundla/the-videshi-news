@@ -1,8 +1,54 @@
 {
-  "generated_at": "2026-07-27T13:00:00Z",
-  "week_of": "Jul 27 – Aug 2, 2026",
-  "editorial_intro": "The Odyssey just delivered Nolan's best second-weekend hold ever — $87 million with a 30% drop, pushing to $286M domestic and $640M worldwide in 10 days. It's a juggernaut. But the real story this week is the collision course: Spider-Man: Brand New Day lands on Wednesday, and pre-sale records are already shattering. Meanwhile, Thalapathy Vijay's farewell to cinema, Jana Nayagan, exploded to ₹217 Cr worldwide in just four days — the sitting Chief Minister of Tamil Nadu delivering one last blockbuster before the curtain closes for good. Dhamaal 4 crossed ₹200 Cr worldwide and earned a Clean HIT verdict. And if you want something extraordinary, Hadestown: The Musical just hit theaters with a perfect 100% on Rotten Tomatoes. This might be the most stacked week at the multiplex all year.",
+  "generated_at": "2026-07-30T13:00:00Z",
+  "week_of": "Jul 30 – Aug 5, 2026",
+  "editorial_intro": "Spider-Man swings back today. Brand New Day opens with the biggest projected opening weekend of 2026 — tracking $230-250M domestic and up to $465M globally. Tom Holland returns five years after No Way Home's heartbreaking ending, and the reviews are strong at 88% on Rotten Tomatoes. But don't count out The Odyssey: Nolan's epic crossed $683M worldwide in under two weeks and still owns every IMAX screen. Thalapathy Vijay's farewell film Jana Nayagan hit ₹255 Cr worldwide in its first week — the biggest overseas Indian grosser of 2026. Dhamaal 4 quietly cruised past ₹214 Cr worldwide. And Toy Story 5 just joined the billion-dollar club. Five movies over $400M worldwide playing simultaneously. This is the summer the box office came back for real.",
   "movies": [
+    {
+      "title": "Spider-Man: Brand New Day",
+      "slug": "spider-man-brand-new-day",
+      "genre": "Superhero Action",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Spider-Man_Brand_New_Day_poster.jpg/500px-Spider-Man_Brand_New_Day_poster.jpg",
+      "rating": "88% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-07-30",
+      "status": "opening",
+      "cast": [
+        "Tom Holland",
+        "Zendaya",
+        "Sadie Sink",
+        "Jon Bernthal",
+        "Michael Mando"
+      ],
+      "director": "Destin Daniel Cretton",
+      "why_watch": "Five years after No Way Home erased Peter Parker from everyone's memory, Tom Holland returns in the most anticipated Marvel movie since Endgame. 88% on Rotten Tomatoes — Certified Fresh. Tracking for a $230-250M domestic opening weekend and $465M globally, which would make it the biggest debut of 2026. Critics are calling it the best-directed MCU Spider-Man since Sam Raimi's trilogy. No IMAX — Nolan's Odyssey owns those screens — but you won't care.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=62bIsvRcPv0",
+      "cast_details": [
+        {
+          "name": "Tom Holland",
+          "photo_url": ""
+        },
+        {
+          "name": "Zendaya",
+          "photo_url": ""
+        },
+        {
+          "name": "Sadie Sink",
+          "photo_url": ""
+        },
+        {
+          "name": "Jon Bernthal",
+          "photo_url": ""
+        },
+        {
+          "name": "Michael Mando",
+          "photo_url": ""
+        }
+      ]
+    },
     {
       "title": "The Odyssey",
       "slug": "the-odyssey-nolan",
@@ -23,7 +69,7 @@
         "Lupita Nyong'o"
       ],
       "director": "Christopher Nolan",
-      "why_watch": "$286M domestic and $640M worldwide in just 10 days — Nolan's best second-weekend hold ever. 94% on Rotten Tomatoes. Homer's Odyssey reimagined as a full IMAX spectacle with the most stacked cast of the year. Matt Damon is getting serious Oscar buzz as Odysseus. This is the kind of film theaters were built for.",
+      "why_watch": "$683M worldwide in under two weeks — heading for the billion-dollar club. Nolan's best second-weekend hold ever: $87M with just a 30% drop. 94% on Rotten Tomatoes. Matt Damon as Odysseus is getting serious Oscar buzz, Robert Pattinson's Antinous has spawned a thousand memes, and it still owns every IMAX screen on the planet. The first film ever shot entirely on 70mm IMAX cameras. If you haven't seen it yet, the big screen is the only way.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
       "language": "English",
@@ -31,27 +77,27 @@
       "cast_details": [
         {
           "name": "Matt Damon",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/MattDamon-byPhilipRomano.jpg/300px-MattDamon-byPhilipRomano.jpg"
+          "photo_url": ""
         },
         {
           "name": "Tom Holland",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/300px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Anne Hathaway",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Robert Pattinson",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Robert_Pattinson_at_Berlinale_2025.jpg/300px-Robert_Pattinson_at_Berlinale_2025.jpg"
+          "photo_url": ""
         },
         {
           "name": "Zendaya",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg/300px-Zendaya_-_2019_by_Glenn_Francis.jpg"
+          "photo_url": ""
         },
         {
           "name": "Charlize Theron",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Charlize-theron-IMG_6045.jpg/300px-Charlize-theron-IMG_6045.jpg"
+          "photo_url": ""
         },
         {
           "name": "Lupita Nyong'o",
@@ -65,7 +111,7 @@
       "genre": "Political Action, Thriller",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jana_Nayagan.jpg",
-      "rating": "₹217 Cr worldwide",
+      "rating": "₹255 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-07-23",
       "status": "now_playing",
@@ -77,7 +123,7 @@
         "Prakash Raj"
       ],
       "director": "H. Vinoth",
-      "why_watch": "The final film of Thalapathy Vijay — now the sitting Chief Minister of Tamil Nadu. ₹217 Cr worldwide in just four days. A political action thriller that's part farewell, part cultural event. Vijay fans are turning theaters into festivals. Playing in Tamil, Hindi, and Telugu across US diaspora screens. You won't get another chance like this.",
+      "why_watch": "₹255 Cr worldwide in one week — and officially 2026's highest overseas Indian grosser. The final film of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. ₹149.5 Cr India net and still holding strong into week two. Vijay fans are turning theaters into cultural festivals. Playing in Tamil, Hindi, and Telugu on US diaspora screens. This farewell won't come again.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Jana+Nayagan+showtimes+near+me",
       "language": "Tamil",
@@ -89,7 +135,7 @@
         },
         {
           "name": "Bobby Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
+          "photo_url": ""
         },
         {
           "name": "Pooja Hegde",
@@ -119,7 +165,7 @@
         "Conan O'Brien"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "Five weeks in and sitting at $448M domestic, closing in on $1 billion worldwide. Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. Lost some IMAX screens to The Odyssey, but still drawing massive family crowds. The legs on this one are insane.",
+      "why_watch": "Just crossed $1 billion worldwide — the highest-grossing film of 2026 and the third Toy Story to join the billion-dollar club. $452M domestic in six weeks with legs that won't quit. Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. Losing some screens to Spider-Man this week, but still the best family option in theaters.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English",
@@ -127,23 +173,75 @@
       "cast_details": [
         {
           "name": "Tom Hanks",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg/300px-TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Tim Allen",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TimAllen2026byKrossaunt.jpg/300px-TimAllen2026byKrossaunt.jpg"
+          "photo_url": ""
         },
         {
           "name": "Joan Cusack",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg/300px-Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Greta Lee",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg/300px-Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Conan O'Brien",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg/300px-Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg"
+          "photo_url": ""
+        }
+      ]
+    },
+    {
+      "title": "Dhamaal 4",
+      "slug": "dhamaal-4",
+      "genre": "Comedy, Adventure",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Dhamaal_4.jpg",
+      "rating": "₹214 Cr worldwide",
+      "rating_source": "India box office",
+      "release_date": "2026-07-10",
+      "status": "now_playing",
+      "cast": [
+        "Ajay Devgn",
+        "Arshad Warsi",
+        "Jaaved Jaaferi",
+        "Riteish Deshmukh",
+        "Sanjay Mishra",
+        "Ravi Kishan",
+        "Esha Gupta"
+      ],
+      "director": "Indra Kumar",
+      "why_watch": "₹214 Cr worldwide and ₹155 Cr India net in 19 days — the highest-grossing film in the Dhamaal franchise, beating Total Dhamaal domestically. Heading toward ₹165 Cr lifetime in India. Bollywood's 4th biggest film of 2026. Week three and still drawing family crowds, especially in mass centers. Will lose screens to Spider-Man, but the core audience isn't going anywhere.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=IG-eByZdz6Y",
+      "cast_details": [
+        {
+          "name": "Ajay Devgn",
+          "photo_url": ""
+        },
+        {
+          "name": "Arshad Warsi",
+          "photo_url": ""
+        },
+        {
+          "name": "Jaaved Jaaferi",
+          "photo_url": ""
+        },
+        {
+          "name": "Riteish Deshmukh",
+          "photo_url": ""
+        },
+        {
+          "name": "Sanjay Mishra",
+          "photo_url": ""
+        },
+        {
+          "name": "Ravi Kishan",
+          "photo_url": ""
         }
       ]
     },
@@ -166,7 +264,7 @@
         "Trey Parker"
       ],
       "director": "Pierre Coffin",
-      "why_watch": "$155M domestic and the franchise's best-reviewed film ever at 93% RT. A love letter to classic Hollywood monster movies that's genuinely witty for adults while keeping kids glued. Week four and still pulling strong numbers. The best family counter-programming to The Odyssey's R-rated intensity.",
+      "why_watch": "$412M worldwide and $159M domestic — the franchise's best-reviewed film ever at 93% RT. A love letter to classic Hollywood monster movies that's genuinely witty for adults while keeping kids glued. Week four, still pulling solid numbers. The best family counter-programming if you've already seen Toy Story 5.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Minions+and+Monsters+showtimes+near+me",
       "language": "English",
@@ -174,79 +272,27 @@
       "cast_details": [
         {
           "name": "Pierre Coffin",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre_Coffin_2017.jpg/300px-Pierre_Coffin_2017.jpg"
+          "photo_url": ""
         },
         {
           "name": "Allison Janney",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Allison_Janney_%2840568877620%29.jpg/300px-Allison_Janney_%2840568877620%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Christoph Waltz",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg/300px-Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Jeff Bridges",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Jeff_Bridges_by_Gage_Skidmore_4.jpg/300px-Jeff_Bridges_by_Gage_Skidmore_4.jpg"
+          "photo_url": ""
         },
         {
           "name": "Jesse Eisenberg",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg/300px-60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Trey Parker",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg/300px-Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Dhamaal 4",
-      "slug": "dhamaal-4",
-      "genre": "Comedy, Adventure",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Dhamaal_4.jpg",
-      "rating": "₹202 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-07-10",
-      "status": "now_playing",
-      "cast": [
-        "Ajay Devgn",
-        "Arshad Warsi",
-        "Jaaved Jaaferi",
-        "Riteish Deshmukh",
-        "Sanjay Mishra",
-        "Ravi Kishan",
-        "Esha Gupta"
-      ],
-      "director": "Indra Kumar",
-      "why_watch": "Crossed ₹200 Cr worldwide and ₹150 Cr India net — a certified Clean HIT and the highest-grossing film in the Dhamaal franchise, beating Total Dhamaal. Bollywood's 4th biggest film of 2026. The original gang's slapstick chaos holds up in week three. Diaspora screens are still packing them in.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=IG-eByZdz6Y",
-      "cast_details": [
-        {
-          "name": "Ajay Devgn",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ajay_Devgn_at_the_trailer_launch_of_Raid_2.jpg/300px-Ajay_Devgn_at_the_trailer_launch_of_Raid_2.jpg"
-        },
-        {
-          "name": "Arshad Warsi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Arshad-Warsi.jpg/300px-Arshad-Warsi.jpg"
-        },
-        {
-          "name": "Jaaved Jaaferi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Javed_jeffery_colors_indian_telly_awards.jpg/300px-Javed_jeffery_colors_indian_telly_awards.jpg"
-        },
-        {
-          "name": "Riteish Deshmukh",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg/300px-Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg"
-        },
-        {
-          "name": "Sanjay Mishra",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sanjay_Mishra_Guthlee-Ladoo_%28cropped%29.jpg/300px-Sanjay_Mishra_Guthlee-Ladoo_%28cropped%29.jpg"
-        },
-        {
-          "name": "Ravi Kishan",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg/300px-Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg"
+          "photo_url": ""
         }
       ]
     },
@@ -267,7 +313,7 @@
         "Megan Lawless"
       ],
       "director": "Curry Barker",
-      "why_watch": "Made for $750K. Now at $261M domestic in its eleventh week — the most profitable film of the decade, period. Still in the top 10. A monkey's-paw horror that defied every box office precedent by growing weekend over weekend. Losing screens fast now to The Odyssey and Spider-Man. Last call.",
+      "why_watch": "Made for $750K. Now at $458M worldwide in its eleventh week — the most profitable film of the decade, period. $262M domestic. Still in the top 10 but rapidly losing screens to Spider-Man and The Odyssey. A monkey's-paw horror that defied every box office precedent. This is genuinely your last chance to see it on a big screen.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
       "language": "English",
@@ -275,11 +321,11 @@
       "cast_details": [
         {
           "name": "Inde Navarrette",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Inde_Navarrette_in_2026.jpg"
+          "photo_url": ""
         },
         {
           "name": "Michael Johnston",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Michael_Johnston_in_2026_Century_City.jpg/300px-Michael_Johnston_in_2026_Century_City.jpg"
+          "photo_url": ""
         },
         {
           "name": "Cooper Tomlinson",
@@ -309,7 +355,7 @@
         "Patrick Page"
       ],
       "director": "Brett Sullivan",
-      "why_watch": "A perfect 100% on Rotten Tomatoes. The Tony-winning Broadway sensation captured live in London with its original cast — Reeve Carney, Eva Noblezada, André De Shields. A folk-jazz reimagining of Orpheus and Eurydice that's devastating and transcendent. Limited theatrical run, so catch it while you can.",
+      "why_watch": "A perfect 100% on Rotten Tomatoes. $14.3M opening weekend — strong for a Broadway proshot. The Tony-winning sensation captured live with its original cast — Reeve Carney, Eva Noblezada, André De Shields. A folk-jazz reimagining of Orpheus and Eurydice that hits like a freight train. Limited theatrical run on 1,949 screens, and Spider-Man is about to steal most of them. Go now.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Hadestown+The+Musical+movie+showtimes+near+me",
       "language": "English",
@@ -352,7 +398,7 @@
         "Catherine Laga'aia"
       ],
       "director": "Thomas Kail",
-      "why_watch": "Proof that brand power beats reviews: $102M domestic despite a brutal 37% on Rotten Tomatoes. The CGI ocean looks weirdly artificial, Dwayne's Maui wig launched memes, and critics say it's lifeless — but families keep showing up. Your kids will insist. Just manage expectations accordingly.",
+      "why_watch": "Proof that brand power beats reviews: $228M worldwide and $107M domestic despite a brutal 37% on Rotten Tomatoes. Critics say it's lifeless and Dwayne's Maui wig launched memes — but families keep showing up. Three weeks in and still drawing because there's nothing else like it for younger kids right now. Just manage expectations.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Moana+live+action+showtimes+near+me",
       "language": "English",
@@ -360,11 +406,11 @@
       "cast_details": [
         {
           "name": "Dwayne Johnson",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg/300px-Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Catherine Laga'aia",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Catherine_Laga%27aia_by_Gage_Skidmore.jpg/300px-Catherine_Laga%27aia_by_Gage_Skidmore.jpg"
+          "photo_url": ""
         }
       ]
     },
@@ -385,7 +431,7 @@
         "Colman Domingo"
       ],
       "director": "Steven Spielberg",
-      "why_watch": "Spielberg's alien conspiracy thriller crossed $115M domestic and Emily Blunt is in the early Oscar conversation. Losing screens to The Odyssey and Spider-Man — this is genuinely the last week to catch it on a big screen before it goes to streaming.",
+      "why_watch": "Spielberg's alien conspiracy thriller crossed $116M domestic in seven weeks. Emily Blunt is in early Oscar conversations. Losing screens fast now to Spider-Man and The Odyssey — this is genuinely the last week to catch it theatrically before it goes to streaming. If you missed it, this weekend is your final shot.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
       "language": "English",
@@ -393,45 +439,19 @@
       "cast_details": [
         {
           "name": "Emily Blunt",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/300px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg"
+          "photo_url": ""
         },
         {
           "name": "Josh O'Connor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg/300px-Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg"
+          "photo_url": ""
         },
         {
           "name": "Colin Firth",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Colin_Firth_%2836124162705%29_%28cropped%29.jpg/300px-Colin_Firth_%2836124162705%29_%28cropped%29.jpg"
+          "photo_url": ""
         },
         {
           "name": "Colman Domingo",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg/300px-Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Spider-Man: Brand New Day",
-      "slug": "spider-man-brand-new-day",
-      "genre": "Superhero Action",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Spider-Man_Brand_New_Day_poster.jpg",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-07-30",
-      "status": "coming_soon",
-      "cast": [
-        "Tom Holland"
-      ],
-      "director": "",
-      "why_watch": "Three days out. Tom Holland swings back years after No Way Home's devastating ending — Peter Parker isolated, hunted, and undergoing a mysterious mutation. The most anticipated Marvel movie since Endgame. Pre-sale records are already falling. This Wednesday changes everything.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=62bIsvRcPv0",
-      "cast_details": [
-        {
-          "name": "Tom Holland",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg/300px-Tom_Holland_during_pro-am_Wentworth_golf_club_2023-2_%28cropped%29.jpg"
+          "photo_url": ""
         }
       ]
     }
