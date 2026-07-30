@@ -29,23 +29,23 @@
       "cast_details": [
         {
           "name": "Tom Holland",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/TomHolland-byPhilipRomano.jpg/300px-TomHolland-byPhilipRomano.jpg"
         },
         {
           "name": "Zendaya",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Zendaya-byPhilipRomano.jpg/300px-Zendaya-byPhilipRomano.jpg"
         },
         {
           "name": "Sadie Sink",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Sadie_Sink_%2843914734441%29.jpg/300px-Sadie_Sink_%2843914734441%29.jpg"
         },
         {
           "name": "Jon Bernthal",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/JonBernthal-byPhilipRomano2.jpg/300px-JonBernthal-byPhilipRomano2.jpg"
         },
         {
           "name": "Michael Mando",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Michael_Mando_at_the_2018_San_Diego_Comic-Con.jpg/300px-Michael_Mando_at_the_2018_San_Diego_Comic-Con.jpg"
         }
       ]
     },
@@ -77,31 +77,27 @@
       "cast_details": [
         {
           "name": "Matt Damon",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/MattDamon-byPhilipRomano2.jpg/300px-MattDamon-byPhilipRomano2.jpg"
         },
         {
           "name": "Tom Holland",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/TomHolland-byPhilipRomano.jpg/300px-TomHolland-byPhilipRomano.jpg"
         },
         {
           "name": "Anne Hathaway",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
         },
         {
           "name": "Robert Pattinson",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Robert_Pattinson_at_Berlinale_2025.jpg/300px-Robert_Pattinson_at_Berlinale_2025.jpg"
         },
         {
           "name": "Zendaya",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Zendaya-byPhilipRomano.jpg/300px-Zendaya-byPhilipRomano.jpg"
         },
         {
           "name": "Charlize Theron",
-          "photo_url": ""
-        },
-        {
-          "name": "Lupita Nyong'o",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/CharlizeTheron-byPhilipRomano2.jpg/300px-CharlizeTheron-byPhilipRomano2.jpg"
         }
       ]
     },
@@ -131,19 +127,23 @@
       "cast_details": [
         {
           "name": "Thalapathy Vijay",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/JosephVijay.jpg/300px-JosephVijay.jpg"
         },
         {
           "name": "Bobby Deol",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
         },
         {
           "name": "Pooja Hegde",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg/300px-Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg"
+        },
+        {
+          "name": "Mamitha Baiju",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
         },
         {
           "name": "Prakash Raj",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prakash_Raj_at_KLF_18_kozhikode.jpg/300px-Prakash_Raj_at_KLF_18_kozhikode.jpg"
         }
       ]
     },
@@ -173,23 +173,23 @@
       "cast_details": [
         {
           "name": "Tom Hanks",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg/300px-TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg"
         },
         {
           "name": "Tim Allen",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tim_Allen_2012.jpg/300px-Tim_Allen_2012.jpg"
         },
         {
           "name": "Joan Cusack",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg/300px-Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg"
         },
         {
           "name": "Greta Lee",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg/300px-Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg"
         },
         {
           "name": "Conan O'Brien",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg/300px-Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg"
         }
       ]
     },
@@ -221,27 +221,27 @@
       "cast_details": [
         {
           "name": "Ajay Devgn",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ajay_Devgn_at_the_trailer_launch_of_Raid_2.jpg/300px-Ajay_Devgn_at_the_trailer_launch_of_Raid_2.jpg"
         },
         {
           "name": "Arshad Warsi",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Arshad-Warsi.jpg/300px-Arshad-Warsi.jpg"
         },
         {
           "name": "Jaaved Jaaferi",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Javed_jeffery_colors_indian_telly_awards.jpg/300px-Javed_jeffery_colors_indian_telly_awards.jpg"
         },
         {
           "name": "Riteish Deshmukh",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg/300px-Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg"
         },
         {
           "name": "Sanjay Mishra",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sanjay_Mishra_Guthlee-Ladoo_%28cropped%29.jpg/300px-Sanjay_Mishra_Guthlee-Ladoo_%28cropped%29.jpg"
         },
         {
           "name": "Ravi Kishan",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg/300px-Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg"
         }
       ]
     },
@@ -272,27 +272,27 @@
       "cast_details": [
         {
           "name": "Pierre Coffin",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre_Coffin_2017.jpg/300px-Pierre_Coffin_2017.jpg"
         },
         {
           "name": "Allison Janney",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Allison_Janney_%2840568877620%29.jpg/300px-Allison_Janney_%2840568877620%29.jpg"
         },
         {
           "name": "Christoph Waltz",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg/300px-Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg"
         },
         {
           "name": "Jeff Bridges",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Jeff_Bridges_by_Gage_Skidmore_4.jpg/300px-Jeff_Bridges_by_Gage_Skidmore_4.jpg"
         },
         {
           "name": "Jesse Eisenberg",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg/300px-60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg"
         },
         {
           "name": "Trey Parker",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg/300px-Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg"
         }
       ]
     },
@@ -321,11 +321,11 @@
       "cast_details": [
         {
           "name": "Inde Navarrette",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Inde_Navarrette_in_2026.jpg"
         },
         {
           "name": "Michael Johnston",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Michael_Johnston_by_Gage_Skidmore.jpg/300px-Michael_Johnston_by_Gage_Skidmore.jpg"
         },
         {
           "name": "Cooper Tomlinson",
@@ -363,23 +363,23 @@
       "cast_details": [
         {
           "name": "Reeve Carney",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reeve_carney.jpg/300px-Reeve_carney.jpg"
         },
         {
           "name": "Eva Noblezada",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Eva_Noblezada_Tribeca_2026_11.jpg/300px-Eva_Noblezada_Tribeca_2026_11.jpg"
         },
         {
           "name": "André De Shields",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/AndreDeShields.jpg/300px-AndreDeShields.jpg"
         },
         {
           "name": "Amber Gray",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Amber_Gray_Tribeca_2026_7.jpg/300px-Amber_Gray_Tribeca_2026_7.jpg"
         },
         {
           "name": "Patrick Page",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/PatrickPage-byPhilipRomano.jpg/300px-PatrickPage-byPhilipRomano.jpg"
         }
       ]
     },
@@ -406,11 +406,11 @@
       "cast_details": [
         {
           "name": "Dwayne Johnson",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg/300px-Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg"
         },
         {
           "name": "Catherine Laga'aia",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Catherine_Laga%27aia_by_Gage_Skidmore.jpg/300px-Catherine_Laga%27aia_by_Gage_Skidmore.jpg"
         }
       ]
     },
@@ -439,19 +439,19 @@
       "cast_details": [
         {
           "name": "Emily Blunt",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/300px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg"
         },
         {
           "name": "Josh O'Connor",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg/300px-Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg"
         },
         {
           "name": "Colin Firth",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Colin_Firth_%2836124162705%29_%28cropped%29.jpg/300px-Colin_Firth_%2836124162705%29_%28cropped%29.jpg"
         },
         {
           "name": "Colman Domingo",
-          "photo_url": ""
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg/300px-Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg"
         }
       ]
     }
