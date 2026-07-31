@@ -1,5 +1,23 @@
 [
   {
+    "slug": "hyderabad-police-register-case-meta-india-head-anti-modi-facebook-videos",
+    "headline": "Hyderabad Police Register Case Against Meta India Head Over Anti-Modi Facebook Videos",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hyderabad-police-register-case-meta-india-head-anti-modi-facebook-videos.jpg"
+  },
+  {
+    "slug": "india-16-nationals-killed-middle-east-us-iran-seafarers",
+    "headline": "16 Indians Killed in Middle East Since February, Government Tells Parliament",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-16-nationals-killed-middle-east-us-iran-seafarers.jpg"
+  },
+  {
+    "slug": "japan-south-korea-joint-yen-intervention-boj-rates",
+    "headline": "Japan and South Korea Stage Rare Joint Currency Intervention as Yen Surges 3%",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/japan-south-korea-joint-yen-intervention-boj-rates.jpg"
+  },
+  {
     "slug": "dahi-wale-tinde-yogurt-curry",
     "headline": "Dahi Wale Tinde: The Yogurt Curry That Makes Humble Tinda Irresistible",
     "category": "food",
@@ -28,23 +46,5 @@
     "headline": "Russian Missile Lands in Poland as Overnight Strikes Kill Nine Across Ukraine",
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/russian-missile-poland-ukraine-strikes.jpg"
-  },
-  {
-    "slug": "lovepreet-silver-seema-bronze-cwg-2026",
-    "headline": "Lovepreet Singh Wins Silver, Seema Bags Bronze as India Adds to CWG Tally",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lovepreet-silver-seema-bronze-cwg-2026.jpg"
-  },
-  {
-    "slug": "air-india-easy-connect-amritsar-punjab-27-destinations",
-    "headline": "Air India Launches 'Easy Connect' From Amritsar, Linking Punjab to 27 Global Destinations",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-easy-connect-amritsar-punjab-27-destinations.jpg"
-  },
-  {
-    "slug": "air-india-turnaround-decade-tata-sons-losses-double",
-    "headline": "Air India Turnaround Could Take a Decade, Tata Sons Chief Warns as Losses Double to $2.3 Billion",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-turnaround-decade-tata-sons-losses-double.jpg"
   }
 ]
