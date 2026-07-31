@@ -1,128 +1,50 @@
 [
   {
-    "slug": "us-senator-padilla-green-card-seven-years-residency-bill",
-    "headline": "US Senator Pushes Bill to Grant Green Cards to Immigrants After Seven Years of Residency",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-senator-padilla-green-card-seven-years-residency-bill.jpg"
+    "slug": "dahi-wale-tinde-yogurt-curry",
+    "headline": "Dahi Wale Tinde: The Yogurt Curry That Makes Humble Tinda Irresistible",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dahi-wale-tinde-yogurt-curry.jpg"
   },
   {
-    "slug": "gulveer-singh-first-indian-cwg-10000m-medal-day-5",
-    "headline": "Gulveer Singh Creates History With India's First Commonwealth Games 10,000m Medal",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gulveer-singh-first-indian-cwg-10000m-medal-day-5.jpg"
+    "slug": "air-india-ministry-tourism-incredible-india",
+    "headline": "Air India Partners With Ministry of Tourism to Boost Incredible India Globally",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-ministry-tourism-incredible-india.jpg"
   },
   {
-    "slug": "maldives-bangladesh-saarc-revival-muizzu-mediation",
-    "headline": "Maldives Joins Bangladesh in Pushing for SAARC Revival as Muizzu Offers to Bridge India-Pakistan Divide",
+    "slug": "ai-calorie-apps-undercount-nih-study",
+    "headline": "AI Calorie-Tracking Apps Undercount by Hundreds of Calories, NIH Study Finds",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-calorie-apps-undercount-nih-study.jpg"
+  },
+  {
+    "slug": "indigo-bhatia-pilot-duty-rules-review",
+    "headline": "IndiGo's Bhatia Slams India's Pilot Duty Rules as 'Uncompetitive,' Seeks Review",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/maldives-bangladesh-saarc-revival-muizzu-mediation.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-bhatia-pilot-duty-rules-review.jpg"
   },
   {
-    "slug": "indian-banks-rs-7000-crore-minimum-balance-charges-fy26",
-    "headline": "Indian Banks Collected Over Rs 7,000 Crore From Account Holders for Low Balance Penalties in FY26",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-banks-rs-7000-crore-minimum-balance-charges-fy26.jpg"
+    "slug": "russian-missile-poland-ukraine-strikes",
+    "headline": "Russian Missile Lands in Poland as Overnight Strikes Kill Nine Across Ukraine",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/russian-missile-poland-ukraine-strikes.jpg"
   },
   {
-    "slug": "microsoft-project-perception-ai-security-platform-launch",
-    "headline": "Microsoft Launches Project Perception, an AI Security Platform That Pits Red and Blue Team Agents Against Each Other",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/microsoft-project-perception-ai-security-platform-launch.jpg"
-  },
-  {
-    "slug": "glp1-drugs-lower-obesity-cancer-risk-studies",
-    "headline": "GLP-1 Weight Loss Drugs Linked to Sharply Lower Risk of Obesity-Related Cancers, Studies Show",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/glp1-drugs-lower-obesity-cancer-risk-studies.jpg"
-  },
-  {
-    "slug": "houthi-strikes-saudi-aramco-jizan-yanbu-red-sea",
-    "headline": "Houthi Strikes Hit Saudi Aramco Facilities at Jizan and Yanbu as Red Sea Oil Route Comes Under Threat",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/houthi-strikes-saudi-aramco-jizan-yanbu-red-sea.jpg"
-  },
-  {
-    "slug": "trump-saudi-arabia-nuclear-deal-proliferation-concerns",
-    "headline": "Trump Signs Nuclear Deal With Saudi Arabia, Sparking Proliferation Fears Across the Middle East",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-saudi-arabia-nuclear-deal-proliferation-concerns.jpg"
-  },
-  {
-    "slug": "trump-claims-good-talks-iran-threatens-pickaxe-mountain-strikes",
-    "headline": "Trump Claims 'Good Talks' With Iran but Threatens Strikes on Pickaxe Mountain if Deal Fails",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-claims-good-talks-iran-threatens-pickaxe-mountain-strikes.jpg"
-  },
-  {
-    "slug": "toyota-launches-9th-gen-hilux-india-from-rs-32-lakh",
-    "headline": "Toyota Launches 9th-Generation Hilux in India Starting at Rs 31.99 Lakh",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/toyota-launches-9th-gen-hilux-india-from-rs-32-lakh.jpg"
-  },
-  {
-    "slug": "trump-rejects-netanyahu-objections-f35-sale-turkey",
-    "headline": "Trump Brushes Off Netanyahu's Opposition to F-35 Fighter Jet Sale to Turkey",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-rejects-netanyahu-objections-f35-sale-turkey.jpg"
-  },
-  {
-    "slug": "swiggy-taps-former-myntra-ceo-nandita-sinha-to-lead-instamart",
-    "headline": "Swiggy Taps Former Myntra CEO Nandita Sinha to Lead Instamart",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/swiggy-taps-former-myntra-ceo-nandita-sinha-to-lead-instamart.jpg"
-  },
-  {
-    "slug": "apple-smart-home-push-homepad-siri-ai-three-devices",
-    "headline": "Apple Prepares Biggest Smart Home Push With Three New Devices and AI-Powered Siri at the Center",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-smart-home-push-homepad-siri-ai-three-devices.jpg"
-  },
-  {
-    "slug": "esha-singh-second-consecutive-world-cup-gold-india-two-medals-hangzhou",
-    "headline": "Esha Singh Clinches Second Consecutive World Cup Gold as India Sweeps Two Medals in Hangzhou",
+    "slug": "lovepreet-silver-seema-bronze-cwg-2026",
+    "headline": "Lovepreet Singh Wins Silver, Seema Bags Bronze as India Adds to CWG Tally",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/esha-singh-second-consecutive-world-cup-gold-india-two-medals-hangzhou.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lovepreet-silver-seema-bronze-cwg-2026.jpg"
   },
   {
-    "slug": "recursive-superintelligence-410-million-aws-compute-deal-self-improving-ai",
-    "headline": "Richard Socher's Recursive Superintelligence Signs $410 Million AWS Compute Deal to Scale Self-Improving AI",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/recursive-superintelligence-410-million-aws-compute-deal-self-improving-ai.jpg"
+    "slug": "air-india-easy-connect-amritsar-punjab-27-destinations",
+    "headline": "Air India Launches 'Easy Connect' From Amritsar, Linking Punjab to 27 Global Destinations",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-easy-connect-amritsar-punjab-27-destinations.jpg"
   },
   {
-    "slug": "cambridge-study-why-some-smokers-get-cancer-genetics-nature",
-    "headline": "Cambridge Study Reveals Why Some Smokers Get Cancer and Others Do Not",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cambridge-study-why-some-smokers-get-cancer-genetics-nature.jpg"
-  },
-  {
-    "slug": "india-q1-results-lt-radico-hul-suzlon-fy27",
-    "headline": "L&T Profit Rises 14% as India's Q1 Earnings Season Delivers Mixed Signals",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-q1-results-lt-radico-hul-suzlon-fy27.jpg"
-  },
-  {
-    "slug": "planetary-health-diet-heart-disease-risk-postmenopausal-women-study",
-    "headline": "Plant-Forward Planetary Health Diet Linked to 28 Percent Lower Heart Disease Risk in Women",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/planetary-health-diet-heart-disease-risk-postmenopausal-women-study.jpg"
-  },
-  {
-    "slug": "iran-drones-erbil-us-consulate-ceasefire-talks-2026",
-    "headline": "Iranian Drones Strike Near US Consulate in Erbil as Conflict Enters Fragile Ceasefire",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-drones-erbil-us-consulate-ceasefire-talks-2026.jpg"
-  },
-  {
-    "slug": "india-omicron-rf5-variant-andhra-pradesh-tamil-nadu-covid-2026",
-    "headline": "India Detects Omicron RF.5 Variant in Andhra Pradesh and Tamil Nadu as Officials Urge Calm",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-omicron-rf5-variant-andhra-pradesh-tamil-nadu-covid-2026.jpg"
-  },
-  {
-    "slug": "geneva-youngest-ever-world-chess-championship-gukesh-sindarov",
-    "headline": "Geneva to Host Youngest-Ever World Chess Championship as Gukesh Defends Title Against Sindarov",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/geneva-youngest-ever-world-chess-championship-gukesh-sindarov.jpg"
+    "slug": "air-india-turnaround-decade-tata-sons-losses-double",
+    "headline": "Air India Turnaround Could Take a Decade, Tata Sons Chief Warns as Losses Double to $2.3 Billion",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-turnaround-decade-tata-sons-losses-double.jpg"
   }
 ]
