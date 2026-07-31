@@ -1,50 +1,104 @@
 [
   {
-    "slug": "hyderabad-police-register-case-meta-india-head-anti-modi-facebook-videos",
-    "headline": "Hyderabad Police Register Case Against Meta India Head Over Anti-Modi Facebook Videos",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hyderabad-police-register-case-meta-india-head-anti-modi-facebook-videos.jpg"
-  },
-  {
-    "slug": "india-16-nationals-killed-middle-east-us-iran-seafarers",
-    "headline": "16 Indians Killed in Middle East Since February, Government Tells Parliament",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-16-nationals-killed-middle-east-us-iran-seafarers.jpg"
-  },
-  {
-    "slug": "japan-south-korea-joint-yen-intervention-boj-rates",
-    "headline": "Japan and South Korea Stage Rare Joint Currency Intervention as Yen Surges 3%",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/japan-south-korea-joint-yen-intervention-boj-rates.jpg"
-  },
-  {
-    "slug": "dahi-wale-tinde-yogurt-curry",
-    "headline": "Dahi Wale Tinde: The Yogurt Curry That Makes Humble Tinda Irresistible",
+    "slug": "essemm-coimbatore-100-crore-kitchen-automation",
+    "headline": "Coimbatore's EssEmm Corporation Builds ₹100 Crore Business Automating Indian Kitchens",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dahi-wale-tinde-yogurt-curry.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/essemm-coimbatore-100-crore-kitchen-automation.jpg"
   },
   {
-    "slug": "air-india-ministry-tourism-incredible-india",
-    "headline": "Air India Partners With Ministry of Tourism to Boost Incredible India Globally",
+    "slug": "ai-171-probe-fuel-switch-tests-clear",
+    "headline": "No Defects Found in AI-171 Fuel Switch as India's Crash Probe Nears Completion",
     "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-ministry-tourism-incredible-india.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-171-probe-fuel-switch-tests-clear.jpg"
   },
   {
-    "slug": "ai-calorie-apps-undercount-nih-study",
-    "headline": "AI Calorie-Tracking Apps Undercount by Hundreds of Calories, NIH Study Finds",
+    "slug": "hyderabad-home-kitchens-migrant-homesickness",
+    "headline": "How Home Kitchens Became Hyderabad's Answer to Migrant Homesickness",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-calorie-apps-undercount-nih-study.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hyderabad-home-kitchens-migrant-homesickness.jpg"
   },
   {
-    "slug": "indigo-bhatia-pilot-duty-rules-review",
-    "headline": "IndiGo's Bhatia Slams India's Pilot Duty Rules as 'Uncompetitive,' Seeks Review",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-bhatia-pilot-duty-rules-review.jpg"
+    "slug": "cordelia-cruises-mangaluru-port-fleet-expansion",
+    "headline": "Cordelia Cruises Eyes Mangaluru as Next Port of Call in Fleet Expansion Push",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cordelia-cruises-mangaluru-port-fleet-expansion.jpg"
   },
   {
-    "slug": "russian-missile-poland-ukraine-strikes",
-    "headline": "Russian Missile Lands in Poland as Overnight Strikes Kill Nine Across Ukraine",
+    "slug": "biryani-restaurant-mandarin-video-viral",
+    "headline": "Indian Biryani Restaurant's Mandarin-Language Video Goes Viral",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/biryani-restaurant-mandarin-video-viral.jpg"
+  },
+  {
+    "slug": "israel-election-2026-how-it-works-key-players",
+    "headline": "Israel Heads to First Post-October 7 Election With Netanyahu's Grip on Power in Doubt",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/russian-missile-poland-ukraine-strikes.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/israel-election-2026-how-it-works-key-players.jpg"
+  },
+  {
+    "slug": "medicaid-work-requirements-hospital-crisis",
+    "headline": "Medicaid Work Requirements Set to Strip Coverage From Millions as US Hospitals Sound the Alarm",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/medicaid-work-requirements-hospital-crisis.jpg"
+  },
+  {
+    "slug": "helldivers-2-warhammer-40k-castellans-creed-warbond-detailed",
+    "headline": "Helldivers 2 Reveals Full Warhammer 40K Warbond Arsenal Ahead of August Launch",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/helldivers-2-warhammer-40k-castellans-creed-warbond-detailed.jpg"
+  },
+  {
+    "slug": "woolly-mammoth-dna-study-hunting-sex-chromosome-anomaly",
+    "headline": "Ancient DNA From 521 Woolly Mammoths Reveals Ice Age Humans Hunted Females, Plus a First-Ever Chromosomal Anomaly",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/woolly-mammoth-dna-study-hunting-sex-chromosome-anomaly.jpg"
+  },
+  {
+    "slug": "seattle-police-chief-barnes-resigns-bite-shooting",
+    "headline": "Seattle Police Chief Shon Barnes Resigns Over Botched Response to Bite of Seattle Shooting",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/seattle-police-chief-barnes-resigns-bite-shooting.jpg"
+  },
+  {
+    "slug": "us-sanctions-india-china-russia-mahan-air-support",
+    "headline": "US Sanctions Entities in India, China, Russia for Supporting Iran's Mahan Air",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-sanctions-india-china-russia-mahan-air-support.jpg"
+  },
+  {
+    "slug": "mosquitoes-learn-love-deet-repellent-study",
+    "headline": "Mosquitoes Can Learn to Love DEET, Turning Bug Spray Into a Dinner Bell",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mosquitoes-learn-love-deet-repellent-study.jpg"
+  },
+  {
+    "slug": "taslima-nasrin-returns-kolkata-after-exile",
+    "headline": "Taslima Nasrin Set to Return to Kolkata After 19 Years of Exile",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/taslima-nasrin-returns-kolkata-after-exile.jpg"
+  },
+  {
+    "slug": "shift-up-stellar-blade-blood-rain-ai-music-video-backlash",
+    "headline": "Shift Up Faces Backlash Over AI-Generated K-Pop Music Video for Stellar Blade: Blood Rain",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shift-up-stellar-blade-blood-rain-ai-music-video-backlash.jpg"
+  },
+  {
+    "slug": "hamas-disarmament-agreement-trump-board-of-peace-gaza",
+    "headline": "Hamas Agrees to Phased Disarmament Under Trump's Gaza Plan, but Israel Remains Skeptical",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hamas-disarmament-agreement-trump-board-of-peace-gaza.jpg"
+  },
+  {
+    "slug": "tahir-hussain-life-sentence-ankit-sharma-murder-delhi-riots",
+    "headline": "Delhi Court Sentences Tahir Hussain to Life in Prison for IB Officer's Murder During 2020 Riots",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tahir-hussain-life-sentence-ankit-sharma-murder-delhi-riots.jpg"
+  },
+  {
+    "slug": "icmr-nin-dietary-framework-dual-burden-malnutrition",
+    "headline": "ICMR-NIN's Dietary Framework Tackles India's Dual Burden of Malnutrition and Obesity",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/icmr-nin-dietary-framework-dual-burden-malnutrition.jpg"
   }
 ]
