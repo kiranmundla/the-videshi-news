@@ -1,0 +1,81 @@
+[
+  {
+    "id": "2580cee6-5bc2-42d6-b875-96891511a189",
+    "headline": "Air India Launches 'Easy Connect' From Amritsar, Linking Punjab to 27 Global Des",
+    "slug": "air-india-easy-connect-amritsar-punjab-27-destinations",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from NRIs who frequently travel from Amritsar to international destinations. This could provide personal insights into how the 'Easy Connect' program will benefit them specifically.",
+        "Provide context on how this new service aligns with the needs of the NRI community, such as statistics on the number of NRIs from Punjab or the importance of seamless travel for family visits and business.",
+        "Enhance the article's depth by discussing potential economic impacts on Punjab due to increased connectivity, such as tourism growth or business opportunities for NRIs, which would resonate with the diaspora audience.",
+        "Add a section on how the 'Easy Connect' program compares to similar services offered by other airlines, particularly those that cater to the NRI market, to give readers a broader perspective."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India tweet announcing the 'Easy Connect' service, as it would provide authenticity and a direct source of information for readers."
+      ]
+    }
+  },
+  {
+    "id": "12141918-a7fb-4320-bbd4-80d82f445111",
+    "headline": "Air India Turnaround Could Take a Decade, Tata Sons Chief Warns as Losses Double",
+    "slug": "air-india-turnaround-decade-tata-sons-losses-double",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Air India's performance impacts NRIs, particularly in terms of travel options, costs, and connectivity to India. This could involve discussing the significance of Air India for NRIs traveling back home or for business purposes.",
+        "Provide context on how Air India's turnaround efforts compare to other airlines that serve the NRI community, such as Emirates or Qatar Airways, to give readers a clearer picture of the competitive landscape.",
+        "Include a brief section on how Air India's challenges might affect ticket prices or service quality for NRIs, as these are direct concerns for the diaspora audience.",
+        "Mention any potential implications for NRIs in terms of job opportunities or investments in the airline sector as Air India seeks to modernize and expand its fleet."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India Twitter account or a relevant tweet from Tata Sons regarding their plans for Air India to provide real-time updates and engagement with the airline's strategy."
+      ]
+    }
+  },
+  {
+    "id": "9f05e871-dc7b-4f9d-a6d9-e33e4ae1e28f",
+    "headline": "Four Companies Named as H-1B 'Willful Violators' as Labor Department Steps Up En",
+    "slug": "h1b-willful-violators-project-firewall-labor-department",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian professionals currently in the U.S. on how these enforcement actions impact their job security and opportunities. This would provide a personal touch and directly relate to the NRI audience.",
+        "Provide context on how the enforcement of H-1B rules affects the Indian diaspora specifically, such as statistics on the percentage of H-1B visa holders who are Indian nationals. This would help readers understand the direct implications for the community.",
+        "Clarify the potential long-term implications of 'Project Firewall' for future H-1B applicants, especially those from the Indian diaspora. Discuss how this might influence their job prospects or the hiring practices of companies that typically sponsor H-1B visas.",
+        "Include a brief section on the historical context of H-1B visa enforcement and how it has evolved over the years, particularly during different administrations, to give readers a better understanding of the current landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding 'Project Firewall' to provide readers with direct access to government communications on this initiative."
+      ]
+    }
+  },
+  {
+    "id": "6cd813f4-74d4-4ee3-9d31-b262c129ecdb",
+    "headline": "Trump Administration Weighs $100,000 OPT Fee for International Students After Co",
+    "slug": "trump-100000-opt-fee-international-students-court-blocks-h1b",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have benefited from the OPT program or are concerned about the proposed fee. This will help personalize the impact of the policy on the Indian diaspora.",
+        "Provide additional context on how the proposed OPT fee could affect Indian students specifically, as they represent a significant portion of international students in the U.S. This could include statistics or anecdotes about their contributions to the U.S. economy.",
+        "Clarify the implications of the proposed fee on the job market for international students, particularly in industries where Indian graduates are heavily represented. This could help readers understand the broader economic impact.",
+        "Discuss potential responses from the Indian government or diaspora organizations regarding this proposal, which would add depth and relevance to the article for NRI readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding the proposed OPT fee to provide readers with direct access to official information and updates.",
+        "Consider embedding a relevant video or infographic that explains the OPT program and its significance to international students, which could enhance understanding and engagement."
+      ]
+    }
+  }
+]

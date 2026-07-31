@@ -886,5 +886,15 @@
     "errors": 0,
     "hero_slug": "toyota-launches-9th-gen-hilux-india-from-rs-32-lakh",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-07-30T13:55:59.028496+00:00Z",
+    "subject": "The Videshi Daily \u2014 July 30, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "bengaluru-restaurants-august-15-deadline-quit-swiggy-zomato",
+    "story_count": 5
   }
 ]

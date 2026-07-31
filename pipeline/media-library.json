@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-07-29T00:04:53Z",
+ "_updated": "2026-07-30T12:03:18Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -20591,6 +20591,226 @@
    "duration": null,
    "quality_score": 80.6,
    "added_date": "2026-07-29T00:04:53Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--oppo--70fa4e",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oppo-70fa4e.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oppo-70fa4e.jpg",
+   "subject": "Oppo",
+   "subject_type": "thing",
+   "caption": "Dabri shop for Oppo and Vivo mobiles with additional electronics and other home appliances",
+   "attribution": "Wikimedia Commons / VartamanVarta, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dabri_Oppo-Vivo_shop.jpg",
+   "tags": [
+    "oppo"
+   ],
+   "width": 4080,
+   "height": 3072,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-30T12:02:41Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--oppo--725bef",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oppo-725bef.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/oppo-725bef.jpg",
+   "subject": "Oppo",
+   "subject_type": "thing",
+   "caption": "Oppo A38 in Glowing Gold. Taken in May 2026.",
+   "attribution": "Wikimedia Commons / Danielrayyan09, CC BY 4.0",
+   "license": "CC BY 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:OPPO_A38_in_Glowing_Gold.jpg",
+   "tags": [
+    "oppo"
+   ],
+   "width": 4080,
+   "height": 3060,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-30T12:02:44Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--india-smartphones--ccad31",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-smartphones-ccad31.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-smartphones-ccad31.jpg",
+   "subject": "India smartphones",
+   "subject_type": "thing",
+   "caption": "Redmi 6A Golden чохли",
+   "attribution": "Wikimedia Commons / Nickispeaki, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Redmi_6A_Golden_cases1.jpg",
+   "tags": [
+    "india smartphones"
+   ],
+   "width": 2637,
+   "height": 3974,
+   "duration": null,
+   "quality_score": 91.6,
+   "added_date": "2026-07-30T12:02:49Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--india-smartphones--b325fd",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-smartphones-b325fd.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-smartphones-b325fd.jpg",
+   "subject": "India smartphones",
+   "subject_type": "thing",
+   "caption": "Redmi Note10 Phone",
+   "attribution": "Wikimedia Commons / Pakawut kenta, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Redmi_Note10_4G.jpg",
+   "tags": [
+    "india smartphones"
+   ],
+   "width": 2592,
+   "height": 1944,
+   "duration": null,
+   "quality_score": 70.2,
+   "added_date": "2026-07-30T12:02:52Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--jsw-steel--25c410",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/jsw-steel-25c410.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/jsw-steel-25c410.jpg",
+   "subject": "jsw steel",
+   "subject_type": "thing",
+   "caption": "JSW STEEL Ltd IN MECHERI",
+   "attribution": "Wikimedia Commons / Ranjithkumar Murugesan, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:JSW_STEEL_Ltd_IN_MECHERI.jpg",
+   "tags": [
+    "jsw steel"
+   ],
+   "width": 4096,
+   "height": 1840,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-30T12:02:57Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--jsw-steel--eae094",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/jsw-steel-eae094.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/jsw-steel-eae094.jpg",
+   "subject": "jsw steel",
+   "subject_type": "thing",
+   "caption": "JSW Steel Dolvi Works",
+   "attribution": "Wikimedia Commons / Oleg Yunakov, CC0",
+   "license": "CC0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:JSW_Steel_Dolvi_Works.jpg",
+   "tags": [
+    "jsw steel"
+   ],
+   "width": 3840,
+   "height": 2880,
+   "duration": null,
+   "quality_score": 89.5,
+   "added_date": "2026-07-30T12:03:00Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--steel--ab8352",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/steel-ab8352.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/steel-ab8352.jpg",
+   "subject": "steel",
+   "subject_type": "thing",
+   "caption": "steel rod grids carefully stacked",
+   "attribution": "Wikimedia Commons / Mariojan photo, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Concrete_steel_rods_Genoa_IT.jpg",
+   "tags": [
+    "steel"
+   ],
+   "width": 2500,
+   "height": 1715,
+   "duration": null,
+   "quality_score": 68.8,
+   "added_date": "2026-07-30T12:03:04Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--steel--cb6c54",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/steel-cb6c54.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/steel-cb6c54.jpg",
+   "subject": "steel",
+   "subject_type": "thing",
+   "caption": "The steel structure \"Murinsel\" is floating in the river Mur in Graz. It was designed by Vito Acconci, an American artist.",
+   "attribution": "Wikimedia Commons / Isiwal, CC BY-SA 4.0",
+   "license": "CC BY-SA 4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Graz_Murinsel_gangway-2478.jpg",
+   "tags": [
+    "steel"
+   ],
+   "width": 4864,
+   "height": 3243,
+   "duration": null,
+   "quality_score": 92.0,
+   "added_date": "2026-07-30T12:03:10Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--space--e269a7",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/space-e269a7.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/space-e269a7.jpg",
+   "subject": "space",
+   "subject_type": "thing",
+   "caption": "Timeline of the universe. A representation of the evolution of the universe over 13.77 billion years. The far left depicts the earliest moment we can now probe, when a period of \"inflation\" produced a burst of exponential growth in the universe. (Size is depicted by the vertical ",
+   "attribution": "Wikimedia Commons / NASA/WMAP Science Team, Public domain",
+   "license": "Public domain",
+   "source_url": "https://commons.wikimedia.org/wiki/File:CMB_Timeline300_no_WMAP.jpg",
+   "tags": [
+    "space"
+   ],
+   "width": 3000,
+   "height": 1980,
+   "duration": null,
+   "quality_score": 76.5,
+   "added_date": "2026-07-30T12:03:14Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--space--f61c62",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/space-f61c62.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/space-f61c62.jpg",
+   "subject": "space",
+   "subject_type": "thing",
+   "caption": "A chapel at the Vordere Niedere alp, built in 2008 in Andelsbuch, after plans of architects Cukrowicz Nachbaur Zt GmbH.",
+   "attribution": "Wikimedia Commons / böhringer friedrich, CC BY-SA 2.5",
+   "license": "CC BY-SA 2.5",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Cukrowicz_nachbaur_Kapelle_1.JPG",
+   "tags": [
+    "space"
+   ],
+   "width": 2774,
+   "height": 3794,
+   "duration": null,
+   "quality_score": 88.8,
+   "added_date": "2026-07-30T12:03:18Z",
    "last_used": null,
    "times_used": 0
   }
