@@ -368,6 +368,9 @@ GOOGLE_NEWS_SEARCHES = [
     '"Indian food" OR "Indian recipe" OR biryani OR "dosa" OR "Indian restaurant"',
     'turmeric OR "masala" OR "Indian grocery" OR "Indian spice" OR paneer',
     '"Air India" OR "IndiGo airlines" OR "India flights" OR "India travel"',
+    # Kids & education — Indian-origin youth achievements and competitions
+    '"Indian American" student (competition OR award OR winner OR science OR spelling)',
+    '"Indian origin" (kid OR teen OR student) (wins OR award OR champion OR finalist)',
 ]
 
 def build_google_feeds():
