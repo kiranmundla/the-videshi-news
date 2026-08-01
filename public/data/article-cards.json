@@ -1,62 +1,74 @@
 [
   {
-    "slug": "curiosity-rover-sea-of-polygons-mars-discovery",
-    "headline": "NASA's Curiosity Rover Photographs a Vast 'Sea of Polygons' on Mars That 'Took Our Breath Away'",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/curiosity-rover-sea-of-polygons-mars-discovery.jpg"
-  },
-  {
-    "slug": "pm-modi-inaugurates-bhogapuram-airport-andhra-pradesh",
-    "headline": "PM Modi Inaugurates Bhogapuram Airport, Andhra Pradesh's First Greenfield Hub",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pm-modi-inaugurates-bhogapuram-airport-andhra-pradesh.jpg"
-  },
-  {
-    "slug": "kiara-advani-toxic-tabaahi-backlash-gender-bias-benedict-garrett",
-    "headline": "Kiara Advani's Co-Star Calls Out Gender Bias After Toxic Song Backlash",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kiara-advani-toxic-tabaahi-backlash-gender-bias-benedict-garrett.jpg"
-  },
-  {
-    "slug": "dhurandhar-ranveer-singh-backend-deal-risk-sharing-model",
-    "headline": "How Dhurandhar's Risk-Sharing Model Made Ranveer Singh a Bigger Winner",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhurandhar-ranveer-singh-backend-deal-risk-sharing-model.jpg"
-  },
-  {
-    "slug": "ircc-processing-times-study-permit-rise-work-permit-low-july-2026",
-    "headline": "Canada Study Permit Wait Times Rise as Work Permits Hit 2026 Low",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ircc-processing-times-study-permit-rise-work-permit-low-july-2026.jpg"
-  },
-  {
-    "slug": "gsm-foils-chairman-hitmen-kill-md-vasai-rs-32-crore",
-    "headline": "GSM Foils Chairman Hired Hitmen to Kill Company's Managing Director Over Rs 32 Crore Debt, Police Say",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gsm-foils-chairman-hitmen-kill-md-vasai-rs-32-crore.jpg"
-  },
-  {
-    "slug": "agra-kesar-petha-recipe-home-saffron-sweet",
-    "headline": "How to Make Authentic Agra-Style Kesar Petha at Home in Three Steps",
+    "slug": "karnataka-restaurants-revolt-swiggy-zomato-august-15-ultimatum",
+    "headline": "Karnataka Restaurants Escalate Revolt Against Swiggy and Zomato With August 15 Ultimatum",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/agra-kesar-petha-recipe-home-saffron-sweet.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-restaurants-revolt-swiggy-zomato-august-15-ultimatum.jpg"
   },
   {
-    "slug": "cabinet-approves-samudra-manthan-84084-crore-oil-gas-exploration",
-    "headline": "Cabinet Approves Rs 84,084 Crore 'Samudra Manthan' Scheme for Oil and Gas Exploration",
+    "slug": "who-dementia-guidelines-air-pollution-risk-factor-india",
+    "headline": "WHO Says 45% of Dementia Cases Preventable, Adds Air Pollution as Risk Factor",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/who-dementia-guidelines-air-pollution-risk-factor-india.jpg"
+  },
+  {
+    "slug": "minnesota-bans-crypto-atms-scam-losses",
+    "headline": "Minnesota Bans Crypto ATMs After Residents Report Nearly $1 Million in Scam Losses",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cabinet-approves-samudra-manthan-84084-crore-oil-gas-exploration.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/minnesota-bans-crypto-atms-scam-losses.jpg"
   },
   {
-    "slug": "toronto-police-warrant-indian-man-posed-psychic-fraud",
-    "headline": "Toronto Police Issue Warrant for Indian Man Who Posed as Psychic in Fraud Scheme",
+    "slug": "spacex-stock-hits-record-low-starship-heat-shield-concerns",
+    "headline": "SpaceX Stock Hits Record Low as Heat Shield Doubts and Lockup Fears Mount",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-stock-hits-record-low-starship-heat-shield-concerns.jpg"
+  },
+  {
+    "slug": "delhi-lakshmi-yojana-portal-live-women-registration",
+    "headline": "Delhi Lakshmi Yojana Portal Goes Live, Offers Women Rs 2,500 Monthly Aid",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-lakshmi-yojana-portal-live-women-registration.jpg"
+  },
+  {
+    "slug": "kerala-monsoon-floods-2026-kottayam-death-toll-rises",
+    "headline": "Kerala Monsoon Death Toll Climbs to Six as Floods and Landslips Ravage Kottayam",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kerala-monsoon-floods-2026-kottayam-death-toll-rises.jpg"
+  },
+  {
+    "slug": "nirmal-purja-confirmed-dead-broad-peak-avalanche",
+    "headline": "Nirmal Purja Confirmed Dead After Broad Peak Avalanche Kills All 10 Climbers",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/toronto-police-warrant-indian-man-posed-psychic-fraud.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nirmal-purja-confirmed-dead-broad-peak-avalanche.jpg"
   },
   {
-    "slug": "india-gst-collections-14-month-high-2-lakh-crore-july-2026",
-    "headline": "India's GST Collections Hit 14-Month High, Cross Rs 2 Lakh Crore for Second Time in FY27",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gst-collections-14-month-high-2-lakh-crore-july-2026.jpg"
+    "slug": "uefa-declares-loss-of-confidence-in-fifa-president-infantino",
+    "headline": "UEFA Declares Loss of Confidence in FIFA President Infantino Over World Cup Sell-Off",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uefa-declares-loss-of-confidence-in-fifa-president-infantino.jpg"
+  },
+  {
+    "slug": "visa-free-countries-indian-passport-holders-2026",
+    "headline": "Indian Passport Now Offers Visa-Free or Visa-on-Arrival Access to 74 Countries",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/visa-free-countries-indian-passport-holders-2026.jpg"
+  },
+  {
+    "slug": "karnataka-totapuri-neelam-mangoes-maldives-air-export",
+    "headline": "Karnataka Ships First Air Cargo of Totapuri and Neelam Mangoes to Maldives",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-totapuri-neelam-mangoes-maldives-air-export.jpg"
+  },
+  {
+    "slug": "game-devs-itchio-bundle-laid-off-workers",
+    "headline": "Game Developers Launch Itch.io Bundle to Fund Relief for Laid-Off Workers",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/game-devs-itchio-bundle-laid-off-workers.jpg"
+  },
+  {
+    "slug": "thousands-march-kyiv-ousted-defence-minister",
+    "headline": "Thousands March Down Kyiv's Khreshchatyk Demanding Ousted Defence Minister's Return",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thousands-march-kyiv-ousted-defence-minister.jpg"
   }
 ]
