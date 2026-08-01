@@ -1,0 +1,80 @@
+[
+  {
+    "id": "858caa5f-6665-46f7-9686-bb749b96a2d6",
+    "headline": "IndiGo to Discontinue All Widebody Operations, End Norse Atlantic Lease",
+    "slug": "indigo-discontinue-widebody-norse-atlantic-lease-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how IndiGo's decision impacts NRIs traveling between India and Europe, particularly in terms of connectivity and travel options. Consider adding quotes or perspectives from NRI travelers or travel experts.",
+        "Provide context on how the discontinuation of widebody operations may affect the overall travel experience for NRIs, including potential alternatives for long-haul travel and the implications for future travel plans.",
+        "Clarify the timeline of events by including a brief background on IndiGo's initial plans for long-haul operations and how this decision fits into the broader landscape of airline operations in the region.",
+        "Consider adding a section that discusses the potential long-term implications of this decision for the Indian diaspora, such as how it might affect travel costs or the availability of direct flights to key destinations."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from IndiGo or a travel industry expert discussing the impact of this decision on long-haul travel, particularly for the Indian diaspora."
+      ]
+    }
+  },
+  {
+    "id": "e296ece5-f917-40ef-80c6-5e6678b08dc5",
+    "headline": "US and Israel Planning Bombing Campaign Against Iranian Energy Infrastructure",
+    "slug": "us-israel-planning-iran-energy-strikes-july-2026",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian NRIs living in the Gulf region about how the conflict and potential strikes could impact their lives and businesses. This would personalize the article and make it more relevant to the site's audience.",
+        "Provide additional context on how the disruption of the Strait of Hormuz specifically affects Indian expatriates, particularly in terms of energy prices or job security in the Gulf. This could help readers understand the direct implications of the conflict on their community.",
+        "Clarify the timeline of events leading up to the planned strikes, as the current structure jumps between topics. A brief timeline or bullet points summarizing key events could enhance clarity and help readers follow the progression of the conflict.",
+        "Include a brief section on the historical relationship between India and Iran, particularly in terms of energy imports, to give readers a better understanding of why this situation is significant for the Indian diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any visa implications for NRIs or updates related to the conflict, as this could provide immediate relevance to the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "f391ef7d-7393-41a3-b48a-57ca0219d5da",
+    "headline": "Federal Plan Mandates Steep Colorado River Water Cuts for California, Arizona an",
+    "slug": "federal-plan-mandates-steep-colorado-river-water-cuts-california-arizona-nevada",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/18501983/pexels-photo-18501983.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs living in the affected states, particularly those involved in agriculture or water management, to illustrate how these water cuts could impact their businesses or communities back in India.",
+        "Provide additional context on how these water cuts may affect the Indian diaspora, especially those who have investments in agriculture or real estate in the affected states, to help readers understand the broader implications for NRIs.",
+        "Consider restructuring the article to start with the potential impacts on the diaspora before diving into the technical details of the water cuts, which would better align with the site's focus on NRI interests."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the U.S. Bureau of Reclamation or a local news outlet discussing the implications of the water cuts, which would provide real-time updates and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "5e3a67aa-16ee-4ff7-95ab-7456a890bd84",
+    "headline": "Microsoft to Launch Copilot Super App This Quarter, Merging Chat, Code and AI Ag",
+    "slug": "microsoft-copilot-super-app-launch-this-quarter",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the Copilot super app could impact Indian tech professionals working abroad, particularly in terms of collaboration and productivity enhancements that could benefit NRIs.",
+        "Provide context on how this super app may influence the job market for NRIs in tech, especially in relation to remote work opportunities and the potential for increased competition in the global tech landscape.",
+        "Include a brief section on how Indian startups or companies might leverage this technology, which would resonate with the NRI audience interested in the Indian tech ecosystem.",
+        "Clarify the implications of the app's features for Indian developers and businesses, perhaps by discussing how it could streamline workflows or improve project management for those working with teams in India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Microsoft or Satya Nadella announcing the Copilot super app, which would provide direct confirmation and enhance credibility.",
+        "Consider embedding a video from a tech conference or webinar where the Copilot super app was discussed, offering readers a visual and auditory understanding of its features."
+      ]
+    }
+  }
+]
