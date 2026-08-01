@@ -1,98 +1,62 @@
 [
   {
-    "slug": "india-boxing-record-10-medals-cwg-2026-glasgow",
-    "headline": "India's Boxers Make CWG History With Record 10 Guaranteed Medals in Glasgow",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-boxing-record-10-medals-cwg-2026-glasgow.jpg"
+    "slug": "curiosity-rover-sea-of-polygons-mars-discovery",
+    "headline": "NASA's Curiosity Rover Photographs a Vast 'Sea of Polygons' on Mars That 'Took Our Breath Away'",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/curiosity-rover-sea-of-polygons-mars-discovery.jpg"
   },
   {
-    "slug": "sebi-clears-nse-settlement-mega-ipo",
-    "headline": "SEBI Clears Path for NSE's Mega IPO With ₹1,491 Crore Settlement",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sebi-clears-nse-settlement-mega-ipo.jpg"
-  },
-  {
-    "slug": "migrant-children-lose-lawyers-federal-contract-2026",
-    "headline": "Migrant Children Risk Losing Legal Representation as Federal Aid Contract Expires",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/migrant-children-lose-lawyers-federal-contract-2026.jpg"
-  },
-  {
-    "slug": "lenacapavir-hiv-prevention-drug-usaid-cuts-block-access",
-    "headline": "Breakthrough HIV Prevention Drug Could Slash Infections, but Funding Cuts Block Access",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lenacapavir-hiv-prevention-drug-usaid-cuts-block-access.jpg"
-  },
-  {
-    "slug": "india-demands-scrutiny-pakistan-pok-crackdown-2026",
-    "headline": "India Demands Global Scrutiny of Pakistan's Crackdown in PoK as Death Toll Mounts",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-demands-scrutiny-pakistan-pok-crackdown-2026.jpg"
-  },
-  {
-    "slug": "whatsapp-web-audio-video-calling-browser-2026",
-    "headline": "WhatsApp Web Now Supports Full Audio and Video Calling From Your Browser",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/whatsapp-web-audio-video-calling-browser-2026.jpg"
-  },
-  {
-    "slug": "indigo-discontinue-widebody-norse-atlantic-lease-2026",
-    "headline": "IndiGo to Discontinue All Widebody Operations, End Norse Atlantic Lease",
+    "slug": "pm-modi-inaugurates-bhogapuram-airport-andhra-pradesh",
+    "headline": "PM Modi Inaugurates Bhogapuram Airport, Andhra Pradesh's First Greenfield Hub",
     "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-discontinue-widebody-norse-atlantic-lease-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pm-modi-inaugurates-bhogapuram-airport-andhra-pradesh.jpg"
   },
   {
-    "slug": "us-israel-planning-iran-energy-strikes-july-2026",
-    "headline": "US and Israel Planning Bombing Campaign Against Iranian Energy Infrastructure",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-israel-planning-iran-energy-strikes-july-2026.jpg"
-  },
-  {
-    "slug": "federal-plan-mandates-steep-colorado-river-water-cuts-california-arizona-nevada",
-    "headline": "Federal Plan Mandates Steep Colorado River Water Cuts for California, Arizona and Nevada",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/federal-plan-mandates-steep-colorado-river-water-cuts-california-arizona-nevada.jpg"
-  },
-  {
-    "slug": "microsoft-copilot-super-app-launch-this-quarter",
-    "headline": "Microsoft to Launch Copilot Super App This Quarter, Merging Chat, Code and AI Agents",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/microsoft-copilot-super-app-launch-this-quarter.jpg"
-  },
-  {
-    "slug": "gatta-kusthi-2-arrives-netflix-after-56-crore-run",
-    "headline": "Gatta Kusthi 2 Arrives on Netflix Today After ₹56 Crore Box Office Run",
+    "slug": "kiara-advani-toxic-tabaahi-backlash-gender-bias-benedict-garrett",
+    "headline": "Kiara Advani's Co-Star Calls Out Gender Bias After Toxic Song Backlash",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gatta-kusthi-2-arrives-netflix-after-56-crore-run.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kiara-advani-toxic-tabaahi-backlash-gender-bias-benedict-garrett.jpg"
   },
   {
-    "slug": "tencent-gta-rival-last-sentinel-collapses-six-years",
-    "headline": "Tencent's GTA Rival Last Sentinel Collapses After Six Years and Hundreds of Millions",
+    "slug": "dhurandhar-ranveer-singh-backend-deal-risk-sharing-model",
+    "headline": "How Dhurandhar's Risk-Sharing Model Made Ranveer Singh a Bigger Winner",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tencent-gta-rival-last-sentinel-collapses-six-years.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhurandhar-ranveer-singh-backend-deal-risk-sharing-model.jpg"
   },
   {
-    "slug": "karnataka-mango-corporation-alphonso-domestic-platform",
-    "headline": "Karnataka Mango Corporation to Build Dedicated Platform for Alphonso Domestic Sales",
+    "slug": "ircc-processing-times-study-permit-rise-work-permit-low-july-2026",
+    "headline": "Canada Study Permit Wait Times Rise as Work Permits Hit 2026 Low",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ircc-processing-times-study-permit-rise-work-permit-low-july-2026.jpg"
+  },
+  {
+    "slug": "gsm-foils-chairman-hitmen-kill-md-vasai-rs-32-crore",
+    "headline": "GSM Foils Chairman Hired Hitmen to Kill Company's Managing Director Over Rs 32 Crore Debt, Police Say",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gsm-foils-chairman-hitmen-kill-md-vasai-rs-32-crore.jpg"
+  },
+  {
+    "slug": "agra-kesar-petha-recipe-home-saffron-sweet",
+    "headline": "How to Make Authentic Agra-Style Kesar Petha at Home in Three Steps",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-mango-corporation-alphonso-domestic-platform.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/agra-kesar-petha-recipe-home-saffron-sweet.jpg"
   },
   {
-    "slug": "state-dept-proposes-new-j1-visa-compliance-rules",
-    "headline": "State Department Proposes Sweeping New Compliance Rules for J-1 Visa Holders",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/state-dept-proposes-new-j1-visa-compliance-rules.jpg"
+    "slug": "cabinet-approves-samudra-manthan-84084-crore-oil-gas-exploration",
+    "headline": "Cabinet Approves Rs 84,084 Crore 'Samudra Manthan' Scheme for Oil and Gas Exploration",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cabinet-approves-samudra-manthan-84084-crore-oil-gas-exploration.jpg"
   },
   {
-    "slug": "us-visa-bond-program-permanent-50-countries-cap-20000",
-    "headline": "US Makes Visa Bond Program Permanent for 50 Countries, Raises Cap to $20,000",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-visa-bond-program-permanent-50-countries-cap-20000.jpg"
+    "slug": "toronto-police-warrant-indian-man-posed-psychic-fraud",
+    "headline": "Toronto Police Issue Warrant for Indian Man Who Posed as Psychic in Fraud Scheme",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/toronto-police-warrant-indian-man-posed-psychic-fraud.jpg"
   },
   {
-    "slug": "federal-court-blocks-asylum-fee-penalties-one-big-beautiful-bill",
-    "headline": "Federal Court Blocks Key Asylum Fee Penalties Under One Big Beautiful Bill Act",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/federal-court-blocks-asylum-fee-penalties-one-big-beautiful-bill.jpg"
+    "slug": "india-gst-collections-14-month-high-2-lakh-crore-july-2026",
+    "headline": "India's GST Collections Hit 14-Month High, Cross Rs 2 Lakh Crore for Second Time in FY27",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gst-collections-14-month-high-2-lakh-crore-july-2026.jpg"
   }
 ]
