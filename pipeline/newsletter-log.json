@@ -906,5 +906,15 @@
     "errors": 0,
     "hero_slug": "dr-congo-ebola-death-toll-passes-1500-second-largest-outbreak",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-01T13:55:54.573257+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 01, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "honda-india-two-wheeler-sales-july-2026",
+    "story_count": 5
   }
 ]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "b3d86b9b-5c86-4746-89a0-27e7906ae949",
+    "headline": "Indian Student Abroad Reveals Losing 10 Kilos as Falling Rupee Makes Basic Livin",
+    "slug": "indian-student-lost-weight-falling-rupee-living-abroad",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from other Indian students abroad who are facing similar challenges. This could provide a broader perspective on how the falling rupee is impacting the NRI community as a whole.",
+        "Add context about how the falling rupee affects not just students, but also their families back in India who are supporting them financially. This would highlight the ripple effects within the diaspora community.",
+        "Consider including a comparison of living costs in different countries for Indian students, which could help readers understand the varying impacts of the rupee's depreciation across different regions.",
+        "Clarify the timeline of the RBI data mentioned, as it currently states 'by late 2025' and 'accelerating into 2026,' which could confuse readers. Providing specific dates or a clearer timeframe would enhance understanding."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI tweet or report regarding the depreciation of the rupee and its impact on remittances, which would provide authoritative context to the financial data discussed in the article."
+      ]
+    }
+  },
+  {
+    "id": "9f91dac7-39a7-465f-8735-c438d08fe185",
+    "headline": "India's Colombo Warm-Up Match Shortened by a Day Ahead of Sri Lanka Test Series",
+    "slug": "india-colombo-warm-up-shortened-sri-lanka-test-series",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian expatriates in Sri Lanka or NRIs who follow the team closely. This could provide a personal connection to the match and highlight the significance of cricket in the Indian diaspora community.",
+        "Add context about how the shortened warm-up match may impact the team's preparation and performance, particularly from the perspective of NRIs who may be following the series closely. This could include expert opinions or historical comparisons to similar situations.",
+        "Consider incorporating a brief section on how the Indian cricket team's performance in Sri Lanka is viewed by the NRI community, including any planned viewing parties or events among the diaspora, to enhance the article's relevance to the target audience.",
+        "Mention any specific implications of the ICC World Test Championship standings for Indian fans abroad, such as how this series could affect India's chances of qualifying for the World Test Championship final, which would be of particular interest to NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent Indian cricket analyst or former player discussing the implications of the shortened warm-up match on India's strategy for the Test series."
+      ]
+    }
+  },
+  {
+    "id": "e3194568-7a8b-4635-b351-50aa8e0c82a5",
+    "headline": "Vikrant Massey and Sheetal Thakur: A Bollywood Love Story Written Off-Screen",
+    "slug": "vikrant-massey-sheetal-thakur-love-story-bollywood",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Vikrant Massey's journey resonates with NRIs, particularly those from similar backgrounds who have pursued careers abroad or in the entertainment industry.",
+        "Provide more context about the couple's marriage and the significance of their traditional ceremony in Himachal Pradesh, especially how it reflects cultural ties that NRIs may relate to.",
+        "Include quotes or perspectives from Vikrant or Sheetal about their experiences as Indian actors in a global context, which would enhance the article's relevance to the diaspora audience.",
+        "Expand on the challenges faced by Massey and Thakur in the context of the Indian film industry, drawing parallels to the experiences of NRIs in pursuing careers in foreign industries."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post from Vikrant Massey or Sheetal Thakur showcasing their wedding or family moments to visually connect with readers."
+      ]
+    }
+  },
+  {
+    "id": "77c2f287-15f8-4549-916c-d44041b4ad86",
+    "headline": "Nearly Half of NRI Property Owners in India Want to Sell, Survey Finds",
+    "slug": "nri-property-owners-india-want-sell-survey-2026",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRI property owners who are considering selling. This personal touch can provide a more relatable context for readers and highlight the emotional and financial implications of their decisions.",
+        "Provide additional context on how the changes in the Indian real estate market compare to other global markets, particularly focusing on how NRIs view investment opportunities in countries like the US, UK, and Canada. This would help readers understand the broader implications of the survey findings.",
+        "Clarify the implications of the tax changes by including a brief comparison of the tax burdens for NRIs versus resident Indians. This would help readers grasp the unique challenges faced by NRIs in the current market.",
+        "Discuss potential future trends or predictions regarding NRI investment in Indian real estate, especially in light of the survey findings. This could provide readers with a more comprehensive view of the market dynamics."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of Finance regarding the capital gains tax changes to provide authoritative context and enhance credibility.",
+        "Consider embedding a relevant YouTube video that explains the impact of these tax changes on NRI investments, which could offer a visual and engaging way to convey complex information."
+      ]
+    }
+  },
+  {
+    "id": "63e73939-e25e-4ba0-96df-063e3b710430",
+    "headline": "NASA's Curiosity Rover Photographs a Vast 'Sea of Polygons' on Mars That 'Took O",
+    "slug": "curiosity-rover-sea-of-polygons-mars-discovery",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian scientists or researchers involved in space exploration, particularly those working with NASA or related organizations. This would highlight the contributions of the Indian diaspora to global scientific endeavors.",
+        "Provide context on how discoveries like this one could impact future Mars missions or research, particularly for NRIs interested in space exploration and technology. This could include potential implications for Indian space agencies or collaborations.",
+        "Add a section discussing how advancements in space exploration, like the Curiosity rover's findings, can inspire the next generation of scientists and engineers in the Indian diaspora, potentially linking to educational initiatives or organizations that support STEM education among NRIs.",
+        "Include a brief overview of the significance of water on Mars and its implications for future exploration, as this is a topic of great interest to the diaspora community, especially those following India's Mars missions."
+      ],
+      "embed_opportunities": [
+        "Embed the official NASA tweet announcing the discovery or related content to provide readers with direct access to original sources and enhance credibility."
+      ]
+    }
+  }
+]

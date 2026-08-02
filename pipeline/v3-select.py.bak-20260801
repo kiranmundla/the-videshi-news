@@ -562,7 +562,7 @@ def main():
     all_signals = []
     # PostgREST in filter: topic_id=in.(id1,id2,...)
     # Chunk topic IDs to avoid URL length limits
-    CHUNK = 300
+    CHUNK = 50
     for i in range(0, len(topic_ids), CHUNK):
         chunk_ids = topic_ids[i:i+CHUNK]
         id_list = ",".join(chunk_ids)
@@ -626,33 +626,23 @@ def main():
 
     if older_articles and topics:
         # Find older headlines that share distinctive keywords with incoming topics
-        # Only check topics WITH signals (others are auto-rejected in Step 4)
         added = 0
-        _recent_headline_set = {(a.get("headline") or "").lower() for a in recent_articles}
-        # Pre-compute older article word sets once
-        _older_parsed = []
-        for oa in older_articles:
-            h_lower = (oa.get("headline") or "").lower()
-            if h_lower in _recent_headline_set:
-                continue  # already in dedup context
-            h_words = frozenset(re.findall(r'[a-z]{3,}', h_lower)) - _dedup_stop
-            h_distinctive = frozenset(w for w in h_words if len(w) >= 6)
-            _older_parsed.append((oa, h_words, h_distinctive, h_lower))
-        topics_with_sigs = [t for t in topics if t.get("signals")]
-        for t in topics_with_sigs:
+        for t in topics:
             t_title = (t.get("canonical_title") or "").lower()
-            t_words = frozenset(re.findall(r'[a-z]{3,}', t_title)) - _dedup_stop
+            t_words = {w for w in re.findall(r'[a-z]{3,}', t_title)} - _dedup_stop
             if len(t_words) < 2:
                 continue
             # Distinctive words = 6+ chars (proper nouns, specific terms)
-            t_distinctive = frozenset(w for w in t_words if len(w) >= 6)
-            for oa, h_words, h_distinctive, h_lower in _older_parsed:
+            t_distinctive = {w for w in t_words if len(w) >= 6}
+            for oa in older_articles:
+                h_lower = (oa.get("headline") or "").lower()
+                h_words = {w for w in re.findall(r'[a-z]{3,}', h_lower)} - _dedup_stop
                 overlap = t_words & h_words
+                h_distinctive = {w for w in h_words if len(w) >= 6}
                 distinctive_overlap = t_distinctive & h_distinctive
                 # Match if 3+ total keyword overlap OR 2+ distinctive (6+ char) overlap
-                if (len(overlap) >= 3 or len(distinctive_overlap) >= 2) and h_lower not in _recent_headline_set:
+                if (len(overlap) >= 3 or len(distinctive_overlap) >= 2) and oa not in recent_articles:
                     recent_articles.append(oa)
-                    _recent_headline_set.add(h_lower)
                     added += 1
         if added:
             print(f"  + {added} older headline(s) matched by keyword (60d)")

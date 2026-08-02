@@ -7182,56 +7182,6 @@
    "priority": 3
   },
   {
-   "subject": "influenza",
-   "subject_type": "thing",
-   "tags": [
-    "influenza"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "e3f7fce9-d762-484a-aba4-f55b3ad1c9a0",
-   "priority": 3
-  },
-  {
-   "subject": "H1N1",
-   "subject_type": "thing",
-   "tags": [
-    "h1n1"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "e3f7fce9-d762-484a-aba4-f55b3ad1c9a0",
-   "priority": 3
-  },
-  {
-   "subject": "monsoon health",
-   "subject_type": "thing",
-   "tags": [
-    "monsoon health"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "e3f7fce9-d762-484a-aba4-f55b3ad1c9a0",
-   "priority": 3
-  },
-  {
-   "subject": "India public health",
-   "subject_type": "thing",
-   "tags": [
-    "india public health"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "e3f7fce9-d762-484a-aba4-f55b3ad1c9a0",
-   "priority": 3
-  },
-  {
-   "subject": "infectious disease",
-   "subject_type": "thing",
-   "tags": [
-    "infectious disease"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "e3f7fce9-d762-484a-aba4-f55b3ad1c9a0",
-   "priority": 3
-  },
-  {
    "subject": "Gauri Khan",
    "subject_type": "thing",
    "tags": [
@@ -7242,66 +7192,6 @@
    "priority": 3
   },
   {
-   "subject": "Delhi Real Estate",
-   "subject_type": "thing",
-   "tags": [
-    "delhi real estate"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "4e443886-d763-4fd2-9e25-a763a1a0ccb5",
-   "priority": 3
-  },
-  {
-   "subject": "Panchsheel Park",
-   "subject_type": "thing",
-   "tags": [
-    "panchsheel park"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "4e443886-d763-4fd2-9e25-a763a1a0ccb5",
-   "priority": 3
-  },
-  {
-   "subject": "Celebrity Property",
-   "subject_type": "thing",
-   "tags": [
-    "celebrity property"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "4e443886-d763-4fd2-9e25-a763a1a0ccb5",
-   "priority": 3
-  },
-  {
-   "subject": "chilli paneer",
-   "subject_type": "thing",
-   "tags": [
-    "chilli paneer"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 3
-  },
-  {
-   "subject": "paneer",
-   "subject_type": "thing",
-   "tags": [
-    "paneer"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 3
-  },
-  {
-   "subject": "starter",
-   "subject_type": "thing",
-   "tags": [
-    "starter"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "5e65eb88-c638-4134-818b-866530c13863",
-   "priority": 3
-  },
-  {
    "subject": "q1 earnings",
    "subject_type": "thing",
    "tags": [
@@ -7309,46 +7199,6 @@
    ],
    "first_seen": "2026-07-19T10:29:24Z",
    "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
-   "priority": 3
-  },
-  {
-   "subject": "foreign investors",
-   "subject_type": "thing",
-   "tags": [
-    "foreign investors"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
-   "priority": 3
-  },
-  {
-   "subject": "hsbc",
-   "subject_type": "thing",
-   "tags": [
-    "hsbc"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "840ee221-f795-4dde-8012-e4cfcd93b83b",
-   "priority": 3
-  },
-  {
-   "subject": "cancer vaccine",
-   "subject_type": "thing",
-   "tags": [
-    "cancer vaccine"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
-   "priority": 3
-  },
-  {
-   "subject": "kras",
-   "subject_type": "thing",
-   "tags": [
-    "kras"
-   ],
-   "first_seen": "2026-07-19T10:29:24Z",
-   "article_id": "cc44d324-6780-47b1-a5e7-d3731e04b3df",
    "priority": 3
   },
   {
