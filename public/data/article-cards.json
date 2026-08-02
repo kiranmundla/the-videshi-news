@@ -1,110 +1,92 @@
 [
   {
-    "slug": "saff-championship-2026-india-pakistan-draw",
-    "headline": "India Drawn Against Pakistan in SAFF Championship 2026 Group Stage",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saff-championship-2026-india-pakistan-draw.jpg"
-  },
-  {
-    "slug": "fpi-outflows-india-ai-trade-valuations-2026",
-    "headline": "Foreign Investors Have Pulled ₹2.87 Lakh Crore From India as AI Trade Reshapes Global Flows",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fpi-outflows-india-ai-trade-valuations-2026.jpg"
-  },
-  {
-    "slug": "gulveer-singh-historic-cwg-athletics-double",
-    "headline": "Gulveer Singh Becomes First Indian To Win Two Athletics Medals at a Single Commonwealth Games",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gulveer-singh-historic-cwg-athletics-double.jpg"
-  },
-  {
-    "slug": "upi-record-july-2026-transactions",
-    "headline": "UPI Smashes Monthly Record With 23.66 Billion Transactions in July",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/upi-record-july-2026-transactions.jpg"
-  },
-  {
-    "slug": "child-deportation-orders-newark-immigration-court-doj-backlog",
-    "headline": "Child Deportation Orders Nearly Double in Newark Court as DOJ Accelerates Immigration Backlog Push",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/child-deportation-orders-newark-immigration-court-doj-backlog.jpg"
-  },
-  {
-    "slug": "india-semiconductor-mission-18-billion-china-chips-playbook",
-    "headline": "India's $18 Billion Semiconductor Bet Takes Shape as China Rewrites the Chips Playbook",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-semiconductor-mission-18-billion-china-chips-playbook.jpg"
-  },
-  {
-    "slug": "pm-modi-vivekananda-cultural-youth-centre-mysuru-inauguration",
-    "headline": "PM Modi Inaugurates Vivekananda Youth Centre at Historic Mysuru Site Linked to Chicago Speech",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pm-modi-vivekananda-cultural-youth-centre-mysuru-inauguration.jpg"
-  },
-  {
-    "slug": "muthoot-finance-q1-fy27-profit-43-percent-gold-loan-aum",
-    "headline": "Muthoot Finance Q1 Profit Jumps 43% as Gold Loan Book Approaches ₹2 Lakh Crore",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/muthoot-finance-q1-fy27-profit-43-percent-gold-loan-aum.jpg"
-  },
-  {
-    "slug": "openai-gpt-astra-prototype-math-breakthroughs-gpt6",
-    "headline": "OpenAI Launches GPT-Astra Prototype With Ten Claimed Breakthroughs in Mathematics",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-gpt-astra-prototype-math-breakthroughs-gpt6.jpg"
-  },
-  {
-    "slug": "trump-upends-saudi-nuclear-deal-abraham-accords-condition",
-    "headline": "Trump Upends Saudi Nuclear Deal by Adding Abraham Accords Condition Hours After Signing",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-upends-saudi-nuclear-deal-abraham-accords-condition.jpg"
-  },
-  {
-    "slug": "china-scarborough-shoal-combat-drills-fishing-ban",
-    "headline": "China Escalates Scarborough Shoal Standoff With Combat Drills and New Fishing Ban",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/china-scarborough-shoal-combat-drills-fishing-ban.jpg"
-  },
-  {
-    "slug": "rbi-swap-facility-draws-40-billion-foreign-inflows",
-    "headline": "RBI Swap Facility Draws $40.8 Billion in Foreign Inflows as Rupee Defence Gathers Steam",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-swap-facility-draws-40-billion-foreign-inflows.jpg"
-  },
-  {
-    "slug": "pakistan-balochistan-coal-mine-methane-explosion-kills-34",
-    "headline": "Methane Explosion at Pakistan Coal Mine Kills 34 as Rescue Teams Search for Survivors",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-balochistan-coal-mine-methane-explosion-kills-34.jpg"
-  },
-  {
-    "slug": "viagra-may-slow-cancer-spread-cholesterol-pathway-study",
-    "headline": "Viagra May Slow Cancer Spread by Blocking Tumour Cholesterol, Major Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/viagra-may-slow-cancer-spread-cholesterol-pathway-study.jpg"
-  },
-  {
-    "slug": "karnataka-drought-shivakumar-modi-central-aid",
-    "headline": "Karnataka Drought Deepens as CM Shivakumar Pleads With Modi for Central Aid",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-drought-shivakumar-modi-central-aid.jpg"
-  },
-  {
-    "slug": "california-lettuce-farmers-destroy-crops-cyclospora-panic",
-    "headline": "California Lettuce Farmers Destroy Crops as Cyclospora Panic Tanks Demand",
+    "slug": "rajasthan-challenges-gujarat-gi-tag-cumin-fennel",
+    "headline": "Rajasthan Challenges Gujarat's GI Tag on Cumin and Fennel",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-lettuce-farmers-destroy-crops-cyclospora-panic.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rajasthan-challenges-gujarat-gi-tag-cumin-fennel.jpg"
   },
   {
-    "slug": "us-general-warns-cannot-defend-israel-naval-forces",
-    "headline": "US General Warns Pentagon He Cannot Defend Israel Without More Naval Forces",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-general-warns-cannot-defend-israel-naval-forces.jpg"
+    "slug": "wipro-databricks-enterprise-ai-practice",
+    "headline": "Wipro Launches Dedicated Databricks Practice to Scale Enterprise AI",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/wipro-databricks-enterprise-ai-practice.jpg"
   },
   {
-    "slug": "kejriwal-escalates-e20-fight-national-town-hall-petition-march",
-    "headline": "Kejriwal Escalates E20 Fight With National Town Hall and Petition March to PM Modi",
+    "slug": "tata-sons-profit-rises-air-india-losses-double",
+    "headline": "Tata Sons Profit Climbs 22% but Air India Losses Double to ₹22,238 Crore",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tata-sons-profit-rises-air-india-losses-double.jpg"
+  },
+  {
+    "slug": "india-gcap-entry-deadline-leonardo-ceo",
+    "headline": "India Faces Ticking Clock on GCAP Entry as Leonardo CEO Sets Deadline",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kejriwal-escalates-e20-fight-national-town-hall-petition-march.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gcap-entry-deadline-leonardo-ceo.jpg"
+  },
+  {
+    "slug": "srinagar-army-mess-dhurandhar-bar",
+    "headline": "Srinagar Army Mess Unveils Dhurandhar-Themed Bar as Film's Cultural Impact Grows",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/srinagar-army-mess-dhurandhar-bar.jpg"
+  },
+  {
+    "slug": "keigo-higashino-japanese-mystery-novelist-dies-at-68",
+    "headline": "Keigo Higashino, Japan's Bestselling Mystery Novelist, Dies at 68",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/keigo-higashino-japanese-mystery-novelist-dies-at-68.jpg"
+  },
+  {
+    "slug": "the-odyssey-christopher-nolan-review-2026",
+    "headline": "The Odyssey Review: Nolan's Greek Epic Is a Spectacle Worth the Voyage — Mostly",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-odyssey-christopher-nolan-review-2026.jpg"
+  },
+  {
+    "slug": "ancient-spice-blends-modern-science-validating",
+    "headline": "From Garam Masala to Za'atar: The Ancient Spice Blends Modern Science Is Finally Validating",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ancient-spice-blends-modern-science-validating.jpg"
+  },
+  {
+    "slug": "moringa-goes-mainstream-india-drumstick-tree-global-superfood-market",
+    "headline": "Moringa Goes Mainstream: How India's Humble Drumstick Tree Conquered the Global Superfood Market",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/moringa-goes-mainstream-india-drumstick-tree-global-superfood-market.jpg"
+  },
+  {
+    "slug": "loan-investors-dig-in-credit-fears-leveraged-finance",
+    "headline": "Loan Investors Dig In as Credit Fears Sweep the Leveraged Finance Market",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/loan-investors-dig-in-credit-fears-leveraged-finance.jpg"
+  },
+  {
+    "slug": "nyc-mayor-zohran-mamdani-tells-ice-to-leave-vows-support-for-immigrants",
+    "headline": "NYC Mayor Zohran Mamdani Tells ICE to Leave, Vows Unwavering Support for Immigrant Communities",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nyc-mayor-zohran-mamdani-tells-ice-to-leave-vows-support-for-immigrants.jpg"
+  },
+  {
+    "slug": "fda-advisory-panel-backs-six-peptides-for-pharmacy-compounding",
+    "headline": "FDA Advisory Panel Backs Six Peptides for Pharmacy Compounding Despite Safety Concerns",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fda-advisory-panel-backs-six-peptides-for-pharmacy-compounding.jpg"
+  },
+  {
+    "slug": "punjab-congress-infighting-channi-threatens-quit-warring-leadership",
+    "headline": "Punjab Congress Infighting Deepens as Channi Threatens to Quit Over Warring's Leadership",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/punjab-congress-infighting-channi-threatens-quit-warring-leadership.jpg"
+  },
+  {
+    "slug": "india-china-reopen-himalayan-border-trade-after-six-year-freeze",
+    "headline": "India and China Reopen Himalayan Border Trade After Six-Year Freeze",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-china-reopen-himalayan-border-trade-after-six-year-freeze.jpg"
+  },
+  {
+    "slug": "h1b-visa-cap-reached-fy-2027-wage-based-selection",
+    "headline": "H-1B Visa Cap Reached for FY 2027 Under New Wage-Based Selection System",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-visa-cap-reached-fy-2027-wage-based-selection.jpg"
   }
 ]
