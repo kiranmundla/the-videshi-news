@@ -1,5 +1,59 @@
 [
   {
+    "slug": "august-visa-bulletin-eb1-green-cards-india-unavailable-warning",
+    "headline": "August Visa Bulletin Warns EB-1 Green Cards for Indians Could Become Unavailable",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/august-visa-bulletin-eb1-green-cards-india-unavailable-warning.jpg"
+  },
+  {
+    "slug": "sonu-nigam-banned-t-series-zee-music-royalties-fight",
+    "headline": "Sonu Nigam Reveals He Was 'Banned' by T-Series and Zee Music Over Royalties Fight",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sonu-nigam-banned-t-series-zee-music-royalties-fight.jpg"
+  },
+  {
+    "slug": "india-us-envoy-kwatra-accuses-pakistan-dismantling-indus-waters-treaty",
+    "headline": "India's US Envoy Kwatra Accuses Pakistan of Dismantling Indus Waters Treaty Over Five Decades",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-us-envoy-kwatra-accuses-pakistan-dismantling-indus-waters-treaty.jpg"
+  },
+  {
+    "slug": "hardik-pandya-tonsured-head-tirumala-temple-mahieka-sharma",
+    "headline": "Hardik Pandya Sports Tonsured Head During Tirumala Temple Visit with Girlfriend Mahieka Sharma",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hardik-pandya-tonsured-head-tirumala-temple-mahieka-sharma.jpg"
+  },
+  {
+    "slug": "suicide-blast-peace-rally-swat-pakistan-kills-seven",
+    "headline": "Suicide Blast at Peace Rally in Pakistan's Swat Kills at Least Seven",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/suicide-blast-peace-rally-swat-pakistan-kills-seven.jpg"
+  },
+  {
+    "slug": "zoho-sridhar-vembu-warns-ai-choking-it-job-creation-india-youth",
+    "headline": "Zoho's Sridhar Vembu Warns AI Is Choking IT Job Creation for India's Youth",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zoho-sridhar-vembu-warns-ai-choking-it-job-creation-india-youth.jpg"
+  },
+  {
+    "slug": "kerala-monsoon-death-toll-rises-to-eight-floods-landslides",
+    "headline": "Kerala Monsoon Death Toll Rises to Eight as Floods and Landslides Ravage State",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kerala-monsoon-death-toll-rises-to-eight-floods-landslides.jpg"
+  },
+  {
+    "slug": "opec-plus-approves-sixth-output-hike-plans-pause-through-year-end",
+    "headline": "OPEC+ Approves Sixth Straight Output Hike, Then Plans to Pause Through Year-End",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/opec-plus-approves-sixth-output-hike-plans-pause-through-year-end.jpg"
+  },
+  {
+    "slug": "trumps-100000-h1b-visa-fee-blocked-appeals-court-denies-stay",
+    "headline": "Trump's $100,000 H-1B Visa Fee Blocked Again as Appeals Court Denies Stay",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trumps-100000-h1b-visa-fee-blocked-appeals-court-denies-stay.jpg"
+  },
+  {
     "slug": "rajasthan-challenges-gujarat-gi-tag-cumin-fennel",
     "headline": "Rajasthan Challenges Gujarat's GI Tag on Cumin and Fennel",
     "category": "food",
@@ -28,65 +82,5 @@
     "headline": "Srinagar Army Mess Unveils Dhurandhar-Themed Bar as Film's Cultural Impact Grows",
     "category": "entertainment",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/srinagar-army-mess-dhurandhar-bar.jpg"
-  },
-  {
-    "slug": "keigo-higashino-japanese-mystery-novelist-dies-at-68",
-    "headline": "Keigo Higashino, Japan's Bestselling Mystery Novelist, Dies at 68",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/keigo-higashino-japanese-mystery-novelist-dies-at-68.jpg"
-  },
-  {
-    "slug": "the-odyssey-christopher-nolan-review-2026",
-    "headline": "The Odyssey Review: Nolan's Greek Epic Is a Spectacle Worth the Voyage — Mostly",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-odyssey-christopher-nolan-review-2026.jpg"
-  },
-  {
-    "slug": "ancient-spice-blends-modern-science-validating",
-    "headline": "From Garam Masala to Za'atar: The Ancient Spice Blends Modern Science Is Finally Validating",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ancient-spice-blends-modern-science-validating.jpg"
-  },
-  {
-    "slug": "moringa-goes-mainstream-india-drumstick-tree-global-superfood-market",
-    "headline": "Moringa Goes Mainstream: How India's Humble Drumstick Tree Conquered the Global Superfood Market",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/moringa-goes-mainstream-india-drumstick-tree-global-superfood-market.jpg"
-  },
-  {
-    "slug": "loan-investors-dig-in-credit-fears-leveraged-finance",
-    "headline": "Loan Investors Dig In as Credit Fears Sweep the Leveraged Finance Market",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/loan-investors-dig-in-credit-fears-leveraged-finance.jpg"
-  },
-  {
-    "slug": "nyc-mayor-zohran-mamdani-tells-ice-to-leave-vows-support-for-immigrants",
-    "headline": "NYC Mayor Zohran Mamdani Tells ICE to Leave, Vows Unwavering Support for Immigrant Communities",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nyc-mayor-zohran-mamdani-tells-ice-to-leave-vows-support-for-immigrants.jpg"
-  },
-  {
-    "slug": "fda-advisory-panel-backs-six-peptides-for-pharmacy-compounding",
-    "headline": "FDA Advisory Panel Backs Six Peptides for Pharmacy Compounding Despite Safety Concerns",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fda-advisory-panel-backs-six-peptides-for-pharmacy-compounding.jpg"
-  },
-  {
-    "slug": "punjab-congress-infighting-channi-threatens-quit-warring-leadership",
-    "headline": "Punjab Congress Infighting Deepens as Channi Threatens to Quit Over Warring's Leadership",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/punjab-congress-infighting-channi-threatens-quit-warring-leadership.jpg"
-  },
-  {
-    "slug": "india-china-reopen-himalayan-border-trade-after-six-year-freeze",
-    "headline": "India and China Reopen Himalayan Border Trade After Six-Year Freeze",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-china-reopen-himalayan-border-trade-after-six-year-freeze.jpg"
-  },
-  {
-    "slug": "h1b-visa-cap-reached-fy-2027-wage-based-selection",
-    "headline": "H-1B Visa Cap Reached for FY 2027 Under New Wage-Based Selection System",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-visa-cap-reached-fy-2027-wage-based-selection.jpg"
   }
 ]
