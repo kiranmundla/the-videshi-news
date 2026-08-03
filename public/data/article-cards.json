@@ -1,98 +1,92 @@
 [
   {
-    "slug": "indian-diaspora-china-visa-social-media",
-    "headline": "Indians in China Flag Growing Visa Hurdles and Social Media Restrictions",
+    "slug": "australia-student-visa-crackdown-record-rejections-indian-applicants",
+    "headline": "Australia's Student Visa Crackdown Hits Record Rejection Rates, Indian Applicants Hardest Hit",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-diaspora-china-visa-social-media.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/australia-student-visa-crackdown-record-rejections-indian-applicants.jpg"
   },
   {
-    "slug": "bollywood-studios-consolidation-momentum",
-    "headline": "Bollywood Studios Ride a Consolidation Wave as Big Money Reshapes Hindi Cinema",
+    "slug": "bumrah-out-sri-lanka-tests-auqib-nabi-maiden-call-up",
+    "headline": "Bumrah Out of Sri Lanka Tests; J&K's Auqib Nabi Gets Maiden India Call-Up",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bumrah-out-sri-lanka-tests-auqib-nabi-maiden-call-up.jpg"
+  },
+  {
+    "slug": "supreme-court-live-in-partners-section-498a-cruelty-protection",
+    "headline": "Supreme Court Rules Live-In Partners Can Seek Cruelty Protection Under Section 498A",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/supreme-court-live-in-partners-section-498a-cruelty-protection.jpg"
+  },
+  {
+    "slug": "ncb-flags-chemsex-trend-indian-youth-parents-alert",
+    "headline": "NCB Flags Rising Chemsex Trend Among Indian Youth, Urges Parents to Stay Alert",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ncb-flags-chemsex-trend-indian-youth-parents-alert.jpg"
+  },
+  {
+    "slug": "ugc-nspg-ishan-uday-scholarship-applications-opening-soon",
+    "headline": "UGC Opens Applications for NSPG and Ishan Uday Scholarships Worth Up to ₹1.5 Lakh Per Year",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ugc-nspg-ishan-uday-scholarship-applications-opening-soon.jpg"
+  },
+  {
+    "slug": "earth-warming-nearly-twice-as-fast-decade-ago-scientists-confirm",
+    "headline": "Earth Is Warming Nearly Twice as Fast as a Decade Ago, Scientists Confirm",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/earth-warming-nearly-twice-as-fast-decade-ago-scientists-confirm.jpg"
+  },
+  {
+    "slug": "mister-singhs-glasgow-india-map-napkins-controversy",
+    "headline": "Glasgow's Mister Singh's Hosted Team India, Then a Map on Its Napkins Sparked Outrage",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mister-singhs-glasgow-india-map-napkins-controversy.jpg"
+  },
+  {
+    "slug": "scientists-trace-avocado-flower-sex-switch-gene-44-million-years",
+    "headline": "Scientists Trace Avocado Flowers' Daily Sex Switch to a Single Gene 44 Million Years Old",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/scientists-trace-avocado-flower-sex-switch-gene-44-million-years.jpg"
+  },
+  {
+    "slug": "coldcard-wallet-flaw-hackers-drain-89-million-bitcoin",
+    "headline": "COLDCARD Wallet Flaw Lets Hackers Drain $89 Million in Bitcoin Without Touching a Device",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/coldcard-wallet-flaw-hackers-drain-89-million-bitcoin.jpg"
+  },
+  {
+    "slug": "india-orders-states-special-drug-courts-ndps-backlog",
+    "headline": "India Orders States to Set Up Special Drug Courts as 3.96 Lakh Cases Pile Up",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-orders-states-special-drug-courts-ndps-backlog.jpg"
+  },
+  {
+    "slug": "rbi-expected-hold-repo-rate-global-peers-pivot-hikes",
+    "headline": "RBI Expected to Hold Repo Rate at 5.25% as Global Peers Pivot to Hikes",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-expected-hold-repo-rate-global-peers-pivot-hikes.jpg"
+  },
+  {
+    "slug": "gayle-rankin-house-of-dragon-aemond-dream-scene-episode-7",
+    "headline": "Gayle Rankin Breaks Down That Shocking Aemond Dream Scene in House of the Dragon Episode 7",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bollywood-studios-consolidation-momentum.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gayle-rankin-house-of-dragon-aemond-dream-scene-episode-7.jpg"
   },
   {
-    "slug": "india-oci-applications-online-citizenship-rules",
-    "headline": "India Moves OCI Applications Fully Online Under New Citizenship Rules",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-oci-applications-online-citizenship-rules.jpg"
+    "slug": "pakistan-july-deadliest-month-2026-militant-violence",
+    "headline": "July Was Pakistan's Deadliest Month of 2026 With Over 600 Killed in Attacks and Operations",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-july-deadliest-month-2026-militant-violence.jpg"
   },
   {
-    "slug": "pharma-tariff-countdown-generic-drugs",
-    "headline": "Trump's Pharma Tariff Countdown Begins, Indian Generic Drugmakers Face Uncertain Future",
+    "slug": "sebi-bars-zee-chandra-goenka-securities-market-one-year",
+    "headline": "SEBI Bars Zee's Subhash Chandra and Punit Goenka From Securities Market for One Year",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pharma-tariff-countdown-generic-drugs.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sebi-bars-zee-chandra-goenka-securities-market-one-year.jpg"
   },
   {
-    "slug": "dhs-proposes-eb5-rules-new-investment-tier-tighter-oversight",
-    "headline": "DHS Proposes New EB-5 Rules With $1.4M Investment Tier and Tighter Oversight",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhs-proposes-eb5-rules-new-investment-tier-tighter-oversight.jpg"
-  },
-  {
-    "slug": "flipkart-food-delivery-low-commissions-zomato-swiggy",
-    "headline": "Flipkart Enters Food Delivery With Low Commissions, Targeting Zomato-Swiggy Duopoly",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/flipkart-food-delivery-low-commissions-zomato-swiggy.jpg"
-  },
-  {
-    "slug": "aipac-record-spending-michigan-senate-primary-voter-backlash",
-    "headline": "AIPAC's Record $30 Million Bet on Michigan Faces Democratic Voter Revolt",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aipac-record-spending-michigan-senate-primary-voter-backlash.jpg"
-  },
-  {
-    "slug": "sheikh-hasina-plans-return-bangladesh-dhaka-warns-arrest",
-    "headline": "Sheikh Hasina Plans Return to Bangladesh, Dhaka Warns of Immediate Arrest",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sheikh-hasina-plans-return-bangladesh-dhaka-warns-arrest.jpg"
-  },
-  {
-    "slug": "lion-brewery-co-returns-india-premium-beer-delhi",
-    "headline": "Lion Brewery Co Returns to India After Six Decades With Premium Beer Launch",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lion-brewery-co-returns-india-premium-beer-delhi.jpg"
-  },
-  {
-    "slug": "glyphosate-mid-pregnancy-preterm-birth-risk",
-    "headline": "Glyphosate Exposure During Mid-Pregnancy Linked to Preterm Birth Risk",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/glyphosate-mid-pregnancy-preterm-birth-risk.jpg"
-  },
-  {
-    "slug": "assam-flood-death-toll-85-waters-recede",
-    "headline": "Assam Flood Death Toll Hits 85 as Waters Recede Across Upper Assam",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/assam-flood-death-toll-85-waters-recede.jpg"
-  },
-  {
-    "slug": "persistent-systems-q1-profit-483-crore-nagarro-deal",
-    "headline": "Persistent Systems Reports Rs 483 Crore Q1 Profit as Nagarro Deal Dominates Outlook",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/persistent-systems-q1-profit-483-crore-nagarro-deal.jpg"
-  },
-  {
-    "slug": "india-free-hpv-vaccination-drive-five-months-strong-uptake",
-    "headline": "India's Free HPV Vaccination Drive Crosses Five Months With Strong Uptake",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-free-hpv-vaccination-drive-five-months-strong-uptake.jpg"
-  },
-  {
-    "slug": "dmk-supreme-court-cauvery-water-crisis",
-    "headline": "DMK Pushes Supreme Court Intervention as Cauvery Water Crisis Deepens",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dmk-supreme-court-cauvery-water-crisis.jpg"
-  },
-  {
-    "slug": "china-pakistan-south-asian-bloc-without-india",
-    "headline": "China and Pakistan Move to Build a South Asian Bloc Without India",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/china-pakistan-south-asian-bloc-without-india.jpg"
-  },
-  {
-    "slug": "three-states-three-bypolls-bankipur-datia-manjalpur-counting-day",
-    "headline": "Three States, Three Bypolls: Counting Day Looms for Bankipur, Datia, Manjalpur",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/three-states-three-bypolls-bankipur-datia-manjalpur-counting-day.jpg"
+    "slug": "jennifer-winget-unseen-haldi-photos-friendship-day",
+    "headline": "Jennifer Winget Shares Unseen Haldi Photos on Friendship Day, Calls Herself 'the Luckiest'",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jennifer-winget-unseen-haldi-photos-friendship-day.jpg"
   }
 ]
