@@ -926,5 +926,15 @@
     "hero_slug": "the-odyssey-christopher-nolan-review-2026",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-03T13:55:10.383035+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 03, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "us-visa-bond-program-permanent-20000-india-not-on-list",
+    "story_count": 5
   }
 ]
