@@ -1,27 +1,28 @@
 {
-  "generated_at": "2026-07-30T13:00:00Z",
-  "week_of": "Jul 30 – Aug 5, 2026",
-  "editorial_intro": "Spider-Man swings back today. Brand New Day opens with the biggest projected opening weekend of 2026 — tracking $230-250M domestic and up to $465M globally. Tom Holland returns five years after No Way Home's heartbreaking ending, and the reviews are strong at 88% on Rotten Tomatoes. But don't count out The Odyssey: Nolan's epic crossed $683M worldwide in under two weeks and still owns every IMAX screen. Thalapathy Vijay's farewell film Jana Nayagan hit ₹255 Cr worldwide in its first week — the biggest overseas Indian grosser of 2026. Dhamaal 4 quietly cruised past ₹214 Cr worldwide. And Toy Story 5 just joined the billion-dollar club. Five movies over $400M worldwide playing simultaneously. This is the summer the box office came back for real.",
+  "generated_at": "2026-08-03T13:00:00Z",
+  "week_of": "Aug 3 – Aug 9, 2026",
+  "editorial_intro": "Spider-Man just broke the box office. Brand New Day opened to $355M domestic and $927M worldwide — the second-biggest opening weekend in history, just $2M short of Avengers: Endgame. Combined with The Odyssey's $51M in week three, the total domestic weekend hit $429M — the biggest single weekend in box office history. Ever. The Odyssey has now crossed $911M worldwide and is locked in for a billion-dollar finish. Vijay's farewell Jana Nayagan cleared ₹296 Cr worldwide by its second weekend. Looking ahead: A24's Tony — the Anthony Bourdain biopic at 98% on Rotten Tomatoes — opens in limited release Thursday. Then Independence Day week brings Sunny Deol's partition epic Batwara 1947 and Emraan Hashmi's Awarapan 2. This summer just keeps delivering.",
   "movies": [
     {
       "title": "Spider-Man: Brand New Day",
       "slug": "spider-man-brand-new-day",
-      "genre": "Superhero Action",
+      "genre": "Superhero, Action",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Spider-Man_Brand_New_Day_poster.jpg/500px-Spider-Man_Brand_New_Day_poster.jpg",
-      "rating": "88% RT",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Spider-Man_Brand_New_Day_poster.jpg",
+      "rating": "90% RT",
       "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-07-30",
-      "status": "opening",
+      "release_date": "2026-07-31",
+      "status": "now_playing",
       "cast": [
         "Tom Holland",
         "Zendaya",
-        "Sadie Sink",
+        "Jacob Batalon",
         "Jon Bernthal",
-        "Michael Mando"
+        "Mark Ruffalo",
+        "Sadie Sink"
       ],
       "director": "Destin Daniel Cretton",
-      "why_watch": "Five years after No Way Home erased Peter Parker from everyone's memory, Tom Holland returns in the most anticipated Marvel movie since Endgame. 88% on Rotten Tomatoes — Certified Fresh. Tracking for a $230-250M domestic opening weekend and $465M globally, which would make it the biggest debut of 2026. Critics are calling it the best-directed MCU Spider-Man since Sam Raimi's trilogy. No IMAX — Nolan's Odyssey owns those screens — but you won't care.",
+      "why_watch": "The second-biggest opening weekend in history — $355M domestic and $927M worldwide, missing Endgame's all-time record by just $2M. Tom Holland's fourth solo outing picks up years after No Way Home erased Peter Parker from everyone's memory. 90% on RT, 98% audience score, CinemaScore A. The film that turned this into the biggest box office weekend of all time. Not playing IMAX (Nolan's Odyssey still owns those screens), but it doesn't need them.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
       "language": "English",
@@ -36,16 +37,20 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Zendaya-byPhilipRomano.jpg/300px-Zendaya-byPhilipRomano.jpg"
         },
         {
-          "name": "Sadie Sink",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Sadie_Sink_%2843914734441%29.jpg/300px-Sadie_Sink_%2843914734441%29.jpg"
+          "name": "Jacob Batalon",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg/300px-Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg"
         },
         {
           "name": "Jon Bernthal",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/JonBernthal-byPhilipRomano2.jpg/300px-JonBernthal-byPhilipRomano2.jpg"
         },
         {
-          "name": "Michael Mando",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Michael_Mando_at_the_2018_San_Diego_Comic-Con.jpg/300px-Michael_Mando_at_the_2018_San_Diego_Comic-Con.jpg"
+          "name": "Mark Ruffalo",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Mark_Ruffalo_%2836201774756%29_%28cropped%29.jpg/300px-Mark_Ruffalo_%2836201774756%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Sadie Sink",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Sadie_Sink_%2843914734441%29.jpg/300px-Sadie_Sink_%2843914734441%29.jpg"
         }
       ]
     },
@@ -69,11 +74,11 @@
         "Lupita Nyong'o"
       ],
       "director": "Christopher Nolan",
-      "why_watch": "$683M worldwide in under two weeks — heading for the billion-dollar club. Nolan's best second-weekend hold ever: $87M with just a 30% drop. 94% on Rotten Tomatoes. Matt Damon as Odysseus is getting serious Oscar buzz, Robert Pattinson's Antinous has spawned a thousand memes, and it still owns every IMAX screen on the planet. The first film ever shot entirely on 70mm IMAX cameras. If you haven't seen it yet, the big screen is the only way.",
+      "why_watch": "$911M worldwide in three weekends — a billion-dollar finish is all but guaranteed. The first film ever shot entirely on 70mm IMAX cameras, and still holding every IMAX screen on the planet. Just a 30% second-weekend drop, one of the best holds ever for a $100M+ opener. Matt Damon's Odysseus is getting serious Oscar buzz, Robert Pattinson's Antinous has spawned a thousand memes. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
       "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=AyIZ9tiiN8I",
+      "trailer_url": "https://www.youtube.com/watch?v=f_bKjZeJBBI",
       "cast_details": [
         {
           "name": "Matt Damon",
@@ -107,7 +112,7 @@
       "genre": "Political Action, Thriller",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jana_Nayagan.jpg",
-      "rating": "₹255 Cr worldwide",
+      "rating": "₹296 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-07-23",
       "status": "now_playing",
@@ -116,10 +121,11 @@
         "Bobby Deol",
         "Pooja Hegde",
         "Mamitha Baiju",
-        "Prakash Raj"
+        "Prakash Raj",
+        "Priyamani"
       ],
       "director": "H. Vinoth",
-      "why_watch": "₹255 Cr worldwide in one week — and officially 2026's highest overseas Indian grosser. The final film of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. ₹149.5 Cr India net and still holding strong into week two. Vijay fans are turning theaters into cultural festivals. Playing in Tamil, Hindi, and Telugu on US diaspora screens. This farewell won't come again.",
+      "why_watch": "₹296 Cr worldwide and ₹175 Cr India net by the end of its second weekend — and a massive 120% Saturday surge proves this film has legs. The final cinematic appearance of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. The first time since MGR that a sitting CM has a film in theaters — a once-in-a-generation cultural event. Playing in Tamil, Hindi, and Telugu across US diaspora screens. Vijay's farewell won't come again.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Jana+Nayagan+showtimes+near+me",
       "language": "Tamil",
@@ -144,13 +150,17 @@
         {
           "name": "Prakash Raj",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prakash_Raj_at_KLF_18_kozhikode.jpg/300px-Prakash_Raj_at_KLF_18_kozhikode.jpg"
+        },
+        {
+          "name": "Priyamani",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Priyamani_at_CCL_match%2C_2011_%28cropped%29.jpg"
         }
       ]
     },
     {
       "title": "Toy Story 5",
       "slug": "toy-story-5",
-      "genre": "Animation",
+      "genre": "Animation, Family",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg",
       "rating": "92% RT",
@@ -165,11 +175,11 @@
         "Conan O'Brien"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "Just crossed $1 billion worldwide — the highest-grossing film of 2026 and the third Toy Story to join the billion-dollar club. $452M domestic in six weeks with legs that won't quit. Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. Losing some screens to Spider-Man this week, but still the best family option in theaters.",
+      "why_watch": "Just crossed $1 billion worldwide — the highest-grossing film of 2026 and the third Toy Story to join the billion-dollar club. Seven weeks in and still the #3 movie in America ($6.3M this weekend). Pixar made the toys fight an iPad and somehow it's their most emotionally devastating film since the incinerator scene. Losing screens to Spider-Man but still the best family option in theaters by far.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=c51ND9Hdbw0",
+      "trailer_url": "https://www.youtube.com/watch?v=jdp9abDgvCU",
       "cast_details": [
         {
           "name": "Tom Hanks",
@@ -199,21 +209,21 @@
       "genre": "Comedy, Adventure",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Dhamaal_4.jpg",
-      "rating": "₹214 Cr worldwide",
+      "rating": "₹227 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-07-10",
       "status": "now_playing",
       "cast": [
         "Ajay Devgn",
         "Arshad Warsi",
-        "Jaaved Jaaferi",
         "Riteish Deshmukh",
+        "Jaaved Jaaferi",
         "Sanjay Mishra",
         "Ravi Kishan",
         "Esha Gupta"
       ],
       "director": "Indra Kumar",
-      "why_watch": "₹214 Cr worldwide and ₹155 Cr India net in 19 days — the highest-grossing film in the Dhamaal franchise, beating Total Dhamaal domestically. Heading toward ₹165 Cr lifetime in India. Bollywood's 4th biggest film of 2026. Week three and still drawing family crowds, especially in mass centers. Will lose screens to Spider-Man, but the core audience isn't going anywhere.",
+      "why_watch": "₹227 Cr worldwide and ₹170 Cr India net in 24 days — the highest-grossing film in the Dhamaal franchise. Fourth biggest Hindi film of 2026, behind only Dhurandhar 2, Border 2, and Bhooth Bangla. Week four and still drawing family crowds, especially in mass centers. Down to ~2,800 shows daily but the core audience isn't going anywhere. Last chance to catch the original gang on the big screen.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
       "language": "Hindi",
@@ -228,12 +238,12 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Arshad-Warsi.jpg/300px-Arshad-Warsi.jpg"
         },
         {
-          "name": "Jaaved Jaaferi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Javed_jeffery_colors_indian_telly_awards.jpg/300px-Javed_jeffery_colors_indian_telly_awards.jpg"
-        },
-        {
           "name": "Riteish Deshmukh",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg/300px-Riteish_Deshmukh_at_the_Promotion_of_%27Kyaa_Super_Kool_Hain_Hum%27_06.jpg"
+        },
+        {
+          "name": "Jaaved Jaaferi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Javed_jeffery_colors_indian_telly_awards.jpg/300px-Javed_jeffery_colors_indian_telly_awards.jpg"
         },
         {
           "name": "Sanjay Mishra",
@@ -246,212 +256,202 @@
       ]
     },
     {
-      "title": "Minions & Monsters",
-      "slug": "minions-and-monsters",
-      "genre": "Animation, Comedy",
+      "title": "Tony",
+      "slug": "tony-bourdain",
+      "genre": "Biographical Drama, Comedy-Drama",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9d/Minions_%26_Monsters_poster.jpg",
-      "rating": "93% RT",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Tony_%282026_film%29_poster.jpg",
+      "rating": "98% RT",
       "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-07-01",
-      "status": "now_playing",
+      "release_date": "2026-08-07",
+      "status": "opening",
       "cast": [
-        "Pierre Coffin",
-        "Allison Janney",
-        "Christoph Waltz",
-        "Jeff Bridges",
-        "Jesse Eisenberg",
-        "Trey Parker"
+        "Dominic Sessa",
+        "Emilia Jones",
+        "Antonio Banderas",
+        "Leo Woodall",
+        "Stavros Halkias"
       ],
-      "director": "Pierre Coffin",
-      "why_watch": "$412M worldwide and $159M domestic — the franchise's best-reviewed film ever at 93% RT. A love letter to classic Hollywood monster movies that's genuinely witty for adults while keeping kids glued. Week four, still pulling solid numbers. The best family counter-programming if you've already seen Toy Story 5.",
+      "director": "Matt Johnson",
+      "why_watch": "98% on Rotten Tomatoes. A24's biopic of Anthony Bourdain, based on Kitchen Confidential, follows a 19-year-old Bourdain taking a summer restaurant job in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor is reportedly electric. Limited release this Thursday, expanding wide August 21. If you love food, travel, or just a great coming-of-age story — get in early.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Minions+and+Monsters+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
       "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=ZSdOwt-G49w",
+      "trailer_url": "https://www.youtube.com/watch?v=k1MVnzd2aVc",
       "cast_details": [
         {
-          "name": "Pierre Coffin",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pierre_Coffin_2017.jpg/300px-Pierre_Coffin_2017.jpg"
+          "name": "Dominic Sessa",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Dominic_Sessa_Tow-059_%28cropped%29.jpg/300px-Dominic_Sessa_Tow-059_%28cropped%29.jpg"
         },
         {
-          "name": "Allison Janney",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Allison_Janney_%2840568877620%29.jpg/300px-Allison_Janney_%2840568877620%29.jpg"
+          "name": "Emilia Jones",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Emilia_jones_2022_1.jpg/300px-Emilia_jones_2022_1.jpg"
         },
         {
-          "name": "Christoph Waltz",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg/300px-Christoph_Waltz_at_82nd_Venice_International_Film_Festival-1_%28cropped%29.jpg"
+          "name": "Antonio Banderas",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg/300px-Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg"
         },
         {
-          "name": "Jeff Bridges",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Jeff_Bridges_by_Gage_Skidmore_4.jpg/300px-Jeff_Bridges_by_Gage_Skidmore_4.jpg"
+          "name": "Leo Woodall",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Leo_Woodall_2024_Emmys_05_%28cropped%29.png/300px-Leo_Woodall_2024_Emmys_05_%28cropped%29.png"
         },
         {
-          "name": "Jesse Eisenberg",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg/300px-60th_Karlovy_Vary_International_Film_Festival%2C_Jesse_Eisenberg_%28cropped%29.jpg"
-        },
-        {
-          "name": "Trey Parker",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg/300px-Trey_Parker_by_Gage_Skidmore_2025_%283x4_cropped%29.jpg"
+          "name": "Stavros Halkias",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg/300px-Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg"
         }
       ]
     },
     {
-      "title": "Obsession",
-      "slug": "obsession",
-      "genre": "Horror Thriller",
+      "title": "One Night Only",
+      "slug": "one-night-only-2026",
+      "genre": "Romantic Comedy",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/05/Obsession_theatrical_poster.jpeg",
-      "rating": "94% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-05-15",
-      "status": "now_playing",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/a/a9/One_Night_Only_poster.jpg",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-07",
+      "status": "opening",
       "cast": [
-        "Inde Navarrette",
-        "Michael Johnston",
-        "Cooper Tomlinson",
-        "Megan Lawless"
+        "Monica Barbaro",
+        "Callum Turner"
       ],
-      "director": "Curry Barker",
-      "why_watch": "Made for $750K. Now at $458M worldwide in its eleventh week — the most profitable film of the decade, period. $262M domestic. Still in the top 10 but rapidly losing screens to Spider-Man and The Odyssey. A monkey's-paw horror that defied every box office precedent. This is genuinely your last chance to see it on a big screen.",
+      "director": "",
+      "why_watch": "A rom-com with a wild premise: in a world where premarital sex is only legal one night a year, two strangers make a connection that challenges everything they thought about relationships. Monica Barbaro (Top Gun: Maverick) and Callum Turner bring chemistry to a concept that's part Purge, part Before Sunrise. Opening Thursday — the counterprogramming pick if superheroes and epics aren't your speed.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Obsession+2026+movie+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=One+Night+Only+movie+2026+showtimes+near+me",
       "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=gMC8kkwbIQQ",
+      "trailer_url": "https://www.youtube.com/watch?v=AvKoSR3O4NQ",
       "cast_details": [
         {
-          "name": "Inde Navarrette",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Inde_Navarrette_in_2026.jpg"
+          "name": "Monica Barbaro",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Monica_Barbaro.jpg/300px-Monica_Barbaro.jpg"
         },
         {
-          "name": "Michael Johnston",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Michael_Johnston_by_Gage_Skidmore.jpg/300px-Michael_Johnston_by_Gage_Skidmore.jpg"
-        },
-        {
-          "name": "Cooper Tomlinson",
-          "photo_url": ""
-        },
-        {
-          "name": "Megan Lawless",
-          "photo_url": ""
+          "name": "Callum Turner",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Callum_Turner-69856_%28cropped%29.jpg/300px-Callum_Turner-69856_%28cropped%29.jpg"
         }
       ]
     },
     {
-      "title": "Hadestown: The Musical",
-      "slug": "hadestown-the-musical",
-      "genre": "Musical, Drama",
+      "title": "Batwara 1947",
+      "slug": "batwara-1947",
+      "genre": "Period Drama, Historical",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/bc/Hadestown_The_Musical_Film.jpg",
-      "rating": "100% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-07-24",
-      "status": "now_playing",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Batwara_1947_film_poster.jpg",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-14",
+      "status": "coming_soon",
       "cast": [
-        "Reeve Carney",
-        "Eva Noblezada",
-        "André De Shields",
-        "Amber Gray",
-        "Patrick Page"
+        "Sunny Deol",
+        "Preity Zinta",
+        "Shabana Azmi",
+        "Karan Deol",
+        "Ali Fazal"
       ],
-      "director": "Brett Sullivan",
-      "why_watch": "A perfect 100% on Rotten Tomatoes. $14.3M opening weekend — strong for a Broadway proshot. The Tony-winning sensation captured live with its original cast — Reeve Carney, Eva Noblezada, André De Shields. A folk-jazz reimagining of Orpheus and Eurydice that hits like a freight train. Limited theatrical run on 1,949 screens, and Spider-Man is about to steal most of them. Go now.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Hadestown+The+Musical+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=Xvuvun5sVbY",
+      "director": "Rajkumar Santoshi",
+      "why_watch": "The biggest Indian release of the Independence Day window. Produced by Aamir Khan, directed by Rajkumar Santoshi, with music by A.R. Rahman and lyrics by Javed Akhtar — that's an all-time talent stack. Based on the acclaimed partition play 'Jis Lahore Nai Vekhya, O Jamya E Nai.' Sunny Deol reunites with Santoshi for the first time since Ghatak (1996), Preity Zinta returns to Hindi cinema after an eight-year hiatus, and the teaser already has audiences emotional. Cinematography by Santosh Sivan. Aug 14.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Batwara+1947+showtimes+near+me",
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=oRsAMzfvVGk",
       "cast_details": [
         {
-          "name": "Reeve Carney",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Reeve_carney.jpg/300px-Reeve_carney.jpg"
+          "name": "Sunny Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Sunny_Paaji_2024.jpg"
         },
         {
-          "name": "Eva Noblezada",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Eva_Noblezada_Tribeca_2026_11.jpg/300px-Eva_Noblezada_Tribeca_2026_11.jpg"
+          "name": "Preity Zinta",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Preity_Zinta_by_Ash_Gupta.jpg/300px-Preity_Zinta_by_Ash_Gupta.jpg"
         },
         {
-          "name": "André De Shields",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/AndreDeShields.jpg/300px-AndreDeShields.jpg"
+          "name": "Shabana Azmi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
         },
         {
-          "name": "Amber Gray",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Amber_Gray_Tribeca_2026_7.jpg/300px-Amber_Gray_Tribeca_2026_7.jpg"
+          "name": "Karan Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/en/6/66/Pal_Pal_Dil_Ke_Pass_poster.jpg"
         },
         {
-          "name": "Patrick Page",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/PatrickPage-byPhilipRomano.jpg/300px-PatrickPage-byPhilipRomano.jpg"
+          "name": "Ali Fazal",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg/300px-Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg"
         }
       ]
     },
     {
-      "title": "Moana (Live-Action)",
-      "slug": "moana-live-action",
-      "genre": "Musical Adventure",
+      "title": "Awarapan 2",
+      "slug": "awarapan-2",
+      "genre": "Romance, Drama",
       "year": 2026,
-      "poster_url": "",
-      "rating": "37% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-07-10",
-      "status": "now_playing",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Awarapan_2.jpg/500px-Awarapan_2.jpg",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-14",
+      "status": "coming_soon",
       "cast": [
-        "Dwayne Johnson",
-        "Catherine Laga'aia"
+        "Emraan Hashmi",
+        "Disha Patani",
+        "Shabana Azmi"
       ],
-      "director": "Thomas Kail",
-      "why_watch": "Proof that brand power beats reviews: $228M worldwide and $107M domestic despite a brutal 37% on Rotten Tomatoes. Critics say it's lifeless and Dwayne's Maui wig launched memes — but families keep showing up. Three weeks in and still drawing because there's nothing else like it for younger kids right now. Just manage expectations.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Moana+live+action+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=n7f6hlKsxxo",
+      "director": "Nitin Kakkar",
+      "why_watch": "The sequel nobody expected to the 2007 cult classic that built Emraan Hashmi's brooding-romantic-hero persona. Hashmi reunites with the Bhatt camp for a romantic drama that's been generating serious buzz. Disha Patani and Shabana Azmi round out the cast. Releasing Independence Day weekend alongside Batwara 1947 — two very different vibes competing for the same holiday audience. Aug 14.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=IQ7HkZ-Gun8",
       "cast_details": [
         {
-          "name": "Dwayne Johnson",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg/300px-Dwayne_Johnson-1764_%284x5_cropped_with_moderate_headroom%29.jpg"
+          "name": "Emraan Hashmi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emraan_Filmfare_Magazine_Launch.jpg/300px-Emraan_Filmfare_Magazine_Launch.jpg"
         },
         {
-          "name": "Catherine Laga'aia",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Catherine_Laga%27aia_by_Gage_Skidmore.jpg/300px-Catherine_Laga%27aia_by_Gage_Skidmore.jpg"
+          "name": "Disha Patani",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg/300px-Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg"
+        },
+        {
+          "name": "Shabana Azmi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
         }
       ]
     },
     {
-      "title": "Disclosure Day",
-      "slug": "disclosure-day",
+      "title": "The End of Oak Street",
+      "slug": "the-end-of-oak-street",
       "genre": "Sci-Fi Thriller",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/Disclosure_Day_poster.jpg",
-      "rating": "79% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-06-12",
-      "status": "now_playing",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7e/The_End_of_Oak_Street_poster.jpg",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-14",
+      "status": "coming_soon",
       "cast": [
-        "Emily Blunt",
-        "Josh O'Connor",
-        "Colin Firth",
-        "Colman Domingo"
+        "Anne Hathaway",
+        "Ewan McGregor",
+        "Maisy Stella",
+        "Christian Convery"
       ],
-      "director": "Steven Spielberg",
-      "why_watch": "Spielberg's alien conspiracy thriller crossed $116M domestic in seven weeks. Emily Blunt is in early Oscar conversations. Losing screens fast now to Spider-Man and The Odyssey — this is genuinely the last week to catch it theatrically before it goes to streaming. If you missed it, this weekend is your final shot.",
+      "director": "",
+      "why_watch": "What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? That's the premise of this high-concept Warner Bros. sci-fi thriller starring Anne Hathaway and Ewan McGregor. The Platt family must survive a world they never asked for. If Jurassic Park met A Quiet Place in the suburbs, this is what you'd get. Aug 14.",
       "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Disclosure+Day+showtimes+near+me",
+      "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
       "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=SCYT8vb2siQ",
+      "trailer_url": "https://www.youtube.com/watch?v=3oB9AxspVow",
       "cast_details": [
         {
-          "name": "Emily Blunt",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg/300px-Emily_Blunt_at_WWD_Style_Awards_2026-02.jpg"
+          "name": "Anne Hathaway",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
         },
         {
-          "name": "Josh O'Connor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg/300px-Josh_O%27Connor%2C_Toronto_International_Film_Festival_2025_3.jpg"
+          "name": "Ewan McGregor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg/300px-Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg"
         },
         {
-          "name": "Colin Firth",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Colin_Firth_%2836124162705%29_%28cropped%29.jpg/300px-Colin_Firth_%2836124162705%29_%28cropped%29.jpg"
+          "name": "Maisy Stella",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg/300px-Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg"
         },
         {
-          "name": "Colman Domingo",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg/300px-Colman_Domingo_at_82nd_Venice_International_Film_Festival-1_%28cropped2%29.jpg"
+          "name": "Christian Convery",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg/300px-Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg"
         }
       ]
     }
