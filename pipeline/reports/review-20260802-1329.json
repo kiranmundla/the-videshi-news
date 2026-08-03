@@ -1,0 +1,59 @@
+[
+  {
+    "id": "d91531e3-b758-4c21-a4d8-d2dff9d61248",
+    "headline": "Kerala Monsoon Death Toll Rises to Eight as Floods and Landslides Ravage State",
+    "slug": "kerala-monsoon-death-toll-rises-to-eight-floods-landslides",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs in Kerala or those with family in the affected areas. This could provide a personal connection and highlight how the situation impacts the global Indian community.",
+        "Add context about how previous monsoon seasons have affected the diaspora, possibly referencing any initiatives NRIs have taken to support relief efforts in the past. This would provide a historical perspective that could resonate with readers.",
+        "Consider including information on how NRIs can contribute to relief efforts, such as links to organizations accepting donations or volunteering opportunities. This would make the article more actionable for the diaspora audience.",
+        "Incorporate a specific social embed, such as a tweet from the Kerala government or a local news outlet providing updates on the situation, to keep readers informed about ongoing developments."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Kerala government or a local news outlet providing real-time updates on the flood situation and relief efforts."
+      ]
+    }
+  },
+  {
+    "id": "c83df01d-6886-4c15-8a6b-959303e38a31",
+    "headline": "OPEC+ Approves Sixth Straight Output Hike, Then Plans to Pause Through Year-End",
+    "slug": "opec-plus-approves-sixth-output-hike-plans-pause-through-year-end",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how changes in OPEC+ output and oil prices specifically impact NRIs in India and abroad, such as implications for remittances, investment opportunities, or cost of living adjustments for Indian expatriates.",
+        "Provide more context on how India's reliance on oil imports affects the Indian diaspora, particularly in terms of economic stability and potential job impacts for NRIs working in sectors tied to oil prices.",
+        "Clarify the connection between OPEC+ decisions and the Indian economy by including specific statistics or forecasts related to inflation and the current account deficit, which would be particularly relevant to NRIs concerned about economic conditions in India.",
+        "Include a brief section on how fluctuations in oil prices can influence global markets and investments, which would be of interest to NRIs looking to navigate their financial strategies."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from OPEC or a financial news outlet summarizing the output hike and its implications, which could provide real-time context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "a9b49913-4041-42c2-a9f3-6ca15c4ad3c4",
+    "headline": "Trump's $100,000 H-1B Visa Fee Blocked Again as Appeals Court Denies Stay",
+    "slug": "trumps-100000-h1b-visa-fee-blocked-appeals-court-denies-stay",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian NRIs who have been directly affected by the H-1B fee increase. This could provide a personal perspective on how the policy impacts their lives and careers.",
+        "Provide more context on the implications of the court's ruling for the Indian diaspora, such as potential changes in employment opportunities or the future of H-1B visa applications. This could help readers understand the broader significance of the legal battle.",
+        "Clarify the timeline of events surrounding the H-1B fee and the court's ruling. A brief timeline could help readers follow the developments more easily and understand the urgency of the situation.",
+        "Include a section discussing the potential next steps for the U.S. government and how this might affect future immigration policies, particularly for Indian workers. This would give readers insight into what to expect moving forward."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the court's decision to provide authoritative context and real-time updates on the situation."
+      ]
+    }
+  }
+]

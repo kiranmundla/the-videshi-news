@@ -916,5 +916,15 @@
     "errors": 0,
     "hero_slug": "honda-india-two-wheeler-sales-july-2026",
     "story_count": 5
+  },
+  {
+    "sent_at": "2026-08-02T14:00:06.133328+00:00Z",
+    "subject": "The Videshi Weekly \u2014 Jul 26\u201302, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "the-odyssey-christopher-nolan-review-2026",
+    "story_count": 8,
+    "event_count": 5
   }
 ]
