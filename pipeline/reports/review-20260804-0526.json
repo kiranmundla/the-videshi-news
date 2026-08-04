@@ -1,0 +1,97 @@
+[
+  {
+    "id": "3cc64517-0fc1-478a-8362-c78f00f72802",
+    "headline": "Snap Beats Q2 Expectations, Opens Preorders for $2,195 AR Glasses",
+    "slug": "snap-q2-earnings-beat-expectations-with-ar-glasses-spectacles-preorder",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific examples of how Snap's advertising strategies are being utilized by Indian brands targeting the NRI community, or how the Indian diaspora is engaging with the platform.",
+        "Add context about the significance of Snap's growth in India, particularly how it affects Indian businesses and entrepreneurs in the diaspora, potentially linking to cultural commerce trends.",
+        "Consider restructuring the article to lead with the implications of Snap's performance for the Indian diaspora, rather than starting with the financial metrics, to better align with the site's focus.",
+        "Include a brief analysis or quote from an industry expert on how Snap's new AR glasses might appeal to the NRI market, especially in terms of cultural relevance or technological adoption."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Snap or a tech analyst discussing the impact of Snap's growth on the Indian market or diaspora advertising strategies."
+      ]
+    }
+  },
+  {
+    "id": "76206820-04c2-4638-a984-c4d06f50b348",
+    "headline": "Telegram Vanishes From Apple App Store, Then Quietly Returns Hours Later",
+    "slug": "telegram-vanishes-from-apple-app-store-then-quietly-returns",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the Telegram incident specifically impacts Indian NRIs, such as their reliance on the app for communication with family and friends back home or for accessing news and updates related to India.",
+        "Provide additional context on the implications of Telegram's regulatory challenges in India for NRIs, such as how these challenges could affect their ability to communicate or access information, especially during significant events like elections or festivals.",
+        "Clarify the timeline and details surrounding the previous ban in India, as well as any potential repercussions for Indian users abroad, to give readers a more comprehensive understanding of the situation.",
+        "Consider adding a brief section on how other messaging apps are perceived in the Indian diaspora community, which could provide a comparative perspective on Telegram's significance."
+      ],
+      "embed_opportunities": [
+        "Embed the official Telegram statement or a relevant tweet from their account regarding the app's removal and restoration, which would provide direct insight into the company's perspective."
+      ]
+    }
+  },
+  {
+    "id": "3bdd8dc1-eb93-4dbd-be44-6c8224fabfa6",
+    "headline": "O-1 'Extraordinary Ability' Visa Gains Traction as H-1B Gets Tougher and Costlie",
+    "slug": "o-1-extraordinary-ability-visa-gains-traction-as-h-1b-gets-tougher",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or quotes from Indian professionals in the U.S. who have successfully transitioned from H-1B to O-1 visas, highlighting their experiences and the impact on the Indian tech community.",
+        "Provide more context on the implications of the O-1 visa for NRIs, such as how it can affect their long-term residency plans in the U.S. or opportunities for family members, which would resonate more with the diaspora audience.",
+        "Clarify the requirements for the O-1 visa by including specific examples of the types of achievements or documentation that can qualify an applicant, making it more relatable for potential applicants from the Indian diaspora.",
+        "Discuss the potential challenges and misconceptions surrounding the O-1 visa application process, particularly for Indian professionals, to give a more balanced view of this immigration pathway."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the O-1 visa requirements and any recent changes to immigration policies that could affect NRIs."
+      ]
+    }
+  },
+  {
+    "id": "9fae194f-5153-4a04-897a-756c8d22c00c",
+    "headline": "India Emerges as Asia's 'Anti-AI' Trade as Global Tech Rally Cools",
+    "slug": "india-emerges-as-asias-anti-ai-trade-as-global-tech-rally-cools",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who have invested in Indian equities or those who are considering shifting their investments back to India due to the current market conditions. This would provide a personal touch and relevance to the NRI audience.",
+        "Provide context on how these market shifts impact NRIs specifically, such as potential investment opportunities or risks for those looking to repatriate funds or invest in Indian stocks. This could include mentioning any tax implications or remittance trends.",
+        "Clarify the timeline mentioned in the article, particularly the reference to 'the first half of 2026,' which seems to be an error. Ensure that the dates align with the current year to avoid confusion among readers.",
+        "Include a brief section on how these market changes might influence the Indian economy overall, which would be of interest to NRIs concerned about the economic stability of their home country."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or institution discussing the implications of India's market performance on global investment trends, which would enhance the article's credibility and provide real-time context."
+      ]
+    }
+  },
+  {
+    "id": "f78b5b56-ee94-44ce-8e4e-d37d0a431211",
+    "headline": "Federal Judge Blocks New York's Ban on ICE Agents Wearing Masks",
+    "slug": "federal-judge-blocks-new-york-ban-on-ice-agents-wearing-masks",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how this ruling may impact NRIs and their families in the U.S. For instance, explore how the visibility of ICE agents affects the perception of safety within immigrant communities, particularly among Indian NRIs who may have family members facing immigration issues.",
+        "Provide more context on the implications of this ruling for NRIs. Discuss how similar laws in other states could affect Indian immigrants and their interactions with law enforcement, particularly in states with significant Indian populations.",
+        "Consider adding a quote or perspective from an NRI immigration lawyer or community leader to provide a personal touch and expert opinion on how this ruling could affect the Indian diaspora.",
+        "Clarify the timeline and details of the law's enactment and its broader implications for immigration policy, as this context is crucial for readers who may not be familiar with the legal landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or a relevant government statement regarding the implications of this ruling on federal immigration enforcement policies."
+      ]
+    }
+  }
+]
