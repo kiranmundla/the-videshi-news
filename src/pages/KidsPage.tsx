@@ -873,10 +873,10 @@ export default function KidsPage() {
                       to={`/article/${article.slug}`}
                       className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-md transition-all duration-200"
                     >
-                      {article.imageUrl && (
+                      {article.hero_image_url && (
                         <div className="aspect-[16/9] overflow-hidden">
                           <img
-                            src={article.imageUrl}
+                            src={article.hero_image_url}
                             alt=""
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             loading="lazy"
@@ -885,12 +885,12 @@ export default function KidsPage() {
                       )}
                       <div className="p-4">
                         <h3 className="font-serif text-[15px] sm:text-base font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-[#A32D2F] transition-colors mb-2">
-                          {article.headline}
+                          {article.title}
                         </h3>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <span className="px-2 py-0.5 rounded-full bg-muted/30 font-medium capitalize">{article.category?.replace("-", " ") || "News"}</span>
                           <span>·</span>
-                          <time>{new Date(article.publishedAt || "").toLocaleDateString("en-US", { month: "short", day: "numeric" })}</time>
+                          <time>{new Date(article.published_at || "").toLocaleDateString("en-US", { month: "short", day: "numeric" })}</time>
                         </div>
                       </div>
                     </Link>
