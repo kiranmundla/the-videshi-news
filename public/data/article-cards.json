@@ -1,5 +1,71 @@
 [
   {
+    "slug": "california-ai-provenance-law-digital-fingerprints",
+    "headline": "California's New AI Provenance Law Requires Tech Giants to Embed Digital Fingerprints in AI Content",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-ai-provenance-law-digital-fingerprints.jpg"
+  },
+  {
+    "slug": "fssai-bars-dabur-misleading-100-percent-claims",
+    "headline": "India's Food Regulator Bars Dabur From Selling Products With Misleading '100%' Claims",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fssai-bars-dabur-misleading-100-percent-claims.jpg"
+  },
+  {
+    "slug": "spokane-wildfires-700-buildings-destroyed-65000-evacuated",
+    "headline": "Spokane Wildfires Destroy Over 700 Buildings, Force 65,000 to Evacuate in Washington's Worst Natural Disaster",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spokane-wildfires-700-buildings-destroyed-65000-evacuated.jpg"
+  },
+  {
+    "slug": "chandipura-virus-22-children-dead-gujarat-monsoon-2026",
+    "headline": "Chandipura Virus Death Toll Rises to 22 Children in Gujarat as Monsoon Outbreak Intensifies",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chandipura-virus-22-children-dead-gujarat-monsoon-2026.jpg"
+  },
+  {
+    "slug": "ubs-gold-forecast-5200-mid-2027-buying-opportunity",
+    "headline": "UBS Forecasts Gold at $5,200 by Mid-2027, Calls Current Dip a Buying Opportunity",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ubs-gold-forecast-5200-mid-2027-buying-opportunity.jpg"
+  },
+  {
+    "slug": "jpmorgan-chase-750-billion-housing-plan-2035",
+    "headline": "JPMorgan Chase Pledges $750 Billion for U.S. Housing Through 2035",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jpmorgan-chase-750-billion-housing-plan-2035.jpg"
+  },
+  {
+    "slug": "25-states-sue-trump-over-latest-global-tariffs",
+    "headline": "25 States Sue Trump Administration Over Latest Round of Global Tariffs",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/25-states-sue-trump-over-latest-global-tariffs.jpg"
+  },
+  {
+    "slug": "india-extends-contract-manufacturing-tax-breaks-to-2041-boosting-apple",
+    "headline": "India Extends Contract Manufacturing Tax Breaks to 2041, Handing Apple a Major Expansion Win",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-extends-contract-manufacturing-tax-breaks-to-2041-boosting-apple.jpg"
+  },
+  {
+    "slug": "fssai-bans-old-monk-royal-challenge-bagpiper-variants-artificial-flavouring",
+    "headline": "FSSAI Bans Select Variants of Old Monk, Royal Challenge, and Bagpiper Over Artificial Flavouring",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fssai-bans-old-monk-royal-challenge-bagpiper-variants-artificial-flavouring.jpg"
+  },
+  {
+    "slug": "india-to-sell-up-to-6-5-percent-lic-stake-via-ofs-starting-august-4",
+    "headline": "India to Sell Up to 6.5% LIC Stake via Offer for Sale Starting August 4",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-to-sell-up-to-6-5-percent-lic-stake-via-ofs-starting-august-4.jpg"
+  },
+  {
+    "slug": "india-finishes-fourth-cwg-2026-boxers-lead-historic-gold-rush",
+    "headline": "India Finishes Fourth at CWG 2026 With 39 Medals as Boxers Lead Historic Gold Rush",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-finishes-fourth-cwg-2026-boxers-lead-historic-gold-rush.jpg"
+  },
+  {
     "slug": "karnataka-cabinet-expansion-congress-revolt-mlas-demand-berths",
     "headline": "Karnataka Cabinet Expansion Triggers Congress Revolt as MLAs Demand Ministerial Berths",
     "category": "nri-world",
@@ -34,83 +100,5 @@
     "headline": "India Rolls Out Sweeping Tax and Digital Payments Overhaul Across 2026",
     "category": "markets-finance",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-sweeping-tax-digital-payments-overhaul-2026.jpg"
-  },
-  {
-    "slug": "gulf-flight-chaos-easa-extends-airspace-ban-august-2026",
-    "headline": "Gulf Flight Chaos Deepens as Europe Extends Airspace Ban Through August",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gulf-flight-chaos-easa-extends-airspace-ban-august-2026.jpg"
-  },
-  {
-    "slug": "ambula-sun-dried-mango-odia-cuisine-odisha-rasgulla-war-food",
-    "headline": "Beyond the Rasgulla War: How Sun-Dried Mango Powers Odisha's Overlooked Cuisine",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ambula-sun-dried-mango-odia-cuisine-odisha-rasgulla-war-food.jpg"
-  },
-  {
-    "slug": "india-summons-meta-executives-facebook-blocks-pm-modi-video",
-    "headline": "India Summons Meta Executives After Facebook Briefly Blocks PM Modi's Video",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-summons-meta-executives-facebook-blocks-pm-modi-video.jpg"
-  },
-  {
-    "slug": "ice-airport-arrests-indian-diaspora-carry-documents-tsa-agreement",
-    "headline": "ICE at the Gate: Why Immigration Lawyers Want Every Indian in the US Carrying Documents",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ice-airport-arrests-indian-diaspora-carry-documents-tsa-agreement.jpg"
-  },
-  {
-    "slug": "us-visa-bond-program-permanent-20000-india-not-on-list",
-    "headline": "US Makes Visa Bond Program Permanent, Raises Maximum to $20,000 — India Not on List",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-visa-bond-program-permanent-20000-india-not-on-list.jpg"
-  },
-  {
-    "slug": "h1b-visa-wage-gap-dol-data-employers-pay-most",
-    "headline": "H-1B Visa Wage Gap Widens as DOL Data Reveals Which Employers Pay the Most",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-visa-wage-gap-dol-data-employers-pay-most.jpg"
-  },
-  {
-    "slug": "tua-synthe-futuristic-cocktails-pan-asian-kolkata",
-    "headline": "TUA & Synthe Brings Futuristic Cocktails and Pan-Asian Cuisine to Kolkata",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tua-synthe-futuristic-cocktails-pan-asian-kolkata.jpg"
-  },
-  {
-    "slug": "sawan-somwar-vrat-thali-no-onion-paneer-masala",
-    "headline": "Sawan Somwar Is Here: Build a Satisfying Vrat Thali Without Onion or Garlic",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sawan-somwar-vrat-thali-no-onion-paneer-masala.jpg"
-  },
-  {
-    "slug": "ram-gopal-varma-bollywood-flop-economy-film-industry",
-    "headline": "Ram Gopal Varma on Bollywood's Flop Economy: How Failures Fuel the Film Industry",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ram-gopal-varma-bollywood-flop-economy-film-industry.jpg"
-  },
-  {
-    "slug": "strangers-feeding-indias-exam-protesters-swiggy-zomato",
-    "headline": "How Strangers Are Feeding India's Exam Protesters Through Swiggy and Zomato",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/strangers-feeding-indias-exam-protesters-swiggy-zomato.jpg"
-  },
-  {
-    "slug": "maharashtra-acquires-air-india-building-mumbai-1601-crore",
-    "headline": "Maharashtra Completes ₹1,601 Crore Acquisition of Iconic Air India Building in Mumbai",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/maharashtra-acquires-air-india-building-mumbai-1601-crore.jpg"
-  },
-  {
-    "slug": "h1b-tech-workers-career-prep-mode-ai-layoffs-us-job-market",
-    "headline": "H-1B Tech Workers Live in Constant Career-Prep Mode as AI Layoffs Reshape US Job Market",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-tech-workers-career-prep-mode-ai-layoffs-us-job-market.jpg"
-  },
-  {
-    "slug": "air-india-codeshare-azerbaijan-airlines-baku-routes",
-    "headline": "Air India Launches Codeshare With Azerbaijan Airlines on Baku-India Routes",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-codeshare-azerbaijan-airlines-baku-routes.jpg"
   }
 ]
