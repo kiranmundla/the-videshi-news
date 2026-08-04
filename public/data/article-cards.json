@@ -1,104 +1,98 @@
 [
   {
-    "slug": "california-ai-provenance-law-digital-fingerprints",
-    "headline": "California's New AI Provenance Law Requires Tech Giants to Embed Digital Fingerprints in AI Content",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-ai-provenance-law-digital-fingerprints.jpg"
-  },
-  {
-    "slug": "fssai-bars-dabur-misleading-100-percent-claims",
-    "headline": "India's Food Regulator Bars Dabur From Selling Products With Misleading '100%' Claims",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fssai-bars-dabur-misleading-100-percent-claims.jpg"
-  },
-  {
-    "slug": "spokane-wildfires-700-buildings-destroyed-65000-evacuated",
-    "headline": "Spokane Wildfires Destroy Over 700 Buildings, Force 65,000 to Evacuate in Washington's Worst Natural Disaster",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spokane-wildfires-700-buildings-destroyed-65000-evacuated.jpg"
-  },
-  {
-    "slug": "chandipura-virus-22-children-dead-gujarat-monsoon-2026",
-    "headline": "Chandipura Virus Death Toll Rises to 22 Children in Gujarat as Monsoon Outbreak Intensifies",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chandipura-virus-22-children-dead-gujarat-monsoon-2026.jpg"
-  },
-  {
-    "slug": "ubs-gold-forecast-5200-mid-2027-buying-opportunity",
-    "headline": "UBS Forecasts Gold at $5,200 by Mid-2027, Calls Current Dip a Buying Opportunity",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ubs-gold-forecast-5200-mid-2027-buying-opportunity.jpg"
-  },
-  {
-    "slug": "jpmorgan-chase-750-billion-housing-plan-2035",
-    "headline": "JPMorgan Chase Pledges $750 Billion for U.S. Housing Through 2035",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jpmorgan-chase-750-billion-housing-plan-2035.jpg"
-  },
-  {
-    "slug": "25-states-sue-trump-over-latest-global-tariffs",
-    "headline": "25 States Sue Trump Administration Over Latest Round of Global Tariffs",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/25-states-sue-trump-over-latest-global-tariffs.jpg"
-  },
-  {
-    "slug": "india-extends-contract-manufacturing-tax-breaks-to-2041-boosting-apple",
-    "headline": "India Extends Contract Manufacturing Tax Breaks to 2041, Handing Apple a Major Expansion Win",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-extends-contract-manufacturing-tax-breaks-to-2041-boosting-apple.jpg"
-  },
-  {
-    "slug": "fssai-bans-old-monk-royal-challenge-bagpiper-variants-artificial-flavouring",
-    "headline": "FSSAI Bans Select Variants of Old Monk, Royal Challenge, and Bagpiper Over Artificial Flavouring",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fssai-bans-old-monk-royal-challenge-bagpiper-variants-artificial-flavouring.jpg"
-  },
-  {
-    "slug": "india-to-sell-up-to-6-5-percent-lic-stake-via-ofs-starting-august-4",
-    "headline": "India to Sell Up to 6.5% LIC Stake via Offer for Sale Starting August 4",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-to-sell-up-to-6-5-percent-lic-stake-via-ofs-starting-august-4.jpg"
-  },
-  {
-    "slug": "india-finishes-fourth-cwg-2026-boxers-lead-historic-gold-rush",
-    "headline": "India Finishes Fourth at CWG 2026 With 39 Medals as Boxers Lead Historic Gold Rush",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-finishes-fourth-cwg-2026-boxers-lead-historic-gold-rush.jpg"
-  },
-  {
-    "slug": "karnataka-cabinet-expansion-congress-revolt-mlas-demand-berths",
-    "headline": "Karnataka Cabinet Expansion Triggers Congress Revolt as MLAs Demand Ministerial Berths",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-cabinet-expansion-congress-revolt-mlas-demand-berths.jpg"
-  },
-  {
-    "slug": "h1b-extension-fees-rise-large-employers-proposed-rule",
-    "headline": "H-1B Extension Fees Set To Rise for Large Employers Under Proposed U.S. Rule",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-extension-fees-rise-large-employers-proposed-rule.jpg"
-  },
-  {
-    "slug": "trump-administration-100000-fee-opt-international-students",
-    "headline": "Trump Administration Weighs $100,000 Fee To Stop Foreign Students Working After Graduation",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-administration-100000-fee-opt-international-students.jpg"
-  },
-  {
-    "slug": "suriya-50-jyotika-marriage-philosophy-equal-partnership",
-    "headline": "Suriya at 50: The Quiet Philosophy That Has Kept His Marriage to Jyotika Strong for 20 Years",
+    "slug": "imran-khan-bollywood-comeback-netflix-adhure-hum-adhure-tum",
+    "headline": "Imran Khan Ends 11-Year Wait, Confirms Bollywood Comeback With Netflix Film Adhure Hum Adhure Tum",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/suriya-50-jyotika-marriage-philosophy-equal-partnership.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/imran-khan-bollywood-comeback-netflix-adhure-hum-adhure-tum.jpg"
   },
   {
-    "slug": "new-zealand-english-official-language-bill-passed",
-    "headline": "New Zealand Formally Makes English an Official Language, Drawing Ridicule at Home",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/new-zealand-english-official-language-bill-passed.jpg"
-  },
-  {
-    "slug": "india-sweeping-tax-digital-payments-overhaul-2026",
-    "headline": "India Rolls Out Sweeping Tax and Digital Payments Overhaul Across 2026",
+    "slug": "india-gold-demand-q2-record-spending-tariff-grey-market",
+    "headline": "India's Gold Demand Slips 6% but Spending Hits Record Rs 1.98 Lakh Crore as Prices Soar",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-sweeping-tax-digital-payments-overhaul-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gold-demand-q2-record-spending-tariff-grey-market.jpg"
+  },
+  {
+    "slug": "indigo-turns-20-from-single-aircraft-to-indias-aviation-giant",
+    "headline": "IndiGo Turns 20: From a Single Aircraft to India's Aviation Giant",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-turns-20-from-single-aircraft-to-indias-aviation-giant.jpg"
+  },
+  {
+    "slug": "adobe-engineering-director-returns-to-india-after-decade-in-us",
+    "headline": "Adobe Engineering Director Moves Back to Bengaluru After a Decade in the US",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/adobe-engineering-director-returns-to-india-after-decade-in-us.jpg"
+  },
+  {
+    "slug": "ex-us-general-calls-pakistan-qatar-compromised-mediators-in-iran-talks",
+    "headline": "Ex-US General Calls Pakistan, Qatar 'Compromised Mediators' in Iran Talks",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ex-us-general-calls-pakistan-qatar-compromised-mediators-in-iran-talks.jpg"
+  },
+  {
+    "slug": "nifty-50-closing-auction-mechanism-debut-triggers-market-confusion",
+    "headline": "India's New Closing Auction Mechanism Triggers Market Confusion on Debut",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nifty-50-closing-auction-mechanism-debut-triggers-market-confusion.jpg"
+  },
+  {
+    "slug": "blackrock-tokenized-funds-stablecoin-reserve-buidl-expansion",
+    "headline": "BlackRock Files for Two New Tokenized Funds as Wall Street's Blockchain Push Accelerates",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/blackrock-tokenized-funds-stablecoin-reserve-buidl-expansion.jpg"
+  },
+  {
+    "slug": "labour-overtakes-reform-uk-burnham-bounce-polls",
+    "headline": "Labour Overtakes Reform UK in Polls as Andy Burnham's 'Bounce' Reshapes British Politics",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/labour-overtakes-reform-uk-burnham-bounce-polls.jpg"
+  },
+  {
+    "slug": "openai-luxury-influencer-retreat-hudson-valley-backlash",
+    "headline": "OpenAI's Luxury Influencer Retreat in Hudson Valley Draws Sharp Online Backlash",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-luxury-influencer-retreat-hudson-valley-backlash.jpg"
+  },
+  {
+    "slug": "hyderabad-25000kg-adulterated-spices-industrial-dyes-seized",
+    "headline": "Hyderabad Police Seize 25,000 Kg of Adulterated Spices Laced With Industrial Dyes",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hyderabad-25000kg-adulterated-spices-industrial-dyes-seized.jpg"
+  },
+  {
+    "slug": "lt-wins-ultra-mega-adnoc-offshore-order-15000-crore",
+    "headline": "L&T Wins Ultra-Mega Offshore Order Worth Over ₹15,000 Crore From ADNOC",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lt-wins-ultra-mega-adnoc-offshore-order-15000-crore.jpg"
+  },
+  {
+    "slug": "indigo-lie-flat-business-class-a350-premium-long-haul",
+    "headline": "IndiGo Plans Lie-Flat Business Class on A350 Fleet as Premium Long-Haul Push Accelerates",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-lie-flat-business-class-a350-premium-long-haul.jpg"
+  },
+  {
+    "slug": "udhayanidhi-stalin-detained-fir-remarks-vijay-trisha",
+    "headline": "Udhayanidhi Stalin Detained by Police After FIR Over Remarks Against CM Vijay and Trisha",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/udhayanidhi-stalin-detained-fir-remarks-vijay-trisha.jpg"
+  },
+  {
+    "slug": "iran-prepared-strikes-ukraine-backed-down-caspian-sea",
+    "headline": "Iran Prepared Strikes on Three Ukrainian Targets Before Backing Down After Kyiv's Apology",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-prepared-strikes-ukraine-backed-down-caspian-sea.jpg"
+  },
+  {
+    "slug": "doj-88-denaturalization-cases-indian-origin-citizens-targeted",
+    "headline": "DOJ Files Record 88 Denaturalization Cases, Two Indian-Origin Citizens Targeted",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/doj-88-denaturalization-cases-indian-origin-citizens-targeted.jpg"
+  },
+  {
+    "slug": "snap-q2-earnings-beat-expectations-with-ar-glasses-spectacles-preorder",
+    "headline": "Snap Beats Q2 Expectations, Opens Preorders for $2,195 AR Glasses",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/snap-q2-earnings-beat-expectations-with-ar-glasses-spectacles-preorder.jpg"
   }
 ]
