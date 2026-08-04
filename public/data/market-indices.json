@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-04T12:00:14.164133+00:00",
+  "last_updated": "2026-08-04T13:00:22.744224+00:00",
   "indices": [
     {
       "symbol": "SPX",
@@ -14,7 +14,7 @@
       "name": "Nasdaq",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
       "value": 25913.9,
-      "change": 540.04,
+      "change": 540.05,
       "change_pct": 2.13
     },
     {
@@ -45,17 +45,17 @@
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4133.0,
-      "change": 24.8,
-      "change_pct": 0.6
+      "value": 4133.1,
+      "change": 24.9,
+      "change_pct": 0.61
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 59.57,
-      "change": 0.66,
-      "change_pct": 1.12
+      "value": 59.9,
+      "change": 0.99,
+      "change_pct": 1.68
     }
   ]
 }
