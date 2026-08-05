@@ -1,92 +1,86 @@
 [
   {
-    "slug": "netflix-ted-sarandos-meets-indian-writers-nextgen-program",
-    "headline": "Netflix's Ted Sarandos Sits Down with Indian Writers as Streaming Giant Deepens India Bet",
+    "slug": "spiderman-brand-new-day-crosses-1-billion-in",
+    "headline": "Spider-Man: Brand New Day Crosses $1 Billion in Record Six Days",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netflix-ted-sarandos-meets-indian-writers-nextgen-program.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spiderman-brand-new-day-crosses-1-billion-in.jpg"
   },
   {
-    "slug": "india-upi-merchant-discount-rate-mdr-return-payment-act",
-    "headline": "India Moves to Bring Back Merchant Fees on UPI, Ending the Free-Transaction Era",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-upi-merchant-discount-rate-mdr-return-payment-act.jpg"
-  },
-  {
-    "slug": "spacex-first-earnings-report-since-ipo-under-pressure",
-    "headline": "SpaceX Faces Wall Street for the First Time as Stock Slides Below IPO Price",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-first-earnings-report-since-ipo-under-pressure.jpg"
-  },
-  {
-    "slug": "bengaluru-mtr-mavalli-tiffin-rooms-opening-sydney-australia",
-    "headline": "Bengaluru's Legendary MTR Is Opening in Sydney, Bringing Its Century-Old Dosas to Australia",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bengaluru-mtr-mavalli-tiffin-rooms-opening-sydney-australia.jpg"
-  },
-  {
-    "slug": "boy-throb-darshan-magdum-o1-visa-approved-after-viral-campaign",
-    "headline": "Boy Throb's Darshan Magdum Finally Lands in America After Viral O-1 Visa Campaign",
+    "slug": "jharkhand-cm-soren-breaks-silence-on-recruitment-row",
+    "headline": "Jharkhand CM Soren Breaks Silence on Recruitment Row as Protests Escalate",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/boy-throb-darshan-magdum-o1-visa-approved-after-viral-campaign.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jharkhand-cm-soren-breaks-silence-on-recruitment-row.jpg"
   },
   {
-    "slug": "air-india-phuket-delhi-turbulence-12-injured",
-    "headline": "Air India Phuket-Delhi Flight Plunges 300 Feet in Severe Turbulence, Injuring 12",
+    "slug": "sp-500-dow-close-at-record-highs-as",
+    "headline": "S&P 500, Dow Close at Record Highs as AI Earnings and Iran Deal Hopes Converge",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sp-500-dow-close-at-record-highs-as.jpg"
+  },
+  {
+    "slug": "ranthambore-safari-bookings-crash-as-record-demand-overwhelms",
+    "headline": "Ranthambore Safari Bookings Crash as Record Demand Overwhelms New Portal",
     "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-phuket-delhi-turbulence-12-injured.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ranthambore-safari-bookings-crash-as-record-demand-overwhelms.jpg"
   },
   {
-    "slug": "osasuna-goalkeeper-red-card-handling-outside-box",
-    "headline": "Osasuna Goalkeeper Gets Bizarre Red Card After Handling Ball Way Outside the Box",
+    "slug": "tate-brothers-fight-uk-extradition-as-white-house",
+    "headline": "Tate Brothers Fight UK Extradition as White House Refuses to Intervene",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tate-brothers-fight-uk-extradition-as-white-house.jpg"
+  },
+  {
+    "slug": "saudi-arabia-completes-55-billion-ea-takeover-in",
+    "headline": "Saudi Arabia Completes $55 Billion EA Takeover in Largest Leveraged Buyout Ever",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saudi-arabia-completes-55-billion-ea-takeover-in.jpg"
+  },
+  {
+    "slug": "armed-man-with-weapons-cache-arrested-at-trump",
+    "headline": "Armed Man With Weapons Cache Arrested at Trump Golf Course Before Presidential Visit",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/armed-man-with-weapons-cache-arrested-at-trump.jpg"
+  },
+  {
+    "slug": "india-cracks-down-on-glp1-weightloss-drugs-with",
+    "headline": "India Cracks Down on GLP-1 Weight-Loss Drugs With Supply Chain Sweep",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-cracks-down-on-glp1-weightloss-drugs-with.jpg"
+  },
+  {
+    "slug": "mohun-bagan-8-0-south-united-durand-cup-manvir-hat-trick",
+    "headline": "Manvir Singh Hat Trick Powers Mohun Bagan to 8-0 Rout of South United in Durand Cup",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/osasuna-goalkeeper-red-card-handling-outside-box.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mohun-bagan-8-0-south-united-durand-cup-manvir-hat-trick.jpg"
   },
   {
-    "slug": "tyson-foods-beef-losses-cattle-costs-q3",
-    "headline": "Tyson Foods Cuts Profit Outlook as Beef Losses Hit $142 Million in a Quarter",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tyson-foods-beef-losses-cattle-costs-q3.jpg"
+    "slug": "chipotle-jalapeno-salmonella-outbreak-minnesota",
+    "headline": "Chipotle Pulls Jalapeños From Restaurants After 110 Salmonella Cases Linked to Peppers in Minnesota",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chipotle-jalapeno-salmonella-outbreak-minnesota.jpg"
   },
   {
-    "slug": "mcdonalds-q2-earnings-revenue-traffic-falls",
-    "headline": "McDonald’s Beats Profit Forecasts but Revenue Slips as U.S. Traffic Falls",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mcdonalds-q2-earnings-revenue-traffic-falls.jpg"
-  },
-  {
-    "slug": "swiggy-zomato-veterans-launch-ai-career-profound",
-    "headline": "Swiggy and Zomato Veterans Launch AI Career Platform Profound",
+    "slug": "anthropic-10-billion-cloud-deal-volta-nvidia",
+    "headline": "Anthropic Signs $10 Billion Cloud Deal With Norwegian Startup Volta, Backed by Nvidia's Latest Chips",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/swiggy-zomato-veterans-launch-ai-career-profound.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anthropic-10-billion-cloud-deal-volta-nvidia.jpg"
   },
   {
-    "slug": "burnham-first-weeks-pm-tax-cuts",
-    "headline": "Andy Burnham's First Weeks as PM: TikToks, Tax Cuts and a Second Downing Street",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/burnham-first-weeks-pm-tax-cuts.jpg"
+    "slug": "ontario-workforce-priority-stream-permanent-residence-pathway",
+    "headline": "Ontario Opens Applications for New Workforce Priority Stream, Replacing All Previous Immigration Pathways",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ontario-workforce-priority-stream-permanent-residence-pathway.jpg"
   },
   {
-    "slug": "mrunal-thakur-deepfake-legal-warning",
-    "headline": "Mrunal Thakur Issues Legal Warning Over AI Deepfakes, Joins Growing List of Bollywood Stars Fighting Back",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mrunal-thakur-deepfake-legal-warning.jpg"
-  },
-  {
-    "slug": "netflix-operation-safed-sagar-kargil-war-iaf-series",
-    "headline": "Netflix's 'Operation Safed Sagar' Brings the IAF's Untold Kargil War Story to Global Audiences",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netflix-operation-safed-sagar-kargil-war-iaf-series.jpg"
-  },
-  {
-    "slug": "palantir-revenue-doubles-ai-demand-otherworldly-quarter",
-    "headline": "Palantir Revenue Nearly Doubles as AI Demand Drives 'Otherworldly' Quarter",
+    "slug": "lic-shares-plunge-government-6-5-percent-stake-sale",
+    "headline": "LIC Shares Plunge 9% as Government Launches Massive 6.5% Stake Sale at Steep Discount",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/palantir-revenue-doubles-ai-demand-otherworldly-quarter.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lic-shares-plunge-government-6-5-percent-stake-sale.jpg"
   },
   {
-    "slug": "nathan-thomas-youngest-professor-breaks-record",
-    "headline": "Florida Prodigy Nathan Thomas Becomes World's Youngest Professor at 18, Breaking a 306-Year Record",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nathan-thomas-youngest-professor-breaks-record.jpg"
+    "slug": "ongc-q1-profit-doubles-crude-oil-price-surge",
+    "headline": "ONGC Profit More Than Doubles to ₹17,034 Crore as Surging Oil Prices Lift India's Top Explorer",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ongc-q1-profit-doubles-crude-oil-price-surge.jpg"
   }
 ]
