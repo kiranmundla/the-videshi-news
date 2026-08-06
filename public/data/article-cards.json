@@ -1,56 +1,116 @@
 [
   {
-    "slug": "vedanta-aluminium-1-4-billion-loan-post-demerger",
-    "headline": "Vedanta Aluminium Seeks $1.4 Billion Bank Loan in First Major Move After Demerger",
+    "slug": "indian-it-stocks-rally-as-global-ai-trade-unwinds",
+    "headline": "Indian IT Stocks Surge 17% in July as Global Investors Flee the AI Trade",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vedanta-aluminium-1-4-billion-loan-post-demerger.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-it-stocks-rally-as-global-ai-trade-unwinds.jpg"
   },
   {
-    "slug": "awarapan-2-trailer-emraan-hashmi-shivam-returns-august-release",
-    "headline": "Awarapan 2 Trailer Drops With Emraan Hashmi Returning as Shivam After 19 Years",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-trailer-emraan-hashmi-shivam-returns-august-release.jpg"
+    "slug": "karnataka-anthropic-partnership-ai-public-services-governance",
+    "headline": "Karnataka Explores Anthropic Partnership to Deploy AI Across Public Services",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-anthropic-partnership-ai-public-services-governance.jpg"
   },
   {
-    "slug": "indigo-20000-free-tickets-anniversary-how-to-enter",
-    "headline": "IndiGo's 20,000 Free Ticket Giveaway: How to Enter Before the Window Closes",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-20000-free-tickets-anniversary-how-to-enter.jpg"
-  },
-  {
-    "slug": "senate-gop-scrambles-legislative-backlog-recess-immigration",
-    "headline": "Senate GOP Scrambles to Clear Legislative Backlog Before August Recess",
+    "slug": "idf-large-scale-raid-qalandiya-refugee-camp-jerusalem",
+    "headline": "Israeli Forces Launch Large-Scale Raid on Qalandiya Refugee Camp Near Jerusalem",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/senate-gop-scrambles-legislative-backlog-recess-immigration.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/idf-large-scale-raid-qalandiya-refugee-camp-jerusalem.jpg"
   },
   {
-    "slug": "daca-recipient-sues-government-unauthorized-travel-deportation",
-    "headline": "DACA Recipient Sues Government After Deportation Triggers 'Unauthorized Travel' Termination Notice",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/daca-recipient-sues-government-unauthorized-travel-deportation.jpg"
-  },
-  {
-    "slug": "india-ranks-13th-worlds-best-cuisines-tasteatlas-awards",
-    "headline": "India Ranks 13th Among World's Best Cuisines in TasteAtlas Awards",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-ranks-13th-worlds-best-cuisines-tasteatlas-awards.jpg"
-  },
-  {
-    "slug": "trump-attacks-el-sayed-michigan-senate-hater-of-jews",
-    "headline": "Trump Brands Michigan Senate Winner El-Sayed a 'Hater of Jews' as Race Takes National Stage",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-attacks-el-sayed-michigan-senate-hater-of-jews.jpg"
-  },
-  {
-    "slug": "measles-exposure-alert-universal-studios-hollywood-infected-visitor",
-    "headline": "Measles-Infected Visitor Spent 11 Hours at Universal Studios Hollywood, Triggering Health Alert",
+    "slug": "delhi-hc-protects-alakh-pandey-physicswallah-personality-rights",
+    "headline": "Delhi High Court Orders Takedown of Vulgar Content Exploiting PhysicsWallah Founder's Identity",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/measles-exposure-alert-universal-studios-hollywood-infected-visitor.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-hc-protects-alakh-pandey-physicswallah-personality-rights.jpg"
   },
   {
-    "slug": "block-raises-profit-forecast-cash-app-growth-q2-2026",
-    "headline": "Block Raises Full-Year Profit Forecast as Cash App Growth Accelerates",
+    "slug": "lost-memoir-hiroshima-survivor-kiyoshi-tanimoto-published-81-years",
+    "headline": "Lost Memoir by Hiroshima Survivor Published 81 Years After the Atomic Bomb",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lost-memoir-hiroshima-survivor-kiyoshi-tanimoto-published-81-years.jpg"
+  },
+  {
+    "slug": "excel-entertainment-half-vampire-thriller-toronto-midnight-madness",
+    "headline": "Excel Entertainment and AA Films Board Malayalam Vampire Thriller for Toronto Midnight Madness",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/excel-entertainment-half-vampire-thriller-toronto-midnight-madness.jpg"
+  },
+  {
+    "slug": "europe-heatwave-italy-red-alert-energy-crisis-deepens",
+    "headline": "Europe's Deadly Heatwave Puts All Italian Cities on Red Alert as Energy Crisis Deepens",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/europe-heatwave-italy-red-alert-energy-crisis-deepens.jpg"
+  },
+  {
+    "slug": "us-employers-rewrite-h1b-playbook-immigration-costs-soar",
+    "headline": "US Employers Rewrite the H-1B Playbook as Immigration Costs Soar",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-employers-rewrite-h1b-playbook-immigration-costs-soar.jpg"
+  },
+  {
+    "slug": "spacex-lockup-expiry-911-million-shares-unlock-after-record-ipo",
+    "headline": "SpaceX Faces First Major Test as 911 Million Shares Unlock After Record IPO",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/block-raises-profit-forecast-cash-app-growth-q2-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-lockup-expiry-911-million-shares-unlock-after-record-ipo.jpg"
+  },
+  {
+    "slug": "gujarat-bans-analogue-paneer-dairy-substitutes-food-safety-crackdown",
+    "headline": "Gujarat Bans Analogue Paneer and Dairy Substitutes in Widening Food Safety Crackdown",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gujarat-bans-analogue-paneer-dairy-substitutes-food-safety-crackdown.jpg"
+  },
+  {
+    "slug": "kill-director-nikhil-nagesh-bhat-hollywood-debut-jamie-foxx-deadlocked",
+    "headline": "Kill Director Nikhil Nagesh Bhat Lands Hollywood Debut With Jamie Foxx Action Thriller",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kill-director-nikhil-nagesh-bhat-hollywood-debut-jamie-foxx-deadlocked.jpg"
+  },
+  {
+    "slug": "us-sues-indian-origin-pennsylvania-landlord-sexual-harassment",
+    "headline": "U.S. Government Sues Indian-Origin Pennsylvania Landlord for Sexually Harassing Tenant",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-sues-indian-origin-pennsylvania-landlord-sexual-harassment.jpg"
+  },
+  {
+    "slug": "schengen-visa-rejections-cost-indians-rs-154-crore-record-applications",
+    "headline": "Schengen Visa Rejections Cost Indian Travellers Rs 154 Crore Despite Record Applications",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/schengen-visa-rejections-cost-indians-rs-154-crore-record-applications.jpg"
+  },
+  {
+    "slug": "kejriwal-instagram-restricted-india-meta-explanation",
+    "headline": "Kejriwal Claims Instagram Account Restricted in India, Demands Explanation From Meta",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kejriwal-instagram-restricted-india-meta-explanation.jpg"
+  },
+  {
+    "slug": "iberia-solar-eclipse-flight-august-2026",
+    "headline": "Iberia to Chase the Solar Eclipse at 35,000 Feet in a Historic First",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iberia-solar-eclipse-flight-august-2026.jpg"
+  },
+  {
+    "slug": "icrisat-scientist-edible-spoons-bakeys-rs-2-crore-business",
+    "headline": "From ICRISAT Lab to Rs 2 Crore Business: The Indian Scientist Behind Edible Spoons",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/icrisat-scientist-edible-spoons-bakeys-rs-2-crore-business.jpg"
+  },
+  {
+    "slug": "netflix-nextgen-writers-program-india-launch",
+    "headline": "Netflix Launches NextGen Writers' Program to Discover India's New Storytellers",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netflix-nextgen-writers-program-india-launch.jpg"
+  },
+  {
+    "slug": "delhi-red-alert-monsoon-deluge-flooding-work-from-home",
+    "headline": "Delhi Under Red Alert as Monsoon Deluge Triggers Flooding and Work-From-Home Orders",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-red-alert-monsoon-deluge-flooding-work-from-home.jpg"
+  },
+  {
+    "slug": "emerging-markets-ai-tech-hype-selloff-lesson",
+    "headline": "Emerging Markets Learn a Painful Lesson as AI Tech Hype Unravels",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/emerging-markets-ai-tech-hype-selloff-lesson.jpg"
   }
 ]
