@@ -946,5 +946,15 @@
     "errors": 0,
     "hero_slug": "tyson-foods-beef-losses-cattle-costs-q3",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-05T13:55:54.915935+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 05, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "h1b-domestic-flights-deportation-ice-airports-debate",
+    "story_count": 5
   }
 ]
