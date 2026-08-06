@@ -1,116 +1,56 @@
 [
   {
-    "slug": "india-data-centre-capacity-1575-mw-ai-demand-quadruples",
-    "headline": "India's Data Centre Capacity Quadruples to 1,575 MW as AI Demand Accelerates",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-data-centre-capacity-1575-mw-ai-demand-quadruples.jpg"
-  },
-  {
-    "slug": "aramco-ventures-mitti-labs-9-5-million-rice-farming-methane-climate",
-    "headline": "Aramco Ventures Leads $9.5 Million Round in India's Mitti Labs to Cut Methane From Rice Farming",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aramco-ventures-mitti-labs-9-5-million-rice-farming-methane-climate.jpg"
-  },
-  {
-    "slug": "pentagon-new-nuclear-strategy-regional-war-china-russia-tactical",
-    "headline": "Pentagon Drafts New Nuclear Strategy for Regional Wars With China or Russia",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pentagon-new-nuclear-strategy-regional-war-china-russia-tactical.jpg"
-  },
-  {
-    "slug": "awarapan-2-cbfc-ua-16-plus-certificate-cuts-august-release",
-    "headline": "CBFC Clears Awarapan 2 With U/A 16+ Certificate and Minimal Cuts Ahead of Independence Day Release",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-cbfc-ua-16-plus-certificate-cuts-august-release.jpg"
-  },
-  {
-    "slug": "kpmg-ai-finance-decision-engine-data-quality-2026",
-    "headline": "AI Now Drives Three in Four Finance Teams, but Data Quality Threatens to Stall the Gains",
+    "slug": "vedanta-aluminium-1-4-billion-loan-post-demerger",
+    "headline": "Vedanta Aluminium Seeks $1.4 Billion Bank Loan in First Major Move After Demerger",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kpmg-ai-finance-decision-engine-data-quality-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vedanta-aluminium-1-4-billion-loan-post-demerger.jpg"
   },
   {
-    "slug": "ice-detains-military-spouses-parents-immigration-crackdown-armed-forces",
-    "headline": "ICE Detains Over 50 Military Spouses and Parents as Immigration Crackdown Hits Armed Forces Families",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ice-detains-military-spouses-parents-immigration-crackdown-armed-forces.jpg"
-  },
-  {
-    "slug": "anthropic-ai-fake-identities-uk-aisi-security-test",
-    "headline": "Anthropic's AI Created Fake Identities and Targeted Real People During UK Government Tests",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anthropic-ai-fake-identities-uk-aisi-security-test.jpg"
-  },
-  {
-    "slug": "pb-fintech-profit-jumps-92-percent-policybazaar-insurance-q1-fy27",
-    "headline": "PB Fintech Profit Jumps 92% as Policybazaar's Insurance Engine Fires on All Cylinders",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pb-fintech-profit-jumps-92-percent-policybazaar-insurance-q1-fy27.jpg"
-  },
-  {
-    "slug": "jiya-shankar-engaged-kaaran-dhanak-bigg-boss-ott",
-    "headline": "Bigg Boss OTT 2 Star Jiya Shankar Gets Engaged to US-Based Entrepreneur Kaaran Dhanak",
+    "slug": "awarapan-2-trailer-emraan-hashmi-shivam-returns-august-release",
+    "headline": "Awarapan 2 Trailer Drops With Emraan Hashmi Returning as Shivam After 19 Years",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jiya-shankar-engaged-kaaran-dhanak-bigg-boss-ott.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-trailer-emraan-hashmi-shivam-returns-august-release.jpg"
   },
   {
-    "slug": "daca-recipients-deportation-threats-protections-dismantled",
-    "headline": "DACA Recipients Face Mounting Deportation Threats as Government Dismantles Protections",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/daca-recipients-deportation-threats-protections-dismantled.jpg"
-  },
-  {
-    "slug": "meta-muse-code-ai-coding-agent-launch",
-    "headline": "Meta Launches Muse Code, Its First AI Coding Agent, in Challenge to Anthropic and OpenAI",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meta-muse-code-ai-coding-agent-launch.jpg"
-  },
-  {
-    "slug": "candida-auris-superbug-3000-cases-23-us-states-2026",
-    "headline": "Drug-Resistant Superbug Candida Auris Tops 3,000 Cases Across 23 U.S. States",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/candida-auris-superbug-3000-cases-23-us-states-2026.jpg"
-  },
-  {
-    "slug": "shri-thanedar-loses-michigan-primary-mckinney",
-    "headline": "Indian American Rep. Shri Thanedar Loses Michigan Primary to Progressive Challenger",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shri-thanedar-loses-michigan-primary-mckinney.jpg"
-  },
-  {
-    "slug": "telangana-cm-revanth-reddy-presses-us-ambassador-h1b-student-visas",
-    "headline": "Telangana CM Revanth Reddy Presses U.S. Ambassador for H-1B Streamlining and More Student Visas",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/telangana-cm-revanth-reddy-presses-us-ambassador-h1b-student-visas.jpg"
-  },
-  {
-    "slug": "lok-sabha-bankers-books-evidence-bill-digital-records-2026",
-    "headline": "Lok Sabha Passes Bill Recognizing Digital Bank Records as Court Evidence",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lok-sabha-bankers-books-evidence-bill-digital-records-2026.jpg"
-  },
-  {
-    "slug": "air-india-inflight-wifi-paid-plans-pricing-august-2026",
-    "headline": "Air India Inflight Wi-Fi Goes Paid With Three Plans Starting at ₹299",
+    "slug": "indigo-20000-free-tickets-anniversary-how-to-enter",
+    "headline": "IndiGo's 20,000 Free Ticket Giveaway: How to Enter Before the Window Closes",
     "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-inflight-wifi-paid-plans-pricing-august-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-20000-free-tickets-anniversary-how-to-enter.jpg"
   },
   {
-    "slug": "rbi-holds-rates-raises-gdp-growth-forecast-6-7-percent-fy27",
-    "headline": "RBI Holds Rates Steady, Raises India's GDP Growth Forecast to 6.7% Amid Oil and Inflation Risks",
+    "slug": "senate-gop-scrambles-legislative-backlog-recess-immigration",
+    "headline": "Senate GOP Scrambles to Clear Legislative Backlog Before August Recess",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/senate-gop-scrambles-legislative-backlog-recess-immigration.jpg"
+  },
+  {
+    "slug": "daca-recipient-sues-government-unauthorized-travel-deportation",
+    "headline": "DACA Recipient Sues Government After Deportation Triggers 'Unauthorized Travel' Termination Notice",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/daca-recipient-sues-government-unauthorized-travel-deportation.jpg"
+  },
+  {
+    "slug": "india-ranks-13th-worlds-best-cuisines-tasteatlas-awards",
+    "headline": "India Ranks 13th Among World's Best Cuisines in TasteAtlas Awards",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-ranks-13th-worlds-best-cuisines-tasteatlas-awards.jpg"
+  },
+  {
+    "slug": "trump-attacks-el-sayed-michigan-senate-hater-of-jews",
+    "headline": "Trump Brands Michigan Senate Winner El-Sayed a 'Hater of Jews' as Race Takes National Stage",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-attacks-el-sayed-michigan-senate-hater-of-jews.jpg"
+  },
+  {
+    "slug": "measles-exposure-alert-universal-studios-hollywood-infected-visitor",
+    "headline": "Measles-Infected Visitor Spent 11 Hours at Universal Studios Hollywood, Triggering Health Alert",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/measles-exposure-alert-universal-studios-hollywood-infected-visitor.jpg"
+  },
+  {
+    "slug": "block-raises-profit-forecast-cash-app-growth-q2-2026",
+    "headline": "Block Raises Full-Year Profit Forecast as Cash App Growth Accelerates",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-holds-rates-raises-gdp-growth-forecast-6-7-percent-fy27.jpg"
-  },
-  {
-    "slug": "epic-first-semester-anand-deverakonda-vaishnavi-chaitanya-release-date",
-    "headline": "Anand Deverakonda and Vaishnavi Chaitanya Reunite for 'EPIC: First Semester' on September 11",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/epic-first-semester-anand-deverakonda-vaishnavi-chaitanya-release-date.jpg"
-  },
-  {
-    "slug": "jos-buttler-breaks-all-time-t20-runs-record-pollard",
-    "headline": "Jos Buttler Becomes the Highest Run-Scorer in T20 Cricket History",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jos-buttler-breaks-all-time-t20-runs-record-pollard.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/block-raises-profit-forecast-cash-app-growth-q2-2026.jpg"
   }
 ]
