@@ -15,7 +15,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084567837902021034",
@@ -58,7 +58,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "PMO India",
@@ -75,7 +75,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084551023314739536",
@@ -118,7 +118,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Amit Shah",
@@ -135,7 +135,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084594455974494296",
@@ -178,7 +178,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Rahul Gandhi",
@@ -195,7 +195,7 @@
           "timestamp": "2026-08-01"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084555746281431228",
@@ -238,7 +238,7 @@
           "timestamp": "2026-08-01"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Yogi Adityanath",
@@ -255,7 +255,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084576557654564900",
@@ -298,7 +298,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Arvind Kejriwal",
@@ -315,7 +315,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084562684897620123",
@@ -358,7 +358,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "S Jaishankar",
@@ -375,7 +375,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084512485655396623",
@@ -418,7 +418,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Nirmala Sitharaman",
@@ -435,7 +435,7 @@
           "timestamp": "2026-08-01"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2083381839931301906",
@@ -479,7 +479,7 @@
           "timestamp": "2026-07-18"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2078405350089535838",
@@ -507,7 +507,7 @@
           "timestamp": "2026-08-02"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084619999331950759",
@@ -526,7 +526,7 @@
           "timestamp": "2026-08-02"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 0
     },
     {
       "name": "Ratan Tata",
@@ -539,17 +539,17 @@
           "caption": "Follow @ratantata for the latest updates.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-08-04"
+          "timestamp": "2026-08-06"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "text": "Follow @ratantata for the latest updates.",
           "caption": "Follow @ratantata for the latest updates.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-08-04"
+          "timestamp": "2026-08-06"
         }
       ],
       "pool_idx": 0
@@ -569,7 +569,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2084277529188454410",
@@ -612,7 +612,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Donald Trump",
@@ -629,7 +629,7 @@
           "timestamp": "2026-07-28"
         }
       ],
-      "last_refreshed": "2026-08-04T12:50:01Z",
+      "last_refreshed": "2026-08-06T12:50:01Z",
       "pool": [
         {
           "id": "2082159711852298494",
@@ -677,10 +677,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2084712042225934710",
-          "text": "Voters deserve a leader who answers real questions &amp; that’s what we’re doing every day now through November. https://t.co/Xyg5XQXLO5",
-          "caption": "Voters deserve a leader who answers real questions &amp; that’s what we’re doing every day now through November. https://t.co/Xyg5XQXLO5",
-          "url": "https://x.com/VivekGRamaswamy/status/2084712042225934710",
+          "id": "2084708899823997213",
+          "text": "She should show up &amp; answer to voters, just like I am.",
+          "caption": "She should show up &amp; answer to voters, just like I am.",
+          "url": "https://x.com/VivekGRamaswamy/status/2084708899823997213",
           "thumbnail": "",
           "timestamp": "2026-08-04"
         }
@@ -720,7 +720,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Usha Vance",
@@ -729,12 +729,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2081749053402984563",
-          "text": "Before Alec's arrival I recorded another family favorite, Beatrix Potter's The Tale of Benjamin Bunny, for this episode of Storytime with the Second Lady. Enjoy! https://t.co/zgNfKHCuve",
-          "caption": "Before Alec's arrival I recorded another family favorite, Beatrix Potter's The Tale of Benjamin Bunny, for this episode of Storytime with the Second Lady. Enjoy! https://t.co/zgNfKHCuve",
-          "url": "https://x.com/SLOTUS/status/2081749053402984563",
-          "thumbnail": "https://pbs.twimg.com/media/HOPbuwjXQAA1CZy.jpg",
-          "timestamp": "2026-07-27"
+          "id": "2084691330572206330",
+          "text": "Adventure is out there! Join me on Storytime with the Second Lady as podcaster Jackie Oshry reads her book 'The Camper and the Counselor.'\n\nhttps://t.co/unUd042vPY",
+          "caption": "Adventure is out there! Join me on Storytime with the Second Lady as podcaster Jackie Oshry reads her book 'The Camper and the Counselor.'\n\nhttps://t.co/unUd042vPY",
+          "url": "https://x.com/SLOTUS/status/2084691330572206330",
+          "thumbnail": "",
+          "timestamp": "2026-08-04"
         }
       ],
       "last_refreshed": "2026-08-05T00:50:01Z",
@@ -764,7 +764,7 @@
           "timestamp": "2026-07-27"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Kash Patel",
@@ -799,12 +799,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2084533806132813995",
-          "text": "very good piece by @jasminewsun on the data center protests across the country. Lots to unpack here and handle for the AI industry.\n\nhttps://t.co/lsx5nAUXml",
-          "caption": "very good piece by @jasminewsun on the data center protests across the country. Lots to unpack here and handle for the AI industry.\n\nhttps://t.co/lsx5nAUXml",
-          "url": "https://x.com/sriramk/status/2084533806132813995",
+          "id": "2081342047139578008",
+          "text": "the 80s/90s F/OSS movement saw a cluster of tech intellectuals spring up all dedicated to software freedom* and hacker culture - RMS, @esrtweet ,  Richard Gabriel, Larry Wall, jwz, etc.\n\nFeels like a resurgence now on people dedicated to a similar spirit around AI - thinking of @realGeorgeHotz , @antirez , @AndrewYNg , @beffjezos , @dhh and others.\n\n* as in speech, not as in beer.",
+          "caption": "the 80s/90s F/OSS movement saw a cluster of tech intellectuals spring up all dedicated to software freedom* and hacker culture - RMS, @esrtweet ,  Richard Gabriel, Larry Wall, jwz, etc.\n\nFeels like a resurgence now on people dedicated to a similar spirit around AI - thinking of @realGeorgeHotz , @antirez , @AndrewYNg , @beffjezos , @dhh and others.\n\n* as in speech, not as in beer.",
+          "url": "https://x.com/sriramk/status/2081342047139578008",
           "thumbnail": "",
-          "timestamp": "2026-08-04"
+          "timestamp": "2026-07-26"
         }
       ],
       "last_refreshed": "2026-08-05T00:50:01Z",
@@ -826,7 +826,7 @@
           "timestamp": "2026-07-26"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "Ajay Banga",
@@ -889,11 +889,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2081948273565376517",
-          "text": ".@JacintaAllanMP, congratulations on everything you achieved for Victoria and all the best for the future. https://t.co/7lGXFNDWUX",
-          "caption": ".@JacintaAllanMP, congratulations on everything you achieved for Victoria and all the best for the future. https://t.co/7lGXFNDWUX",
-          "url": "https://x.com/AlboMP/status/2081948273565376517",
-          "thumbnail": "",
+          "id": "2081946091470397921",
+          "text": "Congratulations @BenCarollMP on becoming Premier of Victoria.\n\nWorking with Ben as Education Minister, we locked in full funding for every Victorian school.\n\nPremier, I’m looking forward to working together to deliver better schools, healthcare and more homes for Victorians. https://t.co/f0YZVdH5uU",
+          "caption": "Congratulations @BenCarollMP on becoming Premier of Victoria.\n\nWorking with Ben as Education Minister, we locked in full funding for every Victorian school.\n\nPremier, I’m looking forward to working together to deliver better schools, healthcare and more homes for Victorians. https://t.co/f0YZVdH5uU",
+          "url": "https://x.com/AlboMP/status/2081946091470397921",
+          "thumbnail": "https://pbs.twimg.com/media/HOSO7p6asAEg3-i.jpg",
           "timestamp": "2026-07-28"
         }
       ],
@@ -940,7 +940,7 @@
           "timestamp": "2026-07-28"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Emmanuel Macron",
@@ -949,10 +949,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2083223378031239204",
-          "text": "Face à la situation migratoire à Ceuta, j’ai été en contact avec le Président du gouvernement espagnol pour marquer notre solidarité et proposer toute aide nécessaire, y compris via Frontex.                                        \n\nJe salue la coopération en cours avec le Maroc, qui a déjà permis aujourd’hui plus de 40 000 retours de Ceuta vers le Maroc.\n\nLes ministres de l’Intérieur sont en contact pour assurer un suivi étroit de la situation.\n\nCeuta ne bénéficie pas de la libre circulation vers le reste de l’espace Schengen. J’ai toutefois demandé dès hier au Ministre de l’Intérieur de renforcer les contrôles à notre frontière avec l’Espagne si cela devait être nécessaire : 4 unités de forces mobiles, des avions et des drones sont déployés.\n\nCes mesures viennent renforcer les dispositions que nous avons prises depuis 2020 pour mieux protéger notre frontière avec l’Espagne en étroite coordination, avec des brigades communes et une action conjointe de lutte contre l’immigration clandestine.\n\nCes mesures viennent compléter les instruments européens adoptés pour assurer les retours et appliquer le pacte asile et migrations, avec 25% de chute des flux irréguliers vers l’Union européenne l’an dernier et une baisse poursuivie sur les routes migratoires atlantique et de Méditerranée occidentale en 2026.\n\nSolidarité et responsabilité avec nos partenaires européens pour faire appliquer nos règles de fermeté en matière de retours et de protection des frontières extérieures de l’Union.\n\nJe redis ici notre solidarité à l’Espagne, son gouvernement et son peuple.",
-          "caption": "Face à la situation migratoire à Ceuta, j’ai été en contact avec le Président du gouvernement espagnol pour marquer notre solidarité et proposer toute aide nécessaire, y compris via Frontex.                                        \n\nJe salue la coopération en cours avec le Maroc, qui a déjà permis aujourd’hui plus de 40 000 retours de Ceuta vers le Maroc.\n\nLes ministres de l’Intérieur sont en contact pour assurer un suivi étroit de la situation.\n\nCeuta ne bénéficie pas de la libre circulation vers le reste de l’espace Schengen. J’ai toutefois demandé dès hier au Ministre de l’Intérieur de renforcer les contrôles à notre frontière avec l’Espagne si cela devait être nécessaire : 4 unités de forces mobiles, des avions et des drones sont déployés.\n\nCes mesures viennent renforcer les dispositions que nous avons prises depuis 2020 pour mieux protéger notre frontière avec l’Espagne en étroite coordination, avec des brigades communes et une action conjointe de lutte contre l’immigration clandestine.\n\nCes mesures viennent compléter les instruments européens adoptés pour assurer les retours et appliquer le pacte asile et migrations, avec 25% de chute des flux irréguliers vers l’Union européenne l’an dernier et une baisse poursuivie sur les routes migratoires atlantique et de Méditerranée occidentale en 2026.\n\nSolidarité et responsabilité avec nos partenaires européens pour faire appliquer nos règles de fermeté en matière de retours et de protection des frontières extérieures de l’Union.\n\nJe redis ici notre solidarité à l’Espagne, son gouvernement et son peuple.",
-          "url": "https://x.com/EmmanuelMacron/status/2083223378031239204",
+          "id": "2083175810765095388",
+          "text": "Дякую Україно 🇺🇦🇪🇺",
+          "caption": "Дякую Україно 🇺🇦🇪🇺",
+          "url": "https://x.com/EmmanuelMacron/status/2083175810765095388",
           "thumbnail": "",
           "timestamp": "2026-07-31"
         }
@@ -1000,7 +1000,7 @@
           "timestamp": "2026-07-30"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Mohammed bin Rashid",
@@ -1037,10 +1037,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2084733538591486349",
-          "text": "The same Starmind V1 satellite design (minus solar &amp; radiator) will be deployed on the ground in our data centers. It’s a major improvement in data center efficiency.",
-          "caption": "The same Starmind V1 satellite design (minus solar &amp; radiator) will be deployed on the ground in our data centers. It’s a major improvement in data center efficiency.",
-          "url": "https://x.com/elonmusk/status/2084733538591486349",
+          "id": "2084745539187273851",
+          "text": "SpaceX earnings call on now",
+          "caption": "SpaceX earnings call on now",
+          "url": "https://x.com/elonmusk/status/2084745539187273851",
           "thumbnail": "",
           "timestamp": "2026-08-04"
         }
@@ -1072,7 +1072,7 @@
           "timestamp": "2026-08-04"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Mark Zuckerberg",
@@ -1137,12 +1137,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2082601790768599074",
-          "text": "Just wrapped our earnings call.\n\nIt was a very strong close to what was a record fiscal year for Microsoft.\n\n· Annual revenue: $331B, +18%\n· MS Cloud: $214B, + 27%\n· And Azure: $100B, +41%\n\nAnd even bigger opportunity ahead!\n\nI wanted to share some more perspective on two areas of focus for us:",
-          "caption": "Just wrapped our earnings call.\n\nIt was a very strong close to what was a record fiscal year for Microsoft.\n\n· Annual revenue: $331B, +18%\n· MS Cloud: $214B, + 27%\n· And Azure: $100B, +41%\n\nAnd even bigger opportunity ahead!\n\nI wanted to share some more perspective on two areas of focus for us:",
-          "url": "https://x.com/satyanadella/status/2082601790768599074",
+          "id": "2082177964675133931",
+          "text": "A good read from Mark. Establishing a frontier ecosystem that empowers people and orgs everywhere is what we collectively need to build together.",
+          "caption": "A good read from Mark. Establishing a frontier ecosystem that empowers people and orgs everywhere is what we collectively need to build together.",
+          "url": "https://x.com/satyanadella/status/2082177964675133931",
           "thumbnail": "",
-          "timestamp": "2026-07-29"
+          "timestamp": "2026-07-28"
         }
       ],
       "last_refreshed": "2026-08-05T12:50:01Z",
@@ -1180,7 +1180,7 @@
           "timestamp": "2026-07-27"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Sam Altman",
@@ -1189,10 +1189,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2083221585792762171",
-          "text": "cool use case of chatgpt work i heard last night:\n\nconnect your family calendars and explain your kids' interests.\n\nevery morning for the drive to school, have it make a podcast that talks about one kid's soccer game that afternoon, one kid's upcoming birthday, some news, etc.",
-          "caption": "cool use case of chatgpt work i heard last night:\n\nconnect your family calendars and explain your kids' interests.\n\nevery morning for the drive to school, have it make a podcast that talks about one kid's soccer game that afternoon, one kid's upcoming birthday, some news, etc.",
-          "url": "https://x.com/sama/status/2083221585792762171",
+          "id": "2083203642975502640",
+          "text": "i see your moore's law and i raise you 20x",
+          "caption": "i see your moore's law and i raise you 20x",
+          "url": "https://x.com/sama/status/2083203642975502640",
           "thumbnail": "",
           "timestamp": "2026-07-31"
         }
@@ -1232,7 +1232,7 @@
           "timestamp": "2026-07-31"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Tim Cook",
@@ -1241,12 +1241,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2082640137671016758",
-          "text": "Our hearts go out to everyone affected by the devastating wildfires in southern Europe. Thank you to the first responders, and to everyone still in harm's way, please stay safe. Apple will be donating to relief efforts on the ground.",
-          "caption": "Our hearts go out to everyone affected by the devastating wildfires in southern Europe. Thank you to the first responders, and to everyone still in harm's way, please stay safe. Apple will be donating to relief efforts on the ground.",
-          "url": "https://x.com/tim_cook/status/2082640137671016758",
+          "id": "2082106136904540251",
+          "text": "Welcome home, Ted! Can’t wait to cheer on the Lady Greyhounds in the new season!",
+          "caption": "Welcome home, Ted! Can’t wait to cheer on the Lady Greyhounds in the new season!",
+          "url": "https://x.com/tim_cook/status/2082106136904540251",
           "thumbnail": "",
-          "timestamp": "2026-07-30"
+          "timestamp": "2026-07-28"
         }
       ],
       "last_refreshed": "2026-08-05T12:50:01Z",
@@ -1276,7 +1276,7 @@
           "timestamp": "2026-07-28"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Jensen Huang",
@@ -1285,10 +1285,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2084716722746253566",
-          "text": "Read why AI agents need more than one model. 👇 https://t.co/IFaesvTdl8",
-          "caption": "Read why AI agents need more than one model. 👇 https://t.co/IFaesvTdl8",
-          "url": "https://x.com/nvidia/status/2084716722746253566",
+          "id": "2084663782018543841",
+          "text": "Meet Alpamayo 2 Super, now commercially available for robotaxis and autonomous vehicles.\n\nBuilt for complex real-world driving, this open reasoning model adds 360° awareness, high-level driving decisions and automated reasoning labels.\n\nWe built it, so you can build on it. https://t.co/OZBWtsu3FC",
+          "caption": "Meet Alpamayo 2 Super, now commercially available for robotaxis and autonomous vehicles.\n\nBuilt for complex real-world driving, this open reasoning model adds 360° awareness, high-level driving decisions and automated reasoning labels.\n\nWe built it, so you can build on it. https://t.co/OZBWtsu3FC",
+          "url": "https://x.com/nvidia/status/2084663782018543841",
           "thumbnail": "",
           "timestamp": "2026-08-04"
         }
@@ -1336,7 +1336,7 @@
           "timestamp": "2026-08-03"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Nandan Nilekani",
@@ -1679,12 +1679,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2082775231710773584",
-          "text": "Congratulations on a remarkable career, @ajinkyarahane88.\n\nThe first time we batted together for Mumbai, I saw someone who never chased moments. They came to you because you were willing to do the hard yards for the team. That same quality defined your finest hour in Australia. You showed that composure isn't the opposite of aggression. It is often what gives a team the confidence to be fearless.\n\nCongratulations on a wonderful career! Wishing you and your family all the very best.",
-          "caption": "Congratulations on a remarkable career, @ajinkyarahane88.\n\nThe first time we batted together for Mumbai, I saw someone who never chased moments. They came to you because you were willing to do the hard yards for the team. That same quality defined your finest hour in Australia. You showed that composure isn't the opposite of aggression. It is often what gives a team the confidence to be fearless.\n\nCongratulations on a wonderful career! Wishing you and your family all the very best.",
-          "url": "https://x.com/sachin_rt/status/2082775231710773584",
-          "thumbnail": "",
-          "timestamp": "2026-07-30"
+          "id": "2082406744173793645",
+          "text": "Standing here today, I realised something. No matter how many years pass, I’ll always feel like I have one more ‘thank you’ left to say.\n\nThank you for believing in me, guiding me, and helping me become the person I am.\n\nHappy Guru Purnima, Achrekar Sir. https://t.co/PzgaXztl1s",
+          "caption": "Standing here today, I realised something. No matter how many years pass, I’ll always feel like I have one more ‘thank you’ left to say.\n\nThank you for believing in me, guiding me, and helping me become the person I am.\n\nHappy Guru Purnima, Achrekar Sir. https://t.co/PzgaXztl1s",
+          "url": "https://x.com/sachin_rt/status/2082406744173793645",
+          "thumbnail": "https://pbs.twimg.com/media/HOYx38Ra4AAa0om.jpg",
+          "timestamp": "2026-07-29"
         }
       ],
       "last_refreshed": "2026-08-06T00:50:02Z",
@@ -1706,7 +1706,7 @@
           "timestamp": "2026-07-29"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "Sourav Ganguly",
@@ -1743,12 +1743,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2082843666188808487",
-          "text": "Rewind to 2014 ⏪\n\n🎥 When Jinks put on a clinic to bring up his first international home ton 🤌\n\n#TeamIndia | #ThankYouAjinkya | @ajinkyarahane88 https://t.co/sUO20unc3C",
-          "caption": "Rewind to 2014 ⏪\n\n🎥 When Jinks put on a clinic to bring up his first international home ton 🤌\n\n#TeamIndia | #ThankYouAjinkya | @ajinkyarahane88 https://t.co/sUO20unc3C",
-          "url": "https://x.com/BCCI/status/2082843666188808487",
-          "thumbnail": "",
-          "timestamp": "2026-07-30"
+          "id": "2084112028218622247",
+          "text": "1️⃣9⃣8⃣3⃣ World Cup-winner 🏆\n\nHere's wishing former #TeamIndia fast-bowler Balwinder Singh Sandu a very Happy Birthday 🎂 https://t.co/FePEwvP6DF",
+          "caption": "1️⃣9⃣8⃣3⃣ World Cup-winner 🏆\n\nHere's wishing former #TeamIndia fast-bowler Balwinder Singh Sandu a very Happy Birthday 🎂 https://t.co/FePEwvP6DF",
+          "url": "https://x.com/BCCI/status/2084112028218622247",
+          "thumbnail": "https://pbs.twimg.com/media/HOjiqiyaoAA2WZg.jpg",
+          "timestamp": "2026-08-03"
         }
       ],
       "last_refreshed": "2026-08-06T00:50:02Z",
@@ -1794,7 +1794,7 @@
           "timestamp": "2026-07-30"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "ICC",
@@ -1803,10 +1803,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2083517506317361598",
-          "text": "Bangladesh bolstered by the inclusion of wicket-keeper-batter for the #WTC27 series opener against Australia 📝\n\nMore details ⬇️\n\nhttps://t.co/uVW0682iW5",
-          "caption": "Bangladesh bolstered by the inclusion of wicket-keeper-batter for the #WTC27 series opener against Australia 📝\n\nMore details ⬇️\n\nhttps://t.co/uVW0682iW5",
-          "url": "https://x.com/ICC/status/2083517506317361598",
+          "id": "2083561091360305286",
+          "text": "Back as captain, Joe Root is ready to do things differently for England in Tests 👊\n\nhttps://t.co/cn2iiaJdE8",
+          "caption": "Back as captain, Joe Root is ready to do things differently for England in Tests 👊\n\nhttps://t.co/cn2iiaJdE8",
+          "url": "https://x.com/ICC/status/2083561091360305286",
           "thumbnail": "",
           "timestamp": "2026-08-01"
         }
@@ -1854,7 +1854,7 @@
           "timestamp": "2026-08-01"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "IPL",
@@ -1919,12 +1919,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2082396874737336376",
-          "text": "Awful call by the linesman. That shuttle looked significantly out.\n\nFrom that moment, Rakshitha’s shoulders dropped and her body language changed completely.\n\nAt this point, I think the bigger battle for her is mental rather than technical. The strokes are there. She’s got sharp drops, good reach, and more than enough quality to be a top-25 player in my opinion. The mental battle she is having with herself needs to be fixed.",
-          "caption": "Awful call by the linesman. That shuttle looked significantly out.\n\nFrom that moment, Rakshitha’s shoulders dropped and her body language changed completely.\n\nAt this point, I think the bigger battle for her is mental rather than technical. The strokes are there. She’s got sharp drops, good reach, and more than enough quality to be a top-25 player in my opinion. The mental battle she is having with herself needs to be fixed.",
-          "url": "https://x.com/Pvsindhu1/status/2082396874737336376",
-          "thumbnail": "https://pbs.twimg.com/media/HOYo6WSasAAkz0i.jpg",
-          "timestamp": "2026-07-29"
+          "id": "2082744193278193725",
+          "text": "Wishing you the happiest of retirements, Jinks! ❤️\n\nYour career has been a testament to courage, calmness and some incredibly gritty innings in the toughest of conditions. That brilliant 103 at Lord’s in 2014, in some of the most difficult circumstances, will always stand out. India were under pressure, the conditions were challenging, and you produced an innings filled with immense character and class.\n\nWishing you a fabulous second innings, filled with happiness, success and everything you love. Congratulations on a wonderful career! 🙌🇮🇳\n\n@ajinkyarahane88",
+          "caption": "Wishing you the happiest of retirements, Jinks! ❤️\n\nYour career has been a testament to courage, calmness and some incredibly gritty innings in the toughest of conditions. That brilliant 103 at Lord’s in 2014, in some of the most difficult circumstances, will always stand out. India were under pressure, the conditions were challenging, and you produced an innings filled with immense character and class.\n\nWishing you a fabulous second innings, filled with happiness, success and everything you love. Congratulations on a wonderful career! 🙌🇮🇳\n\n@ajinkyarahane88",
+          "url": "https://x.com/Pvsindhu1/status/2082744193278193725",
+          "thumbnail": "",
+          "timestamp": "2026-07-30"
         }
       ],
       "last_refreshed": "2026-08-06T00:50:02Z",
@@ -1970,7 +1970,7 @@
           "timestamp": "2026-07-28"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "Sania Mirza",
@@ -2057,6 +2057,6 @@
       "pool_idx": 0
     }
   ],
-  "lastUpdated": "2026-08-06T00:50:38Z",
-  "last_updated": "2026-08-06T00:50:38Z"
+  "lastUpdated": "2026-08-06T12:50:25Z",
+  "last_updated": "2026-08-06T12:50:25Z"
 }
