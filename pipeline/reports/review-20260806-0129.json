@@ -1,0 +1,195 @@
+[
+  {
+    "id": "fae5137e-4927-4529-8ca2-a8538ab33852",
+    "headline": "Japan's 'Human Refrigerator' Offers Rapid Cooling as Deadly Heatwaves Intensify",
+    "slug": "japan-human-refrigerator-cooling-booth-heatwave-do-hiemon-box",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from the Indian diaspora in Japan regarding the heatwave and the introduction of the Do Hiemon Box. This could involve quotes or anecdotes from NRIs who have experienced the heat or are involved in local community efforts to combat heat-related issues.",
+        "Provide context on how heatwaves are affecting Indian communities globally, particularly in regions where NRIs reside, to draw parallels and highlight the relevance of the technology in other countries facing similar climate challenges.",
+        "Include a brief section on how the Indian diaspora can leverage similar cooling technologies or strategies in their own countries, especially in regions prone to extreme heat, to make the article more relatable and actionable for readers.",
+        "Add statistics or information about the impact of heatwaves on health in India, as this would provide a comparative context that could resonate with the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Japan Meteorological Agency or a relevant government body discussing the heatwave and its effects, which would provide authoritative context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "ee29808f-1b87-4569-b1ee-43c65c7ad508",
+    "headline": "India's Data Centre Capacity Quadruples to 1,575 MW as AI Demand Accelerates",
+    "slug": "india-data-centre-capacity-1575-mw-ai-demand-quadruples",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the growth in India's data center capacity could impact NRIs, particularly those in tech sectors abroad who may be looking to invest or collaborate with Indian startups.",
+        "Provide context on how this growth in data centers relates to global trends in AI and technology, particularly for NRIs who may be interested in the implications for their businesses or investments back in India.",
+        "Include a section that discusses potential opportunities for NRIs in the Indian data center market, such as investment opportunities or partnerships with Indian tech companies."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Indian government or a tech industry leader discussing the SHANTI Act or the growth of data centers in India to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "3e91951f-13e8-46c2-b237-c2ab2f7f046c",
+    "headline": "Aramco Ventures Leads $9.5 Million Round in India's Mitti Labs to Cut Methane Fr",
+    "slug": "aramco-ventures-mitti-labs-9-5-million-rice-farming-methane-climate",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian NRIs involved in climate initiatives or agriculture technology. This could highlight how the diaspora is contributing to climate solutions in India and the broader implications for global agriculture.",
+        "Provide more context on how the funding from Aramco Ventures specifically impacts the Indian diaspora or NRIs. For example, discuss if there are any investment opportunities for NRIs in climate-tech startups like Mitti Labs or how such innovations could benefit Indian communities abroad.",
+        "Include a brief section on the potential implications of this technology for NRIs who may have agricultural interests or investments in India. This could help connect the content more directly to the NRI audience.",
+        "Clarify the timeline and specific goals of Mitti Labs' expansion plans into the Philippines and Indonesia. This could help readers understand the broader context of the company's growth and its relevance to NRIs interested in international agricultural markets."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Aramco Ventures announcing their investment in Mitti Labs, which would provide credibility and a direct connection to the funding news.",
+        "Consider embedding a video or infographic that visually explains the Alternate Wetting and Drying technique and its benefits, making the content more accessible and engaging for readers."
+      ]
+    }
+  },
+  {
+    "id": "a2168890-2ec2-46b3-bb76-2fe90a7e1d18",
+    "headline": "Pentagon Drafts New Nuclear Strategy for Regional Wars With China or Russia",
+    "slug": "pentagon-new-nuclear-strategy-regional-war-china-russia-tactical",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including perspectives or reactions from Indian NRIs regarding the implications of U.S. nuclear strategy on global security, particularly in relation to India's own defense policies and its position in the Indo-Pacific region.",
+        "Provide more context about how the U.S. nuclear strategy might affect India's security landscape, especially in terms of its relationships with both the U.S. and its neighboring countries like China and Pakistan.",
+        "Clarify the potential impact of this new strategy on global arms control efforts, as NRIs may be particularly interested in how these developments could influence international relations and security frameworks that affect their homeland.",
+        "Include a quote or insight from a prominent Indian defense analyst or expert to give the article a more localized perspective and enhance its relevance to the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official U.S. Department of Defense statement or a relevant tweet regarding the new nuclear strategy to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "13871b6b-e3ba-4200-885b-05f6487841f2",
+    "headline": "CBFC Clears Awarapan 2 With U/A 16+ Certificate and Minimal Cuts Ahead of Indepe",
+    "slug": "awarapan-2-cbfc-ua-16-plus-certificate-cuts-august-release",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement",
+      "Possibly irrelevant YouTube: \"Tomorrow. 11:11 AM. \u23f3Shivam Returns. \ud83d\udd4a\ufe0f\ud83d\udd25Awarapan 2 TrailerAw\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how Awarapan 2 may resonate with NRIs, particularly in terms of themes like identity, belonging, or cultural representation, which are relevant to the Indian diaspora.",
+        "Provide context about the significance of the film's release date, August 14, in relation to India's Independence Day, and how this might appeal to NRIs looking to connect with their roots during this time.",
+        "Include quotes or reactions from NRIs or film critics who specialize in Indian cinema abroad to give a broader perspective on the film's anticipated impact on the diaspora audience.",
+        "Discuss the potential box office implications of the U/A 16+ rating for NRIs, who may be more likely to attend screenings with family members, thus expanding the audience base."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the film's official account or a relevant industry figure discussing the film's themes or its release, which could engage the audience further."
+      ]
+    }
+  },
+  {
+    "id": "30cb5626-3e65-4995-aed7-a0f438569637",
+    "headline": "AI Now Drives Three in Four Finance Teams, but Data Quality Threatens to Stall t",
+    "slug": "kpmg-ai-finance-decision-engine-data-quality-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian finance professionals or organizations in the diaspora who are leveraging AI in their operations. This will make the article more relevant to the NRI audience.",
+        "Provide context about how the trends in AI adoption in finance specifically impact NRIs or Indian businesses abroad. For example, discuss how improved decision-making and forecasting accuracy can benefit Indian startups or finance professionals in the diaspora.",
+        "Add a section that discusses the implications of data quality challenges for NRIs working in finance. This could include potential solutions or best practices that diaspora finance professionals can adopt to overcome these barriers.",
+        "Consider including a comparison of AI adoption rates in finance between India and other countries, particularly those with significant NRI populations, to provide a more comprehensive view of the global landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official KPMG report or a relevant infographic that summarizes the key findings, which would enhance the credibility and provide visual context for readers."
+      ]
+    }
+  },
+  {
+    "id": "589f391d-e5ed-4273-a29f-5e4efaee8ccf",
+    "headline": "Air India Phuket-Delhi Plunge May Have Been Caused by Fly-By-Wire Fault, Not Tur",
+    "slug": "air-india-a320neo-fly-by-wire-fault-plunge-investigation",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or reactions from Indian expatriates who frequently travel between India and Thailand, particularly those who may have been on the flight or have connections to Air India. This could provide a personal touch and highlight the implications for the NRI community.",
+        "Add context about how incidents like this affect the perception of Indian airlines among NRIs, particularly in terms of safety and reliability. This could include statistics or quotes from travel experts or diaspora members.",
+        "Consider revising the headline to make it more compelling and specific. For example, 'Air India Flight AI2379: Technical Fault Behind Phuket-Delhi Plunge Raises Safety Concerns for Indian Diaspora'. This emphasizes the safety aspect, which is crucial for the NRI audience.",
+        "Include a section discussing the potential impact of this incident on Air India's reputation among NRIs and how it might affect their travel choices in the future."
+      ],
+      "embed_opportunities": [
+        "Embed the official DGCA statement or relevant tweets from Air India regarding the incident to provide authoritative context and updates."
+      ]
+    }
+  },
+  {
+    "id": "4763c835-0627-47f9-80ff-7b042d44b357",
+    "headline": "ICE Detains Over 50 Military Spouses and Parents as Immigration Crackdown Hits A",
+    "slug": "ice-detains-military-spouses-parents-immigration-crackdown-armed-forces",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including quotes or perspectives from Indian military families affected by these policies, highlighting their unique challenges and experiences as NRIs navigating immigration issues in the U.S.",
+        "Provide additional context on how these policy changes specifically impact Indian military spouses and families, including statistics or anecdotes that illustrate the broader implications for the Indian diaspora in the U.S.",
+        "Clarify the timeline of the policy changes and their implications by including a brief summary of previous protections for military families, which would help readers understand the significance of the current situation.",
+        "Consider adding a section that discusses the reactions from Indian community organizations or advocacy groups in the U.S. that support military families, which would further emphasize the diaspora's engagement with this issue."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the policy changes affecting military families to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "f2b145e7-1c35-40ef-b2db-1449b914a433",
+    "headline": "Anthropic's AI Created Fake Identities and Targeted Real People During UK Govern",
+    "slug": "anthropic-ai-fake-identities-uk-aisi-security-test",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian tech professionals or NRIs working in AI who may be impacted by these developments. This could provide a unique perspective on how such incidents affect the global tech community, particularly those with ties to India.",
+        "Add context about how AI regulations in the UK might influence similar policies in India or among the Indian diaspora, particularly in tech hubs like Bengaluru or Hyderabad. This would help readers understand the broader implications of the incident.",
+        "Consider revising the headline to make it more specific and compelling, such as 'Anthropic's AI Deception Raises Concerns for Indian Tech Professionals Amid UK Government Tests'. This would directly tie the incident to the interests of the NRI audience.",
+        "Enhance the content structure by including a section that discusses potential responses from the Indian government or tech industry regarding AI regulations, which would provide depth and relevance for the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the UK AI Security Institute regarding this incident, as it would provide authoritative context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "c1b1000f-95cc-475a-8a20-51051f364747",
+    "headline": "PB Fintech Profit Jumps 92% as Policybazaar's Insurance Engine Fires on All Cyli",
+    "slug": "pb-fintech-profit-jumps-92-percent-policybazaar-insurance-q1-fy27",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how NRIs are increasingly utilizing online insurance platforms like Policybazaar for their insurance needs in India, particularly in light of recent policy changes or trends that affect them.",
+        "Provide context on how PB Fintech's growth impacts NRIs specifically, such as the potential benefits of their services for Indians living abroad who may want to invest in Indian insurance products.",
+        "Include a quote or perspective from an NRI financial expert or a representative from the Indian diaspora community to add depth and relevance to the article for your target audience.",
+        "Clarify the significance of the reported financial metrics by explaining how they compare to industry benchmarks or the performance of similar companies, particularly in the context of the Indian insurance market."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from PB Fintech or Policybazaar announcing their quarterly results to provide direct access to their communications and enhance credibility."
+      ]
+    }
+  }
+]

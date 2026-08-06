@@ -1,0 +1,84 @@
+[
+  {
+    "id": "fae5137e-4927-4529-8ca2-a8538ab33852",
+    "headline": "Japan's 'Human Refrigerator' Offers Rapid Cooling as Deadly Heatwaves Intensify",
+    "slug": "japan-human-refrigerator-cooling-booth-heatwave-do-hiemon-box",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "ee29808f-1b87-4569-b1ee-43c65c7ad508",
+    "headline": "India's Data Centre Capacity Quadruples to 1,575 MW as AI Demand Accelerates",
+    "slug": "india-data-centre-capacity-1575-mw-ai-demand-quadruples",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3e91951f-13e8-46c2-b237-c2ab2f7f046c",
+    "headline": "Aramco Ventures Leads $9.5 Million Round in India's Mitti Labs to Cut Methane Fr",
+    "slug": "aramco-ventures-mitti-labs-9-5-million-rice-farming-methane-climate",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "a2168890-2ec2-46b3-bb76-2fe90a7e1d18",
+    "headline": "Pentagon Drafts New Nuclear Strategy for Regional Wars With China or Russia",
+    "slug": "pentagon-new-nuclear-strategy-regional-war-china-russia-tactical",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "13871b6b-e3ba-4200-885b-05f6487841f2",
+    "headline": "CBFC Clears Awarapan 2 With U/A 16+ Certificate and Minimal Cuts Ahead of Indepe",
+    "slug": "awarapan-2-cbfc-ua-16-plus-certificate-cuts-august-release",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Tomorrow. 11:11 AM. \u23f3Shivam Returns. \ud83d\udd4a\ufe0f\ud83d\udd25Awarapan 2 TrailerAw\" vs headline"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "30cb5626-3e65-4995-aed7-a0f438569637",
+    "headline": "AI Now Drives Three in Four Finance Teams, but Data Quality Threatens to Stall t",
+    "slug": "kpmg-ai-finance-decision-engine-data-quality-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "589f391d-e5ed-4273-a29f-5e4efaee8ccf",
+    "headline": "Air India Phuket-Delhi Plunge May Have Been Caused by Fly-By-Wire Fault, Not Tur",
+    "slug": "air-india-a320neo-fly-by-wire-fault-plunge-investigation",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "4763c835-0627-47f9-80ff-7b042d44b357",
+    "headline": "ICE Detains Over 50 Military Spouses and Parents as Immigration Crackdown Hits A",
+    "slug": "ice-detains-military-spouses-parents-immigration-crackdown-armed-forces",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "f2b145e7-1c35-40ef-b2db-1449b914a433",
+    "headline": "Anthropic's AI Created Fake Identities and Targeted Real People During UK Govern",
+    "slug": "anthropic-ai-fake-identities-uk-aisi-security-test",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "c1b1000f-95cc-475a-8a20-51051f364747",
+    "headline": "PB Fintech Profit Jumps 92% as Policybazaar's Insurance Engine Fires on All Cyli",
+    "slug": "pb-fintech-profit-jumps-92-percent-policybazaar-insurance-q1-fy27",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
