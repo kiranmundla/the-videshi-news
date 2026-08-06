@@ -1,0 +1,194 @@
+[
+  {
+    "id": "078895f6-5841-4fb7-952f-914ee3d76840",
+    "headline": "Indian IT Stocks Surge 17% in July as Global Investors Flee the AI Trade",
+    "slug": "indian-it-stocks-rally-as-global-ai-trade-unwinds",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who are investing in Indian IT stocks or those who have shifted their portfolios in response to the AI trade. This could provide a personal touch and highlight the impact of these market changes on the NRI community.",
+        "Provide additional context on how the surge in Indian IT stocks specifically affects NRIs, such as implications for remittances, investment opportunities, or the potential for job creation in India that might attract NRIs back to the country.",
+        "Clarify the timeline of events mentioned in the article, particularly the reference to foreign investors dumping $29 billion in the first half of 2026, which seems to be a typographical error and should likely refer to 2023.",
+        "Include a brief analysis of how the performance of Indian IT stocks might influence the broader Indian economy and what that means for NRIs who have financial ties to India."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or a prominent investment firm discussing the shift in investment from AI-heavy markets to Indian IT stocks, which could provide real-time insights and credibility."
+      ]
+    }
+  },
+  {
+    "id": "0ca733b8-2612-4b03-bb81-0e90e7d1ab6e",
+    "headline": "Karnataka Explores Anthropic Partnership to Deploy AI Across Public Services",
+    "slug": "karnataka-anthropic-partnership-ai-public-services-governance",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or comments from Indian NRIs working in AI or technology sectors abroad, particularly those who might have experience with similar AI implementations in their countries. This could provide a comparative perspective and highlight the global relevance of Karnataka's initiatives.",
+        "Provide more context on how the partnership with Anthropic could specifically benefit NRIs or the Indian diaspora, such as potential job opportunities in AI-related fields or how these advancements could improve services for NRIs interacting with Indian government systems.",
+        "Clarify the implications of the proposed Claude certification programme and how it could impact the skill development of NRIs looking to return to India or work remotely in Indian companies.",
+        "Include a brief overview of Anthropic's previous collaborations or projects in other regions or countries, which could help readers understand the potential effectiveness and credibility of this partnership."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Anthropic or Karnataka's government regarding this partnership or the discussions, as it would provide an authoritative source and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "4e5f479c-ab2e-48bb-8a01-0f2b37f21f08",
+    "headline": "Israeli Forces Launch Large-Scale Raid on Qalandiya Refugee Camp Near Jerusalem",
+    "slug": "idf-large-scale-raid-qalandiya-refugee-camp-jerusalem",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from the NRI community regarding the situation in Qalandiya. For example, you could include quotes or statements from Indian diaspora organizations or individuals who have ties to the region, discussing how these events impact their views on the Israeli-Palestinian conflict.",
+        "Provide more context about the significance of the Qalandiya refugee camp in relation to the broader Israeli-Palestinian conflict. This could include historical background or recent developments that would help NRIs understand why this incident is particularly relevant.",
+        "Revise the headline to make it more compelling and specific. For example, consider a headline like 'Escalating Violence: Israeli Forces Conduct Major Raid on Qalandiya Refugee Camp Amid Rising Tensions' to better capture the urgency and significance of the event.",
+        "Consider adding a section that discusses the implications of this raid for the international community, particularly how it may affect diplomatic relations or policies involving India and the Middle East, which would resonate with the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a credible news source or an official statement from the Israeli or Palestinian authorities regarding the raid to provide real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "a0186f9e-6396-49ee-b223-d0bf4872bc1e",
+    "headline": "Delhi High Court Orders Takedown of Vulgar Content Exploiting PhysicsWallah Foun",
+    "slug": "delhi-hc-protects-alakh-pandey-physicswallah-personality-rights",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how this ruling may impact Indian students abroad who rely on PhysicsWallah's content for their education, or how it reflects broader issues of digital rights for NRIs.",
+        "Provide context on how the misuse of public figures' identities in the digital space affects NRIs, particularly in relation to online education and the challenges they face in accessing legitimate resources.",
+        "Include a quote or comment from a diaspora expert or legal analyst regarding the implications of this ruling for Indian public figures and their global audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Alakh Pandey or a statement from the Delhi High Court to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "f3d0ccca-dab0-4e8f-aced-b898c0c6e9f2",
+    "headline": "India Faces Scheduling Crisis as Brazil Friendly Clashes With FIFA ASEAN Cup",
+    "slug": "india-asean-cup-brazil-friendly-scheduling-crisis",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian football fans living abroad, discussing how this match impacts their connection to Indian football and the significance of Brazil's visit.",
+        "Provide context on how the scheduling conflict affects NRIs who follow Indian football, such as potential viewing options or how they can engage with the match despite the clash with the ASEAN Cup.",
+        "Include a brief history of Indian football's relationship with Brazil, especially from the perspective of the diaspora, highlighting any previous encounters or cultural ties that resonate with NRIs.",
+        "Clarify the implications of the scheduling conflict for Indian football's international reputation and how it might affect the diaspora's perception of Indian sports management."
+      ],
+      "embed_opportunities": [
+        "Embed the official AIFF tweet announcing the Brazil match to provide readers with direct access to official updates and reactions.",
+        "Consider embedding a tweet from a prominent NRI football influencer or fan account discussing the significance of the match for the diaspora community."
+      ]
+    }
+  },
+  {
+    "id": "d466697f-b89a-430d-b4d1-6521dde4585a",
+    "headline": "Lost Memoir by Hiroshima Survivor Published 81 Years After the Atomic Bomb",
+    "slug": "lost-memoir-hiroshima-survivor-kiyoshi-tanimoto-published-81-years",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from the Indian diaspora regarding the Hiroshima bombing and its historical significance. This could involve quotes from Indian scholars or community leaders reflecting on the impact of nuclear warfare on global peace efforts, especially in the context of India's own nuclear history.",
+        "Provide more context on Kiyoshi Tanimoto's significance within the broader narrative of atomic bomb survivors, particularly how his story resonates with the NRI community, who may have familial or cultural ties to the events of World War II and its aftermath.",
+        "Clarify the connection between the memoir's publication and its relevance to contemporary discussions about nuclear disarmament or peace activism, particularly in relation to the Indian diaspora's role in advocating for these issues.",
+        "Add a brief section discussing the implications of the memoir's publication for current peace movements, especially those involving the Indian diaspora, to provide readers with a sense of urgency and relevance."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent peace activist or organization discussing the significance of Tanimoto's memoir in the context of nuclear disarmament, which would help connect the historical narrative to current issues."
+      ]
+    }
+  },
+  {
+    "id": "3d9bfb66-0156-479e-aa19-79f86bf725ea",
+    "headline": "Excel Entertainment and AA Films Board Malayalam Vampire Thriller for Toronto Mi",
+    "slug": "excel-entertainment-half-vampire-thriller-toronto-midnight-madness",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRI filmmakers or actors involved in the project, discussing how this film represents or connects with the Indian diaspora's interests in genre cinema.",
+        "Provide context on how this film's selection for TIFF's Midnight Madness could impact its reception among the NRI audience, perhaps by discussing previous films that have gained popularity in the diaspora after similar festival selections.",
+        "Include a brief section on the significance of the vampire genre in Indian cinema and how it resonates with both domestic and NRI audiences, which could enhance the article's depth.",
+        "Clarify the implications of Excel Entertainment's involvement in this project for NRI audiences, such as potential distribution plans in international markets or how this collaboration might influence future cross-cultural projects."
+      ],
+      "embed_opportunities": [
+        "Embed the official TIFF announcement or tweet about the film's selection to provide readers with direct access to festival information and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "2628ba36-0951-41c0-a91b-c7abb78b0a66",
+    "headline": "Europe's Deadly Heatwave Puts All Italian Cities on Red Alert as Energy Crisis D",
+    "slug": "europe-heatwave-italy-red-alert-energy-crisis-deepens",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs living in Italy or other affected European countries, discussing how the heatwave and energy crisis are impacting their lives, travel plans, or business operations.",
+        "Provide context on how the energy crisis and extreme weather conditions in Europe could affect remittances or investments from the Indian diaspora back to India, as this would resonate more with NRI readers.",
+        "Include a section on how the Indian government or organizations are responding to the climate crisis, which could provide a comparative perspective for NRIs concerned about climate issues both in India and abroad.",
+        "Add a brief overview of how similar climate events have historically affected the Indian diaspora, perhaps referencing past incidents or studies that highlight the connection between climate change and migration patterns."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the European Union or a major news outlet discussing the impact of the heatwave and energy crisis, which would provide real-time context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "61173e84-90c3-480b-a3b7-5e1847214c11",
+    "headline": "US Employers Rewrite the H-1B Playbook as Immigration Costs Soar",
+    "slug": "us-employers-rewrite-h1b-playbook-immigration-costs-soar",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific examples of how these changes in H-1B policies affect Indian professionals in the US, such as personal stories or statistics on the percentage of H-1B visa holders from India.",
+        "Provide more context on how these immigration policy changes impact the Indian diaspora's ability to work and live in the US, including potential long-term effects on family reunification and job security.",
+        "Clarify the implications of the new policies on the Indian tech industry, which heavily relies on H-1B visas, and how this could affect job opportunities for NRIs both in the US and India.",
+        "Include insights from Indian professionals currently navigating the H-1B process to illustrate the real-world impact of these policy changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the recent changes to H-1B policies for a direct source reference.",
+        "Consider embedding a relevant YouTube video from a reputable immigration lawyer discussing the implications of these changes for NRIs."
+      ]
+    }
+  },
+  {
+    "id": "68485d74-e1b2-4209-8734-387659760a5b",
+    "headline": "SpaceX Faces First Major Test as 911 Million Shares Unlock After Record IPO",
+    "slug": "spacex-lockup-expiry-911-million-shares-unlock-after-record-ipo",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian NRIs who have invested in SpaceX or are following the IPO closely. This could provide a unique perspective on how this event impacts the Indian diaspora's investment strategies or interests in tech companies.",
+        "Add context about how SpaceX's performance might influence investment trends among NRIs, particularly in the tech sector, and whether they are likely to invest more in U.S. tech stocks following this IPO.",
+        "Consider including a quote or opinion from a financial expert or analyst who specializes in the Indian market to provide a localized perspective on the implications of SpaceX's IPO for Indian investors."
+      ],
+      "embed_opportunities": [
+        "Embed the official SpaceX tweet announcing the IPO or any relevant updates about the stock performance, which would provide real-time information and enhance credibility."
+      ]
+    }
+  }
+]
