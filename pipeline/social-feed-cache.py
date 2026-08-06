@@ -11,7 +11,7 @@ Two-layer cache:
 Person handles only — company/org handles excluded.
 """
 
-import os, sys, json, re, hashlib, requests
+import os, sys, json, re, hashlib, requests, subprocess, urllib.parse
 from datetime import datetime, timezone, timedelta
 
 # ─── Load envs ────────────────────────────────────────────────────────────────
@@ -117,29 +117,39 @@ def refresh_pool(pool):
 # ─── Article-harvested tweets (zero cost fallback) ────────────────────────────
 
 def harvest_article_tweets():
-    """Get person tweets embedded in articles (for categories with no VVIP handles)."""
+    """Get person tweets embedded in articles (for categories with no VVIP handles).
+    Uses curl subprocess to avoid Python requests proxy issues."""
     cutoff = (datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)).isoformat()
-    resp = requests.get(
-        f"{SUPABASE_URL}/rest/v1/p2_articles",
-        headers=DB_HEADERS,
-        params={
-            "select": "id,headline,slug,category,body,published_at",
-            "body": "like.*x.com/*/status/*",
-            "status": "eq.published",
-            "published_at": f"gte.{cutoff}",
-            "order": "published_at.desc",
-            "limit": 200,
-        },
-        timeout=30,
+    params = urllib.parse.urlencode({
+        "select": "id,headline,slug,category,body,published_at",
+        "body": "like.*x.com/*/status/*",
+        "status": "eq.published",
+        "published_at": f"gte.{cutoff}",
+        "order": "published_at.desc",
+        "limit": "200",
+    })
+    url = f"{SUPABASE_URL}/rest/v1/p2_articles?{params}"
+    result = subprocess.run(
+        ["curl", "-s", "-w", "\n%{http_code}", url,
+         "-H", f"apikey: {SUPABASE_KEY}",
+         "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+        capture_output=True, text=True, timeout=30,
     )
-    if resp.status_code != 200:
+    parts = result.stdout.rsplit("\n", 1)
+    if len(parts) < 2 or parts[-1].strip() != "200":
+        print(f"  ⚠ Supabase article harvest failed: HTTP {parts[-1].strip() if len(parts) >= 2 else 'unknown'}", file=sys.stderr)
+        return {}
+    try:
+        articles = json.loads(parts[0])
+    except json.JSONDecodeError:
+        print("  ⚠ Supabase article harvest: invalid JSON response", file=sys.stderr)
         return {}
 
     tweet_pattern = re.compile(r'https://(?:x\.com|twitter\.com)/(\w+)/status/(\d+)')
     by_category = {}
     seen = set()
 
-    for article in resp.json():
+    for article in articles:
         body = article.get("body", "") or ""
         cat = article.get("category", "")
         if cat not in STRIP_CATEGORIES:
