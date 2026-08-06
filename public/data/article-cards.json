@@ -1,110 +1,116 @@
 [
   {
-    "slug": "uscis-fy2027-h1b-cap-reached-no-second-lottery-planned",
-    "headline": "USCIS Confirms FY2027 H-1B Cap Reached, Rules Out Second Lottery",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uscis-fy2027-h1b-cap-reached-no-second-lottery-planned.jpg"
+    "slug": "india-data-centre-capacity-1575-mw-ai-demand-quadruples",
+    "headline": "India's Data Centre Capacity Quadruples to 1,575 MW as AI Demand Accelerates",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-data-centre-capacity-1575-mw-ai-demand-quadruples.jpg"
   },
   {
-    "slug": "meta-joel-kaplan-apologizes-india-pm-modi-facebook-post",
-    "headline": "Meta's Joel Kaplan Apologizes to India Over Restricted Modi Facebook Post",
+    "slug": "aramco-ventures-mitti-labs-9-5-million-rice-farming-methane-climate",
+    "headline": "Aramco Ventures Leads $9.5 Million Round in India's Mitti Labs to Cut Methane From Rice Farming",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meta-joel-kaplan-apologizes-india-pm-modi-facebook-post.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aramco-ventures-mitti-labs-9-5-million-rice-farming-methane-climate.jpg"
   },
   {
-    "slug": "air-india-ceo-tewolde-gebremariam-ethiopian-airlines",
-    "headline": "Air India Names Ethiopian Airlines Veteran Tewolde Gebremariam as New CEO",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-ceo-tewolde-gebremariam-ethiopian-airlines.jpg"
+    "slug": "pentagon-new-nuclear-strategy-regional-war-china-russia-tactical",
+    "headline": "Pentagon Drafts New Nuclear Strategy for Regional Wars With China or Russia",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pentagon-new-nuclear-strategy-regional-war-china-russia-tactical.jpg"
   },
   {
-    "slug": "michael-burry-1987-crash-warning-sp500-ai-bubble",
-    "headline": "Michael Burry Warns of 1987-Style Crash as S&P 500 Hits Fresh Record",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/michael-burry-1987-crash-warning-sp500-ai-bubble.jpg"
-  },
-  {
-    "slug": "india-rbi-polymer-banknote-trials-10-20-rupee",
-    "headline": "India Approves First Polymer Banknote Trials for ₹10 and ₹20 Notes",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-rbi-polymer-banknote-trials-10-20-rupee.jpg"
-  },
-  {
-    "slug": "shah-rukh-khan-reclaims-most-valuable-celebrity-kroll-2025",
-    "headline": "Shah Rukh Khan Reclaims India's Most Valuable Celebrity Crown in Kroll Rankings",
+    "slug": "awarapan-2-cbfc-ua-16-plus-certificate-cuts-august-release",
+    "headline": "CBFC Clears Awarapan 2 With U/A 16+ Certificate and Minimal Cuts Ahead of Independence Day Release",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shah-rukh-khan-reclaims-most-valuable-celebrity-kroll-2025.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-cbfc-ua-16-plus-certificate-cuts-august-release.jpg"
   },
   {
-    "slug": "ai-floods-bug-bounties-microsoft-record-apple-caps",
-    "headline": "AI Floods Bug Bounties With Junk Reports as Microsoft Pays Record $20 Million",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-floods-bug-bounties-microsoft-record-apple-caps.jpg"
-  },
-  {
-    "slug": "fast-walkers-80s-cognitive-decline-super-movers-study",
-    "headline": "Fast Walkers Over 80 Cut Cognitive Decline Risk by Half, Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fast-walkers-80s-cognitive-decline-super-movers-study.jpg"
-  },
-  {
-    "slug": "zuckerberg-apologizes-india-csam-modi-post-meta",
-    "headline": "Zuckerberg Apologizes to India Over CSAM on Meta Platforms and Modi Post Restriction",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zuckerberg-apologizes-india-csam-modi-post-meta.jpg"
-  },
-  {
-    "slug": "canada-cec-express-entry-draw-august-2026",
-    "headline": "Canada Issues 3,000 Invitations in Latest Canadian Experience Class Express Entry Draw",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-cec-express-entry-draw-august-2026.jpg"
-  },
-  {
-    "slug": "banks-15-billion-anthropic-data-center-google-guarantees",
-    "headline": "Banks Near $15 Billion Loan for Anthropic Data Center Backed by Google Guarantees",
+    "slug": "kpmg-ai-finance-decision-engine-data-quality-2026",
+    "headline": "AI Now Drives Three in Four Finance Teams, but Data Quality Threatens to Stall the Gains",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/banks-15-billion-anthropic-data-center-google-guarantees.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kpmg-ai-finance-decision-engine-data-quality-2026.jpg"
   },
   {
-    "slug": "carbon-dioxide-mineralization-stone-iceland-mit-kaist",
-    "headline": "From Gas to Stone: How Scientists Are Turning Carbon Dioxide Into Rock",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/carbon-dioxide-mineralization-stone-iceland-mit-kaist.jpg"
+    "slug": "ice-detains-military-spouses-parents-immigration-crackdown-armed-forces",
+    "headline": "ICE Detains Over 50 Military Spouses and Parents as Immigration Crackdown Hits Armed Forces Families",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ice-detains-military-spouses-parents-immigration-crackdown-armed-forces.jpg"
   },
   {
-    "slug": "jetstar-overhead-locker-fee-february-2027",
-    "headline": "Jetstar to Charge Passengers for Overhead Locker Access Starting February 2027",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jetstar-overhead-locker-fee-february-2027.jpg"
-  },
-  {
-    "slug": "nasa-roman-space-telescope-august-launch-asteroid-hunter",
-    "headline": "NASA's Roman Space Telescope Targets August 30 Launch, Will Double as Asteroid Hunter",
+    "slug": "anthropic-ai-fake-identities-uk-aisi-security-test",
+    "headline": "Anthropic's AI Created Fake Identities and Targeted Real People During UK Government Tests",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nasa-roman-space-telescope-august-launch-asteroid-hunter.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anthropic-ai-fake-identities-uk-aisi-security-test.jpg"
   },
   {
-    "slug": "india-usurping-cricket-throne-england-australia",
-    "headline": "How India Usurped Cricket's Throne From England and Australia",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-usurping-cricket-throne-england-australia.jpg"
+    "slug": "pb-fintech-profit-jumps-92-percent-policybazaar-insurance-q1-fy27",
+    "headline": "PB Fintech Profit Jumps 92% as Policybazaar's Insurance Engine Fires on All Cylinders",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pb-fintech-profit-jumps-92-percent-policybazaar-insurance-q1-fy27.jpg"
   },
   {
-    "slug": "singhara-flour-cheela-sawan-somwar-vrat-recipe",
-    "headline": "Singhara Flour Cheela: The Fasting-Friendly Pancake Worth Making Year-Round",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/singhara-flour-cheela-sawan-somwar-vrat-recipe.jpg"
+    "slug": "jiya-shankar-engaged-kaaran-dhanak-bigg-boss-ott",
+    "headline": "Bigg Boss OTT 2 Star Jiya Shankar Gets Engaged to US-Based Entrepreneur Kaaran Dhanak",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jiya-shankar-engaged-kaaran-dhanak-bigg-boss-ott.jpg"
   },
   {
-    "slug": "massachusetts-india-day-august-15-healey-proclamation",
-    "headline": "Massachusetts Makes It Official: August 15 Is Now India Day in the Commonwealth",
+    "slug": "daca-recipients-deportation-threats-protections-dismantled",
+    "headline": "DACA Recipients Face Mounting Deportation Threats as Government Dismantles Protections",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/daca-recipients-deportation-threats-protections-dismantled.jpg"
+  },
+  {
+    "slug": "meta-muse-code-ai-coding-agent-launch",
+    "headline": "Meta Launches Muse Code, Its First AI Coding Agent, in Challenge to Anthropic and OpenAI",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meta-muse-code-ai-coding-agent-launch.jpg"
+  },
+  {
+    "slug": "candida-auris-superbug-3000-cases-23-us-states-2026",
+    "headline": "Drug-Resistant Superbug Candida Auris Tops 3,000 Cases Across 23 U.S. States",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/candida-auris-superbug-3000-cases-23-us-states-2026.jpg"
+  },
+  {
+    "slug": "shri-thanedar-loses-michigan-primary-mckinney",
+    "headline": "Indian American Rep. Shri Thanedar Loses Michigan Primary to Progressive Challenger",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/massachusetts-india-day-august-15-healey-proclamation.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shri-thanedar-loses-michigan-primary-mckinney.jpg"
   },
   {
-    "slug": "sa20-season-5-marsh-root-du-plessis-released",
-    "headline": "SA20 Season 5: Marsh, Root Lead Star-Studded Signings as Du Plessis Era Ends at JSK",
+    "slug": "telangana-cm-revanth-reddy-presses-us-ambassador-h1b-student-visas",
+    "headline": "Telangana CM Revanth Reddy Presses U.S. Ambassador for H-1B Streamlining and More Student Visas",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/telangana-cm-revanth-reddy-presses-us-ambassador-h1b-student-visas.jpg"
+  },
+  {
+    "slug": "lok-sabha-bankers-books-evidence-bill-digital-records-2026",
+    "headline": "Lok Sabha Passes Bill Recognizing Digital Bank Records as Court Evidence",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lok-sabha-bankers-books-evidence-bill-digital-records-2026.jpg"
+  },
+  {
+    "slug": "air-india-inflight-wifi-paid-plans-pricing-august-2026",
+    "headline": "Air India Inflight Wi-Fi Goes Paid With Three Plans Starting at ₹299",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-inflight-wifi-paid-plans-pricing-august-2026.jpg"
+  },
+  {
+    "slug": "rbi-holds-rates-raises-gdp-growth-forecast-6-7-percent-fy27",
+    "headline": "RBI Holds Rates Steady, Raises India's GDP Growth Forecast to 6.7% Amid Oil and Inflation Risks",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-holds-rates-raises-gdp-growth-forecast-6-7-percent-fy27.jpg"
+  },
+  {
+    "slug": "epic-first-semester-anand-deverakonda-vaishnavi-chaitanya-release-date",
+    "headline": "Anand Deverakonda and Vaishnavi Chaitanya Reunite for 'EPIC: First Semester' on September 11",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/epic-first-semester-anand-deverakonda-vaishnavi-chaitanya-release-date.jpg"
+  },
+  {
+    "slug": "jos-buttler-breaks-all-time-t20-runs-record-pollard",
+    "headline": "Jos Buttler Becomes the Highest Run-Scorer in T20 Cricket History",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sa20-season-5-marsh-root-du-plessis-released.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jos-buttler-breaks-all-time-t20-runs-record-pollard.jpg"
   }
 ]
