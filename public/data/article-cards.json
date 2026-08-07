@@ -1,116 +1,92 @@
 [
   {
-    "slug": "indian-it-stocks-rally-as-global-ai-trade-unwinds",
-    "headline": "Indian IT Stocks Surge 17% in July as Global Investors Flee the AI Trade",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-it-stocks-rally-as-global-ai-trade-unwinds.jpg"
+    "slug": "kolkata-flurys-first-north-india-outlet-gurugram-galleria-market",
+    "headline": "Kolkata's Iconic Flurys Opens First North India Outlet in Gurugram Ahead of Centenary",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kolkata-flurys-first-north-india-outlet-gurugram-galleria-market.jpg"
   },
   {
-    "slug": "karnataka-anthropic-partnership-ai-public-services-governance",
-    "headline": "Karnataka Explores Anthropic Partnership to Deploy AI Across Public Services",
+    "slug": "dmk-signals-conditional-support-delimitation-bill-breaks-congress",
+    "headline": "DMK Signals Conditional Support for Delimitation Bill, Breaking From Congress",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dmk-signals-conditional-support-delimitation-bill-breaks-congress.jpg"
+  },
+  {
+    "slug": "priyanka-chopra-jonas-russell-crowe-bluefly-sci-fi-thriller",
+    "headline": "Priyanka Chopra Jonas and Russell Crowe to Star in Sci-Fi Thriller Bluefly",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/priyanka-chopra-jonas-russell-crowe-bluefly-sci-fi-thriller.jpg"
+  },
+  {
+    "slug": "sebi-ai-rural-outreach-finfluencer-investor-education",
+    "headline": "SEBI Deploys AI and Rural Outreach to Combat Finfluencer Misinformation",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sebi-ai-rural-outreach-finfluencer-investor-education.jpg"
+  },
+  {
+    "slug": "trump-new-executive-orders-birthright-citizenship-supreme-court",
+    "headline": "Trump Signs New Executive Orders to Restrict Birthright Citizenship After Supreme Court Rebuke",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-new-executive-orders-birthright-citizenship-supreme-court.jpg"
+  },
+  {
+    "slug": "openai-free-chatgpt-unlimited-text-chats-gpt-56-luna",
+    "headline": "OpenAI Gives Free ChatGPT Users Unlimited Text Chats and Upgrades Default Model",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-anthropic-partnership-ai-public-services-governance.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-free-chatgpt-unlimited-text-chats-gpt-56-luna.jpg"
   },
   {
-    "slug": "idf-large-scale-raid-qalandiya-refugee-camp-jerusalem",
-    "headline": "Israeli Forces Launch Large-Scale Raid on Qalandiya Refugee Camp Near Jerusalem",
+    "slug": "trump-trapped-iran-war-no-good-options-sixth-month",
+    "headline": "Trump Trapped in Iran War With No Good Options as Sixth Month Begins",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/idf-large-scale-raid-qalandiya-refugee-camp-jerusalem.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-trapped-iran-war-no-good-options-sixth-month.jpg"
   },
   {
-    "slug": "delhi-hc-protects-alakh-pandey-physicswallah-personality-rights",
-    "headline": "Delhi High Court Orders Takedown of Vulgar Content Exploiting PhysicsWallah Founder's Identity",
+    "slug": "americans-need-110000-afford-typical-home-affordability-stalls",
+    "headline": "Americans Still Need $110,000 to Afford the Typical Home as Affordability Barely Budges",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-hc-protects-alakh-pandey-physicswallah-personality-rights.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/americans-need-110000-afford-typical-home-affordability-stalls.jpg"
   },
   {
-    "slug": "lost-memoir-hiroshima-survivor-kiyoshi-tanimoto-published-81-years",
-    "headline": "Lost Memoir by Hiroshima Survivor Published 81 Years After the Atomic Bomb",
+    "slug": "canada-reverses-work-permit-restriction-posted-error",
+    "headline": "Canada Reverses Work Permit Restriction After Policy Was Posted in Error",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-reverses-work-permit-restriction-posted-error.jpg"
+  },
+  {
+    "slug": "new-mexico-court-orders-meta-pay-942-million-child-safety",
+    "headline": "New Mexico Court Orders Meta to Pay $942 Million in Landmark Child Safety Ruling",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/new-mexico-court-orders-meta-pay-942-million-child-safety.jpg"
+  },
+  {
+    "slug": "jeff-browning-us-air-rifle-champion-topgun-academy-india",
+    "headline": "American Air Rifle Champion Credits Training at New Delhi's Topgun Academy for Title Win",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jeff-browning-us-air-rifle-champion-topgun-academy-india.jpg"
+  },
+  {
+    "slug": "vikram-mubayi-ucsb-phd-student-found-dead-big-pine-lakes",
+    "headline": "Indian PhD Student at UC Santa Barbara Found Dead During Solo Hike in California",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lost-memoir-hiroshima-survivor-kiyoshi-tanimoto-published-81-years.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vikram-mubayi-ucsb-phd-student-found-dead-big-pine-lakes.jpg"
   },
   {
-    "slug": "excel-entertainment-half-vampire-thriller-toronto-midnight-madness",
-    "headline": "Excel Entertainment and AA Films Board Malayalam Vampire Thriller for Toronto Midnight Madness",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/excel-entertainment-half-vampire-thriller-toronto-midnight-madness.jpg"
-  },
-  {
-    "slug": "europe-heatwave-italy-red-alert-energy-crisis-deepens",
-    "headline": "Europe's Deadly Heatwave Puts All Italian Cities on Red Alert as Energy Crisis Deepens",
+    "slug": "pesticides-linked-als-motor-neurone-disease-70-percent-risk",
+    "headline": "Occupational Pesticide Exposure Linked to 70 Percent Higher Risk of ALS",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/europe-heatwave-italy-red-alert-energy-crisis-deepens.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pesticides-linked-als-motor-neurone-disease-70-percent-risk.jpg"
   },
   {
-    "slug": "us-employers-rewrite-h1b-playbook-immigration-costs-soar",
-    "headline": "US Employers Rewrite the H-1B Playbook as Immigration Costs Soar",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-employers-rewrite-h1b-playbook-immigration-costs-soar.jpg"
-  },
-  {
-    "slug": "spacex-lockup-expiry-911-million-shares-unlock-after-record-ipo",
-    "headline": "SpaceX Faces First Major Test as 911 Million Shares Unlock After Record IPO",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-lockup-expiry-911-million-shares-unlock-after-record-ipo.jpg"
-  },
-  {
-    "slug": "gujarat-bans-analogue-paneer-dairy-substitutes-food-safety-crackdown",
-    "headline": "Gujarat Bans Analogue Paneer and Dairy Substitutes in Widening Food Safety Crackdown",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gujarat-bans-analogue-paneer-dairy-substitutes-food-safety-crackdown.jpg"
-  },
-  {
-    "slug": "kill-director-nikhil-nagesh-bhat-hollywood-debut-jamie-foxx-deadlocked",
-    "headline": "Kill Director Nikhil Nagesh Bhat Lands Hollywood Debut With Jamie Foxx Action Thriller",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kill-director-nikhil-nagesh-bhat-hollywood-debut-jamie-foxx-deadlocked.jpg"
-  },
-  {
-    "slug": "us-sues-indian-origin-pennsylvania-landlord-sexual-harassment",
-    "headline": "U.S. Government Sues Indian-Origin Pennsylvania Landlord for Sexually Harassing Tenant",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-sues-indian-origin-pennsylvania-landlord-sexual-harassment.jpg"
-  },
-  {
-    "slug": "schengen-visa-rejections-cost-indians-rs-154-crore-record-applications",
-    "headline": "Schengen Visa Rejections Cost Indian Travellers Rs 154 Crore Despite Record Applications",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/schengen-visa-rejections-cost-indians-rs-154-crore-record-applications.jpg"
-  },
-  {
-    "slug": "kejriwal-instagram-restricted-india-meta-explanation",
-    "headline": "Kejriwal Claims Instagram Account Restricted in India, Demands Explanation From Meta",
+    "slug": "india-agni-4-missile-test-august-2026-chandipur",
+    "headline": "India Test-Fires Agni-4 Missile as Intensive Strategic Testing Year Continues",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kejriwal-instagram-restricted-india-meta-explanation.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-agni-4-missile-test-august-2026-chandipur.jpg"
   },
   {
-    "slug": "iberia-solar-eclipse-flight-august-2026",
-    "headline": "Iberia to Chase the Solar Eclipse at 35,000 Feet in a Historic First",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iberia-solar-eclipse-flight-august-2026.jpg"
-  },
-  {
-    "slug": "icrisat-scientist-edible-spoons-bakeys-rs-2-crore-business",
-    "headline": "From ICRISAT Lab to Rs 2 Crore Business: The Indian Scientist Behind Edible Spoons",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/icrisat-scientist-edible-spoons-bakeys-rs-2-crore-business.jpg"
-  },
-  {
-    "slug": "netflix-nextgen-writers-program-india-launch",
-    "headline": "Netflix Launches NextGen Writers' Program to Discover India's New Storytellers",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netflix-nextgen-writers-program-india-launch.jpg"
-  },
-  {
-    "slug": "delhi-red-alert-monsoon-deluge-flooding-work-from-home",
-    "headline": "Delhi Under Red Alert as Monsoon Deluge Triggers Flooding and Work-From-Home Orders",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-red-alert-monsoon-deluge-flooding-work-from-home.jpg"
-  },
-  {
-    "slug": "emerging-markets-ai-tech-hype-selloff-lesson",
-    "headline": "Emerging Markets Learn a Painful Lesson as AI Tech Hype Unravels",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/emerging-markets-ai-tech-hype-selloff-lesson.jpg"
+    "slug": "scientists-witness-seafloor-spreading-real-time-nature-study",
+    "headline": "Scientists Watch Earth's Ocean Floor Crack Open and Spread in Real Time",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/scientists-witness-seafloor-spreading-real-time-nature-study.jpg"
   }
 ]
