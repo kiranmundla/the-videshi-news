@@ -1,92 +1,128 @@
 [
   {
-    "slug": "kolkata-flurys-first-north-india-outlet-gurugram-galleria-market",
-    "headline": "Kolkata's Iconic Flurys Opens First North India Outlet in Gurugram Ahead of Centenary",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kolkata-flurys-first-north-india-outlet-gurugram-galleria-market.jpg"
-  },
-  {
-    "slug": "dmk-signals-conditional-support-delimitation-bill-breaks-congress",
-    "headline": "DMK Signals Conditional Support for Delimitation Bill, Breaking From Congress",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dmk-signals-conditional-support-delimitation-bill-breaks-congress.jpg"
-  },
-  {
-    "slug": "priyanka-chopra-jonas-russell-crowe-bluefly-sci-fi-thriller",
-    "headline": "Priyanka Chopra Jonas and Russell Crowe to Star in Sci-Fi Thriller Bluefly",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/priyanka-chopra-jonas-russell-crowe-bluefly-sci-fi-thriller.jpg"
-  },
-  {
-    "slug": "sebi-ai-rural-outreach-finfluencer-investor-education",
-    "headline": "SEBI Deploys AI and Rural Outreach to Combat Finfluencer Misinformation",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sebi-ai-rural-outreach-finfluencer-investor-education.jpg"
-  },
-  {
-    "slug": "trump-new-executive-orders-birthright-citizenship-supreme-court",
-    "headline": "Trump Signs New Executive Orders to Restrict Birthright Citizenship After Supreme Court Rebuke",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-new-executive-orders-birthright-citizenship-supreme-court.jpg"
-  },
-  {
-    "slug": "openai-free-chatgpt-unlimited-text-chats-gpt-56-luna",
-    "headline": "OpenAI Gives Free ChatGPT Users Unlimited Text Chats and Upgrades Default Model",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-free-chatgpt-unlimited-text-chats-gpt-56-luna.jpg"
-  },
-  {
-    "slug": "trump-trapped-iran-war-no-good-options-sixth-month",
-    "headline": "Trump Trapped in Iran War With No Good Options as Sixth Month Begins",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-trapped-iran-war-no-good-options-sixth-month.jpg"
-  },
-  {
-    "slug": "americans-need-110000-afford-typical-home-affordability-stalls",
-    "headline": "Americans Still Need $110,000 to Afford the Typical Home as Affordability Barely Budges",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/americans-need-110000-afford-typical-home-affordability-stalls.jpg"
-  },
-  {
-    "slug": "canada-reverses-work-permit-restriction-posted-error",
-    "headline": "Canada Reverses Work Permit Restriction After Policy Was Posted in Error",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-reverses-work-permit-restriction-posted-error.jpg"
-  },
-  {
-    "slug": "new-mexico-court-orders-meta-pay-942-million-child-safety",
-    "headline": "New Mexico Court Orders Meta to Pay $942 Million in Landmark Child Safety Ruling",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/new-mexico-court-orders-meta-pay-942-million-child-safety.jpg"
-  },
-  {
-    "slug": "jeff-browning-us-air-rifle-champion-topgun-academy-india",
-    "headline": "American Air Rifle Champion Credits Training at New Delhi's Topgun Academy for Title Win",
+    "slug": "womens-asia-cup-2026-india-pakistan-september-dubai",
+    "headline": "Women's Asia Cup 2026 Begins August 28 With India-Pakistan Clash on September 5",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jeff-browning-us-air-rifle-champion-topgun-academy-india.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/womens-asia-cup-2026-india-pakistan-september-dubai.jpg"
   },
   {
-    "slug": "vikram-mubayi-ucsb-phd-student-found-dead-big-pine-lakes",
-    "headline": "Indian PhD Student at UC Santa Barbara Found Dead During Solo Hike in California",
+    "slug": "ranjit-bajaj-drops-out-india-u15-world-cup-aiff",
+    "headline": "Ranjit Bajaj Drops Out of India U-15 World Cup Role Despite AIFF Appointment",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ranjit-bajaj-drops-out-india-u15-world-cup-aiff.jpg"
+  },
+  {
+    "slug": "fadnavis-disappointed-if-ramayana-misses-oscar",
+    "headline": "Fadnavis Says He Will Be Disappointed if Ramayana Does Not Win an Oscar",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fadnavis-disappointed-if-ramayana-misses-oscar.jpg"
+  },
+  {
+    "slug": "neet-ug-2026-counselling-nri-oci-document-verification",
+    "headline": "NEET-UG 2026 Counselling: NRI and OCI Candidates Must Complete Document Verification",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/neet-ug-2026-counselling-nri-oci-document-verification.jpg"
+  },
+  {
+    "slug": "typhoon-dolphin-japan-evacuations-flights-cancelled",
+    "headline": "Japan Orders Mass Evacuations as Typhoon Dolphin Cancels Over 500 Flights",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/typhoon-dolphin-japan-evacuations-flights-cancelled.jpg"
+  },
+  {
+    "slug": "cbi-chargesheet-nta-experts-leaked-neet-papers-chits-memory",
+    "headline": "CBI Chargesheet Reveals How NTA Experts Leaked NEET Papers Using Chits and Memory",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cbi-chargesheet-nta-experts-leaked-neet-papers-chits-memory.jpg"
+  },
+  {
+    "slug": "india-sugar-prices-record-high-festival-demand",
+    "headline": "India Sugar Prices Hit Record High on Tight Supplies and Festival Demand",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-sugar-prices-record-high-festival-demand.jpg"
+  },
+  {
+    "slug": "china-july-exports-beat-estimates-ai-shipments-surge",
+    "headline": "China's July Exports Beat Estimates as AI-Driven Shipments Surge",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vikram-mubayi-ucsb-phd-student-found-dead-big-pine-lakes.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/china-july-exports-beat-estimates-ai-shipments-surge.jpg"
   },
   {
-    "slug": "pesticides-linked-als-motor-neurone-disease-70-percent-risk",
-    "headline": "Occupational Pesticide Exposure Linked to 70 Percent Higher Risk of ALS",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pesticides-linked-als-motor-neurone-disease-70-percent-risk.jpg"
+    "slug": "trent-q1-profit-rise-zudio-westside-expansion",
+    "headline": "Trent Posts 22% Profit Rise as Zudio and Westside Expansion Drives Growth",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trent-q1-profit-rise-zudio-westside-expansion.jpg"
   },
   {
-    "slug": "india-agni-4-missile-test-august-2026-chandipur",
-    "headline": "India Test-Fires Agni-4 Missile as Intensive Strategic Testing Year Continues",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-agni-4-missile-test-august-2026-chandipur.jpg"
-  },
-  {
-    "slug": "scientists-witness-seafloor-spreading-real-time-nature-study",
-    "headline": "Scientists Watch Earth's Ocean Floor Crack Open and Spread in Real Time",
+    "slug": "infosys-ten-year-ai-deal-crocs",
+    "headline": "Infosys Signs 10-Year AI Deal to Overhaul Crocs' Enterprise Systems",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/scientists-witness-seafloor-spreading-real-time-nature-study.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/infosys-ten-year-ai-deal-crocs.jpg"
+  },
+  {
+    "slug": "supreme-court-dismisses-plea-criminal-probe-justice-varma",
+    "headline": "Supreme Court Dismisses 'Cheap Publicity' Plea Seeking Criminal Probe Against Justice Varma",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/supreme-court-dismisses-plea-criminal-probe-justice-varma.jpg"
+  },
+  {
+    "slug": "microsoft-largest-india-data-centre-hyderabad",
+    "headline": "Microsoft Opens Largest India Data Centre in Hyderabad as AI Race Intensifies",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/microsoft-largest-india-data-centre-hyderabad.jpg"
+  },
+  {
+    "slug": "amd-acquires-taalas-ai-models-custom-silicon",
+    "headline": "AMD Acquires Taalas to Etch AI Models Directly Into Custom Silicon",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/amd-acquires-taalas-ai-models-custom-silicon.jpg"
+  },
+  {
+    "slug": "india-israel-elevate-special-strategic-partnership",
+    "headline": "India and Israel Elevate Ties to Special Strategic Partnership",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-israel-elevate-special-strategic-partnership.jpg"
+  },
+  {
+    "slug": "praggnanandhaa-wins-saint-louis-rapid-blitz-gct",
+    "headline": "Praggnanandhaa Wins Saint Louis Rapid and Blitz, Surges to Second in Grand Chess Tour",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/praggnanandhaa-wins-saint-louis-rapid-blitz-gct.jpg"
+  },
+  {
+    "slug": "ladakh-first-high-altitude-wildlife-safari",
+    "headline": "Ladakh to Launch India's First High-Altitude Wildlife Safari on Snow Leopard Trails",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ladakh-first-high-altitude-wildlife-safari.jpg"
+  },
+  {
+    "slug": "assam-floods-85-dead-700000-displaced-monsoon",
+    "headline": "Assam Floods Kill 85 and Displace Over 700,000 in State's Worst Monsoon Crisis",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/assam-floods-85-dead-700000-displaced-monsoon.jpg"
+  },
+  {
+    "slug": "wall-street-records-yen-intervention-earnings-surge",
+    "headline": "Wall Street Hits Records as Yen Intervention and Earnings Surge Reshape Markets",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/wall-street-records-yen-intervention-earnings-surge.jpg"
+  },
+  {
+    "slug": "ramayana-record-global-rollout-50000-screens",
+    "headline": "Ramayana Set for Record Global Rollout Across 50,000 Screens",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ramayana-record-global-rollout-50000-screens.jpg"
+  },
+  {
+    "slug": "ai-rally-faces-toughest-test-chip-stocks",
+    "headline": "AI Rally Faces Its Toughest Test as Chip Stocks Wobble and Costs Mount",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-rally-faces-toughest-test-chip-stocks.jpg"
+  },
+  {
+    "slug": "netflix-kargil-war-drama-biggest-indian-series",
+    "headline": "Netflix Bets on Kargil War Drama as Its Biggest Indian Series Yet",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netflix-kargil-war-drama-biggest-indian-series.jpg"
   }
 ]
