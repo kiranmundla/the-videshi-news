@@ -1,0 +1,196 @@
+[
+  {
+    "id": "b8f4b2a8-d39e-431c-8fea-23311609da78",
+    "headline": "AMD Acquires Taalas to Etch AI Models Directly Into Custom Silicon",
+    "slug": "amd-acquires-taalas-ai-models-custom-silicon",
+    "category": "technology",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"AI News: AMD Buys Taalas, Power Modules & Anthropic Chips | \" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian NRIs working in the tech industry, particularly those in AI or semiconductor fields. This could provide a personal connection to the acquisition and highlight the contributions of the Indian diaspora to global tech advancements.",
+        "Add context about how AMD's acquisition of Taalas may impact the Indian tech landscape or startups, especially given the increasing interest in AI and semiconductor technology in India. This could include potential collaborations, job opportunities, or innovation spurred by this acquisition.",
+        "Clarify the significance of the acquisition in relation to the broader tech landscape, particularly how it positions AMD against Nvidia and other competitors. This could help readers understand the stakes involved and the implications for the tech industry at large.",
+        "Include a brief section on how this acquisition might affect consumers or businesses in India, particularly those relying on AI technologies. This could provide a more comprehensive view of the acquisition's impact."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from AMD or a tech analyst discussing the acquisition, which could provide real-time reactions and expert opinions on the deal."
+      ]
+    }
+  },
+  {
+    "id": "2ab51a52-0b86-4370-8ece-bd02aa3b930e",
+    "headline": "India and Israel Elevate Ties to Special Strategic Partnership",
+    "slug": "india-israel-elevate-special-strategic-partnership",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs living in Israel about how this partnership might impact their lives or businesses. This could provide a personal touch and relevance to the NRI audience.",
+        "Add context about how the agreements signed during this visit could specifically benefit Indian workers in Israel, particularly in sectors like agriculture and technology, which are relevant to the diaspora.",
+        "Include a brief section on how the enhanced India-Israel relations might influence the Indian diaspora's perception of Israel, especially in light of recent geopolitical events.",
+        "Clarify the timeline of the agreements and negotiations, as well as their potential impact on NRIs looking to work or invest in Israel."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Indian or Israeli government accounts announcing the partnership or the signed agreements to provide authenticity and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "b5a09f7f-038a-4505-8c6a-1799769dedc4",
+    "headline": "Ladakh to Launch India's First High-Altitude Wildlife Safari on Snow Leopard Tra",
+    "slug": "ladakh-first-high-altitude-wildlife-safari",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how this initiative could attract NRI tourists back to India, particularly those interested in eco-tourism and wildlife conservation. Consider adding quotes or perspectives from NRIs who have visited Ladakh or are involved in conservation efforts.",
+        "Provide more context on how this initiative aligns with global wildlife conservation trends, especially in relation to how NRIs can contribute to or participate in such efforts, perhaps through donations or awareness campaigns.",
+        "Include a section on potential travel packages or experiences specifically tailored for NRIs, highlighting how they can engage with this new safari experience, including any partnerships with travel agencies that cater to the diaspora.",
+        "Consider adding a brief historical context about snow leopards in Ladakh and the significance of their conservation, which would enhance the depth of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Ladakh administration or the Snow Leopard and High-Altitude Nature Conservation Society announcing the safari initiative, which would provide credibility and real-time updates.",
+        "Include an Instagram post featuring stunning visuals of snow leopards or the landscapes of Ladakh to visually engage readers and provide a glimpse of what the safari experience will entail."
+      ]
+    }
+  },
+  {
+    "id": "2ae6ae0c-fb48-4c0f-83f4-e7e510cdb499",
+    "headline": "Assam Floods Kill 85 and Displace Over 700,000 in State's Worst Monsoon Crisis",
+    "slug": "assam-floods-85-dead-700000-displaced-monsoon",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section discussing how the Assam floods impact the NRI community, particularly those with family ties or investments in Assam. This could include personal stories or quotes from NRIs affected by the situation or those who are mobilizing support from abroad.",
+        "Provide context on how the Assam floods compare to past incidents, including any previous diaspora responses or fundraising efforts, to highlight the ongoing challenges and the diaspora's role in relief efforts."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Assam government or a disaster management agency detailing relief efforts or calls for support, which would provide real-time updates and engage the diaspora community."
+      ]
+    }
+  },
+  {
+    "id": "a7271793-a47b-492e-b2e2-c6c91142b4b7",
+    "headline": "Praggnanandhaa Wins Saint Louis Rapid and Blitz, Surges to Second in Grand Chess",
+    "slug": "praggnanandhaa-wins-saint-louis-rapid-blitz-gct",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs or chess enthusiasts abroad who are following Praggnanandhaa's journey. This could highlight how his success resonates with the Indian diaspora and their pride in his achievements.",
+        "Provide context about the significance of Praggnanandhaa's victory in relation to the Indian chess community and its representation on the global stage, especially for NRIs who may feel a connection to his success.",
+        "Clarify the implications of his current ranking in the Grand Chess Tour for the Indian chess community and how it might inspire young chess players in India and among the diaspora.",
+        "Add a brief section on the historical context of Indian chess players in international tournaments, which would provide readers with a deeper understanding of Praggnanandhaa's achievement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Grand Chess Tour or a notable chess commentator celebrating Praggnanandhaa's victory, which would enhance the article's credibility and provide real-time reactions."
+      ]
+    }
+  },
+  {
+    "id": "85eda1e3-7b35-4d3b-96b4-2eef0365bb8b",
+    "headline": "Wall Street Hits Records as Yen Intervention and Earnings Surge Reshape Markets",
+    "slug": "wall-street-records-yen-intervention-earnings-surge",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section discussing how these market changes and the yen intervention specifically impact NRIs and the Indian diaspora, particularly in terms of investment opportunities or risks in both the U.S. and Indian markets.",
+        "Provide context on how the performance of U.S. markets can affect remittances or investment flows from NRIs back to India, especially in light of the strong earnings and market records.",
+        "Include quotes or insights from financial experts or NRIs who are actively investing in the U.S. markets to add a personal touch and relevance to the diaspora audience.",
+        "Discuss potential implications for NRIs considering investments in U.S. stocks or currency markets, especially in relation to the yen's performance and its effects on global investment strategies."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the recent policy changes that may affect NRIs, particularly if there are any implications for investment or employment opportunities."
+      ]
+    }
+  },
+  {
+    "id": "b7d9437c-2d1a-4e02-ba7f-66f42bc463cc",
+    "headline": "Ramayana Set for Record Global Rollout Across 50,000 Screens",
+    "slug": "ramayana-record-global-rollout-50000-screens",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from prominent NRIs or Indian communities abroad regarding their anticipation for the film. This could provide a personal touch and highlight how the film resonates with the diaspora.",
+        "Add context about the significance of the Ramayana in various cultures and its impact on the Indian diaspora, perhaps by mentioning how it has been adapted or celebrated in different countries, which would enrich the article's depth.",
+        "Consider including a section on how this film's global rollout might affect the perception of Indian cinema in international markets, particularly among NRIs, and what it could mean for future Indian films aiming for global audiences.",
+        "Clarify the timeline of the film's release and promotional activities, especially how the trailer's release in August 2026 ties into the overall marketing strategy aimed at both domestic and international audiences."
+      ],
+      "embed_opportunities": [
+        "Embed the official Sony Pictures tweet announcing the film's global rollout to provide readers with direct access to the source of this news.",
+        "Consider embedding a video clip or highlights from the trailer to visually engage readers and give them a taste of what to expect from the film."
+      ]
+    }
+  },
+  {
+    "id": "937c0f59-083b-48f2-8645-e48fddcec13b",
+    "headline": "AI Rally Faces Its Toughest Test as Chip Stocks Wobble and Costs Mount",
+    "slug": "ai-rally-faces-toughest-test-chip-stocks",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRI investors or tech entrepreneurs who are actively involved in AI investments. This could provide a more localized perspective on how global AI trends are impacting the Indian diaspora.",
+        "Add context about how fluctuations in semiconductor stocks and AI investments specifically affect Indian NRIs, particularly those working in tech sectors or investing in U.S. markets. This could include statistics or anecdotes about their investment behavior or concerns.",
+        "Consider restructuring the article to begin with a brief overview of the implications of these market changes for NRIs before diving into the technical details. This would help to immediately engage the target audience by addressing their specific interests.",
+        "Include a section that discusses potential opportunities for NRIs in the AI sector, such as investment strategies or emerging startups in India that could benefit from the global AI boom."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent financial analyst or tech expert discussing the implications of the semiconductor index decline on AI investments, which could provide real-time insights and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "2e40b7f2-4c40-42ab-8207-226e72d88b0e",
+    "headline": "Netflix Bets on Kargil War Drama as Its Biggest Indian Series Yet",
+    "slug": "netflix-kargil-war-drama-biggest-indian-series",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs about their connection to the Kargil War and how this series resonates with their experiences or perspectives on Indian military history.",
+        "Provide context on how the Kargil War is perceived by the Indian diaspora, perhaps by including statistics or anecdotes about its impact on NRIs, especially those with ties to the military or those who have served in similar capacities.",
+        "Discuss how Netflix's global strategy for this series might affect its reception among NRIs, particularly in terms of cultural representation and storytelling that resonates with both Indian and global audiences."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Netflix or an official military account discussing the significance of the Kargil War or the series to enhance credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "cbdd260e-6653-440b-b32d-83e186191029",
+    "headline": "Sweetgreen Cuts Full-Year Outlook as Cyclospora Outbreak Tanks Salad Demand",
+    "slug": "sweetgreen-cuts-outlook-cyclospora-outbreak-salad",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how the cyclospora outbreak and Sweetgreen's struggles might impact Indian NRIs who are health-conscious and prefer fresh food options. Discuss any potential shifts in their dining habits or preferences for Indian restaurants that offer similar healthy options.",
+        "Provide context on how food safety issues in the U.S. can affect Indian NRIs living abroad, particularly in terms of their perceptions of American food chains and their willingness to patronize them. This could include statistics or anecdotes about Indian consumers' preferences for food safety.",
+        "Add a section that discusses the implications of Sweetgreen's stock decline on investment opportunities for NRIs, especially those interested in the food sector or in companies that prioritize health and sustainability.",
+        "Consider restructuring the article to include a brief introduction that outlines the significance of the outbreak, followed by a section specifically addressing the implications for the NRI community, and then delve into the financial details. This would enhance the progression and depth of the content."
+      ],
+      "embed_opportunities": [
+        "Embed the official CDC tweet regarding the cyclospora outbreak to provide readers with direct access to authoritative information on the issue.",
+        "Include a tweet from Sweetgreen's official account addressing the outbreak and their response, which could help to contextualize their messaging for readers."
+      ]
+    }
+  }
+]
