@@ -1,5 +1,14 @@
 [
   {
+    "id": "uscis-deny-without-rfe-aug-2026",
+    "date": "2026-08-05",
+    "label": "Aug 5, 2026",
+    "headline": "USCIS can now deny H-1B, green card, and other filings without issuing a Request for Evidence \u2014 policy effective immediately",
+    "summary": "USCIS updated its policy to allow officers to deny immigration applications and petitions without first issuing a Request for Evidence (RFE) or Notice of Intent to Deny (NOID) when required initial evidence is missing or eligibility is not established. The policy applies to all requests pending or filed on or after August 5, 2026. USCIS also clarified that officers may set shorter RFE response deadlines. This means incomplete H-1B petitions, I-485 green card applications, and other filings can be denied outright \u2014 forfeiting filing fees \u2014 rather than getting a second chance to supply missing documents. For Indian applicants navigating the already-tight immigration environment, the change makes thorough, complete initial filings more critical than ever. The update rescinds the 2013-era guidance that limited denials to cases with \"no possibility\" of approval.",
+    "severity": "high",
+    "source": "USCIS / Boundless Immigration"
+  },
+  {
     "id": "opt-100k-fee-under-consideration",
     "date": "2026-07-31",
     "label": "Jul 31, 2026",
@@ -160,15 +169,6 @@
     "summary": "Four days after striking down the $100,000 H-1B fee as an unlawful tax, Judge Sorokin granted the government\u2019s request to stay his own order while the Trump administration appeals to the First Circuit Court of Appeals. The stay means USCIS can continue collecting the fee on all new H-1B petitions requiring consular processing. Employers must plan as if the fee is fully enforceable. The DOJ argued that every day without the fee, more workers would \u201crush to seek H-1B classification,\u201d undermining the policy\u2019s purpose. Parallel challenges to the fee are pending in California and D.C. federal courts; legal experts expect the Supreme Court will ultimately weigh in. The fee\u2019s fate remains deeply uncertain, but for now, it\u2019s back in force.",
     "severity": "high",
     "source": "US District Court (D. Mass.) / Bloomberg Law / WR Immigration"
-  },
-  {
-    "id": "modi-trump-g7-h1b-talks",
-    "date": "2026-06-10",
-    "label": "Jun 10, 2026",
-    "headline": "Modi to raise H-1B visa issue with Trump at G7 summit in France",
-    "summary": "PM Modi is expected to hold bilateral talks with President Trump at the G7 summit in Evian-les-Bains, France (June 15\u201317), with H-1B visas, trade, and energy on the agenda. India is pushing back on recent visa restrictions that have rattled its tech workforce and outsourcing industry. The meeting follows Rubio's India visit last month and comes as both sides move toward a bilateral trade deal potentially closing by mid-July.",
-    "severity": "medium",
-    "source": "Reuters / Indian Government Source"
   },
   {
     "id": "interview-waiver-eliminated",
