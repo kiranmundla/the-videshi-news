@@ -1,0 +1,59 @@
+[
+  {
+    "id": "7ae6c91b-37c3-43af-bfb2-4f378ecf8f2e",
+    "headline": "The 'Pink Flags' of Postpartum Psychosis Every Family Should Know",
+    "slug": "postpartum-psychosis-pink-flags-warning-signs-families-should-know",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or anecdotes about postpartum psychosis within the Indian diaspora community. Discuss how cultural perceptions and stigmas may affect recognition and treatment of this condition among NRIs.",
+        "Provide context on how maternal mental health issues, including postpartum psychosis, are addressed in India compared to the U.S. This could help NRIs understand the differences in healthcare systems and the importance of awareness in their home country.",
+        "Consider adding a section that discusses resources available to NRIs, such as support groups or helplines, for those who may be experiencing postpartum psychosis or know someone who is.",
+        "Clarify the implications of the Lindsay Clancy case for NRIs, particularly how it may influence perceptions of maternal mental health within the Indian community abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a mental health organization or expert discussing postpartum psychosis or the Lindsay Clancy case to provide additional context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "b3eca5b0-0953-4c9d-b7df-3ad8250a0879",
+    "headline": "Supreme Court Orders DNA Tests, MEA Nodal Officer for Indians Killed in Russia-U",
+    "slug": "supreme-court-dna-tests-mea-indians-killed-russia-ukraine-war",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian nationals living abroad who may have family members affected by this situation. This could provide a more personal connection to the NRI audience.",
+        "Provide additional context about the implications of the Supreme Court's ruling for NRIs, such as how it affects their ability to seek assistance from the Indian government in similar situations, or how it may influence future policies regarding Indian nationals abroad.",
+        "Clarify the compensation claims process mentioned in the article. NRIs may want to know how they can assist their families in claiming compensation or what steps they need to take.",
+        "Include a brief section on how the Indian diaspora has historically responded to conflicts involving Indian nationals abroad, which could provide a deeper understanding of the community's engagement in such matters."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of External Affairs (MEA) regarding their response to the Supreme Court's ruling or the ongoing situation in Ukraine, which would provide official context and updates."
+      ]
+    }
+  },
+  {
+    "id": "24def744-4a3b-4156-9637-122e788d7dca",
+    "headline": "FSSAI Penalises Fortune Oil Maker AWL After Sunflower Oil Fails Vitamin D Test",
+    "slug": "fssai-penalises-fortune-oil-maker-awl-sunflower-oil-vitamin-d-test",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this regulatory action might affect Indian expatriates who rely on Fortune oils in their cooking, particularly in countries where these products are popular among the Indian community.",
+        "Provide context on how the FSSAI's actions compare to food safety regulations in countries where many NRIs reside, such as the U.S. or Canada, to highlight the differences and implications for Indian products abroad.",
+        "Include a quote or perspective from a diaspora expert or Indian food safety advocate to add depth and relevance to the article for NRI readers.",
+        "Clarify the implications of the penalty for consumers, especially for NRIs who may be concerned about the quality and safety of Indian food products available in their local markets."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from FSSAI or a relevant Indian food safety authority discussing the importance of food fortification and the recent crackdown on non-compliance to provide real-time context and authority."
+      ]
+    }
+  }
+]
