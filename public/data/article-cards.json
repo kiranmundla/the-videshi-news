@@ -1,98 +1,122 @@
 [
   {
-    "slug": "jharkhand-student-protests-day-14-hunger-strike-jpsc-talks",
-    "headline": "Jharkhand Student Protests Enter Day 14 as Hunger Strikes Continue and National Leaders Step In",
+    "slug": "spacex-tesla-terafab-chip-plant-texas",
+    "headline": "SpaceX and Tesla to Build $16.8 Billion Chip Plant in Texas, Creating 3,000 Jobs",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-tesla-terafab-chip-plant-texas.jpg"
+  },
+  {
+    "slug": "pakistan-naqvi-system-collapsed-coup-speculation",
+    "headline": "Pakistan's System Has Collapsed, Says Interior Minister Naqvi, Fueling Coup Speculation",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jharkhand-student-protests-day-14-hunger-strike-jpsc-talks.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-naqvi-system-collapsed-coup-speculation.jpg"
   },
   {
-    "slug": "india-maps-27-arunachal-pradesh-sites-official-names-counter-china",
-    "headline": "India Maps 27 Arunachal Pradesh Sites With Official Names to Counter China",
+    "slug": "rishabh-pant-uttarakhand-cm-land-buy-home",
+    "headline": "Rishabh Pant Seeks Uttarakhand CM's Help to Buy Land, Build First Home in Native State",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-maps-27-arunachal-pradesh-sites-official-names-counter-china.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rishabh-pant-uttarakhand-cm-land-buy-home.jpg"
   },
   {
-    "slug": "fed-rate-hike-split-deepens-five-years-high-inflation",
-    "headline": "Fed's Internal Divide on Rate Hikes Deepens as Five Years of High Inflation Tests Patience",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fed-rate-hike-split-deepens-five-years-high-inflation.jpg"
+    "slug": "traditional-diets-shape-gut-microbes-indian-tribes",
+    "headline": "How Traditional Diets Shape Unique Gut Microbes in India's Tribal Communities",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/traditional-diets-shape-gut-microbes-indian-tribes.jpg"
   },
   {
-    "slug": "thali-costlier-july-onion-oil-chicken-kitchen-inflation-india",
-    "headline": "What Made Your Thali Costlier in July: Onions, Oil, and Chicken Drive Kitchen Inflation",
+    "slug": "nick-joe-jonas-brothers-indian-food-bhajia-kachori-papad-tour",
+    "headline": "Nick and Joe Jonas Snack on Bhajia, Kachori, and Papad During Tour Break",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thali-costlier-july-onion-oil-chicken-kitchen-inflation-india.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nick-joe-jonas-brothers-indian-food-bhajia-kachori-papad-tour.jpg"
   },
   {
-    "slug": "canada-airports-free-flow-international-transit-skip-border-checks",
-    "headline": "Canada Airports Launch Free Flow Transit, Letting International Passengers Skip Border Checks",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-airports-free-flow-international-transit-skip-border-checks.jpg"
+    "slug": "what-to-do-with-old-rakhis-traditional-beliefs-eco-friendly",
+    "headline": "What To Do With Old Rakhis: Traditional Beliefs and Eco-Friendly Options",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/what-to-do-with-old-rakhis-traditional-beliefs-eco-friendly.jpg"
   },
   {
-    "slug": "cloudflare-launches-kitesurf-browser-ai-agents",
-    "headline": "Cloudflare Launches Kitesurf, a Purpose-Built Browser for AI Agents",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cloudflare-launches-kitesurf-browser-ai-agents.jpg"
+    "slug": "himachali-siddu-walnut-stuffed-steamed-bread-recipe",
+    "headline": "Himachali Siddu: How To Make the Mountain Bread That Fueled Himalayan Shepherds",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/himachali-siddu-walnut-stuffed-steamed-bread-recipe.jpg"
   },
   {
-    "slug": "padilla-green-card-bill-registry-reform-h1b-workers",
-    "headline": "Senator Padilla Renews Push for Green Card Bill That Could Benefit Millions of H-1B Workers",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/padilla-green-card-bill-registry-reform-h1b-workers.jpg"
-  },
-  {
-    "slug": "rbi-excludes-nri-deposit-loans-from-priority-sector-lending",
-    "headline": "RBI Excludes Loans Against Fresh NRI Deposits From Priority Sector Lending Targets",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-excludes-nri-deposit-loans-from-priority-sector-lending.jpg"
-  },
-  {
-    "slug": "unnati-sharma-judo-bronze-commonwealth-games-2026-glasgow",
-    "headline": "Unnati Sharma Wins Judo Bronze at Commonwealth Games 2026 in Dominant Glasgow Display",
+    "slug": "ashish-yadav-silver-world-u20-javelin-india-10-year-wait",
+    "headline": "Ashish Yadav Wins Silver at World U20, Ends India's 10-Year Javelin Medal Wait",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/unnati-sharma-judo-bronze-commonwealth-games-2026-glasgow.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashish-yadav-silver-world-u20-javelin-india-10-year-wait.jpg"
   },
   {
-    "slug": "openai-pauses-astra-model-critical-cyber-capabilities",
-    "headline": "OpenAI Pauses Astra Model Development Over Critical Cybersecurity Concerns",
+    "slug": "spider-man-brand-new-day-india-box-office-350-crore-mcu-record",
+    "headline": "Spider-Man: Brand New Day Crosses ₹350 Crore in India, Set To Dethrone Avengers: Endgame as MCU's Highest-Grosser",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spider-man-brand-new-day-india-box-office-350-crore-mcu-record.jpg"
+  },
+  {
+    "slug": "indian-startups-raised-274-million-cleantech-ai-lead-surge",
+    "headline": "Indian Startups Raised $274 Million This Week as Cleantech and AI Lead the Surge",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-pauses-astra-model-critical-cyber-capabilities.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-startups-raised-274-million-cleantech-ai-lead-surge.jpg"
   },
   {
-    "slug": "ashwin-reveals-barely-spoke-manjrekar-years-fitness-criticism",
-    "headline": "Ashwin Reveals Why He Barely Spoke to Sanjay Manjrekar for Years After Fitness Criticism",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashwin-reveals-barely-spoke-manjrekar-years-fitness-criticism.jpg"
+    "slug": "vishwanath-sons-trailer-suriya-olympic-shooter-venky-atluri",
+    "headline": "Vishwanath & Sons Trailer: Suriya Plays Olympic Shooter in Venky Atluri's Emotional Bilingual Drama",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vishwanath-sons-trailer-suriya-olympic-shooter-venky-atluri.jpg"
   },
   {
-    "slug": "supreme-court-dna-tests-mea-indians-killed-russia-ukraine-war",
-    "headline": "Supreme Court Orders DNA Tests, MEA Nodal Officer for Indians Killed in Russia-Ukraine War",
+    "slug": "they-dreamed-of-going-home-to-iran-then-the-bombs-fell",
+    "headline": "They Dreamed of Going Home to Iran. Then the Bombs Fell.",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/supreme-court-dna-tests-mea-indians-killed-russia-ukraine-war.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/they-dreamed-of-going-home-to-iran-then-the-bombs-fell.jpg"
   },
   {
-    "slug": "fssai-penalises-fortune-oil-maker-awl-sunflower-oil-vitamin-d-test",
-    "headline": "FSSAI Penalises Fortune Oil Maker AWL After Sunflower Oil Fails Vitamin D Test",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fssai-penalises-fortune-oil-maker-awl-sunflower-oil-vitamin-d-test.jpg"
+    "slug": "bumrah-ruled-out-sri-lanka-tests-pandya-recovery-drags-on",
+    "headline": "Bumrah Ruled Out of Sri Lanka Tests, Pandya Recovery Drags On Ahead of 2027 World Cup",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bumrah-ruled-out-sri-lanka-tests-pandya-recovery-drags-on.jpg"
   },
   {
-    "slug": "sukhbir-badal-meets-pm-modi-akali-dal-bjp-alliance-punjab",
-    "headline": "Akali Dal Chief Sukhbir Badal Meets PM Modi as Punjab Alliance Buzz Intensifies",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sukhbir-badal-meets-pm-modi-akali-dal-bjp-alliance-punjab.jpg"
+    "slug": "awarapan-2-box-office-opening-day-prediction-independence-day-2026",
+    "headline": "Awarapan 2 Eyes ₹11-16 Crore Opening in Independence Day Clash With Batwara 1947",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-box-office-opening-day-prediction-independence-day-2026.jpg"
   },
   {
-    "slug": "us-india-expand-defense-civil-nuclear-cooperation-shanti-act",
-    "headline": "US and India Expand Defense and Civil Nuclear Ties Under Trump Administration",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-india-expand-defense-civil-nuclear-cooperation-shanti-act.jpg"
+    "slug": "indian-american-woman-falsely-accused-visa-fraud-us-attorney-steps-in",
+    "headline": "Indian-American Woman Falsely Accused of Visa Fraud in Viral Post, US Attorney Steps In",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-american-woman-falsely-accused-visa-fraud-us-attorney-steps-in.jpg"
   },
   {
-    "slug": "aravind-srinivas-perplexity-ai-rejection-to-billionaire-success-story",
-    "headline": "From Missed Exam Cutoffs to Billionaire: How Aravind Srinivas Built Perplexity AI on Rejection",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aravind-srinivas-perplexity-ai-rejection-to-billionaire-success-story.jpg"
+    "slug": "us-senate-bill-100-tariffs-india-china-russian-oil",
+    "headline": "US Senate Advances Bill Threatening 100% Tariffs on India, China Over Russian Oil",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-senate-bill-100-tariffs-india-china-russian-oil.jpg"
+  },
+  {
+    "slug": "google-agentic-ai-ask-maps-hotel-search",
+    "headline": "Google Brings Agentic AI to Hotel Search Inside Maps",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/google-agentic-ai-ask-maps-hotel-search.jpg"
+  },
+  {
+    "slug": "jugal-hansraj-shekhar-kapur-masoom-the-next-generation-reunion",
+    "headline": "Jugal Hansraj Reunites With Shekhar Kapur for Masoom: The Next Generation",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jugal-hansraj-shekhar-kapur-masoom-the-next-generation-reunion.jpg"
+  },
+  {
+    "slug": "asian-games-2026-hockey-draw-india-pakistan-path-to-gold",
+    "headline": "Asian Games 2026 Hockey Draw Places India and Pakistan on Collision Course for Knockouts",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/asian-games-2026-hockey-draw-india-pakistan-path-to-gold.jpg"
+  },
+  {
+    "slug": "nomura-report-ai-creating-more-jobs-india-than-cuts",
+    "headline": "Nomura Report Finds AI Creating More Jobs in India Than It Cuts",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nomura-report-ai-creating-more-jobs-india-than-cuts.jpg"
   }
 ]
