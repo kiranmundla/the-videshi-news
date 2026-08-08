@@ -1,5 +1,89 @@
 [
   {
+    "slug": "india-falls-behind-turkey-fifth-generation-fighter-jet-race",
+    "headline": "India Falls Behind Turkey in the Fifth-Generation Fighter Jet Race",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-falls-behind-turkey-fifth-generation-fighter-jet-race.jpg"
+  },
+  {
+    "slug": "pakistan-fuel-crisis-imf-price-hikes-transport-strike-threats",
+    "headline": "Pakistan's Fuel Crisis Deepens as IMF-Driven Price Hikes Spark Transport Strike Threats",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-fuel-crisis-imf-price-hikes-transport-strike-threats.jpg"
+  },
+  {
+    "slug": "how-to-check-fake-paneer-at-home-six-tests",
+    "headline": "Six Simple Tests to Check If Your Paneer Is Real or Fake at Home",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/how-to-check-fake-paneer-at-home-six-tests.jpg"
+  },
+  {
+    "slug": "kanwar-yatra-camps-food-feast-pizza-momos-rotis",
+    "headline": "Kanwar Yatra Camps Blend Tradition and Street Food With 7,000 Rotis a Day",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kanwar-yatra-camps-food-feast-pizza-momos-rotis.jpg"
+  },
+  {
+    "slug": "mohanlal-apologises-visa-issue-cancels-sydney-stage-show",
+    "headline": "Mohanlal Apologises After Visa Issue Forces Cancellation of Sydney Stage Show",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mohanlal-apologises-visa-issue-cancels-sydney-stage-show.jpg"
+  },
+  {
+    "slug": "nri-property-india-fema-rules-buying-selling-guide",
+    "headline": "NRI Property in India: 8 FEMA Rules Every Diaspora Buyer and Seller Must Know",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nri-property-india-fema-rules-buying-selling-guide.jpg"
+  },
+  {
+    "slug": "rujuta-diwekar-three-forgotten-summer-coolants-vetiver-buttermilk",
+    "headline": "Rujuta Diwekar's Three Forgotten Summer Coolants That Need No Electricity or AC",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rujuta-diwekar-three-forgotten-summer-coolants-vetiver-buttermilk.jpg"
+  },
+  {
+    "slug": "keerthy-suresh-fires-back-lack-of-roles-claim-the-paradise-nani",
+    "headline": "Keerthy Suresh Fires Back at Claims She Took The Paradise Dance Number Due to 'Lack of Roles'",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/keerthy-suresh-fires-back-lack-of-roles-claim-the-paradise-nani.jpg"
+  },
+  {
+    "slug": "india-ends-mail-in-oci-applications-canada-mandates-biometrics",
+    "headline": "India Ends Mail-In OCI Applications in Canada, Mandates In-Person Biometrics",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-ends-mail-in-oci-applications-canada-mandates-biometrics.jpg"
+  },
+  {
+    "slug": "indian-bars-asias-50-best-bars-2026-boilermaker-soka-spirit-forward",
+    "headline": "Three Indian Bars Crack Asia's 50 Best List as Goa's Boilermaker Storms Into Top 10",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-bars-asias-50-best-bars-2026-boilermaker-soka-spirit-forward.jpg"
+  },
+  {
+    "slug": "tcs-launches-biggest-leadership-overhaul-three-years-counter-ai-disruption",
+    "headline": "TCS Launches Biggest Leadership Overhaul in Three Years to Counter AI Disruption",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-launches-biggest-leadership-overhaul-three-years-counter-ai-disruption.jpg"
+  },
+  {
+    "slug": "xai-imagine-image-2-vs-openai-gpt-image-2-arena-benchmarks",
+    "headline": "xAI's Imagine Image 2.0 Enters Top Five as OpenAI's GPT-Image-2 Dominates Arena Benchmarks",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/xai-imagine-image-2-vs-openai-gpt-image-2-arena-benchmarks.jpg"
+  },
+  {
+    "slug": "mithun-chakraborty-surgery-kolkata-metal-plate-removal",
+    "headline": "Mithun Chakraborty Undergoes Surgery in Kolkata to Remove Metal Plate From Earlier Injury",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mithun-chakraborty-surgery-kolkata-metal-plate-removal.jpg"
+  },
+  {
+    "slug": "meta-cuts-8000-jobs-4am-email-blitz-zuckerberg-admits-mistakes-ai-pivot",
+    "headline": "Meta Cuts 8,000 Jobs in 4 AM Email Blitz as Zuckerberg Admits Mistakes in AI Pivot",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/meta-cuts-8000-jobs-4am-email-blitz-zuckerberg-admits-mistakes-ai-pivot.jpg"
+  },
+  {
     "slug": "spacex-tesla-terafab-chip-plant-texas",
     "headline": "SpaceX and Tesla to Build $16.8 Billion Chip Plant in Texas, Creating 3,000 Jobs",
     "category": "technology",
@@ -10,113 +94,5 @@
     "headline": "Pakistan's System Has Collapsed, Says Interior Minister Naqvi, Fueling Coup Speculation",
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-naqvi-system-collapsed-coup-speculation.jpg"
-  },
-  {
-    "slug": "rishabh-pant-uttarakhand-cm-land-buy-home",
-    "headline": "Rishabh Pant Seeks Uttarakhand CM's Help to Buy Land, Build First Home in Native State",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rishabh-pant-uttarakhand-cm-land-buy-home.jpg"
-  },
-  {
-    "slug": "traditional-diets-shape-gut-microbes-indian-tribes",
-    "headline": "How Traditional Diets Shape Unique Gut Microbes in India's Tribal Communities",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/traditional-diets-shape-gut-microbes-indian-tribes.jpg"
-  },
-  {
-    "slug": "nick-joe-jonas-brothers-indian-food-bhajia-kachori-papad-tour",
-    "headline": "Nick and Joe Jonas Snack on Bhajia, Kachori, and Papad During Tour Break",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nick-joe-jonas-brothers-indian-food-bhajia-kachori-papad-tour.jpg"
-  },
-  {
-    "slug": "what-to-do-with-old-rakhis-traditional-beliefs-eco-friendly",
-    "headline": "What To Do With Old Rakhis: Traditional Beliefs and Eco-Friendly Options",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/what-to-do-with-old-rakhis-traditional-beliefs-eco-friendly.jpg"
-  },
-  {
-    "slug": "himachali-siddu-walnut-stuffed-steamed-bread-recipe",
-    "headline": "Himachali Siddu: How To Make the Mountain Bread That Fueled Himalayan Shepherds",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/himachali-siddu-walnut-stuffed-steamed-bread-recipe.jpg"
-  },
-  {
-    "slug": "ashish-yadav-silver-world-u20-javelin-india-10-year-wait",
-    "headline": "Ashish Yadav Wins Silver at World U20, Ends India's 10-Year Javelin Medal Wait",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashish-yadav-silver-world-u20-javelin-india-10-year-wait.jpg"
-  },
-  {
-    "slug": "spider-man-brand-new-day-india-box-office-350-crore-mcu-record",
-    "headline": "Spider-Man: Brand New Day Crosses ₹350 Crore in India, Set To Dethrone Avengers: Endgame as MCU's Highest-Grosser",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spider-man-brand-new-day-india-box-office-350-crore-mcu-record.jpg"
-  },
-  {
-    "slug": "indian-startups-raised-274-million-cleantech-ai-lead-surge",
-    "headline": "Indian Startups Raised $274 Million This Week as Cleantech and AI Lead the Surge",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-startups-raised-274-million-cleantech-ai-lead-surge.jpg"
-  },
-  {
-    "slug": "vishwanath-sons-trailer-suriya-olympic-shooter-venky-atluri",
-    "headline": "Vishwanath & Sons Trailer: Suriya Plays Olympic Shooter in Venky Atluri's Emotional Bilingual Drama",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vishwanath-sons-trailer-suriya-olympic-shooter-venky-atluri.jpg"
-  },
-  {
-    "slug": "they-dreamed-of-going-home-to-iran-then-the-bombs-fell",
-    "headline": "They Dreamed of Going Home to Iran. Then the Bombs Fell.",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/they-dreamed-of-going-home-to-iran-then-the-bombs-fell.jpg"
-  },
-  {
-    "slug": "bumrah-ruled-out-sri-lanka-tests-pandya-recovery-drags-on",
-    "headline": "Bumrah Ruled Out of Sri Lanka Tests, Pandya Recovery Drags On Ahead of 2027 World Cup",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bumrah-ruled-out-sri-lanka-tests-pandya-recovery-drags-on.jpg"
-  },
-  {
-    "slug": "awarapan-2-box-office-opening-day-prediction-independence-day-2026",
-    "headline": "Awarapan 2 Eyes ₹11-16 Crore Opening in Independence Day Clash With Batwara 1947",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-box-office-opening-day-prediction-independence-day-2026.jpg"
-  },
-  {
-    "slug": "indian-american-woman-falsely-accused-visa-fraud-us-attorney-steps-in",
-    "headline": "Indian-American Woman Falsely Accused of Visa Fraud in Viral Post, US Attorney Steps In",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-american-woman-falsely-accused-visa-fraud-us-attorney-steps-in.jpg"
-  },
-  {
-    "slug": "us-senate-bill-100-tariffs-india-china-russian-oil",
-    "headline": "US Senate Advances Bill Threatening 100% Tariffs on India, China Over Russian Oil",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-senate-bill-100-tariffs-india-china-russian-oil.jpg"
-  },
-  {
-    "slug": "google-agentic-ai-ask-maps-hotel-search",
-    "headline": "Google Brings Agentic AI to Hotel Search Inside Maps",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/google-agentic-ai-ask-maps-hotel-search.jpg"
-  },
-  {
-    "slug": "jugal-hansraj-shekhar-kapur-masoom-the-next-generation-reunion",
-    "headline": "Jugal Hansraj Reunites With Shekhar Kapur for Masoom: The Next Generation",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jugal-hansraj-shekhar-kapur-masoom-the-next-generation-reunion.jpg"
-  },
-  {
-    "slug": "asian-games-2026-hockey-draw-india-pakistan-path-to-gold",
-    "headline": "Asian Games 2026 Hockey Draw Places India and Pakistan on Collision Course for Knockouts",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/asian-games-2026-hockey-draw-india-pakistan-path-to-gold.jpg"
-  },
-  {
-    "slug": "nomura-report-ai-creating-more-jobs-india-than-cuts",
-    "headline": "Nomura Report Finds AI Creating More Jobs in India Than It Cuts",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nomura-report-ai-creating-more-jobs-india-than-cuts.jpg"
   }
 ]
