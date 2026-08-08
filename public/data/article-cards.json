@@ -1,5 +1,71 @@
 [
   {
+    "slug": "jharkhand-student-protests-day-14-hunger-strike-jpsc-talks",
+    "headline": "Jharkhand Student Protests Enter Day 14 as Hunger Strikes Continue and National Leaders Step In",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jharkhand-student-protests-day-14-hunger-strike-jpsc-talks.jpg"
+  },
+  {
+    "slug": "india-maps-27-arunachal-pradesh-sites-official-names-counter-china",
+    "headline": "India Maps 27 Arunachal Pradesh Sites With Official Names to Counter China",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-maps-27-arunachal-pradesh-sites-official-names-counter-china.jpg"
+  },
+  {
+    "slug": "fed-rate-hike-split-deepens-five-years-high-inflation",
+    "headline": "Fed's Internal Divide on Rate Hikes Deepens as Five Years of High Inflation Tests Patience",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fed-rate-hike-split-deepens-five-years-high-inflation.jpg"
+  },
+  {
+    "slug": "thali-costlier-july-onion-oil-chicken-kitchen-inflation-india",
+    "headline": "What Made Your Thali Costlier in July: Onions, Oil, and Chicken Drive Kitchen Inflation",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thali-costlier-july-onion-oil-chicken-kitchen-inflation-india.jpg"
+  },
+  {
+    "slug": "canada-airports-free-flow-international-transit-skip-border-checks",
+    "headline": "Canada Airports Launch Free Flow Transit, Letting International Passengers Skip Border Checks",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-airports-free-flow-international-transit-skip-border-checks.jpg"
+  },
+  {
+    "slug": "cloudflare-launches-kitesurf-browser-ai-agents",
+    "headline": "Cloudflare Launches Kitesurf, a Purpose-Built Browser for AI Agents",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cloudflare-launches-kitesurf-browser-ai-agents.jpg"
+  },
+  {
+    "slug": "padilla-green-card-bill-registry-reform-h1b-workers",
+    "headline": "Senator Padilla Renews Push for Green Card Bill That Could Benefit Millions of H-1B Workers",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/padilla-green-card-bill-registry-reform-h1b-workers.jpg"
+  },
+  {
+    "slug": "rbi-excludes-nri-deposit-loans-from-priority-sector-lending",
+    "headline": "RBI Excludes Loans Against Fresh NRI Deposits From Priority Sector Lending Targets",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-excludes-nri-deposit-loans-from-priority-sector-lending.jpg"
+  },
+  {
+    "slug": "unnati-sharma-judo-bronze-commonwealth-games-2026-glasgow",
+    "headline": "Unnati Sharma Wins Judo Bronze at Commonwealth Games 2026 in Dominant Glasgow Display",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/unnati-sharma-judo-bronze-commonwealth-games-2026-glasgow.jpg"
+  },
+  {
+    "slug": "openai-pauses-astra-model-critical-cyber-capabilities",
+    "headline": "OpenAI Pauses Astra Model Development Over Critical Cybersecurity Concerns",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-pauses-astra-model-critical-cyber-capabilities.jpg"
+  },
+  {
+    "slug": "ashwin-reveals-barely-spoke-manjrekar-years-fitness-criticism",
+    "headline": "Ashwin Reveals Why He Barely Spoke to Sanjay Manjrekar for Years After Fitness Criticism",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashwin-reveals-barely-spoke-manjrekar-years-fitness-criticism.jpg"
+  },
+  {
     "slug": "supreme-court-dna-tests-mea-indians-killed-russia-ukraine-war",
     "headline": "Supreme Court Orders DNA Tests, MEA Nodal Officer for Indians Killed in Russia-Ukraine War",
     "category": "news",
@@ -28,71 +94,5 @@
     "headline": "From Missed Exam Cutoffs to Billionaire: How Aravind Srinivas Built Perplexity AI on Rejection",
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aravind-srinivas-perplexity-ai-rejection-to-billionaire-success-story.jpg"
-  },
-  {
-    "slug": "accel-prosus-six-deep-tech-startups-inaugural-india-cohort",
-    "headline": "Accel and Prosus Back Six Deep-Tech Startups in Inaugural India Cohort",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/accel-prosus-six-deep-tech-startups-inaugural-india-cohort.jpg"
-  },
-  {
-    "slug": "rahul-gandhi-vows-campaign-against-e20-fuel-consumer-backlash",
-    "headline": "Rahul Gandhi Vows Campaign Against E20 Fuel as Consumer Backlash Intensifies",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rahul-gandhi-vows-campaign-against-e20-fuel-consumer-backlash.jpg"
-  },
-  {
-    "slug": "f1-to-o1-visa-transition-guide-indian-students",
-    "headline": "How Indian Students Can Transition From an F-1 Visa to an O-1 Extraordinary Ability Visa",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/f1-to-o1-visa-transition-guide-indian-students.jpg"
-  },
-  {
-    "slug": "federal-probes-h1b-visa-fraud-criminal-enterprise",
-    "headline": "Federal Probes Expose Sprawling H-1B Visa Fraud Networks Across the U.S.",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/federal-probes-h1b-visa-fraud-criminal-enterprise.jpg"
-  },
-  {
-    "slug": "india-forex-reserves-surge-692-billion-record-fcnr-inflows",
-    "headline": "India Forex Reserves Surge to $692.9 Billion on Record FCNR Inflows",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-forex-reserves-surge-692-billion-record-fcnr-inflows.jpg"
-  },
-  {
-    "slug": "indian-student-visas-drop-60-percent-trump-f1-rules",
-    "headline": "Indian Student Visas to the U.S. Drop 60 Percent as Trump Tightens F-1 Rules",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-student-visas-drop-60-percent-trump-f1-rules.jpg"
-  },
-  {
-    "slug": "ola-electric-narrows-q1-loss-ev-sales-rebound-reset-year",
-    "headline": "Ola Electric Narrows Q1 Loss as EV Sales Rebound After Reset Year",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ola-electric-narrows-q1-loss-ev-sales-rebound-reset-year.jpg"
-  },
-  {
-    "slug": "us-economy-sheds-23000-jobs-july-hiring-stalls",
-    "headline": "US Economy Sheds 23,000 Jobs in July as Hiring Stalls Unexpectedly",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-economy-sheds-23000-jobs-july-hiring-stalls.jpg"
-  },
-  {
-    "slug": "kerala-chikungunya-105-cases-monsoon-outbreak-travel-advisory",
-    "headline": "Kerala Reports 105 Chikungunya Cases as Monsoon Fuels Outbreak Fears",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kerala-chikungunya-105-cases-monsoon-outbreak-travel-advisory.jpg"
-  },
-  {
-    "slug": "zorawar-kalra-massive-restaurants-global-indian-food-empire",
-    "headline": "How Zorawar Kalra Built a Global Indian Restaurant Empire From His Father's Legacy",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zorawar-kalra-massive-restaurants-global-indian-food-empire.jpg"
-  },
-  {
-    "slug": "modi-breakfast-nda-ncpi-rajya-sabha-supermajority",
-    "headline": "Modi Hosts Breakfast for New NDA Allies as Coalition Nears Supermajority",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/modi-breakfast-nda-ncpi-rajya-sabha-supermajority.jpg"
   }
 ]
