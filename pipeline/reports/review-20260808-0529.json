@@ -1,0 +1,194 @@
+[
+  {
+    "id": "1330c7f6-1183-43b9-8d02-29cb3dc56a42",
+    "headline": "US Senate Advances Bill Threatening 100% Tariffs on India, China Over Russian Oi",
+    "slug": "us-senate-bill-100-tariffs-india-china-russian-oil",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian or Chinese business leaders in the US who might be affected by these tariffs. This would provide a personal perspective on how the legislation could impact the NRI community and their businesses.",
+        "Provide more context on how these potential tariffs could affect specific industries that are significant for the Indian diaspora, such as textiles, technology, or pharmaceuticals. This would help readers understand the broader implications for NRIs involved in these sectors.",
+        "Clarify the timeline and potential outcomes of the bill passing through the House. Including expert opinions on what this could mean for the US-India trade relationship would add depth and relevance for the diaspora audience.",
+        "Discuss any historical precedents or similar situations where tariffs have been imposed on countries and the resulting impact on trade relations. This could provide valuable context for readers trying to understand the potential consequences of this legislation."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about this policy to provide authoritative context on the implications for NRIs and their businesses.",
+        "Consider embedding a relevant YouTube video that explains the bill and its potential impacts, which could help visualize the issue for readers."
+      ]
+    }
+  },
+  {
+    "id": "6ebb3e29-34c3-402a-910f-50d726c4cd95",
+    "headline": "Asian Games 2026 Hockey Draw Places India and Pakistan on Collision Course for K",
+    "slug": "asian-games-2026-hockey-draw-india-pakistan-path-to-gold",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian and Pakistani NRIs regarding the significance of the India-Pakistan hockey rivalry and its impact on their communities abroad.",
+        "Provide context on how the outcomes of the Asian Games can influence the perception of Indian and Pakistani sports among the diaspora, particularly in terms of national pride and community events that may be organized around the matches.",
+        "Expand on the implications of the tournament for NRIs, such as how they can watch the matches live or participate in viewing parties in their local communities, emphasizing the connection to their homeland.",
+        "Include a brief history of past India-Pakistan hockey encounters at major tournaments, highlighting how these matches resonate with the diaspora and their emotional investment in the outcomes."
+      ],
+      "embed_opportunities": [
+        "Embed the official Asian Games social media accounts or relevant tweets that discuss the draw and its implications, as well as any promotional content that may engage the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "c937bb5d-8231-44eb-945a-7760e8f58353",
+    "headline": "Jugal Hansraj Reunites With Shekhar Kapur for Masoom: The Next Generation",
+    "slug": "jugal-hansraj-shekhar-kapur-masoom-the-next-generation-reunion",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from NRIs who have a personal connection to 'Masoom' and how the film's themes resonate with their experiences of family and identity abroad.",
+        "Provide more context about how 'Masoom: The Next Generation' may appeal to the NRI audience, such as discussing its themes of home and identity in relation to the diaspora experience, especially in the context of current global issues.",
+        "Consider adding a section that discusses the significance of the film's music, particularly A.R. Rahman's role, and how the soundtrack might evoke nostalgia for NRIs who grew up with the original film.",
+        "Include a brief comparison of the original 'Masoom' and its impact on Indian cinema, particularly among the diaspora, to highlight why this sequel is significant for both old fans and new audiences."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Jugal Hansraj or Shekhar Kapur discussing their thoughts on the film, or a tweet from an NRI fan expressing their excitement about the reunion and the film's themes."
+      ]
+    }
+  },
+  {
+    "id": "6a883d70-9677-4a2d-84d0-d0fdedb7fde2",
+    "headline": "Nomura Report Finds AI Creating More Jobs in India Than It Cuts",
+    "slug": "nomura-report-ai-creating-more-jobs-india-than-cuts",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs working in tech sectors abroad, discussing how AI trends in India impact their job prospects or influence their companies' hiring strategies.",
+        "Provide context on how the AI job creation trend in India compares to other countries with significant Indian diaspora populations, such as the US or Canada, to highlight the global implications of these findings for NRIs.",
+        "Include a brief section on how AI job creation in India could affect remittances and economic ties between India and the countries where NRIs reside, enhancing the article's relevance to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Nomura Holdings or a prominent tech figure discussing the report's findings to provide real-time engagement and credibility."
+      ]
+    }
+  },
+  {
+    "id": "9f73ea6c-f209-4f17-bce1-0643b66e38cf",
+    "headline": "Google Brings Agentic AI to Hotel Search Inside Maps",
+    "slug": "google-agentic-ai-ask-maps-hotel-search",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian travelers or NRIs who have used the new feature, discussing how it enhances their travel planning experience, especially when visiting India or traveling internationally.",
+        "Provide context on how this AI feature could specifically benefit NRIs planning trips back to India, such as finding hotels near family or cultural sites, which would resonate more with the target audience.",
+        "Add a section discussing potential challenges or limitations of the AI-powered hotel search for NRIs, such as language barriers or regional availability, to provide a more balanced view.",
+        "Consider including a comparison with existing hotel search tools popular among NRIs to highlight the unique advantages of Google's new feature."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Google's official account announcing the feature or showcasing its benefits, which could lend credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "ae72d94e-8706-424d-977a-8609926ff080",
+    "headline": "India's Exports Surge 15% in Q1 FY27 as FTA Network Pays Off",
+    "slug": "india-exports-surge-q1-fy27-fta-network",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRI business leaders or trade experts who can discuss how these export trends impact the Indian diaspora and their investments back home.",
+        "Provide context on how these export figures relate to the global economic environment, particularly how NRIs might be affected by or can capitalize on these trends in their respective countries.",
+        "Include a section that discusses potential opportunities for NRIs in sectors experiencing growth, such as engineering and gems, to make the article more relevant to the diaspora audience.",
+        "Clarify the implications of the $1 trillion export target for NRIs, particularly in terms of investment opportunities or how it might affect their businesses."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of Commerce or a relevant economic body that highlights the significance of these export figures and the FTA strategy, which would provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "e5309449-1b81-445e-ac8b-444902e654cd",
+    "headline": "India Marks 12th National Handloom Day With Awards, Exhibition at Rashtrapati Bh",
+    "slug": "india-12th-national-handloom-day-2026-awards-rashtrapati-bhavan",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how NRIs are engaging with India's handloom sector, such as through online platforms that promote Indian textiles abroad or initiatives that connect Indian weavers with overseas markets.",
+        "Provide context about the significance of National Handloom Day for NRIs, such as how they can support the handloom industry from abroad, including potential investment opportunities or ways to promote Indian textiles in their local communities.",
+        "Include quotes or testimonials from NRIs who have invested in or promoted Indian handloom products, which would personalize the narrative and enhance the connection with the diaspora audience.",
+        "Add a brief overview of the global market for handloom products and how NRIs can contribute to its growth, which would provide valuable context for readers interested in the economic implications of the handloom sector."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of Textiles or a relevant government official celebrating National Handloom Day, which would provide real-time engagement and credibility to the article."
+      ]
+    }
+  },
+  {
+    "id": "ddc0a1d6-4f89-4995-8751-70524952d28a",
+    "headline": "How Excessive Screen Time Is Fueling India's Lifestyle Disease Crisis",
+    "slug": "excessive-screen-time-fueling-india-lifestyle-disease-crisis",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or anecdotes about how excessive screen time affects NRIs or the Indian diaspora, particularly in relation to their lifestyle choices and health outcomes in foreign countries.",
+        "Provide context on how lifestyle diseases are perceived among the Indian diaspora, possibly including quotes or insights from health professionals who work with NRIs, to highlight the relevance of this issue to the audience.",
+        "Clarify the connection between screen time and lifestyle diseases specifically for NRIs, perhaps by discussing how remote work and online socializing during the pandemic have influenced their health behaviors.",
+        "Include a section that discusses preventive measures or lifestyle changes that NRIs can adopt to mitigate the risks associated with excessive screen time, making the article more actionable for the audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or expert discussing the impact of screen time on health, or a video that offers tips for reducing screen time, which would enhance the article's credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "43a5e5a9-3b03-4f5e-bd88-38f283632df3",
+    "headline": "Jaismine Lamboria's Journey From Hospital Bed to Commonwealth Games Gold in Glas",
+    "slug": "jaismine-lamboria-hospital-bed-to-cwg-gold-glasgow-2026",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Jaismine Lamboria's achievements resonate with the Indian diaspora, particularly in the UK, where the Commonwealth Games are being held. Consider discussing the pride and representation felt by NRIs watching her compete.",
+        "Add a quote or perspective from a prominent NRI figure in sports or community leadership who can speak to the significance of Lamboria's victory for the Indian diaspora, enhancing the emotional connection for readers.",
+        "Provide more context about the Commonwealth Games' importance to the Indian diaspora, especially in the UK, and how events like these foster a sense of community and pride among NRIs.",
+        "Clarify the timeline of events leading up to the Commonwealth Games, including the significance of her training regimen post-hospitalization and how it reflects the resilience often celebrated in sports narratives."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Commonwealth Games account celebrating Jaismine Lamboria's victory, which would provide real-time engagement and context for readers."
+      ]
+    }
+  },
+  {
+    "id": "95b86540-642c-487b-85f4-62c417eed413",
+    "headline": "Karnataka Council Chairman Basavaraj Horatti Resigns After 46-Year Legislative C",
+    "slug": "karnataka-council-chairman-horatti-resigns-46-year-career",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how Horatti's resignation might affect NRIs from Karnataka, particularly those involved in education or political advocacy, and any potential implications for their engagement with Karnataka's political landscape.",
+        "Provide context on how Horatti's long tenure and resignation might influence the political dynamics in Karnataka, especially for NRIs who may have vested interests in the state's governance and policies.",
+        "Include quotes or reactions from notable NRIs or organizations representing the Indian diaspora regarding Horatti's resignation to add depth and perspective.",
+        "Discuss any potential impact on policies affecting NRIs or the Indian diaspora in Karnataka, especially in areas like education or community engagement, to provide a more comprehensive view."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent political figure or organization commenting on Horatti's resignation to provide real-time reactions and enhance the article's relevance."
+      ]
+    }
+  }
+]
