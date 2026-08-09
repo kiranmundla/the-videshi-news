@@ -194,6 +194,90 @@ function ClosingSoonStrip({ deadlines }: { deadlines: KidsDeadline[] }) {
   );
 }
 
+/* ---------- Competition Spotlight ---------- */
+
+const SPOTLIGHT_IMG: Record<string, string> = {
+  Math: "/images/kids/math.jpg",
+  "Science & STEM": "/images/kids/science.jpg",
+  "Academic Competitions": "/images/kids/spelling.jpg",
+  Chess: "/images/kids/chess.jpg",
+  "Coding & CS": "/images/kids/coding.jpg",
+  Robotics: "/images/kids/robotics.jpg",
+  Sports: "/images/kids/sports.jpg",
+  Music: "/images/kids/music.jpg",
+  Dance: "/images/kids/dance.jpg",
+  "Summer Programs": "/images/kids/academics.jpg",
+  "Cultural & Religious": "/images/kids/language.jpg",
+  "College Prep": "/images/kids/college.jpg",
+  Volunteering: "/images/kids/volunteering.jpg",
+  Language: "/images/kids/language.jpg",
+};
+
+function CompetitionSpotlight({ programs, deadlines }: { programs: KidsProgram[]; deadlines: KidsDeadline[] }) {
+  // Pick featured programs that have an upcoming deadline within 90 days
+  const spotlights = useMemo(() => {
+    const deadlineByProgram = new Map<string, KidsDeadline>();
+    for (const d of deadlines) {
+      const days = daysUntil(d.deadline_date);
+      if (days < 0 || days > 90) continue;
+      const existing = deadlineByProgram.get(d.program_id);
+      if (!existing || d.deadline_date < existing.deadline_date) {
+        deadlineByProgram.set(d.program_id, d);
+      }
+    }
+    // Featured programs with upcoming deadlines first, then any featured
+    const featured = programs.filter((p) => p.is_featured);
+    const withDeadline = featured.filter((p) => deadlineByProgram.has(p.id)).map((p) => ({
+      program: p, deadline: deadlineByProgram.get(p.id)!,
+    }));
+    const withoutDeadline = featured.filter((p) => !deadlineByProgram.has(p.id)).map((p) => ({
+      program: p, deadline: null as KidsDeadline | null,
+    }));
+    return [...withDeadline, ...withoutDeadline].slice(0, 6);
+  }, [programs, deadlines]);
+
+  if (spotlights.length === 0) return null;
+
+  return (
+    <section className="mb-10">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-lg">⭐</span>
+        <h2 className="font-serif text-lg font-semibold text-foreground">
+          Competition Spotlight
+        </h2>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+        {spotlights.map(({ program, deadline }) => {
+          const img = program.image_url || SPOTLIGHT_IMG[program.category || ""] || "/images/kids/academics.jpg";
+          const days = deadline ? daysUntil(deadline.deadline_date) : null;
+          return (
+            <Link key={program.id} to={`/kids/programs/${program.slug}`} className="group relative rounded-xl overflow-hidden no-underline">
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <img src={img} alt={program.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+                {deadline && days !== null && (
+                  <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-[10px] font-bold ${days <= 14 ? "bg-red-500 text-white" : "bg-amber-400 text-amber-900"}`}>
+                    {days <= 14 ? `${days}d left` : new Date(deadline.deadline_date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                  </span>
+                )}
+                {program.is_indian_org && (
+                  <span className="absolute top-2 left-2 px-1.5 py-0.5 rounded-full bg-orange-500/90 text-white text-[10px] font-bold">🇮🇳</span>
+                )}
+                <div className="absolute inset-0 p-3 flex flex-col justify-end">
+                  <span className="text-white/70 text-[10px] font-semibold uppercase tracking-wider mb-0.5">{program.category}</span>
+                  <h3 className="text-white text-sm sm:text-[15px] font-bold font-serif leading-tight line-clamp-2 drop-shadow-lg">{program.name}</h3>
+                  {program.age_range && <span className="text-white/70 text-[10px] mt-1">🎒 {program.age_range}</span>}
+                </div>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Local Place Card ---------- */
 
 function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat?: number; userLng?: number }) {
@@ -242,11 +326,11 @@ function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat
         <div className="text-xs text-muted-foreground mb-1">📍 {addr}</div>
         {place.age_range && <div className="text-xs text-muted-foreground mb-2">🎒 Ages {place.age_range}</div>}
         <div className="flex-1" />
-        <div className="flex items-center gap-2 pt-3 border-t border-border/50">
-          <Link to={`/kids/places/${place.slug}`} className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-semibold text-[#A32D2F] bg-red-50 hover:bg-red-100 transition-colors no-underline">View Details →</Link>
-          <a href={mapsUrl(place)} target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🗺️ Directions</a>
-          {place.website && <a href={place.website} target="_blank" rel="noopener noreferrer" className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🌐 Website</a>}
-          {place.phone && <a href={`tel:${place.phone.replace(/[^\d+]/g, "")}`} className="flex-1 text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">📞 Call</a>}
+        <div className="grid grid-cols-2 gap-2 pt-3 border-t border-border/50">
+          <Link to={`/kids/places/${place.slug}`} className="text-center px-2 py-1.5 rounded-lg text-xs font-semibold text-[#A32D2F] bg-red-50 hover:bg-red-100 transition-colors no-underline">View Details →</Link>
+          <a href={mapsUrl(place)} target="_blank" rel="noopener noreferrer" className="text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🗺️ Directions</a>
+          {place.website && <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🌐 Website</a>}
+          {place.phone && <a href={`tel:${place.phone.replace(/[^\d+]/g, "")}`} className="text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">📞 Call</a>}
         </div>
       </div>
     </div>
@@ -668,10 +752,13 @@ export default function KidsPage() {
         {/* ═══════ CLOSING SOON ═══════ */}
         {!loading && <ClosingSoonStrip deadlines={deadlines} />}
 
+        {/* ═══════ COMPETITION SPOTLIGHT ═══════ */}
+        {!loading && <CompetitionSpotlight programs={programs} deadlines={deadlines} />}
+
         {/* ═══════ AGE SELECTOR ═══════ */}
         <div className="mb-8">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Age Group</p>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {AGE_GROUPS.map((ag) => (
               <FilterCard key={ag.key} label={ag.label} icon={ag.icon} subtitle={ag.sub} size="lg"
                 active={selectedAge === ag.key} gradient={AGE_GRADIENTS[ag.key]} imgKey={ag.key}
@@ -688,7 +775,7 @@ export default function KidsPage() {
         {/* ═══════ MAIN CATEGORY ═══════ */}
         <div className="mb-6">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Category</p>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
             {visibleTabs.map((tab) => (
               <FilterCard key={tab.key} label={tab.label} icon={tab.icon} size="md"
                 active={activeTab.key === tab.key} gradient={TAB_GRADIENTS[tab.key]} imgKey={tab.key}
@@ -701,7 +788,7 @@ export default function KidsPage() {
         {activeTab.subcategories.filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0).length > 0 && (
           <div className="mb-4">
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{activeTab.label}</p>
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
               <FilterCard label="All" icon="✨" size="sm" active={!activeSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("sub", null, ["ssub"])} />
@@ -720,7 +807,7 @@ export default function KidsPage() {
         {/* ═══════ SUB-SUBCATEGORY CARDS (e.g. Sports → Cricket/Tennis) ═══════ */}
         {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
           <div className="mb-6">
-            <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-2">
               <FilterCard label="All" icon="🏅" size="xs" active={!activeSubSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("ssub", null)} />
