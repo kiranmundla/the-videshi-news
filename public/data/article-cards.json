@@ -1,5 +1,29 @@
 [
   {
+    "slug": "abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months",
+    "headline": "Canadian Police Arrest Suspect Seven Months After Indian-Origin Woman Himanshi Khurana Murdered in Toronto",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months.jpg"
+  },
+  {
+    "slug": "deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy",
+    "headline": "Indian Physicist Deepak Dhar Wins 2026 Dirac Medal, Joining Hawking and Witten in Elite Physics Pantheon",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy.jpg"
+  },
+  {
+    "slug": "india-flags-ultra-processed-food-health-risks-as-icmr-data-shows-rising-ncd-burden",
+    "headline": "India Flags Ultra-Processed Food Health Risks as ICMR Data Shows Rising NCD Burden",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-flags-ultra-processed-food-health-risks-as-icmr-data-shows-rising-ncd-burden.jpg"
+  },
+  {
+    "slug": "explosive-drone-at-german-airport-and-bulgaria-blast-raise-nato-security-alarm",
+    "headline": "Explosive Drone at German Airport and Bulgaria Blast Raise NATO Security Alarm",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/explosive-drone-at-german-airport-and-bulgaria-blast-raise-nato-security-alarm.jpg"
+  },
+  {
     "slug": "real-iaf-heroes-behind-netflix-operation-safed-sagar",
     "headline": "The Real IAF Heroes Who Inspired Netflix's Operation Safed Sagar",
     "category": "entertainment",
@@ -28,6 +52,12 @@
     "headline": "India Tells Meta to Follow Indian Law, Not Just Its Own Global Policies",
     "category": "news",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-tells-meta-comply-with-indian-law-not-global-policies.jpg"
+  },
+  {
+    "slug": "north-korean-missile-unit-deploys-russia-120-ballistic-missiles-ukraine",
+    "headline": "North Korean Missile Unit Deploys to Russia With Up to 120 Ballistic Missiles for Ukraine Strikes",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/north-korean-missile-unit-deploys-russia-120-ballistic-missiles-ukraine.jpg"
   },
   {
     "slug": "iran-releases-first-video-supreme-leader-mojtaba-khamenei-health-doubts",
@@ -72,45 +102,15 @@
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/berkshire-earnings-beat-forecasts-abel-accelerates-buybacks.jpg"
   },
   {
+    "slug": "7-breakfast-foods-aiims-trained-doctor-recommends-fatty-liver",
+    "headline": "7 Breakfast Foods an AIIMS-Trained Doctor Recommends for Fatty Liver",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/7-breakfast-foods-aiims-trained-doctor-recommends-fatty-liver.jpg"
+  },
+  {
     "slug": "hunter-biden-says-fathers-cancer-has-spread-very-painful",
     "headline": "Hunter Biden Says Father's Cancer Has Spread, Calls It 'Very Painful'",
     "category": "news",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hunter-biden-says-fathers-cancer-has-spread-very-painful.jpg"
-  },
-  {
-    "slug": "south-indian-filter-coffee-history-kaapi-tradition",
-    "headline": "The Story of South Indian Filter Coffee: From Smuggled Beans to a Global Morning Ritual",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/south-indian-filter-coffee-history-kaapi-tradition.jpg"
-  },
-  {
-    "slug": "madras-checks-chennai-handlooms-dior-global-fashion-journey",
-    "headline": "From Chennai Handlooms to Dior Runways: How Madras Checks Conquered Global Fashion",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/madras-checks-chennai-handlooms-dior-global-fashion-journey.jpg"
-  },
-  {
-    "slug": "varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune",
-    "headline": "Indian-Origin Woman Wins £6.6 Million After 23-Year Divorce Battle Exposes Husband's Hidden Fortune",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune.jpg"
-  },
-  {
-    "slug": "h1b-60-day-grace-period-dhs-proposal-elimination-2026",
-    "headline": "H-1B Workers Face Losing 60-Day Grace Period Under New DHS Proposal",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-60-day-grace-period-dhs-proposal-elimination-2026.jpg"
-  },
-  {
-    "slug": "sharvi-mahajan-14-year-old-indian-american-ai-driver-fatigue-3m-finalist",
-    "headline": "Indian-American Teen Sharvi Mahajan Builds AI System to Detect Driver Fatigue, Named 3M Finalist",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sharvi-mahajan-14-year-old-indian-american-ai-driver-fatigue-3m-finalist.jpg"
-  },
-  {
-    "slug": "air-india-revival-new-ceo-tewolde-gebremariam-turnaround",
-    "headline": "Air India Taps Ex-Ethiopian Airlines Chief to Lead Turnaround After Record $2 Billion Loss",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-revival-new-ceo-tewolde-gebremariam-turnaround.jpg"
   }
 ]
