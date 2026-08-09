@@ -1,0 +1,99 @@
+[
+  {
+    "id": "58509c68-1917-42d6-b773-7d8a6975480b",
+    "headline": "Indian-American Teen Sharvi Mahajan Builds AI System to Detect Driver Fatigue, N",
+    "slug": "sharvi-mahajan-14-year-old-indian-american-ai-driver-fatigue-3m-finalist",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Sharvi Mahajan about her Indian heritage and how it has influenced her interest in STEM. This personal touch can resonate more with the NRI audience.",
+        "Provide context on the significance of Indian-American representation in STEM fields, perhaps by including statistics or a brief history of Indian contributions to technology and science in the U.S. This would enrich the narrative for readers interested in the diaspora's impact.",
+        "Consider adding a section on how the Indian-American community can support young innovators like Mahajan, such as through mentorship programs or funding opportunities, to make the article more actionable for the NRI audience.",
+        "Include a brief mention of any previous winners or notable projects from the 3M Young Scientist Challenge to give readers a sense of the competition's prestige and the caliber of innovation being recognized."
+      ],
+      "embed_opportunities": [
+        "Embed the official 3M Young Scientist Challenge announcement or tweet about the finalists to provide readers with direct access to more information and updates."
+      ]
+    }
+  },
+  {
+    "id": "875f4ff1-9b05-4981-bdcf-18de8209c586",
+    "headline": "Air India Taps Ex-Ethiopian Airlines Chief to Lead Turnaround After Record $2 Bi",
+    "slug": "air-india-revival-new-ceo-tewolde-gebremariam-turnaround",
+    "category": "travel",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"#airindia  why you don't let me sleep? #staralliance #Charle\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Air India's turnaround could impact NRIs, particularly in terms of travel options, connectivity to India, and potential job opportunities in the aviation sector.",
+        "Add context regarding the implications of Air India's financial struggles on the Indian diaspora, such as how it affects ticket prices, travel experiences, and the overall perception of Indian airlines abroad.",
+        "Consider including quotes or perspectives from NRI travelers or industry experts on how they view Air India's changes and what they hope to see in the future.",
+        "Enhance the structure by providing a clearer progression from the current leadership changes to the potential long-term impacts on the airline and its customers, particularly focusing on how these changes might affect the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India statement or a relevant tweet from Tata Sons regarding the leadership change and future plans for the airline to provide direct insights from the company."
+      ]
+    }
+  },
+  {
+    "id": "69bfe377-6e78-4a64-9ed8-eeeb907fb9f6",
+    "headline": "Modi Congratulates Vance on New Son as Leaders Review India-US Strategic Ties",
+    "slug": "modi-vance-phone-call-india-us-strategic-partnership-baby-congratulations",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a quote or perspective from an NRI community leader or organization regarding the significance of Usha Vance's Indian heritage and its impact on India-US relations.",
+        "Provide more context about the implications of the India-US Bilateral Trade Agreement for NRIs, such as how it might affect remittances, investments, or business opportunities for the diaspora.",
+        "Clarify the historical significance of the Vance family's ties to India and how this might resonate with the NRI community, potentially including anecdotes or examples of how Indian heritage influences their family dynamics.",
+        "Enhance the structure by clearly separating sections on the personal congratulations and the strategic discussions, perhaps using subheadings to improve readability and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the significance of the Vance family's Indian heritage or any relevant statements from the US government about the importance of the India-US partnership."
+      ]
+    }
+  },
+  {
+    "id": "16a1a2ab-700f-463e-acf8-3e5aadd52be9",
+    "headline": "Kashmir Route Outpaces Manali as Ladakh Tourism Hits 98% of 2025 Total by July",
+    "slug": "kashmir-route-outpaces-manali-ladakh-tourism-surges-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who have recently traveled to Ladakh, discussing their experiences and how improved accessibility has influenced their travel decisions.",
+        "Provide context on how the tourism boom in Ladakh impacts the local economy, particularly for NRIs who may have ancestral ties to the region, and how they can contribute to or benefit from this growth.",
+        "Include a section that discusses potential travel packages or initiatives aimed at NRIs, highlighting any special offers or cultural experiences that cater specifically to the diaspora audience.",
+        "Clarify the timeline regarding the statistics presented, as the article mentions 2026 figures while discussing 2025 totals, which may confuse readers."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ladakh tourism board or a popular travel influencer discussing the recent tourism surge, which could provide real-time insights and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "513c709d-ddfb-40b4-8672-1cfd1cc97b84",
+    "headline": "Shrey Parikh Wins 2026 Scripps Spelling Bee as Indian Americans Claim 30th Title",
+    "slug": "shrey-parikh-wins-2026-scripps-spelling-bee-indian-american-dominance",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from prominent Indian American figures or organizations about Shrey Parikh's victory. This could highlight the significance of his win within the Indian American community and its impact on the diaspora's identity.",
+        "Provide more context about the historical significance of Indian Americans in the Scripps Spelling Bee, perhaps by including statistics or anecdotes about previous winners. This would help readers understand the cultural importance of this achievement within the NRI community.",
+        "Consider adding a section that discusses the implications of this win for young Indian Americans and the broader diaspora, such as how it might inspire future generations or influence perceptions of Indian Americans in the U.S.",
+        "Include a brief mention of the educational and cultural factors that contribute to the success of Indian American participants in spelling bees, which could provide readers with a deeper understanding of this phenomenon."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Scripps National Spelling Bee account congratulating Shrey Parikh or highlighting his achievement, which would provide real-time engagement and authenticity to the article."
+      ]
+    }
+  }
+]
