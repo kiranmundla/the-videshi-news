@@ -1,0 +1,80 @@
+[
+  {
+    "id": "032f4cb2-423b-4fe1-95a7-518820a1ed85",
+    "headline": "H-1B Workers Face Losing 60-Day Grace Period Under New DHS Proposal",
+    "slug": "h1b-60-day-grace-period-dhs-proposal-elimination-2026",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian nationals currently on H-1B visas who would be directly impacted by this proposed rule. This personalizes the issue and highlights its significance to the NRI community.",
+        "Provide more context about the implications of losing the grace period specifically for Indian workers, such as potential impacts on family reunification, financial stability, and mental health, which are particularly relevant to the diaspora.",
+        "Consider adding a section that discusses how the proposed rule aligns with or contradicts recent immigration trends affecting the Indian diaspora, such as changes in visa approvals or policies that may impact their ability to work in the U.S.",
+        "Include a brief overview of any advocacy efforts or responses from Indian organizations or community leaders regarding this proposal, which could provide a sense of community response and action."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the proposed rule to provide readers with direct access to the source and any updates.",
+        "Consider embedding a relevant YouTube video from an immigration expert discussing the implications of this rule for H-1B visa holders, which could enhance understanding and engagement."
+      ]
+    }
+  },
+  {
+    "id": "204cf67a-1977-4775-8748-6c94db560303",
+    "headline": "Indian-Origin Woman Wins \u00a36.6 Million After 23-Year Divorce Battle Exposes Husba",
+    "slug": "varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from legal experts or community leaders within the NRI community regarding the implications of this case for Indian-origin individuals living abroad, especially in terms of asset disclosure and divorce settlements.",
+        "Provide more context about the impact of this case on NRIs, such as how it might influence divorce proceedings for Indian-origin couples in the UK or other countries, and whether similar legal precedents are being set elsewhere.",
+        "Clarify the significance of the legal precedent established by this case for NRIs, perhaps by discussing how it could affect future divorce cases involving hidden assets, particularly for those in the diaspora who may face similar challenges.",
+        "Include a brief overview of the legal process for NRIs in similar situations, such as how they can protect their assets or seek justice in divorce cases, to make the article more relevant to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a legal expert or a prominent figure discussing the implications of this case for the Indian diaspora, or an official statement from a legal organization regarding asset disclosure in divorce cases."
+      ]
+    }
+  },
+  {
+    "id": "085c45b8-3fe0-49fe-9224-cac1a22110db",
+    "headline": "The Story of South Indian Filter Coffee: From Smuggled Beans to a Global Morning",
+    "slug": "south-indian-filter-coffee-history-kaapi-tradition",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from NRIs who have introduced South Indian filter coffee to their communities abroad, highlighting how they maintain this cultural connection through coffee.",
+        "Provide context on how the global popularity of South Indian filter coffee has affected coffee culture in the diaspora, such as the establishment of coffee shops or cultural events centered around filter coffee in cities like London, New York, and Singapore.",
+        "Include a brief section on the economic impact of the diaspora on the coffee industry in India, such as how demand from NRIs has influenced coffee exports or the growth of specialty coffee brands that cater to this audience.",
+        "Mention any recent trends or innovations in the preparation or consumption of South Indian filter coffee that may be popular among the diaspora, such as adaptations for convenience or fusion recipes."
+      ],
+      "embed_opportunities": [
+        "Embed an Instagram post showcasing a popular South Indian filter coffee shop in a major city like New York or London, highlighting how the diaspora has embraced this tradition.",
+        "Include a tweet from a notable coffee expert or influencer discussing the rise of South Indian filter coffee in international markets, which could provide additional credibility and context."
+      ]
+    }
+  },
+  {
+    "id": "f8294d37-acf7-48f5-902d-70a9513c1c40",
+    "headline": "From Chennai Handlooms to Dior Runways: How Madras Checks Conquered Global Fashi",
+    "slug": "madras-checks-chennai-handlooms-dior-global-fashion-journey",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian designers or NRI fashion influencers who are involved in promoting Madras checks globally. This would highlight the connection between the fabric's heritage and its contemporary relevance in the diaspora community.",
+        "Provide more context on how the revival of Madras checks impacts NRI communities, particularly in terms of cultural identity and economic opportunities. Discuss any initiatives or organizations that NRIs are involved with that support this revival.",
+        "Include a section on how NRIs can participate in or support the revival of Madras checks, such as through online platforms or fashion events that showcase Indian textiles. This would create a direct link to the NRI audience.",
+        "Consider adding a brief historical context about the significance of Madras checks in Indian culture and how it resonates with the diaspora, perhaps through personal stories or testimonials from NRIs who wear or promote this fabric."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent fashion designer or influencer discussing the resurgence of Madras checks in global fashion, which would provide a contemporary perspective and engage the audience."
+      ]
+    }
+  }
+]

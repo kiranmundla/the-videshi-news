@@ -7282,46 +7282,6 @@
    "priority": 3
   },
   {
-   "subject": "FIA",
-   "subject_type": "thing",
-   "tags": [
-    "fia"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "f650c8f9-2de9-42e8-87ba-3290de295a59",
-   "priority": 3
-  },
-  {
-   "subject": "lionel scaloni",
-   "subject_type": "thing",
-   "tags": [
-    "lionel scaloni"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "85b8a854-aaf7-4969-a39e-77c7a559d6a1",
-   "priority": 3
-  },
-  {
-   "subject": "h1b visa",
-   "subject_type": "thing",
-   "tags": [
-    "h1b visa"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9a9992ae-3e7a-4ff8-9eb5-eceb2db09b30",
-   "priority": 3
-  },
-  {
-   "subject": "self sponsorship",
-   "subject_type": "thing",
-   "tags": [
-    "self sponsorship"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9a9992ae-3e7a-4ff8-9eb5-eceb2db09b30",
-   "priority": 3
-  },
-  {
    "subject": "h1b modernization rule",
    "subject_type": "thing",
    "tags": [
@@ -7342,40 +7302,10 @@
    "priority": 3
   },
   {
-   "subject": "Mrunal Thakur",
-   "subject_type": "thing",
-   "tags": [
-    "mrunal thakur"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "ebb09572-1239-4b91-8ed1-74b88a6e8065",
-   "priority": 3
-  },
-  {
-   "subject": "Huma Qureshi",
-   "subject_type": "thing",
-   "tags": [
-    "huma qureshi"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "ebb09572-1239-4b91-8ed1-74b88a6e8065",
-   "priority": 3
-  },
-  {
    "subject": "Maddock Films",
    "subject_type": "thing",
    "tags": [
     "maddock films"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "ebb09572-1239-4b91-8ed1-74b88a6e8065",
-   "priority": 3
-  },
-  {
-   "subject": "ZEE5",
-   "subject_type": "thing",
-   "tags": [
-    "zee5"
    ],
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "ebb09572-1239-4b91-8ed1-74b88a6e8065",
@@ -7402,16 +7332,6 @@
    "priority": 3
   },
   {
-   "subject": "tulsi gabbard",
-   "subject_type": "thing",
-   "tags": [
-    "tulsi gabbard"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "c5f95360-7482-4bbf-b44d-e1bc41e5c294",
-   "priority": 3
-  },
-  {
    "subject": "batarti gabbard",
    "subject_type": "thing",
    "tags": [
@@ -7419,86 +7339,6 @@
    ],
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "c5f95360-7482-4bbf-b44d-e1bc41e5c294",
-   "priority": 3
-  },
-  {
-   "subject": "hawaii",
-   "subject_type": "thing",
-   "tags": [
-    "hawaii"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "c5f95360-7482-4bbf-b44d-e1bc41e5c294",
-   "priority": 3
-  },
-  {
-   "subject": "Oman",
-   "subject_type": "thing",
-   "tags": [
-    "oman"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
-   "subject": "domestic workers",
-   "subject_type": "thing",
-   "tags": [
-    "domestic workers"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
-   "subject": "Indian embassy",
-   "subject_type": "thing",
-   "tags": [
-    "indian embassy"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
-   "subject": "Muscat",
-   "subject_type": "thing",
-   "tags": [
-    "muscat"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
-   "subject": "women workers",
-   "subject_type": "thing",
-   "tags": [
-    "women workers"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
-   "subject": "migrant rights",
-   "subject_type": "thing",
-   "tags": [
-    "migrant rights"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
-   "subject": "Gulf countries",
-   "subject_type": "thing",
-   "tags": [
-    "gulf countries"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
    "priority": 3
   },
   {
