@@ -1,15 +1,81 @@
 [
   {
-    "slug": "varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune",
-    "headline": "Indian-Origin Woman Wins £6.6 Million After 23-Year Divorce Battle Exposes Husband's Hidden Fortune",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune.jpg"
+    "slug": "real-iaf-heroes-behind-netflix-operation-safed-sagar",
+    "headline": "The Real IAF Heroes Who Inspired Netflix's Operation Safed Sagar",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/real-iaf-heroes-behind-netflix-operation-safed-sagar.jpg"
   },
   {
-    "slug": "madras-checks-chennai-handlooms-dior-global-fashion-journey",
-    "headline": "From Chennai Handlooms to Dior Runways: How Madras Checks Conquered Global Fashion",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/madras-checks-chennai-handlooms-dior-global-fashion-journey.jpg"
+    "slug": "brett-lee-names-kkr-teammate-jacques-kallis-greatest-cricketer",
+    "headline": "Brett Lee Names Former KKR Teammate Jacques Kallis as Greatest Cricketer of All Time",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/brett-lee-names-kkr-teammate-jacques-kallis-greatest-cricketer.jpg"
+  },
+  {
+    "slug": "jefferies-drops-hdfc-bank-adds-mcx-lenskart-india-portfolio",
+    "headline": "Jefferies Drops HDFC Bank, Adds MCX and Lenskart in India Portfolio Overhaul",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jefferies-drops-hdfc-bank-adds-mcx-lenskart-india-portfolio.jpg"
+  },
+  {
+    "slug": "spacex-launches-24-starlink-satellites-california-90th-falcon-9-2026",
+    "headline": "SpaceX Launches 24 Starlink Satellites From California in 90th Falcon 9 Mission of 2026",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-launches-24-starlink-satellites-california-90th-falcon-9-2026.jpg"
+  },
+  {
+    "slug": "india-tells-meta-comply-with-indian-law-not-global-policies",
+    "headline": "India Tells Meta to Follow Indian Law, Not Just Its Own Global Policies",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-tells-meta-comply-with-indian-law-not-global-policies.jpg"
+  },
+  {
+    "slug": "iran-releases-first-video-supreme-leader-mojtaba-khamenei-health-doubts",
+    "headline": "Iran Releases First Video of Supreme Leader Khamenei Amid Growing Doubts Over His Health",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-releases-first-video-supreme-leader-mojtaba-khamenei-health-doubts.jpg"
+  },
+  {
+    "slug": "padikkal-142-not-out-strengthens-india-no-3-case-sri-lanka-tests",
+    "headline": "Padikkal's Unbeaten 142 in Warm-Up Strengthens His Case for India's No. 3 Spot",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/padikkal-142-not-out-strengthens-india-no-3-case-sri-lanka-tests.jpg"
+  },
+  {
+    "slug": "yash-unveils-toxic-trailer-bengaluru-dual-father-son-role",
+    "headline": "Yash Unveils 'Toxic' Trailer at Bengaluru Event, Confirms Dual Father-Son Role",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-unveils-toxic-trailer-bengaluru-dual-father-son-role.jpg"
+  },
+  {
+    "slug": "jadeja-imitates-kuldeep-yadav-bowling-action-leaves-gambhir-splits",
+    "headline": "Jadeja Imitates Kuldeep Yadav's Bowling Action, Leaves Coach Gambhir in Splits",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jadeja-imitates-kuldeep-yadav-bowling-action-leaves-gambhir-splits.jpg"
+  },
+  {
+    "slug": "punjab-cm-mann-reverses-course-backs-parole-beant-singhs-assassin-hawara",
+    "headline": "Punjab CM Mann Reverses Course, Now Backs Parole for Beant Singh's Assassin",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/punjab-cm-mann-reverses-course-backs-parole-beant-singhs-assassin-hawara.jpg"
+  },
+  {
+    "slug": "india-confirms-upi-free-users-merchant-fees-return",
+    "headline": "India Confirms UPI Will Stay Free for Users as Merchant Fees Return",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-confirms-upi-free-users-merchant-fees-return.jpg"
+  },
+  {
+    "slug": "berkshire-earnings-beat-forecasts-abel-accelerates-buybacks",
+    "headline": "Berkshire Earnings Beat Forecasts as Abel Accelerates Buybacks to $4.5 Billion",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/berkshire-earnings-beat-forecasts-abel-accelerates-buybacks.jpg"
+  },
+  {
+    "slug": "hunter-biden-says-fathers-cancer-has-spread-very-painful",
+    "headline": "Hunter Biden Says Father's Cancer Has Spread, Calls It 'Very Painful'",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hunter-biden-says-fathers-cancer-has-spread-very-painful.jpg"
   },
   {
     "slug": "south-indian-filter-coffee-history-kaapi-tradition",
@@ -18,93 +84,33 @@
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/south-indian-filter-coffee-history-kaapi-tradition.jpg"
   },
   {
+    "slug": "madras-checks-chennai-handlooms-dior-global-fashion-journey",
+    "headline": "From Chennai Handlooms to Dior Runways: How Madras Checks Conquered Global Fashion",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/madras-checks-chennai-handlooms-dior-global-fashion-journey.jpg"
+  },
+  {
+    "slug": "varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune",
+    "headline": "Indian-Origin Woman Wins £6.6 Million After 23-Year Divorce Battle Exposes Husband's Hidden Fortune",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/varsha-gohil-uk-divorce-settlement-23-years-hidden-fortune.jpg"
+  },
+  {
     "slug": "h1b-60-day-grace-period-dhs-proposal-elimination-2026",
     "headline": "H-1B Workers Face Losing 60-Day Grace Period Under New DHS Proposal",
     "category": "immigration",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-60-day-grace-period-dhs-proposal-elimination-2026.jpg"
   },
   {
+    "slug": "sharvi-mahajan-14-year-old-indian-american-ai-driver-fatigue-3m-finalist",
+    "headline": "Indian-American Teen Sharvi Mahajan Builds AI System to Detect Driver Fatigue, Named 3M Finalist",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sharvi-mahajan-14-year-old-indian-american-ai-driver-fatigue-3m-finalist.jpg"
+  },
+  {
     "slug": "air-india-revival-new-ceo-tewolde-gebremariam-turnaround",
     "headline": "Air India Taps Ex-Ethiopian Airlines Chief to Lead Turnaround After Record $2 Billion Loss",
     "category": "travel",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-revival-new-ceo-tewolde-gebremariam-turnaround.jpg"
-  },
-  {
-    "slug": "modi-vance-phone-call-india-us-strategic-partnership-baby-congratulations",
-    "headline": "Modi Congratulates Vance on New Son as Leaders Review India-US Strategic Ties",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/modi-vance-phone-call-india-us-strategic-partnership-baby-congratulations.jpg"
-  },
-  {
-    "slug": "kashmir-route-outpaces-manali-ladakh-tourism-surges-2026",
-    "headline": "Kashmir Route Outpaces Manali as Ladakh Tourism Hits 98% of 2025 Total by July",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kashmir-route-outpaces-manali-ladakh-tourism-surges-2026.jpg"
-  },
-  {
-    "slug": "shrey-parikh-wins-2026-scripps-spelling-bee-indian-american-dominance",
-    "headline": "Shrey Parikh Wins 2026 Scripps Spelling Bee as Indian Americans Claim 30th Title in 36 Years",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shrey-parikh-wins-2026-scripps-spelling-bee-indian-american-dominance.jpg"
-  },
-  {
-    "slug": "india-falls-behind-turkey-fifth-generation-fighter-jet-race",
-    "headline": "India Falls Behind Turkey in the Fifth-Generation Fighter Jet Race",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-falls-behind-turkey-fifth-generation-fighter-jet-race.jpg"
-  },
-  {
-    "slug": "pakistan-fuel-crisis-imf-price-hikes-transport-strike-threats",
-    "headline": "Pakistan's Fuel Crisis Deepens as IMF-Driven Price Hikes Spark Transport Strike Threats",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pakistan-fuel-crisis-imf-price-hikes-transport-strike-threats.jpg"
-  },
-  {
-    "slug": "how-to-check-fake-paneer-at-home-six-tests",
-    "headline": "Six Simple Tests to Check If Your Paneer Is Real or Fake at Home",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/how-to-check-fake-paneer-at-home-six-tests.jpg"
-  },
-  {
-    "slug": "kanwar-yatra-camps-food-feast-pizza-momos-rotis",
-    "headline": "Kanwar Yatra Camps Blend Tradition and Street Food With 7,000 Rotis a Day",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kanwar-yatra-camps-food-feast-pizza-momos-rotis.jpg"
-  },
-  {
-    "slug": "nri-property-india-fema-rules-buying-selling-guide",
-    "headline": "NRI Property in India: 8 FEMA Rules Every Diaspora Buyer and Seller Must Know",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nri-property-india-fema-rules-buying-selling-guide.jpg"
-  },
-  {
-    "slug": "mohanlal-apologises-visa-issue-cancels-sydney-stage-show",
-    "headline": "Mohanlal Apologises After Visa Issue Forces Cancellation of Sydney Stage Show",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mohanlal-apologises-visa-issue-cancels-sydney-stage-show.jpg"
-  },
-  {
-    "slug": "rujuta-diwekar-three-forgotten-summer-coolants-vetiver-buttermilk",
-    "headline": "Rujuta Diwekar's Three Forgotten Summer Coolants That Need No Electricity or AC",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rujuta-diwekar-three-forgotten-summer-coolants-vetiver-buttermilk.jpg"
-  },
-  {
-    "slug": "keerthy-suresh-fires-back-lack-of-roles-claim-the-paradise-nani",
-    "headline": "Keerthy Suresh Fires Back at Claims She Took The Paradise Dance Number Due to 'Lack of Roles'",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/keerthy-suresh-fires-back-lack-of-roles-claim-the-paradise-nani.jpg"
-  },
-  {
-    "slug": "india-ends-mail-in-oci-applications-canada-mandates-biometrics",
-    "headline": "India Ends Mail-In OCI Applications in Canada, Mandates In-Person Biometrics",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-ends-mail-in-oci-applications-canada-mandates-biometrics.jpg"
-  },
-  {
-    "slug": "indian-bars-asias-50-best-bars-2026-boilermaker-soka-spirit-forward",
-    "headline": "Three Indian Bars Crack Asia's 50 Best List as Goa's Boilermaker Storms Into Top 10",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-bars-asias-50-best-bars-2026-boilermaker-soka-spirit-forward.jpg"
   }
 ]
