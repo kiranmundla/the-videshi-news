@@ -249,6 +249,96 @@ _CAT_NORMALIZE = {
 _VALID_CATS = {"immigration","technology","news","entertainment","sports",
                "markets-finance","nri-world","food","travel","lifestyle-health"}
 
+
+# ── Diaspora connection gate for entertainment/sports ─────────────────────────
+# The LLM frequently ignores prompt instructions and gives score=5 to articles
+# in entertainment/sports with zero Indian/diaspora connection. This post-LLM
+# keyword gate enforces the editorial policy mechanically: if the headline +
+# description lack any Indian/diaspora markers, the score is capped at 2
+# (auto-rejected by the existing score < 3 floor).
+#
+# Cricket is treated as inherently diaspora-relevant per editorial policy.
+# Articles with cricket-specific terms pass without needing "India" explicitly.
+
+_DIASPORA_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
+    # Countries & nationalities (word boundary avoids "Indiana")
+    r'\bindia\b', r'\bindian\b', r'\bindians\b',
+    r'\bpakistan', r'\bbangladesh', r'\bsri\s*lank', r'\bnepal',
+    r'\bafghan',
+    # Diaspora terms
+    r'\bdiaspora\b', r'\bnri\b', r'\bdesi\b', r'\bsouth\s*asian',
+    r'\bindo[- ]',
+    # Currency / Indian amounts
+    r'₹', r'\bcrore', r'\blakh', r'\brupee',
+    # Film industries
+    r'\bbollywood', r'\btollywood', r'\bkollywood', r'\bmollywood',
+    # Indian languages (strong signal for entertainment)
+    r'\bhindi\b', r'\btelugu\b', r'\btamil\b', r'\bmalayalam\b',
+    r'\bkannada\b', r'\bmarathi\b', r'\bbhojpuri\b', r'\bpunjabi\b',
+    # Major Indian cities
+    r'\bmumbai\b', r'\bdelhi\b', r'\bkolkata\b', r'\bchennai\b',
+    r'\bhyderabad\b', r'\bbengaluru\b', r'\bbangalore\b',
+    r'\bpune\b', r'\bjaipur\b', r'\blucknow\b', r'\bahmedabad\b',
+    r'\bkochi\b', r'\bgoa\b', r'\bsrinagar\b', r'\bchandigarh\b',
+    # Indian sports bodies / leagues
+    r'\bbcci\b', r'\bipl\b', r'\bisl\b', r'\bpkl\b',
+    r'\bpro\s*kabaddi', r'\bdurand\s*cup', r'\branji\b',
+    # Indian regulatory / cultural
+    r'\bcbfc\b', r'\bdiwali\b', r'\bholi\b',
+    # Multi-sport events where India competes
+    r'\bcommonwealth\s*games\b', r'\bcwg\b', r'\basian\s*games\b',
+]]
+
+# Cricket is inherently relevant to Indian diaspora per editorial policy.
+# These terms bypass the diaspora keyword check for sports articles.
+_CRICKET_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
+    r'\bcricket\b', r'\bicc\b', r'\bt20\b', r'\bodi\b',
+    r'\bwicket', r'\bbowler', r'\bbatsman', r'\bbattes?man',
+    r'\binnings\b', r'\blbw\b', r'\bstumps?\b',
+    r'\btest\s*match', r'\btest\s*series',
+    r'\brun\s*chase', r'\brun[- ]?rate',
+    # Cricket leagues worldwide (Indian diaspora follows cricket globally)
+    r'\bcpl\b', r'\bsa20\b', r'\bpsl\b', r'\bbbl\b', r'\blpl\b',
+    r'\bthe\s*hundred\b', r'\bbig\s*bash\b',
+    # Cricket-specific sources (if source name appears in title/text)
+    r'\bcricinfo\b', r'\bcricbuzz\b', r'\bespncric',
+]]
+
+
+def _has_diaspora_connection(title, signals, category):
+    """Check if an entertainment/sports topic has Indian/diaspora connection.
+
+    For sports: also accepts cricket-specific terms (cricket is inherently
+    relevant to Indian diaspora per editorial policy).
+
+    Checks headline + all signal titles + longest signal description.
+    Returns True if connection found, False if not.
+    """
+    # Build text to scan: headline + best description + all signal titles
+    best_desc = ""
+    signal_titles = []
+    for s in signals:
+        d = s.get("description", "")
+        if d and len(d) > len(best_desc):
+            best_desc = d
+        st = s.get("title", "")
+        if st:
+            signal_titles.append(st)
+    text = title + " " + best_desc + " " + " ".join(signal_titles)
+
+    # Check diaspora patterns (applies to both entertainment and sports)
+    for pat in _DIASPORA_PATTERNS:
+        if pat.search(text):
+            return True
+
+    # For sports: also check cricket-specific terms
+    if category == "sports":
+        for pat in _CRICKET_PATTERNS:
+            if pat.search(text):
+                return True
+
+    return False
+
 # ── Instagram handle reference for LLM ────────────────────────────────────────
 def _build_ig_handle_block():
     """Load IG handles + metadata from DB registry for injection into LLM prompt."""
@@ -949,6 +1039,17 @@ def main():
                 stats["duplicate"] += 1
                 topic_statuses[t["id"]] = "rejected"
                 continue
+            # ── Diaspora gate for entertainment/sports ──
+            # LLM scoring ignores prompt instructions and gives high scores to
+            # entertainment/sports with zero Indian connection. Enforce mechanically.
+            _gate_cat = _CAT_NORMALIZE.get(llm.get("category", "news"), llm.get("category", "news"))
+            if _gate_cat in ("entertainment", "sports") and llm.get("score", 1) >= 3:
+                if not _has_diaspora_connection(t["canonical_title"], t.get("signals", []), _gate_cat):
+                    _old_score = llm["score"]
+                    llm["score"] = 2  # cap at 2 → caught by score floor below
+                    stats["diaspora_filtered"] = stats.get("diaspora_filtered", 0) + 1
+                    print(f"    ⚠ Diaspora gate [{_gate_cat}]: '{t['canonical_title'][:80]}' score {_old_score}→2 (no Indian/diaspora keywords)")
+
             # Minimum score floor — reject score 1-2 (weak/no diaspora connection)
             if llm.get("score", 1) < 3:
                 stats["low_score"] = stats.get("low_score", 0) + 1
@@ -1011,7 +1112,7 @@ def main():
             stats["no_result"] += 1
             topic_statuses[t["id"]] = "pending"  # leave for next run
 
-    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats.get('low_score', 0)} low-score rejected, {stats['no_result']} unscored")
+    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats.get('low_score', 0)} low-score rejected, {stats.get('diaspora_filtered', 0)} diaspora-filtered, {stats['no_result']} unscored")
 
     # Sort by score desc, then freshness, then signal count
     scored.sort(key=lambda x: (x.get("llm_score", 1), x["newest_signal"], x["signal_count"]), reverse=True)
