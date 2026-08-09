@@ -127,7 +127,7 @@ const PROGRAM_CAT_COLORS: Record<string, string> = {
   Volunteering: "bg-teal-100 text-teal-700",
 };
 
-const RESULTS_LIMIT = 12;
+const RESULTS_LIMIT = 6;
 
 /* ================================================================== */
 /* HELPERS                                                            */
@@ -168,7 +168,8 @@ function ClosingSoonStrip({ deadlines }: { deadlines: KidsDeadline[] }) {
         </h2>
         <div className="h-px flex-1 bg-border" />
       </div>
-      <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
+      <div className="relative">
+        <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide" style={{ scrollSnapType: "x mandatory" }}>
         {urgent.map((d) => {
           const days = daysUntil(d.deadline_date);
           const red = days <= 7;
@@ -189,6 +190,8 @@ function ClosingSoonStrip({ deadlines }: { deadlines: KidsDeadline[] }) {
             </div>
           );
         })}
+        </div>
+        <div className="pointer-events-none absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-background to-transparent" />
       </div>
     </section>
   );
@@ -497,6 +500,27 @@ function Skeleton({ n = 6 }: { n?: number }) {
   );
 }
 
+/* ---------- Back to Top FAB ---------- */
+
+function BackToTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 800);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  if (!show) return null;
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-[#0B1D3A] text-white shadow-lg flex items-center justify-center hover:bg-[#A32D2F] transition-colors"
+      aria-label="Back to top"
+    >
+      ↑
+    </button>
+  );
+}
+
 /* ================================================================== */
 /* MAIN PAGE                                                          */
 /* ================================================================== */
@@ -560,6 +584,7 @@ export default function KidsPage() {
   /* ---- local UI state ---- */
   const [showAllPlaces, setShowAllPlaces] = useState(false);
   const [showAllPrograms, setShowAllPrograms] = useState(false);
+  const [showAllGuides, setShowAllGuides] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [kidsArticles, setKidsArticles] = useState<Article[]>([]);
 
@@ -851,6 +876,8 @@ export default function KidsPage() {
                 ? ALL_GUIDES.filter((g) => g.keys.includes(matchKey))
                 : ALL_GUIDES;
               if (visibleGuides.length === 0) return null;
+              const GUIDES_LIMIT = 4;
+              const guidesToShow = matchKey || showAllGuides ? visibleGuides : visibleGuides.slice(0, GUIDES_LIMIT);
               return (
                 <section className="mb-10">
                   <div className="flex items-center gap-2 mb-4">
@@ -864,7 +891,7 @@ export default function KidsPage() {
                     </p>
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {visibleGuides.map((guide, i) => {
+                    {guidesToShow.map((guide, i) => {
                       const fullGuide = getGuideByTopic(guide.guideTopic);
                       const guideSlug = fullGuide?.slug;
                       const Wrapper = guideSlug ? Link : 'div' as any;
@@ -885,6 +912,13 @@ export default function KidsPage() {
                       );
                     })}
                   </div>
+                  {!matchKey && visibleGuides.length > GUIDES_LIMIT && (
+                    <div className="text-center mt-5">
+                      <button onClick={() => setShowAllGuides(!showAllGuides)} className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all">
+                        {showAllGuides ? "Show fewer" : `See all ${visibleGuides.length} guides`}
+                      </button>
+                    </div>
+                  )}
                 </section>
               );
             })()}
@@ -954,7 +988,7 @@ export default function KidsPage() {
                   News and achievements in kids' education and competitions
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-                  {kidsArticles.slice(0, 9).map((article) => (
+                  {kidsArticles.slice(0, 6).map((article) => (
                     <Link
                       key={article.id}
                       to={`/article/${article.slug}`}
@@ -998,6 +1032,9 @@ export default function KidsPage() {
 
       </main>
       <SiteFooter />
+
+      {/* Floating back-to-top */}
+      <BackToTop />
     </div>
   );
 }
