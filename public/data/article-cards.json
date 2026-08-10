@@ -1,15 +1,33 @@
 [
   {
+    "slug": "jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket",
+    "headline": "From Barren Land to Cricket's Premier Hub: How Jay Shah Built the BCCI Centre of Excellence",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket.jpg"
+  },
+  {
     "slug": "abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months",
     "headline": "Canadian Police Arrest Suspect Seven Months After Indian-Origin Woman Himanshi Khurana Murdered in Toronto",
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months.jpg"
   },
   {
+    "slug": "doodhi-halwa-lauki-bottle-gourd-recipe-no-khoya",
+    "headline": "Doodhi Halwa: How to Make the Classic Bottle Gourd Dessert Without Khoya",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/doodhi-halwa-lauki-bottle-gourd-recipe-no-khoya.jpg"
+  },
+  {
     "slug": "deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy",
     "headline": "Indian Physicist Deepak Dhar Wins 2026 Dirac Medal, Joining Hawking and Witten in Elite Physics Pantheon",
     "category": "nri-world",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy.jpg"
+  },
+  {
+    "slug": "ashna-tambe-becomes-penns-first-indian-american-womens-basketball-player",
+    "headline": "Ashna Tambe Becomes Penn's First Indian American Women's Basketball Player",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashna-tambe-becomes-penns-first-indian-american-womens-basketball-player.jpg"
   },
   {
     "slug": "india-flags-ultra-processed-food-health-risks-as-icmr-data-shows-rising-ncd-burden",
@@ -100,17 +118,5 @@
     "headline": "Berkshire Earnings Beat Forecasts as Abel Accelerates Buybacks to $4.5 Billion",
     "category": "markets-finance",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/berkshire-earnings-beat-forecasts-abel-accelerates-buybacks.jpg"
-  },
-  {
-    "slug": "7-breakfast-foods-aiims-trained-doctor-recommends-fatty-liver",
-    "headline": "7 Breakfast Foods an AIIMS-Trained Doctor Recommends for Fatty Liver",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/7-breakfast-foods-aiims-trained-doctor-recommends-fatty-liver.jpg"
-  },
-  {
-    "slug": "hunter-biden-says-fathers-cancer-has-spread-very-painful",
-    "headline": "Hunter Biden Says Father's Cancer Has Spread, Calls It 'Very Painful'",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hunter-biden-says-fathers-cancer-has-spread-very-painful.jpg"
   }
 ]
