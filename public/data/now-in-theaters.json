@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-06T13:00:00Z",
-  "week_of": "Aug 6 – Aug 12, 2026",
-  "editorial_intro": "Spider-Man just rewrote the record books. Brand New Day crossed $1 billion in six days — the second-fastest ever — and now stands at $1.155 billion worldwide with the biggest domestic opening in history ($360M, dethroning Endgame). Meanwhile, The Odyssey refuses to slow down: $911M worldwide after three weekends with just a 43% third-weekend drop, making a billion-dollar finish all but certain. Two films over $1B simultaneously, plus Toy Story 5 already there at $1.07B. Tomorrow brings A24's Tony — the Anthony Bourdain biopic sitting at 95% on RT — in limited release. Then Independence Day week drops Sunny Deol's partition epic Batwara 1947 alongside Emraan Hashmi's Awarapan 2. On the Indian side, Vijay's farewell Jana Nayagan crossed ₹300 Cr worldwide, and Dhamaal 4 is winding down at ₹230 Cr. This summer just won't quit.",
+  "generated_at": "2026-08-10T13:00:00Z",
+  "week_of": "Aug 10 – Aug 16, 2026",
+  "editorial_intro": "Spider-Man: Brand New Day is now the 12th highest-grossing film of all time at $1.67 billion worldwide — $655M domestic in just 10 days, with analysts saying $1 billion domestic isn't out of reach. The Odyssey crossed $1.1 billion worldwide, making it Christopher Nolan's highest-grossing film ever and IMAX's best-selling release of all time. Two films over $1B simultaneously. A24's Anthony Bourdain biopic Tony opened last week to 95% on Rotten Tomatoes in limited release. On the Indian side, Dhamaal 4 crossed ₹233 Cr worldwide, and Jana Nayagan is heading to ZEE5 on Aug 21 — last chance to catch Vijay's farewell on the big screen. This Thursday brings a blockbuster Independence Day lineup: Sunny Deol's partition epic Batwara 1947, Emraan Hashmi's Awarapan 2, and the Anne Hathaway sci-fi thriller The End of Oak Street all open Aug 14.",
   "movies": [
     {
       "title": "Spider-Man: Brand New Day",
@@ -22,7 +22,7 @@
         "Sadie Sink"
       ],
       "director": "Destin Daniel Cretton",
-      "why_watch": "$1.155 billion worldwide in five days. The biggest domestic opening in history at $360M — finally dethroning Avengers: Endgame. Second-fastest film ever to cross $1 billion. Tom Holland and Zendaya's fourth MCU Spider-Man outing picks up years after No Way Home erased Peter Parker from everyone's memory. 90% on RT, 98% audience score, CinemaScore A. Sadie Sink's secret Marvel debut has the internet losing its mind. This is the movie that turned the first weekend of August into the biggest box office weekend of all time ($429M total). Not playing IMAX — Nolan's Odyssey still owns those screens — but it doesn't need them.",
+      "why_watch": "$1.67 billion worldwide in 10 days — the 12th highest-grossing film of all time and climbing fast. $655M domestic already, with analysts saying the $1 billion domestic mark isn't out of reach (it would be the first film ever). Second-fastest to cross $1B worldwide. The biggest domestic opening weekend in history at $435M. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from everyone's memory. 90% critics, 98% audience. Sadie Sink's secret Marvel debut has the internet losing its mind. Still dominating every screen that isn't IMAX (Nolan's Odyssey owns those).",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
       "language": "English",
@@ -60,7 +60,7 @@
       "genre": "Epic, Action, Drama",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fragment_Odyssee_2245_2.jpg/500px-Fragment_Odyssee_2245_2.jpg",
-      "rating": "95% RT",
+      "rating": "94% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-07-17",
       "status": "now_playing",
@@ -74,7 +74,7 @@
         "Lupita Nyong'o"
       ],
       "director": "Christopher Nolan",
-      "why_watch": "$911M worldwide after three weekends — a billion-dollar finish is days away. Just a 43% third-weekend drop even against Spider-Man's record-breaking debut, which is absurd. The first film ever shot entirely on 70mm IMAX cameras, and still holding every IMAX screen on the planet. $395M domestic already makes it Nolan's highest-grossing film stateside. 95% critics, 97% audience, CinemaScore A, 4.3 on Letterboxd. Matt Damon's Odysseus is getting serious Oscar buzz. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
+      "why_watch": "$1.1 billion worldwide — Christopher Nolan's highest-grossing film ever, surpassing The Dark Knight Rises. $461M domestic after 24 days. IMAX's best-selling release of all time, with 70mm IMAX showtimes sold out through September. $289M on global IMAX screens alone. Only a 42% third-weekend drop even against Spider-Man's record-breaking debut. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. The first film ever shot entirely on 70mm IMAX cameras. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
       "language": "English",
@@ -107,63 +107,12 @@
       ]
     },
     {
-      "title": "Jana Nayagan",
-      "slug": "jana-nayagan",
-      "genre": "Political Action, Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jana_Nayagan.jpg",
-      "rating": "₹310 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-07-23",
-      "status": "now_playing",
-      "cast": [
-        "Thalapathy Vijay",
-        "Bobby Deol",
-        "Pooja Hegde",
-        "Mamitha Baiju",
-        "Prakash Raj",
-        "Priyamani"
-      ],
-      "director": "H. Vinoth",
-      "why_watch": "₹300 Cr+ worldwide and climbing — crossing ₹200 Cr India gross in 14 days despite mixed reviews, which tells you everything about Vijay's star power. The final cinematic appearance of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu — a once-in-a-generation cultural event. Third consecutive Vijay film to cross ₹300 Cr worldwide. Playing in Tamil, Hindi, and Telugu across US diaspora screens. OTT release expected Aug 20, so this is your last window to catch Vijay's farewell on the big screen.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Jana+Nayagan+showtimes+near+me",
-      "language": "Tamil",
-      "trailer_url": "https://www.youtube.com/watch?v=fJaAYcERf3Y",
-      "cast_details": [
-        {
-          "name": "Thalapathy Vijay",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/JosephVijay.jpg/300px-JosephVijay.jpg"
-        },
-        {
-          "name": "Bobby Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
-        },
-        {
-          "name": "Pooja Hegde",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg/300px-Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg"
-        },
-        {
-          "name": "Mamitha Baiju",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
-        },
-        {
-          "name": "Prakash Raj",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prakash_Raj_at_KLF_18_kozhikode.jpg/300px-Prakash_Raj_at_KLF_18_kozhikode.jpg"
-        },
-        {
-          "name": "Priyamani",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Priyamani_at_CCL_match%2C_2011_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
       "title": "Toy Story 5",
       "slug": "toy-story-5",
       "genre": "Animation, Family",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg",
-      "rating": "92% RT",
+      "rating": "93% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-06-19",
       "status": "now_playing",
@@ -175,7 +124,7 @@
         "Conan O'Brien"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "$1.07 billion worldwide — the third Toy Story to join the billion-dollar club, on track to pass Toy Story 4 ($1.073B) any day now. Seven weeks in and still earning $6.3M on the biggest box office weekend in history (finished #3 behind Spider-Man and The Odyssey). Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 92% critics, 94% audience. Losing screens to the blockbuster onslaught but still the best family option in theaters.",
+      "why_watch": "$470M domestic, well past Toy Story 4's total. Eight weeks in and still holding screens — Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. Losing showtimes to the blockbuster onslaught but still the best family option in theaters alongside Minions & Monsters.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English",
@@ -204,12 +153,56 @@
       ]
     },
     {
+      "title": "Minions & Monsters",
+      "slug": "minions-and-monsters",
+      "genre": "Animation, Comedy, Family",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9d/Minions_%26_Monsters_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "89% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-07-01",
+      "status": "now_playing",
+      "cast": [
+        "Pierre Coffin",
+        "Jeff Bridges",
+        "Allison Janney",
+        "Christoph Waltz",
+        "Jesse Eisenberg",
+        "Trey Parker",
+        "Zoey Deutch"
+      ],
+      "director": "Pierre Coffin",
+      "why_watch": "$474M worldwide and still going in week 6. The Minions' third standalone prequel — set in 1920s Hollywood, where the yellow chaos agents try to make their own monster movie — is being called the best entry in the franchise since the original Despicable Me. Jeff Bridges, Christoph Waltz, and Allison Janney lead the voice cast. 89% critics, 75% audience. The other reliable family option alongside Toy Story 5.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Minions+and+Monsters+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=ZSdOwt-G49w",
+      "cast_details": [
+        {
+          "name": "Jeff Bridges",
+          "photo_url": ""
+        },
+        {
+          "name": "Allison Janney",
+          "photo_url": ""
+        },
+        {
+          "name": "Christoph Waltz",
+          "photo_url": ""
+        },
+        {
+          "name": "Jesse Eisenberg",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Dhamaal 4",
       "slug": "dhamaal-4",
       "genre": "Comedy, Adventure",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Dhamaal_4.jpg",
-      "rating": "₹230 Cr worldwide",
+      "rating": "₹233 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-07-10",
       "status": "now_playing",
@@ -223,7 +216,7 @@
         "Esha Gupta"
       ],
       "director": "Indra Kumar",
-      "why_watch": "₹230 Cr worldwide and ₹173 Cr India net in 27 days — the highest-grossing film in the Dhamaal franchise and the 4th biggest Hindi film of 2026, behind only Dhurandhar 2, Border 2, and Bhooth Bangla. Crossed the ₹200 Cr worldwide milestone. Winding down in its 4th week with declining showtimes, but still the go-to comedy for family audiences in Hindi belt theaters. If you haven't caught the original gang together yet, the window is closing.",
+      "why_watch": "₹233 Cr worldwide and ₹175 Cr India gross in its 5th week — the highest-grossing film in the Dhamaal franchise, 4th biggest Hindi film of 2026 behind Dhurandhar 2, Border 2, and Bhooth Bangla. Crossed the ₹200 Cr worldwide milestone. Winding down with fewer showtimes, but still the go-to comedy for family audiences in Hindi belt theaters and diaspora screens. The window is closing fast.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
       "language": "Hindi",
@@ -256,6 +249,57 @@
       ]
     },
     {
+      "title": "Jana Nayagan",
+      "slug": "jana-nayagan",
+      "genre": "Political Action, Thriller",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jana_Nayagan.jpg",
+      "rating": "₹300 Cr+ worldwide",
+      "rating_source": "India box office",
+      "release_date": "2026-07-23",
+      "status": "now_playing",
+      "cast": [
+        "Thalapathy Vijay",
+        "Bobby Deol",
+        "Pooja Hegde",
+        "Mamitha Baiju",
+        "Prakash Raj",
+        "Priyamani"
+      ],
+      "director": "H. Vinoth",
+      "why_watch": "₹300 Cr+ worldwide despite mixed reviews — that's pure Vijay star power. The final cinematic appearance of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. Streaming on ZEE5 from Aug 21, so this is genuinely your last window to catch Vijay's farewell on the big screen. Playing in Tamil, Hindi, and Telugu across US diaspora screens, though showtimes are thinning fast.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Jana+Nayagan+showtimes+near+me",
+      "language": "Tamil",
+      "trailer_url": "https://www.youtube.com/watch?v=fJaAYcERf3Y",
+      "cast_details": [
+        {
+          "name": "Thalapathy Vijay",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/JosephVijay.jpg/300px-JosephVijay.jpg"
+        },
+        {
+          "name": "Bobby Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
+        },
+        {
+          "name": "Pooja Hegde",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg/300px-Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg"
+        },
+        {
+          "name": "Mamitha Baiju",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
+        },
+        {
+          "name": "Prakash Raj",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prakash_Raj_at_KLF_18_kozhikode.jpg/300px-Prakash_Raj_at_KLF_18_kozhikode.jpg"
+        },
+        {
+          "name": "Priyamani",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Priyamani_at_CCL_match%2C_2011_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
       "title": "Tony",
       "slug": "tony-bourdain",
       "genre": "Biographical Drama, Comedy-Drama",
@@ -264,7 +308,7 @@
       "rating": "95% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-08-07",
-      "status": "opening",
+      "status": "now_playing",
       "cast": [
         "Dominic Sessa",
         "Emilia Jones",
@@ -273,7 +317,7 @@
         "Stavros Halkias"
       ],
       "director": "Matt Johnson",
-      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain, inspired by Kitchen Confidential, follows a 19-year-old Bourdain taking a summer restaurant job in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor is reportedly electric. Limited release tomorrow, expanding wide later this month. If you love food, travel, or just a great coming-of-age story — get in early before everyone's talking about it.",
+      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain, inspired by Kitchen Confidential, follows a 19-year-old Bourdain taking a summer restaurant job in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor is reportedly electric. Currently in limited release (6 theaters), expanding wide later this month. If you love food, travel, or just a great coming-of-age story — this is the one to hunt down.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
       "language": "English",
@@ -307,16 +351,20 @@
       "genre": "Romantic Comedy",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/a/a9/One_Night_Only_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "",
-      "rating_source": "",
+      "rating": "49% RT",
+      "rating_source": "Rotten Tomatoes",
       "release_date": "2026-08-07",
-      "status": "opening",
+      "status": "now_playing",
       "cast": [
         "Monica Barbaro",
-        "Callum Turner"
+        "Callum Turner",
+        "Maya Hawke",
+        "Molly Ringwald",
+        "LeVar Burton",
+        "Julia Fox"
       ],
-      "director": "",
-      "why_watch": "A rom-com with a wild premise: in a world where premarital sex is only legal one night a year, two strangers make a connection that challenges everything they believe. Monica Barbaro (Top Gun: Maverick) and Callum Turner bring chemistry to a concept that's part Purge, part Before Sunrise. Opening tomorrow — the counterprogramming pick if superheroes and epics aren't your speed.",
+      "director": "Will Gluck",
+      "why_watch": "Opened at #3 with $5.7M in 3 days — the counterprogramming rom-com bet against superheroes and epics. In a world where premarital sex is only legal one night a year, two strangers make a connection that challenges everything. From Will Gluck (Anyone But You, Easy A). Critics are split at 49% RT, but Monica Barbaro and Callum Turner bring genuine chemistry. Wide release across 3,000+ theaters.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=One+Night+Only+movie+2026+showtimes+near+me",
       "language": "English",
@@ -431,7 +479,7 @@
         "Christian Convery"
       ],
       "director": "David Robert Mitchell",
-      "why_watch": "What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? That's the premise of this high-concept Warner Bros. sci-fi thriller from It Follows director David Robert Mitchell. Anne Hathaway and Ewan McGregor lead as parents fighting to keep their family alive. The most anticipated non-franchise film of August according to Rotten Tomatoes readers. Opens Aug 14.",
+      "why_watch": "What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? That's the premise of this high-concept Warner Bros. sci-fi thriller from It Follows director David Robert Mitchell. Anne Hathaway and Ewan McGregor lead as parents fighting to keep their family alive. The most anticipated non-franchise film of August. Opens Aug 14.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
       "language": "English",
