@@ -1,5 +1,29 @@
 [
   {
+    "slug": "singapenn-marathon-chennai-cervical-cancer-awareness",
+    "headline": "Over 3,000 Run in Chennai's Singapenn Marathon to Combat India's Cervical Cancer Crisis",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/singapenn-marathon-chennai-cervical-cancer-awareness.jpg"
+  },
+  {
+    "slug": "coastal-karnataka-food-medicine-tradition-vanishing-workshop",
+    "headline": "Coastal Karnataka's Ancient Food-as-Medicine Tradition Is Vanishing, Workshop Warns",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/coastal-karnataka-food-medicine-tradition-vanishing-workshop.jpg"
+  },
+  {
+    "slug": "indian-student-f1-visa-arrested-germany-killing-girlfriend-arizona",
+    "headline": "Indian Student on F-1 Visa Arrested in Germany After Allegedly Killing Girlfriend in Arizona",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-student-f1-visa-arrested-germany-killing-girlfriend-arizona.jpg"
+  },
+  {
+    "slug": "foreign-investors-turn-buyers-indian-it-stocks-first-time-2026",
+    "headline": "Foreign Investors Turn Buyers in Indian IT Stocks for First Time in 2026",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/foreign-investors-turn-buyers-indian-it-stocks-first-time-2026.jpg"
+  },
+  {
     "slug": "jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket",
     "headline": "From Barren Land to Cricket's Premier Hub: How Jay Shah Built the BCCI Centre of Excellence",
     "category": "nri-world",
@@ -94,29 +118,5 @@
     "headline": "Yash Unveils 'Toxic' Trailer at Bengaluru Event, Confirms Dual Father-Son Role",
     "category": "entertainment",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-unveils-toxic-trailer-bengaluru-dual-father-son-role.jpg"
-  },
-  {
-    "slug": "jadeja-imitates-kuldeep-yadav-bowling-action-leaves-gambhir-splits",
-    "headline": "Jadeja Imitates Kuldeep Yadav's Bowling Action, Leaves Coach Gambhir in Splits",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jadeja-imitates-kuldeep-yadav-bowling-action-leaves-gambhir-splits.jpg"
-  },
-  {
-    "slug": "punjab-cm-mann-reverses-course-backs-parole-beant-singhs-assassin-hawara",
-    "headline": "Punjab CM Mann Reverses Course, Now Backs Parole for Beant Singh's Assassin",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/punjab-cm-mann-reverses-course-backs-parole-beant-singhs-assassin-hawara.jpg"
-  },
-  {
-    "slug": "india-confirms-upi-free-users-merchant-fees-return",
-    "headline": "India Confirms UPI Will Stay Free for Users as Merchant Fees Return",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-confirms-upi-free-users-merchant-fees-return.jpg"
-  },
-  {
-    "slug": "berkshire-earnings-beat-forecasts-abel-accelerates-buybacks",
-    "headline": "Berkshire Earnings Beat Forecasts as Abel Accelerates Buybacks to $4.5 Billion",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/berkshire-earnings-beat-forecasts-abel-accelerates-buybacks.jpg"
   }
 ]
