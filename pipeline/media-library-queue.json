@@ -7342,16 +7342,6 @@
    "priority": 3
   },
   {
-   "subject": "labour rights",
-   "subject_type": "thing",
-   "tags": [
-    "labour rights"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "74be8cf0-a50f-4aeb-8cb9-13bc39bae0b3",
-   "priority": 3
-  },
-  {
    "subject": "Prashant Pise",
    "subject_type": "thing",
    "tags": [
@@ -7366,26 +7356,6 @@
    "subject_type": "thing",
    "tags": [
     "raju omlet"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9d347486-3dc6-43a9-bd58-1b4b205dff7c",
-   "priority": 3
-  },
-  {
-   "subject": "restaurant",
-   "subject_type": "thing",
-   "tags": [
-    "restaurant"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9d347486-3dc6-43a9-bd58-1b4b205dff7c",
-   "priority": 3
-  },
-  {
-   "subject": "entrepreneurship",
-   "subject_type": "thing",
-   "tags": [
-    "entrepreneurship"
    ],
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "9d347486-3dc6-43a9-bd58-1b4b205dff7c",
@@ -7412,46 +7382,6 @@
    "priority": 3
   },
   {
-   "subject": "Menlo Ventures",
-   "subject_type": "thing",
-   "tags": [
-    "menlo ventures"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "5db1c042-0407-4c46-ac27-021c9a1076ff",
-   "priority": 3
-  },
-  {
-   "subject": "open weight AI",
-   "subject_type": "thing",
-   "tags": [
-    "open weight ai"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "5db1c042-0407-4c46-ac27-021c9a1076ff",
-   "priority": 3
-  },
-  {
-   "subject": "indigenous cuisine",
-   "subject_type": "thing",
-   "tags": [
-    "indigenous cuisine"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "bee5c9f0-e3a9-4b12-bfad-64061412c827",
-   "priority": 3
-  },
-  {
-   "subject": "tribal food",
-   "subject_type": "thing",
-   "tags": [
-    "tribal food"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "bee5c9f0-e3a9-4b12-bfad-64061412c827",
-   "priority": 3
-  },
-  {
    "subject": "Chef Harshita Kakwani",
    "subject_type": "thing",
    "tags": [
@@ -7459,86 +7389,6 @@
    ],
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "bee5c9f0-e3a9-4b12-bfad-64061412c827",
-   "priority": 3
-  },
-  {
-   "subject": "Novotel",
-   "subject_type": "thing",
-   "tags": [
-    "novotel"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "bee5c9f0-e3a9-4b12-bfad-64061412c827",
-   "priority": 3
-  },
-  {
-   "subject": "food festival",
-   "subject_type": "thing",
-   "tags": [
-    "food festival"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "bee5c9f0-e3a9-4b12-bfad-64061412c827",
-   "priority": 3
-  },
-  {
-   "subject": "lord's cricket ground",
-   "subject_type": "thing",
-   "tags": [
-    "lord's cricket ground"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9922fc09-6acd-4dd8-a119-1d0b52802ae1",
-   "priority": 3
-  },
-  {
-   "subject": "ben duckett",
-   "subject_type": "thing",
-   "tags": [
-    "ben duckett"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9922fc09-6acd-4dd8-a119-1d0b52802ae1",
-   "priority": 3
-  },
-  {
-   "subject": "odi century",
-   "subject_type": "thing",
-   "tags": [
-    "odi century"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "9922fc09-6acd-4dd8-a119-1d0b52802ae1",
-   "priority": 3
-  },
-  {
-   "subject": "NIM",
-   "subject_type": "thing",
-   "tags": [
-    "nim"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "391ed8a3-84af-49e6-aea7-10de9f6f75d3",
-   "priority": 3
-  },
-  {
-   "subject": "margins",
-   "subject_type": "thing",
-   "tags": [
-    "margins"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "391ed8a3-84af-49e6-aea7-10de9f6f75d3",
-   "priority": 3
-  },
-  {
-   "subject": "qwen",
-   "subject_type": "thing",
-   "tags": [
-    "qwen"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "22e38fa8-b9b4-4de9-96d0-f17e2302488e",
    "priority": 3
   },
   {

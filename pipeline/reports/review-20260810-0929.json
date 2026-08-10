@@ -1,0 +1,41 @@
+[
+  {
+    "id": "f54a3a44-7ea5-4c2f-bc3a-2e785947b093",
+    "headline": "Coastal Karnataka's Ancient Food-as-Medicine Tradition Is Vanishing, Workshop Wa",
+    "slug": "coastal-karnataka-food-medicine-tradition-vanishing-workshop",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs who have experienced the food culture of coastal Karnataka and how they are preserving these traditions abroad. This could provide a personal connection for the NRI audience.",
+        "Add a section discussing how the loss of these food traditions impacts the identity of the diaspora, particularly for those who grew up in coastal Karnataka but now live overseas. This could help contextualize the importance of preserving these culinary practices.",
+        "Include a brief mention of any initiatives or organizations led by NRIs that focus on preserving Indian culinary traditions, which would resonate with the diaspora audience and provide a sense of community involvement.",
+        "Provide more context on the significance of the workshop and its implications for the diaspora. For instance, explain how the loss of traditional food practices could affect the health and cultural identity of NRIs, making the article more relevant to them."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post or tweet from a food vlogger or cultural institution that is actively documenting Tulu Nadu's food traditions, which would visually engage readers and provide real-time examples of the efforts being made."
+      ]
+    }
+  },
+  {
+    "id": "eca4af10-0dc5-42a4-a220-6b9a808a08ca",
+    "headline": "Over 3,000 Run in Chennai's Singapenn Marathon to Combat India's Cervical Cancer",
+    "slug": "singapenn-marathon-chennai-cervical-cancer-awareness",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who participated in the marathon or have been affected by cervical cancer. This could highlight the global implications of the issue and how it resonates with the Indian diaspora.",
+        "Provide more context on how cervical cancer affects the NRI community specifically, such as statistics or stories that illustrate the impact of this health issue on Indians living abroad.",
+        "Include a section on how NRIs can contribute to cervical cancer awareness and prevention efforts in India, perhaps through fundraising or awareness campaigns, to make the article more relevant to the diaspora audience.",
+        "Clarify the connection between the marathon and the women's safety helpline. Explain how these two issues are interlinked and why they are both being highlighted in the same event."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the World Health Organization regarding cervical cancer statistics or prevention methods to provide authoritative context.",
+        "Consider embedding a video from the marathon's organizers or participants discussing the event's significance, which could enhance engagement and provide a visual element to the article."
+      ]
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "145a4a33-3920-47e4-90fe-f96ecd3eb0ea",
+    "headline": "Indian Student on F-1 Visa Arrested in Germany After Allegedly Killing Girlfrien",
+    "slug": "indian-student-f1-visa-arrested-germany-killing-girlfriend-arizona",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian community leaders or organizations in the U.S. that can provide context on how this incident may impact the perception of Indian students abroad.",
+        "Provide additional context on the implications of this case for Indian students on F-1 visas, such as potential changes in visa regulations or heightened scrutiny from authorities, which would be particularly relevant to the NRI audience.",
+        "Clarify the timeline of events leading up to the arrest, including details about how long Batchigari had been in the U.S. and any prior interactions with law enforcement, to give readers a clearer understanding of the situation.",
+        "Include a section discussing the broader implications of this case on the Indian diaspora, such as how it may affect community relations or the stigma surrounding Indian students in the U.S."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding F-1 visa regulations or student safety to provide authoritative context on the visa status and its implications for Indian students."
+      ]
+    }
+  },
+  {
+    "id": "54ac63e4-5a33-4dc5-9743-3a9df0e5612a",
+    "headline": "Foreign Investors Turn Buyers in Indian IT Stocks for First Time in 2026",
+    "slug": "foreign-investors-turn-buyers-indian-it-stocks-first-time-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who are investing in Indian IT stocks or those who are affected by these market changes. This could provide a personal touch and make the content more relatable to the NRI audience.",
+        "Provide more context on how these investment trends impact NRIs specifically, such as potential opportunities for them to invest in Indian IT stocks or how these market shifts could affect their financial portfolios. This would make the article more relevant to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial expert or organization discussing the implications of foreign investment in Indian IT stocks, which could provide additional credibility and real-time insights."
+      ]
+    }
+  }
+]
