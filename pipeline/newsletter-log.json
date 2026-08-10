@@ -996,5 +996,15 @@
     "hero_slug": "north-korean-missile-unit-deploys-russia-120-ballistic-missiles-ukraine",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-10T13:55:54.743149+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 10, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "who-is-deepak-dhar-indian-physicist-dirac-medal-sandpile-model",
+    "story_count": 5
   }
 ]

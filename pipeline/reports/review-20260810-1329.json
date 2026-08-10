@@ -1,0 +1,44 @@
+[
+  {
+    "id": "5551cf70-e11d-41f0-bfea-d03e08037aba",
+    "headline": "Who Is Deepak Dhar? The Small-Town UP Boy Who Studied Under Feynman \u2014 and Just J",
+    "slug": "who-is-deepak-dhar-indian-physicist-dirac-medal-sandpile-model",
+    "category": "nri-world",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Deepak Dhar's achievements resonate with the Indian diaspora, particularly in the context of their contributions to science and academia abroad. This could include quotes from diaspora members or organizations celebrating his achievements.",
+        "Add context about the significance of the Dirac Medal and the Boltzmann Medal within the global scientific community, particularly how these awards reflect on the contributions of Indian scientists in the diaspora. This would provide readers with a deeper understanding of why these achievements matter.",
+        "Incorporate a section discussing the impact of Dhar's work on the Indian scientific community and how it may inspire young Indian students abroad, especially those in STEM fields. This could include statistics or anecdotes about Indian students pursuing physics or related fields in the U.S.",
+        "Consider revising the headline to make it more compelling and specific, such as 'Deepak Dhar: The Indian Physicist from UP Who Joined the Ranks of Feynman and Hawking with the Prestigious Dirac Medal'. This emphasizes his Indian heritage and the significance of his achievements."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement tweet from the International Centre for Theoretical Physics regarding the Dirac Medal recipients to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "9c61e11b-3cea-4c1e-a701-26cb4a734e57",
+    "headline": "R Madhavan Pushes Back on Propaganda Tag: 'Being Indian Cannot Be a Crime'",
+    "slug": "r-madhavan-defends-dhurandhar-rocketry-being-indian-cannot-be-crime",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Dhurandhar Official Trailer | Ranveer Singh | Aditya Dhar | \" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have reacted to Madhavan's films or the propaganda debate. This could provide insight into how the Indian diaspora views representations of Indian identity in cinema.",
+        "Add context about how films like Dhurandhar and Rocketry: The Nambi Effect are received internationally, particularly among NRIs. This could include box office performance or critical reception in foreign markets, which would be relevant to the diaspora audience.",
+        "Consider revising the headline to make it more compelling and specific. For example, 'R Madhavan Defends Indian Identity in Cinema Amid Propaganda Accusations: A Voice for NRIs' could better capture the essence of the article and its relevance to the diaspora.",
+        "The article could benefit from a more structured progression. Start with Madhavan's statements, then provide context about the films and their reception, and finally discuss the implications for Indian identity in cinema, especially from a diaspora perspective."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from R Madhavan or a prominent NRI figure discussing the impact of his films on Indian identity, which would enhance the article's connection to the diaspora."
+      ]
+    }
+  }
+]
