@@ -5,9 +5,11 @@ Updates consulate_wait_times table in Supabase.
 Source: travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html
 This page is public, no authentication needed, updated monthly by State Dept.
 """
+import argparse
 import json
 import os
 import re
+import sys
 import urllib.request
 from datetime import datetime, timezone
 
@@ -60,33 +62,42 @@ def parse_months(text):
         return float(m.group(1))
     return None
 
-def fetch_wait_times():
-    """Fetch and parse the State Dept wait times page."""
-    url = "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html"
-    # travel.state.gov blocks requests/urllib from this server (IP-blocked, returns 403).
-    # Use curl with a browser-like UA as primary, fall back to requests/urllib.
-    import subprocess as _sp
-    try:
-        cp = _sp.run(
-            ["curl", "-sL", "-A",
-             "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
-             "--max-time", "30", url],
-            capture_output=True, text=True, timeout=45)
-        if cp.returncode == 0 and len(cp.stdout) > 1000:
-            html = cp.stdout
-        else:
-            raise RuntimeError(f"curl failed rc={cp.returncode} len={len(cp.stdout)}")
-    except Exception as curl_err:
-        print(f"curl fetch failed ({curl_err}), trying requests...")
-        headers = {"User-Agent": "TheVideshi/1.0 (immigration news)"}
-        if _requests:
-            r = _requests.get(url, headers=headers, timeout=30)
-            r.raise_for_status()
-            html = r.text
-        else:
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                html = resp.read().decode("utf-8")
+def fetch_wait_times(html_file=None):
+    """Fetch and parse the State Dept wait times page.
+    
+    If html_file is provided, reads HTML from that file instead of fetching.
+    This is the preferred path since travel.state.gov is IP-blocked from this server.
+    """
+    if html_file:
+        print(f"Reading HTML from {html_file}")
+        with open(html_file, "r") as f:
+            html = f.read()
+    else:
+        url = "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/global-visa-wait-times.html"
+        # travel.state.gov blocks requests/urllib from this server (IP-blocked, returns 403).
+        # Use curl with a browser-like UA as primary, fall back to requests/urllib.
+        import subprocess as _sp
+        try:
+            cp = _sp.run(
+                ["curl", "-sL", "-A",
+                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+                 "--max-time", "30", url],
+                capture_output=True, text=True, timeout=45)
+            if cp.returncode == 0 and len(cp.stdout) > 1000:
+                html = cp.stdout
+            else:
+                raise RuntimeError(f"curl failed rc={cp.returncode} len={len(cp.stdout)}")
+        except Exception as curl_err:
+            print(f"curl fetch failed ({curl_err}), trying requests...")
+            headers = {"User-Agent": "TheVideshi/1.0 (immigration news)"}
+            if _requests:
+                r = _requests.get(url, headers=headers, timeout=30)
+                r.raise_for_status()
+                html = r.text
+            else:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    html = resp.read().decode("utf-8")
     
     results = []
     now = datetime.now(timezone.utc).isoformat()
@@ -178,10 +189,14 @@ def update_static_json(rows):
     print(f"Wrote {len(rows)} rows to visa-wait-times.json")
 
 def main():
+    parser = argparse.ArgumentParser(description="Scrape US State Dept visa wait times")
+    parser.add_argument("--html-file", help="Path to pre-fetched HTML file (skips direct fetch)")
+    args = parser.parse_args()
+
     load_env(os.path.expanduser("~/workspace/.env.supabase"))
     
     print("Fetching State Dept wait times...")
-    rows = fetch_wait_times()
+    rows = fetch_wait_times(html_file=args.html_file)
     
     if not rows:
         print("ERROR: No rows parsed. Page structure may have changed.")
