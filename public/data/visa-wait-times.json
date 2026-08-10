@@ -1,12 +1,48 @@
 [
   {
+    "consulate": "calgary",
+    "consulate_display": "Calgary (Canada)",
+    "visa_type": "B1B2",
+    "visa_type_display": "Visitor (B1/B2)",
+    "avg_wait_months": 16.0,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "calgary",
+    "consulate_display": "Calgary (Canada)",
+    "visa_type": "F_M_J",
+    "visa_type_display": "Student (F/M/J)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "calgary",
+    "consulate_display": "Calgary (Canada)",
+    "visa_type": "H_L_O_P_Q",
+    "visa_type_display": "Work (H/L/O/P/Q)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "calgary",
+    "consulate_display": "Calgary (Canada)",
+    "visa_type": "C_D",
+    "visa_type_display": "Crew/Transit (C/D)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
     "consulate": "chennai",
     "consulate_display": "Chennai",
     "visa_type": "B1B2",
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": 7.0,
     "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "chennai",
@@ -15,7 +51,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "chennai",
@@ -24,7 +60,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "chennai",
@@ -33,7 +69,43 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "dubai",
+    "consulate_display": "Dubai (UAE)",
+    "visa_type": "B1B2",
+    "visa_type_display": "Visitor (B1/B2)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "dubai",
+    "consulate_display": "Dubai (UAE)",
+    "visa_type": "F_M_J",
+    "visa_type_display": "Student (F/M/J)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "dubai",
+    "consulate_display": "Dubai (UAE)",
+    "visa_type": "H_L_O_P_Q",
+    "visa_type_display": "Work (H/L/O/P/Q)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "dubai",
+    "consulate_display": "Dubai (UAE)",
+    "visa_type": "C_D",
+    "visa_type_display": "Crew/Transit (C/D)",
+    "avg_wait_months": null,
+    "next_available_months": null,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "hyderabad",
@@ -42,7 +114,7 @@
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": 10.0,
     "next_available_months": 10.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "hyderabad",
@@ -51,7 +123,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": 4.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "hyderabad",
@@ -60,7 +132,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": 5.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "hyderabad",
@@ -69,7 +141,7 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "kolkata",
@@ -78,7 +150,7 @@
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": 2.0,
     "next_available_months": 2.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "kolkata",
@@ -87,7 +159,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": 1.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "kolkata",
@@ -96,7 +168,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": 1.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "kolkata",
@@ -105,7 +177,43 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "london",
+    "consulate_display": "London (UK)",
+    "visa_type": "B1B2",
+    "visa_type_display": "Visitor (B1/B2)",
+    "avg_wait_months": null,
+    "next_available_months": 2.0,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "london",
+    "consulate_display": "London (UK)",
+    "visa_type": "F_M_J",
+    "visa_type_display": "Student (F/M/J)",
+    "avg_wait_months": null,
+    "next_available_months": 1.0,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "london",
+    "consulate_display": "London (UK)",
+    "visa_type": "H_L_O_P_Q",
+    "visa_type_display": "Work (H/L/O/P/Q)",
+    "avg_wait_months": null,
+    "next_available_months": 0.5,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
+  },
+  {
+    "consulate": "london",
+    "consulate_display": "London (UK)",
+    "visa_type": "C_D",
+    "visa_type_display": "Crew/Transit (C/D)",
+    "avg_wait_months": null,
+    "next_available_months": 0.5,
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "mumbai",
@@ -114,7 +222,7 @@
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": 11.0,
     "next_available_months": 8.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "mumbai",
@@ -123,7 +231,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": 2.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "mumbai",
@@ -132,7 +240,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": 1.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "mumbai",
@@ -141,7 +249,7 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": 1.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "new_delhi",
@@ -150,7 +258,7 @@
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": 8.0,
     "next_available_months": 8.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "new_delhi",
@@ -159,7 +267,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": 2.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "new_delhi",
@@ -168,7 +276,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": 1.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "new_delhi",
@@ -177,43 +285,7 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": 2.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "dubai",
-    "consulate_display": "Dubai (UAE)",
-    "visa_type": "B1B2",
-    "visa_type_display": "Visitor (B1/B2)",
-    "avg_wait_months": null,
-    "next_available_months": 5.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "dubai",
-    "consulate_display": "Dubai (UAE)",
-    "visa_type": "F_M_J",
-    "visa_type_display": "Student (F/M/J)",
-    "avg_wait_months": null,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "dubai",
-    "consulate_display": "Dubai (UAE)",
-    "visa_type": "H_L_O_P_Q",
-    "visa_type_display": "Work (H/L/O/P/Q)",
-    "avg_wait_months": null,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "dubai",
-    "consulate_display": "Dubai (UAE)",
-    "visa_type": "C_D",
-    "visa_type_display": "Crew/Transit (C/D)",
-    "avg_wait_months": null,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "singapore",
@@ -222,7 +294,7 @@
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": null,
     "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "singapore",
@@ -231,7 +303,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "singapore",
@@ -240,7 +312,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "singapore",
@@ -249,7 +321,7 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "toronto",
@@ -258,7 +330,7 @@
     "visa_type_display": "Visitor (B1/B2)",
     "avg_wait_months": 16.0,
     "next_available_months": 16.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "toronto",
@@ -267,7 +339,7 @@
     "visa_type_display": "Student (F/M/J)",
     "avg_wait_months": null,
     "next_available_months": 1.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "toronto",
@@ -276,7 +348,7 @@
     "visa_type_display": "Work (H/L/O/P/Q)",
     "avg_wait_months": null,
     "next_available_months": 1.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   },
   {
     "consulate": "toronto",
@@ -285,78 +357,6 @@
     "visa_type_display": "Crew/Transit (C/D)",
     "avg_wait_months": null,
     "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "calgary",
-    "consulate_display": "Calgary (Canada)",
-    "visa_type": "B1B2",
-    "visa_type_display": "Visitor (B1/B2)",
-    "avg_wait_months": 16.0,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "calgary",
-    "consulate_display": "Calgary (Canada)",
-    "visa_type": "F_M_J",
-    "visa_type_display": "Student (F/M/J)",
-    "avg_wait_months": null,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "calgary",
-    "consulate_display": "Calgary (Canada)",
-    "visa_type": "H_L_O_P_Q",
-    "visa_type_display": "Work (H/L/O/P/Q)",
-    "avg_wait_months": null,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "calgary",
-    "consulate_display": "Calgary (Canada)",
-    "visa_type": "C_D",
-    "visa_type_display": "Crew/Transit (C/D)",
-    "avg_wait_months": null,
-    "next_available_months": null,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "london",
-    "consulate_display": "London (UK)",
-    "visa_type": "B1B2",
-    "visa_type_display": "Visitor (B1/B2)",
-    "avg_wait_months": null,
-    "next_available_months": 2.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "london",
-    "consulate_display": "London (UK)",
-    "visa_type": "F_M_J",
-    "visa_type_display": "Student (F/M/J)",
-    "avg_wait_months": null,
-    "next_available_months": 1.0,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "london",
-    "consulate_display": "London (UK)",
-    "visa_type": "H_L_O_P_Q",
-    "visa_type_display": "Work (H/L/O/P/Q)",
-    "avg_wait_months": null,
-    "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
-  },
-  {
-    "consulate": "london",
-    "consulate_display": "London (UK)",
-    "visa_type": "C_D",
-    "visa_type_display": "Crew/Transit (C/D)",
-    "avg_wait_months": null,
-    "next_available_months": 0.5,
-    "scraped_at": "2026-08-10T13:00:22.508614+00:00"
+    "scraped_at": "2026-08-10T13:12:12.313255+00:00"
   }
 ]
