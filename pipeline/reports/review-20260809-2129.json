@@ -1,0 +1,40 @@
+[
+  {
+    "id": "d1726a8a-d1ad-41d1-b954-acffea08d091",
+    "headline": "Air India to Restore Most International Routes From September After Summer-Long ",
+    "slug": "air-india-restore-international-routes-september-after-summer-cuts",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from NRI travelers affected by the route changes, particularly those in the Midwest and DC metro area. This would provide a personal touch and highlight the impact on the community.",
+        "Provide additional context on how these route changes specifically affect the NRI community, such as the importance of these routes for family visits, business travel, or cultural connections. This could be achieved by including statistics on the number of NRIs traveling on these routes or the significance of these cities to the diaspora.",
+        "Clarify the implications of the route suspensions for the diaspora, such as potential alternatives for travelers or the economic impact on the communities served by these routes. This would give readers a more comprehensive understanding of the situation.",
+        "Consider restructuring the article to start with the implications for the diaspora before diving into the details of the route changes. This would immediately engage readers who are part of the NRI community."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India announcement or a relevant tweet from Air India regarding the restoration of international routes to provide authenticity and direct information from the airline."
+      ]
+    }
+  },
+  {
+    "id": "b0599f6e-d1a6-4908-916e-3d18bacc8a34",
+    "headline": "From Barren Land to Cricket's Premier Hub: How Jay Shah Built the BCCI Centre of",
+    "slug": "jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs involved in cricket, such as former players or current cricket commentators, to discuss the significance of the Centre of Excellence for the global Indian cricket community.",
+        "Provide context on how the Centre of Excellence could impact aspiring cricketers from the Indian diaspora, particularly in countries like the USA, Canada, and the UK, where cricket is growing in popularity among NRIs.",
+        "Include a brief section on how the Centre of Excellence might influence the selection of players from the diaspora for the Indian national team, which could resonate with NRI readers who follow cricket closely.",
+        "Add a concluding paragraph that reflects on the potential long-term benefits of the Centre of Excellence for the Indian cricket ecosystem, particularly for young cricketers from the diaspora who may aspire to play for India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the BCCI or Jay Shah announcing the inauguration of the Centre of Excellence, which would provide official context and enhance the article's credibility."
+      ]
+    }
+  }
+]

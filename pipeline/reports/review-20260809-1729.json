@@ -1,0 +1,59 @@
+[
+  {
+    "id": "b18a7822-c880-47d7-9df0-21eb87165540",
+    "headline": "Canadian Police Arrest Suspect Seven Months After Indian-Origin Woman Himanshi K",
+    "slug": "abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or statements from Indian community leaders or organizations in Canada regarding the impact of this crime on the Indian diaspora. This could provide a more personal and communal perspective on the situation.",
+        "Add context about the prevalence of intimate partner violence within the Indian community in Canada, which could resonate with the NRI audience and highlight the importance of addressing such issues.",
+        "Consider providing more details about the support systems available for Indian-origin individuals facing domestic violence in Canada, including resources from the Indian Consulate or local community organizations.",
+        "Clarify the timeline of events and the legal proceedings that will follow Ghafoori's arrest, as this information is crucial for readers wanting to understand the implications of the case."
+      ],
+      "embed_opportunities": [
+        "Embed the official Toronto Police tweet announcing the arrest of Ghafoori to provide readers with direct access to the source of the information and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "42f43eba-28cf-4b38-88d4-a4a8be6bcb49",
+    "headline": "Doodhi Halwa: How to Make the Classic Bottle Gourd Dessert Without Khoya",
+    "slug": "doodhi-halwa-lauki-bottle-gourd-recipe-no-khoya",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section discussing the significance of doodhi halwa in Indian festivals or celebrations, especially among the NRI community, to strengthen the diaspora angle.",
+        "Provide a brief cultural context about how doodhi halwa is perceived in different regions of India, and how NRIs can recreate this dish to connect with their roots.",
+        "Include tips on where NRIs can find ingredients in their local areas, or suggest online stores that deliver Indian groceries abroad, to make the recipe more accessible.",
+        "Add a personal anecdote or a quote from an NRI chef or food blogger about their experience with doodhi halwa to create a more personal connection."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing doodhi halwa made by an NRI chef or food influencer to visually engage readers and provide inspiration."
+      ]
+    }
+  },
+  {
+    "id": "50b94722-6019-412e-8c21-4a6c2ac340d5",
+    "headline": "Indian Physicist Deepak Dhar Wins 2026 Dirac Medal, Joining Hawking and Witten i",
+    "slug": "deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs in the scientific community, discussing how Dhar's achievements inspire them or contribute to the global perception of Indian scientists.",
+        "Provide more context on the significance of the Dirac Medal within the global scientific community, particularly how it impacts the recognition of Indian scientists abroad and its relevance to NRIs in the field of physics.",
+        "Include a brief section on the challenges faced by Indian scientists in the diaspora, particularly in the context of recognition and opportunities, to provide a more comprehensive view of Dhar's achievement.",
+        "Mention any upcoming events or initiatives related to Indian scientists abroad that could be of interest to NRIs, such as conferences or collaborations, to create a connection between Dhar's achievement and the broader NRI community."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICTP announcement or a relevant tweet from a prominent scientist or organization that highlights the significance of the Dirac Medal and its recipients."
+      ]
+    }
+  }
+]
