@@ -1,15 +1,27 @@
 [
   {
-    "slug": "singapenn-marathon-chennai-cervical-cancer-awareness",
-    "headline": "Over 3,000 Run in Chennai's Singapenn Marathon to Combat India's Cervical Cancer Crisis",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/singapenn-marathon-chennai-cervical-cancer-awareness.jpg"
+    "slug": "godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals",
+    "headline": "GodLike and Orangutan Give India Two Teams in PUBG Mobile World Cup Grand Finals for the First Time",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals.jpg"
+  },
+  {
+    "slug": "r-madhavan-defends-dhurandhar-rocketry-being-indian-cannot-be-crime",
+    "headline": "R Madhavan Pushes Back on Propaganda Tag: 'Being Indian Cannot Be a Crime'",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/r-madhavan-defends-dhurandhar-rocketry-being-indian-cannot-be-crime.jpg"
   },
   {
     "slug": "coastal-karnataka-food-medicine-tradition-vanishing-workshop",
     "headline": "Coastal Karnataka's Ancient Food-as-Medicine Tradition Is Vanishing, Workshop Warns",
     "category": "food",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/coastal-karnataka-food-medicine-tradition-vanishing-workshop.jpg"
+  },
+  {
+    "slug": "singapenn-marathon-chennai-cervical-cancer-awareness",
+    "headline": "Over 3,000 Run in Chennai's Singapenn Marathon to Combat India's Cervical Cancer Crisis",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/singapenn-marathon-chennai-cervical-cancer-awareness.jpg"
   },
   {
     "slug": "indian-student-f1-visa-arrested-germany-killing-girlfriend-arizona",
@@ -94,29 +106,5 @@
     "headline": "India Tells Meta to Follow Indian Law, Not Just Its Own Global Policies",
     "category": "news",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-tells-meta-comply-with-indian-law-not-global-policies.jpg"
-  },
-  {
-    "slug": "north-korean-missile-unit-deploys-russia-120-ballistic-missiles-ukraine",
-    "headline": "North Korean Missile Unit Deploys to Russia With Up to 120 Ballistic Missiles for Ukraine Strikes",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/north-korean-missile-unit-deploys-russia-120-ballistic-missiles-ukraine.jpg"
-  },
-  {
-    "slug": "iran-releases-first-video-supreme-leader-mojtaba-khamenei-health-doubts",
-    "headline": "Iran Releases First Video of Supreme Leader Khamenei Amid Growing Doubts Over His Health",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-releases-first-video-supreme-leader-mojtaba-khamenei-health-doubts.jpg"
-  },
-  {
-    "slug": "padikkal-142-not-out-strengthens-india-no-3-case-sri-lanka-tests",
-    "headline": "Padikkal's Unbeaten 142 in Warm-Up Strengthens His Case for India's No. 3 Spot",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/padikkal-142-not-out-strengthens-india-no-3-case-sri-lanka-tests.jpg"
-  },
-  {
-    "slug": "yash-unveils-toxic-trailer-bengaluru-dual-father-son-role",
-    "headline": "Yash Unveils 'Toxic' Trailer at Bengaluru Event, Confirms Dual Father-Son Role",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-unveils-toxic-trailer-bengaluru-dual-father-son-role.jpg"
   }
 ]
