@@ -1,0 +1,59 @@
+[
+  {
+    "id": "753c31da-af8e-43a0-bb4d-55e90e10dfc6",
+    "headline": "Air India Launches Mumbai-Toronto Nonstop, Adds 4,400 Monthly Seats on India-Can",
+    "slug": "air-india-mumbai-toronto-nonstop-winter-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs living in Canada about the importance of this route for family connections, business, or travel. This could provide a personal touch and highlight the significance of the new service for the Indian diaspora.",
+        "Add context about the Indian diaspora in Canada, such as statistics on the population size or economic contributions, to emphasize why this route is particularly relevant for NRIs and how it facilitates travel for work, family visits, or cultural exchanges.",
+        "Consider restructuring the article to start with the implications of the new route for NRIs before diving into the technical details of the flight schedule and aircraft specifications. This could engage readers more effectively by addressing their interests first.",
+        "Include a section on potential benefits for NRIs, such as ease of travel for business or family visits, and how this expansion might influence travel patterns between India and Canada."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India announcement or a relevant tweet that highlights the significance of the new route for the Indian community in Canada."
+      ]
+    }
+  },
+  {
+    "id": "0ea72944-b142-4890-9536-60ad562224c9",
+    "headline": "Andhra Pradesh Pours \u20b998 Crore Into Suryalanka Beach in Push to Build India's Ea",
+    "slug": "andhra-pradesh-suryalanka-beach-98-crore-tourism-push",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs who have visited Suryalanka Beach or who are interested in investing in Indian tourism. This could provide a personal connection and highlight the appeal of the destination for the Indian diaspora.",
+        "Add a section discussing how the development of Suryalanka Beach could attract NRI tourists and investors, emphasizing the potential for cultural and economic ties between NRIs and their home state.",
+        "Provide context on how this development compares to other popular NRI-favored destinations, like Goa, and what unique offerings Suryalanka will have for this demographic."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Andhra Pradesh government or tourism department announcing the project, which could lend credibility and provide real-time updates on the initiative."
+      ]
+    }
+  },
+  {
+    "id": "f7b9ee45-325f-4d80-b5f5-82bec0da4653",
+    "headline": "Jainendra Jain Becomes First Indian-Origin Physicist to Win Wolf Prize",
+    "slug": "jainendra-jain-first-indian-origin-physicist-wolf-prize",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from prominent Indian-origin scientists or organizations in the U.S. that highlight the significance of Jain's achievement for the Indian diaspora.",
+        "Provide additional context about the Wolf Prize and its importance to the global scientific community, particularly for Indian-origin scientists, to emphasize its relevance to NRIs.",
+        "Include a brief section on how Jain's work and achievements could inspire young Indian-origin students in STEM fields, linking it to the aspirations of the diaspora.",
+        "Clarify the timeline of events, particularly the discrepancy in the award year (2025) and the ceremony date (2026), to avoid confusion for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Wolf Prize official account announcing Jain's win to provide immediate context and credibility.",
+        "Include a video clip of Jain receiving the award or discussing his work, if available, to enhance reader engagement."
+      ]
+    }
+  }
+]

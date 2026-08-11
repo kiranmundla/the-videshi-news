@@ -718,11 +718,25 @@ def main():
     google_clusters = []  # items with sub_articles (Google News clusters)
     standalone_signals = []  # RSS/email items without sub_articles
 
+    # Reject signals with published_at older than 30 days (Google News
+    # sometimes resurfaces years-old articles in search results)
+    STALE_SIGNAL_DAYS = 30
+    stale_cutoff = (NOW - timedelta(days=STALE_SIGNAL_DAYS)).isoformat()
+    stale_skipped = 0
+
     for item in new_items:
+        pub = item.get("pub") or ""
+        parsed_pub = parse_pub_date(pub)
+        if parsed_pub and parsed_pub < stale_cutoff:
+            stale_skipped += 1
+            continue
         if item.get("sub_articles") and item.get("source_type") == "google_news":
             google_clusters.append(item)
         else:
             standalone_signals.append(item)
+
+    if stale_skipped:
+        print(f"  ⚠ Skipped {stale_skipped} stale signals (published >{STALE_SIGNAL_DAYS}d ago)")
 
     print(f"  Google News clusters: {len(google_clusters)}")
     print(f"  Standalone signals (RSS/email): {len(standalone_signals)}")

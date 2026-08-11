@@ -216,6 +216,9 @@ def fetch_wikipedia_image(subject, article_context=None):
                 "sports competition", "tournament", "cup", "league",
                 "recurring sporting event", "annual sporting event",
                 "festival", "ceremony", "event",
+                # Awards/prizes — medal/logo images are misleading on
+                # articles about a *different* award
+                "prize", "prizes", "medal", "honour", "honor",
             }
             # Also catch partial matches (wiki descriptions can be verbose)
             _GENERIC_WIKI_DESC_KEYWORDS = {
@@ -264,6 +267,28 @@ def fetch_wikipedia_image(subject, article_context=None):
                     print(f"    ⊘ Skipping Wikipedia image for '{subject}' — page topic "
                           f"('{data.get('description', '')[:50]}') has no keyword overlap with article")
                     return None
+
+                # Landmark/geographic guard: if Wikipedia describes this as a
+                # physical place (monument, tower, building, shipyard, etc.),
+                # require the entity's FULL NAME to appear in the article text.
+                # Geographic-only keyword overlap (city/country names) is not
+                # enough — "Gateway of India" shouldn't illustrate an Air India
+                # article just because both mention "Mumbai".
+                _PLACE_DESC_KEYWORDS = {
+                    "monument", "landmark", "tower", "gate", "fort", "palace",
+                    "temple", "mosque", "church", "cathedral", "mausoleum",
+                    "bridge", "dam", "statue", "memorial", "building",
+                    "skyscraper", "shipyard", "factory", "port", "airport",
+                    "stadium", "arena", "park", "garden", "museum", "library",
+                    "observatory", "pier", "lighthouse", "arch", "obelisk",
+                    "stupa", "pagoda", "citadel", "fortress", "tomb",
+                }
+                if any(kw in wiki_desc for kw in _PLACE_DESC_KEYWORDS):
+                    subject_lower = subject.lower()
+                    if subject_lower not in context_lower:
+                        print(f"    ⊘ Skipping Wikipedia image for '{subject}' — "
+                              f"landmark/place ('{wiki_desc[:50]}') not mentioned by name in article")
+                        return None
 
             return img
     except:
@@ -816,7 +841,12 @@ def extract_visual_subjects(headline, body, category):
         "proper name of a well-known place, landmark, monument, palace, fort, temple, "
         "national park, heritage site, famous dish, or iconic venue that is likely to "
         "have a Wikipedia page with a good photo. "
-        "Prioritize famous landmarks and heritage sites over restaurant names or brand names. "
+        "IMPORTANT: Only include subjects that the article is specifically ABOUT or discusses in detail. "
+        "Do NOT include famous city landmarks (e.g., Gateway of India, Eiffel Tower, CN Tower, "
+        "Taj Mahal, Statue of Liberty) just because the article mentions that city. "
+        "If the article is about an airline route to Toronto, do NOT include CN Tower. "
+        "If the article is about a business in Mumbai, do NOT include Gateway of India. "
+        "Prioritize the actual subjects of the story over geographic decoration. "
         "Be specific: 'Amer Fort' not 'a fort in Rajasthan', 'Falaknuma Palace' not 'palace in Hyderabad'. "
         "Omit generic terms, people's names, countries, cities, and restaurant brand names that are unlikely to have Wikipedia photos."
     )
