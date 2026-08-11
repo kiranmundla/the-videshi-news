@@ -1,9 +1,87 @@
 [
   {
+    "slug": "air-india-mumbai-toronto-nonstop-winter-2026",
+    "headline": "Air India Launches Mumbai-Toronto Nonstop, Adds 4,400 Monthly Seats on India-Canada Routes",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-mumbai-toronto-nonstop-winter-2026.jpg"
+  },
+  {
+    "slug": "andhra-pradesh-suryalanka-beach-98-crore-tourism-push",
+    "headline": "Andhra Pradesh Pours ₹98 Crore Into Suryalanka Beach in Push to Build India's Eastern Goa",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-pradesh-suryalanka-beach-98-crore-tourism-push.jpg"
+  },
+  {
+    "slug": "ayurveda-conference-udupi-autoimmune-disorders-2026",
+    "headline": "International Ayurveda Conference in Udupi to Tackle Autoimmune Disorders",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ayurveda-conference-udupi-autoimmune-disorders-2026.jpg"
+  },
+  {
+    "slug": "benne-dosa-brand-bengaluru-couple-350-crore",
+    "headline": "How a Bengaluru Couple's Homesickness Built India's Hottest Dosa Brand",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/benne-dosa-brand-bengaluru-couple-350-crore.jpg"
+  },
+  {
+    "slug": "india-russian-oil-imports-record-july-2026",
+    "headline": "India's Russian Oil Imports Hit Record 2.8 Million Barrels Per Day in July",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-russian-oil-imports-record-july-2026.jpg"
+  },
+  {
+    "slug": "india-summons-air-india-ceo-phuket-flight-probe",
+    "headline": "India Summons Air India CEO After Phuket Flight's Sudden Altitude Loss",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-summons-air-india-ceo-phuket-flight-probe.jpg"
+  },
+  {
+    "slug": "ibm-together-ai-240-million-nvidia-inference-cluster",
+    "headline": "IBM and Together AI Sign $240 Million Deal for Nvidia-Powered AI Cluster",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ibm-together-ai-240-million-nvidia-inference-cluster.jpg"
+  },
+  {
+    "slug": "tsmc-sony-4-7-billion-image-sensor-joint-venture",
+    "headline": "TSMC and Sony Form $4.7 Billion Joint Venture for Next-Gen Image Sensors",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tsmc-sony-4-7-billion-image-sensor-joint-venture.jpg"
+  },
+  {
+    "slug": "india-naval-chief-mauritius-defence-africa-outreach",
+    "headline": "India's Naval Chief Visits Mauritius as Defence Outreach to Africa Expands",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-naval-chief-mauritius-defence-africa-outreach.jpg"
+  },
+  {
+    "slug": "nvidia-wall-street-500-billion-ai-infrastructure",
+    "headline": "Nvidia Partners With Wall Street Giants to Raise $500 Billion for AI Infrastructure",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-wall-street-500-billion-ai-infrastructure.jpg"
+  },
+  {
+    "slug": "intel-raises-20-billion-upsized-share-sale",
+    "headline": "Intel Raises $20 Billion in Upsized Share Sale to Fund AI Expansion",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/intel-raises-20-billion-upsized-share-sale.jpg"
+  },
+  {
     "slug": "andhra-student-dileep-kumar-bungatavula-killed-ohio-head-on-crash",
     "headline": "Andhra Pradesh Student Dileep Kumar Bungatavula Killed in Ohio After Pick-Up Truck Rams His Car Head-On",
     "category": "news",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-student-dileep-kumar-bungatavula-killed-ohio-head-on-crash.jpg"
+  },
+  {
+    "slug": "uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing",
+    "headline": "Flash Floods Rip Apart Bridge in Uttarakhand's Niti Valley, BRO Driver Missing",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing.jpg"
+  },
+  {
+    "slug": "qs-world-rankings-2027-indian-universities-fivefold-rise-iit-delhi",
+    "headline": "Indian Universities Nearly Quintuple Presence in QS World Rankings Since 2015 as IIT Delhi Hits Record 118th",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/qs-world-rankings-2027-indian-universities-fivefold-rise-iit-delhi.jpg"
   },
   {
     "slug": "us-judge-dismisses-criminal-charges-gautam-adani-doj-bribery",
@@ -18,93 +96,21 @@
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-phuket-delhi-altitude-loss-pilot-drug-test-airbus-probe.jpg"
   },
   {
-    "slug": "uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing",
-    "headline": "Flash Floods Rip Apart Bridge in Uttarakhand's Niti Valley, BRO Driver Missing",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing.jpg"
-  },
-  {
     "slug": "india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026",
     "headline": "India Claims 17 Medals at Inaugural U-23 Commonwealth Fencing Championship in Lagos",
     "category": "sports",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026.jpg"
   },
   {
+    "slug": "bhuvneshwar-kumar-not-chasing-india-recall-ashwin-2027-world-cup",
+    "headline": "Bhuvneshwar Kumar Not Chasing India Recall as Ashwin Backs 2027 World Cup Return",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bhuvneshwar-kumar-not-chasing-india-recall-ashwin-2027-world-cup.jpg"
+  },
+  {
     "slug": "millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions",
     "headline": "Millions of Americans Discover Canadian Citizenship Pathway as Birthright Restrictions Loom",
     "category": "immigration",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions.jpg"
-  },
-  {
-    "slug": "godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals",
-    "headline": "GodLike and Orangutan Give India Two Teams in PUBG Mobile World Cup Grand Finals for the First Time",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals.jpg"
-  },
-  {
-    "slug": "indian-origin-teenagers-shreyas-royal-bodhana-sivanandan-win-2026-british-chess-championships",
-    "headline": "Indian-Origin Teenagers Shreyas Royal and Bodhana Sivanandan Win 2026 British Chess Championships",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-origin-teenagers-shreyas-royal-bodhana-sivanandan-win-2026-british-chess-championships.jpg"
-  },
-  {
-    "slug": "dol-prevailing-wage-rule-could-price-out-smaller-employers-and-immigrants",
-    "headline": "DOL Prevailing Wage Rule Could Price Out Smaller Employers and Immigrants",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dol-prevailing-wage-rule-could-price-out-smaller-employers-and-immigrants.jpg"
-  },
-  {
-    "slug": "r-madhavan-defends-dhurandhar-rocketry-being-indian-cannot-be-crime",
-    "headline": "R Madhavan Pushes Back on Propaganda Tag: 'Being Indian Cannot Be a Crime'",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/r-madhavan-defends-dhurandhar-rocketry-being-indian-cannot-be-crime.jpg"
-  },
-  {
-    "slug": "coastal-karnataka-food-medicine-tradition-vanishing-workshop",
-    "headline": "Coastal Karnataka's Ancient Food-as-Medicine Tradition Is Vanishing, Workshop Warns",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/coastal-karnataka-food-medicine-tradition-vanishing-workshop.jpg"
-  },
-  {
-    "slug": "singapenn-marathon-chennai-cervical-cancer-awareness",
-    "headline": "Over 3,000 Run in Chennai's Singapenn Marathon to Combat India's Cervical Cancer Crisis",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/singapenn-marathon-chennai-cervical-cancer-awareness.jpg"
-  },
-  {
-    "slug": "indian-student-f1-visa-arrested-germany-killing-girlfriend-arizona",
-    "headline": "Indian Student on F-1 Visa Arrested in Germany After Allegedly Killing Girlfriend in Arizona",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-student-f1-visa-arrested-germany-killing-girlfriend-arizona.jpg"
-  },
-  {
-    "slug": "foreign-investors-turn-buyers-indian-it-stocks-first-time-2026",
-    "headline": "Foreign Investors Turn Buyers in Indian IT Stocks for First Time in 2026",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/foreign-investors-turn-buyers-indian-it-stocks-first-time-2026.jpg"
-  },
-  {
-    "slug": "air-india-restore-international-routes-september-after-summer-cuts",
-    "headline": "Air India to Restore Most International Routes From September After Summer-Long Cuts",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-restore-international-routes-september-after-summer-cuts.jpg"
-  },
-  {
-    "slug": "jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket",
-    "headline": "From Barren Land to Cricket's Premier Hub: How Jay Shah Built the BCCI Centre of Excellence",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket.jpg"
-  },
-  {
-    "slug": "abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months",
-    "headline": "Canadian Police Arrest Suspect Seven Months After Indian-Origin Woman Himanshi Khurana Murdered in Toronto",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/abdul-ghafoori-arrested-himanshi-khurana-murder-toronto-seven-months.jpg"
-  },
-  {
-    "slug": "doodhi-halwa-lauki-bottle-gourd-recipe-no-khoya",
-    "headline": "Doodhi Halwa: How to Make the Classic Bottle Gourd Dessert Without Khoya",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/doodhi-halwa-lauki-bottle-gourd-recipe-no-khoya.jpg"
   }
 ]
