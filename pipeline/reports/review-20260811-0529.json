@@ -1,0 +1,78 @@
+[
+  {
+    "id": "a7019adb-6eeb-414e-a6c8-c757046174de",
+    "headline": "Airbus Sends Specialists as Air India Pilot Faces Drug Test After Flight Drops 3",
+    "slug": "air-india-phuket-delhi-altitude-loss-pilot-drug-test-airbus-probe",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs who were on the flight or who have traveled with Air India, discussing their concerns about safety and the implications for Indian airlines in the international market.",
+        "Provide context on how incidents like this can affect the perception of Air India among NRIs, especially regarding their travel choices and trust in Indian carriers. This could include statistics or trends on NRI travel preferences.",
+        "Add a section discussing the potential impact of this incident on Air India's reputation and operations, particularly in relation to its efforts to attract NRI travelers, who may be more sensitive to safety issues.",
+        "Include a brief overview of the regulatory environment for aviation safety in India, particularly how it compares to international standards, to give readers a better understanding of the implications of this incident."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Directorate General of Civil Aviation (DGCA) regarding the investigation or any statements made about the incident to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "8a178cf5-1ff1-4051-b9c9-574b808892dc",
+    "headline": "Indian Universities Nearly Quintuple Presence in QS World Rankings Since 2015 as",
+    "slug": "qs-world-rankings-2027-indian-universities-fivefold-rise-iit-delhi",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights or quotes from NRIs who have studied at these universities or are involved in higher education abroad. This could provide a personal perspective on how these rankings impact the global perception of Indian education and its relevance to the diaspora.",
+        "Provide context on how these rankings affect the employability of Indian graduates in international job markets, particularly for NRIs. Discussing trends in recruitment by global companies could resonate with the audience.",
+        "Include a section that discusses the implications of these rankings for Indian students considering studying abroad, especially for NRIs who might be looking for quality education options in India versus other countries.",
+        "Mention any specific programs or initiatives that Indian universities are undertaking to attract international students, particularly NRIs, and how these rankings might influence those efforts."
+      ],
+      "embed_opportunities": [
+        "Embed the official QS World University Rankings announcement or a relevant tweet from QS that highlights the significance of these rankings for Indian universities."
+      ]
+    }
+  },
+  {
+    "id": "00c75913-6cf3-4ddf-97a4-f6736fe427cc",
+    "headline": "US Judge Dismisses Criminal Charges Against Gautam Adani After DOJ Abandons Brib",
+    "slug": "us-judge-dismisses-criminal-charges-gautam-adani-doj-bribery",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian NRIs regarding the implications of the case dismissal on their investments or perceptions of corporate governance in India. This could provide a more personal connection to the topic for the diaspora audience.",
+        "Add context about how this case and its dismissal might affect Indian businesses operating in the US, particularly for NRIs who may have stakes in similar sectors. This would help readers understand the broader implications of the case.",
+        "Consider revising the headline to make it more compelling and specific, such as 'US Judge Dismisses Charges Against Gautam Adani: Implications for Indian Diaspora Investors and Corporate Governance'. This would draw in readers interested in both the legal aspect and its relevance to the Indian community abroad.",
+        "Include a brief section discussing the potential impact of this case on US-India relations, especially in the context of foreign investment and trade, which would be relevant to NRIs concerned about economic ties between the two countries."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOJ statement regarding the dismissal of the case to provide readers with direct access to the government's perspective on the matter."
+      ]
+    }
+  },
+  {
+    "id": "02ef9808-a776-44b3-a7b8-c84f2b47e9ef",
+    "headline": "Flash Floods Rip Apart Bridge in Uttarakhand's Niti Valley, BRO Driver Missing",
+    "slug": "uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how the flooding and infrastructure issues in Uttarakhand may affect NRIs who have family ties or property in the region. This could include insights on how they can assist or stay informed about the situation.",
+        "Provide more context about the significance of the Niti Valley and its strategic importance, particularly in relation to the India-China border. This would help readers understand why the bridge collapse is not just a local issue but has broader implications.",
+        "Clarify the timeline of events regarding the floods and the response efforts. A brief timeline could help readers grasp the urgency and scale of the situation, especially for those with connections to the area.",
+        "Include quotes or statements from local officials or experts on the ground to provide a human element to the story and enhance its depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet regarding the orange alert for Uttarakhand to provide readers with real-time updates and authoritative information on the weather situation."
+      ]
+    }
+  }
+]

@@ -4122,16 +4122,6 @@
    "priority": 2
   },
   {
-   "subject": "IRGC",
-   "subject_type": "thing",
-   "tags": [
-    "irgc"
-   ],
-   "first_seen": "2026-07-08T10:29:24Z",
-   "article_id": "c0c8ab3d-41fd-4c44-9886-c279659f6b49",
-   "priority": 3
-  },
-  {
    "subject": "air raid",
    "subject_type": "thing",
    "tags": [
@@ -7392,160 +7382,10 @@
    "priority": 3
   },
   {
-   "subject": "open source ai",
-   "subject_type": "thing",
-   "tags": [
-    "open source ai"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "22e38fa8-b9b4-4de9-96d0-f17e2302488e",
-   "priority": 3
-  },
-  {
-   "subject": "large language models",
-   "subject_type": "thing",
-   "tags": [
-    "large language models"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "22e38fa8-b9b4-4de9-96d0-f17e2302488e",
-   "priority": 3
-  },
-  {
-   "subject": "Gulf crisis",
-   "subject_type": "thing",
-   "tags": [
-    "gulf crisis"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "02b65e1c-3f8a-4cc7-88c9-b6b7d5adbce5",
-   "priority": 3
-  },
-  {
-   "subject": "ALPA",
-   "subject_type": "thing",
-   "tags": [
-    "alpa"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "02b65e1c-3f8a-4cc7-88c9-b6b7d5adbce5",
-   "priority": 3
-  },
-  {
-   "subject": "EASA",
-   "subject_type": "thing",
-   "tags": [
-    "easa"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "02b65e1c-3f8a-4cc7-88c9-b6b7d5adbce5",
-   "priority": 3
-  },
-  {
-   "subject": "flight safety",
-   "subject_type": "thing",
-   "tags": [
-    "flight safety"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "02b65e1c-3f8a-4cc7-88c9-b6b7d5adbce5",
-   "priority": 3
-  },
-  {
-   "subject": "Middle East conflict",
-   "subject_type": "thing",
-   "tags": [
-    "middle east conflict"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "02b65e1c-3f8a-4cc7-88c9-b6b7d5adbce5",
-   "priority": 3
-  },
-  {
-   "subject": "Rishab Rikhiram Sharma",
-   "subject_type": "thing",
-   "tags": [
-    "rishab rikhiram sharma"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "e0b5e101-4c22-43aa-9ba1-a0c71bd77fff",
-   "priority": 3
-  },
-  {
-   "subject": "Oscar",
-   "subject_type": "thing",
-   "tags": [
-    "oscar"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "e0b5e101-4c22-43aa-9ba1-a0c71bd77fff",
-   "priority": 3
-  },
-  {
-   "subject": "sitar",
-   "subject_type": "thing",
-   "tags": [
-    "sitar"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "e0b5e101-4c22-43aa-9ba1-a0c71bd77fff",
-   "priority": 3
-  },
-  {
-   "subject": "Hans Zimmer",
-   "subject_type": "thing",
-   "tags": [
-    "hans zimmer"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "e0b5e101-4c22-43aa-9ba1-a0c71bd77fff",
-   "priority": 3
-  },
-  {
-   "subject": "coast guard",
-   "subject_type": "thing",
-   "tags": [
-    "coast guard"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "0f303a87-9780-488a-b6f9-adb9495f6ddb",
-   "priority": 3
-  },
-  {
-   "subject": "taiwan strait",
-   "subject_type": "thing",
-   "tags": [
-    "taiwan strait"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "0f303a87-9780-488a-b6f9-adb9495f6ddb",
-   "priority": 3
-  },
-  {
-   "subject": "maritime security",
-   "subject_type": "thing",
-   "tags": [
-    "maritime security"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "0f303a87-9780-488a-b6f9-adb9495f6ddb",
-   "priority": 3
-  },
-  {
    "subject": "Dimple Yadav",
    "subject_type": "thing",
    "tags": [
     "dimple yadav"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "b6b0ac7f-1475-460f-875e-ff877accaea4",
-   "priority": 3
-  },
-  {
-   "subject": "Jantar Mantar",
-   "subject_type": "thing",
-   "tags": [
-    "jantar mantar"
    ],
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "b6b0ac7f-1475-460f-875e-ff877accaea4",

@@ -450,6 +450,9 @@ Also assign the best category for each topic:
 immigration, technology, entertainment, sports, markets-finance, food, travel, lifestyle-health, nri-world, news
 
 CATEGORY RULES — prevent common misclassification:
+- "news" = India domestic politics & government, major geopolitics (wars, diplomacy, summits, UN), India-US/UK bilateral relations, major crime/justice, national security, disasters, elections, major policy changes that don't fit a specific category. Use "news" for big-picture stories — if it would be on the front page of a newspaper, it's probably "news."
+- "nri-world" = stories specifically about diaspora life, NRI achievements, community events, cultural identity abroad, Indian-origin people in foreign countries, diaspora organizations. NOT a catch-all for India stories.
+- When in doubt between "news" and "nri-world": if the story is about India or geopolitics, use "news". If it's about Indians living abroad or diaspora-specific issues, use "nri-world".
 - "box office" = entertainment (NOT immigration, even though it contains "office")
 - "ICE" = immigration ONLY when referring to Immigration and Customs Enforcement. "ice cream", "icy conditions" = NOT immigration
 - "OPT" = immigration ONLY when referring to Optional Practical Training. "opt out", "opted", "option" = NOT immigration
@@ -620,6 +623,9 @@ def main():
     # ── Step 1: Load pending V3 topics ────────────────────────────────────────
     TOPIC_WINDOW_DAYS = 3
     topic_cutoff = (datetime.now(timezone.utc) - timedelta(days=TOPIC_WINDOW_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    # Cooldown: skip topics evaluated in the last 6 hours to avoid re-scoring too soon,
+    # but re-evaluate older pending topics that were selected but never written.
+    eval_cooldown = (datetime.now(timezone.utc) - timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%SZ")
     print(f"\n── Step 1: Loading pending V3 topics (last {TOPIC_WINDOW_DAYS}d) ──")
     topics = []
     offset = 0
@@ -628,7 +634,7 @@ def main():
             "select": "id,canonical_title,signal_count,status,created_at,last_signal_at",
             "last_signal_at": f"gte.{topic_cutoff}",
             "status": "eq.pending",
-            "evaluated_at": "is.null",  # only topics not yet evaluated
+            "or": f"(evaluated_at.is.null,evaluated_at.lt.{eval_cooldown})",
             "order": "last_signal_at.desc",
         }, range_header=f"{offset}-{offset+999}")
         if not page or isinstance(page, dict):
@@ -1133,6 +1139,18 @@ def main():
         else:
             capped_ids.append(c["topic_id"])
             topic_statuses[c["topic_id"]] = "rejected"
+
+    # ── Step 5b: News starvation guard ────────────────────────────────────────
+    # If no "news" candidates were selected, promote the highest-scoring
+    # nri-world candidate to "news" so the homepage carousel stays fresh.
+    if cat_counts.get("news", 0) == 0:
+        nri_in_balanced = [c for c in balanced if c["category"] == "nri-world"]
+        if nri_in_balanced:
+            best_nri = max(nri_in_balanced, key=lambda c: c.get("llm_score", 0))
+            best_nri["category"] = "news"
+            cat_counts["news"] = 1
+            cat_counts["nri-world"] = cat_counts.get("nri-world", 1) - 1
+            print(f"  ⚠ No news candidates — promoted nri-world → news: {best_nri['title'][:70]}")
 
     # ── Step 6: Final LLM dedup on capped candidates ─────────────────────────
     if len(balanced) > 1 and (OPENAI_KEY or GOOGLE_AI_KEY):
