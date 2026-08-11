@@ -1,0 +1,77 @@
+[
+  {
+    "id": "881b3f96-47bf-48b5-b337-5784135e9f95",
+    "headline": "Millions of Americans Discover Canadian Citizenship Pathway as Birthright Restri",
+    "slug": "millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by incorporating personal stories or quotes from NRIs who are considering applying for Canadian citizenship due to Bill C-3. This could provide a more relatable perspective for the site's audience.",
+        "Include a section that discusses the implications of dual citizenship for NRIs, particularly how it might affect their ties to India and any potential legal or financial considerations they should be aware of when pursuing Canadian citizenship.",
+        "Add context about how this change in Canadian law might influence the broader immigration landscape for NRIs, especially in light of political changes in the U.S. and India."
+      ],
+      "embed_opportunities": [
+        "Embed the official Canadian government announcement or tweet regarding Bill C-3 to provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "f9343b82-453b-4428-87f8-ae4b9ec823a1",
+    "headline": "GodLike and Orangutan Give India Two Teams in PUBG Mobile World Cup Grand Finals",
+    "slug": "godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or insights from Indian gamers or esports fans living abroad, discussing their perspectives on India's representation in the PUBG Mobile World Cup and its significance for the NRI community.",
+        "Provide context on how the success of these teams impacts the Indian gaming community globally, including any initiatives or support systems for Indian gamers in the diaspora.",
+        "Include a brief section on the history of Indian teams in international esports competitions to give readers a sense of progress and significance of this achievement.",
+        "Clarify the implications of the Smash Rule mentioned in the article, as readers may want to understand how it affects gameplay and strategy."
+      ],
+      "embed_opportunities": [
+        "Embed the official PUBG Mobile World Cup Twitter account's updates or highlights to provide real-time information and engage readers with live content."
+      ]
+    }
+  },
+  {
+    "id": "dac3842b-138a-4280-9435-a9ad49c657d2",
+    "headline": "Indian-Origin Teenagers Shreyas Royal and Bodhana Sivanandan Win 2026 British Ch",
+    "slug": "indian-origin-teenagers-shreyas-royal-bodhana-sivanandan-win-2026-british-chess-championships",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Shreyas Royal and Bodhana Sivanandan about their Indian heritage and how it has influenced their chess careers. This would provide a personal connection for the NRI audience.",
+        "Provide additional context about the significance of the British Chess Championships in the global chess landscape, especially for Indian-origin players. This could include statistics on the representation of Indian players in international chess or mention notable Indian chess players who have influenced the current generation.",
+        "Consider restructuring the article to first introduce the achievements of both players, followed by a deeper dive into their backgrounds and the challenges they faced as children of Indian immigrants. This would create a more engaging narrative flow.",
+        "Include a brief section on the impact of the Indian diaspora on chess in the UK, highlighting how Indian culture and community support have contributed to the success of players like Royal and Sivanandan."
+      ],
+      "embed_opportunities": [
+        "Embed the official British Chess Championships tweet announcing the winners, as it would provide authoritative context and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "af0dc720-8cd9-4f24-be73-bce05feccec5",
+    "headline": "DOL Prevailing Wage Rule Could Price Out Smaller Employers and Immigrants",
+    "slug": "dol-prevailing-wage-rule-could-price-out-smaller-employers-and-immigrants",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including specific examples or quotes from Indian NRIs who might be affected by the DOL's proposed rule. This could provide a personal touch and highlight the implications for the Indian community abroad.",
+        "Add context regarding how this rule could impact the job market for Indian professionals in the U.S., especially in tech and healthcare sectors where many NRIs work. This would provide a clearer picture of the stakes involved.",
+        "Consider incorporating a section on potential alternatives or solutions that smaller employers might pursue to adapt to these new wage requirements, which could be particularly relevant for the NRI audience.",
+        "Clarify the timeline for implementation of the proposed rule and any potential changes that could occur during the finalization process, as this information is crucial for NRIs planning their career moves."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOL announcement or a relevant USCIS tweet about the proposed rule to provide readers with direct access to primary sources."
+      ]
+    }
+  }
+]
