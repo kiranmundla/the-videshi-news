@@ -1,5 +1,29 @@
 [
   {
+    "slug": "andhra-student-dileep-kumar-bungatavula-killed-ohio-head-on-crash",
+    "headline": "Andhra Pradesh Student Dileep Kumar Bungatavula Killed in Ohio After Pick-Up Truck Rams His Car Head-On",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-student-dileep-kumar-bungatavula-killed-ohio-head-on-crash.jpg"
+  },
+  {
+    "slug": "us-judge-dismisses-criminal-charges-gautam-adani-doj-bribery",
+    "headline": "US Judge Dismisses Criminal Charges Against Gautam Adani After DOJ Abandons Bribery Case",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-judge-dismisses-criminal-charges-gautam-adani-doj-bribery.jpg"
+  },
+  {
+    "slug": "air-india-phuket-delhi-altitude-loss-pilot-drug-test-airbus-probe",
+    "headline": "Airbus Sends Specialists as Air India Pilot Faces Drug Test After Flight Drops 300 Feet",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-phuket-delhi-altitude-loss-pilot-drug-test-airbus-probe.jpg"
+  },
+  {
+    "slug": "uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing",
+    "headline": "Flash Floods Rip Apart Bridge in Uttarakhand's Niti Valley, BRO Driver Missing",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing.jpg"
+  },
+  {
     "slug": "india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026",
     "headline": "India Claims 17 Medals at Inaugural U-23 Commonwealth Fencing Championship in Lagos",
     "category": "sports",
@@ -82,35 +106,5 @@
     "headline": "Doodhi Halwa: How to Make the Classic Bottle Gourd Dessert Without Khoya",
     "category": "food",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/doodhi-halwa-lauki-bottle-gourd-recipe-no-khoya.jpg"
-  },
-  {
-    "slug": "deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy",
-    "headline": "Indian Physicist Deepak Dhar Wins 2026 Dirac Medal, Joining Hawking and Witten in Elite Physics Pantheon",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/deepak-dhar-wins-2026-dirac-medal-indian-physicist-joins-hawking-legacy.jpg"
-  },
-  {
-    "slug": "ashna-tambe-becomes-penns-first-indian-american-womens-basketball-player",
-    "headline": "Ashna Tambe Becomes Penn's First Indian American Women's Basketball Player",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashna-tambe-becomes-penns-first-indian-american-womens-basketball-player.jpg"
-  },
-  {
-    "slug": "india-flags-ultra-processed-food-health-risks-as-icmr-data-shows-rising-ncd-burden",
-    "headline": "India Flags Ultra-Processed Food Health Risks as ICMR Data Shows Rising NCD Burden",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-flags-ultra-processed-food-health-risks-as-icmr-data-shows-rising-ncd-burden.jpg"
-  },
-  {
-    "slug": "explosive-drone-at-german-airport-and-bulgaria-blast-raise-nato-security-alarm",
-    "headline": "Explosive Drone at German Airport and Bulgaria Blast Raise NATO Security Alarm",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/explosive-drone-at-german-airport-and-bulgaria-blast-raise-nato-security-alarm.jpg"
-  },
-  {
-    "slug": "real-iaf-heroes-behind-netflix-operation-safed-sagar",
-    "headline": "The Real IAF Heroes Who Inspired Netflix's Operation Safed Sagar",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/real-iaf-heroes-behind-netflix-operation-safed-sagar.jpg"
   }
 ]
