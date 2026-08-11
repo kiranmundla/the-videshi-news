@@ -486,13 +486,13 @@ def upsert_events(events: list) -> int:
     total = 0
     for i in range(0, len(events), batch_size):
         batch = events[i:i + batch_size]
-        code, body = curl_post_json(f"{REST}/events", batch)
+        code, body = curl_post_json(f"{REST}/events?on_conflict=source,source_id", batch)
         if code in (200, 201):
             total += len(batch)
         else:
             print(f"  ⚠ Upsert failed ({code}): {body[:300]}")
             for ev in batch:
-                c2, b2 = curl_post_json(f"{REST}/events", [ev])
+                c2, b2 = curl_post_json(f"{REST}/events?on_conflict=source,source_id", [ev])
                 if c2 in (200, 201):
                     total += 1
                 else:
@@ -541,6 +541,7 @@ def main():
         print(f"📊 Existing: {len(existing_ids)} eknazar IDs, {len(existing_fps)} fingerprints")
 
     all_events = []
+    inserted_ids = set()  # Track source_ids inserted this run
 
     print(f"\n🔍 Scraping eknazar.com ({len(cities)} cities)...\n")
 
@@ -553,13 +554,15 @@ def main():
         # Add fingerprints
         add_fingerprints(events)
 
-        # Filter out already-existing events
+        # Filter out already-existing events (DB + this run)
         new_events = []
         for e in events:
-            if e["source_id"] in existing_ids:
+            sid = e["source_id"]
+            if sid in existing_ids or sid in inserted_ids:
                 continue
             if e.get("content_fingerprint") in existing_fps:
                 continue
+            inserted_ids.add(sid)
             new_events.append(e)
 
         if not new_events:
