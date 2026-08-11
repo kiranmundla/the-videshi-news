@@ -164,6 +164,12 @@ case "$1" in
       python3 -u scrape-allevents.py --day \$DAY"
     ;;
 
+  scrape-eknazar)
+    run_job "scrape-eknazar" "cd $REPO && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      python3 -u pipeline/scrape-eknazar.py"
+    ;;
+
   media-library)
     run_job "media-library" "cd $REPO/pipeline && \
       set -a; source $ENV/.env.supabase; set +a; \

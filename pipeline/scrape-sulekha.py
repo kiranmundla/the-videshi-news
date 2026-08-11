@@ -90,6 +90,9 @@ CITIES = [
     {"slug": "cary", "display": "Cary", "state": "NC", "st": "North Carolina", "zip": "27511", "lat": 35.7915, "lng": -78.7811},
     {"slug": "san-antonio", "display": "San Antonio", "state": "TX", "st": "Texas", "zip": "78201", "lat": 29.4241, "lng": -98.4936},
     {"slug": "richmond", "display": "Richmond", "state": "VA", "st": "Virginia", "zip": "23218", "lat": 37.5407, "lng": -77.4360},
+    {"slug": "fairfax", "display": "Fairfax", "state": "VA", "st": "Virginia", "zip": "22030", "lat": 38.8462, "lng": -77.3064},
+    {"slug": "herndon", "display": "Herndon", "state": "VA", "st": "Virginia", "zip": "20170", "lat": 38.9696, "lng": -77.3861},
+    {"slug": "ashburn", "display": "Ashburn", "state": "VA", "st": "Virginia", "zip": "20147", "lat": 39.0438, "lng": -77.4874},
     # Batch 5 (Sat)
     {"slug": "houston", "display": "Houston", "state": "TX", "st": "Texas", "zip": "77001", "lat": 29.7604, "lng": -95.3698},
     {"slug": "philadelphia", "display": "Philadelphia", "state": "PA", "st": "Pennsylvania", "zip": "19101", "lat": 39.9526, "lng": -75.1652},
@@ -106,6 +109,9 @@ CITIES = [
     {"slug": "pittsburgh", "display": "Pittsburgh", "state": "PA", "st": "Pennsylvania", "zip": "15201", "lat": 40.4406, "lng": -79.9959},
     {"slug": "cincinnati", "display": "Cincinnati", "state": "OH", "st": "Ohio", "zip": "45201", "lat": 39.1031, "lng": -84.5120},
     {"slug": "hartford", "display": "Hartford", "state": "CT", "st": "Connecticut", "zip": "06101", "lat": 41.7658, "lng": -72.6734},
+    {"slug": "plainsboro", "display": "Plainsboro", "state": "NJ", "st": "New Jersey", "zip": "08536", "lat": 40.3487, "lng": -74.5946},
+    {"slug": "iselin", "display": "Iselin", "state": "NJ", "st": "New Jersey", "zip": "08830", "lat": 40.5751, "lng": -74.3223},
+    {"slug": "piscataway", "display": "Piscataway", "state": "NJ", "st": "New Jersey", "zip": "08854", "lat": 40.5526, "lng": -74.4610},
 ]
 
 # ---------------------------------------------------------------------------
