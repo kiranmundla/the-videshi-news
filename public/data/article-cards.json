@@ -1,9 +1,33 @@
 [
   {
+    "slug": "india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026",
+    "headline": "India Claims 17 Medals at Inaugural U-23 Commonwealth Fencing Championship in Lagos",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026.jpg"
+  },
+  {
+    "slug": "millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions",
+    "headline": "Millions of Americans Discover Canadian Citizenship Pathway as Birthright Restrictions Loom",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions.jpg"
+  },
+  {
     "slug": "godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals",
     "headline": "GodLike and Orangutan Give India Two Teams in PUBG Mobile World Cup Grand Finals for the First Time",
     "category": "sports",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/godlike-orangutan-india-two-teams-pubg-mobile-world-cup-grand-finals.jpg"
+  },
+  {
+    "slug": "indian-origin-teenagers-shreyas-royal-bodhana-sivanandan-win-2026-british-chess-championships",
+    "headline": "Indian-Origin Teenagers Shreyas Royal and Bodhana Sivanandan Win 2026 British Chess Championships",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-origin-teenagers-shreyas-royal-bodhana-sivanandan-win-2026-british-chess-championships.jpg"
+  },
+  {
+    "slug": "dol-prevailing-wage-rule-could-price-out-smaller-employers-and-immigrants",
+    "headline": "DOL Prevailing Wage Rule Could Price Out Smaller Employers and Immigrants",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dol-prevailing-wage-rule-could-price-out-smaller-employers-and-immigrants.jpg"
   },
   {
     "slug": "r-madhavan-defends-dhurandhar-rocketry-being-indian-cannot-be-crime",
@@ -34,6 +58,12 @@
     "headline": "Foreign Investors Turn Buyers in Indian IT Stocks for First Time in 2026",
     "category": "markets-finance",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/foreign-investors-turn-buyers-indian-it-stocks-first-time-2026.jpg"
+  },
+  {
+    "slug": "air-india-restore-international-routes-september-after-summer-cuts",
+    "headline": "Air India to Restore Most International Routes From September After Summer-Long Cuts",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-restore-international-routes-september-after-summer-cuts.jpg"
   },
   {
     "slug": "jay-shah-bcci-centre-of-excellence-bengaluru-40-acres-cricket",
@@ -82,29 +112,5 @@
     "headline": "The Real IAF Heroes Who Inspired Netflix's Operation Safed Sagar",
     "category": "entertainment",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/real-iaf-heroes-behind-netflix-operation-safed-sagar.jpg"
-  },
-  {
-    "slug": "brett-lee-names-kkr-teammate-jacques-kallis-greatest-cricketer",
-    "headline": "Brett Lee Names Former KKR Teammate Jacques Kallis as Greatest Cricketer of All Time",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/brett-lee-names-kkr-teammate-jacques-kallis-greatest-cricketer.jpg"
-  },
-  {
-    "slug": "jefferies-drops-hdfc-bank-adds-mcx-lenskart-india-portfolio",
-    "headline": "Jefferies Drops HDFC Bank, Adds MCX and Lenskart in India Portfolio Overhaul",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jefferies-drops-hdfc-bank-adds-mcx-lenskart-india-portfolio.jpg"
-  },
-  {
-    "slug": "spacex-launches-24-starlink-satellites-california-90th-falcon-9-2026",
-    "headline": "SpaceX Launches 24 Starlink Satellites From California in 90th Falcon 9 Mission of 2026",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-launches-24-starlink-satellites-california-90th-falcon-9-2026.jpg"
-  },
-  {
-    "slug": "india-tells-meta-comply-with-indian-law-not-global-policies",
-    "headline": "India Tells Meta to Follow Indian Law, Not Just Its Own Global Policies",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-tells-meta-comply-with-indian-law-not-global-policies.jpg"
   }
 ]
