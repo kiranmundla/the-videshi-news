@@ -1,122 +1,98 @@
 [
   {
-    "slug": "manu-rishi-chadha-musharraf-operation-safed-sagar-netflix",
-    "headline": "Meet Manu Rishi Chadha, the Filmfare-Winning Writer Who Plays Musharraf in Netflix's Operation Safed Sagar",
+    "slug": "cuttack-gang-rape-odisha-police-investigation",
+    "headline": "Police Form Multiple Teams to Nab Suspects in Odisha Gang Rape Case",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cuttack-gang-rape-odisha-police-investigation.jpg"
+  },
+  {
+    "slug": "nebius-shares-surge-ai-cloud-revenue-beats-estimates",
+    "headline": "Nebius Shares Surge 22 Percent After AI Cloud Revenue Beats Estimates",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nebius-shares-surge-ai-cloud-revenue-beats-estimates.jpg"
+  },
+  {
+    "slug": "tata-motors-q1-fy27-standalone-profit-rises-revenue-price-hikes",
+    "headline": "Tata Motors Reports Strong Q1 as Demand Holds Firm Despite Commodity Headwinds",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tata-motors-q1-fy27-standalone-profit-rises-revenue-price-hikes.jpg"
+  },
+  {
+    "slug": "ashish-yadav-javelin-silver-medal-world-u20-job-search",
+    "headline": "World U-20 Silver Medallist Ashish Yadav Still Searching for a Job as Father Sells Milk",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashish-yadav-javelin-silver-medal-world-u20-job-search.jpg"
+  },
+  {
+    "slug": "csk-head-coach-search-ashwin-backs-dhoni-mccullum-fleming-england",
+    "headline": "CSK Begin Coach Hunt as Ashwin Backs Dhoni and McCullum Emerges as Contender",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/csk-head-coach-search-ashwin-backs-dhoni-mccullum-fleming-england.jpg"
+  },
+  {
+    "slug": "bank-of-america-jio-credit-1-9-billion-stake-india",
+    "headline": "Bank of America to Acquire 49.9% Stake in Jio Credit for $1.9 Billion",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bank-of-america-jio-credit-1-9-billion-stake-india.jpg"
+  },
+  {
+    "slug": "yash-radhika-pandit-10-year-engagement-anniversary-video",
+    "headline": "Yash and Radhika Pandit Mark 10 Years of Engagement With Unseen Ring Exchange Video",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/manu-rishi-chadha-musharraf-operation-safed-sagar-netflix.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-radhika-pandit-10-year-engagement-anniversary-video.jpg"
   },
   {
-    "slug": "chandrasekaran-resigns-tata-sons-chairman-noel-tata-feud",
-    "headline": "Chandrasekaran Resigns as Tata Sons Chairman After Six-Month Feud With Noel Tata",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chandrasekaran-resigns-tata-sons-chairman-noel-tata-feud.jpg"
-  },
-  {
-    "slug": "air-india-pilot-confirmatory-test-marijuana-phuket-crew-complaint",
-    "headline": "Air India Pilot Confirmed Positive for Marijuana as Crew Reveals Erratic Cockpit Behavior",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-pilot-confirmatory-test-marijuana-phuket-crew-complaint.jpg"
-  },
-  {
-    "slug": "us-revokes-175000-visas-trump-immigration-crackdown",
-    "headline": "US Has Revoked More Than 175,000 Visas Under Trump, State Department Says",
+    "slug": "dhs-expands-h1b-l1-biometric-fees-same-employer-extensions",
+    "headline": "DHS Expands $4,000 H-1B and $4,500 L-1 Fees to Cover Same-Employer Extensions",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-revokes-175000-visas-trump-immigration-crackdown.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhs-expands-h1b-l1-biometric-fees-same-employer-extensions.jpg"
   },
   {
-    "slug": "trader-joes-frozen-garlic-naan-cult-favorite",
-    "headline": "Why Trader Joe's $2.99 Frozen Garlic Naan Has Become a Cult Favorite",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trader-joes-frozen-garlic-naan-cult-favorite.jpg"
+    "slug": "openai-friction-email-employees-sam-altman",
+    "headline": "OpenAI Has a Special Email for Employees to Flag Problems Directly to Leadership",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-friction-email-employees-sam-altman.jpg"
   },
   {
-    "slug": "michigan-indian-americans-honor-stephen-knapp-ihpc-2026",
-    "headline": "Michigan Indian Americans Honor Padma Shri Recipient Stephen Knapp at IHPC 2026",
+    "slug": "jharkhand-student-protests-tear-gas-jpsc-chief-arrested",
+    "headline": "Police Fire Tear Gas on Jharkhand Student Marchers as Ex-JPSC Chief Arrested",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/michigan-indian-americans-honor-stephen-knapp-ihpc-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jharkhand-student-protests-tear-gas-jpsc-chief-arrested.jpg"
   },
   {
-    "slug": "sawan-vrat-paneer-sabji-no-onion-no-garlic-recipe",
-    "headline": "Sawan Fasting? This No-Onion, No-Garlic Paneer Sabji Is Ready in 20 Minutes",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sawan-vrat-paneer-sabji-no-onion-no-garlic-recipe.jpg"
+    "slug": "openai-coo-brad-lightcap-leaves-new-venture",
+    "headline": "OpenAI COO Brad Lightcap Leaves After Eight Years to Launch New Venture",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-coo-brad-lightcap-leaves-new-venture.jpg"
   },
   {
-    "slug": "air-india-pilot-tests-positive-marijuana-phuket-flight",
-    "headline": "Air India Pilot Tests Positive for Marijuana After Phuket Flight Dropped 300 Feet",
+    "slug": "uk-parliament-demands-probe-pakistan-pok-crackdown",
+    "headline": "UK Parliament Demands Probe as Pakistan's PoK Crackdown Kills Over 40 Civilians",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-pilot-tests-positive-marijuana-phuket-flight.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-parliament-demands-probe-pakistan-pok-crackdown.jpg"
   },
   {
-    "slug": "air-india-mumbai-toronto-nonstop-winter-2026",
-    "headline": "Air India Launches Mumbai-Toronto Nonstop, Adds 4,400 Monthly Seats on India-Canada Routes",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-mumbai-toronto-nonstop-winter-2026.jpg"
+    "slug": "h1b-cottage-industry-residential-worksites-reveal-visa-program-abuse",
+    "headline": "Residential Worksites Reveal H-1B Visa Program Has Become a Cottage Industry",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-cottage-industry-residential-worksites-reveal-visa-program-abuse.jpg"
   },
   {
-    "slug": "andhra-pradesh-suryalanka-beach-98-crore-tourism-push",
-    "headline": "Andhra Pradesh Pours ₹98 Crore Into Suryalanka Beach in Push to Build India's Eastern Goa",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-pradesh-suryalanka-beach-98-crore-tourism-push.jpg"
-  },
-  {
-    "slug": "jainendra-jain-first-indian-origin-physicist-wolf-prize",
-    "headline": "Jainendra Jain Becomes First Indian-Origin Physicist to Win Wolf Prize",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jainendra-jain-first-indian-origin-physicist-wolf-prize.jpg"
-  },
-  {
-    "slug": "ayurveda-conference-udupi-autoimmune-disorders-2026",
-    "headline": "International Ayurveda Conference in Udupi to Tackle Autoimmune Disorders",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ayurveda-conference-udupi-autoimmune-disorders-2026.jpg"
-  },
-  {
-    "slug": "benne-dosa-brand-bengaluru-couple-350-crore",
-    "headline": "How a Bengaluru Couple's Homesickness Built India's Hottest Dosa Brand",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/benne-dosa-brand-bengaluru-couple-350-crore.jpg"
-  },
-  {
-    "slug": "india-russian-oil-imports-record-july-2026",
-    "headline": "India's Russian Oil Imports Hit Record 2.8 Million Barrels Per Day in July",
+    "slug": "india-plans-gold-monetisation-revamp-unlock-5-trillion-household-reserves",
+    "headline": "India Plans Gold Monetisation Revamp to Unlock $5 Trillion in Household Reserves",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-russian-oil-imports-record-july-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-plans-gold-monetisation-revamp-unlock-5-trillion-household-reserves.jpg"
   },
   {
-    "slug": "air-india-australia-premium-upgrades-daily-flights",
-    "headline": "Air India Doubles Down on Australia With Premium Upgrades and Daily Flights",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-australia-premium-upgrades-daily-flights.jpg"
+    "slug": "tcs-investigates-data-leak-claims-confirms-no-breach",
+    "headline": "TCS Investigates Dark Web Data Leak Claims, Confirms No Breach of Its Systems",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-investigates-data-leak-claims-confirms-no-breach.jpg"
   },
   {
-    "slug": "india-summons-air-india-ceo-phuket-flight-probe",
-    "headline": "India Summons Air India CEO After Phuket Flight's Sudden Altitude Loss",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-summons-air-india-ceo-phuket-flight-probe.jpg"
-  },
-  {
-    "slug": "ibm-together-ai-240-million-nvidia-inference-cluster",
-    "headline": "IBM and Together AI Sign $240 Million Deal for Nvidia-Powered AI Cluster",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ibm-together-ai-240-million-nvidia-inference-cluster.jpg"
-  },
-  {
-    "slug": "tsmc-sony-4-7-billion-image-sensor-joint-venture",
-    "headline": "TSMC and Sony Form $4.7 Billion Joint Venture for Next-Gen Image Sensors",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tsmc-sony-4-7-billion-image-sensor-joint-venture.jpg"
-  },
-  {
-    "slug": "india-naval-chief-mauritius-defence-africa-outreach",
-    "headline": "India's Naval Chief Visits Mauritius as Defence Outreach to Africa Expands",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-naval-chief-mauritius-defence-africa-outreach.jpg"
-  },
-  {
-    "slug": "nvidia-wall-street-500-billion-ai-infrastructure",
-    "headline": "Nvidia Partners With Wall Street Giants to Raise $500 Billion for AI Infrastructure",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-wall-street-500-billion-ai-infrastructure.jpg"
+    "slug": "india-top-family-businesses-valued-1-6-trillion-exceed-saudi-gdp",
+    "headline": "India's Top 300 Family Businesses Now Worth $1.6 Trillion, Exceeding Saudi Arabia's GDP",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-top-family-businesses-valued-1-6-trillion-exceed-saudi-gdp.jpg"
   }
 ]
