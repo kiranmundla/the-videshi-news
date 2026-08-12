@@ -937,19 +937,13 @@ def find_inline_images(headline, body, hero_url="", category=None):
     photos, institutional logos, geographic maps, landmark filler).
     Pull quotes remain the primary body enrichment for non-visual articles.
     """
-    # Choose entity source based on category
-    if category and category in _VISUAL_CATEGORIES:
-        entities = extract_visual_subjects(headline, body, category)
-        if not entities:
-            # Fallback to regex extractor
-            entities = extract_entities(headline, body)
-        max_images = 3
-    else:
-        # Non-visual categories: skip body images entirely.
-        # The regex entity extractor produces too many wrong Wikipedia images
-        # (DEA sheets, Africa maps, cemetery photos, wrong-person portraits).
-        # Pull quotes are the body enrichment for these categories.
-        return []
+    # DISABLED: Wikipedia body images produce too many wrong results across
+    # ALL categories — 17 wrong images caught in a single day (Aug 12 2026).
+    # Even GPT-based subject extraction for visual categories hits disambiguation
+    # issues (TV show names → military units, person name mismatches, generic
+    # phrases → unrelated diagrams). Pull quotes + social embeds are the body
+    # enrichment now. Hero images are unaffected.
+    return []
     results = []
     hero_norm = (hero_url or "").split("?")[0].lower()
     # Extract hero filename for cross-host comparison (Supabase vs Wikimedia)
