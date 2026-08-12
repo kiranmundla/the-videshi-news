@@ -504,13 +504,15 @@ def fetch_youtube_thumbnail(entity_name, headline):
         print(f"    ⚠ YouTube thumbnail search error: {e}")
         return None, None, None
 
-def fetch_wikipedia_image(entity_name, article_context=None):
+def fetch_wikipedia_image(entity_name, article_context=None, article_headline=None):
     """Fetch image from Wikipedia REST API for a person/entity.
     Returns image URL or None.
     
     If article_context (headline or body snippet) is provided, validates that
     the Wikipedia page is relevant — not a disambiguation page, generic concept,
     or landmark only geographically related to the article.
+    article_headline, if provided, is checked for place/landmark entities —
+    the article must be *about* the place, not just mentioning it.
     """
     if not entity_name:
         return None
@@ -527,6 +529,18 @@ def fetch_wikipedia_image(entity_name, article_context=None):
         img = (data.get("originalimage") or {}).get("source") or \
               (data.get("thumbnail") or {}).get("source")
         if not img:
+            return None
+
+        # ── Filename-vs-entity cross-check ──
+        # Wikipedia sometimes returns a page with a photo of the wrong
+        # person (e.g., search "Devendra Nath Mahto" → file Sanjay_Seth.jpg).
+        _fname_raw = os.path.basename(img).split(".")[0].replace("_", " ")
+        _ent_parts = {w.lower() for w in entity_name.split() if len(w) > 2}
+        _fname_name_parts = {w.lower() for w in _fname_raw.split()
+                             if len(w) > 2 and w[0].isupper()}
+        if _fname_name_parts and not (_fname_name_parts & _ent_parts):
+            print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — "
+                  f"filename '{_fname_raw}' looks like a different entity")
             return None
 
         # ── Relevance guards (mirrors enrich-articles.py) ──
@@ -556,6 +570,7 @@ def fetch_wikipedia_image(entity_name, article_context=None):
         _GENERIC_DESC_KW = {
             "newspaper", "publication", "tabloid", "magazine",
             "front page", "news agency", "media company",
+            "prize", "medal", "honour", "honor",
         }
         if wiki_desc in _GENERIC_DESCS:
             print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — generic concept: '{wiki_desc}'")
@@ -575,9 +590,15 @@ def fetch_wikipedia_image(entity_name, article_context=None):
             "stupa", "pagoda", "citadel", "fortress", "tomb",
             "residence", "house", "mansion", "hall", "complex",
             "city", "town", "village", "district", "municipality",
+            "university", "college", "institute", "school",
+            "airline", "railway", "railroad",
         }
         if article_context and any(kw in wiki_desc for kw in _PLACE_KW):
-            if entity_name.lower() not in article_context.lower():
+            # For place/landmark entities, check the HEADLINE not just body text.
+            # A person's name matching a landmark (e.g., "Margherita Fontana")
+            # shouldn't pull a fountain photo into an unrelated article.
+            check_text = (article_headline or article_context or "").lower()
+            if entity_name.lower() not in check_text:
                 print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — "
                       f"place ('{wiki_desc[:50]}') not mentioned by name in article")
                 return None

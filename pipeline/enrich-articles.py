@@ -167,12 +167,14 @@ def search_wikimedia_commons(query, limit=5):
     return []
 
 
-def fetch_wikipedia_image(subject, article_context=None):
+def fetch_wikipedia_image(subject, article_context=None, article_headline=None):
     """Get the main Wikipedia image for a subject.
 
     If article_context (headline or body snippet) is provided, validates that
     the Wikipedia page is actually about the same topic — not a disambiguation
     or generic concept page whose image has nothing to do with the article.
+    article_headline, if provided, is checked for place/landmark entities —
+    the article must be *about* the place, not just mentioning it.
     """
     try:
         encoded = quote(subject.replace(" ", "_"))
@@ -185,6 +187,23 @@ def fetch_wikipedia_image(subject, article_context=None):
             data = r.json()
             img = data.get("originalimage", {}).get("source") or data.get("thumbnail", {}).get("source")
             if not img:
+                return None
+
+            # ── Filename-vs-entity cross-check ──
+            # Wikipedia sometimes returns a page with a photo of the wrong
+            # person (e.g., search "Devendra Nath Mahto" → file Sanjay_Seth.jpg).
+            # If the filename contains a proper-name pattern that does NOT match
+            # the searched entity, reject it.
+            _fname_raw = os.path.basename(img).split(".")[0].replace("_", " ")
+            _subj_parts = {w.lower() for w in subject.split() if len(w) > 2}
+            # Extract capitalized name-like tokens from filename
+            _fname_raw = os.path.basename(img).split(".")[0].replace("_", " ")
+            _fname_name_parts = {w.lower() for w in _fname_raw.split()
+                                 if len(w) > 2 and w[0].isupper()}
+            if _fname_name_parts and not (_fname_name_parts & _subj_parts):
+                # Filename has proper-name words that don't overlap with subject
+                print(f"    ⊘ Skipping Wikipedia image for '{subject}' — "
+                      f"filename '{_fname_raw}' looks like a different entity")
                 return None
 
             # ── Relevance guard ──
@@ -224,6 +243,7 @@ def fetch_wikipedia_image(subject, article_context=None):
             _GENERIC_WIKI_DESC_KEYWORDS = {
                 "newspaper", "publication", "tabloid", "magazine",
                 "front page", "news agency", "media company",
+                "prize", "medal", "honour", "honor",
             }
             if wiki_desc in _GENERIC_WIKI_DESCRIPTIONS:
                 print(f"    ⊘ Skipping Wikipedia image for '{subject}' — generic concept: '{wiki_desc}'")
@@ -284,10 +304,16 @@ def fetch_wikipedia_image(subject, article_context=None):
                     "stupa", "pagoda", "citadel", "fortress", "tomb",
                     "residence", "house", "mansion", "hall", "complex",
                     "city", "town", "village", "district", "municipality",
+                    "university", "college", "institute", "school",
+                    "airline", "railway", "railroad",
                 }
                 if any(kw in wiki_desc for kw in _PLACE_DESC_KEYWORDS):
                     subject_lower = subject.lower()
-                    if subject_lower not in context_lower:
+                    # For place/landmark entities, check the HEADLINE not just body text.
+                    # "Margherita Fontana" (researcher) in the body doesn't mean we want
+                    # a photo of the Fontana Margherita (Italian fountain).
+                    check_text = (article_headline or article_context or "").lower()
+                    if subject_lower not in check_text:
                         print(f"    ⊘ Skipping Wikipedia image for '{subject}' — "
                               f"landmark/place ('{wiki_desc[:50]}') not mentioned by name in article")
                         return None
@@ -933,7 +959,7 @@ def find_inline_images(headline, body, hero_url="", category=None):
         if len(results) >= max_images:
             break
 
-        img_url = fetch_wikipedia_image(entity, article_context=headline + " " + body_text[:500])
+        img_url = fetch_wikipedia_image(entity, article_context=headline + " " + body_text[:500], article_headline=headline)
 
         # For visual categories, fall back to Wikimedia Commons search if
         # Wikipedia page summary has no image (e.g. lesser-known venues)
