@@ -504,9 +504,13 @@ def fetch_youtube_thumbnail(entity_name, headline):
         print(f"    ⚠ YouTube thumbnail search error: {e}")
         return None, None, None
 
-def fetch_wikipedia_image(entity_name):
+def fetch_wikipedia_image(entity_name, article_context=None):
     """Fetch image from Wikipedia REST API for a person/entity.
     Returns image URL or None.
+    
+    If article_context (headline or body snippet) is provided, validates that
+    the Wikipedia page is relevant — not a disambiguation page, generic concept,
+    or landmark only geographically related to the article.
     """
     if not entity_name:
         return None
@@ -522,9 +526,63 @@ def fetch_wikipedia_image(entity_name):
         data = json.loads(result.stdout)
         img = (data.get("originalimage") or {}).get("source") or \
               (data.get("thumbnail") or {}).get("source")
-        if img:
-            return img
-        return None
+        if not img:
+            return None
+
+        # ── Relevance guards (mirrors enrich-articles.py) ──
+        wiki_desc = (data.get("description") or "").lower()
+        wiki_type = (data.get("type") or "")
+
+        # Reject disambiguation pages
+        if wiki_type == "disambiguation" or "disambiguation" in wiki_desc or "referred to by the same term" in wiki_desc:
+            print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — disambiguation page")
+            return None
+
+        # Reject generic concept pages
+        _GENERIC_DESCS = {
+            "international competition", "competition", "sporting event",
+            "award", "awards ceremony", "trophy", "memorial",
+            "concept", "term", "phrase", "expression", "song",
+            "album", "single", "film", "television series",
+            "video game", "book", "novel", "poem",
+            "newspaper", "daily newspaper", "indian newspaper",
+            "english-language newspaper", "publication", "news media",
+            "magazine", "journal", "tabloid", "news agency",
+            "sports competition", "tournament", "cup", "league",
+            "recurring sporting event", "annual sporting event",
+            "festival", "ceremony", "event",
+            "prize", "prizes", "medal", "honour", "honor",
+        }
+        _GENERIC_DESC_KW = {
+            "newspaper", "publication", "tabloid", "magazine",
+            "front page", "news agency", "media company",
+        }
+        if wiki_desc in _GENERIC_DESCS:
+            print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — generic concept: '{wiki_desc}'")
+            return None
+        if any(kw in wiki_desc for kw in _GENERIC_DESC_KW):
+            print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — publication/media: '{wiki_desc}'")
+            return None
+
+        # Reject landmark/place images unless the entity is named in the article
+        _PLACE_KW = {
+            "monument", "landmark", "tower", "gate", "fort", "palace",
+            "temple", "mosque", "church", "cathedral", "mausoleum",
+            "bridge", "dam", "statue", "memorial", "building",
+            "skyscraper", "shipyard", "factory", "port", "airport",
+            "stadium", "arena", "park", "garden", "museum", "library",
+            "observatory", "pier", "lighthouse", "arch", "obelisk",
+            "stupa", "pagoda", "citadel", "fortress", "tomb",
+            "residence", "house", "mansion", "hall", "complex",
+            "city", "town", "village", "district", "municipality",
+        }
+        if article_context and any(kw in wiki_desc for kw in _PLACE_KW):
+            if entity_name.lower() not in article_context.lower():
+                print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — "
+                      f"place ('{wiki_desc[:50]}') not mentioned by name in article")
+                return None
+
+        return img
     except:
         return None
 
@@ -830,7 +888,7 @@ def source_hero_image(article, used_images=None):
     if not img_url and entities:
         for entity in entities[:3]:
             if isinstance(entity, str) and len(entity) > 2:
-                wp_img = fetch_wikipedia_image(entity)
+                wp_img = fetch_wikipedia_image(entity, article_context=headline)
                 if wp_img and wp_img not in used_images:
                     ok, ctype, _ = verify_image_url(wp_img)
                     if ok:

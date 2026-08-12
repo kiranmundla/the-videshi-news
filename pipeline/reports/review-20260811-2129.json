@@ -1,0 +1,78 @@
+[
+  {
+    "id": "a343939e-9ec5-4dca-a99e-1b6bf8960e6e",
+    "headline": "Why Trader Joe's $2.99 Frozen Garlic Naan Has Become a Cult Favorite",
+    "slug": "trader-joes-frozen-garlic-naan-cult-favorite",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian expatriates or NRIs who have tried the garlic naan and can share their experiences or cultural connections to the product. This would highlight how the product resonates with the Indian diaspora in terms of nostalgia or convenience.",
+        "Provide context on the popularity of Indian cuisine among NRIs and how products like Trader Joe's garlic naan fit into their lifestyle, perhaps by discussing trends in Indian food consumption in the U.S. or the growing demand for authentic Indian products among the diaspora.",
+        "Include a brief comparison of Trader Joe's garlic naan with similar products available in India or other Indian grocery stores in the U.S., which would give readers a better perspective on its authenticity and appeal.",
+        "Mention any social media trends or hashtags related to Trader Joe's garlic naan, which could help illustrate its popularity and engagement within the community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Trader Joe's or a popular food influencer discussing the garlic naan, which could provide social proof and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "f7dc6d04-4173-4cbf-a13d-119cba573eb6",
+    "headline": "Air India Pilot Tests Positive for Marijuana After Phuket Flight Dropped 300 Fee",
+    "slug": "air-india-pilot-tests-positive-marijuana-phuket-flight",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs who frequently travel between India and international destinations like Phuket. This could include quotes or social media reactions that highlight their concerns about airline safety and pilot conduct.",
+        "Provide more context about the implications of this incident for NRIs traveling to and from India, such as how it might affect their perceptions of Air India or the broader aviation safety standards in India.",
+        "Clarify the timeline of events leading up to the incident and the subsequent investigation, as readers may want to understand how quickly the airline and authorities responded to the situation.",
+        "Include a brief section on the legal and regulatory framework governing pilot drug testing in India, which would provide valuable context for readers unfamiliar with aviation regulations."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Directorate General of Civil Aviation regarding the grounding of the pilots and the investigation, as this would lend credibility and provide authoritative information on the regulatory response."
+      ]
+    }
+  },
+  {
+    "id": "ad4f18a0-6b02-4e64-81d7-2892aacfba84",
+    "headline": "Sawan Fasting? This No-Onion, No-Garlic Paneer Sabji Is Ready in 20 Minutes",
+    "slug": "sawan-vrat-paneer-sabji-no-onion-no-garlic-recipe",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how NRIs can adapt traditional recipes for local ingredients available in their countries, or share personal anecdotes from NRIs about their experiences with Sawan fasting.",
+        "Provide more context about the significance of Sawan and its observance among the Indian diaspora, perhaps by including statistics or quotes from community leaders about how these traditions are maintained abroad.",
+        "Clarify the recipe section by including measurements and cooking times in both metric and imperial units to cater to a global audience, ensuring that NRIs in different countries can easily follow the recipe.",
+        "Consider adding a brief explanation of the health benefits associated with sattvic cooking, as this could resonate with health-conscious readers in the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post featuring a popular Indian chef or food influencer preparing a similar dish, which could visually engage readers and provide a modern twist on traditional recipes."
+      ]
+    }
+  },
+  {
+    "id": "875ff900-6540-4589-a799-111e3f3c766c",
+    "headline": "Michigan Indian Americans Honor Padma Shri Recipient Stephen Knapp at IHPC 2026",
+    "slug": "michigan-indian-americans-honor-stephen-knapp-ihpc-2026",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian Americans in Michigan who have been influenced by Knapp's work or who attended the event. This would highlight the impact of his contributions on the local NRI community.",
+        "Provide context on the significance of the Padma Shri award for NRIs and how it reflects on the Indian diaspora's contributions to culture and heritage. This could help readers understand the broader implications of Knapp's recognition.",
+        "Consider adding a section that discusses how Knapp's work has influenced the perception of Indian culture in the United States, particularly among the NRI community. This could include insights into how Indian Americans view his contributions.",
+        "Clarify the timeline of events, especially regarding the Padma Shri award presentation and the IHPC event. A clearer chronological structure would help readers follow the narrative more easily."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Padma Shri account or a relevant Indian government account announcing Knapp's award to provide official context and enhance credibility."
+      ]
+    }
+  }
+]

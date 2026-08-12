@@ -282,6 +282,8 @@ def fetch_wikipedia_image(subject, article_context=None):
                     "stadium", "arena", "park", "garden", "museum", "library",
                     "observatory", "pier", "lighthouse", "arch", "obelisk",
                     "stupa", "pagoda", "citadel", "fortress", "tomb",
+                    "residence", "house", "mansion", "hall", "complex",
+                    "city", "town", "village", "district", "municipality",
                 }
                 if any(kw in wiki_desc for kw in _PLACE_DESC_KEYWORDS):
                     subject_lower = subject.lower()
