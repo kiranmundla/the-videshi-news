@@ -929,10 +929,13 @@ def find_inline_images(headline, body, hero_url="", category=None):
     """Find inline Wikipedia images for entities in the article.
     Returns list of (entity, image_url, caption) tuples.
 
-    For visual categories (food, travel, entertainment, lifestyle-health),
-    uses GPT to extract specific places/landmarks/venues. For other categories,
-    uses the regex-based entity extractor. Visual categories get up to 3 images;
-    others get up to 2.
+    Only visual categories (food, travel, entertainment, lifestyle-health) get
+    body images — they use GPT to extract specific places/landmarks/venues.
+    Non-visual categories (news, immigration, technology, markets-finance,
+    sports, nri-world) skip body images entirely because the regex entity
+    extractor produces too many irrelevant Wikipedia images (wrong person
+    photos, institutional logos, geographic maps, landmark filler).
+    Pull quotes remain the primary body enrichment for non-visual articles.
     """
     # Choose entity source based on category
     if category and category in _VISUAL_CATEGORIES:
@@ -942,8 +945,11 @@ def find_inline_images(headline, body, hero_url="", category=None):
             entities = extract_entities(headline, body)
         max_images = 3
     else:
-        entities = extract_entities(headline, body)
-        max_images = 2
+        # Non-visual categories: skip body images entirely.
+        # The regex entity extractor produces too many wrong Wikipedia images
+        # (DEA sheets, Africa maps, cemetery photos, wrong-person portraits).
+        # Pull quotes are the body enrichment for these categories.
+        return []
     results = []
     hero_norm = (hero_url or "").split("?")[0].lower()
     # Extract hero filename for cross-host comparison (Supabase vs Wikimedia)
