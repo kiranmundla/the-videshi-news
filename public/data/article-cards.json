@@ -1,5 +1,17 @@
 [
   {
+    "slug": "manu-rishi-chadha-musharraf-operation-safed-sagar-netflix",
+    "headline": "Meet Manu Rishi Chadha, the Filmfare-Winning Writer Who Plays Musharraf in Netflix's Operation Safed Sagar",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/manu-rishi-chadha-musharraf-operation-safed-sagar-netflix.jpg"
+  },
+  {
+    "slug": "chandrasekaran-resigns-tata-sons-chairman-noel-tata-feud",
+    "headline": "Chandrasekaran Resigns as Tata Sons Chairman After Six-Month Feud With Noel Tata",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chandrasekaran-resigns-tata-sons-chairman-noel-tata-feud.jpg"
+  },
+  {
     "slug": "air-india-pilot-confirmatory-test-marijuana-phuket-crew-complaint",
     "headline": "Air India Pilot Confirmed Positive for Marijuana as Crew Reveals Erratic Cockpit Behavior",
     "category": "news",
@@ -10,6 +22,12 @@
     "headline": "US Has Revoked More Than 175,000 Visas Under Trump, State Department Says",
     "category": "immigration",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-revokes-175000-visas-trump-immigration-crackdown.jpg"
+  },
+  {
+    "slug": "trader-joes-frozen-garlic-naan-cult-favorite",
+    "headline": "Why Trader Joe's $2.99 Frozen Garlic Naan Has Become a Cult Favorite",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trader-joes-frozen-garlic-naan-cult-favorite.jpg"
   },
   {
     "slug": "michigan-indian-americans-honor-stephen-knapp-ihpc-2026",
@@ -100,23 +118,5 @@
     "headline": "Nvidia Partners With Wall Street Giants to Raise $500 Billion for AI Infrastructure",
     "category": "technology",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-wall-street-500-billion-ai-infrastructure.jpg"
-  },
-  {
-    "slug": "intel-raises-20-billion-upsized-share-sale",
-    "headline": "Intel Raises $20 Billion in Upsized Share Sale to Fund AI Expansion",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/intel-raises-20-billion-upsized-share-sale.jpg"
-  },
-  {
-    "slug": "andhra-student-dileep-kumar-bungatavula-killed-ohio-head-on-crash",
-    "headline": "Andhra Pradesh Student Dileep Kumar Bungatavula Killed in Ohio After Pick-Up Truck Rams His Car Head-On",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-student-dileep-kumar-bungatavula-killed-ohio-head-on-crash.jpg"
-  },
-  {
-    "slug": "uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing",
-    "headline": "Flash Floods Rip Apart Bridge in Uttarakhand's Niti Valley, BRO Driver Missing",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing.jpg"
   }
 ]
