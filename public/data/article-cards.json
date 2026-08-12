@@ -1,5 +1,35 @@
 [
   {
+    "slug": "air-india-pilot-confirmatory-test-marijuana-phuket-crew-complaint",
+    "headline": "Air India Pilot Confirmed Positive for Marijuana as Crew Reveals Erratic Cockpit Behavior",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-pilot-confirmatory-test-marijuana-phuket-crew-complaint.jpg"
+  },
+  {
+    "slug": "us-revokes-175000-visas-trump-immigration-crackdown",
+    "headline": "US Has Revoked More Than 175,000 Visas Under Trump, State Department Says",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-revokes-175000-visas-trump-immigration-crackdown.jpg"
+  },
+  {
+    "slug": "michigan-indian-americans-honor-stephen-knapp-ihpc-2026",
+    "headline": "Michigan Indian Americans Honor Padma Shri Recipient Stephen Knapp at IHPC 2026",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/michigan-indian-americans-honor-stephen-knapp-ihpc-2026.jpg"
+  },
+  {
+    "slug": "sawan-vrat-paneer-sabji-no-onion-no-garlic-recipe",
+    "headline": "Sawan Fasting? This No-Onion, No-Garlic Paneer Sabji Is Ready in 20 Minutes",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sawan-vrat-paneer-sabji-no-onion-no-garlic-recipe.jpg"
+  },
+  {
+    "slug": "air-india-pilot-tests-positive-marijuana-phuket-flight",
+    "headline": "Air India Pilot Tests Positive for Marijuana After Phuket Flight Dropped 300 Feet",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-pilot-tests-positive-marijuana-phuket-flight.jpg"
+  },
+  {
     "slug": "air-india-mumbai-toronto-nonstop-winter-2026",
     "headline": "Air India Launches Mumbai-Toronto Nonstop, Adds 4,400 Monthly Seats on India-Canada Routes",
     "category": "travel",
@@ -10,6 +40,12 @@
     "headline": "Andhra Pradesh Pours ₹98 Crore Into Suryalanka Beach in Push to Build India's Eastern Goa",
     "category": "travel",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/andhra-pradesh-suryalanka-beach-98-crore-tourism-push.jpg"
+  },
+  {
+    "slug": "jainendra-jain-first-indian-origin-physicist-wolf-prize",
+    "headline": "Jainendra Jain Becomes First Indian-Origin Physicist to Win Wolf Prize",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jainendra-jain-first-indian-origin-physicist-wolf-prize.jpg"
   },
   {
     "slug": "ayurveda-conference-udupi-autoimmune-disorders-2026",
@@ -28,6 +64,12 @@
     "headline": "India's Russian Oil Imports Hit Record 2.8 Million Barrels Per Day in July",
     "category": "markets-finance",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-russian-oil-imports-record-july-2026.jpg"
+  },
+  {
+    "slug": "air-india-australia-premium-upgrades-daily-flights",
+    "headline": "Air India Doubles Down on Australia With Premium Upgrades and Daily Flights",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-australia-premium-upgrades-daily-flights.jpg"
   },
   {
     "slug": "india-summons-air-india-ceo-phuket-flight-probe",
@@ -76,41 +118,5 @@
     "headline": "Flash Floods Rip Apart Bridge in Uttarakhand's Niti Valley, BRO Driver Missing",
     "category": "news",
     "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-chamoli-flash-flood-niti-valley-bridge-bro-driver-missing.jpg"
-  },
-  {
-    "slug": "qs-world-rankings-2027-indian-universities-fivefold-rise-iit-delhi",
-    "headline": "Indian Universities Nearly Quintuple Presence in QS World Rankings Since 2015 as IIT Delhi Hits Record 118th",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/qs-world-rankings-2027-indian-universities-fivefold-rise-iit-delhi.jpg"
-  },
-  {
-    "slug": "us-judge-dismisses-criminal-charges-gautam-adani-doj-bribery",
-    "headline": "US Judge Dismisses Criminal Charges Against Gautam Adani After DOJ Abandons Bribery Case",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-judge-dismisses-criminal-charges-gautam-adani-doj-bribery.jpg"
-  },
-  {
-    "slug": "air-india-phuket-delhi-altitude-loss-pilot-drug-test-airbus-probe",
-    "headline": "Airbus Sends Specialists as Air India Pilot Faces Drug Test After Flight Drops 300 Feet",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-phuket-delhi-altitude-loss-pilot-drug-test-airbus-probe.jpg"
-  },
-  {
-    "slug": "india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026",
-    "headline": "India Claims 17 Medals at Inaugural U-23 Commonwealth Fencing Championship in Lagos",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-wins-17-medals-u23-commonwealth-fencing-championship-lagos-2026.jpg"
-  },
-  {
-    "slug": "bhuvneshwar-kumar-not-chasing-india-recall-ashwin-2027-world-cup",
-    "headline": "Bhuvneshwar Kumar Not Chasing India Recall as Ashwin Backs 2027 World Cup Return",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bhuvneshwar-kumar-not-chasing-india-recall-ashwin-2027-world-cup.jpg"
-  },
-  {
-    "slug": "millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions",
-    "headline": "Millions of Americans Discover Canadian Citizenship Pathway as Birthright Restrictions Loom",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/millions-americans-discover-canadian-citizenship-pathway-birthright-restrictions.jpg"
   }
 ]
