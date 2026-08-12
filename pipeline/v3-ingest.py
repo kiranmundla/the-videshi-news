@@ -35,8 +35,8 @@ VERBOSE      = "--verbose" in sys.argv or DRY_RUN
 NOW          = datetime.now(timezone.utc)
 NOW_ISO      = NOW.isoformat()
 HASH_WINDOW  = 14  # days of hashes to load for dedup
-FEED_TIMEOUT = 8   # seconds per feed
-MAX_WORKERS  = 10  # parallel feed fetches
+FEED_TIMEOUT = 15  # seconds per feed (proxy needs headroom)
+MAX_WORKERS  = 5   # parallel feed fetches (proxy saturates above 5)
 TOPIC_WINDOW = 336  # hours (14 days) — match against topics in this window; Google News can resurface stories for weeks
 
 # ── Supabase ──────────────────────────────────────────────────────────────────

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "ed54dfdb-f8d7-4e28-ba13-da5dc5f5b28c",
+    "headline": "Air India Pilot Confirmed Positive for Marijuana as Crew Reveals Erratic Cockpit",
+    "slug": "air-india-pilot-confirmatory-test-marijuana-phuket-crew-complaint",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from NRIs, particularly those who frequently travel between India and other countries. This could include comments on safety concerns or the impact of such incidents on their travel plans.",
+        "Provide context on how this incident might affect Air India's reputation among NRIs, especially those who rely on the airline for travel. Discuss potential implications for ticket sales or customer trust among the diaspora community.",
+        "The headline could be more compelling by specifying the implications of the incident for Air India and its passengers. For example, 'Air India Pilot's Drug Test Failure Raises Safety Concerns for NRI Travelers' would directly address the diaspora angle.",
+        "Add a section that discusses the broader implications of drug use among pilots in the aviation industry, particularly in the context of international travel and how it affects NRIs who may be concerned about safety."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the DGCA regarding the incident or any new regulations they plan to implement in response, as this would provide authoritative context and relevance for the NRI audience."
+      ]
+    }
+  },
+  {
+    "id": "df92b2f8-977c-4e04-abbc-0792310e79cb",
+    "headline": "US Has Revoked More Than 175,000 Visas Under Trump, State Department Says",
+    "slug": "us-revokes-175000-visas-trump-immigration-crackdown",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific statistics or anecdotes about how these visa revocations directly impact the Indian diaspora, such as stories of students or professionals affected by the visa revocations.",
+        "Provide context on how the visa revocations may affect Indian NRIs or students planning to study in the U.S., particularly in light of the 60% drop in F-1 visa approvals. This could include information on alternative pathways for Indian students or changes in application processes.",
+        "Clarify the implications of the visa revocations for Indian nationals, especially in terms of future immigration policies under the Trump administration. This could involve discussing potential long-term effects on the Indian community in the U.S.",
+        "Consider restructuring the article to first outline the broader implications of the visa revocations for the NRI community before delving into specific cases and statistics. This would provide a clearer narrative progression."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding the visa revocations to provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]

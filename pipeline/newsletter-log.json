@@ -1016,5 +1016,15 @@
     "errors": 0,
     "hero_slug": "india-russian-oil-imports-record-july-2026",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-12T13:55:54.673850+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 12, 2026",
+    "subscribers": 5,
+    "sent": 5,
+    "errors": 0,
+    "hero_slug": "uss-abraham-lincoln-240-days-sea-record-iran-deployment",
+    "story_count": 5
   }
 ]

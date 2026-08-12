@@ -1,0 +1,197 @@
+[
+  {
+    "id": "a5643d46-eec0-4825-8194-9c59ed1e0c4f",
+    "headline": "TCS Investigates Dark Web Data Leak Claims, Confirms No Breach of Its Systems",
+    "slug": "tcs-investigates-data-leak-claims-confirms-no-breach",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs working in cybersecurity or IT sectors who can provide perspective on how such data leaks could impact their businesses or personal data security.",
+        "Add context about the implications of the data leak claims for NRIs who may have investments in TCS or rely on its services, particularly in terms of trust and security in the Indian IT sector.",
+        "Consider including a brief section on how TCS's cybersecurity measures compare to global standards, which could be relevant for NRIs evaluating the company's credibility and stability.",
+        "Clarify the timeline of the claims and TCS's response to give readers a better understanding of the situation's urgency and the company's proactive measures."
+      ],
+      "embed_opportunities": [
+        "Embed the official TCS statement or a relevant tweet from their corporate account addressing the data leak claims, which would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "cba65943-0e10-4b9a-ac19-7fbfd23df2af",
+    "headline": "India's Top 300 Family Businesses Now Worth $1.6 Trillion, Exceeding Saudi Arabi",
+    "slug": "india-top-family-businesses-valued-1-6-trillion-exceed-saudi-gdp",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the success of these family businesses impacts NRIs, such as investment opportunities or the potential for collaboration between Indian and NRI entrepreneurs.",
+        "Add context about how these family businesses are perceived by the NRI community, particularly in terms of investment and economic influence, to provide a more comprehensive view.",
+        "Consider including a section that discusses the implications of this wealth for NRIs, such as how it might affect remittances, investments back home, or philanthropic efforts by wealthy families.",
+        "Clarify the significance of the valuation figures by comparing them to the economic contributions of Indian diaspora businesses abroad, which could provide a more relatable context for NRI readers."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or economist discussing the implications of this report on global markets or the Indian economy, which could enhance the article's credibility and relevance."
+      ]
+    }
+  },
+  {
+    "id": "78cfb388-7357-435b-9d26-b0bdf5e18c15",
+    "headline": "Indian Scientists Build Light-Controlled Nanobots That Hunt Breast Cancer Cells",
+    "slug": "indian-scientists-build-light-controlled-nanobots-breast-cancer",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including perspectives from Indian-origin researchers or medical professionals working abroad who could discuss the implications of this technology for cancer treatment in the Indian diaspora community.",
+        "Provide context on how advancements in nanotechnology could impact healthcare accessibility for NRIs, particularly in relation to cancer treatment options available in India versus their host countries.",
+        "Include a quote or statement from a prominent NRI figure in the medical or scientific community to lend credibility and relevance to the article for the diaspora audience.",
+        "Discuss potential collaborations between Indian institutions and international organizations that could help bring this technology to a global market, which would resonate with NRIs interested in the intersection of technology and healthcare."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official ACS Applied Materials & Interfaces account announcing the publication of the study, which would provide direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "7013a241-da6a-429c-86b6-87dfa130c108",
+    "headline": "From School Dropout to IPO: How Sathish Kumar Built the Rs 10,000 Crore Milky Mi",
+    "slug": "milky-mist-dairy-sathish-kumar-paneer-ipo-story",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/4622114/pexels-photo-4622114.jpeg?auto=compress"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how NRIs in the food industry can learn from Sathish Kumar's journey, perhaps by discussing any connections he has with the NRI community or how his products are received abroad.",
+        "Provide more context on the IPO process and its significance for Indian entrepreneurs, especially for NRIs looking to invest in Indian startups, to make the article more relevant to the diaspora audience.",
+        "Include a quote or perspective from Sathish Kumar on how he views the role of the Indian diaspora in supporting businesses like Milky Mist, which could resonate with NRI readers.",
+        "Discuss the potential impact of Milky Mist's success on Indian exports and how NRIs can engage with or invest in similar businesses, providing a direct link to the diaspora's interests."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Milky Mist or a relevant financial news outlet announcing the IPO, which would provide real-time context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "7ef562fc-55ef-43d8-832c-f528de383a6c",
+    "headline": "India's UPI Reaches 10 Countries as Diaspora Emerges as Key Driver of Global Pay",
+    "slug": "upi-global-expansion-indian-diaspora-payments",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific testimonials or case studies from NRIs who have benefited from UPI's expansion. This could illustrate the real-world impact on their remittance practices and financial transactions.",
+        "Provide more context about how UPI's expansion directly affects the Indian diaspora's financial habits, such as how it simplifies remittances or impacts their daily transactions abroad. This could help readers understand the significance of UPI beyond just numbers.",
+        "Clarify the potential implications of the RBI and European Central Bank's collaboration on UPI's integration with TIPS. Discuss how this could specifically benefit NRIs in Europe, perhaps by reducing transaction times or costs further.",
+        "Consider adding a section that discusses the challenges or limitations NRIs might face in using UPI in these new markets, which would provide a balanced view of the expansion."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Reserve Bank of India regarding the UPI's expansion or the partnership with the European Central Bank to provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "d3df4b8e-5bb4-4b36-a84a-abf6fe38a613",
+    "headline": "H-1B Visa Holders Face Gruelling 30-Minute Interviews at Hyderabad Consulate",
+    "slug": "h1b-visa-hyderabad-consulate-gruelling-30-minute-interviews-consulting-employees",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from H-1B visa holders who have faced these new interview processes, highlighting their personal experiences and how it impacts their lives and careers in the US.",
+        "Provide context about how these changes in visa processing affect the broader Indian diaspora, particularly in terms of employment opportunities and economic implications for families relying on these visa holders.",
+        "Include a section that discusses the implications of the new social media vetting process for NRIs, perhaps by referencing specific cases or statistics that illustrate its impact on visa approvals.",
+        "Clarify the timeline of changes mentioned in the article, such as when the social media vetting began and how it has evolved, to give readers a clearer understanding of the progression of these policies."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the changes to the H-1B visa interview process and social media vetting, as it would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "0fb9c185-085e-44b8-8c3d-d68f1d2ad49f",
+    "headline": "Chemicals in Everyday Plastics Linked to High Blood Pressure During Pregnancy",
+    "slug": "chemicals-everyday-plastics-linked-high-blood-pressure-pregnancy",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/5217889/pexels-photo-5217889.jpeg?auto=compress"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including statistics or insights on how phthalate exposure may specifically affect pregnant women in the Indian diaspora, perhaps referencing studies or data from India or Indian communities abroad.",
+        "Add context about how this research might influence policy changes in India or the U.S. that could impact NRIs, especially those who are pregnant or planning to start a family, to make the article more relevant to the audience.",
+        "Consider including quotes or insights from Indian health experts or organizations that focus on maternal health within the diaspora, which would provide a localized perspective on the issue.",
+        "Provide actionable tips for NRIs on how to reduce phthalate exposure in their daily lives, such as specific products to avoid or alternatives to consider, which would add practical value for the readers."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Endocrine Society or a health organization discussing the implications of the study, which would provide authoritative context and encourage reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "f03c2707-980f-47e8-b7b1-60882082c7fb",
+    "headline": "Shilpa Shirodkar Returns to Bollywood After 26 Years With Malamaal Weekly 2",
+    "slug": "shilpa-shirodkar-bollywood-comeback-malamaal-weekly-2",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs regarding Shilpa Shirodkar's return to Bollywood, such as how her films impacted their lives or cultural identity.",
+        "Provide more context on the significance of Shilpa Shirodkar's return after 26 years, particularly how it resonates with the NRI community who may have grown up watching her films.",
+        "Include quotes or comments from diaspora members or Bollywood fans living abroad to highlight their excitement or expectations for the film.",
+        "Discuss the potential impact of the film's release on the NRI audience, such as how it might influence Bollywood's global reach or the representation of Indian cinema abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or social media post from Shilpa Shirodkar herself announcing her return, or a tweet from a prominent NRI influencer discussing the significance of her comeback."
+      ]
+    }
+  },
+  {
+    "id": "b8e327bf-0d23-490a-ab7f-6318d332b193",
+    "headline": "Exercise Helps the Aging Brain Clear Toxic Waste, New Research Shows",
+    "slug": "exercise-helps-aging-brain-clear-toxic-waste-glymphatic-system",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate specific examples of how NRIs can implement exercise routines that support brain health, perhaps by referencing popular fitness trends or programs in the Indian diaspora community.",
+        "Provide context on how the findings of this research could impact the aging NRI population, particularly in relation to dementia rates among Indian communities abroad.",
+        "Include quotes or insights from Indian health experts or diaspora community leaders on the importance of exercise for brain health, which would strengthen the article's relevance to the NRI audience.",
+        "Discuss cultural attitudes towards aging and health in the Indian diaspora, as this would provide a deeper understanding of how exercise is perceived and practiced among NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from a recognized health organization, such as the WHO or a prominent Indian health authority, that discusses the importance of exercise for brain health."
+      ]
+    }
+  },
+  {
+    "id": "c48164e2-7265-4500-8fd2-8f0230225a18",
+    "headline": "Simple Liquid Treatment Stops Tooth Decay in Children Without Drilling, Major Tr",
+    "slug": "simple-liquid-treatment-stops-tooth-decay-children-without-drilling",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including statistics or anecdotes about tooth decay prevalence among Indian children in the diaspora, and how this treatment could specifically benefit them.",
+        "Add context about how dental care practices differ in India and among the Indian diaspora, which could highlight the significance of this treatment for NRIs who may be concerned about their children's dental health.",
+        "Include a quote or insight from a dental expert based in India or a prominent NRI dentist to provide a perspective that resonates with the diaspora audience.",
+        "Discuss potential barriers NRIs might face in accessing this treatment, such as insurance coverage or availability in their local areas, to provide a more comprehensive view."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from JAMA Pediatrics announcing the study findings to provide credibility and direct access to the source.",
+        "Consider embedding a video from a pediatric dentist explaining the benefits of SDF treatment, which could enhance understanding and engagement."
+      ]
+    }
+  }
+]

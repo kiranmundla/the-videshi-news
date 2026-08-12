@@ -1,0 +1,673 @@
+{
+  "timestamp": "2026-08-12T12:43:11.154329+00:00",
+  "total_topics_evaluated": 752,
+  "candidates": [
+    {
+      "topic_id": "97f8b634-04de-44a2-809d-5b37a5d71546",
+      "title": "Are poor conditions on board Iran-deployed USS Abraham Lincoln forcing sailors to jump overboard? - Firstpost",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T06:03:24+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMivAFBVV95cUxNX1ZlUDRlTXlDWVFTTjdpT0NpR09yUWNWYUUxQnc0RF9oQkZVM29sYmxKRXN6azE4bjJDTkhjZW91SVRHTFl0cnRJWUtLRl9SY1c5akt5NndEN0F4cTBzc05wcFFucTU3WGRaSVVZT1k0SXBzSlBwa0JsMUlWYndscFZUaUJRamQ5WnNZMVlJVDdzdDE0ZUE3U2ZoRVV3VVY5RlVtSVZRQ2ktVGI5dWtNSkdmYkVrMzBSN0FySw?oc=5",
+        "https://news.google.com/rss/articles/CBMiakFVX3lxTFBLOWUzYzd2SjVMa1NFbGR5d2hSRkxnd2dVbGhmcnpCWVRLR3VMaFlOQ01scjYwZ3UxM3lZS0NIcVpwaEt2aG1NV0FGaXlYQW1Rdk1zVlVLbjBNT2FfcFNLaFlLQVhLS1o1OEE?oc=5",
+        "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOb1R5dTlWWl81dDRBSEwwLXdUVVc3TXlQczNKR2stZl9HSXljSVR0SExESU5ZRGpoazZLSWZ6N0hGMnN3dWxSbmhyczk2MU5ITGlHR21VQ0g2TWFEenQ5d1lxMUVfQzlqelBId0hhdkppTDVrT1d4N1NnaXBCNjA3SmE4SlBJZVhHbWZEVFlLM0tsNkxucnZNR3B2QXpXdlY3RU5yR0JRTEQ4NTVLVG1qbXVURjZVb2lrOTYxeFp3dHJHNjNfNDRLWXBUS1ZCNVJnN050Z2YyQlFpTDZVeEp4Y9IB5gFBVV95cUxOcldQVG9UTTRZVjQ2YVNHSzFMVTE5Y05ZVVFZcjJmb0hTNTBMbU1hQ0V2enRTV0lUREl0aEVQZkUzaDc3SlBSb1d5YlZLd2NnQkxWNS1PT1RmQWVHdkxoRGp0V19UeXItb1kxTlN3NUh6QnlrZ19faXo4eXFSdjl1ZlFwY192a0pWUHdBOFVKal9BVjc0ZjJUR1ZCRTdDb0dmbDlRaW9pWXZ6bC1mRTlqOTBnd2lDVDFxSk9LSVdYOVkyUm1GcGF5OVZqc1A2Sk52dXdGTmw5NzJEMVV0ZDlhTzB2NmV3dw?oc=5",
+        "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNS2UwREZESEh5cm8tT180WmJIaFk0WnpIS2VlWVRyV2lhRE1IeS1fdTV1dUJBcDlJVEU0MzJIem9JdXpoWU1ldWh5SnI5WThDZTg4Q2RiUGZyMV91NVp2UjRPU1E4V2lFLWUybllYcGJUYTdtR281WVhFYVFIdlYxdTNGS1VWbjZFRjJnS0hYaWM0T1JUVkxrMmlzcWpOZ21HYWtkNVdGSEtIdjBEMWlmQ05XWUh5TFh2RmdHSmNMLXZfMW1vVmROY2UwRXVPNkxIUWE2V3UyQWdGcXdiSmhqdndMX2ZDZ3pCb2N0QXN5cWxidnFj?oc=5",
+        "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNMUkteWVrZWxOZmt4Tk1ZUDNDM2lGNzZFWkNvQ3llNi00SWVlbGNuZDN6M0hheFVtck5NaW5ETUlGODlBOGp4cEJaV0VyNUlCckVTUWp2ZnR3aUQybzZGQ2Y2MzVKdlFQRVowSXh3QlNuX2NweEVBbWZna3FVVi1mYjlWcUpxWHBnbUtNajdPb2hUenhCYmU1WWhIUm1MQzRINHFWOGxFM0o2anpHTmN1em9UUE5obnZnRDJjSVBVcG16dHo1SEVJa1pfOWVGNHgwNkxTU2Z1aDlycHJTVERoVF9FV2tqNHlTUjRwLTdhQXZyRjAzQ3plaHBvSkhiUXNXaWVhQzJOcEZSNlR5R091ay0wcF9Jb0NYOUh6b0g3cjM3eHl5ZDl3UXcxR2tlVVFVT2o2b243SHg5YmFRZTVvd0JR0gHHAkFVX3lxTE14VzVoYXJWNjBtdEZGU1RDRzM0X1c5cXhKaXhUYlBGS29KR3k3V3N5aVBJVXUyUW52MmVUV0oxRTZ2OU9vQ2toQUhDVjNodENMUW82UDJsS0lIeVFmMTM1ZXotY0U3ZnFuV3NBcGVnaTBrVXJvRzVJa254WFllazktNUZnY0dWYXRVR09BMFYyNWJjdXhGeW1IbG5CMGREUEJZQjYzczZ6eUJKc2FIT1NUSVQ4UjZzUHhST2pXZGJXN3NXTEVPRXU2THAtMUxOaHBQZW41THg5WF9kUTN2Sk03X1QzUFc2NTE0OFU1dkJSNlVoREFjWTBOQkVMWjQzZkxud1ZqalRKYmlJTk16RlpUT3RyQnp2bFNURnNtbzJTcXBPQlNNa1RyZkY3U253aVRvWEFhdmJxNGlvMjNvdUZPOWFZZWpXRQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Multiple USS Abraham Lincoln Sailors Have Tried To Go Overboard",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNX1ZlUDRlTXlDWVFTTjdpT0NpR09yUWNWYUUxQnc0RF9oQkZVM29sYmxKRXN6azE4bjJDTkhjZW91SVRHTFl0cnRJWUtLRl9SY1c5akt5NndEN0F4cTBzc05wcFFucTU3WGRaSVVZT1k0SXBzSlBwa0JsMUlWYndscFZUaUJRamQ5WnNZMVlJVDdzdDE0ZUE3U2ZoRVV3VVY5RlVtSVZRQ2ktVGI5dWtNSkdmYkVrMzBSN0FySw?oc=5",
+          "source": "RealClearDefense"
+        },
+        {
+          "title": "In fiery meeting, military families confront acting Navy secretary over conditions on the USS Lincoln",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBLOWUzYzd2SjVMa1NFbGR5d2hSRkxnd2dVbGhmcnpCWVRLR3VMaFlOQ01scjYwZ3UxM3lZS0NIcVpwaEt2aG1NV0FGaXlYQW1Rdk1zVlVLbjBNT2FfcFNLaFlLQVhLS1o1OEE?oc=5",
+          "source": "ms.now"
+        },
+        {
+          "title": "Are poor conditions on board Iran-deployed USS Abraham Lincoln forcing sailors to jump overboard? - Firstpost",
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOb1R5dTlWWl81dDRBSEwwLXdUVVc3TXlQczNKR2stZl9HSXljSVR0SExESU5ZRGpoazZLSWZ6N0hGMnN3dWxSbmhyczk2MU5ITGlHR21VQ0g2TWFEenQ5d1lxMUVfQzlqelBId0hhdkppTDVrT1d4N1NnaXBCNjA3SmE4SlBJZVhHbWZEVFlLM0tsNkxucnZNR3B2QXpXdlY3RU5yR0JRTEQ4NTVLVG1qbXVURjZVb2lrOTYxeFp3dHJHNjNfNDRLWXBUS1ZCNVJnN050Z2YyQlFpTDZVeEp4Y9IB5gFBVV95cUxOcldQVG9UTTRZVjQ2YVNHSzFMVTE5Y05ZVVFZcjJmb0hTNTBMbU1hQ0V2enRTV0lUREl0aEVQZkUzaDc3SlBSb1d5YlZLd2NnQkxWNS1PT1RmQWVHdkxoRGp0V19UeXItb1kxTlN3NUh6QnlrZ19faXo4eXFSdjl1ZlFwY192a0pWUHdBOFVKal9BVjc0ZjJUR1ZCRTdDb0dmbDlRaW9pWXZ6bC1mRTlqOTBnd2lDVDFxSk9LSVdYOVkyUm1GcGF5OVZqc1A2Sk52dXdGTmw5NzJEMVV0ZDlhTzB2NmV3dw?oc=5",
+          "source": "Firstpost"
+        },
+        {
+          "title": "Multiple USS Abraham Lincoln sailors have tried to go overboard amid extended deployment, families say",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNS2UwREZESEh5cm8tT180WmJIaFk0WnpIS2VlWVRyV2lhRE1IeS1fdTV1dUJBcDlJVEU0MzJIem9JdXpoWU1ldWh5SnI5WThDZTg4Q2RiUGZyMV91NVp2UjRPU1E4V2lFLWUybllYcGJUYTdtR281WVhFYVFIdlYxdTNGS1VWbjZFRjJnS0hYaWM0T1JUVkxrMmlzcWpOZ21HYWtkNVdGSEtIdjBEMWlmQ05XWUh5TFh2RmdHSmNMLXZfMW1vVmROY2UwRXVPNkxIUWE2V3UyQWdGcXdiSmhqdndMX2ZDZ3pCb2N0QXN5cWxidnFj?oc=5",
+          "source": "Military Times"
+        },
+        {
+          "title": "USS Abraham Lincoln Operational Deployment: \u2018Food Obviously Has Been Scarce\u2019 \u2013 5,000 Sailors Face Record At-Sea Deployment, Supply Shortages And Growing Family Concerns Amid Iran War",
+          "url": "https://news.google.com/rss/articles/CBMiwgJBVV95cUxNMUkteWVrZWxOZmt4Tk1ZUDNDM2lGNzZFWkNvQ3llNi00SWVlbGNuZDN6M0hheFVtck5NaW5ETUlGODlBOGp4cEJaV0VyNUlCckVTUWp2ZnR3aUQybzZGQ2Y2MzVKdlFQRVowSXh3QlNuX2NweEVBbWZna3FVVi1mYjlWcUpxWHBnbUtNajdPb2hUenhCYmU1WWhIUm1MQzRINHFWOGxFM0o2anpHTmN1em9UUE5obnZnRDJjSVBVcG16dHo1SEVJa1pfOWVGNHgwNkxTU2Z1aDlycHJTVERoVF9FV2tqNHlTUjRwLTdhQXZyRjAzQ3plaHBvSkhiUXNXaWVhQzJOcEZSNlR5R091ay0wcF9Jb0NYOUh6b0g3cjM3eHl5ZDl3UXcxR2tlVVFVT2o2b243SHg5YmFRZTVvd0JR0gHHAkFVX3lxTE14VzVoYXJWNjBtdEZGU1RDRzM0X1c5cXhKaXhUYlBGS29KR3k3V3N5aVBJVXUyUW52MmVUV0oxRTZ2OU9vQ2toQUhDVjNodENMUW82UDJsS0lIeVFmMTM1ZXotY0U3ZnFuV3NBcGVnaTBrVXJvRzVJa254WFllazktNUZnY0dWYXRVR09BMFYyNWJjdXhGeW1IbG5CMGREUEJZQjYzczZ6eUJKc2FIT1NUSVQ4UjZzUHhST2pXZGJXN3NXTEVPRXU2THAtMUxOaHBQZW41THg5WF9kUTN2Sk03X1QzUFc2NTE0OFU1dkJSNlVoREFjWTBOQkVMWjQzZkxud1ZqalRKYmlJTk16RlpUT3RyQnp2bFNURnNtbzJTcXBPQlNNa1RyZkY3U253aVRvWEFhdmJxNGlvMjNvdUZPOWFZZWpXRQ?oc=5",
+          "source": "The Sunday Guardian"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The report on conditions aboard the USS Abraham Lincoln is significant for understanding military and geopolitical dynamics, relevant to the diaspora's awareness of global issues.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "d3134ebf-4f63-4d86-bc98-db0a37178594",
+      "title": "US forces strike container ship in Gulf of Oman off Pakistan - Seatrade Maritime News",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T01:55:04+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9LLU5XdnA2TXZEdkJUMDRWdUxpMEFrRE5ndVV0UzVzYTBYY2V2NVdoTkRva1Q2MlFmUGZFbzdUcHJVRWgtWVFDT2l3b19WS2k2RWp4aEpoVkprdw?oc=5",
+        "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQZE1JSkt2ZmhYTFZ0aVZTYnNCcGttNjZBVUtwVU1GQVpza3hUc2xsUkFaZUxZY3lxTDVzUEhwcVhzSFNPNWtKbVZqTV9fazNRdjFib242VFZ0ZzNCbm9TSGZ3X084OUxnS0Q4a3g1SXl6VHZoWjRfUm9EbVFMSVljMWs5UndGN0JaUFdR?oc=5",
+        "https://news.google.com/rss/articles/CBMitwFBVV95cUxQeDJvc1NVSmpZdjNuUXhxLTE0OWlJYkFDLW9nVS1WWGVPRWFRWXVUemdYa2EzcmdrdVB1VUJXVGREOFVGeWZGS1pkcXZXMS03UzlwN0w5MXR6MnNnMEpvR2JsTG9XLW9WSHlTLVRYdnhDS1NYNzBCbzFSZ1ZBcjBNYVRwYUh1WmtUSFpnSkNMVjVxU1BvRGR4aG9HY2w3TG9Zel9EOGxtNHoteUY3ZVFwQk1hUjQyTGs?oc=5",
+        "https://news.google.com/rss/articles/CBMisgFBVV95cUxNVDZDSVYteFdRNE1CNmNDaDJBWUFkc1M1b21WalE1UDZaSnAybDJwNWZlZEhORVdmMC1JRVdRMk9MOHhWZjFCdXhudzN5dEdWdWNlck5PU0NJQ25fZDZOZXd2d1BoTXhtZlpMVW9HY1pQdzlOWTRCYlNHUTBNMUhCTjRBU29HbXI2dGdUeHhCbVlwM3VoZGU0TVFRNkdCRE5aSTl4VU12Y243WmVEMVVUbXNn0gG3AUFVX3lxTE5zMklBY3BGOEdfX0FtdkNXLUVER3NGVnRPU0REUkVfRjg4UDlTNkxoVUhVS1VJYnN2N2liZE95Wi1reWhXV25kOU5iWmlILTJCVVlKRklQOUM0ampTQzBqcWhnZmhwX2hLOG5UZlJ6bG5OWjU3QWVTR0Q2RWtPM3J5Mkt2RTVfT1Eta0JqWUExUktzMmRWWkZBVHE2c2huWG9RZG1oM3gyWWR5cEhlMTRYaG9zd25HQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMimgFBVV95cUxNbDhFeHNmTTdEYjl4RHZoSEVKRlV5X0dxVnBQWWgxX2NkUWlSaUJvWHFnbEt4bkNVV2lULVJPcnRvQUcxRWVWbmZreVNFa0FsWUdIUEloT29sWW9wb1BtU2Y4R2NEdnEtVFFidFoxOVJpTm43cERCYVoyVXZpTHlUX3Y5bEVBZTU1VVdKS1hVYkFpbnJlUG45QTBB?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US says it fired missiles to disable ship breaking Iran blockade",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9LLU5XdnA2TXZEdkJUMDRWdUxpMEFrRE5ndVV0UzVzYTBYY2V2NVdoTkRva1Q2MlFmUGZFbzdUcHJVRWgtWVFDT2l3b19WS2k2RWp4aEpoVkprdw?oc=5",
+          "source": "BBC"
+        },
+        {
+          "title": "US forces strike container ship in Gulf of Oman off Pakistan - Seatrade Maritime News",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQZE1JSkt2ZmhYTFZ0aVZTYnNCcGttNjZBVUtwVU1GQVpza3hUc2xsUkFaZUxZY3lxTDVzUEhwcVhzSFNPNWtKbVZqTV9fazNRdjFib242VFZ0ZzNCbm9TSGZ3X084OUxnS0Q4a3g1SXl6VHZoWjRfUm9EbVFMSVljMWs5UndGN0JaUFdR?oc=5",
+          "source": "Seatrade Maritime News"
+        },
+        {
+          "title": "US Hit Panama-Flagged Ship That Tried To Break Iranian Port Blockade: Report",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQeDJvc1NVSmpZdjNuUXhxLTE0OWlJYkFDLW9nVS1WWGVPRWFRWXVUemdYa2EzcmdrdVB1VUJXVGREOFVGeWZGS1pkcXZXMS03UzlwN0w5MXR6MnNnMEpvR2JsTG9XLW9WSHlTLVRYdnhDS1NYNzBCbzFSZ1ZBcjBNYVRwYUh1WmtUSFpnSkNMVjVxU1BvRGR4aG9HY2w3TG9Zel9EOGxtNHoteUY3ZVFwQk1hUjQyTGs?oc=5",
+          "source": "NDTV"
+        },
+        {
+          "title": "US military fires on cargo vessel it said sought to break Iran blockade",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNVDZDSVYteFdRNE1CNmNDaDJBWUFkc1M1b21WalE1UDZaSnAybDJwNWZlZEhORVdmMC1JRVdRMk9MOHhWZjFCdXhudzN5dEdWdWNlck5PU0NJQ25fZDZOZXd2d1BoTXhtZlpMVW9HY1pQdzlOWTRCYlNHUTBNMUhCTjRBU29HbXI2dGdUeHhCbVlwM3VoZGU0TVFRNkdCRE5aSTl4VU12Y243WmVEMVVUbXNn0gG3AUFVX3lxTE5zMklBY3BGOEdfX0FtdkNXLUVER3NGVnRPU0REUkVfRjg4UDlTNkxoVUhVS1VJYnN2N2liZE95Wi1reWhXV25kOU5iWmlILTJCVVlKRklQOUM0ampTQzBqcWhnZmhwX2hLOG5UZlJ6bG5OWjU3QWVTR0Q2RWtPM3J5Mkt2RTVfT1Eta0JqWUExUktzMmRWWkZBVHE2c2huWG9RZG1oM3gyWWR5cEhlMTRYaG9zd25HQQ?oc=5",
+          "source": "Al Jazeera"
+        },
+        {
+          "title": "U.S. Fires on Ship Breaking Its Blockade of Iran",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNbDhFeHNmTTdEYjl4RHZoSEVKRlV5X0dxVnBQWWgxX2NkUWlSaUJvWHFnbEt4bkNVV2lULVJPcnRvQUcxRWVWbmZreVNFa0FsWUdIUEloT29sWW9wb1BtU2Y4R2NEdnEtVFFidFoxOVJpTm43cERCYVoyVXZpTHlUX3Y5bEVBZTU1VVdKS1hVYkFpbnJlUG45QTBB?oc=5",
+          "source": "WSJ"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The US military strike on a container ship in the Gulf of Oman is a significant geopolitical event that could have implications for global security and trade, relevant to the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "a8f28e34-d99e-4dc4-aa66-2c7f8584f402",
+      "title": "Trump aide says he got \u2018firebombed\u2019 by India over remarks against its Russian oil purchases: \u2018Don't do that\u2019 | India News - Hindustan Times",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T01:35:59+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTUx6WjY1eXRibkIwbTkyNFFvZzVjdXAta1hqNmxhTHlqUkQtNTNNcUZrYWtaQlV5a2JQTm5vclBHRXdsTjNFblcxdFhqRHh2ZE9IQ1pWXzZLN01ZaFBva0VjQ1lfMEdoaXJlZWhMTkM3YTBZQ0hxSDdzSmxrWVpOeU8xSEVWb21RRGZJdnlmRXYtS2lYeW5ITHN4YVYwY25JYXJ1WE84d01rU01NYnJfLUtXUzRHV1I1U0M5bHFDWDJJX0lVVlhqcDAtT0tSRXJDZFBzTTkxa0I3QdIB3wFBVV95cUxNYzY5WmF1YnlUMWFBSkdqLTFLOWlIeWw0RmdIcHhnTFB4MDZCZmRoX212WXlHNnpURjFnQ0FUYjNsMDJwaEtwUmF5QktBTy1oVXg4QmlzVmN5aVZNT3psZnVJMWZBX3h0Uy00MURlN0JWNTFiRXZOOTZCQlphUTlpM29lVTlGXzA3aDNMaHU3ZjgyOGxiN2pkeUVGdGk4NW9jRm5fTXJUamxJV2ZkQ3N6RExpM3g2TUFRd2NBRGFTaWNkQXd4SUlHSjhmTEVSSVZDVEdRUkdYMUlvMUxiMDNN?oc=5",
+        "https://news.google.com/rss/articles/CBMisAFBVV95cUxOVGk2YWdRR3hsMTQ0dVlHNTFoOHVTaW9NNWtPX0Via0FsYURSZ2sxalRJcGpzZ244aWRMbE5rQVFSSkN0YlREajl1YVpzWWZETDEzaXJDZVVjSVlpUENfNncza1dxdHlhVUUzcXI0NEhZYXJCb0ZlS3JpUWVIX1FxbEZJakxDVUs0TXotM3pOUjdvam13TjN6SUxhMVNyRGkwSlhnTWhPd0h1SmJMUHNDN9IBtwFBVV95cUxOaWl6YUNEWjhpVUNXcTRlZ3hnVUU4TzZRNGhRVU0wQTAwR1lFZy1KUWVEU2Q0bnB4Z3lwWGJObHZNOUh2cjd6VFNHS0NPakM1YWpQWXhlU3VXV0RMbjJpWE00TFBIRDZzNVJrUlZWRmVqdnQ0SVdFWG5OSFpRNkZDNlFfWFV0QTdZWFhLLURFcG42YTdob2ZGR3lteUVEVVpBd1dYVldDQkJvYWQ3ajNGS0lUUER2Mlk?oc=5",
+        "https://news.google.com/rss/articles/CBMivgFBVV95cUxQZlRnallzdnRqNElzWnFqc2FrenBaaklSeDFwcEc1WTlybUlJR1k1MXljeXpSSDZuVGV1eURJQUFaeEM5Y0hlSWFWWXRoMEw1WVc0Y05xVmwtWEVha3JHdldkMG9mZTF1d2pSQk10OVFpT29DZUt3UXdKaGNBbG1yQnZuRGJERkNBSzZsVXZTRUh2Sy1fOUd5X3ZCanpJaGN6TGU1N1ktRnlORUJ1YzNMRjE4YWczOUVwdk5ONmR3?oc=5",
+        "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNXzYzMW9pOU94WmN4UlR1YjVDaC1pWE15QzBJS1dvZ2U5QVJUQlhYd3pZQXI4Q0xMZk8xWEQ3di1oSURPOVFSTVpwaGZPMVJ1TmRnODlGREYyUDdhQTJHMjFUMF9pZExnbDFOSGlhLTFOclp0d0lkSU1pUDZPZ2MwYzdPRWZkVy1EakJnOVRMR1laZXQzVlZpRVJPVk5KOTUtSjJXb3puWVRidDNfWGxhblhoTFNyS0tjMlhtSk5td1RRNU5UWGU4QzNDdXd0UG0xcFhPMFFfa2U?oc=5",
+        "https://news.google.com/rss/articles/CBMihwJBVV95cUxPRU9rWlR1cUx0Y3ZjN05JWHRJTXZwalhfZWNvSVNMQTZLMUdHUFBSY292aTRvQWZvNU1BMVllZG0weERPckpBUjQ0YkQzZDBoRTJLTVlaSW5IZ25scDZHc3lUME0zNGZ6QThySTJ0QXVIcGc0STVGdnpORzBaSWRXSldXdHJiOFotQ2k3QnJCd0FRS0ZVLXBUOWlhMnVWczlPTXZobWFZSDN2RUFMV2NGOTkwczNJaS13V1FrNE1sR0FTNktUMXFzSzVvUkV4M2Vvelk5Y2tqWFVsMHV6Vmp4NTkxbTV5RC1seTUzeDd3MWJ6QzBCaHBCTHpmYnVteW1mdUw5ai13Y9IBjAJBVV95cUxPZ1UwbXE3VjJ3UVVNa2c5QXUzdldzdldsTk00aGtNNHBNM1FEYW9Id1JNU0RnUmdMbWxSSkxla1duS0NfRXBkU21pUVhZT1VFYWI2OFJWMGtrb3VIRjVOelF3U0k5ZzRqU3hOWTJWaHdVeDY1eUYwT0lYSDZyYUhGbk5yc1k4Y2ZNWXpYd19kcnFNeG1KRGpnaVhENHlCRVBuWTNSSm5aeHJpc0o2X0wxemN3UDVhZjhzNTMtVVVMU2lqWlhRcHg3aVZCSF9GMFp5MTMybURnYzFQQmptWEx2eVFGSTBRV2J0WE1Qd2RSMXk3eV9pbW9pR0tlQXFBWWl1Uld2WkVsdjlqVzk0?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Sangh-affiliate SJM asks govt to resist US tariff pressure, urges boycott of American products",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTUx6WjY1eXRibkIwbTkyNFFvZzVjdXAta1hqNmxhTHlqUkQtNTNNcUZrYWtaQlV5a2JQTm5vclBHRXdsTjNFblcxdFhqRHh2ZE9IQ1pWXzZLN01ZaFBva0VjQ1lfMEdoaXJlZWhMTkM3YTBZQ0hxSDdzSmxrWVpOeU8xSEVWb21RRGZJdnlmRXYtS2lYeW5ITHN4YVYwY25JYXJ1WE84d01rU01NYnJfLUtXUzRHV1I1U0M5bHFDWDJJX0lVVlhqcDAtT0tSRXJDZFBzTTkxa0I3QdIB3wFBVV95cUxNYzY5WmF1YnlUMWFBSkdqLTFLOWlIeWw0RmdIcHhnTFB4MDZCZmRoX212WXlHNnpURjFnQ0FUYjNsMDJwaEtwUmF5QktBTy1oVXg4QmlzVmN5aVZNT3psZnVJMWZBX3h0Uy00MURlN0JWNTFiRXZOOTZCQlphUTlpM29lVTlGXzA3aDNMaHU3ZjgyOGxiN2pkeUVGdGk4NW9jRm5fTXJUamxJV2ZkQ3N6RExpM3g2TUFRd2NBRGFTaWNkQXd4SUlHSjhmTEVSSVZDVEdRUkdYMUlvMUxiMDNN?oc=5",
+          "source": "Telegraph India"
+        },
+        {
+          "title": "Trump, Modi will resolve Russia sanctions: U.S. official",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOVGk2YWdRR3hsMTQ0dVlHNTFoOHVTaW9NNWtPX0Via0FsYURSZ2sxalRJcGpzZ244aWRMbE5rQVFSSkN0YlREajl1YVpzWWZETDEzaXJDZVVjSVlpUENfNncza1dxdHlhVUUzcXI0NEhZYXJCb0ZlS3JpUWVIX1FxbEZJakxDVUs0TXotM3pOUjdvam13TjN6SUxhMVNyRGkwSlhnTWhPd0h1SmJMUHNDN9IBtwFBVV95cUxOaWl6YUNEWjhpVUNXcTRlZ3hnVUU4TzZRNGhRVU0wQTAwR1lFZy1KUWVEU2Q0bnB4Z3lwWGJObHZNOUh2cjd6VFNHS0NPakM1YWpQWXhlU3VXV0RMbjJpWE00TFBIRDZzNVJrUlZWRmVqdnQ0SVdFWG5OSFpRNkZDNlFfWFV0QTdZWFhLLURFcG42YTdob2ZGR3lteUVEVVpBd1dYVldDQkJvYWQ3ajNGS0lUUER2Mlk?oc=5",
+          "source": "The Hindu"
+        },
+        {
+          "title": "SJM calls for boycott of US brands over tariff threat",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQZlRnallzdnRqNElzWnFqc2FrenBaaklSeDFwcEc1WTlybUlJR1k1MXljeXpSSDZuVGV1eURJQUFaeEM5Y0hlSWFWWXRoMEw1WVc0Y05xVmwtWEVha3JHdldkMG9mZTF1d2pSQk10OVFpT29DZUt3UXdKaGNBbG1yQnZuRGJERkNBSzZsVXZTRUh2Sy1fOUd5X3ZCanpJaGN6TGU1N1ktRnlORUJ1YzNMRjE4YWczOUVwdk5ONmR3?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Trump, PM Modi will work that out: Peter Navarro on 100% tariff threat to India",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNXzYzMW9pOU94WmN4UlR1YjVDaC1pWE15QzBJS1dvZ2U5QVJUQlhYd3pZQXI4Q0xMZk8xWEQ3di1oSURPOVFSTVpwaGZPMVJ1TmRnODlGREYyUDdhQTJHMjFUMF9pZExnbDFOSGlhLTFOclp0d0lkSU1pUDZPZ2MwYzdPRWZkVy1EakJnOVRMR1laZXQzVlZpRVJPVk5KOTUtSjJXb3puWVRidDNfWGxhblhoTFNyS0tjMlhtSk5td1RRNU5UWGU4QzNDdXd0UG0xcFhPMFFfa2U?oc=5",
+          "source": "India Today"
+        },
+        {
+          "title": "Trump aide says he got \u2018firebombed\u2019 by India over remarks against its Russian oil purchases: \u2018Don't do that\u2019 | India News - Hindustan Times",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPRU9rWlR1cUx0Y3ZjN05JWHRJTXZwalhfZWNvSVNMQTZLMUdHUFBSY292aTRvQWZvNU1BMVllZG0weERPckpBUjQ0YkQzZDBoRTJLTVlaSW5IZ25scDZHc3lUME0zNGZ6QThySTJ0QXVIcGc0STVGdnpORzBaSWRXSldXdHJiOFotQ2k3QnJCd0FRS0ZVLXBUOWlhMnVWczlPTXZobWFZSDN2RUFMV2NGOTkwczNJaS13V1FrNE1sR0FTNktUMXFzSzVvUkV4M2Vvelk5Y2tqWFVsMHV6Vmp4NTkxbTV5RC1seTUzeDd3MWJ6QzBCaHBCTHpmYnVteW1mdUw5ai13Y9IBjAJBVV95cUxPZ1UwbXE3VjJ3UVVNa2c5QXUzdldzdldsTk00aGtNNHBNM1FEYW9Id1JNU0RnUmdMbWxSSkxla1duS0NfRXBkU21pUVhZT1VFYWI2OFJWMGtrb3VIRjVOelF3U0k5ZzRqU3hOWTJWaHdVeDY1eUYwT0lYSDZyYUhGbk5yc1k4Y2ZNWXpYd19kcnFNeG1KRGpnaVhENHlCRVBuWTNSSm5aeHJpc0o2X0wxemN3UDVhZjhzNTMtVVVMU2lqWlhRcHg3aVZCSF9GMFp5MTMybURnYzFQQmptWEx2eVFGSTBRV2J0WE1Qd2RSMXk3eV9pbW9pR0tlQXFBWWl1Uld2WkVsdjlqVzk0?oc=5",
+          "source": "Hindustan Times"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "Trump's remarks about India and Russian oil purchases are significant in the context of US-India relations, which is crucial for the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "18d3695b-2fbe-474a-8cb3-68f19339ed35",
+      "title": "Trump considers capital gains tax cuts ahead of midterm election- Bloomberg - Investing.com",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T00:45:49+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNa2Q1WkE3akpTb0pRUEhLYm96NFhwNktHN2NOWTNnMDJGVTVDeVhtQTdORTAydmhQMVlsZkFPMkFiSFg3YS1IVG1HTEVCME5jV2RJT2NRUmhDSmZUUzUtUC1CWi1qeTUwQWY4X3JWX3M5M3B1b3ZteWtvWE9Oa0UxZnJIc2Fib2pYZEdpajh3c19Vc1BEY2ZhbS1jc1BzSFVQLWRNUFBKWElXVmR4WUt3cU5vMEVlaV8wd3ltSmp2WHVlU0dLX1BMbnNRWk44LUY1WGpGaF9mZVdSLUV1R2lidkU0X21jUdIB7AFBVV95cUxOdC1Yb3MzVG9pVjV4MG40OXFLR1JQN0tDamk2S1ZqeTZnTjRZOUh1YTh3WlFHbVRjV243QkVhQlJ2NGl6UllJMXg4UFZfMFNEVmgybjRUWEl4bUVQNFZOX0E4VkowRHV5akNXWFd6ME1WalhoRDI4TkkyRTZpbDFEdzRJT3pwYi14Wk1lV2h6WENEZldsV3hScDgzTWpjZ19mdjJUMEVqUVQwTlQ0aEVxNUkyZjVRMmVsNjJEVlMwRXpZb2xZQS03dGlvY2tWWXdCRm9QN1V6YVhZeHh2NEJEaVpLdTRiNm5TLTlKMA?oc=5",
+        "https://news.google.com/rss/articles/CBMisgFBVV95cUxNdmpkb2JoeU84N2dLcjhiY0JYeEFMMVZfaTB1R3J3SHR5OHlhNjdDQXVOZE9wSFc3UEI0OGUwZ3F0ZHV0UFpXcVpsQ2tvUjQ0MWVFQzdENHV5ZEVKRkw2ZncwNDlkdHRpYnpQTm5xNU9LNTQ1RTRmSnNnVEVIZEpHelFWZzQ3UEtLT0lUNDB6TmY1NTZNNjJ0NElmaVA5V2lwU1N0anBKQzFURldIeUR4aGFB?oc=5",
+        "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPTEMyNTFtSEZ1amU4Y0pibUUyWWt4Z3QzZURYS3dnWjN0Nkp6cENxdWFhTHVmLU5lMDJPTlpYNlhnS3V1OE50LTd5WEd3dkFRYUpPVml4Y2lqc0NIV0tvN1M0eXFRV25RTk9RLTJaUHNtbVlabTV5T2N2V0k3WkdyeklDT1NoSWtqSUsxNWRxcjZnXzZJaDF0emhlTFFHN2JBSS1menptM0pLdzVzRGc4N2F6NEUyRS1yaEtRTWRYRGtFMFViTVlidUtzVmRuZ1Y4a0IzM1NKQkFtam5wamdCN0I4S0p6VE0tRVZCVg?oc=5",
+        "https://news.google.com/rss/articles/CBMipwFBVV95cUxOa1Fhb0tiOUw4X1VGUkREOWRkbjZQYko4TTlLQUM0UFlSY0kwbGUyOWJHXzJJREhuVWFPT052MmdqaGRwSVh5TzFUb0I5Q3BYNHhtaC1HWHJfZTBQZnBGc2NvR0dTT25jOTc3VjlMNnpvOVJQZ285VW4tQTZaSG1SLTAwMG9QUVdGdEhEWGhPanZqR2VvWjg2UnJqZkh1aHh0VDR4RGVJaw?oc=5",
+        "https://news.google.com/rss/articles/CBMixAFBVV95cUxONjZuLVMtdW1JbUdvV0prLU4wRVRmdFNXRzcyTWFGYkxZZ2U2TFFVNW5GSG5LajI3WWI0Zk95Nm5FZmxsUnUwSlhFTDd3aEVXUVF6UVBFYjRueWcyUmZUS1NWM0hja1V3REVDcEU3WlpTTFhpSzhlOFRXeUZ6RUxNWGdVTmN3Y2ZKUzRORk13dDdiWTd3MDlsOFI4a01sRng2a01UWWhxNjkta19CSDFiZDNyWnVBODdEV09kVGlCVVZGaWFB?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Trump weighs capital gains tax cuts and home-sale exemption",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNa2Q1WkE3akpTb0pRUEhLYm96NFhwNktHN2NOWTNnMDJGVTVDeVhtQTdORTAydmhQMVlsZkFPMkFiSFg3YS1IVG1HTEVCME5jV2RJT2NRUmhDSmZUUzUtUC1CWi1qeTUwQWY4X3JWX3M5M3B1b3ZteWtvWE9Oa0UxZnJIc2Fib2pYZEdpajh3c19Vc1BEY2ZhbS1jc1BzSFVQLWRNUFBKWElXVmR4WUt3cU5vMEVlaV8wd3ltSmp2WHVlU0dLX1BMbnNRWk44LUY1WGpGaF9mZVdSLUV1R2lidkU0X21jUdIB7AFBVV95cUxOdC1Yb3MzVG9pVjV4MG40OXFLR1JQN0tDamk2S1ZqeTZnTjRZOUh1YTh3WlFHbVRjV243QkVhQlJ2NGl6UllJMXg4UFZfMFNEVmgybjRUWEl4bUVQNFZOX0E4VkowRHV5akNXWFd6ME1WalhoRDI4TkkyRTZpbDFEdzRJT3pwYi14Wk1lV2h6WENEZldsV3hScDgzTWpjZ19mdjJUMEVqUVQwTlQ0aEVxNUkyZjVRMmVsNjJEVlMwRXpZb2xZQS03dGlvY2tWWXdCRm9QN1V6YVhZeHh2NEJEaVpLdTRiNm5TLTlKMA?oc=5",
+          "source": "BusinessLine"
+        },
+        {
+          "title": "Trump Weighs Call for Capital Gains Tax Cuts as Midterm Boost",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNdmpkb2JoeU84N2dLcjhiY0JYeEFMMVZfaTB1R3J3SHR5OHlhNjdDQXVOZE9wSFc3UEI0OGUwZ3F0ZHV0UFpXcVpsQ2tvUjQ0MWVFQzdENHV5ZEVKRkw2ZncwNDlkdHRpYnpQTm5xNU9LNTQ1RTRmSnNnVEVIZEpHelFWZzQ3UEtLT0lUNDB6TmY1NTZNNjJ0NElmaVA5V2lwU1N0anBKQzFURldIeUR4aGFB?oc=5",
+          "source": "Bloomberg.com"
+        },
+        {
+          "title": "Trump weighs new tax cuts on capital gains, home sales as approval ratings sink ahead of midterm",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPTEMyNTFtSEZ1amU4Y0pibUUyWWt4Z3QzZURYS3dnWjN0Nkp6cENxdWFhTHVmLU5lMDJPTlpYNlhnS3V1OE50LTd5WEd3dkFRYUpPVml4Y2lqc0NIV0tvN1M0eXFRV25RTk9RLTJaUHNtbVlabTV5T2N2V0k3WkdyeklDT1NoSWtqSUsxNWRxcjZnXzZJaDF0emhlTFFHN2JBSS1menptM0pLdzVzRGc4N2F6NEUyRS1yaEtRTWRYRGtFMFViTVlidUtzVmRuZ1Y4a0IzM1NKQkFtam5wamdCN0I4S0p6VE0tRVZCVg?oc=5",
+          "source": "financialexpress.com"
+        },
+        {
+          "title": "The Real Capital Gains Tax for Many Investments Is 50%",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOa1Fhb0tiOUw4X1VGUkREOWRkbjZQYko4TTlLQUM0UFlSY0kwbGUyOWJHXzJJREhuVWFPT052MmdqaGRwSVh5TzFUb0I5Q3BYNHhtaC1HWHJfZTBQZnBGc2NvR0dTT25jOTc3VjlMNnpvOVJQZ285VW4tQTZaSG1SLTAwMG9QUVdGdEhEWGhPanZqR2VvWjg2UnJqZkh1aHh0VDR4RGVJaw?oc=5",
+          "source": "Unleash Prosperity"
+        },
+        {
+          "title": "Trump considers capital gains tax cuts ahead of midterm election- Bloomberg - Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONjZuLVMtdW1JbUdvV0prLU4wRVRmdFNXRzcyTWFGYkxZZ2U2TFFVNW5GSG5LajI3WWI0Zk95Nm5FZmxsUnUwSlhFTDd3aEVXUVF6UVBFYjRueWcyUmZUS1NWM0hja1V3REVDcEU3WlpTTFhpSzhlOFRXeUZ6RUxNWGdVTmN3Y2ZKUzRORk13dDdiWTd3MDlsOFI4a01sRng2a01UWWhxNjkta19CSDFiZDNyWnVBODdEV09kVGlCVVZGaWFB?oc=5",
+          "source": "Investing.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "Trump's consideration of capital gains tax cuts is significant for economic policy discussions, relevant to the diaspora's financial interests.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "563a13a1-06fd-480d-bb2f-28e9d70af6a8",
+      "title": "Global youth unemployment rises amid sluggish job creation and looming AI risk, UN labour agency says - Reuters",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-11T22:34:09+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPNWVmb0Q0R09kbU9jRjlTVVI4bzl5LVZsUTR4enl6cE1yUGY4Z01kQUs0VDN1QjhRNHMyUlBnV0ljQ1BaZDlMNl9FY1VMdy1kV19XU2VYVXp3QzRNUURyQkV2aUZkQzBjZ3RJYmtEQTQ4Rjk1eHo2SWRRbVdZYk0zZ2hhY2IzVTZEREl6TUNBcUxQMkItbnhkT2NwT1ljUUJfbDNQaUJ4am5PaTBVbFRMUXVDMGZFUks4eDlF?oc=5",
+        "https://news.google.com/rss/articles/CBMipwFBVV95cUxOUDI1MmZxczlvOTdvNVhwTkhOVWdvZmV3MG9EU1ZIXzNxTmZtek9QMVFubDBLUVVTR2w4bk5CQzBUSElYWURhSTB5b2pzQjlHdEhueGdFSEJxWjJfSGI2TTNrMTd2OVZ2VHdCYXFranp2VjdRajZtRmwzaEVjSVNLTUJLQVJ5NmNzUzlZamc5ang5NDhOQ01uREt0U3QxMWVaMzFOR2U5TQ?oc=5",
+        "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTl9JRlBCNjhXLTlGcTMyclROQVVWQlVGSFQ2RmYwcmliWDQ1T0JGN201NjN6cENwMVVhOUpxbXlMMDZsekxXOUZRUUUxY19jU0NIZXNYaURnOEhqSFM4NWl4UXd1UjVzME9fT1AyQVBOMzBOSVVfc2hkTWNQYWZVeDhlV0g1TmlfaVotNG5XZy05OVE1aFNTTDVPc0V2THZvaExHT3BtZWxQWFJteEdJ?oc=5",
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdGZJZEdFOE44RXBWRTctRUFnZzJJSG9UcUgxN2t2YWFubHNPVVlHQ3d0NEpkY1p4YjN1TWcyU2Nlb2VjZE5fdGhrd1E4TFhwMUJOUUZwRFIzR28wTkZIWEJqVTctSncxQTcyV0pjd3hmNFN0bmk4T1U2dWNwSlRQSVBqeU05c1h4NDhMNmRCSVVLaFNZaFdEamVzb0xZbUFic1dTcHB3?oc=5",
+        "https://news.google.com/rss/articles/CBMiV0FVX3lxTE52Ujd0ZGY5VXk4ZVBfYVBlejBxVFN5SWZPdzZZLU83QWpPVHlWM2hqcWZwNFE1eWs0MG5GejUwdmVpZzdjWDZncmJiRkF5M21reUJMNUc2VQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Global youth unemployment rises amid sluggish job creation and looming AI risk, UN labour agency says - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPNWVmb0Q0R09kbU9jRjlTVVI4bzl5LVZsUTR4enl6cE1yUGY4Z01kQUs0VDN1QjhRNHMyUlBnV0ljQ1BaZDlMNl9FY1VMdy1kV19XU2VYVXp3QzRNUURyQkV2aUZkQzBjZ3RJYmtEQTQ4Rjk1eHo2SWRRbVdZYk0zZ2hhY2IzVTZEREl6TUNBcUxQMkItbnhkT2NwT1ljUUJfbDNQaUJ4am5PaTBVbFRMUXVDMGZFUks4eDlF?oc=5",
+          "source": "Reuters"
+        },
+        {
+          "title": "Nearly 80% of Southern Asia\u2019s Unemployed Youth Are Seeking Their First Job: ILO",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOUDI1MmZxczlvOTdvNVhwTkhOVWdvZmV3MG9EU1ZIXzNxTmZtek9QMVFubDBLUVVTR2w4bk5CQzBUSElYWURhSTB5b2pzQjlHdEhueGdFSEJxWjJfSGI2TTNrMTd2OVZ2VHdCYXFranp2VjdRajZtRmwzaEVjSVNLTUJLQVJ5NmNzUzlZamc5ang5NDhOQ01uREt0U3QxMWVaMzFOR2U5TQ?oc=5",
+          "source": "The Policy Edge"
+        },
+        {
+          "title": "World youth unemployment rate rose last year: UN",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTl9JRlBCNjhXLTlGcTMyclROQVVWQlVGSFQ2RmYwcmliWDQ1T0JGN201NjN6cENwMVVhOUpxbXlMMDZsekxXOUZRUUUxY19jU0NIZXNYaURnOEhqSFM4NWl4UXd1UjVzME9fT1AyQVBOMzBOSVVfc2hkTWNQYWZVeDhlV0g1TmlfaVotNG5XZy05OVE1aFNTTDVPc0V2THZvaExHT3BtZWxQWFJteEdJ?oc=5",
+          "source": "Hindustan Times"
+        },
+        {
+          "title": "A young person is now four times more likely to be unemployed than an adult. The ILO says AI is eating the entry-level jobs that used to change that",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdGZJZEdFOE44RXBWRTctRUFnZzJJSG9UcUgxN2t2YWFubHNPVVlHQ3d0NEpkY1p4YjN1TWcyU2Nlb2VjZE5fdGhrd1E4TFhwMUJOUUZwRFIzR28wTkZIWEJqVTctSncxQTcyV0pjd3hmNFN0bmk4T1U2dWNwSlRQSVBqeU05c1h4NDhMNmRCSVVLaFNZaFdEamVzb0xZbUFic1dTcHB3?oc=5",
+          "source": "Plataforma Media"
+        },
+        {
+          "title": "After post-pandemic improvement, youth unemployment is rising again",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE52Ujd0ZGY5VXk4ZVBfYVBlejBxVFN5SWZPdzZZLU83QWpPVHlWM2hqcWZwNFE1eWs0MG5GejUwdmVpZzdjWDZncmJiRkF5M21reUJMNUc2VQ?oc=5",
+          "source": "news.un.org"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The rise in global youth unemployment amid AI risks is a critical issue that resonates with the Indian diaspora's concerns about job security and economic stability.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "8e79ad60-5870-467b-8aae-5fe923eff0ed",
+      "title": "To strengthen national security, starting today, US immigration authority requires certain immigration fo - The Times of India",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-11T07:28:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiqgJBVV95cUxNcTF6TTVMdk4teGpDbTZVSnd4Q01uVWsxb3o3UUdNWEg0U1M3UTNHT2IxN0VpLTVqYjFjeWRlNmFKWTV6LW9KWDlzSG53VWhCRloxNFdaTEVQUlVMS2VMYlkxVFBLblMySy1CdDB2QzUwN2duMjFzRk56OER3UGZGaTBQSV9jZG05RFRIbFZmV0NMT1A2ZjZZa25kbEdOWEFjTFdtYnRSVTRuTTVIaGJFQlZaRTgwTTVZamE5NXJsQnhTWGcxWkZpYlBkR0d6NDA5WDV0bV9iTThiS04yQUw2aUlrOHpnY01FeTVvWnhWOG90LWtfU3lfT2dNT0pLcEVMYTBRak5lbHdjQmVaZU41NXBSS0dyUF9aTHBYWDFQVzZiQmNpeWZqQWxR0gGvAkFVX3lxTE5sU3YtZjN3N3lZSFpHaGlsakMwaHd5WVo1S2xtSUpicHYtZmZPUjJDcnhTRUI3ODhSRDZaYXpLaXhKblN5MUVuRE1MZ3REaU5XUEJKNXFSZFF5X3ZsU3ZMWWh2Z2gtVjFtMkc2MExYeGV0UV9EdnZyTTNVU3p3ZDJQTWtxV2R1ZGpvQjBrdkhONnVJajdnOTNmWEVpU2tNb1E2ZVdmY05rT01SVlljdE05YUN1QnBhZXpGTTBQR19mR3hGYzkweDV6aEZiSW9GTWJ3X2tpX1NIdi1TLVhJMWxDLUZjSnBZSGxtNzN1eFZyT3J1QlFxaGdhenBkMnUzc1BlZ0hycTU4WU1pMm9vRXJMcjZZZXg5SEtsRlVzX2MzalQwb2JJWHNQUkVjSGp1MA?oc=5",
+        "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQeWVsWUZ1dFhSVlY1M2RPUXpFeEpMWGVLdF8tUi1oQUZpQ2RQNGdWZS0zYVRGZ3VQLUdRdDdITlgyOEZtbWpIcV9kSTljOVlQY2lCeXl5M0RhX251TjQzM3cyOHowcWJKUFJSbUFPYUV3R0YwQmJRNTRSSmsweWxEc09NRUJfOGpacFN4YW9QVktTazVKdXl5OFJWbUdjUzdhWjdpdVlFTEhRc1NxaFoyT3NMY1BpaUQ0b056a0hFbHI1NWQyVWN5VVB1aXRIbHlFazh3N2d2c1FRUdIB3wFBVV95cUxPVUVHVHB6STdZajJGeVFwVDhvUGRCOUp0dEVydXpvbDhxWVp5QUJxcEk4TS1LT3NlSDVmNVhUNE1qcWhRYnhXdGt1ZUpfNkd2TElZRVE5RDVOdUxlVkRvbm9HUVRGeUJfYmoxWk54cDU2NjYxRWRzV0JHeC0yWS12WDVCcXZSRHhPS3dfX09Ca3RFXzk0Y1NDX1NjdW9jQXlob3JlMVNESmtkajYwZHdNalZseURtT3ppY2JTSUJNSEhQWmJCVTJxUEFwWm5mMjBNTE1QYWhrcmV3V2dMMzFB?oc=5",
+        "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOWDdNUHNJSWRBOU44WnVNanNiQTM2UFpVMmFQN05zbDVqcktrdEx4LVhxWWIwaEhvYzRDRDNJUlc4MXRMSkwwZER3d0ZUYXJxTTF4M2JMQkZzanQ4U0dIZzVBVXlqRzJkMTRQeW94OFYyRlJWODhJdlNQRXNhX3cwSV85bDdYaGFOcWZBRjdGVEg1WjlJc3UzZU4ycHpzN0YxY2tqODlXU0JKZw?oc=5",
+        "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPMEN1UU1tSzJGUUpkWk9NcjhTVFpzZGxIM1h6Tk9Ha05GX1dqdXEycGNqWUNUMVZkeC01ZzlfdVRKV3l6U1NRc3h2cWpLTV95dUJyYVV5Qzd2QWZqMUNMY1NNeUNLXzVEN2NXa1YzR2ZaU3FGZThQb18wRERYY0tWMXNwckVJcEdnOEFBOHp6aEZ4NE5OZkNuWW53RHphQW5uQko0ZnJFMTQwdFFkWmVROWhYaFdGelRjcFI1Tk5oQ3lGUVpKWmR3elZrS3AzekdZT3A4WDZ6TXXSAd4BQVVfeXFMTk9ZZ2pqanNiWm9FT0JDZzNRSzBTelV4MjJBRzVZX0NzZVpHaE44ODlEbFI3QnZ3U0FLZTJQanpNMzdTRk41SmU0eXZkZ2M3SVh4R2U4UmZJeThNeDQ1LXp0Z0E1dDBTSnZvTnRrVEYzV0t4SnNjeHc4Q0duMkVJV295T2JOWXNHdU5xby1PTmc2aVU0N0sxUExxdG05RjdaTW1TbS1qRnE0ZW9fU045emVvS1UtazJSN08tUDU1VFdJSHRXa2JNX2JpNDJyVDlCTExZOXlCOTRHMk1YLXlB?oc=5",
+        "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPS3RwRllTQlJYRk8yNFdlR1UxSVZGMk1UaU5WenRPcTU1N0tJOFg1M1hNb1gta2NQZDFuQkJneHJuekM3N3JGTTVaRmcyaTdacmpUb2pmREhhbEdmNkpWRXJPa0VyeDlJXy1RMzN5WEQ0R2RnTWI3YzRmUkpTNmRPcDhsUjJhSlZrXzB0OXBKRUc4bTN1M1B3eVQxMmVoMk9VQ1ROME5DcXd4RlnSAbMBQVVfeXFMUHJvSFZWS2d4Z015YkpuOHdvckR5MnJpRC1BVXYyNDFERktucXNvMzRqQ2NDRzR1RDRpczRlSnFKbmlLeEVnTGFvWmJMX21zcWYxQy1UcUtCbU40cWRoWUZTVnRvYWVBZUU5a2M0VTFoX0NMOHl5ZTgwbWUtYmRsMXQ5dVlpYWRtd2YyQWkxNktxOHNfQlA2cEJDcWFsQzNGek1BWWlESS0yLVd3R1BjbE1icXM?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "To strengthen national security, starting today, US immigration authority requires certain immigration fo - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxNcTF6TTVMdk4teGpDbTZVSnd4Q01uVWsxb3o3UUdNWEg0U1M3UTNHT2IxN0VpLTVqYjFjeWRlNmFKWTV6LW9KWDlzSG53VWhCRloxNFdaTEVQUlVMS2VMYlkxVFBLblMySy1CdDB2QzUwN2duMjFzRk56OER3UGZGaTBQSV9jZG05RFRIbFZmV0NMT1A2ZjZZa25kbEdOWEFjTFdtYnRSVTRuTTVIaGJFQlZaRTgwTTVZamE5NXJsQnhTWGcxWkZpYlBkR0d6NDA5WDV0bV9iTThiS04yQUw2aUlrOHpnY01FeTVvWnhWOG90LWtfU3lfT2dNT0pLcEVMYTBRak5lbHdjQmVaZU41NXBSS0dyUF9aTHBYWDFQVzZiQmNpeWZqQWxR0gGvAkFVX3lxTE5sU3YtZjN3N3lZSFpHaGlsakMwaHd5WVo1S2xtSUpicHYtZmZPUjJDcnhTRUI3ODhSRDZaYXpLaXhKblN5MUVuRE1MZ3REaU5XUEJKNXFSZFF5X3ZsU3ZMWWh2Z2gtVjFtMkc2MExYeGV0UV9EdnZyTTNVU3p3ZDJQTWtxV2R1ZGpvQjBrdkhONnVJajdnOTNmWEVpU2tNb1E2ZVdmY05rT01SVlljdE05YUN1QnBhZXpGTTBQR19mR3hGYzkweDV6aEZiSW9GTWJ3X2tpX1NIdi1TLVhJMWxDLUZjSnBZSGxtNzN1eFZyT3J1QlFxaGdhenBkMnUzc1BlZ0hycTU4WU1pMm9vRXJMcjZZZXg5SEtsRlVzX2MzalQwb2JJWHNQUkVjSGp1MA?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Green Cards To Citizenship: US Immigration Applications Move Online | Firstpost Live",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQeWVsWUZ1dFhSVlY1M2RPUXpFeEpMWGVLdF8tUi1oQUZpQ2RQNGdWZS0zYVRGZ3VQLUdRdDdITlgyOEZtbWpIcV9kSTljOVlQY2lCeXl5M0RhX251TjQzM3cyOHowcWJKUFJSbUFPYUV3R0YwQmJRNTRSSmsweWxEc09NRUJfOGpacFN4YW9QVktTazVKdXl5OFJWbUdjUzdhWjdpdVlFTEhRc1NxaFoyT3NMY1BpaUQ0b056a0hFbHI1NWQyVWN5VVB1aXRIbHlFazh3N2d2c1FRUdIB3wFBVV95cUxPVUVHVHB6STdZajJGeVFwVDhvUGRCOUp0dEVydXpvbDhxWVp5QUJxcEk4TS1LT3NlSDVmNVhUNE1qcWhRYnhXdGt1ZUpfNkd2TElZRVE5RDVOdUxlVkRvbm9HUVRGeUJfYmoxWk54cDU2NjYxRWRzV0JHeC0yWS12WDVCcXZSRHhPS3dfX09Ca3RFXzk0Y1NDX1NjdW9jQXlob3JlMVNESmtkajYwZHdNalZseURtT3ppY2JTSUJNSEhQWmJCVTJxUEFwWm5mMjBNTE1QYWhrcmV3V2dMMzFB?oc=5",
+          "source": "Firstpost"
+        },
+        {
+          "title": "USCIS online filing rule: What it means for Indian green card, citizenship applicants",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOWDdNUHNJSWRBOU44WnVNanNiQTM2UFpVMmFQN05zbDVqcktrdEx4LVhxWWIwaEhvYzRDRDNJUlc4MXRMSkwwZER3d0ZUYXJxTTF4M2JMQkZzanQ4U0dIZzVBVXlqRzJkMTRQeW94OFYyRlJWODhJdlNQRXNhX3cwSV85bDdYaGFOcWZBRjdGVEg1WjlJc3UzZU4ycHpzN0YxY2tqODlXU0JKZw?oc=5",
+          "source": "The Indian Express"
+        },
+        {
+          "title": "US to make online filing mandatory for green card, citizenship, asylum applications",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPMEN1UU1tSzJGUUpkWk9NcjhTVFpzZGxIM1h6Tk9Ha05GX1dqdXEycGNqWUNUMVZkeC01ZzlfdVRKV3l6U1NRc3h2cWpLTV95dUJyYVV5Qzd2QWZqMUNMY1NNeUNLXzVEN2NXa1YzR2ZaU3FGZThQb18wRERYY0tWMXNwckVJcEdnOEFBOHp6aEZ4NE5OZkNuWW53RHphQW5uQko0ZnJFMTQwdFFkWmVROWhYaFdGelRjcFI1Tk5oQ3lGUVpKWmR3elZrS3AzekdZT3A4WDZ6TXXSAd4BQVVfeXFMTk9ZZ2pqanNiWm9FT0JDZzNRSzBTelV4MjJBRzVZX0NzZVpHaE44ODlEbFI3QnZ3U0FLZTJQanpNMzdTRk41SmU0eXZkZ2M3SVh4R2U4UmZJeThNeDQ1LXp0Z0E1dDBTSnZvTnRrVEYzV0t4SnNjeHc4Q0duMkVJV295T2JOWXNHdU5xby1PTmc2aVU0N0sxUExxdG05RjdaTW1TbS1qRnE0ZW9fU045emVvS1UtazJSN08tUDU1VFdJSHRXa2JNX2JpNDJyVDlCTExZOXlCOTRHMk1YLXlB?oc=5",
+          "source": "Telegraph India"
+        },
+        {
+          "title": "US Set To Make Online Filing Of Immigration Applications Mandatory",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPS3RwRllTQlJYRk8yNFdlR1UxSVZGMk1UaU5WenRPcTU1N0tJOFg1M1hNb1gta2NQZDFuQkJneHJuekM3N3JGTTVaRmcyaTdacmpUb2pmREhhbEdmNkpWRXJPa0VyeDlJXy1RMzN5WEQ0R2RnTWI3YzRmUkpTNmRPcDhsUjJhSlZrXzB0OXBKRUc4bTN1M1B3eVQxMmVoMk9VQ1ROME5DcXd4RlnSAbMBQVVfeXFMUHJvSFZWS2d4Z015YkpuOHdvckR5MnJpRC1BVXYyNDFERktucXNvMzRqQ2NDRzR1RDRpczRlSnFKbmlLeEVnTGFvWmJMX21zcWYxQy1UcUtCbU40cWRoWUZTVnRvYWVBZUU5a2M0VTFoX0NMOHl5ZTgwbWUtYmRsMXQ5dVlpYWRtd2YyQWkxNktxOHNfQlA2cEJDcWFsQzNGek1BWWlESS0yLVd3R1BjbE1icXM?oc=5",
+          "source": "NDTV"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The new immigration authority requirements are significant for the diaspora, particularly for those navigating the immigration system.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "eeb3faf0-251b-4636-9113-fec91db8bfe5",
+      "title": "Sports ministry suspends Table Tennis Federation of India recognition over governance issues - The Times of India",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T10:29:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQREpZOHZ5dTFFSTNHYzNld2I2aUJPemZ3Zl9rRkhsN0k1YUFRN0N1V3h0eU0wRURUYmo5cTJfNFJfQ21GNlFvalY5a0R0UXgzRDEzakUyWHRlcXNXYWdFeUwxd1UtbXQ2LVNZcEVaNERwRlhvbU8wc0hab3VRb0ZVTXZ1V3JTeTVNTjZ6aTFKeFhmdjNnVlc2QnZ1eWg1OXk3VHkteTkzUmJKUVBUcFVDRXpyWmg0cnVxR0toNGVJMFllXzVDbFZqY1hNcFJ5Nl92RFFOaERrcFF6RFXSAeABQVVfeXFMTkFSTHZKMmJpSHBxbDVSTWhFRXcyN3VqSnhXUVdYT2ktMGlLZGZBcDh0U2ppUTBIVXI5TUllLTQtYk9vNWZGX2piVDF0YUl0Vm55eTJoOWVhQnQ1Nk1ZeEd4WExFbEZhQ0RUVEpUSFpQWGNaS3I0dDd5Y19nN29DZUljYXg1WFpEQ2JIM3JYWUgzU0wyN2pqQndOdERFajZOOEFJdmpXc09Sak9Wc1ZCVjBsMHBjNzRSVUplUkE0QjdXY1A0Z01RbHJkcWRpUTh5bVdpTHhRVzFYUXgzTTJjS3g?oc=5",
+        "https://news.google.com/rss/articles/CBMijAJBVV95cUxOUDd0QjE2U3ctbHVOU2RvSkdod1ZueXAyd2JvYXRya1hWcVR0UXFXYjhCMXlTY3FXdUZuWEI1R1BoaDFCbndxRUxBTFJXT1hodnpIblVzN2VweFNkZlI0SmdwS0w3bW1CXzVXZzlpTXRYd3JrNGhrQU1lRXVJWnFvR0tFTUdTdV9XZ1lpWmg3X19ieWZJZnpSbFp3U0FOdF95dG5nSWZBMVVBX1BwRF9EbXlYUEhiYzJuNzdkUWNKNUQyS3dtb1Nla0U5ZXdRWC16dnlaRUtFaWNEeFBEUy14d0t5UHR4WTM2NmRWYkdqM1YybkJZQ3JEQXYyeTRwWkhQUGpwLXAwMnhadVZK?oc=5",
+        "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOMlVsT3ZGaVZXaXpTMURVbDRZaUYzc2NMYzUzX0JPUW9TdURvWWRJR1NuTDVkUmxyc1dZakVwZTFueVN4NmVTVVY4X3B5U0VyMVdpVGxSY1RUX2I1c052RjlHWjQ1WmZTRUdISElQNF9HTmxNUnI2Q1VrLTBGc1BVZmkwUzZuWnk5WWhoRUMza0tOMEtSWHc2Ry1SZjFUMWV1aUFrVEhxcmdZUWNKZ3JUSVlRaTBWVWlOS1kxWkFwR21CMFU4S1pFV0RFTDQyMl9XN1JjamFqOXhYX3dpX1dKNURwWlVRMjBz0gHuAUFVX3lxTE9PMHN1alNpRmY5ZlJlbFZHV2Y5R0RkS0o4a1E0TzdIZG4wUTU0RFd5UDdpSWJsQlBBOHJVT2JSa09keFdvNzg3TURaVFl0VlRBTFRKU3hSVC1VUFZPdzlzR3VpTGpXV3pWMFJ2YkZfcHlDbUVkTjlFOGRfNktRbkZ4QzIyOXZKUUQ5b1ZHckplTHlSWUV6YkJuSXBEdEotMDg4SnZjbmtka1czRTJDWjFheWdLTDIyeWlnV2VpY0NkVFJEOGRjYVJ4dk52d2ZRSy1uT2t6QWloVXpKX3NQRUxnMGNrU3ZIMUZzY1RlaWc?oc=5",
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxOY3c2bk1RenRHUG1EdmZtUVVSVTFrWVZUUGdWRGFvVHlJZFJYdFJMbnp1SW4ybG9rVXRvcGlfR2NPN0hXVFFiOFlWOWE2UVh0QVNFRjdNLWszdkdRWG1vWnU5REsxV3pKV2RLeENuaFctMW1BZWJkWkJFMHAtWUd1TFpwVFNPWG54STRWVnN5eFFiR3E4OVFzZ2lmaVV3RkJVX2lpS3pR?oc=5",
+        "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQakF2bUwtczd0VGROWWRuMjV2cTJqNDh4Z2pwcVlJcVVDdmh1a1NONnZCRUlxbFpLNFluSzdua0FjV3RQeS1KS3ZEUDc2bS0tWk95WGw1YXltMjlld2JhZ29VMlJyLU1vaVhyalctMW0xMDVwRU9KaVRLZlI2dVpYei16MUVvbjlNTUxQcGUtenBiaUNnZUh5RlBWSHI3Umx2LWpjb2ppNTHSAa4BQVVfeXFMTzhCTy1WTTZVeDgxSGFkczI1YWo5VGNoU1l1SWJ0Sm0tbEZua3REX2V5VDJlOGpBcm1KU3JoMnpibzVOaFNUWXVZZFZwZW9Jb0xaRXVzQXRVX3lIS3hob2hnQ2xKV0JzTjB4MVliWTEzWWlja084dTJnR1J0VG0tUGJ6bmI5aFZzSFBxNkxZRVFDTGJiRkpLS25naG1VU1NpUmsxWTAycDFlZzNSVXd3?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Sports Ministry suspends Table Tennis Federation of India amid governance-related concern: Report",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQREpZOHZ5dTFFSTNHYzNld2I2aUJPemZ3Zl9rRkhsN0k1YUFRN0N1V3h0eU0wRURUYmo5cTJfNFJfQ21GNlFvalY5a0R0UXgzRDEzakUyWHRlcXNXYWdFeUwxd1UtbXQ2LVNZcEVaNERwRlhvbU8wc0hab3VRb0ZVTXZ1V3JTeTVNTjZ6aTFKeFhmdjNnVlc2QnZ1eWg1OXk3VHkteTkzUmJKUVBUcFVDRXpyWmg0cnVxR0toNGVJMFllXzVDbFZqY1hNcFJ5Nl92RFFOaERrcFF6RFXSAeABQVVfeXFMTkFSTHZKMmJpSHBxbDVSTWhFRXcyN3VqSnhXUVdYT2ktMGlLZGZBcDh0U2ppUTBIVXI5TUllLTQtYk9vNWZGX2piVDF0YUl0Vm55eTJoOWVhQnQ1Nk1ZeEd4WExFbEZhQ0RUVEpUSFpQWGNaS3I0dDd5Y19nN29DZUljYXg1WFpEQ2JIM3JYWUgzU0wyN2pqQndOdERFajZOOEFJdmpXc09Sak9Wc1ZCVjBsMHBjNzRSVUplUkE0QjdXY1A0Z01RbHJkcWRpUTh5bVdpTHhRVzFYUXgzTTJjS3g?oc=5",
+          "source": "Firstpost"
+        },
+        {
+          "title": "Sports ministry suspends Table Tennis Federation of India recognition over governance issues - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOUDd0QjE2U3ctbHVOU2RvSkdod1ZueXAyd2JvYXRya1hWcVR0UXFXYjhCMXlTY3FXdUZuWEI1R1BoaDFCbndxRUxBTFJXT1hodnpIblVzN2VweFNkZlI0SmdwS0w3bW1CXzVXZzlpTXRYd3JrNGhrQU1lRXVJWnFvR0tFTUdTdV9XZ1lpWmg3X19ieWZJZnpSbFp3U0FOdF95dG5nSWZBMVVBX1BwRF9EbXlYUEhiYzJuNzdkUWNKNUQyS3dtb1Nla0U5ZXdRWC16dnlaRUtFaWNEeFBEUy14d0t5UHR4WTM2NmRWYkdqM1YybkJZQ3JEQXYyeTRwWkhQUGpwLXAwMnhadVZK?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Sports ministry suspends Table Tennis Federation of India recognition, cities \u2018governance deficiencies\u2019",
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOMlVsT3ZGaVZXaXpTMURVbDRZaUYzc2NMYzUzX0JPUW9TdURvWWRJR1NuTDVkUmxyc1dZakVwZTFueVN4NmVTVVY4X3B5U0VyMVdpVGxSY1RUX2I1c052RjlHWjQ1WmZTRUdISElQNF9HTmxNUnI2Q1VrLTBGc1BVZmkwUzZuWnk5WWhoRUMza0tOMEtSWHc2Ry1SZjFUMWV1aUFrVEhxcmdZUWNKZ3JUSVlRaTBWVWlOS1kxWkFwR21CMFU4S1pFV0RFTDQyMl9XN1JjamFqOXhYX3dpX1dKNURwWlVRMjBz0gHuAUFVX3lxTE9PMHN1alNpRmY5ZlJlbFZHV2Y5R0RkS0o4a1E0TzdIZG4wUTU0RFd5UDdpSWJsQlBBOHJVT2JSa09keFdvNzg3TURaVFl0VlRBTFRKU3hSVC1VUFZPdzlzR3VpTGpXV3pWMFJ2YkZfcHlDbUVkTjlFOGRfNktRbkZ4QzIyOXZKUUQ5b1ZHckplTHlSWUV6YkJuSXBEdEotMDg4SnZjbmtka1czRTJDWjFheWdLTDIyeWlnV2VpY0NkVFJEOGRjYVJ4dk52d2ZRSy1uT2t6QWloVXpKX3NQRUxnMGNrU3ZIMUZzY1RlaWc?oc=5",
+          "source": "Telegraph India"
+        },
+        {
+          "title": "Sports Ministry suspends TTFI over governance issues",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOY3c2bk1RenRHUG1EdmZtUVVSVTFrWVZUUGdWRGFvVHlJZFJYdFJMbnp1SW4ybG9rVXRvcGlfR2NPN0hXVFFiOFlWOWE2UVh0QVNFRjdNLWszdkdRWG1vWnU5REsxV3pKV2RLeENuaFctMW1BZWJkWkJFMHAtWUd1TFpwVFNPWG54STRWVnN5eFFiR3E4OVFzZ2lmaVV3RkJVX2lpS3pR?oc=5",
+          "source": "The Indian Express"
+        },
+        {
+          "title": "Sports Ministry Suspends Table Tennis Federation Of India",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQakF2bUwtczd0VGROWWRuMjV2cTJqNDh4Z2pwcVlJcVVDdmh1a1NONnZCRUlxbFpLNFluSzdua0FjV3RQeS1KS3ZEUDc2bS0tWk95WGw1YXltMjlld2JhZ29VMlJyLU1vaVhyalctMW0xMDVwRU9KaVRLZlI2dVpYei16MUVvbjlNTUxQcGUtenBiaUNnZUh5RlBWSHI3Umx2LWpjb2ppNTHSAa4BQVVfeXFMTzhCTy1WTTZVeDgxSGFkczI1YWo5VGNoU1l1SWJ0Sm0tbEZua3REX2V5VDJlOGpBcm1KU3JoMnpibzVOaFNUWXVZZFZwZW9Jb0xaRXVzQXRVX3lIS3hob2hnQ2xKV0JzTjB4MVliWTEzWWlja084dTJnR1J0VG0tUGJ6bmI5aFZzSFBxNkxZRVFDTGJiRkpLS25naG1VU1NpUmsxWTAycDFlZzNSVXd3?oc=5",
+          "source": "Rediff"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The suspension of the Table Tennis Federation of India over governance issues is a significant development in Indian sports governance.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "c95ffeb9-4e3e-41e3-b186-63b99c51e29e",
+      "title": "India wins 17 medals, including 4 gold, on opening day of U-23 Commonwealth Fencing Championship - News On AIR",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T07:38:39+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNZGZLVGxQU0NVV1FtdGFZVkl6SGtqYmlqLWVsS0UtTnRIZHZ6WFlpd2toWEpiOU1OX2ExZmw3LUV2MURocjRLWW9EaG9iTWRub2FUVEwyVTdjX0p6bklxWllUTG5UVnY4WjVWdUxTLTRuc25pV0dzeXlpeHhMOWpaZ01NRzVIcFUwRDJUVDlHdm5TV05fdXcyZnF0TjFmekVoNFp0VW90VEhQWUM2Ty14Ui1TdXN6WHVDSUR4c242M1h6cTc1Y0Q5NGpjNFpDeGlybjE5Q3dtekVKZmZwNEHSAeMBQVVfeXFMTmN2eFJxa3J5SXhvaXYzeXRidEtVTmRaNVFOUXFNOVlib0hYMmIwdlBYMF9zSU9QMTBlQ1gtVTN1QjBoSEg3NnBUM3RJLTdDcTFqUmlBeEZFbS0wSHBjSE5rY1BiVlhsNmhCdG50VHFxTjhaSUxIbzh0S2lQUHhqVG56eXl5aHJOVXYxMERPZndWcWZ5N1BIeE9oZXFOYjNOZTNsSlhicUtwcWR6RGJlWElqTThySlNSRGp2V0VZVmdqLTg2WTdnSDI2akVjU2xVX0htRVZYdEhUM3A1eXpYMVhEdk0?oc=5",
+        "https://news.google.com/rss/articles/CBMiugFBVV95cUxNMEluWlJCRmw3YXVZcmV5UXYydVQ0YmFKVmZxY3lkMHlCcnMtU2NXU0toYUo3bkVXbEpPNXM4ZVl1WFhCUkdRYjQ3WVBCM18yaGs5Y0ttcngwblFfRExwRFBiZFBsTFFGcGc3NVFrcEZjaDJCX1BwYmRwbk1uemxWY1UyTkhVbklhcEV0bEY0SEhCUG5xeG9Zb1dVSVlCTXFNOFAyeUd1SXFlNlBkazBZcXNBSjBKVzJWUHc?oc=5",
+        "https://news.google.com/rss/articles/CBMivAFBVV95cUxPVnJFallOVUFMMzNxcnczWHNReERSTThRTjdsdFFWdVpFUVk2c0o3dVJtS0JnbFZtdkRzeGs0N2pNeUQtaS1EckFPcXpOMnE3M2szRTljWEs0Snd3enhzeUtfSU8tY1c2bmQzYXNPWVpCOEpNZTZOWEk4YXE2UW9JdXRKWVFCeXNRX0lPTHVCSTRDYmoyR1R6NU5sVFhvWTZKd1V5Y0tiT0pCM0M5VGlqbGFlVmM2LWhNOUNfMA?oc=5",
+        "https://news.google.com/rss/articles/CBMizAFBVV95cUxOYWMxWTlkY0p1ZUE0YzN5V2p6Yjc3cWpnLVRBZkRQYUJmTzI0amJISXpwNjhjQVlyRW1lRWNYa01sYkNLbFFFR2Y1dnh1ZmtqUlF2djM4eTBQOEw2TG11SkNrdjJDeU5jVElIZkFNN05sN1JkWEJDRjdKRUJnQ21Ya3E2Wmg4UW9SemhBV3pJVFZ3am5TM3BRUGQtcGRhZ21UeE94M1RqSXdFUUdETDF4UkNSVHJxVWxLeW4zLVM5X0ZhNS15RDNFa3dsSkY?oc=5",
+        "https://news.google.com/rss/articles/CBMixgFBVV95cUxPdk00UFFhb05jM0JXZ2xNSExodDZxM3VIbU9jb2JsTl9kaHFrcWw4aEZLRlIzRi12YUo5NXRLWlVpS3ZYOFRjamprWXZGWEExZjY2SHV1TWFDbmJnOHVEcEdnSERQS1J6Z2VIVkhsNWJvMkdGeklMckQyZWpoVjNuREFUVlczYWZ3UDFVbXRVR1VLcmQ3N2hGYVU0dWllbzVyQlNsZUlraVlwV0M3cFJUeG53X202akQtbWxIaFJTU21HTTFxcXfSAdMBQVVfeXFMT0Z6WFhuN1NlTDZUU2VLRWYwMndEWU5lQkprTFhrZk56Zmhzbl9BdTRJbWF3VmpNRFdkY29HUVU2VEhsNlVVSVBCbVVHd1JtQjR5UDhRWHhQMmllY3A3UDFFdVV3TGp3b3JkMzMtcWVHb0t6Z0F3Z3Awdi1BUzNuX2RNdUdJQmc1UmRLTXJiT0luRndlTmI5SG54RnFBQ29PSmRSZFMzVHMyS25hT2R3OGVHSGxGOHNaTnVrVFNoeGtUSk10U3JndXN1LXAzTzdQS1A4NA?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "India strikes gold three times as fencing haul reaches 29 in Lagos",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNZGZLVGxQU0NVV1FtdGFZVkl6SGtqYmlqLWVsS0UtTnRIZHZ6WFlpd2toWEpiOU1OX2ExZmw3LUV2MURocjRLWW9EaG9iTWRub2FUVEwyVTdjX0p6bklxWllUTG5UVnY4WjVWdUxTLTRuc25pV0dzeXlpeHhMOWpaZ01NRzVIcFUwRDJUVDlHdm5TV05fdXcyZnF0TjFmekVoNFp0VW90VEhQWUM2Ty14Ui1TdXN6WHVDSUR4c242M1h6cTc1Y0Q5NGpjNFpDeGlybjE5Q3dtekVKZmZwNEHSAeMBQVVfeXFMTmN2eFJxa3J5SXhvaXYzeXRidEtVTmRaNVFOUXFNOVlib0hYMmIwdlBYMF9zSU9QMTBlQ1gtVTN1QjBoSEg3NnBUM3RJLTdDcTFqUmlBeEZFbS0wSHBjSE5rY1BiVlhsNmhCdG50VHFxTjhaSUxIbzh0S2lQUHhqVG56eXl5aHJOVXYxMERPZndWcWZ5N1BIeE9oZXFOYjNOZTNsSlhicUtwcWR6RGJlWElqTThySlNSRGp2V0VZVmdqLTg2WTdnSDI2akVjU2xVX0htRVZYdEhUM3A1eXpYMVhEdk0?oc=5",
+          "source": "The Economic Times"
+        },
+        {
+          "title": "Indian fencers win two gold, three silver and four bronze medals at Commonwealth Championship",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNMEluWlJCRmw3YXVZcmV5UXYydVQ0YmFKVmZxY3lkMHlCcnMtU2NXU0toYUo3bkVXbEpPNXM4ZVl1WFhCUkdRYjQ3WVBCM18yaGs5Y0ttcngwblFfRExwRFBiZFBsTFFGcGc3NVFrcEZjaDJCX1BwYmRwbk1uemxWY1UyTkhVbklhcEV0bEY0SEhCUG5xeG9Zb1dVSVlCTXFNOFAyeUd1SXFlNlBkazBZcXNBSjBKVzJWUHc?oc=5",
+          "source": "News On AIR"
+        },
+        {
+          "title": "India wins 17 medals, including 4 gold, on opening day of U-23 Commonwealth Fencing Championship - News On AIR",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPVnJFallOVUFMMzNxcnczWHNReERSTThRTjdsdFFWdVpFUVk2c0o3dVJtS0JnbFZtdkRzeGs0N2pNeUQtaS1EckFPcXpOMnE3M2szRTljWEs0Snd3enhzeUtfSU8tY1c2bmQzYXNPWVpCOEpNZTZOWEk4YXE2UW9JdXRKWVFCeXNRX0lPTHVCSTRDYmoyR1R6NU5sVFhvWTZKd1V5Y0tiT0pCM0M5VGlqbGFlVmM2LWhNOUNfMA?oc=5",
+          "source": "News On AIR"
+        },
+        {
+          "title": "MP fencer Khushi wins silver at Nigeria Commonwealth c\u2019ship",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOYWMxWTlkY0p1ZUE0YzN5V2p6Yjc3cWpnLVRBZkRQYUJmTzI0amJISXpwNjhjQVlyRW1lRWNYa01sYkNLbFFFR2Y1dnh1ZmtqUlF2djM4eTBQOEw2TG11SkNrdjJDeU5jVElIZkFNN05sN1JkWEJDRjdKRUJnQ21Ya3E2Wmg4UW9SemhBV3pJVFZ3am5TM3BRUGQtcGRhZ21UeE94M1RqSXdFUUdETDF4UkNSVHJxVWxLeW4zLVM5X0ZhNS15RDNFa3dsSkY?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Commonwealth Championship: Indian fencers continue to dominate on Day 2",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPdk00UFFhb05jM0JXZ2xNSExodDZxM3VIbU9jb2JsTl9kaHFrcWw4aEZLRlIzRi12YUo5NXRLWlVpS3ZYOFRjamprWXZGWEExZjY2SHV1TWFDbmJnOHVEcEdnSERQS1J6Z2VIVkhsNWJvMkdGeklMckQyZWpoVjNuREFUVlczYWZ3UDFVbXRVR1VLcmQ3N2hGYVU0dWllbzVyQlNsZUlraVlwV0M3cFJUeG53X202akQtbWxIaFJTU21HTTFxcXfSAdMBQVVfeXFMT0Z6WFhuN1NlTDZUU2VLRWYwMndEWU5lQkprTFhrZk56Zmhzbl9BdTRJbWF3VmpNRFdkY29HUVU2VEhsNlVVSVBCbVVHd1JtQjR5UDhRWHhQMmllY3A3UDFFdVV3TGp3b3JkMzMtcWVHb0t6Z0F3Z3Awdi1BUzNuX2RNdUdJQmc1UmRLTXJiT0luRndlTmI5SG54RnFBQ29PSmRSZFMzVHMyS25hT2R3OGVHSGxGOHNaTnVrVFNoeGtUSk10U3JndXN1LXAzTzdQS1A4NA?oc=5",
+          "source": "The New Indian Express"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "India's performance at the U-23 Commonwealth Fencing Championship, winning 17 medals, is a significant achievement for Indian sports.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "8f18fd79-65b0-4a7a-a2f0-a3692465e156",
+      "title": "Hazlewood keeps Boland out of Australia XI for first Test - Cricinfo",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T04:29:19+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMixAFBVV95cUxOSlhKVmJGV0ZqbEVBblJyRnRtQVJzMVVrVmt6YlQweDB6UWdFZHZSTFg3OG1ZdUR4V1lpb1NtS1pyd0JCaXdkTkxBRk5fY1kxTDRtQTdNWmpscHA1M3lTX2ZkbU5iQlJBUGhSMVFveVRONjJMTzF5R1pTcGtiVHlzMEh3cVhjVUY2aGFNa0FfbGNfNXVfMXNxVndYSXBKdFBnNllRV0V6Z05xVkJGY0VWQUM1TG9HUi1wYVJWX2xzXzdnS2ZB0gHWAUFVX3lxTFA5OVBjZ3VYOS0yVDBiaHF3WC15RUc5Qlo1YkZEcEs0d1NXYjVGR3hvVEVldE0xTU9yOHdSOEVlVkhxRUVBb3RvcWNKRmNBSWI4blhUWlp1S0czNlJJNVJ1MFZWZ3pMN2ZRSXRPTm1fS0lQVHBIMWVDSHBybWJHY3B2ekdxWHMyTE5tWjNPbWtQR09vb1pGVVVRRVlueE9Pd0FkUnlMM25nR1BEMXhZRzlCRWx5QXJCQkxRZW40M1E4bmZvRTNyc0VRMjBscVhDcjdaLXRtZHc?oc=5",
+        "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPbGdQazE0YkNlYnlveGlQRTJudW9mS3FERnkyT1dfNUhEZmtIZ1Z4UmU3YUhKTk10enFQemVoWkpDeTBxNFBGeTJWb01zaXY0Mk5nZkxZU2kyWDlFSHdBc2xRdU5QUEhDZ2w1dUxJRUFKSXkzUWpJRjVod3BEZmV4LV9pbVBRa2drTTJwNW92NFoxd3dzbUI0R05BaTdlOUdvQXRKcDlDbWozZHY5MS1mWjlYV1pFcU5zaHhHV2pfYWNSbVVGTVZPcFE2SDdGRF9SV2w3M3dIRWJXeXR1YWMwWnZHSDV6TUZMc1VwQWVvM29JSzZ5ZzJj?oc=5",
+        "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNGhZZEV1WmxYeVFlYUlTYmxhdVlOTHliRHc5TTFZdjVCMVRUa1hGeW5LNlBQS3Y3ZUhpS2Rob2xueGUtUW1sTldWTnJZOU11OXdHSjhpczM1eGxXTHQ4ekx1SEZPLWlLSGk2SC1Ga2RxV3lzNlVUNzRjd2FXMlV4TmQyajFTVzg?oc=5",
+        "https://news.google.com/rss/articles/CBMiogFBVV95cUxQRFNBREV0MjQyQnNDd2Vyd2I4WEk3U19JNm15N08xRHNKNWxHSXEtZTlodGNYa1BBOGdZTVNkSEtvdklDc0NhM1ZwTy1qNlJRQmNqaHFBelJPanZwdHp3MlVOZEFtdE5obndsNnB1dnV1UzF6RzQ1ZUdXZGRnYklEbnQ3YUlrM3dLQXdIRnFYSUdSMGsyS25HNzJMclVHVGFkcWc?oc=5",
+        "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQYm9UZmRjaExtaEVXenlGT2JRMEJ2SGJWdVVaRXEzb3VfQlZ1V3ZGbmxIOElwazlmOGItS3cwNUNuc0xXZjlyTG5YOTdDX1RjVFdZTzRZRGt6a19UMm5rSmlLNEVoaGpVbEZ6LTR4Y3dsV2g3SnpxQWlJMWt3ZGU2WDVOZEpKem54aDc4?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Hazlewood keeps Boland out of Australia XI for first Test - Cricinfo",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOSlhKVmJGV0ZqbEVBblJyRnRtQVJzMVVrVmt6YlQweDB6UWdFZHZSTFg3OG1ZdUR4V1lpb1NtS1pyd0JCaXdkTkxBRk5fY1kxTDRtQTdNWmpscHA1M3lTX2ZkbU5iQlJBUGhSMVFveVRONjJMTzF5R1pTcGtiVHlzMEh3cVhjVUY2aGFNa0FfbGNfNXVfMXNxVndYSXBKdFBnNllRV0V6Z05xVkJGY0VWQUM1TG9HUi1wYVJWX2xzXzdnS2ZB0gHWAUFVX3lxTFA5OVBjZ3VYOS0yVDBiaHF3WC15RUc5Qlo1YkZEcEs0d1NXYjVGR3hvVEVldE0xTU9yOHdSOEVlVkhxRUVBb3RvcWNKRmNBSWI4blhUWlp1S0czNlJJNVJ1MFZWZ3pMN2ZRSXRPTm1fS0lQVHBIMWVDSHBybWJHY3B2ekdxWHMyTE5tWjNPbWtQR09vb1pGVVVRRVlueE9Pd0FkUnlMM25nR1BEMXhZRzlCRWx5QXJCQkxRZW40M1E4bmZvRTNyc0VRMjBscVhDcjdaLXRtZHc?oc=5",
+          "source": "Cricinfo"
+        },
+        {
+          "title": "Cummins, Starc, Hazlewood, Lyon reunite as Australia begin 20-Test marathon season with Bangladesh series",
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPbGdQazE0YkNlYnlveGlQRTJudW9mS3FERnkyT1dfNUhEZmtIZ1Z4UmU3YUhKTk10enFQemVoWkpDeTBxNFBGeTJWb01zaXY0Mk5nZkxZU2kyWDlFSHdBc2xRdU5QUEhDZ2w1dUxJRUFKSXkzUWpJRjVod3BEZmV4LV9pbVBRa2drTTJwNW92NFoxd3dzbUI0R05BaTdlOUdvQXRKcDlDbWozZHY5MS1mWjlYV1pFcU5zaHhHV2pfYWNSbVVGTVZPcFE2SDdGRF9SV2w3M3dIRWJXeXR1YWMwWnZHSDV6TUZMc1VwQWVvM29JSzZ5ZzJj?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Australia taking \u2018one week at a time\u2019 as mammoth Test schedule begins against Bangladesh",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNGhZZEV1WmxYeVFlYUlTYmxhdVlOTHliRHc5TTFZdjVCMVRUa1hGeW5LNlBQS3Y3ZUhpS2Rob2xueGUtUW1sTldWTnJZOU11OXdHSjhpczM1eGxXTHQ4ekx1SEZPLWlLSGk2SC1Ga2RxV3lzNlVUNzRjd2FXMlV4TmQyajFTVzg?oc=5",
+          "source": "The Guardian"
+        },
+        {
+          "title": "Hazlewood returns for Darwin Test; Carey to stay at No. 6",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQRFNBREV0MjQyQnNDd2Vyd2I4WEk3U19JNm15N08xRHNKNWxHSXEtZTlodGNYa1BBOGdZTVNkSEtvdklDc0NhM1ZwTy1qNlJRQmNqaHFBelJPanZwdHp3MlVOZEFtdE5obndsNnB1dnV1UzF6RzQ1ZUdXZGRnYklEbnQ3YUlrM3dLQXdIRnFYSUdSMGsyS25HNzJMclVHVGFkcWc?oc=5",
+          "source": "Cricbuzz"
+        },
+        {
+          "title": "Shanto identifies key to success against Australia",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQYm9UZmRjaExtaEVXenlGT2JRMEJ2SGJWdVVaRXEzb3VfQlZ1V3ZGbmxIOElwazlmOGItS3cwNUNuc0xXZjlyTG5YOTdDX1RjVFdZTzRZRGt6a19UMm5rSmlLNEVoaGpVbEZ6LTR4Y3dsV2g3SnpxQWlJMWt3ZGU2WDVOZEpKem54aDc4?oc=5",
+          "source": "ICC"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Hazlewood's exclusion from the Australia XI for the first Test is significant news for cricket followers, particularly those interested in international matches involving Indian players.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "2906c8bc-5043-4e66-811f-c3b0b4190742",
+      "title": "Oil prices rise after ship attacks, US-Iran talks deadlock - Reuters",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 5,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-12T00:58:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMirAFBVV95cUxOM29TYlFUU3hjMWJ4WlRBbDBMQksyQUNKNUtSd1JwVG54QlJ0ZjRYYk85VnBEMjJwUnJVenlBLU9Ia1F1WVZ0TDdad0c0amdXLXo4WV9KQ19tdHJ5R0F3bURzRHJ1dnhGMDdUUlZHc3gyTF9sWW5CQzRhVlQ3QkpiVktyaFBHWmZCSmYzZFNHZXVrZndPamEyZHI5YjNXaWtZZGJMRjhlSVNSbFM20gG6AUFVX3lxTFB0NXN4VUMydmhqYUg2YlFqNVVxSkVJT1lWa0ZNLTI1VzlndkZ2QTBGamZSS1p3YmUxbUJyZEtjNFVzTTlFQWxRa09QWHhwMGY1SVprTVZmNE9mVGlmZDZzbWg2T2ZXODZUQUp3Z1IxbUszZ3pMcXhKQlRqemR0NlplQzNkanMySDRzM1YwdzZOTmJnLXVNUGxYT1hrcFRSSm9xNW9QX081LUxOMWtEdFNYVTRmRmFvVklWQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMisAFBVV95cUxOajU2TkE4Zm1kOHlwM2hwX0VXeWJTNkFCblBrN0FuUDNfN1NMRFQ1NE1HREZGVE96UXMyajRlamxJaVZqMGxQNGRyZlBZQ2xnNVNEZjdBZ05zR25PWEFTNksxMk9iREoyNElfZ1h0aUdiTmFKdEJpZlJfUDk1d25ZTXptbnByMDFfRjk2R1oxZ29pNFZiQVhwTmRCaDIzUXdYSFlxZnl6aU05eG1WLWlQWg?oc=5",
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxQN1dzT200SXd2Z1ZNMmhKMEN1b1NITFZ5WGRCcU00Zm1KOUd4dC1sU0lERk1SNk5SaExMUlFBc1hzbmQ4YTJQNm15elZ6eUJCRlMzYzZabV9WTGNtWkFpQy02elVaeXhvQmRMSG5oRzgxWFc1b2Faa1hUNGJtV3pZbDZfMzJzMnJWdVM0UU9jMXVKbEpuWTVZSlhkMENxdGRfTFRCLVRqbjhSVXdkQ3lYb2RKYw?oc=5",
+        "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPWkJLc2ZUeXNOWk51ekEtRTB2aE81Z044VGJQNU1pM0lWZVRDZ090V1c0TjlfSHZMWGFvbmxYQVI4UlN6a2ZEclFfUGxwYTlQa201YmlxUXlyb1NRcU5ZOW16ZXQ5c0xHaUh2QTlMWmZIQ2Y0VHUtaTd4ZF90MmR6UGFWci13c01WRlZPN3dNSzR0aVp2RWpKWHlvN2NxRm5qMjZfRTBjc3F0UDZoSjhUSk8wek4tSnZ5U2d1UWtiRHYwclHSAcsBQVVfeXFMTUhNb2w4dkhucHhtSHFUbGgtUlNLQmlQblBxdGd5d0ZMMzF3Q1E3NlJSc1AzOWxINDZfQm9lbGdvRFNjNW1adGhaeGl1SlhrWl9xbVVmeWJuZzBNVzlyUTNZZlpRNE9zSUlzYWticktIRlVIaG1ZMWxyZW5MM19KVzZlNThiRm56ZDRjSkpmdVJ6RXNaSl9JTXVIb0R0SmJfeXhJMlRRMnJQWFAtSmNNdWNJalFrNXFQWGxLVXE0eHZPa2s2S29rYXQ2Qms?oc=5",
+        "https://news.google.com/rss/articles/CBMipwFBVV95cUxPTVI4V1dVQ3pOWWVCZy1WRUszcjgxVUFSMXFkelc3d2Jtc0VycDFSdVZiNEo4SGRVWmhtQ3M3Ti1lMTI0UjZYNEFkdGhCZmNDdkk3ZTVvOV9BTUJaV0hFQWRSbFk0Umg1Q1NUQ3hMMEVnWFFaM1ZQZFdScDVvTkFmWFoyeGhiLVdLbnRLcnh5YVM5dWM5cm5VS1hHeDhkam85R3dnSVVvc9IBrAFBVV95cUxNdzZ3Z1Q4eTVyUG9RTGhPaE1wdkNGNEM3Y0ZxbkNKM1gwcTl5NlFFam5XYUFvbEgzem1zMGRkeXFKc0ZfOUpsb0FEN0dwXzlsa3c4bjR4X3AzSWhjSjF4R3ZDcmVNTUlkX0VvcFZlam9rdDZsT2lGNkhweUlVRU1VaEJjcmNEcDFnU05VT0JGOVp4SWEtclI5ZWdCOXY1R3hpN0MzX0tBZktqcERI?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "New Shipping Attacks As Tehran Refuses To Reopen Strait Of Hormuz",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOM29TYlFUU3hjMWJ4WlRBbDBMQksyQUNKNUtSd1JwVG54QlJ0ZjRYYk85VnBEMjJwUnJVenlBLU9Ia1F1WVZ0TDdad0c0amdXLXo4WV9KQ19tdHJ5R0F3bURzRHJ1dnhGMDdUUlZHc3gyTF9sWW5CQzRhVlQ3QkpiVktyaFBHWmZCSmYzZFNHZXVrZndPamEyZHI5YjNXaWtZZGJMRjhlSVNSbFM20gG6AUFVX3lxTFB0NXN4VUMydmhqYUg2YlFqNVVxSkVJT1lWa0ZNLTI1VzlndkZ2QTBGamZSS1p3YmUxbUJyZEtjNFVzTTlFQWxRa09QWHhwMGY1SVprTVZmNE9mVGlmZDZzbWg2T2ZXODZUQUp3Z1IxbUszZ3pMcXhKQlRqemR0NlplQzNkanMySDRzM1YwdzZOTmJnLXVNUGxYT1hrcFRSSm9xNW9QX081LUxOMWtEdFNYVTRmRmFvVklWQQ?oc=5",
+          "source": "Outlook India"
+        },
+        {
+          "title": "Oil prices rise after ship attacks, US-Iran talks deadlock - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOajU2TkE4Zm1kOHlwM2hwX0VXeWJTNkFCblBrN0FuUDNfN1NMRFQ1NE1HREZGVE96UXMyajRlamxJaVZqMGxQNGRyZlBZQ2xnNVNEZjdBZ05zR25PWEFTNksxMk9iREoyNElfZ1h0aUdiTmFKdEJpZlJfUDk1d25ZTXptbnByMDFfRjk2R1oxZ29pNFZiQVhwTmRCaDIzUXdYSFlxZnl6aU05eG1WLWlQWg?oc=5",
+          "source": "Reuters"
+        },
+        {
+          "title": "Hormuz shipping traffic falls to one-week low amid hostilities",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQN1dzT200SXd2Z1ZNMmhKMEN1b1NITFZ5WGRCcU00Zm1KOUd4dC1sU0lERk1SNk5SaExMUlFBc1hzbmQ4YTJQNm15elZ6eUJCRlMzYzZabV9WTGNtWkFpQy02elVaeXhvQmRMSG5oRzgxWFc1b2Faa1hUNGJtV3pZbDZfMzJzMnJWdVM0UU9jMXVKbEpuWTVZSlhkMENxdGRfTFRCLVRqbjhSVXdkQ3lYb2RKYw?oc=5",
+          "source": "Reuters"
+        },
+        {
+          "title": "6 Ships Cross Hormuz, Down From 140 In Pre-War Days Amid US-Iran Deadlock",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPWkJLc2ZUeXNOWk51ekEtRTB2aE81Z044VGJQNU1pM0lWZVRDZ090V1c0TjlfSHZMWGFvbmxYQVI4UlN6a2ZEclFfUGxwYTlQa201YmlxUXlyb1NRcU5ZOW16ZXQ5c0xHaUh2QTlMWmZIQ2Y0VHUtaTd4ZF90MmR6UGFWci13c01WRlZPN3dNSzR0aVp2RWpKWHlvN2NxRm5qMjZfRTBjc3F0UDZoSjhUSk8wek4tSnZ5U2d1UWtiRHYwclHSAcsBQVVfeXFMTUhNb2w4dkhucHhtSHFUbGgtUlNLQmlQblBxdGd5d0ZMMzF3Q1E3NlJSc1AzOWxINDZfQm9lbGdvRFNjNW1adGhaeGl1SlhrWl9xbVVmeWJuZzBNVzlyUTNZZlpRNE9zSUlzYWticktIRlVIaG1ZMWxyZW5MM19KVzZlNThiRm56ZDRjSkpmdVJ6RXNaSl9JTXVIb0R0SmJfeXhJMlRRMnJQWFAtSmNNdWNJalFrNXFQWGxLVXE0eHZPa2s2S29rYXQ2Qms?oc=5",
+          "source": "NDTV"
+        },
+        {
+          "title": "Strait of Hormuz Traffic Sank To Just Six Vessels Monday",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPTVI4V1dVQ3pOWWVCZy1WRUszcjgxVUFSMXFkelc3d2Jtc0VycDFSdVZiNEo4SGRVWmhtQ3M3Ti1lMTI0UjZYNEFkdGhCZmNDdkk3ZTVvOV9BTUJaV0hFQWRSbFk0Umg1Q1NUQ3hMMEVnWFFaM1ZQZFdScDVvTkFmWFoyeGhiLVdLbnRLcnh5YVM5dWM5cm5VS1hHeDhkam85R3dnSVVvc9IBrAFBVV95cUxNdzZ3Z1Q4eTVyUG9RTGhPaE1wdkNGNEM3Y0ZxbkNKM1gwcTl5NlFFam5XYUFvbEgzem1zMGRkeXFKc0ZfOUpsb0FEN0dwXzlsa3c4bjR4X3AzSWhjSjF4R3ZDcmVNTUlkX0VvcFZlam9rdDZsT2lGNkhweUlVRU1VaEJjcmNEcDFnU05VT0JGOVp4SWEtclI5ZWdCOXY1R3hpN0MzX0tBZktqcERI?oc=5",
+          "source": "Crude Oil Prices Today | OilPrice.com"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The rise in oil prices following ship attacks is significant for global markets and could impact the Indian diaspora's economic interests.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "c673be1e-ffbf-418d-8482-5a04589c805c",
+      "title": "Canada updates wait times for permanent residence and citizenship applicants - CIC News",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 5,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-11T20:20:37+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMivgFBVV95cUxPdldHU2FhdWNsOC04azVkcVZBbTNMaC12eVlCaEpPcVRTX21jZEhwUEtabTNFQVVFMWR6Ql9IWm40T2piU3duTTBoMGZyVzhkdGtWQmg0WXdnTWNPRk1kTkN0d2VWUXR1UVF0Q0x3c1JyczFNVDdMejVRUHItTUpsa1pfcHdhTm52LXMtYmFlekxPZS1lMXhqSE1mYzZIT0V5NlZfaTY5Y0dzZjF1cTVkYzVZN01fRC1NUFh5VWZB0gHDAUFVX3lxTE1KTGtfMjVMcnpQTDZkM3pjcWxpeTZpM3U5R0NGaDltSTgzeURCaC1INjdIVHl2VkFfMV9WM3dCSEZpSVRyTE5XNDh5RXc5Nm9zZHNoSVRTY0RFcjVZWFNNNTgtUmZWS25ScEE0X1I4cEt2TEhLTjV4TGhKaGVycVVvOGxuSDRPQWw0Zlh1TDNrYnlUX2RVQzRoaHpKdmdjQ2U1MmdMTEZvYTNLYnlUTDl1RFJTUVVSR1drOGM2REpYNkVqNA?oc=5",
+        "https://news.google.com/rss/articles/CBMixgFBVV95cUxNaEItaWdfSjVDMS1NZGpTby00QWViZlhfbHBXNmdGeW9OMHZJYkx5OG11M1E1MXZXbGVQd2dXMVJTYjl5cl9SUUlUaUk0bUhWMkJEejU5SURhMU5ENlNnWG5qLVA0dVJmTVdwUDB3YnpHRUtsMHl4ZFlmWlpnTC1LNGQyckVIQ3FGak5PTms1YWxGakc5NTF0bk90RTZsZjdsSHpZMjRjeDZuR1IzRUFYOE1sSktsQ182ZXJLdm1CSGhyMDh0WUHSAasCQVVfeXFMTWF6Q1k0Yk5OMm5JNVI0WXBZeGFLWWdfaFhQOWxIVzN4eEF5QnhnM3NweEEwMW1ieldmU2dVUW91U3lPRk10enZ4akE5d0lkREl0SVhkc2doTzZSYXl6M1JqblpGcWJoZWxVSW1GYk01OUdIUWpVVFVGNFBYQzFhRFlOa3VmcS1MY3pJaTJrZFJvbXE2M2QybHdQcTVwSFVSeXVRa0NiN3RMVTZjUHFIMWJQTXFwT29JeGRHV1lobFFINmZyX3JMc1FoZlRQUkVQbFF6ZjdzZ0JGal9KSk5iWnNIZkE1elNKSmFrLTlGRUZHT3lUVENOR0NoOFIydGYwTmNvRFBMVGRneDVxUG12NXhOcXRXQW9FVmp3eENYaGRRQ3ZsRTlqZUp3cHM?oc=5",
+        "https://news.google.com/rss/articles/CBMifEFVX3lxTFBmUUpIaDlxVkoxV0VHSnVYRGVQb3NrM1lHcmxLVy1lQWpqLXlrYmdmVUQ4VV9fTFJrU3VpVnZBOHg1RTZ4cnZzYW82bVctN1J4WDg0cy1wNDNlS09XeWR6SW5XZFpNMHFub2s0TGFadkpJMU90V3B3bUkxSTY?oc=5",
+        "https://news.google.com/rss/articles/CBMitAFBVV95cUxQNkhVa3RtQTVzZ0NSX3Q5bkZ1Q1g0TWxacF9sZDRwVndRZ0ktQzQ2NGQtZmkxeW9zMDFtazJSU0Z1b3VVdHpNZWxmR3dJNVJNWVBtUjYxbmtqWFI4c3cxOXgwRTBDLUxuYURNRjVBMjRNaVlyd0hrRnRFNFJkczJzZ0tCYnYzVThfQUptd09BSHFkZnVLTE5VSC1yeTMtZFpyY2tGLXpUVnRTLW9yanZ1Q2oyVGPSAboBQVVfeXFMTVNxckVCdGVOUUoxOGxkdTl3bFVYX1UzWDRZOUpMbzFKcF9nem9xQmxQZmVWb1hHdGlLRVJXX3hKV0ZBWGlKZ3ZNS1RMcWItVGlTVGZWblRYTUpQdEdmcW5TM0FWT0JSZkRoWXZaU3pFT0piRzVUelNUcHBxaEhWZzFmTmxRY1BnVTJSQzVTNk1TZlRtcVgzZk5salhLdk1fR3RPSWxnRTZBUXAwY185NXFNVElKYVdsck9B?oc=5",
+        "https://news.google.com/rss/articles/CBMie0FVX3lxTFBkZWtZVG82dUtoSlRTN0ppZ3BWNlN4TXFERDBUREhlbERTcDJIU0Rwbk84ZEd5aTJ5N3pVUDBtdDNHZTkycHRhbmdYa1N6VGcxbTNNakl6N2NxcU4wbE51bFZvN0VPMDJLclN3YU9DWXlYNGxieUZ5Y3VMbw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Canada updates wait times for permanent residence and citizenship applicants - CIC News",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPdldHU2FhdWNsOC04azVkcVZBbTNMaC12eVlCaEpPcVRTX21jZEhwUEtabTNFQVVFMWR6Ql9IWm40T2piU3duTTBoMGZyVzhkdGtWQmg0WXdnTWNPRk1kTkN0d2VWUXR1UVF0Q0x3c1JyczFNVDdMejVRUHItTUpsa1pfcHdhTm52LXMtYmFlekxPZS1lMXhqSE1mYzZIT0V5NlZfaTY5Y0dzZjF1cTVkYzVZN01fRC1NUFh5VWZB0gHDAUFVX3lxTE1KTGtfMjVMcnpQTDZkM3pjcWxpeTZpM3U5R0NGaDltSTgzeURCaC1INjdIVHl2VkFfMV9WM3dCSEZpSVRyTE5XNDh5RXc5Nm9zZHNoSVRTY0RFcjVZWFNNNTgtUmZWS25ScEE0X1I4cEt2TEhLTjV4TGhKaGVycVVvOGxuSDRPQWw0Zlh1TDNrYnlUX2RVQzRoaHpKdmdjQ2U1MmdMTEZvYTNLYnlUTDl1RFJTUVVSR1drOGM2REpYNkVqNA?oc=5",
+          "source": "CIC News"
+        },
+        {
+          "title": "BREAKING: Processing time for proof of Canadian citizenship applications surpasses two years",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNaEItaWdfSjVDMS1NZGpTby00QWViZlhfbHBXNmdGeW9OMHZJYkx5OG11M1E1MXZXbGVQd2dXMVJTYjl5cl9SUUlUaUk0bUhWMkJEejU5SURhMU5ENlNnWG5qLVA0dVJmTVdwUDB3YnpHRUtsMHl4ZFlmWlpnTC1LNGQyckVIQ3FGak5PTms1YWxGakc5NTF0bk90RTZsZjdsSHpZMjRjeDZuR1IzRUFYOE1sSktsQ182ZXJLdm1CSGhyMDh0WUHSAasCQVVfeXFMTWF6Q1k0Yk5OMm5JNVI0WXBZeGFLWWdfaFhQOWxIVzN4eEF5QnhnM3NweEEwMW1ieldmU2dVUW91U3lPRk10enZ4akE5d0lkREl0SVhkc2doTzZSYXl6M1JqblpGcWJoZWxVSW1GYk01OUdIUWpVVFVGNFBYQzFhRFlOa3VmcS1MY3pJaTJrZFJvbXE2M2QybHdQcTVwSFVSeXVRa0NiN3RMVTZjUHFIMWJQTXFwT29JeGRHV1lobFFINmZyX3JMc1FoZlRQUkVQbFF6ZjdzZ0JGal9KSk5iWnNIZkE1elNKSmFrLTlGRUZHT3lUVENOR0NoOFIydGYwTmNvRFBMVGRneDVxUG12NXhOcXRXQW9FVmp3eENYaGRRQ3ZsRTlqZUp3cHM?oc=5",
+          "source": "CIC News"
+        },
+        {
+          "title": "Canada Gave Them Citizenship. Then Changed Its Mind",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBmUUpIaDlxVkoxV0VHSnVYRGVQb3NrM1lHcmxLVy1lQWpqLXlrYmdmVUQ4VV9fTFJrU3VpVnZBOHg1RTZ4cnZzYW82bVctN1J4WDg0cy1wNDNlS09XeWR6SW5XZFpNMHFub2s0TGFadkpJMU90V3B3bUkxSTY?oc=5",
+          "source": "The Walrus"
+        },
+        {
+          "title": "Canada updates visa processing times for Nigerians as study permit wait rises",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQNkhVa3RtQTVzZ0NSX3Q5bkZ1Q1g0TWxacF9sZDRwVndRZ0ktQzQ2NGQtZmkxeW9zMDFtazJSU0Z1b3VVdHpNZWxmR3dJNVJNWVBtUjYxbmtqWFI4c3cxOXgwRTBDLUxuYURNRjVBMjRNaVlyd0hrRnRFNFJkczJzZ0tCYnYzVThfQUptd09BSHFkZnVLTE5VSC1yeTMtZFpyY2tGLXpUVnRTLW9yanZ1Q2oyVGPSAboBQVVfeXFMTVNxckVCdGVOUUoxOGxkdTl3bFVYX1UzWDRZOUpMbzFKcF9nem9xQmxQZmVWb1hHdGlLRVJXX3hKV0ZBWGlKZ3ZNS1RMcWItVGlTVGZWblRYTUpQdEdmcW5TM0FWT0JSZkRoWXZaU3pFT0piRzVUelNUcHBxaEhWZzFmTmxRY1BnVTJSQzVTNk1TZlRtcVgzZk5salhLdk1fR3RPSWxnRTZBUXAwY185NXFNVElKYVdsck9B?oc=5",
+          "source": "Vanguard News"
+        },
+        {
+          "title": "New IRCC Processing Times As Of August 2026",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBkZWtZVG82dUtoSlRTN0ppZ3BWNlN4TXFERDBUREhlbERTcDJIU0Rwbk84ZEd5aTJ5N3pVUDBtdDNHZTkycHRhbmdYa1N6VGcxbTNNakl6N2NxcU4wbE51bFZvN0VPMDJLclN3YU9DWXlYNGxieUZ5Y3VMbw?oc=5",
+          "source": "INC News"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The update on Canada's wait times for permanent residence and citizenship is significant for the Indian diaspora seeking immigration pathways.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "302bd4f6-4466-4661-abe6-c6781c85122f",
+      "title": "3 decades after he entered US, Indian-origin man accused of identity fraud, may lose American citizenship | India News - Hindustan Times",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 4,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-11T15:07:15+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNMmZPM2ZlQ3FRQzA3eTBYMjU0OFhNWDZtTDUwVzgweXRCd29UZ3ZGdlFESkg3bGdmUktWbERoYXRmQ0FNaFYwMHljOUducGJ0WWlMWEZ2NW93cGJrV2ZWYl93ZFFlRGx6OXE3MG1kMDhUNTBHTEpGWTk3bFB0WEdxZzhrSS1zaU03b2JRZ1ZNX1hLbk5YdEVKVzFucFV4UW1Pa2owZ29vaEtwcXpLVFlrT1hSZ2l6dXVTWFgtbXZyWjJqcGIxRVVSMkk5Z2U4dGVYeFUycjNtU2YxTjRUNHlwZXBTMG0yTFB1NjNjYTY4R213Z3c?oc=5",
+        "https://news.google.com/rss/articles/CBMilwFBVV95cUxPUVF6eFdoVWlUYXlpdXJOT2k1amlFRVVxeG1YZF9WRVJEZGV2YllQVzlGSU5zakVqZ3hyUEcybXdYTExBNE5VUzhFWXVNUFNnc0NFeFlNZWZaN21rQTMwbjR6ZHFVSzlKcjlSelBuVDdpT01ZWFJ6eFlIelJvSndwNWJlYkRGQTBRNkkwT01kUVZYSnBKeDhv?oc=5",
+        "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNQk5aamtlYVBNOG5KNHptc0FxYlJhb09OYjZ0YzVfVzE5THpYVW5uX2ZTdEx3dHdNZktRMzhjanZveUk4TG43OFFmbThQZm9ldk5UZ2NOM0xMNE9GUk9FdE4zRHB2bkVOYXJDQTgtMjl4ZkJrZmpGVkVFS0I4d0dsM1E0SU9EVEpScG8tV0hVQXFxN205cDNfRGJMdnExdEtRRHd6OXlGMjZVNzBILWdLc3llUXplWm01blZjT1NFSzlwZEIzZlFCb1MtR3FiYmJNZHgzM3ZTWEdEZUxHYXpQMDE5SnZxRlRDcnZhWm9VeTBDaFl6SHRoeDlhLUY?oc=5",
+        "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOS1BoUFZkVXFlSEQ0WDNGLTExQ2g5a3pWQ1BET1VLZ2Rfd0FXVHA3cGQzd3d6RHNKaEpyS2ZBNU56akIyZUxLWFFvV2VlNTZfX2pVRU9HRVM4WG05M3pCVjZnRDR1bldEQVc4Z0tNQzBhelJRVDVKX3FtU1pIalk1TlNTbHo4TUZtZzFhc2dKWlZIMkozZlB3dG0tM1BEM0t5VGdvTDV1QzV5R2FhSTBHTmRyRS0tREhGQW91WVRyRE5XWER4c01wWWlKS09WRTlRZXdqZzJFRHMyZkEySzVQMmRGdjNIcFYxazhQMFN0bGR0OWdicm1jb093?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Indian-origin man may lose US citizenship for hiding past deportation order, identity fraud",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNMmZPM2ZlQ3FRQzA3eTBYMjU0OFhNWDZtTDUwVzgweXRCd29UZ3ZGdlFESkg3bGdmUktWbERoYXRmQ0FNaFYwMHljOUducGJ0WWlMWEZ2NW93cGJrV2ZWYl93ZFFlRGx6OXE3MG1kMDhUNTBHTEpGWTk3bFB0WEdxZzhrSS1zaU03b2JRZ1ZNX1hLbk5YdEVKVzFucFV4UW1Pa2owZ29vaEtwcXpLVFlrT1hSZ2l6dXVTWFgtbXZyWjJqcGIxRVVSMkk5Z2U4dGVYeFUycjNtU2YxTjRUNHlwZXBTMG0yTFB1NjNjYTY4R213Z3c?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Immigrant Criminal Denaturalized in Texas District Court",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPUVF6eFdoVWlUYXlpdXJOT2k1amlFRVVxeG1YZF9WRVJEZGV2YllQVzlGSU5zakVqZ3hyUEcybXdYTExBNE5VUzhFWXVNUFNnc0NFeFlNZWZaN21rQTMwbjR6ZHFVSzlKcjlSelBuVDdpT01ZWFJ6eFlIelJvSndwNWJlYkRGQTBRNkkwT01kUVZYSnBKeDhv?oc=5",
+          "source": "texasscorecard.com"
+        },
+        {
+          "title": "IMMIGRATION NEWS\u2014DOJ launches record denaturalization drive with 25 new citizenship revocation cases",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNQk5aamtlYVBNOG5KNHptc0FxYlJhb09OYjZ0YzVfVzE5THpYVW5uX2ZTdEx3dHdNZktRMzhjanZveUk4TG43OFFmbThQZm9ldk5UZ2NOM0xMNE9GUk9FdE4zRHB2bkVOYXJDQTgtMjl4ZkJrZmpGVkVFS0I4d0dsM1E0SU9EVEpScG8tV0hVQXFxN205cDNfRGJMdnExdEtRRHd6OXlGMjZVNzBILWdLc3llUXplWm01blZjT1NFSzlwZEIzZlFCb1MtR3FiYmJNZHgzM3ZTWEdEZUxHYXpQMDE5SnZxRlRDcnZhWm9VeTBDaFl6SHRoeDlhLUY?oc=5",
+          "source": "vitallaw.com"
+        },
+        {
+          "title": "3 decades after he entered US, Indian-origin man accused of identity fraud, may lose American citizenship | India News - Hindustan Times",
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOS1BoUFZkVXFlSEQ0WDNGLTExQ2g5a3pWQ1BET1VLZ2Rfd0FXVHA3cGQzd3d6RHNKaEpyS2ZBNU56akIyZUxLWFFvV2VlNTZfX2pVRU9HRVM4WG05M3pCVjZnRDR1bldEQVc4Z0tNQzBhelJRVDVKX3FtU1pIalk1TlNTbHo4TUZtZzFhc2dKWlZIMkozZlB3dG0tM1BEM0t5VGdvTDV1QzV5R2FhSTBHTmRyRS0tREhGQW91WVRyRE5XWER4c01wWWlKS09WRTlRZXdqZzJFRHMyZkEySzVQMmRGdjNIcFYxazhQMFN0bGR0OWdicm1jb093?oc=5",
+          "source": "Hindustan Times"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The case of an Indian-origin man facing identity fraud accusations in the US is significant for the diaspora, particularly regarding immigration and legal issues.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false
+    },
+    {
+      "topic_id": "0b455deb-b1b4-4c8b-a456-158162bf2f61",
+      "title": "Sourav Ganguly and wife Dona get death threats, approach police - gulfnews.com",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-10T20:05:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOY3N0RkpOSHY0a0FBekF4Y2NFcktWZVNXdnl2RTg0ZDdINUNBUzBhY1RkUzBIdTRrY0RvNS1RTkVLWE1EVGVKdnliMUM4a3g4RmZOTVAyakpWemF2RFA2MDRJZ2RmQWZ0cHVEMkt3UjZWWXhBT1FvcFZYcnZrSFRueVpaZDhoUl9oV1hCZHdqTm5hb0J1Y1FfRmwyVW5RNW1XLUhzamxZT3Qwd09VX1BPa3JPZ3k1N2hKbk51UnZteTM4QTQ4UF9UNHBKRVB5SndQUHF0MXZ3aTdFTUJkOFo0ejlqONIB8AFBVV95cUxQaS1MZFlwcWpiZ0dwWmFpRFhtaTRObnB6dldzLUNmRnNRNXJIdnJaTWxfSWZ0NlJILUpSY2JtdGpGbVhTbG8zWVk5cXkzY1pWa3VDN21NNGNZODNwS000N1A1WnpWeGFHVkhPTXV4QWZvVjdSaWlEbXRJZ2d6bmcyUXhSemdIc0tqYV9xVF9XZy10eEcwMWsxNFNoNko0YjZ4b1ZKUTZzQUozTy0wMU9nR2Vwa3M4U2I4Z2V0cUJFc2pGeks3ZVMtTGZDMWN0ZDJoUWF5RGNIelEyNTRDYXRnM2QyOVUxSDd6NWkzYVM0MW8?oc=5",
+        "https://news.google.com/rss/articles/CBMiowFBVV95cUxQM2hqMzlJZFBwOXhsdFVFek9JNVlob0NiZW5LeC1ObWtTU0hWRzBmbU1ma2Frdjg1ak8tTEZ1NFlhZ0hXNDlOYkVMZV9kYkw0dkM3dlVsUG1TQlBVZUJJM25iYmN1WVhSRkRhSU56Nk9waVNkc1hjTUVCYzQ2NVV2VXB2RG9OSlRLUURCUVRQMk1MVHBZMzRlUWdaZklFWDAxNHZF0gGzAUFVX3lxTE12akpKUVlXWGFTSnpqeGg5V3dwc2pGdU9IdnhIckdUOTQ5UGhwMHIyNmZ5RHJVbTdLUlJQVVU3RzhWeW1ta1Y0U3pURHpSeEpPR2JrRUNKVlQ5ZUxBV0VXdDRSaHdiSmFIWEhxTHJteXMzaE0ySkdqbXlGemItMS13V3l1U0tTa0NXdHlrWTlyUEp6U29JOG1nU3d5V0JmSllieHliWFdoVXFZUHppOW04c0ZF?oc=5",
+        "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPU3NyMjhTcTRTSDJLOXBOdjBaOEdZdnBYMHRyR0JmWnJzUWczbVpPNEhadGlCdndweEZFNnBQbExoYmp5UlFweS1KblplUlhhc05NRElyR0ZBX2Q2NnF0QnJ2emRsSHZVVXdYbDhqYWtDYjhCcHVfSnBNRGJlV2YxZmNybkE0WHMxVzhvSmVObjU5eDBzUU9McWRMeEVaZVJLclNKSVdfUnN3YjVidHlSNnYyTGZnYzEwZlJ1WWdoZ1Jma2tKTDQxRWd1UWlzSzh4U1hXaktzZw?oc=5",
+        "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMnlXWUFtNDRVWFdYNW8tNHc3Ymt4bG1xY0ZfRGY2SDUyeEQ1VF9EQkIyclpfcmZIY0tVT0QyeVJIM0tQel9pcnRtUmhFREN5WHNjUlhEcG9VSWF3eVVzRFpTR2ZpdWZvS0F5dTczdDR4Yzh4b3V6djVMUDlEMnoxSXRRNWoyWFMzUVV3NVdwV3N6OEt2QkRPVl8wVEs4Y1p6RGluenhmd3XSAa4BQVVfeXFMTVp5eUE2RDBwdlIxeFMyVVZfT1BSbkFLMGR2eXIwQmNWRkhIOV85ZUQtdWJfeVhVb0xkdHMxV3JZbzNIdlkyS1c5czh4bDRLVHRkWUxyejVCWW1XZVlwUE1hQ1VZQlRwdWtWNWpvUDBCZnhMR3BaNmFqV0xWVFVLM3YteDcyQnVKMUN3NDhGUVNSY0llYWNMTjV0UWJaRXJ3dHVBa2ltR01iN3ZGOHd3?oc=5",
+        "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQYzhnN0tSdnN3cTl2RWN4bFAzVGg5OUFiZTVNSV9kbG5JcG5SSmUxd0hjLWt1U1JJWENXS0toc0IwUGdfQnhlakRZVGtvUjNkR085eG1Fc3Q1LUp0M0d1RXRiamFLRThQc1BHQURNblhvT3o3WmN3WGFvTkkxTE1rRHNZYjUxWVpScHFoQzlVU0c4SE90cUxiSm1BblVKQ3pPOG1BOHVSZHFOUHVWVkItaDJjR3I0ZkFQa3N4LXJFTWk3NGI0dnFJcFVaaTZobWUyVHlRZGFkenNZdW85LWVXUUJLY1BFaHdyYV9z?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Former Indian cricketer Sourav Ganguly and his wife receive death threats; police launch probe",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOY3N0RkpOSHY0a0FBekF4Y2NFcktWZVNXdnl2RTg0ZDdINUNBUzBhY1RkUzBIdTRrY0RvNS1RTkVLWE1EVGVKdnliMUM4a3g4RmZOTVAyakpWemF2RFA2MDRJZ2RmQWZ0cHVEMkt3UjZWWXhBT1FvcFZYcnZrSFRueVpaZDhoUl9oV1hCZHdqTm5hb0J1Y1FfRmwyVW5RNW1XLUhzamxZT3Qwd09VX1BPa3JPZ3k1N2hKbk51UnZteTM4QTQ4UF9UNHBKRVB5SndQUHF0MXZ3aTdFTUJkOFo0ejlqONIB8AFBVV95cUxQaS1MZFlwcWpiZ0dwWmFpRFhtaTRObnB6dldzLUNmRnNRNXJIdnJaTWxfSWZ0NlJILUpSY2JtdGpGbVhTbG8zWVk5cXkzY1pWa3VDN21NNGNZODNwS000N1A1WnpWeGFHVkhPTXV4QWZvVjdSaWlEbXRJZ2d6bmcyUXhSemdIc0tqYV9xVF9XZy10eEcwMWsxNFNoNko0YjZ4b1ZKUTZzQUozTy0wMU9nR2Vwa3M4U2I4Z2V0cUJFc2pGeks3ZVMtTGZDMWN0ZDJoUWF5RGNIelEyNTRDYXRnM2QyOVUxSDd6NWkzYVM0MW8?oc=5",
+          "source": "The New Indian Express"
+        },
+        {
+          "title": "Sourav Ganguly and wife Dona get death threats, approach police - gulfnews.com",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQM2hqMzlJZFBwOXhsdFVFek9JNVlob0NiZW5LeC1ObWtTU0hWRzBmbU1ma2Frdjg1ak8tTEZ1NFlhZ0hXNDlOYkVMZV9kYkw0dkM3dlVsUG1TQlBVZUJJM25iYmN1WVhSRkRhSU56Nk9waVNkc1hjTUVCYzQ2NVV2VXB2RG9OSlRLUURCUVRQMk1MVHBZMzRlUWdaZklFWDAxNHZF0gGzAUFVX3lxTE12akpKUVlXWGFTSnpqeGg5V3dwc2pGdU9IdnhIckdUOTQ5UGhwMHIyNmZ5RHJVbTdLUlJQVVU3RzhWeW1ta1Y0U3pURHpSeEpPR2JrRUNKVlQ5ZUxBV0VXdDRSaHdiSmFIWEhxTHJteXMzaE0ySkdqbXlGemItMS13V3l1U0tTa0NXdHlrWTlyUEp6U29JOG1nU3d5V0JmSllieHliWFdoVXFZUHppOW04c0ZF?oc=5",
+          "source": "gulfnews.com"
+        },
+        {
+          "title": "Former BCCI president Sourav Ganguly receives death threat, lodges police complaint",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPU3NyMjhTcTRTSDJLOXBOdjBaOEdZdnBYMHRyR0JmWnJzUWczbVpPNEhadGlCdndweEZFNnBQbExoYmp5UlFweS1KblplUlhhc05NRElyR0ZBX2Q2NnF0QnJ2emRsSHZVVXdYbDhqYWtDYjhCcHVfSnBNRGJlV2YxZmNybkE0WHMxVzhvSmVObjU5eDBzUU9McWRMeEVaZVJLclNKSVdfUnN3YjVidHlSNnYyTGZnYzEwZlJ1WWdoZ1Jma2tKTDQxRWd1UWlzSzh4U1hXaktzZw?oc=5",
+          "source": "India Today"
+        },
+        {
+          "title": "Sourav Ganguly, wife Dona receive death threat through letters | Letters were reportedly sent via courier | Inshorts",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMnlXWUFtNDRVWFdYNW8tNHc3Ymt4bG1xY0ZfRGY2SDUyeEQ1VF9EQkIyclpfcmZIY0tVT0QyeVJIM0tQel9pcnRtUmhFREN5WHNjUlhEcG9VSWF3eVVzRFpTR2ZpdWZvS0F5dTczdDR4Yzh4b3V6djVMUDlEMnoxSXRRNWoyWFMzUVV3NVdwV3N6OEt2QkRPVl8wVEs4Y1p6RGluenhmd3XSAa4BQVVfeXFMTVp5eUE2RDBwdlIxeFMyVVZfT1BSbkFLMGR2eXIwQmNWRkhIOV85ZUQtdWJfeVhVb0xkdHMxV3JZbzNIdlkyS1c5czh4bDRLVHRkWUxyejVCWW1XZVlwUE1hQ1VZQlRwdWtWNWpvUDBCZnhMR3BaNmFqV0xWVFVLM3YteDcyQnVKMUN3NDhGUVNSY0llYWNMTjV0UWJaRXJ3dHVBa2ltR01iN3ZGOHd3?oc=5",
+          "source": "Inshorts"
+        },
+        {
+          "title": "Sourav Ganguly, wife Dona receive death threats; Kolkata Police begin probe",
+          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQYzhnN0tSdnN3cTl2RWN4bFAzVGg5OUFiZTVNSV9kbG5JcG5SSmUxd0hjLWt1U1JJWENXS0toc0IwUGdfQnhlakRZVGtvUjNkR085eG1Fc3Q1LUp0M0d1RXRiamFLRThQc1BHQURNblhvT3o3WmN3WGFvTkkxTE1rRHNZYjUxWVpScHFoQzlVU0c4SE90cUxiSm1BblVKQ3pPOG1BOHVSZHFOUHVWVkItaDJjR3I0ZkFQa3N4LXJFTWk3NGI0dnFJcFVaaTZobWUyVHlRZGFkenNZdW85LWVXUUJLY1BFaHdyYV9z?oc=5",
+          "source": "The Times of India"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Sourav Ganguly and his wife receiving death threats is a significant issue affecting their safety and highlights the challenges faced by Indian-origin individuals in the public eye.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@souravganguly",
+          "type": "person",
+          "keywords": [
+            "death threats",
+            "safety",
+            "police"
+          ]
+        }
+      ],
+      "kids_relevant": false
+    }
+  ]
+}

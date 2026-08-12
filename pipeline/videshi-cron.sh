@@ -4,6 +4,11 @@
 # Logs output to ~/workspace/cron-logs/
 # Errors are picked up by the Hatch health cron
 
+# Load proxy/egress env so cron jobs can reach external hosts
+if [ -f /etc/profile.d/hatch-egress.sh ]; then
+  source /etc/profile.d/hatch-egress.sh
+fi
+
 LOGDIR="$HOME/workspace/cron-logs"
 mkdir -p "$LOGDIR"
 
