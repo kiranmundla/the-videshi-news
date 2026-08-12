@@ -1,5 +1,14 @@
 [
   {
+    "id": "trump-birth-tourism-ban-eo",
+    "date": "2026-08-06",
+    "label": "Aug 6, 2026",
+    "headline": "Trump signs executive orders banning 'birth tourism' and expanding birthright citizenship exclusions \u2014 scrutiny may extend to student and work visas",
+    "summary": "A month after the Supreme Court upheld birthright citizenship 6-3, President Trump signed two new executive orders (EOs 14418 and 14419) taking a narrower approach. The first expands categories of people whose US-born children are ineligible for citizenship \u2014 including 'alien enemies,' foreign terrorist organization members, and those engaged in 'commercial transactions to purchase birthright citizenship' via surrogacy. The second bans 'birth tourism' outright, directing DOS and DHS to deny visas, revoke existing ones, and impose lifetime entry bans on foreigners suspected of traveling to the US specifically to give birth. The orders suggest scrutiny will extend beyond tourist visas to other temporary visa categories, including student and work visas. White House aide Stephen Miller declared: 'No one in the world is anymore allowed to obtain a visa for this fraudulent purpose.' Legal experts say the EOs likely violate the Supreme Court's June 30 ruling; the ACLU filed to block enforcement on August 11. For Indian families on H-1B/H-4 in years-long green card queues who have US-born children, the orders raise concerns about heightened consular and port-of-entry scrutiny for pregnant visa holders \u2014 though immigration attorneys stress that having a child while on a legitimate work visa is not 'birth tourism.'",
+    "severity": "high",
+    "source": "White House / Reuters / WSJ / CNN / ACLU"
+  },
+  {
     "id": "uscis-deny-without-rfe-aug-2026",
     "date": "2026-08-05",
     "label": "Aug 5, 2026",
@@ -160,15 +169,6 @@
     "summary": "The US State Department confirmed that all EB-5 unreserved immigrant visas for Indian nationals have been fully allocated for FY2026 as of June 5. US embassies and consulates will not issue any more EB-5 unreserved visas to Indians until the new fiscal year begins October 1, 2026. The EB-5 program lets foreign investors apply for permanent residency by investing in US businesses that create 10+ jobs. Set-aside categories (Rural, High Unemployment Area, Infrastructure) remain current for Indian applicants. This comes weeks after the EB-2 professional category also hit its India cap in May.",
     "severity": "high",
     "source": "US State Department / June 2026 Visa Bulletin"
-  },
-  {
-    "id": "h1b-100k-fee-stayed-pending-appeal",
-    "date": "2026-06-12",
-    "label": "Jun 12, 2026",
-    "headline": "Court stays $100K H-1B fee ruling \u2014 fee remains in effect while First Circuit reviews appeal",
-    "summary": "Four days after striking down the $100,000 H-1B fee as an unlawful tax, Judge Sorokin granted the government\u2019s request to stay his own order while the Trump administration appeals to the First Circuit Court of Appeals. The stay means USCIS can continue collecting the fee on all new H-1B petitions requiring consular processing. Employers must plan as if the fee is fully enforceable. The DOJ argued that every day without the fee, more workers would \u201crush to seek H-1B classification,\u201d undermining the policy\u2019s purpose. Parallel challenges to the fee are pending in California and D.C. federal courts; legal experts expect the Supreme Court will ultimately weigh in. The fee\u2019s fate remains deeply uncertain, but for now, it\u2019s back in force.",
-    "severity": "high",
-    "source": "US District Court (D. Mass.) / Bloomberg Law / WR Immigration"
   },
   {
     "id": "interview-waiver-eliminated",
