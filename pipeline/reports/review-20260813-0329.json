@@ -1,0 +1,97 @@
+[
+  {
+    "id": "58552443-9986-48c0-93ad-4aff383bb425",
+    "headline": "Behind Google's AI Exodus: Hassabis Planned Exit for a Year as Model Delays Fuel",
+    "slug": "inside-google-ai-exodus-hassabis-planned-exit-model-delays-departures",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian-origin tech leaders or researchers who have been impacted by the changes at Google, particularly those working in AI or related fields. This could highlight how the exodus of talent affects the Indian tech community globally.",
+        "Provide context on how the departures of these leaders, especially those of Indian origin like Sanjay Ghemawat, might influence the tech landscape in India and among the NRI community. This could include potential opportunities for startups or research initiatives in India that could arise from this shift.",
+        "Clarify the significance of the $300 billion loss in market value for Alphabet and how it may affect Indian investors or companies that are closely tied to Google, especially those in the tech sector.",
+        "Discuss the implications of Hassabis's focus on drug discovery for the Indian pharmaceutical industry, which is a major player in global healthcare. This could resonate with the NRI audience interested in health tech investments."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Google or a prominent tech figure discussing the impact of these leadership changes on the AI industry, which could provide real-time reactions and insights."
+      ]
+    }
+  },
+  {
+    "id": "4b527195-7e8c-41b6-87b3-fe7510487f1d",
+    "headline": "Indian-Origin Teen in Massachusetts Charged With Killing Mother and Brother, Use",
+    "slug": "indian-origin-teen-acton-massachusetts-charged-killing-mother-brother-chatgpt",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from the Indian community in the U.S. about the implications of this case, such as mental health issues among immigrant families or the impact of cultural expectations on youth.",
+        "Provide more context about the use of AI tools like ChatGPT among teenagers, particularly in the Indian diaspora, to highlight any trends or concerns that may be relevant to NRIs.",
+        "Include quotes or reactions from Indian diaspora organizations or community leaders regarding the incident to give a voice to the community's perspective on the tragedy.",
+        "Clarify the legal implications for NRIs regarding similar cases, especially in terms of how the legal system treats minors charged with serious crimes in the U.S."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or a relevant government statement about mental health resources for immigrant families, which could provide valuable context for readers."
+      ]
+    }
+  },
+  {
+    "id": "b913d10b-46a9-438a-827a-11b9bd4ed77c",
+    "headline": "Pentagon Report Reveals 153 Civilians Killed in U.S. Yemen Strikes, Congress Dem",
+    "slug": "pentagon-report-153-civilians-killed-us-yemen-strikes-2025",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by explicitly discussing how the civilian casualties in Yemen might affect Indian nationals working in the Gulf region, particularly in terms of safety and potential backlash against Indian workers due to the U.S. military's actions.",
+        "Provide additional context on how U.S. military operations in Yemen have historically impacted Indian seafarers and workers in the region, perhaps referencing previous incidents or reports that highlight the ongoing risks they face.",
+        "Clarify the implications of the Congressional mandate for full disclosure in the 2027 National Defense Authorization Act, particularly how it might affect U.S.-India relations or the Indian diaspora's perception of U.S. foreign policy.",
+        "Include a quote from an Indian diaspora leader or an expert on Middle Eastern affairs to provide a personal or authoritative perspective on the situation, which could enhance the article's relevance to the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the impact of U.S. military actions on immigration policies or the safety of Indian nationals abroad, which would provide a direct link to the implications for the diaspora."
+      ]
+    }
+  },
+  {
+    "id": "40b62bbb-a9a5-49f1-9127-0f4ff3e158d5",
+    "headline": "Army Veteran Demands Netflix Pull Operation Safed Sagar Over Flag Code Breach in",
+    "slug": "army-veteran-flag-code-breach-netflix-operation-safed-sagar-kargil-controversy",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from NRIs who have reacted to the series, particularly those with military backgrounds or connections to India. This could provide a more personal connection to the issue and highlight how such portrayals resonate with the Indian diaspora.",
+        "Provide additional context on how the portrayal of military figures in Indian media affects the perception of the armed forces among NRIs, especially in light of their cultural ties to India. This could help readers understand the broader implications of the controversy.",
+        "Consider adding a quote or statement from a prominent NRI figure or organization related to military affairs or cultural representation to lend weight to the article and connect it to the diaspora community.",
+        "Include a brief overview of previous controversies involving Indian media and military portrayals, particularly those that have had a significant impact on the diaspora's perception of Indian culture and values."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Indian Army or a military organization commenting on the controversy, which could provide authoritative context and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "1d59a4f3-6cbf-4a89-a17c-d14684e4015b",
+    "headline": "Asian Stocks Rally as Tame US Inflation Data Eases Fed Rate Hike Fears",
+    "slug": "asian-stocks-rally-tame-us-inflation-eases-fed-rate-hike-fears",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how changes in US inflation and Fed policies might impact NRIs' investments in Asian markets or their financial planning. For example, discuss how a stable US economy could affect remittances or investment flows back to India.",
+        "Provide context on how Asian markets' performance directly affects NRIs, such as potential implications for their stock portfolios or real estate investments in India. This could include a brief analysis of how NRIs might adjust their financial strategies based on these market movements."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Federal Reserve or an economic analyst discussing the implications of the latest CPI data on global markets, which would provide real-time insights and enhance the article's credibility."
+      ]
+    }
+  }
+]

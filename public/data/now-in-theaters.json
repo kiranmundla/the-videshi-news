@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-10T13:00:00Z",
-  "week_of": "Aug 10 – Aug 16, 2026",
-  "editorial_intro": "Spider-Man: Brand New Day is now the 12th highest-grossing film of all time at $1.67 billion worldwide — $655M domestic in just 10 days, with analysts saying $1 billion domestic isn't out of reach. The Odyssey crossed $1.1 billion worldwide, making it Christopher Nolan's highest-grossing film ever and IMAX's best-selling release of all time. Two films over $1B simultaneously. A24's Anthony Bourdain biopic Tony opened last week to 95% on Rotten Tomatoes in limited release. On the Indian side, Dhamaal 4 crossed ₹233 Cr worldwide, and Jana Nayagan is heading to ZEE5 on Aug 21 — last chance to catch Vijay's farewell on the big screen. This Thursday brings a blockbuster Independence Day lineup: Sunny Deol's partition epic Batwara 1947, Emraan Hashmi's Awarapan 2, and the Anne Hathaway sci-fi thriller The End of Oak Street all open Aug 14.",
+  "generated_at": "2026-08-13T13:00:00Z",
+  "week_of": "Aug 13 – Aug 19, 2026",
+  "editorial_intro": "Spider-Man: Brand New Day continues its historic run — $691M domestic and over $1.7B worldwide, with analysts still saying $1B domestic isn't out of reach. The Odyssey crossed $1.1B worldwide, making it Christopher Nolan's highest-grossing film ever and IMAX's best-selling release of all time. Tomorrow is the biggest Independence Day slate in years: Sunny Deol's partition epic Batwara 1947, Emraan Hashmi's Awarapan 2 (which is crushing advance bookings), and Anne Hathaway's sci-fi thriller The End of Oak Street (83% RT) all open Aug 14. On the Indian side, Jana Nayagan crossed ₹319 Cr worldwide but is heading to ZEE5 on Aug 21 — genuinely the last window to catch Vijay's farewell on the big screen. A24's Tony (95% RT) expands wide Aug 21.",
   "movies": [
     {
       "title": "Spider-Man: Brand New Day",
@@ -22,7 +22,7 @@
         "Sadie Sink"
       ],
       "director": "Destin Daniel Cretton",
-      "why_watch": "$1.67 billion worldwide in 10 days — the 12th highest-grossing film of all time and climbing fast. $655M domestic already, with analysts saying the $1 billion domestic mark isn't out of reach (it would be the first film ever). Second-fastest to cross $1B worldwide. The biggest domestic opening weekend in history at $435M. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from everyone's memory. 90% critics, 98% audience. Sadie Sink's secret Marvel debut has the internet losing its mind. Still dominating every screen that isn't IMAX (Nolan's Odyssey owns those).",
+      "why_watch": "$691M domestic and over $1.7B worldwide in two weeks — now the 12th highest-grossing film of all time and climbing. The biggest domestic opening weekend in history at $360M. Analysts are genuinely debating whether it'll be the first film ever to hit $1B domestic. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from everyone's memory. 90% critics, 98% audience. Sadie Sink's secret Marvel debut has the internet losing its mind. Still dominating every screen that isn't IMAX.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
       "language": "English",
@@ -74,7 +74,7 @@
         "Lupita Nyong'o"
       ],
       "director": "Christopher Nolan",
-      "why_watch": "$1.1 billion worldwide — Christopher Nolan's highest-grossing film ever, surpassing The Dark Knight Rises. $461M domestic after 24 days. IMAX's best-selling release of all time, with 70mm IMAX showtimes sold out through September. $289M on global IMAX screens alone. Only a 42% third-weekend drop even against Spider-Man's record-breaking debut. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. The first film ever shot entirely on 70mm IMAX cameras. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
+      "why_watch": "$1.1 billion worldwide — Christopher Nolan's highest-grossing film ever, surpassing The Dark Knight Rises. $472M domestic after four weeks. IMAX's best-selling release of all time, with 70mm IMAX showtimes sold out through September. $289M on global IMAX screens alone. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. The first film ever shot entirely on 70mm IMAX cameras. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
       "language": "English",
@@ -107,6 +107,129 @@
       ]
     },
     {
+      "title": "The End of Oak Street",
+      "slug": "the-end-of-oak-street",
+      "genre": "Sci-Fi Thriller",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7e/The_End_of_Oak_Street_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "83% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-08-14",
+      "status": "opening",
+      "cast": [
+        "Anne Hathaway",
+        "Ewan McGregor",
+        "Maisy Stella",
+        "Christian Convery"
+      ],
+      "director": "David Robert Mitchell",
+      "why_watch": "83% on Rotten Tomatoes with critics calling it 'the most thrilling dinosaur movie in ages' and better than recent Jurassic World entries. What if your suburban street got ripped from the earth and dropped into a prehistoric world? From It Follows director David Robert Mitchell, produced by J.J. Abrams. Anne Hathaway and Ewan McGregor as parents fighting to keep their family alive. Projected to open at $20-25M. The most anticipated non-franchise film of August. Opens Aug 14.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=3oB9AxspVow",
+      "cast_details": [
+        {
+          "name": "Anne Hathaway",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
+        },
+        {
+          "name": "Ewan McGregor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg/300px-Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg"
+        },
+        {
+          "name": "Maisy Stella",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg/300px-Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg"
+        },
+        {
+          "name": "Christian Convery",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg/300px-Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Batwara 1947",
+      "slug": "batwara-1947",
+      "genre": "Period Drama, Historical",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Batwara_1947_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-14",
+      "status": "opening",
+      "cast": [
+        "Sunny Deol",
+        "Preity Zinta",
+        "Shabana Azmi",
+        "Karan Deol",
+        "Ali Fazal"
+      ],
+      "director": "Rajkumar Santoshi",
+      "why_watch": "The biggest Indian release of Independence Day week. Produced by Aamir Khan, directed by Rajkumar Santoshi, music by A.R. Rahman, lyrics by Javed Akhtar — that's a generational talent stack. Based on the acclaimed partition play 'Jis Lahore Nai Vekhya, O Jamya E Nai.' Sunny Deol reunites with Santoshi for the first time since Ghatak (1996), Preity Zinta returns to Hindi cinema after an eight-year hiatus. Advance bookings trail Awarapan 2 but the partition setting and Independence Day timing give it a built-in audience. Opens Aug 14.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Batwara+1947+showtimes+near+me",
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=oRsAMzfvVGk",
+      "cast_details": [
+        {
+          "name": "Sunny Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Sunny_Paaji_2024.jpg"
+        },
+        {
+          "name": "Preity Zinta",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Preity_Zinta_by_Ash_Gupta.jpg/300px-Preity_Zinta_by_Ash_Gupta.jpg"
+        },
+        {
+          "name": "Shabana Azmi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
+        },
+        {
+          "name": "Karan Deol",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/en/6/66/Pal_Pal_Dil_Ke_Pass_poster.jpg"
+        },
+        {
+          "name": "Ali Fazal",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg/300px-Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Awarapan 2",
+      "slug": "awarapan-2",
+      "genre": "Romance, Action Thriller",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Awarapan_2.jpg/500px-Awarapan_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-14",
+      "status": "opening",
+      "cast": [
+        "Emraan Hashmi",
+        "Disha Patani",
+        "Shabana Azmi"
+      ],
+      "director": "Nitin Kakkar",
+      "why_watch": "The sequel nobody expected to the 2007 cult classic that defined Emraan Hashmi's brooding-romantic-hero era. 19 years later, the Shivam Pandit fandom is massive — advance bookings are crushing Batwara 1947 by a 4:1 margin in national chains. Pinkvilla projects a ₹12-17 Cr opening day. The music is by Mithoon, Disha Patani and Shabana Azmi round out the cast. The Independence Day counter-programming bet. Opens Aug 14.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
+      "language": "Hindi",
+      "trailer_url": "https://www.youtube.com/watch?v=IQ7HkZ-Gun8",
+      "cast_details": [
+        {
+          "name": "Emraan Hashmi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emraan_Filmfare_Magazine_Launch.jpg/300px-Emraan_Filmfare_Magazine_Launch.jpg"
+        },
+        {
+          "name": "Disha Patani",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg/300px-Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg"
+        },
+        {
+          "name": "Shabana Azmi",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
       "title": "Toy Story 5",
       "slug": "toy-story-5",
       "genre": "Animation, Family",
@@ -124,7 +247,7 @@
         "Conan O'Brien"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "$470M domestic, well past Toy Story 4's total. Eight weeks in and still holding screens — Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. Losing showtimes to the blockbuster onslaught but still the best family option in theaters alongside Minions & Monsters.",
+      "why_watch": "$470M+ domestic — well past Toy Story 4's total. Eight weeks in and still holding screens, though showtimes are thinning against the blockbuster onslaught. Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. The best family option still playing.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English",
@@ -172,7 +295,7 @@
         "Zoey Deutch"
       ],
       "director": "Pierre Coffin",
-      "why_watch": "$474M worldwide and still going in week 6. The Minions' third standalone prequel — set in 1920s Hollywood, where the yellow chaos agents try to make their own monster movie — is being called the best entry in the franchise since the original Despicable Me. Jeff Bridges, Christoph Waltz, and Allison Janney lead the voice cast. 89% critics, 75% audience. The other reliable family option alongside Toy Story 5.",
+      "why_watch": "$176M domestic in week 6, still holding on. The Minions' third standalone prequel — set in 1920s Hollywood, where the yellow chaos agents try to make their own monster movie — is being called the best entry in the franchise since the original Despicable Me. Jeff Bridges, Christoph Waltz, and Allison Janney lead the voice cast. 89% critics. Losing screens to Spider-Man but still a reliable family option.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Minions+and+Monsters+showtimes+near+me",
       "language": "English",
@@ -197,12 +320,58 @@
       ]
     },
     {
+      "title": "Tony",
+      "slug": "tony-bourdain",
+      "genre": "Biographical Drama, Comedy-Drama",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Tony_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "95% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-08-07",
+      "status": "now_playing",
+      "cast": [
+        "Dominic Sessa",
+        "Emilia Jones",
+        "Antonio Banderas",
+        "Leo Woodall",
+        "Stavros Halkias"
+      ],
+      "director": "Matt Johnson",
+      "why_watch": "95% on Rotten Tomatoes (105 reviews), Metacritic 75. A24's biopic of Anthony Bourdain follows a 19-year-old Bourdain taking a summer restaurant job in Provincetown in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor chef is reportedly electric. Currently in limited release (NY/LA) — expands wide nationwide on Aug 21. If you love food, travel, or just a great coming-of-age story, this is the one to hunt down.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=k1MVnzd2aVc",
+      "cast_details": [
+        {
+          "name": "Dominic Sessa",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Dominic_Sessa_Tow-059_%28cropped%29.jpg/300px-Dominic_Sessa_Tow-059_%28cropped%29.jpg"
+        },
+        {
+          "name": "Emilia Jones",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Emilia_jones_2022_1.jpg/300px-Emilia_jones_2022_1.jpg"
+        },
+        {
+          "name": "Antonio Banderas",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg/300px-Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg"
+        },
+        {
+          "name": "Leo Woodall",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Leo_Woodall_2024_Emmys_05_%28cropped%29.png/300px-Leo_Woodall_2024_Emmys_05_%28cropped%29.png"
+        },
+        {
+          "name": "Stavros Halkias",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg/300px-Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
       "title": "Dhamaal 4",
       "slug": "dhamaal-4",
       "genre": "Comedy, Adventure",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Dhamaal_4.jpg",
-      "rating": "₹233 Cr worldwide",
+      "rating": "₹234 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-07-10",
       "status": "now_playing",
@@ -216,7 +385,7 @@
         "Esha Gupta"
       ],
       "director": "Indra Kumar",
-      "why_watch": "₹233 Cr worldwide and ₹175 Cr India gross in its 5th week — the highest-grossing film in the Dhamaal franchise, 4th biggest Hindi film of 2026 behind Dhurandhar 2, Border 2, and Bhooth Bangla. Crossed the ₹200 Cr worldwide milestone. Winding down with fewer showtimes, but still the go-to comedy for family audiences in Hindi belt theaters and diaspora screens. The window is closing fast.",
+      "why_watch": "₹234 Cr worldwide and ₹176 Cr India net in 5 weeks — the highest-grossing film in the Dhamaal franchise and the 4th Hindi film of 2026 to cross ₹200 Cr worldwide. Winding down with fewer showtimes as Independence Day releases take over screens, but still running on diaspora screens in the US. The window is closing.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Dhamaal+4+showtimes+near+me",
       "language": "Hindi",
@@ -254,7 +423,7 @@
       "genre": "Political Action, Thriller",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jana_Nayagan.jpg",
-      "rating": "₹300 Cr+ worldwide",
+      "rating": "₹319 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-07-23",
       "status": "now_playing",
@@ -267,7 +436,7 @@
         "Priyamani"
       ],
       "director": "H. Vinoth",
-      "why_watch": "₹300 Cr+ worldwide despite mixed reviews — that's pure Vijay star power. The final cinematic appearance of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. Streaming on ZEE5 from Aug 21, so this is genuinely your last window to catch Vijay's farewell on the big screen. Playing in Tamil, Hindi, and Telugu across US diaspora screens, though showtimes are thinning fast.",
+      "why_watch": "₹319 Cr worldwide in 20 days despite mixed reviews and an HD leak that over one crore people watched before release — that's pure Vijay star power. Now the 10th highest-grossing Tamil film of all time. The final cinematic appearance of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. Streaming on ZEE5 from Aug 21, so this is genuinely your last window to catch Vijay's farewell on the big screen. Showtimes thinning fast as Independence Day releases take over.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Jana+Nayagan+showtimes+near+me",
       "language": "Tamil",
@@ -296,210 +465,6 @@
         {
           "name": "Priyamani",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Priyamani_at_CCL_match%2C_2011_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Tony",
-      "slug": "tony-bourdain",
-      "genre": "Biographical Drama, Comedy-Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Tony_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "95% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-07",
-      "status": "now_playing",
-      "cast": [
-        "Dominic Sessa",
-        "Emilia Jones",
-        "Antonio Banderas",
-        "Leo Woodall",
-        "Stavros Halkias"
-      ],
-      "director": "Matt Johnson",
-      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain, inspired by Kitchen Confidential, follows a 19-year-old Bourdain taking a summer restaurant job in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor is reportedly electric. Currently in limited release (6 theaters), expanding wide later this month. If you love food, travel, or just a great coming-of-age story — this is the one to hunt down.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=k1MVnzd2aVc",
-      "cast_details": [
-        {
-          "name": "Dominic Sessa",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Dominic_Sessa_Tow-059_%28cropped%29.jpg/300px-Dominic_Sessa_Tow-059_%28cropped%29.jpg"
-        },
-        {
-          "name": "Emilia Jones",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Emilia_jones_2022_1.jpg/300px-Emilia_jones_2022_1.jpg"
-        },
-        {
-          "name": "Antonio Banderas",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg/300px-Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg"
-        },
-        {
-          "name": "Leo Woodall",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Leo_Woodall_2024_Emmys_05_%28cropped%29.png/300px-Leo_Woodall_2024_Emmys_05_%28cropped%29.png"
-        },
-        {
-          "name": "Stavros Halkias",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg/300px-Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "One Night Only",
-      "slug": "one-night-only-2026",
-      "genre": "Romantic Comedy",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/a/a9/One_Night_Only_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "49% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-07",
-      "status": "now_playing",
-      "cast": [
-        "Monica Barbaro",
-        "Callum Turner",
-        "Maya Hawke",
-        "Molly Ringwald",
-        "LeVar Burton",
-        "Julia Fox"
-      ],
-      "director": "Will Gluck",
-      "why_watch": "Opened at #3 with $5.7M in 3 days — the counterprogramming rom-com bet against superheroes and epics. In a world where premarital sex is only legal one night a year, two strangers make a connection that challenges everything. From Will Gluck (Anyone But You, Easy A). Critics are split at 49% RT, but Monica Barbaro and Callum Turner bring genuine chemistry. Wide release across 3,000+ theaters.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=One+Night+Only+movie+2026+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=AvKoSR3O4NQ",
-      "cast_details": [
-        {
-          "name": "Monica Barbaro",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Monica_Barbaro.jpg/300px-Monica_Barbaro.jpg"
-        },
-        {
-          "name": "Callum Turner",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Callum_Turner-69856_%28cropped%29.jpg/300px-Callum_Turner-69856_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Batwara 1947",
-      "slug": "batwara-1947",
-      "genre": "Period Drama, Historical",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Batwara_1947_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-08-14",
-      "status": "coming_soon",
-      "cast": [
-        "Sunny Deol",
-        "Preity Zinta",
-        "Shabana Azmi",
-        "Karan Deol",
-        "Ali Fazal"
-      ],
-      "director": "Rajkumar Santoshi",
-      "why_watch": "The biggest Indian release of Independence Day week. Produced by Aamir Khan, directed by Rajkumar Santoshi, music by A.R. Rahman, lyrics by Javed Akhtar — that's a generational talent stack. Based on the acclaimed partition play 'Jis Lahore Nai Vekhya, O Jamya E Nai.' Sunny Deol reunites with Santoshi for the first time since Ghatak (1996), Preity Zinta returns to Hindi cinema after an eight-year hiatus, and cinematography by Santosh Sivan. Opens Aug 14 in the US.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Batwara+1947+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=oRsAMzfvVGk",
-      "cast_details": [
-        {
-          "name": "Sunny Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Sunny_Paaji_2024.jpg"
-        },
-        {
-          "name": "Preity Zinta",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Preity_Zinta_by_Ash_Gupta.jpg/300px-Preity_Zinta_by_Ash_Gupta.jpg"
-        },
-        {
-          "name": "Shabana Azmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
-        },
-        {
-          "name": "Karan Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/en/6/66/Pal_Pal_Dil_Ke_Pass_poster.jpg"
-        },
-        {
-          "name": "Ali Fazal",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg/300px-Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Awarapan 2",
-      "slug": "awarapan-2",
-      "genre": "Romance, Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Awarapan_2.jpg/500px-Awarapan_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-08-14",
-      "status": "coming_soon",
-      "cast": [
-        "Emraan Hashmi",
-        "Disha Patani",
-        "Shabana Azmi"
-      ],
-      "director": "Nitin Kakkar",
-      "why_watch": "The sequel nobody expected to the 2007 cult classic that built Emraan Hashmi's brooding-romantic-hero persona. Hashmi reunites with the Bhatt camp for a romantic drama that's been generating serious buzz. Disha Patani and Shabana Azmi round out the cast. Releasing Independence Day weekend alongside Batwara 1947 — two very different vibes competing for the same holiday audience. Opens Aug 14.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=IQ7HkZ-Gun8",
-      "cast_details": [
-        {
-          "name": "Emraan Hashmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emraan_Filmfare_Magazine_Launch.jpg/300px-Emraan_Filmfare_Magazine_Launch.jpg"
-        },
-        {
-          "name": "Disha Patani",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg/300px-Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg"
-        },
-        {
-          "name": "Shabana Azmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "The End of Oak Street",
-      "slug": "the-end-of-oak-street",
-      "genre": "Sci-Fi Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7e/The_End_of_Oak_Street_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "",
-      "rating_source": "",
-      "release_date": "2026-08-14",
-      "status": "coming_soon",
-      "cast": [
-        "Anne Hathaway",
-        "Ewan McGregor",
-        "Maisy Stella",
-        "Christian Convery"
-      ],
-      "director": "David Robert Mitchell",
-      "why_watch": "What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? That's the premise of this high-concept Warner Bros. sci-fi thriller from It Follows director David Robert Mitchell. Anne Hathaway and Ewan McGregor lead as parents fighting to keep their family alive. The most anticipated non-franchise film of August. Opens Aug 14.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=3oB9AxspVow",
-      "cast_details": [
-        {
-          "name": "Anne Hathaway",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
-        },
-        {
-          "name": "Ewan McGregor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg/300px-Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg"
-        },
-        {
-          "name": "Maisy Stella",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg/300px-Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg"
-        },
-        {
-          "name": "Christian Convery",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg/300px-Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg"
         }
       ]
     }
