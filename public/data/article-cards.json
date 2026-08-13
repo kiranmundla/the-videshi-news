@@ -1,98 +1,128 @@
 [
   {
-    "slug": "cuttack-gang-rape-odisha-police-investigation",
-    "headline": "Police Form Multiple Teams to Nab Suspects in Odisha Gang Rape Case",
+    "slug": "inside-google-ai-exodus-hassabis-planned-exit-model-delays-departures",
+    "headline": "Behind Google's AI Exodus: Hassabis Planned Exit for a Year as Model Delays Fueled Departures",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/inside-google-ai-exodus-hassabis-planned-exit-model-delays-departures.jpg"
+  },
+  {
+    "slug": "pentagon-report-153-civilians-killed-us-yemen-strikes-2025",
+    "headline": "Pentagon Report Reveals 153 Civilians Killed in U.S. Yemen Strikes, Congress Demands Disclosure",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cuttack-gang-rape-odisha-police-investigation.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pentagon-report-153-civilians-killed-us-yemen-strikes-2025.jpg"
   },
   {
-    "slug": "nebius-shares-surge-ai-cloud-revenue-beats-estimates",
-    "headline": "Nebius Shares Surge 22 Percent After AI Cloud Revenue Beats Estimates",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nebius-shares-surge-ai-cloud-revenue-beats-estimates.jpg"
-  },
-  {
-    "slug": "tata-motors-q1-fy27-standalone-profit-rises-revenue-price-hikes",
-    "headline": "Tata Motors Reports Strong Q1 as Demand Holds Firm Despite Commodity Headwinds",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tata-motors-q1-fy27-standalone-profit-rises-revenue-price-hikes.jpg"
-  },
-  {
-    "slug": "ashish-yadav-javelin-silver-medal-world-u20-job-search",
-    "headline": "World U-20 Silver Medallist Ashish Yadav Still Searching for a Job as Father Sells Milk",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ashish-yadav-javelin-silver-medal-world-u20-job-search.jpg"
-  },
-  {
-    "slug": "csk-head-coach-search-ashwin-backs-dhoni-mccullum-fleming-england",
-    "headline": "CSK Begin Coach Hunt as Ashwin Backs Dhoni and McCullum Emerges as Contender",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/csk-head-coach-search-ashwin-backs-dhoni-mccullum-fleming-england.jpg"
-  },
-  {
-    "slug": "bank-of-america-jio-credit-1-9-billion-stake-india",
-    "headline": "Bank of America to Acquire 49.9% Stake in Jio Credit for $1.9 Billion",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bank-of-america-jio-credit-1-9-billion-stake-india.jpg"
-  },
-  {
-    "slug": "yash-radhika-pandit-10-year-engagement-anniversary-video",
-    "headline": "Yash and Radhika Pandit Mark 10 Years of Engagement With Unseen Ring Exchange Video",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-radhika-pandit-10-year-engagement-anniversary-video.jpg"
-  },
-  {
-    "slug": "dhs-expands-h1b-l1-biometric-fees-same-employer-extensions",
-    "headline": "DHS Expands $4,000 H-1B and $4,500 L-1 Fees to Cover Same-Employer Extensions",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dhs-expands-h1b-l1-biometric-fees-same-employer-extensions.jpg"
-  },
-  {
-    "slug": "openai-friction-email-employees-sam-altman",
-    "headline": "OpenAI Has a Special Email for Employees to Flag Problems Directly to Leadership",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-friction-email-employees-sam-altman.jpg"
-  },
-  {
-    "slug": "jharkhand-student-protests-tear-gas-jpsc-chief-arrested",
-    "headline": "Police Fire Tear Gas on Jharkhand Student Marchers as Ex-JPSC Chief Arrested",
+    "slug": "army-veteran-flag-code-breach-netflix-operation-safed-sagar-kargil-controversy",
+    "headline": "Army Veteran Demands Netflix Pull Operation Safed Sagar Over Flag Code Breach in Coffin Scene",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jharkhand-student-protests-tear-gas-jpsc-chief-arrested.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/army-veteran-flag-code-breach-netflix-operation-safed-sagar-kargil-controversy.jpg"
   },
   {
-    "slug": "openai-coo-brad-lightcap-leaves-new-venture",
-    "headline": "OpenAI COO Brad Lightcap Leaves After Eight Years to Launch New Venture",
+    "slug": "asian-stocks-rally-tame-us-inflation-eases-fed-rate-hike-fears",
+    "headline": "Asian Stocks Rally as Tame US Inflation Data Eases Fed Rate Hike Fears",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/asian-stocks-rally-tame-us-inflation-eases-fed-rate-hike-fears.jpg"
+  },
+  {
+    "slug": "nri-dollar-inflows-surge-37-billion-bank-deposits-decade-high",
+    "headline": "NRI Dollar Inflows Surge Past $37 Billion, Driving Decade-High Bank Deposit Growth",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nri-dollar-inflows-surge-37-billion-bank-deposits-decade-high.jpg"
+  },
+  {
+    "slug": "intel-honors-indian-american-professors-outstanding-researcher-awards-ai",
+    "headline": "Intel Honors Two Indian American Professors With Outstanding Researcher Awards for AI Work",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-coo-brad-lightcap-leaves-new-venture.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/intel-honors-indian-american-professors-outstanding-researcher-awards-ai.jpg"
   },
   {
-    "slug": "uk-parliament-demands-probe-pakistan-pok-crackdown",
-    "headline": "UK Parliament Demands Probe as Pakistan's PoK Crackdown Kills Over 40 Civilians",
+    "slug": "hardik-pandya-gujarat-titans-return-captaincy-demand-blocked",
+    "headline": "Hardik Pandya's Gujarat Titans Return Falls Through Over Captaincy Demand",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hardik-pandya-gujarat-titans-return-captaincy-demand-blocked.jpg"
+  },
+  {
+    "slug": "afghanistan-host-india-t20i-series-delhi-arun-jaitley-stadium",
+    "headline": "Afghanistan to Host India in Historic T20I Series at Delhi's Arun Jaitley Stadium",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/afghanistan-host-india-t20i-series-delhi-arun-jaitley-stadium.jpg"
+  },
+  {
+    "slug": "amar-upadhyay-returns-mihir-virani-kyunki-2-after-14-week-absence",
+    "headline": "Amar Upadhyay Returns as Mihir Virani in Kyunki 2 After 14-Week Absence That Sank Ratings",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/amar-upadhyay-returns-mihir-virani-kyunki-2-after-14-week-absence.jpg"
+  },
+  {
+    "slug": "us-inflation-cools-3-4-percent-july-easing-pressure-fed",
+    "headline": "US Inflation Cools to 3.4% in July, Easing Pressure on the Fed",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-inflation-cools-3-4-percent-july-easing-pressure-fed.jpg"
+  },
+  {
+    "slug": "apple-negotiates-publisher-deals-siri-ai-content",
+    "headline": "Apple Negotiates Nine-Figure Budget to Pay Publishers for Siri AI Content",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-negotiates-publisher-deals-siri-ai-content.jpg"
+  },
+  {
+    "slug": "stopping-statins-after-75-safe-low-risk-adults-new-trial",
+    "headline": "New Trial Finds Stopping Statins After 75 May Be Safe for Low-Risk Adults",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/stopping-statins-after-75-safe-low-risk-adults-new-trial.jpg"
+  },
+  {
+    "slug": "simple-ways-make-indian-food-healthier",
+    "headline": "Simple Ways to Make Indian Food Healthier Without Giving Up Taste",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/simple-ways-make-indian-food-healthier.jpg"
+  },
+  {
+    "slug": "vidya-malavade-oestrogen-belly-menopause-health",
+    "headline": "Vidya Malavade Opens Up About Oestrogen Belly at 53: What Women Should Know",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vidya-malavade-oestrogen-belly-menopause-health.jpg"
+  },
+  {
+    "slug": "california-uber-lyft-drivers-unionize-historic-step",
+    "headline": "California Uber and Lyft Drivers Take Historic Step Toward Unionization",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-uber-lyft-drivers-unionize-historic-step.jpg"
+  },
+  {
+    "slug": "mango-chia-pudding-cardamom-saffron-recipe",
+    "headline": "Mango Chia Pudding With Cardamom and Saffron: A Five-Minute Indian-Inspired Breakfast",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mango-chia-pudding-cardamom-saffron-recipe.jpg"
+  },
+  {
+    "slug": "bhajiya-recipe-assorted-indian-fritters",
+    "headline": "Bhajiya: How to Make the Perfect Assorted Indian Fritters at Home",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bhajiya-recipe-assorted-indian-fritters.jpg"
+  },
+  {
+    "slug": "near-total-lunar-eclipse-blood-moon-august-28-2026",
+    "headline": "Near-Total Lunar Eclipse to Create Blood Moon Visible Across Americas on August 28",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-parliament-demands-probe-pakistan-pok-crackdown.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/near-total-lunar-eclipse-blood-moon-august-28-2026.jpg"
   },
   {
-    "slug": "h1b-cottage-industry-residential-worksites-reveal-visa-program-abuse",
-    "headline": "Residential Worksites Reveal H-1B Visa Program Has Become a Cottage Industry",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-cottage-industry-residential-worksites-reveal-visa-program-abuse.jpg"
+    "slug": "sailors-jump-overboard-uss-abraham-lincoln-mental-health-crisis",
+    "headline": "Sailors Try to Jump Off USS Abraham Lincoln Amid Worsening Mental Health Crisis",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sailors-jump-overboard-uss-abraham-lincoln-mental-health-crisis.jpg"
   },
   {
-    "slug": "india-plans-gold-monetisation-revamp-unlock-5-trillion-household-reserves",
-    "headline": "India Plans Gold Monetisation Revamp to Unlock $5 Trillion in Household Reserves",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-plans-gold-monetisation-revamp-unlock-5-trillion-household-reserves.jpg"
+    "slug": "sunny-deol-stays-fit-at-68-with-samosas-parathas-and-daily-workouts",
+    "headline": "Sunny Deol Stays Fit at 68 With Samosas, Desi Ghee, and Two Hours of Daily Exercise",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sunny-deol-stays-fit-at-68-with-samosas-parathas-and-daily-workouts.jpg"
   },
   {
-    "slug": "tcs-investigates-data-leak-claims-confirms-no-breach",
-    "headline": "TCS Investigates Dark Web Data Leak Claims, Confirms No Breach of Its Systems",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-investigates-data-leak-claims-confirms-no-breach.jpg"
-  },
-  {
-    "slug": "india-top-family-businesses-valued-1-6-trillion-exceed-saudi-gdp",
-    "headline": "India's Top 300 Family Businesses Now Worth $1.6 Trillion, Exceeding Saudi Arabia's GDP",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-top-family-businesses-valued-1-6-trillion-exceed-saudi-gdp.jpg"
+    "slug": "ayurveda-complement-modern-medicine-india-integrative-healthcare",
+    "headline": "Can Ayurveda Complement Modern Medicine? India Bets Big on Integrative Healthcare",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ayurveda-complement-modern-medicine-india-integrative-healthcare.jpg"
   }
 ]
