@@ -1,110 +1,116 @@
 [
   {
-    "slug": "trump-authorizes-private-companies-hack-foreign-cybercriminals",
-    "headline": "Trump Authorizes Private Companies to Hack Foreign Cybercriminals in Major Policy Shift",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-authorizes-private-companies-hack-foreign-cybercriminals.jpg"
-  },
-  {
-    "slug": "dry-scooping-pre-workout-powder-sending-young-people-to-er",
-    "headline": "Why 'Dry Scooping' Pre-Workout Powder Is Sending Young People to the ER",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dry-scooping-pre-workout-powder-sending-young-people-to-er.jpg"
-  },
-  {
-    "slug": "applied-materials-record-q3-revenue-9-billion-beats-estimates",
-    "headline": "Applied Materials Posts Record $9.12 Billion Quarter, Edges Past Wall Street Estimates",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/applied-materials-record-q3-revenue-9-billion-beats-estimates.jpg"
-  },
-  {
-    "slug": "sadhguru-calls-mount-kailash-greatest-mystical-library-motorbike-yatra",
-    "headline": "Sadhguru Calls Mount Kailash the 'Greatest Mystical Library on the Planet' During Historic Motorbike Yatra",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sadhguru-calls-mount-kailash-greatest-mystical-library-motorbike-yatra.jpg"
-  },
-  {
-    "slug": "farage-count-binface-clacton-by-election-britain-surreal-contest",
-    "headline": "Farage Faces Count Binface as Clacton By-Election Becomes Britain's Most Surreal Political Contest",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/farage-count-binface-clacton-by-election-britain-surreal-contest.jpg"
-  },
-  {
-    "slug": "united-airlines-blows-tire-takeoff-chicago-ohare-passengers-deplane",
-    "headline": "United Airlines Plane Blows Tire During Takeoff at Chicago O'Hare, Passengers Deplane on Runway",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/united-airlines-blows-tire-takeoff-chicago-ohare-passengers-deplane.jpg"
-  },
-  {
-    "slug": "dol-proposes-raising-h1b-prevailing-wages-33-percent",
-    "headline": "DOL Proposes Raising H-1B Prevailing Wages by Up to 33%, Threatening Employer Sponsorship Economics",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dol-proposes-raising-h1b-prevailing-wages-33-percent.jpg"
-  },
-  {
-    "slug": "30-us-senators-flag-visa-delays-indian-students-fall-semester",
-    "headline": "30 US Senators Flag Visa Appointment Delays Affecting Thousands of Indian Students",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/30-us-senators-flag-visa-delays-indian-students-fall-semester.jpg"
-  },
-  {
-    "slug": "openai-revenue-run-rate-tops-40-billion-ipo-preparations",
-    "headline": "OpenAI Revenue Run Rate Tops $40 Billion as IPO Preparations Accelerate",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-revenue-run-rate-tops-40-billion-ipo-preparations.jpg"
-  },
-  {
-    "slug": "akira-ransomware-safe-mode-disables-edr-breaks-encryptor",
-    "headline": "Akira Ransomware Gang Reboots Systems Into Safe Mode to Kill Security Tools, but Breaks Own Encryptor",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/akira-ransomware-safe-mode-disables-edr-breaks-encryptor.jpg"
-  },
-  {
-    "slug": "bombay-hc-bars-sanjay-dutt-pune-nightclub-playing-music-without-license",
-    "headline": "Bombay High Court Bars Sanjay Dutt's Pune Nightclub From Playing Music Without License",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bombay-hc-bars-sanjay-dutt-pune-nightclub-playing-music-without-license.jpg"
-  },
-  {
-    "slug": "trump-orders-navy-rip-out-electromagnetic-catapults-return-steam-carriers",
-    "headline": "Trump Orders Navy to Rip Out Electromagnetic Catapults, Return to Steam on Aircraft Carriers",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-orders-navy-rip-out-electromagnetic-catapults-return-steam-carriers.jpg"
-  },
-  {
-    "slug": "harry-brook-closes-door-ipl-return-england-captain",
-    "headline": "Harry Brook All But Closes the Door on IPL Return, Chooses England Over Franchise Cricket",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/harry-brook-closes-door-ipl-return-england-captain.jpg"
-  },
-  {
-    "slug": "stuart-broad-admits-jadeja-sword-celebration-used-to-annoy-him",
-    "headline": "Stuart Broad Admits Jadeja's Trademark Sword Celebration 'Used to Annoy' Him",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/stuart-broad-admits-jadeja-sword-celebration-used-to-annoy-him.jpg"
-  },
-  {
-    "slug": "aditya-birla-group-brand-royalty-grasim-hindalco-novelis",
-    "headline": "Aditya Birla Group Levies 0.25% Brand Royalty on Grasim and Hindalco, Caps Fee at ₹225 Crore",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aditya-birla-group-brand-royalty-grasim-hindalco-novelis.jpg"
-  },
-  {
-    "slug": "jp-morgan-pulls-fed-rate-hike-call-forward-december-july-hold",
-    "headline": "J.P. Morgan Pulls Fed Rate Hike Call Forward to December After July Hold",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jp-morgan-pulls-fed-rate-hike-call-forward-december-july-hold.jpg"
-  },
-  {
-    "slug": "how-torontos-indian-restaurants-went-from-underground-to-michelin-recognized",
-    "headline": "How Toronto's Indian Restaurants Went From Underground to Michelin-Recognized",
+    "slug": "monsoon-food-poisoning-risks-street-food-cut-fruits-india",
+    "headline": "From Street Food to Cut Fruits: Seven Foods That Raise Poisoning Risk During Monsoon",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/how-torontos-indian-restaurants-went-from-underground-to-michelin-recognized.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/monsoon-food-poisoning-risks-street-food-cut-fruits-india.jpg"
   },
   {
-    "slug": "indian-student-enrollment-us-falls-visa-cap-tighter-scrutiny",
-    "headline": "Indian Student Enrollment in US Falls 6.9% as Four-Year Visa Cap and Tighter Scrutiny Take Hold",
+    "slug": "sensex-nifty-flat-it-gains-metal-drag-independence-day-august-14",
+    "headline": "Sensex, Nifty End Flat as IT Gains Offset Metal Drag Ahead of Independence Day",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sensex-nifty-flat-it-gains-metal-drag-independence-day-august-14.jpg"
+  },
+  {
+    "slug": "coriander-prices-surge-rs-200-heavy-rains-india",
+    "headline": "Coriander Prices Surge Past Rs 200 Per Kg as Heavy Rains Disrupt Indian Supply",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/coriander-prices-surge-rs-200-heavy-rains-india.jpg"
+  },
+  {
+    "slug": "energy-drinks-daily-health-risks-body-effects",
+    "headline": "What Happens to Your Body When You Drink Energy Drinks Every Day",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/energy-drinks-daily-health-risks-body-effects.jpg"
+  },
+  {
+    "slug": "sad-demands-cbi-probe-sukhbir-badal-attack-conspiracy",
+    "headline": "SAD Demands CBI Probe Into Attack on Sukhbir Badal, Alleges Conspiracy Against Moderate Leadership",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sad-demands-cbi-probe-sukhbir-badal-attack-conspiracy.jpg"
+  },
+  {
+    "slug": "nri-invest-indian-stocks-mutual-funds-nre-account-guide",
+    "headline": "How NRIs Can Invest in Indian Stocks and Mutual Funds Through NRE Accounts",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-student-enrollment-us-falls-visa-cap-tighter-scrutiny.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nri-invest-indian-stocks-mutual-funds-nre-account-guide.jpg"
+  },
+  {
+    "slug": "vvs-laxman-bcci-director-of-cricket-appointment",
+    "headline": "VVS Laxman Set To Be Named BCCI's First Director of Cricket",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vvs-laxman-bcci-director-of-cricket-appointment.jpg"
+  },
+  {
+    "slug": "bollywood-partition-films-batwara-1947-independence-day",
+    "headline": "From Batwara 1947 to Main Vaapas Aaunga: Bollywood Retells Partition With New Sensitivity",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bollywood-partition-films-batwara-1947-independence-day.jpg"
+  },
+  {
+    "slug": "zee-entertainment-sat-conditional-relief-sebi-fundraise-rally",
+    "headline": "Zee Entertainment Shares Rally 8% After SAT Grants Conditional Relief on Fundraise",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zee-entertainment-sat-conditional-relief-sebi-fundraise-rally.jpg"
+  },
+  {
+    "slug": "blood-thinners-noacs-slow-cognitive-decline-alzheimers",
+    "headline": "Modern Blood Thinners May Slow Cognitive Decline in Alzheimer's Patients",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/blood-thinners-noacs-slow-cognitive-decline-alzheimers.jpg"
+  },
+  {
+    "slug": "praggnanandhaa-bounces-back-sinquefield-cup-van-foreest",
+    "headline": "Praggnanandhaa Bounces Back at Sinquefield Cup With Win Over Van Foreest",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/praggnanandhaa-bounces-back-sinquefield-cup-van-foreest.jpg"
+  },
+  {
+    "slug": "jp-nadda-coronary-angiography-aiims-delhi-admitted",
+    "headline": "Health Minister JP Nadda Undergoes Coronary Angiography at AIIMS Delhi After Uneasiness",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jp-nadda-coronary-angiography-aiims-delhi-admitted.jpg"
+  },
+  {
+    "slug": "openai-ultrafast-mode-gpt-56-sol-cerebras-750-tokens",
+    "headline": "OpenAI Launches Ultrafast Mode for GPT-5.6 Sol at 750 Tokens Per Second",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/openai-ultrafast-mode-gpt-56-sol-cerebras-750-tokens.jpg"
+  },
+  {
+    "slug": "delhi-high-court-airport-bomb-threats-independence-day-eve",
+    "headline": "Delhi High Court, Airport Among Six Locations to Receive Bomb Threats on Independence Day Eve",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-high-court-airport-bomb-threats-independence-day-eve.jpg"
+  },
+  {
+    "slug": "sp500-ceo-pay-record-22-8-million-musk-mega-deals-reshape-boardrooms",
+    "headline": "S&P 500 CEO Pay Hits Record $22.8 Million as Musk's Mega-Deals Reshape Boardrooms",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sp500-ceo-pay-record-22-8-million-musk-mega-deals-reshape-boardrooms.jpg"
+  },
+  {
+    "slug": "behari-lal-engineering-ipo-subscribed-2x-opening-day-strong-demand",
+    "headline": "Behari Lal Engineering IPO Draws Strong Demand, Subscribed Over 2x on Opening Day",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/behari-lal-engineering-ipo-subscribed-2x-opening-day-strong-demand.jpg"
+  },
+  {
+    "slug": "ai-agents-lie-cheat-undermine-trust-alarming-rate",
+    "headline": "AI Agents Lie, Cheat, and Undermine Trust at an Alarming Rate",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-agents-lie-cheat-undermine-trust-alarming-rate.jpg"
+  },
+  {
+    "slug": "h1b-registrations-plunge-38-percent-wage-weighted-system-indian-it",
+    "headline": "H-1B Registrations Plunge 38.5% as Wage-Weighted System Reshapes Program",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-registrations-plunge-38-percent-wage-weighted-system-indian-it.jpg"
+  },
+  {
+    "slug": "us-labor-department-h1b-fraud-probe-subpoenas-project-firewall",
+    "headline": "US Labor Department Launches Sweeping H-1B Fraud Probe With Dozens of Subpoenas",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-labor-department-h1b-fraud-probe-subpoenas-project-firewall.jpg"
   }
 ]
