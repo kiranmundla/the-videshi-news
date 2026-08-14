@@ -7402,36 +7402,6 @@
    "priority": 3
   },
   {
-   "subject": "humanoid robots",
-   "subject_type": "thing",
-   "tags": [
-    "humanoid robots"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "661dae2b-0934-430e-bb16-a5a7697535df",
-   "priority": 3
-  },
-  {
-   "subject": "STEM education",
-   "subject_type": "thing",
-   "tags": [
-    "stem education"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "661dae2b-0934-430e-bb16-a5a7697535df",
-   "priority": 3
-  },
-  {
-   "subject": "AI in schools",
-   "subject_type": "thing",
-   "tags": [
-    "ai in schools"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "661dae2b-0934-430e-bb16-a5a7697535df",
-   "priority": 3
-  },
-  {
    "subject": "Realbotix",
    "subject_type": "thing",
    "tags": [
@@ -7439,66 +7409,6 @@
    ],
    "first_seen": "2026-07-20T10:29:27Z",
    "article_id": "661dae2b-0934-430e-bb16-a5a7697535df",
-   "priority": 3
-  },
-  {
-   "subject": "FOMC",
-   "subject_type": "thing",
-   "tags": [
-    "fomc"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "f14cb7f7-679f-4d3a-9b0c-936b9920fe6e",
-   "priority": 3
-  },
-  {
-   "subject": "GARUDA",
-   "subject_type": "thing",
-   "tags": [
-    "garuda"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "a235664d-a9b9-4799-9ffd-6604e916ac4a",
-   "priority": 3
-  },
-  {
-   "subject": "AIF",
-   "subject_type": "thing",
-   "tags": [
-    "aif"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "a235664d-a9b9-4799-9ffd-6604e916ac4a",
-   "priority": 3
-  },
-  {
-   "subject": "private equity",
-   "subject_type": "thing",
-   "tags": [
-    "private equity"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "a235664d-a9b9-4799-9ffd-6604e916ac4a",
-   "priority": 3
-  },
-  {
-   "subject": "Cato Institute",
-   "subject_type": "thing",
-   "tags": [
-    "cato institute"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "37175f27-8347-4030-a9ba-aa964550bb8d",
-   "priority": 3
-  },
-  {
-   "subject": "asia stocks",
-   "subject_type": "thing",
-   "tags": [
-    "asia stocks"
-   ],
-   "first_seen": "2026-07-20T10:29:27Z",
-   "article_id": "d3ba93d8-b1b7-49ef-b426-4e21849094ea",
    "priority": 3
   },
   {
@@ -7540,16 +7450,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "4f7d8e23-2e49-4865-9e96-443b648bc024",
    "priority": 2
-  },
-  {
-   "subject": "NBA",
-   "subject_type": "thing",
-   "tags": [
-    "nba"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "1c3a6f54-ec1c-4d28-b0a6-cde535be3618",
-   "priority": 3
   },
   {
    "subject": "TMC Split",
@@ -7622,16 +7522,6 @@
    "priority": 2
   },
   {
-   "subject": "obesity",
-   "subject_type": "thing",
-   "tags": [
-    "obesity"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "a0c40116-510f-4957-a796-74121cc155a2",
-   "priority": 3
-  },
-  {
    "subject": "pharmaceutical",
    "subject_type": "thing",
    "tags": [
@@ -7640,16 +7530,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "a0c40116-510f-4957-a796-74121cc155a2",
    "priority": 2
-  },
-  {
-   "subject": "imax",
-   "subject_type": "thing",
-   "tags": [
-    "imax"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "4277f32f-e72a-434e-b273-ace0bc5c6e96",
-   "priority": 3
   },
   {
    "subject": "universal pictures",
@@ -8132,16 +8012,6 @@
    "priority": 2
   },
   {
-   "subject": "NHPC",
-   "subject_type": "thing",
-   "tags": [
-    "nhpc"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "75bd9271-aead-4fe6-b121-d939f4a80406",
-   "priority": 3
-  },
-  {
    "subject": "Teesta",
    "subject_type": "thing",
    "tags": [
@@ -8180,26 +8050,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "75bd9271-aead-4fe6-b121-d939f4a80406",
    "priority": 2
-  },
-  {
-   "subject": "coffee",
-   "subject_type": "thing",
-   "tags": [
-    "coffee"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "7598eb79-ad35-4367-97c6-b96e81e8a746",
-   "priority": 3
-  },
-  {
-   "subject": "health study",
-   "subject_type": "thing",
-   "tags": [
-    "health study"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "7598eb79-ad35-4367-97c6-b96e81e8a746",
-   "priority": 3
   },
   {
    "subject": "cardiovascular",
