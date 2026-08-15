@@ -676,6 +676,26 @@ export default function ArticlePage() {
                 }
               );
 
+              // Transform markdown headings ## / ### into <h2> / <h3>
+              processedHtml = processedHtml.replace(
+                /^(#{2,3})\s+(.+)$/gm,
+                (_: string, hashes: string, text: string) => {
+                  const level = hashes.length;
+                  return `<h${level}>${text.trim()}</h${level}>`;
+                }
+              );
+
+              // Convert markdown-style paragraphs (double newlines between non-HTML text)
+              // into <p> tags so spacing renders correctly in HTML mode
+              processedHtml = processedHtml.replace(
+                /([^>\n])\n\n(?!\s*<)/g,
+                "$1</p>\n\n<p>"
+              );
+              // Wrap leading non-HTML text in <p> if it doesn't start with a tag
+              if (!/^\s*</.test(processedHtml)) {
+                processedHtml = "<p>" + processedHtml;
+              }
+
               // Transform markdown images ![alt](url) into HTML img tags
               processedHtml = processedHtml.replace(
                 /!\[([^\]]*)\]\((https?:\/\/[^)]+)\)/g,
