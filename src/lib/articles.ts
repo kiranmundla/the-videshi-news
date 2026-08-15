@@ -122,14 +122,25 @@ function parseGalleryImages(raw: unknown): GalleryImage[] | null {
 
 function deriveExcerpt(subheadline: string | null, body: string): string {
   if (subheadline && subheadline.trim()) return subheadline.trim();
-  // Strip HTML tags and markdown formatting, then take first ~220 chars of plain text
+  // Strip HTML tags and markdown formatting, then take first complete sentence(s)
   const plain = (body ?? "")
     .replace(/<[^>]*>/g, " ")       // strip HTML tags
     .replace(/[#*_>`~\-]+/g, "")    // strip markdown
     .replace(/\s+/g, " ")           // collapse whitespace
     .trim();
   if (!plain) return "";
-  return plain.length > 220 ? plain.slice(0, 217).trimEnd() + "…" : plain;
+  if (plain.length <= 350) return plain;
+  // Find last sentence-ending punctuation within 350 chars
+  const window = plain.slice(0, 350);
+  const lastPeriod = Math.max(
+    window.lastIndexOf(". "),
+    window.lastIndexOf("? "),
+    window.lastIndexOf("! "),
+  );
+  if (lastPeriod > 120) return window.slice(0, lastPeriod + 1);
+  // fallback: break at last space
+  const lastSpace = window.lastIndexOf(" ");
+  return (lastSpace > 0 ? window.slice(0, lastSpace) : window) + "…";
 }
 
 /* Strip trailing *Sources: ...* line baked into article body markdown */
