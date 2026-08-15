@@ -1,116 +1,104 @@
 [
   {
-    "slug": "vikas-khanna-michelin-chef-time100-amritsar-bungalow",
-    "headline": "From Amritsar's Streets to TIME100: Vikas Khanna's Journey to Global Culinary Stardom",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vikas-khanna-michelin-chef-time100-amritsar-bungalow.jpg"
-  },
-  {
-    "slug": "india-electronics-exports-surge-smartphones-top-commodity",
-    "headline": "India's Electronics Exports Hit Rs 4.24 Lakh Crore as Smartphones Become Top Export Commodity",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-electronics-exports-surge-smartphones-top-commodity.jpg"
-  },
-  {
-    "slug": "air-india-400-million-fleet-overhaul-retrofitted-dreamliners-return",
-    "headline": "Air India's $400 Million Fleet Overhaul Takes Shape as Retrofitted Dreamliners Return to Service",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-400-million-fleet-overhaul-retrofitted-dreamliners-return.jpg"
-  },
-  {
-    "slug": "acton-massachusetts-indian-teen-charged-murder-family-chatgpt",
-    "headline": "Massachusetts Teen Charged With Killing Mother and Brother; Prosecutors Say He Used ChatGPT for Violent Fantasies",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/acton-massachusetts-indian-teen-charged-murder-family-chatgpt.jpg"
-  },
-  {
-    "slug": "india-semiconductor-hub-semicon-2-chip-fabrication",
-    "headline": "India Launches $15 Billion Semiconductor Push to Build Chip Fabrication Ecosystem",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-semiconductor-hub-semicon-2-chip-fabrication.jpg"
-  },
-  {
-    "slug": "indian-professionals-o1-einstein-visa-h1b-lottery-alternative",
-    "headline": "Indian Professionals Turn to O-1 'Einstein' Visa as H-1B Lottery Frustrations Mount",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-professionals-o1-einstein-visa-h1b-lottery-alternative.jpg"
-  },
-  {
-    "slug": "reliance-rolls-royce-amca-fighter-jet-engine-partnership",
-    "headline": "Reliance and Rolls-Royce Partner to Build Engine for India's Fifth-Generation Fighter Jet",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/reliance-rolls-royce-amca-fighter-jet-engine-partnership.jpg"
-  },
-  {
-    "slug": "seven-indian-american-women-forbes-50-over-50",
-    "headline": "Seven Indian American Women Named to Forbes' 50 Over 50 List",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/seven-indian-american-women-forbes-50-over-50.jpg"
-  },
-  {
-    "slug": "batwara-1947-box-office-day-1-sunny-deol-opening",
-    "headline": "Batwara 1947 Opens to Modest ₹3.67 Crore on Day 1, Trails Awarapan 2",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/batwara-1947-box-office-day-1-sunny-deol-opening.jpg"
-  },
-  {
-    "slug": "jemimah-rodrigues-hamstring-injury-asia-cup-doubt",
-    "headline": "Jemimah Rodrigues Ruled Out of The Hundred, Asia Cup Participation in Doubt",
+    "slug": "cpl-2026-guyana-amazon-warriors-nabi-tahir-jamaica-kingsmen",
+    "headline": "Afghan Veteran Nabi and South African Skipper Tahir Power Amazon Warriors to CPL Opening Win",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jemimah-rodrigues-hamstring-injury-asia-cup-doubt.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cpl-2026-guyana-amazon-warriors-nabi-tahir-jamaica-kingsmen.jpg"
   },
   {
-    "slug": "h1b-filings-surge-texas-republican-crackdown",
-    "headline": "H-1B Visa Filings Surge in Texas Even as Republican Leaders Crack Down",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-filings-surge-texas-republican-crackdown.jpg"
-  },
-  {
-    "slug": "nvidia-jetson-found-inside-russia-s71m-cruise-missile",
-    "headline": "NVIDIA Jetson Module Found Inside Russia's AI-Powered S-71M Cruise Missile",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-jetson-found-inside-russia-s71m-cruise-missile.jpg"
-  },
-  {
-    "slug": "us-retail-sales-steepest-drop-since-may-2025",
-    "headline": "US Retail Sales Post Steepest Monthly Drop Since May 2025",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-retail-sales-steepest-drop-since-may-2025.jpg"
-  },
-  {
-    "slug": "balochistan-home-minister-escapes-convoy-attack-mastung",
-    "headline": "Balochistan Home Minister Escapes Convoy Attack in Mastung on Pakistan's Independence Day",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/balochistan-home-minister-escapes-convoy-attack-mastung.jpg"
-  },
-  {
-    "slug": "gen-z-turns-down-1-crore-job-offer-toxic-workplace",
-    "headline": "Gen Z Professional Turns Down ₹1 Crore Job Offer at 25 Over Toxic Workplace Concerns",
+    "slug": "arunachal-independence-day-flag-hoisting-border-villages-china-tensions",
+    "headline": "Arunachal's Border Villages Hoist Tiranga at China Frontier as India Marks 80th Independence Day",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gen-z-turns-down-1-crore-job-offer-toxic-workplace.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/arunachal-independence-day-flag-hoisting-border-villages-china-tensions.jpg"
   },
   {
-    "slug": "five-cups-coffee-heart-health-aha-statement",
-    "headline": "Up to Five Cups of Coffee a Day May Benefit Heart Health, AHA Says",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/five-cups-coffee-heart-health-aha-statement.jpg"
+    "slug": "nri-voting-guide-2026-india-elections-form-6a-overseas-elector",
+    "headline": "NRI Voting Guide 2026: How to Register and Vote in Indian Elections From Abroad",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nri-voting-guide-2026-india-elections-form-6a-overseas-elector.jpg"
   },
   {
-    "slug": "tcs-rolls-royce-hydrogen-aviation-breakthrough",
-    "headline": "TCS and Rolls-Royce Achieve Breakthrough in Hydrogen-Powered Aviation Test",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-rolls-royce-hydrogen-aviation-breakthrough.jpg"
-  },
-  {
-    "slug": "sonu-nigam-admits-auto-tune-digitised-recording",
-    "headline": "Sonu Nigam Admits He Uses Auto-Tune in Some Songs, Blames Digitised Recording",
+    "slug": "malamaal-weekly-2-fardeen-khan-mahesh-manjrekar-cast-bollywood-sequel",
+    "headline": "Fardeen Khan, Mahesh Manjrekar Join Star-Studded Malamaal Weekly 2 Cast",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sonu-nigam-admits-auto-tune-digitised-recording.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/malamaal-weekly-2-fardeen-khan-mahesh-manjrekar-cast-bollywood-sequel.jpg"
   },
   {
-    "slug": "perimenopause-health-cliff-women-not-prepared",
-    "headline": "Why Perimenopause Is the Health Cliff Women Are Not Prepared For",
+    "slug": "cell-invisibility-cloaks-diabetes-treatment-immune-evasion",
+    "headline": "Scientists Engineer Cell 'Invisibility Cloaks' That Could Transform Diabetes Treatment",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/perimenopause-health-cliff-women-not-prepared.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cell-invisibility-cloaks-diabetes-treatment-immune-evasion.jpg"
+  },
+  {
+    "slug": "india-80th-independence-day-us-celebrations-massachusetts-india-day",
+    "headline": "US Leaders and Diaspora Mark India's 80th Independence Day With Parades and Proclamations",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-80th-independence-day-us-celebrations-massachusetts-india-day.jpg"
+  },
+  {
+    "slug": "trump-world-liberty-financial-occ-bank-charter-approval",
+    "headline": "U.S. Regulator Grants Bank Charter to Trump-Backed World Liberty Financial",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-world-liberty-financial-occ-bank-charter-approval.jpg"
+  },
+  {
+    "slug": "trump-declares-strait-of-hormuz-us-territory-iran-war",
+    "headline": "Trump Declares Strait of Hormuz Will Become U.S. Territory After Iran War",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-declares-strait-of-hormuz-us-territory-iran-war.jpg"
+  },
+  {
+    "slug": "nana-patekar-farmer-welfare-naam-foundation-up-police-cyber-awareness",
+    "headline": "Nana Patekar's Decade-Long Fight for India's Farmers Earns Unlikely Political Praise",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nana-patekar-farmer-welfare-naam-foundation-up-police-cyber-awareness.jpg"
+  },
+  {
+    "slug": "waymo-wins-california-cpuc-approval-robotaxi-expansion-18-counties",
+    "headline": "Waymo Wins California Approval for Robotaxi Expansion Across 18 Counties",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/waymo-wins-california-cpuc-approval-robotaxi-expansion-18-counties.jpg"
+  },
+  {
+    "slug": "h1b-l1-visa-fees-rise-september-9-biometric-extension-surcharge",
+    "headline": "H-1B and L-1 Visa Extension Fees Jump by Thousands Starting September 9",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-l1-visa-fees-rise-september-9-biometric-extension-surcharge.jpg"
+  },
+  {
+    "slug": "measles-cases-confirmed-central-new-york-vaccination-push",
+    "headline": "Measles Cases Confirmed in Central New York as U.S. Outbreak Tops 2,000",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/measles-cases-confirmed-central-new-york-vaccination-push.jpg"
+  },
+  {
+    "slug": "jane-street-15-billion-loss-ai-selloff-situational-awareness",
+    "headline": "Jane Street Suffers Record $15 Billion Loss From AI Selloff and Hedge Fund Blowup",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jane-street-15-billion-loss-ai-selloff-situational-awareness.jpg"
+  },
+  {
+    "slug": "rbi-special-fcnr-deposit-window-nris-september-2026",
+    "headline": "RBI's Special FCNR Deposit Window Offers NRIs Higher Returns Before September Deadline",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rbi-special-fcnr-deposit-window-nris-september-2026.jpg"
+  },
+  {
+    "slug": "anthropic-revenue-surges-first-profitable-quarter-q2-2026",
+    "headline": "Anthropic Posts First Profitable Quarter as Revenue Doubles to $10.9 Billion",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anthropic-revenue-surges-first-profitable-quarter-q2-2026.jpg"
+  },
+  {
+    "slug": "indonesia-earthquake-7-7-magnitude-tsunami-warning-flores",
+    "headline": "Magnitude 7.7 Earthquake Strikes Indonesia, Triggering Tsunami Warning",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indonesia-earthquake-7-7-magnitude-tsunami-warning-flores.jpg"
+  },
+  {
+    "slug": "heart-attacks-rising-among-young-indians-prevention-tips",
+    "headline": "Heart Attacks Are Striking Indians in Their 30s and 40s at Alarming Rates",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/heart-attacks-rising-among-young-indians-prevention-tips.jpg"
   }
 ]
