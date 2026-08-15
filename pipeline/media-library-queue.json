@@ -8052,16 +8052,6 @@
    "priority": 2
   },
   {
-   "subject": "cardiovascular",
-   "subject_type": "thing",
-   "tags": [
-    "cardiovascular"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "7598eb79-ad35-4367-97c6-b96e81e8a746",
-   "priority": 3
-  },
-  {
    "subject": "nutrition research",
    "subject_type": "thing",
    "tags": [
@@ -8102,16 +8092,6 @@
    "priority": 2
   },
   {
-   "subject": "ULA",
-   "subject_type": "thing",
-   "tags": [
-    "ula"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "5a08f2c5-d0d5-4707-b70c-d9ee792d7a11",
-   "priority": 3
-  },
-  {
    "subject": "Vulcan",
    "subject_type": "thing",
    "tags": [
@@ -8150,16 +8130,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "5a08f2c5-d0d5-4707-b70c-d9ee792d7a11",
    "priority": 2
-  },
-  {
-   "subject": "Space Force",
-   "subject_type": "thing",
-   "tags": [
-    "space force"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "5a08f2c5-d0d5-4707-b70c-d9ee792d7a11",
-   "priority": 3
   },
   {
    "subject": "AI copyright",
@@ -8330,26 +8300,6 @@
    "first_seen": "2026-07-21T10:29:23Z",
    "article_id": "e4236126-e24d-469e-8308-da1f0136c1e8",
    "priority": 2
-  },
-  {
-   "subject": "filmmaking",
-   "subject_type": "thing",
-   "tags": [
-    "filmmaking"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "e4236126-e24d-469e-8308-da1f0136c1e8",
-   "priority": 3
-  },
-  {
-   "subject": "MLB",
-   "subject_type": "thing",
-   "tags": [
-    "mlb"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "d456c31c-8358-4766-b54f-f05c69a38399",
-   "priority": 3
   },
   {
    "subject": "baseball",
@@ -8772,16 +8722,6 @@
    "priority": 2
   },
   {
-   "subject": "global health",
-   "subject_type": "thing",
-   "tags": [
-    "global health"
-   ],
-   "first_seen": "2026-07-21T10:29:23Z",
-   "article_id": "4821f90c-4271-42ac-a572-84f56bd9644f",
-   "priority": 3
-  },
-  {
    "subject": "quadruplets",
    "subject_type": "thing",
    "tags": [
@@ -8952,36 +8892,6 @@
    "priority": 2
   },
   {
-   "subject": "Olympics",
-   "subject_type": "thing",
-   "tags": [
-    "olympics"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "6c68b2ae-695f-4f2a-af8a-86a9a31c7dc8",
-   "priority": 3
-  },
-  {
-   "subject": "Commonwealth Games",
-   "subject_type": "thing",
-   "tags": [
-    "commonwealth games"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "6c68b2ae-695f-4f2a-af8a-86a9a31c7dc8",
-   "priority": 3
-  },
-  {
-   "subject": "India sports",
-   "subject_type": "thing",
-   "tags": [
-    "india sports"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "6c68b2ae-695f-4f2a-af8a-86a9a31c7dc8",
-   "priority": 3
-  },
-  {
    "subject": "boxing",
    "subject_type": "thing",
    "tags": [
@@ -9000,16 +8910,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "6c68b2ae-695f-4f2a-af8a-86a9a31c7dc8",
    "priority": 2
-  },
-  {
-   "subject": "CWG 2026",
-   "subject_type": "thing",
-   "tags": [
-    "cwg 2026"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "6c68b2ae-695f-4f2a-af8a-86a9a31c7dc8",
-   "priority": 3
   },
   {
    "subject": "NEET protest",

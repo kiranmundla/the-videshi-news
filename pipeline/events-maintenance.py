@@ -8,6 +8,7 @@ events-maintenance.py — Periodic maintenance for The Videshi events table.
 
 import json
 import os
+import subprocess
 import sys
 import time
 import re
@@ -46,6 +47,27 @@ HEADERS = {
 TM_KEY = os.environ.get("TICKETMASTER_API_KEY", "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0")
 
 TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+
+def curl_supabase(method, path, json_data=None, prefer=None):
+    """Make a Supabase REST call via curl (avoids proxy issues with requests)."""
+    url = f"{REST}{path}"
+    cmd = ["curl", "-s", "-w", "\n%{http_code}", "-X", method.upper(), url,
+           "-H", f"apikey: {SB_KEY}",
+           "-H", f"Authorization: Bearer {SB_KEY}",
+           "-H", "Content-Type: application/json"]
+    if prefer:
+        cmd += ["-H", f"Prefer: {prefer}"]
+    if json_data is not None:
+        cmd += ["-d", json.dumps(json_data)]
+    cmd += ["--max-time", "15"]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
+    output = result.stdout.strip()
+    lines = output.rsplit("\n", 1)
+    body = lines[0] if len(lines) > 1 else ""
+    status = int(lines[-1]) if lines[-1].isdigit() else 0
+    return status, body
+
 
 # ---------------------------------------------------------------------------
 # Ticketmaster search configs
@@ -272,6 +294,28 @@ def upsert_events(rows):
             print(f"  Upsert error: {r.status_code} {r.text[:200]}")
     return total
 
+def _curl_nominatim(query):
+    """Hit Nominatim via curl subprocess (requests hangs through proxy)."""
+    from urllib.parse import urlencode
+    params = urlencode({"q": query, "format": "json", "limit": 1, "countrycodes": "us"})
+    url = f"https://nominatim.openstreetmap.org/search?{params}"
+    cmd = [
+        "curl", "-s", "-w", "\n%{http_code}", url,
+        "-H", "User-Agent: TheVideshi/1.0 (events geocoder)",
+        "--max-time", "10",
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    output = result.stdout.strip()
+    lines = output.rsplit("\n", 1)
+    body = lines[0] if len(lines) > 1 else ""
+    status = int(lines[-1]) if lines[-1].isdigit() else 0
+    if status == 200 and body:
+        results = json.loads(body)
+        if results:
+            return float(results[0]["lat"]), float(results[0]["lon"])
+    return None, None
+
+
 def geocode_nominatim(venue, city, state=""):
     """Geocode an address using Nominatim (free, no API key)."""
     query = f"{venue}, {city}"
@@ -279,28 +323,13 @@ def geocode_nominatim(venue, city, state=""):
         query += f", {state}"
     query += ", USA"
 
-    url = "https://nominatim.openstreetmap.org/search"
-    params = {
-        "q": query,
-        "format": "json",
-        "limit": 1,
-        "countrycodes": "us",
-    }
-    headers = {"User-Agent": "TheVideshi/1.0 (events geocoder)"}
-
     try:
-        r = requests.get(url, params=params, headers=headers, timeout=10)
-        if r.status_code == 200:
-            results = r.json()
-            if results:
-                return float(results[0]["lat"]), float(results[0]["lon"])
+        lat, lon = _curl_nominatim(query)
+        if lat and lon:
+            return lat, lon
         # Try with just city
-        params["q"] = f"{city}, {state}, USA" if state else f"{city}, USA"
-        r = requests.get(url, params=params, headers=headers, timeout=10)
-        if r.status_code == 200:
-            results = r.json()
-            if results:
-                return float(results[0]["lat"]), float(results[0]["lon"])
+        fallback = f"{city}, {state}, USA" if state else f"{city}, USA"
+        return _curl_nominatim(fallback)
     except Exception as e:
         print(f"  Geocode error for {venue}, {city}: {e}")
     return None, None
@@ -412,17 +441,21 @@ def main():
 
         lat, lon = geocode_nominatim(venue, city, state)
         if lat and lon:
-            # Update
-            ur = requests.patch(
-                f"{REST}/events?id=eq.{eid}",
-                headers={**HEADERS, "Prefer": "return=minimal"},
-                json={"latitude": lat, "longitude": lon},
-                timeout=10,
-            )
-            if ur.status_code in (200, 204):
-                geocoded += 1
-            else:
-                print(f"  Update error for {eid}: {ur.status_code}")
+            # Update via curl (requests.patch fails through proxy)
+            try:
+                status, _ = curl_supabase(
+                    "PATCH",
+                    f"/events?id=eq.{eid}",
+                    json_data={"latitude": lat, "longitude": lon},
+                    prefer="return=minimal",
+                )
+                if status in (200, 204):
+                    geocoded += 1
+                else:
+                    print(f"  Update error for {eid}: HTTP {status}")
+                    failed += 1
+            except Exception as e:
+                print(f"  Curl error for {eid}: {e}")
                 failed += 1
         else:
             failed += 1
@@ -433,12 +466,15 @@ def main():
     print(f"  Geocoded: {geocoded}, Failed: {failed}")
 
     # 4. Final count
-    r = requests.get(
-        f"{REST}/events?select=id&date=gte.{TODAY}",
-        headers=HEADERS,
-        timeout=15,
-    )
-    total = len(r.json()) if r.status_code == 200 and isinstance(r.json(), list) else "?"
+    try:
+        status, body = curl_supabase("GET", f"/events?select=id&date=gte.{TODAY}")
+        if status == 200:
+            data = json.loads(body)
+            total = len(data) if isinstance(data, list) else "?"
+        else:
+            total = "?"
+    except Exception:
+        total = "?"
     print(f"\n=== Done. Total active events: {total} ===")
 
 if __name__ == "__main__":

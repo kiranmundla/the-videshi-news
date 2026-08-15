@@ -685,16 +685,19 @@ export default function ArticlePage() {
                 }
               );
 
-              // Convert markdown-style paragraphs (double newlines between non-HTML text)
-              // into <p> tags so spacing renders correctly in HTML mode
-              processedHtml = processedHtml.replace(
-                /([^>\n])\n\n(?!\s*<)/g,
-                "$1</p>\n\n<p>"
-              );
-              // Wrap leading non-HTML text in <p> if it doesn't start with a tag
-              if (!/^\s*</.test(processedHtml)) {
-                processedHtml = "<p>" + processedHtml;
-              }
+              // Wrap plain-text blocks in <p> tags so spacing renders correctly.
+              // Split by double-newlines, leave HTML block elements alone, wrap the rest.
+              const paraChunks = processedHtml.split(/\n\n+/);
+              processedHtml = paraChunks.map((chunk: string) => {
+                const trimmed = chunk.trim();
+                if (!trimmed) return '';
+                // Already an HTML block element — leave as-is
+                if (/^\s*<(?:div|h[1-6]|figure|blockquote|ul|ol|table|section|article|aside|nav|header|footer|iframe|style|p[\s>])/i.test(trimmed)) {
+                  return trimmed;
+                }
+                // Plain text — wrap in <p>
+                return `<p>${trimmed}</p>`;
+              }).filter(Boolean).join('\n\n');
 
               // Transform markdown images ![alt](url) into HTML img tags
               processedHtml = processedHtml.replace(
