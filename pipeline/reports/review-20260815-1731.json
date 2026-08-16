@@ -1,0 +1,197 @@
+[
+  {
+    "id": "c2afe36c-b8e2-4fde-b7ad-b52bb901e8f3",
+    "headline": "Saif Ali Khan Learns to Make Puris With Soldiers in Uri for Independence Day",
+    "slug": "saif-ali-khan-puris-army-uri-jai-jawan-independence-day",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from NRIs about the significance of Independence Day and how they celebrate it abroad, particularly in relation to Indian cuisine and cultural traditions.",
+        "Provide context about how events like this resonate with the Indian diaspora, perhaps by discussing similar initiatives that connect Bollywood with the armed forces and their impact on NRI communities.",
+        "Include a brief mention of how Saif Ali Khan's visit might inspire NRIs to engage with Indian culture and traditions, especially during significant national celebrations like Independence Day.",
+        "Add a section that discusses the historical significance of Uri for the Indian diaspora, particularly those with family ties to the region or who have served in the armed forces."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from NDTV or the Indian Army about the Jai Jawan programme or Independence Day celebrations, which could provide additional context and engagement."
+      ]
+    }
+  },
+  {
+    "id": "c388da41-6691-47fb-8444-6f3a0fc36866",
+    "headline": "India's Prediabetes Crisis: 136 Million Adults, Most of Them Unaware",
+    "slug": "india-prediabetes-crisis-136-million-screening-prevention",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including more statistics or studies that specifically address the prevalence of prediabetes among the Indian diaspora in various countries, not just the US. This could help highlight the global relevance of the issue for NRIs.",
+        "Provide a more detailed comparison between the prediabetes prevalence in India and among the Indian diaspora, perhaps including a quote or insight from a health expert who specializes in South Asian health issues abroad.",
+        "Add a section that discusses the cultural factors influencing lifestyle choices in the diaspora that may contribute to prediabetes, such as dietary habits or access to healthcare, to give readers a more comprehensive understanding of the issue.",
+        "Include a call to action or resources for NRIs to get screened or to learn more about managing prediabetes, which would make the article more actionable for the audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the ICMR or a relevant health organization that discusses the findings of the ICMR-INDIAB study to provide credibility and a direct source for readers."
+      ]
+    }
+  },
+  {
+    "id": "7e98571b-da68-4678-9cb2-6d0f1dd548a8",
+    "headline": "Climbing Six Flights of Stairs a Day Could Cut Heart Disease Risk, Studies Show",
+    "slug": "climbing-stairs-heart-disease-risk-reduction-study",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or insights on how NRIs in urban areas can incorporate stair climbing into their daily routines, especially in high-rise buildings common in cities like Mumbai or Dubai.",
+        "Provide context on how heart disease rates among the Indian diaspora compare to those in India and other countries, highlighting the importance of preventive measures like stair climbing.",
+        "Add a section discussing cultural attitudes towards fitness and health in the Indian diaspora, and how simple activities like stair climbing can be integrated into their lifestyles.",
+        "Include quotes or testimonials from health experts or fitness trainers who work with the Indian diaspora, emphasizing the relevance of stair climbing as a practical fitness solution."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or a fitness expert discussing the benefits of stair climbing, which could provide additional credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "7431fe3f-0dbe-489b-8433-f13e66046ac2",
+    "headline": "How Loud Is Too Loud? What the WHO Says About Safe Listening",
+    "slug": "who-safe-listening-limits-hearing-loss-earbuds",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or anecdotes about how NRI communities are affected by hearing loss, particularly in relation to their lifestyle choices, such as attending concerts or using personal audio devices frequently.",
+        "Add a section that discusses how the WHO recommendations on safe listening can be particularly relevant for NRIs living in urban areas with high noise pollution, providing context on how this impacts their daily lives.",
+        "Include quotes or insights from health professionals or audiologists who specialize in hearing loss within the Indian diaspora to provide a more localized perspective.",
+        "Provide context on how cultural factors in India and among NRIs might influence listening habits, such as the popularity of music festivals or the use of personal audio devices in social settings."
+      ],
+      "embed_opportunities": [
+        "Embed the official WHO tweet or infographic about safe listening practices to provide visual support for the article's claims."
+      ]
+    }
+  },
+  {
+    "id": "b4d531b0-c66c-4699-a7aa-2ecbe97e1fce",
+    "headline": "US Ends Duration of Status for Student Visas Starting September 15",
+    "slug": "us-ends-duration-of-status-student-visas-september-15",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from NRIs who have navigated the US student visa system, discussing how these changes may impact their families or communities back in India.",
+        "Provide more context on how these changes specifically affect Indian students, who make up a significant portion of international students in the US. Include statistics or anecdotes that highlight their experiences and challenges.",
+        "Consider adding a section that outlines potential alternatives for students affected by these changes, such as other visa options or pathways to stay in the US, which would be particularly relevant for the NRI audience.",
+        "Clarify the implications of the new rules on Optional Practical Training (OPT) opportunities, as this is a critical aspect for many international students and their future employment prospects."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about this policy change to provide authoritative context and direct readers to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "6d775955-e02e-4579-9831-379e1bcf7f40",
+    "headline": "H-1B Workers Face 60-Day Countdown as Tech Layoffs Intensify in 2026",
+    "slug": "h1b-workers-60-day-countdown-tech-layoffs-2026",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Enhance the diaspora angle by including personal stories or quotes from affected Indian H-1B workers. This could provide a more relatable perspective on how the layoffs and the potential elimination of the grace period are impacting their lives and families.",
+        "Provide additional context on how the proposed changes to the 60-day grace period could specifically affect Indian nationals compared to other nationalities. This would highlight the unique challenges faced by the Indian diaspora in the U.S.",
+        "Include a section discussing the implications of the proposed policy changes on the Indian tech community in the U.S. and back home in India, such as potential brain drain or shifts in tech talent migration patterns.",
+        "Clarify the timeline of the proposed changes by mentioning when the Department of Homeland Security is expected to make a decision on the elimination of the grace period, as this information would be crucial for readers planning their next steps."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the proposed elimination of the 60-day grace period to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "80e70880-c82a-4117-8417-64013f48c454",
+    "headline": "Suriya's 'Vishwanath & Sons' Opens to \u20b915 Crore on Day 1 in Crowded Weekend",
+    "slug": "suriya-vishwanath-sons-opens-15-crore-day-1-box-office",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Vishwanath and Sons Trailer (Tamil) | Suriya, Mamitha Baiju \" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs regarding Suriya's film and its significance in the context of Indian cinema abroad. This could involve quotes from social media or comments from Indian film enthusiasts in the diaspora.",
+        "Provide more context on how the film's performance might impact its reception among NRIs, especially in regions with significant Indian populations, such as the US, UK, and Canada. Discuss how the film's themes resonate with the diaspora experience.",
+        "Consider adding a section that compares the film's opening with other recent releases that have performed well or poorly among the NRI audience, highlighting trends in diaspora film consumption.",
+        "Include a brief analysis of how the film's bilingual nature might affect its appeal to NRIs, particularly in terms of language preferences and cultural connections."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from Suriya or the film's official social media accounts that discusses the film's themes or its reception among audiences, particularly in the diaspora."
+      ]
+    }
+  },
+  {
+    "id": "ed9c5172-6e2f-47a1-9813-62862ebf1968",
+    "headline": "FTC Sends $23.8 Million to Grubhub Drivers and Diners in Settlement Payouts",
+    "slug": "ftc-sends-23-million-grubhub-refund-drivers-diners",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who may have been affected by Grubhub's practices or who have experienced similar issues with food delivery services in the U.S. This would make the article more relatable to the NRI audience.",
+        "Provide additional context on how this settlement impacts Indian restaurants in the U.S. and whether any of them were involved in the Grubhub practices mentioned. This would give readers a clearer understanding of the implications for the Indian diaspora.",
+        "Clarify the timeline of the settlement process, especially the significance of the December 2024 complaint and the August 12 announcement. This will help readers understand the progression of the case and its relevance.",
+        "Include a brief section on how NRIs can protect themselves from similar deceptive practices in the future, possibly linking to resources or organizations that advocate for consumer rights."
+      ],
+      "embed_opportunities": [
+        "Embed the official FTC tweet announcing the settlement to provide readers with direct access to the source and additional details."
+      ]
+    }
+  },
+  {
+    "id": "cd250b0c-a8f3-4807-8fd0-2038521df24d",
+    "headline": "Lokesh Kanagaraj's 'DC' Crosses \u20b970 Crore Worldwide in Eight Days",
+    "slug": "lokesh-kanagaraj-dc-crosses-70-crore-worldwide-eight-days",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how NRIs are responding to the film's success or its themes. For example, mention any discussions or reviews from NRI film critics or social media influencers that highlight the film's relevance to the Indian diaspora.",
+        "Provide context on how films like 'DC' resonate with the NRI audience, perhaps by discussing trends in Tamil cinema among the diaspora or how this film compares to previous Tamil hits that have gained traction abroad.",
+        "Include a brief section on the film's international release strategy and its performance in overseas markets, particularly in regions with significant Indian populations, such as North America, Europe, or the Middle East.",
+        "Mention any notable collaborations or promotions aimed at the NRI audience, such as special screenings or events that might have been organized in major cities with a large Tamil-speaking population."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a prominent NRI film critic or influencer discussing 'DC' and its impact on the diaspora audience, which would provide a direct connection to the NRI perspective."
+      ]
+    }
+  },
+  {
+    "id": "4f99798b-dc91-44d3-9110-a2449e03ece3",
+    "headline": "Ukraine Strikes Key Roscosmos Facility in Samara With Flamingo Missiles",
+    "slug": "ukraine-strikes-roscosmos-facility-samara-flamingo-missiles",
+    "category": "news",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/41006/satellite-soyuz-spaceship-space-station-4"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights or reactions from the Indian diaspora regarding the conflict, particularly how it affects NRIs with ties to Ukraine or Russia.",
+        "Provide context on how the escalation of the conflict impacts global markets, especially in sectors relevant to the Indian diaspora, such as technology or defense, which could resonate more with the audience.",
+        "Include a section that discusses the implications of these strikes for international relations, particularly how it might affect India's stance or involvement in the conflict, which would be relevant for NRIs concerned about geopolitical dynamics.",
+        "Clarify the significance of the Flamingo missiles by providing background on their development and capabilities, which would give readers a better understanding of the technological advancements in the conflict."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from President Zelensky regarding the strike to provide direct access to primary information.",
+        "Consider embedding a relevant infographic or video that illustrates the geographical significance of the Samara facility and its role in the conflict."
+      ]
+    }
+  }
+]
