@@ -1,104 +1,122 @@
 [
   {
-    "slug": "sadhguru-inner-engineering-yoga-meditation-wellbeing-program",
-    "headline": "Inside Sadhguru's Inner Engineering: What the 22-Hour Program Teaches About Yoga and the Mind",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sadhguru-inner-engineering-yoga-meditation-wellbeing-program.jpg"
-  },
-  {
-    "slug": "qatar-denies-holding-iranian-pilots-remains-found-march-shootdown",
-    "headline": "Qatar Denies Holding Iranian Pilots, Says Remains of One Found After March Shootdown",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/qatar-denies-holding-iranian-pilots-remains-found-march-shootdown.jpg"
-  },
-  {
-    "slug": "shubman-gill-backs-manav-suthar-all-rounder-sri-lanka-tests",
-    "headline": "Shubman Gill Backs Manav Suthar as India's Long-Term All-Rounder Solution for Sri Lanka Tests",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shubman-gill-backs-manav-suthar-all-rounder-sri-lanka-tests.jpg"
-  },
-  {
-    "slug": "world-leaders-congratulate-india-80th-independence-day-celebrations",
-    "headline": "World Leaders Send Congratulations as India Marks 80th Independence Day",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-leaders-congratulate-india-80th-independence-day-celebrations.jpg"
-  },
-  {
-    "slug": "galaxy-surfactants-upper-circuit-q1-profit-doubles-52-week-high",
-    "headline": "Galaxy Surfactants Hits Upper Circuit as Q1 Profit More Than Doubles",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/galaxy-surfactants-upper-circuit-q1-profit-doubles-52-week-high.jpg"
-  },
-  {
-    "slug": "indiana-historic-flooding-six-dead-federal-emergency-declaration",
-    "headline": "Six Dead in Indiana as Historic Flooding Triggers Federal Emergency Declaration",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indiana-historic-flooding-six-dead-federal-emergency-declaration.jpg"
-  },
-  {
-    "slug": "army-dog-tyson-independence-day-honor-jk-counter-terror-operation",
-    "headline": "Army Dog Tyson Receives Presidential Honor After Taking Bullet in J&K Counter-Terror Operation",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/army-dog-tyson-independence-day-honor-jk-counter-terror-operation.jpg"
-  },
-  {
-    "slug": "bwf-world-championships-delhi-india-badminton-revolution-2026",
-    "headline": "BWF World Championships Return to Delhi After 17 Years as India Targets Home Glory",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bwf-world-championships-delhi-india-badminton-revolution-2026.jpg"
-  },
-  {
-    "slug": "child-killed-school-canopy-collapses-independence-day-sambhal-up",
-    "headline": "Child Killed, Two Students Injured as School Canopy Collapses During Independence Day Event in Sambhal",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/child-killed-school-canopy-collapses-independence-day-sambhal-up.jpg"
-  },
-  {
-    "slug": "india-largest-drone-order-modi-indigenous-defence-tech",
-    "headline": "India Places Largest-Ever Drone Order as Modi Pushes Indigenous Defence Tech",
+    "slug": "vishal-garg-ousted-better-ceo-legal-fight",
+    "headline": "Vishal Garg Ousted as Better CEO, Vows Legal Fight to Reclaim His Company",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-largest-drone-order-modi-indigenous-defence-tech.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vishal-garg-ousted-better-ceo-legal-fight.jpg"
   },
   {
-    "slug": "saina-nehwal-india-top-medals-tally-sporting-nation",
-    "headline": "Saina Nehwal Says India Must Top Medals Tally to Be Called a Sporting Nation",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saina-nehwal-india-top-medals-tally-sporting-nation.jpg"
+    "slug": "nvidia-3-billion-sb-energy-openai-data-center-deal",
+    "headline": "Nvidia in Talks to Invest $3 Billion in SB Energy as Part of Massive OpenAI Data Center Deal",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-3-billion-sb-energy-openai-data-center-deal.jpg"
   },
   {
-    "slug": "cancer-brain-tumours-striking-younger-indians",
-    "headline": "Why Cancer and Brain Tumours Are Increasingly Striking Younger Indians",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cancer-brain-tumours-striking-younger-indians.jpg"
-  },
-  {
-    "slug": "rajinikanth-marks-51-years-cinema-dharman-shoot-chennai",
-    "headline": "Rajinikanth Marks 51 Years in Cinema as Dharman Shoot Progresses in Chennai",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rajinikanth-marks-51-years-cinema-dharman-shoot-chennai.jpg"
-  },
-  {
-    "slug": "mix-leisure-activities-midlife-lower-dementia-risk-study",
-    "headline": "Mix of Leisure Activities in Midlife Can Lower Dementia Risk, Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mix-leisure-activities-midlife-lower-dementia-risk-study.jpg"
-  },
-  {
-    "slug": "judge-clears-trump-end-somali-tps-deportation-protections",
-    "headline": "Federal Judge Clears Trump to End Deportation Protections for Somali Nationals",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/judge-clears-trump-end-somali-tps-deportation-protections.jpg"
-  },
-  {
-    "slug": "anurag-kashyap-opens-up-age-gap-shubhra-shetty",
-    "headline": "Anurag Kashyap Opens Up About Age Gap With Shubhra Shetty, Emotional Bond",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anurag-kashyap-opens-up-age-gap-shubhra-shetty.jpg"
-  },
-  {
-    "slug": "india-gcc-boom-talent-wall-ai-skills-gap",
-    "headline": "India's GCC Boom Hits a Talent Wall as AI Skills Gap Widens",
+    "slug": "air-india-mandates-drug-testing-all-pilots-marijuana",
+    "headline": "Air India Mandates Drug Testing for All Pilots After Captain Tests Positive for Marijuana",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gcc-boom-talent-wall-ai-skills-gap.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-mandates-drug-testing-all-pilots-marijuana.jpg"
+  },
+  {
+    "slug": "bangladesh-beat-australia-first-test-win-darwin",
+    "headline": "Bangladesh Stun Australia With Historic Nine-Wicket Test Victory in Darwin",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bangladesh-beat-australia-first-test-win-darwin.jpg"
+  },
+  {
+    "slug": "spicy-paneer-thecha-high-protein-recipe",
+    "headline": "Spicy Paneer Thecha: The High-Protein Maharashtrian Snack Taking Over Indian Kitchens",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spicy-paneer-thecha-high-protein-recipe.jpg"
+  },
+  {
+    "slug": "up-bans-adulterated-paneer-khoya-dairy-products",
+    "headline": "Uttar Pradesh Cracks Down on Fake Paneer and Khoya With Strict New Order",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/up-bans-adulterated-paneer-khoya-dairy-products.jpg"
+  },
+  {
+    "slug": "ranveer-singh-pralay-goes-on-floors-mumbai",
+    "headline": "Ranveer Singh's Apocalyptic Thriller Pralay Goes on Floors in Mumbai",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ranveer-singh-pralay-goes-on-floors-mumbai.jpg"
+  },
+  {
+    "slug": "top-10-firms-lose-rs-1-lakh-crore-tcs-biggest-hit",
+    "headline": "Top-10 Indian Firms Lose Rs 1 Lakh Crore in Market Cap; TCS Takes Biggest Hit",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/top-10-firms-lose-rs-1-lakh-crore-tcs-biggest-hit.jpg"
+  },
+  {
+    "slug": "zerodha-nithin-kamath-stop-saying-we-use-ai",
+    "headline": "Zerodha's Nithin Kamath to Startups: Stop Saying 'We Use AI'",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zerodha-nithin-kamath-stop-saying-we-use-ai.jpg"
+  },
+  {
+    "slug": "india-20-trillion-economy-2036-equirus-report",
+    "headline": "India Needs Faster Growth and Stronger Rupee to Hit $20 Trillion by 2036: Report",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-20-trillion-economy-2036-equirus-report.jpg"
+  },
+  {
+    "slug": "us-pressures-apple-ditch-chinese-memory-chips",
+    "headline": "US Pressures Apple to Ditch Chinese Memory Chips Amid Global Shortage",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-pressures-apple-ditch-chinese-memory-chips.jpg"
+  },
+  {
+    "slug": "ramayana-trailer-china-viewers-praise-indian-epic",
+    "headline": "Ramayana Trailer Takes China by Storm as Viewers Call It Superior to Hollywood",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ramayana-trailer-china-viewers-praise-indian-epic.jpg"
+  },
+  {
+    "slug": "army-jawan-arrested-strangling-pregnant-wife-washim",
+    "headline": "Army Jawan Arrested for Strangling Pregnant Wife, Tried to Pass Off Death as Accidental Fall",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/army-jawan-arrested-strangling-pregnant-wife-washim.jpg"
+  },
+  {
+    "slug": "us-tells-allies-pick-sides-ai-race-china",
+    "headline": "US Tells Allies: Pick a Side in the AI Race With China",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-tells-allies-pick-sides-ai-race-china.jpg"
+  },
+  {
+    "slug": "india-submarine-deal-germany-thyssenkrupp-p75i",
+    "headline": "India's ₹99,000-Crore Submarine Deal With Germany Nears Final Signature",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-submarine-deal-germany-thyssenkrupp-p75i.jpg"
+  },
+  {
+    "slug": "zohran-mamdani-india-day-parade-nyc-first-indian-american-mayor",
+    "headline": "Zohran Mamdani Joins India Day Parade as NYC's First Indian American Mayor",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zohran-mamdani-india-day-parade-nyc-first-indian-american-mayor.jpg"
+  },
+  {
+    "slug": "uscis-fy2027-h1b-cap-reached-no-second-lottery",
+    "headline": "USCIS Confirms FY2027 H-1B Cap Reached, Rules Out Second Lottery",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uscis-fy2027-h1b-cap-reached-no-second-lottery.jpg"
+  },
+  {
+    "slug": "texas-widens-h1b-fraud-probe-ghost-office-firms",
+    "headline": "Texas Widens H-1B Fraud Probe, Targets Nearly 30 'Ghost Office' Firms",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/texas-widens-h1b-fraud-probe-ghost-office-firms.jpg"
+  },
+  {
+    "slug": "seoul-incheon-overtakes-heathrow-busiest-international-airport",
+    "headline": "Seoul's Incheon Overtakes Heathrow as World's Busiest International Airport",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/seoul-incheon-overtakes-heathrow-busiest-international-airport.jpg"
+  },
+  {
+    "slug": "one-in-three-h1b-positions-software-developers-dol-data",
+    "headline": "One in Three Certified H-1B Positions Goes to Software Developers, DOL Data Reveals",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/one-in-three-h1b-positions-software-developers-dol-data.jpg"
   }
 ]
