@@ -1,0 +1,63 @@
+[
+  {
+    "id": "bc0bec53-e9d5-43f5-916e-cc63d66921b8",
+    "headline": "Vishal Garg Ousted as Better CEO, Vows Legal Fight to Reclaim His Company",
+    "slug": "vishal-garg-ousted-better-ceo-legal-fight",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian-origin professionals in the fintech industry or NRI investors who may have been impacted by Better's decline. This could provide a more personal connection to the Indian diaspora.",
+        "Provide more context about the implications of Garg's ousting for the Indian diaspora, particularly regarding how it reflects on Indian entrepreneurs in the tech industry and the challenges they face in the U.S. market.",
+        "Clarify the timeline of events surrounding Garg's removal to give readers a better understanding of the rapid changes within the company and how they might affect stakeholders, including NRIs who may have invested in Better.",
+        "Include a brief section on the broader impact of Better's decline on the fintech sector, especially in relation to Indian startups or companies, to contextualize Garg's situation within the larger narrative of Indian entrepreneurship."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about policies affecting international entrepreneurs or startups, which could provide relevant context for NRIs interested in the U.S. business landscape."
+      ]
+    }
+  },
+  {
+    "id": "6aecf8c4-a59f-443c-93b0-9346d3e08dda",
+    "headline": "Nvidia in Talks to Invest $3 Billion in SB Energy as Part of Massive OpenAI Data",
+    "slug": "nvidia-3-billion-sb-energy-openai-data-center-deal",
+    "category": "technology",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/30608594/pexels-photo-30608594.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this investment could impact Indian NRIs working in the tech and AI sectors, particularly those in the US. Discuss potential job opportunities or collaborations that may arise from this deal.",
+        "Provide context on how Nvidia's investment aligns with India's growing tech landscape, especially in relation to Indian startups or initiatives in AI. This could help readers understand the broader implications for the Indian diaspora.",
+        "Add a section discussing the potential implications of this deal on global tech markets, particularly how it might affect Indian tech companies or NRIs involved in similar sectors.",
+        "Clarify the timeline and potential outcomes of the investment, including how it might influence Nvidia's operations in India or its partnerships with Indian firms."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Nvidia or OpenAI discussing the significance of this investment, which could provide real-time updates and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "86fd235c-48a9-44fd-87b1-08e0dbfa102d",
+    "headline": "Air India Mandates Drug Testing for All Pilots After Captain Tests Positive for ",
+    "slug": "air-india-mandates-drug-testing-all-pilots-marijuana",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/3474084/pexels-photo-3474084.jpeg?auto=compress"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs who frequently travel between India and other countries, particularly regarding their perceptions of Air India's safety protocols and how this incident may affect their travel choices.",
+        "Provide context on how drug testing policies in aviation differ between India and countries where many NRIs reside, such as the United States or Canada, to give readers a comparative perspective.",
+        "Include a quote or statement from an NRI aviation expert or a representative from the Indian diaspora community to discuss the implications of this policy change on international travel and safety standards.",
+        "Clarify the timeline of events by detailing the response from Air India and any potential impacts on flight schedules or operations that may concern NRI travelers."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Directorate General of Civil Aviation (DGCA) regarding the incident or the new drug testing policy to provide authoritative context."
+      ]
+    }
+  }
+]

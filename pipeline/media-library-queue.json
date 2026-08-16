@@ -8932,16 +8932,6 @@
    "priority": 2
   },
   {
-   "subject": "Delhi Police",
-   "subject_type": "thing",
-   "tags": [
-    "delhi police"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "a0c6bc07-ea0e-4adc-9323-8a003520f4a0",
-   "priority": 3
-  },
-  {
    "subject": "India politics",
    "subject_type": "thing",
    "tags": [
@@ -8960,16 +8950,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "bb43e8ce-fee6-4c43-8271-90a9e99c7b06",
    "priority": 2
-  },
-  {
-   "subject": "Netflix",
-   "subject_type": "thing",
-   "tags": [
-    "netflix"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "42ca69c2-66ac-49b3-a565-085a2e43ee3f",
-   "priority": 3
   },
   {
    "subject": "true crime",
@@ -9042,16 +9022,6 @@
    "priority": 2
   },
   {
-   "subject": "Indian cricket",
-   "subject_type": "thing",
-   "tags": [
-    "indian cricket"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "78fe4bf7-5bd1-426b-8490-14321e00f156",
-   "priority": 3
-  },
-  {
    "subject": "BCCI selectors",
    "subject_type": "thing",
    "tags": [
@@ -9080,16 +9050,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "c898465a-23c3-414e-aa77-ef71d10a251c",
    "priority": 2
-  },
-  {
-   "subject": "Israel",
-   "subject_type": "thing",
-   "tags": [
-    "israel"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "c898465a-23c3-414e-aa77-ef71d10a251c",
-   "priority": 3
   },
   {
    "subject": "flight suspension",
@@ -9180,16 +9140,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "f06c70ea-5a6c-468b-9208-40a81681b8bf",
    "priority": 2
-  },
-  {
-   "subject": "breakfast",
-   "subject_type": "thing",
-   "tags": [
-    "breakfast"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "f06c70ea-5a6c-468b-9208-40a81681b8bf",
-   "priority": 3
   },
   {
    "subject": "urad dal",
@@ -9492,16 +9442,6 @@
    "priority": 2
   },
   {
-   "subject": "India protests",
-   "subject_type": "thing",
-   "tags": [
-    "india protests"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "b8d04c9b-e14a-441a-8997-aee2920bc717",
-   "priority": 3
-  },
-  {
    "subject": "education reform",
    "subject_type": "thing",
    "tags": [
@@ -9552,16 +9492,6 @@
    "priority": 2
   },
   {
-   "subject": "school meals",
-   "subject_type": "thing",
-   "tags": [
-    "school meals"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "007833f9-6136-40e9-94e8-f6e284ef6fc8",
-   "priority": 3
-  },
-  {
    "subject": "PM POSHAN",
    "subject_type": "thing",
    "tags": [
@@ -9580,16 +9510,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "007833f9-6136-40e9-94e8-f6e284ef6fc8",
    "priority": 2
-  },
-  {
-   "subject": "child nutrition",
-   "subject_type": "thing",
-   "tags": [
-    "child nutrition"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "007833f9-6136-40e9-94e8-f6e284ef6fc8",
-   "priority": 3
   },
   {
    "subject": "Patagonia",
@@ -9872,16 +9792,6 @@
    "priority": 2
   },
   {
-   "subject": "Tech Mahindra",
-   "subject_type": "thing",
-   "tags": [
-    "tech mahindra"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "a66dc70f-9d4e-4f59-9b05-5d4f9f97e0a0",
-   "priority": 3
-  },
-  {
    "subject": "q1 fy27",
    "subject_type": "thing",
    "tags": [
@@ -10080,16 +9990,6 @@
    "first_seen": "2026-07-22T10:29:26Z",
    "article_id": "99ae5665-91e4-4481-a1df-5053a0160bcc",
    "priority": 2
-  },
-  {
-   "subject": "Real Madrid",
-   "subject_type": "thing",
-   "tags": [
-    "real madrid"
-   ],
-   "first_seen": "2026-07-22T10:29:26Z",
-   "article_id": "99ae5665-91e4-4481-a1df-5053a0160bcc",
-   "priority": 3
   },
   {
    "subject": "Vinicius Jr",
@@ -10390,16 +10290,6 @@
    "first_seen": "2026-07-23T10:29:23Z",
    "article_id": "c4f41eb0-fcfa-48dd-a5e1-b206f7d6e0e8",
    "priority": 2
-  },
-  {
-   "subject": "wellness",
-   "subject_type": "thing",
-   "tags": [
-    "wellness"
-   ],
-   "first_seen": "2026-07-23T10:29:23Z",
-   "article_id": "c4f41eb0-fcfa-48dd-a5e1-b206f7d6e0e8",
-   "priority": 3
   },
   {
    "subject": "supplements",
@@ -11172,16 +11062,6 @@
    "priority": 2
   },
   {
-   "subject": "energy",
-   "subject_type": "thing",
-   "tags": [
-    "energy"
-   ],
-   "first_seen": "2026-07-23T10:29:23Z",
-   "article_id": "a71ddf4a-a2bb-40eb-b7db-32bd92d90fc7",
-   "priority": 3
-  },
-  {
    "subject": "hair health",
    "subject_type": "thing",
    "tags": [
@@ -11312,16 +11192,6 @@
    "priority": 2
   },
   {
-   "subject": "viral",
-   "subject_type": "thing",
-   "tags": [
-    "viral"
-   ],
-   "first_seen": "2026-07-23T10:29:23Z",
-   "article_id": "6f16c521-b404-407c-aab8-671b170e15b8",
-   "priority": 3
-  },
-  {
    "subject": "india culture",
    "subject_type": "thing",
    "tags": [
@@ -11440,16 +11310,6 @@
    "first_seen": "2026-07-23T10:29:23Z",
    "article_id": "9c8186a1-a87e-4c19-82be-168f3778dbb5",
    "priority": 2
-  },
-  {
-   "subject": "la liga",
-   "subject_type": "thing",
-   "tags": [
-    "la liga"
-   ],
-   "first_seen": "2026-07-23T10:29:23Z",
-   "article_id": "9c8186a1-a87e-4c19-82be-168f3778dbb5",
-   "priority": 3
   },
   {
    "subject": "natural gas",
@@ -11810,16 +11670,6 @@
    "first_seen": "2026-07-24T10:29:25Z",
    "article_id": "d8ac019c-e3fd-4f4e-83fd-af941b291a05",
    "priority": 2
-  },
-  {
-   "subject": "San Diego Comic Con",
-   "subject_type": "thing",
-   "tags": [
-    "san diego comic con"
-   ],
-   "first_seen": "2026-07-24T10:29:25Z",
-   "article_id": "d8ac019c-e3fd-4f4e-83fd-af941b291a05",
-   "priority": 3
   },
   {
    "subject": "Royal Family",
