@@ -1,110 +1,104 @@
 [
   {
-    "slug": "makemytrip-launches-350-guided-tours-india-tourism-ministry",
-    "headline": "MakeMyTrip Launches 350 Guided Tours Across India With Tourism Ministry",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/makemytrip-launches-350-guided-tours-india-tourism-ministry.jpg"
-  },
-  {
-    "slug": "gland-vs-akums-vs-kwality-pharma-cdmo-growth-pipeline",
-    "headline": "Gland vs Akums vs Kwality: Comparing India's Pharma CDMO Growth Pipelines",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gland-vs-akums-vs-kwality-pharma-cdmo-growth-pipeline.jpg"
-  },
-  {
-    "slug": "yemen-edges-toward-new-war-could-be-worse",
-    "headline": "Yemen Edges Toward a New War, and This One Could Be Worse",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yemen-edges-toward-new-war-could-be-worse.jpg"
-  },
-  {
-    "slug": "iran-war-pulls-last-us-carrier-out-of-pacific-china",
-    "headline": "Iran War Pulls Last U.S. Carrier Out of Pacific, Opening Door for China",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-war-pulls-last-us-carrier-out-of-pacific-china.jpg"
-  },
-  {
-    "slug": "canada-extends-remote-border-crossing-permit-deadline-december-2026",
-    "headline": "Canada Extends Remote Border Crossing Permit Deadline to December 2026",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-extends-remote-border-crossing-permit-deadline-december-2026.jpg"
-  },
-  {
-    "slug": "zardari-pakistan-hindus-prefer-being-with-us-akhand-bharat",
-    "headline": "Zardari Claims Pakistan's Hindus Prefer 'Being With Us,' Invokes Akhand Bharat Threat",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/zardari-pakistan-hindus-prefer-being-with-us-akhand-bharat.jpg"
-  },
-  {
-    "slug": "american-airlines-same-flight-number-phoenix-close-call",
-    "headline": "Two American Airlines Jets Share Same Flight Number in Close Call Over Phoenix",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/american-airlines-same-flight-number-phoenix-close-call.jpg"
-  },
-  {
-    "slug": "iran-rebuilds-military-infrastructure-faster-than-israel-expected",
-    "headline": "Iran Rebuilds Military Infrastructure Far Faster Than Israel Expected",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iran-rebuilds-military-infrastructure-faster-than-israel-expected.jpg"
-  },
-  {
-    "slug": "spain-reinforces-ceuta-security-mass-border-rush",
-    "headline": "Spain Reinforces Ceuta Security Amid Fears of New Mass Border Rush",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spain-reinforces-ceuta-security-mass-border-rush.jpg"
-  },
-  {
-    "slug": "saif-ali-khan-puris-army-uri-jai-jawan-independence-day",
-    "headline": "Saif Ali Khan Learns to Make Puris With Soldiers in Uri for Independence Day",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saif-ali-khan-puris-army-uri-jai-jawan-independence-day.jpg"
-  },
-  {
-    "slug": "india-prediabetes-crisis-136-million-screening-prevention",
-    "headline": "India's Prediabetes Crisis: 136 Million Adults, Most of Them Unaware",
+    "slug": "sadhguru-inner-engineering-yoga-meditation-wellbeing-program",
+    "headline": "Inside Sadhguru's Inner Engineering: What the 22-Hour Program Teaches About Yoga and the Mind",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-prediabetes-crisis-136-million-screening-prevention.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sadhguru-inner-engineering-yoga-meditation-wellbeing-program.jpg"
   },
   {
-    "slug": "climbing-stairs-heart-disease-risk-reduction-study",
-    "headline": "Climbing Six Flights of Stairs a Day Could Cut Heart Disease Risk, Studies Show",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/climbing-stairs-heart-disease-risk-reduction-study.jpg"
+    "slug": "qatar-denies-holding-iranian-pilots-remains-found-march-shootdown",
+    "headline": "Qatar Denies Holding Iranian Pilots, Says Remains of One Found After March Shootdown",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/qatar-denies-holding-iranian-pilots-remains-found-march-shootdown.jpg"
   },
   {
-    "slug": "who-safe-listening-limits-hearing-loss-earbuds",
-    "headline": "How Loud Is Too Loud? What the WHO Says About Safe Listening",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/who-safe-listening-limits-hearing-loss-earbuds.jpg"
+    "slug": "shubman-gill-backs-manav-suthar-all-rounder-sri-lanka-tests",
+    "headline": "Shubman Gill Backs Manav Suthar as India's Long-Term All-Rounder Solution for Sri Lanka Tests",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/shubman-gill-backs-manav-suthar-all-rounder-sri-lanka-tests.jpg"
   },
   {
-    "slug": "us-ends-duration-of-status-student-visas-september-15",
-    "headline": "US Ends Duration of Status for Student Visas Starting September 15",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-ends-duration-of-status-student-visas-september-15.jpg"
-  },
-  {
-    "slug": "suriya-vishwanath-sons-opens-15-crore-day-1-box-office",
-    "headline": "Suriya's 'Vishwanath & Sons' Opens to ₹15 Crore on Day 1 in Crowded Weekend",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/suriya-vishwanath-sons-opens-15-crore-day-1-box-office.jpg"
-  },
-  {
-    "slug": "h1b-workers-60-day-countdown-tech-layoffs-2026",
-    "headline": "H-1B Workers Face 60-Day Countdown as Tech Layoffs Intensify in 2026",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-workers-60-day-countdown-tech-layoffs-2026.jpg"
-  },
-  {
-    "slug": "ftc-sends-23-million-grubhub-refund-drivers-diners",
-    "headline": "FTC Sends $23.8 Million to Grubhub Drivers and Diners in Settlement Payouts",
+    "slug": "world-leaders-congratulate-india-80th-independence-day-celebrations",
+    "headline": "World Leaders Send Congratulations as India Marks 80th Independence Day",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ftc-sends-23-million-grubhub-refund-drivers-diners.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-leaders-congratulate-india-80th-independence-day-celebrations.jpg"
   },
   {
-    "slug": "lokesh-kanagaraj-dc-crosses-70-crore-worldwide-eight-days",
-    "headline": "Lokesh Kanagaraj's 'DC' Crosses ₹70 Crore Worldwide in Eight Days",
+    "slug": "galaxy-surfactants-upper-circuit-q1-profit-doubles-52-week-high",
+    "headline": "Galaxy Surfactants Hits Upper Circuit as Q1 Profit More Than Doubles",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/galaxy-surfactants-upper-circuit-q1-profit-doubles-52-week-high.jpg"
+  },
+  {
+    "slug": "indiana-historic-flooding-six-dead-federal-emergency-declaration",
+    "headline": "Six Dead in Indiana as Historic Flooding Triggers Federal Emergency Declaration",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indiana-historic-flooding-six-dead-federal-emergency-declaration.jpg"
+  },
+  {
+    "slug": "army-dog-tyson-independence-day-honor-jk-counter-terror-operation",
+    "headline": "Army Dog Tyson Receives Presidential Honor After Taking Bullet in J&K Counter-Terror Operation",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/army-dog-tyson-independence-day-honor-jk-counter-terror-operation.jpg"
+  },
+  {
+    "slug": "bwf-world-championships-delhi-india-badminton-revolution-2026",
+    "headline": "BWF World Championships Return to Delhi After 17 Years as India Targets Home Glory",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bwf-world-championships-delhi-india-badminton-revolution-2026.jpg"
+  },
+  {
+    "slug": "child-killed-school-canopy-collapses-independence-day-sambhal-up",
+    "headline": "Child Killed, Two Students Injured as School Canopy Collapses During Independence Day Event in Sambhal",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/child-killed-school-canopy-collapses-independence-day-sambhal-up.jpg"
+  },
+  {
+    "slug": "india-largest-drone-order-modi-indigenous-defence-tech",
+    "headline": "India Places Largest-Ever Drone Order as Modi Pushes Indigenous Defence Tech",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-largest-drone-order-modi-indigenous-defence-tech.jpg"
+  },
+  {
+    "slug": "saina-nehwal-india-top-medals-tally-sporting-nation",
+    "headline": "Saina Nehwal Says India Must Top Medals Tally to Be Called a Sporting Nation",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saina-nehwal-india-top-medals-tally-sporting-nation.jpg"
+  },
+  {
+    "slug": "cancer-brain-tumours-striking-younger-indians",
+    "headline": "Why Cancer and Brain Tumours Are Increasingly Striking Younger Indians",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cancer-brain-tumours-striking-younger-indians.jpg"
+  },
+  {
+    "slug": "rajinikanth-marks-51-years-cinema-dharman-shoot-chennai",
+    "headline": "Rajinikanth Marks 51 Years in Cinema as Dharman Shoot Progresses in Chennai",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lokesh-kanagaraj-dc-crosses-70-crore-worldwide-eight-days.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rajinikanth-marks-51-years-cinema-dharman-shoot-chennai.jpg"
+  },
+  {
+    "slug": "mix-leisure-activities-midlife-lower-dementia-risk-study",
+    "headline": "Mix of Leisure Activities in Midlife Can Lower Dementia Risk, Study Finds",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mix-leisure-activities-midlife-lower-dementia-risk-study.jpg"
+  },
+  {
+    "slug": "judge-clears-trump-end-somali-tps-deportation-protections",
+    "headline": "Federal Judge Clears Trump to End Deportation Protections for Somali Nationals",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/judge-clears-trump-end-somali-tps-deportation-protections.jpg"
+  },
+  {
+    "slug": "anurag-kashyap-opens-up-age-gap-shubhra-shetty",
+    "headline": "Anurag Kashyap Opens Up About Age Gap With Shubhra Shetty, Emotional Bond",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anurag-kashyap-opens-up-age-gap-shubhra-shetty.jpg"
+  },
+  {
+    "slug": "india-gcc-boom-talent-wall-ai-skills-gap",
+    "headline": "India's GCC Boom Hits a Talent Wall as AI Skills Gap Widens",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-gcc-boom-talent-wall-ai-skills-gap.jpg"
   }
 ]
