@@ -695,6 +695,10 @@ export default function ArticlePage() {
                 if (/^\s*<(?:div|h[1-6]|figure|blockquote|ul|ol|table|section|article|aside|nav|header|footer|iframe|style|p[\s>])/i.test(trimmed)) {
                   return trimmed;
                 }
+                // Bare social-embed URL — leave unwrapped so detectSocialUrl can match it
+                if (/^https?:\/\/(?:(?:www\.)?(?:twitter|x)\.com\/\w+\/status\/\d+|(?:www\.)?instagram\.com\/(?:p|reel)\/[\w-]+)\/?$/.test(trimmed)) {
+                  return trimmed;
+                }
                 // Plain text — wrap in <p>
                 return `<p>${trimmed}</p>`;
               }).filter(Boolean).join('\n\n');
