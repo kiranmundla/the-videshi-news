@@ -1066,5 +1066,15 @@
     "hero_slug": "india-at-80-celebrating-freedom-confronting-the-future",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-17T13:55:54.550771+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 17, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "ravindra-jadeja-350-test-wickets-elite-club-galle",
+    "story_count": 5
   }
 ]

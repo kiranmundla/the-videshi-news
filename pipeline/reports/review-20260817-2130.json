@@ -1,0 +1,195 @@
+[
+  {
+    "id": "6d354540-7da4-4d0f-a9b9-3b27f2a2682b",
+    "headline": "Inside Texas Republicans' Escalating Campaign Against Muslim Communities",
+    "slug": "texas-republicans-escalating-campaign-against-muslim-communities",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from Indian Muslims in the U.S. who may be affected by these anti-Muslim sentiments. This could provide a more personal connection for the NRI audience and highlight the implications for the Indian diaspora in America.",
+        "Provide context on how these developments in Texas might resonate with or impact Indian Muslims living abroad, especially those who may have family ties to Texas or are engaged in political activism. This could help readers understand the broader implications of these local events.",
+        "Clarify the timeline of events and the significance of the surge in anti-Muslim rhetoric in relation to previous trends or incidents, which would help readers grasp the urgency and seriousness of the situation.",
+        "Include a quote or statement from a prominent Indian-American organization or leader regarding the situation, which would enhance the article's relevance to the NRI audience and provide a broader perspective on the implications for the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent Indian-American figure or organization responding to the Texas GOP's actions, which could provide additional context and show the diaspora's reaction to the situation."
+      ]
+    }
+  },
+  {
+    "id": "ae9a746f-8f31-48df-8fc4-a0aadf8257c5",
+    "headline": "Coastal Curry Brings South Indian Flavors to Scarborough, Maine",
+    "slug": "coastal-curry-south-indian-restaurant-scarborough-maine-20260817",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or insights from the owners, Kiran Kumar Vellanki and David Patel, about their experiences as NRIs and what inspired them to open a South Indian restaurant in Maine. This personal touch can resonate with the NRI audience.",
+        "Provide context about the significance of South Indian cuisine within the broader Indian culinary landscape, especially for NRIs who may be interested in the cultural aspects of their heritage. This could include a brief history or explanation of why certain dishes are important.",
+        "Include a section discussing the challenges and opportunities for Indian restaurants in the U.S., particularly in areas with smaller Indian communities. This can help connect the restaurant's opening to broader trends that NRIs might find relevant.",
+        "Mention any community engagement or events that Coastal Curry plans to host, such as cultural nights or cooking classes, which could attract the diaspora and create a sense of community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the restaurant's official account announcing their opening or any special promotions they may have for the local community.",
+        "Consider embedding a video or Instagram post showcasing the restaurant's interior, dishes, or the owners discussing their vision, which can make the article more visually appealing and engaging."
+      ]
+    }
+  },
+  {
+    "id": "e66ea486-d1d5-4199-acf8-c5e449a11306",
+    "headline": "Tax Rules for Indian Freelancers Earning From US Companies: A Complete Guide",
+    "slug": "tax-rules-indian-freelancers-earning-us-companies-guide",
+    "category": "immigration",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/7111513/pexels-photo-7111513.jpeg?auto=compress"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian freelancers living in the US or other countries who have navigated these tax rules. This personal touch can help readers relate better to the content.",
+        "Provide a more detailed explanation of the implications of the W-8BEN form, perhaps with a step-by-step guide or checklist for NRIs. This would fill a factual gap and offer practical value to the audience.",
+        "Include a section that discusses common pitfalls or mistakes Indian freelancers make regarding tax compliance, as this would add depth and context that is particularly relevant to the diaspora audience.",
+        "Clarify the GST registration requirement by providing examples of what types of freelance income would exceed the \u20b920 lakh threshold, as this is crucial information for freelancers to understand."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRS guidelines or a relevant USCIS tweet regarding the W-8BEN form to provide authoritative context and resources for readers."
+      ]
+    }
+  },
+  {
+    "id": "73c0341f-998a-4843-af99-ea700efb533e",
+    "headline": "Yash Declares Cinema Has No Owners at Toxic Trailer Launch",
+    "slug": "yash-cinema-no-owners-toxic-trailer-launch-20260817",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have reacted to Yash's comments, particularly those involved in the Indian film industry abroad or fans who have experienced the evolution of Indian cinema from an international perspective.",
+        "Provide more context about the significance of Yash's comments in relation to the global Indian film market, including how this shift towards pan-Indian cinema is perceived by NRIs and how it may impact their consumption of Indian films.",
+        "Clarify the implications of Yash's statement regarding the labeling of films by language, especially in the context of how NRIs engage with regional cinema versus mainstream Indian cinema.",
+        "Include a brief section on the historical context of language-based divisions in Indian cinema and how this has affected the diaspora's view and access to films from different regions."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Yash or a prominent NRI film critic discussing the impact of his statements on the global perception of Indian cinema."
+      ]
+    }
+  },
+  {
+    "id": "720854b6-682f-47ef-96bc-f4ed9dd2652c",
+    "headline": "U.S. Copper Imports Hit 12-Year Record as Tariff Bet Drains Global Stockpiles",
+    "slug": "us-copper-imports-12-year-record-tariff-bet-drains-global-stockpiles",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs involved in the copper trade or those affected by U.S. tariff policies. This could provide a personal touch and relevance to the Indian diaspora.",
+        "Provide context on how U.S. copper tariffs might impact Indian exporters or businesses that rely on copper imports, as this is crucial for NRIs who may have investments or interests in these sectors.",
+        "Clarify the timeline of events regarding the tariff recommendation and its implications for the copper market, as readers may benefit from understanding how this situation evolved and what it means for future imports.",
+        "Consider adding a section that discusses the potential long-term effects of these import trends on global copper prices and how that could affect NRIs investing in commodities or related industries."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the U.S. Department of Commerce regarding the tariff recommendations or any relevant updates on copper imports to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "c7253c2e-3a90-4cdb-9e82-a45df83a1e31",
+    "headline": "What That CBP Email About Your 10-Day Stay Warning Actually Means",
+    "slug": "cbp-10-day-stay-warning-email-visitors-explained",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific quotes or testimonials from NRIs who have experienced confusion or concern regarding their visa status due to the CBP emails. This personal touch can help readers relate more closely to the content.",
+        "Provide additional context about the implications of overstaying a visa for NRIs, such as potential impacts on future travel to the U.S. or visa applications. This would address a likely concern for readers and enhance the article's depth.",
+        "Clarify the distinction between the automated emails and the actual enforcement policies of CBP. A brief explanation of what happens if someone does overstay their visa could provide valuable context for readers unfamiliar with the consequences.",
+        "Consider restructuring the article to include a section specifically addressing common misconceptions or FAQs about the CBP email notifications, which could help alleviate panic among readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or a relevant CBP tweet that discusses the email notifications, as this would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "9e517487-6481-413b-ba74-661cf7ca73ea",
+    "headline": "Paramount and State AGs Clash Over Trial Date in $111 Billion WBD Merger Fight",
+    "slug": "paramount-state-ags-clash-trial-date-wbd-merger-fight",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs working in the entertainment industry, discussing how this merger could impact their jobs or the broader Indian diaspora's involvement in Hollywood.",
+        "Provide context on how this merger might affect Indian content creators or distributors in the U.S., particularly those who cater to the NRI audience, to make the article more relevant to the site's readership.",
+        "Include a brief section on the potential implications of the merger for Indian streaming services or content, highlighting how the outcome could influence the availability of Indian films and shows on platforms like HBO Max or Paramount+.",
+        "Clarify the significance of the merger in the context of the global entertainment landscape, particularly how it might affect Indian films and shows in international markets."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Writers Guild of America or a statement from California Governor Gavin Newsom regarding the merger's implications for jobs in the entertainment sector."
+      ]
+    }
+  },
+  {
+    "id": "5c1ec416-9412-42c4-88db-9e1297a10d87",
+    "headline": "Chevron Strikes Oil and Gas Condensate in Angola's Lower Congo Basin",
+    "slug": "chevron-strikes-oil-gas-condensate-angola-lower-congo-basin",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs working in the oil and gas sector, particularly those with experience in Africa. This could provide a personal connection and highlight opportunities for NRIs in this market.",
+        "Provide context on how Chevron's discovery may impact global oil prices and the Indian economy, especially for NRIs who may have investments or interests in energy sectors. This would make the article more relevant to the diaspora audience.",
+        "Clarify the implications of Angola's reforms and tax cuts for foreign investors, particularly NRIs, by detailing how these changes could create investment opportunities or challenges for them in the Angolan market.",
+        "Include a brief section on the significance of this discovery in relation to India's energy needs and how it could affect Indian companies or investors looking to engage in international oil markets."
+      ],
+      "embed_opportunities": [
+        "Embed relevant tweets from Chevron or industry analysts discussing the implications of this discovery for global oil markets or investment opportunities in Angola."
+      ]
+    }
+  },
+  {
+    "id": "5b5d0efa-7472-4273-9f8b-f3ab0584dcf2",
+    "headline": "War and Drought Are Choking the World's Most Vital Trade Routes",
+    "slug": "war-drought-choking-worlds-vital-trade-routes-20260817",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs involved in the shipping industry or those affected by rising oil prices. This could provide a personal perspective on how these global disruptions impact the Indian diaspora, particularly those in sectors reliant on oil and trade.",
+        "Provide more context on how the disruptions in these trade routes specifically affect Indian NRIs, such as implications for remittances, trade with India, or the cost of living in India. This would help readers understand the direct relevance of the article to their lives.",
+        "Clarify the timeline of events, especially regarding the airstrikes and their immediate effects on shipping. A more detailed timeline could help readers grasp the urgency and scale of the crisis.",
+        "Consider adding a section that discusses potential long-term implications for global trade and how NRIs can prepare for these changes, including shifts in investment or lifestyle adjustments."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any immigration policies that might be affected by rising oil prices or global instability, as this could resonate with NRIs concerned about their status or future in the U.S."
+      ]
+    }
+  },
+  {
+    "id": "8075a0b7-9bde-43a1-b340-88a116a6bc46",
+    "headline": "Meta and BlackRock Launch $14 Billion AI Data Center Venture in Texas",
+    "slug": "meta-blackrock-14-billion-ai-data-center-venture-texas",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this investment could impact Indian tech professionals or companies in the U.S. and India, particularly in terms of job opportunities or collaboration in AI development.",
+        "Provide context on how this venture fits within the broader landscape of AI investments in the U.S. and its implications for the Indian tech community, especially considering the growing interest in AI among Indian startups.",
+        "Include a quote or perspective from an NRI expert or industry leader on the significance of this investment, which would add depth and relevance for the diaspora audience.",
+        "Clarify the potential implications for NRIs who may be interested in investing in tech infrastructure or related sectors, as well as any opportunities for collaboration between Indian firms and Meta or BlackRock."
+      ],
+      "embed_opportunities": [
+        "Embed the official Meta or BlackRock announcement regarding the venture to provide readers with direct access to the source material and enhance credibility."
+      ]
+    }
+  }
+]
