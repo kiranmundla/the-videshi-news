@@ -1,116 +1,74 @@
 [
   {
-    "slug": "sattu-ballia-superfood-chinese-university-odop-global",
-    "headline": "From Ballia to Beijing: How an IAS Officer Turned UP's Forgotten Sattu Into a Global Superfood Brand",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sattu-ballia-superfood-chinese-university-odop-global.jpg"
-  },
-  {
-    "slug": "oil-prices-contained-despite-iran-war-hormuz-ghost-fleet",
-    "headline": "Why Oil Prices Haven't Spiked as Much as Everyone Expected From the Iran War",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/oil-prices-contained-despite-iran-war-hormuz-ghost-fleet.jpg"
-  },
-  {
-    "slug": "india-10000-crore-waterway-container-plan-logistics-overhaul",
-    "headline": "India Charts ₹10,000-Crore Waterway and Container Plan to Slash Logistics Costs",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-10000-crore-waterway-container-plan-logistics-overhaul.jpg"
-  },
-  {
-    "slug": "hibiscus-tea-lower-blood-pressure-studies",
-    "headline": "Hibiscus Tea Can Lower Blood Pressure as Much as Medication, Studies Show",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hibiscus-tea-lower-blood-pressure-studies.jpg"
-  },
-  {
-    "slug": "gulf-stock-markets-rise-strong-earnings-offset-stalled-iran-talks",
-    "headline": "Gulf Stock Markets Rise as Strong Earnings Offset Stalled Iran Talks",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gulf-stock-markets-rise-strong-earnings-offset-stalled-iran-talks.jpg"
-  },
-  {
-    "slug": "indias-golden-age-cinema-second-act-restoration-re-releases",
-    "headline": "India's Golden Age of Cinema Gets a Second Act Through Restoration and Re-Releases",
+    "slug": "yash-addresses-toxic-delays-shelving-rumors-august-release",
+    "headline": "Yash Addresses Toxic Delays, Shelving Rumors Ahead of August 26 Release",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indias-golden-age-cinema-second-act-restoration-re-releases.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-addresses-toxic-delays-shelving-rumors-august-release.jpg"
   },
   {
-    "slug": "big-tech-ai-spending-760-billion-cloud-revenue-accelerates",
-    "headline": "Big Tech's AI Spending Hits $760 Billion as Cloud Revenue Finally Accelerates",
+    "slug": "myanmar-verifies-309000-rohingya-delays-repatriation",
+    "headline": "Myanmar Verifies Nearly 309,000 Rohingya in Bangladesh but Delays Repatriation",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/myanmar-verifies-309000-rohingya-delays-repatriation.jpg"
+  },
+  {
+    "slug": "india-defence-stocks-surge-pinaka-rocket-orders-record-procurement",
+    "headline": "India's Defence Stocks Surge as Pinaka Rocket Orders and Record Procurement Drive Rally",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/big-tech-ai-spending-760-billion-cloud-revenue-accelerates.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-defence-stocks-surge-pinaka-rocket-orders-record-procurement.jpg"
   },
   {
-    "slug": "indian-street-food-brand-puchkaman-makes-global-debut-toronto",
-    "headline": "Indian Street Food Brand Puchkaman Makes Global Debut With First Toronto Location",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-street-food-brand-puchkaman-makes-global-debut-toronto.jpg"
+    "slug": "608-students-flee-maharashtra-ashram-school-ghost-rumours-mass-hysteria",
+    "headline": "608 Students Flee Maharashtra Ashram School as Ghost Rumours Trigger Mass Hysteria",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/608-students-flee-maharashtra-ashram-school-ghost-rumours-mass-hysteria.jpg"
   },
   {
-    "slug": "berkshire-hathaway-raises-delta-air-lines-stake-5-billion",
-    "headline": "Berkshire Hathaway Raises Delta Air Lines Stake to $5 Billion in Renewed Aviation Bet",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/berkshire-hathaway-raises-delta-air-lines-stake-5-billion.jpg"
+    "slug": "babita-singh-reporting-prime-video-august-28-launch-paatal-lok-creators",
+    "headline": "Prime Video Sets August 28 Global Launch for Paatal Lok Team’s Babita Singh Reporting",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/babita-singh-reporting-prime-video-august-28-launch-paatal-lok-creators.jpg"
   },
   {
-    "slug": "stripe-nears-10-billion-deal-acquire-openrouter-ai-marketplace",
-    "headline": "Stripe Nears $10 Billion Deal to Acquire AI Model Marketplace OpenRouter",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/stripe-nears-10-billion-deal-acquire-openrouter-ai-marketplace.jpg"
+    "slug": "yash-ramayana-4000-crore-budget-breakdown-hollywood-promotions",
+    "headline": "Yash Breaks Down Ramayana’s Rs 4,000 Crore Budget: Both Films Plus Hollywood-Style Promotions",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-ramayana-4000-crore-budget-breakdown-hollywood-promotions.jpg"
   },
   {
-    "slug": "cji-surya-kant-defends-nalsar-students-right-protest-bci-enrolment-ban",
-    "headline": "CJI Surya Kant Defends NALSAR Students' Right to Protest After BCI Enrolment Ban",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cji-surya-kant-defends-nalsar-students-right-protest-bci-enrolment-ban.jpg"
-  },
-  {
-    "slug": "h1b-crackdown-drives-tech-talent-back-india-offshore-hiring",
-    "headline": "H-1B Crackdown Drives Tech Talent Back to India as US Companies Expand Offshore Hiring",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-crackdown-drives-tech-talent-back-india-offshore-hiring.jpg"
-  },
-  {
-    "slug": "former-iran-president-rouhani-pushes-regional-support-us-iran-peace-deal",
-    "headline": "Former Iran President Rouhani Pushes Regional Support for US-Iran Peace Deal",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/former-iran-president-rouhani-pushes-regional-support-us-iran-peace-deal.jpg"
-  },
-  {
-    "slug": "space-force-awards-three-firms-615-million-satellite-target-tracking-program",
-    "headline": "Space Force Awards Three Firms $615 Million for Satellite Target-Tracking Program",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/space-force-awards-three-firms-615-million-satellite-target-tracking-program.jpg"
-  },
-  {
-    "slug": "eight-muslim-nations-condemn-israel-rejection-gaza-peace-road-map",
-    "headline": "Eight Muslim Nations Condemn Israel's Rejection of Gaza Peace Road Map",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/eight-muslim-nations-condemn-israel-rejection-gaza-peace-road-map.jpg"
-  },
-  {
-    "slug": "apple-faces-fraud-lawsuit-icloud-private-relay-ip-address-leaks",
-    "headline": "Apple Faces Fraud Lawsuit Over iCloud Private Relay IP Address Leaks",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-faces-fraud-lawsuit-icloud-private-relay-ip-address-leaks.jpg"
-  },
-  {
-    "slug": "bhogapuram-airport-commercial-flights-launch-august-17",
-    "headline": "Andhra Pradesh's New Bhogapuram Airport Launches Commercial Flights on August 17",
+    "slug": "uttarakhand-butter-festival-anduri-utsav-dayara-bugyal-makhan-holi",
+    "headline": "Uttarakhand's Butter Festival Turns an Alpine Meadow Into a Sea of Makhan",
     "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bhogapuram-airport-commercial-flights-launch-august-17.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-butter-festival-anduri-utsav-dayara-bugyal-makhan-holi.jpg"
   },
   {
-    "slug": "gavaskar-questions-india-fitness-training-injury-crisis",
-    "headline": "Gavaskar Questions India's Fitness Approach as Injury Crisis Deepens",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/gavaskar-questions-india-fitness-training-injury-crisis.jpg"
+    "slug": "indian-tech-workers-hit-hardest-us-green-card-approvals-plunge-35-percent",
+    "headline": "Indian Tech Workers Hit Hardest as US Green Card Approvals Plunge 35 Percent",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-tech-workers-hit-hardest-us-green-card-approvals-plunge-35-percent.jpg"
   },
   {
-    "slug": "ravi-teja-irumudi-trailer-bhimavaram-august-21-release",
-    "headline": "Ravi Teja's Irumudi Trailer Launches at Massive Bhimavaram Event Ahead of August 21 Release",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ravi-teja-irumudi-trailer-bhimavaram-august-21-release.jpg"
+    "slug": "private-credit-defaults-five-year-highs-shadow-loan-risks",
+    "headline": "Private Credit Defaults Hit Five-Year Highs as Shadow Loan Risks Mount",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/private-credit-defaults-five-year-highs-shadow-loan-risks.jpg"
+  },
+  {
+    "slug": "young-women-early-onset-type-2-diabetes-surge-imperial-college-study",
+    "headline": "Young Women Drive Alarming Surge in Early-Onset Type 2 Diabetes",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/young-women-early-onset-type-2-diabetes-surge-imperial-college-study.jpg"
+  },
+  {
+    "slug": "alzheimers-sleep-loss-microglia-immune-cells-breakthrough",
+    "headline": "Brain Immune Cells, Not Plaques, Drive Sleep Loss in Alzheimer's — and the Damage Is Reversible",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/alzheimers-sleep-loss-microglia-immune-cells-breakthrough.jpg"
+  },
+  {
+    "slug": "india-day-parade-2026-fia-guinness-record-manhattan",
+    "headline": "44th India Day Parade Marches Through Manhattan as FIA's Guinness Record Legacy Lives On",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-day-parade-2026-fia-guinness-record-manhattan.jpg"
   }
 ]
