@@ -1,74 +1,122 @@
 [
   {
-    "slug": "yash-addresses-toxic-delays-shelving-rumors-august-release",
-    "headline": "Yash Addresses Toxic Delays, Shelving Rumors Ahead of August 26 Release",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-addresses-toxic-delays-shelving-rumors-august-release.jpg"
+    "slug": "tcs-ai-platform-drug-discovery-clinical-trials-india",
+    "headline": "TCS Builds AI Platform to Accelerate Drug Discovery and Clinical Trials in India",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-ai-platform-drug-discovery-clinical-trials-india.jpg"
   },
   {
-    "slug": "myanmar-verifies-309000-rohingya-delays-repatriation",
-    "headline": "Myanmar Verifies Nearly 309,000 Rohingya in Bangladesh but Delays Repatriation",
+    "slug": "fpis-pivot-consumer-services-healthcare-july-dump-capital-goods",
+    "headline": "FPIs Pivot to Consumer Services and Healthcare in July, Dump Capital Goods",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fpis-pivot-consumer-services-healthcare-july-dump-capital-goods.jpg"
+  },
+  {
+    "slug": "sp500-bull-market-historic-risks-analysis",
+    "headline": "The S&P 500 Bull Market Is Historic — Here Are the Risks That Could End It",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sp500-bull-market-historic-risks-analysis.jpg"
+  },
+  {
+    "slug": "mecca-defence-pact-saudi-turkey-pakistan-india-implications",
+    "headline": "Mecca Defence Pact: What the Saudi-Turkey-Pakistan Alliance Means for India",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/myanmar-verifies-309000-rohingya-delays-repatriation.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mecca-defence-pact-saudi-turkey-pakistan-india-implications.jpg"
   },
   {
-    "slug": "india-defence-stocks-surge-pinaka-rocket-orders-record-procurement",
-    "headline": "India's Defence Stocks Surge as Pinaka Rocket Orders and Record Procurement Drive Rally",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-defence-stocks-surge-pinaka-rocket-orders-record-procurement.jpg"
+    "slug": "trump-grocery-photo-op-haunts-republicans-midterms-2026",
+    "headline": "Trump's 2024 Grocery Photo Op Now Haunts Republicans Ahead of Midterms",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-grocery-photo-op-haunts-republicans-midterms-2026.jpg"
   },
   {
-    "slug": "608-students-flee-maharashtra-ashram-school-ghost-rumours-mass-hysteria",
-    "headline": "608 Students Flee Maharashtra Ashram School as Ghost Rumours Trigger Mass Hysteria",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/608-students-flee-maharashtra-ashram-school-ghost-rumours-mass-hysteria.jpg"
+    "slug": "nclt-pulls-up-spicejet-last-minute-settlement-insolvency",
+    "headline": "NCLT Pulls Up SpiceJet Over Last-Minute Settlement Tactics in Insolvency Cases",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nclt-pulls-up-spicejet-last-minute-settlement-insolvency.jpg"
   },
   {
-    "slug": "babita-singh-reporting-prime-video-august-28-launch-paatal-lok-creators",
-    "headline": "Prime Video Sets August 28 Global Launch for Paatal Lok Team’s Babita Singh Reporting",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/babita-singh-reporting-prime-video-august-28-launch-paatal-lok-creators.jpg"
+    "slug": "uttar-pradesh-crackdown-adulterated-paneer-khoya-milk-products",
+    "headline": "Uttar Pradesh Intensifies Crackdown on Adulterated Paneer, Khoya, and Milk",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttar-pradesh-crackdown-adulterated-paneer-khoya-milk-products.jpg"
   },
   {
-    "slug": "yash-ramayana-4000-crore-budget-breakdown-hollywood-promotions",
-    "headline": "Yash Breaks Down Ramayana’s Rs 4,000 Crore Budget: Both Films Plus Hollywood-Style Promotions",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-ramayana-4000-crore-budget-breakdown-hollywood-promotions.jpg"
+    "slug": "jaipur-couple-gir-cows-organic-farm-kinaya-a2-milk",
+    "headline": "Jaipur Couple Builds ₹2.4 Crore Organic Farm With 100 Gir Cows",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jaipur-couple-gir-cows-organic-farm-kinaya-a2-milk.jpg"
   },
   {
-    "slug": "uttarakhand-butter-festival-anduri-utsav-dayara-bugyal-makhan-holi",
-    "headline": "Uttarakhand's Butter Festival Turns an Alpine Meadow Into a Sea of Makhan",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttarakhand-butter-festival-anduri-utsav-dayara-bugyal-makhan-holi.jpg"
+    "slug": "budget-gpus-deepening-shortage-ai-memory-zotac-warning",
+    "headline": "Budget GPUs Face Deepening Shortage as AI Demand Devours Memory Supply",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/budget-gpus-deepening-shortage-ai-memory-zotac-warning.jpg"
   },
   {
-    "slug": "indian-tech-workers-hit-hardest-us-green-card-approvals-plunge-35-percent",
-    "headline": "Indian Tech Workers Hit Hardest as US Green Card Approvals Plunge 35 Percent",
+    "slug": "trump-officials-restricting-all-legal-immigration-categories",
+    "headline": "Trump Officials Now Restricting All Legal Immigration Categories",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-tech-workers-hit-hardest-us-green-card-approvals-plunge-35-percent.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-officials-restricting-all-legal-immigration-categories.jpg"
   },
   {
-    "slug": "private-credit-defaults-five-year-highs-shadow-loan-risks",
-    "headline": "Private Credit Defaults Hit Five-Year Highs as Shadow Loan Risks Mount",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/private-credit-defaults-five-year-highs-shadow-loan-risks.jpg"
-  },
-  {
-    "slug": "young-women-early-onset-type-2-diabetes-surge-imperial-college-study",
-    "headline": "Young Women Drive Alarming Surge in Early-Onset Type 2 Diabetes",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/young-women-early-onset-type-2-diabetes-surge-imperial-college-study.jpg"
-  },
-  {
-    "slug": "alzheimers-sleep-loss-microglia-immune-cells-breakthrough",
-    "headline": "Brain Immune Cells, Not Plaques, Drive Sleep Loss in Alzheimer's — and the Damage Is Reversible",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/alzheimers-sleep-loss-microglia-immune-cells-breakthrough.jpg"
-  },
-  {
-    "slug": "india-day-parade-2026-fia-guinness-record-manhattan",
-    "headline": "44th India Day Parade Marches Through Manhattan as FIA's Guinness Record Legacy Lives On",
+    "slug": "ananya-nagendra-ant-based-food-waste-digester-texas",
+    "headline": "Texas Teen Ananya Nagendra Builds Ant-Based Food Waste Digester With 83% Efficiency",
     "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-day-parade-2026-fia-guinness-record-manhattan.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ananya-nagendra-ant-based-food-waste-digester-texas.jpg"
+  },
+  {
+    "slug": "veer-pahariya-prem-keetanu-premalu-remake-gandhi-jayanti-release",
+    "headline": "Veer Pahariya Announces Prem Keetanu for Gandhi Jayanti Release",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/veer-pahariya-prem-keetanu-premalu-remake-gandhi-jayanti-release.jpg"
+  },
+  {
+    "slug": "lakshmanan-meyyappan-youngest-chartered-accountant-guinness-record",
+    "headline": "Indian-Origin Lakshmanan Meyyappan Holds Guinness Record as World's Youngest Chartered Accountant",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lakshmanan-meyyappan-youngest-chartered-accountant-guinness-record.jpg"
+  },
+  {
+    "slug": "india-cash-paradox-currency-circulation-surges-despite-upi-boom",
+    "headline": "India's Cash Paradox: Currency in Circulation Surges Past ₹41 Lakh Crore Despite UPI Boom",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-cash-paradox-currency-circulation-surges-despite-upi-boom.jpg"
+  },
+  {
+    "slug": "katrina-kaif-spirit-casting-buzz-debunked-prabhas-telugu-film",
+    "headline": "Katrina Kaif-Spirit Casting Buzz Debunked as Prabhas Film Rolls On",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/katrina-kaif-spirit-casting-buzz-debunked-prabhas-telugu-film.jpg"
+  },
+  {
+    "slug": "saudi-arabia-one-year-multiple-entry-umrah-visa-2026",
+    "headline": "Saudi Arabia Launches One-Year Multiple-Entry Umrah Visa With 90-Day Stay",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saudi-arabia-one-year-multiple-entry-umrah-visa-2026.jpg"
+  },
+  {
+    "slug": "india-fast-ds-scheme-nri-foreign-asset-disclosure-2026",
+    "headline": "India's FAST-DS Scheme Offers NRIs a Six-Month Window to Disclose Foreign Assets",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-fast-ds-scheme-nri-foreign-asset-disclosure-2026.jpg"
+  },
+  {
+    "slug": "fda-approves-two-new-cholesterol-drugs-oral-pcsk9-pill",
+    "headline": "FDA Approves Two New Cholesterol Drugs, Including First-Ever Oral PCSK9 Pill",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fda-approves-two-new-cholesterol-drugs-oral-pcsk9-pill.jpg"
+  },
+  {
+    "slug": "ram-gopal-varma-police-company-daya-nayak-biopic-harshvardhan-rane",
+    "headline": "Ram Gopal Varma Reunites Satya Cast for Police Company, a Daya Nayak Biopic",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ram-gopal-varma-police-company-daya-nayak-biopic-harshvardhan-rane.jpg"
+  },
+  {
+    "slug": "spacex-ipo-reveals-biggest-investors-musk-space-empire",
+    "headline": "SpaceX IPO Reveals Who Bet Biggest on Musk's Space Empire",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-ipo-reveals-biggest-investors-musk-space-empire.jpg"
   }
 ]
