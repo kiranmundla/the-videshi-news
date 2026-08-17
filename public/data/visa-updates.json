@@ -1,5 +1,14 @@
 [
   {
+    "id": "visa-wait-times-august-2026-shift",
+    "date": "2026-08-17",
+    "label": "Aug 17, 2026",
+    "headline": "August visa wait times: Kolkata B1/B2 drops to 2 months (from 7), Hyderabad work/student visas surge to 5 months \u2014 mixed signals across India consulates",
+    "summary": "The State Department's August 2026 wait time data reveals a dramatic reshuffling across India's consulates. Kolkata B1/B2 visitor visa wait plunged from 210 days (7 months) in July to just 60 days (2 months), making it the fastest in the country by far. Mumbai B1/B2 improved from 300 to 255 days (8.5 months). However, Hyderabad deteriorated sharply \u2014 B1/B2 rose to 315 days (10.5 months, now the longest), while work visa (H/L/O/P/Q) waits surged from ~45 days to 150 days and student visa (F/M/J) waits tripled from 45 to 135 days. New Delhi B1/B2 held at 255 days but student visas rose to 75 days. Chennai continues showing no interview availability \u2014 only dropbox processing (1-day turnaround). The Hyderabad surge across all categories may reflect operational constraints from the expanded social media vetting mandate that hit Indian consulates in December 2025.",
+    "severity": "high",
+    "source": "US State Department / travel.state.gov / afnovisaguide.com"
+  },
+  {
     "id": "trump-birth-tourism-ban-eo",
     "date": "2026-08-06",
     "label": "Aug 6, 2026",
@@ -160,15 +169,6 @@
     "summary": "The US Embassy in India announced via @USAndIndia that since the F/M/J student visa appointment portal opened on June 14, thousands of Indian students have secured interview slots for July and August, with thousands more appointments still available and additional batches to open in the coming weeks. The opening-day rush triggered technical glitches on the scheduling portal; the embassy urged applicants not to refresh their accounts too frequently to avoid being locked out, and said it is working to resolve the issues. This is the main release of student visa appointments ahead of the Fall 2026 intake, critical timing for the large cohort of Indian students joining US colleges.",
     "severity": "medium",
     "source": "US Embassy India (@USAndIndia) / ANI"
-  },
-  {
-    "id": "eb5-india-unreserved-exhausted",
-    "date": "2026-06-12",
-    "label": "Jun 12, 2026",
-    "headline": "EB-5 investor visa cap exhausted for India \u2014 no new unreserved visas until October 2026",
-    "summary": "The US State Department confirmed that all EB-5 unreserved immigrant visas for Indian nationals have been fully allocated for FY2026 as of June 5. US embassies and consulates will not issue any more EB-5 unreserved visas to Indians until the new fiscal year begins October 1, 2026. The EB-5 program lets foreign investors apply for permanent residency by investing in US businesses that create 10+ jobs. Set-aside categories (Rural, High Unemployment Area, Infrastructure) remain current for Indian applicants. This comes weeks after the EB-2 professional category also hit its India cap in May.",
-    "severity": "high",
-    "source": "US State Department / June 2026 Visa Bulletin"
   },
   {
     "id": "interview-waiver-eliminated",
