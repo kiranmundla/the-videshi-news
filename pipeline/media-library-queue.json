@@ -22,26 +22,6 @@
    "priority": 12
   },
   {
-   "subject": "labor trafficking",
-   "subject_type": "thing",
-   "tags": [
-    "labor trafficking"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "32b7db5d-5c92-4b5b-bbd2-964f0cb9b52e",
-   "priority": 2
-  },
-  {
-   "subject": "body shop",
-   "subject_type": "thing",
-   "tags": [
-    "body shop"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "32b7db5d-5c92-4b5b-bbd2-964f0cb9b52e",
-   "priority": 2
-  },
-  {
    "subject": "uk global talent visa",
    "subject_type": "thing",
    "tags": [
@@ -49,66 +29,6 @@
    ],
    "first_seen": "2026-06-19T05:36:15Z",
    "article_id": "9f186597-e0a7-45b6-b208-7ee32236968d",
-   "priority": 2
-  },
-  {
-   "subject": "nagar kirtan",
-   "subject_type": "thing",
-   "tags": [
-    "nagar kirtan"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "46053432-a765-4316-b8ab-7f4b3990cc08",
-   "priority": 2
-  },
-  {
-   "subject": "british columbia",
-   "subject_type": "thing",
-   "tags": [
-    "british columbia"
-   ],
-   "first_seen": "2026-06-19T05:36:15Z",
-   "article_id": "46053432-a765-4316-b8ab-7f4b3990cc08",
-   "priority": 2
-  },
-  {
-   "subject": "family",
-   "subject_type": "thing",
-   "tags": [
-    "family"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "a992d41d-2356-4326-a7af-02bfbe3bb330",
-   "priority": 2
-  },
-  {
-   "subject": "india ev",
-   "subject_type": "thing",
-   "tags": [
-    "india ev"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "901b9a70-0e82-4f56-84c0-5f9773fb887d",
-   "priority": 2
-  },
-  {
-   "subject": "tvs motor",
-   "subject_type": "thing",
-   "tags": [
-    "tvs motor"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "901b9a70-0e82-4f56-84c0-5f9773fb887d",
-   "priority": 2
-  },
-  {
-   "subject": "india deep tech",
-   "subject_type": "thing",
-   "tags": [
-    "india deep tech"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "f5429f90-ba85-47a2-b69a-e49efe19e9f4",
    "priority": 2
   },
   {
@@ -122,16 +42,6 @@
    "priority": 9
   },
   {
-   "subject": "vietnam",
-   "subject_type": "thing",
-   "tags": [
-    "vietnam"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "fc881b4c-a99e-40b8-aed5-8ef743d99b87",
-   "priority": 2
-  },
-  {
    "subject": "india semiconductor mission",
    "subject_type": "thing",
    "tags": [
@@ -140,36 +50,6 @@
    "first_seen": "2026-06-19T10:29:23Z",
    "article_id": "8de72ac4-0887-43f6-8ee8-340b29a1a9a5",
    "priority": 7
-  },
-  {
-   "subject": "kaynes",
-   "subject_type": "thing",
-   "tags": [
-    "kaynes"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "8de72ac4-0887-43f6-8ee8-340b29a1a9a5",
-   "priority": 2
-  },
-  {
-   "subject": "king charles",
-   "subject_type": "thing",
-   "tags": [
-    "king charles"
-   ],
-   "first_seen": "2026-06-19T10:29:23Z",
-   "article_id": "e69633ad-9a9d-41e0-8a92-494935fd2ac5",
-   "priority": 2
-  },
-  {
-   "subject": "e visa",
-   "subject_type": "thing",
-   "tags": [
-    "e visa"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "8416c7be-350e-4b63-9a40-b35dffa03070",
-   "priority": 2
   },
   {
    "subject": "ondc",
@@ -210,16 +90,6 @@
    "first_seen": "2026-06-20T10:29:23Z",
    "article_id": "288af0ec-6b10-49ad-bda4-86ca4ef6c9bc",
    "priority": 4
-  },
-  {
-   "subject": "group d",
-   "subject_type": "thing",
-   "tags": [
-    "group d"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a5d32a10-221c-4852-bf65-0bea3a350ebc",
-   "priority": 2
   },
   {
    "subject": "talent",
@@ -12342,16 +12212,6 @@
    "priority": 2
   },
   {
-   "subject": "Prime Video",
-   "subject_type": "thing",
-   "tags": [
-    "prime video"
-   ],
-   "first_seen": "2026-07-24T10:29:25Z",
-   "article_id": "38b220fe-c9f7-4fe1-b5fb-6d8c05103c32",
-   "priority": 3
-  },
-  {
    "subject": "zero waste",
    "subject_type": "thing",
    "tags": [
@@ -12452,16 +12312,6 @@
    "priority": 2
   },
   {
-   "subject": "Flipkart",
-   "subject_type": "thing",
-   "tags": [
-    "flipkart"
-   ],
-   "first_seen": "2026-07-24T10:29:25Z",
-   "article_id": "04ca8611-c984-4969-8bdb-79183d388fca",
-   "priority": 3
-  },
-  {
    "subject": "Paytm",
    "subject_type": "thing",
    "tags": [
@@ -12470,16 +12320,6 @@
    "first_seen": "2026-07-24T10:29:25Z",
    "article_id": "04ca8611-c984-4969-8bdb-79183d388fca",
    "priority": 2
-  },
-  {
-   "subject": "Swiggy",
-   "subject_type": "thing",
-   "tags": [
-    "swiggy"
-   ],
-   "first_seen": "2026-07-24T10:29:25Z",
-   "article_id": "04ca8611-c984-4969-8bdb-79183d388fca",
-   "priority": 3
   },
   {
    "subject": "Google Pay",

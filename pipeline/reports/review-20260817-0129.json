@@ -1,0 +1,78 @@
+[
+  {
+    "id": "8566ac07-056c-4454-8da2-77bf0e07f310",
+    "headline": "From Ballia to Beijing: How an IAS Officer Turned UP's Forgotten Sattu Into a Gl",
+    "slug": "sattu-ballia-superfood-chinese-university-odop-global",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs who have experienced or embraced sattu in their diets abroad, highlighting how this initiative connects them to their roots.",
+        "Provide more context on how the global market for superfoods is evolving and the potential for Indian products like sattu to tap into this trend, especially for NRIs looking for authentic Indian food options.",
+        "Include a section that discusses the impact of this initiative on the local economy and how it might inspire similar projects in other regions, which could resonate with NRIs interested in supporting Indian entrepreneurship.",
+        "Clarify the role of the IAS officer in the broader context of government initiatives aimed at promoting traditional foods, which could provide a more comprehensive understanding of the policy environment."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent food influencer or health expert discussing the benefits of sattu or the rise of superfoods, which could enhance the article's credibility and reach."
+      ]
+    }
+  },
+  {
+    "id": "9b4ac4b6-46c9-411f-9f4b-a540046b0218",
+    "headline": "Why Oil Prices Haven't Spiked as Much as Everyone Expected From the Iran War",
+    "slug": "oil-prices-contained-despite-iran-war-hormuz-ghost-fleet",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRI oil market analysts or investors who are affected by these price fluctuations. This could provide a personal perspective on how oil prices impact their investments and daily lives.",
+        "Provide more context on how changes in oil prices due to geopolitical events like the Iran war specifically affect the Indian diaspora, particularly in terms of remittances, cost of living, and travel expenses for NRIs. This would help readers understand the direct implications of the topic.",
+        "Consider adding a section that discusses the potential long-term implications of stable oil prices on the Indian economy and how that might affect NRIs' investments back home, especially in sectors like real estate and infrastructure.",
+        "Clarify the timeline of events and their implications by including a brief overview of how oil prices have historically reacted to similar geopolitical tensions, which would provide readers with a clearer context."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official U.S. Energy Information Administration (EIA) that discusses current oil price trends or forecasts, which would lend credibility and provide real-time data to the article."
+      ]
+    }
+  },
+  {
+    "id": "a173761a-7fd4-4bf6-96c9-dcbe428edf22",
+    "headline": "Tropical Storm Lala Leaves 200,000 Without Power and 100 Homes Damaged Across Ha",
+    "slug": "tropical-storm-lala-hawaii-damage-200k-without-power",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have family in Hawaii or who are concerned about the impact of the storm on their loved ones. This could provide a personal touch and highlight the emotional connection of the diaspora to the situation.",
+        "Provide additional context about how Tropical Storm Lala may affect the Indian diaspora in Hawaii, including any community organizations or support networks that are mobilizing to assist those affected by the storm.",
+        "Include a brief section on how NRIs can help or contribute to relief efforts, such as links to donation platforms or organizations involved in recovery efforts in Hawaii.",
+        "Add a concluding paragraph summarizing the potential long-term effects of the storm on Hawaii's infrastructure and economy, which could be particularly relevant for NRIs considering travel or investment in the region."
+      ],
+      "embed_opportunities": [
+        "Embed the official National Hurricane Center tweet regarding Tropical Storm Lala's impact and forecasts, which would provide authoritative information and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "60133b53-18de-4f32-ad83-d1fbf9d1c22c",
+    "headline": "India Charts \u20b910,000-Crore Waterway and Container Plan to Slash Logistics Costs",
+    "slug": "india-10000-crore-waterway-container-plan-logistics-overhaul",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how these infrastructure developments could impact Indian exporters and businesses abroad, particularly in terms of logistics and cost savings for NRIs involved in trade.",
+        "Add a section discussing how these changes might affect the global competitiveness of Indian goods, especially for NRIs who are engaged in international business, providing them with a clearer picture of the potential benefits.",
+        "Include a quote or perspective from a prominent NRI business leader or trade expert to provide a personal touch and relevance to the diaspora audience.",
+        "Provide context on how these developments compare to similar initiatives in other countries, which could help NRIs understand India's position in the global logistics landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Shipping or the Finance Ministry regarding this budget allocation to provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]
