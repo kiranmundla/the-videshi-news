@@ -685,6 +685,13 @@ export default function ArticlePage() {
                 }
               );
 
+              // Pre-process: ensure bare social-embed URLs are isolated between
+              // double-newlines so the paragraph splitter treats them as separate chunks.
+              processedHtml = processedHtml.replace(
+                /(\n?)(\s*)(https?:\/\/(?:(?:www\.)?(?:twitter|x)\.com\/\w+\/status\/\d+|(?:www\.)?instagram\.com\/(?:p|reel)\/[\w-]+)\/?)\s*(\n?)/g,
+                '\n\n$3\n\n'
+              );
+
               // Wrap plain-text blocks in <p> tags so spacing renders correctly.
               // Split by double-newlines, leave HTML block elements alone, wrap the rest.
               const paraChunks = processedHtml.split(/\n\n+/);
