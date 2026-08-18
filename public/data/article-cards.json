@@ -1,122 +1,80 @@
 [
   {
-    "slug": "tcs-ai-platform-drug-discovery-clinical-trials-india",
-    "headline": "TCS Builds AI Platform to Accelerate Drug Discovery and Clinical Trials in India",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tcs-ai-platform-drug-discovery-clinical-trials-india.jpg"
-  },
-  {
-    "slug": "fpis-pivot-consumer-services-healthcare-july-dump-capital-goods",
-    "headline": "FPIs Pivot to Consumer Services and Healthcare in July, Dump Capital Goods",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fpis-pivot-consumer-services-healthcare-july-dump-capital-goods.jpg"
-  },
-  {
-    "slug": "sp500-bull-market-historic-risks-analysis",
-    "headline": "The S&P 500 Bull Market Is Historic — Here Are the Risks That Could End It",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sp500-bull-market-historic-risks-analysis.jpg"
-  },
-  {
-    "slug": "mecca-defence-pact-saudi-turkey-pakistan-india-implications",
-    "headline": "Mecca Defence Pact: What the Saudi-Turkey-Pakistan Alliance Means for India",
+    "slug": "trump-hints-national-emergency-voter-id-cites-india-election-model",
+    "headline": "Trump Hints at National Emergency to Force Voter ID Laws, Cites India's Election System as Model",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mecca-defence-pact-saudi-turkey-pakistan-india-implications.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-hints-national-emergency-voter-id-cites-india-election-model.jpg"
   },
   {
-    "slug": "trump-grocery-photo-op-haunts-republicans-midterms-2026",
-    "headline": "Trump's 2024 Grocery Photo Op Now Haunts Republicans Ahead of Midterms",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-grocery-photo-op-haunts-republicans-midterms-2026.jpg"
-  },
-  {
-    "slug": "nclt-pulls-up-spicejet-last-minute-settlement-insolvency",
-    "headline": "NCLT Pulls Up SpiceJet Over Last-Minute Settlement Tactics in Insolvency Cases",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nclt-pulls-up-spicejet-last-minute-settlement-insolvency.jpg"
-  },
-  {
-    "slug": "uttar-pradesh-crackdown-adulterated-paneer-khoya-milk-products",
-    "headline": "Uttar Pradesh Intensifies Crackdown on Adulterated Paneer, Khoya, and Milk",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uttar-pradesh-crackdown-adulterated-paneer-khoya-milk-products.jpg"
-  },
-  {
-    "slug": "jaipur-couple-gir-cows-organic-farm-kinaya-a2-milk",
-    "headline": "Jaipur Couple Builds ₹2.4 Crore Organic Farm With 100 Gir Cows",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/jaipur-couple-gir-cows-organic-farm-kinaya-a2-milk.jpg"
-  },
-  {
-    "slug": "budget-gpus-deepening-shortage-ai-memory-zotac-warning",
-    "headline": "Budget GPUs Face Deepening Shortage as AI Demand Devours Memory Supply",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/budget-gpus-deepening-shortage-ai-memory-zotac-warning.jpg"
-  },
-  {
-    "slug": "trump-officials-restricting-all-legal-immigration-categories",
-    "headline": "Trump Officials Now Restricting All Legal Immigration Categories",
+    "slug": "h1b-fee-hike-could-push-talent-offshore-warns-indian-american-lawmaker",
+    "headline": "H-1B Fee Hikes Could Push Talent Away and Drive U.S. Jobs Offshore, Warns Indian-American Lawmaker",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-officials-restricting-all-legal-immigration-categories.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/h1b-fee-hike-could-push-talent-offshore-warns-indian-american-lawmaker.jpg"
   },
   {
-    "slug": "ananya-nagendra-ant-based-food-waste-digester-texas",
-    "headline": "Texas Teen Ananya Nagendra Builds Ant-Based Food Waste Digester With 83% Efficiency",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ananya-nagendra-ant-based-food-waste-digester-texas.jpg"
-  },
-  {
-    "slug": "veer-pahariya-prem-keetanu-premalu-remake-gandhi-jayanti-release",
-    "headline": "Veer Pahariya Announces Prem Keetanu for Gandhi Jayanti Release",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/veer-pahariya-prem-keetanu-premalu-remake-gandhi-jayanti-release.jpg"
-  },
-  {
-    "slug": "lakshmanan-meyyappan-youngest-chartered-accountant-guinness-record",
-    "headline": "Indian-Origin Lakshmanan Meyyappan Holds Guinness Record as World's Youngest Chartered Accountant",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lakshmanan-meyyappan-youngest-chartered-accountant-guinness-record.jpg"
-  },
-  {
-    "slug": "india-cash-paradox-currency-circulation-surges-despite-upi-boom",
-    "headline": "India's Cash Paradox: Currency in Circulation Surges Past ₹41 Lakh Crore Despite UPI Boom",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-cash-paradox-currency-circulation-surges-despite-upi-boom.jpg"
-  },
-  {
-    "slug": "katrina-kaif-spirit-casting-buzz-debunked-prabhas-telugu-film",
-    "headline": "Katrina Kaif-Spirit Casting Buzz Debunked as Prabhas Film Rolls On",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/katrina-kaif-spirit-casting-buzz-debunked-prabhas-telugu-film.jpg"
-  },
-  {
-    "slug": "saudi-arabia-one-year-multiple-entry-umrah-visa-2026",
-    "headline": "Saudi Arabia Launches One-Year Multiple-Entry Umrah Visa With 90-Day Stay",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/saudi-arabia-one-year-multiple-entry-umrah-visa-2026.jpg"
-  },
-  {
-    "slug": "india-fast-ds-scheme-nri-foreign-asset-disclosure-2026",
-    "headline": "India's FAST-DS Scheme Offers NRIs a Six-Month Window to Disclose Foreign Assets",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-fast-ds-scheme-nri-foreign-asset-disclosure-2026.jpg"
-  },
-  {
-    "slug": "fda-approves-two-new-cholesterol-drugs-oral-pcsk9-pill",
-    "headline": "FDA Approves Two New Cholesterol Drugs, Including First-Ever Oral PCSK9 Pill",
+    "slug": "netanyahu-puts-nyc-mayor-mamdani-on-enemies-billboard-alongside-iran-ayatollah",
+    "headline": "Netanyahu Places NYC Mayor Mamdani on Tel Aviv Billboard Alongside Iran's Ayatollah and Hezbollah Chief",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fda-approves-two-new-cholesterol-drugs-oral-pcsk9-pill.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/netanyahu-puts-nyc-mayor-mamdani-on-enemies-billboard-alongside-iran-ayatollah.jpg"
   },
   {
-    "slug": "ram-gopal-varma-police-company-daya-nayak-biopic-harshvardhan-rane",
-    "headline": "Ram Gopal Varma Reunites Satya Cast for Police Company, a Daya Nayak Biopic",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ram-gopal-varma-police-company-daya-nayak-biopic-harshvardhan-rane.jpg"
+    "slug": "bcci-anti-corruption-unit-state-t20-leagues-under-scanner",
+    "headline": "BCCI Anti-Corruption Unit Puts State T20 League Stakeholders Under Scanner",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bcci-anti-corruption-unit-state-t20-leagues-under-scanner.jpg"
   },
   {
-    "slug": "spacex-ipo-reveals-biggest-investors-musk-space-empire",
-    "headline": "SpaceX IPO Reveals Who Bet Biggest on Musk's Space Empire",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/spacex-ipo-reveals-biggest-investors-musk-space-empire.jpg"
+    "slug": "bjp-replaces-social-media-head-malviya-mhaskey-reshuffle",
+    "headline": "BJP Replaces Social Media Chief Amit Malviya With Deepak Mhaskey in Major Reshuffle",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bjp-replaces-social-media-head-malviya-mhaskey-reshuffle.jpg"
+  },
+  {
+    "slug": "major-album-release-days-linked-to-surge-in-traffic-deaths",
+    "headline": "Traffic Deaths Surge 15% on Major Album Release Days, Harvard Study Finds",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/major-album-release-days-linked-to-surge-in-traffic-deaths.jpg"
+  },
+  {
+    "slug": "social-media-exposure-linked-teen-cannabis-substance-use",
+    "headline": "Social Media Exposure to Cannabis and Vaping Content Drives Teen Substance Use, Study Finds",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/social-media-exposure-linked-teen-cannabis-substance-use.jpg"
+  },
+  {
+    "slug": "rights-group-urges-fifa-block-infantino-re-election-term-limits",
+    "headline": "Rights Group Urges FIFA to Block Infantino Re-Election Bid, Citing Term Limit Violation",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rights-group-urges-fifa-block-infantino-re-election-term-limits.jpg"
+  },
+  {
+    "slug": "midlife-exercise-blood-sugar-control-slows-cognitive-decline",
+    "headline": "Midlife Exercise and Blood Sugar Control Linked to Slower Cognitive Decline, Study Finds",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/midlife-exercise-blood-sugar-control-slows-cognitive-decline.jpg"
+  },
+  {
+    "slug": "tyson-foods-shrinks-beef-operations-amid-historic-cattle-shortage",
+    "headline": "Tyson Foods Shrinks Beef Operations as Historic Cattle Shortage Forces Industry-Wide Plant Closures",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tyson-foods-shrinks-beef-operations-amid-historic-cattle-shortage.jpg"
+  },
+  {
+    "slug": "harvard-endowment-reveals-2-2-billion-spacex-stake-its-largest-single-holding",
+    "headline": "Harvard Endowment Reveals $2.2 Billion SpaceX Stake, Its Largest Single Holding",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/harvard-endowment-reveals-2-2-billion-spacex-stake-its-largest-single-holding.jpg"
+  },
+  {
+    "slug": "morgan-stanley-sees-path-for-amazon-stock-to-double-by-end-of-2027",
+    "headline": "Morgan Stanley Sees Path for Amazon Stock to Double by End of 2027",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/morgan-stanley-sees-path-for-amazon-stock-to-double-by-end-of-2027.jpg"
+  },
+  {
+    "slug": "tax-rules-indian-freelancers-earning-us-companies-guide",
+    "headline": "Tax Rules for Indian Freelancers Earning From US Companies: A Complete Guide",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tax-rules-indian-freelancers-earning-us-companies-guide.jpg"
   }
 ]
