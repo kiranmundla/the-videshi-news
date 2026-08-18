@@ -8,8 +8,6 @@ import DiasporaPhotoStrip from "@/components/DiasporaPhotoStrip";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
-import StreamingPicks from "@/components/StreamingPicks";
-import NowInTheaters from "@/components/NowInTheaters";
 import FeaturedHero from "@/components/FeaturedHero";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import MarketTicker from "@/components/MarketTicker";
@@ -17,6 +15,8 @@ import CategoryPills from "@/components/CategoryPills";
 import EventCluster from "@/components/EventCluster";
 import EditorsDesk from "@/components/EditorsDesk";
 import TopStories from "@/components/homepage/TopStories";
+import JustInStrip from "@/components/homepage/JustInStrip";
+import EntertainmentSection from "@/components/homepage/EntertainmentSection";
 import {
   Article,
   getArticlesByCategory,
@@ -394,6 +394,8 @@ export default function Index() {
       <main className="container flex-1 pt-6 md:pt-8">
         <EditorsDesk />
 
+        <JustInStrip />
+
         {carouselArticles.length > 1 ? (
           <div className="mb-10">
             <FeaturedCarousel articles={carouselArticles} />
@@ -431,18 +433,21 @@ export default function Index() {
           .map((s) => (
             <section key={s.slug}>
               {s.slug === "markets-finance" && null}
-              <HomeCategorySection
-                slug={s.slug}
-                label={s.label}
-                clusters={[]}
-                pool={s.pool}
-                afterHeader={
-                  s.slug === "technology" ? <TechBuzz category="tech" /> :
-                  s.slug === "entertainment" ? <><NowInTheaters /><StreamingPicks /></> :
-                  s.slug === "sports" ? <TechBuzz category="sports" /> :
-                  undefined
-                }
-              />
+              {s.slug === "entertainment" ? (
+                <EntertainmentSection pool={s.pool} />
+              ) : (
+                <HomeCategorySection
+                  slug={s.slug}
+                  label={s.label}
+                  clusters={[]}
+                  pool={s.pool}
+                  afterHeader={
+                    s.slug === "technology" ? <TechBuzz category="tech" /> :
+                    s.slug === "sports" ? <TechBuzz category="sports" /> :
+                    undefined
+                  }
+                />
+              )}
             </section>
           ))}
 
