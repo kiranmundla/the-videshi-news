@@ -16,7 +16,8 @@ import EventCluster from "@/components/EventCluster";
 import EditorsDesk from "@/components/EditorsDesk";
 import TopStories from "@/components/homepage/TopStories";
 import JustInStrip from "@/components/homepage/JustInStrip";
-import EntertainmentSection from "@/components/homepage/EntertainmentSection";
+import NowInTheaters from "@/components/NowInTheaters";
+import StreamingPicks from "@/components/StreamingPicks";
 import {
   Article,
   getArticlesByCategory,
@@ -434,7 +435,13 @@ export default function Index() {
             <section key={s.slug}>
               {s.slug === "markets-finance" && null}
               {s.slug === "entertainment" ? (
-                <EntertainmentSection pool={s.pool} />
+                <HomeCategorySection
+                  slug={s.slug}
+                  label={s.label}
+                  clusters={[]}
+                  pool={s.pool}
+                  afterHeader={<><NowInTheaters /><StreamingPicks /></>}
+                />
               ) : (
                 <HomeCategorySection
                   slug={s.slug}

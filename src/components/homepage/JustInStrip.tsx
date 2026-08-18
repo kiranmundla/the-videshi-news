@@ -37,18 +37,20 @@ function JustInCard({ item }: { item: JustInItem }) {
   return (
     <Link
       to={href}
-      className="group flex items-start gap-3 py-3"
+      className="group flex items-start gap-3 py-3 min-w-0"
       style={{ borderBottom: "1px solid hsl(var(--rule) / 0.35)" }}
     >
       {/* Thumbnail */}
       {hasImage ? (
-        <img
-          src={item.image_url!}
-          alt=""
-          loading="lazy"
-          className="w-[60px] h-[60px] rounded-md object-cover flex-shrink-0"
-          style={{ objectPosition: "center 20%" }}
-        />
+        <div className="w-[60px] h-[60px] rounded-md overflow-hidden flex-shrink-0">
+          <img
+            src={item.image_url!}
+            alt=""
+            loading="lazy"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 20%" }}
+          />
+        </div>
       ) : (
         <div
           className="w-[60px] h-[60px] rounded-md flex-shrink-0 flex items-center justify-center"
@@ -99,7 +101,7 @@ export default function JustInStrip() {
   if (!loaded || items.length === 0) return null;
 
   return (
-    <section className="mb-10 overflow-hidden">
+    <section className="mb-10">
       {/* Header */}
       <div
         className="flex items-center gap-2.5 mb-5 pb-3"
