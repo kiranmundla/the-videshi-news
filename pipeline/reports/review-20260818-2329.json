@@ -1,0 +1,133 @@
+[
+  {
+    "id": "c994cef6-f44c-436c-822c-94a443e120ab",
+    "headline": "Yash's Toxic Crosses $120,000 in US Advance Ticket Sales Ahead of Release",
+    "slug": "yash-toxic-crosses-120000-us-advance-ticket-sales",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Highlight the impact of Yash's popularity among the NRI community, perhaps by including quotes or social media reactions from NRIs in the US who are excited about the film's release.",
+        "Provide context on how the film's advance ticket sales compare to previous South Indian films released in the US, especially those that catered to the NRI audience, to illustrate trends in diaspora engagement with regional cinema."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent NRI influencer or film critic discussing the significance of the film's release for the South Indian diaspora."
+      ]
+    }
+  },
+  {
+    "id": "286ecff2-c898-4019-b4fb-f142397fbe36",
+    "headline": "SAS Returns to India After 17 Years With Mumbai-Copenhagen Flights",
+    "slug": "sas-returns-india-17-years-mumbai-copenhagen-flights",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs who frequently travel between India and the US, discussing how this new route will impact their travel plans and connectivity.",
+        "Provide more context about how this new route could affect the travel habits of NRIs, such as potential cost savings or time efficiency compared to existing options.",
+        "Consider adding a section that discusses the implications of this route for business travelers and expatriates, including potential opportunities for trade or cultural exchange between India and Scandinavia.",
+        "Clarify the significance of SAS's return to India after 17 years, perhaps by comparing it to other airlines' recent expansions or by discussing the competitive landscape of international flights to and from India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from SAS announcing the new route or a relevant tweet from an aviation industry expert discussing the implications for NRIs."
+      ]
+    }
+  },
+  {
+    "id": "ec472840-d6eb-41e7-a0e2-cbe89e6923ec",
+    "headline": "Baidu Profit Drops 68% as Revenue Declines for Fifth Straight Quarter",
+    "slug": "baidu-profit-drops-68-percent-revenue-declines-fifth-straight-quarter",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian tech entrepreneurs or investors in the NRI community who are affected by Baidu's performance or the broader trends in the Chinese tech market. This would connect the article more directly to the interests of the Indian diaspora.",
+        "Provide context on how Baidu's decline may impact Indian businesses that rely on Chinese tech services or advertising, particularly for NRIs involved in e-commerce or digital marketing. This would fill a factual gap and offer relevant insights to the audience.",
+        "Consider restructuring the article to begin with a brief overview of Baidu's significance in the tech landscape, particularly for NRIs who may have investments or interests in Chinese technology. This would help set the stage for the financial details that follow.",
+        "Include a comparison of Baidu's performance with Indian tech companies or similar platforms that NRIs might be more familiar with, such as Zomato or Flipkart, to provide a relatable context for the audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent Indian tech influencer or investor discussing Baidu's decline or the implications for the tech industry, which would resonate more with the NRI audience."
+      ]
+    }
+  },
+  {
+    "id": "c0b323b6-837a-4f8a-bdd9-6a6dfe6d7b56",
+    "headline": "India's EV Adoption Surges Past 10 Million as Public Charger Network Expands",
+    "slug": "india-ev-adoption-10-million-public-charger-network-expands",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how India's EV adoption might impact NRIs, particularly those considering investments in the Indian market or those who may be interested in purchasing EVs for family back home.",
+        "Provide context on how India's EV growth compares to trends in other countries where NRIs reside, such as the US or UK, to highlight global implications and opportunities for NRIs.",
+        "Add a section discussing how NRIs can contribute to or benefit from India's EV infrastructure development, such as through investment opportunities or partnerships with Indian companies.",
+        "Include quotes or perspectives from NRI stakeholders or experts in the EV space, which would enhance the article's relevance to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Indian government or an EV industry leader announcing the 10 million EV milestone, which would provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "6cc17497-aef3-4650-9c5f-9a9bba6e02a0",
+    "headline": "Apple Patches Critical WebKit and Kernel Vulnerabilities in iOS 26.6.1 Security ",
+    "slug": "apple-patches-critical-webkit-kernel-vulnerabilities-ios-26-6-1",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how these vulnerabilities could specifically impact NRIs, such as concerns over data security for remote work or online banking, which are common among the Indian diaspora.",
+        "Provide context on the implications of these vulnerabilities for users in India, as many NRIs may still have family or business ties there. This could include mentioning how these updates affect users in regions with different cybersecurity standards.",
+        "Clarify the urgency of the update by including a brief section on the potential consequences of not updating, particularly for NRIs who may rely on their devices for international communication and transactions.",
+        "Consider adding a section on how NRIs can ensure their devices are secure while using public Wi-Fi, as the article mentions a Wi-Fi vulnerability. This would provide practical advice relevant to the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Apple or a cybersecurity expert discussing the importance of this update, which would add credibility and provide real-time reactions to the vulnerabilities."
+      ]
+    }
+  },
+  {
+    "id": "ecd6a0af-2b27-4fe1-8ad2-4929c7ab88c4",
+    "headline": "Jharkhand Exam Scam: CID Arrests Key Accused's Wife and Brother as Probe Widens",
+    "slug": "jharkhand-exam-scam-cid-arrests-masterminds-wife-brother",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how this exam scam impacts Indian students abroad, particularly those preparing for competitive exams or looking to return to India for employment. Discuss any concerns or implications for NRIs regarding the integrity of the recruitment process in India.",
+        "Provide more context on the political ramifications of the scam, particularly how it might affect the perception of governance in Jharkhand among the Indian diaspora. This could include quotes or reactions from prominent NRIs or organizations that focus on education and employment in India.",
+        "Clarify the timeline of events related to the scam and the arrests to help readers understand the progression of the investigation and its implications. A brief timeline could enhance the structure and depth of the article.",
+        "Include a brief mention of the potential long-term effects of such scams on the credibility of Indian educational institutions, especially for NRIs considering education or employment opportunities in India."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Jharkhand government or CID regarding the arrests and ongoing investigations to provide readers with direct updates from authoritative sources."
+      ]
+    }
+  },
+  {
+    "id": "2b7bd6bc-cc21-4685-bd1b-12503ffc4dcb",
+    "headline": "Texas Governor Greg Abbott Freezes H-1B Hiring Across State Agencies, Universiti",
+    "slug": "texas-governor-abbott-freezes-h1b-hiring-state-agencies-universities-public-schools",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian professionals currently working in Texas who may be affected by this freeze. This could provide a personal touch and highlight the real-world implications for the NRI community.",
+        "Add context about how this executive order aligns with or diverges from trends in other states regarding H-1B visas, particularly those with significant Indian populations. This would help readers understand the broader landscape of immigration policy affecting NRIs.",
+        "Include a section discussing potential impacts on the Indian diaspora in Texas, such as how this may affect their job prospects, the local economy, and the tech industry, which heavily relies on H-1B workers.",
+        "Consider adding a brief historical context about the H-1B visa program and its significance to the Indian diaspora, which would help readers understand why this policy change is particularly impactful."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding the H-1B visa program to provide authoritative context and enhance the article's credibility."
+      ]
+    }
+  }
+]
