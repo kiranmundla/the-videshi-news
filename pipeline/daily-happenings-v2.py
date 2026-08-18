@@ -374,7 +374,7 @@ FESTIVALS_2026 = {
     "2026-06-23": ("☪️", "Eid al-Adha"),
     "2026-07-13": ("☪️", "Muharram"),
     "2026-08-15": ("🇮🇳", "India Independence Day"),
-    "2026-08-17": ("🪢", "Raksha Bandhan"),
+    "2026-08-28": ("🪢", "Raksha Bandhan"),
     "2026-08-25": ("🕉️", "Janmashtami"),
     "2026-09-05": ("📚", "Teachers' Day (India)"),
     "2026-09-06": ("🐘", "Ganesh Chaturthi"),
