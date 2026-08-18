@@ -42,19 +42,34 @@ function JustInCard({ item }: { item: JustInItem }) {
     >
       {/* Thumbnail */}
       {hasImage ? (
-        <div className="w-[60px] h-[60px] rounded-md overflow-hidden flex-shrink-0">
-          <img
-            src={item.image_url!}
-            alt=""
-            loading="lazy"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: "center 20%" }}
-          />
-        </div>
+        <div
+          style={{
+            width: 60,
+            minWidth: 60,
+            height: 60,
+            borderRadius: 6,
+            overflow: "hidden",
+            flexShrink: 0,
+            backgroundImage: `url(${item.image_url!})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 20%",
+          }}
+          role="img"
+          aria-label=""
+        />
       ) : (
         <div
-          className="w-[60px] h-[60px] rounded-md flex-shrink-0 flex items-center justify-center"
-          style={{ background: "hsl(var(--rule) / 0.2)" }}
+          style={{
+            width: 60,
+            minWidth: 60,
+            height: 60,
+            borderRadius: 6,
+            flexShrink: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "hsl(var(--rule) / 0.2)",
+          }}
         >
           <span style={{ fontSize: 18, opacity: 0.35 }}>📰</span>
         </div>
