@@ -99,7 +99,7 @@ export default function JustInStrip() {
   if (!loaded || items.length === 0) return null;
 
   return (
-    <section className="mb-10">
+    <section className="mb-10 overflow-hidden">
       {/* Header */}
       <div
         className="flex items-center gap-2.5 mb-5 pb-3"

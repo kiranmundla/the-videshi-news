@@ -1076,5 +1076,15 @@
     "errors": 0,
     "hero_slug": "ravindra-jadeja-350-test-wickets-elite-club-galle",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-18T13:55:54.985197+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 18, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "anirudh-ravichander-kavya-maran-wedding-november-2026",
+    "story_count": 5
   }
 ]
