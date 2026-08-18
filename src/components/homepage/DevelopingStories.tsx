@@ -76,10 +76,10 @@ export default function DevelopingStories() {
         .select("id, title, slug, summary, category, status, article_count, last_article_at")
         .in("status", ["active", "emerging"])
         .order("last_article_at", { ascending: false })
-        .limit(10);
+        .limit(5);
 
       if (cancelled || !rawStorylines) return;
-      const valid: any[] = rawStorylines.filter((s: any) => s.article_count >= 5);
+      const valid: any[] = rawStorylines.filter((s: any) => s.article_count >= 5).slice(0, 2);
       if (valid.length === 0) { setStories([]); return; }
 
       // 2) Fetch linked articles for all storylines in one query
