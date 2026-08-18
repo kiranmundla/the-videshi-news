@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { isValidImage } from "@/components/HeroImage";
+import HeroImage, { isValidImage } from "@/components/HeroImage";
 
 /* ── types ────────────────────────────────────────── */
 
@@ -42,34 +42,19 @@ function JustInCard({ item }: { item: JustInItem }) {
     >
       {/* Thumbnail */}
       {hasImage ? (
-        <div
-          style={{
-            width: 60,
-            minWidth: 60,
-            height: 60,
-            borderRadius: 6,
-            overflow: "hidden",
-            flexShrink: 0,
-            backgroundImage: `url(${item.image_url!})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center 20%",
-          }}
-          role="img"
-          aria-label=""
+        <HeroImage
+          zoomable={false}
+          src={item.image_url}
+          alt=""
+          loading="lazy"
+          className="w-[60px] h-[60px] rounded-md object-cover flex-shrink-0"
+          width="60"
+          height="60"
         />
       ) : (
         <div
-          style={{
-            width: 60,
-            minWidth: 60,
-            height: 60,
-            borderRadius: 6,
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "hsl(var(--rule) / 0.2)",
-          }}
+          className="w-[60px] h-[60px] rounded-md flex-shrink-0 flex items-center justify-center"
+          style={{ background: "hsl(var(--rule) / 0.2)" }}
         >
           <span style={{ fontSize: 18, opacity: 0.35 }}>📰</span>
         </div>
