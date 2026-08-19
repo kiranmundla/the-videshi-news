@@ -35,41 +35,38 @@ function JustInCard({ item }: { item: JustInItem }) {
   const hasImage = isValidImage(item.image_url);
 
   return (
-    <Link
-      to={href}
-      className="group flex items-start gap-3 py-3 min-w-0"
+    <div
+      className="py-3"
       style={{ borderBottom: "1px solid hsl(var(--rule) / 0.35)" }}
     >
-      {/* Thumbnail */}
-      {hasImage ? (
-        <HeroImage
-          zoomable={false}
-          src={item.image_url}
-          alt=""
-          loading="lazy"
-          className="w-[60px] h-[60px] rounded-md object-cover flex-shrink-0"
-          width="60"
-          height="60"
-        />
-      ) : (
-        <div
-          className="w-[60px] h-[60px] rounded-md flex-shrink-0 flex items-center justify-center"
-          style={{ background: "hsl(var(--rule) / 0.2)" }}
-        >
-          <span style={{ fontSize: 18, opacity: 0.35 }}>📰</span>
-        </div>
-      )}
+      <Link to={href} className="group flex gap-4 items-start">
+        {/* Thumbnail — only when image exists, no placeholder */}
+        {hasImage && (
+          <HeroImage
+            zoomable={false}
+            src={item.image_url}
+            alt=""
+            loading="lazy"
+            className="w-[60px] h-[60px] rounded-md object-cover flex-shrink-0"
+            width="60"
+            height="60"
+          />
+        )}
 
-      {/* Text */}
-      <div className="flex-1 min-w-0">
-        <h3 className="text-sm font-medium leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
-          {item.headline}
-        </h3>
-        <p className="text-xs text-foreground/50 mt-1">
-          {timeAgo(item.published_at)}
-        </p>
-      </div>
-    </Link>
+        {/* Text */}
+        <div
+          className={`min-w-0 ${hasImage ? "" : "border-l-2 pl-3"}`}
+          style={hasImage ? undefined : { borderColor: "hsl(var(--primary))" }}
+        >
+          <h3 className="text-sm font-medium leading-snug text-foreground group-hover:text-primary transition-colors line-clamp-2">
+            {item.headline}
+          </h3>
+          <p className="text-xs text-foreground/50 mt-1">
+            {timeAgo(item.published_at)}
+          </p>
+        </div>
+      </Link>
+    </div>
   );
 }
 
@@ -101,7 +98,7 @@ export default function JustInStrip() {
   if (!loaded || items.length === 0) return null;
 
   return (
-    <section className="mb-10">
+    <section className="mb-10 overflow-hidden">
       {/* Header */}
       <div
         className="flex items-center gap-2.5 mb-5 pb-3"
@@ -120,7 +117,7 @@ export default function JustInStrip() {
       </div>
 
       {/* Grid: 2 columns of 3 on desktop, single column on mobile */}
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 overflow-hidden">
         {items.map((item) => (
           <JustInCard key={item.id} item={item} />
         ))}
