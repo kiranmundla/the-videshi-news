@@ -1,104 +1,116 @@
 [
   {
-    "slug": "imran-khan-bollywood-dissent-neet-student-protests",
-    "headline": "Imran Khan Calls on Bollywood to Embrace Dissent, Joins Student Protests Across India",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/imran-khan-bollywood-dissent-neet-student-protests.jpg"
+    "slug": "lung-cancer-india-non-smokers-indoor-pollution-lancet-study",
+    "headline": "Lung Cancer Strikes Indians a Decade Earlier — and Most Patients Never Smoked",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lung-cancer-india-non-smokers-indoor-pollution-lancet-study.jpg"
   },
   {
-    "slug": "faria-abdullah-bonalu-kafir-backlash-telangana-festival",
-    "headline": "Telugu Actress Faria Abdullah Defends Right to Celebrate Bonalu After Being Called Kafir Online",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/faria-abdullah-bonalu-kafir-backlash-telangana-festival.jpg"
-  },
-  {
-    "slug": "tata-sons-agm-chandrasekaran-steps-down-quorum-crisis",
-    "headline": "Tata Sons AGM Faces Quorum Crisis as Chandrasekaran Steps Down Before Key Vote",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tata-sons-agm-chandrasekaran-steps-down-quorum-crisis.jpg"
-  },
-  {
-    "slug": "india-hockey-world-cup-2026-pakistan-qualification-scenarios",
-    "headline": "India Face Must-Win Hockey World Cup Match Against Pakistan After England Loss",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-hockey-world-cup-2026-pakistan-qualification-scenarios.jpg"
-  },
-  {
-    "slug": "delhi-police-supreme-court-no-excessive-force-student-protests-sansad-chalo",
-    "headline": "Delhi Police Tells Supreme Court No Excessive Force Used Against Student Protesters",
+    "slug": "kolkata-hotel-fire-kills-nine-free-school-street",
+    "headline": "Nine Killed Including Five Bangladeshi Nationals in Kolkata Hotel Fire",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/delhi-police-supreme-court-no-excessive-force-student-protests-sansad-chalo.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kolkata-hotel-fire-kills-nine-free-school-street.jpg"
   },
   {
-    "slug": "dmk-vijay-trisha-independence-day-event-controversy",
-    "headline": "DMK Targets Tamil Nadu CM Vijay Over Trisha Krishnan's Presence at Independence Day Event",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dmk-vijay-trisha-independence-day-event-controversy.jpg"
-  },
-  {
-    "slug": "world-organ-donation-day-kidney-donation-myths-india",
-    "headline": "World Organ Donation Day: Six Myths About Kidney Donation That Persist in India",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-organ-donation-day-kidney-donation-myths-india.jpg"
-  },
-  {
-    "slug": "deep-learning-aging-clocks-organs-age-different-speeds",
-    "headline": "Deep-Learning 'Aging Clocks' Reveal How Organs Age at Different Speeds Across Adulthood",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/deep-learning-aging-clocks-organs-age-different-speeds.jpg"
-  },
-  {
-    "slug": "indian-box-office-surge-spider-man-odyssey-awarapan-pvr-inox",
-    "headline": "Indian Box Office Surges as Hollywood Blockbusters and Bollywood Hits Fill Theaters Simultaneously",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-box-office-surge-spider-man-odyssey-awarapan-pvr-inox.jpg"
-  },
-  {
-    "slug": "ohare-double-tire-blowout-american-united-airlines",
-    "headline": "Two Planes Blow Tires Within Hours at Chicago O'Hare in Third Incident This Week",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ohare-double-tire-blowout-american-united-airlines.jpg"
-  },
-  {
-    "slug": "diabetic-retinopathy-screening-ai-india-diaspora-2026",
-    "headline": "Why Every Diabetic Needs Annual Eye Screening — and How AI Is Scaling It in India",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/diabetic-retinopathy-screening-ai-india-diaspora-2026.jpg"
-  },
-  {
-    "slug": "trisha-prabhu-rethink-cyberbullying-nonprofit",
-    "headline": "Indian-Origin Trisha Prabhu Built Anti-Cyberbullying Platform at 13, Now Leads Global Non-Profit",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trisha-prabhu-rethink-cyberbullying-nonprofit.jpg"
-  },
-  {
-    "slug": "acer-predator-helios-india-launch-rtx-5080-gaming-laptops",
-    "headline": "Acer Launches Predator Helios Gaming Laptops in India With RTX 5080 and Arrow Lake",
+    "slug": "nasa-invites-isro-lunar-base-artemis-partnership",
+    "headline": "NASA Invites ISRO to Join Its Lunar Base Programme Under Expanded Artemis Partnership",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/acer-predator-helios-india-launch-rtx-5080-gaming-laptops.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nasa-invites-isro-lunar-base-artemis-partnership.jpg"
   },
   {
-    "slug": "maruti-suzuki-fronx-fastest-indian-suv-2-lakh-exports",
-    "headline": "Maruti Suzuki Fronx Becomes Fastest Indian SUV to Cross 2 Lakh Exports",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/maruti-suzuki-fronx-fastest-indian-suv-2-lakh-exports.jpg"
+    "slug": "india-semiconductor-startups-funding-surge-semicon-2",
+    "headline": "India's Semiconductor Startups Attract $206 Million as Modi's Chip Ambitions Take Shape",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-semiconductor-startups-funding-surge-semicon-2.jpg"
   },
   {
-    "slug": "ranveer-singh-pralay-filming-begins-mumbai",
-    "headline": "Ranveer Singh Begins Filming Post-Apocalyptic Thriller Pralay in Mumbai",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ranveer-singh-pralay-filming-begins-mumbai.jpg"
+    "slug": "lawsuit-blocks-duration-of-status-visa-rule-change",
+    "headline": "Unions and Advocacy Groups Sue to Block Trump's Fixed-Term Visa Rule",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lawsuit-blocks-duration-of-status-visa-rule-change.jpg"
   },
   {
-    "slug": "trump-orders-pentagon-cut-south-korea-military-drills-kim-jong-un",
-    "headline": "Trump Orders Pentagon to Cut South Korea Military Drills, Cites Kim Jong Un Ties",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-orders-pentagon-cut-south-korea-military-drills-kim-jong-un.jpg"
+    "slug": "ai-financial-advice-regulation-gap-mills-review",
+    "headline": "One in Four UK Consumers Now Trusts ChatGPT for Financial Advice — and Regulators Are Scrambling",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-financial-advice-regulation-gap-mills-review.jpg"
   },
   {
-    "slug": "ipl-business-value-20-billion-2026-franchise-records",
-    "headline": "IPL Business Value Rockets Past $20 Billion as Franchise Sales Hit Record Highs",
+    "slug": "india-beat-sri-lanka-galle-first-test-suthar-ten-wicket-haul",
+    "headline": "Manav Suthar's Ten-Wicket Masterclass Powers India to 165-Run Victory Over Sri Lanka in Galle",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ipl-business-value-20-billion-2026-franchise-records.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-beat-sri-lanka-galle-first-test-suthar-ten-wicket-haul.jpg"
+  },
+  {
+    "slug": "kkr-buys-stake-bookmyshow-live-entertainment-boom",
+    "headline": "KKR Buys 6% Stake in BookMyShow as India's Live Entertainment Market Booms",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kkr-buys-stake-bookmyshow-live-entertainment-boom.jpg"
+  },
+  {
+    "slug": "mawa-peda-khoya-peda-classic-indian-sweet-recipe",
+    "headline": "Mawa Peda: The Three-Ingredient Indian Sweet That Has Endured for Centuries",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mawa-peda-khoya-peda-classic-indian-sweet-recipe.jpg"
+  },
+  {
+    "slug": "thieves-swap-premium-gpus-budget-cards-china-esports-hotels",
+    "headline": "Thieves Swap Premium GPUs for Budget Cards in Chinese Esports Hotels, Foiled by Power Outage",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thieves-swap-premium-gpus-budget-cards-china-esports-hotels.jpg"
+  },
+  {
+    "slug": "indian-diaspora-north-texas-80th-independence-day-anand-bazaar",
+    "headline": "Indian Diaspora in North Texas Celebrates 80th Independence Day With Grand Cultural Fest",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-diaspora-north-texas-80th-independence-day-anand-bazaar.jpg"
+  },
+  {
+    "slug": "india-cash-paradox-currency-circulation-growing-despite-upi-boom",
+    "headline": "India's Cash Paradox: Currency in Circulation Keeps Growing Despite UPI Boom",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-cash-paradox-currency-circulation-growing-despite-upi-boom.jpg"
+  },
+  {
+    "slug": "cory-mills-loses-florida-primary-ryan-elijah-ethics-investigations",
+    "headline": "GOP Rep. Cory Mills Loses Florida Primary to Ryan Elijah Amid Ethics Investigations",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cory-mills-loses-florida-primary-ryan-elijah-ethics-investigations.jpg"
+  },
+  {
+    "slug": "doj-whistleblower-trump-antisemitism-probes-universities-lacked-evidence",
+    "headline": "Former DOJ Attorney Says Trump Antisemitism Probes at Universities Lacked Evidence",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/doj-whistleblower-trump-antisemitism-probes-universities-lacked-evidence.jpg"
+  },
+  {
+    "slug": "us-army-unit-offers-soldiers-4-day-pass-play-gta-vi-reenlistment",
+    "headline": "U.S. Army Unit Offers Soldiers a 4-Day Pass to Play GTA VI as Reenlistment Perk",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-army-unit-offers-soldiers-4-day-pass-play-gta-vi-reenlistment.jpg"
+  },
+  {
+    "slug": "awarapan-2-box-office-day-5-100-crore-india-150-crore-worldwide",
+    "headline": "Awarapan 2 Crosses Rs 100 Crore in India, Nears Rs 150 Crore Worldwide in 5 Days",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-box-office-day-5-100-crore-india-150-crore-worldwide.jpg"
+  },
+  {
+    "slug": "treasury-yields-multi-decade-highs-us-debt-40-trillion",
+    "headline": "Treasury Yields Hit Multi-Decade Highs as US National Debt Approaches $40 Trillion",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/treasury-yields-multi-decade-highs-us-debt-40-trillion.jpg"
+  },
+  {
+    "slug": "the-revolutionaries-release-date-bhuvan-bam-prime-video-september-2026",
+    "headline": "The Revolutionaries Release Date: Bhuvan Bam Freedom Struggle Series Premieres September 11 on Prime Video",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-revolutionaries-release-date-bhuvan-bam-prime-video-september-2026.jpg"
+  },
+  {
+    "slug": "ai-chip-startup-etched-doubles-valuation-21-billion",
+    "headline": "AI Chip Startup Etched Doubles Valuation to $21 Billion in Under a Month",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-chip-startup-etched-doubles-valuation-21-billion.jpg"
   }
 ]
