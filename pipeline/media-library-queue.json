@@ -92,136 +92,6 @@
    "priority": 4
   },
   {
-   "subject": "talent",
-   "subject_type": "thing",
-   "tags": [
-    "talent"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "c3ac54d7-8cb2-4885-a150-14d3f5aa3db4",
-   "priority": 2
-  },
-  {
-   "subject": "return to india",
-   "subject_type": "thing",
-   "tags": [
-    "return to india"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "c3ac54d7-8cb2-4885-a150-14d3f5aa3db4",
-   "priority": 2
-  },
-  {
-   "subject": "hoteliers",
-   "subject_type": "thing",
-   "tags": [
-    "hoteliers"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "2abb23bf-4072-4208-87a9-62e2d43a660c",
-   "priority": 2
-  },
-  {
-   "subject": "patel",
-   "subject_type": "thing",
-   "tags": [
-    "patel"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "2abb23bf-4072-4208-87a9-62e2d43a660c",
-   "priority": 2
-  },
-  {
-   "subject": "history",
-   "subject_type": "thing",
-   "tags": [
-    "history"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "2abb23bf-4072-4208-87a9-62e2d43a660c",
-   "priority": 2
-  },
-  {
-   "subject": "aahoa",
-   "subject_type": "thing",
-   "tags": [
-    "aahoa"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "2abb23bf-4072-4208-87a9-62e2d43a660c",
-   "priority": 2
-  },
-  {
-   "subject": "pennsylvania",
-   "subject_type": "thing",
-   "tags": [
-    "pennsylvania"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "478d12c3-77c8-4741-9119-4732e49d1759",
-   "priority": 2
-  },
-  {
-   "subject": "language",
-   "subject_type": "thing",
-   "tags": [
-    "language"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "478d12c3-77c8-4741-9119-4732e49d1759",
-   "priority": 2
-  },
-  {
-   "subject": "indian link",
-   "subject_type": "thing",
-   "tags": [
-    "indian link"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "a58fd82d-fc33-4caa-9f78-623b9baead73",
-   "priority": 2
-  },
-  {
-   "subject": "qatar",
-   "subject_type": "thing",
-   "tags": [
-    "qatar"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "01f7c3d3-2990-4a99-a932-7a04ea404527",
-   "priority": 2
-  },
-  {
-   "subject": "detention",
-   "subject_type": "thing",
-   "tags": [
-    "detention"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "3b256157-a37a-4fac-9fc7-41f7aa20659b",
-   "priority": 2
-  },
-  {
-   "subject": "permanent residents",
-   "subject_type": "thing",
-   "tags": [
-    "permanent residents"
-   ],
-   "first_seen": "2026-06-20T10:29:23Z",
-   "article_id": "3b256157-a37a-4fac-9fc7-41f7aa20659b",
-   "priority": 2
-  },
-  {
-   "subject": "miles",
-   "subject_type": "thing",
-   "tags": [
-    "miles"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "a5195b58-bb9d-422c-b72b-af2dc4f017af",
-   "priority": 2
-  },
-  {
    "subject": "razorpay",
    "subject_type": "thing",
    "tags": [
@@ -230,16 +100,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "1c8c497a-fe16-4c9e-93ff-98e8d47876f8",
    "priority": 3
-  },
-  {
-   "subject": "consular services",
-   "subject_type": "thing",
-   "tags": [
-    "consular services"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "0458cb92-f744-4a73-9f78-b3f857c065a3",
-   "priority": 2
   },
   {
    "subject": "Ram Charan",
@@ -252,56 +112,6 @@
    "priority": 10
   },
   {
-   "subject": "group f",
-   "subject_type": "thing",
-   "tags": [
-    "group f"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "542c10ab-27e0-4e99-a08d-c93f6652a751",
-   "priority": 2
-  },
-  {
-   "subject": "doordash",
-   "subject_type": "thing",
-   "tags": [
-    "doordash"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "e7d1a923-5054-4362-ac06-e701a7f00032",
-   "priority": 2
-  },
-  {
-   "subject": "gig economy",
-   "subject_type": "thing",
-   "tags": [
-    "gig economy"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "e7d1a923-5054-4362-ac06-e701a7f00032",
-   "priority": 2
-  },
-  {
-   "subject": "ees",
-   "subject_type": "thing",
-   "tags": [
-    "ees"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "bd9c0f64-17c6-40a0-9f0e-e3b1f72cb386",
-   "priority": 2
-  },
-  {
-   "subject": "salesforce",
-   "subject_type": "thing",
-   "tags": [
-    "salesforce"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "ea70b19b-3ae2-4d0b-916f-5612dd4ab11d",
-   "priority": 2
-  },
-  {
    "subject": "turtlemint",
    "subject_type": "thing",
    "tags": [
@@ -310,56 +120,6 @@
    "first_seen": "2026-06-21T10:29:30Z",
    "article_id": "7b31ac33-ae28-4221-9ec3-e614f352f0af",
    "priority": 3
-  },
-  {
-   "subject": "harvard",
-   "subject_type": "thing",
-   "tags": [
-    "harvard"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "09fd1f08-6c8a-47ba-b547-291a452488c0",
-   "priority": 2
-  },
-  {
-   "subject": "academia",
-   "subject_type": "thing",
-   "tags": [
-    "academia"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "09fd1f08-6c8a-47ba-b547-291a452488c0",
-   "priority": 2
-  },
-  {
-   "subject": "soft power",
-   "subject_type": "thing",
-   "tags": [
-    "soft power"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "e9c925b2-22cc-47ec-9642-1e482e59ed4e",
-   "priority": 2
-  },
-  {
-   "subject": "india routes",
-   "subject_type": "thing",
-   "tags": [
-    "india routes"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "b0a042ed-a539-4f0d-a61c-ddf7d649d2fe",
-   "priority": 2
-  },
-  {
-   "subject": "tokyo",
-   "subject_type": "thing",
-   "tags": [
-    "tokyo"
-   ],
-   "first_seen": "2026-06-21T10:29:30Z",
-   "article_id": "9ecc1951-351d-4dd2-a43c-debf711dc40c",
-   "priority": 2
   },
   {
    "subject": "Shubman Gill",
@@ -372,46 +132,6 @@
    "priority": 20
   },
   {
-   "subject": "Hock Tan",
-   "subject_type": "thing",
-   "tags": [
-    "hock tan"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-   "priority": 2
-  },
-  {
-   "subject": "Google TPU",
-   "subject_type": "thing",
-   "tags": [
-    "google tpu"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-   "priority": 2
-  },
-  {
-   "subject": "AVGO",
-   "subject_type": "thing",
-   "tags": [
-    "avgo"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "3dc08e97-0352-46d9-ba78-d8d1ad989eec",
-   "priority": 2
-  },
-  {
-   "subject": "Larsen & Toubro",
-   "subject_type": "thing",
-   "tags": [
-    "larsen & toubro"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "892dd702-17fc-4afe-bf32-391c046b36de",
-   "priority": 2
-  },
-  {
    "subject": "Vyoma.AI",
    "subject_type": "thing",
    "tags": [
@@ -419,26 +139,6 @@
    ],
    "first_seen": "2026-06-22T10:29:23Z",
    "article_id": "892dd702-17fc-4afe-bf32-391c046b36de",
-   "priority": 2
-  },
-  {
-   "subject": "AI compute",
-   "subject_type": "thing",
-   "tags": [
-    "ai compute"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "892dd702-17fc-4afe-bf32-391c046b36de",
-   "priority": 2
-  },
-  {
-   "subject": "o 1 visa",
-   "subject_type": "thing",
-   "tags": [
-    "o 1 visa"
-   ],
-   "first_seen": "2026-06-22T10:29:23Z",
-   "article_id": "418e8774-0d0a-471c-987c-a98ec8dff5f3",
    "priority": 2
   },
   {
@@ -630,16 +330,6 @@
    "first_seen": "2026-06-23T10:29:22Z",
    "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
    "priority": 6
-  },
-  {
-   "subject": "wage weighted",
-   "subject_type": "thing",
-   "tags": [
-    "wage weighted"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "f418e846-87c9-4c63-bee0-035e537687f9",
-   "priority": 4
   },
   {
    "subject": "quantum computing",

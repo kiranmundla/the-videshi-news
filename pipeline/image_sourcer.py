@@ -1085,7 +1085,7 @@ if __name__ == "__main__":
              f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources&slug=eq.{args.slug}&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-            capture_output=True, text=True, timeout=10
+            capture_output=True, text=True, timeout=30
         )
         rows = json.loads(r.stdout)
         if not rows:
@@ -1111,7 +1111,7 @@ if __name__ == "__main__":
                      "-H", "Content-Type: application/json",
                      "-H", "Prefer: return=minimal",
                      "-d", json.dumps(patch)],
-                    capture_output=True, text=True, timeout=10
+                    capture_output=True, text=True, timeout=30
                 )
                 print(f"  DB update: HTTP {pr.stdout}")
             else:
@@ -1163,7 +1163,7 @@ if __name__ == "__main__":
                          "-H", "Content-Type: application/json",
                          "-H", "Prefer: return=minimal",
                          "-d", json.dumps(patch)],
-                        capture_output=True, text=True, timeout=10
+                        capture_output=True, text=True, timeout=30
                     )
                     status = pr.stdout.strip()
                     if status == "204":
