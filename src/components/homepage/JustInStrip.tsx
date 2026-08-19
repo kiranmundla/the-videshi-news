@@ -98,29 +98,31 @@ export default function JustInStrip() {
   if (!loaded || items.length === 0) return null;
 
   return (
-    <section className="mb-10 overflow-hidden">
-      {/* Header */}
-      <div
-        className="flex items-center gap-2.5 mb-5 pb-3"
-        style={{ borderBottom: "1px solid hsl(var(--rule))" }}
-      >
-        <span
-          className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
-          style={{ background: "#C62828" }}
-        />
-        <span
-          className="font-bold uppercase"
-          style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888" }}
+    <section className="mb-10">
+      <div className="container">
+        {/* Header */}
+        <div
+          className="flex items-center gap-2.5 mb-5 pb-3"
+          style={{ borderBottom: "1px solid hsl(var(--rule))" }}
         >
-          JUST IN
-        </span>
-      </div>
+          <span
+            className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
+            style={{ background: "#C62828" }}
+          />
+          <span
+            className="font-bold uppercase"
+            style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888" }}
+          >
+            JUST IN
+          </span>
+        </div>
 
-      {/* Grid: 2 columns of 3 on desktop, single column on mobile */}
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 overflow-hidden">
-        {items.map((item) => (
-          <JustInCard key={item.id} item={item} />
-        ))}
+        {/* Grid: 2 columns of 3 on desktop, single column on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-10">
+          {items.map((item) => (
+            <JustInCard key={item.id} item={item} />
+          ))}
+        </div>
       </div>
     </section>
   );

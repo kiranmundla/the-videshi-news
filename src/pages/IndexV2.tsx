@@ -125,6 +125,50 @@ function HomeCategoryNav({ selected, onSelect }: { selected: string; onSelect: (
   );
 }
 
+/* ── Entertainment Vertical Grid ── */
+function EntertainmentGrid({ articles }: { articles: Article[] }) {
+  const [visibleCount, setVisibleCount] = useState(6);
+  if (articles.length === 0) return null;
+
+  // Trim to multiples of 3 for clean grid rows
+  const fullCount = Math.floor(Math.min(visibleCount, articles.length) / 3) * 3;
+  const shown = articles.slice(0, fullCount || Math.min(articles.length, 3));
+  const hasMore = articles.length > visibleCount;
+
+  return (
+    <section className="mb-14">
+      <div className="container">
+        <div
+          className="flex items-center mb-5 pb-2.5"
+          style={{ borderBottom: "3px solid #AD1457" }}
+        >
+          <h2
+            className="text-[13px] font-bold tracking-[2px] uppercase"
+            style={{ color: "#0B1D3A" }}
+          >
+            Entertainment
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-10 items-start">
+          {shown.map((a) => (
+            <ArticleCard key={a.id} article={a} variant="card" />
+          ))}
+        </div>
+        {hasMore && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setVisibleCount((v) => v + 6)}
+              className="text-[11px] font-bold tracking-[0.12em] uppercase text-foreground/60 border border-rule px-8 py-2.5 hover:border-foreground/40 hover:text-foreground/80 bg-transparent transition-colors"
+            >
+              MORE STORIES
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 /* ── Live Events Strip (rendered after hub icons on homepage) ── */
 const LIVE_EVENTS = [
   { slug: "world-cup", label: "FIFA World Cup", path: "/world-cup", icon: "⚽" },
@@ -599,15 +643,9 @@ export default function IndexV2() {
         />
         <TweetScroll category="technology" />
 
-        {/* 11. Entertainment (horizontal ribbon — portrait, 8 cards) */}
+        {/* 11. Entertainment (vertical grid) */}
         <SponsoredBanner />
-        <RibbonSection
-          title="Entertainment"
-          borderColor="#AD1457"
-          categorySlug="entertainment"
-          articles={layout.entertainment}
-          aspectRatio="portrait"
-        />
+        <EntertainmentGrid articles={layout.entertainment} />
         <NowInTheaters />
         <StreamingPicks />
         <FridayLaughs />
