@@ -100,21 +100,21 @@ export default function JustInStrip() {
   return (
     <section className="mb-10">
       <div className="container">
-        {/* Header */}
+        {/* Header — matches other category section headers */}
         <div
-          className="flex items-center gap-2.5 mb-5 pb-3"
-          style={{ borderBottom: "1px solid hsl(var(--rule))" }}
+          className="flex items-center gap-2.5 mb-5 pb-2.5"
+          style={{ borderBottom: "3px solid #C62828" }}
         >
           <span
             className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
             style={{ background: "#C62828" }}
           />
-          <span
-            className="font-bold uppercase"
-            style={{ fontSize: 11, letterSpacing: "0.15em", color: "#888" }}
+          <h2
+            className="text-[13px] font-bold tracking-[2px] uppercase"
+            style={{ color: "#0B1D3A" }}
           >
-            JUST IN
-          </span>
+            Just In
+          </h2>
         </div>
 
         {/* Grid: 2 columns of 3 on desktop, single column on mobile */}
