@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-17T13:00:00Z",
-  "week_of": "Aug 17 – Aug 23, 2026",
-  "editorial_intro": "Spider-Man: Brand New Day has crossed $2 billion worldwide — only the eighth film in history to do so — topping the domestic box office for a third consecutive weekend with $70M. The Odyssey sailed past $500M domestic, cementing Christopher Nolan's highest-grossing film ever. The Independence Day weekend clash delivered: Emraan Hashmi's Awarapan 2 exploded with an ₹82 Cr opening weekend and ₹109 Cr worldwide in three days, while Sunny Deol's partition epic Batwara 1947 opened to ₹25 Cr. Down south, Suriya's Vishwanath & Sons stormed to ₹107 Cr worldwide in just three days, and Lokesh Kanagaraj's acting debut DC crossed ₹84 Cr worldwide in ten days on a ₹25 Cr budget. A24's Tony (95% RT) — the Anthony Bourdain biopic — expands wide this Thursday. Coming up: Yash's Toxic arrives Aug 26.",
+  "generated_at": "2026-08-20T13:00:00Z",
+  "week_of": "Aug 21 – Aug 27, 2026",
+  "editorial_intro": "Spider-Man: Brand New Day has crossed $2 billion worldwide — only the eighth film in history to do so — and $804M domestic, on pace to challenge The Force Awakens' all-time domestic record. The Odyssey sailed past $512M domestic, now Christopher Nolan's highest-grossing film ever. Bollywood's Independence Day clash delivered: Emraan Hashmi's Awarapan 2 exploded to ₹160 Cr worldwide in its first week, while Sunny Deol's Batwara 1947 earned ₹45 Cr. Down south, Suriya's Vishwanath & Sons stormed to ₹135 Cr worldwide in six days. This week brings Insidious: Out of the Further (Aug 21), Jason Statham's high-seas actioner Mutiny, and A24's Anthony Bourdain biopic Tony expanding wide. Coming up: Yash's Toxic arrives Aug 26.",
   "movies": [
     {
       "title": "Spider-Man: Brand New Day",
@@ -22,7 +22,7 @@
         "Sadie Sink"
       ],
       "director": "Destin Daniel Cretton",
-      "why_watch": "$786M domestic and over $2B worldwide — only the eighth film in history to cross that mark. Topped the box office for three consecutive weekends, the first film to do that since The Super Mario Galaxy Movie. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from memory. 90% critics, 98% audience. Sadie Sink's secret Marvel debut has the internet losing its mind. Still dominating every screen.",
+      "why_watch": "$804M domestic and over $2B worldwide — only the eighth film ever to cross that mark, and the second-fastest to get there behind Endgame. Topped the box office for three consecutive weekends. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from memory. 90% critics, 98% audience. Still the biggest movie on the planet by a mile.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
       "language": "English",
@@ -74,7 +74,7 @@
         "Lupita Nyong'o"
       ],
       "director": "Christopher Nolan",
-      "why_watch": "$505M domestic — now Christopher Nolan's highest-grossing film ever, surpassing The Dark Knight Rises. Over $1.4B worldwide. ₹185 Cr India net in 31 days. IMAX's best-selling release of all time, with 70mm IMAX showtimes sold out through September. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. The first film ever shot entirely on 70mm IMAX cameras. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
+      "why_watch": "$513M domestic — now Christopher Nolan's highest-grossing film ever, sitting at No. 23 on the all-time domestic chart, just three spots below The Dark Knight. Over $1.4B worldwide. ₹177 Cr India net. IMAX's best-selling release of all time. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
       "language": "English",
@@ -112,7 +112,7 @@
       "genre": "Romance, Action Thriller",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Awarapan_2.jpg/500px-Awarapan_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "₹109 Cr worldwide",
+      "rating": "₹160 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-08-14",
       "status": "now_playing",
@@ -122,7 +122,7 @@
         "Shabana Azmi"
       ],
       "director": "Nitin Kakkar",
-      "why_watch": "The Independence Day weekend's biggest Hindi opener — ₹22 Cr on Day 1, ₹82 Cr opening weekend, ₹109 Cr worldwide in just three days. The sequel to the 2007 cult classic that defined Emraan Hashmi's brooding romantic-hero era. 19 years later, the Shivam Pandit fandom is massive. Emraan Hashmi delivers what Bollywood Hungama calls his strongest performance in years. Music by Mithoon, with Disha Patani and Shabana Azmi rounding out the cast. The clear winner of the Independence Day clash.",
+      "why_watch": "The Independence Day weekend's biggest Hindi opener — ₹22 Cr on Day 1, ₹82 Cr opening weekend, ₹160 Cr worldwide in just seven days. The sequel to the 2007 cult classic that defined Emraan Hashmi's brooding romantic-hero era. Music by Mithoon. Predicted lifetime of ₹182-185 Cr. The clear winner of the Independence Day clash — still drawing strong weekday crowds.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
       "language": "Hindi",
@@ -143,6 +143,52 @@
       ]
     },
     {
+      "title": "Insidious: Out of the Further",
+      "slug": "insidious-out-of-the-further",
+      "genre": "Horror, Supernatural",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Insidious-out-of-the-further-poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "",
+      "rating_source": "",
+      "release_date": "2026-08-21",
+      "status": "opening",
+      "cast": [
+        "Amelia Eve",
+        "Brandon Perea",
+        "Lin Shaye",
+        "Maisie Richardson-Sellers",
+        "Sam Spruell"
+      ],
+      "director": "Jacob Chase",
+      "why_watch": "The Insidious franchise flips everything on its head for round six — this time the demons don't just haunt the Further, they bleed into our world. Lin Shaye returns as Elise Rainier. Amelia Eve (The Haunting of Bly Manor) plays a mother who discovers she can pull spirits out of the Further, and when the demons realize her power, it gets ugly. From the producers of The Conjuring. Opens Aug 21.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Insidious+Out+of+the+Further+showtimes+near+me",
+      "language": "English",
+      "trailer_url": "https://www.youtube.com/watch?v=oFjn3bJCusQ",
+      "cast_details": [
+        {
+          "name": "Amelia Eve",
+          "photo_url": ""
+        },
+        {
+          "name": "Brandon Perea",
+          "photo_url": ""
+        },
+        {
+          "name": "Lin Shaye",
+          "photo_url": ""
+        },
+        {
+          "name": "Maisie Richardson-Sellers",
+          "photo_url": ""
+        },
+        {
+          "name": "Sam Spruell",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "The End of Oak Street",
       "slug": "the-end-of-oak-street",
       "genre": "Sci-Fi Thriller",
@@ -159,7 +205,7 @@
         "Christian Convery"
       ],
       "director": "David Robert Mitchell",
-      "why_watch": "Opened at #3 with $21M domestic and $47M worldwide — not a blowout on its $80-92M budget, but audiences are responding strongly. From It Follows director David Robert Mitchell, produced by J.J. Abrams. What if your suburban street got ripped from the earth and dropped into a prehistoric world? Anne Hathaway and Ewan McGregor as parents fighting to keep their family alive. 83% on RT. The most interesting non-franchise film of August.",
+      "why_watch": "Opened at #3 with $21M domestic and $47M worldwide — a soft start on its $80-92M budget, but audiences are responding well. From It Follows director David Robert Mitchell, produced by J.J. Abrams. What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? Anne Hathaway and Ewan McGregor fight to keep their family alive. 83% on RT. The most interesting non-franchise film of August.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
       "language": "English",
@@ -184,12 +230,50 @@
       ]
     },
     {
+      "title": "Vishwanath & Sons",
+      "slug": "vishwanath-and-sons",
+      "genre": "Romance, Family Drama",
+      "year": 2026,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/22/Vishwanath_%26_Sons_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "₹135 Cr worldwide",
+      "rating_source": "India box office",
+      "release_date": "2026-08-14",
+      "status": "now_playing",
+      "cast": [
+        "Suriya",
+        "Mamitha Baiju",
+        "Raveena Tandon",
+        "Radikaa Sarathkumar",
+        "Nasser"
+      ],
+      "director": "Venky Atluri",
+      "why_watch": "₹135 Cr worldwide in six days — Suriya's fastest film to cross ₹100 Cr and his fastest to hit $1M in North America. A warm family romance with Suriya as a 40-year-old champion shooter and Mamitha Baiju as his younger love interest. ₹75 Cr India net in the first week. Raveena Tandon returns to Tamil cinema. Music by GV Prakash Kumar. Cleaning up in Tamil and Telugu markets.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Vishwanath+and+Sons+showtimes+near+me",
+      "language": "Tamil",
+      "trailer_url": "https://www.youtube.com/watch?v=ejX6MHgKAlM",
+      "cast_details": [
+        {
+          "name": "Suriya",
+          "photo_url": ""
+        },
+        {
+          "name": "Mamitha Baiju",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
+        },
+        {
+          "name": "Raveena Tandon",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Batwara 1947",
       "slug": "batwara-1947",
       "genre": "Period Drama, Historical",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Batwara_1947_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹36 Cr worldwide",
+      "rating": "₹45 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-08-14",
       "status": "now_playing",
@@ -201,7 +285,7 @@
         "Ali Fazal"
       ],
       "director": "Rajkumar Santoshi",
-      "why_watch": "₹5.5 Cr opening day, ₹25 Cr opening weekend, ₹36 Cr worldwide in three days — not the Gadar-level fireworks some expected, but the Independence Day + partition setting is drawing the patriotic crowd. Produced by Aamir Khan, directed by Rajkumar Santoshi, music by A.R. Rahman, lyrics by Javed Akhtar. Based on the acclaimed partition play 'Jis Lahore Nai Vekhya, O Jamya E Nai.' Preity Zinta returns to Hindi cinema after an eight-year hiatus. The Independence Day holiday on Aug 15 spiked collections to ₹12.9 Cr, so it has legs if word of mouth holds.",
+      "why_watch": "Sunny Deol and Rajkumar Santoshi's partition epic opened slow at ₹5.5 Cr but spiked to ₹12.9 Cr on Independence Day. ₹32 Cr India net and ₹45 Cr worldwide in seven days. Produced by Aamir Khan, music by A.R. Rahman, lyrics by Javed Akhtar. Preity Zinta returns to Hindi cinema after an eight-year hiatus. Word of mouth is positive — if you care about partition stories told with craft, this one's worth seeing on the big screen before it loses screens.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Batwara+1947+showtimes+near+me",
       "language": "Hindi",
@@ -247,7 +331,7 @@
         "Stavros Halkias"
       ],
       "director": "Matt Johnson",
-      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain follows a 19-year-old Bourdain taking a summer restaurant job in Provincetown in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor chef is reportedly electric. Currently in limited release — expands wide nationwide this Thursday, Aug 21. If you love food, travel, or just a great coming-of-age story, this is the one to hunt down.",
+      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain follows a 19-year-old Bourdain taking a summer restaurant job in Provincetown in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor chef is reportedly electric. Expanding wide nationwide this Thursday, Aug 21. If you love food, travel, or just a great coming-of-age story, hunt this one down.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
       "language": "English",
@@ -276,50 +360,12 @@
       ]
     },
     {
-      "title": "Vishwanath & Sons",
-      "slug": "vishwanath-and-sons",
-      "genre": "Romance, Family Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/22/Vishwanath_%26_Sons_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹107 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-08-14",
-      "status": "now_playing",
-      "cast": [
-        "Suriya",
-        "Mamitha Baiju",
-        "Raveena Tandon",
-        "Radikaa Sarathkumar",
-        "Nasser"
-      ],
-      "director": "Venky Atluri",
-      "why_watch": "₹107 Cr worldwide in just three days — Suriya is back. His first film since the ambitious Kanguva, this warm family romance explores an unconventional age-gap love story with Suriya as a 40-year-old champion shooter and Mamitha Baiju as his younger love interest. Critics call it his most relaxed, vulnerable performance in years. Raveena Tandon returns to Tamil cinema for the first time since Aalavandhan (2001). Music by GV Prakash Kumar. A solid family entertainer cleaning up in Tamil and Telugu markets.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Vishwanath+and+Sons+showtimes+near+me",
-      "language": "Tamil",
-      "trailer_url": "https://www.youtube.com/watch?v=ejX6MHgKAlM",
-      "cast_details": [
-        {
-          "name": "Suriya",
-          "photo_url": ""
-        },
-        {
-          "name": "Mamitha Baiju",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
-        },
-        {
-          "name": "Raveena Tandon",
-          "photo_url": ""
-        }
-      ]
-    },
-    {
       "title": "DC",
       "slug": "dc-tamil-2026",
       "genre": "Romantic Action Thriller",
       "year": 2026,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/5a/DC_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹84 Cr worldwide",
+      "rating": "₹65 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-08-07",
       "status": "now_playing",
@@ -329,7 +375,7 @@
         "Sanjana Krishnamoorthy"
       ],
       "director": "Arun Matheswaran",
-      "why_watch": "₹84 Cr worldwide in 10 days on a ₹25 Cr budget — a certified blockbuster. The film everyone's talking about: Lokesh Kanagaraj, the director behind Vikram and Coolie, makes his acting debut as an outlaw in a blood-soaked love story inspired by Devdas and Bonnie and Clyde. Critically acclaimed, with Anirudh Ravichander's 15-track album becoming a phenomenon of its own. Wamiqa Gabbi as the brutalised sex worker waging war is being called one of the year's best performances in Indian cinema.",
+      "why_watch": "₹65 Cr worldwide in its first week on a ₹25 Cr budget — a certified blockbuster. Lokesh Kanagaraj, the director behind Vikram and Coolie, makes his acting debut as an outlaw in a blood-soaked love story inspired by Devdas. Anirudh Ravichander's 15-track album has become a phenomenon of its own. Now in its second week and still holding strong in Tamil and Telugu markets. Wamiqa Gabbi is being called one of the year's best performances in Indian cinema.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=DC+Tamil+movie+showtimes+near+me",
       "language": "Tamil",
@@ -367,7 +413,7 @@
         "Conan O'Brien"
       ],
       "director": "Andrew Stanton",
-      "why_watch": "$475M domestic in nine weeks — well past Toy Story 4's total. Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. Showtimes are thinning against the blockbuster onslaught, but still the best family option in theaters if you haven't caught it yet.",
+      "why_watch": "$476M domestic in nine weeks — well past Toy Story 4's total. Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. Showtimes are thinning against the blockbuster onslaught, but still the best family option in theaters if you haven't caught it yet.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
       "language": "English",
@@ -392,57 +438,6 @@
         {
           "name": "Conan O'Brien",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg/300px-Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Jana Nayagan",
-      "slug": "jana-nayagan",
-      "genre": "Political Action, Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Jana_Nayagan.jpg",
-      "rating": "₹316 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-07-23",
-      "status": "now_playing",
-      "cast": [
-        "Thalapathy Vijay",
-        "Bobby Deol",
-        "Pooja Hegde",
-        "Mamitha Baiju",
-        "Prakash Raj",
-        "Priyamani"
-      ],
-      "director": "H. Vinoth",
-      "why_watch": "₹316 Cr worldwide in 25 days despite mixed reviews and an HD leak — pure Vijay star power. The final cinematic appearance of Thalapathy Vijay, now the sitting Chief Minister of Tamil Nadu. Streaming on ZEE5 from Aug 21, so this is genuinely your last window to catch Vijay's farewell on the big screen. Showtimes are down to a handful, but if your local theater still has it, this is a piece of Tamil cinema history.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Jana+Nayagan+showtimes+near+me",
-      "language": "Tamil",
-      "trailer_url": "https://www.youtube.com/watch?v=fJaAYcERf3Y",
-      "cast_details": [
-        {
-          "name": "Thalapathy Vijay",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/JosephVijay.jpg/300px-JosephVijay.jpg"
-        },
-        {
-          "name": "Bobby Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lord_Bobby_2024.jpg/300px-Lord_Bobby_2024.jpg"
-        },
-        {
-          "name": "Pooja Hegde",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg/300px-Pooja_Hegde_at_Beast_Telugu_press_meet_%281%29.jpg"
-        },
-        {
-          "name": "Mamitha Baiju",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
-        },
-        {
-          "name": "Prakash Raj",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Prakash_Raj_at_KLF_18_kozhikode.jpg/300px-Prakash_Raj_at_KLF_18_kozhikode.jpg"
-        },
-        {
-          "name": "Priyamani",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Priyamani_at_CCL_match%2C_2011_%28cropped%29.jpg"
         }
       ]
     },
