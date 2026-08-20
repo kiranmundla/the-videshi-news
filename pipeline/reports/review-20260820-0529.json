@@ -1,0 +1,60 @@
+[
+  {
+    "id": "1c89a256-ac88-44ad-8e21-952769e7b9bc",
+    "headline": "Indian-American Educator Pia Dandiya Wins Florida Democratic Primary, Setting Up",
+    "slug": "pia-dandiya-wins-florida-democratic-primary-congress-fl22",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from other Indian-American leaders or organizations regarding Dandiya's candidacy and its significance for the NRI community.",
+        "Provide more context on how Dandiya's background and experiences as a first-generation Indian American might influence her policy positions, particularly on issues relevant to the diaspora, such as immigration or education reform.",
+        "Expand on the implications of Dandiya's victory for the Indian-American community, perhaps by discussing voter turnout among NRIs or how her candidacy reflects broader trends in Indian-American political engagement.",
+        "Clarify the significance of the Red to Blue program and how it may impact Dandiya's campaign strategy, especially in relation to the NRI vote."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Democratic Congressional Campaign Committee announcing Dandiya's inclusion in the Red to Blue program to provide readers with official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "eae1bf60-0487-4c12-abea-e3d618623584",
+    "headline": "Indian-Origin CEO Pitches Humanoid Robots for US Border Patrol as Pentagon Contr",
+    "slug": "sankaet-pathak-foundation-humanoid-robots-us-border-patrol",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from other Indian-origin professionals in the tech or defense sectors, discussing how Pathak's work reflects broader trends in the Indian diaspora's contributions to technology and national security.",
+        "Provide more context about the implications of using humanoid robots for border patrol, especially from a diaspora perspective. Discuss how Indian-origin professionals, like Pathak, are influencing U.S. policy and technology, and what this means for the NRI community.",
+        "Clarify the potential ethical concerns surrounding the use of robots for border security, as this is a significant topic that could resonate with the diaspora. Discuss how Indian-origin individuals might view these developments, considering the diverse perspectives within the community.",
+        "Include a brief section on the challenges faced by Indian-origin entrepreneurs in the U.S. tech landscape, which could provide a richer context for Pathak's journey from fintech to defense technology."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding the use of technology in border security to provide readers with a direct source of information on the government's stance.",
+        "Consider embedding a video or infographic that visually explains how the humanoid robots operate, which could enhance reader understanding and engagement."
+      ]
+    }
+  },
+  {
+    "id": "598a963f-82a3-4335-adb7-4b8b76fdb56d",
+    "headline": "IndiGo Website Outage Blocks Flight Bookings and Check-Ins Across India",
+    "slug": "indigo-website-outage-blocks-bookings-checkins-august-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how this outage specifically impacts NRIs traveling to or from India, such as potential delays in returning to their home countries or missed connections for international flights.",
+        "Provide context on how IndiGo's operational issues affect the broader travel plans of NRIs, including any potential financial implications or disruptions to their travel itineraries.",
+        "Consider adding a quote or statement from an NRI traveler affected by the outage to personalize the story and emphasize its impact on the diaspora.",
+        "Expand on the previous operational issues faced by IndiGo to provide a clearer picture of the airline's reliability, which is particularly relevant for NRIs who may be considering travel plans."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from an NRI traveler discussing their experience with the outage to highlight the impact on the diaspora community."
+      ]
+    }
+  }
+]
