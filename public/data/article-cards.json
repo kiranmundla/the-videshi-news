@@ -1,116 +1,122 @@
 [
   {
-    "slug": "lung-cancer-india-non-smokers-indoor-pollution-lancet-study",
-    "headline": "Lung Cancer Strikes Indians a Decade Earlier — and Most Patients Never Smoked",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lung-cancer-india-non-smokers-indoor-pollution-lancet-study.jpg"
+    "slug": "sankaet-pathak-foundation-humanoid-robots-us-border-patrol",
+    "headline": "Indian-Origin CEO Pitches Humanoid Robots for US Border Patrol as Pentagon Contract Advances",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sankaet-pathak-foundation-humanoid-robots-us-border-patrol.jpg"
   },
   {
-    "slug": "kolkata-hotel-fire-kills-nine-free-school-street",
-    "headline": "Nine Killed Including Five Bangladeshi Nationals in Kolkata Hotel Fire",
+    "slug": "pia-dandiya-wins-florida-democratic-primary-congress-fl22",
+    "headline": "Indian-American Educator Pia Dandiya Wins Florida Democratic Primary, Setting Up November Battle for Congress",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kolkata-hotel-fire-kills-nine-free-school-street.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pia-dandiya-wins-florida-democratic-primary-congress-fl22.jpg"
   },
   {
-    "slug": "nasa-invites-isro-lunar-base-artemis-partnership",
-    "headline": "NASA Invites ISRO to Join Its Lunar Base Programme Under Expanded Artemis Partnership",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nasa-invites-isro-lunar-base-artemis-partnership.jpg"
+    "slug": "indigo-website-outage-blocks-bookings-checkins-august-2026",
+    "headline": "IndiGo Website Outage Blocks Flight Bookings and Check-Ins Across India",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indigo-website-outage-blocks-bookings-checkins-august-2026.jpg"
   },
   {
-    "slug": "india-semiconductor-startups-funding-surge-semicon-2",
-    "headline": "India's Semiconductor Startups Attract $206 Million as Modi's Chip Ambitions Take Shape",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-semiconductor-startups-funding-surge-semicon-2.jpg"
-  },
-  {
-    "slug": "lawsuit-blocks-duration-of-status-visa-rule-change",
-    "headline": "Unions and Advocacy Groups Sue to Block Trump's Fixed-Term Visa Rule",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lawsuit-blocks-duration-of-status-visa-rule-change.jpg"
-  },
-  {
-    "slug": "ai-financial-advice-regulation-gap-mills-review",
-    "headline": "One in Four UK Consumers Now Trusts ChatGPT for Financial Advice — and Regulators Are Scrambling",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-financial-advice-regulation-gap-mills-review.jpg"
-  },
-  {
-    "slug": "india-beat-sri-lanka-galle-first-test-suthar-ten-wicket-haul",
-    "headline": "Manav Suthar's Ten-Wicket Masterclass Powers India to 165-Run Victory Over Sri Lanka in Galle",
+    "slug": "india-beat-pakistan-5-3-hockey-world-cup-2026-amstelveen",
+    "headline": "India Beat Pakistan 5-3 in Hockey World Cup Thriller to Seal Next Round Spot",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-beat-sri-lanka-galle-first-test-suthar-ten-wicket-haul.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-beat-pakistan-5-3-hockey-world-cup-2026-amstelveen.jpg"
   },
   {
-    "slug": "kkr-buys-stake-bookmyshow-live-entertainment-boom",
-    "headline": "KKR Buys 6% Stake in BookMyShow as India's Live Entertainment Market Booms",
+    "slug": "sindhu-shetty-bwf-world-championships-2026-new-delhi",
+    "headline": "Sindhu Marches to Round of 16 as Shetty Stuns World Number One at BWF World Championships",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sindhu-shetty-bwf-world-championships-2026-new-delhi.jpg"
+  },
+  {
+    "slug": "air-india-100-new-jets-fleet-expansion-2027-2028",
+    "headline": "Air India To Induct Over 100 New Jets in 2027 and 2028",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-india-100-new-jets-fleet-expansion-2027-2028.jpg"
+  },
+  {
+    "slug": "akshaye-khanna-telugu-debut-mahakali-shukracharya",
+    "headline": "Akshaye Khanna Makes Telugu Debut as Shukracharya in Mythological Epic Mahakali",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/akshaye-khanna-telugu-debut-mahakali-shukracharya.jpg"
+  },
+  {
+    "slug": "wall-street-rebounds-yields-ease-moderna-doubles-cancer-data",
+    "headline": "Wall Street Rebounds as Treasury Yields Ease and Moderna Doubles on Cancer Data",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kkr-buys-stake-bookmyshow-live-entertainment-boom.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/wall-street-rebounds-yields-ease-moderna-doubles-cancer-data.jpg"
   },
   {
-    "slug": "mawa-peda-khoya-peda-classic-indian-sweet-recipe",
-    "headline": "Mawa Peda: The Three-Ingredient Indian Sweet That Has Endured for Centuries",
+    "slug": "dr-rupy-aujla-gut-friendly-pistachio-chocolate-frozen-yoghurt-recipe",
+    "headline": "British-Indian Doctor's Gut-Friendly Pistachio Chocolate Frozen Yoghurt Recipe",
     "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mawa-peda-khoya-peda-classic-indian-sweet-recipe.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/dr-rupy-aujla-gut-friendly-pistachio-chocolate-frozen-yoghurt-recipe.jpg"
   },
   {
-    "slug": "thieves-swap-premium-gpus-budget-cards-china-esports-hotels",
-    "headline": "Thieves Swap Premium GPUs for Budget Cards in Chinese Esports Hotels, Foiled by Power Outage",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thieves-swap-premium-gpus-budget-cards-china-esports-hotels.jpg"
+    "slug": "kristen-fischer-american-family-daily-meals-india-vs-us-cost",
+    "headline": "American Mother in Delhi Shows How Her Family of Six Eats Out for Under $10",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kristen-fischer-american-family-daily-meals-india-vs-us-cost.jpg"
   },
   {
-    "slug": "indian-diaspora-north-texas-80th-independence-day-anand-bazaar",
-    "headline": "Indian Diaspora in North Texas Celebrates 80th Independence Day With Grand Cultural Fest",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-diaspora-north-texas-80th-independence-day-anand-bazaar.jpg"
+    "slug": "ufo-moviez-dcdc-partnership-indian-cinema-north-america",
+    "headline": "UFO Moviez and DCDC Partner to Bring Indian Cinema to 33,000 North American Screens",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ufo-moviez-dcdc-partnership-indian-cinema-north-america.jpg"
   },
   {
-    "slug": "india-cash-paradox-currency-circulation-growing-despite-upi-boom",
-    "headline": "India's Cash Paradox: Currency in Circulation Keeps Growing Despite UPI Boom",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-cash-paradox-currency-circulation-growing-despite-upi-boom.jpg"
-  },
-  {
-    "slug": "cory-mills-loses-florida-primary-ryan-elijah-ethics-investigations",
-    "headline": "GOP Rep. Cory Mills Loses Florida Primary to Ryan Elijah Amid Ethics Investigations",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/cory-mills-loses-florida-primary-ryan-elijah-ethics-investigations.jpg"
-  },
-  {
-    "slug": "doj-whistleblower-trump-antisemitism-probes-universities-lacked-evidence",
-    "headline": "Former DOJ Attorney Says Trump Antisemitism Probes at Universities Lacked Evidence",
+    "slug": "bihar-mid-day-meal-detergent-salt-students-ill-nalanda",
+    "headline": "Detergent Used Instead of Salt in Bihar Mid-Day Meal, Over 25 Students Fall Ill",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/doj-whistleblower-trump-antisemitism-probes-universities-lacked-evidence.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bihar-mid-day-meal-detergent-salt-students-ill-nalanda.jpg"
   },
   {
-    "slug": "us-army-unit-offers-soldiers-4-day-pass-play-gta-vi-reenlistment",
-    "headline": "U.S. Army Unit Offers Soldiers a 4-Day Pass to Play GTA VI as Reenlistment Perk",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-army-unit-offers-soldiers-4-day-pass-play-gta-vi-reenlistment.jpg"
-  },
-  {
-    "slug": "awarapan-2-box-office-day-5-100-crore-india-150-crore-worldwide",
-    "headline": "Awarapan 2 Crosses Rs 100 Crore in India, Nears Rs 150 Crore Worldwide in 5 Days",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/awarapan-2-box-office-day-5-100-crore-india-150-crore-worldwide.jpg"
-  },
-  {
-    "slug": "treasury-yields-multi-decade-highs-us-debt-40-trillion",
-    "headline": "Treasury Yields Hit Multi-Decade Highs as US National Debt Approaches $40 Trillion",
+    "slug": "lowes-cuts-outlook-diy-spending-pressure-q2-2026",
+    "headline": "Lowe's Cuts Full-Year Outlook as Cautious Homeowners Scale Back DIY Spending",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/treasury-yields-multi-decade-highs-us-debt-40-trillion.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lowes-cuts-outlook-diy-spending-pressure-q2-2026.jpg"
   },
   {
-    "slug": "the-revolutionaries-release-date-bhuvan-bam-prime-video-september-2026",
-    "headline": "The Revolutionaries Release Date: Bhuvan Bam Freedom Struggle Series Premieres September 11 on Prime Video",
+    "slug": "us-ambassador-gor-kashmir-first-visit-travel-advisory",
+    "headline": "US Ambassador Gor Arrives in Kashmir in First Visit Since Taking Charge",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-ambassador-gor-kashmir-first-visit-travel-advisory.jpg"
+  },
+  {
+    "slug": "pankaj-bhadouria-breast-cancer-women-health-checkups",
+    "headline": "MasterChef Winner Pankaj Bhadouria Urges Women to Get Regular Cancer Screenings",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pankaj-bhadouria-breast-cancer-women-health-checkups.jpg"
+  },
+  {
+    "slug": "harrdy-sandhu-stuck-on-you-subscriber-first-release-india",
+    "headline": "Harrdy Sandhu's New Single Debuts India's 72-Hour Subscriber-First Music Model",
     "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/the-revolutionaries-release-date-bhuvan-bam-prime-video-september-2026.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/harrdy-sandhu-stuck-on-you-subscriber-first-release-india.jpg"
   },
   {
-    "slug": "ai-chip-startup-etched-doubles-valuation-21-billion",
-    "headline": "AI Chip Startup Etched Doubles Valuation to $21 Billion in Under a Month",
+    "slug": "short-videos-switch-off-brain-self-control-study",
+    "headline": "Short Videos Temporarily Switch Off Brain Self-Control Centers, Studies Find",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/short-videos-switch-off-brain-self-control-study.jpg"
+  },
+  {
+    "slug": "marvell-google-12-billion-ai-chip-deal",
+    "headline": "Google Taps Marvell for Custom AI Chips in Deal Worth Up to $12.2 Billion",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-chip-startup-etched-doubles-valuation-21-billion.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/marvell-google-12-billion-ai-chip-deal.jpg"
+  },
+  {
+    "slug": "telangana-cm-us-ambassador-h1b-visa-processing",
+    "headline": "Telangana CM Presses US Ambassador for Faster H-1B Processing and Visa Slots",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/telangana-cm-us-ambassador-h1b-visa-processing.jpg"
+  },
+  {
+    "slug": "trump-100k-opt-fee-foreign-students-work",
+    "headline": "Trump Administration Weighs $100,000 Fee on Foreign Student Work Program",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-100k-opt-fee-foreign-students-work.jpg"
   }
 ]
