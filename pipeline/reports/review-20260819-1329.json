@@ -1,0 +1,40 @@
+[
+  {
+    "id": "8ca3949f-ad28-46ac-9629-5335d50c711b",
+    "headline": "Manav Suthar's Ten-Wicket Masterclass Powers India to 165-Run Victory Over Sri L",
+    "slug": "india-beat-sri-lanka-galle-first-test-suthar-ten-wicket-haul",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian expatriates or cricket fans living abroad, discussing how Suthar's performance resonates with them or impacts their connection to Indian cricket.",
+        "Provide context on how this victory affects India's standing in international cricket, particularly for NRIs who may be following the team's progress closely from overseas.",
+        "Include a brief section on how the Indian cricket team's success influences the diaspora's cultural identity and pride, especially in regions with significant Indian populations.",
+        "Add a comparison of Suthar's performance with other Indian spinners who have made an impact in their early Test careers, which may interest readers in the diaspora who follow cricket history."
+      ],
+      "embed_opportunities": [
+        "Embed the official BCCI tweet celebrating Suthar's achievement, as it would enhance the article's credibility and provide a visual element for readers."
+      ]
+    }
+  },
+  {
+    "id": "6ccce214-b7a9-457a-a455-91286da17759",
+    "headline": "KKR Buys 6% Stake in BookMyShow as India's Live Entertainment Market Booms",
+    "slug": "kkr-buys-stake-bookmyshow-live-entertainment-boom",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who are avid users of BookMyShow or who have attended events in India. This could highlight how the platform connects the Indian diaspora with live entertainment back home.",
+        "Provide context on how KKR's investment might impact NRIs or the Indian diaspora, such as potential improvements in event accessibility or ticketing services for those living abroad who wish to attend events in India.",
+        "Include a brief section on how the growth of the Indian live entertainment market could create opportunities for NRIs, such as investment opportunities or the potential for hosting events that cater specifically to the diaspora.",
+        "Clarify the implications of the competition from Flipkart and other platforms, particularly how this might affect NRIs who want to purchase tickets for events in India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from BookMyShow or KKR announcing the investment, which would provide real-time context and engagement for readers."
+      ]
+    }
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "3d3129d0-97c2-4f9d-b554-a646fe47af7e",
+    "headline": "Google Taps Marvell for Custom AI Chips in Deal Worth Up to $12.2 Billion",
+    "slug": "marvell-google-12-billion-ai-chip-deal",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Emphasize the implications of this deal for the Indian diaspora, particularly in the context of the growing tech industry in India and how NRIs can engage with or benefit from these developments.",
+        "Provide context on how this partnership might affect job opportunities or investment in the Indian tech sector, which would resonate with the NRI audience.",
+        "Include quotes or insights from Indian tech experts or NRIs working in the AI field to add depth and a personal perspective to the article.",
+        "Clarify the significance of the deal in relation to the broader tech landscape, particularly how it positions Google and Marvell against other competitors, which can provide a more comprehensive understanding for the readers."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Marvell or Google announcing the partnership to provide real-time updates and official perspectives on the deal."
+      ]
+    }
+  },
+  {
+    "id": "9c94eea3-9613-4620-8dca-0b3b28780c35",
+    "headline": "Afghanistan to Host India for T20I Series in Delhi This September",
+    "slug": "afghanistan-host-india-t20i-series-delhi-september-2026",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian expatriates or cricket fans living abroad about their excitement for the series and how it connects them to their homeland.",
+        "Provide context on how this series impacts the NRI community, such as potential viewership numbers or engagement on social media platforms among the diaspora, to highlight its significance.",
+        "Include a brief historical context about Afghanistan's cricket journey and its relationship with India, which would help readers understand the importance of this series for both nations.",
+        "Discuss how the matches being played in India affect the Afghan cricket community and its fans, particularly those who may be living in India or abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Afghanistan Cricket Board announcing the series or a tweet from a prominent cricket analyst discussing the significance of this series for both teams."
+      ]
+    }
+  },
+  {
+    "id": "8485fd3e-f513-4d37-a349-f15c333f89ad",
+    "headline": "Short Videos Temporarily Switch Off Brain Self-Control Centers, Studies Find",
+    "slug": "short-videos-switch-off-brain-self-control-study",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian parents or educators living abroad who are concerned about the impact of short videos on their children's cognitive development. This would personalize the issue for the NRI audience.",
+        "Provide context on how the findings of these studies may affect Indian diaspora communities, particularly in relation to children's education and screen time management. This could include statistics or trends specific to Indian families in the diaspora.",
+        "Include a section discussing the implications of these findings for Indian content creators or educators who are producing short-form videos, highlighting how they can adapt their content to be more educational and less detrimental to cognitive function.",
+        "Add a brief comparison of how short-form video consumption differs among Indian youth in India versus those in the diaspora, potentially highlighting cultural differences in media consumption."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a neuroscientist or educator discussing the implications of these studies on children's learning and development, which would provide additional credibility and a contemporary perspective."
+      ]
+    }
+  },
+  {
+    "id": "3edef25c-26b3-4b71-a506-2b1554a16664",
+    "headline": "Telangana CM Presses US Ambassador for Faster H-1B Processing and Visa Slots",
+    "slug": "telangana-cm-us-ambassador-h1b-visa-processing",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific statistics or anecdotes about how visa delays have impacted the NRI community in Telangana, such as the number of professionals affected or personal stories from individuals waiting for H-1B visas.",
+        "Provide more context on how the proposed changes in US immigration policy, like the $100,000 fee on post-graduation work permits, specifically affect NRIs and their families, as this would resonate more with the diaspora audience.",
+        "Clarify the significance of the meeting by including quotes or reactions from Telangana NRIs or organizations representing them, which would enhance the article's relevance to the diaspora community."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the current status of H-1B processing times or any recent announcements related to visa policies, which would provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "0e9a1b13-8d56-4265-bb19-61865436a5a5",
+    "headline": "Trump Administration Weighs $100,000 Fee on Foreign Student Work Program",
+    "slug": "trump-100k-opt-fee-foreign-students-work",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian students currently in the US on how this potential fee could impact their career prospects and financial situations. This would personalize the issue for the NRI audience.",
+        "Provide additional context on how the OPT program specifically benefits Indian students compared to other nationalities, perhaps by including statistics or anecdotes that highlight their contributions to the US economy and tech industry.",
+        "Clarify the timeline of the proposed fee and its potential implementation, as well as any upcoming deadlines for students or universities, to give readers a better understanding of the urgency of the situation.",
+        "Discuss the implications of this fee on Indian universities and their partnerships with US institutions, as this could resonate with the diaspora audience concerned about educational ties."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding the OPT program and any proposed changes to provide authoritative context and updates directly from the source."
+      ]
+    }
+  }
+]
