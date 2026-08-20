@@ -9,6 +9,24 @@
     "source": "US State Department / travel.state.gov / afnovisaguide.com"
   },
   {
+    "id": "bia-advance-parole-unlawful-presence-bar",
+    "date": "2026-08-13",
+    "label": "Aug 13, 2026",
+    "headline": "BIA overrules 14-year precedent: advance parole travel now triggers 3- and 10-year unlawful-presence bars",
+    "summary": "In Matter of Delcarmen-Lara (29 I&N Dec. 830, BIA 2026), the Board of Immigration Appeals held that leaving the US on advance parole counts as a 'departure' for purposes of the unlawful-presence bars under INA \u00a7212(a)(9)(B). The decision expressly overrules Matter of Arrabally and Yerrabelly (2012), a 14-year-old precedent that immigration lawyers and DACA/TPS/I-485 applicants had relied on to travel internationally without triggering the 3-year or 10-year reentry bars. Now, anyone who accumulated 180+ days of unlawful presence and then departs on advance parole may become inadmissible \u2014 requiring an I-601 waiver to reenter. The ruling applies prospectively (trips completed before August 13 are not affected), but immigration attorneys are issuing urgent warnings not to travel on advance parole without individual legal advice. While this most directly impacts DACA recipients and TPS holders, Indian green card applicants in the lengthy EB backlog who travel on advance parole while their I-485 is pending should also review their unlawful-presence history before any international travel.",
+    "severity": "high",
+    "source": "BIA (Matter of Delcarmen-Lara) / Murthy Law Firm / Ogletree Deakins"
+  },
+  {
+    "id": "dhs-60-day-grace-period-elimination-proposed",
+    "date": "2026-08-08",
+    "label": "Aug 8, 2026",
+    "headline": "DHS proposes eliminating 60-day grace period for H-1B, L-1, O-1, TN workers after job loss \u2014 rule sent to OMB for review",
+    "summary": "The Department of Homeland Security has advanced a proposed rule (RIN: 1615-AD22) to eliminate the 60-day grace period that since 2017 has allowed H-1B, H-1B1, L-1, O-1, E-1/E-2/E-3, and TN visa holders to remain in the US for up to 60 days after employment ends to find a new sponsor, change status, or prepare to depart. The rule was sent to the White House Office of Information and Regulatory Affairs (OIRA) for review. If implemented, workers who lose their jobs would have to leave immediately \u2014 with no window to transfer to a new employer or file for adjustment of status. The full text has not been published yet; once OMB review concludes, it will appear in the Federal Register for 30-60 days of public comment. The grace period remains in effect during the rulemaking process. For Indian H-1B professionals \u2014 who make up over 70% of H-1B holders \u2014 the proposal would dramatically raise the stakes of any layoff, particularly during tech industry restructuring.",
+    "severity": "high",
+    "source": "DHS / OMB-OIRA / Bloomberg Law / Ogletree Deakins"
+  },
+  {
     "id": "trump-birth-tourism-ban-eo",
     "date": "2026-08-06",
     "label": "Aug 6, 2026",
@@ -151,24 +169,6 @@
     "summary": "Julie Stufft, Deputy Assistant Secretary of State for Visa Services, confirmed the US will launch a domestic visa renewal pilot for certain H-1B holders starting December, allowing eligible workers already inside the US to renew without traveling abroad for a consular interview. The State Department will issue about 20,000 visas over the first three months, and Stufft said the 'vast majority' will go to Indian nationals \u2014 the largest skilled-worker group in the US \u2014 with plans to expand. She acknowledged India's 6-to-12-month interview wait times are 'not what we need,' and said the program will free up US missions in India to focus on first-time applicants. A Federal Register notice with eligibility rules and application steps is expected soon. The move, flagged in the recent India-US joint statement and welcomed by the diaspora, revives the domestic revalidation concept first piloted in early 2024.",
     "severity": "high",
     "source": "US State Department (Julie Stufft) / The Indian Eye / EY"
-  },
-  {
-    "id": "july-2026-visa-bulletin-india",
-    "date": "2026-06-18",
-    "label": "Jun 18, 2026",
-    "headline": "July 2026 Visa Bulletin: EB-2 India now fully unavailable, EB-1 retrogresses further \u2014 green card squeeze deepens",
-    "summary": "The State Department\u2019s July 2026 Visa Bulletin delivers another blow to Indian employment-based green card applicants. EB-2 India is now marked \u201cUnavailable\u201d \u2014 no visas will be issued in this category for the rest of FY2026 (the quota was exhausted in May). EB-1 India retrogressed two more months to October 15, 2022, from December 15, 2022 in June. EB-5 unreserved India is also \u201cUnavailable\u201d after the cap was reached June 5. The only bright spot: EB-3 India inched forward half a month to January 1, 2014. USCIS confirmed that employment-based applicants must use Final Action Dates (not Dates for Filing) to determine I-485 eligibility, further limiting who can file. The State Department warned that additional retrogressions \u2014 or more categories going \u201cUnavailable\u201d \u2014 are possible before the fiscal year ends September 30. Visa numbers reset October 1 with FY2027.",
-    "severity": "high",
-    "source": "US State Department / July 2026 Visa Bulletin"
-  },
-  {
-    "id": "student-visa-slots-jul-aug-2026",
-    "date": "2026-06-15",
-    "label": "Jun 15, 2026",
-    "headline": "US Embassy India opens thousands of student visa slots for July\u2013August \u2014 more to come amid portal glitches",
-    "summary": "The US Embassy in India announced via @USAndIndia that since the F/M/J student visa appointment portal opened on June 14, thousands of Indian students have secured interview slots for July and August, with thousands more appointments still available and additional batches to open in the coming weeks. The opening-day rush triggered technical glitches on the scheduling portal; the embassy urged applicants not to refresh their accounts too frequently to avoid being locked out, and said it is working to resolve the issues. This is the main release of student visa appointments ahead of the Fall 2026 intake, critical timing for the large cohort of Indian students joining US colleges.",
-    "severity": "medium",
-    "source": "US Embassy India (@USAndIndia) / ANI"
   },
   {
     "id": "interview-waiver-eliminated",
