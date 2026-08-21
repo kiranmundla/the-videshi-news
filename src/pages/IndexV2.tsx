@@ -627,6 +627,14 @@ export default function IndexV2() {
         {/* 7. Immigration Strip */}
         <ImmigrationStrip articles={layout.immigration} />
 
+        {/* Events Near You — surfaced early for platform visibility */}
+        <EventsStrip
+          events={events}
+          userLat={userLocation?.latitude}
+          userLng={userLocation?.longitude}
+          userCity={userLocation?.city}
+        />
+
         {/* 8. Newsletter CTA */}
         <NewsletterCTA />
 
@@ -720,14 +728,6 @@ export default function IndexV2() {
 
         {/* 19. Voices (full section) */}
         <VoicesSection />
-
-        {/* 17. Events */}
-        <EventsStrip
-          events={events}
-          userLat={userLocation?.latitude}
-          userLng={userLocation?.longitude}
-          userCity={userLocation?.city}
-        />
 
         {/* 18. Snapshots */}
         <DiasporaPhotoStrip />

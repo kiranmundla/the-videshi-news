@@ -223,6 +223,12 @@ case "$1" in
       git diff --cached --quiet || git commit -m 'data: pulse refresh' && git push origin main"
     ;;
 
+  check-dead-images)
+    run_job "check-dead-images" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; set +a; \
+      timeout 2400 python3 -u check-dead-images.py"
+    ;;
+
   status)
     echo "=== Recent errors ==="
     tail -20 "$LOGDIR/_errors.log" 2>/dev/null || echo "No errors"
@@ -298,7 +304,7 @@ case "$1" in
     # Daily jobs — run if >26h stale
     for job in events-cleanup topic-cleanup directory-enrich credential-check \
                scrape-meetup scrape-allevents scrape-sulekha scrape-eventbrite \
-               media-library detect-storylines article-cards; do
+               media-library detect-storylines article-cards check-dead-images; do
       is_stale "$job" 26 && {
         echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] Catching up: $job" >> "$LOG"
         "/home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh" "$job"
@@ -315,7 +321,7 @@ case "$1" in
     ;;
 
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|catchup|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|check-dead-images|catchup|status}"
     exit 1
     ;;
 esac
