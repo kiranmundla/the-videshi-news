@@ -82,7 +82,7 @@ def supa_get(path, params=None):
         ["curl", "-s", url,
          "-H", f"apikey: {SUPA_KEY}",
          "-H", f"Authorization: Bearer {SUPA_KEY}"],
-        capture_output=True, text=True, timeout=30
+        capture_output=True, text=True, timeout=90
     )
     return json.loads(result.stdout)
 
@@ -95,7 +95,7 @@ def supa_post(path, data, headers_extra=None):
          "-H", "Content-Type: application/json",
          "-H", "Prefer: return=representation",
          "-d", body]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
     return json.loads(result.stdout)
 
 def fetch_articles(category_slug, days):
