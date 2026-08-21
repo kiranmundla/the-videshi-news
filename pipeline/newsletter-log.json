@@ -1096,5 +1096,15 @@
     "errors": 0,
     "hero_slug": "treasury-yields-multi-decade-highs-us-debt-40-trillion",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-20T13:55:54.150724+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 20, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "dhs-proposes-eliminating-60-day-grace-period-h1b-workers",
+    "story_count": 5
   }
 ]
