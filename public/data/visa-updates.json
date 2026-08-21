@@ -1,5 +1,14 @@
 [
   {
+    "id": "duration-of-status-lawsuit-filed",
+    "date": "2026-08-19",
+    "label": "Aug 19, 2026",
+    "headline": "Coalition sues to block Duration of Status rule before September 15 deadline \u2014 lawsuit filed in Massachusetts federal court",
+    "summary": "Eight organizations representing higher education and journalism sectors filed a lawsuit in U.S. District Court for the District of Massachusetts on August 19, seeking to vacate the Duration of Status rule before it takes effect September 15. The complaint alleges DHS violated the Administrative Procedure Act by failing to conduct thorough impact analysis, not substantively responding to the nearly 22,000 negative public comments, and not considering alternative solutions to address overstay concerns. The rule replaces the 47-year-old open-ended duration of status framework with fixed four-year caps for F-1 students and J-1 exchange visitors, and 240-day caps for I-visa journalists \u2014 with Chinese nationals limited to 90 days. DHS dismissed the lawsuit as performative outrage. USCIS will release revised Forms I-539 and I-765 on September 15 to align with the new rule. Indian students \u2014 the largest international student cohort in the US \u2014 face the biggest impact, particularly PhD candidates whose programs exceed four years and those relying on OPT/STEM OPT pathways. A court injunction before September 15 could delay or block implementation.",
+    "severity": "high",
+    "source": "Reuters / Inside Higher Ed / U.S. District Court, D. Mass."
+  },
+  {
     "id": "visa-wait-times-august-2026-shift",
     "date": "2026-08-17",
     "label": "Aug 17, 2026",
@@ -160,15 +169,6 @@
     "summary": "USCIS published a proposed rule in the Federal Register on June 23 that would increase the N-400 naturalization application fee from $760 to $1,330 for paper filers (75% increase) and from $710 to $1,280 for online filers (80% increase). The reduced fee option for low-income applicants ($380) and all fee waivers for both N-400 and N-336 forms would be eliminated entirely. The N-336 hearing request fee would rise from $830 to $1,475. DHS argues the increases align fees with actual adjudication costs under a 'beneficiary-pays' principle, contending prior administrations kept naturalization fees artificially low. Immigration advocates warn the steep hikes \u2014 especially eliminating waivers for low-income filers \u2014 could price out many legal permanent residents from citizenship. For Indian green card holders who waited years in the EB backlog and are now approaching naturalization eligibility, the timing compounds an already costly process. Public comments are due August 24, 2026, and a final rule could follow weeks later. Applicants considering naturalization may want to file before the rule takes effect.",
     "severity": "high",
     "source": "USCIS / Federal Register (91 FR 37500) / Fragomen / Ogletree Deakins / AILA"
-  },
-  {
-    "id": "h1b-domestic-renewal-pilot-december-2026",
-    "date": "2026-06-19",
-    "label": "Jun 19, 2026",
-    "headline": "US to revive domestic H-1B visa renewal pilot in December \u2014 ~20,000 slots, mostly for Indians",
-    "summary": "Julie Stufft, Deputy Assistant Secretary of State for Visa Services, confirmed the US will launch a domestic visa renewal pilot for certain H-1B holders starting December, allowing eligible workers already inside the US to renew without traveling abroad for a consular interview. The State Department will issue about 20,000 visas over the first three months, and Stufft said the 'vast majority' will go to Indian nationals \u2014 the largest skilled-worker group in the US \u2014 with plans to expand. She acknowledged India's 6-to-12-month interview wait times are 'not what we need,' and said the program will free up US missions in India to focus on first-time applicants. A Federal Register notice with eligibility rules and application steps is expected soon. The move, flagged in the recent India-US joint statement and welcomed by the diaspora, revives the domestic revalidation concept first piloted in early 2024.",
-    "severity": "high",
-    "source": "US State Department (Julie Stufft) / The Indian Eye / EY"
   },
   {
     "id": "interview-waiver-eliminated",
