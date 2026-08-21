@@ -644,10 +644,10 @@ def main():
     events_path.write_text(json.dumps(events, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ events.json ({len(events)} events)")
 
-    # 5b. Build slim events-homepage.json (only fields the homepage strip needs, max 20 upcoming)
+    # 5b. Build slim events-homepage.json (only fields the homepage strip needs, all upcoming)
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    upcoming = [e for e in events if e.get("date", "") >= today_str][:20]
-    slim_fields = ("id", "title", "date", "time", "venue_name", "city", "state", "category", "image_url", "latitude", "longitude")
+    upcoming = [e for e in events if e.get("date", "") >= today_str]
+    slim_fields = ("id", "title", "date", "time", "venue_name", "city", "state", "category", "latitude", "longitude", "slug")
     slim_events = [{k: e.get(k) for k in slim_fields if e.get(k) is not None} for e in upcoming]
     slim_path = DATA_DIR / "events-homepage.json"
     slim_path.write_text(json.dumps(slim_events, ensure_ascii=False, separators=(",", ":")))

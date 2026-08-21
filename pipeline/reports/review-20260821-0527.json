@@ -1,0 +1,19 @@
+[
+  {
+    "id": "7e45e5e8-d34c-4926-9e7c-6a8a3ada1e77",
+    "headline": "Houthis Strike Najran Airport and Aramco Facility as Saudi-Yemen Conflict Intens",
+    "slug": "houthis-strike-najran-airport-aramco-facility-saudi-yemen-conflict-intensifies",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific statistics or anecdotes about how the conflict impacts Indian workers in the Gulf, such as potential job losses or safety concerns that NRIs might face due to the escalating tensions.",
+        "Provide more context on how fluctuations in global energy markets due to this conflict could affect fuel prices in India, which is particularly relevant for NRIs who may be concerned about remittances and living costs back home."
+      ],
+      "embed_opportunities": [
+        "Embed the official Indian Ministry of External Affairs statement regarding the safety of Indian nationals in the Gulf region amidst the conflict, to provide authoritative information for NRIs."
+      ]
+    }
+  }
+]

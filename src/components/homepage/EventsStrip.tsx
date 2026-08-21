@@ -32,6 +32,8 @@ function formatEventDate(dateStr: string) {
 }
 
 export default function EventsStrip({ events, userLat, userLng, userCity }: Props) {
+  const MAX_DISTANCE_MI = 100;
+
   const upcoming = useMemo(() => {
     const today = new Date().toISOString().slice(0, 10);
     const filtered = events
@@ -45,18 +47,19 @@ export default function EventsStrip({ events, userLat, userLng, userCity }: Prop
       });
 
     if (userLat && userLng) {
-      // Sort by distance — nearest first
-      filtered.sort((a, b) => {
+      // Only show events within MAX_DISTANCE_MI when we know the user's location
+      const nearby = filtered.filter(
+        (e) => e._dist !== null && e._dist <= MAX_DISTANCE_MI,
+      );
+      nearby.sort((a, b) => {
         if (a._dist !== null && b._dist !== null) return a._dist - b._dist;
-        if (a._dist !== null) return -1;
-        if (b._dist !== null) return 1;
         return a.date.localeCompare(b.date);
       });
+      return nearby.slice(0, 12);
     } else {
       filtered.sort((a, b) => a.date.localeCompare(b.date));
+      return filtered.slice(0, 12);
     }
-
-    return filtered.slice(0, 12);
   }, [events, userLat, userLng]);
 
   if (upcoming.length === 0) return null;
