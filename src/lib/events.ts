@@ -631,7 +631,7 @@ export async function getAllUpcomingEvents(
         e.organizer?.toLowerCase().includes(q)
       );
     }
-    return filtered.slice(0, 500);
+    return filtered;
   }
 
   // Fallback: Supabase
@@ -641,7 +641,7 @@ export async function getAllUpcomingEvents(
       .select(cols)
       .gte("date", today)
       .order("date", { ascending: true })
-      .limit(500);
+      .limit(5000);
 
     if (categories && categories.length > 0) {
       query = query.in("category", categories);
