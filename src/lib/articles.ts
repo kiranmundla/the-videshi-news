@@ -26,7 +26,7 @@ export type Article = {
   status: "published" | "draft";
   sources?: { label: string; url?: string }[];
   nri_angle?: string;
-  article_type?: "news" | "feature";
+  article_type?: "news" | "feature" | "interview";
   tags?: string[];
   featured_score?: number;
   is_pinned_featured?: boolean;
@@ -73,7 +73,7 @@ const P2_COLS =
   "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, social_embeds, reactions";
 
 const P2_LIST_COLS =
-  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, event_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h";
+  "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, event_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, article_type";
 
 function parseSources(raw: unknown): Article["sources"] {
   // Handle JSON array format

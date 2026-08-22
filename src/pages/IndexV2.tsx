@@ -661,8 +661,7 @@ export default function IndexV2() {
 
         {/* 9. (VoicesTeaser removed — VoicesSection below covers Voices) */}
 
-        {/* 10. Technology (lead + list) */}
-        <UpcomingTechEvents />
+        {/* 10. Technology (lead + list + conferences) */}
         <LeadListSection
           title="Technology"
           borderColor="#4527A0"
@@ -670,6 +669,7 @@ export default function IndexV2() {
           articles={layout.technology}
           listCount={9}
         />
+        <UpcomingTechEvents />
         <TweetScroll category="technology" />
 
         {/* 11. Entertainment (vertical grid) */}
