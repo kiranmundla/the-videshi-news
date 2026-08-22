@@ -226,7 +226,7 @@ case "$1" in
   check-dead-images)
     run_job "check-dead-images" "cd $REPO/pipeline && \
       set -a; source $ENV/.env.supabase; set +a; \
-      timeout 2400 python3 -u check-dead-images.py"
+      timeout 3600 python3 -u check-dead-images.py"
     ;;
 
   status)

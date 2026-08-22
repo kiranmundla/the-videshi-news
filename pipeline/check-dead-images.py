@@ -7,9 +7,9 @@ Strategy:
   - Check Wikimedia/Wikipedia URLs in rotating batches (~1000/run)
   - Check non-Wikimedia article images only from the last 30 days
   - Always check ALL diaspora_leaders photos (only ~225)
-  - Sequential with 1s sleep to avoid proxy rate limits
-  - Retry once on connection failures (code 000)
-  - Only treat 404, 410, 403 as broken — skip transient failures (000, 5xx)
+  - Uses GET with range header instead of HEAD for speed (avoids proxy issues)
+  - Retry once on connection failures (code 000) for non-Wikimedia only
+  - Only treat 404, 410 as broken — skip transient failures (000, 5xx)
   - Uses curl subprocess (Python requests/urllib fail through proxy)
   - Tracks rotation offset in a state file
 """
@@ -29,11 +29,11 @@ HEADERS_CLI = [
 ]
 
 BATCH_SIZE = 500          # Supabase pagination
-WIKI_PER_RUN = 1000       # max Wikimedia images per run (rotate through all)
-RECENT_DAYS = 30          # non-Wikimedia: only check articles this recent
-TIMEOUT_SECS = 15         # per-image curl timeout
-CHECK_SLEEP = 1.0         # seconds between checks — gentle on proxy
-RETRY_SLEEP = 5.0         # seconds before retry on connection failure
+WIKI_PER_RUN = 20       # max Wikimedia images per run (rotate through all)
+RECENT_DAYS = 1          # non-Wikimedia: only check articles this recent
+TIMEOUT_SECS = 8          # per-image curl timeout
+CHECK_SLEEP = 0.15        # seconds between checks
+RETRY_SLEEP = 2.0         # seconds before retry on connection failure
 BROKEN_CODES = {404, 410} # definitively broken — null out
 SUSPICIOUS_CODES = {403}  # may be rate limit OR genuinely gone — flag but don't fix
 STATE_FILE = os.path.join(os.path.dirname(__file__), ".dead-images-offset.json")
@@ -100,10 +100,11 @@ def check_image_url(url):
     """
     is_wikimedia = "wikimedia.org" in url or "wikipedia.org" in url
 
-    def _head(u):
+    def _probe(u):
+        # Use GET with range header (just 1 byte) — faster through proxy than HEAD
         cmd = [
             "curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-            "-I",
+            "-H", "Range: bytes=0-0",
             "--max-time", str(TIMEOUT_SECS),
             "-L",
         ]
@@ -117,12 +118,12 @@ def check_image_url(url):
         except (subprocess.TimeoutExpired, Exception):
             return 0
 
-    code = _head(url)
+    code = _probe(url)
 
-    # Connection failure — retry once
-    if code == 0:
+    # Connection failure — retry once (skip retry for Wikimedia to avoid proxy overload)
+    if code == 0 and not is_wikimedia:
         time.sleep(RETRY_SLEEP)
-        code = _head(url)
+        code = _probe(url)
 
     if code == 0:
         return "skip", 0          # transient network issue, don't act
@@ -154,6 +155,50 @@ def save_offset(offset):
         json.dump({"offset": offset, "updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}, f)
 
 
+def check_batch(items, url_key, label_key, label_type="article"):
+    """Check a batch of items sequentially. Returns (broken, suspicious, checked, skipped, aborted)."""
+    broken = []
+    suspicious = []
+    checked = 0
+    skipped = 0
+    abort = False
+    consecutive_failures = 0
+    batch_start = time.time()
+    print(f"  Starting checks on {len(items)} {label_type}s...", flush=True)
+
+    for item in items:
+        status, code = check_image_url(item[url_key])
+        checked += 1
+        label = item.get(label_key, "?")
+
+        if status == "broken":
+            print(f"  BROKEN [{code}] {label}: {item[url_key][:80]}", flush=True)
+            broken.append(item)
+            consecutive_failures = 0
+        elif status == "suspicious":
+            print(f"  SUSPICIOUS [{code}] {label}: {item[url_key][:80]}", flush=True)
+            suspicious.append(item)
+            consecutive_failures = 0
+        elif status == "skip":
+            skipped += 1
+            consecutive_failures += 1
+            if consecutive_failures >= 10:
+                print(f"  ABORT: 10 consecutive connection failures — proxy may be down", flush=True)
+                abort = True
+                break
+        else:
+            consecutive_failures = 0
+
+        if checked % 50 == 0:
+            elapsed_so_far = time.time() - batch_start
+            rate = checked / max(elapsed_so_far, 0.1)
+            print(f"  ... checked {checked}/{len(items)} (skipped {skipped}) [{elapsed_so_far:.0f}s, {rate:.1f}/s]", flush=True)
+
+        time.sleep(CHECK_SLEEP)
+
+    return broken, suspicious, checked, skipped, abort
+
+
 def main():
     print("=== Dead Image Checker ===", flush=True)
     start = time.time()
@@ -163,23 +208,10 @@ def main():
     broken_leaders = []
     total_checked = 0
     total_skipped = 0
-    consecutive_failures = 0
-    MAX_CONSECUTIVE_FAILURES = 10  # abort if proxy is down
 
     # ── 1. Articles with Wikimedia URLs (rotating batch) ──
-    print("\n[1/3] Fetching Wikimedia article count...", flush=True)
-    # Get total count first
-    all_wiki = fetch_all(
-        "p2_articles",
-        "id",
-        "status=eq.published&image_url=not.is.null&or=(image_url.like.*wikimedia.org*,image_url.like.*wikipedia.org*)",
-    )
-    total_wiki = len(all_wiki)
+    print("\n[1/3] Fetching Wikimedia images...", flush=True)
     offset = load_offset()
-    if offset >= total_wiki:
-        offset = 0  # wrap around
-
-    print(f"  Total Wikimedia articles: {total_wiki}, starting at offset {offset}", flush=True)
 
     wiki_batch = sb_get(
         "p2_articles",
@@ -188,42 +220,35 @@ def main():
         limit=WIKI_PER_RUN,
         offset=offset,
     )
-    print(f"  Checking {len(wiki_batch)} Wikimedia images (batch {offset}–{offset + len(wiki_batch)})...", flush=True)
+    # If we got fewer than requested, we've wrapped — reset offset next run
+    total_fetched = len(wiki_batch)
+    if total_fetched == 0 and offset > 0:
+        # Wrapped around — reset and re-fetch from start
+        offset = 0
+        wiki_batch = sb_get(
+            "p2_articles",
+            "id,slug,headline,image_url",
+            "status=eq.published&image_url=not.is.null&or=(image_url.like.*wikimedia.org*,image_url.like.*wikipedia.org*)&order=id",
+            limit=WIKI_PER_RUN,
+            offset=0,
+        )
+        total_fetched = len(wiki_batch)
 
-    for art in wiki_batch:
-        status, code = check_image_url(art["image_url"])
-        total_checked += 1
+    print(f"  Fetched {total_fetched} Wikimedia images starting at offset {offset}", flush=True)
 
-        if status == "broken":
-            print(f"  BROKEN [{code}] {art['slug']}: {art['image_url'][:80]}", flush=True)
-            broken_articles.append(art)
-            consecutive_failures = 0
-        elif status == "suspicious":
-            print(f"  SUSPICIOUS [{code}] {art['slug']}: {art['image_url'][:80]}", flush=True)
-            suspicious_articles.append(art)
-            consecutive_failures = 0
-        elif status == "skip":
-            total_skipped += 1
-            consecutive_failures += 1
-            if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
-                print(f"  ABORT: {MAX_CONSECUTIVE_FAILURES} consecutive connection failures — proxy may be down", flush=True)
-                break
-        else:
-            consecutive_failures = 0
-
-        if total_checked % 200 == 0:
-            print(f"  ... checked {total_checked} (skipped {total_skipped})", flush=True)
-
-        time.sleep(CHECK_SLEEP)
+    broken, suspicious, checked, skipped, aborted = check_batch(wiki_batch, "image_url", "slug")
+    broken_articles.extend(broken)
+    suspicious_articles.extend(suspicious)
+    total_checked += checked
+    total_skipped += skipped
 
     # Save next offset for rotation
-    next_offset = offset + len(wiki_batch)
-    if next_offset >= total_wiki:
-        next_offset = 0
+    next_offset = offset + total_fetched
+    if total_fetched < WIKI_PER_RUN:
+        next_offset = 0  # wrapped around
     save_offset(next_offset)
 
-    # Early abort if proxy is completely down
-    if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
+    if aborted:
         print(f"\nProxy appears down. Checked {total_checked}, skipped {total_skipped}.", flush=True)
         print("Exiting without fixing anything (all failures may be transient).", flush=True)
         sys.exit(0)
@@ -238,32 +263,14 @@ def main():
     )
     print(f"  Found {len(recent_articles)} recent non-Wikimedia articles", flush=True)
 
-    consecutive_failures = 0
-    for art in recent_articles:
-        status, code = check_image_url(art["image_url"])
-        total_checked += 1
-
-        if status == "broken":
-            print(f"  BROKEN [{code}] {art['slug']}: {art['image_url'][:80]}", flush=True)
-            broken_articles.append(art)
-            consecutive_failures = 0
-        elif status == "suspicious":
-            print(f"  SUSPICIOUS [{code}] {art['slug']}: {art['image_url'][:80]}", flush=True)
-            suspicious_articles.append(art)
-            consecutive_failures = 0
-        elif status == "skip":
-            total_skipped += 1
-            consecutive_failures += 1
-            if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
-                print(f"  ABORT: proxy appears down", flush=True)
-                break
-        else:
-            consecutive_failures = 0
-
-        time.sleep(CHECK_SLEEP)
+    broken, suspicious, checked, skipped, aborted = check_batch(recent_articles, "image_url", "slug")
+    broken_articles.extend(broken)
+    suspicious_articles.extend(suspicious)
+    total_checked += checked
+    total_skipped += skipped
 
     # ── 3. Diaspora leaders ──
-    if consecutive_failures < MAX_CONSECUTIVE_FAILURES:
+    if not aborted:
         print("\n[3/3] Fetching diaspora leaders with photos...", flush=True)
         leaders = fetch_all(
             "diaspora_leaders",
@@ -272,25 +279,10 @@ def main():
         )
         print(f"  Found {len(leaders)} leaders with photos", flush=True)
 
-        consecutive_failures = 0
-        for leader in leaders:
-            status, code = check_image_url(leader["photo_url"])
-            total_checked += 1
-
-            if status == "broken":
-                print(f"  BROKEN [{code}] leader '{leader['name']}': {leader['photo_url'][:80]}", flush=True)
-                broken_leaders.append(leader)
-                consecutive_failures = 0
-            elif status == "skip":
-                total_skipped += 1
-                consecutive_failures += 1
-                if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
-                    print(f"  ABORT: proxy appears down", flush=True)
-                    break
-            else:
-                consecutive_failures = 0
-
-            time.sleep(CHECK_SLEEP)
+        broken, _, checked, skipped, _ = check_batch(leaders, "photo_url", "name", label_type="leader")
+        broken_leaders.extend(broken)
+        total_checked += checked
+        total_skipped += skipped
 
     # ── Fix broken URLs (only definitive 404/410) ──
     fixed_articles = 0

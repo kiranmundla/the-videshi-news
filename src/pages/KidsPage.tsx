@@ -800,7 +800,7 @@ export default function KidsPage() {
         {/* ═══════ MAIN CATEGORY ═══════ */}
         <div className="mb-6">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Category</p>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
             {visibleTabs.map((tab) => (
               <FilterCard key={tab.key} label={tab.label} icon={tab.icon} size="md"
                 active={activeTab.key === tab.key} gradient={TAB_GRADIENTS[tab.key]} imgKey={tab.key}
@@ -813,7 +813,7 @@ export default function KidsPage() {
         {activeTab.subcategories.filter((sub) => !selectedAge || (subCounts[sub.key] ?? 0) > 0).length > 0 && (
           <div className="mb-4">
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">{activeTab.label}</p>
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
               <FilterCard label="All" icon="✨" size="sm" active={!activeSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("sub", null, ["ssub"])} />
@@ -832,7 +832,7 @@ export default function KidsPage() {
         {/* ═══════ SUB-SUBCATEGORY CARDS (e.g. Sports → Cricket/Tennis) ═══════ */}
         {activeSub?.subsubs && activeSub.subsubs.length > 0 && (
           <div className="mb-6">
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
               <FilterCard label="All" icon="🏅" size="xs" active={!activeSubSub}
                 gradient={DEFAULT_GRADIENT}
                 onClick={() => setParam("ssub", null)} />
