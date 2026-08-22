@@ -1,110 +1,128 @@
 [
   {
-    "slug": "air-taxis-delhi-master-plan-2047-first-mention",
-    "headline": "Air Taxis Enter Delhi's Long-Term Planning for the First Time as Master Plan 2047 Is Notified",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/air-taxis-delhi-master-plan-2047-first-mention.jpg"
-  },
-  {
-    "slug": "mount-kailash-sadhguru-spiritual-pilgrimage-focus",
-    "headline": "Why Spiritual Seekers Travel to Mount Kailash: Sadhguru's Journey Brings the Ancient Pilgrimage Into Focus",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mount-kailash-sadhguru-spiritual-pilgrimage-focus.jpg"
-  },
-  {
-    "slug": "ali-usman-five-wickets-pakistan-bowling-lapses-headingley",
-    "headline": "Ali Usman Takes Maiden Five-For but Rues Pakistan's Bowling and Fielding Lapses at Headingley",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ali-usman-five-wickets-pakistan-bowling-lapses-headingley.jpg"
-  },
-  {
-    "slug": "aisha-wahab-first-afghan-american-congress-california-special-election",
-    "headline": "Aisha Wahab Becomes First Afghan American in Congress After Winning California Special Election",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/aisha-wahab-first-afghan-american-congress-california-special-election.jpg"
-  },
-  {
-    "slug": "brooks-quickfire-91-puts-england-in-command-against-pakistan",
-    "headline": "Brook's Quickfire 91 Puts England in Command as Four Batters Hit Fifties Against Pakistan",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/brooks-quickfire-91-puts-england-in-command-against-pakistan.jpg"
-  },
-  {
-    "slug": "sowcar-janaki-hospitalized-chennai-icu",
-    "headline": "Veteran Actress Sowcar Janaki, 94, Hospitalized in Chennai; Undergoes ICU Treatment",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sowcar-janaki-hospitalized-chennai-icu.jpg"
-  },
-  {
-    "slug": "hong-kong-tiananmen-vigil-organizers-convicted-subversion",
-    "headline": "Hong Kong Court Convicts Tiananmen Vigil Organizers of Inciting Subversion",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hong-kong-tiananmen-vigil-organizers-convicted-subversion.jpg"
-  },
-  {
-    "slug": "us-employer-health-costs-set-breach-19000-per-worker-2027",
-    "headline": "U.S. Employer Health Costs Set to Breach $19,000 Per Worker as Fourth Year of Near-Double-Digit Increases Looms",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-employer-health-costs-set-breach-19000-per-worker-2027.jpg"
-  },
-  {
-    "slug": "manoj-bajpayee-mahatma-gandhi-sudhir-mishra-film",
-    "headline": "Manoj Bajpayee to Play Mahatma Gandhi in Sudhir Mishra's New Film",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/manoj-bajpayee-mahatma-gandhi-sudhir-mishra-film.jpg"
-  },
-  {
-    "slug": "fda-authorizes-vitestro-aletta-robot-blood-draw",
-    "headline": "FDA Authorizes First Robot for Autonomous Blood Draws, Clearing a Path for Clinical Deployment",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fda-authorizes-vitestro-aletta-robot-blood-draw.jpg"
-  },
-  {
-    "slug": "glp-1-hair-loss-risk-real-but-small-studies-confirm",
-    "headline": "GLP-1 Hair Loss Risk Is Real but Small, Three New Studies Confirm",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/glp-1-hair-loss-risk-real-but-small-studies-confirm.jpg"
-  },
-  {
-    "slug": "nvidia-denies-china-ai-chip-rollout-lpu",
-    "headline": "Nvidia Denies Report It Is Rolling Out China AI Chip by Year-End",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-denies-china-ai-chip-rollout-lpu.jpg"
-  },
-  {
-    "slug": "canada-expands-low-wage-foreign-workers-multi-site-employers",
-    "headline": "Canada Expands Low-Wage Foreign Worker Access for Multi-Site Employers Under New TFWP Rules",
+    "slug": "thanedar-demands-halt-ice-shock-glove-plan",
+    "headline": "Indian-American Congressman Thanedar Demands Trump Administration Halt ICE's $20 Million Shock-Glove Plan",
     "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-expands-low-wage-foreign-workers-multi-site-employers.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/thanedar-demands-halt-ice-shock-glove-plan.jpg"
   },
   {
-    "slug": "bnp-mirza-fakhrul-elected-bangladesh-president",
-    "headline": "BNP Veteran Mirza Fakhrul Islam Alamgir Elected as Bangladesh's 23rd President",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bnp-mirza-fakhrul-elected-bangladesh-president.jpg"
-  },
-  {
-    "slug": "indian-nationals-vessels-hijacked-pirates-yemen-somalia",
-    "headline": "22 Indian Nationals Aboard Two Vessels Hijacked by Pirates Off Yemen and Somalia",
+    "slug": "ruffalo-paramount-oracle-israeli-military-ties-merger",
+    "headline": "Mark Ruffalo Escalates Paramount Merger Fight, Links Ellisons to Oracle's Israeli Military Ties",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-nationals-vessels-hijacked-pirates-yemen-somalia.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ruffalo-paramount-oracle-israeli-military-ties-merger.jpg"
   },
   {
-    "slug": "alia-bhatt-brahmastra-2-ranbir-kapoor-double-role-dev",
-    "headline": "Alia Bhatt Locked for Extended Role in Brahmastra 2 as Ranbir Kapoor Prepares Double Duty as Shiva and Dev",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/alia-bhatt-brahmastra-2-ranbir-kapoor-double-role-dev.jpg"
-  },
-  {
-    "slug": "skoda-kylaq-sportline-launch-price-rs-11-32-lakh-india",
-    "headline": "Skoda Launches Kylaq Sportline in India at Rs 11.32 Lakh",
+    "slug": "fii-flows-historic-lows-jio-blackrock-contrarian-indian-equities",
+    "headline": "Foreign Investor Flows Near Historic Lows as Jio BlackRock Flags Contrarian Opportunity in Indian Equities",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/skoda-kylaq-sportline-launch-price-rs-11-32-lakh-india.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fii-flows-historic-lows-jio-blackrock-contrarian-indian-equities.jpg"
   },
   {
-    "slug": "huawei-non-folding-wide-screen-phone-september",
-    "headline": "Huawei's Non-Folding Wide-Screen Phone Is Coming in September With a 7,000mAh Battery",
+    "slug": "india-air-cargo-transshipment-expansion-london-copenhagen",
+    "headline": "India Expands Air Cargo Transshipment Network, Targets 80% Growth on Key Routes",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-air-cargo-transshipment-expansion-london-copenhagen.jpg"
+  },
+  {
+    "slug": "anthropic-revenue-65-billion-ipo-2-trillion-valuation",
+    "headline": "Anthropic's Revenue Hits $65 Billion Run Rate as IPO Could Reach $2 Trillion Valuation",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/huawei-non-folding-wide-screen-phone-september.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/anthropic-revenue-65-billion-ipo-2-trillion-valuation.jpg"
+  },
+  {
+    "slug": "usps-final-rule-restrict-mail-in-voting-court-orders",
+    "headline": "USPS Publishes Final Rule to Restrict Mail-In Voting Despite Court Orders Blocking It",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/usps-final-rule-restrict-mail-in-voting-court-orders.jpg"
+  },
+  {
+    "slug": "bengaluru-airport-udf-cut-arrival-fee-september",
+    "headline": "Bengaluru Airport Slashes Departure Fees but Introduces Arrival Charges From September 1",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bengaluru-airport-udf-cut-arrival-fee-september.jpg"
+  },
+  {
+    "slug": "govinda-son-yashvardhan-ahuja-bollywood-debut-hero-ki-horrorine",
+    "headline": "Govinda's Son Yashvardhan Ahuja Locks Bollywood Debut With Entire Family On Board",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/govinda-son-yashvardhan-ahuja-bollywood-debut-hero-ki-horrorine.jpg"
+  },
+  {
+    "slug": "mit-green-ammonia-catalyst-computational-method",
+    "headline": "MIT Researchers Develop New Method to Accelerate Search for Green Ammonia Catalysts",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mit-green-ammonia-catalyst-computational-method.jpg"
+  },
+  {
+    "slug": "bhutia-boycott-india-brazil-friendly-pitch-concerns",
+    "headline": "Bhaichung Bhutia Urges Fans to Boycott India-Brazil Friendly as Pitch Concerns Mount",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bhutia-boycott-india-brazil-friendly-pitch-concerns.jpg"
+  },
+  {
+    "slug": "conan-obrien-must-go-season-3-india-bollywood-premiere",
+    "headline": "Conan O'Brien Goes Full Bollywood in Season 3 Premiere Set in India",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/conan-obrien-must-go-season-3-india-bollywood-premiere.jpg"
+  },
+  {
+    "slug": "judge-strikes-down-trump-75-country-visa-ban",
+    "headline": "Federal Judge Strikes Down Trump's 75-Country Immigrant Visa Ban as 'Patently Unlawful'",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/judge-strikes-down-trump-75-country-visa-ban.jpg"
+  },
+  {
+    "slug": "isl-2026-27-thirteen-teams-relegation-freeze-diamond-harbour",
+    "headline": "ISL 2026-27 to Proceed With 13 Teams as AIFF Mulls One-Season Relegation Freeze",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/isl-2026-27-thirteen-teams-relegation-freeze-diamond-harbour.jpg"
+  },
+  {
+    "slug": "canada-us-trade-talks-collapse-50-percent-tariffs",
+    "headline": "Canada-U.S. Trade Talks Collapse as 50% Tariffs Lock In on $20 Billion in Goods",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-us-trade-talks-collapse-50-percent-tariffs.jpg"
+  },
+  {
+    "slug": "india-1-2-billion-incentive-construction-equipment-manufacturing",
+    "headline": "India Plans $1.2 Billion Incentive to Build Construction Equipment and Cut China Dependence",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-1-2-billion-incentive-construction-equipment-manufacturing.jpg"
+  },
+  {
+    "slug": "nvidia-nooa-framework-ai-harness-performance-benchmarks",
+    "headline": "Nvidia's NOOA Framework Shows the AI Harness, Not the Model, Is What Drives Performance",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nvidia-nooa-framework-ai-harness-performance-benchmarks.jpg"
+  },
+  {
+    "slug": "india-29-fdi-investments-revised-land-border-rules",
+    "headline": "India Reports 29 FDI Investments Worth $511 Million Under Revised Land-Border Rules",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-29-fdi-investments-revised-land-border-rules.jpg"
+  },
+  {
+    "slug": "modi-et-world-leaders-forum-2026-reform-arsenal-india-growth",
+    "headline": "Modi Pledges 'New Arsenal of Reforms' at ET World Leaders Forum as India Eyes 20% of Global Growth",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/modi-et-world-leaders-forum-2026-reform-arsenal-india-growth.jpg"
+  },
+  {
+    "slug": "california-first-diwali-state-holiday-ab268-november-2026",
+    "headline": "California Prepares to Celebrate Its First Diwali as an Official State Holiday",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/california-first-diwali-state-holiday-ab268-november-2026.jpg"
+  },
+  {
+    "slug": "colorado-river-water-cuts-arizona-california-nevada-2026",
+    "headline": "Federal Plan Forces Deep Water Cuts on Arizona, California, and Nevada as Colorado River Reservoirs Hit Record Lows",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/colorado-river-water-cuts-arizona-california-nevada-2026.jpg"
+  },
+  {
+    "slug": "harvard-urges-international-students-return-september-15-visa-rule",
+    "headline": "Harvard Urges International Students to Return Before September 15 as New Visa Rule Takes Effect",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/harvard-urges-international-students-return-september-15-visa-rule.jpg"
   }
 ]
