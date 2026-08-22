@@ -1,0 +1,57 @@
+[
+  {
+    "id": "626addcd-f2c7-4dff-adbf-956e7edc9bc3",
+    "headline": "Awarapan 2 Crosses Rs 113 Crore in First Week, Becomes Emraan Hashmi's Biggest S",
+    "slug": "awarapan-2-crosses-113-crore-first-week-emraan-hashmi-biggest-solo-hit",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs regarding Awarapan 2. This could involve quotes from social media or comments from Indian communities abroad discussing the film's impact or their viewing experiences.",
+        "Provide context about the significance of Emraan Hashmi's success in the diaspora market. For example, mention how his films have been received by Indian audiences overseas or any trends in NRI viewership that may have contributed to the film's success.",
+        "Include a brief comparison of Awarapan 2's performance with other recent Bollywood films that have resonated with the NRI audience, highlighting any unique marketing strategies or themes that may appeal to this demographic.",
+        "Add a section that discusses how the film's themes resonate with the Indian diaspora, particularly in relation to cultural identity or nostalgia, which could enhance the article's relevance to NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a prominent NRI influencer or film critic discussing Awarapan 2, which could provide a perspective on its reception among the diaspora."
+      ]
+    }
+  },
+  {
+    "id": "333556bb-ec3e-42a9-8a76-5980faad24ca",
+    "headline": "Sony Bags TV Rights for India-Afghanistan T20I Series as Ganesh Chaturthi Schedu",
+    "slug": "sony-bags-tv-rights-india-afghanistan-t20i-series-ganesh-chaturthi-scheduling",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian expatriates or cricket fans living abroad regarding the significance of this series and the scheduling around Ganesh Chaturthi. This could provide a personal touch and highlight how the festival influences Indian communities globally.",
+        "Provide additional context on the historical significance of Afghanistan's cricketing relationship with India, especially for the diaspora, which could enhance understanding of why this series is particularly meaningful for Indian fans abroad.",
+        "Clarify the implications of the scheduling conflict with the proposed white-ball tour of Bangladesh, particularly how it affects Indian fans in the diaspora who may have planned to follow the team's international engagements.",
+        "Include a brief overview of how the rights acquisition by Sony impacts viewership options for NRIs, especially in regions where access to Indian sports broadcasts may vary."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Afghanistan Cricket Board confirming the series schedule, as it would provide authenticity and direct information to the readers."
+      ]
+    }
+  },
+  {
+    "id": "ea6592d1-663f-467f-8763-2f918282b07c",
+    "headline": "Indian Shares Post Weekly Losses as Oil Surge and Rising Bond Yields Weigh on Se",
+    "slug": "indian-shares-post-weekly-losses-oil-surge-bond-yields-weigh-sentiment",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how fluctuations in the Indian stock market impact NRIs' investments and remittances back to India, perhaps by featuring quotes from NRI investors or financial experts who specialize in the diaspora market.",
+        "Provide context on how the rising oil prices and bond yields specifically affect NRIs, such as potential impacts on their real estate investments in India or the value of remittances, to make the article more relevant to the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial expert or institution discussing the impact of rising oil prices on Indian markets, which would provide real-time context and enhance credibility."
+      ]
+    }
+  }
+]
