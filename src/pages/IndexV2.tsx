@@ -27,6 +27,7 @@ import ThePulse from "@/components/homepage/ThePulse";
 import FridayLaughs from "@/components/homepage/FridayLaughs";
 import DevelopingStories from "@/components/homepage/DevelopingStories";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
+import InterviewSpotlight from "@/components/homepage/InterviewSpotlight";
 import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
@@ -466,6 +467,10 @@ export default function IndexV2() {
       nriWorld.find((a) => a.excerpt && a.excerpt.length > 80) ??
       null;
 
+    // Interviews: pull from all pools by article_type
+    const allPools = [...immigration, ...technology, ...entertainment, ...news, ...markets, ...nriWorld, ...sports, ...lifestyle, ...food, ...travel];
+    const interviews = allPools.filter((a: any) => a.article_type === "interview");
+
     return {
       trending,
       heroSide,
@@ -480,6 +485,7 @@ export default function IndexV2() {
       food,
       travel,
       voicesTeaser,
+      interviews,
     };
   }, [featured, sections]);
 
@@ -606,6 +612,17 @@ export default function IndexV2() {
         {/* Just In — purely chronological, newest articles across all categories */}
         <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />
 
+        {/* Exclusive Interview — editorial spotlight */}
+        <InterviewSpotlight articles={layout.interviews} />
+
+        {/* Events Near You — surfaced early for platform visibility */}
+        <EventsStrip
+          events={events}
+          userLat={userLocation?.latitude}
+          userLng={userLocation?.longitude}
+          userCity={userLocation?.city}
+        />
+
         {/* Daily Wisdom — picture-framed spiritual quote */}
         <DailyWisdomCard />
 
@@ -626,14 +643,6 @@ export default function IndexV2() {
 
         {/* 7. Immigration Strip */}
         <ImmigrationStrip articles={layout.immigration} />
-
-        {/* Events Near You — surfaced early for platform visibility */}
-        <EventsStrip
-          events={events}
-          userLat={userLocation?.latitude}
-          userLng={userLocation?.longitude}
-          userCity={userLocation?.city}
-        />
 
         {/* 8. Newsletter CTA */}
         <NewsletterCTA />
