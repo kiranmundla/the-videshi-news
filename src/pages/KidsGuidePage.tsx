@@ -92,7 +92,7 @@ export default function KidsGuidePage() {
         <div className="max-w-3xl mx-auto px-4 py-20 text-center">
           <h1 className="text-2xl font-serif font-bold text-foreground mb-4">Guide Not Found</h1>
           <p className="text-muted-foreground mb-6">We couldn't find the guide you're looking for.</p>
-          <Link to="/kids" className="text-[#D4A843] hover:underline">← Back to Kids & Education</Link>
+          <Link to="/kids" className="text-[#D4A843] hover:underline">← Back to Learn</Link>
         </div>
         <SiteFooter />
       </div>
@@ -121,7 +121,7 @@ export default function KidsGuidePage() {
       {/* Breadcrumb */}
       <div className="max-w-3xl mx-auto px-4 pt-6 pb-2">
         <nav className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Link to="/kids" className="hover:text-[#D4A843] transition-colors">Kids & Education</Link>
+          <Link to="/kids" className="hover:text-[#D4A843] transition-colors">Learn</Link>
           <span>›</span>
           <span className="text-foreground">Guide</span>
         </nav>
@@ -183,7 +183,7 @@ export default function KidsGuidePage() {
             to="/kids"
             className="inline-flex items-center gap-2 text-sm text-[#D4A843] hover:underline mb-8"
           >
-            ← Back to Kids & Education
+            ← Back to Learn
           </Link>
 
           {otherGuides.length > 0 && (

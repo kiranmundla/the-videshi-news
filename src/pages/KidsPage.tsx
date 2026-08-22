@@ -738,7 +738,7 @@ export default function KidsPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Kids &amp; Education — The Videshi</title>
+        <title>Learn — The Videshi</title>
         <meta name="description" content="Activities, classes, programs & competitions for K-12 students. Find what's right for your child." />
         <link rel="canonical" href="https://www.thevideshi.com/kids" />
       </Helmet>
@@ -750,7 +750,7 @@ export default function KidsPage() {
 
         {/* ═══════ HEADER ═══════ */}
         <div className="mb-8">
-          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-2">🎓 Kids &amp; Education</h1>
+          <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-2">🎓 Learn</h1>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
             Find the right activities, classes &amp; programs for your child
           </p>

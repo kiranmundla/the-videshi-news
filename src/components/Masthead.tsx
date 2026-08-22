@@ -47,7 +47,7 @@ const HUB_NAV = [
     icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>,
   },
   {
-    slug: "kids", label: "Kids", path: "/kids",
+    slug: "kids", label: "Learn", path: "/kids",
     icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>,
   },
 ];
@@ -58,7 +58,7 @@ const NAV_SECTIONS = [
   { slug: "directory", label: "Directory", path: "/directory" },
   { slug: "classifieds", label: "Classifieds", path: "/classifieds" },
   { slug: "stories", label: "Voices", path: "/stories" },
-  { slug: "kids", label: "Kids", path: "/kids" },
+  { slug: "kids", label: "Learn", path: "/kids" },
 ];
 
 /* CTA links in Row 2 (right-aligned) */

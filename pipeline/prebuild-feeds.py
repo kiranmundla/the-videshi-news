@@ -336,7 +336,7 @@ def fetch_editorial(url: str, key: str) -> dict | None:
         f"{url}/rest/v1/p2_articles",
         headers=headers,
         params={
-            "select": P2_COLS,
+            "select": P2_COLS_NO_BODY,
             "status": "eq.published",
             "is_editorial": "eq.true",
             "order": "published_at.desc",
@@ -367,13 +367,15 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
                                             select="id",
                                             filters={"status": "in.(emerging,active,cooling)"})
             if active_storylines:
+                # Batch fetch: get ALL storyline_articles in one query instead of N+1
                 sl_ids = [s["id"] for s in active_storylines]
-                for sl_id in sl_ids:
-                    links = fetch_table(url, key, "storyline_articles",
+                # PostgREST in() filter accepts comma-separated values in parens
+                id_list = ",".join(sl_ids)
+                all_links = fetch_table(url, key, "storyline_articles",
                                         select="article_id",
-                                        filters={"storyline_id": f"eq.{sl_id}"})
-                    for link in links:
-                        storyline_article_ids.add(link["article_id"])
+                                        filters={"storyline_id": f"in.({id_list})"})
+                for link in all_links:
+                    storyline_article_ids.add(link["article_id"])
             if storyline_article_ids:
                 print(f"  📰 Excluding {len(storyline_article_ids)} developing-story articles from featured/hero")
         except Exception as e:

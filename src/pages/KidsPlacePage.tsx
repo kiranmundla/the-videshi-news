@@ -114,7 +114,7 @@ export default function KidsPlacePage() {
           <h1 className="font-serif text-2xl text-foreground mb-3">Place Not Found</h1>
           <p className="text-muted-foreground mb-8">We couldn't find the place you're looking for.</p>
           <Link to="/kids" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white transition-colors" style={{ backgroundColor: "#A32D2F" }}>
-            ← Back to Kids &amp; Education
+            ← Back to Learn
           </Link>
         </main>
         <SiteFooter />
@@ -137,7 +137,7 @@ export default function KidsPlacePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>{place.name} — Kids &amp; Education — The Videshi</title>
+        <title>{place.name} — Learn — The Videshi</title>
         <meta name="description" content={place.description || `${place.name} — ${place.category} in ${place.city}, ${place.state}`} />
         <link rel="canonical" href={`https://www.thevideshi.com/kids/places/${slug}`} />
       </Helmet>
@@ -148,7 +148,7 @@ export default function KidsPlacePage() {
       <main className="container flex-1 pt-8 md:pt-12 pb-20" style={{ maxWidth: 900 }}>
         {/* Back link */}
         <Link to="/kids" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group">
-          <span className="group-hover:-translate-x-0.5 transition-transform">←</span> Kids &amp; Education
+          <span className="group-hover:-translate-x-0.5 transition-transform">←</span> Learn
         </Link>
 
         {/* ── Header ────────────────────────────────────── */}

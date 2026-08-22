@@ -209,7 +209,7 @@ export default function KidsProgramPage() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white transition-colors"
             style={{ backgroundColor: "#A32D2F" }}
           >
-            ← Back to Kids &amp; Education
+            ← Back to Learn
           </Link>
         </main>
         <SiteFooter />
@@ -224,7 +224,7 @@ export default function KidsProgramPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>{program.name} — Kids &amp; Education — The Videshi</title>
+        <title>{program.name} — Learn — The Videshi</title>
         <meta
           name="description"
           content={
@@ -253,7 +253,7 @@ export default function KidsProgramPage() {
           <span className="group-hover:-translate-x-0.5 transition-transform">
             ←
           </span>{" "}
-          Kids &amp; Education
+          Learn
         </Link>
 
         {/* ── Header ────────────────────────────────────── */}

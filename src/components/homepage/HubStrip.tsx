@@ -63,7 +63,7 @@ const HUB_TILES = [
     ),
   },
   {
-    label: "Kids",
+    label: "Learn",
     to: "/kids",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
