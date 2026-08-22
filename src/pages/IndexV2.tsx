@@ -446,8 +446,24 @@ export default function IndexV2() {
     // Markets & Finance
     const markets = (sections["markets-finance"] ?? []).filter((a) => !shownIds.has(a.id));
 
-    // NRI World
-    const nriWorld = (sections["nri-world"] ?? []).filter((a) => !shownIds.has(a.id));
+    // Interviews: extract from all sections BEFORE building category pools
+    const allSectionArticles = [
+      ...(sections["nri-world"] ?? []),
+      ...(sections.news ?? []),
+      ...(sections.immigration ?? []),
+      ...(sections["markets-finance"] ?? []),
+      ...(sections.sports ?? []),
+      ...(sections.technology ?? []),
+      ...(sections.entertainment ?? []),
+      ...(sections["lifestyle-health"] ?? []),
+      ...(sections.food ?? []),
+      ...(sections.travel ?? []),
+    ];
+    const interviews = allSectionArticles.filter((a: any) => a.article_type === "interview");
+    const interviewIds = new Set(interviews.map((a) => a.id));
+
+    // NRI World (exclude interviews — they get their own section)
+    const nriWorld = (sections["nri-world"] ?? []).filter((a) => !shownIds.has(a.id) && !interviewIds.has(a.id));
 
     // Sports
     const sports = (sections.sports ?? []).filter((a) => !shownIds.has(a.id));
@@ -466,10 +482,6 @@ export default function IndexV2() {
       immigration.find((a) => a.excerpt && a.excerpt.length > 80) ??
       nriWorld.find((a) => a.excerpt && a.excerpt.length > 80) ??
       null;
-
-    // Interviews: pull from all pools by article_type
-    const allPools = [...immigration, ...technology, ...entertainment, ...news, ...markets, ...nriWorld, ...sports, ...lifestyle, ...food, ...travel];
-    const interviews = allPools.filter((a: any) => a.article_type === "interview");
 
     return {
       trending,
