@@ -37,6 +37,7 @@ export type Article = {
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
   reactions?: Record<string, number> | null;
+  article_type?: string | null;
 };
 
 type P2Row = {
@@ -235,7 +236,7 @@ function mapRow(row: P2Row): Article {
     status: row.status === "published" ? "published" : "draft",
     sources: parseSources(row.sources),
     nri_angle: row.diaspora_angle ?? undefined,
-    article_type: "news",
+    article_type: (row.article_type as Article["article_type"]) ?? "news",
     tags: Array.isArray(row.tags) ? row.tags : undefined,
     author: formatAuthorFromSources(row.sources),
     featured_score: 0,
