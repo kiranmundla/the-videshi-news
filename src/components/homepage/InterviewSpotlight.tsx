@@ -50,7 +50,7 @@ export default function InterviewSpotlight({ articles }: Props) {
 
         {/* Featured interview card */}
         <Link
-          to={`/article/${lead.slug}`}
+          to={`/articles/${lead.slug}`}
           className="group block overflow-hidden rounded-xl border transition-shadow hover:shadow-lg"
           style={{
             borderColor: "hsl(var(--rule))",
@@ -123,7 +123,7 @@ export default function InterviewSpotlight({ articles }: Props) {
             {articles.slice(1, 3).map((a) => (
               <Link
                 key={a.id}
-                to={`/article/${a.slug}`}
+                to={`/articles/${a.slug}`}
                 className="group flex gap-4 p-4 rounded-lg border bg-card hover:shadow-md transition-shadow"
                 style={{ borderColor: "hsl(var(--rule))" }}
               >
