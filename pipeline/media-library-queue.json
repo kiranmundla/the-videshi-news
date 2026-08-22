@@ -182,26 +182,6 @@
    "priority": 6
   },
   {
-   "subject": "quantum computing",
-   "subject_type": "thing",
-   "tags": [
-    "quantum computing"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
-   "priority": 2
-  },
-  {
-   "subject": "post quantum cryptography",
-   "subject_type": "thing",
-   "tags": [
-    "post quantum cryptography"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "da63c5ad-4b01-4be9-81e2-3f042d1c9626",
-   "priority": 2
-  },
-  {
    "subject": "pravasi rishta",
    "subject_type": "thing",
    "tags": [
@@ -209,66 +189,6 @@
    ],
    "first_seen": "2026-06-23T10:29:22Z",
    "article_id": "aa7c0312-efca-4db8-9bf7-9ef3eabccf71",
-   "priority": 2
-  },
-  {
-   "subject": "fortune 500",
-   "subject_type": "thing",
-   "tags": [
-    "fortune 500"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "77daa187-59c1-4101-9301-7c29a7aab24f",
-   "priority": 2
-  },
-  {
-   "subject": "air new zealand",
-   "subject_type": "thing",
-   "tags": [
-    "air new zealand"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "51903924-0ac4-4280-9c55-fb3be50dbd44",
-   "priority": 2
-  },
-  {
-   "subject": "permits",
-   "subject_type": "thing",
-   "tags": [
-    "permits"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "b94a4ac6-7291-431c-bc5d-242be9b745b1",
-   "priority": 2
-  },
-  {
-   "subject": "air canada",
-   "subject_type": "thing",
-   "tags": [
-    "air canada"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "5a00798c-3b34-4792-94c7-0990f85468c2",
-   "priority": 2
-  },
-  {
-   "subject": "fake degrees",
-   "subject_type": "thing",
-   "tags": [
-    "fake degrees"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "724bfdae-0721-4e43-8ed4-1b15021edbcc",
-   "priority": 2
-  },
-  {
-   "subject": "zoho",
-   "subject_type": "thing",
-   "tags": [
-    "zoho"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
    "priority": 2
   },
   {
@@ -292,66 +212,6 @@
    "priority": 2
   },
   {
-   "subject": "atmanirbhar",
-   "subject_type": "thing",
-   "tags": [
-    "atmanirbhar"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
-   "priority": 2
-  },
-  {
-   "subject": "eta",
-   "subject_type": "thing",
-   "tags": [
-    "eta"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "478765d1-5d05-4b35-a1c5-e367ba172890",
-   "priority": 2
-  },
-  {
-   "subject": "upscale ai",
-   "subject_type": "thing",
-   "tags": [
-    "upscale ai"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
-   "priority": 2
-  },
-  {
-   "subject": "indian american founders",
-   "subject_type": "thing",
-   "tags": [
-    "indian american founders"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "0a9f7d10-26bd-459c-ad84-fa0d1f05d6e8",
-   "priority": 2
-  },
-  {
-   "subject": "vlsi",
-   "subject_type": "thing",
-   "tags": [
-    "vlsi"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "61f8eaa4-924a-46a4-9d48-e26a476944e7",
-   "priority": 2
-  },
-  {
-   "subject": "ashwini vaishnaw",
-   "subject_type": "thing",
-   "tags": [
-    "ashwini vaishnaw"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "61f8eaa4-924a-46a4-9d48-e26a476944e7",
-   "priority": 2
-  },
-  {
    "subject": "h4 ead",
    "subject_type": "thing",
    "tags": [
@@ -360,26 +220,6 @@
    "first_seen": "2026-06-24T10:29:22Z",
    "article_id": "0553f97e-c001-4a93-97ea-fa4d351e27ec",
    "priority": 6
-  },
-  {
-   "subject": "i 907",
-   "subject_type": "thing",
-   "tags": [
-    "i 907"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "9090730a-1b38-4e0b-b5b4-046af61cfb17",
-   "priority": 2
-  },
-  {
-   "subject": "azure",
-   "subject_type": "thing",
-   "tags": [
-    "azure"
-   ],
-   "first_seen": "2026-06-24T10:29:22Z",
-   "article_id": "0a87a59c-d825-419b-95fb-e8ff2ef8b3a8",
-   "priority": 2
   },
   {
    "subject": "india fab",
