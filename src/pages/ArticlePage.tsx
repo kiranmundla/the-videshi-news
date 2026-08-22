@@ -276,6 +276,23 @@ function MarkdownWithEmbeds({
   }
   flush();
 
+  // Reposition YouTube embeds stuck at the very end of the article.
+  // If the last chunk is a YouTube embed and there are 4+ text chunks before it,
+  // move it to after the 3rd text chunk for better mid-article placement.
+  if (chunks.length >= 4) {
+    const last = chunks[chunks.length - 1];
+    if (last?.kind === "youtube") {
+      const textIdxs = chunks.slice(0, -1)
+        .map((c, i) => (c.kind === "md" || c.kind === "html") ? i : -1)
+        .filter(i => i >= 0);
+      if (textIdxs.length >= 3) {
+        const insertAfter = textIdxs[Math.min(2, Math.floor(textIdxs.length * 0.35))];
+        chunks.splice(chunks.length - 1, 1); // remove from end
+        chunks.splice(insertAfter + 1, 0, last); // insert mid-article
+      }
+    }
+  }
+
   const norm = (u?: string) => (u ?? "").replace(/&amp;/g, "&").split("?")[0];
 
   const mdComponents = {
