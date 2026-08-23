@@ -217,6 +217,40 @@ async function renderCategory(category: string): Promise<string | null> {
   });
 }
 
+// Try to find a published article by stripping date suffixes or hash tails
+// from stale slugs that Google still crawls. Returns the published slug or null.
+async function tryArticleSlugFallback(slug: string): Promise<string | null> {
+  // Pattern 1: slug ends with -YYYYMMDD (e.g. -20260614)
+  const dateMatch = slug.match(/^(.+)-(\d{8})$/);
+  if (dateMatch) {
+    const base = dateMatch[1];
+    const rows = await sbFetch(
+      "p2_articles", "slug",
+      `slug=eq.${encodeURIComponent(base)}&status=eq.published`, 1
+    );
+    if (rows.length) return rows[0].slug;
+    // Also try fuzzy: published article whose slug starts with the base
+    const fuzzy = await sbFetch(
+      "p2_articles", "slug",
+      `slug=like.${encodeURIComponent(base)}*&status=eq.published&order=published_at.desc`, 1
+    );
+    if (fuzzy.length) return fuzzy[0].slug;
+  }
+
+  // Pattern 2: slug ends with a short random hash (e.g. -mp0h0f5z)
+  const hashMatch = slug.match(/^(.+)-([a-z0-9]{6,10})$/);
+  if (hashMatch) {
+    const base = hashMatch[1];
+    const rows = await sbFetch(
+      "p2_articles", "slug",
+      `slug=like.${encodeURIComponent(base)}*&status=eq.published&order=published_at.desc`, 1
+    );
+    if (rows.length) return rows[0].slug;
+  }
+
+  return null;
+}
+
 async function renderArticle(slug: string): Promise<string | null> {
   const rows = await sbFetch(
     "p2_articles",
@@ -652,6 +686,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } else if (path.startsWith("/events/")) {
       const slug = path.replace("/events/", "");
       html = await renderEventDetail(slug);
+      // Past/deleted events → 410 Gone (tells Google to permanently deindex)
+      if (!html) {
+        res.status(410).send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Event No Longer Available — The Videshi</title>
+<meta name="robots" content="noindex"></head>
+<body><h1>This event is no longer available</h1>
+<p>This event has passed or been removed. <a href="${SITE}/events">Browse upcoming events</a></p></body></html>`);
+        return;
+      }
     } else if (path === "/directory") {
       html = await renderDirectoryIndex();
     } else if (path.startsWith("/directory/submit")) {
@@ -659,6 +702,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } else if (path.startsWith("/directory/")) {
       const slug = path.replace("/directory/", "");
       html = await renderDirectoryDetail(slug);
+      // Removed directory listings → 410 Gone
+      if (!html) {
+        res.status(410).send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Listing No Longer Available — The Videshi</title>
+<meta name="robots" content="noindex"></head>
+<body><h1>This listing is no longer available</h1>
+<p>This directory listing has been removed. <a href="${SITE}/directory">Browse the directory</a></p></body></html>`);
+        return;
+      }
     } else if (path === "/classifieds") {
       html = await renderClassifiedsIndex();
     } else if (path.startsWith("/classifieds/submit")) {
@@ -668,6 +720,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } else if (path.startsWith("/classifieds/")) {
       const slug = path.replace("/classifieds/", "");
       html = await renderClassifiedDetail(slug);
+      // Expired/deleted classifieds → 410 Gone
+      if (!html) {
+        res.status(410).send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Listing No Longer Available — The Videshi</title>
+<meta name="robots" content="noindex"></head>
+<body><h1>This classified listing has expired</h1>
+<p>This listing is no longer available. <a href="${SITE}/classifieds">Browse classifieds</a></p></body></html>`);
+        return;
+      }
     } else if (path === "/cars") {
       html = await renderCarsIndex();
     } else if (path.startsWith("/cars/guide/") || path === "/cars/deals" || path === "/cars/compare") {
@@ -696,6 +757,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } else if (path.startsWith("/articles/")) {
       const slug = path.replace("/articles/", "");
       html = await renderArticle(slug);
+      // If article not found, try slug fallback (date suffix / hash tail)
+      if (!html) {
+        const redirect = await tryArticleSlugFallback(slug);
+        if (redirect) {
+          res.setHeader("Location", `${SITE}/articles/${redirect}`);
+          res.status(301).send(`Moved to /articles/${redirect}`);
+          return;
+        }
+        // Check if article exists but isn't published (draft/archived/rejected/killed)
+        // → 410 Gone to tell Google to deindex
+        const exists = await sbFetch(
+          "p2_articles", "slug,status",
+          `slug=eq.${encodeURIComponent(slug)}`, 1
+        );
+        if (exists.length) {
+          res.status(410).send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Article No Longer Available — The Videshi</title>
+<meta name="robots" content="noindex"></head>
+<body><h1>This article is no longer available</h1>
+<p><a href="${SITE}">Back to homepage</a></p></body></html>`);
+          return;
+        }
+      }
     } else if (["/about", "/contact", "/travel", "/immigration", "/stories"].includes(path)) {
       html = renderStaticPage(path);
     } else if (path.startsWith("/immigration/")) {

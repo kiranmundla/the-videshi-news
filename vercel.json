@@ -64,6 +64,16 @@
       "source": "/category/:slug",
       "destination": "/:slug",
       "permanent": true
+    },
+    {
+      "source": "/learn/:path*",
+      "destination": "/kids/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/article/:slug",
+      "destination": "/articles/:slug",
+      "permanent": true
     }
   ],
   "rewrites": [
