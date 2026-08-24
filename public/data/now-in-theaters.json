@@ -1,482 +1,194 @@
 {
-  "generated_at": "2026-08-20T13:00:00Z",
-  "week_of": "Aug 21 – Aug 27, 2026",
-  "editorial_intro": "Spider-Man: Brand New Day has crossed $2 billion worldwide — only the eighth film in history to do so — and $804M domestic, on pace to challenge The Force Awakens' all-time domestic record. The Odyssey sailed past $512M domestic, now Christopher Nolan's highest-grossing film ever. Bollywood's Independence Day clash delivered: Emraan Hashmi's Awarapan 2 exploded to ₹160 Cr worldwide in its first week, while Sunny Deol's Batwara 1947 earned ₹45 Cr. Down south, Suriya's Vishwanath & Sons stormed to ₹135 Cr worldwide in six days. This week brings Insidious: Out of the Further (Aug 21), Jason Statham's high-seas actioner Mutiny, and A24's Anthony Bourdain biopic Tony expanding wide. Coming up: Yash's Toxic arrives Aug 26.",
+  "generated_at": "2026-08-24T13:00:00Z",
+  "week_of": "Aug 25 – Aug 31, 2026",
+  "editorial_intro": "Spider-Man: Brand New Day sits at roughly $856M domestic — within striking distance of The Force Awakens' all-time record of $936.7M — and has crossed $2.1B worldwide, only the eighth film in history to join the $2B club. The Odyssey glides past $540M domestic and $1.4B worldwide, officially Christopher Nolan's biggest film ever. This weekend, Insidious: Out of the Further opened at #2 with ~$25M on an $18M budget — the franchise's formula still prints money. In Bollywood, Awarapan 2 has surged past ₹189 Cr worldwide, making it Emraan Hashmi's biggest solo hit by a mile. Suriya's Vishwanath & Sons crossed ₹150 Cr worldwide in just eight days. Batwara 1947 reached ₹52 Cr but is struggling against its massive budget. A24's Bourdain biopic Tony (95% RT) and Mubi's Teenage Sex and Death at Camp Miasma (95% RT) are the indie darlings of the month. Coming this week: Yash's long-awaited Toxic arrives Aug 26.",
   "movies": [
     {
       "title": "Spider-Man: Brand New Day",
       "slug": "spider-man-brand-new-day",
       "genre": "Superhero, Action",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Spider-Man_Brand_New_Day_poster.jpg",
+      "poster_url": "",
       "rating": "90% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-07-31",
       "status": "now_playing",
-      "cast": [
-        "Tom Holland",
-        "Zendaya",
-        "Jacob Batalon",
-        "Jon Bernthal",
-        "Mark Ruffalo",
-        "Sadie Sink"
-      ],
+      "cast": ["Tom Holland", "Zendaya", "Jacob Batalon", "Jon Bernthal", "Mark Ruffalo", "Sadie Sink"],
       "director": "Destin Daniel Cretton",
-      "why_watch": "$804M domestic and over $2B worldwide — only the eighth film ever to cross that mark, and the second-fastest to get there behind Endgame. Topped the box office for three consecutive weekends. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from memory. 90% critics, 98% audience. Still the biggest movie on the planet by a mile.",
+      "why_watch": "Only the eighth film in history to cross $2B worldwide, and it got there faster than everything except Endgame. $856M domestic and climbing — it's genuinely chasing The Force Awakens' all-time record. Tom Holland and Zendaya's fourth MCU Spider-Man picks up years after No Way Home erased Peter Parker from memory. 90% critics, 98% audience. Still the biggest movie on the planet by a wide margin.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=62bIsvRcPv0",
-      "cast_details": [
-        {
-          "name": "Tom Holland",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/TomHolland-byPhilipRomano.jpg/300px-TomHolland-byPhilipRomano.jpg"
-        },
-        {
-          "name": "Zendaya",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Zendaya-byPhilipRomano.jpg/300px-Zendaya-byPhilipRomano.jpg"
-        },
-        {
-          "name": "Jacob Batalon",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg/300px-Jacob_Batalon_%2828035642754%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "Jon Bernthal",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/JonBernthal-byPhilipRomano2.jpg/300px-JonBernthal-byPhilipRomano2.jpg"
-        },
-        {
-          "name": "Mark Ruffalo",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Mark_Ruffalo_%2836201774756%29_%28cropped%29.jpg/300px-Mark_Ruffalo_%2836201774756%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "Sadie Sink",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Sadie_Sink_%2843914734441%29.jpg/300px-Sadie_Sink_%2843914734441%29.jpg"
-        }
-      ]
+      "language": "English"
     },
     {
       "title": "The Odyssey",
       "slug": "the-odyssey-nolan",
       "genre": "Epic, Action, Drama",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fragment_Odyssee_2245_2.jpg/500px-Fragment_Odyssee_2245_2.jpg",
+      "poster_url": "",
       "rating": "94% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-07-17",
       "status": "now_playing",
-      "cast": [
-        "Matt Damon",
-        "Tom Holland",
-        "Anne Hathaway",
-        "Robert Pattinson",
-        "Zendaya",
-        "Charlize Theron",
-        "Lupita Nyong'o"
-      ],
+      "cast": ["Matt Damon", "Tom Holland", "Anne Hathaway", "Robert Pattinson", "Zendaya", "Charlize Theron", "Lupita Nyong'o"],
       "director": "Christopher Nolan",
-      "why_watch": "$513M domestic — now Christopher Nolan's highest-grossing film ever, sitting at No. 23 on the all-time domestic chart, just three spots below The Dark Knight. Over $1.4B worldwide. ₹177 Cr India net. IMAX's best-selling release of all time. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
+      "why_watch": "$540M domestic and over $1.4B worldwide — now Christopher Nolan's highest-grossing film ever, surpassing The Dark Knight Rises. Shot entirely with IMAX 70mm cameras, a first in cinema history. IMAX's best-selling release of all time, with some 70mm screenings sold out through September. Matt Damon's Odysseus is getting serious Oscar buzz. 94% critics, 97% audience. If you haven't seen it in IMAX yet, this is the movie that format was built for.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=f_bKjZeJBBI",
-      "cast_details": [
-        {
-          "name": "Matt Damon",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/MattDamon-byPhilipRomano2.jpg/300px-MattDamon-byPhilipRomano2.jpg"
-        },
-        {
-          "name": "Tom Holland",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/TomHolland-byPhilipRomano.jpg/300px-TomHolland-byPhilipRomano.jpg"
-        },
-        {
-          "name": "Anne Hathaway",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
-        },
-        {
-          "name": "Robert Pattinson",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Robert_Pattinson_at_Berlinale_2025.jpg/300px-Robert_Pattinson_at_Berlinale_2025.jpg"
-        },
-        {
-          "name": "Zendaya",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Zendaya-byPhilipRomano.jpg/300px-Zendaya-byPhilipRomano.jpg"
-        },
-        {
-          "name": "Charlize Theron",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/CharlizeTheron-byPhilipRomano2.jpg/300px-CharlizeTheron-byPhilipRomano2.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Awarapan 2",
-      "slug": "awarapan-2",
-      "genre": "Romance, Action Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Awarapan_2.jpg/500px-Awarapan_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "₹160 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-08-14",
-      "status": "now_playing",
-      "cast": [
-        "Emraan Hashmi",
-        "Disha Patani",
-        "Shabana Azmi"
-      ],
-      "director": "Nitin Kakkar",
-      "why_watch": "The Independence Day weekend's biggest Hindi opener — ₹22 Cr on Day 1, ₹82 Cr opening weekend, ₹160 Cr worldwide in just seven days. The sequel to the 2007 cult classic that defined Emraan Hashmi's brooding romantic-hero era. Music by Mithoon. Predicted lifetime of ₹182-185 Cr. The clear winner of the Independence Day clash — still drawing strong weekday crowds.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=IQ7HkZ-Gun8",
-      "cast_details": [
-        {
-          "name": "Emraan Hashmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emraan_Filmfare_Magazine_Launch.jpg/300px-Emraan_Filmfare_Magazine_Launch.jpg"
-        },
-        {
-          "name": "Disha Patani",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg/300px-Photos-Disha-Patani-snapped-at-Myntra-event_%28cropped%29.jpg"
-        },
-        {
-          "name": "Shabana Azmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
-        }
-      ]
+      "language": "English"
     },
     {
       "title": "Insidious: Out of the Further",
       "slug": "insidious-out-of-the-further",
       "genre": "Horror, Supernatural",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Insidious-out-of-the-further-poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "",
-      "rating_source": "",
+      "poster_url": "",
+      "rating": "58% RT",
+      "rating_source": "Rotten Tomatoes",
       "release_date": "2026-08-21",
-      "status": "opening",
-      "cast": [
-        "Amelia Eve",
-        "Brandon Perea",
-        "Lin Shaye",
-        "Maisie Richardson-Sellers",
-        "Sam Spruell"
-      ],
+      "status": "now_playing",
+      "cast": ["Amelia Eve", "Brandon Perea", "Lin Shaye", "Maisie Richardson-Sellers", "Sam Spruell"],
       "director": "Jacob Chase",
-      "why_watch": "The Insidious franchise flips everything on its head for round six — this time the demons don't just haunt the Further, they bleed into our world. Lin Shaye returns as Elise Rainier. Amelia Eve (The Haunting of Bly Manor) plays a mother who discovers she can pull spirits out of the Further, and when the demons realize her power, it gets ugly. From the producers of The Conjuring. Opens Aug 21.",
+      "why_watch": "Opened at #2 this weekend with ~$25M on an $18M budget — the Insidious franchise just keeps printing money. The sixth entry flips the script: Amelia Eve plays a mother who can pull spirits out of the Further, and when the demons realize her power, things get ugly. Lin Shaye returns as Elise Rainier. 58% RT — the best-reviewed Insidious since the 2010 original. Not groundbreaking horror, but a solid scare machine for franchise fans.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Insidious+Out+of+the+Further+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=oFjn3bJCusQ",
-      "cast_details": [
-        {
-          "name": "Amelia Eve",
-          "photo_url": ""
-        },
-        {
-          "name": "Brandon Perea",
-          "photo_url": ""
-        },
-        {
-          "name": "Lin Shaye",
-          "photo_url": ""
-        },
-        {
-          "name": "Maisie Richardson-Sellers",
-          "photo_url": ""
-        },
-        {
-          "name": "Sam Spruell",
-          "photo_url": ""
-        }
-      ]
+      "language": "English"
     },
     {
-      "title": "The End of Oak Street",
-      "slug": "the-end-of-oak-street",
-      "genre": "Sci-Fi Thriller",
+      "title": "Awarapan 2",
+      "slug": "awarapan-2",
+      "genre": "Romance, Action Thriller",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7e/The_End_of_Oak_Street_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "83% RT",
-      "rating_source": "Rotten Tomatoes",
+      "poster_url": "",
+      "rating": "₹189 Cr worldwide",
+      "rating_source": "India box office",
       "release_date": "2026-08-14",
       "status": "now_playing",
-      "cast": [
-        "Anne Hathaway",
-        "Ewan McGregor",
-        "Maisy Stella",
-        "Christian Convery"
-      ],
-      "director": "David Robert Mitchell",
-      "why_watch": "Opened at #3 with $21M domestic and $47M worldwide — a soft start on its $80-92M budget, but audiences are responding well. From It Follows director David Robert Mitchell, produced by J.J. Abrams. What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? Anne Hathaway and Ewan McGregor fight to keep their family alive. 83% on RT. The most interesting non-franchise film of August.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=3oB9AxspVow",
-      "cast_details": [
-        {
-          "name": "Anne Hathaway",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg/300px-Anne_Hathaway-_Press_conference_for_the_film_%22The_Devil_Wears_Prada_2%22_-_55194764955_%28cropped%29.jpg"
-        },
-        {
-          "name": "Ewan McGregor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg/300px-Ewan_McGregor_-_Los_Angeles_Comic_Con_2024.jpg"
-        },
-        {
-          "name": "Maisy Stella",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg/300px-Maisy_Stella_at_TIFF_2025_-_01_%28cropped%29.jpg"
-        },
-        {
-          "name": "Christian Convery",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg/300px-Christian_Convery_at_Toronto_International_Film_Festival_2025_after_party_September_8.jpg"
-        }
-      ]
+      "cast": ["Emraan Hashmi", "Disha Patani", "Shabana Azmi"],
+      "director": "Nitin Kakkar",
+      "why_watch": "₹189 Cr worldwide and still climbing — Emraan Hashmi's biggest solo hit ever, by a massive margin. ₹22 Cr opening day, ₹82 Cr opening weekend, and it dominated the Independence Day clash. The sequel to the 2007 cult classic that defined Hashmi's brooding romantic-hero era. Music by Mithoon. Mixed reviews haven't dented the audience turnout one bit — nostalgia and the Awarapan brand are doing all the heavy lifting.",
+      "is_indian": true,
+      "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
+      "language": "Hindi"
     },
     {
       "title": "Vishwanath & Sons",
       "slug": "vishwanath-and-sons",
       "genre": "Romance, Family Drama",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/22/Vishwanath_%26_Sons_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹135 Cr worldwide",
+      "poster_url": "",
+      "rating": "₹150 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-08-14",
       "status": "now_playing",
-      "cast": [
-        "Suriya",
-        "Mamitha Baiju",
-        "Raveena Tandon",
-        "Radikaa Sarathkumar",
-        "Nasser"
-      ],
+      "cast": ["Suriya", "Mamitha Baiju", "Raveena Tandon", "Radikaa Sarathkumar", "Nasser"],
       "director": "Venky Atluri",
-      "why_watch": "₹135 Cr worldwide in six days — Suriya's fastest film to cross ₹100 Cr and his fastest to hit $1M in North America. A warm family romance with Suriya as a 40-year-old champion shooter and Mamitha Baiju as his younger love interest. ₹75 Cr India net in the first week. Raveena Tandon returns to Tamil cinema. Music by GV Prakash Kumar. Cleaning up in Tamil and Telugu markets.",
+      "why_watch": "₹150 Cr worldwide in just eight days — Suriya's fastest film to cross ₹100 Cr and his fastest to hit $1M in North America. A warm family romance with Suriya as a 40-year-old champion shooter and Mamitha Baiju as his younger love interest. ₹86 Cr India net and ₹51 Cr overseas — the international numbers are unusually strong. Raveena Tandon returns to Tamil cinema. Cleaning up in Tamil and Telugu markets and headed well past ₹175 Cr.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Vishwanath+and+Sons+showtimes+near+me",
-      "language": "Tamil",
-      "trailer_url": "https://www.youtube.com/watch?v=ejX6MHgKAlM",
-      "cast_details": [
-        {
-          "name": "Suriya",
-          "photo_url": ""
-        },
-        {
-          "name": "Mamitha Baiju",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg"
-        },
-        {
-          "name": "Raveena Tandon",
-          "photo_url": ""
-        }
-      ]
+      "language": "Tamil"
     },
     {
       "title": "Batwara 1947",
       "slug": "batwara-1947",
       "genre": "Period Drama, Historical",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4a/Batwara_1947_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹45 Cr worldwide",
+      "poster_url": "",
+      "rating": "₹52 Cr worldwide",
       "rating_source": "India box office",
       "release_date": "2026-08-14",
       "status": "now_playing",
-      "cast": [
-        "Sunny Deol",
-        "Preity Zinta",
-        "Shabana Azmi",
-        "Karan Deol",
-        "Ali Fazal"
-      ],
+      "cast": ["Sunny Deol", "Preity Zinta", "Shabana Azmi", "Karan Deol", "Ali Fazal"],
       "director": "Rajkumar Santoshi",
-      "why_watch": "Sunny Deol and Rajkumar Santoshi's partition epic opened slow at ₹5.5 Cr but spiked to ₹12.9 Cr on Independence Day. ₹32 Cr India net and ₹45 Cr worldwide in seven days. Produced by Aamir Khan, music by A.R. Rahman, lyrics by Javed Akhtar. Preity Zinta returns to Hindi cinema after an eight-year hiatus. Word of mouth is positive — if you care about partition stories told with craft, this one's worth seeing on the big screen before it loses screens.",
+      "why_watch": "Sunny Deol and Rajkumar Santoshi's partition epic opened slow at ₹5.75 Cr but spiked on Independence Day. ₹52 Cr worldwide in 10 days — respectable, but tough math against its reported budget. Produced by Aamir Khan, music by A.R. Rahman. Preity Zinta returns to Hindi cinema after an eight-year hiatus. Word of mouth is warm — if you care about partition stories told with craft, catch it before it loses screens to Toxic this week.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Batwara+1947+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=oRsAMzfvVGk",
-      "cast_details": [
-        {
-          "name": "Sunny Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Sunny_Paaji_2024.jpg"
-        },
-        {
-          "name": "Preity Zinta",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Preity_Zinta_by_Ash_Gupta.jpg/300px-Preity_Zinta_by_Ash_Gupta.jpg"
-        },
-        {
-          "name": "Shabana Azmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg"
-        },
-        {
-          "name": "Karan Deol",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/en/6/66/Pal_Pal_Dil_Ke_Pass_poster.jpg"
-        },
-        {
-          "name": "Ali Fazal",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg/300px-Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg"
-        }
-      ]
+      "language": "Hindi"
+    },
+    {
+      "title": "The End of Oak Street",
+      "slug": "the-end-of-oak-street",
+      "genre": "Sci-Fi Thriller",
+      "year": 2026,
+      "poster_url": "",
+      "rating": "83% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-08-14",
+      "status": "now_playing",
+      "cast": ["Anne Hathaway", "Ewan McGregor", "Maisy Stella", "Christian Convery"],
+      "director": "David Robert Mitchell",
+      "why_watch": "What if your suburban street got ripped from the earth and dropped into a prehistoric world full of dinosaurs? From It Follows director David Robert Mitchell. Anne Hathaway and Ewan McGregor fight to keep their family alive. 83% on RT. Took a 62% second-weekend dip, which is a shame — this is the best dinosaur movie since Jurassic Park. The most interesting non-franchise film of August, and one that deserves a bigger audience.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=The+End+of+Oak+Street+movie+showtimes+near+me",
+      "language": "English"
     },
     {
       "title": "Tony",
       "slug": "tony-bourdain",
       "genre": "Biographical Drama, Comedy-Drama",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Tony_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "poster_url": "",
       "rating": "95% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-08-07",
       "status": "now_playing",
-      "cast": [
-        "Dominic Sessa",
-        "Emilia Jones",
-        "Antonio Banderas",
-        "Leo Woodall",
-        "Stavros Halkias"
-      ],
+      "cast": ["Dominic Sessa", "Emilia Jones", "Antonio Banderas", "Leo Woodall", "Stavros Halkias"],
       "director": "Matt Johnson",
-      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain follows a 19-year-old Bourdain taking a summer restaurant job in Provincetown in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor chef is reportedly electric. Expanding wide nationwide this Thursday, Aug 21. If you love food, travel, or just a great coming-of-age story, hunt this one down.",
+      "why_watch": "95% on Rotten Tomatoes. A24's biopic of Anthony Bourdain follows a 19-year-old Bourdain taking a summer restaurant job in Provincetown in 1975 and discovering his calling. Dominic Sessa channels the raw energy of young Bourdain, and Antonio Banderas as his mentor chef is reportedly electric. Now playing wide after expanding from limited release. If you love food, travel, or just a great coming-of-age story, this is the best-reviewed film in theaters right now alongside Camp Miasma.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=k1MVnzd2aVc",
-      "cast_details": [
-        {
-          "name": "Dominic Sessa",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Dominic_Sessa_Tow-059_%28cropped%29.jpg/300px-Dominic_Sessa_Tow-059_%28cropped%29.jpg"
-        },
-        {
-          "name": "Emilia Jones",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Emilia_jones_2022_1.jpg/300px-Emilia_jones_2022_1.jpg"
-        },
-        {
-          "name": "Antonio Banderas",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg/300px-Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg"
-        },
-        {
-          "name": "Leo Woodall",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Leo_Woodall_2024_Emmys_05_%28cropped%29.png/300px-Leo_Woodall_2024_Emmys_05_%28cropped%29.png"
-        },
-        {
-          "name": "Stavros Halkias",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg/300px-Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg"
-        }
-      ]
+      "language": "English"
     },
     {
-      "title": "DC",
-      "slug": "dc-tamil-2026",
-      "genre": "Romantic Action Thriller",
+      "title": "Teenage Sex and Death at Camp Miasma",
+      "slug": "teenage-sex-death-camp-miasma",
+      "genre": "Horror, Comedy, Romance",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/5a/DC_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹65 Cr worldwide",
-      "rating_source": "India box office",
+      "poster_url": "",
+      "rating": "95% RT",
+      "rating_source": "Rotten Tomatoes",
       "release_date": "2026-08-07",
       "status": "now_playing",
-      "cast": [
-        "Lokesh Kanagaraj",
-        "Wamiqa Gabbi",
-        "Sanjana Krishnamoorthy"
-      ],
-      "director": "Arun Matheswaran",
-      "why_watch": "₹65 Cr worldwide in its first week on a ₹25 Cr budget — a certified blockbuster. Lokesh Kanagaraj, the director behind Vikram and Coolie, makes his acting debut as an outlaw in a blood-soaked love story inspired by Devdas. Anirudh Ravichander's 15-track album has become a phenomenon of its own. Now in its second week and still holding strong in Tamil and Telugu markets. Wamiqa Gabbi is being called one of the year's best performances in Indian cinema.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=DC+Tamil+movie+showtimes+near+me",
-      "language": "Tamil",
-      "trailer_url": "https://www.youtube.com/watch?v=2kntxizQIFI",
-      "cast_details": [
-        {
-          "name": "Lokesh Kanagaraj",
-          "photo_url": ""
-        },
-        {
-          "name": "Wamiqa Gabbi",
-          "photo_url": ""
-        },
-        {
-          "name": "Sanjana Krishnamoorthy",
-          "photo_url": ""
-        }
-      ]
+      "cast": ["Hannah Einbinder", "Gillian Anderson", "Zach Cherry", "Sarah Sherman", "Jasmin Savoy Brown"],
+      "director": "Jane Schoenbrun",
+      "why_watch": "95% on RT with 227 reviews and an 89 on Metacritic — one of the best-reviewed films of 2026, period. Jane Schoenbrun's meta-slasher about a queer filmmaker hired to reboot a horror franchise, who becomes obsessed with the original's reclusive star (Gillian Anderson, absolutely sublime). Won the Queer Palm at Cannes. Pushed the Angelika in New York to its best weekend since Wes Anderson's The Phoenician Scheme. Not your typical horror — it's funny, intimate, and wildly personal.",
+      "is_indian": false,
+      "ticket_url": "https://www.google.com/search?q=Teenage+Sex+and+Death+at+Camp+Miasma+showtimes+near+me",
+      "language": "English"
     },
     {
       "title": "Toy Story 5",
       "slug": "toy-story-5",
       "genre": "Animation, Family",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg",
+      "poster_url": "",
       "rating": "93% RT",
       "rating_source": "Rotten Tomatoes",
       "release_date": "2026-06-19",
       "status": "now_playing",
-      "cast": [
-        "Tom Hanks",
-        "Tim Allen",
-        "Joan Cusack",
-        "Greta Lee",
-        "Conan O'Brien"
-      ],
+      "cast": ["Tom Hanks", "Tim Allen", "Joan Cusack", "Greta Lee", "Conan O'Brien"],
       "director": "Andrew Stanton",
-      "why_watch": "$476M domestic in nine weeks — well past Toy Story 4's total. Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. Showtimes are thinning against the blockbuster onslaught, but still the best family option in theaters if you haven't caught it yet.",
+      "why_watch": "$476M+ domestic in ten weeks — well past Toy Story 4's total. Pixar made the toys fight an iPad and somehow delivered their most emotionally devastating film since the incinerator scene. 93% critics, 94% audience. Showtimes are thinning against the blockbuster onslaught, but still the best family option in theaters if you haven't caught it yet.",
       "is_indian": false,
       "ticket_url": "https://www.google.com/search?q=Toy+Story+5+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=jdp9abDgvCU",
-      "cast_details": [
-        {
-          "name": "Tom Hanks",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg/300px-TomHanksPrincEdw031223_%2811_of_41%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "Tim Allen",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Tim_Allen_2012.jpg/300px-Tim_Allen_2012.jpg"
-        },
-        {
-          "name": "Joan Cusack",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg/300px-Fan_Expo_2016_-_Cusack_02_%2833090356786%29_%28cropped%29.jpg"
-        },
-        {
-          "name": "Greta Lee",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg/300px-Greta_Lee_SFFILM_2026_02_%28cropped%29.jpg"
-        },
-        {
-          "name": "Conan O'Brien",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg/300px-Conan_O%27Brien_at_the_2025_Sundance_Film_Festival_03_%28cropped%29.jpg"
-        }
-      ]
+      "language": "English"
     },
     {
       "title": "Toxic: A Fairy Tale for Grown-Ups",
       "slug": "toxic-yash",
-      "genre": "Action Drama",
+      "genre": "Action Drama, Period",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0b/Toxic-_A_Fairy_Tale_for_Grown-Ups_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "poster_url": "",
       "rating": "",
       "rating_source": "",
       "release_date": "2026-08-26",
       "status": "coming_soon",
-      "cast": [
-        "Yash",
-        "Nayanthara",
-        "Kiara Advani",
-        "Tara Sutaria"
-      ],
+      "cast": ["Yash", "Nayanthara", "Kiara Advani", "Tara Sutaria", "Huma Qureshi", "Rukmini Vasanth"],
       "director": "Geetu Mohandas",
-      "why_watch": "Yash's first film since KGF: Chapter 2 grossed ₹1,200 Cr worldwide. Directed by National Award winner Geetu Mohandas, this gangster action drama was shot simultaneously in Kannada and English — a deliberate play for global audiences. Nayanthara, Kiara Advani, and Tara Sutaria round out the cast. After multiple postponements, the Aug 26 date looks locked. The most anticipated Indian release of late August. Opens Aug 26.",
+      "why_watch": "Yash's first film since KGF: Chapter 2 grossed ₹1,200 Cr worldwide. After four postponements, Toxic finally arrives Aug 26 — timed to hit the Onam/Eid/Raksha Bandhan corridor. Directed by National Award winner Geetu Mohandas, this period gangster drama was shot simultaneously in Kannada and English for global audiences. Nayanthara, Kiara Advani, and Tara Sutaria round out the cast. The most anticipated Indian release of the week. Opens Tuesday, Aug 26.",
       "is_indian": true,
       "ticket_url": "https://www.google.com/search?q=Toxic+Yash+movie+showtimes+near+me",
-      "language": "Kannada",
-      "trailer_url": "https://www.youtube.com/watch?v=3e-4IYpGabQ",
-      "cast_details": [
-        {
-          "name": "Yash",
-          "photo_url": ""
-        },
-        {
-          "name": "Nayanthara",
-          "photo_url": ""
-        },
-        {
-          "name": "Kiara Advani",
-          "photo_url": ""
-        }
-      ]
+      "language": "Kannada"
     }
   ]
 }
