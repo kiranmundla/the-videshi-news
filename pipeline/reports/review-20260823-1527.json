@@ -1,0 +1,41 @@
+[
+  {
+    "id": "0e3446d4-e3e6-4381-bbd3-bf9d8d20162c",
+    "headline": "Why Kriti Sanon Swears By Daily Fibre and Electrolytes Over Just Protein",
+    "slug": "kriti-sanon-fibre-electrolytes-daily-routine",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora/NRI angle by including insights or quotes from Indian nutritionists or fitness experts based in the U.S. or other countries with significant Indian populations. This would help connect the topic to the NRI audience more effectively.",
+        "Provide context on how Kriti Sanon's approach to nutrition contrasts with common practices among NRIs, who may be influenced by Western fitness trends. This could include statistics or anecdotes about dietary habits within the NRI community.",
+        "Include a section discussing how access to supplements like those mentioned in the article varies for NRIs, especially in different countries, and how they can adapt their diets to include natural sources of fibre and electrolytes.",
+        "Consider adding a brief mention of how Kriti Sanon's endorsement of a specific brand (Supply6) may influence NRI consumers and their purchasing decisions regarding health supplements."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Kriti Sanon or a nutrition expert discussing the importance of fibre and electrolytes, which could provide additional credibility and engagement.",
+        "Include an Instagram post from Kriti Sanon showcasing her daily routine or the products she uses, which would resonate well with the audience and enhance the visual appeal of the article."
+      ]
+    }
+  },
+  {
+    "id": "976d7a05-f676-4f46-ada3-dbdf36bc344c",
+    "headline": "Two Visible Signs Your Body Is Getting Better at Handling Insulin",
+    "slug": "two-visible-signs-insulin-sensitivity-improving",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian diaspora health experts or organizations that focus on metabolic health, particularly in relation to how these conditions are perceived within the NRI community.",
+        "Provide context on how insulin sensitivity issues, like acanthosis nigricans, are particularly relevant to the Indian diaspora, potentially linking it to dietary habits or lifestyle factors common among NRIs.",
+        "Include a section that discusses the implications of these health indicators for NRIs living abroad, such as access to healthcare resources or cultural perceptions of body image and health.",
+        "Mention any specific dietary or lifestyle changes that are recommended for NRIs to improve insulin sensitivity, thereby making the article more actionable for this audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or expert discussing insulin sensitivity or acanthosis nigricans to provide additional authority and context."
+      ]
+    }
+  }
+]
