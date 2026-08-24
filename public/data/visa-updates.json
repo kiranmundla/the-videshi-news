@@ -1,5 +1,14 @@
 [
   {
+    "id": "september-2026-visa-bulletin-india",
+    "date": "2026-08-21",
+    "label": "Aug 21, 2026",
+    "headline": "September 2026 Visa Bulletin (final of FY2026): Zero employment-based movement for India \u2014 EB-2 and EB-5 still unavailable, family categories explode",
+    "summary": "The State Department released the September 2026 Visa Bulletin \u2014 the final bulletin of fiscal year 2026 \u2014 revealing a stark split between family-sponsored and employment-based categories. Family-sponsored categories received a year-end number dump: F3 leaped 2 years 5 months, F4 gained 2 years 2 months, F1 advanced 13 months, F2B gained 20 months, and F2A moved to August 2026 (nearly current). Employment-based categories got virtually nothing: EB-1, EB-2, EB-3, and every EB-5 line are identical to August. India EB-2 and EB-5 Unreserved remain Unavailable, EB-1 India stays frozen at October 15, 2022, and EB-3 India remains stuck at January 1, 2014. Only EB-4 and Certain Religious Workers saw minor movement. The Dates for Filing chart for employment-based categories did not change by a single day. With FY2026 ending September 30, annual limits reset October 1 \u2014 the earliest point Indian EB-2 and EB-5 applicants could see visa numbers resume. USCIS also announced a revised Form I-485 effective September 18 (aligned with the public charge rule) with no grace period for using the old version.",
+    "severity": "high",
+    "source": "US State Department / September 2026 Visa Bulletin (Vol. XI, No. 18)"
+  },
+  {
     "id": "duration-of-status-lawsuit-filed",
     "date": "2026-08-19",
     "label": "Aug 19, 2026",
@@ -160,15 +169,6 @@
     "summary": "An interim final rule published May 11 in the Federal Register takes effect July 10, 2026, giving USCIS explicit authority to deny \u2014 not just reject \u2014 immigration benefit requests with invalid signatures. Unlike a rejection (which refunds fees), a denial means the agency keeps the filing fee and the petitioner must start over. Affected filings include H-1B petitions, L-1 transfers, I-140 green card petitions, and I-485 adjustment of status applications. Prohibited formats now include DocuSign, Adobe Sign, copy-pasted digital signature images, rubber stamps, and typed names \u2014 only wet-ink signatures, scanned copies of wet-ink originals, and electronic signatures within USCIS-authorized online systems are accepted. Immigration attorneys warn USCIS may increasingly choose denial over rejection since denial lets the agency retain fees. Employers and HR teams using remote or digital signing workflows \u2014 common in the Indian IT sector \u2014 should audit their practices immediately before the July 10 deadline.",
     "severity": "high",
     "source": "USCIS / Federal Register / Holland & Hart / Ogletree Deakins"
-  },
-  {
-    "id": "uscis-n400-naturalization-fee-increase-proposed",
-    "date": "2026-06-23",
-    "label": "Jun 23, 2026",
-    "headline": "USCIS proposes 75% naturalization fee hike \u2014 N-400 would jump to $1,330, fee waivers eliminated",
-    "summary": "USCIS published a proposed rule in the Federal Register on June 23 that would increase the N-400 naturalization application fee from $760 to $1,330 for paper filers (75% increase) and from $710 to $1,280 for online filers (80% increase). The reduced fee option for low-income applicants ($380) and all fee waivers for both N-400 and N-336 forms would be eliminated entirely. The N-336 hearing request fee would rise from $830 to $1,475. DHS argues the increases align fees with actual adjudication costs under a 'beneficiary-pays' principle, contending prior administrations kept naturalization fees artificially low. Immigration advocates warn the steep hikes \u2014 especially eliminating waivers for low-income filers \u2014 could price out many legal permanent residents from citizenship. For Indian green card holders who waited years in the EB backlog and are now approaching naturalization eligibility, the timing compounds an already costly process. Public comments are due August 24, 2026, and a final rule could follow weeks later. Applicants considering naturalization may want to file before the rule takes effect.",
-    "severity": "high",
-    "source": "USCIS / Federal Register (91 FR 37500) / Fragomen / Ogletree Deakins / AILA"
   },
   {
     "id": "interview-waiver-eliminated",
