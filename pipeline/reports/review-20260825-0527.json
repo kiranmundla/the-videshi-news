@@ -1,0 +1,21 @@
+[
+  {
+    "id": "34348282-6b21-4f2c-a182-688e4d922890",
+    "headline": "Over 400 Flights Delayed and 15 Diverted as Monsoon Downpour Paralyses Delhi Air",
+    "slug": "delhi-airport-flights-delayed-diverted-monsoon-rain-august-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including information on how these flight disruptions may affect NRIs traveling to or from India, particularly those returning for festivals, family events, or business. Highlight any specific challenges they may face, such as rescheduling flights or additional costs.",
+        "Add a section that discusses how these weather-related disruptions could impact travel plans for NRIs, especially those who may have already booked connecting flights or accommodations. This would provide valuable context for readers who are part of the diaspora.",
+        "Include quotes or insights from NRIs who may be affected by these delays, such as those traveling for important events or returning to their home countries. This personal touch would resonate more with the audience and enhance the article's relevance.",
+        "Provide a brief overview of the typical monsoon season in India and its historical impact on travel, which would give readers a better understanding of the context and potential future implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official Twitter account of the Delhi Airport or the airlines involved to provide real-time updates and advisories, which would be particularly useful for readers planning to travel."
+      ]
+    }
+  }
+]
