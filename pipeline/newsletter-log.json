@@ -1146,5 +1146,15 @@
     "errors": 0,
     "hero_slug": "who-is-sal-khan-khan-academy-founder-son-of-immigrants-worlds-teacher",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-25T13:59:25.507893+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 25, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "airbound-raises-37m-autonomous-delivery-drones-india",
+    "story_count": 5
   }
 ]

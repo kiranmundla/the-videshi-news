@@ -1,0 +1,79 @@
+[
+  {
+    "id": "35f7d7ee-6cbd-48e2-8a3a-5d0344749815",
+    "headline": "India's AI and Data Centre Ambitions Face a Power Infrastructure Reckoning",
+    "slug": "india-ai-data-centre-ambitions-face-power-reckoning",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs working in the tech or data center sectors, particularly those who may have insights on how India's ambitions impact their work or investments abroad.",
+        "Provide more context on how the developments in India's data center infrastructure might affect NRIs, particularly in terms of investment opportunities or the potential for job creation in the tech sector that could benefit the diaspora.",
+        "Clarify the implications of the 21-year tax holiday for foreign cloud companies on NRIs who may be considering investing in Indian tech startups or data centers, as this could be a significant point of interest for the diaspora.",
+        "Discuss the potential environmental concerns related to the data center expansion and how these might resonate with NRIs who are concerned about sustainability and ethical investment."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian government or IT Minister Ashwini Vaishnaw announcing the tax holiday for foreign cloud companies, as this would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "725a776c-1517-416a-b095-0d07819d63f7",
+    "headline": "Elan Group Partners With Marriott to Bring JW Marriott Hotel and Residences to G",
+    "slug": "elan-group-marriott-jw-marriott-hotel-residences-gurugram",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the JW Marriott Hotel and Residences will cater to NRIs looking for luxury investments in India, perhaps by discussing the appeal of branded residences for Indian expatriates.",
+        "Provide context on the significance of branded residences for NRIs, such as tax implications or investment opportunities, which could be particularly relevant for the diaspora audience.",
+        "Consider adding a quote or perspective from an NRI real estate expert or a representative from the Indian diaspora community to discuss the implications of this development for NRIs looking to invest in luxury properties in India.",
+        "Include a brief section on how developments like this one impact the Indian economy and the real estate market, particularly in the context of NRI investments."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Marriott International announcing the partnership or discussing the growth of luxury branded residences in India."
+      ]
+    }
+  },
+  {
+    "id": "7a6696b4-8b53-4f75-91c4-ccf64c93382e",
+    "headline": "Bengaluru's Airbound Raises $37M to Build Autonomous Drones That Could Rival Tru",
+    "slug": "airbound-raises-37m-autonomous-delivery-drones-india",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs involved in the tech or logistics sectors who can speak to the significance of Airbound's innovations for global supply chains and how it impacts Indian communities abroad.",
+        "Provide more context on how Airbound's technology could specifically benefit NRIs, such as improving logistics for Indian goods sold internationally or enhancing delivery services for Indian businesses catering to the diaspora.",
+        "Clarify the timeline of Airbound's funding rounds and development milestones to give readers a better understanding of the company's growth trajectory and its implications for the Indian tech landscape.",
+        "Discuss potential regulatory challenges or opportunities that Airbound may face in the U.S. or other international markets, which would be particularly relevant for NRIs interested in investing or engaging with Indian startups."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Andhra Pradesh government announcing the partnership with Airbound, as it would provide credibility and highlight governmental support for Indian tech innovations."
+      ]
+    }
+  },
+  {
+    "id": "fcee2e66-45d3-4ea0-8b10-4f961cb96cd9",
+    "headline": "India's \u20b937,500 Crore Coal Gasification Push Stalls as Industry Demands Guarante",
+    "slug": "india-coal-gasification-scheme-industry-pushback-guaranteed-buyers",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian NRIs involved in the energy sector, particularly those who may have investments or interests in coal gasification technologies. This could highlight how the policy impacts their business decisions or investment strategies.",
+        "Provide more context on how this coal gasification initiative aligns with global trends in energy transition, particularly in relation to NRIs who may be concerned about sustainability and environmental impacts. This could include comparisons to similar initiatives in other countries or the implications for India's energy independence.",
+        "Clarify the implications of the stalled scheme on NRIs who may be considering investments in India's energy sector. Discuss potential risks and opportunities that could arise from this situation, which would be particularly relevant for the diaspora audience.",
+        "Include a brief overview of the historical context of coal gasification in India and its relevance to the NRI community, such as past investments or projects that have succeeded or failed, to provide a more comprehensive understanding of the current challenges."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ministry of Coal or a reputable industry expert discussing the coal gasification initiative, which could provide real-time insights and enhance credibility.",
+        "Consider embedding a video explanation or infographic that outlines the coal gasification process and its potential benefits, making the technical aspects more accessible to the diaspora audience."
+      ]
+    }
+  }
+]

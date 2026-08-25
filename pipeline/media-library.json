@@ -1,6 +1,6 @@
 {
  "_description": "Media library mirror — high-quality, attribution-clean images+videos for article/reel fallback. Source of truth is the Supabase media_library table; this mirror lets the pipeline read without a DB round-trip.",
- "_updated": "2026-08-24T01:26:17Z",
+ "_updated": "2026-08-25T13:45:47Z",
  "assets": [
   {
    "id": "person--narendra-modi--bfe42b",
@@ -35291,28 +35291,6 @@
    "times_used": 0
   },
   {
-   "id": "thing--athletics-federation-of-india--efb138",
-   "media_type": "image",
-   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/athletics-federation-of-india-efb138.jpg",
-   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/athletics-federation-of-india-efb138.jpg",
-   "subject": "Athletics Federation of India",
-   "subject_type": "thing",
-   "caption": "The Indian Athletics Team, who won the medals in XIX Commonwealth Games 2010 Delhi, meeting the Prime Minister, Dr. Manmohan Singh in New Delhi on October 15, 2010. Wife of the Prime Minister, Smt. Gursharan Kaur and the Union Minister of Youth Affairs and Sports, Dr. M.S. Gill a",
-   "attribution": "Wikimedia Commons / Prime Minister's Office, GODL-India",
-   "license": "GODL-India",
-   "source_url": "https://commons.wikimedia.org/wiki/File:The_Indian_Athletics_Team,_who_won_the_medals_in_XIX_Commonwealth_Games_2010_Delhi,_meeting_the_Prime_Minister,_Dr._Manmohan_Singh_in_New_Delhi_on_October_15,_2010.jpg",
-   "tags": [
-    "athletics federation of india"
-   ],
-   "width": 2200,
-   "height": 1426,
-   "duration": null,
-   "quality_score": 64.1,
-   "added_date": "2026-08-24T01:08:51Z",
-   "last_used": null,
-   "times_used": 0
-  },
-  {
    "id": "thing--india-fab--bee00d",
    "media_type": "image",
    "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/india-fab-bee00d.jpg",
@@ -35815,6 +35793,28 @@
    "duration": null,
    "quality_score": 58.2,
    "added_date": "2026-08-24T01:26:17Z",
+   "last_used": null,
+   "times_used": 0
+  },
+  {
+   "id": "thing--athletics-federation-of-india--efb138",
+   "media_type": "image",
+   "url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/athletics-federation-of-india-efb138.jpg",
+   "thumb_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/media-library/thing/athletics-federation-of-india-efb138.jpg",
+   "subject": "Athletics Federation of India",
+   "subject_type": "thing",
+   "caption": "The Indian Athletics Team, who won the medals in XIX Commonwealth Games 2010 Delhi, meeting the Prime Minister, Dr. Manmohan Singh in New Delhi on October 15, 2010. Wife of the Prime Minister, Smt. Gursharan Kaur and the Union Minister of Youth Affairs and Sports, Dr. M.S. Gill a",
+   "attribution": "Wikimedia Commons / Prime Minister's Office, GODL-India",
+   "license": "GODL-India",
+   "source_url": "https://commons.wikimedia.org/wiki/File:The_Indian_Athletics_Team,_who_won_the_medals_in_XIX_Commonwealth_Games_2010_Delhi,_meeting_the_Prime_Minister,_Dr._Manmohan_Singh_in_New_Delhi_on_October_15,_2010.jpg",
+   "tags": [
+    "athletics federation of india"
+   ],
+   "width": 2200,
+   "height": 1426,
+   "duration": null,
+   "quality_score": 64.1,
+   "added_date": "2026-08-25T13:45:47Z",
    "last_used": null,
    "times_used": 0
   }
