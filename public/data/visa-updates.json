@@ -1,5 +1,14 @@
 [
   {
+    "id": "dhs-proposed-rule-103k-h1b-fee",
+    "date": "2026-08-24",
+    "label": "Aug 24, 2026",
+    "headline": "DHS publishes proposed rule to codify $103,265 H-1B fee through formal rulemaking \u2014 broader than struck-down executive order",
+    "summary": "The Department of Homeland Security published a proposed rule in the Federal Register (DHS Docket No. USCIS-2026-0298, RIN 1615-AD20) to impose a $103,265 fee on all H-1B cap-subject petitions, including the 20,000 advanced-degree exemption. Unlike the original $100,000 Presidential Proclamation 10973 \u2014 vacated by a federal judge in June and left unenforceable by the First Circuit in July \u2014 the new proposal uses formal notice-and-comment rulemaking under INA \u00a7286(m), the fee statute courts cited as the proper authority. DHS estimates the fee would generate $8.8 billion annually from a projected 85,000 cap-subject petitions. Critically, the proposed rule is broader than the original executive order: it would cover F-1-to-H-1B transitions (previously exempt) and potentially renewals. Cap-exempt petitions (universities, nonprofits, research organizations), extensions, and employer transfers are excluded. The fee would be on top of all other existing fees. Public comments are due approximately 30 days after publication (~September 24). India's IT industry body Nasscom immediately responded, urging the US to weigh H-1B's role in addressing skill shortages. The rule could be finalized by end of year.",
+    "severity": "high",
+    "source": "DHS / USCIS / Federal Register / Reuters / Nasscom"
+  },
+  {
     "id": "september-2026-visa-bulletin-india",
     "date": "2026-08-21",
     "label": "Aug 21, 2026",
@@ -34,6 +43,15 @@
     "summary": "In Matter of Delcarmen-Lara (29 I&N Dec. 830, BIA 2026), the Board of Immigration Appeals held that leaving the US on advance parole counts as a 'departure' for purposes of the unlawful-presence bars under INA \u00a7212(a)(9)(B). The decision expressly overrules Matter of Arrabally and Yerrabelly (2012), a 14-year-old precedent that immigration lawyers and DACA/TPS/I-485 applicants had relied on to travel internationally without triggering the 3-year or 10-year reentry bars. Now, anyone who accumulated 180+ days of unlawful presence and then departs on advance parole may become inadmissible \u2014 requiring an I-601 waiver to reenter. The ruling applies prospectively (trips completed before August 13 are not affected), but immigration attorneys are issuing urgent warnings not to travel on advance parole without individual legal advice. While this most directly impacts DACA recipients and TPS holders, Indian green card applicants in the lengthy EB backlog who travel on advance parole while their I-485 is pending should also review their unlawful-presence history before any international travel.",
     "severity": "high",
     "source": "BIA (Matter of Delcarmen-Lara) / Murthy Law Firm / Ogletree Deakins"
+  },
+  {
+    "id": "dhs-biometric-fee-extension-expansion",
+    "date": "2026-08-10",
+    "label": "Aug 10, 2026",
+    "headline": "DHS expands 9-11 Biometric Fee to H-1B and L-1 extension petitions \u2014 recurring cost for Indian IT staffing firms starting September 9",
+    "summary": "A DHS final rule (91 FR 51360) published August 10 expands the 9-11 Response and Biometric Entry-Exit Fee to cover H-1B and L-1 visa extension petitions filed by covered employers, effective September 9. Previously, the $4,000 (H-1B) and $4,500 (L-1) fee applied only to initial petitions and change-of-employer filings. Now, same-employer extensions are also subject to the fee, turning what was a one-time cost into a recurring expense. The rule applies only to employers with 50+ US employees where more than 50% hold H-1B, L-1A, or L-1B status \u2014 a threshold that captures many Indian IT outsourcing and staffing companies. Amended petitions that do not request an extension of status remain exempt. The fee amounts themselves are unchanged; only the scope of petitions covered has broadened. DHS said the change aligns regulations with congressional intent under the 2015 statute that created the fee.",
+    "severity": "medium",
+    "source": "DHS / Federal Register (91 FR 51360) / Envoy Global / American Bazaar"
   },
   {
     "id": "dhs-60-day-grace-period-elimination-proposed",
@@ -151,24 +169,6 @@
     "summary": "The State Department's July 2026 wait time data reveals further deterioration across all five Indian consulates. Mumbai B1/B2 waits have hit 300 days (10 months), the longest nationally. New Delhi jumped to 255 days (8.5 months), up from 7.5 months in June. Kolkata \u2014 previously the fastest option at 4 months \u2014 has surged to 210 days (7 months), nearly doubling in weeks. Hyderabad holds at 285 days (9.5 months). Chennai shows no interview availability at all, with only dropbox processing listed. Work visa (H/L/O/P/Q) waits remain 45\u2013105 days depending on the consulate, and student visa (F/M/J) waits are 45\u201360 days. The continued surge comes despite the State Department's $750 premium interview pilot launching July 1, which offers B1/B2 applicants expedited appointments within 10 business days at select posts. Participating locations have not yet been announced for India. With the USCIS signature rule also taking effect July 10 \u2014 potentially causing denials for digital-signature filings \u2014 Indian visa applicants face a convergence of new pressures heading into the second half of 2026.",
     "severity": "high",
     "source": "US State Department / travel.state.gov / afnovisaguide.com"
-  },
-  {
-    "id": "scotus-birthright-citizenship-upheld",
-    "date": "2026-07-01",
-    "label": "Jul 1, 2026",
-    "headline": "Supreme Court upholds birthright citizenship 6-3 \u2014 strikes down Trump executive order as unconstitutional",
-    "summary": "In a landmark ruling on the final day of its term, the Supreme Court struck down President Trump's executive order that sought to deny automatic citizenship to children born in the US to non-citizen parents. Chief Justice Roberts, writing for a five-member majority, held that the 14th Amendment's Citizenship Clause \u2014 granting citizenship to all persons born on US soil and \"subject to the jurisdiction thereof\" \u2014 cannot be overridden by executive action, citing the 1898 precedent United States v. Wong Kim Ark. Justice Kavanaugh concurred on statutory grounds, suggesting Congress could legislate changes but the president cannot act alone. The ruling is especially significant for Indian families navigating years-long green card backlogs on H-1B, H-4, L-1, and other temporary visas, where children are frequently born in the US long before their parents obtain permanent residency. Trump called the decision \"too bad for our country\" and urged Congress to pass legislation ending birthright citizenship \u2014 a move that would face even steeper constitutional hurdles.",
-    "severity": "high",
-    "source": "US Supreme Court (Trump v. Barbara) / NBC News / Brookings / Reuters"
-  },
-  {
-    "id": "uscis-signature-rule-july-10",
-    "date": "2026-06-30",
-    "label": "Jun 30, 2026",
-    "headline": "USCIS signature crackdown takes effect July 10 \u2014 DocuSign and digital shortcuts may trigger denials on H-1B and green card filings",
-    "summary": "An interim final rule published May 11 in the Federal Register takes effect July 10, 2026, giving USCIS explicit authority to deny \u2014 not just reject \u2014 immigration benefit requests with invalid signatures. Unlike a rejection (which refunds fees), a denial means the agency keeps the filing fee and the petitioner must start over. Affected filings include H-1B petitions, L-1 transfers, I-140 green card petitions, and I-485 adjustment of status applications. Prohibited formats now include DocuSign, Adobe Sign, copy-pasted digital signature images, rubber stamps, and typed names \u2014 only wet-ink signatures, scanned copies of wet-ink originals, and electronic signatures within USCIS-authorized online systems are accepted. Immigration attorneys warn USCIS may increasingly choose denial over rejection since denial lets the agency retain fees. Employers and HR teams using remote or digital signing workflows \u2014 common in the Indian IT sector \u2014 should audit their practices immediately before the July 10 deadline.",
-    "severity": "high",
-    "source": "USCIS / Federal Register / Holland & Hart / Ogletree Deakins"
   },
   {
     "id": "interview-waiver-eliminated",
