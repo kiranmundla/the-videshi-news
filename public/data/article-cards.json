@@ -1,38 +1,32 @@
 [
   {
-    "slug": "uk-wash-rice-twice-campaign-targets-south-asian-cooking-drought",
-    "headline": "Wash Rice Twice: UK Drought Campaign Targets South Asian Cooking Habits Amid Water Emergency",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-wash-rice-twice-campaign-targets-south-asian-cooking-drought.jpg"
-  },
-  {
-    "slug": "lt-wins-third-ultra-mega-middle-east-gas-project-august",
-    "headline": "L&T Wins Third Ultra-Mega Middle East Gas Project Worth Over 15,000 Crore in August",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lt-wins-third-ultra-mega-middle-east-gas-project-august.jpg"
-  },
-  {
-    "slug": "ferritin-face-viral-trend-iron-deficiency-signs",
-    "headline": "What Is Ferritin Face? The Viral Trend That May Signal Hidden Iron Deficiency",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ferritin-face-viral-trend-iron-deficiency-signs.jpg"
-  },
-  {
-    "slug": "heavy-rain-delhi-ncr-red-alert-monsoon",
-    "headline": "Heavy Rain Lashes Delhi-NCR as IMD Issues Red Alert for Several Districts",
+    "slug": "india-ai-data-centre-ambitions-face-power-reckoning",
+    "headline": "India's AI and Data Centre Ambitions Face a Power Infrastructure Reckoning",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/heavy-rain-delhi-ncr-red-alert-monsoon.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-ai-data-centre-ambitions-face-power-reckoning.jpg"
   },
   {
-    "slug": "ecb-investigates-brydon-carse-handcuff-derby-nightclub",
-    "headline": "ECB Launches Investigation After Brydon Carse Handcuffed Outside Derby Nightclub",
-    "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ecb-investigates-brydon-carse-handcuff-derby-nightclub.jpg"
+    "slug": "elan-group-marriott-jw-marriott-hotel-residences-gurugram",
+    "headline": "Elan Group Partners With Marriott to Bring JW Marriott Hotel and Residences to Gurugram",
+    "category": "travel",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/elan-group-marriott-jw-marriott-hotel-residences-gurugram.jpg"
   },
   {
-    "slug": "govinda-warns-100-crore-legal-action-over-false-marriage-claims",
-    "headline": "Govinda Warns of Rs 100 Crore Legal Action Over False Marriage and Divorce Claims",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/govinda-warns-100-crore-legal-action-over-false-marriage-claims.jpg"
+    "slug": "airbound-raises-37m-autonomous-delivery-drones-india",
+    "headline": "Bengaluru's Airbound Raises $37M to Build Autonomous Drones That Could Rival Trucking Costs",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/airbound-raises-37m-autonomous-delivery-drones-india.jpg"
+  },
+  {
+    "slug": "syrias-barrel-bomb-mufti-sentenced-to-life-for-war-crimes",
+    "headline": "Syria's 'Barrel Bomb Mufti' Sentenced to Life for War Crimes",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/syrias-barrel-bomb-mufti-sentenced-to-life-for-war-crimes.jpg"
+  },
+  {
+    "slug": "world-ocean-temperatures-shatter-records-el-nino-threatens-uncharted-heat",
+    "headline": "World Ocean Temperatures Shatter Records as El Niño Threatens Uncharted Heat",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-ocean-temperatures-shatter-records-el-nino-threatens-uncharted-heat.jpg"
   }
 ]
