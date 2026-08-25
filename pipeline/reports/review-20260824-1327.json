@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ee41452a-44d1-48b4-a276-497824b4e701",
+    "headline": "Who Is Sal Khan? The Son of Immigrants From India and Bangladesh Who Became the ",
+    "slug": "who-is-sal-khan-khan-academy-founder-son-of-immigrants-worlds-teacher",
+    "category": "nri-world",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how Khan's immigrant background has influenced his educational philosophy and initiatives, particularly in relation to the Indian and Bangladeshi communities in the diaspora.",
+        "Provide context on how Khan Academy has specifically impacted Indian and Bangladeshi students abroad, perhaps by including testimonials or statistics that highlight its usage among the diaspora.",
+        "Include a brief discussion on the potential implications of Khan's AI college for international students, particularly NRIs, and how it might address educational challenges faced by them.",
+        "Add a concluding paragraph that ties Khan's story back to the broader theme of immigrant success and contributions to education, which would resonate more with the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Sal Khan or Khan Academy that highlights their mission or recent achievements, which would provide a direct connection to the subject matter and enhance reader engagement."
+      ]
+    }
+  }
+]
