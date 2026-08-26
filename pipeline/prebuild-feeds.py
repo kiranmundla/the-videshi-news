@@ -426,6 +426,24 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     for sec in CATEGORY_SECTIONS:
         sections[sec["slug"]] = get_category_articles(sec["slug"], sec["limit"])
 
+    # Interviews: ensure interview articles from the last 30 days always
+    # appear in their category section so InterviewSpotlight picks them up.
+    since_30d = (now - timedelta(days=30)).isoformat()
+    interview_articles = [
+        a for a in articles
+        if a.get("article_type") == "interview"
+        and a["published_at"] >= since_30d
+        and a.get("hero_image_url")
+    ]
+    interview_articles.sort(key=lambda a: a["published_at"], reverse=True)
+    for ia in interview_articles:
+        cat = ia["category"]
+        sec_list = sections.get(cat, [])
+        existing_ids = {a["id"] for a in sec_list}
+        if ia["id"] not in existing_ids:
+            sec_list.append(article_without_body(ia))
+            sections[cat] = sec_list
+
     # Carousel: top 1 article with image from each carousel category
     seen_ids = set()
     carousel = []
