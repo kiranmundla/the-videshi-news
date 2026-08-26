@@ -246,30 +246,37 @@ function mapRow(row: P2Row): Article {
 }
 
 export async function getFeaturedArticle(): Promise<Article | null> {
-  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  // Cascading time windows so the hero never goes blank during pipeline gaps
+  const windows = [24, 72, 7 * 24]; // hours
 
-  const buildBase = () =>
-    supabase
-      .from("p2_articles")
-      .select(P2_COLS)
-      .eq("status", "published")
-      .gte("published_at", since)
-      .not("tags", "cs", '{"who is"}')
-      .order("display_score", { ascending: false, nullsFirst: false })
-      .order("published_at", { ascending: false })
-      .order("id", { ascending: true });
+  for (const hours of windows) {
+    const since = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
 
-  // Try with image first
-  const { data: withImage } = await buildBase()
-    .not("image_url", "is", null)
-    .neq("image_url", "")
-    .limit(1)
-    .maybeSingle();
-  if (withImage) return mapRow(withImage as P2Row);
+    const buildBase = () =>
+      supabase
+        .from("p2_articles")
+        .select(P2_COLS)
+        .eq("status", "published")
+        .gte("published_at", since)
+        .not("tags", "cs", '{"who is"}')
+        .order("display_score", { ascending: false, nullsFirst: false })
+        .order("published_at", { ascending: false })
+        .order("id", { ascending: true });
 
-  // Fall back to any top article
-  const { data } = await buildBase().limit(1).maybeSingle();
-  return data ? mapRow(data as P2Row) : null;
+    // Try with image first
+    const { data: withImage } = await buildBase()
+      .not("image_url", "is", null)
+      .neq("image_url", "")
+      .limit(1)
+      .maybeSingle();
+    if (withImage) return mapRow(withImage as P2Row);
+
+    // Fall back to any top article in this window
+    const { data } = await buildBase().limit(1).maybeSingle();
+    if (data) return mapRow(data as P2Row);
+  }
+
+  return null;
 }
 
 export function readingTime(markdown: string) {

@@ -400,24 +400,25 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
             return [article_without_body(a) for a in wider[:limit]]
         return [article_without_body(a) for a in recent[:limit]]
 
-    # Featured article: most recent 24h with image and highest LLM importance score
-    since_24h = (now - timedelta(hours=24)).isoformat()
-    recent_24h = [a for a in articles if a["published_at"] >= since_24h]
-    # Sort by LLM score first, then Google cluster size, freshness as tiebreaker
-    recent_24h.sort(key=lambda a: (
-        a.get("llm_score") or 0,
-        a.get("google_cluster_size") or 0,
-        a.get("event_at") or a["published_at"],
-    ), reverse=True)
-    # Categories that should never be the homepage hero
+    # Featured article: cascading windows (24h → 72h → 7d) so hero never goes blank
     _NO_FEATURED_CATS = {"food", "travel", "lifestyle-health"}
     featured = None
-    for a in recent_24h:
-        if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS and a["id"] not in storyline_article_ids:
-            featured = article_without_body(a)
+    for _window_hours in [24, 72, 7 * 24]:
+        _since = (now - timedelta(hours=_window_hours)).isoformat()
+        _recent = [a for a in articles if a["published_at"] >= _since]
+        _recent.sort(key=lambda a: (
+            a.get("llm_score") or 0,
+            a.get("google_cluster_size") or 0,
+            a.get("event_at") or a["published_at"],
+        ), reverse=True)
+        for a in _recent:
+            if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS and a["id"] not in storyline_article_ids:
+                featured = article_without_body(a)
+                break
+        if not featured and _recent:
+            featured = article_without_body(_recent[0])
+        if featured:
             break
-    if not featured and recent_24h:
-        featured = article_without_body(recent_24h[0])
 
     # Sections
     sections = {}
