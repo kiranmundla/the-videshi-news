@@ -60,6 +60,40 @@ SB_URL = ENV.get("SUPABASE_URL", "")
 SB_KEY = ENV.get("SUPABASE_SERVICE_ROLE_KEY", "")
 OPENAI_KEY = ENV.get("OPENAI_API_KEY", "")
 
+def _curl_with_retry(cmd, max_retries=3, label="curl"):
+    """Run a curl command with exponential backoff on transient failures (rc=7,28,56)."""
+    TRANSIENT_CODES = {7, 28, 56}  # connection refused, timeout, recv failure
+    for attempt in range(max_retries + 1):
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
+            if r.returncode == 0:
+                return r
+            if r.returncode in TRANSIENT_CODES and attempt < max_retries:
+                wait = 2 ** attempt  # 1s, 2s, 4s
+                print(f"    ⚠ {label} rc={r.returncode}, retry {attempt+1}/{max_retries} in {wait}s...")
+                time.sleep(wait)
+                continue
+            return r  # non-transient error or exhausted retries
+        except subprocess.TimeoutExpired:
+            if attempt < max_retries:
+                wait = 2 ** attempt
+                print(f"    ⚠ {label} timeout, retry {attempt+1}/{max_retries} in {wait}s...")
+                time.sleep(wait)
+                continue
+            # Return a fake result on final timeout
+            class FakeResult:
+                returncode = 28
+                stdout = ""
+                stderr = "timeout"
+            return FakeResult()
+    # Should not reach here, but just in case
+    class FakeResult:
+        returncode = -1
+        stdout = ""
+        stderr = "exhausted retries"
+    return FakeResult()
+
+
 def sb_get(endpoint, params=None, range_header=None):
     url = f"{SB_URL}/rest/v1/{endpoint}"
     if params:
@@ -70,14 +104,14 @@ def sb_get(endpoint, params=None, range_header=None):
            "-H", f"Authorization: Bearer {SB_KEY}"]
     if range_header:
         cmd += ["-H", f"Range: {range_header}"]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
+    r = _curl_with_retry(cmd, max_retries=3, label=f"sb_get {endpoint}")
     try:
         return json.loads(r.stdout)
     except:
         return []
 
 def sb_post(endpoint, data, upsert=False):
-    """Post data to Supabase. Uses temp file for large payloads."""
+    """Post data to Supabase with retry on transient failures. Uses temp file for large payloads."""
     url = f"{SB_URL}/rest/v1/{endpoint}"
     if upsert:
         url += "?on_conflict=url_hash"
@@ -91,7 +125,6 @@ def sb_post(endpoint, data, upsert=False):
         "-H", f"Prefer: {prefer}",
     ]
     payload = json.dumps(data)
-    # Use temp file for large payloads
     import tempfile
     if len(payload) > 50000:
         with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
@@ -99,7 +132,7 @@ def sb_post(endpoint, data, upsert=False):
             tmp_path = tmp.name
         try:
             cmd = ["curl", "-sS", "--max-time", "30", "-X", "POST", url] + headers + ["-d", f"@{tmp_path}"]
-            r = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
+            r = _curl_with_retry(cmd, max_retries=3, label=f"sb_post {endpoint} (large)")
             ok = r.returncode == 0 and r.stdout.strip() in ("", "[]")
             if not ok:
                 print(f"    ⚠️  sb_post {endpoint} FAIL (large): rc={r.returncode} body={r.stdout[:300]}")
@@ -108,7 +141,7 @@ def sb_post(endpoint, data, upsert=False):
             os.unlink(tmp_path)
     else:
         cmd = ["curl", "-sS", "--max-time", "20", "-X", "POST", url] + headers + ["-d", payload]
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
+        r = _curl_with_retry(cmd, max_retries=3, label=f"sb_post {endpoint}")
         ok = r.returncode == 0 and r.stdout.strip() in ("", "[]")
         if not ok:
             print(f"    ⚠️  sb_post {endpoint} FAIL: rc={r.returncode} body={r.stdout[:300]}")
@@ -146,6 +179,8 @@ def flush_to_db(new_topics, signals, topic_signal_counts, label=""):
             batch = topic_rows[i:i+BATCH]
             if sb_post("p2_topics", batch):
                 topics_written += len(batch)
+            if i + BATCH < len(topic_rows):
+                time.sleep(0.5)  # pace batches to avoid proxy saturation
 
     # Insert signals (upsert to skip dupes)
     if signals:
@@ -166,6 +201,8 @@ def flush_to_db(new_topics, signals, topic_signal_counts, label=""):
                 signals_written += len(batch)
             else:
                 print(f"    ⚠️  Signal batch {i}-{i+len(batch)} FAILED (sb_post returned False)")
+            if i + BATCH < len(signals):
+                time.sleep(0.5)  # pace batches to avoid proxy saturation
 
     if topics_written or signals_written:
         print(f"    💾 DB flush{' ('+label+')' if label else ''}: {topics_written} topics, {signals_written} signals")
@@ -183,7 +220,7 @@ def sb_patch(endpoint, data, match_params):
            "-H", "Content-Type: application/json",
            "-H", "Prefer: return=minimal",
            "-d", payload]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
+    r = _curl_with_retry(cmd, max_retries=3, label=f"sb_patch {endpoint}")
     return r.returncode == 0
 
 # ── URL normalization ─────────────────────────────────────────────────────────

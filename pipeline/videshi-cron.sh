@@ -57,7 +57,7 @@ case "$1" in
   v2-ingest)
     run_job "v2-ingest" "cd $REPO/pipeline && \
       set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
-      timeout 1200 python3 -u v3-ingest.py"
+      timeout 1800 python3 -u v3-ingest.py"
     ;;
 
   visa-alerts)
