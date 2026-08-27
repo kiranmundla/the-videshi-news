@@ -1,5 +1,14 @@
 [
   {
+    "id": "state-dept-global-immigrant-visa-pause",
+    "date": "2026-08-26",
+    "label": "Aug 26, 2026",
+    "headline": "State Department pauses immigrant visa interviews worldwide for public charge training \u2014 no timeline for resumption",
+    "summary": "The U.S. State Department ordered a global pause on immigrant visa interviews at all embassies and consulates starting August 25, directing consular officers to undergo mandatory training on stricter public charge screening. Applicants with scheduled interviews are receiving cancellation emails with no new dates. The pause affects family-based and employment-based immigrant visa applicants processing through consulates abroad \u2014 not nonimmigrant visas (H-1B, student, tourist). The timing is significant: it came days after federal judges struck down the administration's 75-country blanket visa pause (Sayani v. Rubio on Aug 7, Judge Vargas' broader ruling on Aug 21) and a Diversity Visa pause (Judge Leon on Aug 25). Plaintiffs have filed emergency motions accusing the State Department of circumventing court orders. The department has not disclosed when interviews will resume, what the new training entails, or whether applicants retain their place in line. For Indian families in employment-based green card queues processing through consulates, the pause adds another delay on top of the EB-2/EB-5 Unavailable status. Diversity Visa applicants face a hard September 30 deadline that could erase their eligibility. Separately, the WSJ reported a pilot program requiring Dominican Republic immigrant visa applicants to post bonds of up to $250,000 \u2014 with plans to expand to other countries.",
+    "severity": "high",
+    "source": "US State Department / USA TODAY / WSJ / Reuters / Ellis Immigration"
+  },
+  {
     "id": "dhs-proposed-rule-103k-h1b-fee",
     "date": "2026-08-24",
     "label": "Aug 24, 2026",
@@ -160,15 +169,6 @@
     "summary": "Vice President JD Vance and DOL Inspector General Anthony D'Esposito announced a major investigation into H-1B visa fraud at a Milwaukee event on July 8. The DOL has already issued dozens of subpoenas targeting employers and labor brokers who allegedly submitted fraudulent H-1B petitions, exploited foreign workers through wage-kickback schemes, and undercut American workers with below-market labor. D'Esposito said the fraud has cost 'hundreds of millions' in the medical industry alone, with unqualified workers placed in healthcare facilities. DHS internal reviews suggest as many as one-fifth of H-1B petitions may be fraudulent. While immigration attorneys counter that fraud is rare in practice, the probe signals intensified enforcement scrutiny on H-1B employers \u2014 particularly IT staffing firms and outsourcing companies that employ large numbers of Indian workers. Vance stated: 'If you are trying to take advantage of that visa program, you are not allowed into the United States of America.'",
     "severity": "high",
     "source": "VP JD Vance / DOL Inspector General / NY Post / Milwaukee Journal Sentinel"
-  },
-  {
-    "id": "b1b2-wait-times-july-2026-surge",
-    "date": "2026-07-06",
-    "label": "Jul 6, 2026",
-    "headline": "US visa wait times hit new highs at Indian consulates \u2014 Mumbai at 10 months, Kolkata nearly doubles to 7 months",
-    "summary": "The State Department's July 2026 wait time data reveals further deterioration across all five Indian consulates. Mumbai B1/B2 waits have hit 300 days (10 months), the longest nationally. New Delhi jumped to 255 days (8.5 months), up from 7.5 months in June. Kolkata \u2014 previously the fastest option at 4 months \u2014 has surged to 210 days (7 months), nearly doubling in weeks. Hyderabad holds at 285 days (9.5 months). Chennai shows no interview availability at all, with only dropbox processing listed. Work visa (H/L/O/P/Q) waits remain 45\u2013105 days depending on the consulate, and student visa (F/M/J) waits are 45\u201360 days. The continued surge comes despite the State Department's $750 premium interview pilot launching July 1, which offers B1/B2 applicants expedited appointments within 10 business days at select posts. Participating locations have not yet been announced for India. With the USCIS signature rule also taking effect July 10 \u2014 potentially causing denials for digital-signature filings \u2014 Indian visa applicants face a convergence of new pressures heading into the second half of 2026.",
-    "severity": "high",
-    "source": "US State Department / travel.state.gov / afnovisaguide.com"
   },
   {
     "id": "interview-waiver-eliminated",
