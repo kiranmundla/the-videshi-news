@@ -2,7 +2,7 @@
 
 ## Step 1 — Run V3 selector
 ```
-cd ~/workspace/the-videshi-news/pipeline && timeout 600 python3 -u v3-select.py --per-cat 3 2>&1
+cd ~/workspace/the-videshi-news/pipeline && timeout 900 python3 -u v3-select.py --per-cat 3 2>&1
 ```
 
 ## Step 2 — Read candidates

@@ -1021,6 +1021,23 @@ def main():
     # Only LLM-score topics that have loaded signals AND weren't hard-deduped
     topics_with_loaded_signals = [t for t in topics if t.get("signals") and topic_statuses.get(t["id"]) != "rejected"]
     topics_without_signals = [t for t in topics if not t.get("signals") and topic_statuses.get(t["id"]) != "rejected"]
+
+    # ── Backlog cap: limit topics scored per run to stay within timeout ──
+    # After an ingest gap, thousands of topics can queue up. Scoring all of them
+    # via LLM would exceed the writer cron's timeout window. Cap at 500 topics,
+    # prioritized by signal count (more corroboration = more newsworthy) then
+    # recency. Unscored topics stay pending and get picked up in the next run.
+    MAX_TOPICS_TO_SCORE = 500
+    if len(topics_with_loaded_signals) > MAX_TOPICS_TO_SCORE:
+        topics_with_loaded_signals.sort(
+            key=lambda t: (t.get("signal_count", 1), t.get("last_signal_at", "")),
+            reverse=True
+        )
+        deferred_topics = topics_with_loaded_signals[MAX_TOPICS_TO_SCORE:]
+        topics_with_loaded_signals = topics_with_loaded_signals[:MAX_TOPICS_TO_SCORE]
+        print(f"\n  ⚠ Backlog cap: scoring top {MAX_TOPICS_TO_SCORE} of {MAX_TOPICS_TO_SCORE + len(deferred_topics)} topics (by signal count + recency)")
+        print(f"    Deferred {len(deferred_topics)} lower-priority topics to next run")
+
     print(f"\n── Step 4: LLM scoring + coverage classification ──")
     print(f"  Topics with loaded signals: {len(topics_with_loaded_signals)} (scoring)")
     print(f"  Topics without signals: {len(topics_without_signals)} (auto-rejecting)")
