@@ -403,22 +403,32 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     # Featured article: cascading windows (24h → 72h → 7d) so hero never goes blank
     _NO_FEATURED_CATS = {"food", "travel", "lifestyle-health"}
     featured = None
-    for _window_hours in [24, 72, 7 * 24]:
-        _since = (now - timedelta(hours=_window_hours)).isoformat()
-        _recent = [a for a in articles if a["published_at"] >= _since]
-        _recent.sort(key=lambda a: (
-            a.get("llm_score") or 0,
-            a.get("google_cluster_size") or 0,
-            a.get("event_at") or a["published_at"],
-        ), reverse=True)
-        for a in _recent:
-            if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS and a["id"] not in storyline_article_ids:
-                featured = article_without_body(a)
+
+    # First: check for explicitly pinned featured articles (is_featured=true in DB)
+    _pinned = [a for a in articles if a.get("is_pinned_featured") is True
+               and a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS]
+    if _pinned:
+        _pinned.sort(key=lambda a: a["published_at"], reverse=True)
+        featured = article_without_body(_pinned[0])
+
+    # Fallback: score-based selection with cascading time windows
+    if not featured:
+        for _window_hours in [24, 72, 7 * 24]:
+            _since = (now - timedelta(hours=_window_hours)).isoformat()
+            _recent = [a for a in articles if a["published_at"] >= _since]
+            _recent.sort(key=lambda a: (
+                a.get("llm_score") or 0,
+                a.get("google_cluster_size") or 0,
+                a.get("event_at") or a["published_at"],
+            ), reverse=True)
+            for a in _recent:
+                if a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS and a["id"] not in storyline_article_ids:
+                    featured = article_without_body(a)
+                    break
+            if not featured and _recent:
+                featured = article_without_body(_recent[0])
+            if featured:
                 break
-        if not featured and _recent:
-            featured = article_without_body(_recent[0])
-        if featured:
-            break
 
     # Sections
     sections = {}
