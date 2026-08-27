@@ -1,32 +1,128 @@
 [
   {
-    "slug": "india-ai-data-centre-ambitions-face-power-reckoning",
-    "headline": "India's AI and Data Centre Ambitions Face a Power Infrastructure Reckoning",
+    "slug": "mitchell-starc-dethrones-bumrah-icc-test-bowling-rankings-number-one",
+    "headline": "Mitchell Starc Dethrones Jasprit Bumrah as World’s Top-Ranked Test Bowler",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/mitchell-starc-dethrones-bumrah-icc-test-bowling-rankings-number-one.jpg"
+  },
+  {
+    "slug": "manjrekar-criticizes-bcci-icc-lenient-penalties-jaiswal-sooryavanshi-altercations",
+    "headline": "Manjrekar Calls Out BCCI and ICC Over Lenient Penalties for Jaiswal and Sooryavanshi",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/manjrekar-criticizes-bcci-icc-lenient-penalties-jaiswal-sooryavanshi-altercations.jpg"
+  },
+  {
+    "slug": "pennsylvania-measles-deaths-unvaccinated-us-outbreak-2026",
+    "headline": "Two Unvaccinated Pennsylvanians Die of Measles in First US Deaths This Year",
     "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-ai-data-centre-ambitions-face-power-reckoning.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/pennsylvania-measles-deaths-unvaccinated-us-outbreak-2026.jpg"
   },
   {
-    "slug": "elan-group-marriott-jw-marriott-hotel-residences-gurugram",
-    "headline": "Elan Group Partners With Marriott to Bring JW Marriott Hotel and Residences to Gurugram",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/elan-group-marriott-jw-marriott-hotel-residences-gurugram.jpg"
+    "slug": "us-freezes-immigrant-visa-interviews-worldwide-consular-training",
+    "headline": "US Freezes Immigrant Visa Interviews Worldwide Days After Court Struck Down 75-Country Ban",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-freezes-immigrant-visa-interviews-worldwide-consular-training.jpg"
   },
   {
-    "slug": "airbound-raises-37m-autonomous-delivery-drones-india",
-    "headline": "Bengaluru's Airbound Raises $37M to Build Autonomous Drones That Could Rival Trucking Costs",
+    "slug": "hanuman-ansh-box-office-success-third-week-surge",
+    "headline": "Hanuman Ansh Declared a Box Office Success After Miraculous Third-Week Surge",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hanuman-ansh-box-office-success-third-week-surge.jpg"
+  },
+  {
+    "slug": "upi-turns-10-india-digital-payment-system-decade-growth",
+    "headline": "UPI Turns 10: India's Digital Payment System Logs 12,000-Fold Growth in a Decade",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/upi-turns-10-india-digital-payment-system-decade-growth.jpg"
+  },
+  {
+    "slug": "nepal-tibet-border-flood-glacier-collapse-hundreds-missing",
+    "headline": "Hundreds Missing After Glacier Collapse Triggers Catastrophic Flood on Nepal-Tibet Border",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/nepal-tibet-border-flood-glacier-collapse-hundreds-missing.jpg"
+  },
+  {
+    "slug": "tukaram-mundhe-3000-food-raids-reshaping-mumbai-restaurant-industry",
+    "headline": "How IAS Officer Tukaram Mundhe's 3,000 Food Raids Are Reshaping Mumbai's Restaurant Industry",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tukaram-mundhe-3000-food-raids-reshaping-mumbai-restaurant-industry.jpg"
+  },
+  {
+    "slug": "yash-toxic-first-day-viewers-slam-messy-screenplay-record-advance-sales",
+    "headline": "First-Day Viewers Slam Yash's 'Toxic' for Messy Screenplay Despite Record Advance Sales",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/yash-toxic-first-day-viewers-slam-messy-screenplay-record-advance-sales.jpg"
+  },
+  {
+    "slug": "whatsapp-replaces-pins-passwords-multiple-passkeys-security",
+    "headline": "WhatsApp Replaces Six-Digit PINs With Full Passwords, Adds Multiple Passkeys",
     "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/airbound-raises-37m-autonomous-delivery-drones-india.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/whatsapp-replaces-pins-passwords-multiple-passkeys-security.jpg"
   },
   {
-    "slug": "syrias-barrel-bomb-mufti-sentenced-to-life-for-war-crimes",
-    "headline": "Syria's 'Barrel Bomb Mufti' Sentenced to Life for War Crimes",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/syrias-barrel-bomb-mufti-sentenced-to-life-for-war-crimes.jpg"
+    "slug": "iphone-18-pro-price-increase-memory-chip-shortage-38-percent",
+    "headline": "iPhone 18 Pro Could Cost $300 More as Memory Chip Shortage Drives 38% Build Cost Surge",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/iphone-18-pro-price-increase-memory-chip-shortage-38-percent.jpg"
   },
   {
-    "slug": "world-ocean-temperatures-shatter-records-el-nino-threatens-uncharted-heat",
-    "headline": "World Ocean Temperatures Shatter Records as El Niño Threatens Uncharted Heat",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/world-ocean-temperatures-shatter-records-el-nino-threatens-uncharted-heat.jpg"
+    "slug": "apple-foldable-iphone-ipad-layouts-touch-id-return",
+    "headline": "Apple's Foldable iPhone Will Run iPad-Like Layouts and Bring Back Touch ID",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/apple-foldable-iphone-ipad-layouts-touch-id-return.jpg"
+  },
+  {
+    "slug": "praggnanandhaa-caruana-grand-chess-tour-final-generational-clash",
+    "headline": "Praggnanandhaa and Caruana Set Up Generational Chess Clash in Grand Chess Tour Final",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/praggnanandhaa-caruana-grand-chess-tour-final-generational-clash.jpg"
+  },
+  {
+    "slug": "bitcoin-tops-80000-first-time-since-may-dollar-weakens-treasury-buybacks",
+    "headline": "Bitcoin Tops $80,000 for First Time Since May as Dollar Weakens on Treasury Buyback Plans",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bitcoin-tops-80000-first-time-since-may-dollar-weakens-treasury-buybacks.jpg"
+  },
+  {
+    "slug": "india-sugar-market-surplus-to-shortage-record-prices-festivals-2026",
+    "headline": "India's Sugar Market Swings From Surplus to Shortage as Prices Hit Record Ahead of Festivals",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-sugar-market-surplus-to-shortage-record-prices-festivals-2026.jpg"
+  },
+  {
+    "slug": "indian-student-applications-us-undergraduate-drop-15-percent",
+    "headline": "Indian Student Applications to US Undergraduate Programs Drop 15% Amid Visa Crackdown",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/indian-student-applications-us-undergraduate-drop-15-percent.jpg"
+  },
+  {
+    "slug": "karnataka-suspends-food-licences-amazon-swiggy-bigbasket-datura-sales",
+    "headline": "Karnataka Suspends Food Licences of Amazon, Swiggy Instamart, BigBasket Over Toxic Datura Sales",
+    "category": "food",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/karnataka-suspends-food-licences-amazon-swiggy-bigbasket-datura-sales.jpg"
+  },
+  {
+    "slug": "hpv-vaccine-cuts-risk-head-neck-other-cancers-studies",
+    "headline": "HPV Vaccine Cuts Risk of Head, Neck, and Other Cancers, Studies Show",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hpv-vaccine-cuts-risk-head-neck-other-cancers-studies.jpg"
+  },
+  {
+    "slug": "sensex-nifty-reverse-losses-close-higher-crude-oil-falls",
+    "headline": "Sensex, Nifty Reverse Intraday Losses to Close Higher as Crude Oil Falls 3%",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sensex-nifty-reverse-losses-close-higher-crude-oil-falls.jpg"
+  },
+  {
+    "slug": "alzheimers-blood-transfusion-risk-research",
+    "headline": "Old Blood Accelerated Alzheimer's in Mice, Reviving Debate Over Transfusion Risk",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/alzheimers-blood-transfusion-risk-research.jpg"
+  },
+  {
+    "slug": "six-free-evidence-backed-daily-habits-that-may-add-years-to-your-life",
+    "headline": "Six Free, Evidence-Backed Daily Habits That May Add Years to Your Life",
+    "category": "lifestyle-health",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/six-free-evidence-backed-daily-habits-that-may-add-years-to-your-life.jpg"
   }
 ]
