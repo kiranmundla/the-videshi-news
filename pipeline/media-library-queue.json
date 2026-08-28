@@ -232,136 +232,6 @@
    "priority": 2
   },
   {
-   "subject": "satellites",
-   "subject_type": "thing",
-   "tags": [
-    "satellites"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "5fe815e4-7446-4234-8d48-d8771c07ef16",
-   "priority": 2
-  },
-  {
-   "subject": "akash ambani",
-   "subject_type": "thing",
-   "tags": [
-    "akash ambani"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "5fe815e4-7446-4234-8d48-d8771c07ef16",
-   "priority": 2
-  },
-  {
-   "subject": "game pass",
-   "subject_type": "thing",
-   "tags": [
-    "game pass"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "a545ff7b-da86-48e5-a1b5-68562a45d7de",
-   "priority": 2
-  },
-  {
-   "subject": "60 day grace",
-   "subject_type": "thing",
-   "tags": [
-    "60 day grace"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "b4d47f06-8fb7-41e1-a889-02c52aa285b1",
-   "priority": 2
-  },
-  {
-   "subject": "immigration law",
-   "subject_type": "thing",
-   "tags": [
-    "immigration law"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "6bae5e8a-4a48-481a-8897-fca1f543866b",
-   "priority": 2
-  },
-  {
-   "subject": "executive power",
-   "subject_type": "thing",
-   "tags": [
-    "executive power"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "6bae5e8a-4a48-481a-8897-fca1f543866b",
-   "priority": 2
-  },
-  {
-   "subject": "palo alto networks",
-   "subject_type": "thing",
-   "tags": [
-    "palo alto networks"
-   ],
-   "first_seen": "2026-06-26T10:29:23Z",
-   "article_id": "e717b0fd-d8e5-40e7-aa59-689b28d9c8ac",
-   "priority": 2
-  },
-  {
-   "subject": "amarnath",
-   "subject_type": "thing",
-   "tags": [
-    "amarnath"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "5d15a642-85f8-4060-8d81-c1791c7a8b30",
-   "priority": 2
-  },
-  {
-   "subject": "bharat gaurav",
-   "subject_type": "thing",
-   "tags": [
-    "bharat gaurav"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "5bf41235-6d5e-47b4-a5f7-212222a9fcf8",
-   "priority": 2
-  },
-  {
-   "subject": "cxmt",
-   "subject_type": "thing",
-   "tags": [
-    "cxmt"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "6714a29f-e33c-4be3-9715-8a0487438fb5",
-   "priority": 2
-  },
-  {
-   "subject": "memory chip",
-   "subject_type": "thing",
-   "tags": [
-    "memory chip"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "6714a29f-e33c-4be3-9715-8a0487438fb5",
-   "priority": 2
-  },
-  {
-   "subject": "neysa",
-   "subject_type": "thing",
-   "tags": [
-    "neysa"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1116528b-9890-4be7-adec-621e21e67cd8",
-   "priority": 2
-  },
-  {
-   "subject": "accel",
-   "subject_type": "thing",
-   "tags": [
-    "accel"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1116528b-9890-4be7-adec-621e21e67cd8",
-   "priority": 2
-  },
-  {
    "subject": "Tamannaah Bhatia",
    "subject_type": "person",
    "tags": [
@@ -370,26 +240,6 @@
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "668795e1-7da8-4810-a807-116303aac70e",
    "priority": 8
-  },
-  {
-   "subject": "San Francisco Unicorns",
-   "subject_type": "thing",
-   "tags": [
-    "san francisco unicorns"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
-  },
-  {
-   "subject": "Seattle Orcas",
-   "subject_type": "thing",
-   "tags": [
-    "seattle orcas"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
   },
   {
    "subject": "Lhuan dre Pretorius",
@@ -6030,16 +5880,6 @@
    "first_seen": "2026-07-17T10:29:25Z",
    "article_id": "071bcb8c-7679-4694-bcb4-44bec34b139d",
    "priority": 1
-  },
-  {
-   "subject": "Sai Pallavi",
-   "subject_type": "thing",
-   "tags": [
-    "sai pallavi"
-   ],
-   "first_seen": "2026-07-18T10:29:25Z",
-   "article_id": "b6e818b3-8e56-4727-b3f1-1bed8a91d354",
-   "priority": 4
   },
   {
    "subject": "NRI achievement",
