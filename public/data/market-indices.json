@@ -1,61 +1,61 @@
 {
-  "last_updated": "2026-08-24T13:00:25.052988+00:00",
   "indices": [
     {
       "symbol": "SPX",
       "name": "S&P 500",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 7674.37,
-      "change": 33.21,
-      "change_pct": 0.43
+      "value": 7730.99,
+      "change": 53.71,
+      "change_pct": 0.7
     },
     {
-      "symbol": "NASDAQ",
+      "symbol": "IXIC",
       "name": "Nasdaq",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 26180.46,
-      "change": 113.29,
-      "change_pct": 0.43
+      "value": 26541.35,
+      "change": 390.05,
+      "change_pct": 1.49
     },
     {
       "symbol": "SENSEX",
       "name": "Sensex",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 77369.11,
-      "change": -171.72,
-      "change_pct": -0.22
+      "value": 77264.51,
+      "change": 330.92,
+      "change_pct": 0.43
     },
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 24219.05,
-      "change": -32.95,
-      "change_pct": -0.14
+      "value": 24175.65,
+      "change": 84.8,
+      "change_pct": 0.35
     },
     {
       "symbol": "USDINR",
       "name": "USD/INR",
       "flag": "\ud83d\udcb1",
-      "value": 95.74,
-      "change": 0.04,
-      "change_pct": 0.04
+      "value": 95.37,
+      "change": -0.06,
+      "change_pct": -0.06
     },
     {
-      "symbol": "GOLD",
+      "symbol": "GC=F",
       "name": "Gold",
-      "flag": "\u2728",
-      "value": 4719.6,
-      "change": 21.4,
-      "change_pct": 0.46
+      "flag": "\ud83e\udd47",
+      "value": 4647.0,
+      "change": 37.3,
+      "change_pct": 0.81
     },
     {
-      "symbol": "SILVER",
+      "symbol": "SI=F",
       "name": "Silver",
-      "flag": "\ud83e\ude99",
-      "value": 69.18,
-      "change": 0.22,
-      "change_pct": 0.32
+      "flag": "\ud83e\udd48",
+      "value": 71.11,
+      "change": 1.68,
+      "change_pct": 2.42
     }
-  ]
+  ],
+  "lastUpdated": "2026-08-28T12:04:07.536525+00:00"
 }
