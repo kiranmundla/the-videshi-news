@@ -18,6 +18,15 @@
     "source": "US State Department / USA TODAY / WSJ / Reuters / Ellis Immigration"
   },
   {
+    "id": "mass-b1b2-revocation-asylum-seekers",
+    "date": "2026-08-25",
+    "label": "Aug 25, 2026",
+    "headline": "Trump administration plans largest mass visa revocation in US history \u2014 up to 200,000 B1/B2 holders who sought asylum targeted",
+    "summary": "The State Department announced it is coordinating with DHS to revoke the B1 and B2 (business/tourist) visas of up to 200,000 foreigners who entered the US as short-term visitors but then filed for asylum. If carried out, it would be the largest single mass visa revocation in US history. The revocations target visas issued between 2016 and 2026 whose holders have sought or are currently seeking asylum. State Department spokesman Tommy Pigott confirmed the effort, though the revocations would not necessarily result in immediate deportation \u2014 most with pending asylum cases would be recategorized but lose their tourist/business status. The action follows the administration's broader crackdown: the State Department has already revoked more than 175,000 visas since Trump took office for his second term. Deputy Secretary of State Christopher Landau alleged the immigration system 'has long been swamped by frivolous asylum claims.' While the measure primarily targets asylum seekers from Latin America, the Caribbean, and Africa, Indian nationals who entered on B1/B2 visas and subsequently filed asylum claims \u2014 a small but nonzero population \u2014 would also be affected. The move is expected to face legal challenges.",
+    "severity": "high",
+    "source": "Associated Press / Reuters / State Department"
+  },
+  {
     "id": "dhs-proposed-rule-103k-h1b-fee",
     "date": "2026-08-24",
     "label": "Aug 24, 2026",
@@ -160,15 +169,6 @@
     "summary": "The Unified Regulatory Agendas released by DHS, DOL, and the State Department outline the most comprehensive tightening of the US immigration system in years. Key proposals: (1) H-4 EAD auto-extension ending \u2014 a final rule expected this month would end automatic work permit extensions for H-4 spouses, predominantly Indian, creating potential work authorization gaps even for timely filers; (2) Green Card wage thresholds rising from the 17th to the 34th percentile for H-1B workers and employment-based permanent residency applicants; (3) H-1B cap exemptions for universities, nonprofit research organizations, and affiliated institutions may be limited, forcing more applicants into the lottery; (4) STEM OPT extension and CPT restrictions proposed for February 2027, threatening the primary post-graduation work pathway for Indian students. None of the measures has taken effect yet, but formal proposals could open for public comment as early as August, with implementation potentially following soon after. Combined with the already-in-effect $100K H-1B fee and EB-2 India 'Unavailable' status, the regulatory agenda signals an unprecedented squeeze on Indian immigration pathways.",
     "severity": "high",
     "source": "DHS / DOL / State Department Unified Regulatory Agendas / Outlook Business / Bhaskar English"
-  },
-  {
-    "id": "dol-h1b-fraud-investigation-subpoenas",
-    "date": "2026-07-09",
-    "label": "Jul 9, 2026",
-    "headline": "DOL launches major H-1B fraud investigation \u2014 dozens of subpoenas issued, Vance says 'no more'",
-    "summary": "Vice President JD Vance and DOL Inspector General Anthony D'Esposito announced a major investigation into H-1B visa fraud at a Milwaukee event on July 8. The DOL has already issued dozens of subpoenas targeting employers and labor brokers who allegedly submitted fraudulent H-1B petitions, exploited foreign workers through wage-kickback schemes, and undercut American workers with below-market labor. D'Esposito said the fraud has cost 'hundreds of millions' in the medical industry alone, with unqualified workers placed in healthcare facilities. DHS internal reviews suggest as many as one-fifth of H-1B petitions may be fraudulent. While immigration attorneys counter that fraud is rare in practice, the probe signals intensified enforcement scrutiny on H-1B employers \u2014 particularly IT staffing firms and outsourcing companies that employ large numbers of Indian workers. Vance stated: 'If you are trying to take advantage of that visa program, you are not allowed into the United States of America.'",
-    "severity": "high",
-    "source": "VP JD Vance / DOL Inspector General / NY Post / Milwaukee Journal Sentinel"
   },
   {
     "id": "interview-waiver-eliminated",
