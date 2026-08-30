@@ -1,0 +1,61 @@
+[
+  {
+    "id": "a5f47919-da29-4f3f-8449-1406b153b176",
+    "headline": "Air India Adds Wood-Fired Pizzas to In-Flight Menu on Select US-India Routes",
+    "slug": "air-india-wood-fired-pizza-us-india-flights",
+    "category": "food",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"I Take Wood From People's Bins\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from NRIs who frequently travel between the US and India, discussing how the new pizza offering enhances their travel experience or reflects their culinary preferences.",
+        "Provide context on how Air India's menu changes align with the preferences of the Indian diaspora, perhaps by mentioning popular Indian dishes that NRIs miss while traveling or how these changes cater to their tastes.",
+        "Include a brief comparison of Air India's in-flight dining options with those of other airlines serving the same routes, highlighting how these changes could influence NRI travel choices.",
+        "Clarify the timeline of the menu overhaul by correcting the year mentioned (November 2025) to the current year, as this seems to be a typographical error."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India tweet announcing the new pizza offering to provide readers with direct access to the airline's communication and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "18769f19-8819-4635-a8a1-17e8b0925d03",
+    "headline": "Inside Nagpur's Saoji Cuisine: The 150-Year-Old Tradition Behind India's Spicies",
+    "slug": "nagpur-saoji-cuisine-spiciest-mutton-curry",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or anecdotes from NRIs who have experienced Saoji cuisine abroad, perhaps in cities with significant Indian populations like London or New York, to illustrate its growing global presence.",
+        "Provide additional context on how Saoji cuisine is being adapted or received in international markets, especially in places where NRIs are trying to recreate or share this culinary tradition with non-Indian audiences.",
+        "Include a section on how the diaspora can engage with or support the preservation of Saoji cuisine, such as through online cooking classes or local Indian restaurants that feature this dish.",
+        "Mention any specific events or festivals related to Saoji cuisine that NRIs can participate in, either in India or abroad, to foster a sense of connection to their heritage."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from a popular food influencer or chef who has highlighted Saoji cuisine, showcasing its appeal and authenticity to a wider audience."
+      ]
+    }
+  },
+  {
+    "id": "f58d18c6-f8cb-468e-85e9-fd022694d5cb",
+    "headline": "Air India Seeks $1.5 Billion in Fresh Equity From Tata Sons and Singapore Airlin",
+    "slug": "air-india-seeks-1-5-billion-equity-tata-sons-singapore-airlines",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Air India's financial struggles might affect NRIs, particularly those who rely on the airline for travel to India or for cargo services. This could include anecdotes or quotes from NRIs about their experiences or concerns regarding Air India's reliability and service quality.",
+        "Provide more context on how Air India's financial situation impacts the broader aviation market in India and abroad, especially for NRIs who may be considering travel options. This could include comparisons with other airlines or insights into how these losses could affect ticket prices and service availability for Indian expatriates.",
+        "Consider adding a section that discusses the implications of this funding request for the future of Air India and its potential impact on NRIs, such as changes in service routes, pricing, or customer service enhancements that could directly affect their travel experiences.",
+        "Clarify the timeline of the funding request and the expected outcomes for Air India, as NRIs would be interested in understanding how this situation might evolve and what it means for their travel plans in the near future."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Air India or Tata Sons that discusses the funding request or the airline's future plans, which would provide direct insights from the stakeholders involved."
+      ]
+    }
+  }
+]

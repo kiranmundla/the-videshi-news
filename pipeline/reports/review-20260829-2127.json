@@ -1,0 +1,78 @@
+[
+  {
+    "id": "e61b98d9-ccef-4d79-a3f7-a2a53788cf26",
+    "headline": "Beyond Dal Tadka: Six Regional Masala Dals Every Indian Home Cook Should Know",
+    "slug": "beyond-dal-tadka-six-regional-masala-dals-india",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including personal anecdotes or quotes from NRIs who have successfully incorporated these regional dals into their cooking. This could illustrate how these recipes help them connect with their roots.",
+        "Add a section that discusses the availability of specific lentils and spices in international markets, particularly in areas with large Indian communities. This would provide practical information for NRIs looking to recreate these dishes.",
+        "Consider including a brief history or cultural significance of each dal to provide more context for readers. This could enhance the appreciation of the dishes and their relevance to Indian culture.",
+        "Conclude with tips on how NRIs can adapt these recipes to suit local tastes or ingredient availability, making the content more relatable and actionable."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a popular Indian chef or food influencer discussing the importance of regional dals in Indian cuisine, which could provide additional credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "da8967c4-8c28-4d6d-a0fa-88a952d183af",
+    "headline": "The Viral Kora Turmeric Mask: What This Desi Skincare Hack Can and Cannot Do",
+    "slug": "viral-kora-turmeric-mask-desi-skincare-hack-benefits-risks",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including testimonials or experiences from NRIs who have adopted the kora turmeric mask in their skincare routines, highlighting how they connect with their cultural heritage through this practice.",
+        "Provide context on how the kora turmeric mask fits into the larger trend of Indian beauty practices gaining popularity among the diaspora, perhaps by referencing similar trends or products that have resonated with NRIs.",
+        "Add a section discussing the potential challenges or misconceptions NRIs might face when sourcing authentic ingredients for the mask in their respective countries, along with tips on where to find them.",
+        "Include a brief comparison of the kora turmeric mask with other popular skincare trends in the diaspora, such as K-beauty or Western skincare routines, to give readers a broader perspective."
+      ],
+      "embed_opportunities": [
+        "Embed Instagram posts from influencers who popularized the kora turmeric mask to visually showcase its popularity and provide readers with direct examples of its application."
+      ]
+    }
+  },
+  {
+    "id": "74a0ac3d-df88-4259-98cb-ff87edffde94",
+    "headline": "Curcumin in Turmeric May Protect Blood Vessels From Diabetes Damage, Study Finds",
+    "slug": "curcumin-turmeric-protect-blood-vessels-diabetes-damage-study",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how the findings on curcumin could be particularly relevant to the Indian diaspora, who may have a cultural connection to turmeric and its health benefits. This could include references to traditional uses of turmeric in Indian households and how this study might resonate with NRIs concerned about diabetes.",
+        "Provide context on the prevalence of diabetes within the Indian diaspora, which is known to have a higher risk for diabetes-related complications. This could help readers understand the relevance of the study to their own health concerns.",
+        "Consider adding a quote or perspective from a healthcare professional or researcher within the Indian community to provide a more localized viewpoint on the implications of the study for NRIs.",
+        "Include a brief overview of existing research on curcumin and diabetes management to give readers a broader understanding of the topic and how this new study fits into the existing body of knowledge."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the American Physiological Society that highlights the study's findings, which would provide credibility and direct readers to the source of the research."
+      ]
+    }
+  },
+  {
+    "id": "f8ca8d4d-1c01-4f1f-89c7-654643260dbf",
+    "headline": "Air India Express Pilots Challenge Revised Pay Structure Over Income Uncertainty",
+    "slug": "air-india-express-pilots-challenge-revised-pay-structure-income-uncertainty",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian pilots working abroad or NRIs in the aviation industry who can provide context on how such changes in Air India Express could affect their perceptions of the airline or influence their travel choices.",
+        "Add a specific social embed, such as the official Air India Express tweet announcing the revised pay structure or a relevant statement from the Tata Group, to provide readers with direct access to the source of the information.",
+        "Provide additional context regarding how these changes might impact the broader aviation industry in India and abroad, particularly for NRIs who may rely on Air India Express for travel. This could include comparisons with pay structures at other international airlines that cater to the Indian diaspora.",
+        "Reorganize the content to first outline the implications of the pay structure changes for pilots, followed by a section that discusses how these changes could affect passengers, especially NRIs, who may be concerned about service quality and pilot retention."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India Express tweet about the revised pay structure to provide readers with direct access to the announcement and enhance credibility."
+      ]
+    }
+  }
+]
