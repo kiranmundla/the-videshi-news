@@ -1,0 +1,123 @@
+[
+  {
+    "id": "97f15105-c7f6-4cf9-9b9c-bc9fe6a6830a",
+    "headline": "Tata Motors EV Bookings Triple as Company Bets on Record Festive Quarter",
+    "slug": "tata-motors-ev-bookings-triple-bets-record-festive-quarter",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how Tata Motors' EV growth impacts NRIs, particularly those interested in investing in Indian markets or those who own Tata vehicles abroad. This could include comments from NRI investors or industry experts on the significance of this growth for the Indian automotive sector and its global implications.",
+        "Provide context on how Tata Motors' EV strategy aligns with global trends in electric vehicles, particularly in markets where NRIs reside, such as the US, UK, and Canada. This could help NRIs understand the relevance of these developments to their own markets.",
+        "Include a brief section on the implications of Tata Motors' growth for the Indian economy and job market, which would be of interest to NRIs who are concerned about economic conditions in India.",
+        "Clarify the timeline mentioned in the article regarding the expected easing of battery supply constraints. The mention of 'the end of the September 2026 quarter' seems inconsistent with the current date; confirming the correct timeline would enhance clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Tata Motors or an industry expert discussing the surge in EV bookings, which would provide real-time insights and enhance credibility.",
+        "Consider embedding a video from Tata Motors showcasing their EV models or production facilities, which could visually engage readers and provide a deeper understanding of the company's capabilities."
+      ]
+    }
+  },
+  {
+    "id": "02b69e61-9b0c-4fcf-a5d0-c479aada1ff3",
+    "headline": "Deepti Sharma Sets T20I Record as India Rout Thailand in Asia Cup Opener",
+    "slug": "deepti-sharma-sets-t20i-record-india-rout-thailand-asia-cup-opener",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from Indian cricket fans living abroad, or mention how Deepti Sharma's achievement resonates with the NRI community, especially in terms of representation in international sports.",
+        "Provide context on how Deepti Sharma's record-breaking performance can inspire young female cricketers in the diaspora, potentially linking it to initiatives or programs that promote women's cricket among NRIs.",
+        "Include a brief section on the significance of this match in the broader context of women's cricket, particularly how it reflects the growth of the sport in India and its impact on the global stage, which could be of interest to the diaspora.",
+        "Consider adding a closing paragraph that discusses the upcoming matches in the Asia Cup and how the NRI community can engage with or support the Indian women's cricket team during the tournament."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Deepti Sharma or the Indian women's cricket team celebrating the victory or her record, which would provide a personal touch and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "94569566-d856-416c-ba6e-123f0dd01d22",
+    "headline": "India Passes Bill to Reintroduce Fees on UPI Merchant Payments",
+    "slug": "india-passes-bill-reintroduce-fees-upi-merchant-payments",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how these changes in UPI fees could impact NRIs sending money back to India or using UPI for transactions in India. Highlight any potential cost implications for NRIs who frequently use UPI for remittances or payments.",
+        "Add a brief comparison of UPI with other international payment systems that NRIs might be using, such as PayPal or Western Union, to provide context on how the reintroduction of fees might affect their choices.",
+        "Include a quote or statement from a prominent NRI financial expert or economist to provide a perspective on how this policy change could affect the Indian diaspora's financial interactions with India.",
+        "Provide a brief historical context of UPI's growth and its significance for NRIs, emphasizing how the zero-fee policy contributed to its adoption among Indian expatriates."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Finance Ministry announcing the bill's passage to provide readers with direct access to the government's communication on this policy change."
+      ]
+    }
+  },
+  {
+    "id": "c7d8dcb3-1ab6-46c2-91ab-15617a57e6af",
+    "headline": "DHS Revives Plan to End Work Permits for Spouses of H-1B Workers",
+    "slug": "dhs-revives-plan-end-work-permits-spouses-h1b-workers",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image",
+      "Possibly irrelevant YouTube: \"EB-5 Investors: DHS Just Proposed Rule Changes That Could De\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including personal anecdotes or quotes from Indian families affected by the H-4 EAD situation. This would provide a human element and illustrate the direct impact on the NRI community.",
+        "Provide more context on how the proposed changes could affect the employment landscape for Indian families, especially in sectors where H-4 spouses are significantly contributing. This would help readers understand the broader implications.",
+        "Clarify the timeline and process for the proposed rule change. While it mentions that it is a 'Long-Term Action,' elaborating on what that means for current H-4 EAD holders and potential future applicants would be beneficial.",
+        "Discuss the potential legal challenges that any final rule might face in more detail, as this could be a significant concern for the diaspora community."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the H-4 EAD policy changes to provide authoritative context and updates directly from the source."
+      ]
+    }
+  },
+  {
+    "id": "d2cefbdf-c6ea-4f69-bd01-d54c0af1966a",
+    "headline": "Big Tech Books $160 Billion in Paper Gains From AI Investment Stakes",
+    "slug": "big-tech-books-160-billion-paper-gains-ai-investment-stakes",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how these AI investments by Big Tech may impact Indian tech professionals and entrepreneurs abroad, particularly in the context of job opportunities or investment in Indian startups.",
+        "Provide context on how these paper gains might affect the global tech landscape, especially for NRIs who are invested in or working with Indian tech firms that may be competing with these giants.",
+        "Discuss potential implications for Indian investors or stakeholders in the tech sector, such as how these gains could influence investment trends or partnerships in India."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent financial analyst or tech expert discussing the implications of these paper gains on the global tech market, particularly in relation to Indian tech firms."
+      ]
+    }
+  },
+  {
+    "id": "cc40c12e-5b32-4a0e-accc-f0e904209729",
+    "headline": "Stock Futures Slide as U.S. Strikes on Iran Rattle Global Markets",
+    "slug": "stock-futures-slide-us-strikes-iran-rattle-global-markets",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who are affected by the fluctuations in global markets due to geopolitical tensions. This could provide a personal touch and highlight the implications for the Indian diaspora's investments.",
+        "Add context regarding how these market changes specifically impact Indian NRIs, particularly those with investments in U.S. markets or in the oil sector. This could include potential risks or opportunities for Indian investors living abroad.",
+        "Revise the headline to make it more compelling and specific to the audience. For example, 'Global Market Turmoil: How U.S. Strikes on Iran Impact Indian NRIs and Global Investments' would better reflect the article's focus on the diaspora.",
+        "Consider restructuring the content to include a brief overview of the historical context of U.S.-Iran relations and its implications for global markets, which would provide readers with a deeper understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding any policy changes that may affect NRIs or foreign investors in light of the geopolitical situation, to provide relevant context for the audience."
+      ]
+    }
+  }
+]
