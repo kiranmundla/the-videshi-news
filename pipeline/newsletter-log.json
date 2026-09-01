@@ -1206,5 +1206,15 @@
     "hero_slug": "who-is-sal-khan-khan-academy-founder-son-of-immigrants-worlds-teacher",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-08-31T13:59:30.670659+00:00Z",
+    "subject": "The Videshi Daily \u2014 August 31, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "who-is-anima-anandkumar-mysore-caltech-professor-ai-physics-accelerated-understanding",
+    "story_count": 5
   }
 ]

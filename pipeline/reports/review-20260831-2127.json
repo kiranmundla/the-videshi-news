@@ -1,0 +1,161 @@
+[
+  {
+    "id": "9f06fd1c-101d-4134-9d35-f6f10d59f2a7",
+    "headline": "IIT Gandhinagar Uses Machine Learning to Find Materials That Could Convert CO\u2082 I",
+    "slug": "iit-gandhinagar-machine-learning-co2-conversion-catalysts",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how Indian researchers abroad, particularly in the NRI community, could contribute to or collaborate on similar carbon capture technologies, highlighting any existing initiatives or partnerships.",
+        "Provide context on the implications of this research for the Indian diaspora, particularly in countries where environmental policies are becoming stricter, and how NRIs can engage with or advocate for such technologies in their respective regions.",
+        "Include a brief explanation of the significance of carbon monoxide as a building block for fuels and chemicals, as this may not be immediately clear to all readers, especially those outside the scientific community.",
+        "Consider adding a concluding paragraph that discusses potential future applications of this research and how it might impact global industries, particularly those that NRIs are involved in, such as energy and manufacturing."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from IIT Gandhinagar or a prominent researcher in the field to provide credibility and a direct connection to the research community.",
+        "Include a video or infographic that visually explains the process of converting CO\u2082 into industrial fuel, which could enhance understanding for readers less familiar with the science."
+      ]
+    }
+  },
+  {
+    "id": "0ccf11a8-352f-47fb-bfec-09e5a175feb8",
+    "headline": "She Had a Six-Figure Job in New York. H-1B Restrictions Made Leaving Easier.",
+    "slug": "indian-data-scientist-leaves-new-york-h1b-restrictions",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or quotes from other Indian professionals in the U.S. who are facing similar challenges, emphasizing the broader impact on the NRI community.",
+        "Provide more context on the implications of the proposed H-1B fee and the elimination of the grace period, perhaps by including expert commentary or insights from immigration lawyers who specialize in NRI issues.",
+        "Consider adding a section that discusses the emotional and psychological impact of leaving a successful career in the U.S. for Indian professionals, which could resonate more deeply with the diaspora audience.",
+        "Include a comparison of the job market and opportunities in India versus the U.S. for data scientists, which would provide valuable context for NRIs considering a return."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the proposed H-1B fee changes to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "cb09cb53-263c-4fb5-8172-4014fb90f0d3",
+    "headline": "Nepal Flood Death Toll Surpasses 900 as Rescuers Race to Free Workers Trapped in",
+    "slug": "nepal-flood-death-toll-900-rescuers-race-free-trapped-tunnel-workers",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian and American nationals affected by the floods, particularly those with family or friends in Nepal. This would provide a personal connection for NRIs.",
+        "Add context about the implications of the floods for NRIs, such as how they can assist or donate to relief efforts, or any organizations they can connect with to help those affected.",
+        "Clarify the impact of the floods on the hydropower industry, which may be of interest to NRIs involved in energy sectors or investments in Nepal.",
+        "Provide more background on the historical context of flooding in the region and how it affects the diaspora's perception of safety and investment in Nepal."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of External Affairs regarding their response to the disaster or any assistance being offered to Indian nationals in Nepal."
+      ]
+    }
+  },
+  {
+    "id": "75d46327-6944-43aa-9978-eaff980c0dc5",
+    "headline": "Driver, Conductor Arrested After Teenager Gang-Raped Inside Moving Sleeper Bus N",
+    "slug": "driver-conductor-arrested-teenager-gang-raped-sleeper-bus-delhi",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how incidents like this impact the perception of safety for Indian women abroad, particularly for NRIs who may have family back home. This could include quotes or insights from diaspora community leaders or organizations focused on women's safety.",
+        "Provide more context about the legal implications of the case, such as how it compares to previous high-profile cases involving women's safety in India, and what changes, if any, have been made to laws or policies as a result. This would help readers understand the broader implications of the incident.",
+        "Clarify the timeline of events leading to the public's awareness of the incident. The article mentions the incident occurred on August 4 but was publicized on August 31; elaborating on why there was a delay in reporting could provide important context.",
+        "Include a brief discussion on the role of public transport safety measures in India, especially for women, and how the diaspora community can engage in advocacy or support initiatives aimed at improving these conditions."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Delhi Police regarding the arrests and the case details, as it would provide authoritative context and enhance credibility.",
+        "Consider embedding a relevant video or infographic that highlights statistics on women's safety in public transport in India, which could provide readers with a visual understanding of the issue."
+      ]
+    }
+  },
+  {
+    "id": "997dc7f2-3075-4852-b614-e130c7afb2ff",
+    "headline": "Air India Express Flight From Dammam Diverted After Bomb Note Found in Lavatory",
+    "slug": "air-india-express-dammam-flight-diverted-bomb-note-lavatory",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs who frequently travel between Dammam and Delhi, discussing their concerns about safety and security in air travel.",
+        "Provide context on how incidents like this impact the Indian diaspora, particularly those living in the Gulf region, by discussing any previous similar incidents or the general safety measures in place for flights to India.",
+        "Clarify the implications of such threats on future travel for NRIs, including potential changes in airline policies or security measures that may affect their travel plans.",
+        "Add a brief section on how the incident may influence perceptions of safety among NRIs traveling to and from India, potentially including statistics on air travel safety or previous incidents."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from Air India or a relevant tweet from the Ministry of Civil Aviation regarding the incident to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "057f08a5-087f-4970-b33a-c9d919b0ab49",
+    "headline": "The ISRO Chief Who Led India to Mars and Never Stopped Dancing Kathakali",
+    "slug": "isro-chief-radhakrishnan-mars-kathakali-carnatic-music",
+    "category": "nri-world",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Ex-Isro chief, IIT director & more: Who is on Nandan Nilekan\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who have been inspired by Dr. Radhakrishnan's achievements, particularly those in the fields of science and arts. This could highlight how his dual career resonates with the Indian diaspora's diverse pursuits.",
+        "Provide more context on how Dr. Radhakrishnan's achievements have been perceived internationally, especially among the NRI community. This could include mentioning any global recognition or awards that resonate with the diaspora.",
+        "Consider adding a section that discusses the impact of India's space achievements on the global stage and how it inspires NRIs, particularly in STEM fields, to contribute to India's growth from abroad.",
+        "Include a brief mention of how the Indian diaspora has contributed to or benefited from India's advancements in space technology, linking it back to Dr. Radhakrishnan's legacy."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from ISRO or a prominent figure in the Indian space community that celebrates Dr. Radhakrishnan's contributions, which would resonate with the diaspora and provide social proof of his impact."
+      ]
+    }
+  },
+  {
+    "id": "116ba981-a63a-4a60-bb24-a53cda9e815b",
+    "headline": "RSS Chief Bhagwat Addresses Thousands at Madison Square Garden Amid Protests and",
+    "slug": "rss-chief-bhagwat-madison-square-garden-speech-protests-sanctions",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian Americans who attended the event, highlighting their perspectives on Bhagwat's message and the significance of the event for the NRI community.",
+        "Provide more context about the protests outside the event, including the perspectives of the protesters and how they relate to the NRI community's views on the RSS, to give a more balanced view of the event's impact on the diaspora.",
+        "Add a section discussing the implications of the U.S. Commission on International Religious Freedom's recommendations for NRIs, particularly how these sanctions could affect their engagement with the RSS and their views on Indian politics.",
+        "Consider restructuring the article to first present the event's significance to the diaspora, followed by Bhagwat's speech, and then the protests, to create a clearer narrative flow that emphasizes the NRI perspective."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the sanctions recommendations to provide readers with direct access to the official stance and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "05f77cb6-817e-455f-ba26-d104171d6c2e",
+    "headline": "How To Make Dhaniya Panjiri for Janmashtami in Under 15 Minutes",
+    "slug": "dhaniya-panjiri-janmashtami-recipe-2026",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how NRIs can source ingredients for dhaniya panjiri in their local areas, especially in countries with limited access to Indian grocery stores. This could include suggestions for online shopping or local Indian markets.",
+        "Add a brief cultural context about the significance of Janmashtami celebrations among the Indian diaspora, perhaps including anecdotes or quotes from NRIs about their experiences celebrating this festival abroad.",
+        "Consider including a comparison of dhaniya panjiri with other prasad offerings that are popular among NRIs, highlighting regional variations and how they adapt traditional recipes in different countries.",
+        "Incorporate a section on how making dhaniya panjiri can serve as a way for NRIs to connect with their heritage and pass down traditions to younger generations, enhancing the emotional connection to the recipe."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing a beautifully presented dhaniya panjiri, perhaps from a popular Indian food influencer, to visually engage readers.",
+        "Consider embedding a tweet from a prominent Indian chef or food blogger discussing the importance of traditional recipes during festivals, which could resonate with the diaspora audience."
+      ]
+    }
+  }
+]
