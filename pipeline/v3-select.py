@@ -4,8 +4,9 @@
 Topics are already clustered by v3-ingest.py. This selector:
   1. Loads pending V3 topics + their linked signals
   2. LLM scores: relevance, newsworthiness, coverage classification (new/update/duplicate)
-  3. Per-category caps
-  4. Outputs candidates JSON for the writer cron
+  3. Event freshness gate — rejects stale events repackaged as new articles
+  4. Per-category caps
+  5. Outputs candidates JSON for the writer cron
 
 Usage:
   python3 v3-select.py [--per-cat 3] [--out /tmp/v3-candidates.json] [--dry-run]
@@ -398,6 +399,36 @@ def _verify_handle_name(handle, headline, handle_type="person"):
         return True
     return False
 
+# ── Event freshness: temporal cue detection (mechanical pre-scan) ─────────────
+# Detects phrases in headline/description that indicate the article is about an
+# old event (e.g. "announced in June", "meet the founder"). Results are fed as
+# evidence to the LLM scoring call — no extra API cost.
+
+_STALE_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
+    r'\b(?:announced|agreed|signed|closed|launched|raised|acquired|invested|struck|sealed|secured|inked|clinched)\s+in\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\b',
+    r'\b(?:last|earlier)\s+(?:month|year|quarter|week)\b',
+    r'\b(?:weeks|months)\s+ago\b',
+    r'\bhad\s+(?:acquired|invested|raised|announced|agreed|signed|closed|launched)\b',
+    r'\b(?:back\s+in|dating\s+back)\b',
+]]
+
+_PROFILE_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
+    r'\b(?:meet|who\s+is|get\s+to\s+know)\b',
+    r'\b(?:the\s+)?(?:story\s+behind|story\s+of|rise\s+of|journey\s+of)\b',
+    r'\b(?:things?\s+(?:to|you\s+should)\s+know)\b',
+    r'\b(?:everything\s+(?:you\s+need\s+to|to)\s+know)\b',
+]]
+
+
+def detect_temporal_cues(title, description=''):
+    """Scan headline + description for stale-event and profile/retrospective cues.
+    Returns (stale_cues: list[str], profile_cues: list[str])."""
+    text = f"{title}. {description or ''}".lower()
+    stale_cues = [m.group() for p in _STALE_PATTERNS for m in [p.search(text)] if m]
+    profile_cues = [m.group() for p in _PROFILE_PATTERNS for m in [p.search(text)] if m]
+    return stale_cues, profile_cues
+
+
 # ── LLM scoring prompt ───────────────────────────────────────────────────────
 LLM_PROMPT = """You are the editorial filter for The Videshi, a news site for the Indian diaspora — Indians living in the US, UK, Canada, and Australia.
 
@@ -484,7 +515,18 @@ WHO TO EXCLUDE:
 
 Pick from KNOWN HANDLES when possible. The list is NOT exhaustive — suggest new handles if you are CERTAIN the person/org has an active IG and you know the exact handle. When in doubt, leave it out. Return up to 5, most relevant first. Return [] if none.
 
-Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "kids_relevant": false, "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person", "keywords": ["google", "ceo", "ai"]}, {"handle": "@google", "type": "org", "keywords": ["google", "ai", "search"]}]},...]}\n"""
+EVENT TIMING — CRITICAL:
+For each topic, determine WHEN the underlying event actually occurred, not when the article was published.
+- If the article says "announced in June" or "agreed last month" or "weeks ago", the event_date is that past date, NOT today.
+- If the article is a profile ("meet the founder", "who is", "story behind"), story_mode is "retrospective" and event_date is when the original event occurred.
+- If the article reports something happening TODAY or within the last 48 hours with no backward-looking language, event_date is null (same-day).
+- A retrospective/profile with NO new development is NOT the same as breaking news, even if the person or company is highly relevant.
+
+8. "event_date": ISO date or partial date ("2026-06-15", "2026-06", "2026-Q2") of when the lead event actually occurred. null if genuinely breaking/same-day news.
+9. "story_mode": "new_event" | "major_update" | "retrospective" | "explainer" — classify the article's framing
+10. "new_development": If story_mode is "major_update", one sentence describing what is specifically new. null otherwise.
+
+Respond as JSON: {"results": [{"id": 1, "relevant": true, "coverage": "new", "score": 4, "category": "technology", "kids_relevant": false, "reason": "...", "ig_handles": [{"handle": "@sundarpichai", "type": "person", "keywords": ["google", "ceo", "ai"]}, {"handle": "@google", "type": "org", "keywords": ["google", "ai", "search"]}], "event_date": null, "story_mode": "new_event", "new_development": null},...]}\n"""
 
 MERGE_PROMPT = """You are grouping news headlines that cover the SAME underlying story or event.
 
@@ -525,7 +567,13 @@ def llm_score_topics(topics_with_signals, recent_articles):
                 if s.get("description") and len(s["description"]) > len(desc):
                     desc = s["description"]
             desc_part = f" | {desc[:150]}" if desc else ""
-            lines.append(f"{i+1}. {title[:120]}{desc_part} [signals: {sig_count}, sources: {source_count}]")
+            line = f"{i+1}. {title[:120]}{desc_part} [signals: {sig_count}, sources: {source_count}]"
+            # Append temporal cue evidence if detected
+            stale_cues, profile_cues = detect_temporal_cues(title, desc)
+            if stale_cues or profile_cues:
+                cue_parts = stale_cues + profile_cues
+                line += f" [TEMPORAL CUES: {', '.join(repr(c) for c in cue_parts)}]"
+            lines.append(line)
 
         payload = {
             "model": "gpt-4o-mini",
@@ -587,6 +635,9 @@ def llm_score_topics(topics_with_signals, recent_articles):
                     "reason": item.get("reason", ""),
                     "kids_relevant": item.get("kids_relevant", False),
                     "ig_handles": item.get("ig_handles", []),
+                    "event_date": item.get("event_date"),
+                    "story_mode": item.get("story_mode", "new_event"),
+                    "new_development": item.get("new_development"),
                 }
         return batch_start, results, cost, None
 
@@ -608,6 +659,45 @@ def llm_score_topics(topics_with_signals, recent_articles):
 
     print(f"  Total LLM scored: {len(all_results)}/{len(topics_with_signals)} (${total_cost:.4f})")
     return all_results
+
+
+# ── Event freshness gate ──────────────────────────────────────────────────────
+def apply_event_freshness_gate(llm_result, topic_title):
+    """Reject stale events repackaged as new articles.
+
+    Returns:
+        'pass'         — genuinely new or can't determine, let through
+        'reject_stale' — old event + retrospective/explainer + no new development
+    """
+    event_date_str = llm_result.get("event_date")
+    story_mode = llm_result.get("story_mode", "new_event")
+    new_dev = llm_result.get("new_development")
+
+    # No event date or genuinely new event → pass
+    if not event_date_str or story_mode == "new_event":
+        return "pass"
+
+    # Major update with an actual new development → always pass
+    if story_mode == "major_update" and new_dev:
+        return "pass"
+
+    # Try to parse the event date
+    try:
+        import dateparser
+        event_dt = dateparser.parse(str(event_date_str), settings={"PREFER_DATES_FROM": "past"})
+    except Exception:
+        event_dt = None
+
+    if not event_dt:
+        return "pass"
+
+    age_days = (NOW - event_dt.replace(tzinfo=timezone.utc if event_dt.tzinfo is None else event_dt.tzinfo)).days
+
+    # Old event (>14 days) + retrospective/explainer + no new development → reject
+    if age_days > 14 and story_mode in ("retrospective", "explainer") and not new_dev:
+        return "reject_stale"
+
+    return "pass"
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -1078,6 +1168,20 @@ def main():
                 stats["low_score"] = stats.get("low_score", 0) + 1
                 topic_statuses[t["id"]] = "rejected"
                 continue
+
+            # ── Event freshness gate ──
+            # Reject stale events repackaged as new (e.g. "meet the founder" profiles
+            # about events that happened weeks/months ago). Runs after LLM scoring so
+            # we have event_date, story_mode, and new_development from the LLM.
+            freshness_verdict = apply_event_freshness_gate(llm, t["canonical_title"])
+            if freshness_verdict == "reject_stale":
+                stats["stale_event"] = stats.get("stale_event", 0) + 1
+                topic_statuses[t["id"]] = "rejected"
+                print(f"    ⏳ Stale-event gate: rejected \"{t['canonical_title'][:80]}\" "
+                      f"(event_date={llm.get('event_date')}, story_mode={llm.get('story_mode')}, "
+                      f"new_development={llm.get('new_development')})")
+                continue
+
             stats[coverage] = stats.get(coverage, 0) + 1
 
             # Build candidate
@@ -1129,13 +1233,16 @@ def main():
                 "coverage": coverage,
                 "ig_handles": [h for h in llm.get("ig_handles", []) if _verify_handle_name(h.get("handle", ""), t["canonical_title"], h.get("type", "person"))],
                 "kids_relevant": llm.get("kids_relevant", False),
+                "event_date": llm.get("event_date"),
+                "story_mode": llm.get("story_mode", "new_event"),
+                "new_development": llm.get("new_development"),
             })
             topic_statuses[t["id"]] = "selected"
         else:
             stats["no_result"] += 1
             topic_statuses[t["id"]] = "pending"  # leave for next run
 
-    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats.get('low_score', 0)} low-score rejected, {stats.get('diaspora_filtered', 0)} diaspora-filtered, {stats['no_result']} unscored")
+    print(f"  Classification: {stats['new']} new, {stats['update']} updates, {stats['duplicate']} duplicates, {stats['irrelevant']} irrelevant, {stats.get('low_score', 0)} low-score rejected, {stats.get('diaspora_filtered', 0)} diaspora-filtered, {stats.get('stale_event', 0)} stale-event rejected, {stats['no_result']} unscored")
 
     # Sort by score desc, then freshness, then signal count
     scored.sort(key=lambda x: (x.get("llm_score", 1), x["newest_signal"], x["signal_count"]), reverse=True)
