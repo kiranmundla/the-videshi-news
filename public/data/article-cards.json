@@ -1,122 +1,14 @@
 [
   {
-    "slug": "us-youtuber-ed-nathanson-indian-food-ruined-other-cuisines-viral",
-    "headline": "American YouTuber Ed Nathanson Says Indian Food Has 'Literally Ruined' All Other Cuisines for Him",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/us-youtuber-ed-nathanson-indian-food-ruined-other-cuisines-viral.jpg"
-  },
-  {
-    "slug": "hockey-india-rs-50-lakh-reward-womens-team-world-cup-fifth-place",
-    "headline": "Hockey India Announces Rs 50 Lakh Reward for Women's Team After Best World Cup Finish in 52 Years",
+    "slug": "sobhana-mostary-100th-cap-bangladesh-open-asia-cup",
+    "headline": "Sobhana Mostary Marks 100th Cap With Top Score as Bangladesh Open Asia Cup",
     "category": "sports",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hockey-india-rs-50-lakh-reward-womens-team-world-cup-fifth-place.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sobhana-mostary-100th-cap-bangladesh-open-asia-cup.jpg"
   },
   {
-    "slug": "marvell-technology-shares-tumble-despite-earnings-beat-google-deal",
-    "headline": "Marvell Technology Shares Tumble 8% Despite Earnings Beat on Google Deal Uncertainty",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/marvell-technology-shares-tumble-despite-earnings-beat-google-deal.jpg"
-  },
-  {
-    "slug": "manipur-bomb-blast-bjp-mla-residence-attack-democracy",
-    "headline": "Bomb Blast at Manipur BJP MLA's Residence Condemned as 'Attack on Democracy'",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/manipur-bomb-blast-bjp-mla-residence-attack-democracy.jpg"
-  },
-  {
-    "slug": "milo-yiannopoulos-detained-ice-visa-overstay-deportation",
-    "headline": "ICE Detains British Provocateur Milo Yiannopoulos for Overstaying Visa Since 2019",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/milo-yiannopoulos-detained-ice-visa-overstay-deportation.jpg"
-  },
-  {
-    "slug": "chouhan-punjab-farmers-india-us-trade-deal-assurance",
-    "headline": "Chouhan Assures Punjab Farmers India Won't Sign Trade Deal Harming Agriculture",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chouhan-punjab-farmers-india-us-trade-deal-assurance.jpg"
-  },
-  {
-    "slug": "ai-finds-six-ways-3d-print-nasa-grcop42-rocket-alloy-wsu",
-    "headline": "AI Finds Six Ways to 3D-Print a NASA Rocket Alloy That Had Stumped Engineers for Years",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/ai-finds-six-ways-3d-print-nasa-grcop42-rocket-alloy-wsu.jpg"
-  },
-  {
-    "slug": "taapsee-pannu-bollywood-investment-bias-women-action-films-gandhari-netflix",
-    "headline": "Taapsee Pannu Says Bollywood Still Won't Invest in Women-Led Action Films",
-    "category": "entertainment",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/taapsee-pannu-bollywood-investment-bias-women-action-films-gandhari-netflix.jpg"
-  },
-  {
-    "slug": "federal-judge-declines-block-trump-birthright-citizenship-order-birth-tourism",
-    "headline": "Federal Judge Declines to Block Trump's New Birthright Citizenship Order but Questions Its Viability",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/federal-judge-declines-block-trump-birthright-citizenship-order-birth-tourism.jpg"
-  },
-  {
-    "slug": "india-food-safety-crackdown-quick-commerce-blinkit-swiggy-zepto-diageo-fssai",
-    "headline": "India's Sweeping Food Safety Crackdown Hits Quick Commerce Giants and Liquor Makers",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-food-safety-crackdown-quick-commerce-blinkit-swiggy-zepto-diageo-fssai.jpg"
-  },
-  {
-    "slug": "india-deeptech-venture-capital-skyroot-space-semiconductor-robotics-2026",
-    "headline": "India's Venture Capital Bet Shifts From Software to Rockets, Chips, and Robots",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-deeptech-venture-capital-skyroot-space-semiconductor-robotics-2026.jpg"
-  },
-  {
-    "slug": "fed-chair-warsh-signals-rate-hikes-inflation-elevated",
-    "headline": "Fed Chair Warsh Signals Rate Hikes Possible as Inflation Stays Elevated",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fed-chair-warsh-signals-rate-hikes-inflation-elevated.jpg"
-  },
-  {
-    "slug": "canada-faces-recession-risk-trade-war-us-threatens-jobs",
-    "headline": "Canada Faces Recession Risk as Trade War With US Threatens 100,000 Jobs",
-    "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/canada-faces-recession-risk-trade-war-us-threatens-jobs.jpg"
-  },
-  {
-    "slug": "tech-mahindra-uniphore-agentic-ai-factory-enterprise-partnership",
-    "headline": "Tech Mahindra and Uniphore Partner to Build Agentic AI Factory for Enterprise Clients",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/tech-mahindra-uniphore-agentic-ai-factory-enterprise-partnership.jpg"
-  },
-  {
-    "slug": "infosys-ceo-lax-gopisetty-missing-nepal-floods-death-toll-579",
-    "headline": "Infosys Public Services CEO Lax Gopisetty Unreachable After Nepal Floods as Death Toll Hits 579",
-    "category": "nri-world",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/infosys-ceo-lax-gopisetty-missing-nepal-floods-death-toll-579.jpg"
-  },
-  {
-    "slug": "sandhya-devanathan-leaves-meta-joins-openai-southeast-asia",
-    "headline": "Meta's India and Southeast Asia VP Sandhya Devanathan Joins OpenAI to Lead Regional Expansion",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sandhya-devanathan-leaves-meta-joins-openai-southeast-asia.jpg"
-  },
-  {
-    "slug": "vegan-diet-four-weeks-epigenetic-aging-inflammation-study",
-    "headline": "Just Four Weeks on a Vegan Diet Can Shift Genes Linked to Inflammation and Aging, Study Finds",
-    "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vegan-diet-four-weeks-epigenetic-aging-inflammation-study.jpg"
-  },
-  {
-    "slug": "vikas-khanna-atlanta-fundraiser-leap-to-shine-digital-education",
-    "headline": "Chef Vikas Khanna Raises Funds and Spirits at Atlanta Gala for Leap to Shine",
-    "category": "food",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vikas-khanna-atlanta-fundraiser-leap-to-shine-digital-education.jpg"
-  },
-  {
-    "slug": "trump-signs-new-birthright-citizenship-orders-targeting-birth-tourism",
-    "headline": "Trump Signs New Birthright Citizenship Orders Targeting Birth Tourism After Supreme Court Loss",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/trump-signs-new-birthright-citizenship-orders-targeting-birth-tourism.jpg"
-  },
-  {
-    "slug": "bia-overrules-advance-parole-precedent-daca-green-card-pathway-at-risk",
-    "headline": "BIA Overrules 14-Year Advance Parole Precedent, Putting DACA Green Card Pathway at Risk",
-    "category": "immigration",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bia-overrules-advance-parole-precedent-daca-green-card-pathway-at-risk.jpg"
+    "slug": "lakshya-sen-seeks-redemption-china-masters-lanier-withdraws",
+    "headline": "Lakshya Sen Seeks Redemption at China Masters as Lanier Withdraws",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/lakshya-sen-seeks-redemption-china-masters-lanier-withdraws.jpg"
   }
 ]
