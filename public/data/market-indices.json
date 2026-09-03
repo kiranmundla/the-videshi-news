@@ -1,61 +1,61 @@
 {
+  "last_updated": "2026-09-03T00:06:20.323758+00:00",
   "indices": [
     {
       "symbol": "SPX",
       "name": "S&P 500",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 7730.99,
-      "change": 53.71,
-      "change_pct": 0.7
+      "value": 7666.6,
+      "change": 35.13,
+      "change_pct": 0.46
     },
     {
-      "symbol": "IXIC",
+      "symbol": "NASDAQ",
       "name": "Nasdaq",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 26541.35,
-      "change": 390.05,
-      "change_pct": 1.49
+      "value": 26217.83,
+      "change": 118.06,
+      "change_pct": 0.45
     },
     {
       "symbol": "SENSEX",
       "name": "Sensex",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 77264.51,
-      "change": 330.92,
-      "change_pct": 0.43
+      "value": 76570.35,
+      "change": -373.93,
+      "change_pct": -0.49
     },
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 24175.65,
-      "change": 84.8,
-      "change_pct": 0.35
+      "value": 23914.45,
+      "change": -141.35,
+      "change_pct": -0.59
     },
     {
       "symbol": "USDINR",
       "name": "USD/INR",
       "flag": "\ud83d\udcb1",
-      "value": 95.37,
-      "change": -0.06,
-      "change_pct": -0.06
+      "value": 94.96,
+      "change": 0.02,
+      "change_pct": 0.02
     },
     {
-      "symbol": "GC=F",
+      "symbol": "GOLD",
       "name": "Gold",
-      "flag": "\ud83e\udd47",
-      "value": 4647.0,
-      "change": 37.3,
-      "change_pct": 0.81
+      "flag": "\u2728",
+      "value": 4432.2,
+      "change": 83.4,
+      "change_pct": 1.92
     },
     {
-      "symbol": "SI=F",
+      "symbol": "SILVER",
       "name": "Silver",
-      "flag": "\ud83e\udd48",
-      "value": 71.11,
-      "change": 1.68,
-      "change_pct": 2.42
+      "flag": "\ud83e\ude99",
+      "value": 65.94,
+      "change": 1.69,
+      "change_pct": 2.63
     }
-  ],
-  "lastUpdated": "2026-08-28T12:04:07.536525+00:00"
+  ]
 }
