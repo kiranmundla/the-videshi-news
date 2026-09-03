@@ -1,468 +1,1185 @@
 {
-  "timestamp": "2026-09-01T00:42:46.342016+00:00",
-  "total_topics_evaluated": 2018,
+  "timestamp": "2026-09-02T20:42:47.775187+00:00",
+  "total_topics_evaluated": 1030,
   "candidates": [
     {
-      "topic_id": "e54d19d5-e5ef-4b9d-a920-a533e75e17db",
-      "title": "World must move from endless war to end of war: PM Modi to Putin - The Hindu",
+      "topic_id": "d8d93bf9-7a4c-4e37-8272-5779f3d84edf",
+      "title": "\u2018Crime junkie\u2019 who followed Murdaugh, Karen Read arrested at Clancy trial - CT Insider",
       "description": "",
       "category": "news",
       "signal_count": 5,
-      "source_diversity": 4,
+      "source_diversity": 5,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-08-31T14:03:29+00:00",
+      "newest_signal": "2026-09-02T16:52:30+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRTgyUHVVa0xwVG1PMllFbEtPb1FQZDVSRnlmVnRsTFNnUXF2LUVZMDZRSXNLME9MVDg3TWxLZXhBVnJRTW5jejF0TmpKNWpGMVdKOWtmR3REeUNsNGxkaGxXSDhPVnBXVm04b0c4NzZiM3FFVHJsa0l3X3FTOHRuNzM4S1VqcnhxYlJRMDVtWVFYRE01T244TjFQLVNzalJ5Z3BUTmdjTC1QS1VMU2tsMHJveGxMUkR2eFVyOA?oc=5",
-        "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOTEJ6ck9jQWlRSFc5SDVsVVIzVmdEeVlCUTZvZHdFcUVBQmZoMUxaUGw4Zy1KbkpIeFIxTzJQZ2VteGF5Zm9PTjVoSFdZbnNDZm9YSnBnSEVUeEF4MEJjVkFua0xCLVFuU2JaMW8tTDZOQ0N1T1NCcmc2RTJsN2hfWGxkdWQtVlhxdkZ1UVppcUFzZHJkT05hX0VxeDAycGI0QWNxN0oxeFl3MWd5Mi1VcEswNmVQTzdZN0FPSldwRWFnY0syRGlGM0lKMXcwdHZlRnMxY2dSY0J3Vzho0gHjAUFVX3lxTE11WlFFM1JoVGVIUGlfVjFvTFkzaWZrVy1Rc1FJeEpDRUFEOXlGX1JqWFpaMC1yQm9fVm1OcV9MSFZUY1c4NTdROFpZaG54MDR5c2NFcjNqajVranpYd0dnRTNPckFVS3FDRWlHS21PVExXUDkyNjg2ZzhjYUdqbTVrbnRSNjB2R1BHc1IteDdVM2FMY1gySmFUOVQxckhESFI4RUtDc3dTZ3lCb09zU0o4N1NQSnZaNFh6NlhqVEJVZjhtZVA1RTlFXzNPck1Dd293cHhNcmRIc1BMTUxtTVZpZzhR?oc=5",
-        "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNS0tYdkFqRXduREprZVNMekg5cVFpTmlOQ2VXeHFGOGptRVk4WGxXcWpNMF9vdnczWDBya1Rrd3RPRzNYUEdEWDdmbXUwb3JlZ1htOGhFbDVhdTUyMkJxVUdpMUdTOV84dXBiWlU4MndhS3RVdzBOWVIzYXZYRC1hTUpNZWRNVGlvRWlxQTJtVnExR0duSzZJSUpNYnlZdE5BSU93Z2syRzg0bU9fenZ4eExjbzdiTGlVQzlWTk40Ui1YUQ?oc=5",
-        "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVlZuU0R4VHM3MHdJWXRGR25OT3ZBRVNQdjVqOU9maTFnMUUxRGIwbmRKdkVYZ2dUdmtQbDJxQTF2SFJLWTBzUmE5UEJoNEgyVFpIX2p4cnZfLVRidWJ6bGdSaXBjLVRYd25vUFlwZGpKUXl4R0NuREFyQXJmT0NmR1M1RXhNSl90aVBxalczZlFxT1ljMmtkMzdUNzRuRUp5eFV1OE9ZNndaeDhzRWc00gG2AUFVX3lxTFBiMF9ZakJIeEZGMlJGd1J5VmlBUzUwaUVLWk1HRDlRX0tTZjMyTUlOSFZoVjh1SWlZOXZlMzVYWklBcmVOblUtTU1LVEVuaW4tSWxsb0lEc0ptd2dqVFFJQVRvZUhPSGVEWWZjSnJNdUE4MG54RDR4N213czUxYS14djJfQUtpMDVxX1pUTEZqNFNMZkpodlRjWlYxQlNsQ2s2RUJXanpzNFItd1YzYW41TnppVnln?oc=5",
-        "https://news.google.com/rss/articles/CBMihwFBVV95cUxPQUpIaUdlanNZNzdDYUFGOFNjLVNDSE1XVElGNGZ4ZVlrdi1GN3pnXzV2QmlhZ3FiQ2J4ZVN2QWRDdFNPTlQ1SksxVFdBeWtCTFkxNFBqQ19Ba3hHckdGaWNxYjhpLW9Wd2dwMHhYZlIzZi1ZclI1cVpQdEQ0MXBjRFVRNkJ1X0U?oc=5"
+        "https://news.google.com/rss/articles/CBMif0FVX3lxTE1jWC1NYnBXYXRta1ZmU1JvQmN6TXFGX3FNWkN1c3pwUndKazJ1TmpmQnZXUFJqOFZmVDlOQWFUUTFtTmpkRERZRWl1NUEta2hEMjlTMTFxU3JHWUxQdUt3WHlFU1hCbUhiV1M4bkhDOTZMa2xUY1RsMDZlVFlxWlU?oc=5",
+        "https://news.google.com/rss/articles/CBMinAFBVV95cUxOS1RFNDNRRXZsb3N0SmFlbWpWQXlHY1BTR25sajYxeWVRaVJ6NU9YdlZoT0xNNzFUbFcyOVlEMVJxaFdvUkt6OXhDVkZBVVFOdm80cXQyZFhqSkZlYlNGSlNlX1NobkphLXZ1Q18tb1VUaW5kV1VBa0tHUE56R0l4eUc3WDFacGZxSmFpYUhwVXpTWmtUdmlRU09wQTE?oc=5",
+        "https://news.google.com/rss/articles/CBMiugFBVV95cUxNUGtfSml0bjFwN0phazRJZWZkbnZvQ2VHcXR4NzFvbk1Sb0pLemg0T0RTVWpjWTNMOFNhdlJRbFQ1c3o0R1gwNWxsY0tQdW1vV01HWU00OE1fYS04ZHJWei1CeEQzQXR2V2djbFVQRTktbWVoWUlxQUlzNHlTU1BLWE1LZGY1dUV0eEgxZnpEZ2lDeFdCaGpSMXp1N0VPLWpzdE1DYTY1OFI1Y3NHcWJpVTBlRGlxYng4T0E?oc=5",
+        "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQR3NfeFRNQjhHZ3lLRmxrTVZ1YVV3dHBfWDdXY19DTVdldTBIeWNYRWdJNTdZSHZhR3V1RjdSckQ3aGRFa2dXQnJtMWpod1g2a2tOZklrdnY5b2hNNmVJZ2gxV2EzYVZJT0dnUDVWXzgtR0RlMXFNaUxZbmJnNkFXQ3NXbTlLbEVyWUh5eTh3S05OOFdtTUU4Q0FCdWZXcHZkWTdHZGVlLWcwZExMdmhCenNsMDZEMFhPS0w2YVdmeEswajRjNzdzYlc2MU12TUZPNUxjNkszZ1VWZW96c0hhbQ?oc=5",
+        "https://news.google.com/rss/articles/CBMivAFBVV95cUxPb2VjY2VnM0dIXy0zWjZRaEMzaFpHUk5qWTIzcmo0NEhVTmhYNEt3NGpBcVMtY2tYLUlZNmhVUFlYTV9RdmkydTZtdi1mMTA1ZmtoejhZV0w0Sjk5cVlDVk1FYzJZdVZQQTNYdHVLZUZRTWM2SmR5WE54RTRvTWpUZ1A5Q1dlNjBsRjRUUENGUmh6S2xNTDhMVEFSbXVjWHRFNVpyMzBHai1QMTE1S2VNN2xWcW51aHVJXzRJeQ?oc=5"
       ],
       "all_signals": [
         {
-          "title": "PM Modi calls for peace in Ukraine, West Asia as he meets Putin and Pezeshkian",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQRTgyUHVVa0xwVG1PMllFbEtPb1FQZDVSRnlmVnRsTFNnUXF2LUVZMDZRSXNLME9MVDg3TWxLZXhBVnJRTW5jejF0TmpKNWpGMVdKOWtmR3REeUNsNGxkaGxXSDhPVnBXVm04b0c4NzZiM3FFVHJsa0l3X3FTOHRuNzM4S1VqcnhxYlJRMDVtWVFYRE01T244TjFQLVNzalJ5Z3BUTmdjTC1QS1VMU2tsMHJveGxMUkR2eFVyOA?oc=5",
-          "source": "Deccan Herald"
+          "title": "Dawn Light, woman accused of recording Lindsay Clancy jurors, runs from media after arraignment",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1jWC1NYnBXYXRta1ZmU1JvQmN6TXFGX3FNWkN1c3pwUndKazJ1TmpmQnZXUFJqOFZmVDlOQWFUUTFtTmpkRERZRWl1NUEta2hEMjlTMTFxU3JHWUxQdUt3WHlFU1hCbUhiV1M4bkhDOTZMa2xUY1RsMDZlVFlxWlU?oc=5",
+          "source": "CBS News"
         },
         {
-          "title": "Xi, Putin discuss visa-free travel, global and regional issues at Bishkek",
-          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOTEJ6ck9jQWlRSFc5SDVsVVIzVmdEeVlCUTZvZHdFcUVBQmZoMUxaUGw4Zy1KbkpIeFIxTzJQZ2VteGF5Zm9PTjVoSFdZbnNDZm9YSnBnSEVUeEF4MEJjVkFua0xCLVFuU2JaMW8tTDZOQ0N1T1NCcmc2RTJsN2hfWGxkdWQtVlhxdkZ1UVppcUFzZHJkT05hX0VxeDAycGI0QWNxN0oxeFl3MWd5Mi1VcEswNmVQTzdZN0FPSldwRWFnY0syRGlGM0lKMXcwdHZlRnMxY2dSY0J3Vzho0gHjAUFVX3lxTE11WlFFM1JoVGVIUGlfVjFvTFkzaWZrVy1Rc1FJeEpDRUFEOXlGX1JqWFpaMC1yQm9fVm1OcV9MSFZUY1c4NTdROFpZaG54MDR5c2NFcjNqajVranpYd0dnRTNPckFVS3FDRWlHS21PVExXUDkyNjg2ZzhjYUdqbTVrbnRSNjB2R1BHc1IteDdVM2FMY1gySmFUOVQxckhESFI4RUtDc3dTZ3lCb09zU0o4N1NQSnZaNFh6NlhqVEJVZjhtZVA1RTlFXzNPck1Dd293cHhNcmRIc1BMTUxtTVZpZzhR?oc=5",
-          "source": "The Hindu"
+          "title": "\u2018Crime junkie\u2019 who followed Murdaugh, Karen Read arrested at Clancy trial - CT Insider",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOS1RFNDNRRXZsb3N0SmFlbWpWQXlHY1BTR25sajYxeWVRaVJ6NU9YdlZoT0xNNzFUbFcyOVlEMVJxaFdvUkt6OXhDVkZBVVFOdm80cXQyZFhqSkZlYlNGSlNlX1NobkphLXZ1Q18tb1VUaW5kV1VBa0tHUE56R0l4eUc3WDFacGZxSmFpYUhwVXpTWmtUdmlRU09wQTE?oc=5",
+          "source": "CT Insider"
         },
         {
-          "title": "\"Move From Endless War To End Of War\": PM Modi's Message To Putin On Ukraine",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNS0tYdkFqRXduREprZVNMekg5cVFpTmlOQ2VXeHFGOGptRVk4WGxXcWpNMF9vdnczWDBya1Rrd3RPRzNYUEdEWDdmbXUwb3JlZ1htOGhFbDVhdTUyMkJxVUdpMUdTOV84dXBiWlU4MndhS3RVdzBOWVIzYXZYRC1hTUpNZWRNVGlvRWlxQTJtVnExR0duSzZJSUpNYnlZdE5BSU93Z2syRzg0bU9fenZ4eExjbzdiTGlVQzlWTk40Ui1YUQ?oc=5",
+          "title": "Lindsay Clancy jury deadlocked entering 5th day, deliberations resume after person arrested at court",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNUGtfSml0bjFwN0phazRJZWZkbnZvQ2VHcXR4NzFvbk1Sb0pLemg0T0RTVWpjWTNMOFNhdlJRbFQ1c3o0R1gwNWxsY0tQdW1vV01HWU00OE1fYS04ZHJWei1CeEQzQXR2V2djbFVQRTktbWVoWUlxQUlzNHlTU1BLWE1LZGY1dUV0eEgxZnpEZ2lDeFdCaGpSMXp1N0VPLWpzdE1DYTY1OFI1Y3NHcWJpVTBlRGlxYng4T0E?oc=5",
+          "source": "NBC News"
+        },
+        {
+          "title": "MA State Police arrest woman for 'intimidation' outside Clancy trial",
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQR3NfeFRNQjhHZ3lLRmxrTVZ1YVV3dHBfWDdXY19DTVdldTBIeWNYRWdJNTdZSHZhR3V1RjdSckQ3aGRFa2dXQnJtMWpod1g2a2tOZklrdnY5b2hNNmVJZ2gxV2EzYVZJT0dnUDVWXzgtR0RlMXFNaUxZbmJnNkFXQ3NXbTlLbEVyWUh5eTh3S05OOFdtTUU4Q0FCdWZXcHZkWTdHZGVlLWcwZExMdmhCenNsMDZEMFhPS0w2YVdmeEswajRjNzdzYlc2MU12TUZPNUxjNkszZ1VWZW96c0hhbQ?oc=5",
+          "source": "The Patriot Ledger"
+        },
+        {
+          "title": "Woman arrested outside courthouse where Lindsay Clancy trial is being held",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPb2VjY2VnM0dIXy0zWjZRaEMzaFpHUk5qWTIzcmo0NEhVTmhYNEt3NGpBcVMtY2tYLUlZNmhVUFlYTV9RdmkydTZtdi1mMTA1ZmtoejhZV0w0Sjk5cVlDVk1FYzJZdVZQQTNYdHVLZUZRTWM2SmR5WE54RTRvTWpUZ1A5Q1dlNjBsRjRUUENGUmh6S2xNTDhMVEFSbXVjWHRFNVpyMzBHai1QMTE1S2VNN2xWcW51aHVJXzRJeQ?oc=5",
+          "source": "NBC Boston"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The arrest of a prominent figure has implications for political discourse and could affect Indian-origin communities in the US.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "abdf4088-fff2-4290-b97c-8d597ec29471",
+      "title": "U.S. Stocks Rise as Treasury Selloff Pauses - WSJ",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T16:20:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPdE5uNDFfeFVmY0pfd3htT3RTSVpYTDNNTVVsVEZtTXBtTnJVWml5Y0lvUHVsQ1FyTVVsaE43TzR1MFlOV2VzOTRrbkxmSjkwSUlYX0g0Zy1OZFJLSzVoMm5yLWpEbzNPZkRyNDNqRzNlcXQzaVZMVGcxc0hUa1VIUmplc1JSdjV0SGlnMnlzQzV2VEVvTDBUN1VmNGFpMlM0NGFMRFh2ZWxQMm93aFhCdGtoVUk2UDRfMDZlcnJzMnpBdlBPT0puQ01nTVktRWtiTkl4RldlT3kybmlTSEx0Y3hURkFxNDRzd0RqV1Ffd0ZIXzNweVkwX0JLSDhGRlE?oc=5",
+        "https://news.google.com/rss/articles/CBMieEFVX3lxTE9sdGx5YzIxUGFKaFNXM0dnbFJmeFFqM3BVQnh1SURYajdQR1pKMWt2NGdVelA5eDVpT2pSMmVhMzNFTWotN1R1SWhBdU5yRHpudGp3dXhNSE9oakpCdkswNnhMX1JaTkl5WlVveUNQUHpRTldoeTR1SQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMGhxN0Q0UGRDTl91VmZ5YXIxLUwtRk9US0RvRTBMU3ROdVNNOVJmLTZQQl81T1ozLWhzYTVKR053d1Z6UjBiNURjQUpxbU15OHg4UHBQU3Z6elJqVGpjMnE3eFNacDVOc1hXM09NU1o1TUtNWjNyenBDLWFFNmFmSGY0MUxreGlrUEstM041RTBuVlFuaE95cEx5QWRlQ0F5a1NDRm1DTVpJLUNIQV9nMG5CemNHQkxFWHgzcTBna0RBY2ZDSFBSeFY4MHJTQ05CRmNXdFdBeEFtQ0F0b2ZnaEtVSDQ4azQ1SXpyaDhhS0l4Vlc5enA4R2hVdjMxNnZEeERBejVSNE9pZWtTUG5GcXdLc3pUbWhUWTNUZDA2WjJFS2RkUElNLXJ4QmxzQ09uRmpzT3BXMXl2WnJHMVBfNHh6MFowMk1yNzh4bVJSVEZNYTVIMnp2QVJR?oc=5",
+        "https://news.google.com/rss/articles/CBMigAFBVV95cUxNbzhTT0V4dlhKajdSSVJjdXhINGtaeGxpUWFGZlRkYUZuOV96QjFiTm1XS1JfOGN5bjNPR3d4eWVsMDhMUWt5Y0thNFNmbWxSUmIwSGFtbEZhanZqclVNMjVKeEQ5aW5xcUNhaFZUQVgwM2VmLWViRFNSb29OMjlDWQ?oc=5",
+        "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUDdYMmM3M0MxMkYxV25aRU11U1lwVEtvcFRtUmRFc2FNVC1EZ1VQZW5zY2w4b1lkQjNfMHFoMk1GSnc4Sm9YajFoeS1MTDZwOW0yeGN0WUFlcm9BREl0a1JNdjVQc3haTDVLTVpsOXRWbWQwRThKbFZ5bUJGMXRlNTgwb1pKdy1fNjUwTFl3N0RYMVM2MlB5RmhTaFhnQUYxYzZiLWxzUzdhbTBlVDE1ZE5zd2RpWWp6?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Stocks rise on Wall Street as oil prices, bond yields hold relatively steady",
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPdE5uNDFfeFVmY0pfd3htT3RTSVpYTDNNTVVsVEZtTXBtTnJVWml5Y0lvUHVsQ1FyTVVsaE43TzR1MFlOV2VzOTRrbkxmSjkwSUlYX0g0Zy1OZFJLSzVoMm5yLWpEbzNPZkRyNDNqRzNlcXQzaVZMVGcxc0hUa1VIUmplc1JSdjV0SGlnMnlzQzV2VEVvTDBUN1VmNGFpMlM0NGFMRFh2ZWxQMm93aFhCdGtoVUk2UDRfMDZlcnJzMnpBdlBPT0puQ01nTVktRWtiTkl4RldlT3kybmlTSEx0Y3hURkFxNDRzd0RqV1Ffd0ZIXzNweVkwX0JLSDhGRlE?oc=5",
+          "source": "Dayton Daily News"
+        },
+        {
+          "title": "Why Is the Stock Market Up Today, 9/2/26?",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9sdGx5YzIxUGFKaFNXM0dnbFJmeFFqM3BVQnh1SURYajdQR1pKMWt2NGdVelA5eDVpT2pSMmVhMzNFTWotN1R1SWhBdU5yRHpudGp3dXhNSE9oakpCdkswNnhMX1JaTkl5WlVveUNQUHpRTldoeTR1SQ?oc=5",
+          "source": "TipRanks"
+        },
+        {
+          "title": "Stocks are getting a bounce, but the next move may be sideways",
+          "url": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOMGhxN0Q0UGRDTl91VmZ5YXIxLUwtRk9US0RvRTBMU3ROdVNNOVJmLTZQQl81T1ozLWhzYTVKR053d1Z6UjBiNURjQUpxbU15OHg4UHBQU3Z6elJqVGpjMnE3eFNacDVOc1hXM09NU1o1TUtNWjNyenBDLWFFNmFmSGY0MUxreGlrUEstM041RTBuVlFuaE95cEx5QWRlQ0F5a1NDRm1DTVpJLUNIQV9nMG5CemNHQkxFWHgzcTBna0RBY2ZDSFBSeFY4MHJTQ05CRmNXdFdBeEFtQ0F0b2ZnaEtVSDQ4azQ1SXpyaDhhS0l4Vlc5enA4R2hVdjMxNnZEeERBejVSNE9pZWtTUG5GcXdLc3pUbWhUWTNUZDA2WjJFS2RkUElNLXJ4QmxzQ09uRmpzT3BXMXl2WnJHMVBfNHh6MFowMk1yNzh4bVJSVEZNYTVIMnp2QVJR?oc=5",
+          "source": "MarketWatch"
+        },
+        {
+          "title": "The 2 Shining Lights in Market\u2019s Bond-Yield Gloom",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNbzhTT0V4dlhKajdSSVJjdXhINGtaeGxpUWFGZlRkYUZuOV96QjFiTm1XS1JfOGN5bjNPR3d4eWVsMDhMUWt5Y0thNFNmbWxSUmIwSGFtbEZhanZqclVNMjVKeEQ5aW5xcUNhaFZUQVgwM2VmLWViRFNSb29OMjlDWQ?oc=5",
+          "source": "Barron's"
+        },
+        {
+          "title": "U.S. Stocks Rise as Treasury Selloff Pauses - WSJ",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOUDdYMmM3M0MxMkYxV25aRU11U1lwVEtvcFRtUmRFc2FNVC1EZ1VQZW5zY2w4b1lkQjNfMHFoMk1GSnc4Sm9YajFoeS1MTDZwOW0yeGN0WUFlcm9BREl0a1JNdjVQc3haTDVLTVpsOXRWbWQwRThKbFZ5bUJGMXRlNTgwb1pKdy1fNjUwTFl3N0RYMVM2MlB5RmhTaFhnQUYxYzZiLWxzUzdhbTBlVDE1ZE5zd2RpWWp6?oc=5",
+          "source": "WSJ"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The pause in the Treasury selloff is significant for global markets, impacting the Indian diaspora's financial interests.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "d45669cf-f8b9-4053-8e64-d8739ab1ff6b",
+      "title": "Federal Judge Declines to Break Up Google\u2019s Ad Technology Business - The New York Times",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T14:43:31+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMimgFBVV95cUxQT25seFVQbkdhc0xScTNuLXdvRFlXQzRleHZCeHZ0cjFqWk9ua0pNa3dUbHhoU0ZIcDlQMzFKLWozVFRWZEsyU1dzR3BTLXEwMXh2VU1SNmVQNFIwaldpSHBDVDk5VkNXYk16WHpMemxaeDdTUnpfOUhLb3ZUZ2R1VndrLVZXQTJnTGgyRlFrM0hHOTJNYktNODF3?oc=5",
+        "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWF9WWFJmRTZBS2dldU1sQjlXMlNfc0dQLUIyVk9TdUd2V0ZQeWxXS25udWJYTUhWTjhacEtsODJjRkVyejk3OUJkQUhsYUJRaVl0TWx1ZFgwZ2hXNk1VMUc0TjdhaTM0bWNhTHR1ZW1RdUJJb1JUV0Z3dnQ4RFA5VFVmVDhmNHduMnZxYkRCTXZYcnJZVzVocTd3?oc=5",
+        "https://news.google.com/rss/articles/CBMiowFBVV95cUxNQ3hYWUNZYm5rRGZWQVhXV3F6UDJoUkZYblFCRjZHdHpiN2hRMnZpbUViOVUyd181QWZoUXZTSnlmRVZablFvbVV1S3NaQlFRektyYlduUnpYUjFSUlhGU0RmMGtrOWd3UEpMYnZpck5JSEd3Zkg5TG5obXRCRENaZjBhVURjazNTcElKZmdlZjk5ZVFIaFR6SnlDRGN5UnRWRmxB?oc=5",
+        "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZXBkeERSbDJLVVNFdHVzVU41dEJfbS0wS0M3dDhIVUlQR0FKVkRSY2tUZHVmOXJ2aXcxM1ZZYnI1Q2d0WHhkU0pselpjYTN3cDFRRU93OFJrZlFjZnhBUFI2dUJPU3lDVmp1RUs2cWFRcm9zaGZKRExZUmp1b3lzOHlSTWJSWnN6dlE?oc=5",
+        "https://news.google.com/rss/articles/CBMif0FVX3lxTE54SXBLXzJKcERSbmdjRXIwRmF6ZTgyUkl6VmpWbjFTSGNzZlFwRW5VRE9STVJSVnFsVG5zT2JCREZRMnZUXzU5MkZvOTJudDUtRUkyOUFaY2xiVnR6SU9Sa05jN3RBQ1lhLTl4ZzFjN1Y0d3Zfd19oLXQ2R1BvSzg?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US judge rejects bid to break up Google's ad business",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQT25seFVQbkdhc0xScTNuLXdvRFlXQzRleHZCeHZ0cjFqWk9ua0pNa3dUbHhoU0ZIcDlQMzFKLWozVFRWZEsyU1dzR3BTLXEwMXh2VU1SNmVQNFIwaldpSHBDVDk5VkNXYk16WHpMemxaeDdTUnpfOUhLb3ZUZ2R1VndrLVZXQTJnTGgyRlFrM0hHOTJNYktNODF3?oc=5",
+          "source": "Yahoo Finance"
+        },
+        {
+          "title": "Google Avoids Breakup of Dominant Ad Tech Business",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOWF9WWFJmRTZBS2dldU1sQjlXMlNfc0dQLUIyVk9TdUd2V0ZQeWxXS25udWJYTUhWTjhacEtsODJjRkVyejk3OUJkQUhsYUJRaVl0TWx1ZFgwZ2hXNk1VMUc0TjdhaTM0bWNhTHR1ZW1RdUJJb1JUV0Z3dnQ4RFA5VFVmVDhmNHduMnZxYkRCTXZYcnJZVzVocTd3?oc=5",
+          "source": "WSJ"
+        },
+        {
+          "title": "Google Won\u2019t Be Forced to Break Up Adtech Biz, Even After Monopoly Ruling",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNQ3hYWUNZYm5rRGZWQVhXV3F6UDJoUkZYblFCRjZHdHpiN2hRMnZpbUViOVUyd181QWZoUXZTSnlmRVZablFvbVV1S3NaQlFRektyYlduUnpYUjFSUlhGU0RmMGtrOWd3UEpMYnZpck5JSEd3Zkg5TG5obXRCRENaZjBhVURjazNTcElKZmdlZjk5ZVFIaFR6SnlDRGN5UnRWRmxB?oc=5",
+          "source": "ADWEEK"
+        },
+        {
+          "title": "Judge rules Google does not have to break up ad tech business",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZXBkeERSbDJLVVNFdHVzVU41dEJfbS0wS0M3dDhIVUlQR0FKVkRSY2tUZHVmOXJ2aXcxM1ZZYnI1Q2d0WHhkU0pselpjYTN3cDFRRU93OFJrZlFjZnhBUFI2dUJPU3lDVmp1RUs2cWFRcm9zaGZKRExZUmp1b3lzOHlSTWJSWnN6dlE?oc=5",
+          "source": "The Hill"
+        },
+        {
+          "title": "Federal Judge Declines to Break Up Google\u2019s Ad Technology Business - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE54SXBLXzJKcERSbmdjRXIwRmF6ZTgyUkl6VmpWbjFTSGNzZlFwRW5VRE9STVJSVnFsVG5zT2JCREZRMnZUXzU5MkZvOTJudDUtRUkyOUFaY2xiVnR6SU9Sa05jN3RBQ1lhLTl4ZzFjN1Y0d3Zfd19oLXQ2R1BvSzg?oc=5",
+          "source": "The New York Times"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The federal judge's decision regarding Google's ad technology has major implications for the tech industry, which includes many Indian-origin professionals.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "acf2da21-9fbf-4f84-a340-811624ec977a",
+      "title": "Prostate Cancer Can Be Kept In Check With Early Detection And Timely Treatment: Urologist - ETV Bharat",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T13:06:03+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMjFHUFVWa05ZV3ZQbXR2SmtERFdkYzdweE1rT3dQLXFXdExxLVpiZ1d5cnNrdkVBTl8yVnRDRUkxS2lPQ0oyNXhOQmRuMDd0Qk1qS2ZmMkw4SVhhVWFKbGFMbDBBWDg3aWJYc1djOF9yRmZ1blh0SGVMcURVTllTalZTZU9Sa28tUlRQdlRiZFZuNUJHRndoR1RXOG55YTBpOTB0U2RkRQ?oc=5",
+        "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZk1wU0ZudWJZM0Y4VjVEUVh5RzVhaFVFbEc3bWVjZEMwejRUSndoalRYZWJBdDJoa1FtVm1NdHRPMHlrSHpkOVdJT3RRelBmV2ttbm9tOXJTc3RVMWdUQ3lMTi1LbmM0TGdITThXZFJ6YV9OQlVNblVITjVSekd6SQ?oc=5",
+        "https://news.google.com/rss/articles/CBMinAFBVV95cUxNbVVCU0JmRndpeURyRXBYVFVvWVpTWU9vb09GUFc0SHVzNE1WNk9Bel90M3VzMEIxNXZjeEZicEVUUURiZF9VblotNzlpOUUzbm1oZTRkTkNYYUhPelRkYlRsRjRlTmNxUzkzUTFfNTNjdlR2YmVFTmxfc1pvTlpveEFaczhhWlQ3WWhGdnd4NHdMbVpyVUhIa01BTHY?oc=5",
+        "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOMEtBV2JoSWVQcGl3SXlRMFQ1WkRTRDY4cmI0dGx6cXpiYlFhSlcxQnRiSVhDa3RCeDFiNWNiTmRuc1hGbHh0eHRjT2FFblk2R2FMY0F3MFZQSHhzM0p4eVdoZ1FPWGV3eW9QUWRJSTlLYUpZTXVEdXVoTXg1eVVUbFhvSzFITElEcmNmVGw2OHF0Y1VGRjQ3RXA5czJCSm1FV1N3TlBadXVDU2VaRFpheWtzQ1ZJU3RCdHk0T2lOU3l6SVdTWGp1NGFkQXQwel9oT0d3RE5R0gHbAUFVX3lxTFBGYU9ZQ1d0Tk9pRzYwMV9jUkFvYWMtbUVWUkFMX1hnaXNXRlZWZ2VnWndtQS12VmxWQmNsc2tGWnVDSFZocEZ4VjJjQW5Na3E2Ump6SUxaeXVmclQxc0tGRkVDT0kwdVVyYXFkaFFVQ1k1VkFrUFEyakNZMVdsUE15ekZxVXZfWjFobGE1bWlQdDB3cTJ0MGhqUVhlR2FZT2NEUEc0ZXd6VkFTTGxyaGhhdnFRUUxpT19sVTV2QlZ6T1E3SDJwN1d1RjNLTEcwMEYxQlVCSHAzNVZ1OA?oc=5",
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxPUUJuMHZUaTRrc1dkX01ZVkc4WWZETVkxSi05eEpzV0NoQTc2dWVTRTV0U1Z4d3prcHluaU1ZVVNfbVJLNUtaQkJNcjFSSVdUdUhkeWVEdVNDaWFQWmViMzVSNnNWaDBYUUhfdmcxX18wa1dLS3pOTHZfeWQ4SExiYXBFOENnX0xfY2FhRFVBVFJTMk9TMHU1YjNQVjlwTDBoWnZjVnV30gG6AUFVX3lxTE4wR2htNDFwOUNJa3hLZGpjVjlESnpqcThyQ054NDNUcGtBa3VsN1puTTM2LTFtZWYtdFQ3TlJ6S0s0U0FSVW5KSVA4MUtLSVllZ1JvM0ZnN1ZFUWJnQUZocUpLVFlPcGk2eXZPUkU4QzN5QnBEMllvTUtucy0wZVNjS3V0dEphTTFlU1BFTFNid1FUQnl1ODNaMnBjNkNTQUVlSUNGTU9ONmRMY3FmRlIzdWxqRllxYlJ1QQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "New Prostate Cancer Diagnoses Up 3% as Early Detection Key to Better Outcomes",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMjFHUFVWa05ZV3ZQbXR2SmtERFdkYzdweE1rT3dQLXFXdExxLVpiZ1d5cnNrdkVBTl8yVnRDRUkxS2lPQ0oyNXhOQmRuMDd0Qk1qS2ZmMkw4SVhhVWFKbGFMbDBBWDg3aWJYc1djOF9yRmZ1blh0SGVMcURVTllTalZTZU9Sa28tUlRQdlRiZFZuNUJHRndoR1RXOG55YTBpOTB0U2RkRQ?oc=5",
+          "source": "Mega Doctor News"
+        },
+        {
+          "title": "Cal Thomas: A message for men over 50",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZk1wU0ZudWJZM0Y4VjVEUVh5RzVhaFVFbEc3bWVjZEMwejRUSndoalRYZWJBdDJoa1FtVm1NdHRPMHlrSHpkOVdJT3RRelBmV2ttbm9tOXJTc3RVMWdUQ3lMTi1LbmM0TGdITThXZFJ6YV9OQlVNblVITjVSekd6SQ?oc=5",
+          "source": "Saratogian"
+        },
+        {
+          "title": "Prostate Cancer Awareness Month puts focus on screening, early detection",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNbVVCU0JmRndpeURyRXBYVFVvWVpTWU9vb09GUFc0SHVzNE1WNk9Bel90M3VzMEIxNXZjeEZicEVUUURiZF9VblotNzlpOUUzbm1oZTRkTkNYYUhPelRkYlRsRjRlTmNxUzkzUTFfNTNjdlR2YmVFTmxfc1pvTlpveEFaczhhWlQ3WWhGdnd4NHdMbVpyVUhIa01BTHY?oc=5",
+          "source": "Covering Katy News"
+        },
+        {
+          "title": "Prostate Cancer Can Be Kept In Check With Early Detection And Timely Treatment: Urologist - ETV Bharat",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOMEtBV2JoSWVQcGl3SXlRMFQ1WkRTRDY4cmI0dGx6cXpiYlFhSlcxQnRiSVhDa3RCeDFiNWNiTmRuc1hGbHh0eHRjT2FFblk2R2FMY0F3MFZQSHhzM0p4eVdoZ1FPWGV3eW9QUWRJSTlLYUpZTXVEdXVoTXg1eVVUbFhvSzFITElEcmNmVGw2OHF0Y1VGRjQ3RXA5czJCSm1FV1N3TlBadXVDU2VaRFpheWtzQ1ZJU3RCdHk0T2lOU3l6SVdTWGp1NGFkQXQwel9oT0d3RE5R0gHbAUFVX3lxTFBGYU9ZQ1d0Tk9pRzYwMV9jUkFvYWMtbUVWUkFMX1hnaXNXRlZWZ2VnWndtQS12VmxWQmNsc2tGWnVDSFZocEZ4VjJjQW5Na3E2Ump6SUxaeXVmclQxc0tGRkVDT0kwdVVyYXFkaFFVQ1k1VkFrUFEyakNZMVdsUE15ekZxVXZfWjFobGE1bWlQdDB3cTJ0MGhqUVhlR2FZT2NEUEc0ZXd6VkFTTGxyaGhhdnFRUUxpT19sVTV2QlZ6T1E3SDJwN1d1RjNLTEcwMEYxQlVCSHAzNVZ1OA?oc=5",
+          "source": "ETV Bharat"
+        },
+        {
+          "title": "Prostate Cancer Awareness Month promotes early testing for curable disease",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPUUJuMHZUaTRrc1dkX01ZVkc4WWZETVkxSi05eEpzV0NoQTc2dWVTRTV0U1Z4d3prcHluaU1ZVVNfbVJLNUtaQkJNcjFSSVdUdUhkeWVEdVNDaWFQWmViMzVSNnNWaDBYUUhfdmcxX18wa1dLS3pOTHZfeWQ4SExiYXBFOENnX0xfY2FhRFVBVFJTMk9TMHU1YjNQVjlwTDBoWnZjVnV30gG6AUFVX3lxTE4wR2htNDFwOUNJa3hLZGpjVjlESnpqcThyQ054NDNUcGtBa3VsN1puTTM2LTFtZWYtdFQ3TlJ6S0s0U0FSVW5KSVA4MUtLSVllZ1JvM0ZnN1ZFUWJnQUZocUpLVFlPcGk2eXZPUkU4QzN5QnBEMllvTUtucy0wZVNjS3V0dEphTTFlU1BFTFNid1FUQnl1ODNaMnBjNkNTQUVlSUNGTU9ONmRMY3FmRlIzdWxqRllxYlJ1QQ?oc=5",
+          "source": "WLBT"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The cancer vaccine designed for women that also protects men is groundbreaking news with potential implications for the Indian diaspora's health.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "0743664e-5464-4b1e-bb0e-58f58d25b86e",
+      "title": "Private sector added 38,000 jobs in August, below expectations, ADP says - Fox Business",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 5,
+      "source_diversity": 9,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T12:56:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNy1mWTBJSDhUclN4VmUyWVpGT2UwX2FJUF9vNUlTOGJ6UTFiWG93SnlWczhxMTlSVzAyWnp1UUQ5WFU4dURVcklselNRWndqcjNSTkpnV1dNVTFyZ0M1RUJGSHNRMGRaUDZ6dHJXRWhzQU5JcEJRXzFncEZiMXVLVnRrOW9RY2J5OVFxSE1ON3hUWHM5WlZSYzRFR2JIYnVFbEFKb9IBqgFBVV95cUxORE5zbFdtNDRnZTh0a3hQQmVOV2dIdmozeUFtTW1nUFpkRm1QdGNjQU9Ga2tXbjN6YVBYWEp4Q2s4RV9YZDEtSFFhUEtjcFhWUl96VUpzOHh5Z1hpMGpVeWZ3RVN1Y3AzcDdVT0FJVDF4ZGVjVWFtZVAxWkRRcjc4N1Rydi15RmRIbnR1cUczMll0UzhiUExyc1hvZTBnTkZycEppbVBfTDNrdw?oc=5",
+        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQWm1QZW9hY1o5VEV2b0lRWXFNLUowVVVuaFdMS1dHRk9jSmhRV1NWR0NRN28tRHN3SHRDNEI4NXNiNzVONGtuRWxpOWZHdmlwX0czSGV4N2hEZnI4RTI4QmlSc0EwRkJTZzMtd1QzVDhmU1d6Rjg1RlpzcThOemRWUlRuQmtIUmlGOXpuYXI0bnZhbjBkRUQzdXdWZG9nb2Y2OU12Y3NUMmppMU1FdzFHWnlsdjk3a05vLWx2bXdnbXBsT0NHR3pZVzlPajdkWTJobVpacDhjYjhjTVBjVlRndXR3RkM3dWdHMVHSAe8BQVVfeXFMTnktR2Q4Q21Xcm1iRDZhMjVWVV94RG8yTzZxYzZ5N3M2SzdPWjlPZlktSVY3R19tT2dVbXluVHMtS1ozVEdZNHZDWmFURkxIRUpTTllWcDBDLU50OXZzZXlORmdEcl8zQWRyRHEzUlFDbWF0a2JrdzJVVTdDUGxwQ1dYRS1QWTd2NnZjSjZTR0VheDRET2VyX3RDQ25RYS03V0NHZ3pGQWZjOG1WVUhheHI2cDVac01hSXFaYUhhN2M5WHQtQ3M5ZlhtOHVYUEdySmpRTFNKZHVtREU3c1hIYnVzcG5uU2hQcG43VEhkcmc?oc=5",
+        "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNkVOR2oyc1J0RmczQWxnalMtZy1hekxNY2M0SWIwdWQ5c2lyZ29KdmJVNXJLR0w1OUNWMFVvOXBkNnNFWTkyUWV3TjFoZk5NMEVPY1pMcGtTY3JZdFk1TUNDNjdSYmpqc041Slk1QnlQMXB0WjVVQXVzR1p5MjhUZkRQOGlfdU5DSzBnQjYtV09tSlo5N24tOU5laFphbXdTbGNiWVpRRHBVS2REa1c1by14NmNYZw?oc=5",
+        "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNc2dMVkkwVEhHamxVb1lOMDFvUDFhU1hDcVBUSU5KMWJrOTFwc1BBUGtEeHBudDVaN3RwR0N6TkVsZEhTMlFjTDdwVFJ6UTM3REVQWUJ4T210NVdVMm9Cb29mSmdlYWlsLUphcnY2US1Eb3VSMURwTWZ0ODhXR3NOLTdONmpyWWF3dXdEc25veXkzYUg1VmVOb0M2RE9pTGZMNTNQZFQzVHNIQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMilAFBVV95cUxQU0kxcUllVExYa1MzdzFicmpZVkhXWkJ4bjNJSDljSVl1V2paRlM4YndjYXdxQ2RlSDhONWF1ajB4RThLOVpxRnBfXzFrd2NNak5nMXhEQzl0WXNFRXB4Vk9Wc2FXZFZpVnBKb05sdXJzeF9HU1k5ZkRWLVNobURGV0c0cUxON0RROHlNbEFHUWVUQWJl0gGaAUFVX3lxTE9vNnhJNVlaN1BQT09CanJmQkRoX3R1enhsREhLVTF0S2R5NnRJajBCZE1qM2JkUU12RWpKd0JYb0ZFRVlyaEZFNnljTDJEYTlKX0dnM1JZQi1WcGFJNVk0U0pTS05YYUxUdm5GR3FvS0Zka1lyNmZnYmNWOER3eVFhRFZxb3FjS09tQUltcHRNSUVBdnBTaGwzbFE?oc=5",
+        "https://news.google.com/rss/articles/CBMimAFBVV95cUxPYmZUU2czdEdrYnpvU0I4OHNuOEVCekFKY0lmWVNYaGhhSTg0c0llcUIyNFE2bVRGSGxNS2wwcWsxTW1TeTlGby0xODVONXFURU9QZVB5MG9qQm42eDJJWVNIRTZGRld0YXJ3bXJEek9sRWZOUUlURkkxRi1nYTVlZGV2c05uOWNLWXNicU14WjZWeHhldk9FTQ?oc=5",
+        "https://news.google.com/rss/articles/CBMioAFBVV95cUxPZWlzcDJKSk5yRDBUZGF2Y3FKcEZCczVWZlJuQm9sc2c3WklWbDFCZkFkb0FQWXJMUzZlYk9yOTNSLTlQaXhOSUhxVUtRbFM4Ui0zaXk0WUt6V3o3ZTVSTURQRjcwS3ZMTTVpN1dqQUxpRDQ3VmZYMmMtcGt1Uy16WUh3ZHktcm9SNW1VQ29LN2VBWThiY2tBWE5mNzNvMTZF?oc=5",
+        "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNy1mWTBJSDhUclN4VmUyWVpGT2UwX2FJUF9vNUlTOGJ6UTFiWG93SnlWczhxMTlSVzAyWnp1UUQ5WFU4dURVcklselNRWndqcjNSTkpnV1dNVTFyZ0M1RUJGSHNRMGRaUDZ6dHJXRWhzQU5JcEJRXzFncEZiMXVLVnRrOW9RY2J5OVFxSE1ON3hUWHM5WlZSYzRFR2JIYnVFbEFKbw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Private sector added 38,000 jobs in August, below expectations, ADP says - Fox Business",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNy1mWTBJSDhUclN4VmUyWVpGT2UwX2FJUF9vNUlTOGJ6UTFiWG93SnlWczhxMTlSVzAyWnp1UUQ5WFU4dURVcklselNRWndqcjNSTkpnV1dNVTFyZ0M1RUJGSHNRMGRaUDZ6dHJXRWhzQU5JcEJRXzFncEZiMXVLVnRrOW9RY2J5OVFxSE1ON3hUWHM5WlZSYzRFR2JIYnVFbEFKb9IBqgFBVV95cUxORE5zbFdtNDRnZTh0a3hQQmVOV2dIdmozeUFtTW1nUFpkRm1QdGNjQU9Ga2tXbjN6YVBYWEp4Q2s4RV9YZDEtSFFhUEtjcFhWUl96VUpzOHh5Z1hpMGpVeWZ3RVN1Y3AzcDdVT0FJVDF4ZGVjVWFtZVAxWkRRcjc4N1Rydi15RmRIbnR1cUczMll0UzhiUExyc1hvZTBnTkZycEppbVBfTDNrdw?oc=5",
+          "source": "Fox Business"
+        },
+        {
+          "title": "Is ADP\u2019s Modest August Jobs Signal Quietly Reframing the Company\u2019s Macro Data Power Story (ADP)?",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQWm1QZW9hY1o5VEV2b0lRWXFNLUowVVVuaFdMS1dHRk9jSmhRV1NWR0NRN28tRHN3SHRDNEI4NXNiNzVONGtuRWxpOWZHdmlwX0czSGV4N2hEZnI4RTI4QmlSc0EwRkJTZzMtd1QzVDhmU1d6Rjg1RlpzcThOemRWUlRuQmtIUmlGOXpuYXI0bnZhbjBkRUQzdXdWZG9nb2Y2OU12Y3NUMmppMU1FdzFHWnlsdjk3a05vLWx2bXdnbXBsT0NHR3pZVzlPajdkWTJobVpacDhjYjhjTVBjVlRndXR3RkM3dWdHMVHSAe8BQVVfeXFMTnktR2Q4Q21Xcm1iRDZhMjVWVV94RG8yTzZxYzZ5N3M2SzdPWjlPZlktSVY3R19tT2dVbXluVHMtS1ozVEdZNHZDWmFURkxIRUpTTllWcDBDLU50OXZzZXlORmdEcl8zQWRyRHEzUlFDbWF0a2JrdzJVVTdDUGxwQ1dYRS1QWTd2NnZjSjZTR0VheDRET2VyX3RDQ25RYS03V0NHZ3pGQWZjOG1WVUhheHI2cDVac01hSXFaYUhhN2M5WHQtQ3M5ZlhtOHVYUEdySmpRTFNKZHVtREU3c1hIYnVzcG5uU2hQcG43VEhkcmc?oc=5",
+          "source": "simplywall.st"
+        },
+        {
+          "title": "U.S. private sector job growth underwhelms with 38K gain By Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNNkVOR2oyc1J0RmczQWxnalMtZy1hekxNY2M0SWIwdWQ5c2lyZ29KdmJVNXJLR0w1OUNWMFVvOXBkNnNFWTkyUWV3TjFoZk5NMEVPY1pMcGtTY3JZdFk1TUNDNjdSYmpqc041Slk1QnlQMXB0WjVVQXVzR1p5MjhUZkRQOGlfdU5DSzBnQjYtV09tSlo5N24tOU5laFphbXdTbGNiWVpRRHBVS2REa1c1by14NmNYZw?oc=5",
+          "source": "Investing.com India"
+        },
+        {
+          "title": "Private-Sector Employment Grew Less Than Expected",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNc2dMVkkwVEhHamxVb1lOMDFvUDFhU1hDcVBUSU5KMWJrOTFwc1BBUGtEeHBudDVaN3RwR0N6TkVsZEhTMlFjTDdwVFJ6UTM3REVQWUJ4T210NVdVMm9Cb29mSmdlYWlsLUphcnY2US1Eb3VSMURwTWZ0ODhXR3NOLTdONmpyWWF3dXdEc25veXkzYUg1VmVOb0M2RE9pTGZMNTNQZFQzVHNIQQ?oc=5",
+          "source": "WSJ"
+        },
+        {
+          "title": "ADO: Private payrolls grew 38,000 in August, a decline from July",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQU0kxcUllVExYa1MzdzFicmpZVkhXWkJ4bjNJSDljSVl1V2paRlM4YndjYXdxQ2RlSDhONWF1ajB4RThLOVpxRnBfXzFrd2NNak5nMXhEQzl0WXNFRXB4Vk9Wc2FXZFZpVnBKb05sdXJzeF9HU1k5ZkRWLVNobURGV0c0cUxON0RROHlNbEFHUWVUQWJl0gGaAUFVX3lxTE9vNnhJNVlaN1BQT09CanJmQkRoX3R1enhsREhLVTF0S2R5NnRJajBCZE1qM2JkUU12RWpKd0JYb0ZFRVlyaEZFNnljTDJEYTlKX0dnM1JZQi1WcGFJNVk0U0pTS05YYUxUdm5GR3FvS0Zka1lyNmZnYmNWOER3eVFhRFZxb3FjS09tQUltcHRNSUVBdnBTaGwzbFE?oc=5",
+          "source": "upi.com"
+        },
+        {
+          "title": "US private payroll growth slows in August; factory orders rebound in July",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPYmZUU2czdEdrYnpvU0I4OHNuOEVCekFKY0lmWVNYaGhhSTg0c0llcUIyNFE2bVRGSGxNS2wwcWsxTW1TeTlGby0xODVONXFURU9QZVB5MG9qQm42eDJJWVNIRTZGRld0YXJ3bXJEek9sRWZOUUlURkkxRi1nYTVlZGV2c05uOWNLWXNicU14WjZWeHhldk9FTQ?oc=5",
+          "source": "Reuters"
+        },
+        {
+          "title": "Job growth and pay raises cool in August: ADP jobs report",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPZWlzcDJKSk5yRDBUZGF2Y3FKcEZCczVWZlJuQm9sc2c3WklWbDFCZkFkb0FQWXJMUzZlYk9yOTNSLTlQaXhOSUhxVUtRbFM4Ui0zaXk0WUt6V3o3ZTVSTURQRjcwS3ZMTTVpN1dqQUxpRDQ3VmZYMmMtcGt1Uy16WUh3ZHktcm9SNW1VQ29LN2VBWThiY2tBWE5mNzNvMTZF?oc=5",
+          "source": "Seeking Alpha"
+        },
+        {
+          "title": "Private sector added 38,000 jobs in August, below expectations, ADP says",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNy1mWTBJSDhUclN4VmUyWVpGT2UwX2FJUF9vNUlTOGJ6UTFiWG93SnlWczhxMTlSVzAyWnp1UUQ5WFU4dURVcklselNRWndqcjNSTkpnV1dNVTFyZ0M1RUJGSHNRMGRaUDZ6dHJXRWhzQU5JcEJRXzFncEZiMXVLVnRrOW9RY2J5OVFxSE1ON3hUWHM5WlZSYzRFR2JIYnVFbEFKbw?oc=5",
+          "source": "Fox Business"
+        },
+        {
+          "title": "August hiring was tepid as jobs report looms",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5aLTZqSzFHNklUby01TU80NlA0OGhzcE5uZjNTZ1V6Smg4VElKblRGRjhfMm1ydlh4WUpuNXpIRXFuQ3hDU1IyU3RtV2M2TzJxNFhOVWF0b19YY2NWS1MwLS1Rb0taX2tWaktHSDJ2MA?oc=5",
+          "source": "Axios"
+        },
+        {
+          "title": "Private payrolls rose by 38,000 in August, less than expected, ADP reports - cnbc.com",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOaGVmaXVDeEpDTGVUYS0zMnNZVXRBeFhaUWFIamk0elljRVJtQ0ZHUTZkU0I3cGQ4VWpqTW01bHR0TFNJTXVCZWwzM1lpZWYyWUJSR1U1U25nXy0zdWtNUHFZRXE4MVdqS0hIdTQ4THBjNzBTNUtWUXVlWDdqUW10TFh2eU5lbWtnTWZGdzVTUnZCSnVFRGJ3bFZjUVNVNjNZaURBNUEwYW9XSzZMQ3c?oc=5",
+          "source": "cnbc.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "Uber's job cuts are significant news that could impact the job market and economy, relevant to the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "1cba2686-6452-4bb7-8385-baba5a8b7881",
+      "title": "Sharp rise in H1N1 cases in Jharkhand; all major hospitals on high alert - News On AIR",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T12:09:52+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdG1TdkpSX3I4VFBjUGhERFcxd1czV0pOaWQ4SHhKRnhpMGhKNGR4Z3ljQ0toOUJ0b1k5NFNqSGZMbEVhVXRrQTFMSFlhMTNROHpXWDAxOFB5YndOR3pTeVkxVzVtdlFjVVlmNzRCOTVnMWdWSlJDVDlKNi14VmZSYm9VUzhzbnc0NDhFOHY1Xy1xeEg0LUlxa2VsRjgyMUtMbWhDY0lJdkpTN0p6b2VwNG9hc1lONk5ETFd4a0kwVG9xb0ZaY3hXRm1RaFJlUjFYa0k0?oc=5",
+        "https://news.google.com/rss/articles/CBMifkFVX3lxTE56Q1RZMHN6REY2bGF6SFk2ZHdCaE93bUlWUFozQ2dEZ1ZGckpJWlFmV2xma2w2dlR1eks0R2h4akFFQ191RmxGeTlHMXEtTUV3WHN5dHVKZFVKYVMzdUMtdGZKLVY3Z251UVdVcXlvNGtQNkVqYmRMLXl2aWtmdw?oc=5",
+        "https://news.google.com/rss/articles/CBMipAFBVV95cUxQTmhoQ3RDcEhwaXFzVmg2NzNQc1dlOGZ6Q2pvS0hxYU05aXR3cHVURU5XaldYSTFvYTA4bUxzLTRLWHhqRzRoX3dTcTI5QmZCZUxobDBOTDRHMC00bDZJOTZmYmhacE01SkFIZmt6cjBPUzZzSFV4ZmR0eVY2alVhZUV4cVlZczRvNXZsNVpQeUZjNkVyQjZPSWJXaVJkU2RFbHdCNtIBsgFBVV95cUxOdXI0b1lhTTRkZ3Z3YTNIOHo0T2VsZnp4WGZqWHE1M0RUUTF6LTZOeTZCT0xEZVlZZFBuS1dHanQxbERSM2dHVXZUdlB5bFVlMGM5SWpDaERYNlUxSVV0RHBOQWNSQ1pWWkhEeWJyVHlmMzZMSjBjNWtTcjZwXy00bElvajJoZmpOY3Q1MFo1enNJT2RzbE53ZDZsMnNJX193WnJhT1F2YnJWNU9yNkJSSVFR?oc=5",
+        "https://news.google.com/rss/articles/CBMingFBVV95cUxQeEhOY2Q4OWE5Wi1kT01pMnFYc21vY05PTVFjQy1sVzdkbjlPOUptQjQwaGZOMnFfdWxOd2RUSXlYbnRSR0U2UTROLXZQMnN1UU1MdVdBTXFRNl9IUjJZMHF4bVBRZjhkcGFDcTlHbXFiN1psQWNtZmltckdVOC1BclVHS3phWnVBYjdyRU1zcFZ1NTNwN084cW5lUmFRUQ?oc=5",
+        "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSG41TThIVzhZckJQbEpCc0V6b2tGZHJvTzhORlNfNE9HNHVxQ0tiY1VxTEw2YmNjaWJIeXpmT2dhaEdtLU9fTDVkRklZdmV5MndIbktqY2FocTlNR0x2d0VLWVBXZnF5c1pyNVpFZmdKc1IxVGhRZzZUTTBQRnAtMl9JUmY4bTJabUNTU3FfTGVHaEFudWdvNFFkV1lyeGNaYW5wV0R0bDJ6Zk83aHE2Q0ZKdFhPMWJ40gG8AUFVX3lxTE1CaHlvTFBXUndpU3k0QXQ1VldhaE54S0VfX3hSN2hnbU5FZXhXNWhybDhlblNHU1BNMGVhZ3ZDSVhEd2N0MXhuZ01NLVJDU2huVWtVTV9KMzM0QzcxSk1fSGhVVlhIUUUxUGlSZVlDTmtKai0wYm1yMWdsVGIxTkI5OG5WaHVSSHJDb0ZtNFM1eW9LbDVRaldJZklfX3FobU11ME41VUtDS2NPUGZZUmUxMkFqQW9UcXJZSVdR?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Jharkhand issues H1N1 alert after eight swine flu cases detected",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdG1TdkpSX3I4VFBjUGhERFcxd1czV0pOaWQ4SHhKRnhpMGhKNGR4Z3ljQ0toOUJ0b1k5NFNqSGZMbEVhVXRrQTFMSFlhMTNROHpXWDAxOFB5YndOR3pTeVkxVzVtdlFjVVlmNzRCOTVnMWdWSlJDVDlKNi14VmZSYm9VUzhzbnc0NDhFOHY1Xy1xeEg0LUlxa2VsRjgyMUtMbWhDY0lJdkpTN0p6b2VwNG9hc1lONk5ETFd4a0kwVG9xb0ZaY3hXRm1RaFJlUjFYa0k0?oc=5",
+          "source": "indiatoday.in"
+        },
+        {
+          "title": "Jharkhand on High Alert Over Swine Flu",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE56Q1RZMHN6REY2bGF6SFk2ZHdCaE93bUlWUFozQ2dEZ1ZGckpJWlFmV2xma2w2dlR1eks0R2h4akFFQ191RmxGeTlHMXEtTUV3WHN5dHVKZFVKYVMzdUMtdGZKLVY3Z251UVdVcXlvNGtQNkVqYmRMLXl2aWtmdw?oc=5",
+          "source": "The Indian Practitioner"
+        },
+        {
+          "title": "Ranchi Diary | Vigilance stepped up against swine flu",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQTmhoQ3RDcEhwaXFzVmg2NzNQc1dlOGZ6Q2pvS0hxYU05aXR3cHVURU5XaldYSTFvYTA4bUxzLTRLWHhqRzRoX3dTcTI5QmZCZUxobDBOTDRHMC00bDZJOTZmYmhacE01SkFIZmt6cjBPUzZzSFV4ZmR0eVY2alVhZUV4cVlZczRvNXZsNVpQeUZjNkVyQjZPSWJXaVJkU2RFbHdCNtIBsgFBVV95cUxOdXI0b1lhTTRkZ3Z3YTNIOHo0T2VsZnp4WGZqWHE1M0RUUTF6LTZOeTZCT0xEZVlZZFBuS1dHanQxbERSM2dHVXZUdlB5bFVlMGM5SWpDaERYNlUxSVV0RHBOQWNSQ1pWWkhEeWJyVHlmMzZMSjBjNWtTcjZwXy00bElvajJoZmpOY3Q1MFo1enNJT2RzbE53ZDZsMnNJX193WnJhT1F2YnJWNU9yNkJSSVFR?oc=5",
+          "source": "The New Indian Express"
+        },
+        {
+          "title": "Sharp rise in H1N1 cases in Jharkhand; all major hospitals on high alert - News On AIR",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQeEhOY2Q4OWE5Wi1kT01pMnFYc21vY05PTVFjQy1sVzdkbjlPOUptQjQwaGZOMnFfdWxOd2RUSXlYbnRSR0U2UTROLXZQMnN1UU1MdVdBTXFRNl9IUjJZMHF4bVBRZjhkcGFDcTlHbXFiN1psQWNtZmltckdVOC1BclVHS3phWnVBYjdyRU1zcFZ1NTNwN084cW5lUmFRUQ?oc=5",
+          "source": "News On AIR"
+        },
+        {
+          "title": "Jkhand health dept sounds alert after 8 people test positive for swine flu",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSG41TThIVzhZckJQbEpCc0V6b2tGZHJvTzhORlNfNE9HNHVxQ0tiY1VxTEw2YmNjaWJIeXpmT2dhaEdtLU9fTDVkRklZdmV5MndIbktqY2FocTlNR0x2d0VLWVBXZnF5c1pyNVpFZmdKc1IxVGhRZzZUTTBQRnAtMl9JUmY4bTJabUNTU3FfTGVHaEFudWdvNFFkV1lyeGNaYW5wV0R0bDJ6Zk83aHE2Q0ZKdFhPMWJ40gG8AUFVX3lxTE1CaHlvTFBXUndpU3k0QXQ1VldhaE54S0VfX3hSN2hnbU5FZXhXNWhybDhlblNHU1BNMGVhZ3ZDSVhEd2N0MXhuZ01NLVJDU2huVWtVTV9KMzM0QzcxSk1fSGhVVlhIUUUxUGlSZVlDTmtKai0wYm1yMWdsVGIxTkI5OG5WaHVSSHJDb0ZtNFM1eW9LbDVRaldJZklfX3FobU11ME41VUtDS2NPUGZZUmUxMkFqQW9UcXJZSVdR?oc=5",
+          "source": "tribuneindia.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The sharp rise in H1N1 cases in Jharkhand is a significant public health alert that could impact the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "e49642b2-2d9f-4ace-a430-0008fc871326",
+      "title": "Apple Maps renames Lake Ontario \u2018Lake America\u2019 for US users after Trump order - Fox Business",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T11:23:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMinAFBVV95cUxOeVFteWZyMXhJV3V1ekFJcjU2R1lVekZhckVLa25pdlFPd0swbDQwcFVnVVdqVzJRM2NTSDdBeGxUdUF2VGNrbWtOVHZ3WW5DWjFTQTBra3ZfN2tUZlJ0bmJuNk5yYjhNMjlwQW56dGstODMtQk8yVnhkZS11SEtiSWthV0t2cC1RekZsNWhaRUl1aGJ6WHlELTJKbXI?oc=5",
+        "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNYVBSc0g1TGRYYjRyeEM0MUc1RzJVX1lkeXAwR1FxTk10c20wM1UxRFl6SEpPR3ItS1VYLUZSemVzTndNczRadkY4OUlfTUdEdnpnbnlGTi1wOVREaTdaeUlCMXpfZEJGV2hNUnFkUF9IblBfM1MwT3JlRllCVDFSdkdQOF9uZkw5OFhqTjd2MUZWZjktOUxSTGQxSDBPRWgxWG91ZWpvTWtZYkQtVE1kV2x5S0NBVlJPVk1pczJsV1FjQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMinwFBVV95cUxNcWNRekc3Wk90TTVhdHBwQVpVdWZvY2pqYXFTOUFZd01neWVtTVdQa3hYbkZEcUZVNGxFLWw2Smg3bEJ4S29HYi1jSXJ4MnhGcnJmbjIzSVd5X3ZnS3BFTkFjeFI5TW9mZkFRdGdhZEl3dk1xZVpJak9GSW5PM3ROV0hFQ0FZQl9wRTdpSzVWeFZNZC1leTJZM1g3TTBpX2s?oc=5",
+        "https://news.google.com/rss/articles/CBMie0FVX3lxTE1TSWhrNlViQ2xQOWpMcG9DVXNFSG1IODZTODk0d3VsU1U5NkM2enk5bThlYVNnNDI5c0psalVmLXQzemx5d085NnZFcnI0RGxUa2FjTDBBNlFEVURwaU1ocEFkbjBLNVNoRGttbl9zSWFCZXd2RGMydkdhRQ?oc=5",
+        "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQNnYwMl94bm9CemhoUFlSbmNYNG96ZDdnaGw2YmFlRUtUYmRtU1ZhM2pnbzFqNXVXUXhNLWZyeGJPSnZ2WUpCLWZyZFN5QnpNd0dvLWlDWGlEZ042OU5jMGlaenVKM0Zwcjl6VVVYcVpjYTRUamd5cjJPU05YN1MzQU92a2NZR0pGcmdfNFdBTFA4N3BoSEdOOF9oVTRDTGJzYXF2ZlZSMlVmR2M?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Apple changes Lake Ontario name to 'Lake America' for US users of its Maps, following Trump's order",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOeVFteWZyMXhJV3V1ekFJcjU2R1lVekZhckVLa25pdlFPd0swbDQwcFVnVVdqVzJRM2NTSDdBeGxUdUF2VGNrbWtOVHZ3WW5DWjFTQTBra3ZfN2tUZlJ0bmJuNk5yYjhNMjlwQW56dGstODMtQk8yVnhkZS11SEtiSWthV0t2cC1RekZsNWhaRUl1aGJ6WHlELTJKbXI?oc=5",
+          "source": "ABC News - Breaking News, Latest News and Videos"
+        },
+        {
+          "title": "\u2018We\u2019re not changing it\u2019: SoCal-based MapQuest takes stand against Trump\u2019s \u2018Lake America\u2019",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNYVBSc0g1TGRYYjRyeEM0MUc1RzJVX1lkeXAwR1FxTk10c20wM1UxRFl6SEpPR3ItS1VYLUZSemVzTndNczRadkY4OUlfTUdEdnpnbnlGTi1wOVREaTdaeUlCMXpfZEJGV2hNUnFkUF9IblBfM1MwT3JlRllCVDFSdkdQOF9uZkw5OFhqTjd2MUZWZjktOUxSTGQxSDBPRWgxWG91ZWpvTWtZYkQtVE1kV2x5S0NBVlJPVk1pczJsV1FjQQ?oc=5",
+          "source": "The Seattle Times"
+        },
+        {
+          "title": "Majority of Americans against Lake Ontario name change, Canada tariffs: Poll",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNcWNRekc3Wk90TTVhdHBwQVpVdWZvY2pqYXFTOUFZd01neWVtTVdQa3hYbkZEcUZVNGxFLWw2Smg3bEJ4S29HYi1jSXJ4MnhGcnJmbjIzSVd5X3ZnS3BFTkFjeFI5TW9mZkFRdGdhZEl3dk1xZVpJak9GSW5PM3ROV0hFQ0FZQl9wRTdpSzVWeFZNZC1leTJZM1g3TTBpX2s?oc=5",
+          "source": "The Hill"
+        },
+        {
+          "title": "After Trump renamed Lake Ontario, Americans aren't buying his Canada fight",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1TSWhrNlViQ2xQOWpMcG9DVXNFSG1IODZTODk0d3VsU1U5NkM2enk5bThlYVNnNDI5c0psalVmLXQzemx5d085NnZFcnI0RGxUa2FjTDBBNlFEVURwaU1ocEFkbjBLNVNoRGttbl9zSWFCZXd2RGMydkdhRQ?oc=5",
+          "source": "Axios"
+        },
+        {
+          "title": "Apple Maps renames Lake Ontario \u2018Lake America\u2019 for US users after Trump order - Fox Business",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQNnYwMl94bm9CemhoUFlSbmNYNG96ZDdnaGw2YmFlRUtUYmRtU1ZhM2pnbzFqNXVXUXhNLWZyeGJPSnZ2WUpCLWZyZFN5QnpNd0dvLWlDWGlEZ042OU5jMGlaenVKM0Zwcjl6VVVYcVpjYTRUamd5cjJPU05YN1MzQU92a2NZR0pGcmdfNFdBTFA4N3BoSEdOOF9oVTRDTGJzYXF2ZlZSMlVmR2M?oc=5",
+          "source": "Fox Business"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The renaming of Lake Ontario to 'Lake America' has implications for US-Canada relations, which is relevant to the Indian diaspora in North America.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "0b04fe0c-4ec1-4465-8480-c5df7fa62d29",
+      "title": "Uber to Cut 10% of Jobs, or 3,300 Roles, to Slash Bureaucracy - Bloomberg.com",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T11:20:01+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMirgFBVV95cUxQelprYTZqU1R2cFNKc2lqX0NZdGFxR0tyVjI0OGRUNFJHSHJJSkkzWmlfNGY0cXc2ZmpZaUc2X3RHZ3h5eEx1U2xZdkRBOHJQZnpRMVJYckhhUUVqZVd0Q3FWczl0dVNycmxiUGxuT3lqcWZVdkpLeW1jaG5rV0lNeTU0RzVYNVZKQTNRLWxXbE9CMkplR2xQaTlzZEJOaUU0MVMyanZZaUIwY0o3OHc?oc=5",
+        "https://news.google.com/rss/articles/CBMicEFVX3lxTE40SExmTmt0bDJiQVotTkNyQzBYeXd2eVVuOXlIa3hZNE53b2ZiVGtHMjg0cjVBQkZoS1NTWUlwVk1HUkh5Y0ZGeFV1SjdzRnNuai02RTh3aWU5YmZmdi1nN0QtUmFvSm1oU1R3VXNYMTA?oc=5",
+        "https://news.google.com/rss/articles/CBMivgFBVV95cUxPRUlaOGFBMnREQlozUFVKYXBKZUh5dUxNeGlxZERxV050X1gxRUtDSDF4N0xSUnp3cjZELU5NMERBMVFRS0RTTVFoRFdCakFVc0szMWhfa0E2MUpuRUNuQTFBSjBqN2I1S0ZjNXRwS1IyaW9DdG9QZTlBUGZIM05jclRoUDJSRGEyWnV5cWlxLTlYZEczUi12UG4yMUJVam03RzFhSWxTaHJ5TjF1TzN3OF9nU1k5ZkNaYnFRNWZB?oc=5",
+        "https://news.google.com/rss/articles/CBMinwFBVV95cUxPREhSV0JyTmZzM05IazVjTU5ndVNTRWNzcTd1cjRBblB6ZEVuU3FkZXltWFAwSFdza2dfOTVGN2pPODhuS3FmNTBrSU1yd19GSU9lVXZCUndTa184VHZ0RjE5Y1ZaWnJ1bUtSaGpUUURUellnMUlZQ2lnVTFKMEFjYTJrU2phdjg5aFUxX1UyLXotaVFPcE00dG9ieEdOVkE?oc=5",
+        "https://news.google.com/rss/articles/CBMijgFBVV95cUxPS3FwN2w1NTk5TDhhVEd3dnRSVExibTlkUjVYU1VrMXBOMWhXOVo5T2YzMzI0QlBIUGR3Y28tZTNEUjZDV0Y4RWdjYTZwNWlHcGRwRHdjNWdsWUJoUVlFZy15NWpXNVdoYU5nd09EeHlWRlp6SGtnX21UalUtd2EwaTFXNmRZWFhmMFJobUN30gGiAUFVX3lxTE5kS3l0N2hJMy1HN2s5RVNfU3ZqcDFhM1BiRHB1VEZ2R3BRalpEMndBY1lLd0tVVVl2bm9veERmUzRRWklVdEx1dEQyZUlwZE56WHJWRXdicFF5dGF5QVJ2aDF4MWhqaEs3eEhSQnh0YnZ6WjQtNnEyS2xDcXJ2a3cwYUw5bnhacmVITGs4RTBIVEExSGE5YlhQX2JibGxRU2xudw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Uber to lay off 10% of staff in biggest cuts since COVID",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQelprYTZqU1R2cFNKc2lqX0NZdGFxR0tyVjI0OGRUNFJHSHJJSkkzWmlfNGY0cXc2ZmpZaUc2X3RHZ3h5eEx1U2xZdkRBOHJQZnpRMVJYckhhUUVqZVd0Q3FWczl0dVNycmxiUGxuT3lqcWZVdkpLeW1jaG5rV0lNeTU0RzVYNVZKQTNRLWxXbE9CMkplR2xQaTlzZEJOaUU0MVMyanZZaUIwY0o3OHc?oc=5",
+          "source": "Reuters"
+        },
+        {
+          "title": "Uber Cuts 10% of Employees in Sweeping Reorganization",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE40SExmTmt0bDJiQVotTkNyQzBYeXd2eVVuOXlIa3hZNE53b2ZiVGtHMjg0cjVBQkZoS1NTWUlwVk1HUkh5Y0ZGeFV1SjdzRnNuai02RTh3aWU5YmZmdi1nN0QtUmFvSm1oU1R3VXNYMTA?oc=5",
+          "source": "The New York Times"
+        },
+        {
+          "title": "Uber to Cut 10% of Jobs, or 3,300 Roles, to Slash Bureaucracy - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPRUlaOGFBMnREQlozUFVKYXBKZUh5dUxNeGlxZERxV050X1gxRUtDSDF4N0xSUnp3cjZELU5NMERBMVFRS0RTTVFoRFdCakFVc0szMWhfa0E2MUpuRUNuQTFBSjBqN2I1S0ZjNXRwS1IyaW9DdG9QZTlBUGZIM05jclRoUDJSRGEyWnV5cWlxLTlYZEczUi12UG4yMUJVam03RzFhSWxTaHJ5TjF1TzN3OF9nU1k5ZkNaYnFRNWZB?oc=5",
+          "source": "Bloomberg.com"
+        },
+        {
+          "title": "Uber Cutting 10% of Staff to Shift Spending to Robotaxis",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPREhSV0JyTmZzM05IazVjTU5ndVNTRWNzcTd1cjRBblB6ZEVuU3FkZXltWFAwSFdza2dfOTVGN2pPODhuS3FmNTBrSU1yd19GSU9lVXZCUndTa184VHZ0RjE5Y1ZaWnJ1bUtSaGpUUURUellnMUlZQ2lnVTFKMEFjYTJrU2phdjg5aFUxX1UyLXotaVFPcE00dG9ieEdOVkE?oc=5",
+          "source": "PYMNTS.com"
+        },
+        {
+          "title": "Uber implementing biggest staff cuts since COVID",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPS3FwN2w1NTk5TDhhVEd3dnRSVExibTlkUjVYU1VrMXBOMWhXOVo5T2YzMzI0QlBIUGR3Y28tZTNEUjZDV0Y4RWdjYTZwNWlHcGRwRHdjNWdsWUJoUVlFZy15NWpXNVdoYU5nd09EeHlWRlp6SGtnX21UalUtd2EwaTFXNmRZWFhmMFJobUN30gGiAUFVX3lxTE5kS3l0N2hJMy1HN2s5RVNfU3ZqcDFhM1BiRHB1VEZ2R3BRalpEMndBY1lLd0tVVVl2bm9veERmUzRRWklVdEx1dEQyZUlwZE56WHJWRXdicFF5dGF5QVJ2aDF4MWhqaEs3eEhSQnh0YnZ6WjQtNnEyS2xDcXJ2a3cwYUw5bnhacmVITGs4RTBIVEExSGE5YlhQX2JibGxRU2xudw?oc=5",
+          "source": "AL.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The stock market updates are critical for the Indian diaspora's investment interests and economic awareness.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "8560b7f4-500a-4795-b949-5e7546cefff5",
+      "title": "US Man Struck By Lightning Outside His Home, Doorbell Camera Captures Terrifying Moment - NDTV",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T10:24:16+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQa3NmSnZZd1AxYmJQS1U1czVDQWlGbDVOTF9jbEZYR0NBWEhhUkt5S2t3a2o4ckdHNUptemQ4ODgzbVZjaGtlYnI5S3M0YWVkTjl4T2QwTHZvOEpPV01hM21BOHAyYkY2cjZDNFFYMTh6TXk4TUFHUFVENFIzSko2RG5CRDBDREFmb1ozUENYMFFjaE9tNmZ3Vmo5c1dIQUZQMkVHdHlKZXRiRHp5WUZmUHdoRGJfMnFFNU9WbDZmREhadUFwcGN1SE1OeVZqSlJSckFTRlZPaEhZazZIRDVBOVhINNIB6AFBVV95cUxQbW1KZE5KTzhtVlhMZnpYUDVXdFFZNS1iVmtldi13aDUxUFJ5cGxVZ28tYVJvQ3A3M2VwaVNsaXg2RXFqTndOWTFGOS1JeXdXRkVBbjRRQmpQUEM0M09rRmhXNVk4N3AzTW1XZENqNWstSzd3M1N3RWo4QWtheFNWbEtSYTRRb3BSNkJUVi10TEJzLVpXVDRfRkdaQUhCVmY3dmxxdFEzMS0wUUtkZ2xQaWcwazRfQjVVdmwwa2t2NWxFYkFrVVlpanJrVWFzMEVNcU5KeHo4RVZhX0wtbmE4ZUR0TGh1STBz?oc=5",
+        "https://news.google.com/rss/articles/CBMilgFBVV95cUxQZWtOUWJPNG41X3pwa2ZlN3pONmpHTzVvVmFEbEgwbDFlOWpFSHo3aGZWWUk3N1l2amwyNnF4RXgySHRGMWVQZ18tV3VJVHRNNHNvQjhIel9BaVhRN05mVG1nSW5UY0ItdUMxOEs2MG5vYkU4MTd5cng5Z0hCUU43QWhkQ2hEOWxjbTRhU3U4dm85ZXg4Z1E?oc=5",
+        "https://news.google.com/rss/articles/CBMimgFBVV95cUxPOXExOVdtbXVxZ1d3Z2gyRHJlZWZhMTA4NDFlaWFCTk1EbmYydU9PQ1l1dmN4ZG9yejl4b0hTYVBPTERiWm0zeVZEVHBTSlpjekM1VHFyWFpuS1FiVzlCd2NwYjB6ZldUUTVteWlid1lTMWRQVDFWOU9Da0tsY2RhS3JVay1uZ3VZc2VRTkJTMW95MTRiMG9mT3pR0gGfAUFVX3lxTE9GZ3ZWVVdtdW5jMnZwYTdIcHlYbGJILW1FbmdDeUp1cDJZel9taVVmX2NBUmpNQm9lZTFkZXFNdVRKeGpYRzdTRkdDT2hyTE5QaUFpSDZoZkdGdjFwelk1bHllX3V1S3U5WVhtVllXOFFKNjA5cW5rbF91OTlJLTR0elhjRjBEeFZNS2xaVjFjdzhBVFlEWUVGWHJvb3RhZw?oc=5",
+        "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPY3c4Z0s5LVM0MXZ6dU56c0RpbGEzSnJUMXFfRGhsVmZTbTB1bVNTaVNqYkpoNk5VYnA3b3JUdWJiSW85eUVPY0ZRdk9uOVRNNllfbmxpeHBYWWxlRWdSVFZtbC15ajNrUnpES0RxeGtlWjBnV0pMaEVNWnZaTEF0eHU3SU1OVGpnLWpkRlRDc19YdkZZT05GTktycG5yX2pPVHlHU0t4Mjd1anZNZVNnUmduSTZUZ3JNd0xaVHRZcGNETmtmcUNFZnpDa0x1T2pwMUIySklZVzFEcURGanZwekNIdw?oc=5",
+        "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbC11bWxHRks1cGJ2eEFZZU1ZaVN1YnNpeUZlaTEtQ2ExclRPSmtZRjJqRWlCZEZQRFN4WGwxcUpYN1dna3V2T2tQUnZtbjM0bXM3NU5ldWZHV0lyNU8xWWp0bV9pTW9VZ19UcEVKektYY1BIOHpIZ0ZKUy01N1J1NXk2dFI5eXB6SGl5djZ5NmhqcGpMM3p1bE10dHZEM3FFcXZPMFRoMDhDejFnVUpWWTJESjVpMmt2VUZsZFlMcEtGd2V1MlHSAc4BQVVfeXFMTy1hWjhPM1FRLWprRllhNWdlUElXMXEzbU1EaXJwczVCalZUN0pQUTBBRkhfQ044aUVNLXhkdHZXemtxcU9NTVNnaTVzOHh0NTdyMElhbTkwc0FsOW9tRFFvbUlLR3REc0h1OTRaemZwSFBRczdhVEdxX2JNX3JUZ3BkM3hyblc1QjNzOThoUkpVM1N6SW9lVVk1YkQ1TXRDUF93Mnk4SkN4TFdXaGlGYkpRUDJNWG1mbTRKMDdVMlI0RXIwTl9GWW44RmtyQUE?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Man On Way To Dentist Gets Struck By Lightning, Miraculously Survives Without A Single Burn (WATCH)",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQa3NmSnZZd1AxYmJQS1U1czVDQWlGbDVOTF9jbEZYR0NBWEhhUkt5S2t3a2o4ckdHNUptemQ4ODgzbVZjaGtlYnI5S3M0YWVkTjl4T2QwTHZvOEpPV01hM21BOHAyYkY2cjZDNFFYMTh6TXk4TUFHUFVENFIzSko2RG5CRDBDREFmb1ozUENYMFFjaE9tNmZ3Vmo5c1dIQUZQMkVHdHlKZXRiRHp5WUZmUHdoRGJfMnFFNU9WbDZmREhadUFwcGN1SE1OeVZqSlJSckFTRlZPaEhZazZIRDVBOVhINNIB6AFBVV95cUxQbW1KZE5KTzhtVlhMZnpYUDVXdFFZNS1iVmtldi13aDUxUFJ5cGxVZ28tYVJvQ3A3M2VwaVNsaXg2RXFqTndOWTFGOS1JeXdXRkVBbjRRQmpQUEM0M09rRmhXNVk4N3AzTW1XZENqNWstSzd3M1N3RWo4QWtheFNWbEtSYTRRb3BSNkJUVi10TEJzLVpXVDRfRkdaQUhCVmY3dmxxdFEzMS0wUUtkZ2xQaWcwazRfQjVVdmwwa2t2NWxFYkFrVVlpanJrVWFzMEVNcU5KeHo4RVZhX0wtbmE4ZUR0TGh1STBz?oc=5",
+          "source": "Asianet Newsable"
+        },
+        {
+          "title": "Wild Video Captures Lightning Striking Congressional Staffer",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQZWtOUWJPNG41X3pwa2ZlN3pONmpHTzVvVmFEbEgwbDFlOWpFSHo3aGZWWUk3N1l2amwyNnF4RXgySHRGMWVQZ18tV3VJVHRNNHNvQjhIel9BaVhRN05mVG1nSW5UY0ItdUMxOEs2MG5vYkU4MTd5cng5Z0hCUU43QWhkQ2hEOWxjbTRhU3U4dm85ZXg4Z1E?oc=5",
+          "source": "The Daily Beast"
+        },
+        {
+          "title": "US man struck by lightning at front door | Tap to know more | Inshorts",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPOXExOVdtbXVxZ1d3Z2gyRHJlZWZhMTA4NDFlaWFCTk1EbmYydU9PQ1l1dmN4ZG9yejl4b0hTYVBPTERiWm0zeVZEVHBTSlpjekM1VHFyWFpuS1FiVzlCd2NwYjB6ZldUUTVteWlid1lTMWRQVDFWOU9Da0tsY2RhS3JVay1uZ3VZc2VRTkJTMW95MTRiMG9mT3pR0gGfAUFVX3lxTE9GZ3ZWVVdtdW5jMnZwYTdIcHlYbGJILW1FbmdDeUp1cDJZel9taVVmX2NBUmpNQm9lZTFkZXFNdVRKeGpYRzdTRkdDT2hyTE5QaUFpSDZoZkdGdjFwelk1bHllX3V1S3U5WVhtVllXOFFKNjA5cW5rbF91OTlJLTR0elhjRjBEeFZNS2xaVjFjdzhBVFlEWUVGWHJvb3RhZw?oc=5",
+          "source": "Inshorts"
+        },
+        {
+          "title": "\u2018Tingling, numbness, pain\u2019: Man recalls what it felt like to be struck by lightning",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPY3c4Z0s5LVM0MXZ6dU56c0RpbGEzSnJUMXFfRGhsVmZTbTB1bVNTaVNqYkpoNk5VYnA3b3JUdWJiSW85eUVPY0ZRdk9uOVRNNllfbmxpeHBYWWxlRWdSVFZtbC15ajNrUnpES0RxeGtlWjBnV0pMaEVNWnZaTEF0eHU3SU1OVGpnLWpkRlRDc19YdkZZT05GTktycG5yX2pPVHlHU0t4Mjd1anZNZVNnUmduSTZUZ3JNd0xaVHRZcGNETmtmcUNFZnpDa0x1T2pwMUIySklZVzFEcURGanZwekNIdw?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "US Man Struck By Lightning Outside His Home, Doorbell Camera Captures Terrifying Moment - NDTV",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbC11bWxHRks1cGJ2eEFZZU1ZaVN1YnNpeUZlaTEtQ2ExclRPSmtZRjJqRWlCZEZQRFN4WGwxcUpYN1dna3V2T2tQUnZtbjM0bXM3NU5ldWZHV0lyNU8xWWp0bV9pTW9VZ19UcEVKektYY1BIOHpIZ0ZKUy01N1J1NXk2dFI5eXB6SGl5djZ5NmhqcGpMM3p1bE10dHZEM3FFcXZPMFRoMDhDejFnVUpWWTJESjVpMmt2VUZsZFlMcEtGd2V1MlHSAc4BQVVfeXFMTy1hWjhPM1FRLWprRllhNWdlUElXMXEzbU1EaXJwczVCalZUN0pQUTBBRkhfQ044aUVNLXhkdHZXemtxcU9NTVNnaTVzOHh0NTdyMElhbTkwc0FsOW9tRFFvbUlLR3REc0h1OTRaemZwSFBRczdhVEdxX2JNX3JUZ3BkM3hyblc1QjNzOThoUkpVM1N6SW9lVVk1YkQ1TXRDUF93Mnk4SkN4TFdXaGlGYkpRUDJNWG1mbTRKMDdVMlI0RXIwTl9GWW44RmtyQUE?oc=5",
           "source": "NDTV"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The story about a man struck by lightning is a breaking news event that highlights public safety and health concerns, which are important for the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "86cf9044-e3ed-4dfc-92f1-f15c2f235ba4",
+      "title": "Nepal PM Balen Shah Thanks India For Timely Aid During Devastating Floods In Parliament Address - news18.com",
+      "description": "",
+      "category": "news",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T09:36:28+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa3RGZU5Oek5PTmdpZE5FQ3oxRVVTTzc1dUZUNU84TnJqQ0FJWlFHb3VadGk0MXBneWplV20xR3QyOGNpbm1yeC1FLUdrQ3JKRmF5MjFqTUp2dXBLLTY3YlR5WGFVN2tvSWZIZGhGeC1nWnhQUmZvVm5SNEhGSDJtR0xYVzhQUXNRU184WHRWVmIzQnRaOGI5eXR2UGFiaXlObEE1MlUxTkllOGpicHfSAb4BQVVfeXFMTzZEVlJhdXBwdEQ3R3hGUm9rbzJpMjVNOG5YOWhUTHhCVE9qbEJFOUNrMndMeUIyc0xfQWVYQVBPMHZUTjVpTlE5SW5ZVkRtb0kxTE11TmIzWEhrUWVZcWJkd2xaSjlOSVg4amdOVVNoczNsLTQ3ajU3Z21qQ055NC1kVUtXel9BQ0h0OVQ0Tk5tTV9RdmZsUFRocVJMbXltS040RkhMZW1yMkFjRkZoQVRoRm5UTnAwcTRqdGtqQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNanRtVUZGak4wSHpsejZQZEJYaldselQ5VjFSOEhCWnNSRGVGRFRRamI5OGNmLVFVQkFLc25rcUJNclYwVnBHRk9IUU1tWWpLUnRyYm53LXJoNEwzOC1TQkFmUjZBSDFvV1dvcTRXUTVBanVfM2JGQkV0MzZYSUlLUER2cEtCWmEwcVdDNVF4cmRma3lSZzFWTExpLU9KRnhfQjVLTWtyMXFHd0FtNDB3WjN0WmpDNmhhRkdfdTZkRVZKNk5PMmJ4dUxjeEVrd1pZdzBZREZObw?oc=5",
+        "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNa1NvVHBDWlBMWWVEc050U1RTS0pUUzhNWHR4Uk4xV01la0k5NkdTczFoMHYyNlZUUVZlZXI5RndtNEl4ODQ1MlR4ekxVcHowb2RVeU4yNWxHY1hSd21STjhJMUM3RVFjb0c1NDlpVWlqdS1xbmFiaXNhU1BDaVZKLUtEUktmdGZZbEN3T3Fwemx0bEM2cVRGLVZmUFFHWV9jT3NrZ2E5Qlh1LWpNOVk5V0pOTVYwcmxZeHVQd3hWNkhFNEVIU3FHVDJzc0tjTWNFSjAxeHgtTUo5bExjMVc0Tl9WWEVXdWNhd1p1OTd0dHU?oc=5",
+        "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOMnBzelNycXU1NUF4dVNkZms4dUFWOENiRWUwNHJSMFJLMFNRMDFiRTJGUVZYVDQ4bmllNVh6aEpZaURUd2RVNVBNVUdUc0dtOXExRUJiYWZkWGxfaElNRVZtZ0QzYnNwN0g4V2FpQUVsSm41N2laX0NaV3ZESXJ2QXg2LXJ1MXhFM2p1bnhOdExzcEJwcF96cERUdml4bGtnMkE4clRNX1RYdTJOcEZ6YWJTRUJBalBScFo5RVI0N2FLc3J6OWUxcG9mNy01TlJ5Wldz?oc=5",
+        "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOWXk1bXFBOEdIbmpZQXdWX2U0UUpodjJuZl9pOTM4Qmxwd1otV1pZdHNNdHlBMno0X3Q3YkZieHZvZVFlSXZPZF94SDB0V05MLWEwLWFyS3ZtSVl0bHFaYjRiQUs2VW5OYWlSa3NHTWl3Ny1qRmU4S3diaWkzRzBnVXZhOVdYelZnZC11cG1uZktqRWhyUXNJU2JVM004RVlNS19FTS1JZEYySnRhM0N0OURYbHVMNVhPdm1BY3R5YkpReFdRZF8tVHFkMjNIbXFGSng0etIB2gFBVV95cUxOUHR0VFd4RnBVRm1YdTM3RHlJMXJpWmk0RFc1b3QwS2h2NFdwYVJCeDJOaVlieU8zVVdMV20zMjlfbmNnOF9ta3dqOXI1YXI5RU1EV3J5ZTVNQnZuVG5yVXVGOTBtcXA2RHc0T2FqaEYySUxIX2hxVERqc2hGQWlLeGVQYzcxU1A0NDlYX1BuT1FGdDJxaXdQYUVlSC13cEp5OTRUSDhNdF81MFEzRnM2by1BYmhBajVJc0xYek5wYjdnVWJJRTB4bmt0Mkg2UUM2dU4tSHpxQTBtdw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Nepal PM Balen Shah Praises India's Swift Flood Relief Effort In Parliament",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa3RGZU5Oek5PTmdpZE5FQ3oxRVVTTzc1dUZUNU84TnJqQ0FJWlFHb3VadGk0MXBneWplV20xR3QyOGNpbm1yeC1FLUdrQ3JKRmF5MjFqTUp2dXBLLTY3YlR5WGFVN2tvSWZIZGhGeC1nWnhQUmZvVm5SNEhGSDJtR0xYVzhQUXNRU184WHRWVmIzQnRaOGI5eXR2UGFiaXlObEE1MlUxTkllOGpicHfSAb4BQVVfeXFMTzZEVlJhdXBwdEQ3R3hGUm9rbzJpMjVNOG5YOWhUTHhCVE9qbEJFOUNrMndMeUIyc0xfQWVYQVBPMHZUTjVpTlE5SW5ZVkRtb0kxTE11TmIzWEhrUWVZcWJkd2xaSjlOSVg4amdOVVNoczNsLTQ3ajU3Z21qQ055NC1kVUtXel9BQ0h0OVQ0Tk5tTV9RdmZsUFRocVJMbXltS040RkhMZW1yMkFjRkZoQVRoRm5UTnAwcTRqdGtqQQ?oc=5",
+          "source": "Swarajya"
         },
         {
-          "title": "World must move from endless war to end of war: PM Modi to Putin - The Hindu",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVlZuU0R4VHM3MHdJWXRGR25OT3ZBRVNQdjVqOU9maTFnMUUxRGIwbmRKdkVYZ2dUdmtQbDJxQTF2SFJLWTBzUmE5UEJoNEgyVFpIX2p4cnZfLVRidWJ6bGdSaXBjLVRYd25vUFlwZGpKUXl4R0NuREFyQXJmT0NmR1M1RXhNSl90aVBxalczZlFxT1ljMmtkMzdUNzRuRUp5eFV1OE9ZNndaeDhzRWc00gG2AUFVX3lxTFBiMF9ZakJIeEZGMlJGd1J5VmlBUzUwaUVLWk1HRDlRX0tTZjMyTUlOSFZoVjh1SWlZOXZlMzVYWklBcmVOblUtTU1LVEVuaW4tSWxsb0lEc0ptd2dqVFFJQVRvZUhPSGVEWWZjSnJNdUE4MG54RDR4N213czUxYS14djJfQUtpMDVxX1pUTEZqNFNMZkpodlRjWlYxQlNsQ2s2RUJXanpzNFItd1YzYW41TnppVnln?oc=5",
-          "source": "The Hindu"
+          "title": "Bhotekoshi floods: Nepal PM urges courage as death toll tops 1,100",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNanRtVUZGak4wSHpsejZQZEJYaldselQ5VjFSOEhCWnNSRGVGRFRRamI5OGNmLVFVQkFLc25rcUJNclYwVnBHRk9IUU1tWWpLUnRyYm53LXJoNEwzOC1TQkFmUjZBSDFvV1dvcTRXUTVBanVfM2JGQkV0MzZYSUlLUER2cEtCWmEwcVdDNVF4cmRma3lSZzFWTExpLU9KRnhfQjVLTWtyMXFHd0FtNDB3WjN0WmpDNmhhRkdfdTZkRVZKNk5PMmJ4dUxjeEVrd1pZdzBZREZObw?oc=5",
+          "source": "indiatoday.in"
         },
         {
-          "title": "At SCO Meet, Modi's Latest Message to Putin: \u2018Must Move From Endless War to End of War\u2019",
-          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPQUpIaUdlanNZNzdDYUFGOFNjLVNDSE1XVElGNGZ4ZVlrdi1GN3pnXzV2QmlhZ3FiQ2J4ZVN2QWRDdFNPTlQ1SksxVFdBeWtCTFkxNFBqQ19Ba3hHckdGaWNxYjhpLW9Wd2dwMHhYZlIzZi1ZclI1cVpQdEQ0MXBjRFVRNkJ1X0U?oc=5",
+          "title": "Prime Minister Balendra Shah vows \u2018courage and resolve\u2019 as government faces mounting pressure over Bhotekoshi flood",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNa1NvVHBDWlBMWWVEc050U1RTS0pUUzhNWHR4Uk4xV01la0k5NkdTczFoMHYyNlZUUVZlZXI5RndtNEl4ODQ1MlR4ekxVcHowb2RVeU4yNWxHY1hSd21STjhJMUM3RVFjb0c1NDlpVWlqdS1xbmFiaXNhU1BDaVZKLUtEUktmdGZZbEN3T3Fwemx0bEM2cVRGLVZmUFFHWV9jT3NrZ2E5Qlh1LWpNOVk5V0pOTVYwcmxZeHVQd3hWNkhFNEVIU3FHVDJzc0tjTWNFSjAxeHgtTUo5bExjMVc0Tl9WWEVXdWNhd1p1OTd0dHU?oc=5",
+          "source": "kathmandupost.com"
+        },
+        {
+          "title": "Nepal PM lists govt response from Aug 26, 8.30 am to now",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOMnBzelNycXU1NUF4dVNkZms4dUFWOENiRWUwNHJSMFJLMFNRMDFiRTJGUVZYVDQ4bmllNVh6aEpZaURUd2RVNVBNVUdUc0dtOXExRUJiYWZkWGxfaElNRVZtZ0QzYnNwN0g4V2FpQUVsSm41N2laX0NaV3ZESXJ2QXg2LXJ1MXhFM2p1bnhOdExzcEJwcF96cERUdml4bGtnMkE4clRNX1RYdTJOcEZ6YWJTRUJBalBScFo5RVI0N2FLc3J6OWUxcG9mNy01TlJ5Wldz?oc=5",
+          "source": "rediff.com"
+        },
+        {
+          "title": "Nepal PM Balen Shah Thanks India For Timely Aid During Devastating Floods In Parliament Address - news18.com",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOWXk1bXFBOEdIbmpZQXdWX2U0UUpodjJuZl9pOTM4Qmxwd1otV1pZdHNNdHlBMno0X3Q3YkZieHZvZVFlSXZPZF94SDB0V05MLWEwLWFyS3ZtSVl0bHFaYjRiQUs2VW5OYWlSa3NHTWl3Ny1qRmU4S3diaWkzRzBnVXZhOVdYelZnZC11cG1uZktqRWhyUXNJU2JVM004RVlNS19FTS1JZEYySnRhM0N0OURYbHVMNVhPdm1BY3R5YkpReFdRZF8tVHFkMjNIbXFGSng0etIB2gFBVV95cUxOUHR0VFd4RnBVRm1YdTM3RHlJMXJpWmk0RFc1b3QwS2h2NFdwYVJCeDJOaVlieU8zVVdMV20zMjlfbmNnOF9ta3dqOXI1YXI5RU1EV3J5ZTVNQnZuVG5yVXVGOTBtcXA2RHc0T2FqaEYySUxIX2hxVERqc2hGQWlLeGVQYzcxU1A0NDlYX1BuT1FGdDJxaXdQYUVlSC13cEp5OTRUSDhNdF81MFEzRnM2by1BYmhBajVJc0xYek5wYjdnVWJJRTB4bmt0Mkg2UUM2dU4tSHpxQTBtdw?oc=5",
+          "source": "news18.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The story about Nepal PM thanking India for aid during floods is a significant diplomatic moment that highlights India's role in regional stability, relevant to the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "30ba9161-17d1-4ec3-a03b-ac6cb309bb22",
+      "title": "US passport rules may change: Parents could need to prove citizenship status for children - The Times of India",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T06:53:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNTG5QVXFZRUh4eDYyWnQ5WERON1VPM3BWZGJvVGt2bTlUWkFnM2hIb1dhcm8zQWZPczlJRUMzUmVxV2hwSmVEeGxydVZzbU5NTGd3S1QzZDV0ZUo3S0RlNVhYOGt2R2hwTzR4Z3YxLU1vQV9VdFZLN0QwTUViOVBZM1VQX0lfSmdlZGRIQ0c3VTVjMmRQUS1wOXd2V2Z5N3IzVjRkbkNxb2djSXE4cXI0LXlxcWNSX2w1R3M2dlBxMWpmNUdFTWI4Mkh3M3NqY2p6MlU0eU1xcktWME9TU0kyejVyOURjdElQamVqc1F0dF8?oc=5",
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMEU5WFl2THQtZDdCMmhiOU5mVkNJbFZPRFpvTXh5ZEp1NE9QQ244REYtTVN0aW9MUHgxeVAzNEZnTk9INFpMREtxeS1HN1Vhc2JPSG9OcDVkSDlxemxsZllndFVpTTRPT3NuODhDbVUzNjFCNFdMYWtZMldmaGJlSV9IY0t2SFZlZVpKUmVPMDJSOF9hZmR0cUxaeXF3T0tqaFNrSmp5ODJGcnlfUzlNdm01UQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU3E5S2hlVlZiNXMzWEZzTGZHM3lRRE9mWVJqU1g2TmR6Z1VPV2NqTmZHaTdOYndUeWxuNURVcmt0T0tGN0RMN0wtRGlxeTZUY1dsaTJMcWFSWjFNQnFSaUxYY1YzajNoUkZLNzk2emVXLXZIRTVoRU9RVHRGX1VWeU1KTlNLV2FzdEoxYTZXYWNMbi03Um96SVZKOEhaeGNwVzFZSHZjTkZJM0s5LVZ0UkRNbGRVSXZON3pxUWFPdGJ1Y25mZ0VVczVKd1FYSDRrbk5F0gHjAUFVX3lxTE1JbVVrNkhQRFUzYjJFejVrNVBYc0xhT1NWR0hoRlNxcmtUWGs4TVNrZ3ZmYV9rNWpqYXZqMnl0Y0xVTzdSaUZudjZGdWhETWI5d2ZJODZnQmZnN2hJWnhSOW42SnFnTmFKWW81TmxKSi1EcWd4aENZaVcxVkhhYUdaTUw2OGZXTHBnT1JoeTlTcDZXSDdpNFdpQWNHUnp4QWVxUmtxSzh2a08wV1dteXU1YWVwYTBENFF1RnJ3MTROZDhWNVB1N3g2STZCYi1aSEFzQzg2ajlrUXd4MGp4Z1o1SW13?oc=5",
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxOeFYzN0xCVGlrM0JqNHlWSV82SFFwMGFwZmctaC1SMjZpRk1rVkVsaXZiS09YRHdBWnRxVC1jdVJkZ2JKZklQaFNFbHJHd0QwcGozNjBZeFJlV253SUFHa0tnWXdmaDdFZXJDQi0zcXg0YkltVmVLZmxVNFZxc3VLOTZDNVlfczVaVnlJOXhYbjdmZzh0S1NCeXhFY3Y4TmgzbHItT0hn?oc=5",
+        "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQVEZYODVVeTZselYtYzBsU3Z5NWY3YXVRaWdPRXFOZDlidW16aTR2YndxbkFWWW5FdF9xUTVicGtWU0xLNGM0b2lqdGNTMC1scGh4bVdNc1lZclgxQVMxbzVxNG9WU2t0MkltZFNOd1YzcFYwT1VfNU55Y19uSnNGclNTb2lNSFk2SVdndmJ2ZkRzWUluakVFTXBKVnJ0TngtaVZTbFZBLS11ajNOMlUybHkyOTR4WkEtN3Nr?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US passport rules may change: Parents could need to prove citizenship status for children - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNTG5QVXFZRUh4eDYyWnQ5WERON1VPM3BWZGJvVGt2bTlUWkFnM2hIb1dhcm8zQWZPczlJRUMzUmVxV2hwSmVEeGxydVZzbU5NTGd3S1QzZDV0ZUo3S0RlNVhYOGt2R2hwTzR4Z3YxLU1vQV9VdFZLN0QwTUViOVBZM1VQX0lfSmdlZGRIQ0c3VTVjMmRQUS1wOXd2V2Z5N3IzVjRkbkNxb2djSXE4cXI0LXlxcWNSX2w1R3M2dlBxMWpmNUdFTWI4Mkh3M3NqY2p6MlU0eU1xcktWME9TU0kyejVyOURjdElQamVqc1F0dF8?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "EXCLUSIVE: US may ask parents to prove citizenship or immigration status to get passports for their children",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNMEU5WFl2THQtZDdCMmhiOU5mVkNJbFZPRFpvTXh5ZEp1NE9QQ244REYtTVN0aW9MUHgxeVAzNEZnTk9INFpMREtxeS1HN1Vhc2JPSG9OcDVkSDlxemxsZllndFVpTTRPT3NuODhDbVUzNjFCNFdMYWtZMldmaGJlSV9IY0t2SFZlZVpKUmVPMDJSOF9hZmR0cUxaeXF3T0tqaFNrSmp5ODJGcnlfUzlNdm01UQ?oc=5",
+          "source": "Reuters"
+        },
+        {
+          "title": "US Passport Applications For Children May Require Proof Of Parents\u2019 Citizenship Or Immigration Status: Report",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU3E5S2hlVlZiNXMzWEZzTGZHM3lRRE9mWVJqU1g2TmR6Z1VPV2NqTmZHaTdOYndUeWxuNURVcmt0T0tGN0RMN0wtRGlxeTZUY1dsaTJMcWFSWjFNQnFSaUxYY1YzajNoUkZLNzk2emVXLXZIRTVoRU9RVHRGX1VWeU1KTlNLV2FzdEoxYTZXYWNMbi03Um96SVZKOEhaeGNwVzFZSHZjTkZJM0s5LVZ0UkRNbGRVSXZON3pxUWFPdGJ1Y25mZ0VVczVKd1FYSDRrbk5F0gHjAUFVX3lxTE1JbVVrNkhQRFUzYjJFejVrNVBYc0xhT1NWR0hoRlNxcmtUWGs4TVNrZ3ZmYV9rNWpqYXZqMnl0Y0xVTzdSaUZudjZGdWhETWI5d2ZJODZnQmZnN2hJWnhSOW42SnFnTmFKWW81TmxKSi1EcWd4aENZaVcxVkhhYUdaTUw2OGZXTHBnT1JoeTlTcDZXSDdpNFdpQWNHUnp4QWVxUmtxSzh2a08wV1dteXU1YWVwYTBENFF1RnJ3MTROZDhWNVB1N3g2STZCYi1aSEFzQzg2ajlrUXd4MGp4Z1o1SW13?oc=5",
+          "source": "Swarajya"
+        },
+        {
+          "title": "How the Right Could Actually End Birthright Citizenship",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOeFYzN0xCVGlrM0JqNHlWSV82SFFwMGFwZmctaC1SMjZpRk1rVkVsaXZiS09YRHdBWnRxVC1jdVJkZ2JKZklQaFNFbHJHd0QwcGozNjBZeFJlV253SUFHa0tnWXdmaDdFZXJDQi0zcXg0YkltVmVLZmxVNFZxc3VLOTZDNVlfczVaVnlJOXhYbjdmZzh0S1NCeXhFY3Y4TmgzbHItT0hn?oc=5",
+          "source": "The Atlantic"
+        },
+        {
+          "title": "Opinion: The right to birthright citizenship is not a wartime exception",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQVEZYODVVeTZselYtYzBsU3Z5NWY3YXVRaWdPRXFOZDlidW16aTR2YndxbkFWWW5FdF9xUTVicGtWU0xLNGM0b2lqdGNTMC1scGh4bVdNc1lZclgxQVMxbzVxNG9WU2t0MkltZFNOd1YzcFYwT1VfNU55Y19uSnNGclNTb2lNSFk2SVdndmJ2ZkRzWUluakVFTXBKVnJ0TngtaVZTbFZBLS11ajNOMlUybHkyOTR4WkEtN3Nr?oc=5",
+          "source": "San Diego Union-Tribune"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The potential changes to US passport rules regarding citizenship status for children have direct implications for Indian families in the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "167e4d21-7f2c-430d-bbf0-32d95c101306",
+      "title": "Signing Your Own Death Warrant: How Incomplete Antibiotic D\u2026 - GujaratSamachar English",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T06:26:28+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNRkR1ZFFsNzZmaDN5SHBoeVF5UExnQ1A1ZkpHUHJFejl4aUh4R01xZ09HbDYyaG1RMDZzWk5QSjdfQmJEQ2ltWWVzTnFSa243N1VUR3VVdUNSOFJhTWE3ZHZ1T19tZlJubGMxaTNpbUExWXU5UFRIUFBXSW9EUWhNU1ktczZGV2lVTTZGczlZdWh1ai1rVEQ0Vzg2VnJtNEFKeEdaLXJyNlM2ek1WVVllNzJEWTdQdTVIOFdIUFR4c3R3UE83bk12aGg0RXNmTFByTmUzN25icHZGY2NJREtpZnJKR2lDbUhMYXdlZnh1cUFGOFNsME0zdlR6NlBQdDA?oc=5",
+        "https://news.google.com/rss/articles/CBMiakFVX3lxTE5mczFYNl9BUzhxOVlxbDhheWF4bEI4UmtRYWhTVk8xYUt3YzRsd0VWQWUxazRxMG12R2NTLWtDNkZqektUb1NVM2tZLU9tVVdXOXVTWEFhU19SLWstSkFSWFVQOHEwRUs1Qnc?oc=5",
+        "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNaFpqOGV6MXgxbmc0OXVWMVFDeTVTWWxnUm5lVFIwOWoweFE0bVlqWFVDTkR3ODRkblF4TmlzR0hJcE1RdmFPT0VYa04tUTIzdDU2VDBnWEFZVGZnUE5kcTNTeWozbFgxd19EWU5vcEtXTHRwemdqVlp2dE1laTFTUEx3cG1VajN5b0ZHLXJlS3JWRXREX3pjS1Ewc0IxZm1Eb3ZxeWZVQjdmZ2vSAbABQVVfeXFMTU1HOE1MOGZxSk15ODFXOHluT0NEdUhZZHl1LXVjdXA4OUsxTWtZSG90Z2UydVlxcUh5UVpxVWpvb1JNN3Q3X1lLd2NtbGM4SlRhcFEyUHhQMDJNZ1h3U3Iyc3U3Q2NwVm9KUExVN1F6UGNZUGw5eGYzNk53WklvT1AyOFhNaEFzN1RSN2RkdElYQzdIRDNWTnNwSnRaWl81WWMxUHBOMUtwVUYzZHVXSzk?oc=5",
+        "https://news.google.com/rss/articles/CBMisAFBVV95cUxPcFRQYUd1a3VqNWpRRW5PeE42Q1BzTFBHcjJBeHdmWkFGbXVScnEwSlM2VnNaVG9UNG1LLW56dDBBbDBBSlZCNWhUdE5sN2ZDYl9fMkZ4SURIOXRkVm9sSi1KZ3pIX1pmd3VZaTAyS1BXS2lSTzhieFN4ZE92a2l2ZTBQazcxOXdLUjAtd0JrLVozcFlIRkdDeGlFZEozRDhmY29IRFRadVhUR3pwTW5VOA?oc=5",
+        "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTjZhWmg5VHpRSkJyQ1ZKaWZZOHJSQXlTTEUyRzE2UTlacS10RU5UeFZ2bDJjTHZ4eW55Qm02aVBZdUhZRVBiUkVoYm8ya0NZVDJiZzlHcUNhOC1vYXBZTXNKcWprdmtURklDRGlSM1lwUl9adFAzb0VUc01Nek1kQm1CSkRqeC1oblNSVjhyMllRV2xZTDZNa0FrdHZvelB0ZEZqeFZ6VFFXWW1ab3NDTTlyQdIBuAFBVV95cUxOeVoxaUFCSnpDOVJ4UlZhYk9jYTRfU3UxN3RnaEN0OWhXWXRORVZGNkExUW5QZW41RVdKcFF2Q2dpLU1SZThHV3VnNDdvUXZTbWtwMEhzRXRpOHBQZjl3Wnpld2hPWmtacXEzTmI4dXk0N3JnXzdqVnc0M05wZW1rbGRUZU03S3NSS2pMN0FJc25tR3NhU2hhajVVa1BFcFVCaTN0ZFU0dlFTdW5kVDEtU2R1RDhvNzU1?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Signing Your Own Death Warrant: How Incomplete Antibiotic D\u2026 - GujaratSamachar English",
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNRkR1ZFFsNzZmaDN5SHBoeVF5UExnQ1A1ZkpHUHJFejl4aUh4R01xZ09HbDYyaG1RMDZzWk5QSjdfQmJEQ2ltWWVzTnFSa243N1VUR3VVdUNSOFJhTWE3ZHZ1T19tZlJubGMxaTNpbUExWXU5UFRIUFBXSW9EUWhNU1ktczZGV2lVTTZGczlZdWh1ai1rVEQ0Vzg2VnJtNEFKeEdaLXJyNlM2ek1WVVllNzJEWTdQdTVIOFdIUFR4c3R3UE83bk12aGg0RXNmTFByTmUzN25icHZGY2NJREtpZnJKR2lDbUhMYXdlZnh1cUFGOFNsME0zdlR6NlBQdDA?oc=5",
+          "source": "GujaratSamachar English"
+        },
+        {
+          "title": "When the last-resort antibiotic fails. SHOBHA SHUKLA, BOBBY RAMAKANT",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5mczFYNl9BUzhxOVlxbDhheWF4bEI4UmtRYWhTVk8xYUt3YzRsd0VWQWUxazRxMG12R2NTLWtDNkZqektUb1NVM2tZLU9tVVdXOXVTWEFhU19SLWstSkFSWFVQOHEwRUs1Qnc?oc=5",
+          "source": "pakistanchristianpost.com"
+        },
+        {
+          "title": "ICMR study warns drug-resistant infections are deadlier in India | Tap to know more | Inshorts",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNaFpqOGV6MXgxbmc0OXVWMVFDeTVTWWxnUm5lVFIwOWoweFE0bVlqWFVDTkR3ODRkblF4TmlzR0hJcE1RdmFPT0VYa04tUTIzdDU2VDBnWEFZVGZnUE5kcTNTeWozbFgxd19EWU5vcEtXTHRwemdqVlp2dE1laTFTUEx3cG1VajN5b0ZHLXJlS3JWRXREX3pjS1Ewc0IxZm1Eb3ZxeWZVQjdmZ2vSAbABQVVfeXFMTU1HOE1MOGZxSk15ODFXOHluT0NEdUhZZHl1LXVjdXA4OUsxTWtZSG90Z2UydVlxcUh5UVpxVWpvb1JNN3Q3X1lLd2NtbGM4SlRhcFEyUHhQMDJNZ1h3U3Iyc3U3Q2NwVm9KUExVN1F6UGNZUGw5eGYzNk53WklvT1AyOFhNaEFzN1RSN2RkdElYQzdIRDNWTnNwSnRaWl81WWMxUHBOMUtwVUYzZHVXSzk?oc=5",
+          "source": "Inshorts"
+        },
+        {
+          "title": "ICMR Study Highlights Rising Challenge of Drug-Resistant Infections in India",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPcFRQYUd1a3VqNWpRRW5PeE42Q1BzTFBHcjJBeHdmWkFGbXVScnEwSlM2VnNaVG9UNG1LLW56dDBBbDBBSlZCNWhUdE5sN2ZDYl9fMkZ4SURIOXRkVm9sSi1KZ3pIX1pmd3VZaTAyS1BXS2lSTzhieFN4ZE92a2l2ZTBQazcxOXdLUjAtd0JrLVozcFlIRkdDeGlFZEozRDhmY29IRFRadVhUR3pwTW5VOA?oc=5",
+          "source": "The Indian Practitioner"
+        },
+        {
+          "title": "Drug-resistant Infections Linked to High Mortality, Greater Costs for Patients",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOTjZhWmg5VHpRSkJyQ1ZKaWZZOHJSQXlTTEUyRzE2UTlacS10RU5UeFZ2bDJjTHZ4eW55Qm02aVBZdUhZRVBiUkVoYm8ya0NZVDJiZzlHcUNhOC1vYXBZTXNKcWprdmtURklDRGlSM1lwUl9adFAzb0VUc01Nek1kQm1CSkRqeC1oblNSVjhyMllRV2xZTDZNa0FrdHZvelB0ZEZqeFZ6VFFXWW1ab3NDTTlyQdIBuAFBVV95cUxOeVoxaUFCSnpDOVJ4UlZhYk9jYTRfU3UxN3RnaEN0OWhXWXRORVZGNkExUW5QZW41RVdKcFF2Q2dpLU1SZThHV3VnNDdvUXZTbWtwMEhzRXRpOHBQZjl3Wnpld2hPWmtacXEzTmI4dXk0N3JnXzdqVnc0M05wZW1rbGRUZU03S3NSS2pMN0FJc25tR3NhU2hhajVVa1BFcFVCaTN0ZFU0dlFTdW5kVDEtU2R1RDhvNzU1?oc=5",
           "source": "TheWire.in"
         }
       ],
       "llm_score": 5,
-      "llm_reason": "This headline about PM Modi's statement on war is significant for the diaspora, reflecting India's geopolitical stance.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@narendramodi",
-          "type": "person",
-          "keywords": [
-            "PM Modi",
-            "geopolitics",
-            "India"
-          ]
-        }
-      ],
-      "kids_relevant": false
-    },
-    {
-      "topic_id": "5a6435af-c755-4e09-932a-6bcea34c9721",
-      "title": "AI-based diagnosis of hypertension and diabetes from a single facial video - European Society of Cardiology",
-      "description": "",
-      "category": "technology",
-      "signal_count": 5,
-      "source_diversity": 5,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-08-31T22:53:14+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMikwFBVV95cUxNdlhnZnJYYzduOURZejlmSkpvTm5tNEw5cHNkcUFrdVZ0SEtWMEJTTUVZdHJHdjFGN0otOFRkZUlHZHk1Wm5wYzJDR1p5dE1XemJ4TkVHT285U2MtZVA4bEJLOFFRMDFlMEgyaHZMb184SXVsR1c1NTVycFVaQXZtWV9nUmMwWXVpdmdTSTRCeXZmbnc?oc=5",
-        "https://news.google.com/rss/articles/CBMixAFBVV95cUxNM05idFhzSlNTTEllRzVmTERudlBRT0YxdDhUdFdlbVBXa2NUamdtbmcwa3BKd0ZvTHR0Wk5QU2NIZmt4X05tTDg4d2VhandwWURaeTBPWkx4MWQyZURLZGppelRNdHA0aGNkYUIyLXU1cUdpNE9UQUNhbDRWSmpGQkF0X1h0UVdOaTlHeU9Mb3c4ZGVjeGMzRnVoS1R5Z2k4NkNiTUVTSXF0ajdpRkRZMld1d2lwVnIzcVhnSlZSTkJ1Undl?oc=5",
-        "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOQkJ1SDRPTnhhODFvNWNaWHRxQ08tNEx2d2NpNkVCRmF3UkVWV2NlS0NvUGFNdnZGYkF3WHRlV3lZRmgwb29lZE05cG5GaEtsdHVJWmg1SVNJZjViRW9xS2JVRl95a2V4TFJ5QzJFRWh6S1F5bGdfQm5kU29yQ2ViRzhQRTdLWHYwem5SRTdWZW1CanFHaWZuc2lUc0JQNkk4ODZJZkEwUDVhRElDWEhPa1pqSXRYdGpneUgyNU5icGJCS2VMOGNaNkJLNUJKZEFLNlpF?oc=5",
-        "https://news.google.com/rss/articles/CBMizwFBVV95cUxNYzZyZVhZT0syTk5fS1piMmgzenkwemlkM2ozQnkxYXRGazVITjZkTWJoWUM1eEtRWVBoV25NTzNndGNaa2pvbGgwVFEzanM3X1VUNFJFMmhYVk9PbGROekwzTXJacUNVdXJBbk11SHUwUFJyRDduRDZqakZiY01teVJZTG5nN2Frd0lsWmZwQnVSWHU3UDFiMDNzWkJMZXJxWmtCNEtRQzZiZGhPMDdqczU4eHZmRzBxSzYxTEIzM2lIWXNZU2w2VGV6YW15Vnc?oc=5",
-        "https://news.google.com/rss/articles/CBMimAFBVV95cUxQcVJwRHR5LWRtdHlDVEk4WGVHeTBOd2ItSjBGTmhHNi00SEN3UG1mbW1FMThMaHByUWlMQk83akRMaHBQd1JUdTZQU3hnUFhBUG9mN01xN0F0OFJTWjFyaHE3TXNhV1JoQ0tkZVpQWmptdHlVZHo2bG9GZDZ3T0RGQld3TUowSjVnaVRtYkdvc21GbkxJYkZsNQ?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "\u2018Superhuman\u2019 AI tool spots heart disease in less than 2 seconds",
-          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNdlhnZnJYYzduOURZejlmSkpvTm5tNEw5cHNkcUFrdVZ0SEtWMEJTTUVZdHJHdjFGN0otOFRkZUlHZHk1Wm5wYzJDR1p5dE1XemJ4TkVHT285U2MtZVA4bEJLOFFRMDFlMEgyaHZMb184SXVsR1c1NTVycFVaQXZtWV9nUmMwWXVpdmdTSTRCeXZmbnc?oc=5",
-          "source": "theguardian.com"
-        },
-        {
-          "title": "AI-based diagnosis of hypertension and diabetes from a single facial video - European Society of Cardiology",
-          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNM05idFhzSlNTTEllRzVmTERudlBRT0YxdDhUdFdlbVBXa2NUamdtbmcwa3BKd0ZvTHR0Wk5QU2NIZmt4X05tTDg4d2VhandwWURaeTBPWkx4MWQyZURLZGppelRNdHA0aGNkYUIyLXU1cUdpNE9UQUNhbDRWSmpGQkF0X1h0UVdOaTlHeU9Mb3c4ZGVjeGMzRnVoS1R5Z2k4NkNiTUVTSXF0ajdpRkRZMld1d2lwVnIzcVhnSlZSTkJ1Undl?oc=5",
-          "source": "European Society of Cardiology"
-        },
-        {
-          "title": "Machine-learning algorithm accurately detects hypertension and diabetes from facial video",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOQkJ1SDRPTnhhODFvNWNaWHRxQ08tNEx2d2NpNkVCRmF3UkVWV2NlS0NvUGFNdnZGYkF3WHRlV3lZRmgwb29lZE05cG5GaEtsdHVJWmg1SVNJZjViRW9xS2JVRl95a2V4TFJ5QzJFRWh6S1F5bGdfQm5kU29yQ2ViRzhQRTdLWHYwem5SRTdWZW1CanFHaWZuc2lUc0JQNkk4ODZJZkEwUDVhRElDWEhPa1pqSXRYdGpneUgyNU5icGJCS2VMOGNaNkJLNUJKZEFLNlpF?oc=5",
-          "source": "News-Medical"
-        },
-        {
-          "title": "High blood pressure and diabetes: how artificial intelligence detects them using a video of the face",
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNYzZyZVhZT0syTk5fS1piMmgzenkwemlkM2ozQnkxYXRGazVITjZkTWJoWUM1eEtRWVBoV25NTzNndGNaa2pvbGgwVFEzanM3X1VUNFJFMmhYVk9PbGROekwzTXJacUNVdXJBbk11SHUwUFJyRDduRDZqakZiY01teVJZTG5nN2Frd0lsWmZwQnVSWHU3UDFiMDNzWkJMZXJxWmtCNEtRQzZiZGhPMDdqczU4eHZmRzBxSzYxTEIzM2lIWXNZU2w2VGV6YW15Vnc?oc=5",
-          "source": "en.ilsole24ore.com"
-        },
-        {
-          "title": "\u2018Superhuman\u2019 software takes just seconds to spot heart disease",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQcVJwRHR5LWRtdHlDVEk4WGVHeTBOd2ItSjBGTmhHNi00SEN3UG1mbW1FMThMaHByUWlMQk83akRMaHBQd1JUdTZQU3hnUFhBUG9mN01xN0F0OFJTWjFyaHE3TXNhV1JoQ0tkZVpQWmptdHlVZHo2bG9GZDZ3T0RGQld3TUowSjVnaVRtYkdvc21GbkxJYkZsNQ?oc=5",
-          "source": "The Times"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "This headline discusses AI-based diagnosis, which is relevant to the tech industry and has implications for healthcare, a topic of interest to the diaspora.",
+      "llm_reason": "The article on incomplete antibiotic prescriptions is critical for public health, especially for the Indian diaspora.",
       "coverage": "new",
       "ig_handles": [],
-      "kids_relevant": false
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
     },
     {
-      "topic_id": "69a8ae6d-2822-4bcd-bd26-81b77ff3ce6f",
-      "title": "Anna Hazare Admitted To ICU In Mumbai Due To Viral Infection, Dehydration - NDTV",
+      "topic_id": "b4dc3546-01f2-4d67-a3cd-bb2fdac1e975",
+      "title": "Canada makes it expensive for new international students; leaves fewer options for Punjabis - tribuneindia.com",
       "description": "",
-      "category": "nri-world",
+      "category": "immigration",
       "signal_count": 5,
       "source_diversity": 5,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-08-31T19:13:27+00:00",
+      "newest_signal": "2026-09-02T04:22:07+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxNQzU1VEV0S2M0R2p0d1VXTk9Ta1BHZzhqTWxQNWVEQ2JBT2ZKR0lPTUJhN3VNdG9CeEtvUEZBa2g0alNTRWJfX3NtLWpmYXRpNk1rWVJaUnBvMVU1VnRMY0ZzR1hUMmtYOHcwNHVROW9lZ3VVVjk4NGFNa3I0eWhkLUp6X0xTZTlyTHRncDBTVEY2TTBzQXlmVDlLbjNlSG5kMnN0MGY1V3hwQV92V0JzaEx1ONIBuwFBVV95cUxPN1NEeUpHeXpHWUdUUm9qLTFLT1BHcFlFbzl1dTltY3hvYVdOME1WQnZ0Y2Nyd210cU9qa251SHJGbkI3eGJxQ3dGc0xsMGRVV3BoSkVONkxpekpGLWJHTzlLbDZ2b3JHNjU0aUpJSzVwbU1FN3RVNW8xUzdXRVNUY0tYWHJXdW43amRqaXZTczl6NEpub2tiQ1dsNkJEemdwVjlCVDV0amNYUEtFZjhzNjE5TUN0RXZpMzNn?oc=5",
-        "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOYjk5UWFhOGtIcEt4TmRNMEwxNDZmOEdNMVl0dXRTWVpTLXBocndkbGg2aHRhRzMtQzl2bUpWcTBMQ1RkMl82VUlFdWY4X08zMHVyaVR6clZZOWNMazFGQ0ZqN3dvWS1GdEVXZ0lOSm1oa29LUzlIRjRUbmxDd01GMzR3dS1VNnlOR3FRSXpUSlFCdm1xSjl0aFNyaDkybmZmZHdUNkFyYktXYmc0MEtOVkFDMVJYQmhuMHY0a05PdnRoa2_SAcgBQVVfeXFMTzkyOFhhYTNQLTRpZUtKMk1jQTdJS1ZNRVZQYUlDYVVZZlRhZVdtWXd4enJTd1h1SzhfdnRkVE1vanFwZnIzQW55dGZQTFVTSEZmbWtGbVpmdTZ0YXVvT21MTm5CSHNkWTI1cklSMzN2cVM5MC1GU05YdE9XTC11NlA2UG9PMFcyX1RXSE5CMWcxSkJTLUdwUFpPQW0ycTF0S3l2a3NKRkd2MjJCQ3hpSzkwZm9lQTNJVWE4dE5kNVh4Y0FZUGk5Q3Q?oc=5",
-        "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPMTJ1U1NHZFQ3RW9zREZiMkVocExCNTlnV3A1QW0xNUNtcEp4RXpTanpsVkotZ3NyUXJKSnRlZWNPTGhJUnFzbmJqYTM2LVRrYmk4NUp4NjJHb0w2Vzk2SlB4bVJrTUU3bndmaFMwejcwXzNkV05oQ052NDdIX0tMVGkxQXdYUHlrWkNXd2lfR3d0cGQzUlgxQ0ctTnlRWHhtRnU0c1pTdUZ4Yk5QV3I1enhEakUybm5FaG10d2syT1RtVzNhZV9YU2VaRXJmOFBUcXfSAdcBQVVfeXFMTmp5YldvNV9wWWRXQkU0VGs2bEdhOXBHcXB3T3VNYl9sU25IMmUteUNhTHBFZl84eWZ2UjBqMUt4WGRRQUp4VG1VQ1JNTEUwaFlWMmo0MlVQRzFBRGxBWFF5TXkySF9aOXBhWGkzSVRQZmlrZzFYdVFRemFReTgwYkQtUVNLcXktN0ZoR3FIWHpLSlh0bDkxcmk4a3EwM29Tc250aW5KdTJBSmVrazdPbHAxY1c2dDU3VWNFOE9zZGtEVGxLUThvUDcyNjdfMThrSW5sblpQbWs?oc=5",
-        "https://news.google.com/rss/articles/CBMizwFBVV95cUxOM3UtMDB3M0ZMdVFFbFRpbE56VFNyVmQ3OVJ2d1hDS05WUFJ0bEg3dEd4MnZqZmgydUNVOWN4RWs2Z0FaQkZicnVQczB0Skt1OWFlbzQxME9YLWxlUEtKUEMwUG4xSjlYUUdZejR6Z05IM3pWODZWTHZvOVVnRWhFMGdwYUp6UEg0UTVENW04eWZZNkxaNm1YZVhIYmlsLXgzTl9uUE1iZmxoWlBxYTQyVDNpN2h3Rm8zemNxcUpfLUl2MEVkV1ZPd2QtTTlyUGvSAdYBQVVfeXFMT2RDc1VLQlNQQWxYUi1qTjJTeW9DVWFfT3lZd2ZNUkxhNkVjR2JTeThFQ21YUTdveUFnSmZ5UlIwYnRaMDltVjhsMzBRLTNuTUlBWk9rQnJkWHZSbk1vYVA2bFhHOUpFVUhJZTI3R2NtQWQ3RkxBcFEycFZzRW5pX1BFNEpvTFpDOEZyaUt1eGJqSTBETFlWeEFfdGc2c0VVR1NHYWRNazBnWVdUQ0hjV3oycGdibnRxSzBRQlNlZjNiRjF5Q2p2eEVTMVVsaDJfN3hqMTNXdw?oc=5",
-        "https://news.google.com/rss/articles/CBMixAFBVV95cUxNenpaNUQyNlRTTnU0QkF5dzIzYnE4OTJvaHFzT1l4d3pZemdMX0t4eUJJRzJ6RzUwX0lwMHNRREFuNHZWUVh0dTBGa1RPd0F5aFRrTjBOYkxmeWhvUFZfejR2X1U4dFk3ZGUydHg2RnJnRm1ydy1RR1BxZnlaR1pSMm41SXZCNktjbWRMSlZad1VGQTdmVy1UTFlvQWl0bFZuVWNFTkc3WUItVjlaT1ZYTkVfRzZFclhrQ3h6MGRxWVVONkVp?oc=5"
+        "https://news.google.com/rss/articles/CBMivgFBVV95cUxOLWpKQTEwX0J3OEdrSU5PbHFTM3BWeThYbFF4SjVBLXZhVEoycDBuV2xOZU9aVHhmZkp3UFZBeUdSZEt6SG1pTzlFeVZEb0lwTmVFUmJWWmw4TGZiNS1yRHJhMG80ZWNnYjRPdjFuX1VjUGplN1dZcHE2MVFRV01QRU1ucW45SzZfVXFHRVFONG1UY1daN0QyQS1PQlhuWkVFR3pJUlNEcklHcUJCclItc2U4TlJSQi1BY1JDR2FB?oc=5",
+        "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPdGZpZ0gyYkZYcUlXTGJqLUZvdTVrM3NEblZsT0NIbzY0a2FBWldiY2RmbDdLRzJySmI0eGdreEZTUk9YYlhtZHE2RFNyZnA0N0phSDZ6S2tZWmg5SDlNZ3ZUcFRRdWVvd2d3YW50MzFrQmsyWDBld2kwQjlzdmpxb2tnMmhXcHdwb196R01SeG5mRGZyenMzR1FrTERlaVd6T05yTmwzdlhoQjdXeS0yb1ozRnI4d2RLbXQzRVJmR2FuZXJFNGRDYmh0WHNHVWdESzM2b3VpTTI0bVdVYVc3aA?oc=5",
+        "https://news.google.com/rss/articles/CBMingFBVV95cUxQaWdQOW1LVUxUdVZueUNrNktNbWhyaUlkMEsxbzhTZTdhV2M3WjhWeEJZTmJya1J2WFlOc0szZEZWMmRKU2wxMzY2b3BrM3BiTkQ0TTBCQXZybWVGTnBBU0ZoLWc3Y1I5QVdRNUE2MXhGeFZNaGVTdDFkY2d3bnJLRFlzY3lFNGJZS2ZPc0tvUnRjaThBcXdNdXBjZGltUdIBowFBVV95cUxNbUZ0NGo2alJrYmQybVRDaGlmdDNVNnpYOGlrUzNBUmJHVjhKNzZyVEFBQ2hCbVhCQnpsX0JGZlB1cmNLS2NOejF2c0NjTTN6bDQxMjRuLTRuaG1yMFZmQzFsaUpfZHhmRkYzNG1aVUlVRFdUYkhBMGQwcjJiLUlpZHhBeHJfdkp3bVhsU0lCaHRhdUVMRlFMRUdsMUpmWTdoYUhn?oc=5",
+        "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPdnRWUE1RdGtwTTl5SlVYcngweDFBdnprcWRRelRjd2k3LWpfSS1takFxekRBeG14dUkwbGd2MHZFaEhfb0d3YVNEUjNrQnUyTG5COUwySFdZdDRqVUlDUncybWxRcmFKazFIVk81TXJNNEFNRzlCZVJBVFdBbU5QM2ZMMHZMS0ZtM0hnOWV1STZaaDV2Mk96RU1sN3VqX3ZQWHdFTTZoeC1rT2l0cTB6MVBhS2JNZE1mWUo0bUN6NVRPXzZIdkpPcnlETjVuSVVXaU1ZbG1RaFlWRHNPaHRWTXEyONIB8AFBVV95cUxNeHNOSTJ2cEFBRl95Q1Q3YWNQMGdwdWFzQjdwVXduX3BqamNUel8zTGFjbVFqU1IzOFlrVUYySDdJYWg4WENpWFhFd1FPS1hUdkQ0b3NGM01OdEdRTVkxcGFtSFpjT0c2R1h5aWxIdWpta3JrYmVKZ2RSUjB5TXIyaHFxbUZqN3pFeHYzQ3ZNdlJvclhkVDIyemlDMDJmZy1OOGZJZ29uNnlDT3J1bzlIVG8wVmpXcXFUSm12MHhRWkwwa0lDSGZnN0FFVk13VFNKWEo1MzRyOFJLRGozU29PRTdaa205M2tMZWlIR3RWTVA?oc=5",
+        "https://news.google.com/rss/articles/CBMizAFBVV95cUxPaHFfT3U2dGMzYVE4Z01rYXRZcmxDc1FiMWxUMHh2QWN3WmJ4R0xKcF9hZ0F3bFljUVdFUXY2YV9RVkN4QkV3aDBPMURUM3Nfei1KRy11bzZEVm9aWXkwRE1ieTc5ck5md3VqMnplVGoyN0lxaTJyVFlURlQ4Ul9OQ05iaGVRemtwOTBpeGpJWkJZVlNUdW5hUFE5OUdKaDc0d0JqS1lRcDZXODlQVWhVaGxjeTlnbGN3aWhNdXp6Zk5CdG1pek5NRzdmTFTSAdABQVVfeXFMUDBZQlZvemZRdEloeXRlSV90MTgtZWtGdGRvaFh3QXliU01EOV83U012WG9MRFdQY05HUG9mdHp6VmFHU2FTdFo2Y21iNV90aUtsQWRtTmFEQW1fUHdhSGRQTFFxaWIxbWV3TXpoUVRXNXpFcDhnMFRRaWlHTmRvVEd5amh2MjJvSGpLRVJoR0lsc3VWVERwMUFxNm9ha2h5Q2NVU1d1Ny1IX1NQbnBiaXZPVk82XzlGamExS0xiWTd6VmU4T29VNVFaZzQtYTZLUQ?oc=5"
       ],
       "all_signals": [
         {
-          "title": "Anna Hazare Admitted To ICU In Mumbai Due To Viral Infection, Dehydration - NDTV",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNQzU1VEV0S2M0R2p0d1VXTk9Ta1BHZzhqTWxQNWVEQ2JBT2ZKR0lPTUJhN3VNdG9CeEtvUEZBa2g0alNTRWJfX3NtLWpmYXRpNk1rWVJaUnBvMVU1VnRMY0ZzR1hUMmtYOHcwNHVROW9lZ3VVVjk4NGFNa3I0eWhkLUp6X0xTZTlyTHRncDBTVEY2TTBzQXlmVDlLbjNlSG5kMnN0MGY1V3hwQV92V0JzaEx1ONIBuwFBVV95cUxPN1NEeUpHeXpHWUdUUm9qLTFLT1BHcFlFbzl1dTltY3hvYVdOME1WQnZ0Y2Nyd210cU9qa251SHJGbkI3eGJxQ3dGc0xsMGRVV3BoSkVONkxpekpGLWJHTzlLbDZ2b3JHNjU0aUpJSzVwbU1FN3RVNW8xUzdXRVNUY0tYWHJXdW43amRqaXZTczl6NEpub2tiQ1dsNkJEemdwVjlCVDV0amNYUEtFZjhzNjE5TUN0RXZpMzNn?oc=5",
-          "source": "NDTV"
+          "title": "Canada Study Permit Financial Requirement 2027: New CAD 23,448 Rule",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOLWpKQTEwX0J3OEdrSU5PbHFTM3BWeThYbFF4SjVBLXZhVEoycDBuV2xOZU9aVHhmZkp3UFZBeUdSZEt6SG1pTzlFeVZEb0lwTmVFUmJWWmw4TGZiNS1yRHJhMG80ZWNnYjRPdjFuX1VjUGplN1dZcHE2MVFRV01QRU1ucW45SzZfVXFHRVFONG1UY1daN0QyQS1PQlhuWkVFR3pJUlNEcklHcUJCclItc2U4TlJSQi1BY1JDR2FB?oc=5",
+          "source": "Shiksha"
         },
         {
-          "title": "Anna Hazare shifted to Mumbai, admitted to ICU after health deteriorates",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOYjk5UWFhOGtIcEt4TmRNMEwxNDZmOEdNMVl0dXRTWVpTLXBocndkbGg2aHRhRzMtQzl2bUpWcTBMQ1RkMl82VUlFdWY4X08zMHVyaVR6clZZOWNMazFGQ0ZqN3dvWS1GdEVXZ0lOSm1oa29LUzlIRjRUbmxDd01GMzR3dS1VNnlOR3FRSXpUSlFCdm1xSjl0aFNyaDkybmZmZHdUNkFyYktXYmc0MEtOVkFDMVJYQmhuMHY0a05PdnRoa2_SAcgBQVVfeXFMTzkyOFhhYTNQLTRpZUtKMk1jQTdJS1ZNRVZQYUlDYVVZZlRhZVdtWXd4enJTd1h1SzhfdnRkVE1vanFwZnIzQW55dGZQTFVTSEZmbWtGbVpmdTZ0YXVvT21MTm5CSHNkWTI1cklSMzN2cVM5MC1GU05YdE9XTC11NlA2UG9PMFcyX1RXSE5CMWcxSkJTLUdwUFpPQW0ycTF0S3l2a3NKRkd2MjJCQ3hpSzkwZm9lQTNJVWE4dE5kNVh4Y0FZUGk5Q3Q?oc=5",
-          "source": "Moneycontrol.com"
+          "title": "Indian students heading to Canada must show more funds from September 1",
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPdGZpZ0gyYkZYcUlXTGJqLUZvdTVrM3NEblZsT0NIbzY0a2FBWldiY2RmbDdLRzJySmI0eGdreEZTUk9YYlhtZHE2RFNyZnA0N0phSDZ6S2tZWmg5SDlNZ3ZUcFRRdWVvd2d3YW50MzFrQmsyWDBld2kwQjlzdmpxb2tnMmhXcHdwb196R01SeG5mRGZyenMzR1FrTERlaVd6T05yTmwzdlhoQjdXeS0yb1ozRnI4d2RLbXQzRVJmR2FuZXJFNGRDYmh0WHNHVWdESzM2b3VpTTI0bVdVYVc3aA?oc=5",
+          "source": "indiatoday.in"
         },
         {
-          "title": "Anna Hazare admitted to Bombay Hospital as health worsens",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPMTJ1U1NHZFQ3RW9zREZiMkVocExCNTlnV3A1QW0xNUNtcEp4RXpTanpsVkotZ3NyUXJKSnRlZWNPTGhJUnFzbmJqYTM2LVRrYmk4NUp4NjJHb0w2Vzk2SlB4bVJrTUU3bndmaFMwejcwXzNkV05oQ052NDdIX0tMVGkxQXdYUHlrWkNXd2lfR3d0cGQzUlgxQ0ctTnlRWHhtRnU0c1pTdUZ4Yk5QV3I1enhEakUybm5FaG10d2syT1RtVzNhZV9YU2VaRXJmOFBUcXfSAdcBQVVfeXFMTmp5YldvNV9wWWRXQkU0VGs2bEdhOXBHcXB3T3VNYl9sU25IMmUteUNhTHBFZl84eWZ2UjBqMUt4WGRRQUp4VG1VQ1JNTEUwaFlWMmo0MlVQRzFBRGxBWFF5TXkySF9aOXBhWGkzSVRQZmlrZzFYdVFRemFReTgwYkQtUVNLcXktN0ZoR3FIWHpLSlh0bDkxcmk4a3EwM29Tc250aW5KdTJBSmVrazdPbHAxY1c2dDU3VWNFOE9zZGtEVGxLUThvUDcyNjdfMThrSW5sblpQbWs?oc=5",
-          "source": "The Economic Times"
+          "title": "Canada hikes funds needed by study permit applicants",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaWdQOW1LVUxUdVZueUNrNktNbWhyaUlkMEsxbzhTZTdhV2M3WjhWeEJZTmJya1J2WFlOc0szZEZWMmRKU2wxMzY2b3BrM3BiTkQ0TTBCQXZybWVGTnBBU0ZoLWc3Y1I5QVdRNUE2MXhGeFZNaGVTdDFkY2d3bnJLRFlzY3lFNGJZS2ZPc0tvUnRjaThBcXdNdXBjZGltUdIBowFBVV95cUxNbUZ0NGo2alJrYmQybVRDaGlmdDNVNnpYOGlrUzNBUmJHVjhKNzZyVEFBQ2hCbVhCQnpsX0JGZlB1cmNLS2NOejF2c0NjTTN6bDQxMjRuLTRuaG1yMFZmQzFsaUpfZHhmRkYzNG1aVUlVRFdUYkhBMGQwcjJiLUlpZHhBeHJfdkp3bVhsU0lCaHRhdUVMRlFMRUdsMUpmWTdoYUhn?oc=5",
+          "source": "CIC News"
         },
         {
-          "title": "Anna Hazare hospitalised due to severe dehydration and viral infection",
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOM3UtMDB3M0ZMdVFFbFRpbE56VFNyVmQ3OVJ2d1hDS05WUFJ0bEg3dEd4MnZqZmgydUNVOWN4RWs2Z0FaQkZicnVQczB0Skt1OWFlbzQxME9YLWxlUEtKUEMwUG4xSjlYUUdZejR6Z05IM3pWODZWTHZvOVVnRWhFMGdwYUp6UEg0UTVENW04eWZZNkxaNm1YZVhIYmlsLXgzTl9uUE1iZmxoWlBxYTQyVDNpN2h3Rm8zemNxcUpfLUl2MEVkV1ZPd2QtTTlyUGvSAdYBQVVfeXFMT2RDc1VLQlNQQWxYUi1qTjJTeW9DVWFfT3lZd2ZNUkxhNkVjR2JTeThFQ21YUTdveUFnSmZ5UlIwYnRaMDltVjhsMzBRLTNuTUlBWk9rQnJkWHZSbk1vYVA2bFhHOUpFVUhJZTI3R2NtQWQ3RkxBcFEycFZzRW5pX1BFNEpvTFpDOEZyaUt1eGJqSTBETFlWeEFfdGc2c0VVR1NHYWRNazBnWVdUQ0hjV3oycGdibnRxSzBRQlNlZjNiRjF5Q2p2eEVTMVVsaDJfN3hqMTNXdw?oc=5",
-          "source": "The Hindu"
-        },
-        {
-          "title": "Social activist Anna Hazare admitted to hospital in Mumbai",
-          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNenpaNUQyNlRTTnU0QkF5dzIzYnE4OTJvaHFzT1l4d3pZemdMX0t4eUJJRzJ6RzUwX0lwMHNRREFuNHZWUVh0dTBGa1RPd0F5aFRrTjBOYkxmeWhvUFZfejR2X1U4dFk3ZGUydHg2RnJnRm1ydy1RR1BxZnlaR1pSMm41SXZCNktjbWRMSlZad1VGQTdmVy1UTFlvQWl0bFZuVWNFTkc3WUItVjlaT1ZYTkVfRzZFclhrQ3h6MGRxWVVONkVp?oc=5",
-          "source": "timesofindia.indiatimes.com"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "This headline about Anna Hazare's health is significant for the Indian diaspora, as he is a prominent figure in Indian social activism.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@anna_hazare",
-          "type": "person",
-          "keywords": [
-            "activism",
-            "health",
-            "India"
-          ]
-        }
-      ],
-      "kids_relevant": false
-    },
-    {
-      "topic_id": "99718433-242b-4280-8ba7-5c683c77c162",
-      "title": "India records warmest August since 1901 as monsoon deficit widens to 14% - Moneycontrol.com",
-      "description": "",
-      "category": "news",
-      "signal_count": 5,
-      "source_diversity": 5,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-08-31T15:17:20+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaEFtRzRvTVlaeldCSGJuWmZtTmpOUDZRRHB1QkN3SkhUcEVHM2wxSWlXZDhmQXRmVHNZUlphZzFWV19rOXZRbVJGTWctY3h1MUg0emNYQUc4cTlhSU03OHBPRV94LXFtMnA5RGctcEFmbzRETjlsek9Bd3VwRU1DMjhZVmlXTWtlaENvOHBwVFppM3BoYVBfODVLZ3hNRF9URUJxWGROWENWdmRveURKU0JLd9IBuwFBVV95cUxQcURvRGQ1Y2RiU292LUpGQ1VxUFF3SXd1RFZaNTcxT3dJdnlkNkJja3ZoeHVlYXFkSTZMQldQUHY2WXpod2I5M2RkYl81NmVNYzZTWDFuZ2QwNVAtNndYemVTLVVLelZlNlZZSk9uTmd3T2dwMWZWX2RUVHg1cEJGUjlDMlItcDRKUUdrNThWRlh0VWdJZ2lhc3Q3UTBPOFNSS2pXZ01WeDFGajdsWHJZVzRaU2pZc1Qwb1NB?oc=5",
-        "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWERXam9zSFlUSFo0QUVHZFI1SVQ1NUxXNThody1LWDZDUDdfWGlQeTBIbmVUSkdLbWNxOTg1RVBEdkV3b3FSVU1NWW9weksxYklIRTN0V1BER2NGN2JPZC1JcEpuVF9RbTMyWmFuZ09vVnhRbmZVMVgtdV9yeXNuT0drLVNzdEFxUTEzanc5SDBuZDdqdHF3U1Vwbk5WTllSZ0oxMHRPQS1ZYW9NVk5tSl9oUktrVXN5ZXc?oc=5",
-        "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNMmJVME1EMFU3MjdoT0UwNldJSl9tcFgySVJsTEhqZjdUZ0RCc3V4UWpaM0JKZlI0ZWdZMmFsRng0eUpwalVVQTJTMHNxdXVqdnFCLV8tTkljR0NSaEJPdVdZM1hFaUNOSXJ1WnZydU55elFueTUzUDV1MjBPaS1idDVVYjZRbDNNaGlZUEtPSXhpQU41YjRBZThIOFB3ZlQxQjlKbE43eEVseEE4M2o5S0paYVhPVHlzNUlmajdmUm9FcnPSAcgBQVVfeXFMUHhlUFU2MEhvWlFEakFrcEM0WEY1VFljbS1TV2R2eDc0bzVINDNJeG55N1pSczdVUjk3dFljSEk2NExZcktJNVl2TFItaXZTbk11S1ZfQ2c2VG4wRnk1TVc0cWs0T1pXcnJZbW5ZcGpRbS1yUm1Fbm9jWGpiVVNuZXlVLW1IMjBVOE42SHBnSE9ESTBFcy1XNmx1cW5DODBFMWI1LUl1NXI4R2Jfekh1d1JiUzlWVVZlMjR5bDFrTVE0WEkydjg3cGw?oc=5",
-        "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOdl90MW1aeFJJTVVhbURVNGY5aHh4T19WMUVJTEFsaGhHUE5nd041UGZGd2lCa2txbjR5c2x2cm1wY0xxLTlRZTNfZ0hRTV9EUmpEQ1B1YkxyWWhITWx5RnRVRURRamIxZjAzYnhuWmVxZUxybVVTV1FHYmIzZE1BMUUzTWdpc2NNQWFsY1hKOEltcmhESnVSRlJ5empVT0d2cDJMRFVLWmlvbUVJS0t5bVRNM1BwdWRCVkZFWVNIZXRMT3h4ZW03QVM1NFRrbHpKYzVZdNIB2wFBVV95cUxOcnktOTNUcG5SczZtRU1ZdjV4MnNIYUFMOEZ4ekhoNHEwR1hMbUpteFFwVEt5SnJ1WXN6MklLSWZtR2VjZmR3dTRlZi1FOGJpcWI5TDc3VElxNzB4TjZXOHdQaTRZWXk0NjhiZW5QLW5JM2x6Q1VhQk42ZDVLTHV2bkt6amVaTmlnbHZ6T3ZYa2pFQ2pIZFRRZHNBSVZYYU9faVNVRUpWUk1qUDVsY1czNmlJT1Y4NVRNdGllSmtYNnhuTktUU1dpelV4ZnBPZk85TGJMeENuRV92VzQ?oc=5",
-        "https://news.google.com/rss/articles/CBMigwJBVV95cUxQNDBHdkJTRkRSZmVEd2pYSXBJTVJyWndYMThpLTl5M0VrV0lfTGJNVHFITnpNSnZERVhVSHNLTXl1c25sWVNzQ0RjM3dSNnBsSE1JQzdsRkhoS2dOTThiV3NYRFdqdkc2WXM3cUx0YXBvMEFuQURhXzNFdTFENlFwc2NjOHVyNFMtZVl6VDZtalh4aHFiMXZ5VklHblk1ZkNBSGpmcUJ4MkYyUGFJUENwQkFWQWJZWXRHdlhHSVJNcmtkNWVxeFFORHZWU040X3BPUU83a2d0ZVdRS2JqZXI1YWhqcEx4UWdkdU1RS0c4aktFRG9fS2tKLXFnUWJWOUx4cVVj0gGIAkFVX3lxTE82anFXRWY3amw5X1lYdGY4bHRxUnZXbXlFQTNOQXlwQ0Y2eUVWbS01TjM2MzRoaDdtZE5YVXBxVDBJdkM1LWZXc3ZtaVowaTNQNl95VnZBU1dqczJfRTZvRndWY2dXRHY3RWhrSURKNDdrb2I4bU1fSF90VGlqS3BQTVE5QnFUZkNSUmw2aVQ5SXhTaG1tVEd3b1g3NHIwRUJ5RnlCNW9HOW5reFNNQml3c0w2U0ZSdm9qOGxEVWtqNERNVXpocHhsVjhjVVpqazBFUkY3ZldvYTVxSEl5NUFPeDJUR1ZSWFFPV2o4R0R3MkNmM0xCenVTUEhqc1YzYVpsRnFZOXBlRA?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "Uneven Monsoon Distribution Hides Severe Regional Rain Deficits In India",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPaEFtRzRvTVlaeldCSGJuWmZtTmpOUDZRRHB1QkN3SkhUcEVHM2wxSWlXZDhmQXRmVHNZUlphZzFWV19rOXZRbVJGTWctY3h1MUg0emNYQUc4cTlhSU03OHBPRV94LXFtMnA5RGctcEFmbzRETjlsek9Bd3VwRU1DMjhZVmlXTWtlaENvOHBwVFppM3BoYVBfODVLZ3hNRF9URUJxWGROWENWdmRveURKU0JLd9IBuwFBVV95cUxQcURvRGQ1Y2RiU292LUpGQ1VxUFF3SXd1RFZaNTcxT3dJdnlkNkJja3ZoeHVlYXFkSTZMQldQUHY2WXpod2I5M2RkYl81NmVNYzZTWDFuZ2QwNVAtNndYemVTLVVLelZlNlZZSk9uTmd3T2dwMWZWX2RUVHg1cEJGUjlDMlItcDRKUUdrNThWRlh0VWdJZ2lhc3Q3UTBPOFNSS2pXZ01WeDFGajdsWHJZVzRaU2pZc1Qwb1NB?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "India expects below-normal September rains after weak August",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWERXam9zSFlUSFo0QUVHZFI1SVQ1NUxXNThody1LWDZDUDdfWGlQeTBIbmVUSkdLbWNxOTg1RVBEdkV3b3FSVU1NWW9weksxYklIRTN0V1BER2NGN2JPZC1JcEpuVF9RbTMyWmFuZ09vVnhRbmZVMVgtdV9yeXNuT0drLVNzdEFxUTEzanc5SDBuZDdqdHF3U1Vwbk5WTllSZ0oxMHRPQS1ZYW9NVk5tSl9oUktrVXN5ZXc?oc=5",
-          "source": "Reuters"
-        },
-        {
-          "title": "India records warmest August since 1901 as monsoon deficit widens to 14% - Moneycontrol.com",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNMmJVME1EMFU3MjdoT0UwNldJSl9tcFgySVJsTEhqZjdUZ0RCc3V4UWpaM0JKZlI0ZWdZMmFsRng0eUpwalVVQTJTMHNxdXVqdnFCLV8tTkljR0NSaEJPdVdZM1hFaUNOSXJ1WnZydU55elFueTUzUDV1MjBPaS1idDVVYjZRbDNNaGlZUEtPSXhpQU41YjRBZThIOFB3ZlQxQjlKbE43eEVseEE4M2o5S0paYVhPVHlzNUlmajdmUm9FcnPSAcgBQVVfeXFMUHhlUFU2MEhvWlFEakFrcEM0WEY1VFljbS1TV2R2eDc0bzVINDNJeG55N1pSczdVUjk3dFljSEk2NExZcktJNVl2TFItaXZTbk11S1ZfQ2c2VG4wRnk1TVc0cWs0T1pXcnJZbW5ZcGpRbS1yUm1Fbm9jWGpiVVNuZXlVLW1IMjBVOE42SHBnSE9ESTBFcy1XNmx1cW5DODBFMWI1LUl1NXI4R2Jfekh1d1JiUzlWVVZlMjR5bDFrTVE0WEkydjg3cGw?oc=5",
-          "source": "Moneycontrol.com"
-        },
-        {
-          "title": "Most parts of T.N. likely to receive below normal rainfall in September: IMD",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOdl90MW1aeFJJTVVhbURVNGY5aHh4T19WMUVJTEFsaGhHUE5nd041UGZGd2lCa2txbjR5c2x2cm1wY0xxLTlRZTNfZ0hRTV9EUmpEQ1B1YkxyWWhITWx5RnRVRURRamIxZjAzYnhuWmVxZUxybVVTV1FHYmIzZE1BMUUzTWdpc2NNQWFsY1hKOEltcmhESnVSRlJ5empVT0d2cDJMRFVLWmlvbUVJS0t5bVRNM1BwdWRCVkZFWVNIZXRMT3h4ZW03QVM1NFRrbHpKYzVZdNIB2wFBVV95cUxOcnktOTNUcG5SczZtRU1ZdjV4MnNIYUFMOEZ4ekhoNHEwR1hMbUpteFFwVEt5SnJ1WXN6MklLSWZtR2VjZmR3dTRlZi1FOGJpcWI5TDc3VElxNzB4TjZXOHdQaTRZWXk0NjhiZW5QLW5JM2x6Q1VhQk42ZDVLTHV2bkt6amVaTmlnbHZ6T3ZYa2pFQ2pIZFRRZHNBSVZYYU9faVNVRUpWUk1qUDVsY1czNmlJT1Y4NVRNdGllSmtYNnhuTktUU1dpelV4ZnBPZk85TGJMeENuRV92VzQ?oc=5",
-          "source": "The Hindu"
-        },
-        {
-          "title": "India records hottest August since 1901; September likely to see below-average rainfall, says IMD",
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQNDBHdkJTRkRSZmVEd2pYSXBJTVJyWndYMThpLTl5M0VrV0lfTGJNVHFITnpNSnZERVhVSHNLTXl1c25sWVNzQ0RjM3dSNnBsSE1JQzdsRkhoS2dOTThiV3NYRFdqdkc2WXM3cUx0YXBvMEFuQURhXzNFdTFENlFwc2NjOHVyNFMtZVl6VDZtalh4aHFiMXZ5VklHblk1ZkNBSGpmcUJ4MkYyUGFJUENwQkFWQWJZWXRHdlhHSVJNcmtkNWVxeFFORHZWU040X3BPUU83a2d0ZVdRS2JqZXI1YWhqcEx4UWdkdU1RS0c4aktFRG9fS2tKLXFnUWJWOUx4cVVj0gGIAkFVX3lxTE82anFXRWY3amw5X1lYdGY4bHRxUnZXbXlFQTNOQXlwQ0Y2eUVWbS01TjM2MzRoaDdtZE5YVXBxVDBJdkM1LWZXc3ZtaVowaTNQNl95VnZBU1dqczJfRTZvRndWY2dXRHY3RWhrSURKNDdrb2I4bU1fSF90VGlqS3BQTVE5QnFUZkNSUmw2aVQ5SXhTaG1tVEd3b1g3NHIwRUJ5RnlCNW9HOW5reFNNQml3c0w2U0ZSdm9qOGxEVWtqNERNVXpocHhsVjhjVVpqazBFUkY3ZldvYTVxSEl5NUFPeDJUR1ZSWFFPV2o4R0R3MkNmM0xCenVTUEhqc1YzYVpsRnFZOXBlRA?oc=5",
-          "source": "Telegraph India"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "This headline about India's climate conditions is important for the diaspora as it affects global perceptions and discussions about India.",
-      "coverage": "new",
-      "ig_handles": [],
-      "kids_relevant": false
-    },
-    {
-      "topic_id": "18afc20a-f5e0-408e-a7dd-d66c6bbba2d8",
-      "title": "Sabyasachi just opened a lavish 26,000 square foot store in Delhi: Here's what true luxury actually means to him | Fashion Trends - Hindustan Times",
-      "description": "",
-      "category": "nri-world",
-      "signal_count": 5,
-      "source_diversity": 5,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-08-31T11:33:52+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMiigFBVV95cUxOUHdqU3VHUHVTZTBDbVJwTFotRGUzTHUyMDBkekZwYjRid3BZM2NzbGRKbVFNVk9BendfRTU4S1pPU1ktaU9BYUc0SjhBcTdkZDd1OFpneDJVb3pFeHNCYzZ3TVRBbkhKb1Zzakt1My1RV0ctQTZxMkZNekFfWVl0R28zVm5nLVpGTVHSAZcBQVVfeXFMTkhfUnJmMFFCTzJxV0hCOHM3ZEpmNkxGU1l6NkxaYnJKOFc1UFBKQm9XenEtaXFnVjNVa1VoZU1ORnlQZ0daWWN2SmpmaXZ5X0tuQkRra0dmWUZZMUJzR3hHMVp6ZzdadzA3RTYzSFd5WXA5X0NYZjRDRURNV3VOV3drTGpVbXNCVEkyUWNvNlVzRXBHU2VzTQ?oc=5",
-        "https://news.google.com/rss/articles/CBMivwFBVV95cUxNLVVRMkwzMzhsaGFQb2FpaUZoU1JwU1E0RXNBR0ZBMHZDTTJXdVhNcEJ6enVqNTNCaDRtZ1B0VlhmZHc1YWExcTQydERKZGhhWWhHR0lzLUxGaWttanUtNVlTWWVQYkkzd0ZlY1duRGthOXRnSjlKV09iM2VDeVI4SXU1NHVHODN5TG1UM3VyT1B2TElwa2RlYlpJeGZ4U0V1ckNKaGZwRlB5ZkdhQ2RZbl9UR05KT1lHREZRQmJSYw?oc=5",
-        "https://news.google.com/rss/articles/CBMigwJBVV95cUxQbTBwSF9qVXowNXBiZVUtVm1yRjg5NlFrVmlXWnJYMEJNWmdRY1NLR1V4cnhTeEcwcmNCcE9WalR1bDFGOXFBb1VYQ2Ztekg0dTZJNlhxNWNwQmZkUDYtWkxra3M2dWRSMGw2MW9pUW9kZXZVRHl6M1dLQTBycloxLUNOOVZySHZyMDFlaFFldm1UWkhLYk5LM0ZVVTJ4VURZN0xvQzVTd1dhS0ExT1gtdjdJRHVjU0lBdUNPVjZNNWFaSHZEcTdqLTFZcThlWHA3SGdKN1JVSVNvUEVfLTlDNUdaRkE0ellUcmdzTjJQZ2ZJN1gzODJhRFpqTE1ENkJXRkZR?oc=5",
-        "https://news.google.com/rss/articles/CBMipgFBVV95cUxNQUUxOTlXUGRHb1hMNm9RZ1EyaXNfVlFNeUdIR20wVEEzVk9sWEdqMVV6VFk2LUxtQWkyZWRKZWloOVpSMl9LTDBaS1RCa1g3NGJINWdvZzVWbzVGOFlkZmFOdXJNMlBvUlBnZXdxREVGVVYyb3VYRUFmTzAyTjBmNG1sbDFfMFNKanp6YUJZWktGZ1Bna0RRWEpzMTZDSEJ5VUZhajRR?oc=5",
-        "https://news.google.com/rss/articles/CBMijAJBVV95cUxNdFpnSFYtVkRWRGdGMFVqTjJhUlh6TjFkOUw4RVJpZm1mQjJ3a3A5YjlPSU9lQk5zdlRMbHR3NGUtVGxsVXhNYlJvWDlfUGVyVGxtdVhETEhzTEpqQ1paUnFNelgwUDNyWnF2S016YW4yVml6UmJxQzdxWFFCSG9uWHpCWFYwUEZEY2lnQ3VUWnhvYU1kY1BxT2lyWElPTGZhWHkySDgySXRXbmIyU1ZNVWdmNFRBT3pjalRZLURiS3R5Zll0eHNEVkY2bHE4N2N6Z3h5OFZzR3U2Z2JzcmNqRkpHdHhrckpVYS13R0EwS25iMldrbzh3V3liZkdfMUhOd2o4VWV2bmJsT0Vx0gGSAkFVX3lxTFBmNHZTNzJJR0hwZHpxdGEwZ05NbTVVaV9EeHFaSHNlVVNZT2l5a2xCSjl0elRQZHRzUXFlMVIyQ3pmakZ5SC1wc0xyWi0yalpkaDQwWWVtbU9xY0tkOFlnb09QSGdpcEVfNUhPNi12N2x4ZGVUa0xoNHZSdVpKaFNSX2I5ZWEydGJYcDNRRTV1U01QOW8yZlNJbTd2cl9CZ2VJTFJFcnRSSGphQzIzR1NZMTlvZ3NKOHdvc3J5SHdIMm1aUXJITmw4ZktDdUNZOHc3M1JValhSa3dGSlN6OGNfSWwzM2xWS1JGSDF2SUFLSTFNN21EVDY5MFplbXEtWWducU9aNWN6REIycC16UVJvcnc?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "Collective memory revisited",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOUHdqU3VHUHVTZTBDbVJwTFotRGUzTHUyMDBkekZwYjRid3BZM2NzbGRKbVFNVk9BendfRTU4S1pPU1ktaU9BYUc0SjhBcTdkZDd1OFpneDJVb3pFeHNCYzZ3TVRBbkhKb1Zzakt1My1RV0ctQTZxMkZNekFfWVl0R28zVm5nLVpGTVHSAZcBQVVfeXFMTkhfUnJmMFFCTzJxV0hCOHM3ZEpmNkxGU1l6NkxaYnJKOFc1UFBKQm9XenEtaXFnVjNVa1VoZU1ORnlQZ0daWWN2SmpmaXZ5X0tuQkRra0dmWUZZMUJzR3hHMVp6ZzdadzA3RTYzSFd5WXA5X0NYZjRDRURNV3VOV3drTGpVbXNCVEkyUWNvNlVzRXBHU2VzTQ?oc=5",
+          "title": "Canada raises living-expense funds requirement for international students, adds pressure on Indians",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPdnRWUE1RdGtwTTl5SlVYcngweDFBdnprcWRRelRjd2k3LWpfSS1takFxekRBeG14dUkwbGd2MHZFaEhfb0d3YVNEUjNrQnUyTG5COUwySFdZdDRqVUlDUncybWxRcmFKazFIVk81TXJNNEFNRzlCZVJBVFdBbU5QM2ZMMHZMS0ZtM0hnOWV1STZaaDV2Mk96RU1sN3VqX3ZQWHdFTTZoeC1rT2l0cTB6MVBhS2JNZE1mWUo0bUN6NVRPXzZIdkpPcnlETjVuSVVXaU1ZbG1RaFlWRHNPaHRWTXEyONIB8AFBVV95cUxNeHNOSTJ2cEFBRl95Q1Q3YWNQMGdwdWFzQjdwVXduX3BqamNUel8zTGFjbVFqU1IzOFlrVUYySDdJYWg4WENpWFhFd1FPS1hUdkQ0b3NGM01OdEdRTVkxcGFtSFpjT0c2R1h5aWxIdWpta3JrYmVKZ2RSUjB5TXIyaHFxbUZqN3pFeHYzQ3ZNdlJvclhkVDIyemlDMDJmZy1OOGZJZ29uNnlDT3J1bzlIVG8wVmpXcXFUSm12MHhRWkwwa0lDSGZnN0FFVk13VFNKWEo1MzRyOFJLRGozU29PRTdaa205M2tMZWlIR3RWTVA?oc=5",
           "source": "The New Indian Express"
         },
         {
-          "title": "New York Fashion Week: Sabyasachi, The Met And The Power Of The Past",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNLVVRMkwzMzhsaGFQb2FpaUZoU1JwU1E0RXNBR0ZBMHZDTTJXdVhNcEJ6enVqNTNCaDRtZ1B0VlhmZHc1YWExcTQydERKZGhhWWhHR0lzLUxGaWttanUtNVlTWWVQYkkzd0ZlY1duRGthOXRnSjlKV09iM2VDeVI4SXU1NHVHODN5TG1UM3VyT1B2TElwa2RlYlpJeGZ4U0V1ckNKaGZwRlB5ZkdhQ2RZbl9UR05KT1lHREZRQmJSYw?oc=5",
-          "source": "Forbes"
+          "title": "Canada makes it expensive for new international students; leaves fewer options for Punjabis - tribuneindia.com",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPaHFfT3U2dGMzYVE4Z01rYXRZcmxDc1FiMWxUMHh2QWN3WmJ4R0xKcF9hZ0F3bFljUVdFUXY2YV9RVkN4QkV3aDBPMURUM3Nfei1KRy11bzZEVm9aWXkwRE1ieTc5ck5md3VqMnplVGoyN0lxaTJyVFlURlQ4Ul9OQ05iaGVRemtwOTBpeGpJWkJZVlNUdW5hUFE5OUdKaDc0d0JqS1lRcDZXODlQVWhVaGxjeTlnbGN3aWhNdXp6Zk5CdG1pek5NRzdmTFTSAdABQVVfeXFMUDBZQlZvemZRdEloeXRlSV90MTgtZWtGdGRvaFh3QXliU01EOV83U012WG9MRFdQY05HUG9mdHp6VmFHU2FTdFo2Y21iNV90aUtsQWRtTmFEQW1fUHdhSGRQTFFxaWIxbWV3TXpoUVRXNXpFcDhnMFRRaWlHTmRvVEd5amh2MjJvSGpLRVJoR0lsc3VWVERwMUFxNm9ha2h5Q2NVU1d1Ny1IX1NQbnBiaXZPVk82XzlGamExS0xiWTd6VmU4T29VNVFaZzQtYTZLUQ?oc=5",
+          "source": "tribuneindia.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The increase in costs for international students in Canada has direct implications for Indian students and families, relevant to the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "cdb373fd-7d29-4778-bdf8-4488479c208d",
+      "title": "India\u2019s Diaspora Deposit Flows Surpass $100 Billion, FE Reports - Bloomberg.com",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T03:27:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMipAFBVV95cUxQOUl5Ym03TGlNZkFiTFNQSWtPcDlmRUU2OTF4U0RUYU40blZ6TUFGUEdRMGpYckZRUDJHd1pXZTdkU002eTg0U1RsZEc0UVU4dVdwcElLNnZNUnh3SVJfZnlNZktOUGx6amt5RjQtWXo0NUJ1NW05ZGZkNnVkSWZFRHQ0LUpHeF9LbkdDT0pjRVZGeW40Q3NORmw2MHBBREt5eEtYZQ?oc=5",
+        "https://news.google.com/rss/articles/CBMisgFBVV95cUxNR1g1ZHg4MHhnUFVGMndlRW9BWUR4M1EtZnhJMEpRdjBPWVk4YVVmay1xUk8xaTJDaHh2S2FWZTlNSHhiRjlTVnE5ZEtFbFJJbUNfa2tBa2Q1TTJ4aUN0czBhZlIwSkd5VWtqb0ZfcVdfOWx4Y2prM3J1QVBCZE8xbXhCUWFWd3I2QnNDZDZmWVJMal9KNGt6MlVjWjdESWZ6dTBaeGQ3UDJhUkwzTEZtSDZB?oc=5",
+        "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOeG9RaUlWTWk4azFXSmJSUlViMnYtdG5jeEhVS1E1cFFQbktCMjctUUZLWE5kTFBTS3ZiOWp6LVlHR0pocXJTRlZDS2syYzhGaTF3RS1ib2ZYT3dMQ0lDb2tHOE5lN1NacFIzRlkzdHUwRjR1bHQ1WGg1dm1hdkhuS1hKM0ROWlFXd3FNLVh5ZWtjZEE3Z2ZON3lLLUNWbm1pYWlKaXNrbnVPNWwxbDZ3akMwY1pMbjhBVUtKcmt0MXRCUTdGTHhoZHVuMHNGcFpWUHZOZ0RJeXJpSWFp?oc=5",
+        "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOG5BQlpEZGo4V3o1SVZKN2VfdkUyc3N0QzVNR2dvTk11a2liUHN1YVZPZUFIazZQc0RMcHROdUdjMW04TE1nbG8wUWhEZzVWRTVMbHVUaHRld0lodU9ScGVPU29lMU5EaWxJS0NyeGZndUdSQjJtbWRuTWxoa3IwbEhZRG1QM0NUbHUzU3RhLXFnSG5DejZoNWRKNHhvRkxWUmVBMmFaTXBTS1U?oc=5",
+        "https://news.google.com/rss/articles/CBMihwFBVV95cUxNOVpGMVBpNFRRSWpUWXBkVUQ3SnUtajN0M1pkemY1a0Q4MUZQUGNOSXlkc1hpaDhTcENwM0FjNW85Zl9rZWpnTTlFdmFUSTVHVnRxSWlyNjE4cGlHTE9mU0pvejBIN285WlRVb1ZaTmhnQU9rbHF4TjhTMUdLX19rUDlyYWxzNWM?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "RBI\u2019s forex swap draws $136.37 billion, FCNR(B) deposits drive surge",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQOUl5Ym03TGlNZkFiTFNQSWtPcDlmRUU2OTF4U0RUYU40blZ6TUFGUEdRMGpYckZRUDJHd1pXZTdkU002eTg0U1RsZEc0UVU4dVdwcElLNnZNUnh3SVJfZnlNZktOUGx6amt5RjQtWXo0NUJ1NW05ZGZkNnVkSWZFRHQ0LUpHeF9LbkdDT0pjRVZGeW40Q3NORmw2MHBBREt5eEtYZQ?oc=5",
+          "source": "The Indian Express"
         },
         {
-          "title": "Sabyasachi\u2019s New Delhi Flagship store romances Indian crafts and Kolkata icons in equal measure. t2oS takes a stroll",
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQbTBwSF9qVXowNXBiZVUtVm1yRjg5NlFrVmlXWnJYMEJNWmdRY1NLR1V4cnhTeEcwcmNCcE9WalR1bDFGOXFBb1VYQ2Ztekg0dTZJNlhxNWNwQmZkUDYtWkxra3M2dWRSMGw2MW9pUW9kZXZVRHl6M1dLQTBycloxLUNOOVZySHZyMDFlaFFldm1UWkhLYk5LM0ZVVTJ4VURZN0xvQzVTd1dhS0ExT1gtdjdJRHVjU0lBdUNPVjZNNWFaSHZEcTdqLTFZcThlWHA3SGdKN1JVSVNvUEVfLTlDNUdaRkE0ellUcmdzTjJQZ2ZJN1gzODJhRFpqTE1ENkJXRkZR?oc=5",
-          "source": "t2online.in"
+          "title": "India\u2019s Diaspora Deposit Flows Surpass $100 Billion, FE Reports - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNR1g1ZHg4MHhnUFVGMndlRW9BWUR4M1EtZnhJMEpRdjBPWVk4YVVmay1xUk8xaTJDaHh2S2FWZTlNSHhiRjlTVnE5ZEtFbFJJbUNfa2tBa2Q1TTJ4aUN0czBhZlIwSkd5VWtqb0ZfcVdfOWx4Y2prM3J1QVBCZE8xbXhCUWFWd3I2QnNDZDZmWVJMal9KNGt6MlVjWjdESWZ6dTBaeGQ3UDJhUkwzTEZtSDZB?oc=5",
+          "source": "Bloomberg.com"
         },
         {
-          "title": "Sabyasachi plans expansion into small leather goods and footwear",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNQUUxOTlXUGRHb1hMNm9RZ1EyaXNfVlFNeUdIR20wVEEzVk9sWEdqMVV6VFk2LUxtQWkyZWRKZWloOVpSMl9LTDBaS1RCa1g3NGJINWdvZzVWbzVGOFlkZmFOdXJNMlBvUlBnZXdxREVGVVYyb3VYRUFmTzAyTjBmNG1sbDFfMFNKanp6YUJZWktGZ1Bna0RRWEpzMTZDSEJ5VUZhajRR?oc=5",
-          "source": "International Leather Maker"
+          "title": "NRIs put $100 billion in RBI's FCNR(B) scheme to take India's forex reserves to record high",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOeG9RaUlWTWk4azFXSmJSUlViMnYtdG5jeEhVS1E1cFFQbktCMjctUUZLWE5kTFBTS3ZiOWp6LVlHR0pocXJTRlZDS2syYzhGaTF3RS1ib2ZYT3dMQ0lDb2tHOE5lN1NacFIzRlkzdHUwRjR1bHQ1WGg1dm1hdkhuS1hKM0ROWlFXd3FNLVh5ZWtjZEE3Z2ZON3lLLUNWbm1pYWlKaXNrbnVPNWwxbDZ3akMwY1pMbjhBVUtKcmt0MXRCUTdGTHhoZHVuMHNGcFpWUHZOZ0RJeXJpSWFp?oc=5",
+          "source": "indiatoday.in"
         },
         {
-          "title": "Sabyasachi just opened a lavish 26,000 square foot store in Delhi: Here's what true luxury actually means to him | Fashion Trends - Hindustan Times",
-          "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNdFpnSFYtVkRWRGdGMFVqTjJhUlh6TjFkOUw4RVJpZm1mQjJ3a3A5YjlPSU9lQk5zdlRMbHR3NGUtVGxsVXhNYlJvWDlfUGVyVGxtdVhETEhzTEpqQ1paUnFNelgwUDNyWnF2S016YW4yVml6UmJxQzdxWFFCSG9uWHpCWFYwUEZEY2lnQ3VUWnhvYU1kY1BxT2lyWElPTGZhWHkySDgySXRXbmIyU1ZNVWdmNFRBT3pjalRZLURiS3R5Zll0eHNEVkY2bHE4N2N6Z3h5OFZzR3U2Z2JzcmNqRkpHdHhrckpVYS13R0EwS25iMldrbzh3V3liZkdfMUhOd2o4VWV2bmJsT0Vx0gGSAkFVX3lxTFBmNHZTNzJJR0hwZHpxdGEwZ05NbTVVaV9EeHFaSHNlVVNZT2l5a2xCSjl0elRQZHRzUXFlMVIyQ3pmakZ5SC1wc0xyWi0yalpkaDQwWWVtbU9xY0tkOFlnb09QSGdpcEVfNUhPNi12N2x4ZGVUa0xoNHZSdVpKaFNSX2I5ZWEydGJYcDNRRTV1U01QOW8yZlNJbTd2cl9CZ2VJTFJFcnRSSGphQzIzR1NZMTlvZ3NKOHdvc3J5SHdIMm1aUXJITmw4ZktDdUNZOHc3M1JValhSa3dGSlN6OGNfSWwzM2xWS1JGSDF2SUFLSTFNN21EVDY5MFplbXEtWWducU9aNWN6REIycC16UVJvcnc?oc=5",
+          "title": "Banks mobilise USD 127.23 billion in deposits from Indian diaspora: RBI",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNOG5BQlpEZGo4V3o1SVZKN2VfdkUyc3N0QzVNR2dvTk11a2liUHN1YVZPZUFIazZQc0RMcHROdUdjMW04TE1nbG8wUWhEZzVWRTVMbHVUaHRld0lodU9ScGVPU29lMU5EaWxJS0NyeGZndUdSQjJtbWRuTWxoa3IwbEhZRG1QM0NUbHUzU3RhLXFnSG5DejZoNWRKNHhvRkxWUmVBMmFaTXBTS1U?oc=5",
+          "source": "ThePrint"
+        },
+        {
+          "title": "India draws $136.38 bn in forex inflows, boosting reserves",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNOVpGMVBpNFRRSWpUWXBkVUQ3SnUtajN0M1pkemY1a0Q4MUZQUGNOSXlkc1hpaDhTcENwM0FjNW85Zl9rZWpnTTlFdmFUSTVHVnRxSWlyNjE4cGlHTE9mU0pvejBIN285WlRVb1ZaTmhnQU9rbHF4TjhTMUdLX19rUDlyYWxzNWM?oc=5",
+          "source": "VCCircle"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The report on India's diaspora deposit flows surpassing $100 billion is crucial for the Indian diaspora, highlighting their financial impact and engagement with India.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "d847bab9-8393-4777-8718-bbb2243c063f",
+      "title": "Indian Streamer JioHotstar Launches in U.K., Canada and Singapore With Interactive Features - Variety",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-01T23:00:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNUFNCcUQxLTdZUWduOGllbmY5NDVNeFJrSzV5c2JlSnJNN0ZBNmZNLXlHSnlwcGRSZDlBWFkwOGcydHNxMUt5bjF2X3pUakJvY1I1QkQ5YnF4bnJnMERSYng1bkhPM2RNa3BxVVdmazJDeTByQXZQNGJuZnVSVHJiM3d4NXJKZTRmdXVv0gGQAUFVX3lxTE9vd0FjQ1R5R3plTVhLbjFJdHFxbXBoUnhtRnpQcGNENUw3NXRjWlRDR1RVSzVreFJacXZlemhJTUNEOTd2cTgyMkpYZjZDWGh6cGNzcFdLZ3NtNEM0VGNRY1RzbFpFNkNSQVVfTDdzdmh1WnJraFZkaHliOUM5cUdFLWh2cDl4S21HOUlVU3lkZg?oc=5",
+        "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOHdPYUhOTWZ1aUhhbENEM0d5SkN3bDdQTnZ6YjNYSW5WX2ZJeElvXzlZZjNVeDVkRy1NYzNBMVEwcEdjclBaT1Zic3dIcnhobGlZUW5sc3RmZjhCaUtQTWtyQ21NU1JBdFI2TzkxM2FjOWw2WHVtVndNRU5MeTdpdm1zSU1CUlRjWmZpTzUwQTlaTGJWVDI1RkF5RnVGYkhPY3N2YmgzS1REaU9JMjFBaU1majBOMXBz?oc=5",
+        "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOV014N1NMaGkyTnc0WUUzVTdpVnZFRlByblpLU0JaUENHcUxDd3V3V0N0eUtIZjFnV21FcWhZckw0NFh2a2lxa2FWTTZjMXNDZEhadWVZel9iMHc2MmVmcEhsYnpLSW5VNGZfSEp6OFRvb0dyaXl2NlRaaTlEVkRKcjFvOXhsWnFxQjRrQl9YeWZlMjQ4NVhuQ2JnRWc2ODk1Zmdpb2lMODUwUE5KYVdsVl9fUEMxMkllMVUyTElkd05SbEVnbGp4THdYclUxVHQzcnVSNGJLcTRtZXRvLVJfcUJnS2xLdU9nRi1xai1saC11NzlB?oc=5",
+        "https://news.google.com/rss/articles/CBMiigFBVV95cUxQVHc4YnRBMmVVSV80RDNZLWlVT0NlV2xFOE1CNl95bjRBWGZManRjUjFxa2F0MDFlSXlScGhOMHlFcWhvYW1MVlcyN08wNldYRTY2ZHpoSUFTeWgtdXE3U2NTT1JRbld6T0xuM3I1OUVUX0RMalpXUnh3dlBnaXhNbGczYWMyUk1EelE?oc=5",
+        "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1CZk5TcXJBeHBFUngweXBDNzdxel9RUDJqekFyZ05EblYtTTV2aVJlWE1qaDY3RTNCUEpyWjI1ZVpwbTVJLTZKQmZjRE9GZHliNnc?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "JioHotstar launches in UK, Canada and Singapore",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNUFNCcUQxLTdZUWduOGllbmY5NDVNeFJrSzV5c2JlSnJNN0ZBNmZNLXlHSnlwcGRSZDlBWFkwOGcydHNxMUt5bjF2X3pUakJvY1I1QkQ5YnF4bnJnMERSYng1bkhPM2RNa3BxVVdmazJDeTByQXZQNGJuZnVSVHJiM3d4NXJKZTRmdXVv0gGQAUFVX3lxTE9vd0FjQ1R5R3plTVhLbjFJdHFxbXBoUnhtRnpQcGNENUw3NXRjWlRDR1RVSzVreFJacXZlemhJTUNEOTd2cTgyMkpYZjZDWGh6cGNzcFdLZ3NtNEM0VGNRY1RzbFpFNkNSQVVfTDdzdmh1WnJraFZkaHliOUM5cUdFLWh2cDl4S21HOUlVU3lkZg?oc=5",
+          "source": "ThePrint"
+        },
+        {
+          "title": "JioHotstar launches international streaming service in UK, Canada and Singapore",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOHdPYUhOTWZ1aUhhbENEM0d5SkN3bDdQTnZ6YjNYSW5WX2ZJeElvXzlZZjNVeDVkRy1NYzNBMVEwcEdjclBaT1Zic3dIcnhobGlZUW5sc3RmZjhCaUtQTWtyQ21NU1JBdFI2TzkxM2FjOWw2WHVtVndNRU5MeTdpdm1zSU1CUlRjWmZpTzUwQTlaTGJWVDI1RkF5RnVGYkhPY3N2YmgzS1REaU9JMjFBaU1majBOMXBz?oc=5",
+          "source": "Entrackr"
+        },
+        {
+          "title": "JioHotstar launches in UK, Canada and Singapore with new shows and live features",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOV014N1NMaGkyTnc0WUUzVTdpVnZFRlByblpLU0JaUENHcUxDd3V3V0N0eUtIZjFnV21FcWhZckw0NFh2a2lxa2FWTTZjMXNDZEhadWVZel9iMHc2MmVmcEhsYnpLSW5VNGZfSEp6OFRvb0dyaXl2NlRaaTlEVkRKcjFvOXhsWnFxQjRrQl9YeWZlMjQ4NVhuQ2JnRWc2ODk1Zmdpb2lMODUwUE5KYVdsVl9fUEMxMkllMVUyTElkd05SbEVnbGp4THdYclUxVHQzcnVSNGJLcTRtZXRvLVJfcUJnS2xLdU9nRi1xai1saC11NzlB?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Indian Streamer JioHotstar Launches in U.K., Canada and Singapore With Interactive Features - Variety",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQVHc4YnRBMmVVSV80RDNZLWlVT0NlV2xFOE1CNl95bjRBWGZManRjUjFxa2F0MDFlSXlScGhOMHlFcWhvYW1MVlcyN08wNldYRTY2ZHpoSUFTeWgtdXE3U2NTT1JRbld6T0xuM3I1OUVUX0RMalpXUnh3dlBnaXhNbGczYWMyUk1EelE?oc=5",
+          "source": "Variety"
+        },
+        {
+          "title": "JioHotstar, India\u2019s largest video streaming platform, is run by JioStar, the media joint venture between Walt Disney Co. and Mukesh Ambani\u2019s Reliance Industries. It has announced its first international expansion under the unified JioHotstar brand, launching in",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1CZk5TcXJBeHBFUngweXBDNzdxel9RUDJqekFyZ05EblYtTTV2aVJlWE1qaDY3RTNCUEpyWjI1ZVpwbTVJLTZKQmZjRE9GZHliNnc?oc=5",
+          "source": "instagram.com"
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The launch of JioHotstar in the U.K., Canada, and Singapore is a major development for Indian streaming services and the diaspora audience.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@jiotv",
+          "type": "org",
+          "keywords": [
+            "streaming",
+            "launch",
+            "JioHotstar"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "3416ecf3-93d8-404a-b867-6b1f522c6b83",
+      "title": "Apple's New Mac Mini Already Discounted - See the Pre-Order Deals - MacRumors",
+      "description": "",
+      "category": "technology",
+      "signal_count": 4,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T14:12:58+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMijgFBVV95cUxOek9nelZpSlFsZ2lGVUZRWXI3RjU0R0Y1ZlNhdGFvX1VFWVVZWlA5cTN2VWZyUU9tbDhMeVlXc2NYY1dibXVVS2ZPZERQb01zdUtJajg0LTJVblRsR2xDZ1FRbDRZaGZWMmhybTI2Z0JUNDhYOXU0NnRxZjlpRVo3eF9jUVhpajc5b0VMd1RR?oc=5",
+        "https://news.google.com/rss/articles/CBMidEFVX3lxTFBMUHpXOE1Qd2doZFBfeDVHc0g4RXBUTktEOVFZdHdVcGpKZ0hWSHM1bHlQenhsVU9qZWZXZU1iek5HMHBRTmp3d01XcWFBWWw0MUFtNW52ZVF0czJ6Qmw2Tm1NYjNqQlRaMENheUh4WGJnd2wy?oc=5",
+        "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbW5Jd3pZcWFKZTV6Q0YyM1RuMVVWUjdtQ2lZSWxyYWpZcTBNMzd6Z2g3UG80a25nWVFfdUFzZkNkNHlSd2hGTnl2NW9lRnNIaE5HUk5VVktlU2xQamhJY1lqWk5WY1ZoekgwMWpKM2RvdmpNNEx5M3FDR2c3bFNjNjcwT0ttbmppZ1Z0Skd4UlMtM0xjeUJab3d0ZFdYeXVhWk52S1hRU1pOaGNGSUF6UU9IdUpRWlJObHBZ?oc=5",
+        "https://news.google.com/rss/articles/CBMipAFBVV95cUxOTzVFQ2pKbW5kMEZLendGMUR5QXBicHViczdfMGM2SHdBRUl1ZlQ2ak9pYUZQdGdDdlBpZkVvOHMyLUQ2X1pPcjRvM09idXZmMUhkUjZ3aUdCSElNQlB6M0RDdFlkWm96VWpPcTBaZlFfWnNQVnhOalBObHAzQy1DNHduWTJMdnVFSl9XVkgtQ2llRXFTRTAyU3pxLWFfWmRucGZDZw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "M6 MacBook Pro: Three new upgrades launching this fall",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOek9nelZpSlFsZ2lGVUZRWXI3RjU0R0Y1ZlNhdGFvX1VFWVVZWlA5cTN2VWZyUU9tbDhMeVlXc2NYY1dibXVVS2ZPZERQb01zdUtJajg0LTJVblRsR2xDZ1FRbDRZaGZWMmhybTI2Z0JUNDhYOXU0NnRxZjlpRVo3eF9jUVhpajc5b0VMd1RR?oc=5",
+          "source": "9to5mac.com"
+        },
+        {
+          "title": "Apple's New Mac Mini Already Discounted - See the Pre-Order Deals - MacRumors",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBMUHpXOE1Qd2doZFBfeDVHc0g4RXBUTktEOVFZdHdVcGpKZ0hWSHM1bHlQenhsVU9qZWZXZU1iek5HMHBRTmp3d01XcWFBWWw0MUFtNW52ZVF0czJ6Qmw2Tm1NYjNqQlRaMENheUh4WGJnd2wy?oc=5",
+          "source": "MacRumors"
+        },
+        {
+          "title": "Apple ninja edits Mac Studio specs to remove PCIe Gen 6 storage reference",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbW5Jd3pZcWFKZTV6Q0YyM1RuMVVWUjdtQ2lZSWxyYWpZcTBNMzd6Z2g3UG80a25nWVFfdUFzZkNkNHlSd2hGTnl2NW9lRnNIaE5HUk5VVktlU2xQamhJY1lqWk5WY1ZoekgwMWpKM2RvdmpNNEx5M3FDR2c3bFNjNjcwT0ttbmppZ1Z0Skd4UlMtM0xjeUJab3d0ZFdYeXVhWk52S1hRU1pOaGNGSUF6UU9IdUpRWlJObHBZ?oc=5",
+          "source": "Macworld"
+        },
+        {
+          "title": "M6 Mac mini vs M1 Mac mini: A five-year-gap comparison",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOTzVFQ2pKbW5kMEZLendGMUR5QXBicHViczdfMGM2SHdBRUl1ZlQ2ak9pYUZQdGdDdlBpZkVvOHMyLUQ2X1pPcjRvM09idXZmMUhkUjZ3aUdCSElNQlB6M0RDdFlkWm96VWpPcTBaZlFfWnNQVnhOalBObHAzQy1DNHduWTJMdnVFSl9XVkgtQ2llRXFTRTAyU3pxLWFfWmRucGZDZw?oc=5",
+          "source": "AppleInsider"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Apple's new Mac Mini discounts are relevant for Indian tech professionals and consumers in the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "11b127ba-5a56-45a1-a958-13582c9046d1",
+      "title": "Air Marshal (retd.) Jeetendra Mishra appointed first CEO of Ram Temple trust - The Hindu",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T12:13:09+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNYVBsUjFTMGNHVXozWWFIY2UzTUtuQVlOMkVwdW8xY3hFQ3FvYUNIU3htTTNWSnRTR01mczZ1OXpUbk5Cd0ctV1VNb1RrM2lpUEFfcWltVlZCWXAxb3NRV0J2d3EzWHJfWGE4Y1lJVDRMX1hGTFNVbTVNeF9vcTZ1MDBSOUpvTGY2TjRfQ0xwOUVkSmhnbVlFTU5DQWtXMmZfaXhQTzVYdTNIVXZaMjJBTkZCeXUyb05XVU9mTlNRWTBHdw?oc=5",
+        "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPTGRpUjlzT1M1TzVTY3gtX0FVN1o1Z3pKM1hJNjhvYVQ2bE9ndDAwa05aRUFDcmgwbXhOVk1IcjN1S2xaa012OVBQc0RvcXpxRS0yZDZuQV92RzdBejdsWGZMcnNKeXpXeG5jWmZCQ2RSenVjY3RTLUhlYmhPaUN0QmU3eE81LW1lRTUzUTc1SS0wNHgzWlVyc1JxdVdRZmtPS0ZvNnBSZ2FmNWREMi1NRnFmUk5pV0lnTk44V1BfdVpHMDFOakNMVzNPMTc5cG05VVJ1NlUtOGc4VE9aZU9N?oc=5",
+        "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQdnZVUjJsZ0Q3VUN1dlFFM2hhd3BIaUI4TGo4OFRZUEd1SUp5QmRLYW85UHd2VUtMOGZwVHJDbVZremxNejZ0T29uUGEtYnNoOFZmWjFPaS1POF9mYVdSckpFekZIMzhOOUxaaDBVTm9kUU4yMzZsNy1lOFBhODd4RFRnQ0FVQzRMbWFrQlNQNUJwOFRXS3J2WWJKN1VLSXkzazZFS0FsYjJGSnZFZ2lSRFF6SnctWWoxOVlZbERqaGRSUmd3NjFYMjAzbDI3UldJRFJLRXZKQWhMY1ktQ0YyMlRzYkd5elR1N2lFdEh4WF9LbHFOb3hR?oc=5",
+        "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQeEtQQmdQYTJ3bGRhN3hMZWJHdTZWWnRabl9kanVzMmJ6SHJld0tITWMxaTZNb012NkFmQVFsWjd2bGJOTUZQN0lsdm9TY0oyaE1IdjkyOTJ4cmFwdEgwUFh1ajNEQldvVm5sb3JGY2NnM3hLYWVWRVpoRk0yeE9KVTNMUms0bDZRQXFBNjNqNXE2ZjBVZVkta25yOWxNRkxpWkVLMkJlZzFsd1RkT0ZxcUdQSlB0WEZDUzZ5ZGxVX3JCSlpJZXU0WVhNVURpRXNi?oc=5",
+        "https://news.google.com/rss/articles/CBMigAJBVV95cUxNVFpKQ0g1NzY1VVJ2amI3bHV0UjZuX1VVM1lfb0FXNXprQnVHVUkzZzRDWDgyczNPUzlnUlVra3IxREtMOVNaNXdCdjNObndZY3VqYWlIS0k2ejdWZnM1b25qR0RWbFcwSGNnenRmaFEtWkpqdm9XeFpnZUJRT0l3UkhwUUFWTzZsQ2p1VHZLYThlbExKT0c5MVVGLTVjRjhiRnRPRGU4N21yVHIzS3pLbVAyVDdtelpmZkhHUG9fS1pTanJvVnVKVF9WaDFuTUFMWU5qX2dZMS1mdU1TUFFCcG5WNXZwMkJWRXpMMnBfMmNTY0JBWC1teXJlRHpoZHBK?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Retired Air Marshal Jeetendra Mishra to be Ram Temple\u2019s first CEO, trust gets 3 new members",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNYVBsUjFTMGNHVXozWWFIY2UzTUtuQVlOMkVwdW8xY3hFQ3FvYUNIU3htTTNWSnRTR01mczZ1OXpUbk5Cd0ctV1VNb1RrM2lpUEFfcWltVlZCWXAxb3NRV0J2d3EzWHJfWGE4Y1lJVDRMX1hGTFNVbTVNeF9vcTZ1MDBSOUpvTGY2TjRfQ0xwOUVkSmhnbVlFTU5DQWtXMmZfaXhQTzVYdTNIVXZaMjJBTkZCeXUyb05XVU9mTlNRWTBHdw?oc=5",
+          "source": "ThePrint"
+        },
+        {
+          "title": "Air Marshal (retd.) Jeetendra Mishra appointed first CEO of Ram Temple trust - The Hindu",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPTGRpUjlzT1M1TzVTY3gtX0FVN1o1Z3pKM1hJNjhvYVQ2bE9ndDAwa05aRUFDcmgwbXhOVk1IcjN1S2xaa012OVBQc0RvcXpxRS0yZDZuQV92RzdBejdsWGZMcnNKeXpXeG5jWmZCQ2RSenVjY3RTLUhlYmhPaUN0QmU3eE81LW1lRTUzUTc1SS0wNHgzWlVyc1JxdVdRZmtPS0ZvNnBSZ2FmNWREMi1NRnFmUk5pV0lnTk44V1BfdVpHMDFOakNMVzNPMTc5cG05VVJ1NlUtOGc4VE9aZU9N?oc=5",
+          "source": "The Hindu"
+        },
+        {
+          "title": "Operation Sindoor commander Air Marshal Jeetendra Mishra selected as Ram temple Trust\u2019s first CEO",
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQdnZVUjJsZ0Q3VUN1dlFFM2hhd3BIaUI4TGo4OFRZUEd1SUp5QmRLYW85UHd2VUtMOGZwVHJDbVZremxNejZ0T29uUGEtYnNoOFZmWjFPaS1POF9mYVdSckpFekZIMzhOOUxaaDBVTm9kUU4yMzZsNy1lOFBhODd4RFRnQ0FVQzRMbWFrQlNQNUJwOFRXS3J2WWJKN1VLSXkzazZFS0FsYjJGSnZFZ2lSRFF6SnctWWoxOVlZbERqaGRSUmd3NjFYMjAzbDI3UldJRFJLRXZKQWhMY1ktQ0YyMlRzYkd5elR1N2lFdEh4WF9LbHFOb3hR?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "'Restore' faith, ensure transparency: What lies ahead for new Ram Temple Trust CEO",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQeEtQQmdQYTJ3bGRhN3hMZWJHdTZWWnRabl9kanVzMmJ6SHJld0tITWMxaTZNb012NkFmQVFsWjd2bGJOTUZQN0lsdm9TY0oyaE1IdjkyOTJ4cmFwdEgwUFh1ajNEQldvVm5sb3JGY2NnM3hLYWVWRVpoRk0yeE9KVTNMUms0bDZRQXFBNjNqNXE2ZjBVZVkta25yOWxNRkxpWkVLMkJlZzFsd1RkT0ZxcUdQSlB0WEZDUzZ5ZGxVX3JCSlpJZXU0WVhNVURpRXNi?oc=5",
+          "source": "Deccan Herald"
+        },
+        {
+          "title": "\u2018Grateful to Lord Ram\u2019: Retd Air Marshal Jeetendra Mishra\u2019s first reaction after being named Ayodhya temple\u2019s first CEO",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNVFpKQ0g1NzY1VVJ2amI3bHV0UjZuX1VVM1lfb0FXNXprQnVHVUkzZzRDWDgyczNPUzlnUlVra3IxREtMOVNaNXdCdjNObndZY3VqYWlIS0k2ejdWZnM1b25qR0RWbFcwSGNnenRmaFEtWkpqdm9XeFpnZUJRT0l3UkhwUUFWTzZsQ2p1VHZLYThlbExKT0c5MVVGLTVjRjhiRnRPRGU4N21yVHIzS3pLbVAyVDdtelpmZkhHUG9fS1pTanJvVnVKVF9WaDFuTUFMWU5qX2dZMS1mdU1TUFFCcG5WNXZwMkJWRXpMMnBfMmNTY0JBWC1teXJlRHpoZHBK?oc=5",
           "source": "Hindustan Times"
         }
       ],
       "llm_score": 4,
-      "llm_reason": "This headline about Sabyasachi's new store is significant for the diaspora, reflecting Indian luxury and fashion trends.",
+      "llm_reason": "The appointment of Jeetendra Mishra as CEO of the Ram Temple trust is significant for the Indian diaspora, especially in the context of cultural and religious identity.",
       "coverage": "new",
       "ig_handles": [
         {
-          "handle": "@sabyasachi",
-          "type": "person",
+          "handle": "@ramtempletrust",
+          "type": "org",
           "keywords": [
-            "luxury",
-            "fashion",
-            "India"
+            "Ram Temple",
+            "trust",
+            "CEO"
           ]
         }
       ],
-      "kids_relevant": false
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
     },
     {
-      "topic_id": "d9a87831-548c-4020-9d0f-20dd9d741cc9",
-      "title": "Peda Recipe | Milk Peda (Doodh Peda)",
+      "topic_id": "faceafd5-6031-4e34-a635-f2da95a3935b",
+      "title": "I'm Game Worldwide Box Office Day 1 Advance Booking: Dulquer Salmaan\u2019s Homecoming Sees An Underwhelming Response, Stays Below 3 Crore - Koimoi",
       "description": "",
-      "category": "food",
-      "signal_count": 1,
-      "source_diversity": 1,
-      "source_types": [
-        "rss"
-      ],
-      "newest_signal": "2026-08-31T18:43:53+00:00",
-      "source_urls": [
-        "https://www.vegrecipesofindia.com/milk-peda-recipe-doodh-peda-recipe/"
-      ],
-      "all_signals": [
-        {
-          "title": "Peda Recipe | Milk Peda (Doodh Peda)",
-          "url": "https://www.vegrecipesofindia.com/milk-peda-recipe-doodh-peda-recipe/",
-          "source": null
-        }
-      ],
-      "llm_score": 3,
-      "llm_reason": "The Peda recipe has a clear Indian connection, appealing to readers interested in Indian cuisine.",
-      "coverage": "new",
-      "ig_handles": [],
-      "kids_relevant": false
-    },
-    {
-      "topic_id": "fa74f142-4435-43de-9505-e26d0096aaf9",
-      "title": "'Like Father, Like Son': Suresh Raina's Son Rio Begins Cricket Journey",
-      "description": "",
-      "category": "sports",
-      "signal_count": 1,
-      "source_diversity": 1,
-      "source_types": [
-        "rss"
-      ],
-      "newest_signal": "2026-08-31T17:35:15+00:00",
-      "source_urls": [
-        "https://sports.ndtv.com/cricket/like-father-like-son-suresh-rainas-son-rio-begins-cricket-journey-11982752#publisher=newsstand"
-      ],
-      "all_signals": [
-        {
-          "title": "'Like Father, Like Son': Suresh Raina's Son Rio Begins Cricket Journey",
-          "url": "https://sports.ndtv.com/cricket/like-father-like-son-suresh-rainas-son-rio-begins-cricket-journey-11982752#publisher=newsstand",
-          "source": null
-        }
-      ],
-      "llm_score": 3,
-      "llm_reason": "Suresh Raina's son beginning his cricket journey has a clear Indian connection and is of interest to the diaspora.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@sureshraina3",
-          "type": "person",
-          "keywords": [
-            "Suresh Raina",
-            "cricket",
-            "son"
-          ]
-        }
-      ],
-      "kids_relevant": false
-    },
-    {
-      "topic_id": "f5e5359d-3c3b-4031-9636-a2acc6aa8a7d",
-      "title": "China Masters: Lakshya Sen Faces World Champion Alex Lanier As Indian Challenge Begins",
-      "description": "",
-      "category": "sports",
-      "signal_count": 1,
-      "source_diversity": 1,
-      "source_types": [
-        "rss"
-      ],
-      "newest_signal": "2026-08-31T16:56:44+00:00",
-      "source_urls": [
-        "https://sports.ndtv.com/badminton/china-masters-lakshya-sen-faces-world-champion-alex-lanier-as-indian-challenge-begins-11982879#publisher=newsstand"
-      ],
-      "all_signals": [
-        {
-          "title": "China Masters: Lakshya Sen Faces World Champion Alex Lanier As Indian Challenge Begins",
-          "url": "https://sports.ndtv.com/badminton/china-masters-lakshya-sen-faces-world-champion-alex-lanier-as-indian-challenge-begins-11982879#publisher=newsstand",
-          "source": null
-        }
-      ],
-      "llm_score": 3,
-      "llm_reason": "Lakshya Sen's participation in the China Masters highlights Indian talent in badminton, making it relevant to the diaspora.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@lakshya_sen",
-          "type": "person",
-          "keywords": [
-            "badminton",
-            "China Masters",
-            "Indian player"
-          ]
-        }
-      ],
-      "kids_relevant": false
-    },
-    {
-      "topic_id": "4ccc2948-a5c9-43be-88b3-2c9d7e7a72d4",
-      "title": "Women\u2019s Asia Cup: Sobhana Mostary recalls the India win that \u2018changed everything\u2019 for Bangladesh - timesofindia.indiatimes.com",
-      "description": "",
-      "category": "sports",
+      "category": "entertainment",
       "signal_count": 5,
       "source_diversity": 5,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-08-31T15:02:00+00:00",
+      "newest_signal": "2026-09-02T10:34:21+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaXBnNm9uUWg1M1d5VkZraVFCazhuZ0VXNnZBanFoV0E3X1JjMkxNV1lnNURKVmNXMDVCcEE1UzhZT2pwM0Jnd0RraVdHMV85eS1vcUd4UGgtQlMzbTdBRGFtcGVxaGJ2ekRjMUNNNG4wT3R5VWQwc2pZY0lRbE5SNWFyUG1HY0p4bUUwaHNLaWh2dERfZENPdXF0ZVpXd2FZSF9Qem00dUhoZkJ4UW1VRVRZT3dwbEd6Mi1jZA?oc=5",
-        "https://news.google.com/rss/articles/CBMimgJBVV95cUxPak83S3FDUjJMSElkTV9hVUJyc2RfOVpVeDliNjBPd0k0TVZaWGtqS2pNVXNwMHN4d1V4LU9sWnV4ZWtCQVJxUTBybld1eUo2Nnhhb3NWaTBveC1wSEE1Nm5qLWxUcGZwVXdVdkVyYU9peGlkVHI5ZVZxczM4U1dHOEdCOXFjbmdUUEFOMWtrcGZGT0NlNnl0NEdPZmFwaHhyX0FZMldZd2Y1eTVhMzd3VC1ZRnlCWEVUWk9uZ1JSdVdBZTZQUG5uUjJkOXpna1JScHFxdFljeW1oeU1lODJWb1Zrd0NTamJiMnBJYklFUUdGRjRNQTRYOUdjdkJ6czZ5TEtJWGtuQ09ZaVkwYUVrQ0JBbG1lbzhuVXc?oc=5",
-        "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQczREeU52SUsyZHN1OFJMaVNOS2FpaGRJRzhkZzZVSjJiaklsbWFwYTR2QkFRSkFzdnhQWWdUNWR4bXNmTnFPSVVDbnIzUHQwYm1ScjJab2hRcGFodVRuemZqXzQwNW1ucm1ZdjhrY3ViWS1ET0NsemlEd3owVE5xMnp4dzkxUzluYy1nal9hbnNqNzRWeHpjM2FYQWg0YTRiVXVpeUdUREdEeUF5ZGI0UXk4WkstVDVmMGdCMXdxckFyeVFLalJsRjR6SkFobFgyckgtZlF3dHAyU0lLQVE?oc=5",
-        "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPcEU4Q2pfS1RrdTZpWmNua3VLUklZejlBSjJqOTBIYzRhYW1hVE54bkNyMGQyVGVldnh3U0g5dG00aEl1cEZMYWNYUjN1X2Zzc3B1U1NlQTBYMmZuTndKVmNOTHNrZWFTZm5sYUpHeXVJRldtdFFyVmxqUTFERWxieWNQbF9McDJ2WXNJWmd3OEx6aWdEdmJwU1g2MzFCMkpZaDd0aHAzcklGY0pOSlhOQmZYczlGSWZrd09NTnNTM3JiU25FdWpUSmdITDU3M0xldHpjRnp4ekE3R1BYRHVWX2VueWtoZWpyRVFhelBFTjdNd9IB-AFBVV95cUxQdS03dWktYzJQWDQwOUR1TmxJeUp1X0pSaWhzTElJcDNsSURONjlIVXJfajBjVUxBS3VNLUJseTJBTGdPeEdxX0ZHdGZYYWtSMlN2MW9iWG1jTk0wMGlYSFNkNFhhbGN3UTRFMXFiREczSC0xZ2hQUHBvT3oyTXVBdzAyN1BRWVRINzZjVTI2R2VaOEJNdXdsVDBpVDVRUkUybWgzVmZBZEJVUlFIWFZWdjdMOW00akJDcFJsV080SXlaSWlEZkFNQk1fc25qeV9laElfNUx2TG5PTFNIeHFCSklKOHVEVjlDWXhLTkRNMFNjbWMzR1J1OA?oc=5",
-        "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYzVCRXBLekQ5UzNERGhfTTFlTzNYeXY3SVo2Q05vOXFGNjJ2U2tkQ2RkRXZGTVRhdnB0V2Y3NGlRbHVxcm9fc0U2bF9Rd2hlTFhjZGJOcUdZSTB0X0ZjQnFoelFFdE03ZDhCUlFwVDc1cUJnRHNVZlF6U1hqdzNacERGTzNKUlVkZ2RFTnRzeVE1cmdjSWtyQmRpWWxtaURpUFVaWGViT1RDSGN4d1BqaTdhZ1pRbk9DMjBaazdWTVA0V0pHV2pYd0dnVVZSeXNHNjJPUl9ManRBcnc0Z3d2Z3RucTE?oc=5"
+        "https://news.google.com/rss/articles/CBMioAFBVV95cUxQdnFSY0dBb01uLUMxSk1pRy1mTE9ZazlUSlRnRTlHelN2SlZIMjRSc0xQZ2sxSEp1eEE3OFRXMHF6X1pIcEpaVmh4OURNQXVRdW5OQzRtNTZyMWlOWW52Z2dBY1FaenpVRV94N1lNUV9sNUZUUVI3bHgzWHdaWllqTUc0b2otbjYyQXdLWE9xc1l2azlSQk56N0RtbmdGb2NV?oc=5",
+        "https://news.google.com/rss/articles/CBMivwFBVV95cUxQZDRZSlVJbUhsN01fSWNlUmNLazBFWlJYa2t1R3FDRk5FWGo0UmdaX044aGZ5N3ROYXgtNnBQRWdNNm96MFVWNXZ2cjQzUExPcTVyVHYxLWdKa1E5aXc4YU5NcGVQRnhRdkxlbjF4cWdJYmhXSkhnOFVBbkwtTm00MUtUYWNBVTBUdEpLcUZzdU9VUVpIOTBUQTBQMlFwTUdNUDNkRk93cmR5a0RsVS1qLW9lOVlFcXY0Q1RiX0ozQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQZ3VweXN4eGRVVXRYVnZWVnFuOWtRQnh0NURWV3lDUDVIUHVVaGpyR1FMNl9DRjdBQy1pODhrUmdMRHhoVU1EUnhFU2tEcWlZdEI5STF5eXZFSWxmTHdDQVNYRmw1NlJla2NrMU5FbGZ2VzlCdUxsV0p1N0g3NllGV3hyUFVzYTFKbFBVOTU1SHphZ2N2a2FtS0s5UlRGNmhKUjgtZ3VENWNOMEFzUl9sQU5udW1Obi1lRVFiMExlLVBlSzlhcTd1bjQtQXFhbHd6TkhOQm5hOWZrMlVQWmRET3JOSWl1bktHazF2NmVsRlAwZVREZWFR?oc=5",
+        "https://news.google.com/rss/articles/CBMivAFBVV95cUxPN3dBY3NQUDVzMW03RWZPRFVmSU9razBMVkNOVjNsUzlKZko5eTB2dGIzR2l5YVB2cEwyUGR6Y21YMGhwQWlJeDYzZUVhRng5d0JMQkN4ZExUdm4xcFlEdzlfb3pxZGxZempKazNoNnVfamNEQmZZZl9wQ2ZHajA0Z29RTkp1bkM2Y0ZfQTZpRVJCSV9WallQeGIxZ2lqTC14b3NsblAyZmhyc00wT0ROM2d0YXBRX1ptcy0tNg?oc=5",
+        "https://news.google.com/rss/articles/CBMixAFBVV95cUxON1Q4cWYtbEpFOGdOdjBqVE1vV0ROY3ZqNVhMVkF3ZmlKMGJ2Nl9OSDVscjJ0V1dlTXREeWhCbGJubXY3WndIdGxEOEFCN3ktVThWLTBlUnZHN2NZLTRLQW1LMjhXMkpGYW5aMWFKWkZkTlN1cUtYVHNfRElWRURlMkEzZmlZRm1nMzAtMVlLeGRMRktjQVVsdVJDZFZJS0oyTnY5eWlYcmx4QXdJRkdTTk5OU0xMdkczX1h3R0xlSVNxYV920gHKAUFVX3lxTE5YdVpVRFMwUWtTMzdsUGFvTjFyUHhXWUhZSE5ZV05QSll5UnlQWGhrYVZvYUJ1b3JNMG15RFNEdkN4TVJETmN5WnhMa051SHNnQnA2UnJkb2V2aWoxQjJ5ZG5ZeHNZREsxcTRkMjZsRC1RR010V3NXcjVoU0tZWnlIckFkZnRFWTFDemRZNU15TkE5UXdIeWJMMjJKQ3NwOVhuNUtJSEhGVFVkeXRJc3JwNHY4MHg2SEZhaW5zVTZLRUh5S2lfTkxlU1E?oc=5"
       ],
       "all_signals": [
         {
-          "title": "Bangladesh open Women's Asia Cup campaign with commanding win over Indonesia",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaXBnNm9uUWg1M1d5VkZraVFCazhuZ0VXNnZBanFoV0E3X1JjMkxNV1lnNURKVmNXMDVCcEE1UzhZT2pwM0Jnd0RraVdHMV85eS1vcUd4UGgtQlMzbTdBRGFtcGVxaGJ2ekRjMUNNNG4wT3R5VWQwc2pZY0lRbE5SNWFyUG1HY0p4bUUwaHNLaWh2dERfZENPdXF0ZVpXd2FZSF9Qem00dUhoZkJ4UW1VRVRZT3dwbEd6Mi1jZA?oc=5",
-          "source": "Cricbuzz"
+          "title": "Dulquer Salmaan\u2019s \u2018I'm Game\u2019 cleared for release with UA 16+ certificate",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQdnFSY0dBb01uLUMxSk1pRy1mTE9ZazlUSlRnRTlHelN2SlZIMjRSc0xQZ2sxSEp1eEE3OFRXMHF6X1pIcEpaVmh4OURNQXVRdW5OQzRtNTZyMWlOWW52Z2dBY1FaenpVRV94N1lNUV9sNUZUUVI3bHgzWHdaWllqTUc0b2otbjYyQXdLWE9xc1l2azlSQk56N0RtbmdGb2NV?oc=5",
+          "source": "India Tribune - Chicago"
         },
         {
-          "title": "Women\u2019s Asia Cup: Sobhana Mostary recalls the India win that \u2018changed everything\u2019 for Bangladesh - timesofindia.indiatimes.com",
-          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPak83S3FDUjJMSElkTV9hVUJyc2RfOVpVeDliNjBPd0k0TVZaWGtqS2pNVXNwMHN4d1V4LU9sWnV4ZWtCQVJxUTBybld1eUo2Nnhhb3NWaTBveC1wSEE1Nm5qLWxUcGZwVXdVdkVyYU9peGlkVHI5ZVZxczM4U1dHOEdCOXFjbmdUUEFOMWtrcGZGT0NlNnl0NEdPZmFwaHhyX0FZMldZd2Y1eTVhMzd3VC1ZRnlCWEVUWk9uZ1JSdVdBZTZQUG5uUjJkOXpna1JScHFxdFljeW1oeU1lODJWb1Zrd0NTamJiMnBJYklFUUdGRjRNQTRYOUdjdkJ6czZ5TEtJWGtuQ09ZaVkwYUVrQ0JBbG1lbzhuVXc?oc=5",
-          "source": "timesofindia.indiatimes.com"
+          "title": "Dulquer\u2019s \u2018I\u2019m Game\u2019 Plot Leak: Is It Similar to an Old Hollywood Story? -",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQZDRZSlVJbUhsN01fSWNlUmNLazBFWlJYa2t1R3FDRk5FWGo0UmdaX044aGZ5N3ROYXgtNnBQRWdNNm96MFVWNXZ2cjQzUExPcTVyVHYxLWdKa1E5aXc4YU5NcGVQRnhRdkxlbjF4cWdJYmhXSkhnOFVBbkwtTm00MUtUYWNBVTBUdEpLcUZzdU9VUVpIOTBUQTBQMlFwTUdNUDNkRk93cmR5a0RsVS1qLW9lOVlFcXY0Q1RiX0ozQQ?oc=5",
+          "source": "Telugu Times"
         },
         {
-          "title": "Nahida, Marufa help Bangladesh brush aside Indonesia",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQczREeU52SUsyZHN1OFJMaVNOS2FpaGRJRzhkZzZVSjJiaklsbWFwYTR2QkFRSkFzdnhQWWdUNWR4bXNmTnFPSVVDbnIzUHQwYm1ScjJab2hRcGFodVRuemZqXzQwNW1ucm1ZdjhrY3ViWS1ET0NsemlEd3owVE5xMnp4dzkxUzluYy1nal9hbnNqNzRWeHpjM2FYQWg0YTRiVXVpeUdUREdEeUF5ZGI0UXk4WkstVDVmMGdCMXdxckFyeVFLalJsRjR6SkFobFgyckgtZlF3dHAyU0lLQVE?oc=5",
-          "source": "Cricinfo"
+          "title": "I'm Game Worldwide Box Office Day 1 Advance Booking: Dulquer Salmaan\u2019s Homecoming Sees An Underwhelming Response, Stays Below 3 Crore - Koimoi",
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQZ3VweXN4eGRVVXRYVnZWVnFuOWtRQnh0NURWV3lDUDVIUHVVaGpyR1FMNl9DRjdBQy1pODhrUmdMRHhoVU1EUnhFU2tEcWlZdEI5STF5eXZFSWxmTHdDQVNYRmw1NlJla2NrMU5FbGZ2VzlCdUxsV0p1N0g3NllGV3hyUFVzYTFKbFBVOTU1SHphZ2N2a2FtS0s5UlRGNmhKUjgtZ3VENWNOMEFzUl9sQU5udW1Obi1lRVFiMExlLVBlSzlhcTd1bjQtQXFhbHd6TkhOQm5hOWZrMlVQWmRET3JOSWl1bktHazF2NmVsRlAwZVREZWFR?oc=5",
+          "source": "Koimoi"
         },
         {
-          "title": "Bangladesh vs Indonesia Highlights, Women\u2019s Asia Cup 2026: BAN beats INA by 71 runs to start with win",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPcEU4Q2pfS1RrdTZpWmNua3VLUklZejlBSjJqOTBIYzRhYW1hVE54bkNyMGQyVGVldnh3U0g5dG00aEl1cEZMYWNYUjN1X2Zzc3B1U1NlQTBYMmZuTndKVmNOTHNrZWFTZm5sYUpHeXVJRldtdFFyVmxqUTFERWxieWNQbF9McDJ2WXNJWmd3OEx6aWdEdmJwU1g2MzFCMkpZaDd0aHAzcklGY0pOSlhOQmZYczlGSWZrd09NTnNTM3JiU25FdWpUSmdITDU3M0xldHpjRnp4ekE3R1BYRHVWX2VueWtoZWpyRVFhelBFTjdNd9IB-AFBVV95cUxQdS03dWktYzJQWDQwOUR1TmxJeUp1X0pSaWhzTElJcDNsSURONjlIVXJfajBjVUxBS3VNLUJseTJBTGdPeEdxX0ZHdGZYYWtSMlN2MW9iWG1jTk0wMGlYSFNkNFhhbGN3UTRFMXFiREczSC0xZ2hQUHBvT3oyTXVBdzAyN1BRWVRINzZjVTI2R2VaOEJNdXdsVDBpVDVRUkUybWgzVmZBZEJVUlFIWFZWdjdMOW00akJDcFJsV080SXlaSWlEZkFNQk1fc25qeV9laElfNUx2TG5PTFNIeHFCSklKOHVEVjlDWXhLTkRNMFNjbWMzR1J1OA?oc=5",
-          "source": "Sportstar"
+          "title": "Dulquer Salmaan on building a franchise with I\u2019m Game: \u2018Had to invest in this\u2019",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPN3dBY3NQUDVzMW03RWZPRFVmSU9razBMVkNOVjNsUzlKZko5eTB2dGIzR2l5YVB2cEwyUGR6Y21YMGhwQWlJeDYzZUVhRng5d0JMQkN4ZExUdm4xcFlEdzlfb3pxZGxZempKazNoNnVfamNEQmZZZl9wQ2ZHajA0Z29RTkp1bkM2Y0ZfQTZpRVJCSV9WallQeGIxZ2lqTC14b3NsblAyZmhyc00wT0ROM2d0YXBRX1ptcy0tNg?oc=5",
+          "source": "The Indian Express"
         },
         {
-          "title": "Bangladesh Women vs Indonesia Women Predictions | Women's Asia Cup 2026",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYzVCRXBLekQ5UzNERGhfTTFlTzNYeXY3SVo2Q05vOXFGNjJ2U2tkQ2RkRXZGTVRhdnB0V2Y3NGlRbHVxcm9fc0U2bF9Rd2hlTFhjZGJOcUdZSTB0X0ZjQnFoelFFdE03ZDhCUlFwVDc1cUJnRHNVZlF6U1hqdzNacERGTzNKUlVkZ2RFTnRzeVE1cmdjSWtyQmRpWWxtaURpUFVaWGViT1RDSGN4d1BqaTdhZ1pRbk9DMjBaazdWTVA0V0pHV2pYd0dnVVZSeXNHNjJPUl9ManRBcnc0Z3d2Z3RucTE?oc=5",
-          "source": "Cricket World"
-        },
-        {
-          "title": "Nahida, Marufa help Bangladesh brush aside Indonesia",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQczREeU52SUsyZHN1OFJMaVNOS2FpaGRJRzhkZzZVSjJiaklsbWFwYTR2QkFRSkFzdnhQWWdUNWR4bXNmTnFPSVVDbnIzUHQwYm1ScjJab2hRcGFodVRuemZqXzQwNW1ucm1ZdjhrY3ViWS1ET0NsemlEd3owVE5xMnp4dzkxUzluYy1nal9hbnNqNzRWeHpjM2FYQWg0YTRiVXVpeUdUREdEeUF5ZGI0UXk4WkstVDVmMGdCMXdxckFyeVFLalJsRjR6SkFobFgyckgtZlF3dHAyU0lLQVE?oc=5",
-          "source": "Cricinfo"
-        },
-        {
-          "title": "Women\u2019s Asia Cup: Sobhana Mostary recalls the India win that \u2018changed everything\u2019 for Bangladesh - timesofindia.indiatimes.com",
-          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPak83S3FDUjJMSElkTV9hVUJyc2RfOVpVeDliNjBPd0k0TVZaWGtqS2pNVXNwMHN4d1V4LU9sWnV4ZWtCQVJxUTBybld1eUo2Nnhhb3NWaTBveC1wSEE1Nm5qLWxUcGZwVXdVdkVyYU9peGlkVHI5ZVZxczM4U1dHOEdCOXFjbmdUUEFOMWtrcGZGT0NlNnl0NEdPZmFwaHhyX0FZMldZd2Y1eTVhMzd3VC1ZRnlCWEVUWk9uZ1JSdVdBZTZQUG5uUjJkOXpna1JScHFxdFljeW1oeU1lODJWb1Zrd0NTamJiMnBJYklFUUdGRjRNQTRYOUdjdkJ6czZ5TEtJWGtuQ09ZaVkwYUVrQ0JBbG1lbzhuVXc?oc=5",
-          "source": "timesofindia.indiatimes.com"
-        },
-        {
-          "title": "Bangladesh vs Indonesia Highlights, Women\u2019s Asia Cup 2026: BAN beats INA by 71 runs to start with win",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPcEU4Q2pfS1RrdTZpWmNua3VLUklZejlBSjJqOTBIYzRhYW1hVE54bkNyMGQyVGVldnh3U0g5dG00aEl1cEZMYWNYUjN1X2Zzc3B1U1NlQTBYMmZuTndKVmNOTHNrZWFTZm5sYUpHeXVJRldtdFFyVmxqUTFERWxieWNQbF9McDJ2WXNJWmd3OEx6aWdEdmJwU1g2MzFCMkpZaDd0aHAzcklGY0pOSlhOQmZYczlGSWZrd09NTnNTM3JiU25FdWpUSmdITDU3M0xldHpjRnp4ekE3R1BYRHVWX2VueWtoZWpyRVFhelBFTjdNd9IB-AFBVV95cUxQdS03dWktYzJQWDQwOUR1TmxJeUp1X0pSaWhzTElJcDNsSURONjlIVXJfajBjVUxBS3VNLUJseTJBTGdPeEdxX0ZHdGZYYWtSMlN2MW9iWG1jTk0wMGlYSFNkNFhhbGN3UTRFMXFiREczSC0xZ2hQUHBvT3oyTXVBdzAyN1BRWVRINzZjVTI2R2VaOEJNdXdsVDBpVDVRUkUybWgzVmZBZEJVUlFIWFZWdjdMOW00akJDcFJsV080SXlaSWlEZkFNQk1fc25qeV9laElfNUx2TG5PTFNIeHFCSklKOHVEVjlDWXhLTkRNMFNjbWMzR1J1OA?oc=5",
-          "source": "Sportstar"
-        },
-        {
-          "title": "Bangladesh open Women's Asia Cup campaign with commanding win over Indonesia",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaXBnNm9uUWg1M1d5VkZraVFCazhuZ0VXNnZBanFoV0E3X1JjMkxNV1lnNURKVmNXMDVCcEE1UzhZT2pwM0Jnd0RraVdHMV85eS1vcUd4UGgtQlMzbTdBRGFtcGVxaGJ2ekRjMUNNNG4wT3R5VWQwc2pZY0lRbE5SNWFyUG1HY0p4bUUwaHNLaWh2dERfZENPdXF0ZVpXd2FZSF9Qem00dUhoZkJ4UW1VRVRZT3dwbEd6Mi1jZA?oc=5",
-          "source": "Cricbuzz"
-        },
-        {
-          "title": "Bangladesh Women vs Indonesia Women Predictions | Women's Asia Cup 2026",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYzVCRXBLekQ5UzNERGhfTTFlTzNYeXY3SVo2Q05vOXFGNjJ2U2tkQ2RkRXZGTVRhdnB0V2Y3NGlRbHVxcm9fc0U2bF9Rd2hlTFhjZGJOcUdZSTB0X0ZjQnFoelFFdE03ZDhCUlFwVDc1cUJnRHNVZlF6U1hqdzNacERGTzNKUlVkZ2RFTnRzeVE1cmdjSWtyQmRpWWxtaURpUFVaWGViT1RDSGN4d1BqaTdhZ1pRbk9DMjBaazdWTVA0V0pHV2pYd0dnVVZSeXNHNjJPUl9ManRBcnc0Z3d2Z3RucTE?oc=5",
-          "source": "Cricket World"
+          "title": "Im Game pre-release event: Dulquer Salmaan, Samyuktha and Antony Varghese share exciting insights",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxON1Q4cWYtbEpFOGdOdjBqVE1vV0ROY3ZqNVhMVkF3ZmlKMGJ2Nl9OSDVscjJ0V1dlTXREeWhCbGJubXY3WndIdGxEOEFCN3ktVThWLTBlUnZHN2NZLTRLQW1LMjhXMkpGYW5aMWFKWkZkTlN1cUtYVHNfRElWRURlMkEzZmlZRm1nMzAtMVlLeGRMRktjQVVsdVJDZFZJS0oyTnY5eWlYcmx4QXdJRkdTTk5OU0xMdkczX1h3R0xlSVNxYV920gHKAUFVX3lxTE5YdVpVRFMwUWtTMzdsUGFvTjFyUHhXWUhZSE5ZV05QSll5UnlQWGhrYVZvYUJ1b3JNMG15RFNEdkN4TVJETmN5WnhMa051SHNnQnA2UnJkb2V2aWoxQjJ5ZG5ZeHNZREsxcTRkMjZsRC1RR010V3NXcjVoU0tZWnlIckFkZnRFWTFDemRZNU15TkE5UXdIeWJMMjJKQ3NwOVhuNUtJSEhGVFVkeXRJc3JwNHY4MHg2SEZhaW5zVTZLRUh5S2lfTkxlU1E?oc=5",
+          "source": "Only Kollywood"
         }
       ],
-      "llm_score": 3,
-      "llm_reason": "The story highlights a significant moment in women's cricket that resonates with the Indian diaspora, especially given India's strong cricketing ties with Bangladesh.",
+      "llm_score": 4,
+      "llm_reason": "The box office performance of 'I'm Game' featuring Dulquer Salmaan is significant for the Indian diaspora audience interested in South Indian cinema.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@dulquer_salmaan",
+          "type": "person",
+          "keywords": [
+            "box office",
+            "film",
+            "release"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "5752e77e-c398-4ae9-baa8-5d38c2c77c28",
+      "title": "Toxic (Hindi) Box Office Collections: Yash starrer mints Rs 4.50 crore on 1st discounted Tuesday, nears Rs 125 crore mark - Pinkvilla",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 4,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-02T07:58:06+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiuwNBVV95cUxQY1J6WHBPUWtjcURBa1N1UXc0RVhqWEtjNW5EdVBiQzJEZDRKZTYwM2ozQXVzNlRtM0o2QjJUYkVzbTRGTk9EQ0dCRXB6UTd2cUN1TDZMRGdiNHpmVkR0cHlUY1g5TTdOSDZoZzdhZUphTlp0V2NxYjdqOThzZWJqQjdub3hPSU4tZ1dDSVFkamJ4WmtYbFp1ZDc5Mk1HdzZlV29zVERWR3pIMGhubnF4eGl4T3g5OVdBeE5EMnFvRGNwbmxGNldJWjJyeF9QOGpjTHVILXN2UjlLbU0wOWVQSFFtN3pVcGQ1SC01M2tFQW90T01QNnpyZkRzVTFHV1BpNWJoNms0VnhFR0tXdy0tdVJuUng4dVdmR0RKYlJUMmR2VV8zVXZ0blVscDBEdnlLRHNyZVFvdTNhUW5sOXpYbHRJSkYzbFp0UEc0U1ZVZlcyb281VGJoYVJXb09nYndhUFZENTJUMFFFTGdYZjY1dEVVRVZsSGRlYVQwM0NGeFM1TGs0cW9rQWFqUlVJUTgxOVQ5ajJ5SzlfOGNMS1djM01yc0J5TF9ObEF2YnQxSExORUtBc2pfaGNNQQ?oc=5",
+        "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOeHhtb250OEtmTkpES3JuS2UwRlljRUFqTnp2Rk94UU1mc1hDU3gtZ3FmcV9ZZzlmWFRFLUVuZnJxa0tXa3VTN2JuT3JfRnE2OUFCc25BWGVaU3FuLV94M195eG0xU3kwRW9tZGV5Vy1VeEZoX2Jsbi14VGpOcng1bGZlTDg2Uk9COXdubjUzQy10MEFMSFpieXpXTUt2TU9WYmQ3SzRrTG1SNVdUV0lSVXZvZDJnT2Z4ZTNDaFQ4cUQwekMyb3d2NDgxU3hKcE05ejRaUGJzM096YXZ3TFgydm9uaw?oc=5",
+        "https://news.google.com/rss/articles/CBMitgFBVV95cUxOT2h0SHpKaHNHaGZYRjM2RlUyVzJPdHNNWS1xVUhvWnpMV0ZyMnRxekFMakVOeV9TRXczT0czN3hNNjlQcmwxdlFpbDQwMW1HeG1kMlRnanpIdHVVeE1sS1RIbklEVkJKNjV6QlhhckZ3YWRidXQtRGZpSkt1NTRnZzhFU1JSdjdQTVM3b3hiNENzREJva3ZLOEJhc0RNeERuTEdDTXVwbkFFTXBDYTluRDFBMS1IUQ?oc=5",
+        "https://news.google.com/rss/articles/CBMihwJBVV95cUxQckg0alpkRzJod2VtN1hwcUo3VHhyc0ZTRFdPSVBIR0JFY0E4Und3UFh5M1RyN3MyNXFjYmN1aEhPWEgxclN1Q1FYQTJEY3J5dTZ3cUl5cHF2VVhBOS1nSHRXaW1fbDJsRGZZeXktWXhSamlYRlB0Unlick9wRmN4dUxUWG1iZnAxWDVaY0pMSnlPb1AteFl1WDNXU3lWZGFfR3pkckVwQUtsRTVpVzR2d1ZxVzlxMnpPdlF5NVNmWTBQNEFxSzQ5dFc3VWtQRlpFeUJUUEpKY0Iza3VSam9wRGlraElOWFhOYV9PRk9yY0FaTXpDMGZaUVdlTXlhQm5Eb3hzX1FWSQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "'Kantara' music composer Ajaneesh Loknath praises Yash\u2019s \u2018Toxic\u2019, urges fans to watch it in theatres before forming an opinion, compares its reception debate with Aamir Khan\u2019s \u2018Lagaan\u2019: \u2018Don\u2019t just read reviews, experience cinema\u2019",
+          "url": "https://news.google.com/rss/articles/CBMiuwNBVV95cUxQY1J6WHBPUWtjcURBa1N1UXc0RVhqWEtjNW5EdVBiQzJEZDRKZTYwM2ozQXVzNlRtM0o2QjJUYkVzbTRGTk9EQ0dCRXB6UTd2cUN1TDZMRGdiNHpmVkR0cHlUY1g5TTdOSDZoZzdhZUphTlp0V2NxYjdqOThzZWJqQjdub3hPSU4tZ1dDSVFkamJ4WmtYbFp1ZDc5Mk1HdzZlV29zVERWR3pIMGhubnF4eGl4T3g5OVdBeE5EMnFvRGNwbmxGNldJWjJyeF9QOGpjTHVILXN2UjlLbU0wOWVQSFFtN3pVcGQ1SC01M2tFQW90T01QNnpyZkRzVTFHV1BpNWJoNms0VnhFR0tXdy0tdVJuUng4dVdmR0RKYlJUMmR2VV8zVXZ0blVscDBEdnlLRHNyZVFvdTNhUW5sOXpYbHRJSkYzbFp0UEc0U1ZVZlcyb281VGJoYVJXb09nYndhUFZENTJUMFFFTGdYZjY1dEVVRVZsSGRlYVQwM0NGeFM1TGs0cW9rQWFqUlVJUTgxOVQ5ajJ5SzlfOGNMS1djM01yc0J5TF9ObEF2YnQxSExORUtBc2pfaGNNQQ?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Toxic Box Office Collection Day 7 Live Updates: Yash-starrer earns Rs 315 cr worldwide, holds steady on Wednesday",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOeHhtb250OEtmTkpES3JuS2UwRlljRUFqTnp2Rk94UU1mc1hDU3gtZ3FmcV9ZZzlmWFRFLUVuZnJxa0tXa3VTN2JuT3JfRnE2OUFCc25BWGVaU3FuLV94M195eG0xU3kwRW9tZGV5Vy1VeEZoX2Jsbi14VGpOcng1bGZlTDg2Uk9COXdubjUzQy10MEFMSFpieXpXTUt2TU9WYmQ3SzRrTG1SNVdUV0lSVXZvZDJnT2Z4ZTNDaFQ4cUQwekMyb3d2NDgxU3hKcE05ejRaUGJzM096YXZ3TFgydm9uaw?oc=5",
+          "source": "The Indian Express"
+        },
+        {
+          "title": "Yash's 'Toxic' continues to struggle, collects only \u20b98.20 crore on day 7 | The film was released on August 26 | Inshorts",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOT2h0SHpKaHNHaGZYRjM2RlUyVzJPdHNNWS1xVUhvWnpMV0ZyMnRxekFMakVOeV9TRXczT0czN3hNNjlQcmwxdlFpbDQwMW1HeG1kMlRnanpIdHVVeE1sS1RIbklEVkJKNjV6QlhhckZ3YWRidXQtRGZpSkt1NTRnZzhFU1JSdjdQTVM3b3hiNENzREJva3ZLOEJhc0RNeERuTEdDTXVwbkFFTXBDYTluRDFBMS1IUQ?oc=5",
+          "source": "Inshorts"
+        },
+        {
+          "title": "Toxic (Hindi) Box Office Collections: Yash starrer mints Rs 4.50 crore on 1st discounted Tuesday, nears Rs 125 crore mark - Pinkvilla",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQckg0alpkRzJod2VtN1hwcUo3VHhyc0ZTRFdPSVBIR0JFY0E4Und3UFh5M1RyN3MyNXFjYmN1aEhPWEgxclN1Q1FYQTJEY3J5dTZ3cUl5cHF2VVhBOS1nSHRXaW1fbDJsRGZZeXktWXhSamlYRlB0Unlick9wRmN4dUxUWG1iZnAxWDVaY0pMSnlPb1AteFl1WDNXU3lWZGFfR3pkckVwQUtsRTVpVzR2d1ZxVzlxMnpPdlF5NVNmWTBQNEFxSzQ5dFc3VWtQRlpFeUJUUEpKY0Iza3VSam9wRGlraElOWFhOYV9PRk9yY0FaTXpDMGZaUVdlTXlhQm5Eb3hzX1FWSQ?oc=5",
+          "source": "Pinkvilla"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The box office performance of 'Toxic' featuring Yash is significant for the Indian diaspora, especially for fans of Indian cinema.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@yash",
+          "type": "person",
+          "keywords": [
+            "Toxic",
+            "box office",
+            "Yash"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "deae888b-e0a7-4549-af0f-13b00c0770f2",
+      "title": "Engineered Bacteria Pull Excess Atmospheric Carbon Into Seawater - Technology Networks",
+      "description": "",
+      "category": "technology",
+      "signal_count": 4,
+      "source_diversity": 4,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-01T15:23:26+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMieEFVX3lxTE45a2JnY3ZSY2ZBb3FPdVVBbkw1RjZBbnlJV1B3bjRsLWdkUF9Fak1vZTEzcVZ2NVFMLWJ6RzFWQ3dwRE1xUDh4LXNlVTI0MlBMZG43SGgtQUtQVXduOHZPVF93Z1NhTTVJNkVDaUFYMVJkdnlqWFg0SdIBeEFVX3lxTE45a2JnY3ZSY2ZBb3FPdVVBbkw1RjZBbnlJV1B3bjRsLWdkUF9Fak1vZTEzcVZ2NVFMLWJ6RzFWQ3dwRE1xUDh4LXNlVTI0MlBMZG43SGgtQUtQVXduOHZPVF93Z1NhTTVJNkVDaUFYMVJkdnlqWFg0SQ?oc=5",
+        "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZHRFc3hFSE1iRVRHXzdLQkEzWTJIa3ZOUWs2M3ludHhJTDVHdFBYNW9HNUpiUko2QVBMb3pLQ1hSYjBnQndha0VXRWZEMUYzYWJXaFA2Um1rYmRQNFZ2N19ucUM4ZHRfemgwU0dLeUV5Zkd0aVFkN0RWT3VHRVZfeW5GeXdENVRxbHhCUlFKWVk?oc=5",
+        "https://news.google.com/rss/articles/CBMikgFBVV95cUxQTHdubkV4OTFUOGNJY1FmSDdzSmttdFJZc04tQ0pWazZPX29aN3A4VHBvOFllRGUzVkV6TGhTNElKMll3VWpkTGhxQVpZTTZHWk5PblplRi0yNDB0czdfc2JUUFhGaWc3VkdmQzNkVnhXSkxXZTNFMHFLMjVGSVdPSlhsWGU0NXNKalp3TTYtaDV6dw?oc=5",
+        "https://news.google.com/rss/articles/CBMixwFBVV95cUxNOW1YT0NIRHNrWVNJNmtEMFo5WlBFV0FkMDJULUlFVG5OUkszREZPZnFpVEFId1VZSy1TSWxZamhKLVVaeUQ4MDNKZmRHemxsVUY1X1phdGtwT3dzN3dVa1A2OUNLT1FucUpGWmxrMlVXNndFYmpoSEt6MjgybHRrREI3blZBczVxQ21IY21sTnRSVWdWTkxOT21GaWI4Mm1yRjczQkhKWnQzelR4Rkd1eHgyNGlXaUhDR01JNjlWenRRVEhQN1ow?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Engineered bacteria offer a new way to accelerate rock weathering for carbon removal",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE45a2JnY3ZSY2ZBb3FPdVVBbkw1RjZBbnlJV1B3bjRsLWdkUF9Fak1vZTEzcVZ2NVFMLWJ6RzFWQ3dwRE1xUDh4LXNlVTI0MlBMZG43SGgtQUtQVXduOHZPVF93Z1NhTTVJNkVDaUFYMVJkdnlqWFg0SdIBeEFVX3lxTE45a2JnY3ZSY2ZBb3FPdVVBbkw1RjZBbnlJV1B3bjRsLWdkUF9Fak1vZTEzcVZ2NVFMLWJ6RzFWQ3dwRE1xUDh4LXNlVTI0MlBMZG43SGgtQUtQVXduOHZPVF93Z1NhTTVJNkVDaUFYMVJkdnlqWFg0SQ?oc=5",
+          "source": "Phys.org"
+        },
+        {
+          "title": "Marine microbe engineered in US makes rocks absorb CO2 faster",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZHRFc3hFSE1iRVRHXzdLQkEzWTJIa3ZOUWs2M3ludHhJTDVHdFBYNW9HNUpiUko2QVBMb3pLQ1hSYjBnQndha0VXRWZEMUYzYWJXaFA2Um1rYmRQNFZ2N19ucUM4ZHRfemgwU0dLeUV5Zkd0aVFkN0RWT3VHRVZfeW5GeXdENVRxbHhCUlFKWVk?oc=5",
+          "source": "Interesting Engineering"
+        },
+        {
+          "title": "Harvard-Engineered Bacteria Speed Up Rock Weathering to Trap CO2 in Seawater",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQTHdubkV4OTFUOGNJY1FmSDdzSmttdFJZc04tQ0pWazZPX29aN3A4VHBvOFllRGUzVkV6TGhTNElKMll3VWpkTGhxQVpZTTZHWk5PblplRi0yNDB0czdfc2JUUFhGaWc3VkdmQzNkVnhXSkxXZTNFMHFLMjVGSVdPSlhsWGU0NXNKalp3TTYtaDV6dw?oc=5",
+          "source": "XenoSpectrum"
+        },
+        {
+          "title": "Engineered Bacteria Pull Excess Atmospheric Carbon Into Seawater - Technology Networks",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNOW1YT0NIRHNrWVNJNmtEMFo5WlBFV0FkMDJULUlFVG5OUkszREZPZnFpVEFId1VZSy1TSWxZamhKLVVaeUQ4MDNKZmRHemxsVUY1X1phdGtwT3dzN3dVa1A2OUNLT1FucUpGWmxrMlVXNndFYmpoSEt6MjgybHRrREI3blZBczVxQ21IY21sTnRSVWdWTkxOT21GaWI4Mm1yRjczQkhKWnQzelR4Rkd1eHgyNGlXaUhDR01JNjlWenRRVEhQN1ow?oc=5",
+          "source": "Technology Networks"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The engineered bacteria that pull excess atmospheric carbon into seawater has significant implications for climate change, which is a global concern including for the Indian diaspora.",
       "coverage": "new",
       "ig_handles": [],
-      "kids_relevant": false
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "a5e3152a-a6f9-4dbc-b015-9c385cf934c8",
+      "title": "US May End H-4 EAD Work Permits: Fresh Setback For H-1B Spouses, Especially Indians - Vibes Of India",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-08-31T16:23:37+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMijgFBVV95cUxNOElQYm9WSHo3bVhCQ2N0djNwaEFkUVkyU1d1ZnZWeHZCM2lZRXhSRVNtZkliZFpSVW5YSlFfbkdBSE1RMzN3N0diMHg5dGxKdkFrOFp3X2lkemhjTWY3SlBPU0k2N1FjcDA1WXFCcGJETl92a3M3bmFmbWVsaXZtQWVSWWJiT0UyZXV0cl9n?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "US May End H-4 EAD Work Permits: Fresh Setback For H-1B Spouses, Especially Indians - Vibes Of India",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNOElQYm9WSHo3bVhCQ2N0djNwaEFkUVkyU1d1ZnZWeHZCM2lZRXhSRVNtZkliZFpSVW5YSlFfbkdBSE1RMzN3N0diMHg5dGxKdkFrOFp3X2lkemhjTWY3SlBPU0k2N1FjcDA1WXFCcGJETl92a3M3bmFmbWVsaXZtQWVSWWJiT0UyZXV0cl9n?oc=5",
+          "source": "Vibes Of India"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "This topic discusses a significant potential change in H-4 EAD work permits, which directly impacts the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@uscis",
+          "type": "org",
+          "keywords": [
+            "H-4",
+            "EAD",
+            "work permits"
+          ]
+        },
+        {
+          "handle": "@whitehouse",
+          "type": "org",
+          "keywords": [
+            "immigration",
+            "H-4",
+            "policy"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
     }
   ]
 }

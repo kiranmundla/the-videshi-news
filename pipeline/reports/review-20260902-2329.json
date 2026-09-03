@@ -1,0 +1,94 @@
+[
+  {
+    "id": "361f25d7-df4c-4b11-b1af-afcd391e77db",
+    "headline": "Uber Cuts 3,300 Jobs in Largest Layoffs Since COVID-Era Downturn",
+    "slug": "uber-cuts-3300-jobs-largest-layoffs-since-covid",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "87b0dc03-3c58-4db7-b1b6-e4ee0ab2e8ce",
+    "headline": "Harvard Engineers Bacteria to Pull CO2 From Air Into Seawater 2.6 Times Faster",
+    "slug": "harvard-engineered-bacteria-co2-seawater-rock-weathering",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "d497a761-ef1a-42f2-b508-9904e3532172",
+    "headline": "Yash's 'Toxic' Closes Week One at Rs 314 Crore Worldwide Amid Profitability Conc",
+    "slug": "yash-toxic-week-one-box-office-314-crore-worldwide",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Toxic Official Tamil Trailer | Rocking Star Yash | Geetu Moh\" vs headline"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "30264521-5a62-4a89-9a7b-a748cc2a4d91",
+    "headline": "Apple's M6 Mac Mini Gets First Pre-Order Discounts Ahead of September 22 Launch",
+    "slug": "apple-m6-mac-mini-pre-order-discounts-amazon-september-launch",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "e8f2683c-2711-46ca-890e-5412ada77ab7",
+    "headline": "Dulquer Salmaan's 'I'm Game' Arrives September 3 in Five Languages",
+    "slug": "dulquer-salmaan-im-game-pan-india-release-september-3",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "4087197c-6f50-4b08-9982-43be3427557f",
+    "headline": "Operation Sindoor Commander Named First CEO of Ayodhya Ram Temple Trust",
+    "slug": "operation-sindoor-commander-first-ceo-ayodhya-ram-temple-trust",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/36478003/pexels-photo-36478003.jpeg"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "89eec4ba-6e0e-4eda-a03c-8d317fd55ec2",
+    "headline": "Drug-Resistant Infections Kill Up to Half of ICU Patients in Indian Hospitals, L",
+    "slug": "drug-resistant-infections-icmr-study-carbapenem-mortality-india",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "2062b36c-0dd7-4381-ba1e-40762c7c6344",
+    "headline": "JioHotstar Goes Global With Launch in UK, Canada and Singapore",
+    "slug": "jiohotstar-launches-uk-canada-singapore-global-streaming",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "e9ade558-cf53-4b3e-be33-00ac042731de",
+    "headline": "US Private Sector Adds Just 38,000 Jobs in August, Missing Forecasts",
+    "slug": "us-private-sector-adds-38000-jobs-august-missing-forecasts",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "1ad65850-ca12-4f72-a55d-e9d57ca63d3f",
+    "headline": "Apple Maps Adopts 'Lake America' as MapQuest Soars to No. 1 App",
+    "slug": "apple-maps-renames-lake-ontario-lake-america-mapquest-surges",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
