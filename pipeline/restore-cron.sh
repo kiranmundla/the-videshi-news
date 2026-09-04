@@ -61,6 +61,9 @@ BASH_ENV=/etc/profile.d/hatch-egress.sh
 # ── WEEKLY (Monday) ──
 30 7  * * 1  root  /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh streaming-picks
 
+# ── WEEKLY (Friday) ──
+0 7  * * 5  root  /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh movie-reviews
+
 # ── BOOT CATCHUP ──
 @reboot  root  sleep 30 && /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh catchup
 

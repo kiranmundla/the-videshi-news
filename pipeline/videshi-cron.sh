@@ -220,6 +220,12 @@ case "$1" in
       git diff --cached --quiet || git commit -m 'data: refresh streaming picks' && git push"
     ;;
 
+  movie-reviews)
+    run_job "movie-reviews" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
+      python3 -u movie-reviews.py"
+    ;;
+
   ## === STATUS ===
 
 
@@ -329,7 +335,7 @@ case "$1" in
     ;;
 
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|check-dead-images|streaming-picks|catchup|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|check-dead-images|streaming-picks|movie-reviews|catchup|status}"
     exit 1
     ;;
 esac
