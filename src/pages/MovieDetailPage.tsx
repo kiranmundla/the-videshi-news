@@ -6,6 +6,13 @@ import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
 
 /* ── Review article type ── */
+interface ReviewRatings {
+  type: "movie_review_ratings";
+  star_rating: number;
+  category_ratings: Record<string, number>;
+  rating_consensus: string | null;
+}
+
 interface ReviewArticle {
   id: string;
   headline: string;
@@ -13,6 +20,7 @@ interface ReviewArticle {
   body: string;
   sources: string[];
   published_at: string;
+  data_cards: ReviewRatings[] | null;
 }
 
 /* ── Types ── */
@@ -386,7 +394,7 @@ export default function MovieDetailPage() {
         // Search for review articles matching movie title
         const { data } = await (supabase as any)
           .from("p2_articles")
-          .select("id, headline, slug, body, sources, published_at")
+          .select("id, headline, slug, body, sources, published_at, data_cards")
           .eq("category", "entertainment")
           .eq("status", "published")
           .ilike("slug", `%review%`)
@@ -989,6 +997,102 @@ export default function MovieDetailPage() {
             >
               What Critics Are Saying
             </h2>
+            {/* ── Ratings Scorecard ── */}
+            {(() => {
+              const ratingsCard = reviewArticle.data_cards?.find(
+                (c: any) => c.type === "movie_review_ratings"
+              ) as ReviewRatings | undefined;
+              if (!ratingsCard) return null;
+
+              const categoryLabels: Record<string, string> = {
+                acting: "Acting",
+                direction: "Direction",
+                story: "Story",
+                music: "Music",
+                visuals: "Visuals",
+              };
+
+              const renderStars = (rating: number, size = 16) => {
+                const stars = [];
+                for (let i = 1; i <= 5; i++) {
+                  if (rating >= i) {
+                    stars.push(<span key={i} style={{ color: "#D4A843", fontSize: size }}>★</span>);
+                  } else if (rating >= i - 0.5) {
+                    stars.push(
+                      <span key={i} style={{ position: "relative", display: "inline-block", fontSize: size }}>
+                        <span style={{ color: "#ddd" }}>★</span>
+                        <span style={{
+                          position: "absolute", left: 0, top: 0,
+                          overflow: "hidden", width: "50%", color: "#D4A843",
+                        }}>★</span>
+                      </span>
+                    );
+                  } else {
+                    stars.push(<span key={i} style={{ color: "#ddd", fontSize: size }}>★</span>);
+                  }
+                }
+                return stars;
+              };
+
+              return (
+                <div
+                  style={{
+                    marginBottom: 24,
+                    padding: "20px 20px 16px",
+                    background: "hsl(var(--muted) / 0.3)",
+                    borderRadius: 12,
+                    border: "1px solid hsl(var(--rule))",
+                  }}
+                >
+                  {/* Overall rating */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                    <span style={{
+                      fontSize: 36, fontWeight: 800, color: "#D4A843",
+                      fontFamily: "var(--font-serif, 'Playfair Display', serif)",
+                      lineHeight: 1,
+                    }}>
+                      {ratingsCard.star_rating}
+                    </span>
+                    <div>
+                      <div style={{ display: "flex", gap: 2 }}>
+                        {renderStars(ratingsCard.star_rating, 20)}
+                      </div>
+                      <span style={{ fontSize: 11, color: "#888", fontWeight: 600, letterSpacing: "0.05em" }}>
+                        THE VIDESHI RATING
+                      </span>
+                    </div>
+                  </div>
+                  {/* Category ratings */}
+                  {ratingsCard.category_ratings && Object.keys(ratingsCard.category_ratings).length > 0 && (
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 20px" }}>
+                      {Object.entries(ratingsCard.category_ratings).map(([cat, rating]) => (
+                        <div key={cat} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                          <span style={{ fontSize: 12, color: "#666", fontWeight: 600 }}>
+                            {categoryLabels[cat] || cat}
+                          </span>
+                          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                            <div style={{ display: "flex", gap: 1 }}>{renderStars(rating, 12)}</div>
+                            <span style={{ fontSize: 11, color: "#999", fontWeight: 600, minWidth: 20, textAlign: "right" }}>
+                              {rating}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {/* Consensus line */}
+                  {ratingsCard.rating_consensus && (
+                    <div style={{
+                      marginTop: 12, paddingTop: 10,
+                      borderTop: "1px solid hsl(var(--rule) / 0.5)",
+                      fontSize: 12, color: "#888", fontStyle: "italic",
+                    }}>
+                      {ratingsCard.rating_consensus}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
             <div
               className="article-body review-body"
               style={{

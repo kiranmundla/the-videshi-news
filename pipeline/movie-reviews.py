@@ -300,6 +300,8 @@ CRITICAL RULES:
 - Attribute EVERY quote to the specific outlet and reviewer if named.
 - If you can't find enough real quotes, use indirect summaries: "Critics at Variety praised..." rather than fake direct quotes.
 - Include the Rotten Tomatoes or Metacritic score ONLY if found in search results. NEVER invent a score.
+- STAR RATING: Provide your own overall star_rating (out of 5, half-star increments like 3.5) based on the critic consensus you found. This is The Videshi's editorial rating synthesized from the reviews — not copied from any single source.
+- CATEGORY RATINGS: Rate each of these categories out of 5 (half-star increments) based on what critics specifically said about each aspect: acting, direction, story, music, visuals. If critics didn't mention a category (e.g. music in an action film), give your best inference or omit that category.
 - Tone: film-literate, opinionated but fair. Like a friend who reads a lot of reviews summarizing them for you.
 - Do NOT use generic AI phrases like "In conclusion", "Overall, this film", "It remains to be seen", "Whether you're a fan of..."
 - Word count: 500-700 words per article.
@@ -316,6 +318,8 @@ Return JSON:
       "body_html": "Full article HTML as described above",
       "key_takeaways": ["3-5 bullet points summarizing the key critical consensus points"],
       "sources": [{{"name": "Outlet Name", "url": "https://actual-url-from-search-results"}}],
+      "star_rating": 3.5,
+      "category_ratings": {{"acting": 4.0, "direction": 3.5, "story": 3.0, "music": 3.5, "visuals": 4.0}},
       "rating_consensus": "Brief score summary if available (e.g. '85% on Rotten Tomatoes, 72 on Metacritic') or null if no scores found",
       "tags": ["tag1", "tag2", "tag3"],
       "is_indian": true/false,
@@ -441,6 +445,19 @@ def publish_article(article_data, movie_data):
 
     full_body = kt_html + body_html
 
+    # Build ratings data card for the movie review
+    star_rating = article_data.get("star_rating")
+    category_ratings = article_data.get("category_ratings", {})
+    rating_consensus = article_data.get("rating_consensus")
+    review_ratings = None
+    if star_rating:
+        review_ratings = [{
+            "type": "movie_review_ratings",
+            "star_rating": star_rating,
+            "category_ratings": category_ratings,
+            "rating_consensus": rating_consensus,
+        }]
+
     row = {
         "headline": headline,
         "slug": slug,
@@ -457,6 +474,7 @@ def publish_article(article_data, movie_data):
         "tags": tags,
         "image_url": poster_url if poster_url else None,
         "image_caption": image_caption,
+        "data_cards": review_ratings,
         "published_at": NOW.isoformat(),
         "created_at": NOW.isoformat(),
     }
