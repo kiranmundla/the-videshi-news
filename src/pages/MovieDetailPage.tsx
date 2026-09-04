@@ -3,6 +3,17 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
+import { supabase } from "@/integrations/supabase/client";
+
+/* ── Review article type ── */
+interface ReviewArticle {
+  id: string;
+  headline: string;
+  slug: string;
+  body: string;
+  sources: string[];
+  published_at: string;
+}
 
 /* ── Types ── */
 
@@ -305,6 +316,7 @@ export default function MovieDetailPage() {
   const navigate = useNavigate();
   const [movie, setMovie] = useState<UnifiedMovie | null>(null);
   const [related, setRelated] = useState<UnifiedMovie[]>([]);
+  const [reviewArticle, setReviewArticle] = useState<ReviewArticle | null>(null);
   const [loading, setLoading] = useState(true);
   const [imgError, setImgError] = useState(false);
 
@@ -356,6 +368,52 @@ export default function MovieDetailPage() {
 
   /* Reset image error on slug change */
   useEffect(() => { setImgError(false); }, [slug]);
+
+  /* Fetch matching review article from Supabase */
+  useEffect(() => {
+    if (!movie?.title) return;
+    let cancelled = false;
+
+    async function fetchReview() {
+      try {
+        // Build search words from movie title
+        const titleWords = movie!.title
+          .toLowerCase()
+          .replace(/[^a-z0-9\s]/g, "")
+          .split(/\s+/)
+          .filter((w) => w.length >= 3 && !["the", "and", "for"].includes(w));
+
+        // Search for review articles matching movie title
+        const { data } = await (supabase as any)
+          .from("p2_articles")
+          .select("id, headline, slug, body, sources, published_at")
+          .eq("category", "entertainment")
+          .eq("status", "published")
+          .ilike("slug", `%review%`)
+          .order("published_at", { ascending: false })
+          .limit(10);
+
+        if (cancelled || !data || data.length === 0) return;
+
+        // Find the one whose slug contains enough title words
+        const match = data.find((a: any) => {
+          const s = (a.slug || "").toLowerCase();
+          const h = (a.headline || "").toLowerCase();
+          const matched = titleWords.filter((w) => s.includes(w) || h.includes(w));
+          return matched.length >= 2;
+        });
+
+        if (match && !cancelled) {
+          setReviewArticle(match as ReviewArticle);
+        }
+      } catch {
+        // silent — review is supplementary
+      }
+    }
+
+    fetchReview();
+    return () => { cancelled = true; };
+  }, [movie?.title]);
 
   if (loading) {
     return (
@@ -909,6 +967,92 @@ export default function MovieDetailPage() {
             </a>
           )}
         </div>
+
+        {/* ── Critics Review Section ── */}
+        {reviewArticle && (
+          <div
+            style={{
+              marginBottom: 32,
+              paddingTop: 20,
+              borderTop: "1px solid hsl(var(--rule))",
+            }}
+          >
+            <h2
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase" as const,
+                color: "#888",
+                marginBottom: 14,
+              }}
+            >
+              What Critics Are Saying
+            </h2>
+            <div
+              className="article-body review-body"
+              style={{
+                fontFamily: "var(--font-serif, 'Source Serif 4', serif)",
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: "hsl(var(--foreground))",
+              }}
+              dangerouslySetInnerHTML={{ __html: reviewArticle.body }}
+            />
+            {reviewArticle.sources && reviewArticle.sources.length > 0 && (
+              <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid hsl(var(--rule) / 0.5)" }}>
+                <span
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase" as const,
+                    color: "#999",
+                  }}
+                >
+                  Sources
+                </span>
+                <div style={{ marginTop: 6, display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {reviewArticle.sources.map((src, i) => {
+                    let domain = "";
+                    try { domain = new URL(src).hostname.replace("www.", ""); } catch { domain = src; }
+                    return (
+                      <a
+                        key={i}
+                        href={src}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          fontSize: 12,
+                          color: "#666",
+                          textDecoration: "none",
+                          padding: "3px 8px",
+                          border: "1px solid hsl(var(--rule))",
+                          borderRadius: 4,
+                        }}
+                      >
+                        {domain}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            <Link
+              to={`/article/${reviewArticle.slug}`}
+              style={{
+                display: "inline-block",
+                marginTop: 14,
+                fontSize: 13,
+                fontWeight: 600,
+                color: "#D4A843",
+                textDecoration: "none",
+              }}
+            >
+              Read full review roundup →
+            </Link>
+          </div>
+        )}
 
         {/* ── More to Watch ── */}
         {related.length > 0 && (
