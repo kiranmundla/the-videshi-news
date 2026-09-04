@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase } from "@/integrations/supabase/client";
-
+import MovieRatingsCard from "@/components/MovieRatingsCard";
 /* ── Review article type ── */
 interface ReviewRatings {
   type: "movie_review_ratings";
@@ -43,6 +43,7 @@ interface TheaterMovie {
   ticket_url: string;
   language: string;
   trailer_url?: string;
+  review_slug?: string;
 }
 
 interface StreamingPick {
@@ -64,6 +65,7 @@ interface StreamingPick {
   watch_url: string;
   language: string;
   trending?: boolean;
+  review_slug?: string;
 }
 
 type MovieSource = "theater" | "streaming";
@@ -153,6 +155,7 @@ function theaterToUnified(m: TheaterMovie): UnifiedMovie {
     ticket_url: m.ticket_url,
     language: m.language,
     trailer_url: m.trailer_url,
+    review_slug: m.review_slug,
   };
 }
 
@@ -377,42 +380,26 @@ export default function MovieDetailPage() {
   /* Reset image error on slug change */
   useEffect(() => { setImgError(false); }, [slug]);
 
-  /* Fetch matching review article from Supabase */
+  /* Fetch review article — direct lookup via review_slug in theater data */
   useEffect(() => {
-    if (!movie?.title) return;
+    if (!movie) return;
     let cancelled = false;
 
     async function fetchReview() {
       try {
-        // Build search words from movie title
-        const titleWords = movie!.title
-          .toLowerCase()
-          .replace(/[^a-z0-9\s]/g, "")
-          .split(/\s+/)
-          .filter((w) => w.length >= 3 && !["the", "and", "for"].includes(w));
+        // Direct lookup: movie data carries the review article slug
+        const reviewSlug = movie!.review_slug;
+        if (!reviewSlug) return;
 
-        // Search for review articles matching movie title
         const { data } = await (supabase as any)
           .from("p2_articles")
           .select("id, headline, slug, body, sources, published_at, data_cards")
-          .eq("category", "entertainment")
+          .eq("slug", reviewSlug)
           .eq("status", "published")
-          .ilike("slug", `%review%`)
-          .order("published_at", { ascending: false })
-          .limit(10);
+          .maybeSingle();
 
-        if (cancelled || !data || data.length === 0) return;
-
-        // Find the one whose slug contains enough title words
-        const match = data.find((a: any) => {
-          const s = (a.slug || "").toLowerCase();
-          const h = (a.headline || "").toLowerCase();
-          const matched = titleWords.filter((w) => s.includes(w) || h.includes(w));
-          return matched.length >= 2;
-        });
-
-        if (match && !cancelled) {
-          setReviewArticle(match as ReviewArticle);
+        if (!cancelled && data) {
+          setReviewArticle(data as ReviewArticle);
         }
       } catch {
         // silent — review is supplementary
@@ -421,7 +408,7 @@ export default function MovieDetailPage() {
 
     fetchReview();
     return () => { cancelled = true; };
-  }, [movie?.title]);
+  }, [movie]);
 
   if (loading) {
     return (
@@ -1003,94 +990,12 @@ export default function MovieDetailPage() {
                 (c: any) => c.type === "movie_review_ratings"
               ) as ReviewRatings | undefined;
               if (!ratingsCard) return null;
-
-              const categoryLabels: Record<string, string> = {
-                acting: "Acting",
-                direction: "Direction",
-                story: "Story",
-                music: "Music",
-                visuals: "Visuals",
-              };
-
-              const renderStars = (rating: number, size = 16) => {
-                const stars = [];
-                for (let i = 1; i <= 5; i++) {
-                  if (rating >= i) {
-                    stars.push(<span key={i} style={{ color: "#D4A843", fontSize: size }}>★</span>);
-                  } else if (rating >= i - 0.5) {
-                    stars.push(
-                      <span key={i} style={{ position: "relative", display: "inline-block", fontSize: size }}>
-                        <span style={{ color: "#ddd" }}>★</span>
-                        <span style={{
-                          position: "absolute", left: 0, top: 0,
-                          overflow: "hidden", width: "50%", color: "#D4A843",
-                        }}>★</span>
-                      </span>
-                    );
-                  } else {
-                    stars.push(<span key={i} style={{ color: "#ddd", fontSize: size }}>★</span>);
-                  }
-                }
-                return stars;
-              };
-
               return (
-                <div
-                  style={{
-                    marginBottom: 24,
-                    padding: "20px 20px 16px",
-                    background: "hsl(var(--muted) / 0.3)",
-                    borderRadius: 12,
-                    border: "1px solid hsl(var(--rule))",
-                  }}
-                >
-                  {/* Overall rating */}
-                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-                    <span style={{
-                      fontSize: 36, fontWeight: 800, color: "#D4A843",
-                      fontFamily: "var(--font-serif, 'Playfair Display', serif)",
-                      lineHeight: 1,
-                    }}>
-                      {ratingsCard.star_rating}
-                    </span>
-                    <div>
-                      <div style={{ display: "flex", gap: 2 }}>
-                        {renderStars(ratingsCard.star_rating, 20)}
-                      </div>
-                      <span style={{ fontSize: 11, color: "#888", fontWeight: 600, letterSpacing: "0.05em" }}>
-                        THE VIDESHI RATING
-                      </span>
-                    </div>
-                  </div>
-                  {/* Category ratings */}
-                  {ratingsCard.category_ratings && Object.keys(ratingsCard.category_ratings).length > 0 && (
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 20px" }}>
-                      {Object.entries(ratingsCard.category_ratings).map(([cat, rating]) => (
-                        <div key={cat} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                          <span style={{ fontSize: 12, color: "#666", fontWeight: 600 }}>
-                            {categoryLabels[cat] || cat}
-                          </span>
-                          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                            <div style={{ display: "flex", gap: 1 }}>{renderStars(rating, 12)}</div>
-                            <span style={{ fontSize: 11, color: "#999", fontWeight: 600, minWidth: 20, textAlign: "right" }}>
-                              {rating}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {/* Consensus line */}
-                  {ratingsCard.rating_consensus && (
-                    <div style={{
-                      marginTop: 12, paddingTop: 10,
-                      borderTop: "1px solid hsl(var(--rule) / 0.5)",
-                      fontSize: 12, color: "#888", fontStyle: "italic",
-                    }}>
-                      {ratingsCard.rating_consensus}
-                    </div>
-                  )}
-                </div>
+                <MovieRatingsCard
+                  starRating={ratingsCard.star_rating}
+                  categoryRatings={ratingsCard.category_ratings}
+                  ratingConsensus={ratingsCard.rating_consensus}
+                />
               );
             })()}
             <div

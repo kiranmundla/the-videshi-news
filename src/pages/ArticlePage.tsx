@@ -13,6 +13,7 @@ import SiteFooter from "@/components/SiteFooter";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import ArticleCard from "@/components/ArticleCard";
 import SectionRule from "@/components/SectionRule";
+import MovieRatingsCard from "@/components/MovieRatingsCard";
 import {
   Article,
   formatLongDate,
@@ -674,6 +675,20 @@ export default function ArticlePage() {
         ) : null}
 
         <div className="article-prose max-w-4xl mx-auto mt-12">
+          {/* Movie review ratings scorecard */}
+          {article.data_cards && (() => {
+            const rc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "movie_review_ratings"
+            );
+            if (!rc) return null;
+            return (
+              <MovieRatingsCard
+                starRating={rc.star_rating}
+                categoryRatings={rc.category_ratings}
+                ratingConsensus={rc.rating_consensus}
+              />
+            );
+          })()}
           {(() => {
             const blocks = tryParseBlocks(article.body);
             if (blocks) return <ArticleBlocks blocks={blocks} />;

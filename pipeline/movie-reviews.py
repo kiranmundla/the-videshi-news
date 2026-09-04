@@ -616,11 +616,16 @@ def main():
     # Step 5: Publish
     print(f"\n── Step 5: Publishing articles ──")
     published_ids = []
+    published_slugs = {}  # movie_slug -> review_article_slug
     for article, (movie, _) in zip(articles, movies_with_reviews):
         print(f"\n  Publishing: {article.get('headline', article.get('title', '?'))}")
         article_id = publish_article(article, movie)
         if article_id and article_id != "dry-run-id":
             published_ids.append(article_id)
+            movie_slug = movie.get("slug", "")
+            review_slug = article.get("slug", "")
+            if movie_slug and review_slug:
+                published_slugs[movie_slug] = review_slug
 
     # Step 6: Post-processing
     if published_ids:
@@ -628,6 +633,27 @@ def main():
         for aid in published_ids:
             run_polish(aid)
             run_enrich(aid)
+
+    # Step 7: Link review slugs into now-in-theaters.json
+    if published_slugs and not DRY_RUN:
+        print(f"\n── Step 7: Linking review slugs into theater data ──")
+        theater_path = REPO / "public" / "data" / "now-in-theaters.json"
+        try:
+            with open(theater_path) as f:
+                theater_data = json.load(f)
+            updated = 0
+            for m in theater_data.get("movies", []):
+                ms = m.get("slug", "")
+                if ms in published_slugs:
+                    m["review_slug"] = published_slugs[ms]
+                    updated += 1
+                    print(f"    ✅ {ms} → {published_slugs[ms]}")
+            if updated:
+                with open(theater_path, "w") as f:
+                    json.dump(theater_data, f, indent=2, ensure_ascii=False)
+                print(f"    Updated {updated} movies in now-in-theaters.json")
+        except Exception as e:
+            print(f"    ⚠ Failed to update theater JSON: {e}")
 
     # Summary
     elapsed = time.time() - t0

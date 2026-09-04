@@ -37,6 +37,7 @@ export type Article = {
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
   reactions?: Record<string, number> | null;
+  data_cards?: any[] | null;
   article_type?: string | null;
 };
 
@@ -68,10 +69,11 @@ type P2Row = {
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
   reactions?: Record<string, number> | null;
+  data_cards?: any[] | null;
 };
 
 const P2_COLS =
-  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, social_embeds, reactions";
+  "id, slug, headline, subheadline, body, vertical, category, status, is_featured, published_at, event_at, created_at, updated_at, sources, diaspora_angle, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, social_embeds, reactions, data_cards";
 
 const P2_LIST_COLS =
   "id, slug, headline, subheadline, vertical, category, status, is_featured, published_at, event_at, created_at, tags, image_url, image_attribution, image_caption, gallery_images, display_score, focal_x, focal_y, img_w, img_h, article_type";
@@ -242,6 +244,7 @@ function mapRow(row: P2Row): Article {
     featured_score: 0,
     is_pinned_featured: !!row.is_featured,
     pinned_until: null,
+    data_cards: Array.isArray(row.data_cards) ? row.data_cards : null,
   };
 }
 
