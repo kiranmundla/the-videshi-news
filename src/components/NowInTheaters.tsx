@@ -270,7 +270,7 @@ export default function NowInTheaters() {
       </div>
 
       <ScrollWrap className="pl-4 gap-3.5">
-        {data.movies.map((movie) => (
+        {[...data.movies].sort((a, b) => b.release_date.localeCompare(a.release_date)).map((movie) => (
           <MovieCard
             key={movie.slug}
             movie={movie}

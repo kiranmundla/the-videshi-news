@@ -58,6 +58,9 @@ BASH_ENV=/etc/profile.d/hatch-egress.sh
 20 10 * * *  root  /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh detect-storylines
 22 11 * * *  root  /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh check-dead-images
 
+# ── WEEKLY (Monday) ──
+30 7  * * 1  root  /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh streaming-picks
+
 # ── BOOT CATCHUP ──
 @reboot  root  sleep 30 && /home/hatch/workspace/the-videshi-news/pipeline/videshi-cron.sh catchup
 

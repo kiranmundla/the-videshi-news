@@ -2,63 +2,264 @@
 """
 Generate streaming-picks.json for the What to Watch This Week section.
 
-Sources poster images from Wikipedia API and trailer URLs from YouTube.
-No TMDB dependency — Wikipedia images are CC-licensed, YouTube embeds are standard.
+Automatically discovers this week's new Indian/diaspora-relevant streaming
+releases via web search + GPT-4o-mini curation. Enriches with Wikipedia
+poster images (CC-licensed) and YouTube trailer URLs.
 
-Run: python3 pipeline/streaming-picks.py
+Run: python3 -u pipeline/streaming-picks.py
 Output: public/data/streaming-picks.json
+
+Uses curl for all HTTP calls (no requests/urllib for external APIs).
 """
-import json, os, sys, re, time
-from datetime import datetime, timedelta
+import json, os, sys, re, time, subprocess, tempfile
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
-
-try:
-    import requests
-except ImportError:
-    print("Installing requests...")
-    os.system(f"{sys.executable} -m pip install requests -q")
-    import requests
 
 REPO = Path(__file__).resolve().parent.parent
 OUT = REPO / "public" / "data" / "streaming-picks.json"
 
-HEADERS = {"User-Agent": "TheVideshi/1.0 (https://thevideshi.com; editorial)"}
+# ── Env loading ───────────────────────────────────────────────────────────────
+def load_env(*paths):
+    for p in paths:
+        p = os.path.expanduser(p)
+        if os.path.exists(p):
+            with open(p) as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+load_env("~/workspace/.env.supabase", "~/workspace/.env.openai")
+
+OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
+
+UA = "TheVideshi/1.0 (https://thevideshi.com; editorial)"
 WIKI_API = "https://en.wikipedia.org/api/rest_v1/page/summary"
 
 
+def now_utc():
+    return datetime.now(timezone.utc)
+
+
 def today_str():
-    return datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    return now_utc().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def week_range():
-    now = datetime.utcnow()
+    now = now_utc()
     monday = now - timedelta(days=now.weekday())
     sunday = monday + timedelta(days=6)
     return f"{monday.strftime('%b %d')} – {sunday.strftime('%b %d, %Y')}"
 
 
-def fetch_wikipedia_image(title: str, year: int = 0, media_type: str = "auto") -> str:
-    """
-    Try to get a poster/thumbnail image from Wikipedia for a show or movie.
-    Tries multiple title variations. Returns the thumbnail URL or empty string.
-    """
-    # Build candidate titles to try
+# ── curl helpers ──────────────────────────────────────────────────────────────
+
+def curl_get(url, headers=None, timeout=15):
+    """GET request via curl. Returns (status_code, body_text)."""
+    cmd = ["curl", "-sS", "-w", "\n%{http_code}", "--max-time", str(timeout), url]
+    if headers:
+        for k, v in headers.items():
+            cmd += ["-H", f"{k}: {v}"]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 5)
+        if r.returncode != 0:
+            return 0, ""
+        lines = r.stdout.rsplit("\n", 1)
+        if len(lines) == 2:
+            body, code = lines
+            return int(code), body
+        return 0, r.stdout
+    except Exception as e:
+        print(f"  ⚠ curl_get error: {e}")
+        return 0, ""
+
+
+def curl_post_json(url, data, headers=None, timeout=60):
+    """POST JSON via curl. Returns parsed JSON or None."""
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as tmp:
+        json.dump(data, tmp)
+        tmp_path = tmp.name
+
+    cmd = [
+        "curl", "-sS", "--max-time", str(timeout),
+        "-X", "POST", url,
+        "-H", "Content-Type: application/json",
+        "-d", f"@{tmp_path}",
+    ]
+    if headers:
+        for k, v in headers.items():
+            cmd += ["-H", f"{k}: {v}"]
+
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 10)
+        os.unlink(tmp_path)
+        if r.returncode != 0:
+            return None
+        return json.loads(r.stdout)
+    except Exception as e:
+        print(f"  ⚠ curl_post error: {e}")
+        try:
+            os.unlink(tmp_path)
+        except:
+            pass
+        return None
+
+
+# ── Web search for streaming releases ─────────────────────────────────────────
+
+def web_search(query, timeout=15):
+    """Search via DuckDuckGo HTML and extract result snippets."""
+    encoded_q = quote(query)
+    url = f"https://html.duckduckgo.com/html/?q={encoded_q}"
+    code, body = curl_get(url, headers={"User-Agent": UA}, timeout=timeout)
+    if code != 200 or not body:
+        return ""
+    # Extract text content, strip HTML
+    text = re.sub(r'<script[^>]*>.*?</script>', '', body, flags=re.DOTALL)
+    text = re.sub(r'<style[^>]*>.*?</style>', '', body, flags=re.DOTALL)
+    text = re.sub(r'<[^>]+>', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text[:8000]  # Cap to avoid huge prompts
+
+
+def discover_streaming_releases():
+    """Search the web for this week's streaming releases. Returns combined text."""
+    now = now_utc()
+    month_year = now.strftime("%B %Y")
+    week_str = now.strftime("%B %d")
+
+    queries = [
+        f"new Indian movies OTT release this week {month_year}",
+        f"new Hindi movies streaming this week {month_year}",
+        f"new Tamil Telugu movies OTT release {month_year}",
+        f"Netflix new releases India {month_year}",
+        f"JioHotstar new releases this week {month_year}",
+        f"new movies streaming this week {month_year}",
+        f"Amazon Prime Video new releases {month_year}",
+        f"new OTT releases this week India {week_str}",
+    ]
+
+    all_text = []
+    for q in queries:
+        print(f"  🔍 Searching: {q}")
+        result = web_search(q)
+        if result:
+            all_text.append(f"[Search: {q}]\n{result}")
+        time.sleep(0.5)  # Be polite
+
+    return "\n\n".join(all_text)
+
+
+# ── GPT-4o-mini curation ──────────────────────────────────────────────────────
+
+def curate_picks(search_results):
+    """Use GPT-4o-mini to extract and curate streaming picks from search results."""
+    if not OPENAI_KEY:
+        print("ERROR: No OPENAI_API_KEY")
+        return [], ""
+
+    now = now_utc()
+    week_of = week_range()
+
+    prompt = f"""You are the entertainment editor for The Videshi, a news site for the Indian diaspora in the US, UK, Canada, and Australia.
+
+Today is {now.strftime('%B %d, %Y')}. The week is {week_of}.
+
+From the search results below, identify movies and shows that are NEW on streaming platforms THIS WEEK (or in the last 7-10 days). Do NOT include titles from more than 2 weeks ago.
+
+PRIORITIES:
+1. New Indian language content (Hindi, Tamil, Telugu, Malayalam, Kannada, Bengali, Marathi, Punjabi) — these are MOST important
+2. Indian-origin cast/crew in international productions
+3. Major global releases the diaspora would care about (big blockbusters, acclaimed shows)
+4. South Asian stories or themes in any language
+
+PLATFORMS to look for: Netflix, Prime Video, JioHotstar (formerly Disney+ Hotstar), Disney+, SonyLiv, Zee5, Paramount+, Apple TV+, SunNxt, JioCinema, Lionsgate Play, Mubi
+
+For each pick, provide:
+- title: exact title
+- slug: URL-safe lowercase slug (e.g., "musafir-cafe")
+- platform: streaming platform name (use "JioHotstar" not "Hotstar" or "Disney+ Hotstar")
+- platform_icon: lowercase key (netflix, prime, hotstar, apple tv+, disney+, zee5, sonyliv, jiocinema, paramount+, sunnxt, mubi, lionsgate)
+- genre: short genre label (e.g., "Romantic Drama", "Action Thriller", "Comedy Crime")
+- year: release year (integer)
+- media_type: "film" or "series"
+- synopsis: 2-3 sentence synopsis. Be specific about plot — no vague "journey of self-discovery" filler. Mention specific characters, settings, conflicts.
+- cast: array of main cast names (3-5 names). Use REAL names only — do NOT invent cast members.
+- director: director name (empty string if unknown)
+- why_watch: 1-2 sentences on why this is worth watching. Be opinionated and specific, like a friend recommending.
+- is_indian: true if Indian language or Indian-origin talent is central
+- watch_url: platform search URL for this title (e.g., "https://www.netflix.com/search?q=title+here")
+- language: primary language (e.g., "Hindi", "Tamil", "English", "Telugu")
+- trending: true for up to 3 titles getting the most buzz right now
+
+Return 8-12 picks. At least 5 should be Indian content if available.
+
+CRITICAL:
+- Only include titles you are CONFIDENT are actually streaming NOW or this week. If you're unsure about availability, skip it.
+- Do NOT make up cast, directors, or plot details. If you don't know, use empty arrays/strings.
+- Do NOT include titles that have been streaming for months — only recent additions.
+
+SEARCH RESULTS:
+{search_results[:12000]}
+
+Respond as JSON: {{"picks": [...], "editorial_intro": "2-3 sentence summary of this week's highlights"}}"""
+
+    payload = {
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": prompt}],
+        "response_format": {"type": "json_object"},
+        "max_tokens": 4000,
+        "temperature": 0.3,
+    }
+
+    print("  🤖 Calling GPT-4o-mini for curation...")
+    result = curl_post_json(
+        "https://api.openai.com/v1/chat/completions",
+        payload,
+        headers={"Authorization": f"Bearer {OPENAI_KEY}"},
+        timeout=60,
+    )
+
+    if not result:
+        print("  ❌ GPT-4o-mini call failed")
+        return [], ""
+
+    if "error" in result:
+        print(f"  ❌ GPT error: {result['error'].get('message', str(result['error']))}")
+        return [], ""
+
+    usage = result.get("usage", {})
+    cost = usage.get("prompt_tokens", 0) * 0.15 / 1_000_000 + usage.get("completion_tokens", 0) * 0.6 / 1_000_000
+    print(f"  💰 GPT cost: ${cost:.4f} ({usage.get('prompt_tokens', 0)} in, {usage.get('completion_tokens', 0)} out)")
+
+    try:
+        content = json.loads(result["choices"][0]["message"]["content"])
+        picks = content.get("picks", [])
+        editorial = content.get("editorial_intro", "")
+        print(f"  ✅ Got {len(picks)} picks from GPT")
+        return picks, editorial
+    except (json.JSONDecodeError, KeyError, IndexError) as e:
+        print(f"  ❌ Failed to parse GPT response: {e}")
+        return [], ""
+
+
+# ── Wikipedia poster fetching (via curl) ──────────────────────────────────────
+
+def fetch_wikipedia_image(title, year=0, media_type="auto"):
+    """Get poster/thumbnail from Wikipedia via curl. Returns URL or empty string."""
     candidates = [title]
-
-    # Clean up title for Wikipedia lookup (remove subtitles after colon for initial try)
     base_title = title.split(":")[0].strip() if ":" in title else title
-
     if base_title != title:
         candidates.append(base_title)
 
-    # Try with disambiguation suffixes
     type_suffixes = []
-    if media_type == "film" or media_type == "auto":
+    if media_type in ("film", "auto"):
         type_suffixes.append("film")
         if year:
             type_suffixes.append(f"{year} film")
-    if media_type == "series" or media_type == "auto":
+    if media_type in ("series", "auto"):
         type_suffixes.append("TV series")
         if year:
             type_suffixes.append(f"{year} TV series")
@@ -68,342 +269,198 @@ def fetch_wikipedia_image(title: str, year: int = 0, media_type: str = "auto") -
         for suffix in type_suffixes:
             candidates.append(f"{base} ({suffix})")
 
-    # Deduplicate while preserving order
+    # Deduplicate
     seen = set()
-    unique_candidates = []
+    unique = []
     for c in candidates:
         if c not in seen:
             seen.add(c)
-            unique_candidates.append(c)
+            unique.append(c)
 
-    for candidate in unique_candidates:
-        try:
-            encoded = quote(candidate.replace(" ", "_"), safe="/_:()%")
-            url = f"{WIKI_API}/{encoded}"
-            resp = requests.get(url, headers=HEADERS, timeout=8)
-            if resp.status_code == 200:
-                data = resp.json()
+    for candidate in unique:
+        encoded = quote(candidate.replace(" ", "_"), safe="/_:()%")
+        url = f"{WIKI_API}/{encoded}"
+        code, body = curl_get(url, headers={"User-Agent": UA}, timeout=8)
+        if code == 200 and body:
+            try:
+                data = json.loads(body)
                 thumb = data.get("thumbnail", {}).get("source", "")
                 if thumb:
-                    print(f"  ✅ Wikipedia image found: {candidate}")
-                    return thumb  # Use AS-IS (330px)
-            time.sleep(0.3)  # Be polite to Wikipedia
-        except Exception as e:
-            print(f"  ⚠️ Wikipedia error for '{candidate}': {e}")
-            continue
+                    print(f"  ✅ Wikipedia image: {candidate}")
+                    return thumb
+            except json.JSONDecodeError:
+                pass
+        time.sleep(0.3)
 
-    print(f"  ❌ No Wikipedia image found for: {title}")
+    print(f"  ❌ No Wikipedia image: {title}")
     return ""
 
 
-def fetch_person_photo(name: str) -> str:
-    """Get a person's photo from Wikipedia. Returns URL or empty string."""
-    candidates = [name, f"{name} (actor)", f"{name} (actress)"]
-    for candidate in candidates:
-        try:
-            encoded = quote(candidate.replace(" ", "_"), safe="/_:()%")
-            url = f"{WIKI_API}/{encoded}"
-            resp = requests.get(url, headers=HEADERS, timeout=8)
-            if resp.status_code == 200:
-                data = resp.json()
-                thumb = data.get("thumbnail", {}).get("source", "")
-                if thumb:
-                    return thumb.replace("/330px-", "/300px-")
-            time.sleep(0.15)
-        except Exception as e:
-            print(f"    ⚠️ Error fetching photo for '{candidate}': {e}")
-            continue
-    return ""
+# ── YouTube trailer search (via curl) ─────────────────────────────────────────
 
-
-def build_cast_details(cast_names: list, limit: int = 6) -> list:
-    """Build cast_details with Wikipedia photos for up to `limit` cast members."""
-    if not cast_names:
-        return []
-    details = []
-    for name in cast_names[:limit]:
-        print(f"    🔍 Looking up: {name}")
-        photo = fetch_person_photo(name)
-        if photo:
-            print(f"    ✅ Photo found for {name}")
-        else:
-            print(f"    ❌ No photo for {name}")
-        details.append({"name": name, "photo_url": photo})
-    return details
-
-
-def youtube_search_url(title: str, suffix: str = "official trailer") -> str:
-    """Build a YouTube search URL for the trailer."""
+def youtube_search_url(title, suffix="official trailer"):
     query = f"{title} {suffix}".strip()
     return f"https://www.youtube.com/results?search_query={quote(query)}"
 
 
-def try_find_youtube_trailer(title: str, year: int = 0, language: str = "") -> str:
-    """
-    Try to find actual YouTube video ID by searching.
-    Include language to avoid wrong-language matches.
-    Falls back to search URL if we can't find a direct link.
-    """
+def try_find_youtube_trailer(title, year=0, language=""):
+    """Try to find a YouTube trailer. Falls back to search URL."""
     lang_tag = f" {language}" if language and language != "English" else ""
     queries = [
         f"{title}{lang_tag} official trailer {year}" if year else f"{title}{lang_tag} official trailer",
         f"{title}{lang_tag} trailer",
-        f"{title} trailer {year}" if year else f"{title} trailer",
     ]
 
+    yt_headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+
     for query in queries:
-        try:
-            search_url = f"https://www.youtube.com/results?search_query={quote(query)}"
-            resp = requests.get(search_url, headers={
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-                "Accept-Language": "en-US,en;q=0.9",
-            }, timeout=10)
+        search_url = f"https://www.youtube.com/results?search_query={quote(query)}"
+        code, body = curl_get(search_url, headers=yt_headers, timeout=10)
+        if code == 200 and body:
+            video_ids = re.findall(r'"videoId":"([A-Za-z0-9_-]{11})"', body)
+            if video_ids:
+                vid = video_ids[0]
+                print(f"  🎬 YouTube trailer: {vid} for '{title}'")
+                return f"https://www.youtube.com/watch?v={vid}"
+        time.sleep(0.5)
 
-            if resp.status_code == 200:
-                # Extract video IDs from the page
-                video_ids = re.findall(r'"videoId":"([A-Za-z0-9_-]{11})"', resp.text)
-                if video_ids:
-                    vid = video_ids[0]
-                    print(f"  🎬 YouTube trailer found: {vid} for '{title}'")
-                    return f"https://www.youtube.com/watch?v={vid}"
-
-            time.sleep(0.5)
-        except Exception as e:
-            print(f"  ⚠️ YouTube search error for '{title}': {e}")
-            continue
-
-    # Fall back to search URL
-    print(f"  📎 Using YouTube search URL for: {title}")
+    print(f"  📎 Using YouTube search URL: {title}")
     return youtube_search_url(title)
 
 
-# ── Curated picks for this week (May 25–31, 2026) ──
-PICKS = [
-    {
-        "title": "Dhurandhar: Raw & Undekha",
-        "wiki_title": "Dhurandhar (film)",
-        "slug": "dhurandhar-raw-and-undekha",
-        "platform": "Netflix",
-        "platform_icon": "netflix",
-        "genre": "Action Thriller",
-        "year": 2026,
-        "media_type": "film",
-        "synopsis": "The extended, uncensored cut of Aditya Dhar's record-breaking spy thriller. Ranveer Singh leads a raw intelligence mission across hostile terrain with Sanjay Dutt and Arjun Rampal in a story that doesn't flinch. The theatrical version shattered box office records — this version goes further.",
-        "cast": ["Ranveer Singh", "Sanjay Dutt", "Arjun Rampal", "Sara Arjun"],
-        "director": "Aditya Dhar",
-        "why_watch": "The biggest Bollywood hit of 2026 just got a longer, uncut version — and it's streaming on Netflix.",
-        "is_indian": True,
-        "watch_url": "https://www.netflix.com/search?q=dhurandhar",
-        "language": "Hindi",
-        "trending": True,
-    },
-    {
-        "title": "Jolly LLB 3",
-        "wiki_title": "Jolly LLB 3",
-        "slug": "jolly-llb-3",
-        "platform": "JioHotstar",
-        "platform_icon": "hotstar",
-        "genre": "Courtroom Comedy-Drama",
-        "year": 2025,
-        "media_type": "film",
-        "synopsis": "Akshay Kumar returns as the lovably incompetent small-town lawyer who stumbles into cases too big for him. This time, Jolly takes on a pharmaceutical giant in a case that hits uncomfortably close to home. The franchise that proved courtroom dramas can be funny.",
-        "cast": ["Akshay Kumar", "Arshad Warsi", "Huma Qureshi"],
-        "director": "Subhash Kapoor",
-        "why_watch": "The Jolly franchise is comfort food for Bollywood fans. Akshay Kumar's David-vs-Goliath courtroom antics never get old.",
-        "is_indian": True,
-        "watch_url": "https://www.hotstar.com/in/search?q=jolly+llb+3",
-        "language": "Hindi",
-        "trending": True,
-    },
-    {
-        "title": "Kara",
-        "wiki_title": "Kara (2025 film)",
-        "slug": "kara-dhanush",
-        "platform": "Netflix",
-        "platform_icon": "netflix",
-        "genre": "Heist Thriller",
-        "year": 2025,
-        "media_type": "film",
-        "synopsis": "Set in 1991 during the Gulf War, a reformed thief in rural Tamil Nadu is forced back into crime when a corrupt bank seizes his family's ancestral land. Dhanush delivers one of his most restrained performances in this slow-burn heist drama.",
-        "cast": ["Dhanush", "Mamitha Baiju", "K. S. Ravikumar"],
-        "director": "Vignesh Raja",
-        "why_watch": "Dhanush at his brooding best. A Tamil heist film now available in five languages on Netflix.",
-        "is_indian": True,
-        "watch_url": "https://www.netflix.com/search?q=kara+dhanush",
-        "language": "Tamil",
-        "trending": False,
-    },
-    {
-        "title": "Satrangi",
-        "wiki_title": "Satrangi (TV series)",
-        "slug": "satrangi-badle-ka-khel",
-        "platform": "JioHotstar",
-        "platform_icon": "hotstar",
-        "genre": "Action Crime",
-        "year": 2026,
-        "media_type": "series",
-        "synopsis": "A gritty revenge saga set across seven interconnected stories. When a family is torn apart by a powerful crime syndicate, each member takes a different path to justice — some legal, some not.",
-        "cast": [],
-        "director": "",
-        "why_watch": "Think Sacred Games meets a revenge anthology. Seven stories, one vendetta — a fresh format for Hindi crime TV.",
-        "is_indian": True,
-        "watch_url": "https://www.hotstar.com/in/search?q=satrangi",
-        "language": "Hindi",
-        "trending": False,
-    },
-    {
-        "title": "Jetlee",
-        "wiki_title": "Jetlee (film)",
-        "slug": "jetlee-telugu",
-        "platform": "JioHotstar",
-        "platform_icon": "hotstar",
-        "genre": "Action Thriller",
-        "year": 2026,
-        "media_type": "film",
-        "synopsis": "A Telugu action thriller that's been generating buzz for its high-octane sequences and layered storytelling. When an ordinary man discovers a conspiracy that goes all the way to the top, he must become something he never imagined to protect his family.",
-        "cast": [],
-        "director": "",
-        "why_watch": "Telugu cinema continues its hot streak. If you loved Pushpa, this scratches the same itch — ordinary man, extraordinary circumstances.",
-        "is_indian": True,
-        "watch_url": "https://www.hotstar.com/in/search?q=jetlee",
-        "language": "Telugu",
-        "trending": False,
-    },
-    {
-        "title": "Warrant",
-        "wiki_title": "Warrant (TV series)",
-        "slug": "warrant-vilangu",
-        "platform": "SonyLIV",
-        "platform_icon": "sonyliv",
-        "genre": "Crime Thriller",
-        "year": 2026,
-        "media_type": "series",
-        "synopsis": "A spinoff from the acclaimed Tamil series Vilangu, following a new case that pulls investigators into a web of corruption and violence. The series expands the universe of one of Tamil television's most critically acclaimed crime dramas.",
-        "cast": [],
-        "director": "",
-        "why_watch": "If Vilangu was your gateway into Tamil crime thrillers, Warrant takes you deeper. Same universe, fresh case, higher stakes.",
-        "is_indian": True,
-        "watch_url": "https://www.sonyliv.com/search?q=warrant",
-        "language": "Tamil",
-        "trending": False,
-    },
-    {
-        "title": "Memu Copulam",
-        "wiki_title": "Memu Copulam",
-        "slug": "memu-copulam",
-        "platform": "Zee5",
-        "platform_icon": "zee5",
-        "genre": "Comedy Crime",
-        "year": 2026,
-        "media_type": "series",
-        "synopsis": "A Telugu comedy-crime series following a group of small-time con artists who accidentally stumble into a much bigger heist than they bargained for. Think Ocean's Eleven meets Telugu slapstick — sharp writing, chaotic energy.",
-        "cast": [],
-        "director": "",
-        "why_watch": "Telugu comedy meets crime caper. Light, fun, and doesn't take itself too seriously — the perfect weekend binge.",
-        "is_indian": True,
-        "watch_url": "https://www.zee5.com/search?q=memu+copulam",
-        "language": "Telugu",
-        "trending": False,
-    },
-    {
-        "title": "Spider-Noir",
-        "wiki_title": "Spider-Noir (TV series)",
-        "slug": "spider-noir",
-        "platform": "Prime Video",
-        "platform_icon": "prime",
-        "genre": "Superhero Noir",
-        "year": 2025,
-        "media_type": "series",
-        "synopsis": "Nicolas Cage stars as Ben Reilly, an aging private investigator in 1933 New York City hired on a case that forces him to confront his past as the city's only superhero. Available in both black-and-white and full color versions.",
-        "cast": ["Nicolas Cage", "Brendan Gleeson", "Lamorne Morris"],
-        "director": "Harry Bradbeer",
-        "why_watch": "Nicolas Cage doing noir detective work with spider powers in the 1930s? Critics are calling it 'Cage at his best.'",
-        "is_indian": False,
-        "watch_url": "https://www.primevideo.com/search?phrase=spider-noir",
-        "language": "English",
-        "trending": True,
-    },
-    {
-        "title": "A Good Girl's Guide to Murder",
-        "wiki_title": "A Good Girl's Guide to Murder (TV series)",
-        "slug": "good-girls-guide-to-murder-s2",
-        "platform": "Netflix",
-        "platform_icon": "netflix",
-        "genre": "Mystery Thriller",
-        "year": 2024,
-        "media_type": "series",
-        "synopsis": "Emma Myers returns as Pip Fitz-Amobi, the amateur detective who can't stop digging. Season 2 takes a darker turn as Pip investigates a new case while dealing with the fallout of her first investigation. Based on Holly Jackson's bestselling trilogy.",
-        "cast": ["Emma Myers", "Zain Iqbal", "Rahul Pattni"],
-        "director": "Dolly Wells",
-        "why_watch": "The YA mystery that became a global hit is back — and this time it's personal.",
-        "is_indian": False,
-        "watch_url": "https://www.netflix.com/search?q=good+girl+guide+murder",
-        "language": "English",
-        "trending": False,
-    },
-    {
-        "title": "Dead Man's Wire",
-        "wiki_title": "Dead Man's Wire",
-        "slug": "dead-mans-wire",
-        "platform": "Netflix",
-        "platform_icon": "netflix",
-        "genre": "Thriller",
-        "year": 2026,
-        "media_type": "film",
-        "synopsis": "A taut psychological thriller about a crisis negotiator who receives a call that changes everything — the voice on the other end knows secrets about her past that no one else should. As the clock ticks down, the line between negotiator and target blurs.",
-        "cast": [],
-        "director": "",
-        "why_watch": "Netflix's latest edge-of-your-seat thriller. If you liked The Call or Buried, this is your cup of chai.",
-        "is_indian": False,
-        "watch_url": "https://www.netflix.com/search?q=dead+man+wire",
-        "language": "English",
-        "trending": False,
-    },
-]
+# ── Slug generation ───────────────────────────────────────────────────────────
 
+def make_slug(title):
+    """Generate a URL-safe slug from a title."""
+    slug = title.lower()
+    slug = re.sub(r'[^a-z0-9\s-]', '', slug)
+    slug = re.sub(r'\s+', '-', slug.strip())
+    slug = re.sub(r'-+', '-', slug)
+    return slug[:60]
+
+
+# ── Main build ────────────────────────────────────────────────────────────────
 
 def build():
-    print(f"🎬 Building streaming picks for: {week_range()}\n")
+    t0 = time.time()
+    print(f"\n{'='*60}")
+    print(f"Streaming Picks — {week_range()}")
+    print(f"{'='*60}")
 
-    for pick in PICKS:
-        print(f"Processing: {pick['title']}")
+    # Step 1: Discover releases via web search
+    print(f"\n── Step 1: Discovering streaming releases ──")
+    search_results = discover_streaming_releases()
+    if not search_results:
+        print("  ❌ No search results found. Skipping update.")
+        return False
 
-        # Fetch Wikipedia poster image
-        wiki_title = pick.pop("wiki_title", pick["title"])
+    print(f"  Total search text: {len(search_results)} chars")
+
+    # Step 2: Curate with GPT-4o-mini
+    print(f"\n── Step 2: GPT-4o-mini curation ──")
+    picks, editorial_intro = curate_picks(search_results)
+    if not picks:
+        print("  ❌ No picks returned. Keeping existing data.")
+        return False
+
+    # Step 3: Validate and clean picks
+    print(f"\n── Step 3: Validating picks ──")
+    valid_picks = []
+    for pick in picks:
+        title = pick.get("title", "").strip()
+        if not title:
+            continue
+
+        # Ensure required fields
+        pick.setdefault("slug", make_slug(title))
+        pick.setdefault("platform", "Unknown")
+        pick.setdefault("platform_icon", pick.get("platform", "").lower().replace(" ", ""))
+        pick.setdefault("genre", "")
+        pick.setdefault("year", now_utc().year)
+        pick.setdefault("synopsis", "")
+        pick.setdefault("cast", [])
+        pick.setdefault("director", "")
+        pick.setdefault("why_watch", "")
+        pick.setdefault("is_indian", False)
+        pick.setdefault("watch_url", "")
+        pick.setdefault("language", "English")
+        pick.setdefault("trending", False)
+
+        # Normalize platform_icon
+        icon_map = {
+            "jiohotstar": "hotstar",
+            "disney+ hotstar": "hotstar",
+            "hotstar": "hotstar",
+            "prime video": "prime",
+            "amazon prime video": "prime",
+            "amazon prime": "prime",
+            "apple tv+": "apple tv+",
+            "paramount+": "paramount+",
+            "sony liv": "sonyliv",
+            "lionsgate play": "lionsgate",
+        }
+        raw_icon = pick["platform_icon"].lower().strip()
+        pick["platform_icon"] = icon_map.get(raw_icon, raw_icon)
+
+        valid_picks.append(pick)
+
+    print(f"  Valid picks: {len(valid_picks)}")
+
+    if not valid_picks:
+        print("  ❌ No valid picks after validation. Keeping existing data.")
+        return False
+
+    # Step 4: Enrich with Wikipedia posters and YouTube trailers
+    print(f"\n── Step 4: Enriching with posters and trailers ──")
+    for pick in valid_picks:
+        title = pick["title"]
+        year = pick.get("year", 0)
         media_type = pick.pop("media_type", "auto")
-        poster = fetch_wikipedia_image(wiki_title, pick.get("year", 0), media_type)
-        pick["poster_url"] = poster
-        pick["backdrop_url"] = poster  # Use same image for backdrop
+        language = pick.get("language", "")
 
-        # Find YouTube trailer
-        trailer = try_find_youtube_trailer(pick["title"], pick.get("year", 0), pick.get("language", ""))
+        print(f"\n  Processing: {title}")
+
+        # Wikipedia poster
+        poster = fetch_wikipedia_image(title, year, media_type)
+        pick["poster_url"] = poster
+        pick["backdrop_url"] = poster  # Same image for backdrop
+
+        # YouTube trailer
+        trailer = try_find_youtube_trailer(title, year, language)
         pick["trailer_url"] = trailer
 
-        # Fetch cast photos
-        cast = pick.get("cast", [])
-        if cast:
-            print(f"  📸 Fetching cast photos for {len(cast[:6])} actors...")
-            pick["cast_details"] = build_cast_details(cast, limit=6)
-        else:
-            pick["cast_details"] = []
+        time.sleep(0.3)
 
-        print()
-
-    # Sort: Indian trending → Indian non-trending → Global trending → Global non-trending
-    indian = [p for p in PICKS if p["is_indian"]]
-    global_picks = [p for p in PICKS if not p["is_indian"]]
+    # Step 5: Sort — trending Indian first, then Indian, then global
+    print(f"\n── Step 5: Sorting and ranking ──")
+    indian = [p for p in valid_picks if p.get("is_indian")]
+    global_picks = [p for p in valid_picks if not p.get("is_indian")]
 
     indian.sort(key=lambda p: (0 if p.get("trending") else 1))
     global_picks.sort(key=lambda p: (0 if p.get("trending") else 1))
 
     all_sorted = indian + global_picks
+
+    # Ensure max 3 trending
+    trending_count = 0
+    for pick in all_sorted:
+        if pick.get("trending"):
+            trending_count += 1
+            if trending_count > 3:
+                pick["trending"] = False
+
     for i, pick in enumerate(all_sorted):
         pick["rank"] = i + 1
 
+    # Step 6: Write output
+    print(f"\n── Step 6: Writing output ──")
     data = {
         "generated_at": today_str(),
         "week_of": week_range(),
-        "editorial_intro": "Dhurandhar drops its uncut version on Netflix this week. Dhanush's heist thriller Kara arrives in five languages. Nicolas Cage goes full noir on Prime Video. And if you're looking for regional gems, Telugu and Tamil cinema deliver again.",
+        "editorial_intro": editorial_intro or "This week's streaming highlights from across platforms.",
         "picks": all_sorted,
     }
 
@@ -414,12 +471,21 @@ def build():
     # Summary
     with_images = sum(1 for p in all_sorted if p.get("poster_url"))
     with_embeds = sum(1 for p in all_sorted if "watch?v=" in p.get("trailer_url", ""))
+    elapsed = time.time() - t0
+
+    print(f"\n{'='*60}")
     print(f"✅ Wrote {len(all_sorted)} streaming picks to {OUT}")
     print(f"   Indian: {len(indian)}, Global: {len(global_picks)}")
+    print(f"   Trending: {sum(1 for p in all_sorted if p.get('trending'))}")
     print(f"   With poster images: {with_images}/{len(all_sorted)}")
     print(f"   With embeddable trailers: {with_embeds}/{len(all_sorted)}")
     print(f"   Week: {data['week_of']}")
+    print(f"   Elapsed: {elapsed:.1f}s")
+    print(f"{'='*60}")
+
+    return True
 
 
 if __name__ == "__main__":
-    build()
+    success = build()
+    sys.exit(0 if success else 1)

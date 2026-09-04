@@ -212,6 +212,14 @@ case "$1" in
       python3 -u scrape-temples.py"
     ;;
 
+  streaming-picks)
+    run_job "streaming-picks" "cd $REPO/pipeline && \
+      set -a; source $ENV/.env.supabase; source $ENV/.env.openai; set +a; \
+      python3 -u streaming-picks.py && \
+      cd $REPO && git add -A public/data/streaming-picks.json && \
+      git diff --cached --quiet || git commit -m 'data: refresh streaming picks' && git push"
+    ;;
+
   ## === STATUS ===
 
 
@@ -321,7 +329,7 @@ case "$1" in
     ;;
 
   *)
-    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|check-dead-images|catchup|status}"
+    echo "Usage: $0 {live|v2-ingest|visa-alerts|dedupe-body-images|ping-google|gmail-scanner|celebrity-buzz|article-cards|detect-storylines|events-cleanup|directory-enrich|credential-check|scrape-sulekha|scrape-eventbrite|scrape-meetup|scrape-allevents|scrape-temples|media-library|snapshots-refresh|ai-rankings|pulse-refresh|check-dead-images|streaming-picks|catchup|status}"
     exit 1
     ;;
 esac
