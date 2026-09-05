@@ -1,0 +1,40 @@
+[
+  {
+    "id": "2af2cf6d-3942-48dc-9686-c0c885007821",
+    "headline": "Mirzapur: The Movie \u2014 Critics Say Pankaj Tripathi and Ali Fazal Deliver a Thrill",
+    "slug": "mirzapur-the-movie-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs who are fans of the Mirzapur series. This could involve quotes from social media or interviews that highlight how the film resonates with the Indian diaspora's experience or nostalgia.",
+        "Provide context on how the film's themes of power struggles and violence may resonate with NRIs, particularly in relation to their own experiences or perceptions of Indian society. This could enhance the article's relevance to the diaspora audience.",
+        "Include a section discussing how the film's release and reception might impact the global perception of Indian cinema among NRIs, especially in light of the growing popularity of Indian content abroad.",
+        "Mention any notable NRI filmmakers or actors involved in the production or promotion of the film, which could further connect the article to the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent NRI film critic or influencer discussing their thoughts on Mirzapur: The Movie, which would provide a direct connection to the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "0d8bc46d-3063-427a-af51-70065f6e5b1a",
+    "headline": "Onslaught \u2014 Critics Say Adam Wingard's Latest is a Mixed Bag of Action and Horro",
+    "slug": "onslaught-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 4,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or reactions from Indian filmmakers or critics regarding the film's themes, especially if they relate to the Indian diaspora's experiences with action and horror genres.",
+        "Provide context on how the film's nostalgic elements might resonate with the Indian diaspora, perhaps by comparing it to popular Indian films from the same era or discussing how these themes are reflected in Indian cinema.",
+        "Include a section that discusses how films like Onslaught are received by audiences in India versus the diaspora, highlighting any cultural differences in interpretation or appreciation.",
+        "Expand on the film's themes of war and protection, relating them to the experiences of NRIs who may have family members in the armed forces or who have experienced conflict in their home country."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent Indian film critic or filmmaker discussing the film, which could provide a unique perspective for the NRI audience."
+      ]
+    }
+  }
+]
