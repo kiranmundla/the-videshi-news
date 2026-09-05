@@ -1,12 +1,21 @@
 [
   {
     "id": "duration-of-status-lawsuit-filed",
-    "date": "2026-08-27",
-    "label": "Aug 27, 2026",
-    "headline": "Court sets Sept 3 injunction hearing on Duration of Status rule \u2014 potential block before September 15 deadline",
-    "summary": "A federal judge in Massachusetts has scheduled a September 3 hearing on a preliminary injunction that could block the Duration of Status rule before it takes effect September 15. U.S. District Judge F. Dennis Saylor IV ordered DHS to respond by August 31 to the plaintiffs' motion (Presidents' Alliance on Higher Education and Immigration et al. v. DHS, No. 1:26-cv-13799). Eight organizations representing higher education, journalism, and labor sectors filed the lawsuit on August 19, alleging DHS violated the Administrative Procedure Act by failing to conduct thorough impact analysis, not substantively responding to 22,000+ negative public comments, and not considering alternatives. The rule replaces the 47-year-old open-ended duration of status framework with fixed four-year caps for F-1 students and J-1 exchange visitors, and 240-day caps for I-visa journalists. DHS dismissed the lawsuit as 'performative outrage.' The compressed schedule \u2014 12 days between the hearing and the effective date \u2014 makes this the most immediate potential obstacle to implementation. Indian students, the largest international student cohort in the US, face the biggest impact, particularly PhD candidates whose programs exceed four years and those relying on OPT/STEM OPT pathways.",
+    "date": "2026-09-03",
+    "label": "Sep 3, 2026",
+    "headline": "Court hears arguments on Duration of Status injunction \u2014 ruling pending, rule still on track for September 15",
+    "summary": "U.S. District Judge F. Dennis Saylor IV heard oral arguments on September 3 in the lawsuit seeking to block the Duration of Status rule before its September 15 effective date (Presidents' Alliance on Higher Education and Immigration et al. v. DHS, No. 1:26-cv-13799). The coalition of eight higher education and labor organizations \u2014 including NAFSA, the Presidents' Alliance, AFT, UAW, and The NewsGuild-CWA \u2014 argued DHS violated the Administrative Procedure Act by failing to conduct thorough impact analysis, not substantively responding to 22,000+ negative public comments, and not considering alternatives. Plaintiffs called the harms 'serious and irreparable' to international students, scholars, higher education institutions, the economy, and U.S. research. DHS had dismissed the lawsuit as 'performative outrage.' No ruling has been issued yet. Unless the court grants the injunction, the rule takes effect September 15 \u2014 replacing the 47-year-old open-ended duration of status framework with fixed four-year caps for F-1 students and J-1 exchange visitors, and 240-day caps for I-visa journalists. Indian students, the largest international student cohort in the US, face the biggest impact, particularly PhD candidates whose programs exceed four years and those relying on OPT/STEM OPT pathways.",
     "severity": "high",
-    "source": "U.S. District Court, D. Mass. / SCN News / Reuters / Inside Higher Ed"
+    "source": "U.S. District Court, D. Mass. / Presidents' Alliance / NAFSA / PSBP Law"
+  },
+  {
+    "id": "dhs-60-day-grace-period-elimination-proposed",
+    "date": "2026-09-01",
+    "label": "Sep 1, 2026",
+    "headline": "60-day grace period elimination clears OMB review \u2014 Federal Register publication imminent, public comment period to follow",
+    "summary": "The DHS proposed rule to eliminate the 60-day grace period for H-1B, H-1B1, L-1, O-1, E-1/E-2/E-3, and TN visa holders has cleared White House OMB review as of August 31, 2026. Publication in the Federal Register is expected imminently, after which a 30-to-60-day public comment period begins before DHS can finalize the rule. The proposal would return the system to the pre-2017 framework, under which job loss resulted in immediate loss of immigration status with no window to find a new sponsor, change status, or prepare to depart. The grace period \u2014 established by a 2016 DHS regulation effective January 2017 \u2014 has been a critical safeguard for foreign nationals navigating layoffs, corporate restructurings, and other employment disruptions. For Indian H-1B professionals, who make up over 70% of H-1B holders, the proposal would dramatically raise the stakes of any job loss, particularly during ongoing tech industry restructuring. The grace period remains in effect during the rulemaking process; the rule cannot be finalized until after the public comment period closes and DHS reviews all comments.",
+    "severity": "high",
+    "source": "DHS / OMB-OIRA / Seyfarth Shaw / Mondaq"
   },
   {
     "id": "state-dept-global-immigrant-visa-pause",
@@ -70,15 +79,6 @@
     "summary": "A DHS final rule (91 FR 51360) published August 10 expands the 9-11 Response and Biometric Entry-Exit Fee to cover H-1B and L-1 visa extension petitions filed by covered employers, effective September 9. Previously, the $4,000 (H-1B) and $4,500 (L-1) fee applied only to initial petitions and change-of-employer filings. Now, same-employer extensions are also subject to the fee, turning what was a one-time cost into a recurring expense. The rule applies only to employers with 50+ US employees where more than 50% hold H-1B, L-1A, or L-1B status \u2014 a threshold that captures many Indian IT outsourcing and staffing companies. Amended petitions that do not request an extension of status remain exempt. The fee amounts themselves are unchanged; only the scope of petitions covered has broadened. DHS said the change aligns regulations with congressional intent under the 2015 statute that created the fee.",
     "severity": "medium",
     "source": "DHS / Federal Register (91 FR 51360) / Envoy Global / American Bazaar"
-  },
-  {
-    "id": "dhs-60-day-grace-period-elimination-proposed",
-    "date": "2026-08-08",
-    "label": "Aug 8, 2026",
-    "headline": "DHS proposes eliminating 60-day grace period for H-1B, L-1, O-1, TN workers after job loss \u2014 rule sent to OMB for review",
-    "summary": "The Department of Homeland Security has advanced a proposed rule (RIN: 1615-AD22) to eliminate the 60-day grace period that since 2017 has allowed H-1B, H-1B1, L-1, O-1, E-1/E-2/E-3, and TN visa holders to remain in the US for up to 60 days after employment ends to find a new sponsor, change status, or prepare to depart. The rule was sent to the White House Office of Information and Regulatory Affairs (OIRA) for review. If implemented, workers who lose their jobs would have to leave immediately \u2014 with no window to transfer to a new employer or file for adjustment of status. The full text has not been published yet; once OMB review concludes, it will appear in the Federal Register for 30-60 days of public comment. The grace period remains in effect during the rulemaking process. For Indian H-1B professionals \u2014 who make up over 70% of H-1B holders \u2014 the proposal would dramatically raise the stakes of any layoff, particularly during tech industry restructuring.",
-    "severity": "high",
-    "source": "DHS / OMB-OIRA / Bloomberg Law / Ogletree Deakins"
   },
   {
     "id": "trump-birth-tourism-ban-eo",
