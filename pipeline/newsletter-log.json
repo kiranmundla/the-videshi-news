@@ -1256,5 +1256,15 @@
     "errors": 0,
     "hero_slug": "isro-targets-gaganyaan-uncrewed-launch-late-2026",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-05T13:59:26.642369+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 05, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "onslaught-review-roundup-critics",
+    "story_count": 5
   }
 ]
