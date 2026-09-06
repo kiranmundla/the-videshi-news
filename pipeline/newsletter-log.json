@@ -1266,5 +1266,15 @@
     "errors": 0,
     "hero_slug": "onslaught-review-roundup-critics",
     "story_count": 5
+  },
+  {
+    "sent_at": "2026-09-06T14:00:09.882810+00:00Z",
+    "subject": "The Videshi Weekly \u2014 Aug 30\u201306, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "who-is-anima-anandkumar-mysore-caltech-professor-ai-physics-accelerated-understanding",
+    "story_count": 8,
+    "event_count": 5
   }
 ]
