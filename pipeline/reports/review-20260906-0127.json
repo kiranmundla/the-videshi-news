@@ -1,0 +1,82 @@
+[
+  {
+    "id": "faa9f12a-88f8-406b-9677-cb89a1e404a0",
+    "headline": "Inside Ahilya Fort: Where a 250-Year-Old Royal Residence Meets the Narmada",
+    "slug": "ahilya-fort-maheshwar-rani-ahilyabai-holkar-heritage-stay",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how NRIs can connect with their heritage through stays at Ahilya Fort, perhaps by sharing testimonials from NRIs who have visited and their experiences of reconnecting with Indian culture.",
+        "Add context about how Ahilya Fort and Maheshwar can serve as a cultural touchpoint for NRIs looking to explore their roots, including information on local festivals or events that might attract diaspora visitors.",
+        "Incorporate a quote or insight from Prince Richard Holkar regarding the significance of the fort for the Indian diaspora, which could provide a personal touch and relevance for NRIs.",
+        "Consider restructuring the article to include a clear section on practical travel tips for NRIs, such as travel logistics, cultural etiquette, or how to engage with local artisans, which would enhance its utility for the target audience."
+      ],
+      "embed_opportunities": [
+        "Embed an Instagram post showcasing the fort's stunning architecture or a video tour of the property to visually engage readers.",
+        "Include a tweet from a travel influencer or a notable personality who has visited Ahilya Fort, sharing their experience or insights about the location."
+      ]
+    }
+  },
+  {
+    "id": "e773589e-1aba-4847-a03b-bc6a6f0bef7d",
+    "headline": "Swiss Military Launches Alpine Club to Tap India's \u20b95,000-Crore Mass Premium Lug",
+    "slug": "swiss-military-alpine-club-luggage-india-mass-premium-launch",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs who travel frequently and might be interested in affordable premium luggage options. This could provide a personal touch and highlight the relevance of the product to the NRI community.",
+        "Provide more context on how the growth of the travel gear market in India impacts NRIs, especially those who may be returning to India for travel or business. Discuss how this trend could influence their purchasing decisions.",
+        "Include a comparison with similar products available in international markets that NRIs might be familiar with, to give readers a clearer understanding of the value proposition of the Alpine Club brand.",
+        "Add a section discussing the potential implications of this launch for Indian NRIs living abroad, particularly in terms of their travel habits and preferences when visiting India."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Swiss Military or a travel industry expert discussing the significance of this launch in the context of the Indian market.",
+        "Consider embedding a video or Instagram post showcasing the new luggage collections, which could visually engage readers and provide a better sense of the product."
+      ]
+    }
+  },
+  {
+    "id": "e61d5ce8-2061-412e-8b96-a716a1d1c267",
+    "headline": "Chia Seed Kheer: A Vegan Janmashtami Dessert That Takes Ten Minutes",
+    "slug": "chia-seed-kheer-vegan-janmashtami-dessert-recipe",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how NRIs can incorporate this vegan dessert into their own Janmashtami celebrations, perhaps by sharing personal anecdotes or testimonials from NRIs who have adapted traditional recipes for their families abroad.",
+        "Add a brief context about the significance of Janmashtami for the Indian diaspora, highlighting how they celebrate it in different countries, which would provide a deeper connection for NRI readers.",
+        "Consider including a comparison of traditional kheer and chia seed kheer in terms of health benefits, particularly focusing on how this modern twist aligns with the health-conscious trends among the diaspora.",
+        "Mention any cultural adaptations or variations of kheer that NRIs might find in their local communities, which could resonate more with their experiences."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing Janmashtami celebrations from a popular Indian food influencer, which could visually engage readers and provide inspiration for their own celebrations."
+      ]
+    }
+  },
+  {
+    "id": "b2428726-8158-4ae4-a2b5-8e99f78381b0",
+    "headline": "India's Diaspora Deposits Record $127 Billion Under RBI Scheme, Exceeding All Es",
+    "slug": "india-diaspora-127-billion-fcnr-deposits-rupee-record",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from NRIs who participated in the FCNR(B) scheme, highlighting their motivations and how this impacts their relationship with India.",
+        "Provide more context on how the influx of funds from the diaspora can specifically benefit local economies or sectors in India, addressing potential concerns about liquidity management and future obligations.",
+        "Clarify the implications of the record deposits for NRIs, such as how it may affect their investment strategies or the perception of India as a destination for financial investment.",
+        "Include a brief comparison of the current FCNR(B) scheme with previous initiatives, emphasizing how this one differs and what it means for the diaspora's role in India's economic landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI announcement or a relevant tweet highlighting the success of the FCNR(B) scheme to provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]
