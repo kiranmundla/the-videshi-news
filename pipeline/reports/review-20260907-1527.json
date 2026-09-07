@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cfccfe9c-a7ea-40a0-a0b5-035d8e348c48",
+    "headline": "Nearly 90 US Politicians Pledge to Reject RSS-Linked Donations After Bhagwat's M",
+    "slug": "us-politicians-pledge-reject-rss-donations-bhagwat-rally",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian-American community leaders or organizations regarding the pledge and its implications for the NRI community. This would provide a more personal and localized perspective on the issue.",
+        "Add context about the significance of the RSS in the Indian diaspora, especially how it affects political dynamics in the U.S. This could include historical background or previous instances where the RSS has influenced U.S. politics.",
+        "Consider restructuring the article to first introduce the pledge and its implications for the NRI community, followed by details about the rally and the politicians involved. This would create a clearer narrative flow that emphasizes the impact on the diaspora.",
+        "Include a brief explanation of the reactions from the broader Hindu American community beyond the organizations mentioned, to provide a more comprehensive view of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the politicians who signed the pledge to provide direct access to their statements and enhance the article's credibility.",
+        "Consider embedding a video clip from Bhagwat's Madison Square Garden rally to give readers a visual context of the event that sparked this political response."
+      ]
+    }
+  },
+  {
+    "id": "8738cfe0-cbbc-4951-a253-76ad6a4001a5",
+    "headline": "Walnut Burfi: A Rich, Nutty Indian Sweet That Comes Together in 25 Minutes",
+    "slug": "walnut-burfi-recipe-akhrot-barfi-indian-sweet",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including a section on how walnut burfi is made and celebrated in NRI communities, perhaps highlighting any variations or adaptations that have emerged in different countries.",
+        "Provide a brief history or cultural significance of walnut burfi in the context of Indian festivals celebrated by NRIs, which could help readers connect more personally with the dish.",
+        "Include tips for sourcing ingredients in different countries, especially for NRIs who may have difficulty finding specific items like ghee or cardamom, and suggest alternatives if necessary.",
+        "Add a section on how to incorporate walnut burfi into modern celebrations or gatherings among the diaspora, making it relevant for readers looking to share their culture with friends or family abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post featuring a popular Indian chef or food influencer making walnut burfi, which could provide visual appeal and credibility to the recipe."
+      ]
+    }
+  }
+]

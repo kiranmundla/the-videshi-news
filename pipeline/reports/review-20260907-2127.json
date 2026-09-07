@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1c71ba7a-53e5-4363-8b1e-9b2d652e1e72",
+    "headline": "Labor Department's H-1B Investigations Surge 48% as Project Firewall Targets Tec",
+    "slug": "labor-department-h1b-investigations-surge-project-firewall",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian NRIs who have been directly affected by the changes in H-1B policies. This could provide a personal touch and highlight the real-world implications of the investigations on their careers and lives.",
+        "Provide more context on how the increase in investigations specifically impacts Indian tech workers, such as statistics on how many Indian workers have faced issues due to these investigations or personal stories that illustrate the consequences.",
+        "Clarify the timeline of the enforcement changes and their implications for future H-1B applicants, as this will help NRIs understand how to navigate the evolving landscape of U.S. immigration policy.",
+        "Include a section discussing potential responses from the Indian government or organizations representing Indian workers in the U.S. to provide a broader perspective on the issue."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding Project Firewall to provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]

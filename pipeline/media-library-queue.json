@@ -202,16 +202,6 @@
    "priority": 2
   },
   {
-   "subject": "ai bubble",
-   "subject_type": "thing",
-   "tags": [
-    "ai bubble"
-   ],
-   "first_seen": "2026-06-23T10:29:22Z",
-   "article_id": "3ebc725a-c015-4bbc-8910-2f8319da6e5e",
-   "priority": 2
-  },
-  {
    "subject": "h4 ead",
    "subject_type": "thing",
    "tags": [
@@ -262,56 +252,6 @@
    "priority": 2
   },
   {
-   "subject": "Rajasthan Royals",
-   "subject_type": "thing",
-   "tags": [
-    "rajasthan royals"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
-  },
-  {
-   "subject": "Grand Prairie",
-   "subject_type": "thing",
-   "tags": [
-    "grand prairie"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
-  },
-  {
-   "subject": "T20 cricket",
-   "subject_type": "thing",
-   "tags": [
-    "t20 cricket"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
-  },
-  {
-   "subject": "cricket in USA",
-   "subject_type": "thing",
-   "tags": [
-    "cricket in usa"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
-  },
-  {
-   "subject": "diaspora cricket",
-   "subject_type": "thing",
-   "tags": [
-    "diaspora cricket"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c0271998-b2fc-453e-8d4a-59816ada1292",
-   "priority": 2
-  },
-  {
    "subject": "green card backlog",
    "subject_type": "thing",
    "tags": [
@@ -320,76 +260,6 @@
    "first_seen": "2026-06-27T10:29:26Z",
    "article_id": "7cadb345-b06b-4463-95df-ae32f7794a99",
    "priority": 6
-  },
-  {
-   "subject": "indian spouses",
-   "subject_type": "thing",
-   "tags": [
-    "indian spouses"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "7cadb345-b06b-4463-95df-ae32f7794a99",
-   "priority": 2
-  },
-  {
-   "subject": "inter state championships",
-   "subject_type": "thing",
-   "tags": [
-    "inter state championships"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-   "priority": 2
-  },
-  {
-   "subject": "Asian Games 2026",
-   "subject_type": "thing",
-   "tags": [
-    "asian games 2026"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-   "priority": 2
-  },
-  {
-   "subject": "Praveen Chithravel",
-   "subject_type": "thing",
-   "tags": [
-    "praveen chithravel"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-   "priority": 2
-  },
-  {
-   "subject": "triple jump",
-   "subject_type": "thing",
-   "tags": [
-    "triple jump"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-   "priority": 2
-  },
-  {
-   "subject": "Bhubaneswar",
-   "subject_type": "thing",
-   "tags": [
-    "bhubaneswar"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "1664746a-1dfc-4b31-ac2b-a78f90eac7c2",
-   "priority": 2
-  },
-  {
-   "subject": "outbound tourism",
-   "subject_type": "thing",
-   "tags": [
-    "outbound tourism"
-   ],
-   "first_seen": "2026-06-27T10:29:26Z",
-   "article_id": "c6103023-e8db-4ba3-9ca5-06650845df1a",
-   "priority": 2
   },
   {
    "subject": "indian tech workers",
@@ -430,36 +300,6 @@
    "first_seen": "2026-06-28T05:35:23Z",
    "article_id": "941ce545-94c1-4ebc-a50a-53d7d79060b1",
    "priority": 3
-  },
-  {
-   "subject": "airport",
-   "subject_type": "thing",
-   "tags": [
-    "airport"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "941ce545-94c1-4ebc-a50a-53d7d79060b1",
-   "priority": 2
-  },
-  {
-   "subject": "bullet train",
-   "subject_type": "thing",
-   "tags": [
-    "bullet train"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "c01ddf9e-bdd0-4384-928d-76665d21f56c",
-   "priority": 2
-  },
-  {
-   "subject": "high speed rail",
-   "subject_type": "thing",
-   "tags": [
-    "high speed rail"
-   ],
-   "first_seen": "2026-06-28T05:35:23Z",
-   "article_id": "c01ddf9e-bdd0-4384-928d-76665d21f56c",
-   "priority": 2
   },
   {
    "subject": "MI New York",

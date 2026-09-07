@@ -1276,5 +1276,15 @@
     "hero_slug": "who-is-anima-anandkumar-mysore-caltech-professor-ai-physics-accelerated-understanding",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-07T13:59:28.682077+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 07, 2026",
+    "subscribers": 6,
+    "sent": 6,
+    "errors": 0,
+    "hero_slug": "who-is-anil-chakravarthy-bengaluru-iit-mit-adobe-ceo-ai-era",
+    "story_count": 5
   }
 ]
