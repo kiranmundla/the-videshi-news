@@ -1,0 +1,40 @@
+[
+  {
+    "id": "add30249-42d4-4552-9225-efb2df795622",
+    "headline": "India's Envoy Meets Bangladesh President as Teesta Water Diplomacy Takes Centre ",
+    "slug": "india-envoy-bangladesh-president-teesta-water-diplomacy",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or perspectives from NRIs living in Bangladesh or India about how the Teesta water-sharing issue affects their communities, particularly in terms of agriculture, trade, or environmental concerns.",
+        "Provide more context on how the Teesta water-sharing agreement impacts NRIs specifically, such as potential economic implications for those involved in trade or agriculture in the affected regions.",
+        "Clarify the significance of the upcoming BRICS Summit for NRIs, perhaps by discussing how diplomatic relations between India and Bangladesh could influence NRIs' business opportunities or investments in the region.",
+        "Add a concluding section that discusses potential future implications of this meeting for the Indian diaspora, particularly in terms of political engagement or advocacy related to water diplomacy."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian High Commission in Bangladesh regarding the meeting or the Teesta water-sharing issue to provide real-time updates and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "f16bbbad-2542-49ff-b2ef-b203e8349b93",
+    "headline": "BRICS Summit 2026: Who's Coming to New Delhi and What's at Stake for India",
+    "slug": "brics-summit-2026-whos-coming-new-delhi-india-stakes",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section that discusses how the outcomes of the BRICS Summit could impact the Indian diaspora, particularly in terms of trade, investment opportunities, and geopolitical relations that affect NRIs.",
+        "Provide context on how the BRICS Summit's decisions might influence India's foreign policy and its implications for NRIs living in countries that are part of the BRICS bloc.",
+        "Include a quote or perspective from an NRI expert or community leader regarding the significance of the summit for the diaspora, which would strengthen the article's connection to its target audience.",
+        "Clarify the potential economic and political implications of the summit outcomes for NRIs, especially in sectors like technology, education, and investment, which are of particular interest to the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official BRICS account or a relevant government official regarding the summit agenda or objectives, which would enhance credibility and provide real-time updates."
+      ]
+    }
+  }
+]
