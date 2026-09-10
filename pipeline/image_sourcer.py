@@ -43,6 +43,20 @@ UA = "TheVideshi/1.0 (thevideshi.com)"
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+def _safe_run(cmd, **kwargs):
+    """subprocess.run that never leaks the command into tracebacks.
+
+    Curl commands embed the Supabase service-role key in -H headers; a bare
+    subprocess.TimeoutExpired stringifies the full argv (key included) into
+    logs. This wrapper converts timeouts/errors into a sanitized RuntimeError.
+    """
+    try:
+        return subprocess.run(cmd, **kwargs)
+    except subprocess.TimeoutExpired:
+        raise RuntimeError(f"subprocess timed out after {kwargs.get('timeout')}s")
+    except Exception as e:
+        raise RuntimeError(f"subprocess failed: {type(e).__name__}")
+
 # ── HTTP Helpers ─────────────────────────────────────────────────────────────
 
 def verify_image_url(url, min_width=400):
@@ -1080,7 +1094,7 @@ if __name__ == "__main__":
 
     elif args.slug:
         # Fetch article from DB and source its image
-        r = subprocess.run(
+        r = _safe_run(
             ["curl", "-s",
              f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources&slug=eq.{args.slug}&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
@@ -1102,7 +1116,7 @@ if __name__ == "__main__":
                 if article.get("focal_x") is not None:
                     patch["focal_x"] = article["focal_x"]
                     patch["focal_y"] = article["focal_y"]
-                pr = subprocess.run(
+                pr = _safe_run(
                     ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
                      "-X", "PATCH",
                      f"{SUPABASE_URL}/rest/v1/p2_articles?slug=eq.{args.slug}",
@@ -1126,7 +1140,7 @@ if __name__ == "__main__":
         cutoff = (datetime.now(timezone.utc) - timedelta(hours=args.hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
         print(f"Backfilling hero images for articles published since {cutoff}...")
         encoded_cutoff = urllib.parse.quote(cutoff, safe='')
-        r = subprocess.run(
+        r = _safe_run(
             ["curl", "-s",
              f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources"
              f"&status=eq.published&image_url=is.null&published_at=gte.{encoded_cutoff}"
@@ -1154,7 +1168,7 @@ if __name__ == "__main__":
                     if article.get("focal_x") is not None:
                         patch["focal_x"] = article["focal_x"]
                         patch["focal_y"] = article["focal_y"]
-                    pr = subprocess.run(
+                    pr = _safe_run(
                         ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
                          "-X", "PATCH",
                          f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article['id']}",

@@ -41,11 +41,26 @@ GEMINI_KEY = os.environ.get("GOOGLE_AI_API_KEY", "")
 SB_HOST = SB_URL.replace("https://", "")
 
 
+def _safe_run(cmd, **kwargs):
+    """subprocess.run that never leaks the command into tracebacks.
+
+    Curl commands embed the Supabase service-role key in -H headers; a bare
+    subprocess.TimeoutExpired stringifies the full argv (key included) into
+    logs. This wrapper converts timeouts/errors into a sanitized RuntimeError.
+    """
+    try:
+        return subprocess.run(cmd, **kwargs)
+    except subprocess.TimeoutExpired:
+        raise RuntimeError(f"subprocess timed out after {kwargs.get('timeout')}s")
+    except Exception as e:
+        raise RuntimeError(f"subprocess failed: {type(e).__name__}")
+
+
 def sb_get(endpoint, params=None):
     url = f"https://{SB_HOST}/rest/v1/{endpoint}"
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
-    r = subprocess.run(
+    r = _safe_run(
         ["curl", "-s", url,
          "-H", f"apikey: {SB_KEY}",
          "-H", f"Authorization: Bearer {SB_KEY}"],
@@ -57,7 +72,7 @@ def sb_get(endpoint, params=None):
 def sb_patch(article_id, data):
     url = f"https://{SB_HOST}/rest/v1/p2_articles?id=eq.{article_id}"
     payload = json.dumps(data)
-    r = subprocess.run(
+    r = _safe_run(
         ["curl", "-s", "-X", "PATCH", url,
          "-H", f"apikey: {SB_KEY}",
          "-H", f"Authorization: Bearer {SB_KEY}",
