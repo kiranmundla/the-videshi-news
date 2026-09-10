@@ -199,6 +199,12 @@ def assign_featured_dates():
         next_date = datetime.strptime(latest_rows[0]["featured_date"], "%Y-%m-%d").date() + timedelta(days=1)
     else:
         next_date = date.today()
+
+    # Never schedule in the past — if scheduling stalled, start from today.
+    # Past dates would never display (homepage queries featured_date = today).
+    if next_date < date.today():
+        print(f"  ℹ️  Latest scheduled date is {next_date} (stale) — resuming from today")
+        next_date = date.today()
     
     # Get unfeatured entries
     r = subprocess.run(
@@ -249,10 +255,64 @@ def assign_featured_dates():
     print(f"\nScheduled {len(scheduled)} wisdom entries from {date.today()} onwards.")
 
 
+def days_of_coverage():
+    """Count consecutive days from today that have a scheduled wisdom entry.
+    Returns the coverage window in days. Used to decide whether a full
+    YouTube ingest is needed."""
+    env = {}
+    with open(os.path.expanduser("~/workspace/.env.supabase")) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                k = k.replace("export ", "").strip()
+                env[k] = v.strip().strip('"').strip("'")
+
+    url = f"{env['SUPABASE_URL']}/rest/v1/daily_wisdom"
+    today = date.today().isoformat()
+    r = subprocess.run(
+        ["curl", "-s", f"{url}?select=featured_date&featured_date=gte.{today}&is_approved=eq.true&order=featured_date.asc&limit=60",
+         "-H", f"apikey: {env['SUPABASE_SERVICE_ROLE_KEY']}",
+         "-H", f"Authorization: Bearer {env['SUPABASE_SERVICE_ROLE_KEY']}"],
+        capture_output=True, text=True
+    )
+    rows = json.loads(r.stdout) if r.stdout.strip() else []
+    scheduled = set(row["featured_date"] for row in rows if row.get("featured_date"))
+
+    coverage = 0
+    d = date.today()
+    while d.isoformat() in scheduled:
+        coverage += 1
+        d += timedelta(days=1)
+    return coverage
+
+
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Daily Wisdom ingestion & scheduling")
+    parser.add_argument("--schedule-only", action="store_true",
+                        help="Skip YouTube/GPT ingest; only schedule unscheduled entries")
+    args = parser.parse_args()
+
     print("=" * 60)
     print(f"Daily Wisdom Ingestion — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print("=" * 60)
+
+    # Coverage check: skip expensive YouTube/GPT ingest when the queue is healthy
+    coverage = days_of_coverage()
+    print(f"\n📅 Current scheduled coverage: {coverage} day(s)")
+    if coverage >= 10:
+        print("   Queue healthy (>= 10 days) — skipping YouTube ingest, scheduling only.")
+        assign_featured_dates()
+        print("\n✅ Done!")
+        return
+    if args.schedule_only:
+        print("   --schedule-only: skipping YouTube ingest.")
+        assign_featured_dates()
+        print("\n✅ Done!")
+        return
+
+    print(f"   Coverage low (< 10 days) — running full ingest.")
     
     # Get YouTube access token
     print("\n🔑 Getting YouTube access token...")
