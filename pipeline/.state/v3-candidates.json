@@ -1,0 +1,775 @@
+{
+  "timestamp": "2026-09-10T08:43:23.465974+00:00",
+  "total_topics_evaluated": 1530,
+  "candidates": [
+    {
+      "topic_id": "47ed136f-f6c6-44bf-9710-97956ade1fe3",
+      "title": "US suspends Cognizant\u2019s green-card filings amid visa fraud probe",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T15:53:56+00:00",
+      "source_urls": [
+        "https://timesofindia.indiatimes.com/world/us/us-suspends-cognizants-green-card-filings-amid-visa-fraud-probe/articleshow/133974893.cms"
+      ],
+      "all_signals": [
+        {
+          "title": "US suspends Cognizant\u2019s green-card filings amid visa fraud probe",
+          "url": "https://timesofindia.indiatimes.com/world/us/us-suspends-cognizants-green-card-filings-amid-visa-fraud-probe/articleshow/133974893.cms",
+          "source": null
+        }
+      ],
+      "llm_score": 5,
+      "llm_reason": "The suspension of Cognizant's green-card filings amid a visa fraud probe is a significant development affecting many Indian professionals in the US.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@cognizant",
+          "type": "org",
+          "keywords": [
+            "Cognizant",
+            "green card",
+            "visa fraud"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "2f014f37-0e73-43a1-9581-5f1f79edbf97",
+      "title": "How to get an H1B visa for a banking job: the data - eFinancialCareers",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T17:26:47+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMisAFBVV95cUxQSUZmbzFkbFpEdGVFemhyVlAxZUk0dXJGRDVQM2NfLXY3ZDVkYlVjWFN0SGk4cW5HNTgtalZlakowZ0NHX1BWWlNRUHMydWF2N0pHOUE5NXlsTFUtRmFpcDhOc3k1WWJRdktCeDNvdUdDVWhwRnp1R0p2ckVaQ3R5V05RZzE3QXNLZC1hNlZjWVJwU1VyWUY3ak9tV0N3TkZpeUVGd050NUkydGZzc0pUeQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "How to get an H1B visa for a banking job: the data - eFinancialCareers",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQSUZmbzFkbFpEdGVFemhyVlAxZUk0dXJGRDVQM2NfLXY3ZDVkYlVjWFN0SGk4cW5HNTgtalZlakowZ0NHX1BWWlNRUHMydWF2N0pHOUE5NXlsTFUtRmFpcDhOc3k1WWJRdktCeDNvdUdDVWhwRnp1R0p2ckVaQ3R5V05RZzE3QXNLZC1hNlZjWVJwU1VyWUY3ak9tV0N3TkZpeUVGd050NUkydGZzc0pUeQ?oc=5",
+          "source": "eFinancialCareers"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The suspension of Cognizant's green card filings is a significant development affecting many Indians in the US.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@cognizant",
+          "type": "org",
+          "keywords": [
+            "Cognizant",
+            "green card",
+            "immigration"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "6c84f7af-ca82-419b-a8a2-0da6b2bf34b8",
+      "title": "NRI Commission warns against visa, job recruitment scams - The Hindu",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T16:36:54+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSVJ1dHpMNmdOWkJhRC1JUWdMVUhCU2VwangtbkFOS2NrdnZBcXZuVTVVMEdNem1qbWV5UW5vLXFkZl9kWDQtaG9QdDBxM2tKRzNKdXptSG13a3NLRVo4WHpSU2pCLVV4UE5OOTV4MUdpTHFXX2cyc2luaWZiM1diYTBwM1Y4RTJBSS15c1VSYVB3eU5OR0pGbU5xckNUTGljT3FYWXFYVjZVX3NuenYwU3JmZnZ3MWRta1RxdjBR0gHEAUFVX3lxTE16aUwwaEg3MkxhNGppaUZ1YXAwby1SWXNKSkk5QXpWQ3pTUkJCQTZBalFMZGNLaDlyU2UwTml0cGhfaVBBa0RnejVGcUY5ZXJsLWtfelVwQ1BTZThKZm5reWlkcVlfSW5Nc1NIaEZVVHNoaXhqNTVfZ0FlSWhFOHRKNmVUQW1sdWU5SGxnYXVRcFN5Qm1DaGhMSVZtc1VLVXdvUXpPdDUxdU02eDAtWmtQNTNjR1Y3TnZiSklzWFpoWWpJeGQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "NRI Commission warns against visa, job recruitment scams - The Hindu",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSVJ1dHpMNmdOWkJhRC1JUWdMVUhCU2VwangtbkFOS2NrdnZBcXZuVTVVMEdNem1qbWV5UW5vLXFkZl9kWDQtaG9QdDBxM2tKRzNKdXptSG13a3NLRVo4WHpSU2pCLVV4UE5OOTV4MUdpTHFXX2cyc2luaWZiM1diYTBwM1Y4RTJBSS15c1VSYVB3eU5OR0pGbU5xckNUTGljT3FYWXFYVjZVX3NuenYwU3JmZnZ3MWRta1RxdjBR0gHEAUFVX3lxTE16aUwwaEg3MkxhNGppaUZ1YXAwby1SWXNKSkk5QXpWQ3pTUkJCQTZBalFMZGNLaDlyU2UwTml0cGhfaVBBa0RnejVGcUY5ZXJsLWtfelVwQ1BTZThKZm5reWlkcVlfSW5Nc1NIaEZVVHNoaXhqNTVfZ0FlSWhFOHRKNmVUQW1sdWU5SGxnYXVRcFN5Qm1DaGhMSVZtc1VLVXdvUXpPdDUxdU02eDAtWmtQNTNjR1Y3TnZiSklzWFpoWWpJeGQ?oc=5",
+          "source": "The Hindu"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The warning against visa and job recruitment scams is highly relevant for the NRI community, addressing their safety and security.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "41fe553d-bb86-4c3b-b2e4-b10da4a973b7",
+      "title": "PhonePe to foray into UAE in maiden foreign outing",
+      "description": "",
+      "category": "technology",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T15:53:40+00:00",
+      "source_urls": [
+        "https://economictimes.indiatimes.com/tech/technology/phonepe-to-foray-into-uae-in-maiden-foreign-outing/articleshow/133975174.cms"
+      ],
+      "all_signals": [
+        {
+          "title": "PhonePe to foray into UAE in maiden foreign outing",
+          "url": "https://economictimes.indiatimes.com/tech/technology/phonepe-to-foray-into-uae-in-maiden-foreign-outing/articleshow/133975174.cms",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "PhonePe's expansion into the UAE is significant for Indian businesses and professionals looking to operate in the region.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@phonepe",
+          "type": "org",
+          "keywords": [
+            "PhonePe",
+            "UAE",
+            "expansion"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "d180e088-0a5d-4080-9629-54462d169e80",
+      "title": "Indian-origin couple donates $20 million for new US college, to be named after them",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T15:39:34+00:00",
+      "source_urls": [
+        "https://www.indiatoday.in/world/us-news/story/indian-origin-couple-donates-20-million-dollars-to-university-of-north-texas-new-college-to-be-named-after-them-2991067-2026-09-09?utm_source=rss"
+      ],
+      "all_signals": [
+        {
+          "title": "Indian-origin couple donates $20 million for new US college, to be named after them",
+          "url": "https://www.indiatoday.in/world/us-news/story/indian-origin-couple-donates-20-million-dollars-to-university-of-north-texas-new-college-to-be-named-after-them-2991067-2026-09-09?utm_source=rss",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The donation by an Indian-origin couple for a new college in the U.S. highlights significant contributions by the diaspora to education.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "57bdaff1-b4fc-42f3-a7da-9eb1f5de5d6b",
+      "title": "Visa processing times: applications outside the UK",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T14:50:18+00:00",
+      "source_urls": [
+        "https://www.gov.uk/guidance/visa-processing-times-applications-outside-the-uk"
+      ],
+      "all_signals": [
+        {
+          "title": "Visa processing times: applications outside the UK",
+          "url": "https://www.gov.uk/guidance/visa-processing-times-applications-outside-the-uk",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The updates on visa processing times for applications outside the UK are crucial for Indian professionals and students.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@ukhomeoffice",
+          "type": "org",
+          "keywords": [
+            "UK",
+            "visa processing",
+            "immigration"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "a7de6adf-bcb0-4e2e-9c70-1a48279d7183",
+      "title": "Visa processing times: applications inside the UK",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T14:49:56+00:00",
+      "source_urls": [
+        "https://www.gov.uk/guidance/visa-processing-times-applications-inside-the-uk"
+      ],
+      "all_signals": [
+        {
+          "title": "Visa processing times: applications inside the UK",
+          "url": "https://www.gov.uk/guidance/visa-processing-times-applications-inside-the-uk",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The updates on visa processing times for applications inside the UK are crucial for Indian professionals and students.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@ukhomeoffice",
+          "type": "org",
+          "keywords": [
+            "UK",
+            "visa processing",
+            "immigration"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "5e685b26-c828-4b7f-96ca-c52000f8ec84",
+      "title": "India's aviation boom faces turbulence amid safety concerns - independentonsaturday.co.za",
+      "description": "",
+      "category": "news",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T12:58:43+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMisgFBVV95cUxPUmNfOFBhLXVtcXNJUFp2RGtYSWJ1SWl4c2x1a0VQMUpab3BPcGFDUWxHWFZHczFwRlp3QVBQV3BaUHFMOEh5WTg5Nk5SaTB4akw5YlQ2UWZqNWlnMmZ4eVR6d25YWlJVRkZtV0oxQV9icVFSQ09temFTN0hyMF9waHBkMWpHbUZGOUdHelV4bklHWjF2T2JhUTJRQnpfLTE2d3JtaGtHbHZReXhyZG9VV3VB?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "India's aviation boom faces turbulence amid safety concerns - independentonsaturday.co.za",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPUmNfOFBhLXVtcXNJUFp2RGtYSWJ1SWl4c2x1a0VQMUpab3BPcGFDUWxHWFZHczFwRlp3QVBQV3BaUHFMOEh5WTg5Nk5SaTB4akw5YlQ2UWZqNWlnMmZ4eVR6d25YWlJVRkZtV0oxQV9icVFSQ09temFTN0hyMF9waHBkMWpHbUZGOUdHelV4bklHWjF2T2JhUTJRQnpfLTE2d3JtaGtHbHZReXhyZG9VV3VB?oc=5",
+          "source": "independentonsaturday.co.za"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "Safety concerns in India's aviation sector are critical for travelers and the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "93c5c9e1-59f1-4307-8e7a-534f5e2d90f5",
+      "title": "Global Fintech Fest 2026: PhonePe becomes first app to enable Visa's tokenisation, tap to pay and cross-border payments",
+      "description": "",
+      "category": "technology",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T12:34:16+00:00",
+      "source_urls": [
+        "https://www.livemint.com/news/india/global-fintech-fest-2026-phonepe-brings-visas-device-tokenisation-tap-to-pay-and-cross-border-payment-solutions-11788955307317.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Global Fintech Fest 2026: PhonePe becomes first app to enable Visa's tokenisation, tap to pay and cross-border payments",
+          "url": "https://www.livemint.com/news/india/global-fintech-fest-2026-phonepe-brings-visas-device-tokenisation-tap-to-pay-and-cross-border-payment-solutions-11788955307317.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "PhonePe's advancements in fintech and cross-border payments are significant for Indian businesses and the diaspora.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@phonepe",
+          "type": "org",
+          "keywords": [
+            "PhonePe",
+            "fintech",
+            "cross-border payments"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "8ace4aea-e450-4b36-a665-1a769e297d3e",
+      "title": "Sensex tumbles 813 points amid escalating tensions in West Asia, oil price surge",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T11:24:39+00:00",
+      "source_urls": [
+        "https://www.thehindu.com/business/markets/sensex-tumbles-813-points-amid-escalating-tensions-in-west-asia-oil-price-surge/article71447057.ece"
+      ],
+      "all_signals": [
+        {
+          "title": "Sensex tumbles 813 points amid escalating tensions in West Asia, oil price surge",
+          "url": "https://www.thehindu.com/business/markets/sensex-tumbles-813-points-amid-escalating-tensions-in-west-asia-oil-price-surge/article71447057.ece",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The significant drop in Sensex amid escalating tensions in West Asia and oil price surge is crucial for the Indian diaspora's financial interests.",
+      "coverage": "update",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": "2026-08-30",
+      "story_mode": "major_update",
+      "new_development": "The Sensex tumbled 813 points due to escalating tensions in West Asia and a surge in oil prices."
+    },
+    {
+      "topic_id": "666d5647-ddb3-4b5d-8047-5733ae879eb7",
+      "title": "Rupee plunges 34 paise to 95.08 against dollar as crude prices surpass $100 mark",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T11:20:01+00:00",
+      "source_urls": [
+        "https://www.thehindu.com/business/rupee-plunges-34-paise-to-9508-against-dollar-as-crude-prices-surpass-100-mark/article71447009.ece"
+      ],
+      "all_signals": [
+        {
+          "title": "Rupee plunges 34 paise to 95.08 against dollar as crude prices surpass $100 mark",
+          "url": "https://www.thehindu.com/business/rupee-plunges-34-paise-to-9508-against-dollar-as-crude-prices-surpass-100-mark/article71447009.ece",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The rupee's significant drop against the dollar due to rising crude prices is important for the Indian diaspora's financial interests.",
+      "coverage": "update",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": "2026-08-30",
+      "story_mode": "major_update",
+      "new_development": "The rupee plunged 34 paise to 95.08 against the dollar as crude prices surpassed $100."
+    },
+    {
+      "topic_id": "927be77e-939a-411c-b86e-f071b8697127",
+      "title": "Rupee plunges 34 paise to 95.08 against dollar as crude prices surpass USD 100 mark",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T11:19:45+00:00",
+      "source_urls": [
+        "https://economictimes.indiatimes.com/markets/forex/rupee-plunges-34-paise-to-95-08-against-dollar-as-crude-prices-surpass-usd-100-mark/articleshow/133966394.cms"
+      ],
+      "all_signals": [
+        {
+          "title": "Rupee plunges 34 paise to 95.08 against dollar as crude prices surpass USD 100 mark",
+          "url": "https://economictimes.indiatimes.com/markets/forex/rupee-plunges-34-paise-to-95-08-against-dollar-as-crude-prices-surpass-usd-100-mark/articleshow/133966394.cms",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The rupee's significant drop against the dollar due to rising crude prices is important for the Indian diaspora's financial interests.",
+      "coverage": "update",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": "2026-08-30",
+      "story_mode": "major_update",
+      "new_development": "The rupee plunged 34 paise to 95.08 against the dollar as crude prices surpassed $100."
+    },
+    {
+      "topic_id": "f51e0c5a-74b8-41a3-bd5e-48e038a91824",
+      "title": "India orders takedown of 15 offshore crypto platforms over AML non-compliance",
+      "description": "",
+      "category": "news",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T07:38:59+00:00",
+      "source_urls": [
+        "https://yourstory.com/2026/09/india-orders-takedown-15-offshore-crypto-platforms-aml-non-compliance"
+      ],
+      "all_signals": [
+        {
+          "title": "India orders takedown of 15 offshore crypto platforms over AML non-compliance",
+          "url": "https://yourstory.com/2026/09/india-orders-takedown-15-offshore-crypto-platforms-aml-non-compliance",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "This topic discusses India's crackdown on offshore crypto platforms, which is significant for the Indian regulatory landscape.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "02a30f26-0e87-4aa9-95de-4423bd4d9683",
+      "title": "India sends 130 tonnes of aid to flood-hit Nepal, deploys 54 experts for rescue ops",
+      "description": "",
+      "category": "news",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T18:26:17+00:00",
+      "source_urls": [
+        "https://www.indiatoday.in/world/story/india-sends-130-tonnes-of-aid-to-flood-hit-nepal-deploys-54-experts-for-rescue-ops-2991208-2026-09-09?utm_source=rss"
+      ],
+      "all_signals": [
+        {
+          "title": "India sends 130 tonnes of aid to flood-hit Nepal, deploys 54 experts for rescue ops",
+          "url": "https://www.indiatoday.in/world/story/india-sends-130-tonnes-of-aid-to-flood-hit-nepal-deploys-54-experts-for-rescue-ops-2991208-2026-09-09?utm_source=rss",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "India's aid to flood-hit Nepal is a significant geopolitical move relevant to the diaspora's interests.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "718b63f1-f4d4-40be-9995-bdc1da769101",
+      "title": "Vinicius Jr, Raphinha coming to India: Brazil announce squad for India friendly",
+      "description": "",
+      "category": "sports",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T18:15:22+00:00",
+      "source_urls": [
+        "https://www.indiatoday.in/sports/football/story/vinicius-jr-raphinha-brazil-squad-india-friendly-kolkata-carlo-ancelotti-2991209-2026-09-09?utm_source=rss"
+      ],
+      "all_signals": [
+        {
+          "title": "Vinicius Jr, Raphinha coming to India: Brazil announce squad for India friendly",
+          "url": "https://www.indiatoday.in/sports/football/story/vinicius-jr-raphinha-brazil-squad-india-friendly-kolkata-carlo-ancelotti-2991209-2026-09-09?utm_source=rss",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The announcement of Brazil's squad for a friendly in India has implications for Indian sports fans and the diaspora's interest in international football.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "bdad7477-1ed5-4826-b4b5-5f4dcc1e8d1d",
+      "title": "No meat during Durga Pujo? Bengal says no",
+      "description": "",
+      "category": "food",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T17:26:42+00:00",
+      "source_urls": [
+        "https://www.indiatoday.in/newsmo/short-videos/no-meat-during-durga-pujo-bengal-says-no-2991173-2026-09-09?utm_source=rss"
+      ],
+      "all_signals": [
+        {
+          "title": "No meat during Durga Pujo? Bengal says no",
+          "url": "https://www.indiatoday.in/newsmo/short-videos/no-meat-during-durga-pujo-bengal-says-no-2991173-2026-09-09?utm_source=rss",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The discussion on non-vegetarian food during Durga Puja is culturally significant for the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "bcdb90e8-1746-427b-8401-cf0ad4c9a64b",
+      "title": "\u2018Manisha Koirala made me feel like I belonged in Bollywood\u2019: Preity Zinta on Dil Se - indianexpress.com",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T16:10:37+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPWE15QllpaHl4SWhDX1Y2djhjYm9JakdISDdJUzZrOW5SYWVLa0dULXRiOWE5Skd2SmVUbFJkSU1lNHRvY3lDVUpPanE1a3ljVS1qUkQwMkUwM1lzdVQ2RzFUOER6S2ZzRXpURDhQTHY0T1RCbWY2S2dfTDZsaGFQRV8xTjFhQnEwekczWUdDV2tLRUM3WTFpckx3Q0lnTzMxSGtkYV9aVUNSQkNwREhOQjdaMnBwV3ZKQW0yWHE2MHh4TWdLQTUtQlBnTjRvZW03Y3RyRy13NjJjekRhZG8xSjln0gHoAUFVX3lxTFBxX2hPQmJzSW9FOXlaLTYyVzV5OUFoNnFsX1FoczFtUjdRMi1KNW9fYmxKMjJHOEFRZzNTYmhvT2MtaFlzejMyYlJmcXIxUnhvdUhTNXFzX0gxMDNZR2NmWmZEQ2FFd1NKMk51RXpiWldWV0Z2Ry1uTTZ4aXQ5S1l2RmJhaHExcWFHM1EyUThjd2xNcHZBQUFYRHFRci1kU0RmVzdBajdXeDgwUkJaNEZoaHZia2xwaG1tNTlDSk4wRklfT2hwa3pTamtYZkZ6cWZaUEJtR1RVUXluZ1g2OUk3S1RoUUU3QXc?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "\u2018Manisha Koirala made me feel like I belonged in Bollywood\u2019: Preity Zinta on Dil Se - indianexpress.com",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPWE15QllpaHl4SWhDX1Y2djhjYm9JakdISDdJUzZrOW5SYWVLa0dULXRiOWE5Skd2SmVUbFJkSU1lNHRvY3lDVUpPanE1a3ljVS1qUkQwMkUwM1lzdVQ2RzFUOER6S2ZzRXpURDhQTHY0T1RCbWY2S2dfTDZsaGFQRV8xTjFhQnEwekczWUdDV2tLRUM3WTFpckx3Q0lnTzMxSGtkYV9aVUNSQkNwREhOQjdaMnBwV3ZKQW0yWHE2MHh4TWdLQTUtQlBnTjRvZW03Y3RyRy13NjJjekRhZG8xSjln0gHoAUFVX3lxTFBxX2hPQmJzSW9FOXlaLTYyVzV5OUFoNnFsX1FoczFtUjdRMi1KNW9fYmxKMjJHOEFRZzNTYmhvT2MtaFlzejMyYlJmcXIxUnhvdUhTNXFzX0gxMDNZR2NmWmZEQ2FFd1NKMk51RXpiWldWV0Z2Ry1uTTZ4aXQ5S1l2RmJhaHExcWFHM1EyUThjd2xNcHZBQUFYRHFRci1kU0RmVzdBajdXeDgwUkJaNEZoaHZia2xwaG1tNTlDSk4wRklfT2hwa3pTamtYZkZ6cWZaUEJtR1RVUXluZ1g2OUk3S1RoUUU3QXc?oc=5",
+          "source": "indianexpress.com"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "Preity Zinta's comments on her experience in Bollywood provide insight into the industry's dynamics, which is of interest to the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "8509d77c-c6c6-4158-b1ce-2165a1ef59e7",
+      "title": "How a \u2018carbon copy\u2019 of a patriotic Indian film got banned in Pakistan, caused mass uproar - indianexpress.com",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T15:50:56+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNZEp3d3Z4c2hfWkhtU09iOVBqNmN0MEVINzdzY3dQV0xoZmZWaVBJYjFLUHdBSGdVSk01aUpIWGp2MWkyVE1RUzQ0aW9zWkxtTzVOWkk4TktpdGtxSGpoT19PSGxCRVJwLVRDVU5OazdaRzNBN0FaeXhacFVKUGwtUTVGc3hGNVhMdjl2YmpjbGxQamdOaEEyTWJ3U0c4YWNuQ3RselM3S1R2aC1LNDR4QWctZ0t3UUdPd25fVV9EVU1QaHRQc1k2Nm9jN0Utejdxand6Z3JlRmNrY2ZmQ2hJZVlib29YcUxHbGltVmhURVRVZ9IB-AFBVV95cUxNbDNoZ3F3dW5iN1dVVFR1UDNyZkptZ0phN1YzZGJyaVMxV1VEcGtKVWtIeGw2Snd1RzU0akRXZXZPelY1NEtzUHdrb0k5R2xDZ1lZdHVySW5VNFlKSklEbk5USFJhd19XX3JzOV94Wm1nbk1FSk9GOXFqaGVPanNFOUhESUpJdUhNNXgydk5IQnpKR0xCd3ZhdUxrSVc2Zkx5VnZCclY3b0UxVG5ZQmRqd0loMnJDMXFxN2kxLVJiT2JrdlBzSGlZbjQ3dU5qTzZTU3VINzVYekJyOXhiUHJPa0pnbGFZY0pIN2llMzZQYmZsc1FHSmU5Tg?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "How a \u2018carbon copy\u2019 of a patriotic Indian film got banned in Pakistan, caused mass uproar - indianexpress.com",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNZEp3d3Z4c2hfWkhtU09iOVBqNmN0MEVINzdzY3dQV0xoZmZWaVBJYjFLUHdBSGdVSk01aUpIWGp2MWkyVE1RUzQ0aW9zWkxtTzVOWkk4TktpdGtxSGpoT19PSGxCRVJwLVRDVU5OazdaRzNBN0FaeXhacFVKUGwtUTVGc3hGNVhMdjl2YmpjbGxQamdOaEEyTWJ3U0c4YWNuQ3RselM3S1R2aC1LNDR4QWctZ0t3UUdPd25fVV9EVU1QaHRQc1k2Nm9jN0Utejdxand6Z3JlRmNrY2ZmQ2hJZVlib29YcUxHbGltVmhURVRVZ9IB-AFBVV95cUxNbDNoZ3F3dW5iN1dVVFR1UDNyZkptZ0phN1YzZGJyaVMxV1VEcGtKVWtIeGw2Snd1RzU0akRXZXZPelY1NEtzUHdrb0k5R2xDZ1lZdHVySW5VNFlKSklEbk5USFJhd19XX3JzOV94Wm1nbk1FSk9GOXFqaGVPanNFOUhESUpJdUhNNXgydk5IQnpKR0xCd3ZhdUxrSVc2Zkx5VnZCclY3b0UxVG5ZQmRqd0loMnJDMXFxN2kxLVJiT2JrdlBzSGlZbjQ3dU5qTzZTU3VINzVYekJyOXhiUHJPa0pnbGFZY0pIN2llMzZQYmZsc1FHSmU5Tg?oc=5",
+          "source": "indianexpress.com"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The story discusses a patriotic Indian film that was banned in Pakistan, highlighting cultural tensions relevant to the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "b06b9375-c9b4-4751-a894-82b8f0ab376d",
+      "title": "\u2018Why are Kashmiri actors always terrorists?\u2019 Filmmakers call out Bollywood\u2019s typecasting - theprint.in",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T13:57:24+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNDJ0T2F6WFFORk8tTV85bWtfMDl6NGY0TVp4cnE4UjFkZ3lQRTNPWk1iVk5MUk1qUlRBSWYwdmhMbHFZcXhrdldBUVpJRmNfOE1JeE5xQkdNUDg3bTlUX3J0UEtoalBUaXY0djFoa2tPalNWODhwZzNrdWlxZFJ6cXZyOG5ra1F3XzFvQjl6VWlaMGVHVEZwU2hPcU_SAaIBQVVfeXFMTlFES2J1M1VucHNMVmdkeklYUU1VVHVRcnI0QWppdEoxY0tWQXc3SUpBSjRNQlhjc2ZseVhUMW9hekJ4TVdObnZZbzNqcUF0V1VzOFA0Rm9udWREWW1VbmhzX3RrR3VaVjNEYUFiTllQalQ0TFgxUkhaUUVydGQwYWNFOUdPQmVZcWc4N3o1bUdkVU81NWlPc2hzZko3Q0NpdjVR?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "\u2018Why are Kashmiri actors always terrorists?\u2019 Filmmakers call out Bollywood\u2019s typecasting - theprint.in",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNDJ0T2F6WFFORk8tTV85bWtfMDl6NGY0TVp4cnE4UjFkZ3lQRTNPWk1iVk5MUk1qUlRBSWYwdmhMbHFZcXhrdldBUVpJRmNfOE1JeE5xQkdNUDg3bTlUX3J0UEtoalBUaXY0djFoa2tPalNWODhwZzNrdWlxZFJ6cXZyOG5ra1F3XzFvQjl6VWlaMGVHVEZwU2hPcU_SAaIBQVVfeXFMTlFES2J1M1VucHNMVmdkeklYUU1VVHVRcnI0QWppdEoxY0tWQXc3SUpBSjRNQlhjc2ZseVhUMW9hekJ4TVdObnZZbzNqcUF0V1VzOFA0Rm9udWREWW1VbmhzX3RrR3VaVjNEYUFiTllQalQ0TFgxUkhaUUVydGQwYWNFOUdPQmVZcWc4N3o1bUdkVU81NWlPc2hzZko3Q0NpdjVR?oc=5",
+          "source": "theprint.in"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "This story addresses typecasting in Bollywood, which is a significant cultural issue for the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "746bb59c-ace4-4c97-ab3e-c7754100f291",
+      "title": "India Start Firm Favourites In High-Stakes Women's Asia Cup Semi-Final Against Bangladesh",
+      "description": "",
+      "category": "sports",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T10:39:58+00:00",
+      "source_urls": [
+        "https://sports.ndtv.com/sports/india-start-firm-favourites-in-high-stakes-womens-asia-cup-semi-final-against-bangladesh-12021998#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "India Start Firm Favourites In High-Stakes Women's Asia Cup Semi-Final Against Bangladesh",
+          "url": "https://sports.ndtv.com/sports/india-start-firm-favourites-in-high-stakes-womens-asia-cup-semi-final-against-bangladesh-12021998#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "This headline discusses India's chances in a significant cricket tournament, which is of interest to the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "c6fe9df7-ed44-4735-b0b3-52f9f5505455",
+      "title": "Wrestler Antim Panghal Opens Up On India's Medal Hopes At Asian Games",
+      "description": "",
+      "category": "sports",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T10:33:04+00:00",
+      "source_urls": [
+        "https://sports.ndtv.com/wrestling/wrestler-antim-panghal-opens-up-on-indias-medal-hopes-at-asian-games-12022674#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "Wrestler Antim Panghal Opens Up On India's Medal Hopes At Asian Games",
+          "url": "https://sports.ndtv.com/wrestling/wrestler-antim-panghal-opens-up-on-indias-medal-hopes-at-asian-games-12022674#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "This headline discusses an Indian wrestler's aspirations for the Asian Games, which is relevant to the Indian diaspora's interest in sports.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "af65752c-bdbd-4994-8f99-2daac1b72a4e",
+      "title": "Fortis Healthcare, Takeda Launch Mission Dengue Free India Campaign - Precedence Research",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-08T14:36:12+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMUxpVTd0c2ZyRGRxN2J2d0tYWmE5WU1jYlY5ZGVORkpFM2pPR1JGdmt1aXF5NER3STd6enRySW45Q3JlczNWYUlyb1Qtd3IySzlkODdIQ3g5Vi1FZE81RDJMNU5Gd19WYlBfOTItNEthNlRCNnJ5Y1Bvb29rTzRmRm93aF8xZw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Fortis Healthcare, Takeda Launch Mission Dengue Free India Campaign - Precedence Research",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMUxpVTd0c2ZyRGRxN2J2d0tYWmE5WU1jYlY5ZGVORkpFM2pPR1JGdmt1aXF5NER3STd6enRySW45Q3JlczNWYUlyb1Qtd3IySzlkODdIQ3g5Vi1FZE81RDJMNU5Gd19WYlBfOTItNEthNlRCNnJ5Y1Bvb29rTzRmRm93aF8xZw?oc=5",
+          "source": "Precedence Research"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The launch of the dengue campaign by Fortis Healthcare and Takeda is relevant for health awareness in the Indian community.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@fortishealthcare",
+          "type": "org",
+          "keywords": [
+            "Fortis Healthcare",
+            "dengue",
+            "health campaign"
+          ]
+        },
+        {
+          "handle": "@takeda_pharma",
+          "type": "org",
+          "keywords": [
+            "Takeda",
+            "dengue",
+            "health campaign"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "67256276-d52a-4e44-aa82-3c062f120bbe",
+      "title": "SIA Says Air India Investment Funded Through Internal Sources - BusinessToday Malaysia",
+      "description": "",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-08T10:20:27+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaEVkVU82N3A4MWJwRkE0YXFVb3JQTXZrY2tRUmpOcnNva0hSY2REZm9Ia3V1LUpUZkZWSVlOeXJrRUNodHo2WjVUN1ZGRlFCRmhwcXJreG5nRjNBeDdscHF3MWJwTVVzRnFybURBSG5SVTBtc0dEWVFDYmhfY3Nyc0tGRjNYZ3Q4aFVwcnY3b2RqWFVBM1NxeUxudzRPZFZXV3AwUVAyN29ZQQ?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "SIA Says Air India Investment Funded Through Internal Sources - BusinessToday Malaysia",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaEVkVU82N3A4MWJwRkE0YXFVb3JQTXZrY2tRUmpOcnNva0hSY2REZm9Ia3V1LUpUZkZWSVlOeXJrRUNodHo2WjVUN1ZGRlFCRmhwcXJreG5nRjNBeDdscHF3MWJwTVVzRnFybURBSG5SVTBtc0dEWVFDYmhfY3Nyc0tGRjNYZ3Q4aFVwcnY3b2RqWFVBM1NxeUxudzRPZFZXV3AwUVAyN29ZQQ?oc=5",
+          "source": "BusinessToday Malaysia"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The investment in Air India is relevant for Indian travelers and the diaspora's connection to aviation.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    }
+  ]
+}
