@@ -187,12 +187,19 @@ def check_category_staleness():
 
 def check_stale_publishing():
     """Check if no articles were published in the last 8 hours.
-    Also check if the system cron daemon is alive (drives ingest)."""
+    Also check if the system cron daemon is alive (legacy path — the pipeline
+    runs on the Hatch scheduler; system cron is only relevant if pipeline jobs
+    are registered in a system crontab)."""
     import subprocess
 
     # --- Cron daemon health ---
+    # NOTE (2026-09-10): the pipeline runs on the Hatch scheduler, NOT system cron.
+    # No videshi jobs exist in any system crontab, so a dead cron daemon is
+    # informational only — never CRITICAL. Only escalate if a pipeline job is
+    # actually registered in a system crontab.
     cron_alive = True
     cron_restarted = False
+    cron_used_by_pipeline = False
     try:
         result = subprocess.run(["pgrep", "-x", "cron"], capture_output=True)
         cron_alive = result.returncode == 0
@@ -201,6 +208,11 @@ def check_stale_publishing():
                            capture_output=True, timeout=10)
             result2 = subprocess.run(["pgrep", "-x", "cron"], capture_output=True)
             cron_restarted = result2.returncode == 0
+        # Does anything pipeline-related actually depend on system cron?
+        cron_used_by_pipeline = subprocess.run(
+            ["grep", "-rl", "videshi", "/etc/cron.d/", "/etc/crontab",
+             "/var/spool/cron/crontabs/"],
+            capture_output=True, timeout=10).returncode == 0
     except Exception:
         pass
 
@@ -216,8 +228,11 @@ def check_stale_publishing():
 
     stale = not has_recent  # flag even without waiting signals
     action = None
-    if not cron_alive and not cron_restarted:
+    cron_ok = cron_alive or cron_restarted
+    if not cron_ok and cron_used_by_pipeline:
         action = "CRITICAL: system cron daemon dead and could not restart"
+    elif not cron_ok:
+        action = "system cron daemon dead (unused by pipeline — informational)"
     elif not cron_alive and cron_restarted:
         action = "system cron daemon was dead — auto-restarted"
     elif stale:
@@ -228,9 +243,10 @@ def check_stale_publishing():
         "stale": stale,
         "has_recent_articles": has_recent,
         "unprocessed_signals": unprocessed,
-        "cron_daemon_alive": cron_alive or cron_restarted,
+        "cron_daemon_alive": cron_ok,
         "cron_daemon_restarted": cron_restarted,
-        "alert": stale or not cron_alive,
+        "cron_used_by_pipeline": cron_used_by_pipeline,
+        "alert": stale or (not cron_ok and cron_used_by_pipeline),
         "action_needed": action,
     }
 
