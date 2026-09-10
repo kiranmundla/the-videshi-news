@@ -202,6 +202,17 @@ def search_youtube_trailer(headline, content_type="movie", body=""):
     return None
 
 
+def _is_shorts_url(link):
+    """YouTube Shorts are never valid trailers."""
+    return "/shorts/" in (link or "")
+
+
+def _looks_like_trailer(title):
+    """Title must reference a trailer — a random first result is worse than none."""
+    t = (title or "").lower()
+    return "trailer" in t or "teaser" in t
+
+
 def search_youtube_via_google_cse(query):
     """Search YouTube via Google CSE API."""
     try:
@@ -220,6 +231,8 @@ def search_youtube_via_google_cse(query):
         data = r.json()
         for item in data.get("items", []):
             link = item.get("link", "")
+            if _is_shorts_url(link):
+                continue
             vid_id = _extract_youtube_id(link)
             if vid_id:
                 title_lower = item.get("title", "").lower()
@@ -228,9 +241,15 @@ def search_youtube_via_google_cse(query):
                     url = f"https://youtube.com/watch?v={vid_id}"
                     print(f"  ✓ YouTube trailer (Google CSE): {url}")
                     return url
-        # If no explicit trailer, take first YouTube result
+        # Fallback: first YouTube result that actually looks like a trailer.
+        # Never embed a random video or Short — returning None is safer.
         for item in data.get("items", []):
-            vid_id = _extract_youtube_id(item.get("link", ""))
+            link = item.get("link", "")
+            if _is_shorts_url(link):
+                continue
+            if not _looks_like_trailer(item.get("title", "")):
+                continue
+            vid_id = _extract_youtube_id(link)
             if vid_id:
                 url = f"https://youtube.com/watch?v={vid_id}"
                 print(f"  ✓ YouTube video (Google CSE): {url}")
@@ -274,11 +293,13 @@ def search_youtube_via_ytdlp(query, max_results=3):
                 print(f"  ✓ YouTube trailer (scrape): {url}")
                 return url
 
-        # Fallback: first result
-        if results:
-            url = f"https://youtube.com/watch?v={results[0]['id']}"
-            print(f"  ✓ YouTube video (scrape): {url}")
-            return url
+        # Fallback: first result that actually looks like a trailer.
+        # Never embed a random video — returning None is safer.
+        for r_item in results:
+            if _looks_like_trailer(r_item["title"]):
+                url = f"https://youtube.com/watch?v={r_item['id']}"
+                print(f"  ✓ YouTube video (scrape): {url}")
+                return url
 
     except Exception as e:
         print(f"  ⚠ YouTube scrape search error: {e}")
