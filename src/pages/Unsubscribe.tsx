@@ -28,7 +28,13 @@ const UnsubscribePage = () => {
         body: JSON.stringify({ email, token }),
       });
       const data = await resp.json().catch(() => ({}));
-      setStatus(resp.ok && data.success ? "done" : "error");
+      if (resp.ok && data.success) {
+        setStatus("done");
+      } else if (resp.status === 400) {
+        setStatus("invalid");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -42,8 +48,8 @@ const UnsubscribePage = () => {
             <MailX className="mx-auto mb-4 h-10 w-10 text-muted-foreground" />
             <h1 className="mb-2 text-2xl font-bold">Invalid unsubscribe link</h1>
             <p className="mb-6 text-muted-foreground">
-              This link is missing its details. Please use the unsubscribe link
-              from your newsletter email.
+              This link isn't valid — it may be incomplete or tampered with.
+              Please use the unsubscribe link from your newsletter email.
             </p>
             <Link to="/" className="text-primary underline hover:text-primary/90">
               Return to Home

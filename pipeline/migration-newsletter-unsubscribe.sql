@@ -14,14 +14,19 @@
 --      IMPORTANT: keep v_secret in sync with UNSUB_SECRET used by the pipeline
 --      (currently the pipeline falls back to 'thevideshi-unsub' when the env var
 --      is unset — all tokens sent to date use that value).
+--
+-- Return values: 'unsubscribed' | 'already' | 'not_found' | 'invalid'
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 ALTER TABLE newsletter_subscribers
   ADD COLUMN IF NOT EXISTS unsubscribed_at timestamptz;
 
+-- DROP first: Postgres won't change a function's return type via CREATE OR REPLACE
+DROP FUNCTION IF EXISTS unsubscribe_newsletter(text, text);
+
 CREATE OR REPLACE FUNCTION unsubscribe_newsletter(p_email text, p_token text)
-RETURNS boolean
+RETURNS text
 LANGUAGE plpgsql
 SECURITY DEFINER
 SET search_path = public
@@ -30,25 +35,40 @@ DECLARE
   -- Must match UNSUB_SECRET in pipeline/send-newsletter.py / send-newsletter-daily.py
   v_secret text := 'thevideshi-unsub';
   v_expected text;
-  v_rows int := 0;
+  v_exists boolean;
+  v_already boolean;
 BEGIN
+  -- 'invalid': missing params or token mismatch (forged/tampered link)
   IF p_email IS NULL OR p_token IS NULL OR p_email = '' OR p_token = '' THEN
-    RETURN false;
+    RETURN 'invalid';
   END IF;
 
   v_expected := substr(encode(extensions.hmac(convert_to(lower(p_email), 'UTF8'), convert_to(v_secret, 'UTF8'), 'sha256'::text), 'hex'), 1, 16);
 
   IF v_expected IS DISTINCT FROM lower(p_token) THEN
-    RETURN false;
+    RETURN 'invalid';
+  END IF;
+
+  -- Token is valid: is this email on the list?
+  SELECT EXISTS (
+    SELECT 1 FROM newsletter_subscribers WHERE lower(email) = lower(p_email)
+  ) INTO v_exists;
+  IF NOT v_exists THEN
+    -- Valid token but unknown address. End state is what the user wants: no mail.
+    RETURN 'not_found';
+  END IF;
+
+  SELECT unsubscribed_at IS NOT NULL FROM newsletter_subscribers
+  WHERE lower(email) = lower(p_email) INTO v_already;
+  IF v_already THEN
+    RETURN 'already';
   END IF;
 
   UPDATE newsletter_subscribers
   SET unsubscribed_at = now()
-  WHERE lower(email) = lower(p_email)
-    AND unsubscribed_at IS NULL;
+  WHERE lower(email) = lower(p_email);
 
-  GET DIAGNOSTICS v_rows = ROW_COUNT;
-  RETURN v_rows > 0;
+  RETURN 'unsubscribed';
 END;
 $$;
 

@@ -60,9 +60,17 @@ apikey: <redacted>
       return res.status(500).json({ error: "Failed to unsubscribe" });
     }
 
-    const unsubscribed = await resp.json();
-    // 200 either way: already-unsubscribed is still a success for one-click.
-    return res.status(200).json({ success: true, unsubscribed: !!unsubscribed });
+    const result = await resp.json();
+
+    if (result === "invalid") {
+      // Forged or tampered link — say so honestly instead of claiming success.
+      return res.status(400).json({ success: false, error: "Invalid unsubscribe link" });
+    }
+
+    // 'unsubscribed' | 'already' | 'not_found' are all 200: in every case the
+    // requester ends up receiving no newsletter mail, which is what one-click
+    // senders (Gmail/Apple) require.
+    return res.status(200).json({ success: true, status: result });
   } catch (e) {
     console.error("[unsubscribe] Error:", e);
     return res.status(500).json({ error: "Failed to unsubscribe" });
