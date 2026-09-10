@@ -1251,11 +1251,13 @@ def fetch_articles(article_ids=None, hours=3):
         }
     else:
         since = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        # NOTE: do NOT filter on enriched_at — article-polish.py sets enriched_at at
+        # write time, so that filter would exclude every polished article and make
+        # this step a permanent no-op. Per-article logic already skips existing embeds.
         params = {
             "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
             "status": "eq.published",
             "published_at": f"gte.{since}",
-            "enriched_at": "is.null",
             "order": "published_at.desc",
             "limit": "50",
         }

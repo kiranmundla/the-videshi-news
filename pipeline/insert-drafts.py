@@ -28,6 +28,9 @@ def main():
     if "--only" in sys.argv:
         only = sys.argv[sys.argv.index("--only") + 1]
     files = sorted(glob.glob(os.path.join(DRAFT_DIR, "*.json")))
+    # Exclude this script's own results file (written into DRAFT_DIR) — it has no
+    # 'slug' key and would crash the insert loop with KeyError on a second run.
+    files = [f for f in files if os.path.basename(f) != "insert-results.json"]
     now = datetime.datetime.now(datetime.timezone.utc).isoformat()
     done, failed = [], []
     for f in files:
