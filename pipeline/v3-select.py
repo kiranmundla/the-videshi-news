@@ -16,6 +16,7 @@ import json, os, re, sys, time, subprocess, hashlib
 from datetime import datetime, timedelta, timezone
 from urllib.parse import quote as urlquote
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import fcntl
 
 # ── Options ───────────────────────────────────────────────────────────────────
 PER_CAT_MAX = 3
@@ -32,6 +33,39 @@ for i, arg in enumerate(sys.argv[1:], 1):
 
 NOW = datetime.now(timezone.utc)
 NOW_ISO = NOW.isoformat()
+
+# ── Durability: overlap lock + persistent candidate backup ────────────────────
+# /tmp is wiped on VM restart, so candidates are ALSO written to a persistent
+# backup path. The writer falls back to it if a fresh /tmp file isn't available.
+STATE_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.state")
+PERSISTENT_OUT = os.path.join(STATE_DIR, "v3-candidates.json")
+LOCK_PATH = os.path.join(STATE_DIR, "v3-select.lock")
+
+
+def acquire_lock():
+    """Non-blocking exclusive lock. Returns file handle, or None if held."""
+    os.makedirs(STATE_DIR, exist_ok=True)
+    fh = open(LOCK_PATH, "w")
+    try:
+        fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except (IOError, OSError):
+        fh.close()
+        return None
+    fh.write(f"{os.getpid()}\n{NOW_ISO}\n")
+    fh.flush()
+    return fh
+
+
+def write_candidates(output):
+    """Atomically write candidates to /tmp (primary) and persistent backup."""
+    for path in (OUT_PATH, PERSISTENT_OUT):
+        d = os.path.dirname(path)
+        if d:
+            os.makedirs(d, exist_ok=True)
+        tmp_path = path + ".tmp"
+        with open(tmp_path, "w") as f:
+            json.dump(output, f, indent=2)
+        os.replace(tmp_path, path)  # atomic — readers never see a partial file
 
 # ── Supabase ──────────────────────────────────────────────────────────────────
 def load_env(*paths):
@@ -552,7 +586,7 @@ def llm_score_topics(topics_with_signals, recent_articles):
         pub_lines = [f"- {a.get('headline', '')}" for a in recent_articles[:150]]
         published_block = "\n\nALREADY PUBLISHED HEADLINES:\n" + "\n".join(pub_lines)
 
-    BATCH_SIZE = 40
+    BATCH_SIZE = 50
     all_results = {}
     total_cost = 0.0
 
@@ -643,7 +677,7 @@ def llm_score_topics(topics_with_signals, recent_articles):
 
     batches = [(i, topics_with_signals[i:i+BATCH_SIZE]) for i in range(0, len(topics_with_signals), BATCH_SIZE)]
 
-    with ThreadPoolExecutor(max_workers=5) as pool:
+    with ThreadPoolExecutor(max_workers=8) as pool:
         futures = [pool.submit(score_batch, start, batch) for start, batch in batches]
         done = 0
         for f in as_completed(futures):
@@ -704,6 +738,13 @@ def apply_event_freshness_gate(llm_result, topic_title):
 def main():
     t0 = time.time()
 
+    # Overlap lock: a second concurrent selector run would double-score topics
+    # and double-burn LLM budget. Exit 2 so callers can distinguish "locked".
+    lock_fh = acquire_lock()
+    if lock_fh is None:
+        print("Another v3-select.py instance is already running — exiting (locked).")
+        sys.exit(2)
+
     print(f"\n{'='*60}")
     print(f"Pipeline V3 Selector — {NOW.strftime('%Y-%m-%d %H:%M UTC')}")
     print(f"  Per-category max: {PER_CAT_MAX}")
@@ -737,7 +778,7 @@ def main():
     print(f"  Found {len(topics)} pending topics (window: {topic_cutoff})")
     if not topics:
         print("  Nothing to do.")
-        json.dump({"candidates": [], "timestamp": NOW_ISO}, open(OUT_PATH, "w"))
+        write_candidates({"candidates": [], "timestamp": NOW_ISO})
         return
 
     # ── Step 2: Load signals for each topic ───────────────────────────────────
@@ -1133,6 +1174,24 @@ def main():
     print(f"  Topics without signals: {len(topics_without_signals)} (auto-rejecting)")
     llm_results = llm_score_topics(topics_with_loaded_signals, recent_articles)
 
+    # ── Checkpoint: bank scoring progress IMMEDIATELY ─────────────────────────
+    # If this run is killed after this point (timeout, VM restart, worker
+    # backgrounding), the next run will NOT re-score these topics. Without
+    # this, every killed run leaves its work unmarked and the next run has to
+    # redo all the LLM scoring — the fail→retry→fail cycle that was stalling
+    # the writer. Topics that got no LLM result stay unmarked for retry.
+    if llm_results and not DRY_RUN:
+        scored_ids = [topics_with_loaded_signals[i]["id"] for i in llm_results.keys()
+                      if 0 <= i < len(topics_with_loaded_signals)]
+        if scored_ids:
+            ckpt_t0 = time.time()
+            for i in range(0, len(scored_ids), 50):
+                chunk = scored_ids[i:i + 50]
+                sb_patch("p2_topics", {"evaluated_at": NOW_ISO},
+                         {"id": f"in.({','.join(chunk)})"})
+            print(f"  Checkpoint: banked evaluated_at for {len(scored_ids)} scored topics "
+                  f"({time.time() - ckpt_t0:.1f}s)")
+
     scored = []
     stats = {"new": 0, "update": 0, "duplicate": 0, "irrelevant": 0, "no_result": 0}
 
@@ -1323,8 +1382,8 @@ def main():
         "total_topics_evaluated": len(topics),
         "candidates": balanced,
     }
-    with open(OUT_PATH, "w") as f:
-        json.dump(output, f, indent=2)
+    write_candidates(output)
+    print(f"  Wrote {len(balanced)} candidates -> {OUT_PATH} (+ persistent backup)")
 
     # ── Step 7: Batch-update topic statuses ───────────────────────────────────
     print(f"\n── Step 7: Updating topic statuses ──")
@@ -1389,4 +1448,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Exit codes: 0 = success, 1 = error, 2 = another instance holds the lock.
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as e:
+        print(f"\nFATAL: {type(e).__name__}: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+    sys.exit(0)

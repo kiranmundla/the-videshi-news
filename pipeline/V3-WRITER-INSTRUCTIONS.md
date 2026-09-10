@@ -1,12 +1,15 @@
 # V3 Writer Cron Body — Article Quality Standard
 
 ## Step 1 — Run V3 selector
+Launch the selector in the background, then poll for its output file — do NOT rely on a single blocking call:
 ```
-cd ~/workspace/the-videshi-news/pipeline && timeout 900 python3 -u v3-select.py --per-cat 3 2>&1
+cd ~/workspace/the-videshi-news/pipeline && python3 -u v3-select.py --per-cat 3 2>&1 &
 ```
+Poll every 30s for up to 15 minutes until `/tmp/v3-candidates.json` has an mtime newer than the run start. The selector is lock-protected (exit 2 = another instance already running; just wait for its output), checkpoints scoring progress so killed runs don't lose work, and writes candidates atomically to both `/tmp` and a persistent backup. A backgrounded process is NOT a failure — wait for the file.
 
 ## Step 2 — Read candidates
 Read `/tmp/v3-candidates.json`. It has a `candidates` array — each entry has `topic_id`, `title`, `category`, `llm_score`, `coverage` ("new" or "update"), `source_urls`, `all_signals`, and `llm_reason`.
+Fallback: if `/tmp/v3-candidates.json` is missing or stale (>30 min old), use `~/workspace/the-videshi-news/pipeline/.state/v3-candidates.json` provided it is < 6h old and has a non-empty candidates array.
 
 Write ONLY these candidates. Do NOT generate additional articles beyond what's in this JSON.
 
