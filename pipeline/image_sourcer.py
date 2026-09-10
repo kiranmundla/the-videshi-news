@@ -816,167 +816,174 @@ def source_hero_image(article, used_images=None):
     must_show = article.get("image_must_show", "")
     category = article.get("category", "")
     
-    if used_images is None:
-        used_images = set()
+    # Candidates that fail the download or the minimum-size gate are skipped so
+    # the cascade continues to the next source - a too-small og:image must not
+    # block the Wikipedia/Commons/Pexels fallbacks.
+    tried = set()
     
     print(f"  🖼  Sourcing image: {headline[:55]}...")
     
-    img_url = None
-    attribution = "The Videshi"
-    source_name = None
-    
-    # ── Source 1: og:image from source articles (ranked by quality) ──────
-    if not img_url:
-        # Gather source URLs: prefer article's own sources (already decoded),
-        # then fall back to signal URLs (may need Google News decoding)
-        all_source_urls = []
+    while True:
+        img_url = None
+        attribution = "The Videshi"
+        source_name = None
+        used = (used_images or set()) | tried
         
-        # Article's sources field (already real URLs, no decoding needed)
-        article_sources = article.get("sources", [])
-        if isinstance(article_sources, str):
-            try:
-                article_sources = json.loads(article_sources)
-            except:
-                article_sources = []
-        if isinstance(article_sources, list):
-            for src in article_sources:
-                if isinstance(src, str) and src.startswith("http"):
-                    all_source_urls.append(src)
-                elif isinstance(src, dict) and src.get("url", "").startswith("http"):
-                    all_source_urls.append(src["url"])
+        # ── Source 1: og:image from source articles (ranked by quality) ──────
+        if not img_url:
+            # Gather source URLs: prefer article's own sources (already decoded),
+            # then fall back to signal URLs (may need Google News decoding)
+            all_source_urls = []
         
-        # Signal URLs (from p2_signals, may need Google News decoding)
-        if topic_id:
-            signal_urls = fetch_source_urls(topic_id)
-            for u in signal_urls:
-                if u not in all_source_urls:
-                    all_source_urls.append(u)
+            # Article's sources field (already real URLs, no decoding needed)
+            article_sources = article.get("sources", [])
+            if isinstance(article_sources, str):
+                try:
+                    article_sources = json.loads(article_sources)
+                except:
+                    article_sources = []
+            if isinstance(article_sources, list):
+                for src in article_sources:
+                    if isinstance(src, str) and src.startswith("http"):
+                        all_source_urls.append(src)
+                    elif isinstance(src, dict) and src.get("url", "").startswith("http"):
+                        all_source_urls.append(src["url"])
         
-        # Collect all valid og:images with domain quality scores
-        og_candidates = []
-        for src_url in all_source_urls[:6]:
-            og_img = fetch_og_image(src_url)
-            if og_img and og_img not in used_images:
-                ok, ctype, _ = verify_image_url(og_img)
-                if ok:
-                    domain_score = _og_image_domain_score(src_url)
-                    try:
-                        domain = urllib.parse.urlparse(src_url).netloc.replace("www.", "")
-                    except:
-                        domain = "Source Article"
-                    og_candidates.append({
-                        "img_url": og_img,
-                        "domain": domain,
-                        "score": domain_score,
-                    })
+            # Signal URLs (from p2_signals, may need Google News decoding)
+            if topic_id:
+                signal_urls = fetch_source_urls(topic_id)
+                for u in signal_urls:
+                    if u not in all_source_urls:
+                        all_source_urls.append(u)
         
-        if og_candidates:
-            # Pick the best: prefer higher domain score
-            og_candidates.sort(key=lambda c: c["score"], reverse=True)
-            best = og_candidates[0]
-            img_url = best["img_url"]
-            attribution = best["domain"]
-            source_name = "og:image"
-            print(f"    ✓ og:image from {attribution} (score {best['score']}, {len(og_candidates)} candidates)")
-    
-    # ── Source 2: RSS feed images (stored in p2_signals) ─────────────────
-    if not img_url and topic_id:
-        signal_images = fetch_signal_images(topic_id)
-        for sig_img in signal_images:
-            if sig_img not in used_images:
-                ok, ctype, _ = verify_image_url(sig_img)
-                if ok:
-                    img_url = sig_img
-                    attribution = "Feed Source"
-                    source_name = "rss_thumbnail"
-                    print(f"    ✓ RSS thumbnail")
-                    break
-    
-    # ── Source 3: Media library cache (person_images) ────────────────────
-    if not img_url and entities:
-        for entity in entities[:3]:
-            if isinstance(entity, str) and len(entity) > 2:
-                cached = fetch_cached_person_image(entity)
-                if cached and cached not in used_images:
-                    ok, ctype, _ = verify_image_url(cached)
+            # Collect all valid og:images with domain quality scores
+            og_candidates = []
+            for src_url in all_source_urls[:6]:
+                og_img = fetch_og_image(src_url)
+                if og_img and og_img not in used:
+                    ok, ctype, _ = verify_image_url(og_img)
                     if ok:
-                        img_url = cached
-                        attribution = "Media Library"
-                        source_name = "person_cache"
-                        print(f"    ✓ Cached image for '{entity}'")
+                        domain_score = _og_image_domain_score(src_url)
+                        try:
+                            domain = urllib.parse.urlparse(src_url).netloc.replace("www.", "")
+                        except:
+                            domain = "Source Article"
+                        og_candidates.append({
+                            "img_url": og_img,
+                            "domain": domain,
+                            "score": domain_score,
+                        })
+        
+            if og_candidates:
+                # Pick the best: prefer higher domain score
+                og_candidates.sort(key=lambda c: c["score"], reverse=True)
+                best = og_candidates[0]
+                img_url = best["img_url"]
+                attribution = best["domain"]
+                source_name = "og:image"
+                print(f"    ✓ og:image from {attribution} (score {best['score']}, {len(og_candidates)} candidates)")
+    
+        # ── Source 2: RSS feed images (stored in p2_signals) ─────────────────
+        if not img_url and topic_id:
+            signal_images = fetch_signal_images(topic_id)
+            for sig_img in signal_images:
+                if sig_img not in used:
+                    ok, ctype, _ = verify_image_url(sig_img)
+                    if ok:
+                        img_url = sig_img
+                        attribution = "Feed Source"
+                        source_name = "rss_thumbnail"
+                        print(f"    ✓ RSS thumbnail")
                         break
     
-    # ── Source 3.5: YouTube thumbnail (specific, recent) ─────────────────
-    # For named entities, a relevant YouTube video's thumbnail is often the
-    # best image — it shows the actual person/event, not a generic stock photo.
-    if not img_url and entities:
-        main_entity = next((e for e in entities[:2] if isinstance(e, str) and len(e) > 2), None)
-        if main_entity:
-            yt_thumb, yt_title, yt_channel = fetch_youtube_thumbnail(main_entity, headline)
-            if yt_thumb and yt_thumb not in used_images:
-                img_url = yt_thumb
-                attribution = f"YouTube / {yt_channel}" if yt_channel else "YouTube"
-                source_name = "youtube_thumbnail"
-                print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
+        # ── Source 3: Media library cache (person_images) ────────────────────
+        if not img_url and entities:
+            for entity in entities[:3]:
+                if isinstance(entity, str) and len(entity) > 2:
+                    cached = fetch_cached_person_image(entity)
+                    if cached and cached not in used:
+                        ok, ctype, _ = verify_image_url(cached)
+                        if ok:
+                            img_url = cached
+                            attribution = "Media Library"
+                            source_name = "person_cache"
+                            print(f"    ✓ Cached image for '{entity}'")
+                            break
     
-    # ── Source 4: Wikipedia person image ─────────────────────────────────
-    if not img_url and entities:
-        for entity in entities[:3]:
-            if isinstance(entity, str) and len(entity) > 2:
-                wp_img = fetch_wikipedia_image(entity, article_context=headline)
-                if wp_img and wp_img not in used_images:
-                    ok, ctype, _ = verify_image_url(wp_img)
-                    if ok:
-                        img_url = wp_img
-                        attribution = "Wikimedia Commons"
-                        source_name = "wikipedia"
-                        print(f"    ✓ Wikipedia image for '{entity}'")
-                        break
-                    else:
-                        print(f"    ✗ Wikipedia image FAILED verification for '{entity}'")
+        # ── Source 3.5: YouTube thumbnail (specific, recent) ─────────────────
+        # For named entities, a relevant YouTube video's thumbnail is often the
+        # best image — it shows the actual person/event, not a generic stock photo.
+        if not img_url and entities:
+            main_entity = next((e for e in entities[:2] if isinstance(e, str) and len(e) > 2), None)
+            if main_entity:
+                yt_thumb, yt_title, yt_channel = fetch_youtube_thumbnail(main_entity, headline)
+                if yt_thumb and yt_thumb not in used:
+                    img_url = yt_thumb
+                    attribution = f"YouTube / {yt_channel}" if yt_channel else "YouTube"
+                    source_name = "youtube_thumbnail"
+                    print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
     
-    # ── Source 5: Wikimedia Commons search ───────────────────────────────
-    if not img_url:
-        query = search_query or must_show or headline[:60]
-        commons_img = fetch_wikimedia_commons_image(query, headline)
-        if commons_img and commons_img not in used_images:
-            ok, ctype, _ = verify_image_url(commons_img)
-            if ok:
-                img_url = commons_img
-                attribution = "Wikimedia Commons"
-                source_name = "commons_search"
-                print(f"    ✓ Commons search result")
-            else:
-                print(f"    ✗ Commons image FAILED verification")
+        # ── Source 4: Wikipedia person image ─────────────────────────────────
+        if not img_url and entities:
+            for entity in entities[:3]:
+                if isinstance(entity, str) and len(entity) > 2:
+                    wp_img = fetch_wikipedia_image(entity, article_context=headline)
+                    if wp_img and wp_img not in used:
+                        ok, ctype, _ = verify_image_url(wp_img)
+                        if ok:
+                            img_url = wp_img
+                            attribution = "Wikimedia Commons"
+                            source_name = "wikipedia"
+                            print(f"    ✓ Wikipedia image for '{entity}'")
+                            break
+                        else:
+                            print(f"    ✗ Wikipedia image FAILED verification for '{entity}'")
     
-    # ── Source 6: Pexels fallback ────────────────────────────────────────
-    if not img_url:
-        query = search_query or must_show or headline[:40]
-        pexels_img = fetch_pexels_image(query)
-        if pexels_img and pexels_img not in used_images:
-            ok, ctype, _ = verify_image_url(pexels_img)
-            if ok:
-                img_url = pexels_img
-                attribution = "Pexels"
-                source_name = "pexels"
-                print(f"    ✓ Pexels fallback")
+        # ── Source 5: Wikimedia Commons search ───────────────────────────────
+        if not img_url:
+            query = search_query or must_show or headline[:60]
+            commons_img = fetch_wikimedia_commons_image(query, headline)
+            if commons_img and commons_img not in used:
+                ok, ctype, _ = verify_image_url(commons_img)
+                if ok:
+                    img_url = commons_img
+                    attribution = "Wikimedia Commons"
+                    source_name = "commons_search"
+                    print(f"    ✓ Commons search result")
+                else:
+                    print(f"    ✗ Commons image FAILED verification")
     
-    # ── No image found ──────────────────────────────────────────────────
-    if not img_url:
-        print(f"    ✗ No image found — publishing without hero (better than broken)")
-        return None, None, None
+        # ── Source 6: Pexels fallback ────────────────────────────────────────
+        if not img_url:
+            query = search_query or must_show or headline[:40]
+            pexels_img = fetch_pexels_image(query)
+            if pexels_img and pexels_img not in used:
+                ok, ctype, _ = verify_image_url(pexels_img)
+                if ok:
+                    img_url = pexels_img
+                    attribution = "Pexels"
+                    source_name = "pexels"
+                    print(f"    ✓ Pexels fallback")
     
-    # ── Download, compress, upload ──────────────────────────────────────
-    raw_bytes = download_image(img_url)
-    if not raw_bytes:
-        print(f"    ✗ Download failed: {img_url[:60]}")
-        return None, None, None
-    
-    # Check dimensions
-    w, h = get_image_dimensions(raw_bytes)
-    if w > 0 and w < 400:
-        print(f"    ✗ Image too small ({w}x{h}), skipping")
-        return None, None, None
+        # ── No candidate left ───────────────────────────────────────────────
+        if not img_url:
+            print(f"    ✗ No image found — publishing without hero (better than broken)")
+            return None, None, None
+        
+        # ── Download and gate on dimensions ──────────────────────────────────
+        raw_bytes = download_image(img_url)
+        if not raw_bytes:
+            print(f"    ✗ Download failed: {img_url[:60]}, trying next source")
+            tried.add(img_url)
+            continue
+        
+        w, h = get_image_dimensions(raw_bytes)
+        if w > 0 and w < 400:
+            print(f"    ✗ Image too small ({w}x{h}), trying next source")
+            tried.add(img_url)
+            continue
+        
+        break
     
     # Compute focal point if available
     fx, fy = 0.5, 0.5

@@ -1,66 +1,39 @@
 {
-  "timestamp": "2026-09-10T12:27:39.079955+00:00",
-  "total_topics_evaluated": 2647,
+  "timestamp": "2026-09-10T20:25:15.663723+00:00",
+  "total_topics_evaluated": 2259,
   "candidates": [
     {
-      "topic_id": "34b6a83b-937a-4151-b72e-4a2f38ac0606",
-      "title": "US suspends Cognizant\u2019s Green Card filings: What it means for Indian workers - The Indian Express",
+      "topic_id": "d63a14bd-2fc8-40b7-8df0-bd0fb7c9de3c",
+      "title": "New $4,000 H-1B biometric fee is now in effect: Why the change matters for thousands of Indian workers | Hindustan Times - Hindustan Times",
       "description": "",
       "category": "immigration",
-      "signal_count": 3,
-      "source_diversity": 3,
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-09-09T11:51:52+00:00",
+      "newest_signal": "2026-09-10T08:31:18+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPU2paN1FMSTFaaFF5M2ZmMmdfS3hoTktkM1NEMU03Z1J5UlVsc2tDUHdYVXlhOWF0cDZyRXdhNkpmWVlfeFphVzdaMVBfbTlmTEZhVXVxSEhLOWJGRDlBY29URmY2R21WclFSeFNTVndDOW00VnZubDVsX3BSWFNMcUVtS0ZXUExVaG0zdl9OZlhhN2xCWFlnSk1meUFWRDFHbENFSS1HY3ZYaXZqNHFIMTJYYllpNVU1aTJZaTJ3RFVLaFdLSkt5OA?oc=5",
-        "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNQ09iTjRvOVJwVlJRc3BaTlZTbXF4eE5pZ2JRbUV2eEc2bTRMUEhRaVlWekR4MWpPNjZhMkVWeVBzc3piRS1XVWtSbGQ1WkRoOWFhdkl1eC1DMnlDSF8tSnZ5dGJ3R1NOSW5uUDdpMWZOODVwS3p4dFBDR2g2Z2dGRHQ5WDVfSUpnZEQ1R3MxSFVzbkFsU01YLXlrQ1lRYzB4RndLUFpMRDB0ZXk3UUVWLUZWODkwMEtjVkVmWjlpQmtLLTZHUl9yQ0tBRlhiVDlMTW04SmVqcncyUQ?oc=5",
-        "https://news.google.com/rss/articles/CBMizgFBVV95cUxPZVVJakhBOFJLbHpsT1Nhdm9xSWR0VGJNb3B5Z25oMFJLZEw3cEwtWXRhdDZzUTR6NXctbVlTVGZWZUZjV1BwSWl3aWwtWU1HYWNHN1d5RGYwb2xfZlZ5REtySmpOM0MtQUNLSDAzZnhMbE9FbFJJVHJUWk9sSFlBNTNIRlZDYnBQSFlzRE9VUVY5WnRrelRBaEdELUV6M3JxbFlqc0p3N3NEZU9HdWJGTFRaTjNRZGJJb0ItajNDOTB3VmJUTU9MOTZiSGRIQQ?oc=5"
+        "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQTFpGYkZPaEZid0RZLUw2XzBEbmZqSFNaMXNjcVB3Y0taZlBEQkhlcG82TkJ0My14VFlfRlFkYjhYdGNrd2NCRlpCdzFKc01KMS1YOGpQTkYyODFhQlhUZXltSTRVQUVSZHBMeS1mS0hKcGZZRmpGdjZnTmc0LXMwcWZDdjRwUkdWMnIwYnd2Ny10cXFjaXBBeFhFTmlQNkxQMERQU0huZ1VhcTNyQUlUcjFTaGRrWml2ZnBrNFRmbkZnVklKRGNBX2t0bURyNjk1NU5aZ1pONXBjSTR5eXRROTNUb0c3MnVYM1QxetIB8gFBVV95cUxOQWpONEZHZnhhbmlvZjRWbFhUMHltUjJ1Y2ZsNnRjbktCOGI2NVlEc0RjQW1xQlg4T28tUXk4Z1RBVVdwQXl1SkttNFhHU3BHRnZidFBpckg1OGUwV1FkdkZCZ1dod2MxNUJ2SjZUMXdRel9vTWViNTY2T0JYVURHdFk0ODB3dXpIVzFkT08wdmtEZW5uVXVXRl9XQVdhd29neDJ3Sk9UaE8wSTRFUDdvZnhYUTFIZGtxVmx2aWx5dDlJUEo2Umo4dHhGSU5sZ3ZodTIweGFZa1BsdjdBMkN1ZkFXYUJRWk02WWFrLW1iM1M3Zw?oc=5"
       ],
       "all_signals": [
         {
-          "title": "US suspends Cognizant\u2019s Green Card filings: What it means for Indian workers - The Indian Express",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPU2paN1FMSTFaaFF5M2ZmMmdfS3hoTktkM1NEMU03Z1J5UlVsc2tDUHdYVXlhOWF0cDZyRXdhNkpmWVlfeFphVzdaMVBfbTlmTEZhVXVxSEhLOWJGRDlBY29URmY2R21WclFSeFNTVndDOW00VnZubDVsX3BSWFNMcUVtS0ZXUExVaG0zdl9OZlhhN2xCWFlnSk1meUFWRDFHbENFSS1HY3ZYaXZqNHFIMTJYYllpNVU1aTJZaTJ3RFVLaFdLSkt5OA?oc=5",
-          "source": "The Indian Express"
-        },
-        {
-          "title": "Cognizant's green card filings suspended amid probe by US",
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNQ09iTjRvOVJwVlJRc3BaTlZTbXF4eE5pZ2JRbUV2eEc2bTRMUEhRaVlWekR4MWpPNjZhMkVWeVBzc3piRS1XVWtSbGQ1WkRoOWFhdkl1eC1DMnlDSF8tSnZ5dGJ3R1NOSW5uUDdpMWZOODVwS3p4dFBDR2g2Z2dGRHQ5WDVfSUpnZEQ1R3MxSFVzbkFsU01YLXlrQ1lRYzB4RndLUFpMRDB0ZXk3UUVWLUZWODkwMEtjVkVmWjlpQmtLLTZHUl9yQ0tBRlhiVDlMTW04SmVqcncyUQ?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "\"Handcuffs Await\": US Suspends Tech Giant Cognizant's Green Card Filings Over Alleged Visa Abuse",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPZVVJakhBOFJLbHpsT1Nhdm9xSWR0VGJNb3B5Z25oMFJLZEw3cEwtWXRhdDZzUTR6NXctbVlTVGZWZUZjV1BwSWl3aWwtWU1HYWNHN1d5RGYwb2xfZlZ5REtySmpOM0MtQUNLSDAzZnhMbE9FbFJJVHJUWk9sSFlBNTNIRlZDYnBQSFlzRE9VUVY5WnRrelRBaEdELUV6M3JxbFlqc0p3N3NEZU9HdWJGTFRaTjNRZGJJb0ItajNDOTB3VmJUTU9MOTZiSGRIQQ?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "US suspends Cognizant\u2019s Green Card filings: What it means for Indian workers - The Indian Express",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPU2paN1FMSTFaaFF5M2ZmMmdfS3hoTktkM1NEMU03Z1J5UlVsc2tDUHdYVXlhOWF0cDZyRXdhNkpmWVlfeFphVzdaMVBfbTlmTEZhVXVxSEhLOWJGRDlBY29URmY2R21WclFSeFNTVndDOW00VnZubDVsX3BSWFNMcUVtS0ZXUExVaG0zdl9OZlhhN2xCWFlnSk1meUFWRDFHbENFSS1HY3ZYaXZqNHFIMTJYYllpNVU1aTJZaTJ3RFVLaFdLSkt5OA?oc=5",
-          "source": "The Indian Express"
-        },
-        {
-          "title": "Cognizant's green card filings suspended amid probe by US",
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNQ09iTjRvOVJwVlJRc3BaTlZTbXF4eE5pZ2JRbUV2eEc2bTRMUEhRaVlWekR4MWpPNjZhMkVWeVBzc3piRS1XVWtSbGQ1WkRoOWFhdkl1eC1DMnlDSF8tSnZ5dGJ3R1NOSW5uUDdpMWZOODVwS3p4dFBDR2g2Z2dGRHQ5WDVfSUpnZEQ1R3MxSFVzbkFsU01YLXlrQ1lRYzB4RndLUFpMRDB0ZXk3UUVWLUZWODkwMEtjVkVmWjlpQmtLLTZHUl9yQ0tBRlhiVDlMTW04SmVqcncyUQ?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "\"Handcuffs Await\": US Suspends Tech Giant Cognizant's Green Card Filings Over Alleged Visa Abuse",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPZVVJakhBOFJLbHpsT1Nhdm9xSWR0VGJNb3B5Z25oMFJLZEw3cEwtWXRhdDZzUTR6NXctbVlTVGZWZUZjV1BwSWl3aWwtWU1HYWNHN1d5RGYwb2xfZlZ5REtySmpOM0MtQUNLSDAzZnhMbE9FbFJJVHJUWk9sSFlBNTNIRlZDYnBQSFlzRE9VUVY5WnRrelRBaEdELUV6M3JxbFlqc0p3N3NEZU9HdWJGTFRaTjNRZGJJb0ItajNDOTB3VmJUTU9MOTZiSGRIQQ?oc=5",
-          "source": "NDTV"
+          "title": "New $4,000 H-1B biometric fee is now in effect: Why the change matters for thousands of Indian workers | Hindustan Times - Hindustan Times",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQTFpGYkZPaEZid0RZLUw2XzBEbmZqSFNaMXNjcVB3Y0taZlBEQkhlcG82TkJ0My14VFlfRlFkYjhYdGNrd2NCRlpCdzFKc01KMS1YOGpQTkYyODFhQlhUZXltSTRVQUVSZHBMeS1mS0hKcGZZRmpGdjZnTmc0LXMwcWZDdjRwUkdWMnIwYnd2Ny10cXFjaXBBeFhFTmlQNkxQMERQU0huZ1VhcTNyQUlUcjFTaGRrWml2ZnBrNFRmbkZnVklKRGNBX2t0bURyNjk1NU5aZ1pONXBjSTR5eXRROTNUb0c3MnVYM1QxetIB8gFBVV95cUxOQWpONEZHZnhhbmlvZjRWbFhUMHltUjJ1Y2ZsNnRjbktCOGI2NVlEc0RjQW1xQlg4T28tUXk4Z1RBVVdwQXl1SkttNFhHU3BHRnZidFBpckg1OGUwV1FkdkZCZ1dod2MxNUJ2SjZUMXdRel9vTWViNTY2T0JYVURHdFk0ODB3dXpIVzFkT08wdmtEZW5uVXVXRl9XQVdhd29neDJ3Sk9UaE8wSTRFUDdvZnhYUTFIZGtxVmx2aWx5dDlJUEo2Umo4dHhGSU5sZ3ZodTIweGFZa1BsdjdBMkN1ZkFXYUJRWk02WWFrLW1iM1M3Zw?oc=5",
+          "source": "Hindustan Times"
         }
       ],
       "llm_score": 5,
-      "llm_reason": "This headline discusses the suspension of Cognizant's Green Card filings, which directly impacts Indian workers and the diaspora.",
+      "llm_reason": "The introduction of a new $4,000 H-1B biometric fee is a significant change that directly impacts thousands of Indian workers and their employment status in the US.",
       "coverage": "new",
       "ig_handles": [
         {
-          "handle": "@cognizant",
+          "handle": "@uscis",
           "type": "org",
           "keywords": [
-            "Cognizant",
-            "Green Card",
-            "immigration"
+            "USCIS",
+            "H-1B",
+            "biometric fee"
           ]
         }
       ],
@@ -70,347 +43,37 @@
       "new_development": null
     },
     {
-      "topic_id": "335b4e7c-8894-4ec1-8517-600918383867",
-      "title": "Bumrah fit, Yash Thakur replaces Harshit for Afghanistan T20Is and Asian Games - Cricinfo",
+      "topic_id": "1f2d35dc-9255-4fa1-bf28-50d1de029079",
+      "title": "Next Target of Trump's Deportation Campaign: 170,000 Salvadoran Immigrants - Bloomberg.com",
       "description": "",
-      "category": "sports",
-      "signal_count": 4,
-      "source_diversity": 4,
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-09-10T10:11:45+00:00",
+      "newest_signal": "2026-09-09T16:27:11+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOMlVoeEd0LXJ2R1o5UkMya1p4ZnBjUFZFMWtsemFzQkNWYW5PTlV0YzRPOTlZVGNDeVdLMk90dU5INm5nZE5Ib191dHM3TU0zU3lEQUljVTJQQXRvY1psTlQtdm16QW4yc3hWY1lPUG05THRrOW1taUc3S25WY2VBZmVVVEhJb2Fpd3V2S1gwdWdKLWFnOE83bEUyT3pvaDBUSkxqYVRkWXAwV2s?oc=5",
-        "https://news.google.com/rss/articles/CBMihAJBVV95cUxNMHBpWVBfdUJxN0E3SkgwWUg4UmtReEN5YkdJYkltUURCRDUtTFNSZUJ4YWJoMlpRQTUzOTI1Ry1seU1yX1ItQkxwNng5TlBDX3Y0enJPNy1MMGtSRlIwdk16bS1QMjBYcXhFcjZNTGoycDgycDJrRnVJS29Rdmx3SUwyaTBGOUlBOEI0RGVqNm56WllabWR3NzNLQ3h3Zmt3d1dFWWxJU2dvTGwtMmtOWUhSYzRCYWVvR2tJWVhGbnVQNGpjMzZIeTZnVlpwd0tsOVUyUEdLMFowMHVPZUY0b1pCYWMwdGNkNGczOENDWlEzcVdNMFEzcUZsQmZIN2toSUNZaQ?oc=5",
-        "https://news.google.com/rss/articles/CBMipAFBVV95cUxNaFpmbFlHaHJyVkI0d2ZMZXA0WEdLYnNoOUE4UVdDM1lUSzZLcWZ2c3pCZ0NUMzZYMDJFVlN0YXl0bkRFT3hPMVB0UmJjTk1QbEp4T1lBMmlkLWphX3JCYTVKeEpaSVhRVHNPRl94V2hsLWYwWkVSRWFZbHRBWnJiZlI1SFp3TTE1TzdRTGxWSUlfbzZETnNQMnpRWHRKTVVadTJTV9IBqgFBVV95cUxNejc4a0c1VWowR3RRWUJyVVlFQWtHYmx2ZDhkU1JFMTE3U21pNFJwb1R0THQ2WVZMTkhKYnJxNnN3MEppMFlEUndLUThwSmMxdXMwM2FCTmJpTnFLUk53M0oxa19OZG5vdDRmS1R3dDZEOHBmQllOTWYyUkhzVUpqdXZicTdteWdnOW9OcURTQ2N4UUlpT1Z6c01TeTkzdzRFNDY1RXFjM3U0dw?oc=5",
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSnMyaVBDVnJHajVyTEJHMTk0QjhQcWNVMkFYU2VLVnFuMS1UZ3ZfeWhFUjFRNXB5NmIzcFhMLVJpWTVLLWxJcnE4ajlPZ2RIWnBOVEtKSjNLQ0o1bHJxZmVReWZTMDhQNUFjclNreEdQNmZxMGd5ejRwd3BIS2s2V3EyVmk5cUlQWFdwX0tESlF1RUxaQ2hNZUdpZjZBaE1CVXBMQTJhSnpjU2dIU0FjWG9sb9IBxAFBVV95cUxOTm9UZE9VNU9YU3FPQTJoMGE3RW9lT25McjNjcWtLZ2p1Zno5dThCN3J1QUhtSTNFVmhxM0k5LTFzZVNneUlMbXk2bjQwS2JiaVZsS1J1RGRuNXYyVUZ2S29PUUFGMll4WlJ0UEU0elVfT2VyWjFudERYRi1jMEh2SXlRWWFTOUZHWHhqVWJSb0RMY3N3VzVoSXJQLXB1a01XekNZWHlpUS1PUjhlamJYM1hGaHAwb19RNlhnVjE2Y3dEYk1y?oc=5"
+        "https://news.google.com/rss/articles/CBMivAFBVV95cUxOdkxhNGRHTnhCbHRxeGpDUEYtdXNxRl9CMUxxSHJuREZyVVl0LVJKLU1nSjVVb3JhOTFBRjFqcFZ4V1RWRGVmY1AwVkZKdDJVQ0JoSEFDeWdUZVE2dXVvdzhYX1JVMTlHeXZ3NEhYeG9UUG9Bd240QXZkb0FWR0UtV1hOQXZXQ1oyb1RNZEdtd3FiMEJsdmgxTFVnWkozZXJDSk5hUUVDaXFqd2FxSW5JQzJUSDNtYVNSa0ZTTg?oc=5"
       ],
       "all_signals": [
         {
-          "title": "Nitish Reddy likely to get CoE go-ahead; Harshit Rana ruled out of Afghan series",
-          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOMlVoeEd0LXJ2R1o5UkMya1p4ZnBjUFZFMWtsemFzQkNWYW5PTlV0YzRPOTlZVGNDeVdLMk90dU5INm5nZE5Ib191dHM3TU0zU3lEQUljVTJQQXRvY1psTlQtdm16QW4yc3hWY1lPUG05THRrOW1taUc3S25WY2VBZmVVVEhJb2Fpd3V2S1gwdWdKLWFnOE83bEUyT3pvaDBUSkxqYVRkWXAwV2s?oc=5",
-          "source": "Cricbuzz"
-        },
-        {
-          "title": "Harshit Rana likely to miss Afghanistan T20Is; Asian Games in danger too",
-          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNMHBpWVBfdUJxN0E3SkgwWUg4UmtReEN5YkdJYkltUURCRDUtTFNSZUJ4YWJoMlpRQTUzOTI1Ry1seU1yX1ItQkxwNng5TlBDX3Y0enJPNy1MMGtSRlIwdk16bS1QMjBYcXhFcjZNTGoycDgycDJrRnVJS29Rdmx3SUwyaTBGOUlBOEI0RGVqNm56WllabWR3NzNLQ3h3Zmt3d1dFWWxJU2dvTGwtMmtOWUhSYzRCYWVvR2tJWVhGbnVQNGpjMzZIeTZnVlpwd0tsOVUyUEdLMFowMHVPZUY0b1pCYWMwdGNkNGczOENDWlEzcVdNMFEzcUZsQmZIN2toSUNZaQ?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "Bumrah back! Harshit Rana out as Yash Thakur gets call",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNaFpmbFlHaHJyVkI0d2ZMZXA0WEdLYnNoOUE4UVdDM1lUSzZLcWZ2c3pCZ0NUMzZYMDJFVlN0YXl0bkRFT3hPMVB0UmJjTk1QbEp4T1lBMmlkLWphX3JCYTVKeEpaSVhRVHNPRl94V2hsLWYwWkVSRWFZbHRBWnJiZlI1SFp3TTE1TzdRTGxWSUlfbzZETnNQMnpRWHRKTVVadTJTV9IBqgFBVV95cUxNejc4a0c1VWowR3RRWUJyVVlFQWtHYmx2ZDhkU1JFMTE3U21pNFJwb1R0THQ2WVZMTkhKYnJxNnN3MEppMFlEUndLUThwSmMxdXMwM2FCTmJpTnFLUk53M0oxa19OZG5vdDRmS1R3dDZEOHBmQllOTWYyUkhzVUpqdXZicTdteWdnOW9OcURTQ2N4UUlpT1Z6c01TeTkzdzRFNDY1RXFjM3U0dw?oc=5",
-          "source": "Rediff"
-        },
-        {
-          "title": "Bumrah fit, Yash Thakur replaces Harshit for Afghanistan T20Is and Asian Games - Cricinfo",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSnMyaVBDVnJHajVyTEJHMTk0QjhQcWNVMkFYU2VLVnFuMS1UZ3ZfeWhFUjFRNXB5NmIzcFhMLVJpWTVLLWxJcnE4ajlPZ2RIWnBOVEtKSjNLQ0o1bHJxZmVReWZTMDhQNUFjclNreEdQNmZxMGd5ejRwd3BIS2s2V3EyVmk5cUlQWFdwX0tESlF1RUxaQ2hNZUdpZjZBaE1CVXBMQTJhSnpjU2dIU0FjWG9sb9IBxAFBVV95cUxOTm9UZE9VNU9YU3FPQTJoMGE3RW9lT25McjNjcWtLZ2p1Zno5dThCN3J1QUhtSTNFVmhxM0k5LTFzZVNneUlMbXk2bjQwS2JiaVZsS1J1RGRuNXYyVUZ2S29PUUFGMll4WlJ0UEU0elVfT2VyWjFudERYRi1jMEh2SXlRWWFTOUZHWHhqVWJSb0RMY3N3VzVoSXJQLXB1a01XekNZWHlpUS1PUjhlamJYM1hGaHAwb19RNlhnVjE2Y3dEYk1y?oc=5",
-          "source": "Cricinfo"
-        },
-        {
-          "title": "Nitish Reddy likely to get CoE go-ahead; Harshit Rana ruled out of Afghan series",
-          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOMlVoeEd0LXJ2R1o5UkMya1p4ZnBjUFZFMWtsemFzQkNWYW5PTlV0YzRPOTlZVGNDeVdLMk90dU5INm5nZE5Ib191dHM3TU0zU3lEQUljVTJQQXRvY1psTlQtdm16QW4yc3hWY1lPUG05THRrOW1taUc3S25WY2VBZmVVVEhJb2Fpd3V2S1gwdWdKLWFnOE83bEUyT3pvaDBUSkxqYVRkWXAwV2s?oc=5",
-          "source": "Cricbuzz"
-        },
-        {
-          "title": "Harshit Rana likely to miss Afghanistan T20Is; Asian Games in danger too",
-          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxNMHBpWVBfdUJxN0E3SkgwWUg4UmtReEN5YkdJYkltUURCRDUtTFNSZUJ4YWJoMlpRQTUzOTI1Ry1seU1yX1ItQkxwNng5TlBDX3Y0enJPNy1MMGtSRlIwdk16bS1QMjBYcXhFcjZNTGoycDgycDJrRnVJS29Rdmx3SUwyaTBGOUlBOEI0RGVqNm56WllabWR3NzNLQ3h3Zmt3d1dFWWxJU2dvTGwtMmtOWUhSYzRCYWVvR2tJWVhGbnVQNGpjMzZIeTZnVlpwd0tsOVUyUEdLMFowMHVPZUY0b1pCYWMwdGNkNGczOENDWlEzcVdNMFEzcUZsQmZIN2toSUNZaQ?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "Bumrah fit, Yash Thakur replaces Harshit for Afghanistan T20Is and Asian Games - Cricinfo",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPSnMyaVBDVnJHajVyTEJHMTk0QjhQcWNVMkFYU2VLVnFuMS1UZ3ZfeWhFUjFRNXB5NmIzcFhMLVJpWTVLLWxJcnE4ajlPZ2RIWnBOVEtKSjNLQ0o1bHJxZmVReWZTMDhQNUFjclNreEdQNmZxMGd5ejRwd3BIS2s2V3EyVmk5cUlQWFdwX0tESlF1RUxaQ2hNZUdpZjZBaE1CVXBMQTJhSnpjU2dIU0FjWG9sb9IBxAFBVV95cUxOTm9UZE9VNU9YU3FPQTJoMGE3RW9lT25McjNjcWtLZ2p1Zno5dThCN3J1QUhtSTNFVmhxM0k5LTFzZVNneUlMbXk2bjQwS2JiaVZsS1J1RGRuNXYyVUZ2S29PUUFGMll4WlJ0UEU0elVfT2VyWjFudERYRi1jMEh2SXlRWWFTOUZHWHhqVWJSb0RMY3N3VzVoSXJQLXB1a01XekNZWHlpUS1PUjhlamJYM1hGaHAwb19RNlhnVjE2Y3dEYk1y?oc=5",
-          "source": "Cricinfo"
-        },
-        {
-          "title": "Bumrah back! Harshit Rana out as Yash Thakur gets call",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNaFpmbFlHaHJyVkI0d2ZMZXA0WEdLYnNoOUE4UVdDM1lUSzZLcWZ2c3pCZ0NUMzZYMDJFVlN0YXl0bkRFT3hPMVB0UmJjTk1QbEp4T1lBMmlkLWphX3JCYTVKeEpaSVhRVHNPRl94V2hsLWYwWkVSRWFZbHRBWnJiZlI1SFp3TTE1TzdRTGxWSUlfbzZETnNQMnpRWHRKTVVadTJTV9IBqgFBVV95cUxNejc4a0c1VWowR3RRWUJyVVlFQWtHYmx2ZDhkU1JFMTE3U21pNFJwb1R0THQ2WVZMTkhKYnJxNnN3MEppMFlEUndLUThwSmMxdXMwM2FCTmJpTnFLUk53M0oxa19OZG5vdDRmS1R3dDZEOHBmQllOTWYyUkhzVUpqdXZicTdteWdnOW9OcURTQ2N4UUlpT1Z6c01TeTkzdzRFNDY1RXFjM3U0dw?oc=5",
-          "source": "Rediff"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "The update on Bumrah's fitness and changes in the squad for upcoming matches is significant for cricket fans in the diaspora.",
-      "coverage": "update",
-      "ig_handles": [
-        {
-          "handle": "@indiancricketteam",
-          "type": "org",
-          "keywords": [
-            "cricket",
-            "Bumrah",
-            "squad"
-          ]
-        },
-        {
-          "handle": "@icc",
-          "type": "org",
-          "keywords": [
-            "cricket",
-            "Bumrah",
-            "squad"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": "2023-09-09",
-      "story_mode": "major_update",
-      "new_development": "Bumrah is fit, and Yash Thakur has replaced Harshit for the upcoming Afghanistan T20Is and Asian Games."
-    },
-    {
-      "topic_id": "a04934a5-7bb7-486b-aa94-8e78b1b9fdb9",
-      "title": "India ramps up Disease X preparedness with $8.9 M funding boost from CEPI for freezer-free RNA vaccine - BioSpectrum Asia",
-      "description": "",
-      "category": "news",
-      "signal_count": 4,
-      "source_diversity": 4,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-10T07:01:10+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNnh3d24wbWRobDMwcDZvYXpTclU2czVNbTNjbXhGYTA2OElyVExmZG81SDJpVjlPWU5HUmZqYkFPdFpabUhvZDRTaWlZXzRHTE85eVh0RDM2a3lMeEZLRW0yRUdOSlM4anpCX3VPMXZmTV9RVUROSm5jWlNicTBEUzF0NEZnVXZ5QzBROWpDSXNDOWFGREdQNjZSdXk0T3ZYRk4xbWJ1V3R2SDJDR3JQLXBqbmJBOGIzOFJhdkdvSmtCSzQ4SU8xbEliYldZc0duRGdnMERCc2hZNFhGU01oY2ZvZWxIeWM?oc=5",
-        "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPRkYxcDlMQkNLSDVsWXRFc016Yl9mMVRKckpUNzRCU2dCd3FqSngtNFoweE81ME5vOTFmVTYyRUZ0YzhkSHNFeFlEQmdoUnVUNlYtZHhBSDRDbXkzNnpqcEdkV0xZWFhtakNGZFVFOXFnSTVqWmstN2d4X1RVWWdXU2lFenFHT0c3LUhSWEMwb096UG9oTm1NMXhnVWhGR3o1WmJNMFZSenhBQQ?oc=5",
-        "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNXzhxQ0U1YVVYMGpxRTJXTGp1cFA5M2dJOXN3bHh6dWt2cUNtQk9vc0tXU1lQVVJBa3dwQ0hqc0pFc1lwVHpZZms4aVR4ZjY3dzVnYTh2d3dlaGstRkhTVFl2RVRHWVJoa3lTa1IyZVZUaGpkQXJvaDFWQ09KU1czWEFIcEZOdlRwQWthSmFxc1BZQS12SHc5MnoydEl1OGcwU3ZNY2hkSnRqRE9rb3FkSTljNC1QZHdIUXBfaXdydFM5azItTEx3SXNpY28tUlFqcmc?oc=5",
-        "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPbE1xOEJsSzdhdWl5Z1NrQnNMcHBTQXhSMWF1ckZjSUJtbWpDV1Y4U1BfdVQ4S2RsbW1RZ2s3a0VHbW5fWW15dklTazNfS3RwYXhXNlFtd1Y1d0xvRG9zMEM0MmlFMWZPLURmNmF2NWlNb0MzZV9nYVpfQ0NlLXdvWTFuMXltS0xDZG5qYXRfMDBOaDRxNDN2ZlNiS3dpRUxZNkRUa1d0dVB1bGREWTRZay1DZWtleTViVHItU2sxeDkzNXPSAcoBQVVfeXFMTmFxc2J1Qm1lSEhuNnU4OHAwaVpROC1hTmFfTWthZHVrWnVjaktiQkhLNC1uWnZ6NWQ0dHRmWmJhYmpiTG5NWk92TjRSOHY4TmJQbXdQQWFzUGx5QXA0bVA5Nm52bUM4U25XclRXUVZWMWpPYU9KSUVtcGxIUnJrXzBmdmZ3cjQ4bUF0VUlHdkFuRG1SdkZPUkNhTTFwTGVqR3htZzZEb002bzV2TDUxWERPX3Z3bEhXa0tONVNReGoySG0tNjVPS2VJUQ?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "India ramps up Disease X preparedness with $8.9 M funding boost from CEPI for freezer-free RNA vaccine - BioSpectrum Asia",
-          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNnh3d24wbWRobDMwcDZvYXpTclU2czVNbTNjbXhGYTA2OElyVExmZG81SDJpVjlPWU5HUmZqYkFPdFpabUhvZDRTaWlZXzRHTE85eVh0RDM2a3lMeEZLRW0yRUdOSlM4anpCX3VPMXZmTV9RVUROSm5jWlNicTBEUzF0NEZnVXZ5QzBROWpDSXNDOWFGREdQNjZSdXk0T3ZYRk4xbWJ1V3R2SDJDR3JQLXBqbmJBOGIzOFJhdkdvSmtCSzQ4SU8xbEliYldZc0duRGdnMERCc2hZNFhGU01oY2ZvZWxIeWM?oc=5",
-          "source": "BioSpectrum Asia"
-        },
-        {
-          "title": "India ramps up Disease X preparedness with $8.9 million funding boost for its freezer-free mRNA vaccine",
-          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPRkYxcDlMQkNLSDVsWXRFc016Yl9mMVRKckpUNzRCU2dCd3FqSngtNFoweE81ME5vOTFmVTYyRUZ0YzhkSHNFeFlEQmdoUnVUNlYtZHhBSDRDbXkzNnpqcEdkV0xZWFhtakNGZFVFOXFnSTVqWmstN2d4X1RVWWdXU2lFenFHT0c3LUhSWEMwb096UG9oTm1NMXhnVWhGR3o1WmJNMFZSenhBQQ?oc=5",
-          "source": "CEPI"
-        },
-        {
-          "title": "Freezer-free RNA vaccine breakthrough could transform the global fight against emerging diseases",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNXzhxQ0U1YVVYMGpxRTJXTGp1cFA5M2dJOXN3bHh6dWt2cUNtQk9vc0tXU1lQVVJBa3dwQ0hqc0pFc1lwVHpZZms4aVR4ZjY3dzVnYTh2d3dlaGstRkhTVFl2RVRHWVJoa3lTa1IyZVZUaGpkQXJvaDFWQ09KU1czWEFIcEZOdlRwQWthSmFxc1BZQS12SHc5MnoydEl1OGcwU3ZNY2hkSnRqRE9rb3FkSTljNC1QZHdIUXBfaXdydFM5azItTEx3SXNpY28tUlFqcmc?oc=5",
-          "source": "Digital Journal"
-        },
-        {
-          "title": "CEPI funds Pune\u2019s Immunoscript for \u201cfreezer-free\u201d RNA vaccine",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPbE1xOEJsSzdhdWl5Z1NrQnNMcHBTQXhSMWF1ckZjSUJtbWpDV1Y4U1BfdVQ4S2RsbW1RZ2s3a0VHbW5fWW15dklTazNfS3RwYXhXNlFtd1Y1d0xvRG9zMEM0MmlFMWZPLURmNmF2NWlNb0MzZV9nYVpfQ0NlLXdvWTFuMXltS0xDZG5qYXRfMDBOaDRxNDN2ZlNiS3dpRUxZNkRUa1d0dVB1bGREWTRZay1DZWtleTViVHItU2sxeDkzNXPSAcoBQVVfeXFMTmFxc2J1Qm1lSEhuNnU4OHAwaVpROC1hTmFfTWthZHVrWnVjaktiQkhLNC1uWnZ6NWQ0dHRmWmJhYmpiTG5NWk92TjRSOHY4TmJQbXdQQWFzUGx5QXA0bVA5Nm52bUM4U25XclRXUVZWMWpPYU9KSUVtcGxIUnJrXzBmdmZ3cjQ4bUF0VUlHdkFuRG1SdkZPUkNhTTFwTGVqR3htZzZEb002bzV2TDUxWERPX3Z3bEhXa0tONVNReGoySG0tNjVPS2VJUQ?oc=5",
-          "source": "BusinessLine"
-        },
-        {
-          "title": "Freezer-free RNA vaccine breakthrough could transform the global fight against emerging diseases",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNXzhxQ0U1YVVYMGpxRTJXTGp1cFA5M2dJOXN3bHh6dWt2cUNtQk9vc0tXU1lQVVJBa3dwQ0hqc0pFc1lwVHpZZms4aVR4ZjY3dzVnYTh2d3dlaGstRkhTVFl2RVRHWVJoa3lTa1IyZVZUaGpkQXJvaDFWQ09KU1czWEFIcEZOdlRwQWthSmFxc1BZQS12SHc5MnoydEl1OGcwU3ZNY2hkSnRqRE9rb3FkSTljNC1QZHdIUXBfaXdydFM5azItTEx3SXNpY28tUlFqcmc?oc=5",
-          "source": "Digital Journal"
-        },
-        {
-          "title": "India ramps up Disease X preparedness with $8.9 M funding boost from CEPI for freezer-free RNA vaccine - BioSpectrum Asia",
-          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNnh3d24wbWRobDMwcDZvYXpTclU2czVNbTNjbXhGYTA2OElyVExmZG81SDJpVjlPWU5HUmZqYkFPdFpabUhvZDRTaWlZXzRHTE85eVh0RDM2a3lMeEZLRW0yRUdOSlM4anpCX3VPMXZmTV9RVUROSm5jWlNicTBEUzF0NEZnVXZ5QzBROWpDSXNDOWFGREdQNjZSdXk0T3ZYRk4xbWJ1V3R2SDJDR3JQLXBqbmJBOGIzOFJhdkdvSmtCSzQ4SU8xbEliYldZc0duRGdnMERCc2hZNFhGU01oY2ZvZWxIeWM?oc=5",
-          "source": "BioSpectrum Asia"
-        },
-        {
-          "title": "India ramps up Disease X preparedness with $8.9 million funding boost for its freezer-free mRNA vaccine",
-          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPRkYxcDlMQkNLSDVsWXRFc016Yl9mMVRKckpUNzRCU2dCd3FqSngtNFoweE81ME5vOTFmVTYyRUZ0YzhkSHNFeFlEQmdoUnVUNlYtZHhBSDRDbXkzNnpqcEdkV0xZWFhtakNGZFVFOXFnSTVqWmstN2d4X1RVWWdXU2lFenFHT0c3LUhSWEMwb096UG9oTm1NMXhnVWhGR3o1WmJNMFZSenhBQQ?oc=5",
-          "source": "CEPI"
-        },
-        {
-          "title": "CEPI funds Pune\u2019s Immunoscript for \u201cfreezer-free\u201d RNA vaccine",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPbE1xOEJsSzdhdWl5Z1NrQnNMcHBTQXhSMWF1ckZjSUJtbWpDV1Y4U1BfdVQ4S2RsbW1RZ2s3a0VHbW5fWW15dklTazNfS3RwYXhXNlFtd1Y1d0xvRG9zMEM0MmlFMWZPLURmNmF2NWlNb0MzZV9nYVpfQ0NlLXdvWTFuMXltS0xDZG5qYXRfMDBOaDRxNDN2ZlNiS3dpRUxZNkRUa1d0dVB1bGREWTRZay1DZWtleTViVHItU2sxeDkzNXPSAcoBQVVfeXFMTmFxc2J1Qm1lSEhuNnU4OHAwaVpROC1hTmFfTWthZHVrWnVjaktiQkhLNC1uWnZ6NWQ0dHRmWmJhYmpiTG5NWk92TjRSOHY4TmJQbXdQQWFzUGx5QXA0bVA5Nm52bUM4U25XclRXUVZWMWpPYU9KSUVtcGxIUnJrXzBmdmZ3cjQ4bUF0VUlHdkFuRG1SdkZPUkNhTTFwTGVqR3htZzZEb002bzV2TDUxWERPX3Z3bEhXa0tONVNReGoySG0tNjVPS2VJUQ?oc=5",
-          "source": "BusinessLine"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "India's funding boost for Disease X preparedness is significant for public health and safety, especially for the Indian diaspora.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@pmoindia",
-          "type": "org",
-          "keywords": [
-            "India",
-            "Disease X",
-            "public health"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": null,
-      "story_mode": "new_event",
-      "new_development": null
-    },
-    {
-      "topic_id": "16892297-7a15-4a90-8f06-8bde27e98b94",
-      "title": "India demolish Pakistan 19-0 to storm into Women\u2019s Hockey Junior Asia Cup semi-finals - The Times of India",
-      "description": "",
-      "category": "sports",
-      "signal_count": 5,
-      "source_diversity": 5,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-10T06:34:00+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMEtxV1NWSzNNR1BPTmhNZ1FRZVI1Q3RmMjYxa0szSWYycl9sSWIyZldFTnpMMDZYMHhBaFBXQVUxX2xSWU9JRUZBSUR3VmNjcHNHdld4X2R6YzVsaU5hMU0xMGtVeEdBWWkzR3poazlEdVJ2bURORE9FSVRBbjJ2ZmVBaE5JNi1YZTlSb2JzNU1GWkZzaFhxRC1RU2lBSGU1?oc=5",
-        "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQdUtKTUY1QkhqX09yNnozaHJmTWNVVnY2dHpSU2hGb0l4RkhDRVdodFZIMW0teHdOX0dWdWJQeHlWOUVGckNiTHpZeERrMUhNNEZld0czVmJDMjdRTWVlUVZ1ZUtwSWtsRFBTQ1NvaS03MDNRMjJSajNwZTZzM1RXZ2llREtyYy1udFk4NVVYaDU3b1BvTjV2NTd5aU1GVWdEVGYtSzQxemJBMEprR2tVQXBwd2V2OGROaG1FQmtadW5ZQkU0MEdidFdtc2JjRk92WXpPSFM3c3Z3T0JmZFR2ZTNidXVqNzh5dDN3U3ZvVlYyRHAz0gH7AUFVX3lxTE85aC1rTjZsd1lQY29XZmR1dnUxbHlKOEtoU2tiN21mbjdNWi0taUNwX1BnZnNGamFfWU5QRklrTzAzWmxVbGU2RHFrQzlMU2N4ckRxaXV5M2pWQXVPVVM0cXJyUFFiakc4QnYtU0xqN0ltWXN3MDNKcUpHOF9TT0xDWjV6R1lUaU1HaFYwRE5HbXZudG9JM053WjhsWnVjNWdlXzNQYV9JOHdjYXBxQ0llZUI3ZkY5S2Y4aEFKUEVrV01nUnljc1ZaYXpzS1JfWDZnQTk4UGVPVW9qb1IzcHJkTGxaZEw4NklJeGNVX3NNNjZMWUFfZTNMNTlF?oc=5",
-        "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNX0RtZGFRckZfdFZJTW00QXplXzdfcExwMm45cmpuRUk0dG9MZFN5NHp4NURyTUc5b2hVRnZZaXRSZlBGZUxNeEpjbXpzcFFYUHRTTUlYbFFYNHpWRUtFRUJXU2RmcmZyakQ2WWc2OGxZdG9PLUpqQmx3dnZPdXBoR0RmY21nRU5UdE1ETWVLcXQtajhSbjBfMG0wcHF5eU9YLXhpaU1TNThfaDBNVndZa2d4Zmt3MWEzVmdR0gHAAUFVX3lxTFBNLWM4bWozR1lVOTI4azlxNlFxaURKa1FHYkJIV05KeEhJTXVIekNlZWRrZzBWSUNCeVE1Q3l2R3VLaXo1M2h6LXNtbHNkSWc1b1Noc1FNOE5LRXM3dGVLSjVkaHRrN3lJVGE4Nk41OUl1ckNzdGxneDZBMGFYVURKYTIwMXlHMzhiVEgwcW5uY2hPMm43ZGE5T1VINnNPSU82bTRzVW4yX0xvR1VnY0VBbkhEUC1nT3pUU01xcE9OUw?oc=5",
-        "https://news.google.com/rss/articles/CBMiggJBVV95cUxPNjNrOG5uUHlCdFB5V3dJdzVTN3I1aGJoUGVwWWJPeFhNZEJPR29RaXZTV1RhSEhha3RKR0cxLS1oWVpTQXFEQXVMUUlubk5GTGlRT1g3a1VHbzdXMWM3WExKQ0JXTDB5cU44cnNGb0swR2ZVUmZvcEYtVmZNVDlaQVJOc05fSjc3OGZYNEw4Q1BTVDcyUU9wS1hQX3BPUzRUR2p3QU0yQjBCcm45MEtPX0NUMHJkSDZubnZhRGNHNTF6LWhaeHo4VlZVbEhZajk3akM2d3RfdlNGcTlRYWNMX3phWnVLQUFZaDR0bEF1RGJmWkJTbFlQNnFqSmFlM1ZBVmfSAYcCQVVfeXFMTUZkdnVsbmhjaUZlY2NlemhqdnhRSklYTzRMcGEtTE52cmIyWEFuWmJkWGlIbWwwVTVZa054cVZEM1I5YUthbDM1Q184VkIzRS1MSGpjNTYtVk9nZzBzT29WeTNvZnVobDFSZzNOM1NPMlk0WmZnM25Qcm9pX002c3NvM1g3U1FVSU91MFRaMjkwVlI0TVlyZjNWMzJuaTR6azgwRmJ4QU9DMFlpc1VMd2N1bVg0ejA2ZEt1cTJqLWN2bHVaS2ZhVmthNGRGTkJ3cmkzVDVzdGJ4SzVHZHdlbW8zZzBMaG43SUxaNnFnVVg3Qmo0cWc0bWo2eHdGV29aZkwzam5yR2c?oc=5",
-        "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSE5wQmJnX0cxLWdNaDM3WjJfcWRCZndQNlItNWtyd25KYWVkV3JpVGxwbDJGdlhaZ1dNVWo3X2pEZkFOd2F3dkIwZnRlX2twQzdkWEdLeWtISm1hNmJ2R0pwOGFaTVRSb2RsMW83eUh3QzFLczJZOGFUQmxEbkxyZ3g4dDhXVV9yZk9ETEVZMnVRbDZLT1c4Q0lUODc4LTRsN1dZ?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "India march into quarter-finals with commanding 7-0 win over Japan",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMEtxV1NWSzNNR1BPTmhNZ1FRZVI1Q3RmMjYxa0szSWYycl9sSWIyZldFTnpMMDZYMHhBaFBXQVUxX2xSWU9JRUZBSUR3VmNjcHNHdld4X2R6YzVsaU5hMU0xMGtVeEdBWWkzR3poazlEdVJ2bURORE9FSVRBbjJ2ZmVBaE5JNi1YZTlSb2JzNU1GWkZzaFhxRC1RU2lBSGU1?oc=5",
-          "source": "hockeyindia.org"
-        },
-        {
-          "title": "Indian sports wrap, September 9: India beats Chinese Taipei, enters Men\u2019s Junior Hockey Asia Cup semifinals",
-          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQdUtKTUY1QkhqX09yNnozaHJmTWNVVnY2dHpSU2hGb0l4RkhDRVdodFZIMW0teHdOX0dWdWJQeHlWOUVGckNiTHpZeERrMUhNNEZld0czVmJDMjdRTWVlUVZ1ZUtwSWtsRFBTQ1NvaS03MDNRMjJSajNwZTZzM1RXZ2llREtyYy1udFk4NVVYaDU3b1BvTjV2NTd5aU1GVWdEVGYtSzQxemJBMEprR2tVQXBwd2V2OGROaG1FQmtadW5ZQkU0MEdidFdtc2JjRk92WXpPSFM3c3Z3T0JmZFR2ZTNidXVqNzh5dDN3U3ZvVlYyRHAz0gH7AUFVX3lxTE85aC1rTjZsd1lQY29XZmR1dnUxbHlKOEtoU2tiN21mbjdNWi0taUNwX1BnZnNGamFfWU5QRklrTzAzWmxVbGU2RHFrQzlMU2N4ckRxaXV5M2pWQXVPVVM0cXJyUFFiakc4QnYtU0xqN0ltWXN3MDNKcUpHOF9TT0xDWjV6R1lUaU1HaFYwRE5HbXZudG9JM053WjhsWnVjNWdlXzNQYV9JOHdjYXBxQ0llZUI3ZkY5S2Y4aEFKUEVrV01nUnljc1ZaYXpzS1JfWDZnQTk4UGVPVW9qb1IzcHJkTGxaZEw4NklJeGNVX3NNNjZMWUFfZTNMNTlF?oc=5",
-          "source": "Sportstar"
-        },
-        {
-          "title": "India Tops Junior Asia Cup Pool After Goalless Draw With China",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNX0RtZGFRckZfdFZJTW00QXplXzdfcExwMm45cmpuRUk0dG9MZFN5NHp4NURyTUc5b2hVRnZZaXRSZlBGZUxNeEpjbXpzcFFYUHRTTUlYbFFYNHpWRUtFRUJXU2RmcmZyakQ2WWc2OGxZdG9PLUpqQmx3dnZPdXBoR0RmY21nRU5UdE1ETWVLcXQtajhSbjBfMG0wcHF5eU9YLXhpaU1TNThfaDBNVndZa2d4Zmt3MWEzVmdR0gHAAUFVX3lxTFBNLWM4bWozR1lVOTI4azlxNlFxaURKa1FHYkJIV05KeEhJTXVIekNlZWRrZzBWSUNCeVE1Q3l2R3VLaXo1M2h6LXNtbHNkSWc1b1Noc1FNOE5LRXM3dGVLSjVkaHRrN3lJVGE4Nk41OUl1ckNzdGxneDZBMGFYVURKYTIwMXlHMzhiVEgwcW5uY2hPMm43ZGE5T1VINnNPSU82bTRzVW4yX0xvR1VnY0VBbkhEUC1nT3pUU01xcE9OUw?oc=5",
-          "source": "Rediff"
-        },
-        {
-          "title": "India demolish Pakistan 19-0 to storm into Women\u2019s Hockey Junior Asia Cup semi-finals - The Times of India",
-          "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPNjNrOG5uUHlCdFB5V3dJdzVTN3I1aGJoUGVwWWJPeFhNZEJPR29RaXZTV1RhSEhha3RKR0cxLS1oWVpTQXFEQXVMUUlubk5GTGlRT1g3a1VHbzdXMWM3WExKQ0JXTDB5cU44cnNGb0swR2ZVUmZvcEYtVmZNVDlaQVJOc05fSjc3OGZYNEw4Q1BTVDcyUU9wS1hQX3BPUzRUR2p3QU0yQjBCcm45MEtPX0NUMHJkSDZubnZhRGNHNTF6LWhaeHo4VlZVbEhZajk3akM2d3RfdlNGcTlRYWNMX3phWnVLQUFZaDR0bEF1RGJmWkJTbFlQNnFqSmFlM1ZBVmfSAYcCQVVfeXFMTUZkdnVsbmhjaUZlY2NlemhqdnhRSklYTzRMcGEtTE52cmIyWEFuWmJkWGlIbWwwVTVZa054cVZEM1I5YUthbDM1Q184VkIzRS1MSGpjNTYtVk9nZzBzT29WeTNvZnVobDFSZzNOM1NPMlk0WmZnM25Qcm9pX002c3NvM1g3U1FVSU91MFRaMjkwVlI0TVlyZjNWMzJuaTR6azgwRmJ4QU9DMFlpc1VMd2N1bVg0ejA2ZEt1cTJqLWN2bHVaS2ZhVmthNGRGTkJ3cmkzVDVzdGJ4SzVHZHdlbW8zZzBMaG43SUxaNnFnVVg3Qmo0cWc0bWo2eHdGV29aZkwzam5yR2c?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "Anmol Ekka\u2019s six-goal blitz powers India men into AHF Junior Asia Cup semis",
-          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSE5wQmJnX0cxLWdNaDM3WjJfcWRCZndQNlItNWtyd25KYWVkV3JpVGxwbDJGdlhaZ1dNVWo3X2pEZkFOd2F3dkIwZnRlX2twQzdkWEdLeWtISm1hNmJ2R0pwOGFaTVRSb2RsMW83eUh3QzFLczJZOGFUQmxEbkxyZ3g4dDhXVV9yZk9ETEVZMnVRbDZLT1c4Q0lUODc4LTRsN1dZ?oc=5",
-          "source": "Telangana Today"
-        },
-        {
-          "title": "India march into quarter-finals with commanding 7-0 win over Japan",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMEtxV1NWSzNNR1BPTmhNZ1FRZVI1Q3RmMjYxa0szSWYycl9sSWIyZldFTnpMMDZYMHhBaFBXQVUxX2xSWU9JRUZBSUR3VmNjcHNHdld4X2R6YzVsaU5hMU0xMGtVeEdBWWkzR3poazlEdVJ2bURORE9FSVRBbjJ2ZmVBaE5JNi1YZTlSb2JzNU1GWkZzaFhxRC1RU2lBSGU1?oc=5",
-          "source": "hockeyindia.org"
-        },
-        {
-          "title": "Indian sports wrap, September 9: India beats Chinese Taipei, enters Men\u2019s Junior Hockey Asia Cup semifinals",
-          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQdUtKTUY1QkhqX09yNnozaHJmTWNVVnY2dHpSU2hGb0l4RkhDRVdodFZIMW0teHdOX0dWdWJQeHlWOUVGckNiTHpZeERrMUhNNEZld0czVmJDMjdRTWVlUVZ1ZUtwSWtsRFBTQ1NvaS03MDNRMjJSajNwZTZzM1RXZ2llREtyYy1udFk4NVVYaDU3b1BvTjV2NTd5aU1GVWdEVGYtSzQxemJBMEprR2tVQXBwd2V2OGROaG1FQmtadW5ZQkU0MEdidFdtc2JjRk92WXpPSFM3c3Z3T0JmZFR2ZTNidXVqNzh5dDN3U3ZvVlYyRHAz0gH7AUFVX3lxTE85aC1rTjZsd1lQY29XZmR1dnUxbHlKOEtoU2tiN21mbjdNWi0taUNwX1BnZnNGamFfWU5QRklrTzAzWmxVbGU2RHFrQzlMU2N4ckRxaXV5M2pWQXVPVVM0cXJyUFFiakc4QnYtU0xqN0ltWXN3MDNKcUpHOF9TT0xDWjV6R1lUaU1HaFYwRE5HbXZudG9JM053WjhsWnVjNWdlXzNQYV9JOHdjYXBxQ0llZUI3ZkY5S2Y4aEFKUEVrV01nUnljc1ZaYXpzS1JfWDZnQTk4UGVPVW9qb1IzcHJkTGxaZEw4NklJeGNVX3NNNjZMWUFfZTNMNTlF?oc=5",
-          "source": "Sportstar"
-        },
-        {
-          "title": "Anmol Ekka\u2019s six-goal blitz powers India men into AHF Junior Asia Cup semis",
-          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSE5wQmJnX0cxLWdNaDM3WjJfcWRCZndQNlItNWtyd25KYWVkV3JpVGxwbDJGdlhaZ1dNVWo3X2pEZkFOd2F3dkIwZnRlX2twQzdkWEdLeWtISm1hNmJ2R0pwOGFaTVRSb2RsMW83eUh3QzFLczJZOGFUQmxEbkxyZ3g4dDhXVV9yZk9ETEVZMnVRbDZLT1c4Q0lUODc4LTRsN1dZ?oc=5",
-          "source": "Telangana Today"
-        },
-        {
-          "title": "India Tops Junior Asia Cup Pool After Goalless Draw With China",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNX0RtZGFRckZfdFZJTW00QXplXzdfcExwMm45cmpuRUk0dG9MZFN5NHp4NURyTUc5b2hVRnZZaXRSZlBGZUxNeEpjbXpzcFFYUHRTTUlYbFFYNHpWRUtFRUJXU2RmcmZyakQ2WWc2OGxZdG9PLUpqQmx3dnZPdXBoR0RmY21nRU5UdE1ETWVLcXQtajhSbjBfMG0wcHF5eU9YLXhpaU1TNThfaDBNVndZa2d4Zmt3MWEzVmdR0gHAAUFVX3lxTFBNLWM4bWozR1lVOTI4azlxNlFxaURKa1FHYkJIV05KeEhJTXVIekNlZWRrZzBWSUNCeVE1Q3l2R3VLaXo1M2h6LXNtbHNkSWc1b1Noc1FNOE5LRXM3dGVLSjVkaHRrN3lJVGE4Nk41OUl1ckNzdGxneDZBMGFYVURKYTIwMXlHMzhiVEgwcW5uY2hPMm43ZGE5T1VINnNPSU82bTRzVW4yX0xvR1VnY0VBbkhEUC1nT3pUU01xcE9OUw?oc=5",
-          "source": "Rediff"
-        },
-        {
-          "title": "India demolish Pakistan 19-0 to storm into Women\u2019s Hockey Junior Asia Cup semi-finals - The Times of India",
-          "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPNjNrOG5uUHlCdFB5V3dJdzVTN3I1aGJoUGVwWWJPeFhNZEJPR29RaXZTV1RhSEhha3RKR0cxLS1oWVpTQXFEQXVMUUlubk5GTGlRT1g3a1VHbzdXMWM3WExKQ0JXTDB5cU44cnNGb0swR2ZVUmZvcEYtVmZNVDlaQVJOc05fSjc3OGZYNEw4Q1BTVDcyUU9wS1hQX3BPUzRUR2p3QU0yQjBCcm45MEtPX0NUMHJkSDZubnZhRGNHNTF6LWhaeHo4VlZVbEhZajk3akM2d3RfdlNGcTlRYWNMX3phWnVLQUFZaDR0bEF1RGJmWkJTbFlQNnFqSmFlM1ZBVmfSAYcCQVVfeXFMTUZkdnVsbmhjaUZlY2NlemhqdnhRSklYTzRMcGEtTE52cmIyWEFuWmJkWGlIbWwwVTVZa054cVZEM1I5YUthbDM1Q184VkIzRS1MSGpjNTYtVk9nZzBzT29WeTNvZnVobDFSZzNOM1NPMlk0WmZnM25Qcm9pX002c3NvM1g3U1FVSU91MFRaMjkwVlI0TVlyZjNWMzJuaTR6azgwRmJ4QU9DMFlpc1VMd2N1bVg0ejA2ZEt1cTJqLWN2bHVaS2ZhVmthNGRGTkJ3cmkzVDVzdGJ4SzVHZHdlbW8zZzBMaG43SUxaNnFnVVg3Qmo0cWc0bWo2eHdGV29aZkwzam5yR2c?oc=5",
-          "source": "The Times of India"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "India's significant victory over Pakistan in women's hockey is a major sports event with a clear Indian connection.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@indianhockey",
-          "type": "org",
-          "keywords": [
-            "hockey",
-            "India",
-            "women's sports"
-          ]
-        },
-        {
-          "handle": "@thehockeyindia",
-          "type": "org",
-          "keywords": [
-            "hockey",
-            "India",
-            "women's hockey"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": null,
-      "story_mode": "new_event",
-      "new_development": null
-    },
-    {
-      "topic_id": "d267960c-30fe-42da-9e64-762a1608237f",
-      "title": "India To Pitch RBI Backed Cross-Border Digital Currencies For BRICS Payments: Report - NDTV",
-      "description": "",
-      "category": "news",
-      "signal_count": 4,
-      "source_diversity": 4,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-10T05:31:24+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWExwTjRYYTgwazhvX19QNDR6Q1VvT0Iyb2p4QWpMMkdvcHozUWtWRlU5QmxGTUZFNDFLaUMwMWVCWThlWmZIMEx1OEV3ak5KWi05eVBCbjhhTTF0a0tuN2Y3SGdnSl9DMUFNVXlsVzdMekYtSFZjRmFoOHp3OVZVM2I4dURFaDFUcFZER2lkaXRPMGczTVdhYkZfelFvVkVvdHgyU2hjWEs0dzVHX21TaVdqazE?oc=5",
-        "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVDI1NER5czhPeEtKX2lZb1hFWG9LSng0dGtwdlFnTmdUU1duU01yUk9LRF82OVJiRlpmdHMtRzRsaFA0S3gxTVBvZlQ1ZmZtU0dUZXpiY2hvSWhJMTNuRGY3aGl4akZISHVpUE15MW5zYlpVY1VjNlMzOFdsbTNZazZZMjdWWFdLT3ZuN2xzWGFmd2hheGdVOWJsWEJmVGExN011T2FQc3Y2bVNFU3VxR0NfTTJLVHV1RWFLMzhtX0pWTDkyM3c?oc=5",
-        "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPVHFHdmZHUmF5aXNSX0lSLUtDUEZ3WVZPRE92R3RSZk5ETGVFNm5teUZONEdLT2dsQjRvV19BQkw1b1NRVEZWeTR5dlQ4RXJUZVFtSXhXNmYzS1ltSTN6YjhFUGlpbktGV1JKNHgxb2NzeW1wRnV2a3AxSzlaV2VKQzNaNUhDUWl6a2pNSFFUUmI0R1RKblJBTmlXU0tpT2ZDeFpvNHBuZWZtaUIzMFpQTmFiQUwzYVNGQUYwUDNQQkZuZ9IBygFBVV95cUxNMEtoZUxEUXVLLVhhNExsTUNMTkNfNkl0X1A1OGRMekxONmRVODNPdWZ1cEtFcUlFOFJZQVdhZzZEYWxmZGlCT1ZiU2F1dnZXb2paRXdEY2tpS2VPVG5Gdnh6NFVicFBXTzExdHcwNTdVdmdxT3plSnZ4SDcyMTQ0cnd3dnFieUFfXzU5T2puaWVVdVd6Z3ZHODhIalN3RVRzN0ZOTjVicUd1WkRxbGR0X2JVZUlNSk5kT181dWoyWVBfZ0YwbDNiZVBn?oc=5",
-        "https://news.google.com/rss/articles/CBMitAFBVV95cUxQNGFTYnhPbjNiSlZaLWpwYUE1aEJpdUViQjlnOF83UWx2UXdEYkF5VzdqWU5GX3pRemRhWVhuWUdGUkpUWmRvNTRYb0ZLMkJZSll2dTB1Wm9XWnlIV3BIUWZadHBBYmtXTmZyaVJ1Rnhrd0tlWkl2OWx0aHFxdXJyYVJQbkJhMnUxOGo1V2RFcGk2cWZCbVlQaDVUSjR2d3QzWkVGMFdOU3BBMk5RUEhSOUZvT08?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "India Favors Central Bank Digital Currencies for BRICS Payments",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWExwTjRYYTgwazhvX19QNDR6Q1VvT0Iyb2p4QWpMMkdvcHozUWtWRlU5QmxGTUZFNDFLaUMwMWVCWThlWmZIMEx1OEV3ak5KWi05eVBCbjhhTTF0a0tuN2Y3SGdnSl9DMUFNVXlsVzdMekYtSFZjRmFoOHp3OVZVM2I4dURFaDFUcFZER2lkaXRPMGczTVdhYkZfelFvVkVvdHgyU2hjWEs0dzVHX21TaVdqazE?oc=5",
-          "source": "Bloomberg.com"
-        },
-        {
-          "title": "Digital asset firms court sovereign funds",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVDI1NER5czhPeEtKX2lZb1hFWG9LSng0dGtwdlFnTmdUU1duU01yUk9LRF82OVJiRlpmdHMtRzRsaFA0S3gxTVBvZlQ1ZmZtU0dUZXpiY2hvSWhJMTNuRGY3aGl4akZISHVpUE15MW5zYlpVY1VjNlMzOFdsbTNZazZZMjdWWFdLT3ZuN2xzWGFmd2hheGdVOWJsWEJmVGExN011T2FQc3Y2bVNFU3VxR0NfTTJLVHV1RWFLMzhtX0pWTDkyM3c?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "India To Pitch RBI Backed Cross-Border Digital Currencies For BRICS Payments: Report - NDTV",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPVHFHdmZHUmF5aXNSX0lSLUtDUEZ3WVZPRE92R3RSZk5ETGVFNm5teUZONEdLT2dsQjRvV19BQkw1b1NRVEZWeTR5dlQ4RXJUZVFtSXhXNmYzS1ltSTN6YjhFUGlpbktGV1JKNHgxb2NzeW1wRnV2a3AxSzlaV2VKQzNaNUhDUWl6a2pNSFFUUmI0R1RKblJBTmlXU0tpT2ZDeFpvNHBuZWZtaUIzMFpQTmFiQUwzYVNGQUYwUDNQQkZuZ9IBygFBVV95cUxNMEtoZUxEUXVLLVhhNExsTUNMTkNfNkl0X1A1OGRMekxONmRVODNPdWZ1cEtFcUlFOFJZQVdhZzZEYWxmZGlCT1ZiU2F1dnZXb2paRXdEY2tpS2VPVG5Gdnh6NFVicFBXTzExdHcwNTdVdmdxT3plSnZ4SDcyMTQ0cnd3dnFieUFfXzU5T2puaWVVdVd6Z3ZHODhIalN3RVRzN0ZOTjVicUd1WkRxbGR0X2JVZUlNSk5kT181dWoyWVBfZ0YwbDNiZVBn?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "India to push BRICS digital currency link despite hurdles, sources say",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQNGFTYnhPbjNiSlZaLWpwYUE1aEJpdUViQjlnOF83UWx2UXdEYkF5VzdqWU5GX3pRemRhWVhuWUdGUkpUWmRvNTRYb0ZLMkJZSll2dTB1Wm9XWnlIV3BIUWZadHBBYmtXTmZyaVJ1Rnhrd0tlWkl2OWx0aHFxdXJyYVJQbkJhMnUxOGo1V2RFcGk2cWZCbVlQaDVUSjR2d3QzWkVGMFdOU3BBMk5RUEhSOUZvT08?oc=5",
-          "source": "Reuters"
-        },
-        {
-          "title": "India to push BRICS digital currency link despite hurdles, sources say",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQNGFTYnhPbjNiSlZaLWpwYUE1aEJpdUViQjlnOF83UWx2UXdEYkF5VzdqWU5GX3pRemRhWVhuWUdGUkpUWmRvNTRYb0ZLMkJZSll2dTB1Wm9XWnlIV3BIUWZadHBBYmtXTmZyaVJ1Rnhrd0tlWkl2OWx0aHFxdXJyYVJQbkJhMnUxOGo1V2RFcGk2cWZCbVlQaDVUSjR2d3QzWkVGMFdOU3BBMk5RUEhSOUZvT08?oc=5",
-          "source": "Reuters"
-        },
-        {
-          "title": "India To Pitch RBI Backed Cross-Border Digital Currencies For BRICS Payments: Report - NDTV",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPVHFHdmZHUmF5aXNSX0lSLUtDUEZ3WVZPRE92R3RSZk5ETGVFNm5teUZONEdLT2dsQjRvV19BQkw1b1NRVEZWeTR5dlQ4RXJUZVFtSXhXNmYzS1ltSTN6YjhFUGlpbktGV1JKNHgxb2NzeW1wRnV2a3AxSzlaV2VKQzNaNUhDUWl6a2pNSFFUUmI0R1RKblJBTmlXU0tpT2ZDeFpvNHBuZWZtaUIzMFpQTmFiQUwzYVNGQUYwUDNQQkZuZ9IBygFBVV95cUxNMEtoZUxEUXVLLVhhNExsTUNMTkNfNkl0X1A1OGRMekxONmRVODNPdWZ1cEtFcUlFOFJZQVdhZzZEYWxmZGlCT1ZiU2F1dnZXb2paRXdEY2tpS2VPVG5Gdnh6NFVicFBXTzExdHcwNTdVdmdxT3plSnZ4SDcyMTQ0cnd3dnFieUFfXzU5T2puaWVVdVd6Z3ZHODhIalN3RVRzN0ZOTjVicUd1WkRxbGR0X2JVZUlNSk5kT181dWoyWVBfZ0YwbDNiZVBn?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "Digital asset firms court sovereign funds",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPVDI1NER5czhPeEtKX2lZb1hFWG9LSng0dGtwdlFnTmdUU1duU01yUk9LRF82OVJiRlpmdHMtRzRsaFA0S3gxTVBvZlQ1ZmZtU0dUZXpiY2hvSWhJMTNuRGY3aGl4akZISHVpUE15MW5zYlpVY1VjNlMzOFdsbTNZazZZMjdWWFdLT3ZuN2xzWGFmd2hheGdVOWJsWEJmVGExN011T2FQc3Y2bVNFU3VxR0NfTTJLVHV1RWFLMzhtX0pWTDkyM3c?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "India Favors Central Bank Digital Currencies for BRICS Payments",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQWExwTjRYYTgwazhvX19QNDR6Q1VvT0Iyb2p4QWpMMkdvcHozUWtWRlU5QmxGTUZFNDFLaUMwMWVCWThlWmZIMEx1OEV3ak5KWi05eVBCbjhhTTF0a0tuN2Y3SGdnSl9DMUFNVXlsVzdMekYtSFZjRmFoOHp3OVZVM2I4dURFaDFUcFZER2lkaXRPMGczTVdhYkZfelFvVkVvdHgyU2hjWEs0dzVHX21TaVdqazE?oc=5",
+          "title": "Next Target of Trump's Deportation Campaign: 170,000 Salvadoran Immigrants - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOdkxhNGRHTnhCbHRxeGpDUEYtdXNxRl9CMUxxSHJuREZyVVl0LVJKLU1nSjVVb3JhOTFBRjFqcFZ4V1RWRGVmY1AwVkZKdDJVQ0JoSEFDeWdUZVE2dXVvdzhYX1JVMTlHeXZ3NEhYeG9UUG9Bd240QXZkb0FWR0UtV1hOQXZXQ1oyb1RNZEdtd3FiMEJsdmgxTFVnWkozZXJDSk5hUUVDaXFqd2FxSW5JQzJUSDNtYVNSa0ZTTg?oc=5",
           "source": "Bloomberg.com"
         }
       ],
-      "llm_score": 4,
-      "llm_reason": "India's pitch for cross-border digital currencies at BRICS is significant for the Indian economy and its global financial strategy, relevant to the diaspora's interests.",
+      "llm_score": 5,
+      "llm_reason": "The potential deportation of 170,000 Salvadoran immigrants under Trump's campaign is a significant immigration issue that could impact Indian communities and their advocacy efforts.",
       "coverage": "new",
       "ig_handles": [
         {
-          "handle": "@reservebankofindia",
+          "handle": "@uscis",
           "type": "org",
           "keywords": [
-            "RBI",
-            "digital currency",
-            "BRICS"
-          ]
-        },
-        {
-          "handle": "@pmoindia",
-          "type": "org",
-          "keywords": [
-            "India",
-            "digital currency",
-            "BRICS"
+            "USCIS",
+            "immigration",
+            "deportation"
           ]
         }
       ],
@@ -420,405 +83,117 @@
       "new_development": null
     },
     {
-      "topic_id": "e4b1c0b4-1f91-4786-beff-d15f24c2df99",
-      "title": "Accenture and Google are teaming up to send 1,000 engineers into the field to help clients with AI - businessinsider.com",
-      "description": "",
-      "category": "technology",
-      "signal_count": 4,
-      "source_diversity": 4,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-09T17:06:00+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMiogFBVV95cUxQU2VLRzQ0bUVfSnp1TkdKaWtlNUQ0aU9BS3RhYkRGWUJoTHlXMi1ycjFsS0o2T0pfUnR6U014Rlk4V1gxWlFETU5PcF9iMUN4UUhhNjJiWDRkaEs5RHFpUzhFaFRGZThSSDQtVklXdmRGaTZndnp1VmU4cUZKbUNNS1FvOWV3dkROVU5BdWJPN3FSWkRiR2UxcDNNSGdWcWZtT3c?oc=5",
-        "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaXhRQ0ZLeXhPOFlHMXloMDBQWjJSNjV0RFg4Zmw2NDU2SFhFY3VKNy10Zkx1SEM5a1lDOEtZWTVCQkpIYjA3NWh0ODVwVTNscE1SNmtDTjJRTlV4alB2RWc5TDNDUGNFcWZ5dHNnX2tpYXhYRDFsSjlCX0hnaHNsNjFOMWhwbG8xXzRia195X0cxenpTMWxwN0FWVE9xUkxHV1ktRkt4Y3RDeVZWU0xFUlV6MA?oc=5",
-        "https://news.google.com/rss/articles/CBMiugFBVV95cUxPdlp6U3FkM1JYbjNMN3FBbjJjUGt5eTJCaF9qSklnNzUtOFYtTk1taDJkQk1zUU5XelU2MGU3V2djQ0owbk92Y2YzQ3I4WkpqaWJGOGFRVWxQRldiTWpTYnpkZU9jazFKWnVISVVCc1NNVWIyV3NiR2dmWVVYMjNIOXdSbkFjbTBJcGFpU2pmMmN6b1B3aVZiYUNMbWk2U1k5Z0JVeUxwNGI4ZnRCbUEtbGxRVXhHRVFzTmc?oc=5",
-        "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQVzZwaVlSdmZaNkU4eEc4NGRxQTRxX1NCSG1vM05XZ2JkMm9nM1F2LWk5cFNDcWdtSDJLbjJkUDU5UGJ5ZEhsajMxeDU2bWdyc0l2aVdJdmN0U3ZFTlNwZk9vOElzcmphUUVsbThHY2ExYldOcWlDazV2bXFkZlU3MUZGazFqbHlYN3UwVFdmUkhnVG9xZFZkQVNSbmJhX2FFMGt2NjRicTRmaUVCZmFOU0xocmZhZnVxT2p5VV8zUm5sYUNIbkNZckdPRGtHM2JoT1ctMXhTa28zV2wyaEYtLTU2bWU2MjNzVWdtUzEyb0Izdw?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "Accenture, Google Cloud Launch Gemini Enterprise Business Group",
-          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQU2VLRzQ0bUVfSnp1TkdKaWtlNUQ0aU9BS3RhYkRGWUJoTHlXMi1ycjFsS0o2T0pfUnR6U014Rlk4V1gxWlFETU5PcF9iMUN4UUhhNjJiWDRkaEs5RHFpUzhFaFRGZThSSDQtVklXdmRGaTZndnp1VmU4cUZKbUNNS1FvOWV3dkROVU5BdWJPN3FSWkRiR2UxcDNNSGdWcWZtT3c?oc=5",
-          "source": "analyticsindiamag.com"
-        },
-        {
-          "title": "Accenture and Google are teaming up to send 1,000 engineers into the field to help clients with AI - businessinsider.com",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaXhRQ0ZLeXhPOFlHMXloMDBQWjJSNjV0RFg4Zmw2NDU2SFhFY3VKNy10Zkx1SEM5a1lDOEtZWTVCQkpIYjA3NWh0ODVwVTNscE1SNmtDTjJRTlV4alB2RWc5TDNDUGNFcWZ5dHNnX2tpYXhYRDFsSjlCX0hnaHNsNjFOMWhwbG8xXzRia195X0cxenpTMWxwN0FWVE9xUkxHV1ktRkt4Y3RDeVZWU0xFUlV6MA?oc=5",
-          "source": "businessinsider.com"
-        },
-        {
-          "title": "Exclusive | Google Cloud, Accenture Launch Unit to Put AI Engineers On-Site With Customers",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPdlp6U3FkM1JYbjNMN3FBbjJjUGt5eTJCaF9qSklnNzUtOFYtTk1taDJkQk1zUU5XelU2MGU3V2djQ0owbk92Y2YzQ3I4WkpqaWJGOGFRVWxQRldiTWpTYnpkZU9jazFKWnVISVVCc1NNVWIyV3NiR2dmWVVYMjNIOXdSbkFjbTBJcGFpU2pmMmN6b1B3aVZiYUNMbWk2U1k5Z0JVeUxwNGI4ZnRCbUEtbGxRVXhHRVFzTmc?oc=5",
-          "source": "WSJ"
-        },
-        {
-          "title": "Accenture and Google Cloud Deepen Partnership with Formation of New Accenture Gemini Enterprise Business Group",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQVzZwaVlSdmZaNkU4eEc4NGRxQTRxX1NCSG1vM05XZ2JkMm9nM1F2LWk5cFNDcWdtSDJLbjJkUDU5UGJ5ZEhsajMxeDU2bWdyc0l2aVdJdmN0U3ZFTlNwZk9vOElzcmphUUVsbThHY2ExYldOcWlDazV2bXFkZlU3MUZGazFqbHlYN3UwVFdmUkhnVG9xZFZkQVNSbmJhX2FFMGt2NjRicTRmaUVCZmFOU0xocmZhZnVxT2p5VV8zUm5sYUNIbkNZckdPRGtHM2JoT1ctMXhTa28zV2wyaEYtLTU2bWU2MjNzVWdtUzEyb0Izdw?oc=5",
-          "source": "Google Cloud Press Corner"
-        },
-        {
-          "title": "Accenture and Google Cloud Deepen Partnership with Formation of New Accenture Gemini Enterprise Business Group",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQVzZwaVlSdmZaNkU4eEc4NGRxQTRxX1NCSG1vM05XZ2JkMm9nM1F2LWk5cFNDcWdtSDJLbjJkUDU5UGJ5ZEhsajMxeDU2bWdyc0l2aVdJdmN0U3ZFTlNwZk9vOElzcmphUUVsbThHY2ExYldOcWlDazV2bXFkZlU3MUZGazFqbHlYN3UwVFdmUkhnVG9xZFZkQVNSbmJhX2FFMGt2NjRicTRmaUVCZmFOU0xocmZhZnVxT2p5VV8zUm5sYUNIbkNZckdPRGtHM2JoT1ctMXhTa28zV2wyaEYtLTU2bWU2MjNzVWdtUzEyb0Izdw?oc=5",
-          "source": "Google Cloud Press Corner"
-        },
-        {
-          "title": "Accenture and Google are teaming up to send 1,000 engineers into the field to help clients with AI - businessinsider.com",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaXhRQ0ZLeXhPOFlHMXloMDBQWjJSNjV0RFg4Zmw2NDU2SFhFY3VKNy10Zkx1SEM5a1lDOEtZWTVCQkpIYjA3NWh0ODVwVTNscE1SNmtDTjJRTlV4alB2RWc5TDNDUGNFcWZ5dHNnX2tpYXhYRDFsSjlCX0hnaHNsNjFOMWhwbG8xXzRia195X0cxenpTMWxwN0FWVE9xUkxHV1ktRkt4Y3RDeVZWU0xFUlV6MA?oc=5",
-          "source": "businessinsider.com"
-        },
-        {
-          "title": "Accenture, Google Cloud Launch Gemini Enterprise Business Group",
-          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQU2VLRzQ0bUVfSnp1TkdKaWtlNUQ0aU9BS3RhYkRGWUJoTHlXMi1ycjFsS0o2T0pfUnR6U014Rlk4V1gxWlFETU5PcF9iMUN4UUhhNjJiWDRkaEs5RHFpUzhFaFRGZThSSDQtVklXdmRGaTZndnp1VmU4cUZKbUNNS1FvOWV3dkROVU5BdWJPN3FSWkRiR2UxcDNNSGdWcWZtT3c?oc=5",
-          "source": "analyticsindiamag.com"
-        },
-        {
-          "title": "Exclusive | Google Cloud, Accenture Launch Unit to Put AI Engineers On-Site With Customers",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPdlp6U3FkM1JYbjNMN3FBbjJjUGt5eTJCaF9qSklnNzUtOFYtTk1taDJkQk1zUU5XelU2MGU3V2djQ0owbk92Y2YzQ3I4WkpqaWJGOGFRVWxQRldiTWpTYnpkZU9jazFKWnVISVVCc1NNVWIyV3NiR2dmWVVYMjNIOXdSbkFjbTBJcGFpU2pmMmN6b1B3aVZiYUNMbWk2U1k5Z0JVeUxwNGI4ZnRCbUEtbGxRVXhHRVFzTmc?oc=5",
-          "source": "WSJ"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "The collaboration between Accenture and Google to deploy engineers for AI projects is significant for the tech industry, especially for Indian tech professionals.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@google",
-          "type": "org",
-          "keywords": [
-            "Google",
-            "AI",
-            "Accenture"
-          ]
-        },
-        {
-          "handle": "@accenture",
-          "type": "org",
-          "keywords": [
-            "Accenture",
-            "AI",
-            "technology"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": null,
-      "story_mode": "new_event",
-      "new_development": null
-    },
-    {
-      "topic_id": "cc26707e-0c35-46d8-bccf-f2b138e23a6e",
-      "title": "Google to Invest \u20ac13 Billion in AI Infrastructure in Finland - Bloomberg.com",
-      "description": "",
-      "category": "technology",
-      "signal_count": 4,
-      "source_diversity": 4,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-09T11:13:52+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMitAFBVV95cUxPUnRWOHhfSHVOanRzam11TkE1MkFfZWhyLTBaOERZYmZjNFlNOHR0S1B4NnVPMnpVWjB1UkpXQldDWUE1VUU1aUwxWFNpMERibV9GQk9vZW52UHMwdVdKMDl1QzlQdDRIcmdxUm9WcXJCZ3RDSHQtY3pwd2pXR2tlejQxUzRMTll6X2FoRk02MG82TjF5cHo4bGpmNFNDMmI4RlFjV1RiTjdhci1MR2JoOUliTV8?oc=5",
-        "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1OUUx2VDc2Xy03VWxPTjN4THdFODd0VG1mTjg5UDBmeDM0eGkySmN0bFlMWDMtVVdVSVdsRDVEUjhYb2RjY19MRmsyN3FoZUtvMV90WXk0NmhZZw?oc=5",
-        "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5",
-        "https://news.google.com/rss/articles/CBMikwFBVV95cUxQS2FQTHR1enZNUnNZeVBNcTlhbmkxNVpXUWY4Q3Z2LU93ZlZMSjZGVjV5ZFRWNVIwbUlRNFJmZ2JMSFZSVFliTkpqd3pHdEJ0Q1BsMTdONlIwMnRFXzlEdHJ5QmpWUjZONW5OZkQ2U1dJVXozOFZjUWV5OTJIc3NiMTBqcnI3U0NNeDhBNDRoZTRCUVnSAZMBQVVfeXFMTVM4NGpmMG4xaTBBal96NTVPekgzTHVSa1Fsbms0MDVTcDFhZ01WZGVFN0dkbzV5QnJ2dFhhT1J3N1RDd0c3WkQ2QzBtZk5iSlNxcEdFWnF4b0laN0xINk5UVTZSaEQ3X3oyVFFQU2RnT2R1amRkekstUWkwVG5NaElnLTRDZDdTXzd0em5EcUozV25j?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "Google to Invest \u20ac13 Billion in AI Infrastructure in Finland - Bloomberg.com",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPUnRWOHhfSHVOanRzam11TkE1MkFfZWhyLTBaOERZYmZjNFlNOHR0S1B4NnVPMnpVWjB1UkpXQldDWUE1VUU1aUwxWFNpMERibV9GQk9vZW52UHMwdVdKMDl1QzlQdDRIcmdxUm9WcXJCZ3RDSHQtY3pwd2pXR2tlejQxUzRMTll6X2FoRk02MG82TjF5cHo4bGpmNFNDMmI4RlFjV1RiTjdhci1MR2JoOUliTV8?oc=5",
-          "source": "Bloomberg.com"
-        },
-        {
-          "title": "Google to fund Finnish AI with \u20ac13bn investment and nuclear power pact",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1OUUx2VDc2Xy03VWxPTjN4THdFODd0VG1mTjg5UDBmeDM0eGkySmN0bFlMWDMtVVdVSVdsRDVEUjhYb2RjY19MRmsyN3FoZUtvMV90WXk0NmhZZw?oc=5",
-          "source": "BBC"
-        },
-        {
-          "title": "Google to Invest $15 Billion in AI Infrastructure in Finland",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5",
-          "source": "WSJ"
-        },
-        {
-          "title": "Finland: Google announces \u20ac13 billion AI, energy investment",
-          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQS2FQTHR1enZNUnNZeVBNcTlhbmkxNVpXUWY4Q3Z2LU93ZlZMSjZGVjV5ZFRWNVIwbUlRNFJmZ2JMSFZSVFliTkpqd3pHdEJ0Q1BsMTdONlIwMnRFXzlEdHJ5QmpWUjZONW5OZkQ2U1dJVXozOFZjUWV5OTJIc3NiMTBqcnI3U0NNeDhBNDRoZTRCUVnSAZMBQVVfeXFMTVM4NGpmMG4xaTBBal96NTVPekgzTHVSa1Fsbms0MDVTcDFhZ01WZGVFN0dkbzV5QnJ2dFhhT1J3N1RDd0c3WkQ2QzBtZk5iSlNxcEdFWnF4b0laN0xINk5UVTZSaEQ3X3oyVFFQU2RnT2R1amRkekstUWkwVG5NaElnLTRDZDdTXzd0em5EcUozV25j?oc=5",
-          "source": "DW.com"
-        },
-        {
-          "title": "Finland: Google announces \u20ac13 billion AI, energy investment",
-          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQS2FQTHR1enZNUnNZeVBNcTlhbmkxNVpXUWY4Q3Z2LU93ZlZMSjZGVjV5ZFRWNVIwbUlRNFJmZ2JMSFZSVFliTkpqd3pHdEJ0Q1BsMTdONlIwMnRFXzlEdHJ5QmpWUjZONW5OZkQ2U1dJVXozOFZjUWV5OTJIc3NiMTBqcnI3U0NNeDhBNDRoZTRCUVnSAZMBQVVfeXFMTVM4NGpmMG4xaTBBal96NTVPekgzTHVSa1Fsbms0MDVTcDFhZ01WZGVFN0dkbzV5QnJ2dFhhT1J3N1RDd0c3WkQ2QzBtZk5iSlNxcEdFWnF4b0laN0xINk5UVTZSaEQ3X3oyVFFQU2RnT2R1amRkekstUWkwVG5NaElnLTRDZDdTXzd0em5EcUozV25j?oc=5",
-          "source": "DW.com"
-        },
-        {
-          "title": "Google to Invest $15 Billion in AI Infrastructure in Finland",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQZWVXTzcwTVJMV3N1ZWh5cFU3ajlmTGJVRHExM0tIemhzNTZGZFZndmp4SkxMNGd4dnlnMEp4VjhISXpwSXFDVWd4b3M2OVJtNGp2Zm81YXBDSEdLWndFSnBISG4tc0RVOW41RU1SMGNybE40U2NtV3Y4a2RheDFwbmw2bzYwUHpLZnZRVjV5YVR6Ny0tUG5hbWhhNnVRRFdYREN0cGxucFJfS2ZzYWpiWA?oc=5",
-          "source": "WSJ"
-        },
-        {
-          "title": "Google to Invest \u20ac13 Billion in AI Infrastructure in Finland - Bloomberg.com",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPUnRWOHhfSHVOanRzam11TkE1MkFfZWhyLTBaOERZYmZjNFlNOHR0S1B4NnVPMnpVWjB1UkpXQldDWUE1VUU1aUwxWFNpMERibV9GQk9vZW52UHMwdVdKMDl1QzlQdDRIcmdxUm9WcXJCZ3RDSHQtY3pwd2pXR2tlejQxUzRMTll6X2FoRk02MG82TjF5cHo4bGpmNFNDMmI4RlFjV1RiTjdhci1MR2JoOUliTV8?oc=5",
-          "source": "Bloomberg.com"
-        },
-        {
-          "title": "Google to fund Finnish AI with \u20ac13bn investment and nuclear power pact",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1OUUx2VDc2Xy03VWxPTjN4THdFODd0VG1mTjg5UDBmeDM0eGkySmN0bFlMWDMtVVdVSVdsRDVEUjhYb2RjY19MRmsyN3FoZUtvMV90WXk0NmhZZw?oc=5",
-          "source": "BBC"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "Google's significant investment in AI infrastructure in Finland is a major development with implications for the tech industry globally, including Indian tech firms.",
-      "coverage": "update",
-      "ig_handles": [
-        {
-          "handle": "@google",
-          "type": "org",
-          "keywords": [
-            "AI",
-            "infrastructure",
-            "investment"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": "2023-09-09",
-      "story_mode": "major_update",
-      "new_development": "Google has committed \u20ac13 billion to AI infrastructure in Finland, marking a significant investment."
-    },
-    {
-      "topic_id": "6ced623c-b669-4727-96cc-51b091753590",
-      "title": "Stock Market Highlights, September 9: Sensex crashes 813 pts, Nifty closes at 23,431 as crude prices cross $100 - BusinessLine",
-      "description": "",
-      "category": "markets-finance",
-      "signal_count": 4,
-      "source_diversity": 4,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-09T10:49:37+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb09mMXBfbGUtM2ZiWGYxWnhLSUt4Yk9VOVRuQ0R5NlVZajdKSFBPWnVvczdnbkhRUHpTVlpoUEFPeTJZN2dxQVhzNk15UXVfcDZVdXBZLW1VY08yZFNodjR3MGtWMUF2azdhdFpHQUZXZTd0ZzJnay16WGtDS1kxRWlGR1JVZjhzcnV2VGpWT29CU0I3VU1oMVZxczN0dUZrbVVmdVg2NlRuU1d4MVdJMWVSeGZpd1BXVXZSbFFhXzNZOERrazFz0gHOAUFVX3lxTE5nVXk0cFpzM2FGVzdNT181N0hPYUh4bHNVR3NjWDhMUXJZTXNfb2lWZGVlcVlTZEFlSUVqN3pwNGx3NXlkd3ByWG94eVNVZS1GNFEza0VzOFEtNDZqR1Nvc2xWdnQ0T0h1N0RFamVjUTB6Rnd1VEZIVGFvSFl5UUU1SGtHa2w3aFA5VjVLMldGLThYeEx2SWNrMUM2UU9xSDNNT1V2X3ZlZlJHeFJrY3NocVdJSzZzNDBuRVBEcmxNZ1dtOFpRa0psMkFJbFhn?oc=5",
-        "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPYnNvNUg2bWNnbFFoMGFKZC1aV1otRTdFWHhGcWp5Qzg4WFFPWFc1NGlPaDl4RlRzU1JVbVJNdFNBcTZqSDE0RG52NDQ2SmF2NzI3TFhNbEFNd0RRZlZWbWtGdTZSQ0plTUtpZEQxd2QySWV3cGhnT05WX3Z6cU9RQnF5cXdkTUdoZ3RLZl9ydzBTWjRsSm1Xb1g2ZHJIMDJnQUp6bkw4LUMwWldaby12VjNhcC1BQnhzVFJzSnM2dWVGWklMVU92RmtlSlVXM0w1ZWfSAdoBQVVfeXFMT1hVem9hMGY3ODgzMGF3R1FJS0xreXJHbk9xTHdZZ3BvdjRZbC1waHk2UUdDcHpsbGZfQjRHMDNNcTZKOFJidlF6dmxidVk2YkExc0pidUlQVm1BalkzNjhLYXVxakFHTGgyNTMyZVh6WUhmZ2oxM2czQldsRUd3emp2VEVBdDI2T2NFdWZMZ2JRS1l1alc2eFI2SEw5QXBlNGNlbmViYkIwNFNJMnpwRkZmaDA5ZWVOT2ZDVFVRbXRINW8waFJkUVF4MC1XenZQTFNTOTg5eVZpQmc?oc=5",
-        "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNRFZCemtaeDREQ1R4Z09lOTBrN0p1Tk1RYnlDMTBQNUlpd2ZTdXZfazVNdThqVVoweHVuY3RsaTFGUmNFeU5aMVZ6SFdsaXp5cThWdUd6dGkzQ2pfRVo2RU1DcGhnSThFeVl2TFNFLVA3UXZ1ZDR3RC1EaFdZZzRKNHM4V3lxWkJVZnRNOGFHRFRCVEd2ZGVjZklfSFJfdlhzc3h0VGFjWXd5X2paRS00cjctOWhQaEhKRVZFRDVmbFFaMWNXWGViUUxtVWdTNmk4R1hjN3NmM1k5WXJ6bUJ0MVVNTjdiQVJVZ2pXMThB?oc=5",
-        "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNMlJvbHQ0Umhoc1hYRWYzdzhnUGZLekNsdmMxOXVCb2s3QTJaTjRiNWZWZi01ZWc2Q1BhWk5IRjgxc19mS1BpSWNyYlhtMEVQdnlwbDB3TGRkenpicVZ3WHYtNWFNT2hrSVJER2oxTDVjc0VhM0xQSjI4X0J0ZF9IYjMwZTFKOHlCYXJzRHZxZmFIYjhpdmpfNnRxVXc3UmZ0dWRlSnpScGFrX2NyMkpZcGFhS1dydVpCQWtIUks2N1ZLR1M0dXdBbElIV2RtUHlOLW5LcHJJV09GZ19RaVZ6a1hn0gHoAUFVX3lxTE1jOWIxZS1qU1ozMHRIUVFURzlMWVB0d191QmktNU5raHlabVJiSEVUSVhMOHR2eDF5RFlZRFI4UTVuYkFYejVhQ2FjSGlBUElmRUtSMjJlMktIOWxDcXFtVXdteEM3STRta0dKT0xQUHJFNGNwVVdoU3pQMENXbDhfRU9hb3ZHZVZYTG9HcF8wYk1ObWhiN2FYVjZWX05lUVhCR3ZTMnpYRnVMcHoybG90VXFQYmVtVXZ1RGp5TEdRYnZ1aVpRYUtuQlAtd2pucFNCdWozYmZLQy1aNHluVE1Nc2tacVl3bTQ?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "Stock Market Highlights, September 9: Sensex crashes 813 pts, Nifty closes at 23,431 as crude prices cross $100 - BusinessLine",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb09mMXBfbGUtM2ZiWGYxWnhLSUt4Yk9VOVRuQ0R5NlVZajdKSFBPWnVvczdnbkhRUHpTVlpoUEFPeTJZN2dxQVhzNk15UXVfcDZVdXBZLW1VY08yZFNodjR3MGtWMUF2azdhdFpHQUZXZTd0ZzJnay16WGtDS1kxRWlGR1JVZjhzcnV2VGpWT29CU0I3VU1oMVZxczN0dUZrbVVmdVg2NlRuU1d4MVdJMWVSeGZpd1BXVXZSbFFhXzNZOERrazFz0gHOAUFVX3lxTE5nVXk0cFpzM2FGVzdNT181N0hPYUh4bHNVR3NjWDhMUXJZTXNfb2lWZGVlcVlTZEFlSUVqN3pwNGx3NXlkd3ByWG94eVNVZS1GNFEza0VzOFEtNDZqR1Nvc2xWdnQ0T0h1N0RFamVjUTB6Rnd1VEZIVGFvSFl5UUU1SGtHa2w3aFA5VjVLMldGLThYeEx2SWNrMUM2UU9xSDNNT1V2X3ZlZlJHeFJrY3NocVdJSzZzNDBuRVBEcmxNZ1dtOFpRa0psMkFJbFhn?oc=5",
-          "source": "BusinessLine"
-        },
-        {
-          "title": "Stock Market LIVE Updates, Sensex Today: Sensex, Nifty Close Flat Amid US-Iran Tensions",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPYnNvNUg2bWNnbFFoMGFKZC1aV1otRTdFWHhGcWp5Qzg4WFFPWFc1NGlPaDl4RlRzU1JVbVJNdFNBcTZqSDE0RG52NDQ2SmF2NzI3TFhNbEFNd0RRZlZWbWtGdTZSQ0plTUtpZEQxd2QySWV3cGhnT05WX3Z6cU9RQnF5cXdkTUdoZ3RLZl9ydzBTWjRsSm1Xb1g2ZHJIMDJnQUp6bkw4LUMwWldaby12VjNhcC1BQnhzVFJzSnM2dWVGWklMVU92RmtlSlVXM0w1ZWfSAdoBQVVfeXFMT1hVem9hMGY3ODgzMGF3R1FJS0xreXJHbk9xTHdZZ3BvdjRZbC1waHk2UUdDcHpsbGZfQjRHMDNNcTZKOFJidlF6dmxidVk2YkExc0pidUlQVm1BalkzNjhLYXVxakFHTGgyNTMyZVh6WUhmZ2oxM2czQldsRUd3emp2VEVBdDI2T2NFdWZMZ2JRS1l1alc2eFI2SEw5QXBlNGNlbmViYkIwNFNJMnpwRkZmaDA5ZWVOT2ZDVFVRbXRINW8waFJkUVF4MC1XenZQTFNTOTg5eVZpQmc?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "Sensex Expiry Today Prediction 10 Sept: Check immediate support and resistance | What should traders do?",
-          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNRFZCemtaeDREQ1R4Z09lOTBrN0p1Tk1RYnlDMTBQNUlpd2ZTdXZfazVNdThqVVoweHVuY3RsaTFGUmNFeU5aMVZ6SFdsaXp5cThWdUd6dGkzQ2pfRVo2RU1DcGhnSThFeVl2TFNFLVA3UXZ1ZDR3RC1EaFdZZzRKNHM4V3lxWkJVZnRNOGFHRFRCVEd2ZGVjZklfSFJfdlhzc3h0VGFjWXd5X2paRS00cjctOWhQaEhKRVZFRDVmbFFaMWNXWGViUUxtVWdTNmk4R1hjN3NmM1k5WXJ6bUJ0MVVNTjdiQVJVZ2pXMThB?oc=5",
-          "source": "TradingView"
-        },
-        {
-          "title": "Markets trade flat in early deals amid elevated crude oil prices, geopolitical tensions",
-          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNMlJvbHQ0Umhoc1hYRWYzdzhnUGZLekNsdmMxOXVCb2s3QTJaTjRiNWZWZi01ZWc2Q1BhWk5IRjgxc19mS1BpSWNyYlhtMEVQdnlwbDB3TGRkenpicVZ3WHYtNWFNT2hrSVJER2oxTDVjc0VhM0xQSjI4X0J0ZF9IYjMwZTFKOHlCYXJzRHZxZmFIYjhpdmpfNnRxVXc3UmZ0dWRlSnpScGFrX2NyMkpZcGFhS1dydVpCQWtIUks2N1ZLR1M0dXdBbElIV2RtUHlOLW5LcHJJV09GZ19RaVZ6a1hn0gHoAUFVX3lxTE1jOWIxZS1qU1ozMHRIUVFURzlMWVB0d191QmktNU5raHlabVJiSEVUSVhMOHR2eDF5RFlZRFI4UTVuYkFYejVhQ2FjSGlBUElmRUtSMjJlMktIOWxDcXFtVXdteEM3STRta0dKT0xQUHJFNGNwVVdoU3pQMENXbDhfRU9hb3ZHZVZYTG9HcF8wYk1ObWhiN2FYVjZWX05lUVhCR3ZTMnpYRnVMcHoybG90VXFQYmVtVXZ1RGp5TEdRYnZ1aVpRYUtuQlAtd2pucFNCdWozYmZLQy1aNHluVE1Nc2tacVl3bTQ?oc=5",
-          "source": "The Hindu"
-        },
-        {
-          "title": "Sensex Expiry Today Prediction 10 Sept: Check immediate support and resistance | What should traders do?",
-          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNRFZCemtaeDREQ1R4Z09lOTBrN0p1Tk1RYnlDMTBQNUlpd2ZTdXZfazVNdThqVVoweHVuY3RsaTFGUmNFeU5aMVZ6SFdsaXp5cThWdUd6dGkzQ2pfRVo2RU1DcGhnSThFeVl2TFNFLVA3UXZ1ZDR3RC1EaFdZZzRKNHM4V3lxWkJVZnRNOGFHRFRCVEd2ZGVjZklfSFJfdlhzc3h0VGFjWXd5X2paRS00cjctOWhQaEhKRVZFRDVmbFFaMWNXWGViUUxtVWdTNmk4R1hjN3NmM1k5WXJ6bUJ0MVVNTjdiQVJVZ2pXMThB?oc=5",
-          "source": "TradingView"
-        },
-        {
-          "title": "Stock Market LIVE Updates, Sensex Today: Sensex, Nifty Close Flat Amid US-Iran Tensions",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPYnNvNUg2bWNnbFFoMGFKZC1aV1otRTdFWHhGcWp5Qzg4WFFPWFc1NGlPaDl4RlRzU1JVbVJNdFNBcTZqSDE0RG52NDQ2SmF2NzI3TFhNbEFNd0RRZlZWbWtGdTZSQ0plTUtpZEQxd2QySWV3cGhnT05WX3Z6cU9RQnF5cXdkTUdoZ3RLZl9ydzBTWjRsSm1Xb1g2ZHJIMDJnQUp6bkw4LUMwWldaby12VjNhcC1BQnhzVFJzSnM2dWVGWklMVU92RmtlSlVXM0w1ZWfSAdoBQVVfeXFMT1hVem9hMGY3ODgzMGF3R1FJS0xreXJHbk9xTHdZZ3BvdjRZbC1waHk2UUdDcHpsbGZfQjRHMDNNcTZKOFJidlF6dmxidVk2YkExc0pidUlQVm1BalkzNjhLYXVxakFHTGgyNTMyZVh6WUhmZ2oxM2czQldsRUd3emp2VEVBdDI2T2NFdWZMZ2JRS1l1alc2eFI2SEw5QXBlNGNlbmViYkIwNFNJMnpwRkZmaDA5ZWVOT2ZDVFVRbXRINW8waFJkUVF4MC1XenZQTFNTOTg5eVZpQmc?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "Stock Market Highlights, September 9: Sensex crashes 813 pts, Nifty closes at 23,431 as crude prices cross $100 - BusinessLine",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb09mMXBfbGUtM2ZiWGYxWnhLSUt4Yk9VOVRuQ0R5NlVZajdKSFBPWnVvczdnbkhRUHpTVlpoUEFPeTJZN2dxQVhzNk15UXVfcDZVdXBZLW1VY08yZFNodjR3MGtWMUF2azdhdFpHQUZXZTd0ZzJnay16WGtDS1kxRWlGR1JVZjhzcnV2VGpWT29CU0I3VU1oMVZxczN0dUZrbVVmdVg2NlRuU1d4MVdJMWVSeGZpd1BXVXZSbFFhXzNZOERrazFz0gHOAUFVX3lxTE5nVXk0cFpzM2FGVzdNT181N0hPYUh4bHNVR3NjWDhMUXJZTXNfb2lWZGVlcVlTZEFlSUVqN3pwNGx3NXlkd3ByWG94eVNVZS1GNFEza0VzOFEtNDZqR1Nvc2xWdnQ0T0h1N0RFamVjUTB6Rnd1VEZIVGFvSFl5UUU1SGtHa2w3aFA5VjVLMldGLThYeEx2SWNrMUM2UU9xSDNNT1V2X3ZlZlJHeFJrY3NocVdJSzZzNDBuRVBEcmxNZ1dtOFpRa0psMkFJbFhn?oc=5",
-          "source": "BusinessLine"
-        },
-        {
-          "title": "Markets trade flat in early deals amid elevated crude oil prices, geopolitical tensions",
-          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNMlJvbHQ0Umhoc1hYRWYzdzhnUGZLekNsdmMxOXVCb2s3QTJaTjRiNWZWZi01ZWc2Q1BhWk5IRjgxc19mS1BpSWNyYlhtMEVQdnlwbDB3TGRkenpicVZ3WHYtNWFNT2hrSVJER2oxTDVjc0VhM0xQSjI4X0J0ZF9IYjMwZTFKOHlCYXJzRHZxZmFIYjhpdmpfNnRxVXc3UmZ0dWRlSnpScGFrX2NyMkpZcGFhS1dydVpCQWtIUks2N1ZLR1M0dXdBbElIV2RtUHlOLW5LcHJJV09GZ19RaVZ6a1hn0gHoAUFVX3lxTE1jOWIxZS1qU1ozMHRIUVFURzlMWVB0d191QmktNU5raHlabVJiSEVUSVhMOHR2eDF5RFlZRFI4UTVuYkFYejVhQ2FjSGlBUElmRUtSMjJlMktIOWxDcXFtVXdteEM3STRta0dKT0xQUHJFNGNwVVdoU3pQMENXbDhfRU9hb3ZHZVZYTG9HcF8wYk1ObWhiN2FYVjZWX05lUVhCR3ZTMnpYRnVMcHoybG90VXFQYmVtVXZ1RGp5TEdRYnZ1aVpRYUtuQlAtd2pucFNCdWozYmZLQy1aNHluVE1Nc2tacVl3bTQ?oc=5",
-          "source": "The Hindu"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "The significant drop in the Sensex due to rising crude prices is a major development affecting the Indian economy and diaspora investments.",
-      "coverage": "update",
-      "ig_handles": [
-        {
-          "handle": "@theofficalsbi",
-          "type": "org",
-          "keywords": [
-            "sensex",
-            "market",
-            "finance"
-          ]
-        },
-        {
-          "handle": "@hdfcbank",
-          "type": "org",
-          "keywords": [
-            "sensex",
-            "market",
-            "finance"
-          ]
-        },
-        {
-          "handle": "@icicibank",
-          "type": "org",
-          "keywords": [
-            "sensex",
-            "market",
-            "finance"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": "2023-09-09",
-      "story_mode": "major_update",
-      "new_development": "The Sensex crashed 813 points, marking a significant decline due to rising crude oil prices."
-    },
-    {
-      "topic_id": "7b98d62d-650f-4355-834f-f8798d253611",
-      "title": "India Reacts After New UN Map Shows Arunachal, Aksai Chin As Separate Regions - NDTV",
-      "description": "",
-      "category": "news",
-      "signal_count": 3,
-      "source_diversity": 3,
-      "source_types": [
-        "google_news"
-      ],
-      "newest_signal": "2026-09-09T03:50:50+00:00",
-      "source_urls": [
-        "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd1EtT000RUxjOE9vUTgzcGZpU2JJVzNwU2x3bXUzTVctZlZiX3B0cF9OUmdxaEt5ZkhTZ2RoU3hZZ2tWZDhlYU90ZVdTZ0p3cXB0LV9KMnIwTU9ZNzFnUjFzcXZPc1llUDVhZm5tNDNEbktXUWJxWEdFQ2hQR2FmNUlHdUxibmpsb0JXckU1WE5jd1nSAZoBQVVfeXFMTW1ZUGtzdGhra2hJUFVZX2RITU1QemZHSXFmZUFfb3NRa25CcnczNkdFa2pSQmpuejgxSnBReUhFRXFWdWtSU19DcUFaYWx1WGRROXdiMkROdkR0NHBiQ0Jkd2tFdUsycjZEUDFIR1plQktad2N4MThMWGdUTV9ybzMzQXJCZjktVHBPc2xxVHpFS2t3SDZvY19mZw?oc=5",
-        "https://news.google.com/rss/articles/CBMisAFBVV95cUxQb0trQ25UVTlMYzBUMlZBdUpjLXRscVlQdVdBZTltTUVqNjJ6ektPUHZlMGhoSVpES2I1MG03YmZ1aTVHMC1EcEpZSFdiMlF2VlA5VVpmbmM1ZVRvbFpxVWFvRFd3eHQzUVhHd1h1S0JHWHVMbHZyUS1jb213WDZiN2ZFU1dyeGJOcklkdHdQM29vM1pZUm1mSnVZUVllbkpJbGY4azJTa0QzN1UxS0ttT9IBuAFBVV95cUxOUzA2aXRpY1p6WFFRUzd0cmtNYnlxVEZfYUZOZzhsbHJGWUVDQWhrZV9fdTdiazdpWC1WWnlQR2ZXVGJnVEVGMEUtSVJNOUpSNzM4M2FXcm5OcDZkTjcyUFdvQTVzMmU0Q0I4cWpZNGduVGpBa3k0NGJvZG1MMUdhck5BNWxtSVppa25YUU5sa0lKUmhVbEo4aFpWOFAxYlkybWFwWGlvZGpfNGx4ZUd1UEhhNlVINFFp?oc=5",
-        "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQLTY3VS1VbmVXUDlFZkRnUnNZcGxLSUZlNkIxNXR4MkpDdU9qNTd2SjUzRlFWcVJHU0pJWFZkdDVOMlNDb1FYNEx6TE9JSWhRNFpjZXJEM0xzSURHYWdrdVYtOUoxRjhudERmVl93bWV0MjdHTmczVXZvaFA5MnhLeExIc2NUVGYwekJKWG5DTWp2Y3pxVXVjYndCUThWZXl6amdWbGdCcHg4TzFxWmtod3JUaG54V2VrVGdwNzB4dkh2X0RqcEkwWmxlZnp6a2ZfRlE?oc=5"
-      ],
-      "all_signals": [
-        {
-          "title": "Daily Quiz | On Mammootty",
-          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd1EtT000RUxjOE9vUTgzcGZpU2JJVzNwU2x3bXUzTVctZlZiX3B0cF9OUmdxaEt5ZkhTZ2RoU3hZZ2tWZDhlYU90ZVdTZ0p3cXB0LV9KMnIwTU9ZNzFnUjFzcXZPc1llUDVhZm5tNDNEbktXUWJxWEdFQ2hQR2FmNUlHdUxibmpsb0JXckU1WE5jd1nSAZoBQVVfeXFMTW1ZUGtzdGhra2hJUFVZX2RITU1QemZHSXFmZUFfb3NRa25CcnczNkdFa2pSQmpuejgxSnBReUhFRXFWdWtSU19DcUFaYWx1WGRROXdiMkROdkR0NHBiQ0Jkd2tFdUsycjZEUDFIR1plQktad2N4MThMWGdUTV9ybzMzQXJCZjktVHBPc2xxVHpFS2t3SDZvY19mZw?oc=5",
-          "source": "The Hindu"
-        },
-        {
-          "title": "India Reacts After New UN Map Shows Arunachal, Aksai Chin As Separate Regions - NDTV",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQb0trQ25UVTlMYzBUMlZBdUpjLXRscVlQdVdBZTltTUVqNjJ6ektPUHZlMGhoSVpES2I1MG03YmZ1aTVHMC1EcEpZSFdiMlF2VlA5VVpmbmM1ZVRvbFpxVWFvRFd3eHQzUVhHd1h1S0JHWHVMbHZyUS1jb213WDZiN2ZFU1dyeGJOcklkdHdQM29vM1pZUm1mSnVZUVllbkpJbGY4azJTa0QzN1UxS0ttT9IBuAFBVV95cUxOUzA2aXRpY1p6WFFRUzd0cmtNYnlxVEZfYUZOZzhsbHJGWUVDQWhrZV9fdTdiazdpWC1WWnlQR2ZXVGJnVEVGMEUtSVJNOUpSNzM4M2FXcm5OcDZkTjcyUFdvQTVzMmU0Q0I4cWpZNGduVGpBa3k0NGJvZG1MMUdhck5BNWxtSVppa25YUU5sa0lKUmhVbEo4aFpWOFAxYlkybWFwWGlvZGpfNGx4ZUd1UEhhNlVINFFp?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "India\u2019s Stance on the UN Cartographic Resolution and Territorial Sovereignty",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQLTY3VS1VbmVXUDlFZkRnUnNZcGxLSUZlNkIxNXR4MkpDdU9qNTd2SjUzRlFWcVJHU0pJWFZkdDVOMlNDb1FYNEx6TE9JSWhRNFpjZXJEM0xzSURHYWdrdVYtOUoxRjhudERmVl93bWV0MjdHTmczVXZvaFA5MnhLeExIc2NUVGYwekJKWG5DTWp2Y3pxVXVjYndCUThWZXl6amdWbGdCcHg4TzFxWmtod3JUaG54V2VrVGdwNzB4dkh2X0RqcEkwWmxlZnp6a2ZfRlE?oc=5",
-          "source": "Drishti IAS"
-        },
-        {
-          "title": "Daily Quiz | On Mammootty",
-          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd1EtT000RUxjOE9vUTgzcGZpU2JJVzNwU2x3bXUzTVctZlZiX3B0cF9OUmdxaEt5ZkhTZ2RoU3hZZ2tWZDhlYU90ZVdTZ0p3cXB0LV9KMnIwTU9ZNzFnUjFzcXZPc1llUDVhZm5tNDNEbktXUWJxWEdFQ2hQR2FmNUlHdUxibmpsb0JXckU1WE5jd1nSAZoBQVVfeXFMTW1ZUGtzdGhra2hJUFVZX2RITU1QemZHSXFmZUFfb3NRa25CcnczNkdFa2pSQmpuejgxSnBReUhFRXFWdWtSU19DcUFaYWx1WGRROXdiMkROdkR0NHBiQ0Jkd2tFdUsycjZEUDFIR1plQktad2N4MThMWGdUTV9ybzMzQXJCZjktVHBPc2xxVHpFS2t3SDZvY19mZw?oc=5",
-          "source": "The Hindu"
-        },
-        {
-          "title": "India Reacts After New UN Map Shows Arunachal, Aksai Chin As Separate Regions - NDTV",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQb0trQ25UVTlMYzBUMlZBdUpjLXRscVlQdVdBZTltTUVqNjJ6ektPUHZlMGhoSVpES2I1MG03YmZ1aTVHMC1EcEpZSFdiMlF2VlA5VVpmbmM1ZVRvbFpxVWFvRFd3eHQzUVhHd1h1S0JHWHVMbHZyUS1jb213WDZiN2ZFU1dyeGJOcklkdHdQM29vM1pZUm1mSnVZUVllbkpJbGY4azJTa0QzN1UxS0ttT9IBuAFBVV95cUxOUzA2aXRpY1p6WFFRUzd0cmtNYnlxVEZfYUZOZzhsbHJGWUVDQWhrZV9fdTdiazdpWC1WWnlQR2ZXVGJnVEVGMEUtSVJNOUpSNzM4M2FXcm5OcDZkTjcyUFdvQTVzMmU0Q0I4cWpZNGduVGpBa3k0NGJvZG1MMUdhck5BNWxtSVppa25YUU5sa0lKUmhVbEo4aFpWOFAxYlkybWFwWGlvZGpfNGx4ZUd1UEhhNlVINFFp?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "India\u2019s Stance on the UN Cartographic Resolution and Territorial Sovereignty",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQLTY3VS1VbmVXUDlFZkRnUnNZcGxLSUZlNkIxNXR4MkpDdU9qNTd2SjUzRlFWcVJHU0pJWFZkdDVOMlNDb1FYNEx6TE9JSWhRNFpjZXJEM0xzSURHYWdrdVYtOUoxRjhudERmVl93bWV0MjdHTmczVXZvaFA5MnhLeExIc2NUVGYwekJKWG5DTWp2Y3pxVXVjYndCUThWZXl6amdWbGdCcHg4TzFxWmtod3JUaG54V2VrVGdwNzB4dkh2X0RqcEkwWmxlZnp6a2ZfRlE?oc=5",
-          "source": "Drishti IAS"
-        }
-      ],
-      "llm_score": 4,
-      "llm_reason": "This headline reports on India's reaction to a new UN map, which has significant geopolitical implications for the diaspora.",
-      "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@pmoindia",
-          "type": "org",
-          "keywords": [
-            "India",
-            "UN",
-            "geopolitics"
-          ]
-        }
-      ],
-      "kids_relevant": false,
-      "event_date": null,
-      "story_mode": "new_event",
-      "new_development": null
-    },
-    {
-      "topic_id": "4374b370-c29a-4279-b43e-02d76f1d0167",
-      "title": "'No tangible benefits': Chidambaram takes a BRICS jibe, draws BJP flak | India News - hindustantimes.com",
+      "topic_id": "3222b9eb-8265-41fe-87d1-e58946e0cb0c",
+      "title": "Indian-Origin Couple Gifts $20 mn to US University for Focus on AI, Advanced Analytics - Deccan Chronicle",
       "description": "",
       "category": "nri-world",
-      "signal_count": 5,
-      "source_diversity": 5,
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-09-10T06:18:28+00:00",
+      "newest_signal": "2026-09-10T05:05:08+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMixgFBVV95cUxPRTA3UnJKb3pmTmVxTjJPSlk4OUd3ZDNtV3d5d00tUC1lX0dtVzZVRU1OWmVMbzlQT2lLS0Zxb0tVLTNldEVCcjFMMW4zMmpHVlVCVnZJclU4dEc2TkM1WDAzZkdxa09Jc1hvempLMUlJZ1dXalFES0ZsYS11X1JFMkxYUEZGSGJxQ18ycnU0WFBnOEluYkZnM3RCMHJ2LV9zM21YeGpSLXVUM19teXM2dDJFcGZtYVk1cUdjemJUU3VzNVRuTnc?oc=5",
-        "https://news.google.com/rss/articles/CBMi5gFBVV95cUxORkdqckxoSU1kaVRQdjQ2STRfb1lPVmU2eEVkNDdNdVRYaW90VFlMZGZNQzVBZnBSMEgtcS1peFJNeHU5Q0VxUEZmeTNMR1FGemdwR3NiQkFhSzhqQm9RUmNmV1hucXJFVm04ZWljTllVQ24tY21tZ2ZaRjVaWk9mMWhSNHkwekIzSjB1clc5bnlNZFY1RDhZNXQ5Rmw0cXdpRDRiQko0UDkwWmE0QjE0UFZ4UFRscnNNSDBJUGRkR29peVNTTlM1dUROeDFxVWRuV1ZJTnpRb1NqY0ptSHRueEFKWU9nUQ?oc=5",
-        "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQSE1NQnhxT1RjMlk1aE1Yb3o4YkF1WXlXbEFvazBXdzdGcnpncklULXRIcEdXbDgzZ0ZVTmdSc3gwaTl4RGwwNUdobTNTOV9xejdNNUQ4ZGc1RnpmUzRFdXMzYzI4dkkxLUZINGRkbU5ORkxTZTZXTE9xdkdqMEZrXzJONmZMc3hhd2dqMWR4ZEN5c3VPalVVOEdzTGhVTkljSmN6dEp2VlpMM1MwV1dYNGJOX0lxX1QwcWNHTWpSdm1OTHB5bWs1amxYRXA0d3l6RXFRekxHaV9tQlMxU2xFaFNsRnM?oc=5",
-        "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdHRPX0c0QkdWZmtXalFCOTJCQy1zRS1fQ0pJMy1Kb2hXZUxPc0VpdzhCUElzLWp0UVZVZGZvYk9pLWJFb0dFVUYxemxwUzZ0eFpwLWx2R1MzNWxPcEZBbTVPeVR3UXA3MDFyMzJ2NV93RnF1bTRZYjdvaEFUVE95bUlzVlRBdXVuWmtJSDBrVUMxekFkSDQxT3JnUllwcnI2UmxXdFhYclJMTWhVbnBlb3pHZ01nNXdlakd3bnZKMA?oc=5",
-        "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQWE9YeDMwZEdQenJpZjhoelFiN1hDTWxaaFNhX0RlLVdwWkE2eGp6UGNNdXA2eTBkai0zWFUxWDRnMGtySlFUbG8tRnVJb29OUkxYM3BFNzF0cmlGZ0FtN0twcVpGZG9wbnpCaXU0cGVyeXo3ZVFHUUgwVHpxUW9qNEUyUG5jSjdFekE2ekRKbTJEY2pDWXlMd09hcnQ1NHpPYWx3MW1INzF3N1gxSGlBbVpVNXhJanB1V3Y5UldiMUE1OGlYVFZuMVE3OV9YR0JnYnNyWTBQYnbSAd4BQVVfeXFMTnpITWtvTWwyLTYtd1VRa2VhLUNtdUxPOS1CSUVKMVdXSFZ5bHVJYkxWX2YxRXZKNHNaWGtTajlMSnB5Y0dpd0RMeDlsNFFrTUJLZl9Hc2ZYZVBfc240a0kxVURrc0dPT3NqWGZMbmQ5Rm4xNTRBMXV4VzFaaGlCemVJa0poeFJRMDRVR0NEVThfc3FYY2dNb19JWVZQU2dPN1RJYklDNkpIRzdTQnRrc3BqZjVKd1BHajJSUjluOGc5cGpPSllibjNiOWZvRmRnbXBOSEFjcDVNOEM1Y1hn?oc=5"
+        "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQelRLcTA1cllSbEJkci1RUmJITFpEWjZQYWZTTzJKaHZDaGtsQmNJZUtTRm5aQjVOYjdXOE81bFNIQURvR1NMWWtIdkFGMFVzdmpzQnhUS0VvaXBjM1pNMDVHeUZNb2p6U2JZaHN4LVVoV29sZG5kXzVFd2NVeWZHMWNyWlBSMzZtWXFEN3JfUTZhazhVbk1HN0dqTzhCbzh0eDB5LXdPUkR6X3NzMUp3WDBoTDZpbDI3aHBiSGZPRXVCaW4zb3ByZnBOV3dBOG9oMGVrb29B0gHbAUFVX3lxTE1vRmJUOUxYNTB5Smw5V1prQTdiTmJRNERXTVdRbGladGZqQ2R0UUdzSmNKMDUtb0VrRnh4U1lWTlp4ZDJ0TVltZjE1UWloZGVLTlU4MUJUSkZwQ19vYWxHVG5za2wwSFVGdzJOWUhyWWlXY3NHVUlhOHhIeVpsdENJUi1LZmZzbGplM09Kb1lmVVJBMXdYb3hqdnVmcXY3a1ZpX05oSGpQTU5KdG81Zl9MMHhRUFNhYU1yY1lvVzQtaldmczdqeGNQQkc2b1V4RkR4QnFMRFZZU3NpZw?oc=5"
       ],
       "all_signals": [
         {
-          "title": "Naraz phupha attitude: Ram Madhav hits back at Chidambaram's BRICS jibe",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPRTA3UnJKb3pmTmVxTjJPSlk4OUd3ZDNtV3d5d00tUC1lX0dtVzZVRU1OWmVMbzlQT2lLS0Zxb0tVLTNldEVCcjFMMW4zMmpHVlVCVnZJclU4dEc2TkM1WDAzZkdxa09Jc1hvempLMUlJZ1dXalFES0ZsYS11X1JFMkxYUEZGSGJxQ18ycnU0WFBnOEluYkZnM3RCMHJ2LV9zM21YeGpSLXVUM19teXM2dDJFcGZtYVk1cUdjemJUU3VzNVRuTnc?oc=5",
-          "source": "India Today"
+          "title": "Indian-Origin Couple Gifts $20 mn to US University for Focus on AI, Advanced Analytics - Deccan Chronicle",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQelRLcTA1cllSbEJkci1RUmJITFpEWjZQYWZTTzJKaHZDaGtsQmNJZUtTRm5aQjVOYjdXOE81bFNIQURvR1NMWWtIdkFGMFVzdmpzQnhUS0VvaXBjM1pNMDVHeUZNb2p6U2JZaHN4LVVoV29sZG5kXzVFd2NVeWZHMWNyWlBSMzZtWXFEN3JfUTZhazhVbk1HN0dqTzhCbzh0eDB5LXdPUkR6X3NzMUp3WDBoTDZpbDI3aHBiSGZPRXVCaW4zb3ByZnBOV3dBOG9oMGVrb29B0gHbAUFVX3lxTE1vRmJUOUxYNTB5Smw5V1prQTdiTmJRNERXTVdRbGladGZqQ2R0UUdzSmNKMDUtb0VrRnh4U1lWTlp4ZDJ0TVltZjE1UWloZGVLTlU4MUJUSkZwQ19vYWxHVG5za2wwSFVGdzJOWUhyWWlXY3NHVUlhOHhIeVpsdENJUi1LZmZzbGplM09Kb1lmVVJBMXdYb3hqdnVmcXY3a1ZpX05oSGpQTU5KdG81Zl9MMHhRUFNhYU1yY1lvVzQtaldmczdqeGNQQkc2b1V4RkR4QnFMRFZZU3NpZw?oc=5",
+          "source": "Deccan Chronicle"
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "An Indian-origin couple's significant donation to a US university for AI education highlights the contributions of the diaspora in advancing technology education.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@indiaspora",
+          "type": "org",
+          "keywords": [
+            "Indian",
+            "diaspora",
+            "donation"
+          ]
         },
         {
-          "title": "What has Congress done diplomatically since 1947: BJP hits back at Chidambaram's BRICS remarks",
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxORkdqckxoSU1kaVRQdjQ2STRfb1lPVmU2eEVkNDdNdVRYaW90VFlMZGZNQzVBZnBSMEgtcS1peFJNeHU5Q0VxUEZmeTNMR1FGemdwR3NiQkFhSzhqQm9RUmNmV1hucXJFVm04ZWljTllVQ24tY21tZ2ZaRjVaWk9mMWhSNHkwekIzSjB1clc5bnlNZFY1RDhZNXQ5Rmw0cXdpRDRiQko0UDkwWmE0QjE0UFZ4UFRscnNNSDBJUGRkR29peVNTTlM1dUROeDFxVWRuV1ZJTnpRb1NqY0ptSHRueEFKWU9nUQ?oc=5",
-          "source": "The Hans India"
-        },
+          "handle": "@university",
+          "type": "org",
+          "keywords": [
+            "university",
+            "AI",
+            "education"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "246aa17c-6afe-40f4-986d-254550727d9c",
+      "title": "Planning a Thailand trip? New travel rules for Indians from September 15 - India Today",
+      "description": "",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-09T10:26:28+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQRDMtdU9ub29EU1RwRzd0aUlLNmFIWThIbVVZeHN4alNMX1c4dnBhaVptanUta3VMbkJLVVg3RmR5QnYzZkFoT1RJdU5wWHhQcE9wWDg4em1DQ1ZIMlV2Rk85eDJMQzYzQURsWUJSYlJmTjFxTkNOREpsc2hlYkpGSGdtOTdicnhCMnBpTm9obnhyOTNleDdnZTNCLVA4TzVHLTVfMGhVR0ZQWHlheFY0NmY0YkxWZWVsdXRyZ0pUT1BQa28yYW9sdG9EYjRnaElMZFYyUFdB0gHbAUFVX3lxTE5tdXhFaGtseFhIMzFXalpPTUg0d1VSXzJlSS1VbXlNeWhNVlZDb04yREs0WnBBTExiOExVS1RDekFQTGE4aUVkVFlzTWNIQWdvazUwY0ppMnpvOEswM1A0dHBFN1dXVElxQy1idjdad3NtaTR5NnFvUXBXMHhtdFRXYjVFXzFkdGdqcmoycWNrc3BzY2tTM0Y1cGxjU2RjT1Q5bGEtdzVicUFtX296eVdXX1FpM3VrWkpXSFFJaW5nWHhNRWpORVQ2dmgzVk1uZG5FRUdpQkdMM2xJMA?oc=5"
+      ],
+      "all_signals": [
         {
-          "title": "'I didn't see any benefits': Congress's P Chidambaram questions 2026 Brics, draws BJP's flak",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQSE1NQnhxT1RjMlk1aE1Yb3o4YkF1WXlXbEFvazBXdzdGcnpncklULXRIcEdXbDgzZ0ZVTmdSc3gwaTl4RGwwNUdobTNTOV9xejdNNUQ4ZGc1RnpmUzRFdXMzYzI4dkkxLUZINGRkbU5ORkxTZTZXTE9xdkdqMEZrXzJONmZMc3hhd2dqMWR4ZEN5c3VPalVVOEdzTGhVTkljSmN6dEp2VlpMM1MwV1dYNGJOX0lxX1QwcWNHTWpSdm1OTHB5bWs1amxYRXA0d3l6RXFRekxHaV9tQlMxU2xFaFNsRnM?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "No Gains For India From BRICS, Says P Chidambaram. BJP Has A Question",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdHRPX0c0QkdWZmtXalFCOTJCQy1zRS1fQ0pJMy1Kb2hXZUxPc0VpdzhCUElzLWp0UVZVZGZvYk9pLWJFb0dFVUYxemxwUzZ0eFpwLWx2R1MzNWxPcEZBbTVPeVR3UXA3MDFyMzJ2NV93RnF1bTRZYjdvaEFUVE95bUlzVlRBdXVuWmtJSDBrVUMxekFkSDQxT3JnUllwcnI2UmxXdFhYclJMTWhVbnBlb3pHZ01nNXdlakd3bnZKMA?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "'No tangible benefits': Chidambaram takes a BRICS jibe, draws BJP flak | India News - hindustantimes.com",
-          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQWE9YeDMwZEdQenJpZjhoelFiN1hDTWxaaFNhX0RlLVdwWkE2eGp6UGNNdXA2eTBkai0zWFUxWDRnMGtySlFUbG8tRnVJb29OUkxYM3BFNzF0cmlGZ0FtN0twcVpGZG9wbnpCaXU0cGVyeXo3ZVFHUUgwVHpxUW9qNEUyUG5jSjdFekE2ekRKbTJEY2pDWXlMd09hcnQ1NHpPYWx3MW1INzF3N1gxSGlBbVpVNXhJanB1V3Y5UldiMUE1OGlYVFZuMVE3OV9YR0JnYnNyWTBQYnbSAd4BQVVfeXFMTnpITWtvTWwyLTYtd1VRa2VhLUNtdUxPOS1CSUVKMVdXSFZ5bHVJYkxWX2YxRXZKNHNaWGtTajlMSnB5Y0dpd0RMeDlsNFFrTUJLZl9Hc2ZYZVBfc240a0kxVURrc0dPT3NqWGZMbmQ5Rm4xNTRBMXV4VzFaaGlCemVJa0poeFJRMDRVR0NEVThfc3FYY2dNb19JWVZQU2dPN1RJYklDNkpIRzdTQnRrc3BqZjVKd1BHajJSUjluOGc5cGpPSllibjNiOWZvRmRnbXBOSEFjcDVNOEM1Y1hn?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "What has Congress done diplomatically since 1947: BJP hits back at Chidambaram's BRICS remarks",
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxORkdqckxoSU1kaVRQdjQ2STRfb1lPVmU2eEVkNDdNdVRYaW90VFlMZGZNQzVBZnBSMEgtcS1peFJNeHU5Q0VxUEZmeTNMR1FGemdwR3NiQkFhSzhqQm9RUmNmV1hucXJFVm04ZWljTllVQ24tY21tZ2ZaRjVaWk9mMWhSNHkwekIzSjB1clc5bnlNZFY1RDhZNXQ5Rmw0cXdpRDRiQko0UDkwWmE0QjE0UFZ4UFRscnNNSDBJUGRkR29peVNTTlM1dUROeDFxVWRuV1ZJTnpRb1NqY0ptSHRueEFKWU9nUQ?oc=5",
-          "source": "The Hans India"
-        },
-        {
-          "title": "'I didn't see any benefits': Congress's P Chidambaram questions 2026 Brics, draws BJP's flak",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQSE1NQnhxT1RjMlk1aE1Yb3o4YkF1WXlXbEFvazBXdzdGcnpncklULXRIcEdXbDgzZ0ZVTmdSc3gwaTl4RGwwNUdobTNTOV9xejdNNUQ4ZGc1RnpmUzRFdXMzYzI4dkkxLUZINGRkbU5ORkxTZTZXTE9xdkdqMEZrXzJONmZMc3hhd2dqMWR4ZEN5c3VPalVVOEdzTGhVTkljSmN6dEp2VlpMM1MwV1dYNGJOX0lxX1QwcWNHTWpSdm1OTHB5bWs1amxYRXA0d3l6RXFRekxHaV9tQlMxU2xFaFNsRnM?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "'No tangible benefits': Chidambaram takes a BRICS jibe, draws BJP flak | India News - hindustantimes.com",
-          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQWE9YeDMwZEdQenJpZjhoelFiN1hDTWxaaFNhX0RlLVdwWkE2eGp6UGNNdXA2eTBkai0zWFUxWDRnMGtySlFUbG8tRnVJb29OUkxYM3BFNzF0cmlGZ0FtN0twcVpGZG9wbnpCaXU0cGVyeXo3ZVFHUUgwVHpxUW9qNEUyUG5jSjdFekE2ekRKbTJEY2pDWXlMd09hcnQ1NHpPYWx3MW1INzF3N1gxSGlBbVpVNXhJanB1V3Y5UldiMUE1OGlYVFZuMVE3OV9YR0JnYnNyWTBQYnbSAd4BQVVfeXFMTnpITWtvTWwyLTYtd1VRa2VhLUNtdUxPOS1CSUVKMVdXSFZ5bHVJYkxWX2YxRXZKNHNaWGtTajlMSnB5Y0dpd0RMeDlsNFFrTUJLZl9Hc2ZYZVBfc240a0kxVURrc0dPT3NqWGZMbmQ5Rm4xNTRBMXV4VzFaaGlCemVJa0poeFJRMDRVR0NEVThfc3FYY2dNb19JWVZQU2dPN1RJYklDNkpIRzdTQnRrc3BqZjVKd1BHajJSUjluOGc5cGpPSllibjNiOWZvRmRnbXBOSEFjcDVNOEM1Y1hn?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "No Gains For India From BRICS, Says P Chidambaram. BJP Has A Question",
-          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPdHRPX0c0QkdWZmtXalFCOTJCQy1zRS1fQ0pJMy1Kb2hXZUxPc0VpdzhCUElzLWp0UVZVZGZvYk9pLWJFb0dFVUYxemxwUzZ0eFpwLWx2R1MzNWxPcEZBbTVPeVR3UXA3MDFyMzJ2NV93RnF1bTRZYjdvaEFUVE95bUlzVlRBdXVuWmtJSDBrVUMxekFkSDQxT3JnUllwcnI2UmxXdFhYclJMTWhVbnBlb3pHZ01nNXdlakd3bnZKMA?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "Naraz phupha attitude: Ram Madhav hits back at Chidambaram's BRICS jibe",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPRTA3UnJKb3pmTmVxTjJPSlk4OUd3ZDNtV3d5d00tUC1lX0dtVzZVRU1OWmVMbzlQT2lLS0Zxb0tVLTNldEVCcjFMMW4zMmpHVlVCVnZJclU4dEc2TkM1WDAzZkdxa09Jc1hvempLMUlJZ1dXalFES0ZsYS11X1JFMkxYUEZGSGJxQ18ycnU0WFBnOEluYkZnM3RCMHJ2LV9zM21YeGpSLXVUM19teXM2dDJFcGZtYVk1cUdjemJUU3VzNVRuTnc?oc=5",
+          "title": "Planning a Thailand trip? New travel rules for Indians from September 15 - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQRDMtdU9ub29EU1RwRzd0aUlLNmFIWThIbVVZeHN4alNMX1c4dnBhaVptanUta3VMbkJLVVg3RmR5QnYzZkFoT1RJdU5wWHhQcE9wWDg4em1DQ1ZIMlV2Rk85eDJMQzYzQURsWUJSYlJmTjFxTkNOREpsc2hlYkpGSGdtOTdicnhCMnBpTm9obnhyOTNleDdnZTNCLVA4TzVHLTVfMGhVR0ZQWHlheFY0NmY0YkxWZWVsdXRyZ0pUT1BQa28yYW9sdG9EYjRnaElMZFYyUFdB0gHbAUFVX3lxTE5tdXhFaGtseFhIMzFXalpPTUg0d1VSXzJlSS1VbXlNeWhNVlZDb04yREs0WnBBTExiOExVS1RDekFQTGE4aUVkVFlzTWNIQWdvazUwY0ppMnpvOEswM1A0dHBFN1dXVElxQy1idjdad3NtaTR5NnFvUXBXMHhtdFRXYjVFXzFkdGdqcmoycWNrc3BzY2tTM0Y1cGxjU2RjT1Q5bGEtdzVicUFtX296eVdXX1FpM3VrWkpXSFFJaW5nWHhNRWpORVQ2dmgzVk1uZG5FRUdpQkdMM2xJMA?oc=5",
           "source": "India Today"
         }
       ],
+      "llm_score": 4,
+      "llm_reason": "The new travel rules for Indians planning a trip to Thailand are relevant for the diaspora, providing important information for travelers.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@incredibleindia",
+          "type": "org",
+          "keywords": [
+            "travel",
+            "India",
+            "Thailand"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "6916c05d-9b9b-4f0e-ac46-2dbe268aa587",
+      "title": "Gujarat man pleads guilty in US in $9.36 million illegal gambling case",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T12:59:34+00:00",
+      "source_urls": [
+        "https://timesofindia.indiatimes.com/world/us/gujarat-man-pleads-guilty-in-us-in-9-36-million-illegal-gambling-case/articleshow/134010961.cms"
+      ],
+      "all_signals": [
+        {
+          "title": "Gujarat man pleads guilty in US in $9.36 million illegal gambling case",
+          "url": "https://timesofindia.indiatimes.com/world/us/gujarat-man-pleads-guilty-in-us-in-9-36-million-illegal-gambling-case/articleshow/134010961.cms",
+          "source": null
+        }
+      ],
       "llm_score": 3,
-      "llm_reason": "Chidambaram's comments on BRICS relate to India's geopolitical stance, which is of interest to the diaspora.",
+      "llm_reason": "The story involves an Indian individual in the US legal system, which is relevant to the diaspora community.",
       "coverage": "new",
       "ig_handles": [],
       "kids_relevant": false,
@@ -827,164 +202,98 @@
       "new_development": null
     },
     {
-      "topic_id": "a01f8f8c-c114-4f31-81a4-15b44dc270ae",
-      "title": "SBI assistant manager quits job to start yoga studio, blames mental exhaustion | Trending - hindustantimes.com",
+      "topic_id": "c584ef5e-9c6f-4264-bb3a-9cd09f251af5",
+      "title": "Virtual trade corridors could boost BRICS connectivity, says RITES chief",
       "description": "",
-      "category": "lifestyle-health",
-      "signal_count": 5,
-      "source_diversity": 5,
+      "category": "news",
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
-        "google_news"
+        "rss"
       ],
-      "newest_signal": "2026-09-10T02:37:36+00:00",
+      "newest_signal": "2026-09-10T12:43:44+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQd0xZQWF3NDR2VndnYVQ5OFR2ZHB6REhqdWNsV2hFZVJpSkZxaUdtN2JEa3Fsb0oya0ZFamNNZWYzaVpCaGo0VEFIaUxDSkpLSjhfNGVZelpHcmhqNktuMDRJMzZOSXVGZzBCMkZIcXlJbDM2d1ZUZnFqZmJyRDVDOVRsbU5NNzh1eEpaZnhRQ2pmVTlmTjN0NkRaMGVfaE51UVRiQzVTUWRwWGgtNTFyV0lTb1M2WjZpWWlVaHdhb3dPcVhKSUxvamtKdnFzcGUtOEY0ZHlCNXVMbW5PcHRiVndPaEp6ODByQ0HSAe8BQVVfeXFMTnMwSVpMbFROMm45aGxZN0JMQmhBYjUzbkxIYjFtTHdjajBNNHBjcFRCX2NUdEJIbC04eUxELV92VVlmeVM1MzlmUW9pRExiQnctRi1yMU91MTZfZHF5ZWlIMkJsaXNOd0JpWFc4QzZodXBaYTNFckFvUGU4WGdPalBIRWlEa0FRX3l3YmljNkZCVzdyS1hLY09wUFBmdFpfTWFlb2JTb0ZILXZFUDU5cVRLSEZISjJiclJRdVh6eEhScUdiaHpOVmgxZWpxUExmNHd3aWozY3BoR2NsOTNyaHpMekhsT19ZNlN1WjM0b28?oc=5",
-        "https://news.google.com/rss/articles/CBMigwJBVV95cUxPd2hYM3A3VWtiOG8tY29jNVdONlE4X0I4VElSY3NySDBCSWNwUjNZMFk4Y2FONk9Vd0ltcDJfMF9SM0hCUkljZkFiQnpEajJHdDhjY0FtRmtTWGhrdndwYW5LWU9tc2lBNFlXQjFwVy1NMmNwTlFpcmJSVHV2QmVGc2ZQVjlaVW15clpjdnBHcjc1T0R1ZFlIZDl6c1RaUExLSl9CWHM0MWI1WG1EZVdVdm5VMFBmLXpmSjVEZGtwamRRSE1CUjZQa1MyVnByVkRGWC1weXJYU2x3UzJVSFFjSnRqUEh6dHVEdzNKdU1OQ3NEc3lIT0lKWEhma0F2UzZOY08w?oc=5",
-        "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdjF1cU9waTd5UjZpUXJvQ0RFS0RQbmdRc2hpLVo5V1plWTg4WGlPdnBZREpERDhlYm5EalpMMnN0RXpXaVFNbmFaTUVfMm1jcnpxQk1tS3QtS085S0piVjdoV3M2QlhsNlFKLTQ2cDhaczU2OU13eEtMVmdyT0lFUWNKNGxzSWdNN0V5cklVbjI3UmdtV1BUZjlDSmNTQVFtcFRLNtIBrAFBVV95cUxQWWMwakZGY3ZWTGVkcU14XzNmS1ZUWjQwUkVyeG4zSGZpdHB1dFVpalllbU5qd0RXY3RMN0hGRVgtN3JHRTdmVHhGY1F3OEVJZzhYMEpmUjZaS2FacWdoZk1NQ3NkSUlmREROM2hrV3VXSUFrNTVkbmltT0lmaURpeW5NZ2N1OFJLcU96YkhNTzZIVEhETkY2YVdsbTVSSXRKUG8xM2xwc0N2aFdr?oc=5",
-        "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQdlRvMVQwTHpTeVN0QjlYcjRwMUxFdmNPU3BsdUdFTXRTUEpFMF9Zc0U3ZGhFc1JWa0hKdGtTdUg4LUdhb0lMaGtxOHQzQkFoR25nOE40TXZVcGJoYWdTTDJlSkd0TlRqbmJWb0I0b2EyUjVUY1FHNjZzX3ZEM1JWUTFJcHpJMnpKTkRKLUNScFotNGFDNTZDWS1uS2FxTzh3WE5UYnZwOENRdDJRR05FTmV2bHVJc0prWDkxbll4Sk05S3Bsd2d1b0RMeEQxTHZzbG5SadIB2gFBVV95cUxOc1hHRVIyQi1INkRNaFJWMUEzbWZIeVRsVDZDRTJyTlh1ZlhsN25lQUp0dkNBVVJtVmVTRXh5SlNJSUpOOGRGUWlvNVhiYVBlRGNCclVfdnhmSWFGUEtERXBocmNJdTNxUTNjQWNGb1lhcmVpbHZSek9teUdQTVd0YU9JYmtMNk1zMGRqSzJ2aHF0ZldrRUR4X1J2S2RFUzRreHVRZHVwc0dyZm9Lb0lmT2tCd1R1aWxkNjE2RmVZOXpGbEV4UktxQlZkY0c4TVdKVmxUSTNwSlJsUQ?oc=5",
-        "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQanRyWG9oT1o0NVk4NkRqdTMzV0FhdzgxMmFTUlkzWDV4bkRKWWpQRVllekxBMG1UVkxEQmlJcHh1UjJQZFd1a3RYaFdvYmNWLU5ibExFVndndDIwanpLbXR4SS1fbzk3VmZGa1E0dV84N3ZGam05b2dwM1pOajVsSWc3S2lqeUpaV2NtdzBMWjZhSVRXT0pFWS1COHpIZndkaEZ3Z1p5cVNGOE5ubnhvNkI3bkpRTldwbXRlU3ZsNlJONjZWWW11YUZHUEZ6NUVMSVlEWHpMVG1qRzg?oc=5"
+        "https://www.indiatoday.in/business/story/virtual-trade-corridors-could-boost-brics-connectivity-says-rites-chief-2991634-2026-09-10?utm_source=rss"
       ],
       "all_signals": [
         {
-          "title": "Woman quits assistant manager job at SBI due to 'constant stress', starts yoga studio in Uttar Pradesh",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQd0xZQWF3NDR2VndnYVQ5OFR2ZHB6REhqdWNsV2hFZVJpSkZxaUdtN2JEa3Fsb0oya0ZFamNNZWYzaVpCaGo0VEFIaUxDSkpLSjhfNGVZelpHcmhqNktuMDRJMzZOSXVGZzBCMkZIcXlJbDM2d1ZUZnFqZmJyRDVDOVRsbU5NNzh1eEpaZnhRQ2pmVTlmTjN0NkRaMGVfaE51UVRiQzVTUWRwWGgtNTFyV0lTb1M2WjZpWWlVaHdhb3dPcVhKSUxvamtKdnFzcGUtOEY0ZHlCNXVMbW5PcHRiVndPaEp6ODByQ0HSAe8BQVVfeXFMTnMwSVpMbFROMm45aGxZN0JMQmhBYjUzbkxIYjFtTHdjajBNNHBjcFRCX2NUdEJIbC04eUxELV92VVlmeVM1MzlmUW9pRExiQnctRi1yMU91MTZfZHF5ZWlIMkJsaXNOd0JpWFc4QzZodXBaYTNFckFvUGU4WGdPalBIRWlEa0FRX3l3YmljNkZCVzdyS1hLY09wUFBmdFpfTWFlb2JTb0ZILXZFUDU5cVRLSEZISjJiclJRdVh6eEhScUdiaHpOVmgxZWpxUExmNHd3aWozY3BoR2NsOTNyaHpMekhsT19ZNlN1WjM0b28?oc=5",
-          "source": "Moneycontrol.com"
-        },
-        {
-          "title": "This Bank Manager quit her job to start a yoga studio and shares why this was important, \u201c I was\u2026\u201d",
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPd2hYM3A3VWtiOG8tY29jNVdONlE4X0I4VElSY3NySDBCSWNwUjNZMFk4Y2FONk9Vd0ltcDJfMF9SM0hCUkljZkFiQnpEajJHdDhjY0FtRmtTWGhrdndwYW5LWU9tc2lBNFlXQjFwVy1NMmNwTlFpcmJSVHV2QmVGc2ZQVjlaVW15clpjdnBHcjc1T0R1ZFlIZDl6c1RaUExLSl9CWHM0MWI1WG1EZVdVdm5VMFBmLXpmSjVEZGtwamRRSE1CUjZQa1MyVnByVkRGWC1weXJYU2x3UzJVSFFjSnRqUEh6dHVEdzNKdU1OQ3NEc3lIT0lKWEhma0F2UzZOY08w?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "She Quit A Secure Government Job To Open A Yoga Studio. Here's Why",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdjF1cU9waTd5UjZpUXJvQ0RFS0RQbmdRc2hpLVo5V1plWTg4WGlPdnBZREpERDhlYm5EalpMMnN0RXpXaVFNbmFaTUVfMm1jcnpxQk1tS3QtS085S0piVjdoV3M2QlhsNlFKLTQ2cDhaczU2OU13eEtMVmdyT0lFUWNKNGxzSWdNN0V5cklVbjI3UmdtV1BUZjlDSmNTQVFtcFRLNtIBrAFBVV95cUxQWWMwakZGY3ZWTGVkcU14XzNmS1ZUWjQwUkVyeG4zSGZpdHB1dFVpalllbU5qd0RXY3RMN0hGRVgtN3JHRTdmVHhGY1F3OEVJZzhYMEpmUjZaS2FacWdoZk1NQ3NkSUlmREROM2hrV3VXSUFrNTVkbmltT0lmaURpeW5NZ2N1OFJLcU96YkhNTzZIVEhETkY2YVdsbTVSSXRKUG8xM2xwc0N2aFdr?oc=5",
-          "source": "NDTV"
-        },
-        {
-          "title": "SBI assistant manager quits job to start yoga studio, blames mental exhaustion | Trending - hindustantimes.com",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQdlRvMVQwTHpTeVN0QjlYcjRwMUxFdmNPU3BsdUdFTXRTUEpFMF9Zc0U3ZGhFc1JWa0hKdGtTdUg4LUdhb0lMaGtxOHQzQkFoR25nOE40TXZVcGJoYWdTTDJlSkd0TlRqbmJWb0I0b2EyUjVUY1FHNjZzX3ZEM1JWUTFJcHpJMnpKTkRKLUNScFotNGFDNTZDWS1uS2FxTzh3WE5UYnZwOENRdDJRR05FTmV2bHVJc0prWDkxbll4Sk05S3Bsd2d1b0RMeEQxTHZzbG5SadIB2gFBVV95cUxOc1hHRVIyQi1INkRNaFJWMUEzbWZIeVRsVDZDRTJyTlh1ZlhsN25lQUp0dkNBVVJtVmVTRXh5SlNJSUpOOGRGUWlvNVhiYVBlRGNCclVfdnhmSWFGUEtERXBocmNJdTNxUTNjQWNGb1lhcmVpbHZSek9teUdQTVd0YU9JYmtMNk1zMGRqSzJ2aHF0ZldrRUR4X1J2S2RFUzRreHVRZHVwc0dyZm9Lb0lmT2tCd1R1aWxkNjE2RmVZOXpGbEV4UktxQlZkY0c4TVdKVmxUSTNwSlJsUQ?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "SBI Assistant Manager Quits Secure Job To Start Her Own Yoga Studio. Here\u2019s Why She Took The Step",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQanRyWG9oT1o0NVk4NkRqdTMzV0FhdzgxMmFTUlkzWDV4bkRKWWpQRVllekxBMG1UVkxEQmlJcHh1UjJQZFd1a3RYaFdvYmNWLU5ibExFVndndDIwanpLbXR4SS1fbzk3VmZGa1E0dV84N3ZGam05b2dwM1pOajVsSWc3S2lqeUpaV2NtdzBMWjZhSVRXT0pFWS1COHpIZndkaEZ3Z1p5cVNGOE5ubnhvNkI3bkpRTldwbXRlU3ZsNlJONjZWWW11YUZHUEZ6NUVMSVlEWHpMVG1qRzg?oc=5",
-          "source": "News18"
-        },
-        {
-          "title": "SBI assistant manager quits job to start yoga studio, blames mental exhaustion | Trending - hindustantimes.com",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQdlRvMVQwTHpTeVN0QjlYcjRwMUxFdmNPU3BsdUdFTXRTUEpFMF9Zc0U3ZGhFc1JWa0hKdGtTdUg4LUdhb0lMaGtxOHQzQkFoR25nOE40TXZVcGJoYWdTTDJlSkd0TlRqbmJWb0I0b2EyUjVUY1FHNjZzX3ZEM1JWUTFJcHpJMnpKTkRKLUNScFotNGFDNTZDWS1uS2FxTzh3WE5UYnZwOENRdDJRR05FTmV2bHVJc0prWDkxbll4Sk05S3Bsd2d1b0RMeEQxTHZzbG5SadIB2gFBVV95cUxOc1hHRVIyQi1INkRNaFJWMUEzbWZIeVRsVDZDRTJyTlh1ZlhsN25lQUp0dkNBVVJtVmVTRXh5SlNJSUpOOGRGUWlvNVhiYVBlRGNCclVfdnhmSWFGUEtERXBocmNJdTNxUTNjQWNGb1lhcmVpbHZSek9teUdQTVd0YU9JYmtMNk1zMGRqSzJ2aHF0ZldrRUR4X1J2S2RFUzRreHVRZHVwc0dyZm9Lb0lmT2tCd1R1aWxkNjE2RmVZOXpGbEV4UktxQlZkY0c4TVdKVmxUSTNwSlJsUQ?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "This Bank Manager quit her job to start a yoga studio and shares why this was important, \u201c I was\u2026\u201d",
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPd2hYM3A3VWtiOG8tY29jNVdONlE4X0I4VElSY3NySDBCSWNwUjNZMFk4Y2FONk9Vd0ltcDJfMF9SM0hCUkljZkFiQnpEajJHdDhjY0FtRmtTWGhrdndwYW5LWU9tc2lBNFlXQjFwVy1NMmNwTlFpcmJSVHV2QmVGc2ZQVjlaVW15clpjdnBHcjc1T0R1ZFlIZDl6c1RaUExLSl9CWHM0MWI1WG1EZVdVdm5VMFBmLXpmSjVEZGtwamRRSE1CUjZQa1MyVnByVkRGWC1weXJYU2x3UzJVSFFjSnRqUEh6dHVEdzNKdU1OQ3NEc3lIT0lKWEhma0F2UzZOY08w?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "SBI Assistant Manager Quits Secure Job To Start Her Own Yoga Studio. Here\u2019s Why She Took The Step",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQanRyWG9oT1o0NVk4NkRqdTMzV0FhdzgxMmFTUlkzWDV4bkRKWWpQRVllekxBMG1UVkxEQmlJcHh1UjJQZFd1a3RYaFdvYmNWLU5ibExFVndndDIwanpLbXR4SS1fbzk3VmZGa1E0dV84N3ZGam05b2dwM1pOajVsSWc3S2lqeUpaV2NtdzBMWjZhSVRXT0pFWS1COHpIZndkaEZ3Z1p5cVNGOE5ubnhvNkI3bkpRTldwbXRlU3ZsNlJONjZWWW11YUZHUEZ6NUVMSVlEWHpMVG1qRzg?oc=5",
-          "source": "News18"
-        },
-        {
-          "title": "Woman quits assistant manager job at SBI due to 'constant stress', starts yoga studio in Uttar Pradesh",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQd0xZQWF3NDR2VndnYVQ5OFR2ZHB6REhqdWNsV2hFZVJpSkZxaUdtN2JEa3Fsb0oya0ZFamNNZWYzaVpCaGo0VEFIaUxDSkpLSjhfNGVZelpHcmhqNktuMDRJMzZOSXVGZzBCMkZIcXlJbDM2d1ZUZnFqZmJyRDVDOVRsbU5NNzh1eEpaZnhRQ2pmVTlmTjN0NkRaMGVfaE51UVRiQzVTUWRwWGgtNTFyV0lTb1M2WjZpWWlVaHdhb3dPcVhKSUxvamtKdnFzcGUtOEY0ZHlCNXVMbW5PcHRiVndPaEp6ODByQ0HSAe8BQVVfeXFMTnMwSVpMbFROMm45aGxZN0JMQmhBYjUzbkxIYjFtTHdjajBNNHBjcFRCX2NUdEJIbC04eUxELV92VVlmeVM1MzlmUW9pRExiQnctRi1yMU91MTZfZHF5ZWlIMkJsaXNOd0JpWFc4QzZodXBaYTNFckFvUGU4WGdPalBIRWlEa0FRX3l3YmljNkZCVzdyS1hLY09wUFBmdFpfTWFlb2JTb0ZILXZFUDU5cVRLSEZISjJiclJRdVh6eEhScUdiaHpOVmgxZWpxUExmNHd3aWozY3BoR2NsOTNyaHpMekhsT19ZNlN1WjM0b28?oc=5",
-          "source": "Moneycontrol.com"
-        },
-        {
-          "title": "She Quit A Secure Government Job To Open A Yoga Studio. Here's Why",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdjF1cU9waTd5UjZpUXJvQ0RFS0RQbmdRc2hpLVo5V1plWTg4WGlPdnBZREpERDhlYm5EalpMMnN0RXpXaVFNbmFaTUVfMm1jcnpxQk1tS3QtS085S0piVjdoV3M2QlhsNlFKLTQ2cDhaczU2OU13eEtMVmdyT0lFUWNKNGxzSWdNN0V5cklVbjI3UmdtV1BUZjlDSmNTQVFtcFRLNtIBrAFBVV95cUxQWWMwakZGY3ZWTGVkcU14XzNmS1ZUWjQwUkVyeG4zSGZpdHB1dFVpalllbU5qd0RXY3RMN0hGRVgtN3JHRTdmVHhGY1F3OEVJZzhYMEpmUjZaS2FacWdoZk1NQ3NkSUlmREROM2hrV3VXSUFrNTVkbmltT0lmaURpeW5NZ2N1OFJLcU96YkhNTzZIVEhETkY2YVdsbTVSSXRKUG8xM2xwc0N2aFdr?oc=5",
-          "source": "NDTV"
+          "title": "Virtual trade corridors could boost BRICS connectivity, says RITES chief",
+          "url": "https://www.indiatoday.in/business/story/virtual-trade-corridors-could-boost-brics-connectivity-says-rites-chief-2991634-2026-09-10?utm_source=rss",
+          "source": null
         }
       ],
       "llm_score": 3,
-      "llm_reason": "The story about an SBI assistant manager quitting to start a yoga studio connects to wellness and lifestyle, which is of interest to the diaspora.",
+      "llm_reason": "The potential for virtual trade corridors to enhance BRICS connectivity is relevant to the Indian diaspora's economic interests.",
       "coverage": "new",
-      "ig_handles": [
-        {
-          "handle": "@sbi",
-          "type": "org",
-          "keywords": [
-            "SBI",
-            "banking",
-            "yoga"
-          ]
-        },
-        {
-          "handle": "@yogajournal",
-          "type": "org",
-          "keywords": [
-            "yoga",
-            "wellness",
-            "lifestyle"
-          ]
-        }
-      ],
+      "ig_handles": [],
       "kids_relevant": false,
       "event_date": null,
       "story_mode": "new_event",
       "new_development": null
     },
     {
-      "topic_id": "6917f719-9e48-41cc-9ae8-338dd676ad76",
-      "title": "Hema Malini says she is very happy that Hanuman Ansh has become a huge box office success: \u2018Hanuman ji ka kripa hai\u2019 | Bollywood - hindustantimes.com",
+      "topic_id": "4f8b4fd1-dbbe-4d92-a646-272cf196b765",
+      "title": "Rani Mukerji Honoured At Maharashtra State Film Awards, Actor Speaks In Marathi",
       "description": "",
       "category": "entertainment",
-      "signal_count": 4,
-      "source_diversity": 4,
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
-        "google_news"
+        "rss"
       ],
-      "newest_signal": "2026-09-09T15:33:28+00:00",
+      "newest_signal": "2026-09-10T12:36:52+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMi6AJBVV95cUxNWVN5dFI0WVpvUmVGbm1KREplM3NmNkh1TFlSYnF4NG51ai1IeWV5ci1NNERXanFRaWRCNkpJaE8xbjhhTk1IWi1aVlc4ejNlbEV4YmpJay0wSjJSWkMySnh1X1NTZ1ZtTWtqQ2hmREJWOEoycEpZMVNfMUZjZkl0ZXFkSEdoem5ydldlck9mUzgwbGRwMEdOZGVOcXktdXRmNU5nb0ZQdkZkaVFxRlMyTWJvOFp4Wkw3aVZEaWVSMWVTNHFpZVVub2JVWkhVUFJaRzRtdEFRTlB3TWVfbS1OQWlubkRmeVFienBDZUNQZDdJMUNqY2VFREJpamtWTmhYMHB3a0FQc2J4Wmd4U2NpMjRHeXlnZ3Z1Zjh1QmVJcnV2V1p3V2R1dG1jS3JzUGVwQ0EwdW9IWmNSTGd2SEp5WW8wVUxHcnNVV2dnTE9wMlNmTzc1NDVkQldJcWZnYmg1WDBVTzlyX2U?oc=5",
-        "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOMGxoaWROT0lfSzdzeEFKVTRDbDBaYzItSEY1R1h2S2VnYVpIV3NsRGM3X0cyXzE4T3JqdEFSSjNmVGVPUGUzNDJZTWl6d0lDMEVjd1NCNTBwQUJNSHlxWUxYa1pneFlidTBjMUNqSmFnRFdfZkhSZHFPeWJRTk0zUkg4UzEwOE96amJyNDdXX1FFQWp6aUU1UWk0cDdIM2JiWTFKZlRyenBKRTRjMTRqUGNEWHpaS2pqOXoxUXBhS2xhZGh1azFKTHhRUDFLRVpOVTc4bFZ0bjdTdWNZYWZWUXVHemNTYnl5NlNSeGlaWEZWdWJzZmF0NtIB_gFBVV95cUxOMHlLUFNQV2VCeUNjZ0Q0RW5sQ1piSHhKN2wtMkVqTjI5Vy1MMkEtTTl0UXkxVERfckpCVm52RkREeDViYVU0dUVQSlg0QXJhRWl3T0FUd2NtdnNzWEs1MjljYzBzVS0wa3BNVUZFNUpFRVRFYWl3Q0pKMGFSdHNrMDctdnIzOVlETHY4X0trd0tZMVNDUHc4NFVBRGZ5OXlUazZhU2o2YmctRjdiZGpzQnVoSzlmRWVmazJUbTR5T25NSGx0a0k3VDM2ZXBqZzl6T1pxU0lzZ0NULTVDUktROXhOWUNpSmJsRl8tNTJnZ2ptcjR0VndUU2JleGZvQQ?oc=5",
-        "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQdmh2ZEI0TjNoRTNIM0Y5eEhkcmw2dW5YSzFacHJIbjdybDRvMUY3QW04cUlvbXRQTFF3WmZPeFVacTFvZURBQ2RlWFJCeEI4MU45QnNyZ0lnRkF6M2VxYWJybVBCZDUzRXB1dzdBT3FsZ3p3alBCU29Wak9qWVhQcmVlajZYTlpUX0pyV0ZLcGxjd3dvZHZ5WFRnSXFWblVTelpSaE0yai1USTJucVZkNHg5eTlYSUFONDRWeUNfZWtJc3FnRklFeXBwZ19nZ2lSR3E4UWJDalBmZ2h5X3c?oc=5",
-        "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSFk2eGVxVDNySVJBaDItT0lvdG9Ec0tZTnZ0ZzhRQWNkWHJNN3FiQ1JPOGg1QnpYSlhYUXRxTWRoUUZ4RXN5RWZnWlV1cGdYTzdHdDB6OGlpWUFDZlNob1U1eWZRZ1J3ZGFON3dzeThDdzYyOWcxMFZTVWtvV1FlcFkyUDdYZWlnWTFjU2Vaa0tqbFdJMjdnbGtadjZPUVVMbk15enlOdF84TENWVDhoV1ZDS3XSAboBQVVfeXFMUGY5b0NLTkh6MVRZM3NTdkxXend5clBPTWhYUW5PRGF1a2N3SkItbUtaYUJrcURBczktSUJEV2tzQ0ZuWkxSN2pMMFBEWXh6bXlWNFNYem5PdGV0XzY0cExJQjA1bVRNWHRzWFZ2MVdWZlNqZ2pYTnNwbTB1azdyM2VKU3ZIaDBqTVBCQWo5eU05a1FrcE10Mkk3Q08wZUFOb1pndzhDRHNoaG9UbVMyeGFpek1FSzh5UHZn?oc=5"
+        "https://www.ndtv.com/entertainment/rani-mukerji-talks-in-marathi-while-being-honoured-at-maharashtra-state-film-awards-12027299#publisher=newsstand"
       ],
       "all_signals": [
         {
-          "title": "Preity Zinta is highly impressed by 'Hanuman Ansh', urges people to not miss it as the film already becomes a box office hit with Rs 132 crore net in India",
-          "url": "https://news.google.com/rss/articles/CBMi6AJBVV95cUxNWVN5dFI0WVpvUmVGbm1KREplM3NmNkh1TFlSYnF4NG51ai1IeWV5ci1NNERXanFRaWRCNkpJaE8xbjhhTk1IWi1aVlc4ejNlbEV4YmpJay0wSjJSWkMySnh1X1NTZ1ZtTWtqQ2hmREJWOEoycEpZMVNfMUZjZkl0ZXFkSEdoem5ydldlck9mUzgwbGRwMEdOZGVOcXktdXRmNU5nb0ZQdkZkaVFxRlMyTWJvOFp4Wkw3aVZEaWVSMWVTNHFpZVVub2JVWkhVUFJaRzRtdEFRTlB3TWVfbS1OQWlubkRmeVFienBDZUNQZDdJMUNqY2VFREJpamtWTmhYMHB3a0FQc2J4Wmd4U2NpMjRHeXlnZ3Z1Zjh1QmVJcnV2V1p3V2R1dG1jS3JzUGVwQ0EwdW9IWmNSTGd2SEp5WW8wVUxHcnNVV2dnTE9wMlNmTzc1NDVkQldJcWZnYmg1WDBVTzlyX2U?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "Hema Malini says she is very happy that Hanuman Ansh has become a huge box office success: \u2018Hanuman ji ka kripa hai\u2019 | Bollywood - hindustantimes.com",
-          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOMGxoaWROT0lfSzdzeEFKVTRDbDBaYzItSEY1R1h2S2VnYVpIV3NsRGM3X0cyXzE4T3JqdEFSSjNmVGVPUGUzNDJZTWl6d0lDMEVjd1NCNTBwQUJNSHlxWUxYa1pneFlidTBjMUNqSmFnRFdfZkhSZHFPeWJRTk0zUkg4UzEwOE96amJyNDdXX1FFQWp6aUU1UWk0cDdIM2JiWTFKZlRyenBKRTRjMTRqUGNEWHpaS2pqOXoxUXBhS2xhZGh1azFKTHhRUDFLRVpOVTc4bFZ0bjdTdWNZYWZWUXVHemNTYnl5NlNSeGlaWEZWdWJzZmF0NtIB_gFBVV95cUxOMHlLUFNQV2VCeUNjZ0Q0RW5sQ1piSHhKN2wtMkVqTjI5Vy1MMkEtTTl0UXkxVERfckpCVm52RkREeDViYVU0dUVQSlg0QXJhRWl3T0FUd2NtdnNzWEs1MjljYzBzVS0wa3BNVUZFNUpFRVRFYWl3Q0pKMGFSdHNrMDctdnIzOVlETHY4X0trd0tZMVNDUHc4NFVBRGZ5OXlUazZhU2o2YmctRjdiZGpzQnVoSzlmRWVmazJUbTR5T25NSGx0a0k3VDM2ZXBqZzl6T1pxU0lzZ0NULTVDUktROXhOWUNpSmJsRl8tNTJnZ2ptcjR0VndUU2JleGZvQQ?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "BJP National President Nitin Nabin says he wants to watch \u2018Hanuman Ansh\u2019",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQdmh2ZEI0TjNoRTNIM0Y5eEhkcmw2dW5YSzFacHJIbjdybDRvMUY3QW04cUlvbXRQTFF3WmZPeFVacTFvZURBQ2RlWFJCeEI4MU45QnNyZ0lnRkF6M2VxYWJybVBCZDUzRXB1dzdBT3FsZ3p3alBCU29Wak9qWVhQcmVlajZYTlpUX0pyV0ZLcGxjd3dvZHZ5WFRnSXFWblVTelpSaE0yai1USTJucVZkNHg5eTlYSUFONDRWeUNfZWtJc3FnRklFeXBwZ19nZ2lSR3E4UWJDalBmZ2h5X3c?oc=5",
-          "source": "ANI News"
-        },
-        {
-          "title": "Tusshar Kapoor on \u2018Hanuman Ansh\u2019, his first devotional film in decades",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSFk2eGVxVDNySVJBaDItT0lvdG9Ec0tZTnZ0ZzhRQWNkWHJNN3FiQ1JPOGg1QnpYSlhYUXRxTWRoUUZ4RXN5RWZnWlV1cGdYTzdHdDB6OGlpWUFDZlNob1U1eWZRZ1J3ZGFON3dzeThDdzYyOWcxMFZTVWtvV1FlcFkyUDdYZWlnWTFjU2Vaa0tqbFdJMjdnbGtadjZPUVVMbk15enlOdF84TENWVDhoV1ZDS3XSAboBQVVfeXFMUGY5b0NLTkh6MVRZM3NTdkxXend5clBPTWhYUW5PRGF1a2N3SkItbUtaYUJrcURBczktSUJEV2tzQ0ZuWkxSN2pMMFBEWXh6bXlWNFNYem5PdGV0XzY0cExJQjA1bVRNWHRzWFZ2MVdWZlNqZ2pYTnNwbTB1azdyM2VKU3ZIaDBqTVBCQWo5eU05a1FrcE10Mkk3Q08wZUFOb1pndzhDRHNoaG9UbVMyeGFpek1FSzh5UHZn?oc=5",
-          "source": "The Assam Tribune"
-        },
-        {
-          "title": "Preity Zinta is highly impressed by 'Hanuman Ansh', urges people to not miss it as the film already becomes a box office hit with Rs 132 crore net in India",
-          "url": "https://news.google.com/rss/articles/CBMi6AJBVV95cUxNWVN5dFI0WVpvUmVGbm1KREplM3NmNkh1TFlSYnF4NG51ai1IeWV5ci1NNERXanFRaWRCNkpJaE8xbjhhTk1IWi1aVlc4ejNlbEV4YmpJay0wSjJSWkMySnh1X1NTZ1ZtTWtqQ2hmREJWOEoycEpZMVNfMUZjZkl0ZXFkSEdoem5ydldlck9mUzgwbGRwMEdOZGVOcXktdXRmNU5nb0ZQdkZkaVFxRlMyTWJvOFp4Wkw3aVZEaWVSMWVTNHFpZVVub2JVWkhVUFJaRzRtdEFRTlB3TWVfbS1OQWlubkRmeVFienBDZUNQZDdJMUNqY2VFREJpamtWTmhYMHB3a0FQc2J4Wmd4U2NpMjRHeXlnZ3Z1Zjh1QmVJcnV2V1p3V2R1dG1jS3JzUGVwQ0EwdW9IWmNSTGd2SEp5WW8wVUxHcnNVV2dnTE9wMlNmTzc1NDVkQldJcWZnYmg1WDBVTzlyX2U?oc=5",
-          "source": "The Times of India"
-        },
-        {
-          "title": "BJP National President Nitin Nabin says he wants to watch \u2018Hanuman Ansh\u2019",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQdmh2ZEI0TjNoRTNIM0Y5eEhkcmw2dW5YSzFacHJIbjdybDRvMUY3QW04cUlvbXRQTFF3WmZPeFVacTFvZURBQ2RlWFJCeEI4MU45QnNyZ0lnRkF6M2VxYWJybVBCZDUzRXB1dzdBT3FsZ3p3alBCU29Wak9qWVhQcmVlajZYTlpUX0pyV0ZLcGxjd3dvZHZ5WFRnSXFWblVTelpSaE0yai1USTJucVZkNHg5eTlYSUFONDRWeUNfZWtJc3FnRklFeXBwZ19nZ2lSR3E4UWJDalBmZ2h5X3c?oc=5",
-          "source": "ANI News"
-        },
-        {
-          "title": "Hema Malini says she is very happy that Hanuman Ansh has become a huge box office success: \u2018Hanuman ji ka kripa hai\u2019 | Bollywood - hindustantimes.com",
-          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOMGxoaWROT0lfSzdzeEFKVTRDbDBaYzItSEY1R1h2S2VnYVpIV3NsRGM3X0cyXzE4T3JqdEFSSjNmVGVPUGUzNDJZTWl6d0lDMEVjd1NCNTBwQUJNSHlxWUxYa1pneFlidTBjMUNqSmFnRFdfZkhSZHFPeWJRTk0zUkg4UzEwOE96amJyNDdXX1FFQWp6aUU1UWk0cDdIM2JiWTFKZlRyenBKRTRjMTRqUGNEWHpaS2pqOXoxUXBhS2xhZGh1azFKTHhRUDFLRVpOVTc4bFZ0bjdTdWNZYWZWUXVHemNTYnl5NlNSeGlaWEZWdWJzZmF0NtIB_gFBVV95cUxOMHlLUFNQV2VCeUNjZ0Q0RW5sQ1piSHhKN2wtMkVqTjI5Vy1MMkEtTTl0UXkxVERfckpCVm52RkREeDViYVU0dUVQSlg0QXJhRWl3T0FUd2NtdnNzWEs1MjljYzBzVS0wa3BNVUZFNUpFRVRFYWl3Q0pKMGFSdHNrMDctdnIzOVlETHY4X0trd0tZMVNDUHc4NFVBRGZ5OXlUazZhU2o2YmctRjdiZGpzQnVoSzlmRWVmazJUbTR5T25NSGx0a0k3VDM2ZXBqZzl6T1pxU0lzZ0NULTVDUktROXhOWUNpSmJsRl8tNTJnZ2ptcjR0VndUU2JleGZvQQ?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "Tusshar Kapoor on \u2018Hanuman Ansh\u2019, his first devotional film in decades",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSFk2eGVxVDNySVJBaDItT0lvdG9Ec0tZTnZ0ZzhRQWNkWHJNN3FiQ1JPOGg1QnpYSlhYUXRxTWRoUUZ4RXN5RWZnWlV1cGdYTzdHdDB6OGlpWUFDZlNob1U1eWZRZ1J3ZGFON3dzeThDdzYyOWcxMFZTVWtvV1FlcFkyUDdYZWlnWTFjU2Vaa0tqbFdJMjdnbGtadjZPUVVMbk15enlOdF84TENWVDhoV1ZDS3XSAboBQVVfeXFMUGY5b0NLTkh6MVRZM3NTdkxXend5clBPTWhYUW5PRGF1a2N3SkItbUtaYUJrcURBczktSUJEV2tzQ0ZuWkxSN2pMMFBEWXh6bXlWNFNYem5PdGV0XzY0cExJQjA1bVRNWHRzWFZ2MVdWZlNqZ2pYTnNwbTB1azdyM2VKU3ZIaDBqTVBCQWo5eU05a1FrcE10Mkk3Q08wZUFOb1pndzhDRHNoaG9UbVMyeGFpek1FSzh5UHZn?oc=5",
-          "source": "The Assam Tribune"
+          "title": "Rani Mukerji Honoured At Maharashtra State Film Awards, Actor Speaks In Marathi",
+          "url": "https://www.ndtv.com/entertainment/rani-mukerji-talks-in-marathi-while-being-honoured-at-maharashtra-state-film-awards-12027299#publisher=newsstand",
+          "source": null
         }
       ],
       "llm_score": 3,
-      "llm_reason": "Hema Malini's comments on her film's success connect to Bollywood, which is of interest to the Indian diaspora.",
+      "llm_reason": "Rani Mukerji's recognition at the Maharashtra State Film Awards highlights her contributions to Indian cinema, which resonates with the diaspora's interest in Bollywood.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@rani.mukerji",
+          "type": "person",
+          "keywords": [
+            "Maharashtra",
+            "film",
+            "awards"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "0838e716-bb6d-40af-9958-17214e996226",
+      "title": "India-Russia \"Expand The Dialogue\" On 105-Plane Deal Ahead Of BRICS",
+      "description": "",
+      "category": "news",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T11:58:19+00:00",
+      "source_urls": [
+        "https://www.ndtv.com/india-news/in-major-push-india-russia-expand-the-dialogue-with-105-plane-deal-ahead-of-brics-12028421#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "India-Russia \"Expand The Dialogue\" On 105-Plane Deal Ahead Of BRICS",
+          "url": "https://www.ndtv.com/india-news/in-major-push-india-russia-expand-the-dialogue-with-105-plane-deal-ahead-of-brics-12028421#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The discussion on India-Russia relations and a significant aircraft deal is relevant to geopolitical interests of the Indian diaspora.",
       "coverage": "new",
       "ig_handles": [],
       "kids_relevant": false,
@@ -993,95 +302,162 @@
       "new_development": null
     },
     {
-      "topic_id": "03fbde65-cfac-45b5-8142-d94821944b14",
-      "title": "AI at population scale: Rahul Chari\u2019s charter for the next 300 million - The Economic Times",
+      "topic_id": "810bee57-024f-47d6-aa59-53eb75f01b07",
+      "title": "Nandan Nilekani\u2019s vision for asset tokenisation in India",
       "description": "",
       "category": "technology",
-      "signal_count": 5,
-      "source_diversity": 4,
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
-        "google_news"
+        "rss"
       ],
-      "newest_signal": "2026-09-09T08:30:00+00:00",
+      "newest_signal": "2026-09-10T11:48:05+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMisAFBVV95cUxNT0FDTWt6M00yNUJKNFNwb2FmWU5INExWU3BzLXRLaWNpM3drdDNMdlN3cnJUSDdjaU1iUjFZTERfRnlreVhCbDNiYUhTVWJobDBSSVFDUDZpa211VHZLeE82R2hzYjNVMTZJQnM3WHBaNURDTVNJMW9mVG9xbWxNSks5eno1WllwQ0dFeDZOR2F6TlcwXzNRRlJvZHhaUkplajE3NlpDa2IyMjF5UWdad9IBtgFBVV95cUxQTGF6R0ZxdlJEMTRLZTAwNWVUWE5YVkZWaHd1c2h3M3NBN0pEM1FEUFdISTlsTklmV20zTHhDc2wzamR2WFR3SEhvRF9XRVNnQXE4SU1LckJHdWtNWWJMYkJQQmh0TkhMZmVfQXl0cGtqenlRaUFqVVRhak91TGxjcG5LdXRyN0paYmVWbDA5RjViNE8tSmpyZHRvaGwxVXVDWi1xMlctN21YMVpKT2I3Ui16a2JOdw?oc=5",
-        "https://news.google.com/rss/articles/CBMisgFBVV95cUxOcmJVNjhlaVJJSlY1NmNwNmd6TzFCSGhSd0lxTm9LeklPLTRJU2NKSEdUci1ydVdtbnowdjl0cmpLbFptY1ZkcElhNUFtSEM1SHpYUEtDMjhVQTF6OVZuVlBDQkpFVEs0QnJjN2FaQ1E0aDR6Szd6dFBzSGh1M1dReGlhSVNTWDlmWFFJNGZUNnZKNEN1SjhXU19GczNHSk54ZTJZdU5yU19CaC1uM0haanZB0gG0AUFVX3lxTE5Cc3JLQ0x6cEprb3FWQlF0cTUtQ0lwNndjTDJwclNQbXlGZGtrNnU3bGk3X3BPSTBVbjhkMXpYLVUxUFdYSWpNamNSWThzOWNsM1JfSWNZNkNPV2RuUmtmbGFENzFpMVNhVHk5T3BVOWJQTUxyaUdpckUtNFpTd3ByTlA1b1RQbzhpaE9UTGgzbGZUbVMxY24xVWRKZFBZNlhEV2VMVkl2M3JsdmNXVFFPQTBMTA?oc=5",
-        "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOTXdOc2VYRVluVWxkMkY2Z1ZRWkhDSnhiMGg2ck5Ua29ySUItZUpMMlRaZllfaGJKT296VGFXMVUyQlpxeTlBY2pDVmdKLTNvY1Q0VVpsVW9rZFRmUkVSZ1dqUm1uX2pvZFpVSUU5YWpXcjBoVlhETW9zRENTX3BISm5vUkY1aXduYmwzd3lyTFpMS2wzcVpzOUU4Qm9ib1c4WVRraHJJdkNGek9xaHp3d3cyZ2l2OHZrYkh5SEhET1VGY0dJa29UMGItSmtCaW1wUjRudVFiYXphY29YcEp1VEVfenZiVGpyVXRhSGZKaDZjOU1H0gH6AUFVX3lxTE9uaHVIUlBIY0ZhMzk4alhNS1FJR2pWTTE1ZjNkNzYzY1JzR2dNNEpzNnNFSjFMVWh1WnNhSFY2UlB4UEt1QmV2NEk1M2RTaXFvLXRZa2dtMDFIekUxd3JnT2hEbVhpRzR0b29RUkpQdDl4eG9nMS1zQkh2a283X3YtaFpKaThiMzRhbmNNVnA1X0Y3MzM3M1FjbHVpNkl6enRCLTlYcUpxZ0hUVV9TVmRCUk53VjRob0F3UE9nTE5xYkp5OVN0ZGZOOHQ1UG45S0drV1ppNk1hZUF4TmotbXNaZmlnQlM0a3AtQVlRQXBCOTdSMmpMZWJ4b0E?oc=5",
-        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSUh5MDEta0x5R0FUZWdRLTV5SzJlNGFXVkV3T2xBZjh2SFU4ZnFGajBqOGQxc1pBb2M0emt2NGd5VE1EckdtX3Vhc3d4ZHdyaXE2ekQ5cUpwRDg2Y28taTQxdzhlU2ZIbUd0RnZwb0d4VjRQQ3M3ekdlUGIxbnljS0NGakctand4ZUtMTENXSjZyTXNrSGdmX3c3S3gzZmp3RHZ5cWlfcGhvOVk0bG5Sa2Y5X05ZbnoyLS1YNnZzX3B6U1RmMDNNTmpRbkdIdkh5alBRUm1mSjBOT1FFODVUakUyanA2dVd4MWfSAe8BQVVfeXFMTzZoY01malNkRU4tZUdBekNJd2NwRlFjdUpINTV1MVdEV3NsLUpqczdvY3hhMThxekx4NzdhWmdjcE9jR0VwNFN2b213Zl80UHdkWnBMcFUtTVVyeHJZa21odUJFQ3hvSkNvSTAteEZTcHdJTGlmTE9xMF80N01jaVlodDhrWEJGZGhjMGpKcTNOUDRROE13RmFfOTRHQklYeFpIMEJuOW1Ma3ZGX1BtRTJBbXl1V0VsTnl1ZkFDZkFzZU9VOVRYRGluMjNuWUp5VzE5TmtPV3B2TzExLTZDTmI5MlhKVFFZQ0xzb2NWQ1k?oc=5",
-        "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQSnhsRU83SUptOGEySkc0Z1FUdk91RUstTEtvaVFUQ2hPOTNKOXJlMTNQZnV1YlpnZzU5al8zS3IzVWpONVp1ZF9kWTRjeElTNllPb2FCbzJZeEJ3RVpGa2V0TXlEZjNCd3REamFuR1N2MW9IVkRzcjNPaXlwUDB5RjM5d2xnckduTWJScGJHaTBEZm5LaHBPaWNEN2hDczltbUtmM1hOODdybnY1cGNjU0VGTHpIU0twOFF1VF9JODVhOHlEdzk3dkROS3V1bkxwcFU5bm5yZFdhWTBzLTdiZnJmVmxqVWdUSFRhLW85WDhOUdIB9wFBVV95cUxQLXJFa0xWdktWOTZJWDcyaGhGTnc4T1R4dG53VzJhanZNc2NuMU5DOXpJNGhVZ0VxUE9IYmN0eG9pMUVvRm83TlJuXzFYdHlRa0lIVll5WHZMVkdTWmdRYzdVOGxjSGtydjZzNWUxZmV1SzZySEFTdGsxZk1mX0c3VDd2b1JMUnFSUHVhSGJReGhOS2pXdFp1aGtPdU5xNVBSZy1BRWZrVTVvOXVhQXlaM2Y0R0R3T1RKdWZTc0RDWE1HVGdyQ21ZdFR3WEFxMldSSlNIRzhVejF2OEhjQnJsSVBQV3RvZHhISFQzVmZHXzY3YWRfMjBz?oc=5"
+        "https://www.medianama.com/2026/09/223-nandan-nilekanis-asset-tokenization/"
       ],
       "all_signals": [
         {
-          "title": "PhonePe to foray into UAE in maiden foreign outing",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNT0FDTWt6M00yNUJKNFNwb2FmWU5INExWU3BzLXRLaWNpM3drdDNMdlN3cnJUSDdjaU1iUjFZTERfRnlreVhCbDNiYUhTVWJobDBSSVFDUDZpa211VHZLeE82R2hzYjNVMTZJQnM3WHBaNURDTVNJMW9mVG9xbWxNSks5eno1WllwQ0dFeDZOR2F6TlcwXzNRRlJvZHhaUkplajE3NlpDa2IyMjF5UWdad9IBtgFBVV95cUxQTGF6R0ZxdlJEMTRLZTAwNWVUWE5YVkZWaHd1c2h3M3NBN0pEM1FEUFdISTlsTklmV20zTHhDc2wzamR2WFR3SEhvRF9XRVNnQXE4SU1LckJHdWtNWWJMYkJQQmh0TkhMZmVfQXl0cGtqenlRaUFqVVRhak91TGxjcG5LdXRyN0paYmVWbDA5RjViNE8tSmpyZHRvaGwxVXVDWi1xMlctN21YMVpKT2I3Ui16a2JOdw?oc=5",
-          "source": "bfsi.economictimes.indiatimes.com"
-        },
-        {
-          "title": "PhonePe Charts Ambitious Decade-Long Digital Progress Roadmap",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOcmJVNjhlaVJJSlY1NmNwNmd6TzFCSGhSd0lxTm9LeklPLTRJU2NKSEdUci1ydVdtbnowdjl0cmpLbFptY1ZkcElhNUFtSEM1SHpYUEtDMjhVQTF6OVZuVlBDQkpFVEs0QnJjN2FaQ1E0aDR6Szd6dFBzSGh1M1dReGlhSVNTWDlmWFFJNGZUNnZKNEN1SjhXU19GczNHSk54ZTJZdU5yU19CaC1uM0haanZB0gG0AUFVX3lxTE5Cc3JLQ0x6cEprb3FWQlF0cTUtQ0lwNndjTDJwclNQbXlGZGtrNnU3bGk3X3BPSTBVbjhkMXpYLVUxUFdYSWpNamNSWThzOWNsM1JfSWNZNkNPV2RuUmtmbGFENzFpMVNhVHk5T3BVOWJQTUxyaUdpckUtNFpTd3ByTlA1b1RQbzhpaE9UTGgzbGZUbVMxY24xVWRKZFBZNlhEV2VMVkl2M3JsdmNXVFFPQTBMTA?oc=5",
-          "source": "Rediff"
-        },
-        {
-          "title": "AI will increase feature velocity, drive better enterprise value for PhonePe, says co-founder Rahul Chari",
-          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOTXdOc2VYRVluVWxkMkY2Z1ZRWkhDSnhiMGg2ck5Ua29ySUItZUpMMlRaZllfaGJKT296VGFXMVUyQlpxeTlBY2pDVmdKLTNvY1Q0VVpsVW9rZFRmUkVSZ1dqUm1uX2pvZFpVSUU5YWpXcjBoVlhETW9zRENTX3BISm5vUkY1aXduYmwzd3lyTFpMS2wzcVpzOUU4Qm9ib1c4WVRraHJJdkNGek9xaHp3d3cyZ2l2OHZrYkh5SEhET1VGY0dJa29UMGItSmtCaW1wUjRudVFiYXphY29YcEp1VEVfenZiVGpyVXRhSGZKaDZjOU1H0gH6AUFVX3lxTE9uaHVIUlBIY0ZhMzk4alhNS1FJR2pWTTE1ZjNkNzYzY1JzR2dNNEpzNnNFSjFMVWh1WnNhSFY2UlB4UEt1QmV2NEk1M2RTaXFvLXRZa2dtMDFIekUxd3JnT2hEbVhpRzR0b29RUkpQdDl4eG9nMS1zQkh2a283X3YtaFpKaThiMzRhbmNNVnA1X0Y3MzM3M1FjbHVpNkl6enRCLTlYcUpxZ0hUVV9TVmRCUk53VjRob0F3UE9nTE5xYkp5OVN0ZGZOOHQ1UG45S0drV1ppNk1hZUF4TmotbXNaZmlnQlM0a3AtQVlRQXBCOTdSMmpMZWJ4b0E?oc=5",
-          "source": "Moneycontrol.com"
-        },
-        {
-          "title": "AI at population scale: Rahul Chari\u2019s charter for the next 300 million - The Economic Times",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSUh5MDEta0x5R0FUZWdRLTV5SzJlNGFXVkV3T2xBZjh2SFU4ZnFGajBqOGQxc1pBb2M0emt2NGd5VE1EckdtX3Vhc3d4ZHdyaXE2ekQ5cUpwRDg2Y28taTQxdzhlU2ZIbUd0RnZwb0d4VjRQQ3M3ekdlUGIxbnljS0NGakctand4ZUtMTENXSjZyTXNrSGdmX3c3S3gzZmp3RHZ5cWlfcGhvOVk0bG5Sa2Y5X05ZbnoyLS1YNnZzX3B6U1RmMDNNTmpRbkdIdkh5alBRUm1mSjBOT1FFODVUakUyanA2dVd4MWfSAe8BQVVfeXFMTzZoY01malNkRU4tZUdBekNJd2NwRlFjdUpINTV1MVdEV3NsLUpqczdvY3hhMThxekx4NzdhWmdjcE9jR0VwNFN2b213Zl80UHdkWnBMcFUtTVVyeHJZa21odUJFQ3hvSkNvSTAteEZTcHdJTGlmTE9xMF80N01jaVlodDhrWEJGZGhjMGpKcTNOUDRROE13RmFfOTRHQklYeFpIMEJuOW1Ma3ZGX1BtRTJBbXl1V0VsTnl1ZkFDZkFzZU9VOVRYRGluMjNuWUp5VzE5TmtPV3B2TzExLTZDTmI5MlhKVFFZQ0xzb2NWQ1k?oc=5",
-          "source": "The Economic Times"
-        },
-        {
-          "title": "\u201cWhether we leave anyone behind\u201d: Sameer Nigam\u2019s blueprint for PhonePe\u2019s second decade",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQSnhsRU83SUptOGEySkc0Z1FUdk91RUstTEtvaVFUQ2hPOTNKOXJlMTNQZnV1YlpnZzU5al8zS3IzVWpONVp1ZF9kWTRjeElTNllPb2FCbzJZeEJ3RVpGa2V0TXlEZjNCd3REamFuR1N2MW9IVkRzcjNPaXlwUDB5RjM5d2xnckduTWJScGJHaTBEZm5LaHBPaWNEN2hDczltbUtmM1hOODdybnY1cGNjU0VGTHpIU0twOFF1VF9JODVhOHlEdzk3dkROS3V1bkxwcFU5bm5yZFdhWTBzLTdiZnJmVmxqVWdUSFRhLW85WDhOUdIB9wFBVV95cUxQLXJFa0xWdktWOTZJWDcyaGhGTnc4T1R4dG53VzJhanZNc2NuMU5DOXpJNGhVZ0VxUE9IYmN0eG9pMUVvRm83TlJuXzFYdHlRa0lIVll5WHZMVkdTWmdRYzdVOGxjSGtydjZzNWUxZmV1SzZySEFTdGsxZk1mX0c3VDd2b1JMUnFSUHVhSGJReGhOS2pXdFp1aGtPdU5xNVBSZy1BRWZrVTVvOXVhQXlaM2Y0R0R3T1RKdWZTc0RDWE1HVGdyQ21ZdFR3WEFxMldSSlNIRzhVejF2OEhjQnJsSVBQV3RvZHhISFQzVmZHXzY3YWRfMjBz?oc=5",
-          "source": "The Economic Times"
-        },
-        {
-          "title": "PhonePe to foray into UAE in maiden foreign outing",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNT0FDTWt6M00yNUJKNFNwb2FmWU5INExWU3BzLXRLaWNpM3drdDNMdlN3cnJUSDdjaU1iUjFZTERfRnlreVhCbDNiYUhTVWJobDBSSVFDUDZpa211VHZLeE82R2hzYjNVMTZJQnM3WHBaNURDTVNJMW9mVG9xbWxNSks5eno1WllwQ0dFeDZOR2F6TlcwXzNRRlJvZHhaUkplajE3NlpDa2IyMjF5UWdad9IBtgFBVV95cUxQTGF6R0ZxdlJEMTRLZTAwNWVUWE5YVkZWaHd1c2h3M3NBN0pEM1FEUFdISTlsTklmV20zTHhDc2wzamR2WFR3SEhvRF9XRVNnQXE4SU1LckJHdWtNWWJMYkJQQmh0TkhMZmVfQXl0cGtqenlRaUFqVVRhak91TGxjcG5LdXRyN0paYmVWbDA5RjViNE8tSmpyZHRvaGwxVXVDWi1xMlctN21YMVpKT2I3Ui16a2JOdw?oc=5",
-          "source": "bfsi.economictimes.indiatimes.com"
-        },
-        {
-          "title": "AI will increase feature velocity, drive better enterprise value for PhonePe, says co-founder Rahul Chari",
-          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOTXdOc2VYRVluVWxkMkY2Z1ZRWkhDSnhiMGg2ck5Ua29ySUItZUpMMlRaZllfaGJKT296VGFXMVUyQlpxeTlBY2pDVmdKLTNvY1Q0VVpsVW9rZFRmUkVSZ1dqUm1uX2pvZFpVSUU5YWpXcjBoVlhETW9zRENTX3BISm5vUkY1aXduYmwzd3lyTFpMS2wzcVpzOUU4Qm9ib1c4WVRraHJJdkNGek9xaHp3d3cyZ2l2OHZrYkh5SEhET1VGY0dJa29UMGItSmtCaW1wUjRudVFiYXphY29YcEp1VEVfenZiVGpyVXRhSGZKaDZjOU1H0gH6AUFVX3lxTE9uaHVIUlBIY0ZhMzk4alhNS1FJR2pWTTE1ZjNkNzYzY1JzR2dNNEpzNnNFSjFMVWh1WnNhSFY2UlB4UEt1QmV2NEk1M2RTaXFvLXRZa2dtMDFIekUxd3JnT2hEbVhpRzR0b29RUkpQdDl4eG9nMS1zQkh2a283X3YtaFpKaThiMzRhbmNNVnA1X0Y3MzM3M1FjbHVpNkl6enRCLTlYcUpxZ0hUVV9TVmRCUk53VjRob0F3UE9nTE5xYkp5OVN0ZGZOOHQ1UG45S0drV1ppNk1hZUF4TmotbXNaZmlnQlM0a3AtQVlRQXBCOTdSMmpMZWJ4b0E?oc=5",
-          "source": "Moneycontrol.com"
-        },
-        {
-          "title": "PhonePe Charts Ambitious Decade-Long Digital Progress Roadmap",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOcmJVNjhlaVJJSlY1NmNwNmd6TzFCSGhSd0lxTm9LeklPLTRJU2NKSEdUci1ydVdtbnowdjl0cmpLbFptY1ZkcElhNUFtSEM1SHpYUEtDMjhVQTF6OVZuVlBDQkpFVEs0QnJjN2FaQ1E0aDR6Szd6dFBzSGh1M1dReGlhSVNTWDlmWFFJNGZUNnZKNEN1SjhXU19GczNHSk54ZTJZdU5yU19CaC1uM0haanZB0gG0AUFVX3lxTE5Cc3JLQ0x6cEprb3FWQlF0cTUtQ0lwNndjTDJwclNQbXlGZGtrNnU3bGk3X3BPSTBVbjhkMXpYLVUxUFdYSWpNamNSWThzOWNsM1JfSWNZNkNPV2RuUmtmbGFENzFpMVNhVHk5T3BVOWJQTUxyaUdpckUtNFpTd3ByTlA1b1RQbzhpaE9UTGgzbGZUbVMxY24xVWRKZFBZNlhEV2VMVkl2M3JsdmNXVFFPQTBMTA?oc=5",
-          "source": "Rediff"
-        },
-        {
-          "title": "\u201cWhether we leave anyone behind\u201d: Sameer Nigam\u2019s blueprint for PhonePe\u2019s second decade",
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQSnhsRU83SUptOGEySkc0Z1FUdk91RUstTEtvaVFUQ2hPOTNKOXJlMTNQZnV1YlpnZzU5al8zS3IzVWpONVp1ZF9kWTRjeElTNllPb2FCbzJZeEJ3RVpGa2V0TXlEZjNCd3REamFuR1N2MW9IVkRzcjNPaXlwUDB5RjM5d2xnckduTWJScGJHaTBEZm5LaHBPaWNEN2hDczltbUtmM1hOODdybnY1cGNjU0VGTHpIU0twOFF1VF9JODVhOHlEdzk3dkROS3V1bkxwcFU5bm5yZFdhWTBzLTdiZnJmVmxqVWdUSFRhLW85WDhOUdIB9wFBVV95cUxQLXJFa0xWdktWOTZJWDcyaGhGTnc4T1R4dG53VzJhanZNc2NuMU5DOXpJNGhVZ0VxUE9IYmN0eG9pMUVvRm83TlJuXzFYdHlRa0lIVll5WHZMVkdTWmdRYzdVOGxjSGtydjZzNWUxZmV1SzZySEFTdGsxZk1mX0c3VDd2b1JMUnFSUHVhSGJReGhOS2pXdFp1aGtPdU5xNVBSZy1BRWZrVTVvOXVhQXlaM2Y0R0R3T1RKdWZTc0RDWE1HVGdyQ21ZdFR3WEFxMldSSlNIRzhVejF2OEhjQnJsSVBQV3RvZHhISFQzVmZHXzY3YWRfMjBz?oc=5",
-          "source": "The Economic Times"
-        },
-        {
-          "title": "AI at population scale: Rahul Chari\u2019s charter for the next 300 million - The Economic Times",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSUh5MDEta0x5R0FUZWdRLTV5SzJlNGFXVkV3T2xBZjh2SFU4ZnFGajBqOGQxc1pBb2M0emt2NGd5VE1EckdtX3Vhc3d4ZHdyaXE2ekQ5cUpwRDg2Y28taTQxdzhlU2ZIbUd0RnZwb0d4VjRQQ3M3ekdlUGIxbnljS0NGakctand4ZUtMTENXSjZyTXNrSGdmX3c3S3gzZmp3RHZ5cWlfcGhvOVk0bG5Sa2Y5X05ZbnoyLS1YNnZzX3B6U1RmMDNNTmpRbkdIdkh5alBRUm1mSjBOT1FFODVUakUyanA2dVd4MWfSAe8BQVVfeXFMTzZoY01malNkRU4tZUdBekNJd2NwRlFjdUpINTV1MVdEV3NsLUpqczdvY3hhMThxekx4NzdhWmdjcE9jR0VwNFN2b213Zl80UHdkWnBMcFUtTVVyeHJZa21odUJFQ3hvSkNvSTAteEZTcHdJTGlmTE9xMF80N01jaVlodDhrWEJGZGhjMGpKcTNOUDRROE13RmFfOTRHQklYeFpIMEJuOW1Ma3ZGX1BtRTJBbXl1V0VsTnl1ZkFDZkFzZU9VOVRYRGluMjNuWUp5VzE5TmtPV3B2TzExLTZDTmI5MlhKVFFZQ0xzb2NWQ1k?oc=5",
-          "source": "The Economic Times"
+          "title": "Nandan Nilekani\u2019s vision for asset tokenisation in India",
+          "url": "https://www.medianama.com/2026/09/223-nandan-nilekanis-asset-tokenization/",
+          "source": null
         }
       ],
       "llm_score": 3,
-      "llm_reason": "The article discusses AI's impact on employment, which is relevant to the Indian tech workforce and diaspora's interests in job security.",
+      "llm_reason": "This article discusses Nandan Nilekani's vision for asset tokenization in India, which is relevant to the Indian tech community.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "5e1ac6d9-bbe1-404f-a20c-cf9899849ddb",
+      "title": "New Zealand Star Rejects Big BBL Offer To Stay Available For India Series - NDTV Sports",
+      "description": "",
+      "category": "sports",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-10T10:59:55+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMitAFBVV95cUxPRkpHX3FhWnRiQUhSejNCR0JCWlhkR05iLXdScklLclpVaHdPVW9RdFppRUNmUXFxZExfcFR3MVRDQVJnWWxJczh4UjdreEEzNGlVamVhMW1ZSFVMbDRGUEVUdS1FSFFqQXZFdXdTVVkwRmJNbmQxeV8zZEluREFLbkcyb2NpTnRVRnhrcEd5NGdacEt4a2tzSzNHeUZ0cW9BTm5haTZ2LXhzOHpwSC1ySVIzV2Q?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "New Zealand Star Rejects Big BBL Offer To Stay Available For India Series - NDTV Sports",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPRkpHX3FhWnRiQUhSejNCR0JCWlhkR05iLXdScklLclpVaHdPVW9RdFppRUNmUXFxZExfcFR3MVRDQVJnWWxJczh4UjdreEEzNGlVamVhMW1ZSFVMbDRGUEVUdS1FSFFqQXZFdXdTVVkwRmJNbmQxeV8zZEluREFLbkcyb2NpTnRVRnhrcEd5NGdacEt4a2tzSzNHeUZ0cW9BTm5haTZ2LXhzOHpwSC1ySVIzV2Q?oc=5",
+          "source": "NDTV Sports"
+        },
+        {
+          "title": "New Zealand Star Rejects Big BBL Offer To Stay Available For India Series - NDTV Sports",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPRkpHX3FhWnRiQUhSejNCR0JCWlhkR05iLXdScklLclpVaHdPVW9RdFppRUNmUXFxZExfcFR3MVRDQVJnWWxJczh4UjdreEEzNGlVamVhMW1ZSFVMbDRGUEVUdS1FSFFqQXZFdXdTVVkwRmJNbmQxeV8zZEluREFLbkcyb2NpTnRVRnhrcEd5NGdacEt4a2tzSzNHeUZ0cW9BTm5haTZ2LXhzOHpwSC1ySVIzV2Q?oc=5",
+          "source": "NDTV Sports"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The New Zealand star's decision to reject a BBL offer to stay available for the India series is relevant to cricket fans in the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "808ed66d-8610-4164-b44e-9db1b0217a18",
+      "title": "India Funds Its Startups. Why Won't It Buy From Them?",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T10:24:17+00:00",
+      "source_urls": [
+        "https://yourstory.com/2026/09/india-funds-its-startups-why-wont-buy-from-them"
+      ],
+      "all_signals": [
+        {
+          "title": "India Funds Its Startups. Why Won't It Buy From Them?",
+          "url": "https://yourstory.com/2026/09/india-funds-its-startups-why-wont-buy-from-them",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "This article discusses India's funding for startups and the implications for the Indian diaspora, particularly entrepreneurs.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "cc3b873c-24ef-49f4-b297-80bb74142033",
+      "title": "Myntra Tech Threads 2026 spotlights the brands shaping India\u2019s evolving fashion and lifestyle landscape",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T09:58:34+00:00",
+      "source_urls": [
+        "https://yourstory.com/2026/09/myntra-tech-threads-2026-spotlights-brands-shaping-indias-evolving-fashion-lifestyle-landscape"
+      ],
+      "all_signals": [
+        {
+          "title": "Myntra Tech Threads 2026 spotlights the brands shaping India\u2019s evolving fashion and lifestyle landscape",
+          "url": "https://yourstory.com/2026/09/myntra-tech-threads-2026-spotlights-brands-shaping-indias-evolving-fashion-lifestyle-landscape",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "This topic highlights Myntra's focus on fashion and lifestyle, which is relevant to the Indian diaspora's interests in Indian fashion.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "c512d141-8d38-4b28-a691-2c9fc17f6792",
+      "title": "Good News For Lindt Chocolate Lovers! Swiss Brand Opens Its First Store In New Delhi",
+      "description": "",
+      "category": "food",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T09:55:04+00:00",
+      "source_urls": [
+        "https://food.ndtv.com/news/good-news-for-lindt-chocolate-lovers-swiss-brand-opens-its-first-store-in-new-delhi-12027818#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "Good News For Lindt Chocolate Lovers! Swiss Brand Opens Its First Store In New Delhi",
+          "url": "https://food.ndtv.com/news/good-news-for-lindt-chocolate-lovers-swiss-brand-opens-its-first-store-in-new-delhi-12027818#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The opening of Lindt's store in New Delhi is relevant to the diaspora's interest in Indian food and international brands.",
       "coverage": "new",
       "ig_handles": [
         {
-          "handle": "@nandan.nilekani",
-          "type": "person",
-          "keywords": [
-            "Nandan Nilekani",
-            "AI",
-            "employment"
-          ]
-        },
-        {
-          "handle": "@infosys",
+          "handle": "@lindt",
           "type": "org",
           "keywords": [
-            "Infosys",
-            "technology",
-            "AI"
+            "chocolate",
+            "store opening",
+            "new delhi"
           ]
         }
       ],
@@ -1091,86 +467,152 @@
       "new_development": null
     },
     {
-      "topic_id": "89e7ef97-006c-4061-8259-537fe009b84d",
-      "title": "Kerala chef's savage response to troll who mocked his skin tone goes viral - India Today",
+      "topic_id": "eb8f3e50-edf3-47a0-9bdc-82acb733ceaa",
+      "title": "Confidence high as Shafali prepares for Asia Cup semi-final - ICC",
       "description": "",
-      "category": "food",
-      "signal_count": 5,
-      "source_diversity": 5,
+      "category": "sports",
+      "signal_count": 1,
+      "source_diversity": 1,
       "source_types": [
         "google_news"
       ],
-      "newest_signal": "2026-09-09T07:38:54+00:00",
+      "newest_signal": "2026-09-10T04:59:17+00:00",
       "source_urls": [
-        "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUHliTnpLWkZoWTItU2JESzFmUmRGN0cyNTRNVDJlNHlORWtNTXhPQ3hfSmpIMHpGeGNVd1BXU0NRWU1RTU5STlJnY0JMTGhLMElqd3JDaFFqUmd1cHBaQkNKT0ZLbDJJcVZ0eWVhMzZseTFkQUgxR0NjdmpSTmVYNEdON3ZlWUpnVzAzdjJGdjFxUEUxTDBiR3pOcHQ3NzEzbEF3SnJrZ2xDclA5ZjdhZVBfcUlvU0HSAbwBQVVfeXFMTnZTWkRmRzBRYmQ1M0otOVY1X1g3eFVkQXdORGpMaDdPQmpTWkpBWmR1YUtCek5DV0xyWU9DSjJGNFpiSmxLbmhYVE5sOU9UT2xsMmR0SERvbUozcV96cng0bWo0QmhwZUQ3WUFpcm40TmlIWXJOY0VNN1FYc1JLUVJqdHF3VEZxZ0pObkJUTG4weVRKWlZjUVdoNlpkTlUyMVRTYS16T0NIWTA0RlRKbmNySkpnZ0RWMEFlNm4?oc=5",
-        "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQUmNDblhubHR2S2gtbUY1cG13WGNqbVo4NmxuZTF4OVo5SVRqZW5QOS1QeEI0cGVIMGpUMlJ3MGlaZVlfSWU2NWJHWVcyV0NTRTQ3T21JbHFZM2NQMEUzN2JVbjVEU3B5UkJUZTVXM2oycHpJaW1HZjdBU2lQM2lndWJQbDRfTVVEdnNtMWxPTkxNc09KMC1TOUFSQzJxRmh2YUE3SHZrMlAyWGFMd1VFU3QxOWx5bloxZE9z?oc=5",
-        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNY3cxSmFZU3hWNm1hUEpuVXF3dWtzR21PVXNHYWNRd0NaQVNpbG1yaldNSTZkQXB1bGJKSlhwTDNENFFYeFZoTFZINEY4MDVwaEo3Qzh1RHVGUlE0SzRkY3RaS0F4TllXMVZJcy01WUhqYnNXb1c1N0IzZDYyNDBoTFc3Y2swLVpNcnpLOWQ4VFR6dlFJekl4MUloMGpuQzBCeXhTQWgxbURVcXJ3cFJUZEtRamRMd25POGNQWmpmZGZkdzhIWG56bVo1YTZzNzkxNG1CLWpjU3EwZl9FYXBrY3VJM1dVR0xfSkE?oc=5",
-        "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTFd4OUNrQk1IWXVzWFRlNms1cDZDbTdTR0ZZV1V3VnFhZ2hfYnl0VXE4RWJ6RmxDTW9FQVJKSVBqWWdkZHZKdEhveG1aVmRtMmlPWWs1b2k5ZmIwXzEwd3lxUnh1YkcxZ2JVTTcwX2s1ZjZJdmRPRVYwRDFObE5MQ3RnR3J5OW1pek9OV0NLdGFnRk1sMlV5MjgzYzNVcW4zbjlEaTVKZXZ6SmdUSWZIeUZ4c1EtdFBGN2lqeFk3NjDSAcYBQVVfeXFMTkZzVDl6UXg5a1VCbHFGVEppS3VJOThTTG13bXh5U0tuQVkzUnlDSWpob2FhQWxwSE9ZQlZrYnhSOXMzRU5YVk00RVZnY1diQlZZVW5KelFSUHN4ZmJhVGp3OS1kZ3lvQzl5QjFJd1hQVThYTUdPLXZNM011V3pqWjFXYXBWOUxSWjBJM3ZKZ1RiYzdTOXdVcFpXcmZMY0ZTYVhNLTBGM0FXb3IxRXNaaFV3dEdYVUhaY3Bad1FqVzBPakxfOU9B?oc=5",
-        "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQWmdrY2hTbGlQTEt4bnlsaEU4bGtlcWo1YVNCOGdQbmk1ZlZpRkxEeTVaZ0EzbkZSOFBsMGRsckF2Tjh4cWxzRUU4VnF4Q1VSTkNFeDFfWmtVdm8yMGZ1QkZmNEt0VE5HcmlTbU9DQkk2eUdnckJmVmNQVUNtRGJxeHhaQlZHVVRrMnJoRlMtbzFVMWVtQXVRNHZKVjhoZFhCM3htUEhncjhBTXBXNGx5dGd0Njc3NlVkVG9TdF9zejZHemFKTXE2bDltZUxoTDN0UUk40gHYAUFVX3lxTFBuVzI5eGhCcVNRRUIzeEszd2pLSEhVU0tfdWw1U3pra2tGVFVMR0JGb1B4SHBwYzBZbG9pYWVPRWpqTU1lSlgtRGZPYlg4X2VLSXNJcWd4dlFkc3RrbEpXbkZEWU1MdHgzaEhqdGI5N2hSOEpoSlAzQmhMWWc0Z3VnYUQ4cEdqb1pKZFFHVzRkVmNHVWljMkVsUzVrcFdPMFNtVzFCUlp6SF9UVjhwWGozQWFZNkttemQzeTFaMGtyOVNkeVhXa3V1U05yUWExdWZjN0JkMGZ3OQ?oc=5"
+        "https://news.google.com/rss/articles/CBMilwFBVV95cUxOZVlCVzBsUWpOLUE5QXdvaUZ2RnVTZ2prTjRsMTFLSTFtTWEzUk1nbFhXMlo0RUVqdkc5ckVzXzVzejFnckZNYm1aUVpndUNQdHktX2N5MHMwaGQ0MTdTQV9lM1F3MEwzUXZFUW0tOHdDYnFXbWRfZ29GVVkwZV80NW0yZ0JEZENzczBDSkVoZXlXYU81SGxv?oc=5"
       ],
       "all_signals": [
         {
-          "title": "\u2018This dark-skinned chef\u2026\u2019 Kerala chef\u2019s reply to troll sparks online buzz",
-          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUHliTnpLWkZoWTItU2JESzFmUmRGN0cyNTRNVDJlNHlORWtNTXhPQ3hfSmpIMHpGeGNVd1BXU0NRWU1RTU5STlJnY0JMTGhLMElqd3JDaFFqUmd1cHBaQkNKT0ZLbDJJcVZ0eWVhMzZseTFkQUgxR0NjdmpSTmVYNEdON3ZlWUpnVzAzdjJGdjFxUEUxTDBiR3pOcHQ3NzEzbEF3SnJrZ2xDclA5ZjdhZVBfcUlvU0HSAbwBQVVfeXFMTnZTWkRmRzBRYmQ1M0otOVY1X1g3eFVkQXdORGpMaDdPQmpTWkpBWmR1YUtCek5DV0xyWU9DSjJGNFpiSmxLbmhYVE5sOU9UT2xsMmR0SERvbUozcV96cng0bWo0QmhwZUQ3WUFpcm40TmlIWXJOY0VNN1FYc1JLUVJqdHF3VEZxZ0pObkJUTG4weVRKWlZjUVdoNlpkTlUyMVRTYS16T0NIWTA0RlRKbmNySkpnZ0RWMEFlNm4?oc=5",
-          "source": "Mathrubhumi English"
+          "title": "Confidence high as Shafali prepares for Asia Cup semi-final - ICC",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOZVlCVzBsUWpOLUE5QXdvaUZ2RnVTZ2prTjRsMTFLSTFtTWEzUk1nbFhXMlo0RUVqdkc5ckVzXzVzejFnckZNYm1aUVpndUNQdHktX2N5MHMwaGQ0MTdTQV9lM1F3MEwzUXZFUW0tOHdDYnFXbWRfZ29GVVkwZV80NW0yZ0JEZENzczBDSkVoZXlXYU81SGxv?oc=5",
+          "source": "ICC"
         },
         {
-          "title": "\u2018I won\u2019t eat from your hands\u2019: Chef hits back at skin-colour troll",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQUmNDblhubHR2S2gtbUY1cG13WGNqbVo4NmxuZTF4OVo5SVRqZW5QOS1QeEI0cGVIMGpUMlJ3MGlaZVlfSWU2NWJHWVcyV0NTRTQ3T21JbHFZM2NQMEUzN2JVbjVEU3B5UkJUZTVXM2oycHpJaW1HZjdBU2lQM2lndWJQbDRfTVVEdnNtMWxPTkxNc09KMC1TOUFSQzJxRmh2YUE3SHZrMlAyWGFMd1VFU3QxOWx5bloxZE9z?oc=5",
-          "source": "The Indian Express"
-        },
-        {
-          "title": "Chef shuts down troll who told him \u2018main nahi khaunga apke hath ka\u2019, remarked on his skin colour",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNY3cxSmFZU3hWNm1hUEpuVXF3dWtzR21PVXNHYWNRd0NaQVNpbG1yaldNSTZkQXB1bGJKSlhwTDNENFFYeFZoTFZINEY4MDVwaEo3Qzh1RHVGUlE0SzRkY3RaS0F4TllXMVZJcy01WUhqYnNXb1c1N0IzZDYyNDBoTFc3Y2swLVpNcnpLOWQ4VFR6dlFJekl4MUloMGpuQzBCeXhTQWgxbURVcXJ3cFJUZEtRamRMd25POGNQWmpmZGZkdzhIWG56bVo1YTZzNzkxNG1CLWpjU3EwZl9FYXBrY3VJM1dVR0xfSkE?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "\u201cAapka Haath Bht Kala Hai\u201d: Chef Responds To Racist Comment, Lists Prominent Guests He Served",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTFd4OUNrQk1IWXVzWFRlNms1cDZDbTdTR0ZZV1V3VnFhZ2hfYnl0VXE4RWJ6RmxDTW9FQVJKSVBqWWdkZHZKdEhveG1aVmRtMmlPWWs1b2k5ZmIwXzEwd3lxUnh1YkcxZ2JVTTcwX2s1ZjZJdmRPRVYwRDFObE5MQ3RnR3J5OW1pek9OV0NLdGFnRk1sMlV5MjgzYzNVcW4zbjlEaTVKZXZ6SmdUSWZIeUZ4c1EtdFBGN2lqeFk3NjDSAcYBQVVfeXFMTkZzVDl6UXg5a1VCbHFGVEppS3VJOThTTG13bXh5U0tuQVkzUnlDSWpob2FhQWxwSE9ZQlZrYnhSOXMzRU5YVk00RVZnY1diQlZZVW5KelFSUHN4ZmJhVGp3OS1kZ3lvQzl5QjFJd1hQVThYTUdPLXZNM011V3pqWjFXYXBWOUxSWjBJM3ZKZ1RiYzdTOXdVcFpXcmZMY0ZTYVhNLTBGM0FXb3IxRXNaaFV3dEdYVUhaY3Bad1FqVzBPakxfOU9B?oc=5",
-          "source": "Asianet Newsable"
-        },
-        {
-          "title": "Kerala chef's savage response to troll who mocked his skin tone goes viral - India Today",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQWmdrY2hTbGlQTEt4bnlsaEU4bGtlcWo1YVNCOGdQbmk1ZlZpRkxEeTVaZ0EzbkZSOFBsMGRsckF2Tjh4cWxzRUU4VnF4Q1VSTkNFeDFfWmtVdm8yMGZ1QkZmNEt0VE5HcmlTbU9DQkk2eUdnckJmVmNQVUNtRGJxeHhaQlZHVVRrMnJoRlMtbzFVMWVtQXVRNHZKVjhoZFhCM3htUEhncjhBTXBXNGx5dGd0Njc3NlVkVG9TdF9zejZHemFKTXE2bDltZUxoTDN0UUk40gHYAUFVX3lxTFBuVzI5eGhCcVNRRUIzeEszd2pLSEhVU0tfdWw1U3pra2tGVFVMR0JGb1B4SHBwYzBZbG9pYWVPRWpqTU1lSlgtRGZPYlg4X2VLSXNJcWd4dlFkc3RrbEpXbkZEWU1MdHgzaEhqdGI5N2hSOEpoSlAzQmhMWWc0Z3VnYUQ4cEdqb1pKZFFHVzRkVmNHVWljMkVsUzVrcFdPMFNtVzFCUlp6SF9UVjhwWGozQWFZNkttemQzeTFaMGtyOVNkeVhXa3V1U05yUWExdWZjN0JkMGZ3OQ?oc=5",
-          "source": "India Today"
-        },
-        {
-          "title": "\u2018This dark-skinned chef\u2026\u2019 Kerala chef\u2019s reply to troll sparks online buzz",
-          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUHliTnpLWkZoWTItU2JESzFmUmRGN0cyNTRNVDJlNHlORWtNTXhPQ3hfSmpIMHpGeGNVd1BXU0NRWU1RTU5STlJnY0JMTGhLMElqd3JDaFFqUmd1cHBaQkNKT0ZLbDJJcVZ0eWVhMzZseTFkQUgxR0NjdmpSTmVYNEdON3ZlWUpnVzAzdjJGdjFxUEUxTDBiR3pOcHQ3NzEzbEF3SnJrZ2xDclA5ZjdhZVBfcUlvU0HSAbwBQVVfeXFMTnZTWkRmRzBRYmQ1M0otOVY1X1g3eFVkQXdORGpMaDdPQmpTWkpBWmR1YUtCek5DV0xyWU9DSjJGNFpiSmxLbmhYVE5sOU9UT2xsMmR0SERvbUozcV96cng0bWo0QmhwZUQ3WUFpcm40TmlIWXJOY0VNN1FYc1JLUVJqdHF3VEZxZ0pObkJUTG4weVRKWlZjUVdoNlpkTlUyMVRTYS16T0NIWTA0RlRKbmNySkpnZ0RWMEFlNm4?oc=5",
-          "source": "Mathrubhumi English"
-        },
-        {
-          "title": "Kerala chef's savage response to troll who mocked his skin tone goes viral - India Today",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQWmdrY2hTbGlQTEt4bnlsaEU4bGtlcWo1YVNCOGdQbmk1ZlZpRkxEeTVaZ0EzbkZSOFBsMGRsckF2Tjh4cWxzRUU4VnF4Q1VSTkNFeDFfWmtVdm8yMGZ1QkZmNEt0VE5HcmlTbU9DQkk2eUdnckJmVmNQVUNtRGJxeHhaQlZHVVRrMnJoRlMtbzFVMWVtQXVRNHZKVjhoZFhCM3htUEhncjhBTXBXNGx5dGd0Njc3NlVkVG9TdF9zejZHemFKTXE2bDltZUxoTDN0UUk40gHYAUFVX3lxTFBuVzI5eGhCcVNRRUIzeEszd2pLSEhVU0tfdWw1U3pra2tGVFVMR0JGb1B4SHBwYzBZbG9pYWVPRWpqTU1lSlgtRGZPYlg4X2VLSXNJcWd4dlFkc3RrbEpXbkZEWU1MdHgzaEhqdGI5N2hSOEpoSlAzQmhMWWc0Z3VnYUQ4cEdqb1pKZFFHVzRkVmNHVWljMkVsUzVrcFdPMFNtVzFCUlp6SF9UVjhwWGozQWFZNkttemQzeTFaMGtyOVNkeVhXa3V1U05yUWExdWZjN0JkMGZ3OQ?oc=5",
-          "source": "India Today"
-        },
-        {
-          "title": "\u2018I won\u2019t eat from your hands\u2019: Chef hits back at skin-colour troll",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQUmNDblhubHR2S2gtbUY1cG13WGNqbVo4NmxuZTF4OVo5SVRqZW5QOS1QeEI0cGVIMGpUMlJ3MGlaZVlfSWU2NWJHWVcyV0NTRTQ3T21JbHFZM2NQMEUzN2JVbjVEU3B5UkJUZTVXM2oycHpJaW1HZjdBU2lQM2lndWJQbDRfTVVEdnNtMWxPTkxNc09KMC1TOUFSQzJxRmh2YUE3SHZrMlAyWGFMd1VFU3QxOWx5bloxZE9z?oc=5",
-          "source": "The Indian Express"
-        },
-        {
-          "title": "Chef shuts down troll who told him \u2018main nahi khaunga apke hath ka\u2019, remarked on his skin colour",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNY3cxSmFZU3hWNm1hUEpuVXF3dWtzR21PVXNHYWNRd0NaQVNpbG1yaldNSTZkQXB1bGJKSlhwTDNENFFYeFZoTFZINEY4MDVwaEo3Qzh1RHVGUlE0SzRkY3RaS0F4TllXMVZJcy01WUhqYnNXb1c1N0IzZDYyNDBoTFc3Y2swLVpNcnpLOWQ4VFR6dlFJekl4MUloMGpuQzBCeXhTQWgxbURVcXJ3cFJUZEtRamRMd25POGNQWmpmZGZkdzhIWG56bVo1YTZzNzkxNG1CLWpjU3EwZl9FYXBrY3VJM1dVR0xfSkE?oc=5",
-          "source": "hindustantimes.com"
-        },
-        {
-          "title": "\u201cAapka Haath Bht Kala Hai\u201d: Chef Responds To Racist Comment, Lists Prominent Guests He Served",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTFd4OUNrQk1IWXVzWFRlNms1cDZDbTdTR0ZZV1V3VnFhZ2hfYnl0VXE4RWJ6RmxDTW9FQVJKSVBqWWdkZHZKdEhveG1aVmRtMmlPWWs1b2k5ZmIwXzEwd3lxUnh1YkcxZ2JVTTcwX2s1ZjZJdmRPRVYwRDFObE5MQ3RnR3J5OW1pek9OV0NLdGFnRk1sMlV5MjgzYzNVcW4zbjlEaTVKZXZ6SmdUSWZIeUZ4c1EtdFBGN2lqeFk3NjDSAcYBQVVfeXFMTkZzVDl6UXg5a1VCbHFGVEppS3VJOThTTG13bXh5U0tuQVkzUnlDSWpob2FhQWxwSE9ZQlZrYnhSOXMzRU5YVk00RVZnY1diQlZZVW5KelFSUHN4ZmJhVGp3OS1kZ3lvQzl5QjFJd1hQVThYTUdPLXZNM011V3pqWjFXYXBWOUxSWjBJM3ZKZ1RiYzdTOXdVcFpXcmZMY0ZTYVhNLTBGM0FXb3IxRXNaaFV3dEdYVUhaY3Bad1FqVzBPakxfOU9B?oc=5",
-          "source": "Asianet Newsable"
+          "title": "Confidence high as Shafali prepares for Asia Cup semi-final - ICC",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOZVlCVzBsUWpOLUE5QXdvaUZ2RnVTZ2prTjRsMTFLSTFtTWEzUk1nbFhXMlo0RUVqdkc5ckVzXzVzejFnckZNYm1aUVpndUNQdHktX2N5MHMwaGQ0MTdTQV9lM1F3MEwzUXZFUW0tOHdDYnFXbWRfZ29GVVkwZV80NW0yZ0JEZENzczBDSkVoZXlXYU81SGxv?oc=5",
+          "source": "ICC"
         }
       ],
       "llm_score": 3,
-      "llm_reason": "The story about a Kerala chef's response to a troll connects to food culture and the Indian diaspora's interest in culinary narratives.",
+      "llm_reason": "Shafali Verma's preparation for the Asia Cup semi-final is relevant to Indian cricket and the diaspora's interest in cricket.",
       "coverage": "new",
       "ig_handles": [
         {
-          "handle": "@keralafood",
-          "type": "org",
+          "handle": "@shafaliverma",
+          "type": "person",
           "keywords": [
-            "Kerala",
-            "food",
-            "chef"
+            "cricket",
+            "asia cup",
+            "india"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "c0502417-7783-41f5-ba8a-a57162b90337",
+      "title": "Indian creator reveals 3 reasons why her Schengen visa was rejected: \u2018Don\u2019t make these mistakes\u2019 | Trending - hindustantimes.com",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-10T04:49:05+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNS3dNZ19xSG5yNzRWT1BqMW5URXdkcjBzbHdwMlFGRUJmOUxZeWc3UGFGRmdXcFg0TkZyd2VseHFlbkd4c24xZ1RQN1R3aXJJdkVFdUI2dTFCc04tOEpHWkVJZjZxVGZnaTI4c21VcEFXUGRwM3UwazNCRERSU2xvc3lWUl8tRmdZamw1RHhjWUhjemtVOHN1M0hSTVk4N3ZfdmEyYjNwTlBjUFRMU1ZmT19hSHdlaE95QzFkUlZ2X2ppeW5zV0dyZm04Z1pUdFQyRDd6cjY1azNVS0tma21mRjJ6YnY4djZVdkHSAe8BQVVfeXFMT1ctdWtJMWFpa1pITXc4czVtZU1pT29pNVR2SFNfODFWRy1oWTdIREJsNG1xLVJYTU16NFREMHBMSlMzU2V0UGpVc0VURGpoc1FRRG13TGdQSGdyVUtkODFxZ0taS183TGpiNlhJaGZNclcxcUlJS1ZyUWRFazQ2UWxjMUZmdEF4MjdheU9ZWlg2RGxmVWtaMEw2WUE2T3BES2JDZzBETmU1eV9TNGdMMnNwNDRoWEc5emh2Y0pCN0FTaEtMNHhiWXBJMUFCQ0NfRkVMRWpsNmhiR09RR19NRW94c3BFd080OW1MQ0VSQUk?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Indian creator reveals 3 reasons why her Schengen visa was rejected: \u2018Don\u2019t make these mistakes\u2019 | Trending - hindustantimes.com",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNS3dNZ19xSG5yNzRWT1BqMW5URXdkcjBzbHdwMlFGRUJmOUxZeWc3UGFGRmdXcFg0TkZyd2VseHFlbkd4c24xZ1RQN1R3aXJJdkVFdUI2dTFCc04tOEpHWkVJZjZxVGZnaTI4c21VcEFXUGRwM3UwazNCRERSU2xvc3lWUl8tRmdZamw1RHhjWUhjemtVOHN1M0hSTVk4N3ZfdmEyYjNwTlBjUFRMU1ZmT19hSHdlaE95QzFkUlZ2X2ppeW5zV0dyZm04Z1pUdFQyRDd6cjY1azNVS0tma21mRjJ6YnY4djZVdkHSAe8BQVVfeXFMT1ctdWtJMWFpa1pITXc4czVtZU1pT29pNVR2SFNfODFWRy1oWTdIREJsNG1xLVJYTU16NFREMHBMSlMzU2V0UGpVc0VURGpoc1FRRG13TGdQSGdyVUtkODFxZ0taS183TGpiNlhJaGZNclcxcUlJS1ZyUWRFazQ2UWxjMUZmdEF4MjdheU9ZWlg2RGxmVWtaMEw2WUE2T3BES2JDZzBETmU1eV9TNGdMMnNwNDRoWEc5emh2Y0pCN0FTaEtMNHhiWXBJMUFCQ0NfRkVMRWpsNmhiR09RR19NRW94c3BFd080OW1MQ0VSQUk?oc=5",
+          "source": "hindustantimes.com"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The Indian creator's experience with her Schengen visa rejection highlights challenges faced by the diaspora in immigration processes.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "e2223e68-248e-4d0f-b492-440efa2ad80e",
+      "title": "AR Rahman was advised to not work with Danny Boyle, made Oscar-winning music in 3 weeks - The Indian Express",
+      "description": "",
+      "category": "entertainment",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-10T03:35:16+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOSHhjaWdKTjh2M2haNjk4a1pLOFNzTHEwREJpSW9TbFlCU0p0N3dQT3c4Y21VM3N6X0xpYWF2M2Y4Mm5OM2N4dGRfYXpXS2FjdnVrU2tSRGlQZ1ZqMGZIbkduRnl4MnY1SVBoeWV2YlFlTDhDbkM0T001c1VhZFVpVXJPN2tnRFcyZ1RuUlFJTGlJQ3R6dnlTcjlsSXZTLWJtYkF4U0tERlRUYXRiUzg3NWktcjd5bmFuaHRmSDZyYzZGZGF6MXphbzRqZGxuUGVRNkN1aTNEdVoxMGlpUkHSAeQBQVVfeXFMTm4wTW9ZSlU1LXpOTkV1RTFyeTk5VWpHdml1U01UcUxLRGhFblp0SVBhRmVMOU9ad2I2anBfMDlvYjNZSG5kc1pBeExpalByY05sRS1veGlja3FrT0FiaHJ0amFYdjhNNzc5bjNtb0UxYk9GeC1Gb21XY2ZOaHN4Q1RpaldaQ2V1VmZWSjBYSEI5Tlp6RHdNSjlFRG5rN2FLREpBUnhKZGJEMjRuRE9vY1dNRGg2MUlKQjNVRjdDcnd6eHUwYUI3bUJZVTVxZXpJeTZEWkhwcGlBR05vbHZ3TTl5TW8x?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "AR Rahman was advised to not work with Danny Boyle, made Oscar-winning music in 3 weeks - The Indian Express",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOSHhjaWdKTjh2M2haNjk4a1pLOFNzTHEwREJpSW9TbFlCU0p0N3dQT3c4Y21VM3N6X0xpYWF2M2Y4Mm5OM2N4dGRfYXpXS2FjdnVrU2tSRGlQZ1ZqMGZIbkduRnl4MnY1SVBoeWV2YlFlTDhDbkM0T001c1VhZFVpVXJPN2tnRFcyZ1RuUlFJTGlJQ3R6dnlTcjlsSXZTLWJtYkF4U0tERlRUYXRiUzg3NWktcjd5bmFuaHRmSDZyYzZGZGF6MXphbzRqZGxuUGVRNkN1aTNEdVoxMGlpUkHSAeQBQVVfeXFMTm4wTW9ZSlU1LXpOTkV1RTFyeTk5VWpHdml1U01UcUxLRGhFblp0SVBhRmVMOU9ad2I2anBfMDlvYjNZSG5kc1pBeExpalByY05sRS1veGlja3FrT0FiaHJ0amFYdjhNNzc5bjNtb0UxYk9GeC1Gb21XY2ZOaHN4Q1RpaldaQ2V1VmZWSjBYSEI5Tlp6RHdNSjlFRG5rN2FLREpBUnhKZGJEMjRuRE9vY1dNRGg2MUlKQjNVRjdDcnd6eHUwYUI3bUJZVTVxZXpJeTZEWkhwcGlBR05vbHZ3TTl5TW8x?oc=5",
+          "source": "The Indian Express"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "AR Rahman's insights into his Oscar-winning music creation process provide a cultural connection and highlight the achievements of an Indian artist in global cinema.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@arrahman",
+          "type": "person",
+          "keywords": [
+            "AR Rahman",
+            "Oscar",
+            "music"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "8822e265-4a8e-4a53-8da5-30c740b79387",
+      "title": "Sadhguru on the New Moon: Why is Amavasya spiritually significant?",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-09T21:50:11+00:00",
+      "source_urls": [
+        "https://www.hindustantimes.com/lifestyle/spiritual/sadhguru-on-the-new-moon-why-is-amavasya-spiritually-significant-101788989487700.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Sadhguru on the New Moon: Why is Amavasya spiritually significant?",
+          "url": "https://www.hindustantimes.com/lifestyle/spiritual/sadhguru-on-the-new-moon-why-is-amavasya-spiritually-significant-101788989487700.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "Sadhguru's insights on the New Moon and its spiritual significance resonate with the Indian diaspora's interest in spirituality.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@sadhguru",
+          "type": "person",
+          "keywords": [
+            "spirituality",
+            "new moon",
+            "yoga"
           ]
         }
       ],
