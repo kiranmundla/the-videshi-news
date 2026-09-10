@@ -294,10 +294,13 @@ def upsert_events(rows):
             print(f"  Upsert error: {r.status_code} {r.text[:200]}")
     return total
 
-def _curl_nominatim(query):
+def _curl_nominatim(query, countrycodes=None):
     """Hit Nominatim via curl subprocess (requests hangs through proxy)."""
     from urllib.parse import urlencode
-    params = urlencode({"q": query, "format": "json", "limit": 1, "countrycodes": "us"})
+    q = {"q": query, "format": "json", "limit": 1}
+    if countrycodes:
+        q["countrycodes"] = countrycodes
+    params = urlencode(q)
     url = f"https://nominatim.openstreetmap.org/search?{params}"
     cmd = [
         "curl", "-s", "-w", "\n%{http_code}", url,
@@ -316,20 +319,54 @@ def _curl_nominatim(query):
     return None, None
 
 
+# State/province code -> (country name for query, Nominatim countrycodes)
+_US_STATES = {
+    "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA",
+    "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM",
+    "NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA",
+    "WV","WI","WY",
+}
+_CA_PROVINCES = {"AB","BC","MB","NB","NL","NS","NT","NU","ON","PE","QC","SK","YT"}
+_UK_REGIONS = {"EN","SCT","WLS","NIR"}
+
+def _country_for_state(state):
+    s = (state or "").strip().upper()
+    if s in _US_STATES:
+        return "USA", "us"
+    if s in _CA_PROVINCES:
+        return "Canada", "ca"
+    if s in _UK_REGIONS:
+        return "United Kingdom", "gb"
+    return "", ""
+
+
 def geocode_nominatim(venue, city, state=""):
-    """Geocode an address using Nominatim (free, no API key)."""
+    """Geocode an address using Nominatim (free, no API key).
+
+    Country-aware: the country constraint is inferred from the state/province
+    code instead of always assuming USA, so Canadian, UK, and other
+    non-US events can resolve. Unknown states fall back to an unconstrained
+    global query.
+    """
     query = f"{venue}, {city}"
     if state:
         query += f", {state}"
-    query += ", USA"
+    country, countrycodes = _country_for_state(state)
+
+    attempts = []
+    if country:
+        attempts.append((f"{query}, {country}", countrycodes))
+        attempts.append((f"{city}, {state}, {country}" if state else f"{city}, {country}", countrycodes))
+    else:
+        # No country constraint: let Nominatim pick the best global match
+        attempts.append((query, ""))
+        attempts.append((f"{city}, {state}" if state else city, ""))
 
     try:
-        lat, lon = _curl_nominatim(query)
-        if lat and lon:
-            return lat, lon
-        # Try with just city
-        fallback = f"{city}, {state}, USA" if state else f"{city}, USA"
-        return _curl_nominatim(fallback)
+        for q, cc in attempts:
+            lat, lon = _curl_nominatim(q, countrycodes=cc or None)
+            if lat and lon:
+                return lat, lon
     except Exception as e:
         print(f"  Geocode error for {venue}, {city}: {e}")
     return None, None
