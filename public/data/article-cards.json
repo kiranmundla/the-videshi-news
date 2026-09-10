@@ -1,38 +1,98 @@
 [
   {
-    "slug": "india-copyright-office-ai-author-ruling-dabus",
-    "headline": "India's Copyright Office Rules AI-Generated Work Can Be Protected, but AI Cannot Be Named Author",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-copyright-office-ai-author-ruling-dabus.jpg"
+    "slug": "chidambaram-questions-indias-brics-gains-bjp-calls-it-disgruntled-uncle-attitude",
+    "headline": "Chidambaram Questions India's BRICS Gains; BJP Calls It 'Disgruntled Uncle' Attitude",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/chidambaram-questions-indias-brics-gains-bjp-calls-it-disgruntled-uncle-attitude.jpg"
   },
   {
-    "slug": "vitamin-b12-parents-birth-defects-study",
-    "headline": "Both Parents' Vitamin B12 Levels Linked to Birth Defect Risk, Major Study Finds",
-    "category": "news",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/vitamin-b12-parents-birth-defects-study.jpg"
+    "slug": "hema-malini-credits-hanuman-ji-ki-kripa-for-hanuman-ansh-150-crore-run",
+    "headline": "Hema Malini Credits 'Hanuman Ji Ki Kripa' for 'Hanuman Ansh' Rs 150-Crore Run",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/hema-malini-credits-hanuman-ji-ki-kripa-for-hanuman-ansh-150-crore-run.jpg"
   },
   {
-    "slug": "oracle-layoffs-3000-indian-jobs-ai-spending",
-    "headline": "Oracle Prepares Fresh Layoffs That Could Axe 3,000 Jobs in India as AI Spending Soars",
-    "category": "technology",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/oracle-layoffs-3000-indian-jobs-ai-spending.jpg"
+    "slug": "uk-visa-processing-guidance-travel-booking-warning",
+    "headline": "UK Warns Visa Applicants: Don't Book Travel Until Your Decision Arrives",
+    "category": "immigration",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/uk-visa-processing-guidance-travel-booking-warning.jpg"
   },
   {
-    "slug": "sugar-stocks-dalal-street-rally-valuations-risk",
-    "headline": "Sugar Stocks Soar Up to 59% on Dalal Street, but Analysts Warn Valuations Are Running Ahead",
+    "slug": "kerala-nri-commission-visa-job-recruitment-scams-warning",
+    "headline": "Kerala NRI Panel Warns Job Seekers as Visa Scams Top Complaint List",
+    "category": "nri-world",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/kerala-nri-commission-visa-job-recruitment-scams-warning.jpg"
+  },
+  {
+    "slug": "sensex-tumbles-813-points-oil-west-asia-tensions",
+    "headline": "Sensex Crashes 813 Points as $100 Oil and West Asia Tensions Rattle Markets",
     "category": "markets-finance",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sugar-stocks-dalal-street-rally-valuations-risk.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/sensex-tumbles-813-points-oil-west-asia-tensions.jpg"
   },
   {
-    "slug": "turmeric-milk-haldi-doodh-golden-milk-sleep-benefits",
-    "headline": "The Science Behind Haldi Doodh: Why Turmeric Milk May Improve Your Sleep",
+    "slug": "phonepe-visa-tokenisation-tap-to-pay-gff-2026",
+    "headline": "PhonePe Becomes First Indian App to Offer Visa's Full Tokenisation Suite",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/phonepe-visa-tokenisation-tap-to-pay-gff-2026.jpg"
+  },
+  {
+    "slug": "phonepe-uae-central-bank-licence-first-foreign-foray",
+    "headline": "PhonePe Wins UAE Central Bank Licence for First-Ever Foreign Foray",
+    "category": "technology",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/phonepe-uae-central-bank-licence-first-foreign-foray.jpg"
+  },
+  {
+    "slug": "preity-zinta-manisha-koirala-dil-se-bollywood",
+    "headline": "Preity Zinta Recalls How Manisha Koirala Made Her Feel She 'Belonged' in Bollywood",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/preity-zinta-manisha-koirala-dil-se-bollywood.jpg"
+  },
+  {
+    "slug": "fortis-takeda-mission-dengue-free-india",
+    "headline": "Fortis and Takeda Launch 'Mission Dengue Free India' Awareness Campaign",
     "category": "lifestyle-health",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/turmeric-milk-haldi-doodh-golden-milk-sleep-benefits.jpg"
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/fortis-takeda-mission-dengue-free-india.jpg"
   },
   {
-    "slug": "six-budget-weekend-getaways-delhi-under-6000-september",
-    "headline": "Six Budget Weekend Getaways From Delhi Under ₹6,000 for September",
-    "category": "travel",
-    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/six-budget-weekend-getaways-delhi-under-6000-september.jpg"
+    "slug": "antim-panghal-india-wrestling-asian-games",
+    "headline": "Antim Panghal Confident as India Targets Wrestling Gold at Asian Games",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/antim-panghal-india-wrestling-asian-games.jpg"
+  },
+  {
+    "slug": "india-takedown-15-offshore-crypto-platforms-fiu",
+    "headline": "India Orders Takedown of 15 Offshore Crypto Platforms Over Laundering Violations",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-takedown-15-offshore-crypto-platforms-fiu.jpg"
+  },
+  {
+    "slug": "india-bangladesh-womens-asia-cup-semi-final",
+    "headline": "India Firm Favourites as Bangladesh Eye Upset in Women's Asia Cup Semi-Final",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-bangladesh-womens-asia-cup-semi-final.jpg"
+  },
+  {
+    "slug": "brazil-squad-india-friendly-kolkata-vinicius-raphinha",
+    "headline": "Vinicius Jr and Raphinha Headline Brazil Squad for Historic First Friendly in India",
+    "category": "sports",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/brazil-squad-india-friendly-kolkata-vinicius-raphinha.jpg"
+  },
+  {
+    "slug": "rupee-plunges-95-08-crude-100-us-iran",
+    "headline": "Rupee Slumps to 95.08 as Crude Tops $100 on US-Iran Escalation",
+    "category": "markets-finance",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/rupee-plunges-95-08-crude-100-us-iran.jpg"
+  },
+  {
+    "slug": "india-sends-eighth-aid-flight-nepal-flood-relief",
+    "headline": "India Sends Eighth Aid Flight to Nepal as Flood Death Toll Tops 1,369",
+    "category": "news",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/india-sends-eighth-aid-flight-nepal-flood-relief.jpg"
+  },
+  {
+    "slug": "bedari-jagriti-carbon-copy-film-banned-pakistan",
+    "headline": "The 'Carbon Copy' Film That Pakistan Banned: The Story of Bedari and Jagriti",
+    "category": "entertainment",
+    "card_url": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-cards/bedari-jagriti-carbon-copy-film-banned-pakistan.jpg"
   }
 ]
