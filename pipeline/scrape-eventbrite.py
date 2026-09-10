@@ -42,7 +42,16 @@ def supabase_post(table, rows):
         "-H", "Prefer: return=minimal,resolution=merge-duplicates",
         "-d", payload,
     ]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    r = None
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    except subprocess.TimeoutExpired:
+        # Never log `cmd`: the traceback/args stringify the Supabase key.
+        print("    ⚠ Supabase upsert timed out after 30s (key redacted from log)", flush=True)
+        return False
+    except Exception as e:
+        print(f"    ⚠ Supabase upsert failed: {type(e).__name__}", flush=True)
+        return False
     out = r.stdout.strip()
     # Extract HTTP status code from the tail "HTTP_CODE: NNN"
     code = ""

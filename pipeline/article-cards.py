@@ -233,15 +233,23 @@ def upload_card(card_img, slug):
     path = f"{slug}.jpg"
     upload_url = f"{SUPABASE_URL}/storage/v1/object/{bucket}/{path}"
 
-    result = subprocess.run(
-        ["curl", "-sS", "-X", "POST", upload_url,
-         "-H", f"apikey: {SUPABASE_KEY}",
-         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-         "-H", "Content-Type: image/jpeg",
-         "-H", "x-upsert: true",
-         "--data-binary", "@-"],
-        input=buf.read(), capture_output=True, timeout=30
-    )
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", "-X", "POST", upload_url,
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+             "-H", "Content-Type: image/jpeg",
+             "-H", "x-upsert: true",
+             "--data-binary", "@-"],
+            input=buf.read(), capture_output=True, timeout=30
+        )
+    except subprocess.TimeoutExpired:
+        # Never log the command: it embeds the Supabase service-role key.
+        print(f"  ⚠ Upload timed out for {slug} (key redacted from log)", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"  ⚠ Upload failed for {slug}: {type(e).__name__}", file=sys.stderr)
+        return None
 
     if result.returncode == 0:
         try:
@@ -265,12 +273,20 @@ def fetch_articles(category=None, limit=12):
     if category:
         url += f"&category=eq.{category}"
 
-    result = subprocess.run(
-        ["curl", "-sS", url,
-         "-H", f"apikey: {SUPABASE_KEY}",
-         "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-        capture_output=True, timeout=15
-    )
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", url,
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+            capture_output=True, timeout=15
+        )
+    except subprocess.TimeoutExpired:
+        # Never log the command: it embeds the Supabase service-role key.
+        print(f"  ⚠ Supabase fetch timed out (key redacted from log)", file=sys.stderr)
+        return []
+    except Exception as e:
+        print(f"  ⚠ Supabase fetch failed: {type(e).__name__}", file=sys.stderr)
+        return []
     return json.loads(result.stdout)
 
 

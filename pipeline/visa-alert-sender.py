@@ -29,12 +29,18 @@ def load_env(path):
 
 def supabase_get(table, params=""):
     url = f"{os.environ['SUPABASE_URL']}/rest/v1/{table}?{params}"
-    result = subprocess.run(
-        ["curl", "-s", "-f", url,
-         "-H", f"apikey: {os.environ['SUPABASE_SERVICE_ROLE_KEY']}",
-         "-H", f"Authorization: Bearer {os.environ['SUPABASE_SERVICE_ROLE_KEY']}"],
-        capture_output=True, text=True, timeout=30
-    )
+    try:
+        result = subprocess.run(
+            ["curl", "-s", "-f", url,
+             "-H", f"apikey: {os.environ['SUPABASE_SERVICE_ROLE_KEY']}",
+             "-H", f"Authorization: Bearer {os.environ['SUPABASE_SERVICE_ROLE_KEY']}"],
+            capture_output=True, text=True, timeout=30
+        )
+    except subprocess.TimeoutExpired:
+        # Never log the exception: it stringifies the curl command with keys.
+        raise RuntimeError("Supabase GET timed out (key redacted from log)")
+    except Exception as e:
+        raise RuntimeError(f"Supabase GET failed: {type(e).__name__}")
     if result.returncode != 0:
         raise RuntimeError(f"Supabase GET failed: {result.stderr}")
     return json.loads(result.stdout)

@@ -383,7 +383,14 @@ def sb_curl(method: str, endpoint: str, data=None, params: str = "") -> tuple:
         cmd += ["-H", "Prefer: resolution=merge-duplicates"]
     if data is not None:
         cmd += ["-d", json.dumps(data)]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    result = None
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+    except subprocess.TimeoutExpired:
+        # Never propagate/log the command: it embeds the Supabase key.
+        raise RuntimeError("supabase curl timed out after 15s")
+    except Exception as e:
+        raise RuntimeError(f"supabase curl failed: {type(e).__name__}")
     return result.returncode, result.stdout
 
 
@@ -425,7 +432,15 @@ def upsert_events(events: list) -> int:
                     "-H", "Content-Type: application/json",
                     "-d", json.dumps(ev),
                 ]
-                r2 = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+                try:
+                    r2 = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+                except subprocess.TimeoutExpired:
+                    # Never log the command: it embeds the Supabase key.
+                    print(f"    ⚠ Upsert timed out for '{ev['title'][:40]}' (key redacted from log)")
+                    continue
+                except Exception as e:
+                    print(f"    ⚠ Upsert error for '{ev['title'][:40]}': {type(e).__name__}")
+                    continue
                 if r2.returncode == 0 and '"code"' not in r2.stdout[:50]:
                     total += 1
                 else:

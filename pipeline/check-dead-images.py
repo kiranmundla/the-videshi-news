@@ -45,10 +45,17 @@ def sb_get(table, select, filters, limit=BATCH_SIZE, offset=0):
         f"{SUPABASE_URL}/rest/v1/{table}"
         f"?select={select}&{filters}&limit={limit}&offset={offset}"
     )
-    result = subprocess.run(
-        ["curl", "-s", url] + HEADERS_CLI,
-        capture_output=True, text=True, timeout=30,
-    )
+    try:
+        result = subprocess.run(
+            ["curl", "-s", url] + HEADERS_CLI,
+            capture_output=True, text=True, timeout=30,
+        )
+    except subprocess.TimeoutExpired:
+        print(f"  [ERROR] Supabase GET timed out for {table} (key redacted from log)", flush=True)
+        return []
+    except Exception as e:
+        print(f"  [ERROR] Supabase GET failed for {table}: {type(e).__name__}", flush=True)
+        return []
     if result.returncode != 0:
         print(f"  [ERROR] curl failed for {table}: {result.stderr}", flush=True)
         return []
@@ -66,14 +73,21 @@ def sb_get(table, select, filters, limit=BATCH_SIZE, offset=0):
 def sb_patch(table, filters, payload):
     """PATCH a row in Supabase via curl."""
     url = f"{SUPABASE_URL}/rest/v1/{table}?{filters}"
-    result = subprocess.run(
-        ["curl", "-s", "-X", "PATCH", url]
-        + HEADERS_CLI
-        + ["-H", "Content-Type: application/json",
-           "-H", "Prefer: return=minimal",
-           "-d", json.dumps(payload)],
-        capture_output=True, text=True, timeout=15,
-    )
+    try:
+        result = subprocess.run(
+            ["curl", "-s", "-X", "PATCH", url]
+            + HEADERS_CLI
+            + ["-H", "Content-Type: application/json",
+               "-H", "Prefer: return=minimal",
+               "-d", json.dumps(payload)],
+            capture_output=True, text=True, timeout=15,
+        )
+    except subprocess.TimeoutExpired:
+        print(f"  [ERROR] Supabase PATCH timed out for {table} (key redacted from log)", flush=True)
+        return False
+    except Exception as e:
+        print(f"  [ERROR] Supabase PATCH failed for {table}: {type(e).__name__}", flush=True)
+        return False
     return result.returncode == 0
 
 

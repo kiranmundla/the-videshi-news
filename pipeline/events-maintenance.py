@@ -61,7 +61,15 @@ def curl_supabase(method, path, json_data=None, prefer=None):
     if json_data is not None:
         cmd += ["-d", json.dumps(json_data)]
     cmd += ["--max-time", "15"]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
+    except subprocess.TimeoutExpired:
+        # Never log the command: it embeds the Supabase service-role key.
+        print("  ⚠ Supabase curl timed out (key redacted from log)")
+        return 0, ""
+    except Exception as e:
+        print(f"  ⚠ Supabase curl failed: {type(e).__name__}")
+        return 0, ""
     output = result.stdout.strip()
     lines = output.rsplit("\n", 1)
     body = lines[0] if len(lines) > 1 else ""

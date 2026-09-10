@@ -79,8 +79,13 @@ def get_all_fingerprints() -> set:
             if len(rows) < batch:
                 break
             offset += batch
+        except subprocess.TimeoutExpired:
+            print(f"  ⚠ Timeout fetching fingerprints (offset {offset}); key redacted from log")
+            break
         except Exception as e:
-            print(f"  ⚠ Error fetching fingerprints (offset {offset}): {e}")
+            # Never print the exception itself: TimeoutExpired stringifies the
+            # full curl command, including the Supabase service-role key.
+            print(f"  ⚠ Error fetching fingerprints (offset {offset}): {type(e).__name__}")
             break
 
     return fps

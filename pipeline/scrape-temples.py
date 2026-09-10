@@ -176,12 +176,18 @@ def fetch_existing_fingerprints():
            f"&content_fingerprint=not.is.null"
            f"&date=gte.{date.today().isoformat()}"
            f"&limit=10000")
-    r = subprocess.run(
-        ["curl", "-sS", url,
-         "-H", f"apikey: {SUPABASE_KEY}",
-         "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-        capture_output=True, text=True, timeout=30
-    )
+    try:
+        r = subprocess.run(
+            ["curl", "-sS", url,
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+            capture_output=True, text=True, timeout=30
+        )
+    except (subprocess.TimeoutExpired, Exception) as e:
+        # Never log the exception: TimeoutExpired stringifies the curl
+        # command including the Supabase service-role key.
+        print(f"  ⚠ Supabase fetch failed: {type(e).__name__}")
+        return set()
     try:
         rows = json.loads(r.stdout)
         return {row["content_fingerprint"] for row in rows if row.get("content_fingerprint")}
@@ -194,15 +200,20 @@ def upsert_event(record):
     payload = json.dumps(record)
     url = f"https://{SB_HOST}/rest/v1/events?on_conflict=source,source_id"
 
-    r = subprocess.run(
-        ["curl", "-sS", "-X", "POST", url,
-         "-H", f"apikey: {SUPABASE_KEY}",
-         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-         "-H", "Content-Type: application/json",
-         "-H", "Prefer: resolution=merge-duplicates,return=minimal",
-         "-d", payload],
-        capture_output=True, text=True, timeout=30
-    )
+    try:
+        r = subprocess.run(
+            ["curl", "-sS", "-X", "POST", url,
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+             "-H", "Content-Type: application/json",
+             "-H", "Prefer: resolution=merge-duplicates,return=minimal",
+             "-d", payload],
+            capture_output=True, text=True, timeout=30
+        )
+    except (subprocess.TimeoutExpired, Exception) as e:
+        # Never log the exception: it embeds the Supabase service-role key.
+        print(f"    ⚠ Upsert timed out/failed for '{record.get('title', '?')[:40]}': {type(e).__name__}")
+        return False
 
     out = r.stdout.strip()
     if r.returncode != 0 or ('"code"' in out and '"message"' in out):
@@ -218,15 +229,19 @@ def update_last_scraped(source_id):
     payload = json.dumps({"last_scraped_at": now})
     url = f"https://{SB_HOST}/rest/v1/event_sources?id=eq.{source_id}"
 
-    subprocess.run(
-        ["curl", "-sS", "-X", "PATCH", url,
-         "-H", f"apikey: {SUPABASE_KEY}",
-         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-         "-H", "Content-Type: application/json",
-         "-H", "Prefer: return=minimal",
-         "-d", payload],
-        capture_output=True, text=True, timeout=15
-    )
+    try:
+        subprocess.run(
+            ["curl", "-sS", "-X", "PATCH", url,
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+             "-H", "Content-Type: application/json",
+             "-H", "Prefer: return=minimal",
+             "-d", payload],
+            capture_output=True, text=True, timeout=15
+        )
+    except (subprocess.TimeoutExpired, Exception):
+        # Never log the exception: it embeds the Supabase service-role key.
+        pass
 
 
 # ── BAPS Parser ──────────────────────────────────────────────────────────────
