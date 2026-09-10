@@ -12,6 +12,7 @@ import ChunkErrorBoundary from "@/components/ChunkErrorBoundary";
 // ── Keep Index (homepage) eagerly loaded for fastest first paint ──
 import Index from "./pages/IndexV2.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Unsubscribe from "./pages/Unsubscribe.tsx";
 
 // ── Loading fallback ──────────────────────────────────────────────
 const PageLoader = () => (
@@ -233,6 +234,7 @@ const App = () => (
                 <Route path="review" element={<ReviewQueuePage />} />
                 <Route path="run" element={<RunLogPage />} />
               </Route>
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
               <Route path="/:category/:subtopic" element={<SubTopicPage />} />
               <Route path="/:category" element={<CategoryPage />} />
               <Route path="*" element={<NotFound />} />

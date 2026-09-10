@@ -94,6 +94,10 @@
       "destination": "/api/subscribe"
     },
     {
+      "source": "/api/unsubscribe",
+      "destination": "/api/unsubscribe"
+    },
+    {
       "source": "/api/instagram-thumb",
       "destination": "/api/instagram-thumb"
     },

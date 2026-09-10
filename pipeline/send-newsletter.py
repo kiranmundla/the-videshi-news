@@ -127,8 +127,11 @@ def fmt_date(iso_str, fmt="%B %d"):
 # ── Data fetching ───────────────────────────────────────────────────────────
 
 def fetch_subscribers():
-    """Get all newsletter subscribers."""
-    return supabase_get("newsletter_subscribers", {"select": "id,email,subscribed_at"})
+    """Get all newsletter subscribers who have not unsubscribed."""
+    return supabase_get("newsletter_subscribers", {
+        "select": "id,email,subscribed_at",
+        "unsubscribed_at": "is.null",
+    })
 
 
 def fetch_weekly_articles(since_iso):
@@ -611,8 +614,14 @@ def build_email_html(hero, stories, events, week_start, week_end, unsub_url):
 
 # ── Send via Resend ─────────────────────────────────────────────────────────
 
-def send_email(to_email, subject, html_body, resend_key, unsub_url):
-    """Send one email via Resend API."""
+def send_email(to_email, subject, html_body, resend_key, unsub_url, unsub_api_url):
+    """Send one email via Resend API.
+
+    unsub_url: footer link -> /unsubscribe confirm page (human clicks).
+    unsub_api_url: List-Unsubscribe header -> /api/unsubscribe (RFC 8058
+      one-click POST from Gmail/Apple). Kept separate because the API
+      endpoint must never unsubscribe on GET (mailbox scanners prefetch).
+    """
     resp = requests.post(
         "https://api.resend.com/emails",
         headers={
@@ -625,7 +634,7 @@ def send_email(to_email, subject, html_body, resend_key, unsub_url):
             "subject": subject,
             "html": html_body,
             "headers": {
-                "List-Unsubscribe": f"<{unsub_url}>",
+                "List-Unsubscribe": f"<{unsub_api_url}>",
                 "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
             },
         },
@@ -729,10 +738,11 @@ def main():
         email = sub["email"]
         token = make_unsub_token(email)
         unsub_url = f"{SITE_URL}/unsubscribe?email={quote(email)}&token={token}"
+        unsub_api_url = f"{SITE_URL}/api/unsubscribe?email={quote(email)}&token={token}"
         html = build_email_html(hero, stories, events, week_start, week_end, unsub_url)
 
         try:
-            result = send_email(email, subject, html, resend_key, unsub_url)
+            result = send_email(email, subject, html, resend_key, unsub_url, unsub_api_url)
             sent += 1
             print(f"   ✅ Sent to {email} (id: {result.get('id', '?')})")
         except Exception as e:
