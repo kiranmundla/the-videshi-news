@@ -1,0 +1,40 @@
+[
+  {
+    "id": "1876d0cd-b96b-4e0e-beed-618c84c45caf",
+    "headline": "Indian-American Author Neal Bakshi Says He Was Detained at US Border After Green",
+    "slug": "indian-american-neal-bakshi-detained-us-border-greenland-holiday",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from other Indian-Americans or NRIs who have faced similar experiences at US borders. This could provide a broader context and show that Bakshi's experience is part of a larger pattern affecting the Indian diaspora.",
+        "Add a section discussing the implications of Bakshi's experience for Indian-Americans traveling internationally, particularly in light of current immigration policies. This could include expert opinions or statistics on racial profiling and its impact on the NRI community.",
+        "Provide more context about the Global Entry program and its significance for NRIs. Explain how such programs are intended to facilitate travel for trusted travelers and what the implications are when they fail to protect individuals like Bakshi.",
+        "Include a brief historical context about racial profiling at US borders, particularly how it has affected the Indian diaspora, to give readers a deeper understanding of the systemic issues at play."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or statement regarding the Global Entry program and its intended purpose to highlight the contrast between its goals and Bakshi's experience."
+      ]
+    }
+  },
+  {
+    "id": "187770a1-d4c2-42a2-859e-64aaac51547d",
+    "headline": "Google Commits Record $15 Billion to Finland AI Infrastructure in Largest Europe",
+    "slug": "google-commits-record-15-billion-to-finland-ai-infrastructure",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from Indian NRIs in Finland or the broader European tech landscape regarding Google's investment. This could highlight how such investments impact the Indian community abroad, especially in tech sectors.",
+        "Provide context on how this investment might affect Indian tech professionals or companies operating in Europe, particularly in Finland. Discuss potential job opportunities or collaborations that could arise from this investment.",
+        "Include a quote or statement from an Indian tech leader or NRI entrepreneur in Europe to provide a personal perspective on the significance of this investment for the diaspora community.",
+        "Add a brief overview of the current state of AI infrastructure in India and how investments like Google's in Finland might influence Indian tech development or competition."
+      ],
+      "embed_opportunities": [
+        "Embed the official Google announcement or a relevant tweet from Google's official Twitter account to provide direct insight into their perspective on the investment."
+      ]
+    }
+  }
+]
