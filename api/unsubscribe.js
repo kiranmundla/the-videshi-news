@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     const resp = await fetch(`${SUPABASE_URL}/rest/v1/rpc/unsubscribe_newsletter`, {
       method: "POST",
       headers: {
-apikey: <redacted>
+        apikey: SUPABASE_ANON_KEY,
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         "Content-Type": "application/json",
       },
