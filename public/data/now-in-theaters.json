@@ -1,112 +1,8 @@
 {
-  "generated_at": "2026-09-07T13:00:00Z",
-  "week_of": "Sep 8 – Sep 14, 2026",
-  "editorial_intro": "Spider-Man: Brand New Day is closing in on history — $918M domestic, just $19M from The Force Awakens' all-time domestic record, with $2.4B worldwide putting it at #3 all-time globally. Mirzapur: The Movie exploded with a ₹132 Cr worldwide opening weekend, already a certified hit against its ₹80-90 Cr budget — the franchise's leap from OTT to theatrical is paying off big. Coyote vs. Acme held beautifully in its second weekend (just a 29% drop), Buddy actually grew 3%, and The Odyssey retook the global #1 spot in its eighth week. Next week brings two big arrivals: Practical Magic 2 (Sept 10) reunites Sandra Bullock and Nicole Kidman 28 years later, and Hanuman Ansh — 2026's most incredible box office story, ₹100 Cr from a ₹2 Cr budget — gets its US/international debut on Sept 11 via Hombale Films.",
+  "editorial_intro": "Spider-Man: Brand New Day is within striking distance of The Force Awakens' all-time domestic record after a sixth straight weekend at #1 — but Practical Magic 2 opened today tracking a $30-40M weekend that could finally end the streak (critics aren't charmed: 35% RT). Mirzapur: The Movie is closing in on ₹200 Cr worldwide in Week 1 after a ₹192 Cr haul. This weekend brings the diaspora two big arrivals: Hanuman Ansh — the ₹2 Cr devotional that became 2026's wildest box office story at ₹155 Cr India net — makes its US/international debut Sept 11 via Hombale Films, and Akshay Kumar vs Saif Ali Khan's dark thriller Haiwaan opens worldwide. Karthi's Tamil spy sequel Sardar 2 opened today. Next week: Meghna Gulzar's crime thriller Daayra and Zach Cregger's Resident Evil reboot land Sept 18.",
+  "generated_at": "2026-09-10T13:30:00Z",
   "movies": [
     {
-      "title": "Hanuman Ansh",
-      "slug": "hanuman-ansh",
-      "genre": "Devotional, Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹100 Cr+ India net",
-      "rating_source": "India box office",
-      "release_date": "2026-09-11",
-      "status": "coming_soon",
-      "cast": [
-        "Shobhinaw Satyaa",
-        "Chandan Anand",
-        "Purnima Tiwari",
-        "Vihaan Shedge"
-      ],
-      "director": "Vishal Chaturvedi",
-      "why_watch": "The most improbable box office story of 2026 — a ₹2 Cr devotional drama about Neem Karoli Baba that opened to ₹8 lakh on Day 1 and has crossed ₹100 Cr India net through pure word-of-mouth, outperforming Yash's ₹300 Cr Toxic on daily collections. Hombale Films (KGF, Kantara) picked it up for international distribution. US/international release Sept 11.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Hanuman+Ansh+movie+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=YpGhCA2X3gU",
-      "cast_details": [
-        {
-          "name": "Shobhinaw Satyaa",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Shobhinaw_Satyaa.png/300px-Shobhinaw_Satyaa.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Chandan Anand",
-          "photo_url": ""
-        },
-        {
-          "name": "Purnima Tiwari",
-          "photo_url": ""
-        },
-        {
-          "name": "Vihaan Shedge",
-          "photo_url": ""
-        }
-      ]
-    },
-    {
-      "title": "Practical Magic 2",
-      "slug": "practical-magic-2",
-      "genre": "Fantasy, Romance, Comedy",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/47/Practical_Magic_2_%28film_poster%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "Not yet rated",
-      "rating_source": "",
-      "release_date": "2026-09-10",
-      "status": "coming_soon",
-      "cast": [
-        "Sandra Bullock",
-        "Nicole Kidman",
-        "Joey King",
-        "Lee Pace",
-        "Maisie Williams",
-        "Xolo Maridueña",
-        "Dianne Wiest",
-        "Stockard Channing"
-      ],
-      "director": "Susanne Bier",
-      "why_watch": "The witchy cult classic sequel 28 years in the making. Sandra Bullock and Nicole Kidman return as the Owens sisters alongside Dianne Wiest and Stockard Channing as the magical aunts — plus Joey King and Maisie Williams as the next generation. Based on Alice Hoffman's The Book of Magic. Expected to unseat Spider-Man from the #1 spot. Opens Sept 10.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Practical+Magic+2+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=Ho10_4IX1jE",
-      "cast_details": [
-        {
-          "name": "Sandra Bullock",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Sandra_Bullock_at_The_Egyptian_Theatre_2024.jpg/300px-Sandra_Bullock_at_The_Egyptian_Theatre_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Nicole Kidman",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/MKr384262_Nicole_Kidman_%28Women_In_Motion%2C_Cannes_2025%29.jpg/300px-MKr384262_Nicole_Kidman_%28Women_In_Motion%2C_Cannes_2025%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Joey King",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Guests_at_the_2026_Met_Gala_072_%28Joey_King%29.jpg/300px-Guests_at_the_2026_Met_Gala_072_%28Joey_King%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Lee Pace",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Lee_Pace_at_Foundations_Season_3_press_day.jpg/300px-Lee_Pace_at_Foundations_Season_3_press_day.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Maisie Williams",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Maisie_Williams_by_Gage_Skidmore_3.jpg/300px-Maisie_Williams_by_Gage_Skidmore_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Xolo Maridueña",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Xolo_Maridue%C3%B1a.jpg/300px-Xolo_Maridue%C3%B1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ]
-    },
-    {
-      "title": "Mirzapur: The Movie",
-      "slug": "mirzapur-the-movie",
-      "genre": "Action, Crime, Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Mirzapur_from_the_Ganges.JPG/500px-Mirzapur_from_the_Ganges.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "₹132 Cr worldwide (opening weekend)",
-      "rating_source": "India box office",
-      "release_date": "2026-09-04",
-      "status": "now_playing",
       "cast": [
         "Pankaj Tripathi",
         "Ali Fazal",
@@ -115,12 +11,6 @@
         "Ravi Kishan",
         "Rasika Duggal"
       ],
-      "director": "Gurmmeet Singh",
-      "why_watch": "₹132 Cr worldwide in its opening weekend — the Mirzapur franchise's leap from OTT to theaters is a certified smash, already recovering its ₹80-90 Cr budget in three days flat. Pankaj Tripathi, Ali Fazal, and Divyenndu bring the chaos of Kaleen Bhaiya's empire to the big screen. Opened #5 globally with $13.6M. Playing strong in US theaters for the diaspora.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Mirzapur+The+Movie+showtimes+near+me",
-      "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=5vMWZhHPlaw",
       "cast_details": [
         {
           "name": "Pankaj Tripathi",
@@ -147,350 +37,210 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg/300px-Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "review_slug": "mirzapur-the-movie-review-roundup-critics"
-    },
-    {
-      "title": "By Any Means",
-      "slug": "by-any-means-2026",
-      "genre": "Crime Thriller, Historical Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/32/By_Any_Means_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "53% RT (87% audience)",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-09-04",
-      "status": "now_playing",
-      "cast": [
-        "Mark Wahlberg",
-        "Yahya Abdul-Mateen II",
-        "Giancarlo Esposito",
-        "Nicole Beharie",
-        "Josh Lucas",
-        "David Strathairn"
-      ],
-      "director": "Elegance Bratton",
-      "why_watch": "Critics are split but audiences are loving it — 87% audience score on RT. Mark Wahlberg plays real-life Mafia hitman Gregory Scarpa recruited by Yahya Abdul-Mateen II's FBI agent to solve civil rights-era murders in 1960s Mississippi. Based on a wild true story that sounds too crazy to be real. Opened at #4 with $7.4M.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=By+Any+Means+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=6mqoMuGWCrI",
-      "cast_details": [
-        {
-          "name": "Mark Wahlberg",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Mark_Wahlberg_2021.jpg/300px-Mark_Wahlberg_2021.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Yahya Abdul-Mateen II",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Yahya_Abdul-Mateen_II_by_Gage_Skidmore.jpg/300px-Yahya_Abdul-Mateen_II_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Giancarlo Esposito",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Giancarlo_Esposito_at_Comic_Con_Oakland_2026_-_2_%28cropped%29.jpg/300px-Giancarlo_Esposito_at_Comic_Con_Oakland_2026_-_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Nicole Beharie",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Nicole_Beharie_SDCC_2014_%28cropped%29.jpg/300px-Nicole_Beharie_SDCC_2014_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Josh Lucas",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Ford_v_Ferrari_PC_002_%2848812302232%29.jpg/300px-Ford_v_Ferrari_PC_002_%2848812302232%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "David Strathairn",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/David_Strathairn_2022.jpg/300px-David_Strathairn_2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ]
-    },
-    {
-      "title": "Coyote vs. Acme",
-      "slug": "coyote-vs-acme",
-      "genre": "Animation, Comedy, Family",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c0/Coyote_vs._Acme_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "95% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-28",
-      "status": "now_playing",
-      "cast": [
-        "Will Forte",
-        "John Cena",
-        "Lana Condor",
-        "Tone Bell",
-        "Luis Guzmán",
-        "Martha Kelly"
-      ],
-      "director": "Dave Green",
-      "why_watch": "The ultimate Hollywood underdog story — Warner Bros. shelved this finished film for a tax write-off in 2023, Ketchup Entertainment rescued it, and now it's at 95% RT with an A CinemaScore. $33.8M domestic after two weekends with just a 29% second-weekend drop. Critics are calling it the best Looney Tunes film ever made. Perfect family watch.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Coyote+vs+Acme+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=iu-4SgTw73M",
-      "cast_details": [
-        {
-          "name": "Will Forte",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Will_Forte_by_Gage_Skidmore_2.jpg/300px-Will_Forte_by_Gage_Skidmore_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "John Cena",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/John_Cena_by_Gage_Skidmore.jpg/300px-John_Cena_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Lana Condor",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Lana_Condor_at_2026_APEX_Gala_in_NYC_03_%28cropped%29.jpg/300px-Lana_Condor_at_2026_APEX_Gala_in_NYC_03_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Tone Bell",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Tone_Bell.png/300px-Tone_Bell.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Luis Guzmán",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Wednesday_NYCC_2022_1_%28Guzm%C3%A1n_cropped%29.jpg/300px-Wednesday_NYCC_2022_1_%28Guzm%C3%A1n_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Martha Kelly",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Martha_Kelly_by_Gage_Skidmore.jpg/300px-Martha_Kelly_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ]
-    },
-    {
-      "title": "Buddy",
-      "slug": "buddy-horror-2026",
-      "genre": "Horror, Comedy",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4d/Buddy_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "87% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-28",
-      "status": "now_playing",
-      "cast": [
-        "Cristin Milioti",
-        "Patton Oswalt",
-        "Michael Shannon",
-        "Topher Grace",
-        "Keegan-Michael Key",
-        "Delaney Quinn"
-      ],
-      "director": "Casper Kelly",
-      "why_watch": "This keeps growing — actually went UP 3% in its second weekend to $5.7M, a rare feat for any horror film. $15.7M total from just 1,258 screens. Casper Kelly (Too Many Cooks) turns a Barney-style kids' show host into a horror nightmare. 87% Certified Fresh. Cristin Milioti stars, Keegan-Michael Key voices the terrifying orange unicorn. The cult hit of the summer.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Buddy+horror+movie+2026+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=O1fNEHX9tSM",
-      "cast_details": [
-        {
-          "name": "Cristin Milioti",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Cristin_Milioti_at_Vulture_Festival_2024.jpg/300px-Cristin_Milioti_at_Vulture_Festival_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Patton Oswalt",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Patton_Oswalt_by_Gage_Skidmore_3_%28cropped%29.jpg/300px-Patton_Oswalt_by_Gage_Skidmore_3_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Michael Shannon",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/MichaelShannon-byPhilipRomano.jpg/300px-MichaelShannon-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Topher Grace",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Topher_Grace_2019_by_Glenn_Francis_%283x4_cropped%29.jpg/300px-Topher_Grace_2019_by_Glenn_Francis_%283x4_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Keegan-Michael Key",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Keegan-Michael_Key_by_Gage_Skidmore_2.jpg/300px-Keegan-Michael_Key_by_Gage_Skidmore_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Delaney Quinn",
-          "photo_url": ""
-        }
-      ]
-    },
-    {
-      "title": "Toxic: A Fairy Tale for Grown-Ups",
-      "slug": "toxic-yash",
-      "genre": "Action Drama, Period, Gangster",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/Toxic-_A_Fairy_Tale_for_Grown-Ups_poster.jpg/500px-Toxic-_A_Fairy_Tale_for_Grown-Ups_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "₹335 Cr worldwide (11 days)",
-      "rating_source": "India box office",
-      "release_date": "2026-08-26",
-      "status": "now_playing",
-      "cast": [
-        "Yash",
-        "Nayanthara",
-        "Kiara Advani",
-        "Tara Sutaria",
-        "Huma Qureshi",
-        "Rukmini Vasanth"
-      ],
-      "director": "Geetu Mohandas",
-      "why_watch": "Yash's return after four years opened to a monstrous ₹101 Cr Day 1 — but ₹335 Cr worldwide in 11 days looks less impressive against a reportedly massive budget. Daily collections crashed 95% from the opening day by the end of Week 1, and the low-budget Hanuman Ansh is actually outearning it on a daily basis. Still a visual spectacle worth seeing on a big screen for the John Wick-style choreography. Winding down in US theaters.",
+      "director": "Gurmmeet Singh",
+      "genre": "Action, Crime, Thriller",
       "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Toxic+Yash+movie+showtimes+near+me",
-      "language": "Kannada",
-      "trailer_url": "https://www.youtube.com/watch?v=f5M1d7r2UNQ",
-      "cast_details": [
-        {
-          "name": "Yash",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Yash_during_toxic_trailer_launch_event.jpg/300px-Yash_during_toxic_trailer_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Nayanthara",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Nayanthara_during_toxic_album_launch_event.jpg/300px-Nayanthara_during_toxic_album_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Kiara Advani",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Kiara_Advani_during_toxic_trailer_launch_event.jpg/300px-Kiara_Advani_during_toxic_trailer_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Tara Sutaria",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Tara_Sutaria_during_toxic_trailer_launch_event.jpg/300px-Tara_Sutaria_during_toxic_trailer_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Huma Qureshi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Huma_Qureshi_during_toxic_trailer_launch_event.jpg/300px-Huma_Qureshi_during_toxic_trailer_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Rukmini Vasanth",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rukmini_Vasanth_during_toxic_trailer_launch_event.jpg/300px-Rukmini_Vasanth_during_toxic_trailer_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ]
-    },
-    {
-      "title": "Insidious: Out of the Further",
-      "slug": "insidious-out-of-the-further",
-      "genre": "Horror, Supernatural",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Insidious-out-of-the-further-poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "56% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-21",
-      "status": "now_playing",
-      "cast": [
-        "Amelia Eve",
-        "Brandon Perea",
-        "Lin Shaye",
-        "Maisie Richardson-Sellers",
-        "Sam Spruell"
-      ],
-      "director": "Jacob Chase",
-      "why_watch": "$54M domestic and climbing on an $18M budget — the Insidious franchise keeps printing money regardless of reviews. $6.5M in its third weekend, solid legs. Lin Shaye returns as Elise Rainier. Not going to change your life, but a reliable popcorn scare if you want a horror fix.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Insidious+Out+of+the+Further+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=jxU8FU3o75A",
-      "cast_details": [
-        {
-          "name": "Amelia Eve",
-          "photo_url": ""
-        },
-        {
-          "name": "Brandon Perea",
-          "photo_url": ""
-        },
-        {
-          "name": "Lin Shaye",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Lin_Shaye_at_53rd_Saturn_Awards_2026.jpg/300px-Lin_Shaye_at_53rd_Saturn_Awards_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Maisie Richardson-Sellers",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Maisie_Richardson-Sellers_%2835146349362%29_%28cropped%29.jpg/300px-Maisie_Richardson-Sellers_%2835146349362%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Sam Spruell",
-          "photo_url": ""
-        }
-      ]
-    },
-    {
-      "title": "Awarapan 2",
-      "slug": "awarapan-2",
-      "genre": "Romance, Action Thriller",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/79/Awarapan_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹211 Cr+ worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-08-14",
-      "status": "now_playing",
-      "cast": [
-        "Emraan Hashmi",
-        "Disha Patani",
-        "Shabana Azmi"
-      ],
-      "director": "Nitin Kakkar",
-      "why_watch": "₹211 Cr+ worldwide on a ₹45 Cr budget — a certified blockbuster and Emraan Hashmi's biggest solo hit by far. Crossed ₹100 Cr in just 6 days. Mithoon's music and nostalgia for the 2007 cult original connected with audiences. Winding down from US screens — last chance to catch it.",
-      "is_indian": true,
-      "ticket_url": "https://www.google.com/search?q=Awarapan+2+showtimes+near+me",
       "language": "Hindi",
-      "trailer_url": "https://www.youtube.com/watch?v=IQ7HkZ-Gun8",
-      "cast_details": [
-        {
-          "name": "Emraan Hashmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Emraan_Filmfare_Magazine_Launch.jpg/300px-Emraan_Filmfare_Magazine_Launch.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Disha Patani",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Disha_Patani_grace_the_premiere_of_Awarapan_2_%28cropped%29.jpg/300px-Disha_Patani_grace_the_premiere_of_Awarapan_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Shabana Azmi",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg/300px-Shabana_Azmi_SFU_honorary_degree_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ]
+      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Mirzapur_from_the_Ganges.JPG/500px-Mirzapur_from_the_Ganges.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "rating": "₹192 Cr worldwide (Week 1)",
+      "rating_source": "India box office",
+      "release_date": "2026-09-04",
+      "review_slug": "mirzapur-the-movie-review-roundup-critics",
+      "slug": "mirzapur-the-movie",
+      "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=Mirzapur+The+Movie+showtimes+near+me",
+      "title": "Mirzapur: The Movie",
+      "trailer_url": "https://www.youtube.com/watch?v=5vMWZhHPlaw",
+      "why_watch": "₹192 Cr worldwide in Week 1, closing in on ₹200 Cr — the OTT-to-theater leap is a certified smash, with India net alone past ₹125 Cr and weekday drops under 1%. $1.08M from US screens on opening weekend. Pankaj Tripathi, Ali Fazal, and Divyenndu bring Kaleen Bhaiya's empire to the big screen, and word-of-mouth is holding strong into Week 2 despite Haiwaan and Hanuman Ansh arriving this weekend.",
+      "year": 2026
     },
     {
-      "title": "Tony",
-      "slug": "tony-bourdain",
-      "genre": "Biographical Drama, Comedy-Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/68/Tony_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "94% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-07",
-      "status": "now_playing",
       "cast": [
-        "Dominic Sessa",
-        "Emilia Jones",
-        "Antonio Banderas",
-        "Leo Woodall",
-        "Stavros Halkias"
+        "Shobhinaw Satyaa",
+        "Chandan Anand",
+        "Purnima Tiwari",
+        "Vihaan Shedge"
       ],
-      "director": "Matt Johnson",
-      "why_watch": "94% on Rotten Tomatoes — A24's biopic of a 19-year-old Anthony Bourdain discovering his calling in a 1975 Provincetown kitchen. Dominic Sessa channels raw young Bourdain energy, Antonio Banderas as his mentor chef is electric. Screens are thinning fast — the indie gem of the summer. Catch it before it's gone.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Tony+A24+movie+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=k1MVnzd2aVc",
       "cast_details": [
         {
-          "name": "Dominic Sessa",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Dominic_Sessa_Tow-059_%28cropped%29.jpg/300px-Dominic_Sessa_Tow-059_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+          "name": "Shobhinaw Satyaa",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Shobhinaw_Satyaa.png/300px-Shobhinaw_Satyaa.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         },
         {
-          "name": "Emilia Jones",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Emilia_jones_2022_1.jpg/300px-Emilia_jones_2022_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+          "name": "Chandan Anand",
+          "photo_url": ""
         },
         {
-          "name": "Antonio Banderas",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg/300px-Goyas_2025_-_Antonio_Banderas_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+          "name": "Purnima Tiwari",
+          "photo_url": ""
         },
         {
-          "name": "Leo Woodall",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Leo_Woodall_2024_Emmys_05_%28cropped%29.png/300px-Leo_Woodall_2024_Emmys_05_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+          "name": "Vihaan Shedge",
+          "photo_url": ""
+        }
+      ],
+      "director": "Vishal Chaturvedi",
+      "genre": "Devotional, Drama",
+      "is_indian": true,
+      "language": "Hindi",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "₹155 Cr+ India net (Day 34)",
+      "rating_source": "India box office",
+      "release_date": "2026-09-11",
+      "slug": "hanuman-ansh",
+      "status": "opening",
+      "ticket_url": "https://www.google.com/search?q=Hanuman+Ansh+movie+showtimes+near+me",
+      "title": "Hanuman Ansh",
+      "trailer_url": "https://www.youtube.com/watch?v=YpGhCA2X3gU",
+      "why_watch": "Still the most improbable box office story of 2026 — a ₹2 Cr devotional drama about Neem Karoli Baba that opened to ₹10 lakh on Day 1 is now at ₹155 Cr India net in 34 days, out-earning Yash's ₹300 Cr Toxic on daily collections in its fifth week. Hombale Films (KGF, Kantara) brings it to US and international screens Sept 11 — the diaspora's first chance to catch the phenomenon on a big screen.",
+      "year": 2026
+    },
+    {
+      "cast": [
+        "Akshay Kumar",
+        "Saif Ali Khan",
+        "Boman Irani",
+        "Shriya Pilgaonkar",
+        "Saiyami Kher"
+      ],
+      "director": "Priyadarshan",
+      "genre": "Crime Thriller",
+      "is_indian": true,
+      "language": "Hindi",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/a/ae/Haiwaan_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "Not yet rated",
+      "rating_source": "",
+      "release_date": "2026-09-11",
+      "slug": "haiwaan-2026",
+      "status": "opening",
+      "ticket_url": "https://www.google.com/search?q=Haiwaan+movie+showtimes+near+me",
+      "title": "Haiwaan",
+      "why_watch": "Akshay Kumar and Saif Ali Khan reunite after 18 years — this time on opposite sides. Akshay goes full villain for the first time since Ajnabee (2001) as a vengeful killer; Saif plays a blind caretaker framed for murder. Priyadarshan remakes his own Malayalam hit Oppam, with a Mohanlal cameo and Asrani's final film appearance. Opens worldwide Sept 11 — no reviews yet, so this one is on star power and Priyadarshan's thriller chops.",
+      "year": 2026,
+      "trailer_url": "https://www.youtube.com/watch?v=Bm5S7ZKk6K8",
+      "cast_details": [
+        {
+          "name": "Akshay Kumar",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Akshay_Kumar_National_Award_for_Padman_%28cropped%29.jpg/300px-Akshay_Kumar_National_Award_for_Padman_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         },
         {
-          "name": "Stavros Halkias",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg/300px-Stavros_Halkias%2C_circa_October_2024_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+          "name": "Saif Ali Khan",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Saif_SG_screening.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+        },
+        {
+          "name": "Boman Irani",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/IIFA_2017_Green_Carpet_%2836349841166%29_%28cropped%29.jpg/300px-IIFA_2017_Green_Carpet_%2836349841166%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Shriya Pilgaonkar",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Shriya_Pilgaonkar_snapped_at_the_muhurat_pooja_of_the_movie_Mirzapur_%28cropped%29.jpg/300px-Shriya_Pilgaonkar_snapped_at_the_muhurat_pooja_of_the_movie_Mirzapur_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Saiyami Kher",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Saiyami_Kher_snapped_at_the_Indian_Film_Festival_of_Melbourne_press_conference.jpg/300px-Saiyami_Kher_snapped_at_the_Indian_Film_Festival_of_Melbourne_press_conference.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ]
     },
     {
-      "title": "Spider-Man: Brand New Day",
-      "slug": "spider-man-brand-new-day",
-      "genre": "Superhero, Action",
+      "cast": [
+        "Karthi",
+        "S. J. Suryah",
+        "Malavika Mohanan",
+        "Rajisha Vijayan",
+        "Ashika Ranganath"
+      ],
+      "director": "P. S. Mithran",
+      "genre": "Action, Spy Thriller",
+      "is_indian": true,
+      "language": "Tamil",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/6/6b/Sardar_2_Poster.jpg/500px-Sardar_2_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "rating": "₹3.3 Cr+ India net (Day 1, live tracking)",
+      "rating_source": "India box office",
+      "release_date": "2026-09-10",
+      "slug": "sardar-2",
+      "status": "opening",
+      "ticket_url": "https://www.google.com/search?q=Sardar+2+Karthi+showtimes+near+me",
+      "title": "Sardar 2",
+      "why_watch": "Karthi's spy sequel to his biggest solo hit — the 2022 original did ₹91 Cr worldwide. Opened today with solid midday numbers: ₹3.3 Cr net by noon across 925 theaters, holding a tight race with Soori's Mandaadi in Tamil Nadu. S. J. Suryah plays the villain Black Dagger. Day-1 tracking suggests the franchise goodwill is intact — the Tamil pick of the week.",
       "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Spider-Man_Brand_New_Day_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "90% RT",
+      "trailer_url": "https://www.youtube.com/watch?v=jpvb4l2RIXU",
+      "cast_details": [
+        {
+          "name": "Karthi",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Karthi_Sivakumar_at_Nenjil_Thunivirunthal_Audio_Launch_%28cropped%29.jpg/300px-Karthi_Sivakumar_at_Nenjil_Thunivirunthal_Audio_Launch_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "S. J. Suryah",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/SJ_Surya_at_Iraivi_Press_Meet_%28cropped%29.jpg/300px-SJ_Surya_at_Iraivi_Press_Meet_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Malavika Mohanan",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Malavika_Mohanan_snapped_at_the_Grazia_Indie_Beauty_Awards_2025.jpg/300px-Malavika_Mohanan_snapped_at_the_Grazia_Indie_Beauty_Awards_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Rajisha Vijayan",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Rajisha_Vijayan_In_a_Audio_Launch.jpg/300px-Rajisha_Vijayan_In_a_Audio_Launch.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Ashika Ranganath",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Ashika_Ranganath.jpg/300px-Ashika_Ranganath.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
+      ]
+    },
+    {
+      "cast": [
+        "Sandra Bullock",
+        "Nicole Kidman",
+        "Joey King",
+        "Lee Pace",
+        "Maisie Williams",
+        "Xolo Maridueña",
+        "Dianne Wiest",
+        "Stockard Channing"
+      ],
+      "cast_details": [
+        {
+          "name": "Sandra Bullock",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Sandra_Bullock_at_The_Egyptian_Theatre_2024.jpg/300px-Sandra_Bullock_at_The_Egyptian_Theatre_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Nicole Kidman",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/MKr384262_Nicole_Kidman_%28Women_In_Motion%2C_Cannes_2025%29.jpg/300px-Nicole_Kidman_%28Women_In_Motion%2C_Cannes_2025%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Joey King",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Guests_at_the_2026_Met_Gala_072_%28Joey_King%29.jpg/300px-Guests_at_the_2026_Met_Gala_072_%28Joey_King%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Lee Pace",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Lee_Pace_at_Foundations_Season_3_press_day.jpg/300px-Lee_Pace_at_Foundations_Season_3_press_day.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Maisie Williams",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Maisie_Williams_by_Gage_Skidmore_3.jpg/300px-Maisie_Williams_by_Gage_Skidmore_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Xolo Maridueña",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Xolo_Maridue%C3%B1a.jpg/300px-Xolo_Maridue%C3%B1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
+      ],
+      "director": "Susanne Bier",
+      "genre": "Fantasy, Romance, Comedy",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/47/Practical_Magic_2_%28film_poster%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "35% RT",
       "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-07-31",
+      "release_date": "2026-09-10",
+      "slug": "practical-magic-2",
       "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=Practical+Magic+2+showtimes+near+me",
+      "title": "Practical Magic 2",
+      "trailer_url": "https://www.youtube.com/watch?v=Ho10_4IX1jE",
+      "why_watch": "The witchy sequel 28 years in the making opened today — and critics are not charmed (35% RT, Bullock's worst-reviewed film in nearly 20 years). But none of that mattered for the original either: tracking has it conjuring $30-40M this weekend, which would finally end Spider-Man's six-week reign. Sometimes you go for the midnight margaritas, not the Tomatometer.",
+      "year": 2026
+    },
+    {
       "cast": [
         "Tom Holland",
         "Zendaya",
@@ -499,12 +249,6 @@
         "Mark Ruffalo",
         "Sadie Sink"
       ],
-      "director": "Destin Daniel Cretton",
-      "why_watch": "$918M domestic — just $19M from The Force Awakens' all-time domestic record. $2.4B worldwide, #3 all-time globally behind Avatar and Endgame. Still #1 at the domestic box office in its sixth week with $18M. 90% critics, 98% audience. If you somehow haven't seen it yet, you're running out of excuses.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=62bIsvRcPv0",
       "cast_details": [
         {
           "name": "Tom Holland",
@@ -530,18 +274,24 @@
           "name": "Sadie Sink",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Sadie_Sink_%2843914734441%29.jpg/300px-Sadie_Sink_%2843914734441%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "director": "Destin Daniel Cretton",
+      "genre": "Superhero, Action",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Spider-Man_Brand_New_Day_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "90% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-07-31",
+      "slug": "spider-man-brand-new-day",
+      "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=Spider-Man+Brand+New+Day+showtimes+near+me",
+      "title": "Spider-Man: Brand New Day",
+      "trailer_url": "https://www.youtube.com/watch?v=62bIsvRcPv0",
+      "why_watch": "Sixth straight weekend at #1 with $18M — domestic is now around $936M, within touching distance of The Force Awakens' all-time domestic record. $2.3B worldwide, #3 all-time globally behind Avatar and Endgame. 90% critics, 98% audience. Practical Magic 2 is gunning for the crown this weekend — one of the last chances to see the phenomenon in a packed theater.",
+      "year": 2026
     },
     {
-      "title": "The Odyssey",
-      "slug": "the-odyssey-nolan",
-      "genre": "Epic, Action, Drama",
-      "year": 2026,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fragment_Odyssee_2245_2.jpg/500px-Fragment_Odyssee_2245_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "94% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-07-17",
-      "status": "now_playing",
       "cast": [
         "Matt Damon",
         "Tom Holland",
@@ -551,12 +301,6 @@
         "Charlize Theron",
         "Lupita Nyong'o"
       ],
-      "director": "Christopher Nolan",
-      "why_watch": "Just retook the global #1 spot in its eighth weekend, passing Spider-Man worldwide with $585M domestic and still climbing. IMAX 70mm screenings are still selling out. 94% critics, 97% audience — tied for Nolan's highest-rated film. Matt Damon's Odysseus is generating serious Oscar buzz. One of the great theatrical experiences of 2026.",
-      "is_indian": false,
-      "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
-      "language": "English",
-      "trailer_url": "https://www.youtube.com/watch?v=f_bKjZeJBBI",
       "cast_details": [
         {
           "name": "Matt Damon",
@@ -582,7 +326,253 @@
           "name": "Charlize Theron",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/CharlizeTheron-byPhilipRomano2.jpg/300px-CharlizeTheron-byPhilipRomano2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
+      ],
+      "director": "Christopher Nolan",
+      "genre": "Epic, Action, Drama",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fragment_Odyssee_2245_2.jpg/500px-Fragment_Odyssee_2245_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "rating": "94% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-07-17",
+      "slug": "the-odyssey-nolan",
+      "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=The+Odyssey+Christopher+Nolan+showtimes+near+me",
+      "title": "The Odyssey",
+      "trailer_url": "https://www.youtube.com/watch?v=f_bKjZeJBBI",
+      "why_watch": "Just retook the global #1 spot in its eighth weekend, passing Spider-Man worldwide — $585M domestic (the 18th-highest first-run domestic release ever) and $1.63B globally. IMAX 70mm screenings are still selling out. 94% critics, 97% audience, Matt Damon's Odysseus generating real Oscar buzz. One of the great theatrical experiences of 2026.",
+      "year": 2026
+    },
+    {
+      "cast": [
+        "Will Forte",
+        "John Cena",
+        "Lana Condor",
+        "Tone Bell",
+        "Luis Guzmán",
+        "Martha Kelly"
+      ],
+      "cast_details": [
+        {
+          "name": "Will Forte",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Will_Forte_by_Gage_Skidmore_2.jpg/300px-Will_Forte_by_Gage_Skidmore_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "John Cena",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/John_Cena_by_Gage_Skidmore.jpg/300px-John_Cena_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Lana Condor",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Lana_Condor_at_2026_APEX_Gala_in_NYC_03_%28cropped%29.jpg/300px-Lana_Condor_at_2026_APEX_Gala_in_NYC_03_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Tone Bell",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Tone_Bell.png/300px-Tone_Bell.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Luis Guzmán",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Wednesday_NYCC_2022_1_%28Guzm%C3%A1n_cropped%29.jpg/300px-Wednesday_NYCC_2022_1_%28Guzm%C3%A1n_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Martha Kelly",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Martha_Kelly_by_Gage_Skidmore.jpg/300px-Martha_Kelly_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
+      ],
+      "director": "Dave Green",
+      "genre": "Animation, Comedy, Family",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c0/Coyote_vs._Acme_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "95% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-08-28",
+      "slug": "coyote-vs-acme",
+      "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=Coyote+vs+Acme+movie+showtimes+near+me",
+      "title": "Coyote vs. Acme",
+      "trailer_url": "https://www.youtube.com/watch?v=iu-4SgTw73M",
+      "why_watch": "The ultimate Hollywood underdog story — Warner Bros. shelved this finished film for a tax write-off in 2023, Ketchup Entertainment rescued it, and now it's at 95% RT with an A CinemaScore and $37M domestic after the holiday weekend. Critics call it the best Looney Tunes film ever made. The feel-good family watch of the season.",
+      "year": 2026
+    },
+    {
+      "cast": [
+        "Cristin Milioti",
+        "Patton Oswalt",
+        "Michael Shannon",
+        "Topher Grace",
+        "Keegan-Michael Key",
+        "Delaney Quinn"
+      ],
+      "cast_details": [
+        {
+          "name": "Cristin Milioti",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Cristin_Milioti_at_Vulture_Festival_2024.jpg/300px-Cristin_Milioti_at_Vulture_Festival_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Patton Oswalt",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Patton_Oswalt_by_Gage_Skidmore_3_%28cropped%29.jpg/300px-Patton_Oswalt_by_Gage_Skidmore_3_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Michael Shannon",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/MichaelShannon-byPhilipRomano.jpg/300px-MichaelShannon-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Topher Grace",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Topher_Grace_2019_by_Glenn_Francis_%283x4_cropped%29.jpg/300px-Topher_Grace_2019_by_Glenn_Francis_%283x4_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Keegan-Michael Key",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Keegan-Michael_Key_by_Gage_Skidmore_2.jpg/300px-Keegan-Michael_Key_by_Gage_Skidmore_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Delaney Quinn",
+          "photo_url": ""
+        }
+      ],
+      "director": "Casper Kelly",
+      "genre": "Horror, Comedy",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/4d/Buddy_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "87% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-08-28",
+      "slug": "buddy-horror-2026",
+      "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=Buddy+horror+movie+2026+showtimes+near+me",
+      "title": "Buddy",
+      "trailer_url": "https://www.youtube.com/watch?v=O1fNEHX9tSM",
+      "why_watch": "The little horror-comedy that keeps growing — $7.3M over the holiday weekend and $15.8M total, genuinely gaining momentum in its second frame. Casper Kelly (Too Many Cooks) turns a Barney-style kids' show host into a nightmare; 87% Certified Fresh. Cristin Milioti stars, Keegan-Michael Key voices the terrifying orange unicorn. The cult hit of the summer.",
+      "year": 2026
+    },
+    {
+      "cast": [
+        "Amelia Eve",
+        "Brandon Perea",
+        "Lin Shaye",
+        "Maisie Richardson-Sellers",
+        "Sam Spruell"
+      ],
+      "cast_details": [
+        {
+          "name": "Amelia Eve",
+          "photo_url": ""
+        },
+        {
+          "name": "Brandon Perea",
+          "photo_url": ""
+        },
+        {
+          "name": "Lin Shaye",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Lin_Shaye_at_53rd_Saturn_Awards_2026.jpg/300px-Lin_Shaye_at_53rd_Saturn_Awards_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Maisie Richardson-Sellers",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Maisie_Richardson-Sellers_%2835146349362%29_%28cropped%29.jpg/300px-Maisie_Richardson-Sellers_%2835146349362%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Sam Spruell",
+          "photo_url": ""
+        }
+      ],
+      "director": "Jacob Chase",
+      "genre": "Horror, Supernatural",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Insidious-out-of-the-further-poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "56% RT",
+      "rating_source": "Rotten Tomatoes",
+      "release_date": "2026-08-21",
+      "slug": "insidious-out-of-the-further",
+      "status": "now_playing",
+      "ticket_url": "https://www.google.com/search?q=Insidious+Out+of+the+Further+showtimes+near+me",
+      "title": "Insidious: Out of the Further",
+      "trailer_url": "https://www.youtube.com/watch?v=jxU8FU3o75A",
+      "why_watch": "$55M+ domestic and climbing on an $18M budget — the Insidious franchise keeps printing money regardless of reviews. Lin Shaye returns as Elise Rainier. Not going to change your life, but a reliable popcorn scare ahead of Halloween season.",
+      "year": 2026
+    },
+    {
+      "cast": [
+        "Kareena Kapoor Khan",
+        "Prithviraj Sukumaran",
+        "Jitendra Joshi",
+        "Kshitee Jog"
+      ],
+      "director": "Meghna Gulzar",
+      "genre": "Crime Thriller",
+      "is_indian": true,
+      "language": "Hindi",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7c/Daayra_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "Not yet rated",
+      "rating_source": "",
+      "release_date": "2026-09-18",
+      "slug": "daayra-2026",
+      "status": "coming_soon",
+      "ticket_url": "https://www.google.com/search?q=Daayra+movie+showtimes+near+me",
+      "title": "Daayra",
+      "why_watch": "National Award winner Meghna Gulzar (Raazi, Talvar) returns with a true-events-inspired crime thriller — Kareena as DCP Ajooni Kohli and Prithviraj as DCP Raman Kumar, two investigations converging on one truth. Their first on-screen pairing, and the trailer cut through the noise. Sept 18.",
+      "year": 2026,
+      "trailer_url": "https://www.youtube.com/watch?v=khru4exyahg",
+      "cast_details": [
+        {
+          "name": "Kareena Kapoor Khan",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Kareena_Kapoor_Khan_in_2023_%281%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+        },
+        {
+          "name": "Prithviraj Sukumaran",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Prithviraj_at_Aiyyaa_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+        },
+        {
+          "name": "Jitendra Joshi",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Jitendra_Joshi_1.jpg/300px-Jitendra_Joshi_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Kshitee Jog",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
+      "cast": [
+        "Austin Abrams",
+        "Zach Cherry",
+        "Kali Reis",
+        "Paul Walter Hauser"
+      ],
+      "director": "Zach Cregger",
+      "genre": "Horror",
+      "is_indian": false,
+      "language": "English",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/3/3c/Resident_Evil_2026_film_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "rating": "Not yet rated",
+      "rating_source": "",
+      "release_date": "2026-09-18",
+      "slug": "resident-evil-2026",
+      "status": "coming_soon",
+      "ticket_url": "https://www.google.com/search?q=Resident+Evil+2026+movie+showtimes+near+me",
+      "title": "Resident Evil",
+      "why_watch": "Barbarian's Zach Cregger takes Resident Evil back to its survival-horror roots — an $80M Sony reboot from a self-described 'rabid fan of the games,' promising grounded dread over action spectacle. The real question: does it wash out the taste of Welcome to Raccoon City? Sept 18.",
+      "year": 2026,
+      "trailer_url": "https://www.youtube.com/watch?v=mNd1gb19A-c",
+      "cast_details": [
+        {
+          "name": "Austin Abrams",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Austin_Abrams-60123.jpg/300px-Austin_Abrams-60123.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Zach Cherry",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/ZachCherry.jpg/300px-ZachCherry.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Kali Reis",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Kali_Reis_talking_to_Jodie_Foster_2024_%28cropped%29.png/300px-Kali_Reis_talking_to_Jodie_Foster_2024_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Paul Walter Hauser",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Paul_Walter_Hauser.jpg/300px-Paul_Walter_Hauser.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
       ]
     }
-  ]
+  ],
+  "week_of": "Sep 11 – Sep 17, 2026"
 }
