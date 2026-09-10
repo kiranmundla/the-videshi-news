@@ -740,49 +740,71 @@ def check_tweet_embeds(fix=False):
         }
 
     broken = []
+    unverified = []  # verification timed out/errored — NOT proven broken, never auto-removed
     valid_count = 0
     total_embeds = 0
+
+    def _verify(tweet_id):
+        """Returns 'valid', 'not_found', or 'unverified' (timeout/error)."""
+        last_err = None
+        for _ in range(2):  # one retry — react-tweet API is intermittently slow
+            try:
+                result = subprocess.run(
+                    ["bash", VERIFY_SCRIPT, tweet_id],
+                    capture_output=True, text=True, timeout=20
+                )
+                out = (result.stdout or "").strip()
+                if result.returncode == 0 and out.startswith("VALID"):
+                    return "valid", out
+                if out == "NOT_FOUND":
+                    return "not_found", out
+                last_err = out or f"exit={result.returncode}"
+            except Exception as e:
+                last_err = str(e)
+            time.sleep(2)
+        return "unverified", last_err or "unknown error"
 
     for a in articles:
         body = a.get("body", "") or ""
         matches = tweet_url_re.findall(body)
         for full_url, handle, tweet_id in matches:
             total_embeds += 1
-            try:
-                result = subprocess.run(
-                    ["bash", VERIFY_SCRIPT, tweet_id],
-                    capture_output=True, text=True, timeout=10
-                )
-                if result.returncode == 0 and result.stdout.strip().startswith("VALID"):
-                    valid_count += 1
-                else:
-                    broken.append({
-                        "article_id": a["id"],
-                        "headline": a["headline"][:80],
-                        "slug": a.get("slug", ""),
-                        "tweet_url": full_url,
-                        "tweet_id": tweet_id,
-                        "error": result.stdout.strip() or "verification failed",
-                    })
-                    if fix:
-                        # Remove the broken tweet URL from the article body
-                        new_body = body.replace(full_url, "").replace("\n\n\n\n", "\n\n")
-                        if new_body != body:
-                            requests.patch(
+            status, detail = _verify(tweet_id)
+            if status == "valid":
+                valid_count += 1
+            elif status == "not_found":
+                broken.append({
+                    "article_id": a["id"],
+                    "headline": a["headline"][:80],
+                    "slug": a.get("slug", ""),
+                    "tweet_url": full_url,
+                    "tweet_id": tweet_id,
+                    "error": "tweet confirmed deleted/unavailable",
+                })
+                if fix:
+                    # Remove only positively-confirmed dead tweets from the body
+                    new_body = body.replace(full_url, "").replace("\n\n\n\n", "\n\n")
+                    if new_body != body:
+                        try:
+                            resp = requests.patch(
                                 f"{REST}/p2_articles?id=eq.{a['id']}",
                                 headers={**hdrs, "Content-Type": "application/json",
                                          "Prefer": "return=minimal"},
                                 json={"body": new_body},
-                                timeout=10
+                                timeout=15
                             )
+                            resp.raise_for_status()
                             body = new_body  # update for subsequent matches in same article
-            except Exception as e:
-                broken.append({
+                        except Exception as e:
+                            print(f"WARN: failed to remove dead tweet {tweet_id} "
+                                  f"from {a['id']}: {e}", file=sys.stderr)
+            else:
+                unverified.append({
                     "article_id": a["id"],
                     "headline": a["headline"][:80],
                     "tweet_url": full_url,
                     "tweet_id": tweet_id,
-                    "error": str(e),
+                    "error": detail,
                 })
 
     return {
@@ -791,6 +813,8 @@ def check_tweet_embeds(fix=False):
         "total_embeds": total_embeds,
         "valid": valid_count,
         "broken": broken,
+        "unverified": unverified,
+        "unverified_count": len(unverified),
         "count": len(broken),
         "fixed": len(broken) if fix and broken else 0,
         "alert": len(broken) > 0,
