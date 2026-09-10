@@ -1,5 +1,23 @@
 [
   {
+    "id": "duration-of-status-judge-signals-halt",
+    "date": "2026-09-09",
+    "label": "Sep 9, 2026",
+    "headline": "Judge Saylor signals he may block Duration of Status rule before Sept 15 effective date \u2014 'sceptical, at best' of national security rationale",
+    "summary": "U.S. District Judge F. Dennis Saylor IV signaled he may halt the DHS rule ending 'duration of status' before it takes effect September 15, telling the court he wants to rule before that date and could temporarily block the policy if more time is needed. At the September 3 hearing in the lawsuit brought by NAFSA, the Presidents' Alliance, AFT, UAW, and The NewsGuild-CWA, the judge appeared 'sceptical, at best' of DHS's national security justification: 'I am just struggling to see a rational connection \u2014 a four-year cap does not have anything to do with national security.' He dismissed the government's cited fraud cases as anecdotal and agreed DHS did not meaningfully respond to 22,000+ public comments, suggesting the government was 'trying to push this through at high speed rather than taking the comments of the affected communities seriously.' Unless blocked, the rule replaces open-ended duration of status with four-year fixed caps for F-1/J-1 students and 240-day caps for I-visa journalists starting September 15. NAFSA forecasts a 10% drop in international enrollment this year, costing the US economy $3.4 billion.",
+    "severity": "high",
+    "source": "The PIE News / Boston Globe / NAFSA"
+  },
+  {
+    "id": "immigrant-visa-pause-selective-resumption",
+    "date": "2026-09-08",
+    "label": "Sep 8, 2026",
+    "headline": "US resumes immigrant visa processing for Hungary and Poland \u2014 global pause remains elsewhere, India applicants report cancellations through September",
+    "summary": "The Trump administration resumed processing immigrant visa applications from Hungary and Poland last week while keeping the temporary global pause in place at all other missions, according to four people familiar with the matter cited by Reuters. The directive to prioritize the two countries reportedly came from the White House. The State Department's August 25 global pause \u2014 ordered days after federal judges struck down the administration's 75-country blanket immigrant visa suspension \u2014 halted interviews worldwide pending mandatory 'public charge' training for consular officers. Applicants in India and elsewhere have posted about canceled interviews stretching through September. The pause could last months: posts must self-train on Washington-sent materials, then a consular officer must visit each mission to certify completion. The White House and State Department declined to explain why Hungary and Poland were singled out.",
+    "severity": "high",
+    "source": "Reuters"
+  },
+  {
     "id": "duration-of-status-lawsuit-filed",
     "date": "2026-09-03",
     "label": "Sep 3, 2026",
@@ -151,24 +169,6 @@
     "summary": "DHS published a final rule rescinding the Biden-era 2022 public charge regulation and restoring the broader Trump first-term criteria. Starting September 18, 2026, USCIS officers can weigh an applicant's use of Medicaid, SNAP (food stamps), housing vouchers, and other means-tested benefits when deciding whether the applicant is likely to become a 'public charge' \u2014 a factor in green card adjudication. The Biden rule had limited consideration to only cash welfare. About 588,000 applicants undergo public charge reviews annually. USCIS will roll out a revised Form I-485 and reject older versions filed on or after September 18. USCIS Director Edlow said the agency is 'restoring the basic principle that immigrants must be able to support themselves.' Benefits received by family members won't count as the applicant's own, but officers may consider them when assessing finances. Immigration advocates warn of a 'chilling effect' on hundreds of thousands of immigrant families, including many Indian green card holders, who may disenroll from benefits they or their US-citizen children are eligible for to avoid jeopardizing their applications.",
     "severity": "high",
     "source": "USCIS / DHS / CNN / Reuters / Daily Caller"
-  },
-  {
-    "id": "state-dept-100k-green-card-bond-proposal",
-    "date": "2026-07-15",
-    "label": "Jul 15, 2026",
-    "headline": "Trump administration weighs $100,000 bond for overseas green card applicants \u2014 pilot planned for select countries",
-    "summary": "The State Department is developing a proposal to require some immigrant visa applicants at US consulates abroad to post a refundable bond of up to $100,000 before receiving a green card, the Wall Street Journal reported. The bond would be returned only after the applicant becomes a US citizen \u2014 a process taking at least five years \u2014 serving as collateral to ensure financial self-sufficiency. Family members could post the bond on behalf of applicants. Officials plan to pilot the program with a small number of countries before deciding on a broader rollout. State Department spokesperson Tommy Pigott confirmed the department is 'exploring existing authorities under the Immigration and Nationality Act' to implement the requirement. While most employment-based Indian applicants (H-1B holders already in the US) bypass overseas consular processing, a full rollout could heavily impact family-sponsored green card applicants from India. The proposal follows a similar pilot requiring tourist visa applicants from certain countries to post bonds of up to $15,000, where 97% compliance was reported.",
-    "severity": "high",
-    "source": "Wall Street Journal / State Department / Outlook Business / DevDiscourse"
-  },
-  {
-    "id": "trump-regulatory-agenda-h1b-h4-tightening",
-    "date": "2026-07-10",
-    "label": "Jul 10, 2026",
-    "headline": "Trump regulatory agenda targets H-1B, H-4, OPT in sweeping overhaul \u2014 formal proposals expected August",
-    "summary": "The Unified Regulatory Agendas released by DHS, DOL, and the State Department outline the most comprehensive tightening of the US immigration system in years. Key proposals: (1) H-4 EAD auto-extension ending \u2014 a final rule expected this month would end automatic work permit extensions for H-4 spouses, predominantly Indian, creating potential work authorization gaps even for timely filers; (2) Green Card wage thresholds rising from the 17th to the 34th percentile for H-1B workers and employment-based permanent residency applicants; (3) H-1B cap exemptions for universities, nonprofit research organizations, and affiliated institutions may be limited, forcing more applicants into the lottery; (4) STEM OPT extension and CPT restrictions proposed for February 2027, threatening the primary post-graduation work pathway for Indian students. None of the measures has taken effect yet, but formal proposals could open for public comment as early as August, with implementation potentially following soon after. Combined with the already-in-effect $100K H-1B fee and EB-2 India 'Unavailable' status, the regulatory agenda signals an unprecedented squeeze on Indian immigration pathways.",
-    "severity": "high",
-    "source": "DHS / DOL / State Department Unified Regulatory Agendas / Outlook Business / Bhaskar English"
   },
   {
     "id": "interview-waiver-eliminated",
