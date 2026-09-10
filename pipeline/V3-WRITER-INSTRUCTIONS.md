@@ -1,11 +1,14 @@
 # V3 Writer Cron Body — Article Quality Standard
 
-## Step 1 — Run V3 selector
-Launch the selector in the background, then poll for its output file — do NOT rely on a single blocking call:
+## Step 1 — Get the candidate list (selector already ran)
+A dedicated selector job (videshi-v3-select) runs at :25, 20 minutes before this writer. CHECK FOR ITS OUTPUT FIRST — do not launch another selector unless none exists:
+1. Look for a fresh candidate file (mtime < 45 min): `/tmp/v3-candidates.json`, then `~/workspace/the-videshi-news/pipeline/.state/v3-candidates.json` (persistent backup). If either exists, is fresh, and has a non-empty candidates array — use it and skip to Step 2.
+2. Only if no fresh file exists: launch the selector in the background and poll for its output — do NOT rely on a single blocking call:
 ```
 cd ~/workspace/the-videshi-news/pipeline && python3 -u v3-select.py --per-cat 3 2>&1 &
 ```
 Poll every 30s for up to 15 minutes until `/tmp/v3-candidates.json` has an mtime newer than the run start. The selector is lock-protected (exit 2 = another instance already running; just wait for its output), checkpoints scoring progress so killed runs don't lose work, and writes candidates atomically to both `/tmp` and a persistent backup. A backgrounded process is NOT a failure — wait for the file.
+3. Last resort: use the persistent backup if it is < 6h old with a non-empty candidates array. Otherwise report the selector failure and stop — never write articles without a candidate list.
 
 ## Step 2 — Read candidates
 Read `/tmp/v3-candidates.json`. It has a `candidates` array — each entry has `topic_id`, `title`, `category`, `llm_score`, `coverage` ("new" or "update"), `source_urls`, `all_signals`, and `llm_reason`.
