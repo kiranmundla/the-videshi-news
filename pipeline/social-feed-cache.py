@@ -265,6 +265,13 @@ def main():
         "categories": display,
     }
 
+    if total == 0 and os.path.exists(OUTPUT_PATH):
+        # Upstream fetch failure (e.g. transient Supabase outage empties the
+        # handle registry) — never blank the homepage feed. Keep the previous
+        # good output and let the next run retry.
+        print(f"\n  ⚠️ Display is empty but {OUTPUT_PATH} already exists — keeping previous output, not overwriting.")
+        return
+
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w") as f:
         json.dump(output, f, indent=2)
