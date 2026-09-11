@@ -1,5 +1,14 @@
 [
   {
+    "id": "grace-period-nprm-federal-register",
+    "date": "2026-09-11",
+    "label": "Sep 11, 2026",
+    "headline": "Federal Register publishes proposed rule to eliminate 60-day grace period \u2014 60-day public comment period opens",
+    "summary": "DHS published the Notice of Proposed Rulemaking (RIN 1615-AD22) in the Federal Register on September 11, 2026, formally proposing to eliminate the discretionary 60-day grace period for H-1B, H-1B1, L-1, O-1, E-1/E-2/E-3, and TN workers after job loss, plus their dependents. This moves the rule from White House OMB clearance (Aug 31) to the actual public comment phase \u2014 60 days for public input before DHS can issue a final rule. The NPRM discloses new details: about 3,795 workers use the grace period each year, 99.2% of them H-1B holders; DHS identified no direct benefits for workers or employers, acknowledged workers could lose wages and families could face sudden relocation costs, and conceded USCIS would have to spend resources placing non-departing workers into deportation proceedings, generating more work for ICE and backlogged immigration courts. Economist Daniel Di Martino (Manhattan Institute) warned the rule would give companies greater leverage over workers and steer them away from high-turnover startups, 'against the president's agenda of reducing abuse of the H-1B program.' The grace period remains fully in effect during the rulemaking process; it cannot end until a final rule is published.",
+    "severity": "high",
+    "source": "Reuters / Federal Register (Doc. 2026-18631) / USA Today / Envoy Global"
+  },
+  {
     "id": "duration-of-status-judge-signals-halt",
     "date": "2026-09-09",
     "label": "Sep 9, 2026",
@@ -160,15 +169,6 @@
     "summary": "The Department of Homeland Security published the final rule scrapping the 47-year-old 'Duration of Status' framework for F-1 students, J-1 exchange visitors, and I-visa journalists. Student and exchange visas are now capped at four years maximum, with extensions requiring USCIS filing. The grace period after program completion is cut from 60 to 30 days. Graduate students are prohibited from changing educational objectives or transferring schools without authorization. Journalists get a 240-day cap (90 days for Chinese nationals). The rule takes effect 60 days after Federal Register publication, subject to congressional review. DHS Secretary Mullin said the old system 'compromised national security and created an environment ripe for immigration fraud.' Indian students \u2014 the largest international cohort in the US \u2014 face the biggest impact, especially PhD candidates in programs exceeding four years. Immigration experts warn the rule will also narrow the Day 1 CPT pathway used by many Indian professionals after H-1B lottery rejections, and could deter graduate students from choosing US universities.",
     "severity": "high",
     "source": "DHS / Federal Register / USA TODAY / WSJ / Washington Examiner"
-  },
-  {
-    "id": "uscis-public-charge-rule-revival",
-    "date": "2026-07-16",
-    "label": "Jul 16, 2026",
-    "headline": "USCIS revives 'public charge' rule \u2014 green card applicants using Medicaid, food stamps, housing vouchers face denials starting September 18",
-    "summary": "DHS published a final rule rescinding the Biden-era 2022 public charge regulation and restoring the broader Trump first-term criteria. Starting September 18, 2026, USCIS officers can weigh an applicant's use of Medicaid, SNAP (food stamps), housing vouchers, and other means-tested benefits when deciding whether the applicant is likely to become a 'public charge' \u2014 a factor in green card adjudication. The Biden rule had limited consideration to only cash welfare. About 588,000 applicants undergo public charge reviews annually. USCIS will roll out a revised Form I-485 and reject older versions filed on or after September 18. USCIS Director Edlow said the agency is 'restoring the basic principle that immigrants must be able to support themselves.' Benefits received by family members won't count as the applicant's own, but officers may consider them when assessing finances. Immigration advocates warn of a 'chilling effect' on hundreds of thousands of immigrant families, including many Indian green card holders, who may disenroll from benefits they or their US-citizen children are eligible for to avoid jeopardizing their applications.",
-    "severity": "high",
-    "source": "USCIS / DHS / CNN / Reuters / Daily Caller"
   },
   {
     "id": "interview-waiver-eliminated",
