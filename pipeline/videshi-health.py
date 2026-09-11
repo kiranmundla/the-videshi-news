@@ -446,7 +446,10 @@ def check_image_health():
         f"&image_url=not.is.null&select=id,headline,image_url,category"
         f"&order=published_at.desc&limit=20")
 
-    broken = []      # 404, 403, timeout
+    broken = []      # 404, 403, confirmed dead
+    unverified = []  # timeouts / connection errors — ambiguous through this
+                     # proxy's slow egress; NOT counted as broken (a re-run
+                     # minutes later typically verifies them fine)
     tiny = []        # < 5KB (likely placeholder/icon)
     not_image = []   # content-type isn't image/*
     flag_imgs = []   # generic flag images
@@ -474,23 +477,41 @@ def check_image_health():
             flag_imgs.append({"id": a["id"], "headline": a["headline"][:60], "url": url[:80]})
             continue
 
+        # Verify the URL with one retry — this host's egress is slow and a
+        # single 5s timeout is usually transient, not a dead image.
+        resp = None
+        last_err = None
+        for attempt, to in enumerate((5, 12)):
+            try:
+                # NOTE: HEAD requests always 400 on upload.wikimedia.org (the
+                # dominant hero-image source), so we MUST use GET. Use a tiny Range
+                # request so we don't download the whole file just to validate it.
+                resp = requests.get(url, timeout=to, allow_redirects=True, stream=True,
+                                    headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)",
+                                             "Range": "bytes=0-2048"})
+                last_err = None
+                break
+            except Exception as e:
+                last_err = e
+                resp = None
         try:
-            # NOTE: HEAD requests always 400 on upload.wikimedia.org (the
-            # dominant hero-image source), so we MUST use GET. Use a tiny Range
-            # request so we don't download the whole file just to validate it.
-            r = requests.get(url, timeout=5, allow_redirects=True, stream=True,
-                             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)",
-                                      "Range": "bytes=0-2048"})
-            if r.status_code >= 400:
+            if resp is None:
+                # Both attempts failed without an HTTP response — ambiguous
+                # (proxy timeout), not proof the image is dead.
+                unverified.append({
+                    "id": a["id"], "headline": a["headline"][:60],
+                    "reason": f"timeout/error: {str(last_err)[:40]}", "url": url[:80],
+                })
+            elif resp.status_code >= 400:
                 broken.append({
                     "id": a["id"], "headline": a["headline"][:60],
-                    "reason": f"HTTP {r.status_code}", "url": url[:80],
+                    "reason": f"HTTP {resp.status_code}", "url": url[:80],
                 })
             else:
-                ct = r.headers.get("content-type", "")
+                ct = resp.headers.get("content-type", "")
                 # content-length on a Range request is the chunk size, so for
                 # total size prefer content-range total when present.
-                cr = r.headers.get("content-range", "")
+                cr = resp.headers.get("content-range", "")
                 total = 0
                 if "/" in cr:
                     try:
@@ -498,7 +519,7 @@ def check_image_health():
                     except ValueError:
                         total = 0
                 if not total:
-                    total = int(r.headers.get("content-length", 0) or 0)
+                    total = int(resp.headers.get("content-length", 0) or 0)
                 if ct and "image" not in ct and "octet-stream" not in ct:
                     not_image.append({
                         "id": a["id"], "headline": a["headline"][:60],
@@ -509,9 +530,10 @@ def check_image_health():
                         "id": a["id"], "headline": a["headline"][:60],
                         "bytes": total, "url": url[:80],
                     })
-            r.close()
+            if resp is not None:
+                resp.close()
         except Exception as e:
-            broken.append({
+            unverified.append({
                 "id": a["id"], "headline": a["headline"][:60],
                 "reason": f"timeout/error: {str(e)[:40]}", "url": url[:80],
             })
@@ -521,6 +543,8 @@ def check_image_health():
         "check": "image_health",
         "articles_checked": len(articles),
         "broken_images": broken[:5],
+        "unverified_images": unverified[:5],
+        "unverified_count": len(unverified),
         "tiny_images": tiny[:5],
         "not_image_content": not_image[:5],
         "flag_images": flag_imgs[:5],
