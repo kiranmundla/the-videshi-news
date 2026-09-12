@@ -18,6 +18,15 @@
     "source": "The PIE News / Boston Globe / NAFSA"
   },
   {
+    "date": "2026-09-09",
+    "headline": "DHS interim final rule lets U.S.-born children of foreign government employees register as green card holders \u2014 implements birthright EO 14418",
+    "id": "dhs-lpr-registration-foreign-govt-employee-children",
+    "label": "Sep 9, 2026",
+    "severity": "medium",
+    "source": "DHS / Federal Register / Law Offices of Keshab Raj Seadie",
+    "summary": "DHS published an interim final rule (91 Fed. Reg. 57249, Docket USCIS-2026-0496) creating a mechanism for U.S.-born children of foreign government employees who do not acquire U.S. citizenship at birth under Executive Order 14418 to voluntarily register as lawful permanent residents. It broadens the existing framework \u2014 previously limited to children of accredited diplomatic officers \u2014 to cover nationals employed by their country's embassy or consulate, foreign government employees in official capacity, and qualifying international-organization employees. Published September 9, 2026, effective September 4, 2026, applying prospectively to children born on or after that date; Forms I-485 and G-325R are being revised. Comments accepted through October 5, 2026. Relevant to foreign diplomatic families in the US, including Indian diplomats."
+  },
+  {
     "id": "immigrant-visa-pause-selective-resumption",
     "date": "2026-09-08",
     "label": "Sep 8, 2026",
@@ -25,6 +34,15 @@
     "summary": "The Trump administration resumed processing immigrant visa applications from Hungary and Poland last week while keeping the temporary global pause in place at all other missions, according to four people familiar with the matter cited by Reuters. The directive to prioritize the two countries reportedly came from the White House. The State Department's August 25 global pause \u2014 ordered days after federal judges struck down the administration's 75-country blanket immigrant visa suspension \u2014 halted interviews worldwide pending mandatory 'public charge' training for consular officers. Applicants in India and elsewhere have posted about canceled interviews stretching through September. The pause could last months: posts must self-train on Washington-sent materials, then a consular officer must visit each mission to certify completion. The White House and State Department declined to explain why Hungary and Poland were singled out.",
     "severity": "high",
     "source": "Reuters"
+  },
+  {
+    "date": "2026-09-08",
+    "headline": "DOL suspends Cognizant's (and Cloudera's) PERM filings amid visa fraud probe \u2014 White House Fraud Task Force involved",
+    "id": "cognizant-perm-suspension-dol-fraud-probe",
+    "label": "Sep 8, 2026",
+    "severity": "high",
+    "source": "DOL Inspector General (X) / PTI / The Hindu BusinessLine / Dainik Jagran / Outlook Business",
+    "summary": "Department of Labor Inspector General Anthony D'Esposito announced on X on September 8 that Cognizant's PERM (Permanent Labor Certification) filings are suspended while investigators examine alleged fraud involving the H-1B and PERM programs, acting after 'multiple tips about violations from whistleblowers.' Cloudera's PERM filings were suspended the same day. The probe is being conducted alongside the White House Fraud Task Force and DOL is 'running down' prior applications one by one. DOL has not specified the allegations, the number of applications affected, or how long the suspension will last; it does not establish that fraud occurred. PERM is the first step of employment-based green card sponsorship \u2014 the suspension blocks Cognizant from starting new green card cases for foreign workers, raising concerns for the Chennai-founded IT major's Indian workforce and, per analysts, for the broader Indian IT sector's ability to attract and retain foreign talent on long-term US projects."
   },
   {
     "id": "duration-of-status-lawsuit-filed",
@@ -151,24 +169,6 @@
     "summary": "Sen. Tim Sheehy (R-MT) introduced the 'End H-1B Abuse Act' in the Senate, mirroring Rep. Eli Crane's April House bill. The legislation would pause all new H-1B visas for three years, permanently replace the lottery with a wage-based selection system, codify the $100,000 petition fee struck down by courts, ban concurrent employment and third-party staffing models, end the 'dual intent' provision that lets H-1B holders pursue green cards, prevent H-class visa holders from bringing dependents, bar federal agencies from sponsoring visa holders, and eliminate Optional Practical Training (OPT) for students. The bill is backed by the Federation for American Immigration Reform (FAIR). While unlikely to pass in its current form, the Senate companion signals growing bipartisan-adjacent momentum to fundamentally reshape the H-1B program that employs hundreds of thousands of Indian tech professionals.",
     "severity": "high",
     "source": "Sen. Tim Sheehy / The Hindu BusinessLine / FAIR"
-  },
-  {
-    "id": "august-2026-visa-bulletin-india",
-    "date": "2026-07-21",
-    "label": "Jul 21, 2026",
-    "headline": "August 2026 Visa Bulletin: Zero movement for India \u2014 EB-2 still unavailable, EB-1 and EB-3 frozen until FY2027",
-    "summary": "The State Department's August 2026 Visa Bulletin, released July 21, shows no progress for Indian green card applicants across all employment-based categories. EB-2 India remains 'Unavailable' \u2014 no visas will be issued until FY2027 begins October 1. EB-1 India stays frozen at October 15, 2022. EB-3 India remains stuck at January 1, 2014 \u2014 a 12.5-year backlog. EB-5 unreserved India also remains 'Unavailable.' Meanwhile, EB-3 Rest of World advanced one month to September 1, 2024, and China EB-1 advanced to July 1, 2023. With FY2026 ending September 30, the State Department has warned that further retrogressions are possible. For the hundreds of thousands of Indian professionals in the green card queue, the bulletin confirms what many feared: no relief until the new fiscal year.",
-    "severity": "high",
-    "source": "US State Department / August 2026 Visa Bulletin"
-  },
-  {
-    "id": "duration-of-status-final-rule-published",
-    "date": "2026-07-16",
-    "label": "Jul 16, 2026",
-    "headline": "DHS publishes final rule ending 'Duration of Status' \u2014 student visas capped at 4 years, grace period halved to 30 days",
-    "summary": "The Department of Homeland Security published the final rule scrapping the 47-year-old 'Duration of Status' framework for F-1 students, J-1 exchange visitors, and I-visa journalists. Student and exchange visas are now capped at four years maximum, with extensions requiring USCIS filing. The grace period after program completion is cut from 60 to 30 days. Graduate students are prohibited from changing educational objectives or transferring schools without authorization. Journalists get a 240-day cap (90 days for Chinese nationals). The rule takes effect 60 days after Federal Register publication, subject to congressional review. DHS Secretary Mullin said the old system 'compromised national security and created an environment ripe for immigration fraud.' Indian students \u2014 the largest international cohort in the US \u2014 face the biggest impact, especially PhD candidates in programs exceeding four years. Immigration experts warn the rule will also narrow the Day 1 CPT pathway used by many Indian professionals after H-1B lottery rejections, and could deter graduate students from choosing US universities.",
-    "severity": "high",
-    "source": "DHS / Federal Register / USA TODAY / WSJ / Washington Examiner"
   },
   {
     "id": "interview-waiver-eliminated",
