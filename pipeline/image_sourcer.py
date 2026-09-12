@@ -169,15 +169,42 @@ _PREFERRED_NEWS_DOMAINS = {
 
 
 def _is_generic_og_image(img_url):
-    """Check if an og:image URL is a generic placeholder/logo rather than article-specific."""
+    """Check if an og:image URL is a generic placeholder/logo rather than article-specific.
+
+    NOTE (2026-09-12): Hindustan Times serves ALL editorial images from a CDN path
+    like /ht-img/img/YYYY/MM/DD/{size}/logo/{filename} — "logo" there is a crop-preset
+    directory marker, not an actual logo image. A blanket "logo" substring match was
+    rejecting every HT og:image and dropping home-tour (and other) articles to
+    Wikipedia portraits. So "logo" is only generic when it appears in the filename,
+    not in an intermediate directory segment.
+    """
     if not img_url:
         return True
     lower = img_url.lower()
+    try:
+        path = urllib.parse.urlparse(lower).path
+    except Exception:
+        path = lower
+    segments = [s for s in path.split("/") if s]
+    filename = segments[-1] if segments else ""
+    dir_segments = segments[:-1]
+
+    # The filename is checked against every pattern (site-logo.png etc. still caught)
     for pattern in _OG_IMAGE_BLOCKLIST_PATTERNS:
-        if pattern in lower:
+        if pattern in filename:
             return True
-    for path in _OG_IMAGE_BLOCKLIST_PATHS:
-        if path in lower:
+    # Directory segments are checked too (catches /default/550x309.jpg style
+    # placeholders), but NOT for "logo" — several news CDNs (HT included) use
+    # /logo/ as a structural directory marker in real editorial image URLs.
+    for pattern in _OG_IMAGE_BLOCKLIST_PATTERNS:
+        if pattern == "logo":
+            continue
+        for seg in dir_segments:
+            if pattern in seg:
+                return True
+
+    for path_prefix in _OG_IMAGE_BLOCKLIST_PATHS:
+        if path_prefix in lower:
             return True
     # Skip .gif (usually low-quality thumbnails or tracking pixels)
     if lower.endswith(".gif"):
