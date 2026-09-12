@@ -404,6 +404,23 @@ def main():
     parser.add_argument("--batch", action="store_true", help="Read JSON instructions from stdin")
     args = parser.parse_args()
 
+    # ── Overlap lock: image_sourcer.py --backfill also writes image_url.
+    # Don't clobber each other — skip if the other holds the lock.
+    _lock_fh = None
+    if args.apply:
+        import fcntl
+        _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state", "image-write.lock")
+        os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
+        _lock_fh = open(_lock_path, "w")
+        try:
+            fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except (IOError, OSError):
+            print("Another image writer holds the lock — skipping to avoid clobbering.")
+            _lock_fh.close()
+            sys.exit(0)
+        _lock_fh.write(f"{os.getpid()}\n")
+        _lock_fh.flush()
+
     if args.batch:
         instructions = json.loads(sys.stdin.read())
         if isinstance(instructions, dict):
@@ -411,6 +428,8 @@ def main():
         print(f"Processing {len(instructions)} articles...")
         for instr in instructions:
             process_instruction(instr, apply=args.apply)
+        if _lock_fh:
+            _lock_fh.close()
         return
 
     if not args.article_id:
@@ -435,6 +454,8 @@ def main():
         instr["check_only"] = True
 
     process_instruction(instr, apply=args.apply)
+    if _lock_fh:
+        _lock_fh.close()  # release image-write lock
 
 
 if __name__ == "__main__":

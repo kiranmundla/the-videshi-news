@@ -1174,6 +1174,19 @@ if __name__ == "__main__":
 
     elif args.backfill:
         from datetime import datetime, timedelta, timezone
+        # ── Overlap lock: the 4h enricher also writes image_url. Don't clobber it.
+        import fcntl
+        _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state", "image-write.lock")
+        os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
+        _lock_fh = open(_lock_path, "w")
+        try:
+            fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except (IOError, OSError):
+            print("Another image writer holds the lock — skipping backfill to avoid clobbering.")
+            _lock_fh.close()
+            sys.exit(0)
+        _lock_fh.write(f"{os.getpid()}\n")
+        _lock_fh.flush()
         cutoff = (datetime.now(timezone.utc) - timedelta(hours=args.hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
         print(f"Backfilling hero images for articles published since {cutoff}...")
         encoded_cutoff = urllib.parse.quote(cutoff, safe='')
@@ -1234,6 +1247,7 @@ if __name__ == "__main__":
         mode = "APPLIED" if args.apply else "DRY RUN"
         print(f"\n{'='*50}")
         print(f"Backfill complete ({mode}): {fixed} fixed, {failed} still missing out of {len(rows)}")
+        _lock_fh.close()  # release image-write lock
 
     else:
         parser.print_help()
