@@ -61,10 +61,10 @@ def sb_get(endpoint, params=None):
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
     r = _safe_run(
-        ["curl", "-s", url,
+        ["curl", "-s", "--max-time", "60", url,
          "-H", f"apikey: {SB_KEY}",
          "-H", f"Authorization: Bearer {SB_KEY}"],
-        capture_output=True, text=True, timeout=30
+        capture_output=True, text=True, timeout=70
     )
     return json.loads(r.stdout) if r.stdout.strip() else []
 
@@ -73,13 +73,13 @@ def sb_patch(article_id, data):
     url = f"https://{SB_HOST}/rest/v1/p2_articles?id=eq.{article_id}"
     payload = json.dumps(data)
     r = _safe_run(
-        ["curl", "-s", "-X", "PATCH", url,
+        ["curl", "-s", "--max-time", "60", "-X", "PATCH", url,
          "-H", f"apikey: {SB_KEY}",
          "-H", f"Authorization: Bearer {SB_KEY}",
          "-H", "Content-Type: application/json",
          "-H", "Prefer: return=minimal",
          "-d", payload],
-        capture_output=True, text=True, timeout=30
+        capture_output=True, text=True, timeout=70
     )
     return r.returncode == 0
 

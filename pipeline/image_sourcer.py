@@ -286,12 +286,12 @@ def fetch_signal_images(topic_id):
         return []
     
     try:
-        result = subprocess.run(
-            ["curl", "-sS", "--max-time", "10",
+        result = _safe_run(
+            ["curl", "-sS", "--max-time", "60",
              f"{SUPABASE_URL}/rest/v1/p2_signals?topic_id=eq.{topic_id}&image_url=not.is.null&select=image_url,original_url&limit=5",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-            capture_output=True, text=True, timeout=15
+            capture_output=True, text=True, timeout=70
         )
         data = json.loads(result.stdout)
         return [s["image_url"] for s in data if s.get("image_url")]
@@ -308,12 +308,12 @@ def fetch_source_urls(topic_id):
         return []
     
     try:
-        result = subprocess.run(
-            ["curl", "-sS", "--max-time", "10",
+        result = _safe_run(
+            ["curl", "-sS", "--max-time", "60",
              f"{SUPABASE_URL}/rest/v1/p2_signals?topic_id=eq.{topic_id}&select=original_url&limit=5&order=published_at.desc",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-            capture_output=True, text=True, timeout=15
+            capture_output=True, text=True, timeout=70
         )
         data = json.loads(result.stdout)
         raw_urls = [s["original_url"] for s in data if s.get("original_url")]
@@ -358,12 +358,12 @@ def fetch_cached_person_image(person_name):
     
     try:
         encoded_name = urllib.parse.quote(person_name.lower(), safe='')
-        result = subprocess.run(
-            ["curl", "-sS", "--max-time", "10",
+        result = _safe_run(
+            ["curl", "-sS", "--max-time", "60",
              f"{SUPABASE_URL}/rest/v1/person_images?person_name_lower=eq.{encoded_name}&select=image_url&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-            capture_output=True, text=True, timeout=15
+            capture_output=True, text=True, timeout=70
         )
         data = json.loads(result.stdout)
         if data and data[0].get("image_url"):
