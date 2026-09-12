@@ -13,17 +13,27 @@ interface Props {
   onPhotoClick?: (photos: Photo[], index: number) => void;
 }
 
+const GAP = 12;
+const FADE_WIDTH = 56;
+
 export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight = 180, objectFit = "cover", onPhotoClick }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const nudgedRef = useRef(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const updateScrollButtons = useCallback(() => {
+  const updateScrollState = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 10);
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  }, []);
+    const first = el.children[0] as HTMLElement | undefined;
+    const step = first ? first.offsetWidth + GAP : el.clientWidth * 0.75;
+    if (step > 0) {
+      setCurrentIndex(Math.min(photos.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
+    }
+  }, [photos.length]);
 
   const scrollStrip = useCallback((direction: "left" | "right") => {
     const el = scrollRef.current;
@@ -35,14 +45,28 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    updateScrollButtons();
-    el.addEventListener("scroll", updateScrollButtons, { passive: true });
-    window.addEventListener("resize", updateScrollButtons);
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
     return () => {
-      el.removeEventListener("scroll", updateScrollButtons);
-      window.removeEventListener("resize", updateScrollButtons);
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
     };
-  }, [photos, updateScrollButtons]);
+  }, [photos, updateScrollState]);
+
+  // One-time scroll "nudge" on first view so readers discover the strip is swipeable
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || nudgedRef.current || photos.length < 2) return;
+    nudgedRef.current = true;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = setTimeout(() => {
+      if (el.scrollWidth - el.clientWidth < 40) return;
+      el.scrollBy({ left: 64, behavior: "smooth" });
+      setTimeout(() => { el.scrollBy({ left: -64, behavior: "smooth" }); }, 650);
+    }, 600);
+    return () => clearTimeout(t);
+  }, [photos.length]);
 
   if (!photos.length) return null;
 
@@ -66,9 +90,65 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
     opacity: 0.9,
   };
 
+  const fadeBase: React.CSSProperties = {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    width: FADE_WIDTH,
+    zIndex: 5,
+    pointerEvents: "none",
+  };
+
   return (
     <div style={{ position: "relative" }}>
       <style>{`.photo-scroll-strip::-webkit-scrollbar { display: none; }`}</style>
+
+      {/* Edge fades — signal more content in that direction */}
+      {canScrollLeft && (
+        <div
+          aria-hidden
+          style={{
+            ...fadeBase,
+            left: 0,
+            background: "linear-gradient(to right, hsl(var(--background)), hsl(var(--background) / 0))",
+          }}
+        />
+      )}
+      {canScrollRight && (
+        <div
+          aria-hidden
+          style={{
+            ...fadeBase,
+            right: 0,
+            background: "linear-gradient(to left, hsl(var(--background)), hsl(var(--background) / 0))",
+          }}
+        />
+      )}
+
+      {/* Photo counter — makes the total count visible at a glance */}
+      {photos.length > 1 && (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: 8,
+            right: 8,
+            zIndex: 10,
+            background: "rgba(0,0,0,0.55)",
+            backdropFilter: "blur(4px)",
+            color: "#fff",
+            fontSize: 12,
+            fontWeight: 600,
+            fontVariantNumeric: "tabular-nums",
+            padding: "4px 10px",
+            borderRadius: 999,
+            pointerEvents: "none",
+            letterSpacing: "0.02em",
+          }}
+        >
+          {currentIndex + 1} / {photos.length}
+        </div>
+      )}
 
       {canScrollLeft && (
         <button
@@ -97,7 +177,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
         className="photo-scroll-strip"
         style={{
           display: "flex",
-          gap: 12,
+          gap: GAP,
           overflowX: "auto",
           overflowY: "hidden",
           WebkitOverflowScrolling: "touch",
@@ -115,7 +195,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
             style={{
               position: "relative",
               width: itemWidth,
-              maxWidth: "calc(100vw - 32px)",
+              maxWidth: "calc(100vw - 88px)",
               flexShrink: 0,
               cursor: onPhotoClick ? "pointer" : "default",
               scrollSnapAlign: "center",
