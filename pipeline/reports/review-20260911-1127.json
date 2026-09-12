@@ -1,0 +1,80 @@
+[
+  {
+    "id": "3af0d27d-21f8-4c82-a918-8382320cb045",
+    "headline": "Russian drones kill 2 at Ukraine-Moldova border crossing; Zelenskyy demands glob",
+    "slug": "russian-drones-kill-2-ukraine-moldova-border-crossing-zelenskyy-demands-global-action",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs regarding the impact of the Ukraine-Russia conflict on their communities, especially those with ties to Ukraine or Moldova.",
+        "Provide additional context on how the ongoing conflict affects trade routes that are significant for the Indian diaspora, particularly in terms of supply chains or economic implications for NRIs involved in international business.",
+        "Consider adding a section that discusses how the Indian government is responding to the conflict, especially in terms of evacuating Indian nationals or providing support to affected regions, to make the article more relevant to NRIs.",
+        "Clarify the timeline of events and their implications for the international community, particularly focusing on how these developments may affect global geopolitical dynamics that concern the Indian diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from President Zelenskyy or a statement from the Indian Ministry of External Affairs regarding the conflict to provide real-time updates and official perspectives."
+      ]
+    }
+  },
+  {
+    "id": "7196bf5c-f579-46cd-8455-0277e431393e",
+    "headline": "Pakistan rules out immediate military action under Mecca pact after Houthi attac",
+    "slug": "pakistan-rules-out-immediate-military-action-under-mecca-pact-after-houthi-attacks",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from the Indian diaspora in the Gulf region regarding the implications of the Mecca pact and Houthi attacks. This could highlight how these geopolitical events affect NRIs living and working in those areas.",
+        "Provide additional context about the Mecca pact and its significance for NRIs, particularly those with ties to the Gulf countries. Explain how this agreement could impact their safety, business interests, or political engagement in the region.",
+        "Clarify the timeline of events by explicitly stating when the Mecca pact was signed and how it relates to the recent Houthi attacks. This will help readers understand the urgency and relevance of the situation.",
+        "Include a brief analysis of how the geopolitical dynamics in the region might affect the Indian diaspora, especially in terms of economic opportunities or security concerns."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Pakistan Foreign Ministry or a relevant news outlet that discusses the Mecca pact and its implications, which would provide real-time updates and credibility to the article."
+      ]
+    }
+  },
+  {
+    "id": "5c98984a-2a10-4d1a-af61-c4435383fbf7",
+    "headline": "'More or less' finalised: commerce secretary says India-US trade deal nears sign",
+    "slug": "more-or-less-finalised-commerce-secretary-says-india-us-trade-deal-nears-signing",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian business leaders or NRIs who are directly impacted by the trade deal. This could provide a personal touch and highlight the significance of the deal for the Indian diaspora in the US.",
+        "Provide more context on how the trade deal could specifically benefit NRIs, such as potential job opportunities or investment prospects in both countries. This would help readers understand the direct implications for the diaspora community.",
+        "Clarify the timeline for the signing of the trade deal and what 'appropriate time' means in this context. This could help readers gauge the urgency and potential impact of the deal on the NRI community.",
+        "Include a brief section on the historical context of India-US trade relations and previous negotiations to give readers a better understanding of how this deal fits into the larger picture."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the trade deal or related policies to provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "ba8c2fa4-bbe5-482e-ae43-d2805727f8dd",
+    "headline": "Rights groups condemn 'racist murder' of Manipuri singer in Delhi, demand racial",
+    "slug": "rights-groups-condemn-racist-murder-of-manipuri-singer-in-delhi",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRI communities or organizations, particularly those representing the Manipuri or broader Northeast Indian diaspora, to highlight how this incident resonates with them and their concerns about racial discrimination in India.",
+        "Provide additional context on the historical and ongoing issues of racial discrimination faced by individuals from Northeast India, particularly in urban areas like Delhi, to deepen the reader's understanding of why this incident is significant for both local and diaspora communities.",
+        "Include a brief section on how the diaspora can support or engage with advocacy efforts related to this incident, such as participating in vigils or supporting organizations working against racial discrimination, to make the article more relevant to NRIs.",
+        "Clarify the timeline of events by specifying the dates of the vigil and the joint statement in relation to the incident to enhance the narrative flow and provide a clearer context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent NRI figure or organization expressing solidarity with the victim's family or condemning the violence, which could amplify the diaspora's voice on this issue."
+      ]
+    }
+  }
+]

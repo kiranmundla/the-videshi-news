@@ -904,10 +904,14 @@ def check_worldcup_social_embeds(fix=False):
 
     ig_re = re.compile(r'^https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/[A-Za-z0-9_-]+/?$')
     threads_re = re.compile(r'^https?://(?:www\.)?threads\.(?:com|net)/@[\w.]+/post/[A-Za-z0-9_-]+/?$')
+    # Known platforms get graceful frontend rendering: instagram/threads = native
+    # embeds, everything else = fallback link card (HighlightCard in WorldCupPage).
+    KNOWN_PLATFORMS = {"instagram", "threads", "facebook", "youtube", "twitter", "x"}
 
     issues = []
-    platform_counts = {"instagram": 0, "threads": 0, "other": 0}
+    platform_counts = {"instagram": 0, "threads": 0, "facebook": 0, "other": 0}
     missing_fields = 0
+    account_missing = 0
     bad_urls = []
     unreachable = []
 
@@ -917,11 +921,16 @@ def check_worldcup_social_embeds(fix=False):
         account = h.get("account", "")
         caption = h.get("caption", "")
 
-        # Check required fields
-        if not all([plat, url, account, caption]):
+        # Required fields — caption is optional: the fallback link card renders
+        # fine with account + date even when caption is blank.
+        if not all([plat, url]):
             missing_fields += 1
-            issues.append(f"highlight[{i}]: missing fields (platform={plat!r}, url={url!r})")
+            issues.append(f"highlight[{i}]: missing platform/url")
             continue
+        # Missing account is cosmetic only (card renders with blank account
+        # label); track separately, don't alert.
+        if not account:
+            account_missing += 1
 
         # Count platforms
         if plat == "instagram":
@@ -932,6 +941,10 @@ def check_worldcup_social_embeds(fix=False):
             platform_counts["threads"] += 1
             if not threads_re.match(url):
                 bad_urls.append({"index": i, "platform": plat, "url": url, "reason": "invalid Threads URL format"})
+        elif plat == "facebook":
+            platform_counts["facebook"] += 1
+        elif plat in KNOWN_PLATFORMS:
+            platform_counts["other"] += 1
         else:
             platform_counts["other"] += 1
             issues.append(f"highlight[{i}]: unknown platform {plat!r}")
@@ -955,6 +968,7 @@ def check_worldcup_social_embeds(fix=False):
         "total_highlights": len(highlights),
         "platform_counts": platform_counts,
         "missing_fields": missing_fields,
+        "account_missing": account_missing,
         "bad_urls": bad_urls[:5],  # cap output
         "unreachable_samples": unreachable,
         "count": total_issues,

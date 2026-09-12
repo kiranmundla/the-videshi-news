@@ -1,0 +1,122 @@
+[
+ {
+  "topic_id": "b20f4bfe-0602-4f2c-966f-992126784b20",
+  "title": "Russian drones kill 2 in Ukraine's Moldova; Zelenskyy urges stronger global response",
+  "description": "",
+  "category": "news",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T08:44:12+00:00",
+  "source_urls": [
+   "https://timesofindia.indiatimes.com/world/europe/russian-drones-kills-2-in-ukraines-moldova-zelenskyy-urges-stronger-global-response/articleshow/133960782.cms"
+  ],
+  "all_signals": [
+   {
+    "title": "Russian drones kill 2 in Ukraine's Moldova; Zelenskyy urges stronger global response",
+    "url": "https://timesofindia.indiatimes.com/world/europe/russian-drones-kills-2-in-ukraines-moldova-zelenskyy-urges-stronger-global-response/articleshow/133960782.cms",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "The drone attacks in Ukraine and the call for a global response are significant geopolitical events that could affect international relations and security, relevant to the diaspora.",
+  "coverage": "new",
+  "ig_handles": [],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "f89a8a52-07b5-47a8-b3ed-96fbe88d6794",
+  "title": "'Attack on one is attack on all': Pakistan warns Houthis, invokes Mecca defence pact",
+  "description": "",
+  "category": "news",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T06:10:52+00:00",
+  "source_urls": [
+   "https://timesofindia.indiatimes.com/world/pakistan/attack-on-one-is-attack-on-all-pakistan-warns-houthis-invokes-mecca-defence-pact/articleshow/133955778.cms"
+  ],
+  "all_signals": [
+   {
+    "title": "'Attack on one is attack on all': Pakistan warns Houthis, invokes Mecca defence pact",
+    "url": "https://timesofindia.indiatimes.com/world/pakistan/attack-on-one-is-attack-on-all-pakistan-warns-houthis-invokes-mecca-defence-pact/articleshow/133955778.cms",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "Pakistan's warning to Houthis regarding regional security is significant for geopolitical stability, which is relevant to the Indian diaspora's interests.",
+  "coverage": "new",
+  "ig_handles": [],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "885058f1-2a98-42bd-8559-09d045d725f4",
+  "title": "India-US trade deal soon? Commerce secy gives update on long-awaited pact",
+  "description": "",
+  "category": "news",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T09:43:03+00:00",
+  "source_urls": [
+   "https://timesofindia.indiatimes.com/business/india-business/more-or-less-finalised-india-us-trade-deal-nears-signing-says-commerce-secretary/articleshow/133962494.cms"
+  ],
+  "all_signals": [
+   {
+    "title": "India-US trade deal soon? Commerce secy gives update on long-awaited pact",
+    "url": "https://timesofindia.indiatimes.com/business/india-business/more-or-less-finalised-india-us-trade-deal-nears-signing-says-commerce-secretary/articleshow/133962494.cms",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "The potential India-US trade deal is significant for the diaspora, impacting trade relations and economic opportunities.",
+  "coverage": "new",
+  "ig_handles": [],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "548336da-78d6-4ce3-93c2-2a892bcffa16",
+  "title": "Human rights organisations condemn 'racist murder' of Manipuri singer in Delhi",
+  "description": "",
+  "category": "news",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T09:43:35+00:00",
+  "source_urls": [
+   "https://timesofindia.indiatimes.com/india/human-rights-organisations-condemn-racist-murder-of-manipuri-singer-chongtham-vikram-in-delhi/articleshow/133962713.cms"
+  ],
+  "all_signals": [
+   {
+    "title": "Human rights organisations condemn 'racist murder' of Manipuri singer in Delhi",
+    "url": "https://timesofindia.indiatimes.com/india/human-rights-organisations-condemn-racist-murder-of-manipuri-singer-chongtham-vikram-in-delhi/articleshow/133962713.cms",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "The condemnation of the murder of a Manipuri singer highlights ongoing issues of racial violence in India, relevant to the diaspora's concerns about human rights.",
+  "coverage": "new",
+  "ig_handles": [],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ }
+]

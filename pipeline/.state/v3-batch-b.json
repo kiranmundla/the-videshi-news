@@ -1,0 +1,192 @@
+[
+ {
+  "topic_id": "24ebac0e-4d88-4181-9d42-9fd25273109d",
+  "title": "U.S. suspends permanent labour certification filings by Cognizant, Cloudera",
+  "description": "",
+  "category": "immigration",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T11:00:44+00:00",
+  "source_urls": [
+   "https://www.thehindu.com/news/international/us-suspends-permanent-labour-certification-filings-by-cognizant-cloudera/article71446932.ece"
+  ],
+  "all_signals": [
+   {
+    "title": "U.S. suspends permanent labour certification filings by Cognizant, Cloudera",
+    "url": "https://www.thehindu.com/news/international/us-suspends-permanent-labour-certification-filings-by-cognizant-cloudera/article71446932.ece",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "The suspension of permanent labor certification filings by Cognizant is significant for Indian professionals and their immigration prospects in the US.",
+  "coverage": "new",
+  "ig_handles": [
+   {
+    "handle": "@cognizant",
+    "type": "org",
+    "keywords": [
+     "cognizant",
+     "immigration",
+     "labor certification"
+    ]
+   }
+  ],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "aa533329-bc94-4209-b9b5-2bd91777051f",
+  "title": "Trump\u2019s terrible plan to break skilled immigration - Slow Boring",
+  "description": "",
+  "category": "immigration",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "google_news"
+  ],
+  "newest_signal": "2026-09-09T10:00:39+00:00",
+  "source_urls": [
+   "https://news.google.com/rss/articles/CBMidEFVX3lxTE96aExIeUJaY3drT1NFUm0wa3VPaEhhSEdpLUg1OVEwNFdsQktuQkFCbWJYVEFSQW1JLU5qRHV2OU0tTDhCM2F1dmpsN3RDM2RpS0RjMVBLcTgxNE1abEROQTBVenVOU0lMOHRCM2s5eFlnR3hl?oc=5"
+  ],
+  "all_signals": [
+   {
+    "title": "Trump\u2019s terrible plan to break skilled immigration - Slow Boring",
+    "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE96aExIeUJaY3drT1NFUm0wa3VPaEhhSEdpLUg1OVEwNFdsQktuQkFCbWJYVEFSQW1JLU5qRHV2OU0tTDhCM2F1dmpsN3RDM2RpS0RjMVBLcTgxNE1abEROQTBVenVOU0lMOHRCM2s5eFlnR3hl?oc=5",
+    "source": "Slow Boring"
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "This article critiques Trump's immigration plan, which has direct implications for Indian immigrants and the tech industry.",
+  "coverage": "new",
+  "ig_handles": [],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "a141c14a-b0f9-4f03-bda9-5b52257524a9",
+  "title": "Jio Payment Solutions launches cross-border payments to connect exporters with global markets",
+  "description": "",
+  "category": "technology",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T11:11:59+00:00",
+  "source_urls": [
+   "https://www.thehindu.com/business/Industry/jio-payment-solutions-launches-cross-border-payments-to-connect-exporters-with-global-markets/article71446946.ece"
+  ],
+  "all_signals": [
+   {
+    "title": "Jio Payment Solutions launches cross-border payments to connect exporters with global markets",
+    "url": "https://www.thehindu.com/business/Industry/jio-payment-solutions-launches-cross-border-payments-to-connect-exporters-with-global-markets/article71446946.ece",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "Jio Payment Solutions' launch of cross-border payments is significant for Indian exporters and the diaspora's business interests.",
+  "coverage": "new",
+  "ig_handles": [
+   {
+    "handle": "@jio",
+    "type": "org",
+    "keywords": [
+     "jio",
+     "payments",
+     "cross-border"
+    ]
+   }
+  ],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "46492336-ebff-4685-9abe-42bbeba859a4",
+  "title": "TCS launches fully automated facility in Pune to advance AI-led manufacturing - BusinessLine",
+  "description": "",
+  "category": "technology",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "google_news"
+  ],
+  "newest_signal": "2026-09-09T11:01:38+00:00",
+  "source_urls": [
+   "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNMjFSc3VHWTRmaWwyVmR5TkY0X1VoN1hSRE5jTUlnNFphaTFMbnRsNXpTVlZ3M0RkbWRBRGhWQUpmZEZQNXlIaUJDeWpBcFNIaGZuS3BGMjY2aDFNWmlibE1nUzFPU0hXTjdCQm1XSmt0ZUZFbmRRWG5TWENHQUhaQWZGWVdvZHRHbjVETG1oelBxZXg3Y05sWG9sbG1SR0FlcHNrX0ltdHZDNmdDYS1LMVVWbjczM3o3M3BfR0s2Qmk2dTlxT2RFNFloY3VNc0Z5M0JfV2ZMTDdjWTJl0gHjAUFVX3lxTE91a28zR1J4VGUwU1BSSmp5XzRLamVVMENvd1VqQTY4bTdYbTA4clBNaDU2YUV2SEJMRkp0VGFmaHd2MkZrc0JTaUJia0YtYmxLV0tMTmhmV3FiUlR6RjV5Y096R2h4aFhuTFZkdFFlYnlESkpoSnJmUnJ4S1BNdU1LaWJEY3VXNXlfVWtZMGlzVTY0M1pwSGttRXFaTTF6ZE4ySmhsY3BWM0Y2LWoxak9sZmVxQkk1R3R3Sl9UdnBHRm5DOWtYZmxTQjU3a0hvVHZ0aDZnM0tWMkJLU1lDdDdRUm13?oc=5"
+  ],
+  "all_signals": [
+   {
+    "title": "TCS launches fully automated facility in Pune to advance AI-led manufacturing - BusinessLine",
+    "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNMjFSc3VHWTRmaWwyVmR5TkY0X1VoN1hSRE5jTUlnNFphaTFMbnRsNXpTVlZ3M0RkbWRBRGhWQUpmZEZQNXlIaUJDeWpBcFNIaGZuS3BGMjY2aDFNWmlibE1nUzFPU0hXTjdCQm1XSmt0ZUZFbmRRWG5TWENHQUhaQWZGWVdvZHRHbjVETG1oelBxZXg3Y05sWG9sbG1SR0FlcHNrX0ltdHZDNmdDYS1LMVVWbjczM3o3M3BfR0s2Qmk2dTlxT2RFNFloY3VNc0Z5M0JfV2ZMTDdjWTJl0gHjAUFVX3lxTE91a28zR1J4VGUwU1BSSmp5XzRLamVVMENvd1VqQTY4bTdYbTA4clBNaDU2YUV2SEJMRkp0VGFmaHd2MkZrc0JTaUJia0YtYmxLV0tMTmhmV3FiUlR6RjV5Y096R2h4aFhuTFZkdFFlYnlESkpoSnJmUnJ4S1BNdU1LaWJEY3VXNXlfVWtZMGlzVTY0M1pwSGttRXFaTTF6ZE4ySmhsY3BWM0Y2LWoxak9sZmVxQkk1R3R3Sl9UdnBHRm5DOWtYZmxTQjU3a0hvVHZ0aDZnM0tWMkJLU1lDdDdRUm13?oc=5",
+    "source": "BusinessLine"
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "TCS's launch of a fully automated facility in Pune is a significant advancement in AI-led manufacturing, showcasing Indian innovation.",
+  "coverage": "new",
+  "ig_handles": [
+   {
+    "handle": "@tcs",
+    "type": "org",
+    "keywords": [
+     "TCS",
+     "AI",
+     "manufacturing"
+    ]
+   }
+  ],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ },
+ {
+  "topic_id": "095a286a-f193-4076-aee4-0cbc4e6b65d7",
+  "title": "AI researcher quits Anthropic, says frontier AI labs \u201cgambling with our lives\u201d",
+  "description": "",
+  "category": "technology",
+  "signal_count": 1,
+  "source_diversity": 1,
+  "source_types": [
+   "rss"
+  ],
+  "newest_signal": "2026-09-09T10:23:56+00:00",
+  "source_urls": [
+   "https://www.thehindu.com/sci-tech/technology/ai-researcher-quits-anthropic-says-frontier-ai-labs-gambling-with-our-lives/article71446821.ece"
+  ],
+  "all_signals": [
+   {
+    "title": "AI researcher quits Anthropic, says frontier AI labs \u201cgambling with our lives\u201d",
+    "url": "https://www.thehindu.com/sci-tech/technology/ai-researcher-quits-anthropic-says-frontier-ai-labs-gambling-with-our-lives/article71446821.ece",
+    "source": null
+   }
+  ],
+  "llm_score": 4,
+  "llm_reason": "The resignation of an AI researcher from Anthropic raises concerns about AI safety, which is relevant to the tech community and diaspora professionals.",
+  "coverage": "new",
+  "ig_handles": [
+   {
+    "handle": "@anthropic",
+    "type": "org",
+    "keywords": [
+     "AI",
+     "safety",
+     "research"
+    ]
+   }
+  ],
+  "kids_relevant": false,
+  "event_date": null,
+  "story_mode": "new_event",
+  "new_development": null
+ }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "id": "9d43c122-9de8-4bef-a562-9aa64c3bfa1d",
+    "headline": "A.R. Rahman Announces Mumbai and Delhi Dates for The Wonderment Tour",
+    "slug": "ar-rahman-wonderment-tour-mumbai-delhi",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs who attended the previous shows or are planning to attend the upcoming concerts. This could highlight how Rahman's music resonates with the Indian diaspora.",
+        "Provide more context about A.R. Rahman's global impact and his connection to the Indian diaspora, such as his international collaborations or performances in countries with significant NRI populations.",
+        "Include a section that discusses how the tour's themes or music connect with the experiences of NRIs, perhaps by exploring how his songs reflect the emotions of longing and nostalgia that many in the diaspora feel.",
+        "Clarify the significance of the tour's debut in Delhi for NRIs who may be interested in attending, such as how this event could serve as a cultural touchpoint for the Indian community abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from A.R. Rahman announcing the tour dates or a video clip of a previous performance to enhance engagement and provide a visual element to the article."
+      ]
+    }
+  },
+  {
+    "id": "ed8c6265-117d-49e4-aec4-c59cf4827b6e",
+    "headline": "Indian-Origin Couple's $20 Million Gift Creates AI College at Texas University",
+    "slug": "indian-origin-couple-20m-gift-us-university",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from the Sinha couple about their motivations for giving back to their alma mater and how they view the role of Indian-origin professionals in shaping the future of AI globally.",
+        "Add a section discussing how this donation impacts the Indian diaspora in the U.S. and globally, particularly in terms of opportunities for Indian students and professionals in AI and technology fields.",
+        "Provide more context about the significance of this donation in relation to other similar contributions by Indian-origin individuals or organizations in the U.S., which could highlight the growing influence of the Indian diaspora in the tech sector.",
+        "Include a brief mention of the potential implications this new college could have on job creation and innovation within the Indian community, particularly for NRIs looking to engage with advancements in AI."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the University of North Texas announcing the donation or a tweet from the Sinha couple expressing their vision for the new college."
+      ]
+    }
+  },
+  {
+    "id": "74404a98-c992-44f6-9118-1b9449deb0da",
+    "headline": "China Confirms Xi to Visit India for First Time in Seven Years",
+    "slug": "xi-jinping-india-visit-2026",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian expatriates or business leaders in China regarding the implications of Xi's visit on their investments or business operations.",
+        "Provide context on how the outcomes of the BRICS summit may affect NRIs, particularly in terms of trade opportunities or changes in visa policies that could impact their ability to do business in India or China.",
+        "Incorporate a section that discusses how the improved relations between India and China could influence the Indian diaspora's perception of both countries, especially in terms of cultural ties and economic opportunities.",
+        "Clarify the significance of the trade talks between the two countries by including statistics or examples of how these discussions could directly impact NRIs involved in trade or investment."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official BRICS account or a prominent political analyst commenting on Xi's visit and its potential implications for India-China relations."
+      ]
+    }
+  },
+  {
+    "id": "6e788bde-4318-48ae-976d-dc6093e7d3c8",
+    "headline": "Shami Breaks Silence on India Absence, Sets Sights on Comeback",
+    "slug": "mohammed-shami-india-absence-comeback-2026",
+    "category": "sports",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/29849577/pexels-photo-29849577.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian cricket fans living abroad, discussing how Shami's absence impacts their connection to Indian cricket and their hopes for his comeback.",
+        "Provide context on how Shami's performance and absence from the Indian team are perceived by the NRI community, perhaps by referencing discussions in diaspora cricket forums or social media platforms.",
+        "Add a section that discusses the implications of Shami's performance for the Indian cricket team's future, particularly how it affects the diaspora's interest in upcoming matches or series involving the national team.",
+        "Include a brief mention of how Shami's journey resonates with NRIs who may face similar challenges in their careers abroad, drawing parallels between his resilience and the experiences of the Indian diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the BCCI or a cricket analyst discussing Shami's performance and future prospects, which could provide additional context and engagement for readers."
+      ]
+    }
+  },
+  {
+    "id": "d11d29a3-b3ee-4a8f-ac3e-c52b177da59b",
+    "headline": "Indian-Origin Truck Driver Charged in Ohio Crash That Killed Woman, 50",
+    "slug": "indian-origin-man-charged-us-crash-death",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from the Indian community in the U.S. regarding the incident, particularly how it may affect perceptions of Indian-origin drivers and immigrants.",
+        "Provide additional context on how immigration policies impact NRIs, especially in relation to commercial driving licenses. This could include statistics or anecdotes about the challenges faced by Indian drivers in the U.S.",
+        "Clarify the implications of the Department of Homeland Security's involvement in this case, particularly how it relates to broader immigration enforcement policies that affect NRIs and their families.",
+        "Consider adding a section that discusses the potential legal ramifications for Singh and how such cases might influence future immigration policy debates, especially among the Indian diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Department of Homeland Security or a news outlet discussing the implications of this case on immigration policy, which would provide immediate context and authority to the article."
+      ]
+    }
+  }
+]
