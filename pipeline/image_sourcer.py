@@ -330,10 +330,10 @@ def fetch_cached_person_image(person_name):
         return None
     
     try:
-        encoded_name = urllib.parse.quote(person_name, safe='')
+        encoded_name = urllib.parse.quote(person_name.lower(), safe='')
         result = subprocess.run(
             ["curl", "-sS", "--max-time", "10",
-             f"{SUPABASE_URL}/rest/v1/person_images?name=ilike.{encoded_name}&select=image_url&limit=1",
+             f"{SUPABASE_URL}/rest/v1/person_images?person_name_lower=eq.{encoded_name}&select=image_url&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
             capture_output=True, text=True, timeout=15
@@ -1108,7 +1108,10 @@ if __name__ == "__main__":
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
             capture_output=True, text=True, timeout=30
         )
-        rows = json.loads(r.stdout)
+        rows = json.loads(r.stdout) if r.stdout and r.stdout.strip() else None
+        if rows is None:
+            print(f"ERROR: Failed to fetch article (empty response, exit={r.returncode}) for slug '{args.slug}'")
+            sys.exit(1)
         if not rows:
             print(f"ERROR: No article found with slug '{args.slug}'")
             sys.exit(1)
@@ -1156,7 +1159,10 @@ if __name__ == "__main__":
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
             capture_output=True, text=True, timeout=15
         )
-        rows = json.loads(r.stdout)
+        rows = json.loads(r.stdout) if r.stdout and r.stdout.strip() else None
+        if rows is None:
+            print(f"ERROR: Failed to fetch articles for backfill (empty response, exit={r.returncode})")
+            sys.exit(1)
         if not rows:
             print("No articles missing hero images.")
             sys.exit(0)
