@@ -44,3 +44,9 @@ pipeline/*-writer-[0-9]*.py
 pipeline/prebuild-feeds.py.bak-20260714
 src/pages/IndexV2.tsx.bak-20260714
 pipeline/cache/embed_cache.json
+
+# Transient pipeline state — local operational files, never commit
+pipeline/.state/
+pipeline/.reviewed-articles.json
+pipeline/tweet-log.json
+pipeline/x-usage.json
