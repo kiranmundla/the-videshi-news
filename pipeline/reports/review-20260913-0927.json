@@ -1,0 +1,22 @@
+[
+  {
+    "id": "2b639bc6-0b57-4b28-a5cf-20d6c0dfad1f",
+    "headline": "Air India Warns of Flight Disruptions as UK Air Traffic Fault Grounds 2,000 Flig",
+    "slug": "air-india-advisory-uk-air-traffic-fault-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian passengers affected by the flight disruptions, highlighting their experiences and concerns, particularly regarding travel plans or family commitments in India.",
+        "Provide context on how these disruptions specifically impact NRIs traveling to India or returning to the UK, such as potential delays in connecting flights or implications for those attending important events or family gatherings.",
+        "Add a section discussing how Air India's response compares to other airlines' actions during similar disruptions, which would provide readers with a broader perspective on the situation.",
+        "Clarify the timeline of events and the expected resolution, as NRIs may need this information for planning their travel; including a brief overview of how long such disruptions typically last would be helpful."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Air India regarding the flight disruptions to provide real-time updates and enhance credibility.",
+        "Consider embedding a relevant tweet from the UK Transport Secretary or NATS to give readers insight into the official response and ongoing investigations."
+      ]
+    }
+  }
+]
