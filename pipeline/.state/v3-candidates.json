@@ -1,36 +1,654 @@
 {
-  "timestamp": "2026-09-11T20:25:07.170093+00:00",
-  "total_topics_evaluated": 5,
+  "timestamp": "2026-09-12T20:25:08.415080+00:00",
+  "total_topics_evaluated": 834,
   "candidates": [
     {
-      "topic_id": "afcbd1b3-8d55-46d4-ab40-4ae04118ed41",
-      "title": "Sensex Crashes 649 Points, Nifty Falls 1% on Oil Surge",
-      "description": "Indian equity benchmarks crashed on Friday as Middle East flare-ups sent oil towards $108 per barrel. Sensex down 649 points, Nifty down 1%.",
-      "category": "markets-finance",
-      "signal_count": 4,
+      "topic_id": "28884130-0e57-4fbc-957d-108d30bd6e3c",
+      "title": "Nalli Nihari To Lotus-Inspired Mithais, This Is What BRICS Delegates Will Eat In Delhi",
+      "description": "",
+      "category": "food",
+      "signal_count": 1,
       "source_diversity": 1,
       "source_types": [
-        "news"
+        "rss"
       ],
-      "newest_signal": "2026-09-11T04:00:00+00:00",
+      "newest_signal": "2026-09-12T09:05:53+00:00",
       "source_urls": [
-        "https://hdfcsky.com/news/stock-market-open-report-today-september-11-2026-sensex-nifty-crash-as-oil-touches-108-amid-middle-east-flare-up"
+        "https://food.ndtv.com/news/nalli-nihari-to-lotus-inspired-mithais-this-is-what-brics-delegates-will-eat-in-delhi-12036842#publisher=newsstand"
       ],
       "all_signals": [
         {
-          "title": "Sensex Crashes 649 Points, Nifty Falls 1% on Oil Surge",
-          "url": "https://hdfcsky.com/news/stock-market-open-report-today-september-11-2026-sensex-nifty-crash-as-oil-touches-108-amid-middle-east-flare-up",
-          "source": "HDFC Sky"
+          "title": "Nalli Nihari To Lotus-Inspired Mithais, This Is What BRICS Delegates Will Eat In Delhi",
+          "url": "https://food.ndtv.com/news/nalli-nihari-to-lotus-inspired-mithais-this-is-what-brics-delegates-will-eat-in-delhi-12036842#publisher=newsstand",
+          "source": null
         }
       ],
       "llm_score": 4,
-      "llm_reason": "The Sensex crash is a significant market event that impacts Indian investors and the diaspora's financial interests.",
-      "coverage": "update",
+      "llm_reason": "The article discusses the food that BRICS delegates will eat in Delhi, highlighting Indian cuisine and its cultural significance.",
+      "coverage": "new",
       "ig_handles": [],
       "kids_relevant": false,
       "event_date": null,
-      "story_mode": "major_update",
-      "new_development": "The Sensex crashed 649 points due to rising oil prices, marking a notable decline in the Indian equity market."
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "aa7ca91c-a735-498a-912f-379455ecfe5b",
+      "title": "Consumer outlook plunges in September as inflation outlook worsens",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T16:53:23+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/09/11/consumer-outlook-plunges-in-september-as-inflation-outlook-worsens.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Consumer outlook plunges in September as inflation outlook worsens",
+          "url": "https://www.cnbc.com/2026/09/11/consumer-outlook-plunges-in-september-as-inflation-outlook-worsens.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The consumer outlook report has significant implications for the economy, which affects the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "069097f0-0add-4c97-8738-a84658c2856c",
+      "title": "Record U.S. cyclosporiasis outbreak is over, CDC says",
+      "description": "",
+      "category": "news",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T15:36:45+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/09/11/cdc-record-cyclosporiasis-outbreak-over.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Record U.S. cyclosporiasis outbreak is over, CDC says",
+          "url": "https://www.cnbc.com/2026/09/11/cdc-record-cyclosporiasis-outbreak-over.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The end of the cyclosporiasis outbreak is important public health news that may affect the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "3f4e89e6-4140-49c2-a94b-3eeafffb7595",
+      "title": "Inflation persisted in August, potentially locking in a Fed interest rate hike",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T13:46:36+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/09/11/cpi-inflation-report-august-2026.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Inflation persisted in August, potentially locking in a Fed interest rate hike",
+          "url": "https://www.cnbc.com/2026/09/11/cpi-inflation-report-august-2026.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The inflation report has significant implications for economic policy, which affects the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "4489e227-1b62-4184-870c-3eae704ec0b5",
+      "title": "Friday's CPI inflation report is even more important than usual. Here's what to expect",
+      "description": "",
+      "category": "markets-finance",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T19:18:05+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/09/10/fridays-cpi-inflation-report-is-even-more-important-than-usual-heres-what-to-expect.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Friday's CPI inflation report is even more important than usual. Here's what to expect",
+          "url": "https://www.cnbc.com/2026/09/10/fridays-cpi-inflation-report-is-even-more-important-than-usual-heres-what-to-expect.html",
+          "source": null
+        }
+      ],
+      "llm_score": 4,
+      "llm_reason": "The upcoming CPI inflation report is crucial for economic outlook, impacting the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "32da809f-4b72-4355-9f6d-bc09af5c9b1f",
+      "title": "Cardiologist shares 3 key things you need to start doing today if you want to \u2018age slower than your parents\u2019",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-12T10:41:54+00:00",
+      "source_urls": [
+        "https://www.hindustantimes.com/lifestyle/health/cardiologist-shares-3-key-things-you-need-to-start-doing-today-if-you-want-to-age-slower-than-your-parents-101789196353455.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Cardiologist shares 3 key things you need to start doing today if you want to \u2018age slower than your parents\u2019",
+          "url": "https://www.hindustantimes.com/lifestyle/health/cardiologist-shares-3-key-things-you-need-to-start-doing-today-if-you-want-to-age-slower-than-your-parents-101789196353455.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The article provides health tips that are relevant for readers interested in wellness and lifestyle.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "0c3b6ab1-7f28-4562-b0bd-5fe756edd872",
+      "title": "Think your daily walk is enough for fitness? Fitness coach reveals what could be missing from your routine",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-12T10:29:38+00:00",
+      "source_urls": [
+        "https://www.hindustantimes.com/lifestyle/health/think-your-daily-walk-is-enough-for-fitness-fitness-coach-reveals-what-could-be-missing-from-your-routine-101789033531246.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Think your daily walk is enough for fitness? Fitness coach reveals what could be missing from your routine",
+          "url": "https://www.hindustantimes.com/lifestyle/health/think-your-daily-walk-is-enough-for-fitness-fitness-coach-reveals-what-could-be-missing-from-your-routine-101789033531246.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The article discusses fitness routines, which is relevant for readers interested in health and wellness.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "058e0e84-25dc-4e1a-beff-9edb28cf3457",
+      "title": "This unique Kolkata hotel has a railway track at its entrance where trains pass right by. Watch video",
+      "description": "",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-12T08:38:02+00:00",
+      "source_urls": [
+        "https://www.hindustantimes.com/lifestyle/travel/this-unique-kolkata-hotel-has-a-railway-track-at-its-entrance-where-trains-pass-right-by-watch-video-101789200185245.html"
+      ],
+      "all_signals": [
+        {
+          "title": "This unique Kolkata hotel has a railway track at its entrance where trains pass right by. Watch video",
+          "url": "https://www.hindustantimes.com/lifestyle/travel/this-unique-kolkata-hotel-has-a-railway-track-at-its-entrance-where-trains-pass-right-by-watch-video-101789200185245.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The article highlights a unique hotel experience in Kolkata, which may interest diaspora readers looking for travel insights.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "863b03b2-7a83-4543-a422-0e20cf99698d",
+      "title": "Babar Azam enters record books, achieves major WTC feat against England - The Times of India",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-12T07:20:00+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOdVEwT0RJSmR6QUNzb21hT3VHb2tMekM0VTBxbVY0ckdOU1hXQS15QURjU3Q0d0VUTTJGd3huT3BzQ1lGbGhEZ1RQTVl6LU5xaU1fTWhzTjUyUWR4OF90QklYQUFWRlRHdU1WZEhvV1JsTXRhNzJVNzNqNFV2Y05TYjRpX1VfcHdFVzN4TzE3UDJnWUw1MThtLUoweF9OSDF2VVEzQUVqZm5NS2k0c3Bla2JySEFrRDlyRHB3YVdGc1Q3cTJuZGtPQ1NOZkg0bnhlQmZaZy1qT3VlcVN3T0JYNU1QblJ1NmM?oc=5",
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxPY2tjZlEyVmV2MWtHaC0yRW55YUc3OGVkLTl4VlBtdnFPbjNsLVBKeEpLUnA3bFA1aVJZUmdIb2p4LWNqTkxuQ1QzbjdtU3hoVFJaU0UtSnRBS0g0RWtEUENORGFkWVpqR3Ztbk5KOWIzMEdRUGdXSHp5RjZtZXp1THlhVUdNY1cyWlhGcmQ5bnNfbnpsTm02N3g0OXJhZVVRbXJRNFZn?oc=5",
+        "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRnN2ek9lQW9MdHhmcThYaGxzbzRzRUFrNzlSYVdLc1EwalpGNnhSUUZrdlBiY2lNWUxWbHdZZUo5WWxYM19lcGI3cFAzdXBMUVdlTkE5aFhtRmY1Z0lWekRCbHM1a01idUMtVjNTUG00bC1YU2dlc0lld1lIVzE4MlRadkJaMFEtcElQWTBhekdXOGQ2NWpjbW4xeUdmT1k?oc=5",
+        "https://news.google.com/rss/articles/CBMivgFBVV95cUxNM2lVekd3QUdRamF6OE5wNmdRVHY3NmRNX0ZTT0djdngxSHNVbmhLaDZ3WDFOUE85bVQ4dmNkYzh6aU1iODJFNm5aZVdIVlJBZmR3SFJKVkhvVlNOX3dPYVlrZXNPbVMzZXVVNlNVQUtHR2FVZmV4V2EzWTZaUklGMm1JMnV4d3MzY1lKd0R3ekVjOExCSzhvOVB1Z0MxV2xRYWV2elFEU2lSaEJPcHNseXlTWGhYaThwdHFQblln0gHEAUFVX3lxTFA0WUxDQUxZU19qUU5TOER4eXpvYWp4Ym0tOFlCa1hqQk1zUXlNdlotSTkyZ3ZGTVdrQThSVnJ0QmFxOGQ1bjZWSW1aNHZBUnNGeEpNWnkzaFA4ZXNDNjJla1IxSU5VVGhIRVVOeU5SYUFIV242QjVPQ3h5SWEybVlhWmdSb0dZQUVYVFZudVFFNjdSSDVqcXVub3RFSWYxdTJPM0NUYkVrZHgzV2dnTEpyMWVsTHhkZEV4clVVeG1hTmhOQnA?oc=5",
+        "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQdDBMUUI4WnlCc2Y1S0duYlFVSmZtX0JEd3U4SmJaa2RuUnh4RF9vUVE2R0lnLWd3ZmVmczdmSkJXMDNYdUE4SkNBUXg1RXlESTNybDVPS1RnNEtzdkJTd2FLWEs0ZkpPYV8xYjlLa2htTnpmS09PYi1uSFdVRTVZdlRld3ZCY3gtOE00MFpYbGdiSVZIMU5TTGhMTU5MS3p3WHNHOFJHTEtLVl9BRTVDdk5sTkI3Tl9iSmRHb3dpLUg4TFllelB2ZGNGQnVSMVNPcnZfTjJXclJMREVCeUhXQ2ZRUzhDMjdDVHUw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Babar Azam enters record books, achieves major WTC feat against England - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOdVEwT0RJSmR6QUNzb21hT3VHb2tMekM0VTBxbVY0ckdOU1hXQS15QURjU3Q0d0VUTTJGd3huT3BzQ1lGbGhEZ1RQTVl6LU5xaU1fTWhzTjUyUWR4OF90QklYQUFWRlRHdU1WZEhvV1JsTXRhNzJVNzNqNFV2Y05TYjRpX1VfcHdFVzN4TzE3UDJnWUw1MThtLUoweF9OSDF2VVEzQUVqZm5NS2k0c3Bla2JySEFrRDlyRHB3YVdGc1Q3cTJuZGtPQ1NOZkg0bnhlQmZaZy1qT3VlcVN3T0JYNU1QblJ1NmM?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Babar Azam\u2019s bouncer frailty makes \u2018Fab Four\u2019 talk seem a distant memory",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPY2tjZlEyVmV2MWtHaC0yRW55YUc3OGVkLTl4VlBtdnFPbjNsLVBKeEpLUnA3bFA1aVJZUmdIb2p4LWNqTkxuQ1QzbjdtU3hoVFJaU0UtSnRBS0g0RWtEUENORGFkWVpqR3Ztbk5KOWIzMEdRUGdXSHp5RjZtZXp1THlhVUdNY1cyWlhGcmQ5bnNfbnpsTm02N3g0OXJhZVVRbXJRNFZn?oc=5",
+          "source": "The Times"
+        },
+        {
+          "title": "ENG vs PAK 3rd Test Day 3: Babar Comeback in Style as Master Class Fifty Revives Deficit",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRnN2ek9lQW9MdHhmcThYaGxzbzRzRUFrNzlSYVdLc1EwalpGNnhSUUZrdlBiY2lNWUxWbHdZZUo5WWxYM19lcGI3cFAzdXBMUVdlTkE5aFhtRmY1Z0lWekRCbHM1a01idUMtVjNTUG00bC1YU2dlc0lld1lIVzE4MlRadkJaMFEtcElQWTBhekdXOGQ2NWpjbW4xeUdmT1k?oc=5",
+          "source": "Tapmad"
+        },
+        {
+          "title": "Babar Azam Test Stats: Check Runs, SENA Record, Centuries and More",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNM2lVekd3QUdRamF6OE5wNmdRVHY3NmRNX0ZTT0djdngxSHNVbmhLaDZ3WDFOUE85bVQ4dmNkYzh6aU1iODJFNm5aZVdIVlJBZmR3SFJKVkhvVlNOX3dPYVlrZXNPbVMzZXVVNlNVQUtHR2FVZmV4V2EzWTZaUklGMm1JMnV4d3MzY1lKd0R3ekVjOExCSzhvOVB1Z0MxV2xRYWV2elFEU2lSaEJPcHNseXlTWGhYaThwdHFQblln0gHEAUFVX3lxTFA0WUxDQUxZU19qUU5TOER4eXpvYWp4Ym0tOFlCa1hqQk1zUXlNdlotSTkyZ3ZGTVdrQThSVnJ0QmFxOGQ1bjZWSW1aNHZBUnNGeEpNWnkzaFA4ZXNDNjJla1IxSU5VVGhIRVVOeU5SYUFIV242QjVPQ3h5SWEybVlhWmdSb0dZQUVYVFZudVFFNjdSSDVqcXVub3RFSWYxdTJPM0NUYkVrZHgzV2dnTEpyMWVsTHhkZEV4clVVeG1hTmhOQnA?oc=5",
+          "source": "jagranjosh.com"
+        },
+        {
+          "title": "Babar Azam's century drought continues; \u2018weakness\u2019 exposed after \u2018poor\u2019 dismissal: \u2018That was really bad\u2019",
+          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQdDBMUUI4WnlCc2Y1S0duYlFVSmZtX0JEd3U4SmJaa2RuUnh4RF9vUVE2R0lnLWd3ZmVmczdmSkJXMDNYdUE4SkNBUXg1RXlESTNybDVPS1RnNEtzdkJTd2FLWEs0ZkpPYV8xYjlLa2htTnpmS09PYi1uSFdVRTVZdlRld3ZCY3gtOE00MFpYbGdiSVZIMU5TTGhMTU5MS3p3WHNHOFJHTEtLVl9BRTVDdk5sTkI3Tl9iSmRHb3dpLUg4TFllelB2ZGNGQnVSMVNPcnZfTjJXclJMREVCeUhXQ2ZRUzhDMjdDVHUw?oc=5",
+          "source": "Hindustan Times"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "Babar Azam's achievement in the WTC is noteworthy for cricket fans, especially among the Indian diaspora.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@babarazam258",
+          "type": "person",
+          "keywords": [
+            "Babar Azam",
+            "WTC",
+            "cricket"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "2ec6867a-f974-4116-9040-999f6032aa3a",
+      "title": "Bumrah adds a few more steps on his road back to T20Is - Cricinfo",
+      "description": "",
+      "category": "sports",
+      "signal_count": 5,
+      "source_diversity": 5,
+      "source_types": [
+        "google_news"
+      ],
+      "newest_signal": "2026-09-12T05:58:19+00:00",
+      "source_urls": [
+        "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQRlRIZWZrYmdEUjhzVUtFXzk0SjQycTRnSHQ1ZkN2RmpvcXR2cmdyQUVnanBaNDU0RDc1TWQ3ZGdMZS1IV0o1QWhZNHNycWljM2dOblJkXzAwYm5xNFo5b2tpT2JHSkJ5b1NqbG5tQ1dlNUxKbG13NFd4aHBPTnRtS3RiVmRGYmJEcDdEYURFYXJLOWF0VXNuRE92TllOaWRrUU02WUtpb1RIc2FiUU5FZEFnZWZWTzFfM1Bma0pzbWxJaEoxbmRzaXdYd3NGUHZyVmVMX1k2Nnhnd2p6Y1ZkX2MxMnZnTkItTTc3S2FLU3c?oc=5",
+        "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQS2dweTNkbk5lQTV6ZUNuUUFGR3hLMkh1Tkszd1dmVk1ib0l0Nm1TOFV3bFJ4UnBIZ3d4cy1OUTVLTzd4SzYweEhHZmQ5VlY2c3VjTnNHTHR3S0poSGxIZmNUZzR2cmhsbm94TkRjalE1NXlJUGxXMlVyaWdMc1ZrV0Y1Ny1Wb19PN09PNHViTlNSZ1pDMjFqbzRLSE04a21wNUNIcUpwRTRqZWZ5SmZFeEg4Y0xlaVNKNUY2N0MxejR6MEFYUzlvSGRTYndUYkZIRmVTY1A1SktvV0pO?oc=5",
+        "https://news.google.com/rss/articles/CBMijgJBVV95cUxQSzdvc3MyNE9mbXoyYWlLUkdELWZLYkU4S2J1SjNtNF9SYzdKV3FraXdIZ3NKVm9CT3p5a015OW83UTNOUHNNTGowWTdjcUF5cm5pekhzYUl4TW1QR0tSZTlOSWtYNjBGbzVnTEh4eGFZRkduZklBdVZ5Ym9GcWdCVGY5MlROYVlIT3N1Q1ZMdUhLUmJLTEZ1MnFhM2ppVW43TElFYUUtNldTdFQyODd6eTRHNXpWdlVCZW04NXRyaGdNR2Y2eWQ3TUV5RzBWYm1hSG9Pdm9LOFFWVkJEN3dlUGd4UEI1NlRreFhsQVRoUk1XQ0Nlb0tlUHdIc2tkUzJRdlpBYkNveURzZ0MyblE?oc=5",
+        "https://news.google.com/rss/articles/CBMipgFBVV95cUxNSUVrVGVkWnlrRHhWQTlfQWc3QUw2RU1sQk8zRHVGT0huVE83U1czUTlWMDZDb1VlN2FSWms4NXFpY2JEb2lxaHQtNzJMem4wWnUyaU11OU9zamNfc0NPVV93dkVVX0pGMFRPb09qRE9INFo4STkzR1h5RVVZaHVyaDhDTWxLWm94QmhOUWxta0lHMGNFaWNESXhNd0Q4UFZNbnBoazdB0gGsAUFVX3lxTE04V3lUWDZYREhzTzBiazVIbHl5b0thZE9ydlQ1ZEFCWENtSHdTQ0w2MnBjYkxzMnFhVTNRd2ZTT3ROQlZEblBPYlN0ajU3YUF0VFFmQU41bDlVY0p4VnBOUXdZT1NWMWxoN1FiTEF3b2pTOVZZNE5BWHFfSmViTzZSS2Q0U2JOenlEZmJSbm9LdFNmU1RHWGNHMUloM1NPaTg5X0xrZk9JU0VYTC0?oc=5",
+        "https://news.google.com/rss/articles/CBMisgFBVV95cUxQZUJzc1o0T1JkMlF3RXZRc2FyMno5UjYzbWVLbk03aklsNGVtNHZuT0x1emdQcGxqTFcxUGhwM2JKa2JVRVFEbjBFMmVHR1BieU9BSHJkaC1OWVFLQjE2YkxUQ0F1Tkh3djRKNWpmUTFOTTFSbkhRUF9mYTBTM05hR2ZIUjk4aTIwVFRZYVplVktrN0VuUHZFcEpQMk5HbFdJTVQtREN4dDZtVDhnUlVJbnl30gHDAUFVX3lxTE14Z1ZsWkVIS29WbEJJandtX2ZaMFBFODdJenF5ZVlWNlQxUU1odVBXQTdybEZsdjRiUHAtLXlPLXBkVml6bWx0cDU4MWtRbUNxbndudmdOMGZBLU42MDhRV1hmX0t2bUFkOGFDNXNhWXp5Y3hkeVIyVUJRZkJfVWhCNUdEd2tpcXFvQWVCblh2Qmd3dG1ENHFmQWU3SEFMU1Nqb2EyZkpjcmlBVzNYbmFyenUtQjF5dVAyaUpNb1pDWFJVdw?oc=5"
+      ],
+      "all_signals": [
+        {
+          "title": "Vaibhav Sooryavanshi meets real Jasprit Bumrah: 15-year-old endures brutal examination in India nets",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQRlRIZWZrYmdEUjhzVUtFXzk0SjQycTRnSHQ1ZkN2RmpvcXR2cmdyQUVnanBaNDU0RDc1TWQ3ZGdMZS1IV0o1QWhZNHNycWljM2dOblJkXzAwYm5xNFo5b2tpT2JHSkJ5b1NqbG5tQ1dlNUxKbG13NFd4aHBPTnRtS3RiVmRGYmJEcDdEYURFYXJLOWF0VXNuRE92TllOaWRrUU02WUtpb1RIc2FiUU5FZEFnZWZWTzFfM1Bma0pzbWxJaEoxbmRzaXdYd3NGUHZyVmVMX1k2Nnhnd2p6Y1ZkX2MxMnZnTkItTTc3S2FLU3c?oc=5",
+          "source": "Hindustan Times"
+        },
+        {
+          "title": "Back on duty, Bumrah gives Sooryavanshi a stern examination in Delhi",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQS2dweTNkbk5lQTV6ZUNuUUFGR3hLMkh1Tkszd1dmVk1ib0l0Nm1TOFV3bFJ4UnBIZ3d4cy1OUTVLTzd4SzYweEhHZmQ5VlY2c3VjTnNHTHR3S0poSGxIZmNUZzR2cmhsbm94TkRjalE1NXlJUGxXMlVyaWdMc1ZrV0Y1Ny1Wb19PN09PNHViTlNSZ1pDMjFqbzRLSE04a21wNUNIcUpwRTRqZWZ5SmZFeEg4Y0xlaVNKNUY2N0MxejR6MEFYUzlvSGRTYndUYkZIRmVTY1A1SktvV0pO?oc=5",
+          "source": "India Today"
+        },
+        {
+          "title": "'Boom' lets it rip in the nets, tests Vaibhav Sooryavanshi ahead of Afghanistan series",
+          "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxQSzdvc3MyNE9mbXoyYWlLUkdELWZLYkU4S2J1SjNtNF9SYzdKV3FraXdIZ3NKVm9CT3p5a015OW83UTNOUHNNTGowWTdjcUF5cm5pekhzYUl4TW1QR0tSZTlOSWtYNjBGbzVnTEh4eGFZRkduZklBdVZ5Ym9GcWdCVGY5MlROYVlIT3N1Q1ZMdUhLUmJLTEZ1MnFhM2ppVW43TElFYUUtNldTdFQyODd6eTRHNXpWdlVCZW04NXRyaGdNR2Y2eWQ3TUV5RzBWYm1hSG9Pdm9LOFFWVkJEN3dlUGd4UEI1NlRreFhsQVRoUk1XQ0Nlb0tlUHdIc2tkUzJRdlpBYkNveURzZ0MyblE?oc=5",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Bumrah finds his rhythm against Sooryavanshi",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNSUVrVGVkWnlrRHhWQTlfQWc3QUw2RU1sQk8zRHVGT0huVE83U1czUTlWMDZDb1VlN2FSWms4NXFpY2JEb2lxaHQtNzJMem4wWnUyaU11OU9zamNfc0NPVV93dkVVX0pGMFRPb09qRE9INFo4STkzR1h5RVVZaHVyaDhDTWxLWm94QmhOUWxta0lHMGNFaWNESXhNd0Q4UFZNbnBoazdB0gGsAUFVX3lxTE04V3lUWDZYREhzTzBiazVIbHl5b0thZE9ydlQ1ZEFCWENtSHdTQ0w2MnBjYkxzMnFhVTNRd2ZTT3ROQlZEblBPYlN0ajU3YUF0VFFmQU41bDlVY0p4VnBOUXdZT1NWMWxoN1FiTEF3b2pTOVZZNE5BWHFfSmViTzZSS2Q0U2JOenlEZmJSbm9LdFNmU1RHWGNHMUloM1NPaTg5X0xrZk9JU0VYTC0?oc=5",
+          "source": "The Hindu"
+        },
+        {
+          "title": "Bumrah adds a few more steps on his road back to T20Is - Cricinfo",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQZUJzc1o0T1JkMlF3RXZRc2FyMno5UjYzbWVLbk03aklsNGVtNHZuT0x1emdQcGxqTFcxUGhwM2JKa2JVRVFEbjBFMmVHR1BieU9BSHJkaC1OWVFLQjE2YkxUQ0F1Tkh3djRKNWpmUTFOTTFSbkhRUF9mYTBTM05hR2ZIUjk4aTIwVFRZYVplVktrN0VuUHZFcEpQMk5HbFdJTVQtREN4dDZtVDhnUlVJbnl30gHDAUFVX3lxTE14Z1ZsWkVIS29WbEJJandtX2ZaMFBFODdJenF5ZVlWNlQxUU1odVBXQTdybEZsdjRiUHAtLXlPLXBkVml6bWx0cDU4MWtRbUNxbndudmdOMGZBLU42MDhRV1hmX0t2bUFkOGFDNXNhWXp5Y3hkeVIyVUJRZkJfVWhCNUdEd2tpcXFvQWVCblh2Qmd3dG1ENHFmQWU3SEFMU1Nqb2EyZkpjcmlBVzNYbmFyenUtQjF5dVAyaUpNb1pDWFJVdw?oc=5",
+          "source": "Cricinfo"
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "Bumrah's return to T20Is is significant for Indian cricket and diaspora fans following his recovery journey.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@jaspritb1",
+          "type": "person",
+          "keywords": [
+            "Bumrah",
+            "T20",
+            "cricket"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "439fd6d1-de7c-4c20-b11d-5fa06cacbd83",
+      "title": "Cardiologist Dr Vijay D\u2019Silva says ECG screening-heart disease connection is real missing early heart checks costs lives",
+      "description": "",
+      "category": "lifestyle-health",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-12T05:30:47+00:00",
+      "source_urls": [
+        "https://www.hindustantimes.com/lifestyle/health/cardiologist-dr-vijay-d-silva-says-ecg-screening-heart-disease-connection-is-real-missing-early-heart-checks-costs-lives-101789112159071.html"
+      ],
+      "all_signals": [
+        {
+          "title": "Cardiologist Dr Vijay D\u2019Silva says ECG screening-heart disease connection is real missing early heart checks costs lives",
+          "url": "https://www.hindustantimes.com/lifestyle/health/cardiologist-dr-vijay-d-silva-says-ecg-screening-heart-disease-connection-is-real-missing-early-heart-checks-costs-lives-101789112159071.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The article discusses heart health, which is relevant for readers interested in wellness and preventive care.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "1ee67086-0e47-4fa9-a4c1-6cba7f1a4dfa",
+      "title": "Why Does Lord Ganesha Love Modak? The Story Behind His Favourite Sweet",
+      "description": "",
+      "category": "food",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-12T04:54:15+00:00",
+      "source_urls": [
+        "https://food.ndtv.com/food-drinks/why-does-lord-ganesha-love-modak-the-story-behind-his-favourite-sweet-12033714#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "Why Does Lord Ganesha Love Modak? The Story Behind His Favourite Sweet",
+          "url": "https://food.ndtv.com/food-drinks/why-does-lord-ganesha-love-modak-the-story-behind-his-favourite-sweet-12033714#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The article explores the cultural significance of modaks in relation to Lord Ganesha, which connects to Indian traditions and festivals.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "3e8694ed-14fa-46b4-84e2-014157bb3e82",
+      "title": "Crispy Corn Recipe",
+      "description": "",
+      "category": "food",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T19:44:29+00:00",
+      "source_urls": [
+        "https://www.vegrecipesofindia.com/crispy-corn/"
+      ],
+      "all_signals": [
+        {
+          "title": "Crispy Corn Recipe",
+          "url": "https://www.vegrecipesofindia.com/crispy-corn/",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The crispy corn recipe has a clear connection to Indian cuisine, making it relevant for our audience.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "e042e1f4-205a-4481-bfb8-632879dca057",
+      "title": "No flight, no car: 7 weekend getaways you can easily reach from Delhi by bus",
+      "description": "",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T14:30:12+00:00",
+      "source_urls": [
+        "https://indianexpress.com/article/lifestyle/destination-of-the-week/no-flight-no-car-7-weekend-getaways-you-can-easily-reach-from-delhi-by-bus-10870480/"
+      ],
+      "all_signals": [
+        {
+          "title": "No flight, no car: 7 weekend getaways you can easily reach from Delhi by bus",
+          "url": "https://indianexpress.com/article/lifestyle/destination-of-the-week/no-flight-no-car-7-weekend-getaways-you-can-easily-reach-from-delhi-by-bus-10870480/",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The article on weekend getaways from Delhi has a clear travel connection relevant to the diaspora.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "438766ac-ad04-4546-b082-6941c8d5060e",
+      "title": "Chinmaya Mission Celebrates 75 Years With Sampoorna Bhagavad Gita in Atlanta",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T13:12:04+00:00",
+      "source_urls": [
+        "https://nripulse.com/chinmaya-mission-celebrates-75-years-with-sampoorna-bhagavad-gita-in-atlanta/"
+      ],
+      "all_signals": [
+        {
+          "title": "Chinmaya Mission Celebrates 75 Years With Sampoorna Bhagavad Gita in Atlanta",
+          "url": "https://nripulse.com/chinmaya-mission-celebrates-75-years-with-sampoorna-bhagavad-gita-in-atlanta/",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "Chinmaya Mission's 75th anniversary celebration in Atlanta is relevant to the Indian diaspora community.",
+      "coverage": "new",
+      "ig_handles": [
+        {
+          "handle": "@chinmayamission",
+          "type": "org",
+          "keywords": [
+            "75 years",
+            "celebration",
+            "community"
+          ]
+        }
+      ],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "b2c7e40e-cbe2-4e03-9a56-0701c141ccb2",
+      "title": "25 years after 9/11, the U.S. starts rolling back travel restrictions, from liquids to gate access",
+      "description": "",
+      "category": "travel",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-11T11:00:01+00:00",
+      "source_urls": [
+        "https://www.cnbc.com/2026/09/11/9/11-anniversary-air-travel.html"
+      ],
+      "all_signals": [
+        {
+          "title": "25 years after 9/11, the U.S. starts rolling back travel restrictions, from liquids to gate access",
+          "url": "https://www.cnbc.com/2026/09/11/9/11-anniversary-air-travel.html",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The rollback of travel restrictions is relevant for the Indian diaspora planning travel.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "93a004ef-67de-4adb-83ae-2245d748f999",
+      "title": "El Salvador TPS Remains in Effect While Employers Await Formal DHS Guidance",
+      "description": "",
+      "category": "immigration",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T23:23:16+00:00",
+      "source_urls": [
+        "https://wolfsdorf.com/el-salvador-tps-remains-in-effect-while-employers-await-formal-dhs-guidance/"
+      ],
+      "all_signals": [
+        {
+          "title": "El Salvador TPS Remains in Effect While Employers Await Formal DHS Guidance",
+          "url": "https://wolfsdorf.com/el-salvador-tps-remains-in-effect-while-employers-await-formal-dhs-guidance/",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The status of El Salvador TPS is relevant for the Indian diaspora, particularly for those with connections to the region.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "7628c9b7-397d-4411-8279-e7b4903f0489",
+      "title": "Maharashtra Man Quit Corporate Life In The US, Built A Rs 36 Lakh Moringa Farming Business",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T15:56:59+00:00",
+      "source_urls": [
+        "https://food.ndtv.com/news/maharashtra-man-quit-corporate-life-in-the-us-built-a-rs-36-lakh-moringa-farming-business-12028153#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "Maharashtra Man Quit Corporate Life In The US, Built A Rs 36 Lakh Moringa Farming Business",
+          "url": "https://food.ndtv.com/news/maharashtra-man-quit-corporate-life-in-the-us-built-a-rs-36-lakh-moringa-farming-business-12028153#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The story of a Maharashtra man who built a business after quitting corporate life in the US is inspiring for the diaspora community.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
+    },
+    {
+      "topic_id": "cef6e941-efe9-48a7-bb49-147261fa15a8",
+      "title": "Left School At 13, Sold Butter Door-To-Door: How G R Balasubramaniam Built A Rs 1,000 Crore Business",
+      "description": "",
+      "category": "nri-world",
+      "signal_count": 1,
+      "source_diversity": 1,
+      "source_types": [
+        "rss"
+      ],
+      "newest_signal": "2026-09-10T13:41:34+00:00",
+      "source_urls": [
+        "https://food.ndtv.com/news/left-school-at-13-sold-butter-door-to-door-how-g-r-balasubramaniam-built-a-rs-1-000-crore-business-12028181#publisher=newsstand"
+      ],
+      "all_signals": [
+        {
+          "title": "Left School At 13, Sold Butter Door-To-Door: How G R Balasubramaniam Built A Rs 1,000 Crore Business",
+          "url": "https://food.ndtv.com/news/left-school-at-13-sold-butter-door-to-door-how-g-r-balasubramaniam-built-a-rs-1-000-crore-business-12028181#publisher=newsstand",
+          "source": null
+        }
+      ],
+      "llm_score": 3,
+      "llm_reason": "The story of G R Balasubramaniam's entrepreneurial journey is inspiring for the diaspora community.",
+      "coverage": "new",
+      "ig_handles": [],
+      "kids_relevant": false,
+      "event_date": null,
+      "story_mode": "new_event",
+      "new_development": null
     }
   ]
 }

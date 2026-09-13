@@ -126,6 +126,8 @@ Insert with `status="published"`. Required fields:
 - `llm_score` (from candidate JSON — the selector's relevance score, 1-5)
 - `published_at` (NOW), `article_type` (default 'breaking')
 
+> **Note:** stage article JSON files in `pipeline/.state/` (e.g. `.state/v3-article-<topicid>.json`), never `/tmp` — this server's tmpfs is wiped mid-run. Insert with `python3 -u v3-insert-article.py <json>` (curl-based; urllib fails through the proxy).
+
 ### 3f. Update topic status
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`

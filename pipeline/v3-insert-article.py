@@ -7,27 +7,27 @@ ctx = ssl.create_default_context()
 BASE = os.environ['SUPABASE_URL']
 KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
 
-def supabase_post(path, data):
+def _curl(method, path, data):
+    """Supabase REST via curl — urllib/requests fail through this server's proxy (403/ProxyError/RemoteDisconnected). AGENTS.md documents the curl-only rule."""
     url = f"{BASE}/rest/v1/{path}"
-    body = json.dumps(data).encode()
-    req = urllib.request.Request(url, data=body, method='POST', headers={
-        'apikey': KEY, 'Authorization': f'Bearer {KEY}',
-        'Content-Type': 'application/json',
-        'Prefer': 'return=representation'
-    })
-    resp = urllib.request.urlopen(req, context=ctx)
-    return json.loads(resp.read())
+    result = subprocess.run([
+        'curl', '-sS', '-X', method, url,
+        '-H', f'apikey: {KEY}',
+        '-H', f'Authorization: Bearer {KEY}',
+        '-H', 'Content-Type: application/json',
+        '-H', 'Prefer: return=representation',
+        '--data', json.dumps(data)
+    ], capture_output=True, text=True, timeout=60)
+    if result.returncode != 0:
+        raise RuntimeError(f"curl {method} {path} failed: {result.stderr[:300]}")
+    out = result.stdout.strip()
+    return json.loads(out) if out else []
+
+def supabase_post(path, data):
+    return _curl('POST', path, data)
 
 def supabase_patch(path, data):
-    url = f"{BASE}/rest/v1/{path}"
-    body = json.dumps(data).encode()
-    req = urllib.request.Request(url, data=body, method='PATCH', headers={
-        'apikey': KEY, 'Authorization': f'Bearer {KEY}',
-        'Content-Type': 'application/json',
-        'Prefer': 'return=representation'
-    })
-    resp = urllib.request.urlopen(req, context=ctx)
-    return json.loads(resp.read())
+    return _curl('PATCH', path, data)
 
 def upload_image(local_path, slug):
     """Upload compressed image to Supabase storage."""

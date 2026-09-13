@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cd5839f4-de3a-46d5-9d08-6ff74c06892c",
+    "headline": "Sensex Sheds 649 Points as Brent Touches $108 on New Middle East Flare-Ups",
+    "slug": "sensex-sheds-649-points-brent-108-new-middle-east-flare-ups",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by incorporating insights on how fluctuations in the Indian stock market and rising oil prices impact NRIs and their investments back home. For instance, discuss how NRIs might be adjusting their portfolios in response to these market changes.",
+        "Provide more context on how the geopolitical situation in the Middle East affects Indian expatriates, particularly those working in the Gulf region. This could include potential job security concerns or remittance flows that NRIs rely on.",
+        "Include a brief analysis of how the Indian government's policies or responses to these market fluctuations could affect NRIs, especially those involved in trade or investment.",
+        "Consider adding a section on how NRIs can hedge against such market volatility, possibly through investment strategies or financial products available to them."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official Indian Ministry of External Affairs regarding the geopolitical situation or a tweet from a financial expert commenting on the market impact of the Middle East conflict."
+      ]
+    }
+  },
+  {
+    "id": "ee581f46-7641-4e00-bd56-3c98f36ee888",
+    "headline": "BRICS Summit 2026: Full Itinerary, Timings and What to Watch in New Delhi",
+    "slug": "brics-summit-2026-full-itinerary-timings-new-delhi",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from NRIs who are engaged with BRICS initiatives or who have participated in past summits. This could provide a personal touch and highlight the relevance of the summit to the Indian diaspora.",
+        "Add context about how the outcomes of the BRICS Summit could impact NRIs, particularly in terms of trade, investment, and diplomatic relations. This would make the article more relevant to the audience of The Videshi.",
+        "Consider including a section that discusses how the decisions made at the summit may influence the global landscape for NRIs, such as changes in visa policies or international trade agreements that could affect their businesses or lives abroad.",
+        "Provide a brief background on the significance of BRICS for the Indian diaspora, including previous summits and their implications for NRIs, to give readers a clearer understanding of why this event matters."
+      ],
+      "embed_opportunities": [
+        "Embed the official BRICS Twitter account's updates or announcements related to the summit to provide real-time information and engage readers.",
+        "Consider embedding a video from a past BRICS summit that highlights the involvement of Indian leaders and their impact on the diaspora, which could provide context and depth."
+      ]
+    }
+  }
+]

@@ -1,0 +1,144 @@
+[
+  {
+    "id": "5381c29e-b9c8-4da0-99f9-a2dc42a576cd",
+    "headline": "US Envoy Sergio Gor: India Relationship Stronger Than Five Years Ago",
+    "slug": "us-envoy-sergio-gor-india-relationship-stronger-than-five-years-ago",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "759180cb-ce2f-487b-a3b2-0c0ab191d244",
+    "headline": "Mecka AI Nears $500M Valuation in Sequoia-Led Round for Robot Training Data",
+    "slug": "mecka-ai-nears-500m-valuation-sequoia-led-round",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "386f1605-9e2c-4913-b5e5-fe055b8ae4ae",
+    "headline": "Mirzapur The Movie Crosses $2 Million In North America, Climbing Indian Box Offi",
+    "slug": "mirzapur-the-movie-box-office-day-8-north-america-2-million",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image",
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "6cb7d0c4-34fb-41f9-a1fa-09517c7323af",
+    "headline": "IRCTC Shatters Records as 20 Lakh Tickets Booked in a Single Day",
+    "slug": "irctc-record-20-lakh-tickets-single-day",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "50b26287-c886-447e-b313-4044d34918c9",
+    "headline": "Indian man jailed 27 years in Australia for fatal stabbing, faces deportation",
+    "slug": "indian-man-jailed-27-years-australia-fatal-stabbing-deportation",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "146b7f04-931d-4cda-beae-3fbe76b15545",
+    "headline": "At 4, Treesha Thosar Breaks Kamal Haasan's Record as Youngest National Award Win",
+    "slug": "at-4-treesha-thosar-breaks-kamal-haasans-record-as-youngest-national-award-winner",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "c8f2e944-150d-414c-b8ff-41750659a841",
+    "headline": "Trezor Brevo Breach Exposed 347,000 Emails to Phishing Attack",
+    "slug": "trezor-brevo-breach-347000-emails-phishing-attack",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "192d862b-a6d6-465e-a2ff-0a843611d546",
+    "headline": "Mumbai's Lalbaugcha Raja Food Waste to Power Civic Hospitals During Ganeshotsav",
+    "slug": "mumbais-lalbaugcha-raja-food-waste-to-power-civic-hospitals-during-ganeshotsav",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "4e69aada-83ec-4322-b304-1ec56e8772a6",
+    "headline": "DHS Moves to Scrap 60-Day Grace Period for H-1B Workers After Job Loss",
+    "slug": "dhs-moves-to-scrap-60-day-grace-period-h1b-workers-after-job-loss",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "6660f346-96fb-4e36-ba77-7959ebf27672",
+    "headline": "Finland Courts Indian Students With Work Rights, Family Visas and Affordable Tui",
+    "slug": "finland-indian-students-work-rights-family-visas-tuition",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3c50414b-7d3b-4be7-a854-6a3655ccb3c8",
+    "headline": "Divyanshi Choudhary Breaks Down After Last-Minute Asian Games Wushu Axing",
+    "slug": "divyanshi-choudhary-breaks-down-after-last-minute-asian-games-wushu-axing-20260912",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "1. Strengthen the diaspora angle by including perspectives from NRIs who may have followed Choudhary's journey or who have experienced similar challenges in sports or other fields abroad. This could provide a relatable context for the NRI audience.",
+        "2. Add a section discussing how this incident reflects broader issues faced by Indian athletes, particularly those from the diaspora, such as access to resources, support systems, and the impact of administrative decisions on their careers.",
+        "3. Provide more context on the significance of Wushu in India and how athletes from the diaspora are contributing to its growth, which would resonate with the NRI audience.",
+        "4. Include quotes or reactions from notable figures in the Indian sports community or diaspora who can provide insights on the implications of this decision."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Indian Olympic Association or a sports authority commenting on the situation to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "ad7b14bd-83ea-47a5-9cec-dc5259789c2e",
+    "headline": "Kimi Maker Moonshot AI Targets $2 Billion in Annual Revenue",
+    "slug": "kimi-maker-moonshot-ai-targets-2-billion-in-annual-revenue",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian entrepreneurs or investors in the AI sector who are based abroad. This could provide a more personal connection and relevance to the NRI audience.",
+        "Add context about how Moonshot AI's growth and innovations could impact the Indian tech ecosystem, particularly for NRIs looking to invest or engage with emerging technologies in India.",
+        "Include a comparison of Moonshot AI's business model with Indian startups in the AI space, highlighting any unique approaches or challenges faced by Indian entrepreneurs in the global market.",
+        "Clarify the implications of Moonshot AI's growth for NRIs in terms of investment opportunities or potential partnerships, which would make the article more relevant to the target audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Moonshot AI or a relevant industry expert discussing the significance of their revenue growth, which could provide real-time insights and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "923e50d1-8a4e-4730-9785-96ecc42c0793",
+    "headline": "After Talks Until 4 AM, BRICS Reaches Consensus With India's Help",
+    "slug": "brics-consensus-after-4-am-talks-india-bridges-divide",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the BRICS consensus impacts NRIs, particularly in terms of economic opportunities or geopolitical stability in the regions where they reside.",
+        "Provide more context on how India's role in the BRICS negotiations reflects its foreign policy goals and how this might affect NRIs' perceptions of India on the global stage.",
+        "Clarify the implications of the consensus for NRIs, such as potential changes in trade relations or investment opportunities that may arise from the new dynamics within BRICS.",
+        "Include a brief section that discusses how the outcomes of such international summits can influence the Indian diaspora's engagement with their home country, particularly in terms of investment and cultural ties."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official BRICS account summarizing the outcomes of the summit or a tweet from a prominent NRI leader commenting on the implications for the diaspora."
+      ]
+    }
+  }
+]

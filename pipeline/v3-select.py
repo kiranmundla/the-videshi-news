@@ -639,6 +639,8 @@ def llm_score_topics(topics_with_signals, recent_articles):
 
         results = {}
         for item in content.get("results", []):
+            if not isinstance(item, dict):
+                continue  # malformed LLM item (e.g. bare string) — skip, never crash
             idx = item.get("id", 0) - 1
             if 0 <= idx < len(batch):
                 global_idx = batch_start + idx
