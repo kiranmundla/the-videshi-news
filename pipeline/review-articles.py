@@ -78,12 +78,21 @@ def sb_get(endpoint, params=None):
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
     r = subprocess.run(
-        ["curl", "-s", url,
+        ["curl", "-s", "-w", "\n%{http_code}", url,
          "-H", f"apikey: {SB_KEY}",
          "-H", f"Authorization: Bearer {SB_KEY}"],
         capture_output=True, text=True, timeout=30
     )
-    return json.loads(r.stdout) if r.stdout.strip() else []
+    # Fail loudly on transport errors instead of silently returning [] —
+    # an empty result previously masked a curl failure as "0 articles found".
+    out = (r.stdout or "").strip()
+    body, _, http_code = out.rpartition("\n")
+    if r.returncode != 0 or http_code.strip() != "200":
+        raise RuntimeError(
+            f"sb_get {endpoint} failed: curl rc={r.returncode} "
+            f"http={http_code.strip()!r} stderr={(r.stderr or '').strip()[:200]}"
+        )
+    return json.loads(body) if body.strip() else []
 
 
 # ── Structural checks (no LLM) ──
