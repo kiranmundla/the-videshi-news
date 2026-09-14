@@ -76,6 +76,7 @@ def main():
         'image_attribution': article.get('image_attribution', ''),
         'word_count': article.get('word_count', 0),
         'diaspora_angle': article.get('diaspora_angle', ''),
+        'llm_score': article.get('llm_score', 0),
         'topic_id': article.get('topic_id', ''),
         'published_at': now,
         'status': 'published',

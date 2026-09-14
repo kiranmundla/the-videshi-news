@@ -1,0 +1,40 @@
+[
+  {
+    "id": "804c11af-4de5-452d-9b8c-63bef0191197",
+    "headline": "Nepal Beat UAE to Win ACC Premier Cup and Book Asia Cup 2027 Spot",
+    "slug": "nepal-uae-acc-premier-cup-final-2026",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs or members of the Indian diaspora who have a connection to either Nepal or UAE cricket, particularly those who might have watched the match or have ties to the players.",
+        "Provide additional context about the significance of Nepal's qualification for the Asia Cup 2027, particularly how it impacts the cricketing landscape in the region and what it means for the Nepali diaspora, especially in countries like India and the UAE.",
+        "Consider adding a brief section on how the performance of players of Indian origin in the UAE team resonates with the Indian diaspora, highlighting any personal stories or connections that might be relevant.",
+        "Clarify the implications of this victory for the future of cricket in Nepal, including potential support from the diaspora community in terms of funding, sponsorship, or fan engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ACC or ICC account celebrating Nepal's victory and qualification, which would enhance the article's credibility and provide a visual element for readers."
+      ]
+    }
+  },
+  {
+    "id": "c5b4c92a-b0cf-4189-a46c-9e42ddae4559",
+    "headline": "Indian-Origin Surrey Landlady Arrested After Tenant's Viral Harassment Videos",
+    "slug": "surrey-landlady-arrested-viral-tenant-videos",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian-origin individuals or organizations in Canada regarding the incident. This could provide insight into how the Indian community perceives landlord-tenant relationships and legal protections in British Columbia.",
+        "Provide more context about the legal framework governing landlord-tenant disputes in British Columbia, particularly how it affects NRIs and the diaspora. This could help readers understand the implications of the incident for Indian nationals living abroad.",
+        "Clarify the timeline of events leading up to the arrest. A brief timeline could help readers grasp the escalation of the situation and its implications for both the tenant and the landlady.",
+        "Include a section discussing the potential impact of this incident on the perception of Indian landlords in Canada, especially among the diaspora community, to highlight any broader societal implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official Surrey Police statement or tweet regarding the incident, if available, to provide authoritative context and updates on the situation."
+      ]
+    }
+  }
+]

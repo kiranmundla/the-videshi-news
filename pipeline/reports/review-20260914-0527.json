@@ -1,0 +1,97 @@
+[
+  {
+    "id": "48f80a7c-1f0a-45fe-9736-1f38eab7d4dd",
+    "headline": "'Main Na Raha Mera' First Look: Adhyayan Suman's Musical Romance Sets Teaser for",
+    "slug": "main-na-raha-mera-first-look-adhyayan-suman-divita-rai",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the film's themes of love and nostalgia resonate with NRIs, perhaps by quoting diaspora filmmakers or critics who can speak to the significance of 90s Bollywood in their lives.",
+        "Provide more context about the film's production and its potential impact on the Indian diaspora, such as discussing how the film might be received in international markets or its relevance to NRIs who grew up with 90s Bollywood.",
+        "Consider adding a section that discusses the significance of the film's music, especially how it might appeal to NRIs who have a nostalgic connection to Bollywood music from the 90s.",
+        "Include a brief mention of the film's distribution plans or potential platforms for viewing, which would be particularly relevant for NRIs interested in accessing the film."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post from the film's official account to showcase behind-the-scenes content or promotional material that may appeal to the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "11ebcff1-93e7-42b4-b3bb-7488bed54c6d",
+    "headline": "India's Chip Sector Hits $1.4 Billion in Funding as Dholera Fab Races Toward 202",
+    "slug": "india-semiconductor-funding-1-4-billion-tracxn",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or comments from Indian NRIs working in the semiconductor industry abroad, particularly those in the US or Europe, to highlight how they view India's growth in this sector and its implications for global supply chains.",
+        "Provide context on how the growth of India's semiconductor sector could impact NRIs in terms of investment opportunities or job prospects, especially for those considering returning to India or investing in Indian startups.",
+        "Clarify the timeline and significance of the Dholera fab project by explaining its potential impact on the global semiconductor supply chain and how it relates to the interests of the Indian diaspora, particularly in technology sectors.",
+        "Include a comparison of India's semiconductor funding with other countries' efforts, particularly those with significant NRI populations, to provide a broader context on how India is positioning itself in the global market."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEMICON India 2026 tweet to provide readers with real-time updates and engagement from the event."
+      ]
+    }
+  },
+  {
+    "id": "5787c780-d9c7-4ddf-a050-06e069505cfd",
+    "headline": "Baba Ramdev's 'Ayurvedic Hookah' Ignites Memes, Mockery and a Medical Warning",
+    "slug": "baba-ramdev-ayurvedic-hookah-memefest-health-experts",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by incorporating perspectives from NRIs who may have cultural ties to Ayurvedic practices or who might be influenced by Baba Ramdev's popularity abroad. This could include quotes or anecdotes from NRIs discussing their views on the 'Ayurvedic hookah' and its reception in their communities.",
+        "Provide more context on the potential health implications of using herbal smoke, especially for NRIs who may be unfamiliar with Ayurvedic practices. This could include a brief overview of Ayurveda's principles and how they are perceived in Western medicine, which would help readers understand the broader implications of Ramdev's claims.",
+        "Include a section discussing how such viral trends can impact the perception of traditional medicine in the diaspora, particularly among younger generations who may be more influenced by social media trends.",
+        "Clarify the lack of commercial availability for the 'Ayurvedic hookah' by mentioning how similar products are marketed in the diaspora, and whether there are any existing Ayurvedic products that NRIs might consider as alternatives."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a health expert or an organization like the WHO or CDC that discusses the risks of smoking herbal substances, which would provide authoritative context to the health warnings mentioned in the article."
+      ]
+    }
+  },
+  {
+    "id": "c6612d1f-4f83-4191-bc06-4094460f9ad4",
+    "headline": "Stalked for Months, Reported Again and Again: Indian-Origin Woman Shot Dead in S",
+    "slug": "shalini-thakur-indian-origin-woman-shot-dead-stalker-sacramento",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from the Indian community in the U.S. regarding the incident and its implications for immigrant safety and victim protection.",
+        "Provide more context on the immigration status of the suspect and how it relates to the broader discourse on immigration policies affecting the Indian diaspora, potentially including statistics or expert opinions.",
+        "Clarify the timeline of events leading up to the shooting, as the current structure can be confusing. A chronological breakdown of Thakur's reports to the police and the actions taken (or not taken) could enhance understanding.",
+        "Include a brief mention of any existing support systems or resources available for stalking victims within the Indian diaspora, which could provide practical information for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about immigration policy changes or victim protection measures to provide readers with direct information on how this case fits into larger policy debates."
+      ]
+    }
+  },
+  {
+    "id": "6985e7eb-8fe2-4272-9774-dff087c55510",
+    "headline": "Paneer Lababdar, Millet Pulao and Mulberry Phirni: What BRICS Leaders Ate at Mod",
+    "slug": "brics-gala-dinner-menu-modi-bharat-mandapam-2026",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from NRIs regarding the significance of the dinner and its menu, especially in relation to Indian cuisine being showcased on a global stage.",
+        "Provide context on how the BRICS Summit and Modi's dinner could impact NRIs, particularly in terms of cultural diplomacy and the promotion of Indian cuisine abroad, which could resonate with the diaspora audience.",
+        "Include a brief section discussing the significance of millets in Indian cuisine and how this aligns with global food trends, which may interest NRIs looking to connect with their roots through food.",
+        "Consider adding a comparison of this gala dinner's menu with past events hosted by Indian leaders, which could provide depth and context for readers interested in the evolution of Indian culinary diplomacy."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official BRICS Summit account or a relevant Indian government account that highlights the dinner or its cultural significance, which would provide real-time context and engagement."
+      ]
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1e39e707-9dc8-44ee-85bd-a07e694346c4",
+    "headline": "Haryana Seizes 7,500 Kg of Suspected Fake Paneer Bound for Delhi Markets",
+    "slug": "haryana-seizes-7500-kg-fake-paneer-delhi",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Highlight the impact of food safety issues on the Indian diaspora, particularly those who rely on authentic Indian products abroad, to strengthen the diaspora angle.",
+        "Include quotes or insights from NRI communities regarding their concerns about food safety and authenticity of Indian products in foreign markets, which would provide a personal touch and relevance to the diaspora.",
+        "Add context about how incidents like this affect the perception of Indian food products internationally, especially among NRIs who may be concerned about the quality of products they send back home or consume abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from FSSAI or a food safety authority discussing the crackdown on adulterated food products, which would provide official context and credibility to the article."
+      ]
+    }
+  }
+]
