@@ -153,6 +153,19 @@ _OG_IMAGE_BLOCKLIST_PATHS = [
     "img.icons8.com/",
 ]
 
+# AI-generation markers in image filenames. The pipeline never publishes
+# AI-generated article images (standing editorial rule), so an og:image whose
+# filename advertises AI generation is treated as generic/rejected.
+# (2026-09-13: Hindustan Times CDN serves AI-generated og:images with a
+# 'Gemini_' filename prefix — one slipped into the BRICS gala article.)
+# Filename-level only, like "logo": a directory named e.g. "gemini" elsewhere
+# in the path is not evidence the image itself is AI-generated.
+_AI_GENERATED_FILENAME_MARKERS = [
+    "gemini", "ai-generated", "aigenerated", "midjourney", "dall-e",
+    "dalle", "firefly", "stable-diffusion", "stablediffusion",
+    "leonardo", "imagen",
+]
+
 # Major news domains with high-quality editorial photos (preferred for og:image)
 _PREFERRED_NEWS_DOMAINS = {
     "reuters.com", "bbc.com", "bbc.co.uk", "cnn.com", "ndtv.com",
@@ -192,6 +205,13 @@ def _is_generic_og_image(img_url):
     # The filename is checked against every pattern (site-logo.png etc. still caught)
     for pattern in _OG_IMAGE_BLOCKLIST_PATTERNS:
         if pattern in filename:
+            return True
+    # AI-generated images are never acceptable as article heroes (standing
+    # editorial rule). A filename advertising AI generation (e.g. HT CDN's
+    # 'Gemini_' prefix) rejects the og:image so the cascade falls through to
+    # Wikipedia/Commons/Pexels instead of ranking the AI image above them.
+    for marker in _AI_GENERATED_FILENAME_MARKERS:
+        if marker in filename:
             return True
     # Directory segments are checked too (catches /default/550x309.jpg style
     # placeholders), but NOT for "logo" — several news CDNs (HT included) use
@@ -741,14 +761,54 @@ def fetch_wikimedia_commons_image(search_query, headline=""):
 
 # ── Source 6: Pexels ─────────────────────────────────────────────────────────
 
+_PEXELS_QUERY_STOPWORDS = {
+    "the", "a", "an", "and", "for", "with", "from", "about", "what", "how",
+    "why", "when", "new", "top", "best", "his", "her", "their", "its",
+    "this", "that", "these", "those", "are", "was", "were", "has", "have",
+    "had", "will", "would", "could", "should", "into", "over", "under",
+    "after", "before", "says", "said",
+}
+
+
+def _pexels_alt_matches(query, alt):
+    """Mechanical relevance gate for Pexels results.
+
+    Pexels' fuzzy search returns plausible-looking but unrelated stock for
+    specific queries (person names, film titles — e.g. an unrelated stock
+    photo for 'Main Na Raha Mera'). Require the photo's alt text to share at
+    least one content word with the query; otherwise return no image (null >
+    wrong) so the article publishes hero-less instead of with a wrong photo.
+    """
+    if not alt or not query:
+        return False
+    q_words = {
+        w for w in re.findall(r"[a-z]+", query.lower())
+        if len(w) > 3 and w not in _PEXELS_QUERY_STOPWORDS
+    }
+    if not q_words:
+        return False
+    alt_l = alt.lower()
+    for w in q_words:
+        # light plural stemming so "trains" matches "train"
+        stem = w[:-1] if w.endswith("s") and len(w) > 4 else w
+        if stem in alt_l:
+            return True
+    return False
+
+
 def fetch_pexels_image(query):
-    """Search Pexels for a topical image. Returns URL or None."""
+    """Search Pexels for a topical image. Returns URL or None.
+
+    Only returns a photo whose alt text passes the relevance gate
+    (_pexels_alt_matches); irrelevant fuzzy matches are rejected so the
+    article falls through to hero-less rather than a wrong image.
+    """
     if not PEXELS_KEY or not query:
         return None
-    
+
     encoded = urllib.parse.quote(query)
-    url = f"https://api.pexels.com/v1/search?query={encoded}&per_page=3&orientation=landscape"
-    
+    url = f"https://api.pexels.com/v1/search?query={encoded}&per_page=5&orientation=landscape"
+
     try:
         result = subprocess.run(
             ["curl", "-sS", "--max-time", "8", url,
@@ -760,7 +820,7 @@ def fetch_pexels_image(query):
         for photo in photos:
             src = photo.get("src", {})
             img_url = src.get("large2x") or src.get("large") or src.get("original")
-            if img_url:
+            if img_url and _pexels_alt_matches(query, photo.get("alt", "")):
                 return img_url
         return None
     except:

@@ -89,13 +89,13 @@ python3 -u image_sourcer.py --slug <article-slug> --apply
 ```
 
 This runs the full 7-source image chain automatically:
-1. og:image from source articles (decodes Google News URLs, ranks by domain quality)
+1. og:image from source articles (decodes Google News URLs, ranks by domain quality; AI-generated og:images rejected by filename markers like `Gemini_`, `midjourney`, `dall-e`)
 2. RSS feed thumbnails from p2_signals
 3. Media library cache (person_images table)
 4. YouTube thumbnails (entity-specific, with title match gate)
 5. Wikipedia person images
 6. Wikimedia Commons search
-7. Pexels fallback
+7. Pexels fallback (last resort; photo alt text must share a content word with the query or it is rejected as irrelevant)
 
 It also computes focal points for face-aware cropping and updates the DB directly.
 
