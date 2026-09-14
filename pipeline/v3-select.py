@@ -507,6 +507,7 @@ You will receive ALREADY PUBLISHED headlines. For each new topic, classify:
   * Any story where the published article was forward-looking/anticipatory and the new topic reports what actually happened
   The bar is HIGH for routine incremental updates, but OUTCOMES of anticipated events are always "update".
 - "duplicate" — Already covered with no major new info. Even different wording/angle = duplicate if the SUBSTANCE is the same. DEFAULT when a published headline covers the same event AND neither is anticipatory vs outcome.
+  CHECK THE "similar already-published" HEADLINES FIRST for every topic — they are the published stories most likely to cover the same event. Paraphrases count: "safety net" vs "grace period", "shot dead by stalker" vs "stalked for months, shot dead", "fixing Xbox" vs "executive now runs Xbox" are the SAME substance. When in doubt between "new" and "duplicate" on a similar-headline match, choose "duplicate".
 
 WITHIN-BATCH duplicates: if two topics in this batch cover the same event, mark all but the most important as "duplicate".
 
@@ -602,6 +603,11 @@ def llm_score_topics(topics_with_signals, recent_articles):
                     desc = s["description"]
             desc_part = f" | {desc[:150]}" if desc else ""
             line = f"{i+1}. {title[:120]}{desc_part} [signals: {sig_count}, sources: {source_count}]"
+            # Pin the most similar already-published headlines so the LLM checks
+            # the right candidates for duplicate/update instead of scanning 150.
+            _sim = t.get("_similar_published") or []
+            if _sim:
+                line += " | similar already-published: " + " / ".join(f'"{h}"' for h in _sim)
             # Append temporal cue evidence if detected
             stale_cues, profile_cues = detect_temporal_cues(title, desc)
             if stale_cues or profile_cues:
@@ -1149,6 +1155,55 @@ def main():
         print(f"  Hard dedup rejected: {_hard_dedup_count} topics (title match with published)")
     if _entity_dedup_count:
         print(f"  Entity dedup rejected: {_entity_dedup_count} topics (named entity overlap with published)")
+
+    # ── Step 3b-iii: Similar-published shortlist for the LLM ──
+    # The LLM compares each topic against ~150 published headlines in one batch,
+    # and paraphrase-duplicates slip through (e.g. "60-Day H-1B Safety Net" vs
+    # "H-1B Grace-Period Repeal" share zero content words). Retrieve the top-3
+    # most similar published headlines per topic and pin them to the topic line
+    # so the LLM checks the right candidates instead of scanning all 150.
+    # Recall-oriented: the LLM still makes the final duplicate/update/new call.
+    # Tokenizer keeps alphanumeric tokens (h1b, t20i, u17) — highly distinctive
+    # in this domain but dropped by the [a-z]-only regex used above.
+    _sim_hyphen_re = re.compile(r'(?<=[a-z0-9])-(?=[a-z0-9])')
+    def _sim_tokens(text):
+        norm = _sim_hyphen_re.sub('', (text or '').lower())
+        return frozenset(re.findall(r'[a-z0-9]{3,}', norm)) - _dedup_stop
+    def _sim_distinctive(tokens):
+        return frozenset(w for w in tokens if len(w) >= 6)
+    _pub_sim = []
+    for _h in _pub_headlines_original:
+        _pt = _sim_tokens(_h)
+        _pub_sim.append((_pt, _sim_distinctive(_pt)))
+    _SIM_TOP_K = 3
+    _shortlisted = 0
+    for t in topics:
+        if not t.get("signals") or topic_statuses.get(t["id"]) == "rejected":
+            continue
+        t_title_orig = t.get("canonical_title") or ""
+        # Pool tokens from the canonical title PLUS all signal titles: an
+        # individual signal often names entities the canonical title drops
+        # (e.g. canonical "Indian-origin CEO ... fixing Xbox" vs a signal
+        # naming "Asha Sharma").
+        _sig_text = " ".join((s.get("title") or "") for s in t.get("signals", []))
+        t_toks = _sim_tokens(t_title_orig + " " + _sig_text[:600])
+        if not t_toks:
+            continue
+        t_dist = _sim_distinctive(t_toks)
+        t_ents = _extract_named_entities(t_title_orig)
+        scored = []
+        for i, (p_toks, p_dist) in enumerate(_pub_sim):
+            if not p_toks:
+                continue
+            s = (len(t_toks & p_toks) + 2 * len(t_dist & p_dist)
+                 + 3 * len(t_ents & _pub_entity_sets[i]))
+            if s > 0:
+                scored.append((s, i))
+        scored.sort(reverse=True)
+        t["_similar_published"] = [_pub_headlines_original[i][:110] for _, i in scored[:_SIM_TOP_K]]
+        if t["_similar_published"]:
+            _shortlisted += 1
+    print(f"  Similar-published shortlists attached for {_shortlisted} topics ({_SIM_TOP_K} each)")
 
     # ── Step 4: LLM scoring + classification ──────────────────────────────────
     # Only LLM-score topics that have loaded signals AND weren't hard-deduped

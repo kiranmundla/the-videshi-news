@@ -23,7 +23,9 @@ For each candidate in the JSON array:
 ### 3a. Dedup check FIRST
 Query `p2_articles` for articles with similar headlines in the last 3 days:
 `GET /rest/v1/p2_articles?select=headline&created_at=gte.<3 days ago>&status=eq.published&limit=200`
-If a published article already covers the same story, SKIP this candidate.
+If a published article already covers the same story, SKIP this candidate — and close the loop so the selector stops re-serving it:
+`PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "rejected", "evaluated_at": "<now UTC ISO>"}`.
+Without this write-back the topic stays `pending` and the selector re-selects it after its 6-hour cooldown, wasting a writer cycle every run until the topic ages out.
 
 ### 3b. Read source material
 If the candidate has `source_urls`: read 2-4 of them via `browser_open` to get actual article text. Also check the `all_signals` array for additional source URLs.
