@@ -10,6 +10,20 @@ cd ~/workspace/the-videshi-news/pipeline && nohup python3 -u v3-select.py --per-
 Poll every 30s for up to 15 minutes until `/tmp/v3-candidates.json` has an mtime newer than the run start. The selector is lock-protected (exit 2 = another instance already running; just wait for its output), checkpoints scoring progress so killed runs don't lose work, and writes candidates atomically to both `/tmp` and a persistent backup. A backgrounded process is NOT a failure — wait for the file.
 3. Last resort: use the persistent backup if it is < 6h old with a non-empty candidates array. Otherwise report the selector failure and stop — never write articles without a candidate list.
 
+### 1b. Claim the candidate batch (prevents double-publish races)
+Two writers must NEVER work the same candidate file — on 2026-09-14 two recovery runs processed the same batch and 7 duplicate articles went live. Before writing anything:
+```bash
+CAND=$(ls -t /tmp/v3-candidates.json ~/workspace/the-videshi-news/pipeline/.state/v3-candidates.json 2>/dev/null | head -1)
+MTIME=$(stat -c %Y "$CAND"); NOW=$(date +%s)
+CLAIM=~/workspace/the-videshi-news/pipeline/.state/v3-writer-claim.json
+if [ -f "$CLAIM" ] && [ "$(python3 -c "import json;print(json.load(open('$CLAIM')).get('candidates_mtime'))")" = "$MTIME" ] && [ $((NOW - $(stat -c %Y "$CLAIM"))) -lt 21600 ]; then
+  echo "CLAIMED: another writer already took this batch ($(cat $CLAIM)) — exiting"; exit 2
+fi
+python3 -c "import json,time;json.dump({'candidates_mtime':$MTIME,'claimed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'run':'writer-'},open('$CLAIM','w'))"
+echo "Batch claimed: $CAND (mtime $MTIME)"
+```
+If you see CLAIMED, stop immediately — do not write, do not publish. (Claims expire after 6h so a crashed run can't block the next slot forever; a fresh selector output always has a new mtime and is claimable.)
+
 ## Step 2 — Read candidates
 Read `/tmp/v3-candidates.json`. It has a `candidates` array — each entry has `topic_id`, `title`, `category`, `llm_score`, `coverage` ("new" or "update"), `source_urls`, `all_signals`, and `llm_reason`.
 Fallback: if `/tmp/v3-candidates.json` is missing or stale (>30 min old), use `~/workspace/the-videshi-news/pipeline/.state/v3-candidates.json` provided it is < 6h old and has a non-empty candidates array.
