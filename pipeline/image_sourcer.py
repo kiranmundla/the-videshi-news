@@ -1187,6 +1187,22 @@ if __name__ == "__main__":
         print("IMAGE_RESULT:" + json.dumps(result))
 
     elif args.slug:
+        # ── Overlap lock: source-image.py --apply also writes image_url.
+        # Don't clobber each other — skip if the other holds the lock.
+        _lock_fh = None
+        if args.apply:
+            import fcntl
+            _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state", "image-write.lock")
+            os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
+            _lock_fh = open(_lock_path, "w")
+            try:
+                fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except (IOError, OSError):
+                print("Another image writer holds the lock — skipping to avoid clobbering.")
+                _lock_fh.close()
+                sys.exit(0)
+            _lock_fh.write(f"{os.getpid()}\n")
+            _lock_fh.flush()
         # Fetch article from DB and source its image
         r = _safe_run(
             ["curl", "-s",
@@ -1231,6 +1247,8 @@ if __name__ == "__main__":
             print("  No image found across all sources.")
         result = {"image_url": url, "attribution": attr, "caption": caption}
         print("IMAGE_RESULT:" + json.dumps(result))
+        if _lock_fh:
+            _lock_fh.close()  # release image-write lock
 
     elif args.backfill:
         from datetime import datetime, timedelta, timezone
