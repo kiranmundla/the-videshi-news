@@ -1206,7 +1206,7 @@ if __name__ == "__main__":
         # Fetch article from DB and source its image
         r = _safe_run(
             ["curl", "-s",
-             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources&slug=eq.{args.slug}&limit=1",
+             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources,image_backfill_blocked&slug=eq.{args.slug}&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
             capture_output=True, text=True, timeout=30
@@ -1219,6 +1219,11 @@ if __name__ == "__main__":
             print(f"ERROR: No article found with slug '{args.slug}'")
             sys.exit(1)
         article = rows[0]
+        if article.get("image_backfill_blocked"):
+            print(f"SKIP: article '{args.slug}' has image_backfill_blocked=true — leaving imageless per standing decision.")
+            if _lock_fh:
+                _lock_fh.close()
+            sys.exit(0)
         url, attr, caption = source_hero_image(article)
         if url:
             print(f"\n  Image found: {url[:80]}")
@@ -1271,7 +1276,7 @@ if __name__ == "__main__":
         r = _safe_run(
             ["curl", "-s",
              f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources"
-             f"&status=eq.published&image_url=is.null&published_at=gte.{encoded_cutoff}"
+             f"&status=eq.published&image_url=is.null&image_backfill_blocked=is.false&published_at=gte.{encoded_cutoff}"
              f"&order=published_at.desc",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],

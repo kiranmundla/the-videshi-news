@@ -1540,7 +1540,7 @@ def get_recent_articles(hours=24, category=None):
     since = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
 
     params = {
-        "select": "id,headline,slug,category,image_url,image_caption,body,published_at,sources,topic_id",
+        "select": "id,headline,slug,category,image_url,image_caption,body,published_at,sources,topic_id,image_backfill_blocked",
         "status": "eq.published",
         "published_at": f"gte.{since}",
         "order": "published_at.desc",
@@ -2026,7 +2026,9 @@ def main():
             if code not in ('200', '301', '302'):
                 print(f"\n  ❌ [{code}] {article['headline'][:50]}")
                 print(f"      {img_url[:80]}")
-                if apply:
+                if article.get("image_backfill_blocked"):
+                    print(f"      ⏭ Skipped re-source: image_backfill_blocked=true")
+                elif apply:
                     try:
                         sys.path.insert(0, PIPELINE_DIR)
                         from image_sourcer import source_hero_image

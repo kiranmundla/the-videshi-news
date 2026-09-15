@@ -240,30 +240,35 @@ def validate_image_url(url):
 def get_article(article_id):
     """Fetch article from Supabase."""
     r = requests.get(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}&select=id,headline,image_url,image_caption,image_attribution,body",
+        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}&select=id,headline,image_url,image_caption,image_attribution,body,image_backfill_blocked",
         headers=HEADERS, timeout=10,
     )
     data = r.json()
     return data[0] if data else None
 
 
-def update_article_image(article_id, image_url, caption, attribution, dry_run=True):
+def update_article_image(article_id, image_url, caption, attribution, dry_run=True, clear_backfill_block=False):
     """Update article hero image."""
     if dry_run:
         print(f"  [DRY RUN] Would update image to: {image_url[:80]}")
         print(f"  [DRY RUN] Caption: {caption}")
         return True
+    payload = {
+        "image_url": image_url,
+        "image_caption": caption,
+        "image_attribution": attribution,
+    }
+    if clear_backfill_block:
+        payload["image_backfill_blocked"] = False
     r = requests.patch(
         f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
-        json={
-            "image_url": image_url,
-            "image_caption": caption,
-            "image_attribution": attribution,
-        },
+        json=payload,
         headers=HEADERS, timeout=15,
     )
     if r.status_code == 204:
         print(f"  ✅ Image updated!")
+        if clear_backfill_block:
+            print(f"  🔓 image_backfill_blocked cleared (manual override with verified image)")
         return True
     print(f"  ❌ Update failed: {r.status_code} {r.text[:100]}")
     return False
@@ -368,7 +373,11 @@ def process_instruction(instr, apply=False):
 
     if image_url:
         caption = instr.get("caption", f"{article['headline'][:50]} ({attribution})")
-        update_article_image(aid, image_url, caption, attribution, dry_run=not apply)
+        blocked = article.get("image_backfill_blocked", False)
+        if blocked:
+            print(f"  ⚠ Article has image_backfill_blocked=true — manual override will clear the block.")
+        update_article_image(aid, image_url, caption, attribution, dry_run=not apply,
+                             clear_backfill_block=blocked and apply)
     elif sources:
         print(f"  ✗ No suitable image found from any source")
 

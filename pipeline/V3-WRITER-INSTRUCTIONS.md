@@ -104,6 +104,8 @@ cd ~/workspace/the-videshi-news/pipeline
 python3 -u image_sourcer.py --slug <article-slug> --apply
 ```
 
+> **image_backfill_blocked:** some articles carry `image_backfill_blocked=true` (standing intentional-null decisions, e.g. no verified photo exists for the named person). The sourcer skips these automatically — never force an image onto them. If you later verify a real photo, apply it with `source-image.py`, which clears the block.
+
 This runs the full 7-source image chain automatically:
 1. og:image from source articles (decodes Google News URLs, ranks by domain quality; AI-generated og:images rejected by filename markers like `Gemini_`, `midjourney`, `dall-e`)
 2. RSS feed thumbnails from p2_signals
