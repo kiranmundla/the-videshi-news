@@ -1,0 +1,59 @@
+[
+  {
+    "id": "8018a86c-7b20-4956-963f-10d28ffcadc9",
+    "headline": "Mirzapur The Movie a Clean Hit on Day 10, Enters 2026's Top 5 Grossers",
+    "slug": "mirzapur-the-movie-box-office-day-10-hit-verdict",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs regarding the film's release and its cultural significance. This could involve quotes from social media or interviews with NRIs who have watched the film and can comment on its impact on the Indian diaspora.",
+        "Provide context on how the film's success in overseas markets, particularly in North America, reflects the interests and preferences of the NRI audience. This could include statistics on viewership or box office performance specifically in regions with large Indian populations.",
+        "Clarify the significance of the film's transition from a Prime Video series to a theatrical release, particularly how this shift resonates with NRIs who may have followed the series and are now engaging with the film in cinemas.",
+        "Add a brief section discussing the film's themes and how they relate to the Indian diaspora experience, which would provide depth and context for readers interested in cultural connections."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from an NRI film critic or influencer discussing the film's impact on the diaspora, or share a relevant clip from the film that highlights its connection to Indian culture."
+      ]
+    }
+  },
+  {
+    "id": "f22c6f9a-5761-4bbe-a4af-9f8c3bf1f280",
+    "headline": "Indonesian Firefighters Teach Fire Safety Set to 'Saajan Ji Ghar Aaye' in Viral ",
+    "slug": "indonesian-firefighters-bollywood-saajan-ji-ghar-aaye-fire-safety",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs or members of the Indian community in Indonesia who have engaged with the videos. This could highlight the cultural connection and the impact of Bollywood on the Indian diaspora.",
+        "Provide context on how Bollywood music influences cultural practices and community engagement among NRIs. This could include examples of similar initiatives in other countries or regions with significant Indian populations.",
+        "Add a brief section discussing the implications of fire safety awareness in the context of the Indian diaspora, particularly in regions with high fire risks or where Indian communities are prominent, such as the Gulf countries.",
+        "Include a concluding paragraph that connects the viral nature of the videos to broader themes of cultural exchange and community resilience, which could resonate with the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed the original Instagram post or a relevant tweet from @sougat18 to provide readers with direct access to the content and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "8b17f727-26aa-49c4-8af6-5dcb795bcd74",
+    "headline": "Zomato Checks Gurgaon Restaurant Menus for Undeclared 'Analogue' Paneer",
+    "slug": "zomato-gurgaon-restaurant-menus-analogue-paneer-checks",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs who may be concerned about the authenticity of Indian food abroad. This could involve quoting an NRI chef or food critic discussing the implications of analogue dairy on Indian cuisine in international markets.",
+        "Provide more context about how this policy might affect Indian restaurants catering to the diaspora, especially those in countries like the US or UK where authenticity is crucial for customer satisfaction.",
+        "Clarify the implications of the zero-tolerance policy for NRIs who might be ordering food from Indian restaurants online. This could include discussing how Zomato's actions might influence the perception of Indian cuisine globally.",
+        "Add a section discussing the potential impact of these regulations on the supply chain for Indian restaurants abroad, particularly how they source their ingredients and the challenges they face in maintaining authenticity."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Zomato announcing their zero-tolerance policy on analogue dairy, as this would provide direct insight into the company's stance and engage readers with real-time updates."
+      ]
+    }
+  }
+]
