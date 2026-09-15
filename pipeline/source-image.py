@@ -38,6 +38,7 @@ Usage:
 """
 
 import os, sys, json, re, argparse, time
+import subprocess
 import requests
 from urllib.parse import quote, quote_plus
 
@@ -214,10 +215,27 @@ def fetch_youtube_trailer(query):
 # ═══════════════════════════════════════════
 
 def validate_image_url(url):
-    """Check that the URL returns a real image (not a 404 or tiny placeholder)."""
-    # Trust Wikimedia URLs — they're known good and rate-limit HEAD requests
-    if "upload.wikimedia.org" in url:
-        return True
+    """Check that the URL returns a real image (not a 404 or tiny placeholder).
+
+    Wikimedia URLs are NOT blindly trusted: a plausible-looking Commons path can
+    be a dead file (e.g. a guessed filename). HEAD requests fail from this
+    host, so verify with a curl GET per AGENTS.md conventions.
+    """
+    if "upload.wikimedia.org" in url or "commons.wikimedia.org" in url:
+        try:
+            r = subprocess.run(
+                ["curl", "-sS", "-o", "/dev/null", "-w", "%{http_code}",
+                 "-A", "TheVideshi/1.0", "--max-time", "15", url],
+                capture_output=True, text=True, timeout=20,
+            )
+            code = r.stdout.strip()
+            if code != "200":
+                print(f"  ⚠ Validation: Wikimedia URL returned HTTP {code or 'no-response'}")
+                return False
+            return True
+        except Exception as e:
+            print(f"  ⚠ Validation: curl check failed [{e}]")
+            return False
     try:
         r = requests.head(url, headers=UA, timeout=10, allow_redirects=True)
         ct = r.headers.get("Content-Type", "")
