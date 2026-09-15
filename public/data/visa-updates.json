@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-09-14",
+    "headline": "Judge blocks Duration of Status rule one day before it takes effect \u2014 nationwide preliminary injunction, D/S framework stays",
+    "id": "duration-of-status-blocked-sep-14-2026",
+    "label": "Sep 14, 2026",
+    "severity": "high",
+    "source": "Reuters / Inside Higher Ed / Presidents' Alliance / U.S. District Court, D. Mass.",
+    "summary": "U.S. District Judge F. Dennis Saylor IV granted nationwide preliminary relief on September 14, 2026, blocking the DHS final rule that would have ended 'duration of status' for F-1/J-1 students and I-visa journalists on September 15. In a 48-page order in Presidents' Alliance et al. v. DHS, the judge barred DHS and ICE from implementing the rule while the APA challenge proceeds, writing that the government's national security rationale 'borders on the absurd' and was based on a handful of anecdotes the rule would do nothing to prevent. The court found DHS failed to respond to 22,000+ public comments, did not consider less restrictive alternatives, and estimated the harm to US higher education and the economy could be 'catastrophic.' The longstanding open-ended duration-of-status framework remains in place nationwide while the lawsuit continues, with further hearings set for October 2. Relief for Indian students, the largest international cohort in the US, especially PhD candidates whose programs exceed the proposed four-year cap."
+  },
+  {
     "id": "grace-period-nprm-federal-register",
     "date": "2026-09-11",
     "label": "Sep 11, 2026",
@@ -43,6 +52,15 @@
     "severity": "high",
     "source": "DOL Inspector General (X) / PTI / The Hindu BusinessLine / Dainik Jagran / Outlook Business",
     "summary": "Department of Labor Inspector General Anthony D'Esposito announced on X on September 8 that Cognizant's PERM (Permanent Labor Certification) filings are suspended while investigators examine alleged fraud involving the H-1B and PERM programs, acting after 'multiple tips about violations from whistleblowers.' Cloudera's PERM filings were suspended the same day. The probe is being conducted alongside the White House Fraud Task Force and DOL is 'running down' prior applications one by one. DOL has not specified the allegations, the number of applications affected, or how long the suspension will last; it does not establish that fraud occurred. PERM is the first step of employment-based green card sponsorship \u2014 the suspension blocks Cognizant from starting new green card cases for foreign workers, raising concerns for the Chennai-founded IT major's Indian workforce and, per analysts, for the broader Indian IT sector's ability to attract and retain foreign talent on long-term US projects."
+  },
+  {
+    "date": "2026-09-06",
+    "headline": "State Department bars 'visa shopping': NIV applicants must interview in country of nationality or residence, effective immediately",
+    "id": "niv-home-country-scheduling-rule",
+    "label": "Sep 6, 2026",
+    "severity": "high",
+    "source": "US State Department / Mint",
+    "summary": "The US State Department updated its instructions on September 6, 2026, requiring all nonimmigrant visa applicants to schedule their interview appointments at the US Embassy or Consulate in their country of nationality or legal residence, effective immediately. Nationals of countries where the US does not conduct routine NIV operations must apply at a designated post. The change shuts down a widely used workaround for Indian applicants, who during long backlogs booked B1/B2 and other NIV interviews at posts outside India (e.g., Bangkok) for faster slots. Indian nationals can no longer secure quicker appointments in other countries. Limited exceptions exist for designated locations where routine NIV processing is not conducted."
   },
   {
     "id": "duration-of-status-lawsuit-filed",
@@ -151,24 +169,6 @@
     "summary": "The Wall Street Journal reported that the Trump administration is considering attaching a $100,000 fee to Optional Practical Training (OPT), the program that lets international graduates work in the US for one to three years on their student visas. About 419,000 foreign workers were on OPT in 2024. The move would effectively extend the $100K fee strategy \u2014 blocked by the First Circuit for H-1B visas \u2014 to the student-to-worker pipeline that top tech and finance firms rely on. DHS said no policy should be considered final until formally announced, but officials are discussing whether students, universities, or employers would pay. The fee would likely attach to a new requirement announced in July that forces international students to apply for a visa extension to use OPT, ending the decades-old Duration of Status framework. DHS is also working on a broader OPT regulation expected this fall. Indian students \u2014 the largest international cohort in the US \u2014 would face the biggest impact, as OPT and STEM OPT are the primary post-graduation work pathways before H-1B sponsorship.",
     "severity": "high",
     "source": "Wall Street Journal / DHS"
-  },
-  {
-    "id": "first-circuit-denies-100k-h1b-fee-stay",
-    "date": "2026-07-25",
-    "label": "Jul 25, 2026",
-    "headline": "First Circuit denies Trump bid to revive $100K H-1B fee \u2014 appeals court says government unlikely to win",
-    "summary": "The First Circuit Court of Appeals on Friday denied the Trump administration's emergency motion to stay Judge Sorokin's June 8 ruling that struck down the $100,000 H-1B fee as an unlawful tax. The three-judge panel ruled the government has not shown it is likely to succeed on appeal, citing a 1989 Supreme Court precedent requiring clear congressional authorization for such financial burdens. The ruling means the fee is no longer enforceable \u2014 reversing the temporary stay granted by Sorokin on June 12 that had kept the fee in effect. The case (California v. Mullin, No. 26-01699) was brought by 20 Democratic-led states. Parallel challenges remain pending in California and D.C. federal courts. While the full appeal on the merits is still ahead, the First Circuit's skepticism is a strong signal. Meanwhile, Sen. Tim Sheehy (R-MT) introduced the 'End H-1B Abuse Act' in the Senate the same day, seeking to codify the $100K fee in law and bypass the constitutional objection.",
-    "severity": "high",
-    "source": "First Circuit Court of Appeals / Reuters / Bloomberg Law / The Hindu BusinessLine"
-  },
-  {
-    "id": "senate-end-h1b-abuse-act-introduced",
-    "date": "2026-07-24",
-    "label": "Jul 24, 2026",
-    "headline": "Senate bill seeks 3-year H-1B visa suspension, codifies $100K fee \u2014 companion to House version escalates legislative push",
-    "summary": "Sen. Tim Sheehy (R-MT) introduced the 'End H-1B Abuse Act' in the Senate, mirroring Rep. Eli Crane's April House bill. The legislation would pause all new H-1B visas for three years, permanently replace the lottery with a wage-based selection system, codify the $100,000 petition fee struck down by courts, ban concurrent employment and third-party staffing models, end the 'dual intent' provision that lets H-1B holders pursue green cards, prevent H-class visa holders from bringing dependents, bar federal agencies from sponsoring visa holders, and eliminate Optional Practical Training (OPT) for students. The bill is backed by the Federation for American Immigration Reform (FAIR). While unlikely to pass in its current form, the Senate companion signals growing bipartisan-adjacent momentum to fundamentally reshape the H-1B program that employs hundreds of thousands of Indian tech professionals.",
-    "severity": "high",
-    "source": "Sen. Tim Sheehy / The Hindu BusinessLine / FAIR"
   },
   {
     "id": "interview-waiver-eliminated",
