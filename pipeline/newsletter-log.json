@@ -1346,5 +1346,15 @@
     "hero_slug": "cdc-record-lettuce-parasite-outbreak-over",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-14T13:59:25.022107+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 14, 2026",
+    "subscribers": 7,
+    "sent": 7,
+    "errors": 0,
+    "hero_slug": "who-is-asha-sharma-wisconsin-xbox-ceo-turnaround",
+    "story_count": 5
   }
 ]
