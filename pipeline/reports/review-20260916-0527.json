@@ -1,0 +1,40 @@
+[
+  {
+    "id": "2629df34-238f-42b4-9245-ad6d5eeed71e",
+    "headline": "Air India Deepens Salesforce AI Bet to Speed Up Customer Service",
+    "slug": "air-india-deepens-salesforce-ai-bet-customer-service",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how Air India's AI advancements will specifically benefit NRIs traveling to and from India, perhaps by improving customer service experiences that are often cited as pain points for this demographic.",
+        "Provide context about how Air India's AI initiatives compare to those of other airlines that serve the NRI market, highlighting any unique advantages or challenges that may resonate with the diaspora audience.",
+        "Include a quote or perspective from an NRI customer or travel expert about the importance of customer service in the airline industry, particularly for those who travel frequently between India and their country of residence.",
+        "Clarify the timeline mentioned in the article; it states 'April 2025' which seems to be a future date. Confirm if this is a typo or if the rollout is indeed planned for that time."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Air India or Salesforce that highlights their partnership or the AI initiatives, which could provide additional credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "e8131e7d-1afd-40b2-bd0e-8934f6645658",
+    "headline": "Air India CEO Summoned Over Immigration Lapse as Leadership Arrives at Bombay Ho",
+    "slug": "air-india-ceo-summoned-immigration-lapse-bombay-house",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from NRIs who frequently travel with Air India, discussing how such immigration lapses could impact their travel experiences or perceptions of the airline.",
+        "Provide context on how this immigration lapse might affect Air India's reputation among NRIs, especially those living in countries with strict immigration policies, to highlight the implications for the diaspora.",
+        "Include a brief overview of the immigration policies that affect NRIs traveling to and from India, which would give readers a better understanding of the significance of this incident.",
+        "Clarify the timeline of events and the potential repercussions for Air India and its leadership, as this will help readers grasp the seriousness of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Civil Aviation regarding the summons or the immigration policy in question to provide authoritative context."
+      ]
+    }
+  }
+]
