@@ -1069,6 +1069,19 @@ def source_hero_image(article, used_images=None):
             print(f"    ✗ Image too small ({w}x{h}), trying next source")
             tried.add(img_url)
             continue
+        # Near-square images from publisher og:image / RSS thumbnails are
+        # almost always site logos or placeholder avatars, not editorial
+        # photos (real og:images are landscape social-card crops ~1.91:1).
+        # 2026-09-16: a reflector.com logo placeholder was selected as a
+        # hero because nothing checked aspect ratio. Wikipedia/Commons/
+        # person_cache portraits are exempt — people photos are often
+        # portrait-oriented and identity-verified by other gates.
+        if source_name in ("og:image", "rss_thumbnail") and w > 0 and h > 0:
+            aspect = w / h
+            if 0.85 <= aspect <= 1.18:
+                print(f"    ✗ Near-square publisher image ({w}x{h}, likely logo/placeholder), trying next source")
+                tried.add(img_url)
+                continue
         
         break
     
