@@ -98,6 +98,74 @@ def supa_post(path, data, headers_extra=None):
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
     return json.loads(result.stdout)
 
+
+# Columns of the key_updates table — GPT output is filtered to these so a
+# hallucinated field can never break the insert.
+KEY_UPDATE_COLUMNS = {
+    "category", "headline", "detail", "impact", "article_id",
+    "article_slug", "article_headline", "event_date", "related_articles",
+}
+
+_UUID_RE = None
+
+def _is_uuid(value):
+    global _UUID_RE
+    if _UUID_RE is None:
+        import re as _re
+        _UUID_RE = _re.compile(
+            r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
+            r"[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+    return isinstance(value, str) and bool(_UUID_RE.match(value))
+
+
+def sanitize_updates(updates, articles):
+    """Make GPT-produced updates safe to insert.
+
+    - GPT sometimes puts the article SLUG in article_id (a UUID column),
+      which makes PostgREST reject the whole batch with 22P02. Resolve a
+      slug back to the real UUID from this batch; otherwise null it.
+    - Drop any keys that are not real table columns.
+    """
+    slug_to_id = {a.get("slug"): a.get("id") for a in (articles or [])
+                  if a.get("slug") and _is_uuid(a.get("id"))}
+    clean = []
+    for u in updates:
+        c = {k: v for k, v in u.items() if k in KEY_UPDATE_COLUMNS}
+        aid = c.get("article_id")
+        if not _is_uuid(aid):
+            # GPT put a slug (or garbage) in the UUID column — resolve or null
+            c["article_id"] = slug_to_id.get(aid) if isinstance(aid, str) else None
+            if aid and c["article_id"] is None:
+                print(f"  ⚠️  article_id '{str(aid)[:60]}' is not a UUID and "
+                      f"matches no article in this batch — nulled")
+        if "related_articles" not in c:
+            c["related_articles"] = []
+        clean.append(c)
+    return clean
+
+
+def supa_post_rows(path, rows):
+    """POST rows one at a time; return only rows the API actually inserted.
+
+    A batch POST fails atomically — one bad row used to kill the whole
+    batch while the caller printed len(error_dict)==4 as 'Inserted 4'.
+    Per-row posts are cheap here (a handful of updates per category) and
+    make failures loud instead of silent.
+    """
+    inserted = []
+    for row in rows:
+        resp = supa_post(path, [row])
+        if isinstance(resp, dict) and "code" in resp:
+            print(f"  ❌ insert failed for '{row.get('headline', '?')[:60]}': "
+                  f"[{resp.get('code')}] {resp.get('message')}")
+            continue
+        if isinstance(resp, list):
+            inserted.extend(resp)
+        else:
+            print(f"  ❌ unexpected insert response for "
+                  f"'{row.get('headline', '?')[:60]}': {str(resp)[:200]}")
+    return inserted
+
 def fetch_articles(category_slug, days):
     """Fetch recent published articles for a category."""
     since = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
@@ -318,7 +386,8 @@ def main():
                         # Ensure related_articles is present (defaults to [])
                         if "related_articles" not in u:
                             u["related_articles"] = []
-                    inserted = supa_post("key_updates", updates)
+                    updates = sanitize_updates(updates, articles)
+                    inserted = supa_post_rows("key_updates", updates)
                     total_inserted += len(inserted)
                     print(f"  ✅ Inserted {len(inserted)} updates")
         else:
@@ -355,7 +424,8 @@ def main():
                     u.pop("article_headline_display", None)
                     if "related_articles" not in u:
                         u["related_articles"] = []
-                inserted = supa_post("key_updates", updates)
+                updates = sanitize_updates(updates, articles)
+                inserted = supa_post_rows("key_updates", updates)
                 total_inserted += len(inserted)
                 print(f"  ✅ Inserted {len(inserted)} updates")
 
