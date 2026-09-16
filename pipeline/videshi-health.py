@@ -415,6 +415,27 @@ def check_ingest_health():
     }
 
 
+def check_topic_queue():
+    """Fuel gauge for the writer: how many unprocessed topics are waiting.
+
+    ingest_health looks backward (topics created in 24h) and can read
+    'healthy' while the queue is actually empty — e.g. ingest died 25h ago
+    (2026-09-16) but its partial flush kept the 24h count up, and the
+    writer then ran dry. This check looks at what the selector can use now.
+    """
+    pending = sb_get_count("p2_topics", "status=eq.pending")
+    dry = pending == 0
+    low = pending < 10 and not dry
+    return {
+        "check": "topic_queue",
+        "pending_topics": pending,
+        "status": "dry" if dry else ("low" if low else "healthy"),
+        "alert": dry or low,
+        "action_needed": ("writer queue is dry/low — run videshi-cron.sh v2-ingest "
+                          "to refill topics") if (dry or low) else None,
+    }
+
+
 # ─── Check 10: Article volume ─────────────────────────────────────────────────
 
 def check_article_volume():
@@ -1012,6 +1033,7 @@ def run_all(fix=False):
         ("stale_publishing", check_stale_publishing, 15),
         ("article_volume", check_article_volume, 15),
         ("ingest_health", check_ingest_health, 15),
+        ("topic_queue", check_topic_queue, 15),
         ("article_quality", check_article_quality, 30),
         ("image_health", check_image_health, 60),
         ("tweet_embeds", lambda: check_tweet_embeds(fix=fix), 60),
