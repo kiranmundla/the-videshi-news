@@ -352,16 +352,27 @@ def check_duplicates():
 # ─── Check 7: Missing images ──────────────────────────────────────────────────
 
 def check_missing_images():
-    """Recently published articles with no image — reels and social posts will fail."""
+    """Recently published articles with no image — reels and social posts will fail.
+    Articles with image_backfill_blocked=true are intentionally imageless
+    (standing decision, e.g. named person with no verified photo) — excluded
+    from the actionable count, reported separately for visibility."""
     cutoff_48h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=48))
     no_img = sb_get("p2_articles",
         f"status=eq.published&published_at=gte.{cutoff_48h}"
-        f"&image_url=is.null&select=id,headline,category&limit=20")
+        f"&image_url=is.null&image_backfill_blocked=neq.true"
+        f"&select=id,headline,category&limit=20")
+    blocked = sb_get("p2_articles",
+        f"status=eq.published&published_at=gte.{cutoff_48h}"
+        f"&image_url=is.null&image_backfill_blocked=eq.true"
+        f"&select=id,headline,category&limit=20")
     return {
         "check": "missing_images",
         "count": len(no_img),
         "articles": [{"id": a["id"], "headline": a["headline"][:60], "category": a.get("category")}
                      for a in no_img[:5]],
+        "backfill_blocked": len(blocked),
+        "backfill_blocked_articles": [{"id": a["id"], "headline": a["headline"][:60], "category": a.get("category")}
+                                      for a in blocked[:5]],
     }
 
 
@@ -599,7 +610,7 @@ def check_article_quality():
     cutoff_48h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=48))
     articles = sb_get("p2_articles",
         f"status=eq.published&published_at=gte.{cutoff_48h}"
-        f"&select=id,headline,subheadline,slug,category,body,sources,image_url"
+        f"&select=id,headline,subheadline,slug,category,body,sources,image_url,image_backfill_blocked"
         f"&order=published_at.desc&limit=100")
 
     issues = []
@@ -649,8 +660,8 @@ def check_article_quality():
         if not sources or sources in ("[]", "null", "None"):
             art_issues.append("no sources")
 
-        # No image
-        if not img:
+        # No image — skip if backfill is deliberately blocked (standing decision)
+        if not img and not a.get("image_backfill_blocked"):
             art_issues.append("no image")
 
         if art_issues:
