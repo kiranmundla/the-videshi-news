@@ -595,7 +595,10 @@ def fetch_wikipedia_image(entity_name, article_context=None, article_headline=No
         # ── Filename-vs-entity cross-check ──
         # Wikipedia sometimes returns a page with a photo of the wrong
         # person (e.g., search "Devendra Nath Mahto" → file Sanjay_Seth.jpg).
+        # Split camelCase too ("RanveerBrar.jpg" → ranveer + brar) so legit
+        # single-token filenames aren't falsely rejected.
         _fname_raw = os.path.basename(img).split(".")[0].replace("_", " ")
+        _fname_raw = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", _fname_raw)
         _ent_parts = {w.lower() for w in entity_name.split() if len(w) > 2}
         _fname_name_parts = {w.lower() for w in _fname_raw.split()
                              if len(w) > 2 and w[0].isupper()}
@@ -884,6 +887,56 @@ def upload_to_supabase(img_bytes, filename):
 
 # ── Main Image Chain ─────────────────────────────────────────────────────────
 
+# ── Identity guard (2026-09-16) ─────────────────────────────────────────────
+# Never put a Pexels/generic stock photo on a named-person article —
+# wrong photo is worse than no photo. Before the Pexels fallback,
+# check whether the headline names a verifiable person; if Wikipedia
+# has their photo, use it instead of stock; if the person can't be
+# verified, leave the article imageless.
+_HEADLINE_TITLE_WORDS = {
+    "expert", "experts", "vendor", "vendors", "minister", "ministers",
+    "official", "officials", "doctor", "doctors", "study", "studies",
+    "report", "reports", "court", "courts", "police", "army", "government",
+    "team", "teams", "party", "panel", "committee", "board", "bank",
+    "company", "group", "school", "schools", "university", "hospital",
+    "center", "centre", "festival", "award", "awards", "cup", "league",
+    "tournament", "championship",
+}
+_HEADLINE_PREFIX_WORDS = {
+    "pm", "cm", "dr", "shri", "smt", "lt", "gen", "mr", "mrs", "ms",
+    "india", "indian", "us", "uk", "supreme", "high", "federal",
+    "breaking", "exclusive", "watch", "live",
+}
+
+
+def headline_person_name(headline):
+    """Detect a named person at the start of a headline.
+
+    "Ranveer Brar's Tandoori..." → "Ranveer Brar"
+    "Varun Chakravarthy Ruled Out..." → "Varun Chakravarthy"
+    Returns None for non-person leads ("Ayurveda Expert Shares...",
+    "Allahabad Vendor's...", "Supreme Court Rules...").
+    """
+    if not headline:
+        return None
+    h = headline.strip()
+    m = re.match(r"^([A-Za-z][\w.'-]*)\s+([A-Za-z][\w.'-]*)", h)
+    if not m:
+        return None
+    first, second = m.group(1), m.group(2)
+    if first.lower().rstrip(".") in _HEADLINE_PREFIX_WORDS:
+        return None
+    if second.lower().rstrip("'s").rstrip(".") in _HEADLINE_TITLE_WORDS:
+        return None
+    # Both words capitalized, second not a title → likely a person's name
+    if first[0].isupper() and second[0].isupper() and len(first) > 1 and len(second) > 2:
+        name = f"{first} {second}"
+        # Strip possessive: "Ranveer Brar's" → "Ranveer Brar"
+        name = re.sub(r"'s$", "", name)
+        return name
+    return None
+
+
 def source_hero_image(article, used_images=None):
     """Multi-source image sourcing with HTTP verification at every step.
     
@@ -1041,7 +1094,26 @@ def source_hero_image(article, used_images=None):
                     print(f"    ✗ Commons image FAILED verification")
     
         # ── Source 6: Pexels fallback ────────────────────────────────────────
+        # IDENTITY GUARD: a named-person article must never get a generic
+        # stock photo. If the headline names a verifiable person, use their
+        # Wikipedia/Commons photo (verified by page identity + filename
+        # cross-check); if no verified photo exists, stay imageless.
         if not img_url:
+            person = headline_person_name(headline)
+            if person:
+                wp_img = fetch_wikipedia_image(person, article_context=headline)
+                if wp_img and wp_img not in used:
+                    ok, ctype, _ = verify_image_url(wp_img)
+                    if ok:
+                        img_url = wp_img
+                        attribution = "Wikimedia Commons"
+                        source_name = "wikipedia_headline_guard"
+                        print(f"    ✓ Wikipedia image for headline person '{person}' (identity guard)")
+                    else:
+                        print(f"    ✗ Wikipedia image FAILED verification for '{person}'")
+                if not img_url:
+                    print(f"    ⊘ Named-person article ('{person}') — skipping Pexels, staying imageless")
+        if not img_url and not headline_person_name(headline):
             query = search_query or must_show or headline[:40]
             pexels_img = fetch_pexels_image(query)
             if pexels_img and pexels_img not in used:
