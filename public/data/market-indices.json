@@ -1,77 +1,77 @@
 {
-  "last_updated": "2026-09-16T12:03:21.973342+00:00",
+  "last_updated": "2026-09-17T12:07:43.712405+00:00",
   "indices": [
     {
       "symbol": "SPX",
       "name": "S&P 500",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 7585.73,
-      "change": -87.79,
-      "change_pct": -1.14
+      "value": 7551.81,
+      "change": -84.55,
+      "change_pct": -1.11
     },
     {
       "symbol": "NASDAQ",
       "name": "Nasdaq",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 25981.57,
-      "change": -439.84,
-      "change_pct": -1.66
+      "value": 25978.42,
+      "change": -274.92,
+      "change_pct": -1.05
     },
     {
       "symbol": "DJI",
       "name": "Dow Jones",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "value": 52093.11,
-      "change": -692.96,
-      "change_pct": -1.31
+      "value": 51461.9,
+      "change": -918.76,
+      "change_pct": -1.75
     },
     {
       "symbol": "SENSEX",
       "name": "Sensex",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 74336.45,
-      "change": -566.14,
-      "change_pct": -0.76
+      "value": 74314.59,
+      "change": -467.17,
+      "change_pct": -0.62
     },
     {
       "symbol": "NIFTY",
       "name": "Nifty 50",
       "flag": "\ud83c\uddee\ud83c\uddf3",
-      "value": 23217.6,
-      "change": -260.2,
-      "change_pct": -1.11
+      "value": 23270.6,
+      "change": -127.5,
+      "change_pct": -0.54
     },
     {
       "symbol": "FTSE",
       "name": "FTSE 100",
       "flag": "\ud83c\uddec\ud83c\udde7",
-      "value": 10728.23,
-      "change": 58.13,
-      "change_pct": 0.54
+      "value": 10747.62,
+      "change": 138.72,
+      "change_pct": 1.31
     },
     {
       "symbol": "USDINR",
       "name": "USD/INR",
       "flag": "\ud83d\udcb1",
-      "value": 95.94,
-      "change": 0.83,
-      "change_pct": 0.87
+      "value": 95.93,
+      "change": 0.24,
+      "change_pct": 0.25
     },
     {
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
-      "value": 4387.8,
-      "change": -21.1,
-      "change_pct": -0.48
+      "value": 4383.9,
+      "change": 32.0,
+      "change_pct": 0.74
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
-      "value": 65.42,
-      "change": 0.86,
-      "change_pct": 1.33
+      "value": 64.98,
+      "change": 1.47,
+      "change_pct": 2.31
     }
   ]
 }
