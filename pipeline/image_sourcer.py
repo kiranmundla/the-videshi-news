@@ -1168,8 +1168,10 @@ def source_hero_image(article, used_images=None):
         if w > 0 and h > 0:
             article["img_w"] = w
             article["img_h"] = h
-    except:
-        pass
+    except Exception as e:
+        # Never fail the article over focal detection, but never fail silently
+        # either: a missing cv2 install leaves every image center-cropped (0.5, 0.5).
+        print(f"    ⚠ focal-point detection unavailable ({e}); using center crop")
     
     face_flag = "👤" if (fx != 0.5 or fy != 0.5) else "📐"
     print(f"    {face_flag} {source_name} → {w}×{h}, focal ({fx:.2f}, {fy:.2f})")
