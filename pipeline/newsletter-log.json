@@ -1376,5 +1376,15 @@
     "errors": 0,
     "hero_slug": "paytm-shares-slide-npci-upi-fee-above-rs-2000",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-17T13:59:26.013527+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 17, 2026",
+    "subscribers": 7,
+    "sent": 7,
+    "errors": 0,
+    "hero_slug": "sc-manipur-relief-camp-deaths-x7q2",
+    "story_count": 5
   }
 ]
