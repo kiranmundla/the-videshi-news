@@ -1,0 +1,178 @@
+[
+  {
+    "id": "890db1b3-a4e3-483b-852b-00a73e6449c6",
+    "headline": "Tiny English Village Votes to 'Secede' From UK Over Asylum Centre Plan",
+    "slug": "piddington-village-votes-secede-uk-asylum-centre",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from NRIs who may have experienced similar situations in their host countries, discussing how local communities react to asylum policies and the implications for diaspora communities in the UK.",
+        "Provide more context on how this situation reflects broader trends in asylum policies across Europe, particularly in relation to how it affects Indian NRIs and their views on immigration and asylum issues.",
+        "Include quotes or insights from Indian diaspora organizations or community leaders in the UK to highlight their stance on the asylum seeker situation and how it impacts their community.",
+        "Expand on the implications of this vote for the UK government's asylum policy and how it might resonate with Indian NRIs who are concerned about immigration policies in their host countries."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the UK Home Office or a news outlet discussing the asylum policy to provide readers with real-time updates and official statements regarding the situation."
+      ]
+    }
+  },
+  {
+    "id": "295f328b-fbc6-4c55-82e2-e1e1e48e93a3",
+    "headline": "Sepsis Kills 11 Million a Year. Handwashing and Vaccines Can Stop It",
+    "slug": "sepsis-kills-11-million-year-handwashing-vaccines-prevention",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or anecdotes about how sepsis affects the Indian diaspora specifically, including any cultural practices or healthcare access issues that may contribute to the risk of sepsis in NRI communities.",
+        "Provide context on how the Indian healthcare system addresses sepsis, particularly in relation to NRIs who may travel back to India for healthcare or have family members affected by this issue.",
+        "Include a section on how NRIs can advocate for better healthcare practices in their communities, perhaps by sharing resources or programs that focus on sepsis awareness and prevention.",
+        "Clarify the connection between sepsis and common infections prevalent in India, such as those related to waterborne diseases, to give readers a more localized understanding of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the WHO or PAHO regarding World Sepsis Day to provide authoritative support for the article's claims and to engage readers with current discussions on social media."
+      ]
+    }
+  },
+  {
+    "id": "a000bd5e-13c2-4bee-8658-d54cbceaa98b",
+    "headline": "PCOS Is Now PMOS: Doctors Say the New Name Changes Women's Care",
+    "slug": "pcos-renamed-pmos-doctors-say-new-name-changes-care",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or quotes from Indian doctors or health professionals who specialize in women's health and are based in the diaspora. This could provide a unique perspective on how the renaming of PCOS to PMOS may impact Indian women living abroad.",
+        "Add a section discussing how the change in terminology might affect Indian women in the diaspora, particularly regarding access to healthcare and awareness of the condition. This could include statistics or anecdotes about how PCOS is perceived and treated in different cultural contexts.",
+        "Provide more context about the implications of this name change on healthcare practices in India and among the Indian diaspora. For example, how might this shift influence treatment protocols or patient education in Indian clinics abroad?",
+        "Consider including a quote from a prominent figure in the Indian medical community or a diaspora health organization to lend authority and relevance to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from The Lancet announcing the name change, as well as any relevant tweets from health organizations like the Endocrine Society or Indian health authorities discussing the implications of this change."
+      ]
+    }
+  },
+  {
+    "id": "e9f3fee8-979a-42ce-b3bc-f0826919f067",
+    "headline": "Abhishek Sharma Rises to No. 2 as Bumrah Cracks ICC T20I Top 10",
+    "slug": "abhishek-sharma-rises-no2-bumrah-cracks-icc-t20i-top-10",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian expatriates or cricket fans living abroad, discussing how Abhishek Sharma's rise impacts their connection to Indian cricket.",
+        "Provide more context about the significance of these rankings for NRIs, such as how they can follow Indian cricket from abroad or the importance of T20 cricket in the diaspora community.",
+        "Enhance the article's depth by including a brief history of Abhishek Sharma's career or previous performances that led to this ranking, which would provide readers with a more comprehensive understanding of his achievements.",
+        "Clarify the implications of the rankings for the upcoming T20 World Cup and how the performance of players like Sharma and Bumrah might influence the Indian team's prospects, which would be of interest to NRIs following the tournament."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ICC or a cricket analyst discussing the significance of the rankings or the performance of Indian players in the series, which would add credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "0ade6d71-58f5-4357-9934-63ee13a676db",
+    "headline": "Von der Leyen Backs AI Slowdown, Invites Frontier Labs for Talks",
+    "slug": "von-der-leyen-backs-ai-slowdown-invites-frontier-labs-talks",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights or reactions from Indian AI experts or companies, discussing how the European stance on AI might impact the Indian tech industry or Indian professionals working in AI abroad.",
+        "Provide context on how the AI policies being discussed in Europe could affect NRIs working in tech sectors in the US or Canada, particularly in terms of collaboration or competition.",
+        "Expand on the implications of von der Leyen's statements for global AI governance, specifically how it may influence Indian policymakers or tech leaders in their approach to AI regulation.",
+        "Clarify the reference to U.S. President Donald Trump, as he is no longer in office; consider updating this to reflect the current administration's stance on AI to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the European Commission or a prominent AI expert commenting on the implications of von der Leyen's statements for a global audience, especially for those in the diaspora."
+      ]
+    }
+  },
+  {
+    "id": "6bcc2860-600a-4077-875a-64c790a4625d",
+    "headline": "Google Patches Pixel Modem Zero-Day Exploited in Targeted Attacks",
+    "slug": "google-patches-pixel-modem-zero-day-exploited-targeted-attacks",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this vulnerability could affect Indian expatriates using Pixel phones, especially in terms of privacy and security while communicating with family back home.",
+        "Provide context on the implications of such vulnerabilities for NRIs who may be targeted by state-sponsored actors, particularly in relation to their political or business activities in India.",
+        "Clarify the potential risks for Indian users abroad, such as how this vulnerability could be exploited by malicious actors in regions with high surveillance or political tension.",
+        "Include a section on best practices for NRIs to secure their devices against such vulnerabilities, tailored to the unique challenges they face."
+      ],
+      "embed_opportunities": [
+        "Embed the official Google security update announcement or a relevant tweet from Google to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "43c5de19-394d-4d54-9820-f7c8a908948c",
+    "headline": "Cabinet Raises EPFO Wage Ceiling to \u20b925,000 After 12 Years",
+    "slug": "epfo-wage-ceiling-raised-rs-25000-cabinet",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this wage ceiling increase could impact Indian NRIs who send remittances back home, especially in terms of their families' financial planning and savings.",
+        "Provide context on how this policy change may affect Indian workers abroad, particularly those in similar wage brackets, and whether it could influence their decisions to return to India or invest back home.",
+        "Include a quote or perspective from an NRI financial expert or community leader to add depth and relevance to the diaspora audience.",
+        "Clarify the implications of the wage ceiling increase on the overall job market and economic conditions in India, which would be of interest to NRIs considering investment or business opportunities back in India."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ministry of Labour and Employment or a financial expert discussing the implications of this policy change on workers and the economy."
+      ]
+    }
+  },
+  {
+    "id": "315dd787-df72-4765-b4a1-19fca985857c",
+    "headline": "J.B. Hunt Shares Sink 13% After Warning Q3 Earnings Will Fall",
+    "slug": "jb-hunt-shares-plunge-q3-earnings-warning",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how J.B. Hunt's performance may affect Indian NRIs who are investors in U.S. markets or those working in the logistics and transportation sectors. Discuss any potential implications for their investments or job security.",
+        "Provide additional context on how fluctuations in U.S. freight companies like J.B. Hunt can impact global supply chains, particularly for Indian businesses that rely on U.S. logistics. This could help readers understand the broader implications of the earnings warning.",
+        "Consider restructuring the article to include a dedicated section on the potential impact of this earnings warning on the stock market and investment strategies, particularly for NRIs. This could enhance the depth and relevance of the content for your audience."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from J.B. Hunt or a financial analyst discussing the earnings warning to provide real-time reactions and insights."
+      ]
+    }
+  },
+  {
+    "id": "e9c6d1ac-0aeb-48c2-8d4a-737bdd450040",
+    "headline": "US Retail Sales Rebound 1.2% in August as Consumers Keep Spending",
+    "slug": "us-retail-sales-rebound-august-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian NRIs regarding how U.S. retail trends impact their purchasing habits or investment decisions, especially in relation to the Indian market.",
+        "Provide context on how these retail sales figures might influence Indian businesses or exporters targeting the U.S. market, as this would directly connect the article to the interests of the NRI audience.",
+        "Include a section discussing how changes in U.S. consumer spending could affect remittances or investment flows from NRIs back to India, which is a critical concern for the diaspora.",
+        "Clarify the implications of the Federal Reserve's rate hike on the NRI community, particularly regarding any potential impacts on loans, mortgages, or investments they may hold in the U.S."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the recent policy changes affecting international students or workers, as this could tie into how retail trends might influence their financial decisions."
+      ]
+    }
+  }
+]
