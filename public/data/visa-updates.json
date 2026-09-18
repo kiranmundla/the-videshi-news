@@ -1,5 +1,14 @@
 [
   {
+    "id": "uscis-new-public-charge-rule-sept-18-2026",
+    "date": "2026-09-18",
+    "label": "Sep 18, 2026",
+    "headline": "USCIS sweeping new public charge guidance takes effect \u2014 any means-tested benefits (SNAP, Medicaid, housing aid) now weigh against green card applicants",
+    "summary": "USCIS\u2019s new public charge policy guidance takes effect September 18, 2026, replacing the narrower 2022 standard. Officers may now consider receipt of any means-tested public benefit on or after September 18 \u2014 including SNAP, Medicaid/CHIP/WIC, public or assisted housing, and federal rental assistance \u2014 when deciding whether an applicant is \u2018more likely than not\u2019 to become dependent on government support for basic needs, a lower threshold than the 2022 rule\u2019s \u2018primarily dependent\u2019 test. Benefits received before September 18 are judged only under the old standard (cash assistance like SSI/TANF and long-term institutionalization). The assessment remains a totality-of-the-circumstances test weighing five mandatory factors (age, health, family status, assets/resources, education/skills). Which standard applies depends on filing date, not decision date; the new Form I-485 edition is mandatory for applications filed on or after September 18, with older editions rejected. The rule covers EB-1/EB-2/EB-3 and immigrant investor applicants \u2014 the categories dominated by Indians transitioning from H-1B status \u2014 as well as family-sponsored and Diversity Visa applicants. Exemptions include refugees, asylees, VAWA/U/T holders, and existing green card holders renewing 10-year cards.",
+    "severity": "high",
+    "source": "USCIS / Murthy Law Firm / Reddy Neumann Brown PC / LatestLY"
+  },
+  {
     "date": "2026-09-14",
     "headline": "Judge blocks Duration of Status rule one day before it takes effect \u2014 nationwide preliminary injunction, D/S framework stays",
     "id": "duration-of-status-blocked-sep-14-2026",
@@ -160,15 +169,6 @@
     "summary": "USCIS updated its policy to allow officers to deny immigration applications and petitions without first issuing a Request for Evidence (RFE) or Notice of Intent to Deny (NOID) when required initial evidence is missing or eligibility is not established. The policy applies to all requests pending or filed on or after August 5, 2026. USCIS also clarified that officers may set shorter RFE response deadlines. This means incomplete H-1B petitions, I-485 green card applications, and other filings can be denied outright \u2014 forfeiting filing fees \u2014 rather than getting a second chance to supply missing documents. For Indian applicants navigating the already-tight immigration environment, the change makes thorough, complete initial filings more critical than ever. The update rescinds the 2013-era guidance that limited denials to cases with \"no possibility\" of approval.",
     "severity": "high",
     "source": "USCIS / Boundless Immigration"
-  },
-  {
-    "id": "opt-100k-fee-under-consideration",
-    "date": "2026-07-31",
-    "label": "Jul 31, 2026",
-    "headline": "Trump administration weighs $100,000 fee on OPT work permits \u2014 would target Indian students and Silicon Valley hiring pipeline",
-    "summary": "The Wall Street Journal reported that the Trump administration is considering attaching a $100,000 fee to Optional Practical Training (OPT), the program that lets international graduates work in the US for one to three years on their student visas. About 419,000 foreign workers were on OPT in 2024. The move would effectively extend the $100K fee strategy \u2014 blocked by the First Circuit for H-1B visas \u2014 to the student-to-worker pipeline that top tech and finance firms rely on. DHS said no policy should be considered final until formally announced, but officials are discussing whether students, universities, or employers would pay. The fee would likely attach to a new requirement announced in July that forces international students to apply for a visa extension to use OPT, ending the decades-old Duration of Status framework. DHS is also working on a broader OPT regulation expected this fall. Indian students \u2014 the largest international cohort in the US \u2014 would face the biggest impact, as OPT and STEM OPT are the primary post-graduation work pathways before H-1B sponsorship.",
-    "severity": "high",
-    "source": "Wall Street Journal / DHS"
   },
   {
     "id": "interview-waiver-eliminated",
