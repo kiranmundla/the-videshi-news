@@ -163,7 +163,7 @@ _OG_IMAGE_BLOCKLIST_PATHS = [
 _AI_GENERATED_FILENAME_MARKERS = [
     "gemini", "ai-generated", "aigenerated", "midjourney", "dall-e",
     "dalle", "firefly", "stable-diffusion", "stablediffusion",
-    "leonardo", "imagen",
+    "leonardo", "imagen", "chatgpt",
 ]
 
 # Major news domains with high-quality editorial photos (preferred for og:image)
