@@ -1,0 +1,59 @@
+[
+  {
+    "id": "5b7a4ec2-e316-41b1-a596-1fb6a86c28f0",
+    "headline": "Salesforce Unveils AIforce and Koa Reasoning Model at Dreamforce 2026",
+    "slug": "salesforce-aiforce-koa-dreamforce-2026",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Salesforce's new AI features could impact Indian businesses or NRIs working in tech, particularly in relation to remote work and collaboration tools that are increasingly relevant for the diaspora.",
+        "Provide context on how these developments at Dreamforce 2026 might influence the Indian tech landscape, especially for NRIs who are involved in startups or tech firms back home, and include quotes or reactions from Indian tech leaders or diaspora influencers.",
+        "Add a section discussing potential implications for NRIs in terms of job opportunities or skills development in AI and CRM technologies, which could resonate with the audience's interests in career advancement and tech trends.",
+        "Include a comparison of Salesforce's AIforce with similar offerings from other tech giants, particularly those that are popular in India, to give readers a broader understanding of the competitive landscape."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Salesforce or a tech influencer discussing the implications of AIforce for global businesses, particularly those in the Indian market."
+      ]
+    }
+  },
+  {
+    "id": "386aafd1-b13e-4fd1-9378-fbb4fd389bbe",
+    "headline": "Canada Weighs Winding Down 41-Year Kanishka Bombing Probe, Drawing Anguish From ",
+    "slug": "kanishka-probe-wind-down-families-rcmp",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from other members of the Indian diaspora who were affected by the Kanishka bombing or have been involved in advocacy for justice. This would provide a broader context and highlight the emotional and communal impact on the NRI community.",
+        "Provide more context on the implications of the investigation's potential winding down for the families of victims, particularly in relation to how this might affect the diaspora's perception of justice and accountability in Canada. This could include historical context about the Kanishka bombing's significance to the Indian community abroad.",
+        "Clarify the role of the Indian government in this matter, especially how it has engaged with the Canadian authorities over the years regarding the investigation. This could help readers understand the international dimensions of the case and its relevance to NRIs.",
+        "Include a brief overview of the Kanishka Foundation's efforts over the years to keep the case alive, which would provide depth to the narrative and highlight the ongoing struggle for justice within the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Kanishka Foundation or a statement from the RCMP regarding the investigation to provide readers with direct access to official communications and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "67e1d011-0cd7-4347-b18c-da6100403a8b",
+    "headline": "Air India Combined Loss More Than Doubles to \u20b922,238 Crore in FY26",
+    "slug": "air-india-combined-loss-doubles-fy26",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Air India's financial struggles might affect NRIs traveling to and from India, such as potential changes in ticket prices or service quality that could impact their travel plans.",
+        "Provide context on how Air India's performance compares to other airlines serving the NRI market, such as Emirates or Qatar Airways, to give readers a clearer picture of its competitive position.",
+        "Include a quote or perspective from an NRI travel expert or industry analyst to add depth and relevance to the article for the diaspora audience.",
+        "Clarify the implications of the financial losses for future investments and services that may directly affect NRI travelers, such as route expansions or service improvements."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India tweet or a relevant tweet from Tata Group regarding their plans for Air India, which could provide direct insights into their strategy moving forward."
+      ]
+    }
+  }
+]

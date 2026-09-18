@@ -1386,5 +1386,15 @@
     "errors": 0,
     "hero_slug": "sc-manipur-relief-camp-deaths-x7q2",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-18T13:59:24.164932+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 18, 2026",
+    "subscribers": 7,
+    "sent": 7,
+    "errors": 0,
+    "hero_slug": "semicon-india-2026-localise-chip-materials-gases",
+    "story_count": 5
   }
 ]
