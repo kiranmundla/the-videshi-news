@@ -15,7 +15,7 @@
           "timestamp": "2026-09-01"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2094740496556159380",
@@ -58,7 +58,7 @@
           "timestamp": "2026-09-01"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "PMO India",
@@ -75,7 +75,7 @@
           "timestamp": "2026-09-05"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2096602021982048765",
@@ -118,7 +118,7 @@
           "timestamp": "2026-09-05"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Amit Shah",
@@ -135,7 +135,7 @@
           "timestamp": "2026-09-04"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2096574135979630701",
@@ -178,7 +178,7 @@
           "timestamp": "2026-09-04"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Rahul Gandhi",
@@ -195,7 +195,7 @@
           "timestamp": "2026-09-05"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2096477629486604310",
@@ -238,7 +238,7 @@
           "timestamp": "2026-09-04"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Yogi Adityanath",
@@ -255,7 +255,7 @@
           "timestamp": "2026-09-06"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2096766324324417643",
@@ -298,7 +298,7 @@
           "timestamp": "2026-09-06"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Arvind Kejriwal",
@@ -315,7 +315,7 @@
           "timestamp": "2026-09-05"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2096604612438655168",
@@ -358,7 +358,7 @@
           "timestamp": "2026-09-05"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "S Jaishankar",
@@ -375,7 +375,7 @@
           "timestamp": "2026-09-01"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2094698969527894378",
@@ -418,7 +418,7 @@
           "timestamp": "2026-09-01"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Nirmala Sitharaman",
@@ -435,7 +435,7 @@
           "timestamp": "2026-08-31"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2094379212958277636",
@@ -479,7 +479,7 @@
           "timestamp": "2026-08-31"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2094473668294520923",
@@ -515,7 +515,7 @@
           "timestamp": "2026-08-27"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2094482086803693796",
@@ -558,7 +558,7 @@
           "timestamp": "2026-08-26"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Ratan Tata",
@@ -571,17 +571,17 @@
           "caption": "Follow @ratantata for the latest updates.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-09-07"
+          "timestamp": "2026-09-18"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "text": "Follow @ratantata for the latest updates.",
           "caption": "Follow @ratantata for the latest updates.",
           "url": "https://x.com/ratantata",
           "thumbnail": "",
-          "timestamp": "2026-09-07"
+          "timestamp": "2026-09-18"
         }
       ],
       "pool_idx": 0
@@ -601,7 +601,7 @@
           "timestamp": "2026-08-31"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2094771016795119960",
@@ -644,7 +644,7 @@
           "timestamp": "2026-08-31"
         }
       ],
-      "pool_idx": 3
+      "pool_idx": 0
     },
     {
       "name": "Donald Trump",
@@ -661,7 +661,7 @@
           "timestamp": "2026-07-28"
         }
       ],
-      "last_refreshed": "2026-09-07T03:13:36Z",
+      "last_refreshed": "2026-09-18T00:00:32Z",
       "pool": [
         {
           "id": "2082159711852298494",
@@ -709,10 +709,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2095309339309556182",
-          "text": "Just publicly accepted a third debate invitation on live TV tonight. If Acton can’t debate, she certainly can’t lead the state. https://t.co/gsCfve4eZ8",
-          "caption": "Just publicly accepted a third debate invitation on live TV tonight. If Acton can’t debate, she certainly can’t lead the state. https://t.co/gsCfve4eZ8",
-          "url": "https://x.com/VivekGRamaswamy/status/2095309339309556182",
+          "id": "2095308530085752848",
+          "text": "Anyone who compares law enforcement to the KKK while campaigning this year is disqualified from being a Governor. https://t.co/fKmBgPS0Di",
+          "caption": "Anyone who compares law enforcement to the KKK while campaigning this year is disqualified from being a Governor. https://t.co/fKmBgPS0Di",
+          "url": "https://x.com/VivekGRamaswamy/status/2095308530085752848",
           "thumbnail": "",
           "timestamp": "2026-09-03"
         }
@@ -752,7 +752,7 @@
           "timestamp": "2026-09-03"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Usha Vance",
@@ -761,12 +761,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2093690076098130142",
-          "text": "Submit your Summer Reading Challenge logs for a chance to win an @amazon Kindle Colorsoft Kids! We’re raffling off two per participating state and U.S. territory at the end of the summer. Happy reading and good luck! https://t.co/gF2LhgI4Gt",
-          "caption": "Submit your Summer Reading Challenge logs for a chance to win an @amazon Kindle Colorsoft Kids! We’re raffling off two per participating state and U.S. territory at the end of the summer. Happy reading and good luck! https://t.co/gF2LhgI4Gt",
-          "url": "https://x.com/SLOTUS/status/2093690076098130142",
-          "thumbnail": "",
-          "timestamp": "2026-08-29"
+          "id": "2093084487521317287",
+          "text": "The countdown is on…just over one week left to join my Summer Reading Challenge and read 12 books! Submit your reading log for fun prizes and the chance to win a trip to the Nation's Capital 🇺🇸 https://t.co/eimacbDxjL https://t.co/KaQ1Mbs478",
+          "caption": "The countdown is on…just over one week left to join my Summer Reading Challenge and read 12 books! Submit your reading log for fun prizes and the chance to win a trip to the Nation's Capital 🇺🇸 https://t.co/eimacbDxjL https://t.co/KaQ1Mbs478",
+          "url": "https://x.com/SLOTUS/status/2093084487521317287",
+          "thumbnail": "https://pbs.twimg.com/media/HQwhPypW4AACikV.jpg",
+          "timestamp": "2026-08-27"
         }
       ],
       "last_refreshed": "2026-09-07T18:59:30Z",
@@ -812,7 +812,7 @@
           "timestamp": "2026-08-25"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Kash Patel",
@@ -847,10 +847,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2095501619001495817",
-          "text": "very good moment for American open source. Also big shout out to @ClementDelangue and team for persisting and building something over many trials and tribulations.",
-          "caption": "very good moment for American open source. Also big shout out to @ClementDelangue and team for persisting and building something over many trials and tribulations.",
-          "url": "https://x.com/sriramk/status/2095501619001495817",
+          "id": "2095446629214019889",
+          "text": "talking to a few ai safety / alignment organizations and find broadly they are not sure what to make of the data center protests - also it’s not something that has shown up in any timelines or predictions. \n\nI see a split between\n\nA) “we probably need data centers in US than in China” \n\nB) “less data centers is a proxy for a slow down in capabilities and that could be a good thing “",
+          "caption": "talking to a few ai safety / alignment organizations and find broadly they are not sure what to make of the data center protests - also it’s not something that has shown up in any timelines or predictions. \n\nI see a split between\n\nA) “we probably need data centers in US than in China” \n\nB) “less data centers is a proxy for a slow down in capabilities and that could be a good thing “",
+          "url": "https://x.com/sriramk/status/2095446629214019889",
           "thumbnail": "",
           "timestamp": "2026-09-03"
         }
@@ -898,7 +898,7 @@
           "timestamp": "2026-09-02"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Ajay Banga",
@@ -961,11 +961,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2096019138498167109",
-          "text": "No matter where you live. \n\nHow much you earn. \n\nOr your background. \n\nWe’ll always fight for that. https://t.co/i3HiQHD8en",
-          "caption": "No matter where you live. \n\nHow much you earn. \n\nOr your background. \n\nWe’ll always fight for that. https://t.co/i3HiQHD8en",
-          "url": "https://x.com/AlboMP/status/2096019138498167109",
-          "thumbnail": "https://pbs.twimg.com/media/HRaOS1Pa0AAExpz.jpg",
+          "id": "2095740361272696877",
+          "text": "Today I spoke with Prime Minister Shah of Nepal to extend Australia's deepest condolences following the catastrophic floods and tsunami like devastation. \n\nAustralia stands by Nepal and is providing help where it's needed most through humanitarian supplies, equipment and specialised capabilities.\n\nThe loss of life and destruction is devastating, and we will keep doing everything we can to find the Australians still unaccounted for.\n\nOur thoughts are with the families and loved ones of those Australians who are still missing.",
+          "caption": "Today I spoke with Prime Minister Shah of Nepal to extend Australia's deepest condolences following the catastrophic floods and tsunami like devastation. \n\nAustralia stands by Nepal and is providing help where it's needed most through humanitarian supplies, equipment and specialised capabilities.\n\nThe loss of life and destruction is devastating, and we will keep doing everything we can to find the Australians still unaccounted for.\n\nOur thoughts are with the families and loved ones of those Australians who are still missing.",
+          "url": "https://x.com/AlboMP/status/2095740361272696877",
+          "thumbnail": "",
           "timestamp": "2026-09-04"
         }
       ],
@@ -1012,7 +1012,7 @@
           "timestamp": "2026-09-04"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Emmanuel Macron",
@@ -1021,12 +1021,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2096887423774937590",
-          "text": "이재명 @Jaemyung_Lee 대통령님, 생폴드방스에 오신 것을 환영합니다. 뤼미에르 서밋 레디, 액션 🇰🇷🇫🇷 https://t.co/Y3TNBb32Jc",
-          "caption": "이재명 @Jaemyung_Lee 대통령님, 생폴드방스에 오신 것을 환영합니다. 뤼미에르 서밋 레디, 액션 🇰🇷🇫🇷 https://t.co/Y3TNBb32Jc",
-          "url": "https://x.com/EmmanuelMacron/status/2096887423774937590",
+          "id": "2096647222729302345",
+          "text": "Il y a 130 ans, la France faisait naître le cinéma.\n\nAujourd’hui, le cinéma, les séries, l’animation et les jeux vidéo sont bien plus que des industries : ils sont des biens communs qui façonnent nos imaginaires et nous relient par-delà les frontières.\n\nMais jamais ces biens communs n’ont connu de bouleversements aussi profonds. Nous sommes entrés dans une nouvelle révolution de l’image et de la création.\n\nL’intelligence artificielle en repousse les frontières. Les plateformes transforment nos usages. Les modèles de financement se réinventent. Nos enfants grandissent dans un flot d’images sans précédent.\n\nFace à des défis qui ne connaissent pas de frontières, aucune nation ne peut agir seule. C’est pourquoi, à Saint-Paul-de-Vence, la France et la Corée du Sud, deux grandes nations de création attachées à la diversité culturelle et à leur souveraineté, réunissent ceux qui créent, produisent, financent, diffusent, innovent et décident.\n\nNotre ambition : forger de nouvelles alliances entre créateurs et technologies, acteurs publics et privés, cinéma, télévision, plateformes et jeux vidéo. Pour que cette révolution ouvre de nouveaux possibles sans uniformiser nos imaginaires.\n\nCréer. Protéger ceux qui créent. Faire circuler les œuvres et les idées. Donner aux nouvelles générations les clés pour comprendre et inventer. Préserver, enfin, le pouvoir le plus précieux de la création : nous ouvrir au monde et nous rassembler.\n\nC’est l’ambition du Sommet Lumière que je co-présiderai demain avec mon homologue coréen à Saint-Paul-de-Vence.\n\nAction.",
+          "caption": "Il y a 130 ans, la France faisait naître le cinéma.\n\nAujourd’hui, le cinéma, les séries, l’animation et les jeux vidéo sont bien plus que des industries : ils sont des biens communs qui façonnent nos imaginaires et nous relient par-delà les frontières.\n\nMais jamais ces biens communs n’ont connu de bouleversements aussi profonds. Nous sommes entrés dans une nouvelle révolution de l’image et de la création.\n\nL’intelligence artificielle en repousse les frontières. Les plateformes transforment nos usages. Les modèles de financement se réinventent. Nos enfants grandissent dans un flot d’images sans précédent.\n\nFace à des défis qui ne connaissent pas de frontières, aucune nation ne peut agir seule. C’est pourquoi, à Saint-Paul-de-Vence, la France et la Corée du Sud, deux grandes nations de création attachées à la diversité culturelle et à leur souveraineté, réunissent ceux qui créent, produisent, financent, diffusent, innovent et décident.\n\nNotre ambition : forger de nouvelles alliances entre créateurs et technologies, acteurs publics et privés, cinéma, télévision, plateformes et jeux vidéo. Pour que cette révolution ouvre de nouveaux possibles sans uniformiser nos imaginaires.\n\nCréer. Protéger ceux qui créent. Faire circuler les œuvres et les idées. Donner aux nouvelles générations les clés pour comprendre et inventer. Préserver, enfin, le pouvoir le plus précieux de la création : nous ouvrir au monde et nous rassembler.\n\nC’est l’ambition du Sommet Lumière que je co-présiderai demain avec mon homologue coréen à Saint-Paul-de-Vence.\n\nAction.",
+          "url": "https://x.com/EmmanuelMacron/status/2096647222729302345",
           "thumbnail": "",
-          "timestamp": "2026-09-07"
+          "timestamp": "2026-09-06"
         }
       ],
       "last_refreshed": "2026-09-07T18:59:30Z",
@@ -1072,7 +1072,7 @@
           "timestamp": "2026-09-06"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Mohammed bin Rashid",
@@ -1081,12 +1081,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2096529704648147382",
-          "text": "الإخوة والأخوات .. \n      \nعلمتني الحياة بأن أعمارنا هي جزء من قصة أوطاننا .. والحكمة أن نضيف فصلاً يستحق أن تقرأه الأجيال القادمة ..\n\nواليوم وأنا اقترب من حوالي ستين عاماً من العمل العام في خدمة الوطن.. كتبت مجموعة من الرسائل لإخواني وأبنائي وأحفادي وفريق عملي وشعبي ..ولكل من يرى في تجربتنا ما يستحق التأمل.. \n\nكتبت الرسائل لأن الأعمار تُطوى .. لكن الأفكار تكبر وتبقى .. \n\nكتبتها لأن من الأمانة أن نترك شيئاً يختصر الطريق لمن سيحمل من بعدنا الأمانة ..\n\nوجمعتها في كتاب \"الرسائل\" والذي يمثل الجزء الثاني من \"علمتني الحياة \". \n\nوأبدأ أولى هذه الرسائل برسالة أوجهها لأخي وصديقي ورفيق دربي الشيخ محمد بن زايد آل نهيان حفظه الله .\n\nنسأل الله أن يوفقنا .. وينفع بأفكارنا .. ويحفظ أوطاننا .. ويسدد أجيالنا .. \n\nأخوكم / محمد بن راشد آل مكتوم",
-          "caption": "الإخوة والأخوات .. \n      \nعلمتني الحياة بأن أعمارنا هي جزء من قصة أوطاننا .. والحكمة أن نضيف فصلاً يستحق أن تقرأه الأجيال القادمة ..\n\nواليوم وأنا اقترب من حوالي ستين عاماً من العمل العام في خدمة الوطن.. كتبت مجموعة من الرسائل لإخواني وأبنائي وأحفادي وفريق عملي وشعبي ..ولكل من يرى في تجربتنا ما يستحق التأمل.. \n\nكتبت الرسائل لأن الأعمار تُطوى .. لكن الأفكار تكبر وتبقى .. \n\nكتبتها لأن من الأمانة أن نترك شيئاً يختصر الطريق لمن سيحمل من بعدنا الأمانة ..\n\nوجمعتها في كتاب \"الرسائل\" والذي يمثل الجزء الثاني من \"علمتني الحياة \". \n\nوأبدأ أولى هذه الرسائل برسالة أوجهها لأخي وصديقي ورفيق دربي الشيخ محمد بن زايد آل نهيان حفظه الله .\n\nنسأل الله أن يوفقنا .. وينفع بأفكارنا .. ويحفظ أوطاننا .. ويسدد أجيالنا .. \n\nأخوكم / محمد بن راشد آل مكتوم",
-          "url": "https://x.com/HHShkMohd/status/2096529704648147382",
-          "thumbnail": "https://pbs.twimg.com/media/HRhR210aYAAGXH7.jpg",
-          "timestamp": "2026-09-06"
+          "id": "2095155493945934186",
+          "text": "واعتمدنا خلال الاجتماع السياسة الوطنية للسياحة البيئية... كما استعرضنا نتائج تنفيذ الاستراتيجية الوطنية لمكافحة التصحر 2022-2030... والتي حققت تقدماً ملموساً في حماية النظم البيئية واستدامة الموارد الطبيعية... حيث ارتفع عدد المحميات الطبيعية إلى 55 محمية... مع إعادة تأهيل 4900 هكتار من الأراضي... وأضيفت مساحات خضراء تجاوزت 3.2 مليون متر مربع... مع ترقيم وحماية 341 ألف شجرة محلية... الحفاظ على بيئتنا مسؤولية وطنية... والاستثمار في مواردنا الطبيعية استثمار في جودة الحياة.",
+          "caption": "واعتمدنا خلال الاجتماع السياسة الوطنية للسياحة البيئية... كما استعرضنا نتائج تنفيذ الاستراتيجية الوطنية لمكافحة التصحر 2022-2030... والتي حققت تقدماً ملموساً في حماية النظم البيئية واستدامة الموارد الطبيعية... حيث ارتفع عدد المحميات الطبيعية إلى 55 محمية... مع إعادة تأهيل 4900 هكتار من الأراضي... وأضيفت مساحات خضراء تجاوزت 3.2 مليون متر مربع... مع ترقيم وحماية 341 ألف شجرة محلية... الحفاظ على بيئتنا مسؤولية وطنية... والاستثمار في مواردنا الطبيعية استثمار في جودة الحياة.",
+          "url": "https://x.com/HHShkMohd/status/2095155493945934186",
+          "thumbnail": "https://pbs.twimg.com/media/HRN8zwgaYAEhixi.jpg",
+          "timestamp": "2026-09-02"
         }
       ],
       "last_refreshed": "2026-09-07T18:59:30Z",
@@ -1132,7 +1132,7 @@
           "timestamp": "2026-09-02"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Elon Musk",
@@ -1141,12 +1141,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2096740506231259145",
-          "text": "They never do, because the legacy media IS far left! That is why they view normalcy as the far right.",
-          "caption": "They never do, because the legacy media IS far left! That is why they view normalcy as the far right.",
-          "url": "https://x.com/elonmusk/status/2096740506231259145",
+          "id": "2097036344165818834",
+          "text": "The truth shall set you free",
+          "caption": "The truth shall set you free",
+          "url": "https://x.com/elonmusk/status/2097036344165818834",
           "thumbnail": "",
-          "timestamp": "2026-09-06"
+          "timestamp": "2026-09-07"
         }
       ],
       "last_refreshed": "2026-09-07T18:59:30Z",
@@ -1176,7 +1176,7 @@
           "timestamp": "2026-09-06"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Mark Zuckerberg",
@@ -1185,12 +1185,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2094500475710099945",
-          "text": "Muse Code is out of beta and now built to handle bigger, more complex engineering tasks. Developers can get started with one command today:\n\ncurl -fsSL https://t.co/0RApZrEJMv | bash",
-          "caption": "Muse Code is out of beta and now built to handle bigger, more complex engineering tasks. Developers can get started with one command today:\n\ncurl -fsSL https://t.co/0RApZrEJMv | bash",
-          "url": "https://x.com/finkd/status/2094500475710099945",
-          "thumbnail": "",
-          "timestamp": "2026-08-31"
+          "id": "2095232032896946311",
+          "text": "Muse Spark 1.3 is rolling out today with frontier performance almost too cheap to meter. This is the biggest jump we've made so far on coding and agentic work. Try it in Muse Code and our API.\n\nNext up 🍉 and Muse Spark open weights releases coming soon. https://t.co/XQQEDEJGD7",
+          "caption": "Muse Spark 1.3 is rolling out today with frontier performance almost too cheap to meter. This is the biggest jump we've made so far on coding and agentic work. Try it in Muse Code and our API.\n\nNext up 🍉 and Muse Spark open weights releases coming soon. https://t.co/XQQEDEJGD7",
+          "url": "https://x.com/finkd/status/2095232032896946311",
+          "thumbnail": "https://pbs.twimg.com/media/HRPCS3waoAAuBR_.png",
+          "timestamp": "2026-09-02"
         }
       ],
       "last_refreshed": "2026-09-07T18:59:30Z",
@@ -1220,7 +1220,7 @@
           "timestamp": "2026-08-31"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 0
     },
     {
       "name": "Sundar Pichai",
@@ -1229,11 +1229,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2095184464800526655",
-          "text": "We’re also introducing Gemini 3.8 Flash Cyber, our most capable cybersecurity model. It shows frontier-level performance in discovering vulnerabilities and patching them at scale, with Flash-level speed & pricing.\n\nThat includes achieving 86.2% on the important CyberGym industry benchmark, plus 47.2% on CWE-Bench for patching. We saw a 70%+ success rate in discovering vulnerabilities across 20 programming languages on our internal benchmark.",
-          "caption": "We’re also introducing Gemini 3.8 Flash Cyber, our most capable cybersecurity model. It shows frontier-level performance in discovering vulnerabilities and patching them at scale, with Flash-level speed & pricing.\n\nThat includes achieving 86.2% on the important CyberGym industry benchmark, plus 47.2% on CWE-Bench for patching. We saw a 70%+ success rate in discovering vulnerabilities across 20 programming languages on our internal benchmark.",
-          "url": "https://x.com/sundarpichai/status/2095184464800526655",
-          "thumbnail": "https://pbs.twimg.com/media/HROWMOeakAAL6If.png",
+          "id": "2095181765082292334",
+          "text": "Today we’re introducing a new 3.8 Flash model, our 3rd Flash release in just 6 wks.\n\nIt delivers significant leaps from 3.7 Flash across software engineering, agentic tasks, and multi-step reasoning. On DeepSWE v1.1, it outperforms most larger frontier models in autonomously solving complex engineering problems end to end, at a fraction of the cost.\n\nMore details here: https://t.co/4YkKkdKQvu",
+          "caption": "Today we’re introducing a new 3.8 Flash model, our 3rd Flash release in just 6 wks.\n\nIt delivers significant leaps from 3.7 Flash across software engineering, agentic tasks, and multi-step reasoning. On DeepSWE v1.1, it outperforms most larger frontier models in autonomously solving complex engineering problems end to end, at a fraction of the cost.\n\nMore details here: https://t.co/4YkKkdKQvu",
+          "url": "https://x.com/sundarpichai/status/2095181765082292334",
+          "thumbnail": "https://pbs.twimg.com/media/HROUhA8acAAWrbb.png",
           "timestamp": "2026-09-02"
         }
       ],
@@ -1272,7 +1272,7 @@
           "timestamp": "2026-09-02"
         }
       ],
-      "pool_idx": 2
+      "pool_idx": 3
     },
     {
       "name": "Satya Nadella",
@@ -1309,10 +1309,10 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2097404861642137851",
-          "text": "We want to celebrate with people using GPT-6. We did this for GPT-5.5 and it was really fun.\n\nWe’re getting together in SF on September 16 to talk about the model, what we should build next, and mostly just to hang out.\n\nApply by Sep 10:\n\nhttps://t.co/3LIMfGOBRQ",
-          "caption": "We want to celebrate with people using GPT-6. We did this for GPT-5.5 and it was really fun.\n\nWe’re getting together in SF on September 16 to talk about the model, what we should build next, and mostly just to hang out.\n\nApply by Sep 10:\n\nhttps://t.co/3LIMfGOBRQ",
-          "url": "https://x.com/sama/status/2097404861642137851",
+          "id": "2097385167002415140",
+          "text": "I spent much of the weekend talking with the team who did this work. Seb--and everyone else--acted with integrity and generosity throughout.\n\nInitially we believed the other team had also solved the problem. We wanted to collaborate and do a joint release. \n\nWhen we learned that they had Euler but not Navier-Stokes, we offered to let them go first, to suggest that they should be the ones to get the prize, and optionally for Tristan to be the lead author on a rewrite of the OpenAI proof. We felt it was challenging to offer the same to Levent (an Anthropic employee), who was not willing to talk or coordinate with us anyway. We were open to other solutions.\n\nWe would have greatly preferred coordination. We did not rush to publish even though the other team wasn't communicating with us. The team threatened us with unfounded accusations of plagarism.\n\nNow that we can see their work, the approaches appear to be different. It is also worth noting that our latest model can solve many, many other math problems.\n\nIt is true that we tried this because there were rumors on the internet last week that Anthropic's models had solved a millennium problem and we were curious if ours could do it too.",
+          "caption": "I spent much of the weekend talking with the team who did this work. Seb--and everyone else--acted with integrity and generosity throughout.\n\nInitially we believed the other team had also solved the problem. We wanted to collaborate and do a joint release. \n\nWhen we learned that they had Euler but not Navier-Stokes, we offered to let them go first, to suggest that they should be the ones to get the prize, and optionally for Tristan to be the lead author on a rewrite of the OpenAI proof. We felt it was challenging to offer the same to Levent (an Anthropic employee), who was not willing to talk or coordinate with us anyway. We were open to other solutions.\n\nWe would have greatly preferred coordination. We did not rush to publish even though the other team wasn't communicating with us. The team threatened us with unfounded accusations of plagarism.\n\nNow that we can see their work, the approaches appear to be different. It is also worth noting that our latest model can solve many, many other math problems.\n\nIt is true that we tried this because there were rumors on the internet last week that Anthropic's models had solved a millennium problem and we were curious if ours could do it too.",
+          "url": "https://x.com/sama/status/2097385167002415140",
           "thumbnail": "",
           "timestamp": "2026-09-08"
         }
@@ -1352,7 +1352,7 @@
           "timestamp": "2026-09-08"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Tim Cook",
@@ -1361,11 +1361,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2093094102795759983",
-          "text": "Today’s agenda at Apple Park: Introduce the @Pokemon team to John, talk gaming, and politely ask Pikachu to stay out of the pond. Two out of three were accomplished. https://t.co/KzirV3VX8U",
-          "caption": "Today’s agenda at Apple Park: Introduce the @Pokemon team to John, talk gaming, and politely ask Pikachu to stay out of the pond. Two out of three were accomplished. https://t.co/KzirV3VX8U",
-          "url": "https://x.com/tim_cook/status/2093094102795759983",
-          "thumbnail": "",
+          "id": "2092824538237309233",
+          "text": "A true visionary who showed us the power of boundless imagination. Yayoi Kusama’s creativity pushed the art world forward and left behind a brighter, more vibrant world for us all. https://t.co/YBtWANOCpQ",
+          "caption": "A true visionary who showed us the power of boundless imagination. Yayoi Kusama’s creativity pushed the art world forward and left behind a brighter, more vibrant world for us all. https://t.co/YBtWANOCpQ",
+          "url": "https://x.com/tim_cook/status/2092824538237309233",
+          "thumbnail": "https://pbs.twimg.com/media/HQs003SbAAAtheo.jpg",
           "timestamp": "2026-08-27"
         }
       ],
@@ -1412,7 +1412,7 @@
           "timestamp": "2026-08-25"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Jensen Huang",
@@ -1421,12 +1421,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2095518531693806017",
-          "text": "Open models are essential to expanding access to AI and accelerating innovation around the world.\n\nWe're excited to help @huggingface scale its platform and community while preserving the openness, neutrality, and choice that have made it a trusted home for AI builders.\n\n🤗💚",
-          "caption": "Open models are essential to expanding access to AI and accelerating innovation around the world.\n\nWe're excited to help @huggingface scale its platform and community while preserving the openness, neutrality, and choice that have made it a trusted home for AI builders.\n\n🤗💚",
-          "url": "https://x.com/nvidia/status/2095518531693806017",
-          "thumbnail": "",
-          "timestamp": "2026-09-03"
+          "id": "2095202620528857459",
+          "text": "AI is reshaping the media and entertainment industry.\n\nAt #IBC2026, NVIDIA is powering 30+ partner showcases across agentic creativity, sports intelligence and content authenticity. \n\nJoining us in Amsterdam? Explore live demos and expert sessions. Following from home? Discover the technology powering these next-generation workflows, and watch for announcements throughout the event.",
+          "caption": "AI is reshaping the media and entertainment industry.\n\nAt #IBC2026, NVIDIA is powering 30+ partner showcases across agentic creativity, sports intelligence and content authenticity. \n\nJoining us in Amsterdam? Explore live demos and expert sessions. Following from home? Discover the technology powering these next-generation workflows, and watch for announcements throughout the event.",
+          "url": "https://x.com/nvidia/status/2095202620528857459",
+          "thumbnail": "https://pbs.twimg.com/media/HROnq4ZW0AID_0C.jpg",
+          "timestamp": "2026-09-02"
         }
       ],
       "last_refreshed": "2026-09-08T23:07:40Z",
@@ -1472,7 +1472,7 @@
           "timestamp": "2026-09-01"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Nandan Nilekani",
@@ -1647,12 +1647,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2093024915800658042",
-          "text": "can Titus beat a REAL FedEx courier? full version on @fedex YouTube⛳ https://t.co/U3nyBRSDwm",
-          "caption": "can Titus beat a REAL FedEx courier? full version on @fedex YouTube⛳ https://t.co/U3nyBRSDwm",
-          "url": "https://x.com/FedEx/status/2093024915800658042",
-          "thumbnail": "",
-          "timestamp": "2026-08-27"
+          "id": "2090889221435261396",
+          "text": "but does your roster look this good? 📦🏈 https://t.co/4vFksTHRkz",
+          "caption": "but does your roster look this good? 📦🏈 https://t.co/4vFksTHRkz",
+          "url": "https://x.com/FedEx/status/2090889221435261396",
+          "thumbnail": "https://pbs.twimg.com/media/HQRUoYlWQAAgnTs.jpg",
+          "timestamp": "2026-08-21"
         }
       ],
       "last_refreshed": "2026-09-08T23:07:40Z",
@@ -1690,7 +1690,7 @@
           "timestamp": "2026-08-20"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 2
     },
     {
       "name": "Virat Kohli",
@@ -1699,12 +1699,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2091050709248791002",
-          "text": "The Wrogn tribe is now live. \nCome be a part of it - https://t.co/3TyssALST0\n @StayWrogn https://t.co/5ANOjy7tAF",
-          "caption": "The Wrogn tribe is now live. \nCome be a part of it - https://t.co/3TyssALST0\n @StayWrogn https://t.co/5ANOjy7tAF",
-          "url": "https://x.com/imVkohli/status/2091050709248791002",
-          "thumbnail": "https://pbs.twimg.com/media/HQTncOLbsAEOc6c.jpg",
-          "timestamp": "2026-08-22"
+          "id": "2092500108831306194",
+          "text": "Some things never go out of style. Explore our Flannel Collection:  https://t.co/ezfvoi661p\n\n@StayWrogn https://t.co/wuqapigZ69",
+          "caption": "Some things never go out of style. Explore our Flannel Collection:  https://t.co/ezfvoi661p\n\n@StayWrogn https://t.co/wuqapigZ69",
+          "url": "https://x.com/imVkohli/status/2092500108831306194",
+          "thumbnail": "",
+          "timestamp": "2026-08-26"
         }
       ],
       "last_refreshed": "2026-09-08T23:07:40Z",
@@ -1726,7 +1726,7 @@
           "timestamp": "2026-08-22"
         }
       ],
-      "pool_idx": 1
+      "pool_idx": 0
     },
     {
       "name": "Rohit Sharma",
@@ -1847,12 +1847,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2093002475511091257",
-          "text": "There is perhaps no greater uncertainty than not knowing whether someone you love is safe. My heart goes out to all the families affected by the devastating floods in Nepal, especially those still waiting for news. Praying for their loved ones and for the rescue teams working tirelessly to reach them.",
-          "caption": "There is perhaps no greater uncertainty than not knowing whether someone you love is safe. My heart goes out to all the families affected by the devastating floods in Nepal, especially those still waiting for news. Praying for their loved ones and for the rescue teams working tirelessly to reach them.",
-          "url": "https://x.com/sachin_rt/status/2093002475511091257",
-          "thumbnail": "",
-          "timestamp": "2026-08-27"
+          "id": "2094792813330518242",
+          "text": "Dear @IAF_MCC,\n\nJust finished watching Operation Safed Sagar. It made me think about how different life is for the people who are out there, carrying the pressure and uncertainty, while the rest of us are able to sleep peacefully and carry on with our everyday lives.\n\nI had met Air Chief Marshal BS Dhanoa many years ago. Watching Operation Safed Sagar now, and seeing what he and so many others went through during Kargil, made me look back at that meeting with a deeper sense of appreciation.\n\nThe courage is extraordinary. So is the discipline and mental strength behind it.\n\nI feel fortunate to be associated with the IAF and to have an understanding of the values that define it. Watching this story only made me more grateful.\n\nThank you for everything you do for us. Jai Hind!",
+          "caption": "Dear @IAF_MCC,\n\nJust finished watching Operation Safed Sagar. It made me think about how different life is for the people who are out there, carrying the pressure and uncertainty, while the rest of us are able to sleep peacefully and carry on with our everyday lives.\n\nI had met Air Chief Marshal BS Dhanoa many years ago. Watching Operation Safed Sagar now, and seeing what he and so many others went through during Kargil, made me look back at that meeting with a deeper sense of appreciation.\n\nThe courage is extraordinary. So is the discipline and mental strength behind it.\n\nI feel fortunate to be associated with the IAF and to have an understanding of the values that define it. Watching this story only made me more grateful.\n\nThank you for everything you do for us. Jai Hind!",
+          "url": "https://x.com/sachin_rt/status/2094792813330518242",
+          "thumbnail": "https://pbs.twimg.com/media/HRIy9YLaIAECFkK.jpg",
+          "timestamp": "2026-09-01"
         }
       ],
       "last_refreshed": "2026-09-09T15:06:44Z",
@@ -1898,7 +1898,7 @@
           "timestamp": "2026-08-27"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "Sourav Ganguly",
@@ -1935,12 +1935,12 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2095847586532049359",
-          "text": "The BCCI believes that the growth of cricket must extend beyond its traditional territories, and we recognise our responsibility to contribute to that growth: Mr Devajit Saikia (@lonsaikia), Honorary Secretary, BCCI \n\n@CricketJapan https://t.co/Fs1i4kkRT7",
-          "caption": "The BCCI believes that the growth of cricket must extend beyond its traditional territories, and we recognise our responsibility to contribute to that growth: Mr Devajit Saikia (@lonsaikia), Honorary Secretary, BCCI \n\n@CricketJapan https://t.co/Fs1i4kkRT7",
-          "url": "https://x.com/BCCI/status/2095847586532049359",
-          "thumbnail": "https://pbs.twimg.com/media/HRXyLjSaoAAwF3Y.jpg",
-          "timestamp": "2026-09-04"
+          "id": "2096091917650207054",
+          "text": "Here's wishing Pragyan Ojha - Former #TeamIndia spinner and present member of the men's selection committee, a very Happy Birthday 🎂👏 https://t.co/uAmhdkm1py",
+          "caption": "Here's wishing Pragyan Ojha - Former #TeamIndia spinner and present member of the men's selection committee, a very Happy Birthday 🎂👏 https://t.co/uAmhdkm1py",
+          "url": "https://x.com/BCCI/status/2096091917650207054",
+          "thumbnail": "https://pbs.twimg.com/media/HRbNf1GbYAABMMF.jpg",
+          "timestamp": "2026-09-05"
         }
       ],
       "last_refreshed": "2026-09-09T15:06:44Z",
@@ -1986,7 +1986,7 @@
           "timestamp": "2026-09-04"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "ICC",
@@ -1995,11 +1995,11 @@
       "platform": "x",
       "posts": [
         {
-          "id": "2096410680199176491",
-          "text": "Undefeated India enter the Women's Asia Cup 2026 semi-final with a win over Pakistan 🙌\n\nMatch report 👇\n\nhttps://t.co/ivm6qSwGdb",
-          "caption": "Undefeated India enter the Women's Asia Cup 2026 semi-final with a win over Pakistan 🙌\n\nMatch report 👇\n\nhttps://t.co/ivm6qSwGdb",
-          "url": "https://x.com/ICC/status/2096410680199176491",
-          "thumbnail": "",
+          "id": "2096470952888664142",
+          "text": "Mike Hesson's primary focus is fixing Pakistan's bowling attack in Birmingham 👀\n\n#WTC27 | More 👉 https://t.co/EY2o39AT4f https://t.co/Kl4ikG0hmG",
+          "caption": "Mike Hesson's primary focus is fixing Pakistan's bowling attack in Birmingham 👀\n\n#WTC27 | More 👉 https://t.co/EY2o39AT4f https://t.co/Kl4ikG0hmG",
+          "url": "https://x.com/ICC/status/2096470952888664142",
+          "thumbnail": "https://pbs.twimg.com/media/HReBuSnbMAATtCi.jpg",
           "timestamp": "2026-09-06"
         }
       ],
@@ -2046,7 +2046,7 @@
           "timestamp": "2026-09-05"
         }
       ],
-      "pool_idx": 0
+      "pool_idx": 1
     },
     {
       "name": "IPL",
@@ -2217,6 +2217,6 @@
       "pool_idx": 0
     }
   ],
-  "lastUpdated": "2026-09-09T15:10:04Z",
-  "last_updated": "2026-09-09T15:10:04Z"
+  "lastUpdated": "2026-09-18T00:01:16Z",
+  "last_updated": "2026-09-18T00:01:16Z"
 }
