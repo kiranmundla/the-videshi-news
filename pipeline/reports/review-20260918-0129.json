@@ -1,0 +1,84 @@
+[
+  {
+    "id": "13225a81-e529-4fa6-bc54-d924cffe64b1",
+    "headline": "Canberra University's T20 Cricket Challenge Opens Study-Play Pathway for Indian ",
+    "slug": "uc-cricket-challenge-bengaluru-indian-youth-study-play-pathway",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "4bc9e00c-2364-4ba1-9d0c-3cdc6e2e5d29",
+    "headline": "Vijay Sethupathi's 'Maharaja' Heads to Hollywood in Landmark Tamil Remake Deal",
+    "slug": "maharaja-vijay-sethupathi-hollywood-remake-first-tamil",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "9fcc356c-41ad-4396-a754-29a9750042ae",
+    "headline": "Diwali Rush Lifts Indian Food Exports as Global Buyers Stock Up on Sweets and Sn",
+    "slug": "diwali-demand-indian-food-exports-sweets-snacks-surge",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "414d54cf-b570-42dc-8af7-8547da03bf5f",
+    "headline": "Indian-Origin Texas Lab Owner on US Fugitive List Over $93M Medicare Fraud",
+    "slug": "indian-origin-texas-lab-owner-fugitive-medicare-fraud-hyderabad",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "79431982-7852-4a7b-b10c-9f83c9e854df",
+    "headline": "India Open Asian Games Cricket Title Defence Against Hosts Japan",
+    "slug": "india-asian-games-2026-cricket-title-defence-japan-opener",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "802b2e54-d099-42c3-82c9-dc308c9808e2",
+    "headline": "Rentomojo debuts at 19% premium, then rallies further on NSE",
+    "slug": "rentomojo-debuts-at-19-premium-then-rallies-further-on-nse",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "218cc36d-41de-42b5-8468-114c715e2614",
+    "headline": "India bars stem cell therapy for autism as routine care",
+    "slug": "india-bars-stem-cell-therapy-autism-routine-care",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "989646d7-0225-4033-9b52-fc188c05ef87",
+    "headline": "Trump Threatens EU With 'Very Heavy Tariffs' Over Canada Associate Membership",
+    "slug": "trump-threatens-eu-very-heavy-tariffs-canada-associate-membership",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "b3370f8f-459d-4d73-860a-38555150e2c4",
+    "headline": "Huawei's Xu: Chinese AI too weak yet to face frontier safety risks",
+    "slug": "huawei-xu-chinese-ai-too-weak-for-frontier-safety-risks",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "bfc375be-b958-4214-b531-33a4d14e777b",
+    "headline": "Christopher Nolan's Odyssey Nears Hollywood's Top 6 All-Time in India",
+    "slug": "the-odyssey-nears-hollywood-top-6-india-box-office",
+    "category": "entertainment",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": null
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "13225a81-e529-4fa6-bc54-d924cffe64b1",
+    "headline": "Canberra University's T20 Cricket Challenge Opens Study-Play Pathway for Indian ",
+    "slug": "uc-cricket-challenge-bengaluru-indian-youth-study-play-pathway",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian students or parents who have participated in the program, highlighting their experiences and aspirations related to studying and playing cricket in Australia.",
+        "Provide more context on how this initiative specifically benefits Indian NRIs or diaspora families, such as potential scholarship opportunities or pathways for cricket players to gain admission into Australian universities.",
+        "Clarify the significance of the partnership between the University of Canberra and Cricket ACT in terms of its impact on the Indian diaspora's engagement with Australian education and sports.",
+        "Discuss the potential long-term benefits for Indian teens participating in this program, such as career opportunities in sports management or education, which may resonate with the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the University of Canberra that highlights the success of the tournament or the benefits of the 'study and play' model for Indian students."
+      ]
+    }
+  },
+  {
+    "id": "4bc9e00c-2364-4ba1-9d0c-3cdc6e2e5d29",
+    "headline": "Vijay Sethupathi's 'Maharaja' Heads to Hollywood in Landmark Tamil Remake Deal",
+    "slug": "maharaja-vijay-sethupathi-hollywood-remake-first-tamil",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from NRIs or Tamil communities abroad regarding the significance of this Hollywood remake. This could provide a personal touch and highlight how the film's success resonates with the diaspora.",
+        "Provide more context about the implications of a Tamil film being remade in Hollywood, particularly how it reflects the growing influence of Indian cinema in the global market. This could include insights into previous Indian films that have made similar transitions and their impact on the diaspora's perception of Indian culture.",
+        "Clarify the significance of the film's success in China and its streaming performance on Netflix, particularly how these factors contribute to the film's appeal to a global audience, including NRIs who may feel connected to the film's themes or actors.",
+        "Include a brief section on how this deal might affect future Tamil cinema and its representation in Hollywood, especially for NRIs who are interested in the evolution of Indian cinema in the global landscape."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from an official source or industry expert discussing the significance of this remake deal for Tamil cinema and its potential impact on the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "9fcc356c-41ad-4396-a754-29a9750042ae",
+    "headline": "Diwali Rush Lifts Indian Food Exports as Global Buyers Stock Up on Sweets and Sn",
+    "slug": "diwali-demand-indian-food-exports-sweets-snacks-surge",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian food exporters who cater specifically to NRI markets, highlighting how these festive exports resonate with the diaspora's cultural celebrations.",
+        "Provide more context on how the increase in food exports impacts NRIs living abroad, such as the significance of traditional Indian sweets during Diwali for maintaining cultural ties and community celebrations.",
+        "Include a comparison of this year's export growth with previous years' data to give readers a clearer picture of trends and the impact of the Diwali season on NRI purchasing behavior.",
+        "Discuss the challenges faced by NRI consumers in accessing authentic Indian food products abroad, which could further emphasize the importance of these exports."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Trade Promotion Council of India or a relevant government body that highlights the importance of food exports during the Diwali season, which would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "414d54cf-b570-42dc-8af7-8547da03bf5f",
+    "headline": "Indian-Origin Texas Lab Owner on US Fugitive List Over $93M Medicare Fraud",
+    "slug": "indian-origin-texas-lab-owner-fugitive-medicare-fraud-hyderabad",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from Indian-origin NRIs in the U.S. who may be affected by this case, such as comments from community leaders or legal experts on the implications of such fraud on the reputation of Indian professionals abroad.",
+        "Provide additional context about the impact of Medicare fraud on the healthcare system, particularly how it affects NRIs who might rely on similar healthcare services in the U.S. This could help readers understand why this case is significant beyond just the individual involved.",
+        "Clarify the timeline of events, especially regarding when the alleged fraud occurred and when the fugitive designation was made. This will help readers follow the progression of the case more clearly.",
+        "Include a brief section on the legal ramifications for NRIs involved in similar cases, which could provide valuable insights for the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the crackdown on Medicare fraud to provide authoritative context and enhance credibility.",
+        "Consider embedding a relevant news video that discusses the implications of Medicare fraud for the healthcare system, which could provide a more visual understanding of the issue."
+      ]
+    }
+  },
+  {
+    "id": "79431982-7852-4a7b-b10c-9f83c9e854df",
+    "headline": "India Open Asian Games Cricket Title Defence Against Hosts Japan",
+    "slug": "india-asian-games-2026-cricket-title-defence-japan-opener",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian expatriates or cricket fans living abroad about their expectations and support for the Indian teams in the Asian Games. This could provide a personal touch and connect the article more closely to the NRI audience.",
+        "Provide additional context on how the Asian Games cricket tournament impacts the Indian diaspora, such as the significance of cricket in Indian culture and how events like these are celebrated by NRIs around the world. This would help readers understand the broader implications of the tournament.",
+        "Clarify the timeline of the tournament by explicitly stating the time zone differences for NRIs, especially for those in North America or Europe, to enhance relevance and engagement for international readers.",
+        "Include a brief section on how the performance of the Indian teams in the Asian Games can affect their international rankings or future opportunities, which might be of interest to diaspora readers who follow cricket closely."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Asian Games or a cricket governing body announcing the tournament schedule or highlighting the significance of cricket in the Asian Games, which would add credibility and real-time engagement."
+      ]
+    }
+  }
+]
