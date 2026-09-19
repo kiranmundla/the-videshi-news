@@ -1,0 +1,118 @@
+[
+  {
+    "id": "ee489996-4414-444a-8b62-530b32a00c6f",
+    "headline": "AIIMS' Homegrown AI for Breast Cancer Detection Moves Toward Hospitals",
+    "slug": "aiims-mammography-ai-breast-cancer-bpl",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this AI technology could impact Indian communities abroad, particularly in countries with a significant NRI population. Discuss potential collaborations or interest from overseas hospitals or healthcare providers in adopting this technology.",
+        "Provide context on the implications of this technology for Indian NRIs, such as how it might influence healthcare access for Indian women living abroad or the potential for telemedicine applications that could allow NRIs to benefit from this AI tool remotely.",
+        "Include a quote or perspective from an NRI healthcare professional or researcher to add depth and relevance to the diaspora audience, highlighting their views on the significance of this development.",
+        "Clarify the regulatory process mentioned in the article and its potential impact on the timeline for deployment, as NRIs may be interested in how this technology could eventually be available to them or their families."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from AIIMS or BPL Technologies announcing the technology transfer, which could provide official context and engage readers on social media.",
+        "Consider embedding a video or infographic that explains how the AI tool works, which could enhance understanding and engagement for readers unfamiliar with AI in healthcare."
+      ]
+    }
+  },
+  {
+    "id": "07c5f4ff-f540-445d-aba5-d89ae0ff2cc3",
+    "headline": "India's First Dengue Vaccine Could Reach Private Hospitals in Early 2027",
+    "slug": "india-first-dengue-vaccine-qdenga-2027",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how the availability of Qdenga in India may impact NRIs who travel back home, especially those with children or elderly family members at risk of dengue. Discuss potential implications for NRIs considering vaccination for family members in India.",
+        "Provide context on the global dengue situation, particularly in regions with significant Indian diaspora populations, such as the Middle East, where dengue outbreaks may affect NRIs traveling back to India. This would help readers understand the broader relevance of the vaccine.",
+        "Clarify the timeline of the vaccine's approval and distribution by explicitly stating how this development compares to vaccine availability in other countries, particularly those with large Indian communities, to give readers a sense of urgency and relevance.",
+        "Include a brief section on the potential costs of the vaccine in private hospitals and how this might affect access for NRIs sending money back home for healthcare needs."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of Health regarding the approval of Qdenga, as this would lend authority to the article and provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "b83243ee-887f-46d4-9742-d7fb1997a08b",
+    "headline": "IIT Madras Students' Crewless Vessel Wins Global Njord Challenge in Norway",
+    "slug": "iit-madras-team-aritra-njord-challenge-norway",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from IIT Madras alumni who are part of the global marine technology industry or who have previously participated in international competitions. This would highlight the impact of Indian education on the global stage and its relevance to NRIs.",
+        "Provide context on how this victory impacts the Indian diaspora, particularly in fields related to technology and engineering. Discuss potential collaborations or opportunities for NRIs in marine technology as a result of this achievement.",
+        "Include a brief section on the significance of the Njord Challenge for the global maritime industry and how Indian innovations are contributing to it. This would provide a broader context that resonates with the NRI audience.",
+        "Mention any potential implications for NRIs in terms of job opportunities or partnerships in the marine technology sector as a result of this win."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from IIT Madras or the Njord Challenge organizers celebrating the victory, which would enhance the article's credibility and provide real-time engagement with the event."
+      ]
+    }
+  },
+  {
+    "id": "7eb42169-aa56-40b5-a97b-574b3a07c118",
+    "headline": "Gaggan Anand's Homecoming: The Rebel Chef Finally Opens in India",
+    "slug": "gaggan-anand-raga-delhi-homecoming",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian NRIs who have experienced Gaggan Anand's cuisine abroad and are excited about his return to India. This could highlight the connection between the diaspora and Anand's culinary journey.",
+        "Provide context on how Anand's return might influence the culinary landscape in India, especially for NRIs who may be looking to invest in or support the Indian food scene. This could include mentioning any trends or shifts in the restaurant industry that are relevant to the diaspora.",
+        "Include a brief section on how Anand's global experiences and culinary innovations might resonate with NRIs who are keen on exploring contemporary Indian cuisine, drawing parallels between his work abroad and the evolving tastes in India.",
+        "Discuss any potential collaborations or influences from the diaspora community in Anand's new venture, which could appeal to NRIs interested in the intersection of traditional and modern Indian cuisine."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Gaggan Anand announcing the opening of Raga, which could provide a personal touch and engage readers with his social media presence.",
+        "Consider embedding an Instagram post showcasing the restaurant's interior or a signature dish, which would visually enhance the article and attract readers' attention."
+      ]
+    }
+  },
+  {
+    "id": "6b8ccf95-5e96-45c6-aa15-27f707faf724",
+    "headline": "Indian Women Boxers Chase First Asian Games Gold Since Mary Kom's 2014 Win",
+    "slug": "indian-women-boxers-asian-games-gold-mary-kom",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian NRIs who are passionate about boxing or have followed the careers of these athletes. This could highlight how the achievements of these boxers resonate with the Indian diaspora and their pride in Indian sports.",
+        "Provide context about the significance of the Asian Games for NRIs, perhaps by discussing how Indian sports achievements can foster community pride and engagement among the diaspora. This could include mentioning how NRIs can support the athletes or follow their journey through social media.",
+        "Add a section that discusses the historical performance of Indian women boxers in international competitions, particularly in relation to the diaspora's interest in women's sports. This could include statistics or anecdotes that connect the current team to past successes.",
+        "Consider reordering the content to first highlight the emotional aspect of the 12-year wait for gold, followed by the details of the current squad and their preparation. This would create a more compelling narrative arc."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Boxing Federation of India announcing the squad selection or a motivational message for the athletes, which would engage readers and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "acee3311-18e3-4490-a74f-11aec62ccb85",
+    "headline": "Typhoon Dujuan Threatens Asian Games as Nagoya Braces for Opening Weekend",
+    "slug": "asian-games-2026-typhoon-dujuan-threatens-nagoya",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or comments from Indian athletes participating in the Asian Games, particularly those who may be affected by the weather. This would provide a personal connection for the NRI audience.",
+        "Provide context on how the Asian Games are significant for the Indian diaspora, including historical performance and participation of Indian athletes, to enhance relevance for the NRI readership.",
+        "Include a brief mention of how the Indian government or sports organizations are responding to the situation, which would resonate with NRIs interested in their home country's representation at international events.",
+        "Clarify the timeline of events by explicitly stating the dates of the Asian Games in relation to the typhoon threat, as the current timeline could be confusing for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Asian Games official account or a relevant weather service to provide real-time updates on the storm's impact on the event."
+      ]
+    }
+  }
+]
