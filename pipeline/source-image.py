@@ -256,12 +256,16 @@ def validate_image_url(url):
 # ═══════════════════════════════════════════
 
 def get_article(article_id):
-    """Fetch article from Supabase."""
-    r = requests.get(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}&select=id,headline,image_url,image_caption,image_attribution,body,image_backfill_blocked",
-        headers=HEADERS, timeout=10,
+    """Fetch article from Supabase (curl subprocess — Python requests fails through the proxy)."""
+    url = (f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
+           "&select=id,headline,image_url,image_caption,image_attribution,body,image_backfill_blocked")
+    r = subprocess.run(
+        ["curl", "-sS", url,
+         "-H", f"apikey: {SUPABASE_KEY}",
+         "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+        capture_output=True, text=True, timeout=30,
     )
-    data = r.json()
+    data = json.loads(r.stdout or "[]")
     return data[0] if data else None
 
 
@@ -278,17 +282,24 @@ def update_article_image(article_id, image_url, caption, attribution, dry_run=Tr
     }
     if clear_backfill_block:
         payload["image_backfill_blocked"] = False
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
-        json=payload,
-        headers=HEADERS, timeout=15,
+    # curl subprocess — Python requests fails through the proxy
+    r = subprocess.run(
+        ["curl", "-sS", "-X", "PATCH",
+         f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
+         "-H", f"apikey: {SUPABASE_KEY}",
+         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+         "-H", "Content-Type: application/json",
+         "-d", json.dumps(payload),
+         "-o", "/dev/null", "-w", "%{http_code}"],
+        capture_output=True, text=True, timeout=30,
     )
-    if r.status_code == 204:
+    status = (r.stdout or "").strip()
+    if status == "204":
         print(f"  ✅ Image updated!")
         if clear_backfill_block:
             print(f"  🔓 image_backfill_blocked cleared (manual override with verified image)")
         return True
-    print(f"  ❌ Update failed: {r.status_code} {r.text[:100]}")
+    print(f"  ❌ Update failed: HTTP {status} {r.stderr[:100]}")
     return False
 
 
@@ -315,15 +326,22 @@ def embed_trailer(article_id, trailer_url, dry_run=True):
         print(f"  [DRY RUN] Would embed trailer: {trailer_url}")
         return True
 
-    r = requests.patch(
-        f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
-        json={"body": new_body},
-        headers=HEADERS, timeout=15,
+    # curl subprocess — Python requests fails through the proxy
+    r = subprocess.run(
+        ["curl", "-sS", "-X", "PATCH",
+         f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
+         "-H", f"apikey: {SUPABASE_KEY}",
+         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+         "-H", "Content-Type: application/json",
+         "-d", json.dumps({"body": new_body}),
+         "-o", "/dev/null", "-w", "%{http_code}"],
+        capture_output=True, text=True, timeout=30,
     )
-    if r.status_code == 204:
+    status = (r.stdout or "").strip()
+    if status == "204":
         print(f"  ✅ Trailer embedded!")
         return True
-    print(f"  ❌ Embed failed: {r.status_code}")
+    print(f"  ❌ Embed failed: HTTP {status} {r.stderr[:100]}")
     return False
 
 
