@@ -1396,5 +1396,15 @@
     "errors": 0,
     "hero_slug": "semicon-india-2026-localise-chip-materials-gases",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-19T13:59:27.177946+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 19, 2026",
+    "subscribers": 7,
+    "sent": 7,
+    "errors": 0,
+    "hero_slug": "savoury-protein-pancakes-veggie-tofu-recipe-sept-18-2026",
+    "story_count": 5
   }
 ]

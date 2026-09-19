@@ -158,12 +158,16 @@ _OG_IMAGE_BLOCKLIST_PATHS = [
 # filename advertises AI generation is treated as generic/rejected.
 # (2026-09-13: Hindustan Times CDN serves AI-generated og:images with a
 # 'Gemini_' filename prefix — one slipped into the BRICS gala article.)
+# (2026-09-19: Mint serves ChatGPT-generated og:images with a 'chat_<digits>'
+# filename prefix — one slipped onto the H-1B $100k-fee article twice, and a
+# human review confirmed it was AI-generated. The trailing underscore keeps it
+# specific; "chatgpt" alone does not match Mint's 'chat_' naming.)
 # Filename-level only, like "logo": a directory named e.g. "gemini" elsewhere
 # in the path is not evidence the image itself is AI-generated.
 _AI_GENERATED_FILENAME_MARKERS = [
     "gemini", "ai-generated", "aigenerated", "midjourney", "dall-e",
     "dalle", "firefly", "stable-diffusion", "stablediffusion",
-    "leonardo", "imagen", "chatgpt",
+    "leonardo", "imagen", "chatgpt", "chat_",
 ]
 
 # Major news domains with high-quality editorial photos (preferred for og:image)
