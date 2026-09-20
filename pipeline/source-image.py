@@ -71,6 +71,22 @@ UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
 # FETCH FUNCTIONS — each returns (url, attribution) or (None, None)
 # ═══════════════════════════════════════════
 
+def _is_logo_like(url):
+    """Reject logo/seal/crest/emblem images — they never make good hero photos.
+
+    Checks the FILENAME only (not directory markers), per the HT CDN lesson
+    where 'logo' appears as a legitimate path component.
+    """
+    from urllib.parse import unquote
+    fname = unquote(url.split("/")[-1]).lower()
+    if fname.endswith(".svg"):
+        return True
+    return any(k in fname for k in (
+        "logo", "seal", "crest", "emblem", "coat_of_arms", "coat-of-arms",
+        "insignia", "badge", "monogram", "wordmark",
+    ))
+
+
 def fetch_wikipedia(page_name):
     """Fetch main image from a Wikipedia page by exact page name."""
     encoded = quote(page_name.replace(" ", "_"))
@@ -84,6 +100,9 @@ def fetch_wikipedia(page_name):
             img = (data.get("originalimage", {}).get("source")
                    or data.get("thumbnail", {}).get("source"))
             if img:
+                if _is_logo_like(img):
+                    print(f"  ✗ Wikipedia [{page_name}]: main image is a logo/seal/SVG — skipping")
+                    return None, None
                 print(f"  ✓ Wikipedia [{page_name}]: {img[:100]}")
                 return img, "Wikimedia Commons"
     except Exception as e:
