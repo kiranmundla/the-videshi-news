@@ -61,46 +61,67 @@ def _safe_run(cmd, **kwargs):
 
 def verify_image_url(url, min_width=400):
     """Verify an image URL is reachable and returns actual image data.
-    Uses GET with range header to avoid downloading entire file.
-    Returns (ok, content_type, width_hint) or (False, None, 0) on failure.
-    
+    Downloads the full image and validates bytes with PIL — a range-request
+    pre-check alone is not enough (misconfigured CDNs can return 200/206 with
+    an image content-type for the first bytes while the full file 404s; seen
+    2026-09-19 with a Healthline og:image that passed twice).
+    Returns (ok, content_type, width) or (False, None, 0) on failure.
+
     NEVER use HEAD requests to Wikimedia — they return 400 from this env.
     """
     if not url or not url.startswith("http"):
         return False, None, 0
-    
+
     try:
-        # Use curl with --max-time and just fetch headers + first bytes
+        # Full download via curl (follows redirects)
         result = subprocess.run(
-            ["curl", "-sS", "-o", "/dev/null", "-w",
-             "%{http_code} %{content_type} %{size_download}",
-             "-L", "--max-time", "8", "-r", "0-1023",
-             "-A", UA, url],
-            capture_output=True, text=True, timeout=12
+            ["curl", "-sS", "-L", "--max-time", "15", "-A", UA, url],
+            capture_output=True, timeout=20
         )
-        parts = result.stdout.strip().split(" ", 2)
-        if len(parts) < 2:
+        if result.returncode != 0 or not result.stdout or len(result.stdout) < 1000:
             return False, None, 0
-        
-        status = parts[0]
-        ctype = parts[1] if len(parts) > 1 else ""
-        size = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else 0
-        
-        # Accept 200 or 206 (partial content from range request)
-        if status not in ("200", "206"):
+        img_bytes = result.stdout
+
+        # Validate actual image bytes with PIL
+        try:
+            from PIL import Image
+            from io import BytesIO
+            img = Image.open(BytesIO(img_bytes))
+            img.verify()  # raises on truncated/corrupt data
+            img = Image.open(BytesIO(img_bytes))  # reopen after verify
+            width, height = img.size
+        except Exception:
+            # Fallback: JPEG/PNG magic bytes
+            if img_bytes[:2] == b'\xff\xd8':
+                width, height = 800, 600
+            elif img_bytes[:4] == b'\x89PNG':
+                width, height = 800, 600
+            else:
+                return False, None, 0
+
+        # Reject SVG masquerading as raster
+        if img_bytes[:5].lower().startswith(b'<?xml') or b'<svg' in img_bytes[:200].lower():
             return False, None, 0
-        
-        # Must be an image type
-        if not ctype.startswith("image/"):
-            return False, ctype, 0
-        
-        # Reject SVGs and tiny icons
-        if "svg" in ctype:
-            return False, ctype, 0
-        
-        return True, ctype, 0  # Width requires full download; skip for verification
-        
-    except Exception as e:
+
+        # Minimum width check
+        if width < min_width:
+            return False, None, 0
+
+        # Guess content type from magic bytes
+        if img_bytes[:2] == b'\xff\xd8':
+            ctype = "image/jpeg"
+        elif img_bytes[:4] == b'\x89PNG':
+            ctype = "image/png"
+        elif img_bytes[:4] == b'RIFF' and img_bytes[8:12] == b'WEBP':
+            ctype = "image/webp"
+        elif img_bytes[:6] in (b'GIF87a', b'GIF89a'):
+            ctype = "image/gif"
+        else:
+            ctype = "image/unknown"
+
+        return True, ctype, width
+
+    except Exception:
         return False, None, 0
 
 
