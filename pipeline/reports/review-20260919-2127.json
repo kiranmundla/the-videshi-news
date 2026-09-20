@@ -1,0 +1,59 @@
+[
+  {
+    "id": "18cf4910-3056-49f5-bb3f-70f86788367d",
+    "headline": "Air India Flight AI219 to Kathmandu Turns Back to Delhi Over Technical Snag",
+    "slug": "air-india-ai219-kathmandu-turns-back-delhi",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from NRIs who frequently travel between India and Nepal, perhaps highlighting their concerns about flight safety or experiences with Air India.",
+        "Provide context on how this incident may affect NRIs planning to travel to Nepal, especially in light of any ongoing travel advisories or concerns about Air India's operational reliability.",
+        "Include a quote or statement from Air India addressing how they are improving safety measures for international flights, which would be particularly relevant for NRIs who rely on these services.",
+        "Clarify the implications of this technical issue for future flights, especially for NRIs who may have upcoming travel plans, and whether they should anticipate any changes or disruptions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India tweet regarding this incident, if available, to provide direct communication from the airline to the readers."
+      ]
+    }
+  },
+  {
+    "id": "4e31b894-0949-4761-b69d-bc3596ce79ce",
+    "headline": "Skip the Pricey Sweet Shops: Make Soft No-Cook Kaju-Pista Modak at Home",
+    "slug": "no-cook-kaju-pista-modak-recipe-ganeshotsav",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how making Kaju-Pista Modak at home can evoke nostalgia for NRIs, perhaps by sharing personal anecdotes or quotes from NRIs who celebrate Ganeshotsav abroad.",
+        "Provide context on the significance of modaks during Ganeshotsav, particularly for NRIs who may not be familiar with the festival's customs, to enhance cultural understanding.",
+        "Consider adding a brief comparison of homemade modaks versus store-bought options, highlighting the benefits of making them at home, such as avoiding adulteration and personalizing flavors, which would resonate with health-conscious NRIs.",
+        "Include a note on where NRIs can find ingredients abroad, such as Indian grocery stores or online retailers, to make the recipe more accessible."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post showcasing Ganeshotsav celebrations from the Indian diaspora, which would visually connect the recipe to the festival's cultural significance."
+      ]
+    }
+  },
+  {
+    "id": "9e7ce6fe-76cc-4c7c-a2c5-73fcabbcc170",
+    "headline": "IIT Bombay Student's Death After ChatGPT Exam Incident Sparks Protests and Polic",
+    "slug": "iit-bombay-student-death-chatgpt-exam-protest",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives from NRIs who have experienced similar academic pressures or mental health challenges in prestigious institutions abroad. This could provide a comparative context that resonates with the Indian diaspora.",
+        "Provide more context about the implications of the incident for Indian students studying abroad, particularly in terms of academic integrity and mental health support systems in foreign institutions. This would help NRIs relate to the situation more deeply.",
+        "Consider adding quotes or statements from prominent figures in the NRI community or mental health advocates to highlight the broader implications of the incident and its relevance to the diaspora.",
+        "Include a section discussing the historical context of student suicides in Indian institutions and how this issue is perceived by the diaspora, potentially linking it to mental health awareness campaigns in the NRI community."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a mental health organization or a prominent NRI figure discussing the importance of mental health support for students, which would enhance the article's relevance to the diaspora."
+      ]
+    }
+  }
+]
