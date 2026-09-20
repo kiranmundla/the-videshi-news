@@ -273,6 +273,39 @@ def _og_image_domain_score(source_url):
     return 0
 
 
+def _og_image_topical_ok(img_url, headline, topic=""):
+    """Mechanical relevance gate for og:image candidates (added 2026-09-20).
+
+    A source page's og:image can depict a different story than the article
+    being written — e.g. a live-blog page whose og:image is a cricket photo
+    used as the hero for a shooting article (wrong photo went live on the
+    Asian Games shooting-silver piece and had to be removed manually).
+    Require the image URL's filename to share at least one distinctive
+    content word with the headline/topic. Filenames that are pure hashes or
+    numeric tokens cannot be judged and are allowed through; a filename with
+    recognizable words but zero overlap is rejected — null is better than
+    wrong, consistent with the Pexels alt-text gate.
+    """
+    fname = (img_url or "").rsplit("/", 1)[-1].lower()
+    words = re.findall(r"[a-z]{4,}", fname)
+    judgeable = [w for w in words if not re.fullmatch(r"[0-9a-f]{10,}|[0-9]{6,}", w)]
+    if not judgeable:
+        return True  # hash/numeric filename — cannot judge, allow
+    headline_words = set(
+        re.findall(r"[a-z]{4,}", ((headline or "") + " " + (topic or "")).lower())
+    )
+    distinctive = headline_words - _COMMONS_STOP
+    if not distinctive:
+        return True  # all-generic headline, don't over-filter
+    for w in judgeable:
+        stem = w[:-1] if w.endswith("s") and len(w) > 4 else w
+        for d in distinctive:
+            dstem = d[:-1] if d.endswith("s") and len(d) > 4 else d
+            if stem == dstem or stem.startswith(dstem) or dstem.startswith(stem):
+                return True
+    return False
+
+
 def fetch_og_image(source_url):
     """Fetch og:image meta tag from a source article URL.
     Returns image URL or None. Skips generic placeholders/logos.
@@ -931,6 +964,13 @@ _HEADLINE_PREFIX_WORDS = {
     "pm", "cm", "dr", "shri", "smt", "lt", "gen", "mr", "mrs", "ms",
     "india", "indian", "us", "uk", "supreme", "high", "federal",
     "breaking", "exclusive", "watch", "live",
+    # Indian scheme/program names commonly leading headlines — not people
+    "aadhaar", "nris", "nri",
+}
+# Determiners / possessives: "Raise Your Sum..." is never a person's name
+_HEADLINE_DETERMINER_WORDS = {
+    "your", "my", "our", "his", "her", "their", "its",
+    "this", "that", "these", "those",
 }
 
 
@@ -949,9 +989,25 @@ def headline_person_name(headline):
     if not m:
         return None
     first, second = m.group(1), m.group(2)
-    if first.lower().rstrip(".") in _HEADLINE_PREFIX_WORDS:
+    # Strip possessive suffix for the word-list checks ("India's" → "india")
+    first_base = re.sub(r"['’]s$", "", first.lower()).rstrip(".")
+    if first_base in _HEADLINE_PREFIX_WORDS:
         return None
-    if second.lower().rstrip("'s").rstrip(".") in _HEADLINE_TITLE_WORDS:
+    # ALL-CAPS short lead words are org/acronyms (IIT, UPI, EPF, NPS, PFRDA),
+    # never a person's given name
+    if first.isupper() and len(first) <= 5:
+        return None
+    # Gerund verbs leading the headline ("Replacing Russian...", "Building New...")
+    # — a given name never ends in -ing ("Singh" is a surname, handled below)
+    if first_base.endswith("ing") and first_base != "singh" and len(first_base) > 4:
+        return None
+    second_base = re.sub(r"['’]s$", "", second.lower()).rstrip(".")
+    if second_base in _HEADLINE_DETERMINER_WORDS:
+        return None
+    # Names don't contain digits ("Delhi H1N1", "10m Air Rifle")
+    if any(ch.isdigit() for ch in second):
+        return None
+    if second_base in _HEADLINE_TITLE_WORDS:
         return None
     # Both words capitalized, second not a title → likely a person's name
     if first[0].isupper() and second[0].isupper() and len(first) > 1 and len(second) > 2:
@@ -1026,6 +1082,9 @@ def source_hero_image(article, used_images=None):
             for src_url in all_source_urls[:6]:
                 og_img = fetch_og_image(src_url)
                 if og_img and og_img not in used:
+                    if not _og_image_topical_ok(og_img, headline, search_query):
+                        print(f"    ⊘ og:image failed topical gate, skipping")
+                        continue
                     ok, ctype, _ = verify_image_url(og_img)
                     if ok:
                         domain_score = _og_image_domain_score(src_url)

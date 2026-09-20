@@ -1,0 +1,100 @@
+[
+  {
+    "id": "bbe59086-8043-4913-abcc-4859cd34e4fb",
+    "headline": "Irregular Periods, Acne, Hair Thinning: 5 Signs You May Have PMOS",
+    "slug": "pmos-signs-when-to-get-tested",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including statistics or insights about how PMOS/PCOS affects women in the Indian diaspora specifically, such as prevalence rates or cultural factors that may influence diagnosis and treatment.",
+        "Provide context on how PMOS is being discussed in the Indian medical community or among NRI health professionals, perhaps by quoting a relevant expert or referencing a recent conference or study that highlights the condition's significance for the diaspora.",
+        "Include a section that discusses the implications of PMOS for women living abroad, such as access to healthcare, cultural stigmas, or differences in treatment approaches compared to India.",
+        "Clarify the distinction between PMOS and PCOS more explicitly, as this is a key point of interest for readers who may be familiar with the older terminology."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable health organization or expert discussing PMOS/PCOS, which could provide additional credibility and context to the article."
+      ]
+    }
+  },
+  {
+    "id": "db746ff4-2eff-4723-9418-c18d6b7d7798",
+    "headline": "Very Hot Tea and Coffee Triple Esophageal Cancer Risk, Major Study Finds",
+    "slug": "very-hot-drinks-esophageal-cancer-risk-study",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from health experts or organizations within the Indian diaspora community regarding the cultural significance of hot beverages like chai and how this study might impact their consumption habits.",
+        "Provide context on how this study's findings may resonate with the NRI community, especially those who frequently consume hot beverages as part of their daily routines, and discuss any potential cultural shifts that may occur as a result of this research.",
+        "Include a section that discusses how the findings of this study could influence health awareness campaigns within the Indian diaspora, particularly in countries with high NRI populations, such as the US, Canada, and the UK.",
+        "Add a brief comparison of beverage consumption habits between the UK and India to highlight the cultural differences and similarities, which would make the article more relevant to the NRI audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable health organization or expert discussing the implications of the study's findings on hot beverage consumption, particularly in relation to the Indian community."
+      ]
+    }
+  },
+  {
+    "id": "cdaf4337-8aa4-47be-8ef7-97d329950515",
+    "headline": "Kamil Pooran Earns Maiden T20I Call-Up for West Indies' India Tour",
+    "slug": "kamil-pooran-t20i-call-up-west-indies-india",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from Indian fans or NRI cricket enthusiasts regarding Kamil Pooran's selection, as this would connect the article more closely to the Indian diaspora's interest in cricket.",
+        "Provide context on how Kamil Pooran's performance in the CPL could influence the perception of Caribbean cricketers among Indian audiences, particularly NRIs who follow cricket closely.",
+        "Include a brief section on the significance of the India tour for West Indies cricket and how it impacts the global cricket landscape, especially for fans in the diaspora who may have ties to both regions.",
+        "Clarify the implications of the squad changes, particularly how the absence of seasoned players like Jason Holder and Shimron Hetmyer might affect the team's performance and what it means for the upcoming matches."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Cricket West Indies announcing Kamil Pooran's selection or a relevant tweet from a prominent cricket analyst discussing the implications of this call-up."
+      ]
+    }
+  },
+  {
+    "id": "03cf4652-5c9f-4a6b-b198-69298322630b",
+    "headline": "Bangladesh Measles Death Toll Crosses 1,050 in Deadliest Outbreak in Decades",
+    "slug": "bangladesh-measles-death-toll-1050",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or quotes from NRIs who have family in Bangladesh or who are involved in health initiatives related to vaccination. This could highlight the emotional impact of the outbreak on the diaspora community and their potential role in supporting vaccination efforts.",
+        "Provide more context on how this outbreak might affect NRIs in terms of travel, family health, or remittances. For instance, discussing how the crisis could lead to increased health concerns for families in the diaspora could resonate with readers.",
+        "Clarify the implications of the outbreak for public health policy in Bangladesh and how it might affect NRIs' perceptions of healthcare in their home country. This could involve discussing the importance of vaccination and public health initiatives that NRIs might support.",
+        "Include a section on how NRIs can help, whether through donations to health organizations, awareness campaigns, or other means. This would give readers actionable steps they can take in response to the crisis."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from UNICEF or the World Health Organization regarding vaccination efforts or the measles outbreak to provide authoritative context and updates.",
+        "Consider embedding a video from a health expert discussing the importance of vaccination and the implications of the outbreak for children, which could enhance the article's depth and engagement."
+      ]
+    }
+  },
+  {
+    "id": "9c8867b1-b064-45e6-9cb4-dbee60a0be32",
+    "headline": "DHS Publishes Rule to End 60-Day Grace Period for Laid-Off H-1B Workers",
+    "slug": "dhs-60-day-grace-period-rule-h1b",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or testimonials from Indian NRIs who have been affected by similar policy changes in the past. This would personalize the impact of the proposed rule and highlight the challenges faced by the Indian community.",
+        "Provide more context on how this rule change could affect the job market for Indian professionals in the U.S., including potential industries that heavily rely on H-1B workers. This would give readers a clearer understanding of the broader implications.",
+        "Clarify the timeline for the public comment period and the potential timeline for the rule's implementation. This information is crucial for NRIs who may want to participate in the comment process or prepare for the changes.",
+        "Include a brief comparison with similar policies in other countries that impact foreign workers, particularly in nations with significant Indian diaspora populations. This could provide a broader perspective on how the U.S. policy fits into global trends."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS tweet announcing the proposed rule change to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  }
+]
