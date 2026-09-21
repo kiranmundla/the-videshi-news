@@ -970,6 +970,13 @@ _HEADLINE_TITLE_WORDS = {
     "company", "group", "school", "schools", "university", "hospital",
     "center", "centre", "festival", "award", "awards", "cup", "league",
     "tournament", "championship",
+    # Economy/finance nouns: two-word phrases like "Mortgage Rates", "Gas Prices",
+    # "Bond Market" are never a person's name (2026-09-21 health check found
+    # "Mortgage Rates" misdetected, which blocked Pexels fallback entirely)
+    "rate", "rates", "price", "prices", "market", "markets", "stock", "stocks",
+    "bond", "bonds", "fund", "funds", "oil", "gas", "growth", "inflation",
+    "deficit", "surplus", "trade", "economy", "revenue", "profits", "earnings",
+    "cost", "costs", "demand", "supply", "housing", "mortgage", "tax", "taxes",
 }
 _HEADLINE_PREFIX_WORDS = {
     "pm", "cm", "dr", "shri", "smt", "lt", "gen", "mr", "mrs", "ms",
