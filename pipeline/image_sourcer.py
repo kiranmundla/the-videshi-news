@@ -964,8 +964,25 @@ _HEADLINE_PREFIX_WORDS = {
     "pm", "cm", "dr", "shri", "smt", "lt", "gen", "mr", "mrs", "ms",
     "india", "indian", "us", "uk", "supreme", "high", "federal",
     "breaking", "exclusive", "watch", "live",
+    # Org/economic acronyms that lead headlines but are never a person's name
+    # ("Fed Delivers...", "RBI Cuts...", "ECB Holds...") — case-insensitive match
+    "fed", "rbi", "ecb", "imf", "wto",
     # Indian scheme/program names commonly leading headlines — not people
     "aadhaar", "nris", "nri",
+}
+# Prepositions / interrogatives / conjunctions as first word: a person's
+# given name can never be "After", "Across", "Why", "While" ...
+# ("After Years in America...", "Across Punjab, farmers..."). Safe because
+# proper names don't start with these words. Note: months ("March", "May")
+# and common-noun names ("Bill", "Rose", "Mark") are deliberately NOT here.
+_HEADLINE_NONNAME_FIRST_WORDS = {
+    "after", "before", "across", "amid", "among", "around", "between",
+    "beyond", "during", "under", "over", "through", "toward", "towards",
+    "without", "within", "despite", "against", "along", "upon", "until",
+    "versus", "via", "inside", "beneath", "beside", "behind", "below",
+    "above", "how", "why", "when", "what", "where", "which", "while",
+    "since", "amongst", "and", "but", "or", "nor", "as", "of", "to",
+    "in", "on", "at", "by", "for", "from",
 }
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
@@ -996,6 +1013,10 @@ def headline_person_name(headline):
     # ALL-CAPS short lead words are org/acronyms (IIT, UPI, EPF, NPS, PFRDA),
     # never a person's given name
     if first.isupper() and len(first) <= 5:
+        return None
+    # Preposition/interrogative leads ("After Years...", "Why India..."):
+    # a given name never starts with one
+    if first_base in _HEADLINE_NONNAME_FIRST_WORDS:
         return None
     # Gerund verbs leading the headline ("Replacing Russian...", "Building New...")
     # — a given name never ends in -ing ("Singh" is a surname, handled below)
@@ -1198,7 +1219,12 @@ def source_hero_image(article, used_images=None):
                 if not img_url:
                     print(f"    ⊘ Named-person article ('{person}') — skipping Pexels, staying imageless")
         if not img_url and not headline_person_name(headline):
-            query = search_query or must_show or headline[:40]
+            # Pexels query: prefer the article's first tag (a topical entity
+            # phrase like "Federal Reserve") over the raw headline, whose
+            # leading verbs ("Delivers", "Hikes") never match stock alt text.
+            tags = article.get("tags") or []
+            first_tag = tags[0] if tags else ""
+            query = search_query or must_show or first_tag or headline[:40]
             pexels_img = fetch_pexels_image(query)
             if pexels_img and pexels_img not in used:
                 ok, ctype, _ = verify_image_url(pexels_img)
@@ -1377,7 +1403,7 @@ if __name__ == "__main__":
         # Fetch article from DB and source its image
         r = _safe_run(
             ["curl", "-s",
-             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources,image_backfill_blocked&slug=eq.{args.slug}&limit=1",
+             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources,tags,image_backfill_blocked&slug=eq.{args.slug}&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
             capture_output=True, text=True, timeout=30
@@ -1446,7 +1472,7 @@ if __name__ == "__main__":
         encoded_cutoff = urllib.parse.quote(cutoff, safe='')
         r = _safe_run(
             ["curl", "-s",
-             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources"
+             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources,tags"
              f"&status=eq.published&image_url=is.null&image_backfill_blocked=is.false&published_at=gte.{encoded_cutoff}"
              f"&order=published_at.desc",
              "-H", f"apikey: {SUPABASE_KEY}",

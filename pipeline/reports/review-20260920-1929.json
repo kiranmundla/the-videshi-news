@@ -1,0 +1,199 @@
+[
+  {
+    "id": "27987c1c-fae2-4229-81e1-1a6ed2cffbac",
+    "headline": "Sikh bus driver attacked and thrown off bus in Telford hijacking",
+    "slug": "sikh-bus-driver-attacked-telford-bus-hijacking",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "869bc80c-a8d7-46cb-9af5-e71f1ee9f05c",
+    "headline": "India set for 'unparalleled' decades-long growth, says Tata chief Chandrasekaran",
+    "slug": "india-unparalleled-decades-growth-chandrasekaran",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how the economic growth in India could impact NRIs, such as investment opportunities or potential job markets for returning professionals.",
+        "Provide context on how Tata's growth and the economic landscape in India might influence the global Indian diaspora, particularly in terms of remittances or business collaborations.",
+        "Incorporate quotes or perspectives from diaspora leaders or NRI entrepreneurs to illustrate how they view India's economic potential and their role in it.",
+        "Discuss the implications of AI and technology on the job market for NRIs, particularly in sectors where they are heavily invested or employed."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Tata Sons or N Chandrasekaran that highlights key points from the convocation speech to provide direct engagement with the audience."
+      ]
+    }
+  },
+  {
+    "id": "af77c2eb-2d5a-48ce-8568-2933a3337209",
+    "headline": "India, Japan Air Chiefs Fly Tejas Formation Sortie in Veer Guardian 2026",
+    "slug": "veer-guardian-2026-tejas-air-chiefs",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "c8f6a904-3d99-4234-851d-ae82c7358568",
+    "headline": "Etihad Cancels Delhi-Abu Dhabi Flight EY217, Stranding 200 After Mid-Boarding Sn",
+    "slug": "etihad-ey217-delhi-abu-dhabi-cancelled-200-passengers",
+    "category": "travel",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "2a443316-290a-4094-910c-328e0c37293d",
+    "headline": "North Korea fires short-range missiles in second launch within a week",
+    "slug": "north-korea-ballistic-missile-launch-september-20",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "e3ded46c-b84d-487a-a556-aaf5de0e34dd",
+    "headline": "Kunal Kemmu's 'Vibe' Jumps on Day 2, Beats 'Madgaon Express' Two-Day Total",
+    "slug": "vibe-box-office-day-2-kunal-kemmu",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "c4f1fca6-36b3-4023-8ede-9f2fe331a730",
+    "headline": "Air India Takes Best Airline and Best Staff Titles at 2026 Skytrax Awards",
+    "slug": "air-india-skytrax-best-airline-india-south-asia-2026",
+    "category": "travel",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)",
+      "Possibly irrelevant YouTube: \"Inside Air India's Upgraded Melbourne\u2013India Experience\" vs headline"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "0376affa-9c7e-486f-ade7-c02b0f996a72",
+    "headline": "India's exports to China jump 39% as core BRICS shipments rise 34% to $19.9 bill",
+    "slug": "india-exports-china-brics-april-august-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d0d01ef3-cfe7-43df-b679-fae85ab2ac72",
+    "headline": "ChatGPT Helps Stranger Reunite Lost Punjab Elder With Family 1,200 Km Away",
+    "slug": "chatgpt-reunites-missing-punjab-elder-family",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5527e913-6f8a-425e-9c83-7e540b98bb10",
+    "headline": "Houthis claim missile strikes on Riyadh as fuel depot burns at airport",
+    "slug": "houthis-claim-missile-attack-riyadh-fuel-depot-fire",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "ac3dc4cc-3889-4caa-a1ac-b58540425e11",
+    "headline": "Mandhana tops women's T20I run charts as India crush Bangladesh to reach Asian G",
+    "slug": "mandhana-t20i-run-record-india-bangladesh-asian-games-final",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian diaspora communities regarding Mandhana's achievement, highlighting how it inspires young cricketers abroad.",
+        "Provide context about how Indian women's cricket is perceived in the diaspora, perhaps mentioning events or initiatives that connect NRIs to women's cricket, such as local leagues or community support.",
+        "Add a brief section discussing the significance of Mandhana's achievement for Indian women in sports, especially in the context of the growing interest in women's cricket among NRIs.",
+        "Clarify the significance of the Asian Games for Indian cricket in the diaspora, perhaps by mentioning how these events are followed by NRIs and their impact on cricketing culture abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ICC or a prominent cricket analyst congratulating Mandhana, which could enhance the article's credibility and engagement.",
+        "Consider embedding a video highlight of Mandhana's milestone innings or Shafali Verma's century to provide visual context and enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "7ad5b80c-341e-4f33-b235-6cfeef888676",
+    "headline": "Vaishnaw warns chip industry to brace for cyberattacks as India's semiconductor ",
+    "slug": "vaishnaw-warns-chip-industry-cyberattacks-semiconductor-push",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian-origin entrepreneurs or companies in the semiconductor industry abroad, discussing how India's semiconductor push impacts their operations or investments.",
+        "Provide context on how the semiconductor industry in India could affect NRIs who are involved in tech and electronics sectors globally, perhaps by discussing potential job opportunities or investment avenues for them.",
+        "Clarify the implications of the cyberattack warnings for NRIs who may have investments in Indian tech startups or are considering entering the market, as this could directly affect their interests.",
+        "Include a brief overview of the global semiconductor landscape and how India's position might influence NRIs' business strategies or investment decisions."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Ashwini Vaishnaw or an official government account that highlights the importance of cybersecurity in the semiconductor sector, which would add credibility and immediacy to the article."
+      ]
+    }
+  },
+  {
+    "id": "70d8e468-1eb6-4868-9a0f-5ee378830b65",
+    "headline": "Mammootty's Cameo Fails to Lift 'Law & Order' Past \u20b947 Lakh in Two Days",
+    "slug": "law-and-order-box-office-day-2-mammootty-cameo",
+    "category": "entertainment",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)",
+      "Possibly irrelevant YouTube: \"L&O: Law and Order (2026) #lawandorder #prakashvarma #mammoo\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the film's performance may affect the perception of Malayalam cinema among NRIs, especially in regions with large Malayali communities like the Gulf countries or the US.",
+        "Provide context on Mammootty's international fanbase and how his cameo might have been marketed to NRIs, potentially including quotes from social media reactions or comments from diaspora audiences to illustrate their expectations.",
+        "Add a brief analysis of how the film's poor performance could impact future releases from the Malayalam film industry in international markets, particularly for NRIs who may be looking for quality content from back home.",
+        "Include a comparison with other recent Malayalam films that have performed well overseas, to give readers a clearer picture of the current trends in the diaspora's reception of Malayalam cinema."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Mammootty or the film's official account discussing the film's release or audience reactions, which could provide direct engagement with the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "709dbd33-d46c-4e65-b1f1-60ccd11b6e7a",
+    "headline": "Vande Bharat Drone Video Captures Jharkhand's Hills Looking Like Switzerland",
+    "slug": "vande-bharat-jharkhand-drone-video-hills",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from NRIs who have visited Jharkhand or have shared their experiences of the Vande Bharat Express. This could highlight how the train service and the scenic views are attracting NRIs back to India for tourism.",
+        "Provide more context about how the viral video may influence tourism among the Indian diaspora, such as potential travel packages or initiatives by the Jharkhand tourism board aimed at NRIs. This would give readers a clearer understanding of the implications for the diaspora.",
+        "Clarify the significance of the Vande Bharat Express in the context of Indian railways and its appeal to NRIs, particularly in terms of modern travel experiences compared to traditional options.",
+        "Include a brief section on how the scenic beauty of Jharkhand can be leveraged to promote eco-tourism, which might resonate with environmentally conscious NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Railways or the Railway Minister showcasing the drone video or announcing the Vande Bharat Express service, which would provide authenticity and a direct connection to the topic."
+      ]
+    }
+  },
+  {
+    "id": "5178a2e8-e15b-48f9-b5ca-5b9f25217728",
+    "headline": "Saudi Arabia exits China-led mBridge currency platform in blow to de-dollarizati",
+    "slug": "saudi-arabia-exits-china-led-mbridge-digital-currency-platform",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how Saudi Arabia's exit from the mBridge platform might affect Indian NRIs working in the Gulf region, particularly in terms of remittances and financial transactions.",
+        "Provide more context on the implications of this move for global markets, especially for NRIs who may have investments tied to the dollar or are involved in international trade, to enhance the relevance of the article to the diaspora audience.",
+        "Clarify the timeline of events related to Saudi Arabia's involvement in mBridge, as the current structure may confuse readers about the sequence and significance of these developments.",
+        "Include a brief analysis or quote from a financial expert or economist regarding the potential long-term effects of this withdrawal on the global financial landscape, which would add depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Saudi Central Bank or the Bank for International Settlements regarding their positions on mBridge to provide authoritative context."
+      ]
+    }
+  }
+]

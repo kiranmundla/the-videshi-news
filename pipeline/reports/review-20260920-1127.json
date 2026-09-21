@@ -1,0 +1,105 @@
+[
+  {
+    "id": "f55638ca-4068-48e8-98f6-455814e119f5",
+    "headline": "IIT Bombay Suicide: Abetment Case Against Professor After Father Alleges Casteis",
+    "slug": "iit-bombay-suicide-abetment-case-professor-casteist-slurs-allegation",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "4e93fbdb-a448-4622-819e-97e06f1372d4",
+    "headline": "NRIs Can Shift NRO Funds to NRE Accounts Up to $1 Million a Year - With New Form",
+    "slug": "nri-nro-to-nre-transfer-limit-form-145-146",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "9ab85837-96bb-4058-8ea5-382010c874ef",
+    "headline": "Replacing Russian Barrels Will Hike Costs for Indian Refiners, Industry Warns",
+    "slug": "replacing-russian-crude-cost-india-refiners-trump-sanctions-law",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "4d086378-01c2-46d1-80b5-67c1d0e08488",
+    "headline": "UPI Now Works in 10 Countries as NPCI Expands Its Global Acceptance List",
+    "slug": "upi-accepted-10-countries-list-indian-tourists-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "2f0c21c0-03ca-4789-afff-d7e822692806",
+    "headline": "Aadhaar Biometric Authentication Mandatory for Subsidised LPG Refills From Octob",
+    "slug": "aadhaar-biometric-authentication-mandatory-lpg-subsidy-october",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "130e44a3-69eb-45a3-9e6e-4556be8f6002",
+    "headline": "Raise Your Sum Insured or Buy Riders? How Experts Say to Prioritise",
+    "slug": "health-insurance-riders-vs-sum-insured-experts-guide",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "34592ccf-4375-4b25-83c7-63f1569bae42",
+    "headline": "EPF Wage Ceiling Raised to Rs 25,000 After 12 Years: What It Means for Your Take",
+    "slug": "epf-wage-ceiling-raised-25000-take-home-pay-impact",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "f49c00a3-fab1-4433-9b4b-d5e8c9077c31",
+    "headline": "PFRDA Finalises NPS Swasthya: 25% Medical Withdrawal Cap, Health Cover Up to Rs ",
+    "slug": "pfrda-nps-swasthya-final-rules-25-percent-healthcare-withdrawal",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "db2f772d-cc24-48cd-8faa-b8b0329d7b73",
+    "headline": "Maharashtra Minister's Niece Nila Vikhe Patil Elected to Swedish Parliament",
+    "slug": "nila-vikhe-patil-elected-swedish-parliament",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "388273b4-3d96-4254-8e91-7821fa7540ac",
+    "headline": "Silver in Women's 10m Air Rifle Opens India's Asian Games Account",
+    "slug": "silver-womens-10m-air-rifle-opens-india-asian-games-account",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "b93fdf45-8dfd-4cd9-95cb-e635c731a112",
+    "headline": "India's New-Generation Kabaddi Squad Begins Asian Games Title Defence",
+    "slug": "indias-new-generation-kabaddi-squad-asian-games-2026",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from NRIs who follow kabaddi or have connections to the sport, discussing its significance in their lives or communities abroad.",
+        "Provide more context about the popularity of kabaddi among the Indian diaspora, potentially including statistics or anecdotes about kabaddi leagues or events held in countries with significant NRI populations.",
+        "Elaborate on the historical significance of kabaddi in India and its representation in the diaspora, possibly by mentioning how kabaddi events are celebrated or followed by NRIs in various countries.",
+        "Include a brief section on how the outcomes of the Asian Games could impact kabaddi's global presence, especially in regions with large Indian communities."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Kabaddi Federation or a relevant sports authority announcing the squad or highlighting the significance of this Asian Games for the Indian diaspora."
+      ]
+    }
+  }
+]

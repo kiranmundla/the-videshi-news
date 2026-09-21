@@ -1,0 +1,190 @@
+[
+  {
+    "id": "27987c1c-fae2-4229-81e1-1a6ed2cffbac",
+    "headline": "Sikh bus driver attacked and thrown off bus in Telford hijacking",
+    "slug": "sikh-bus-driver-attacked-telford-bus-hijacking",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section that discusses how incidents like this impact the Sikh community abroad, particularly among NRIs in the UK and India. This could include quotes from community leaders or organizations that address safety concerns for Sikhs living outside India.",
+        "Provide context about the Sikh community in the UK, including statistics or historical background, to help readers understand the significance of the attack and its implications for the diaspora.",
+        "Clarify the timeline of events and the aftermath for the driver, including any support systems in place for victims of such attacks, especially for those in the diaspora who may feel vulnerable.",
+        "Consider adding a quote from a spokesperson for the Sikh community or a relevant advocacy group to provide a perspective on the incident and its broader implications for safety and discrimination faced by Sikhs abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant UK police department or community organization expressing solidarity with the Sikh community or addressing the incident to enhance engagement and provide official context."
+      ]
+    }
+  },
+  {
+    "id": "869bc80c-a8d7-46cb-9af5-e71f1ee9f05c",
+    "headline": "India set for 'unparalleled' decades-long growth, says Tata chief Chandrasekaran",
+    "slug": "india-unparalleled-decades-growth-chandrasekaran",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "af77c2eb-2d5a-48ce-8568-2933a3337209",
+    "headline": "India, Japan Air Chiefs Fly Tejas Formation Sortie in Veer Guardian 2026",
+    "slug": "veer-guardian-2026-tejas-air-chiefs",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from Indian expatriates in Japan or NRIs who are involved in defense or aviation sectors. This could highlight how such military collaborations impact the Indian community abroad.",
+        "Provide additional context on how the Veer Guardian exercise fits into the broader geopolitical landscape, particularly in relation to the Indian diaspora's interests in Japan and regional security dynamics.",
+        "Clarify the significance of the Tejas aircraft for the Indian defense industry and how it resonates with NRIs who may have a vested interest in India's technological advancements.",
+        "Include a brief section on how these military exercises might influence trade, investment, or diplomatic relations between India and Japan, which could be relevant to NRIs."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of Defence or the Japan Air Self-Defense Force regarding the exercise to provide authoritative context and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "c8f6a904-3d99-4234-851d-ae82c7358568",
+    "headline": "Etihad Cancels Delhi-Abu Dhabi Flight EY217, Stranding 200 After Mid-Boarding Sn",
+    "slug": "etihad-ey217-delhi-abu-dhabi-cancelled-200-passengers",
+    "category": "travel",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or reactions from Indian passengers who were affected by the flight cancellation. This could provide personal stories that resonate with the NRI audience, emphasizing the impact of such disruptions on their travel plans.",
+        "Provide additional context regarding how this cancellation may affect NRIs traveling for work or family reasons, especially during peak travel seasons. Discussing potential implications for visa holders or those with urgent commitments could add depth to the article.",
+        "Include a brief section on alternative travel options for NRIs affected by the cancellation, such as other airlines or routes, which would be particularly useful for readers who may be in similar situations.",
+        "Clarify the timeline of events more explicitly, detailing how long passengers were left waiting and what actions they took during that time. This could help readers understand the severity of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official Etihad Airways tweet or a statement regarding the flight cancellation, if available, to provide authoritative information directly from the airline."
+      ]
+    }
+  },
+  {
+    "id": "2a443316-290a-4094-910c-328e0c37293d",
+    "headline": "North Korea fires short-range missiles in second launch within a week",
+    "slug": "north-korea-ballistic-missile-launch-september-20",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or reactions from the Indian diaspora regarding North Korea's missile launches, particularly how these developments may impact geopolitical stability in the region and any concerns they may have about safety or international relations.",
+        "Provide context on how North Korea's actions may affect NRIs living in South Korea or Japan, including any potential implications for their safety or business interests, to make the article more relevant to the diaspora audience.",
+        "Clarify the timeline of events by integrating a brief background section that outlines previous missile launches and international responses, which would help readers understand the significance of this latest incident.",
+        "Include quotes or statements from Indian government officials or experts on international relations to provide a broader perspective on how these developments may affect India's foreign policy or its diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official account of the South Korean or Japanese government regarding their response to the missile launches to provide real-time updates and official perspectives."
+      ]
+    }
+  },
+  {
+    "id": "e3ded46c-b84d-487a-a556-aaf5de0e34dd",
+    "headline": "Kunal Kemmu's 'Vibe' Jumps on Day 2, Beats 'Madgaon Express' Two-Day Total",
+    "slug": "vibe-box-office-day-2-kunal-kemmu",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Highlight the diaspora/NRI audience's potential interest in Kunal Kemmu's films, such as discussing how his work resonates with Indian communities abroad or how they can access his films through streaming platforms.",
+        "Provide more context on how the film's performance might impact its availability to NRIs, such as mentioning any international release plans or streaming service availability for those outside India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Kunal Kemmu or the film's official account discussing the film's release or its themes, which could engage the audience more directly."
+      ]
+    }
+  },
+  {
+    "id": "c4f1fca6-36b3-4023-8ede-9f2fe331a730",
+    "headline": "Air India Takes Best Airline and Best Staff Titles at 2026 Skytrax Awards",
+    "slug": "air-india-skytrax-best-airline-india-south-asia-2026",
+    "category": "travel",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)",
+      "Possibly irrelevant YouTube: \"Inside Air India's Upgraded Melbourne\u2013India Experience\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how Air India's improvements may impact NRIs traveling to and from India, such as potential benefits in service quality or pricing for this demographic.",
+        "Provide context on how Air India's recognition at the Skytrax Awards might influence NRIs' travel choices or perceptions of the airline, perhaps by including quotes or testimonials from NRI travelers.",
+        "Add a section discussing the implications of Air India's awards on its competition with airlines that cater to NRIs, such as Emirates or Qatar Airways, to give readers a broader understanding of the airline landscape.",
+        "Include a brief mention of Air India's plans for international routes and how these awards may affect its strategy in catering to the NRI market."
+      ],
+      "embed_opportunities": [
+        "Embed the official Skytrax tweet announcing the awards to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "0376affa-9c7e-486f-ade7-c02b0f996a72",
+    "headline": "India's exports to China jump 39% as core BRICS shipments rise 34% to $19.9 bill",
+    "slug": "india-exports-china-brics-april-august-2026",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights or quotes from Indian NRIs involved in trade or business with China and other BRICS nations. This could provide a personal perspective on how these export increases impact their businesses or investments.",
+        "Provide context on how these export figures relate to the broader economic landscape for NRIs, such as potential investment opportunities or implications for Indian businesses abroad. This could help NRIs understand the significance of these statistics in their own contexts.",
+        "Include a brief discussion on how these export trends may affect the Indian diaspora's perception of India's economic growth and stability, which is crucial for NRIs considering investments back home.",
+        "Clarify the implications of these export increases for NRIs who may be involved in sectors like engineering, electronics, or petroleum, potentially offering them insights into market opportunities or shifts."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Indian commerce ministry or a trade expert discussing the significance of these export figures, which could provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "d0d01ef3-cfe7-43df-b679-fae85ab2ac72",
+    "headline": "ChatGPT Helps Stranger Reunite Lost Punjab Elder With Family 1,200 Km Away",
+    "slug": "chatgpt-reunites-missing-punjab-elder-family",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs who may have experienced similar situations or who can speak to the significance of technology like ChatGPT in connecting families across distances. This would make the article more relatable to the NRI audience.",
+        "Add a section that discusses how NRIs can use technology and social media to help locate missing family members in India, perhaps including tips or resources. This would provide practical value to the diaspora community.",
+        "Provide more context on the role of AI in everyday Indian life, specifically how it can bridge gaps for NRIs trying to stay connected with family back home. This could include statistics or examples of other successful uses of AI in similar situations.",
+        "Clarify the timeline of events, particularly how long Chaman Lal was missing and the duration of Neeraj's efforts. This would help readers understand the urgency and the challenges faced during the search."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent figure or organization discussing the use of technology in locating missing persons, which could enhance the article's credibility and relevance."
+      ]
+    }
+  },
+  {
+    "id": "5527e913-6f8a-425e-9c83-7e540b98bb10",
+    "headline": "Houthis claim missile strikes on Riyadh as fuel depot burns at airport",
+    "slug": "houthis-claim-missile-attack-riyadh-fuel-depot-fire",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how these missile strikes could impact Indian expatriates living in Saudi Arabia, particularly in Riyadh. Discuss any potential safety concerns or disruptions to their daily lives and businesses.",
+        "Provide context on the historical relationship between India and Saudi Arabia, especially in terms of trade and the Indian diaspora's role in the Saudi economy. This could help readers understand the broader implications of the conflict for NRIs.",
+        "Clarify the timeline of events by including a brief background on the ongoing conflict in Yemen and previous Houthi attacks on Saudi Arabia. This would give readers a clearer understanding of the significance of the recent strikes.",
+        "Consider adding a quote from an expert on Middle Eastern geopolitics or a representative from the Indian community in Saudi Arabia to provide a personal perspective on the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official Saudi Arabian government or military tweet regarding the missile strikes and their response, as this would provide authoritative context and enhance the article's credibility."
+      ]
+    }
+  }
+]
