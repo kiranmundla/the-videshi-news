@@ -1,0 +1,40 @@
+[
+  {
+    "id": "c9fa0826-3ecc-4502-91ec-13adcfbf8fd3",
+    "headline": "Cricket Frenzy Grips Indian and Pakistani Expatriates Across the Gulf",
+    "slug": "cricket-frenzy-indian-pakistani-expatriates-gulf",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from Indian and Pakistani expatriates discussing how cricket serves as a cultural lifeline and a means of maintaining connections with their home countries. This could enhance the emotional resonance of the article for NRIs.",
+        "Provide more context about how cricket has evolved in the Gulf region specifically for the diaspora, perhaps by mentioning any notable tournaments or leagues that have been established by expatriates, which would highlight their contributions to the sport.",
+        "Consider adding a section that discusses the impact of cricket on community building among NRIs, including any social events or gatherings that coincide with major matches, to illustrate how cricket fosters a sense of belonging and identity among expatriates.",
+        "Include statistics or data about the number of Indian and Pakistani expatriates in the Gulf region to give readers a clearer picture of the demographic landscape and the significance of cricket in their lives."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Saudi Arabian Cricket Federation announcing upcoming matches or events that highlight the growing cricket culture in the region, which would provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "cbee859a-c46b-47a9-938d-a63e24e8e38c",
+    "headline": "Diwali Sweets Will Cost More as Ghee, Sugar and Dry Fruit Prices Climb",
+    "slug": "diwali-sweets-costlier-desi-ghee-dry-fruit-prices",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including a section on how rising prices of Diwali sweets may affect NRIs' ability to send traditional sweets back home or celebrate the festival with their families in India. This could include insights on how NRIs are adapting their celebrations or sourcing sweets abroad.",
+        "Add context on how the price increases may impact the global market for Indian sweets, particularly for NRIs who may be purchasing these products in their local markets. This could include statistics or anecdotes about the demand for Indian sweets in countries with significant Indian populations.",
+        "Include a comparison of current prices to previous years to provide readers with a clearer picture of how much more they might expect to pay for Diwali sweets this year versus past years, especially for those who may be planning to celebrate from abroad.",
+        "Consider adding a quote or insight from a prominent NRI or diaspora figure in the food industry to provide a personal touch and perspective on how these price changes are affecting the community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of Consumer Affairs or a relevant government agency discussing the price increases or measures taken to address them, which would provide authoritative context and enhance credibility."
+      ]
+    }
+  }
+]
