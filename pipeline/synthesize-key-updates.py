@@ -96,6 +96,14 @@ def supa_post(path, data, headers_extra=None):
          "-H", "Prefer: return=representation",
          "-d", body]
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+    if not result.stdout.strip():
+        # Transient network/HTTP failure — curl emitted nothing. Retry once
+        # before giving up so one bad response doesn't kill the whole run.
+        print("  ⚠ empty POST response, retrying once...")
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+        if not result.stdout.strip():
+            raise RuntimeError(f"supa_post got empty response twice (curl exit "
+                               f"{result.returncode}, stderr: {result.stderr[:200]})")
     return json.loads(result.stdout)
 
 
