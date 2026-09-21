@@ -836,9 +836,17 @@ def _pexels_alt_matches(query, alt):
 
     Pexels' fuzzy search returns plausible-looking but unrelated stock for
     specific queries (person names, film titles — e.g. an unrelated stock
-    photo for 'Main Na Raha Mera'). Require the photo's alt text to share at
-    least one content word with the query; otherwise return no image (null >
-    wrong) so the article publishes hero-less instead of with a wrong photo.
+    photo for 'Main Na Raha Mera'). Require the photo's alt text to share
+    content words with the query; otherwise return no image (null > wrong)
+    so the article publishes hero-less instead of with a wrong photo.
+
+    Two hardening layers (2026-09-20):
+    1. Token matching, not substring: query word "state" must not match the
+       alt token "states". Stemming is applied to the QUERY word only (so
+       "airports" still matches alt token "airport"), never to alt tokens.
+    2. Multi-word queries need >= 2 distinct content-word matches. A single
+       generic word match (e.g. "department" on a USDA building photo for a
+       "State Department" query) caused a wrong-image pick.
     """
     if not alt or not query:
         return False
@@ -848,13 +856,16 @@ def _pexels_alt_matches(query, alt):
     }
     if not q_words:
         return False
-    alt_l = alt.lower()
-    for w in q_words:
+    alt_tokens = {w for w in re.findall(r"[a-z]+", alt.lower()) if len(w) > 2}
+
+    def _stem(w):
         # light plural stemming so "trains" matches "train"
-        stem = w[:-1] if w.endswith("s") and len(w) > 4 else w
-        if stem in alt_l:
-            return True
-    return False
+        return w[:-1] if w.endswith("s") and len(w) > 4 else w
+
+    hits = {_stem(w) for w in q_words} & alt_tokens
+    if len(q_words) == 1:
+        return bool(hits)
+    return len(hits) >= 2
 
 
 def fetch_pexels_image(query):
