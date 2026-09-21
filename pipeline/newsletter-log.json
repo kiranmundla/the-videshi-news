@@ -1416,5 +1416,15 @@
     "hero_slug": "bangladesh-measles-death-toll-1050",
     "story_count": 8,
     "event_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-09-21T13:59:25.417606+00:00Z",
+    "subject": "The Videshi Daily \u2014 September 21, 2026",
+    "subscribers": 7,
+    "sent": 7,
+    "errors": 0,
+    "hero_slug": "who-is-vishal-sikka-hang-ten-ai-startup-85m",
+    "story_count": 5
   }
 ]

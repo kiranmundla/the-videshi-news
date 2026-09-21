@@ -71,7 +71,7 @@ def main():
         'vertical': article.get('vertical', article['category']),
         'tags': article.get('tags', []),
         'sources': article.get('sources', []),
-        'image_url': article.get('image_url', ''),
+        'image_url': article.get('image_url') or None,
         'image_caption': article.get('image_caption', ''),
         'image_attribution': article.get('image_attribution', ''),
         'word_count': article.get('word_count', 0),
