@@ -987,6 +987,21 @@ _HEADLINE_PREFIX_WORDS = {
     "fed", "rbi", "ecb", "imf", "wto",
     # Indian scheme/program names commonly leading headlines — not people
     "aadhaar", "nris", "nri",
+    # Indian city names leading headlines ("Delhi Destroys...") — a city is
+    # never a person's given name. Common verb-second-word headlines like
+    # "Delhi Cracks Down" / "Mumbai Rains" false-positive the person guard.
+    "delhi", "mumbai", "bengaluru", "bangalore", "hyderabad", "chennai",
+    "kolkata", "pune", "ahmedabad", "jaipur", "lucknow", "surat", "kanpur",
+    "nagpur", "indore", "thane", "bhopal", "patna", "vadodara", "ghaziabad",
+    "ludhiana", "agra", "nashik", "faridabad", "meerut", "rajkot", "varanasi",
+    "srinagar", "amritsar", "allahabad", "prayagraj", "ranchi", "howrah",
+    "coimbatore", "jabalpur", "gwalior", "vijayawada", "jodhpur", "madurai",
+    "raipur", "kota", "guwahati", "chandigarh", "mysuru", "mysore",
+    "gurgaon", "gurugram", "noida",
+    # Indian state names leading headlines — never a person's given name
+    "kerala", "punjab", "tamil", "tamilnadu", "karnataka", "maharashtra",
+    "gujarat", "rajasthan", "bihar", "bengal", "assam", "odisha", "goa",
+    "telangana", "haryana", "kashmir", "ladakh",
 }
 # Prepositions / interrogatives / conjunctions as first word: a person's
 # given name can never be "After", "Across", "Why", "While" ...
@@ -1421,7 +1436,7 @@ if __name__ == "__main__":
         # Fetch article from DB and source its image
         r = _safe_run(
             ["curl", "-s",
-             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources,tags,image_backfill_blocked&slug=eq.{args.slug}&limit=1",
+             f"{SUPABASE_URL}/rest/v1/p2_articles?select=id,headline,slug,category,topic_id,sources,tags,image_search_query,image_entities,image_backfill_blocked&slug=eq.{args.slug}&limit=1",
              "-H", f"apikey: {SUPABASE_KEY}",
              "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
             capture_output=True, text=True, timeout=30
