@@ -1,0 +1,22 @@
+[
+  {
+    "id": "5d4f229f-cfd5-48fc-af7d-77ec2672762b",
+    "headline": "Mortgage Rates Near 7% as Fed Hike Squeezes Homebuyers Ahead of Midterms",
+    "slug": "mortgage-rates-6-95-fed-hike-midterms-sep-2026",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how rising mortgage rates impact NRIs looking to invest in U.S. real estate, especially in light of the upcoming midterm elections. This could include statistics or anecdotes about NRI investment trends in U.S. housing.",
+        "Provide context on how U.S. mortgage rates compare to those in India or other countries where NRIs might be considering investment. This could help readers understand the relative attractiveness of U.S. real estate for NRIs.",
+        "Clarify the timeline regarding the Federal Reserve's actions, as the article mentions both 2023 and 2025. Ensure that the dates are accurate and consistent to avoid confusion.",
+        "Consider adding a section that discusses potential policy implications for NRIs, such as changes in tax laws or investment opportunities in the U.S. housing market as a result of the Fed's actions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Federal Reserve statement about the interest rate hike to provide readers with direct access to the source of the news.",
+        "Include a tweet from a relevant economist or real estate expert commenting on the implications of the rate hike for homebuyers and investors, particularly those in the NRI community."
+      ]
+    }
+  }
+]

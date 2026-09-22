@@ -320,7 +320,8 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None, og_im
         return False
 
     sid = make_source_id(org, title, date_str)
-    slug = make_slug(title, event.get('city', ''), date_str)
+    city = (event.get('city') or '').strip()
+    slug = make_slug(title, city, date_str)
 
     # Featured = source says featured AND LLM confirms teacher is personally present
     is_featured = is_featured_source and event.get('is_major_teacher_appearance', False)
@@ -334,7 +335,7 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None, og_im
         'time': event.get('time'),
         'end_date': event.get('end_date'),
         'venue_name': event.get('venue_name'),
-        'city': event.get('city', ''),
+        'city': city,
         'state': event.get('state'),
         'category': 'Spiritual',
         'description': event.get('description'),
@@ -347,7 +348,7 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None, og_im
         'slug': slug,
         'is_featured': is_featured,
         'image_url': og_image,
-        'content_fingerprint': compute_fingerprint(title, date_str, event.get('city', '')),
+        'content_fingerprint': compute_fingerprint(title, date_str, city),
     }
 
     # Remove None values

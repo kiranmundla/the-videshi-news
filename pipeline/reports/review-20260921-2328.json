@@ -1,0 +1,99 @@
+[
+  {
+    "id": "7825ca76-2f42-4e5f-a8dd-2082a22887bd",
+    "headline": "Daayra\u2019s Tepid Weekend: \u20b94 Crore Haul Marks Kareena Kapoor\u2019s Lowest in 15 Years",
+    "slug": "daayra-opening-weekend-box-office-kareena-kapoor-prithviraj",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the film's performance might affect its reception among NRIs, such as potential screenings abroad or interest in international markets.",
+        "Provide context on how Kareena Kapoor's international fanbase, particularly among NRIs, may influence the film's box office performance and whether they are likely to support it despite its domestic struggles.",
+        "Include a brief comparison with other recent films featuring Indian actors that have performed well internationally, to give readers a sense of the competitive landscape.",
+        "Clarify the significance of the film's budget in relation to its earnings, particularly for NRIs who may be interested in the financial viability of Indian cinema abroad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Kareena Kapoor or the film's official account discussing the film's release, which could provide a personal touch and engage the diaspora audience."
+      ]
+    }
+  },
+  {
+    "id": "5d4f229f-cfd5-48fc-af7d-77ec2672762b",
+    "headline": "Mortgage Rates Near 7% as Fed Hike Squeezes Homebuyers Ahead of Midterms",
+    "slug": "mortgage-rates-6-95-fed-hike-midterms-sep-2026",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "89ad5ec4-a660-4c38-b560-32d73468ef7b",
+    "headline": "Gold Retreats From One-Week High as Firmer Dollar, Rate-Hike Bets Take Hold",
+    "slug": "gold-retreats-one-week-high-firm-dollar-rate-hikes",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "64204583-cbc6-488d-8bcb-168ae357232c",
+    "headline": "Starbucks Sets Up First India Tech Hub in Chennai, Plans 800 Tech Jobs",
+    "slug": "starbucks-chennai-technology-hub-800-jobs",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "85570638-e78c-44fd-b98f-09d2d74635f6",
+    "headline": "Hyderabad Leads India's Record GCC Boom With 40 New Centres",
+    "slug": "hyderabad-leads-india-record-gcc-expansion-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "8900ec21-66e3-46ca-b3c3-8bbe2a4aca56",
+    "headline": "Suchika Tariyal Wins Historic Bronze as MMA Debuts at Asian Games",
+    "slug": "suchika-tariyal-wins-historic-mma-bronze-asian-games",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "c2fc9ac1-ca8f-4aaf-94bd-a0467a7b1f60",
+    "headline": "Trump Says He's in 'Deciding Mode' on Iran as Tehran Sends Terms via Qatar",
+    "slug": "trump-deciding-mode-iran-tehran-conditions-qatar",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "8a67ce7d-fcc9-4fae-b192-4ae2e90a135a",
+    "headline": "IIT Bombay Suspends Professor's Deanship and Apologises for Statement on Student",
+    "slug": "iit-bombay-suspends-professor-deanship-apologises-statement-student-death",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5bc23dd7-1319-41ca-9034-58211bedf5b1",
+    "headline": "IndiGo Crew Member Kainoor Mistry Dies in Mumbai Cab Crash",
+    "slug": "indigo-crew-member-kainoor-mistry-dies-mumbai-cab-crash",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "47d330a1-a1ff-4cee-937d-c90e9d7a463b",
+    "headline": "Who Is Vishal Sikka? The AI Pioneer Who Ran Infosys \u2014 and Just Raised $85 Millio",
+    "slug": "who-is-vishal-sikka-hang-ten-ai-startup-85m",
+    "category": "nri-world",
+    "structural_issues": [
+      "Missing key takeaways section (article is 300+ words)"
+    ],
+    "llm_review": null
+  }
+]
