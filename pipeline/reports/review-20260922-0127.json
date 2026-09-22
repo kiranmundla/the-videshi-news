@@ -1,0 +1,79 @@
+[
+  {
+    "id": "9db2c28d-ece3-4180-b79f-501114edb21f",
+    "headline": "Swiss Physicists Fire 'Atomic Cannon' to Test Einstein's Gravity Rule",
+    "slug": "swiss-physicists-fire-atomic-cannon-to-test-einsteins-gravity-rule",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights or quotes from Indian physicists or researchers working in related fields abroad, particularly those in the NRI community, to highlight their contributions or perspectives on this research.",
+        "Provide context on how advancements in physics, such as this experiment, could impact technology or scientific research in India, particularly in fields like quantum computing or materials science, which may resonate with the NRI audience.",
+        "Add a brief explanation of how this research could influence global scientific collaboration, especially between Indian institutions and those in Switzerland, to emphasize the interconnectedness of the scientific community.",
+        "Include a section on potential applications of the findings from this research, particularly how they might affect industries or technologies relevant to the Indian diaspora, such as telecommunications or aerospace."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from ETH Zurich or the Paul Scherrer Institute announcing this breakthrough to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "f62802f2-e016-45fb-a3e9-68ae214b3743",
+    "headline": "BSF Stops Akal Takht Jathedar's Zero Line Ardas for Kartarpur Corridor Reopening",
+    "slug": "bsf-stops-akal-takht-jathedar-zero-line-ardas-kartarpur-corridor",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from NRIs regarding the impact of the Kartarpur Corridor's closure on their ability to connect with their heritage and participate in religious practices.",
+        "Provide more context about the significance of the Kartarpur Corridor for the Sikh diaspora, including how it has facilitated cultural and religious ties between Indian Sikhs and those living abroad.",
+        "Clarify the timeline of events related to the corridor's reopening, specifically detailing how the situation has evolved since its closure in 2025 and any previous attempts at reopening that may have occurred.",
+        "Include a brief overview of Operation Sindoor to give readers a clearer understanding of the events leading to the corridor's suspension, especially for those unfamiliar with the incident."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of External Affairs (MEA) regarding the status of the Kartarpur Corridor to provide readers with the latest official updates and statements."
+      ]
+    }
+  },
+  {
+    "id": "fb403062-b009-4e47-80c8-d83adf2b1a49",
+    "headline": "AMD Crosses $1 Trillion as Meta's Muse AI Agent Ignites Chip Rally",
+    "slug": "amd-crosses-1-trillion-as-meta-muse-ai-agent-ignites-chip-rally",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the rise of AMD and AI technologies may impact Indian tech professionals abroad, particularly in the U.S. and Canada. Discuss potential job opportunities or shifts in the tech landscape that NRIs should be aware of.",
+        "Provide context on how the semiconductor rally affects the Indian market or Indian companies involved in technology and AI, which would resonate more with the NRI audience.",
+        "Include quotes or perspectives from Indian tech experts or NRIs working in the semiconductor industry to give a personal touch and make the article more relatable to the diaspora.",
+        "Expand on the implications of this chip rally for Indian startups or tech firms, particularly those that may benefit from increased investment or collaboration with major players like AMD and Meta."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from AMD or Meta announcing their milestones or the launch of the Muse AI agent to provide direct insights and credibility.",
+        "Consider embedding a relevant video from a tech analyst discussing the implications of this market shift for the global tech landscape, particularly for Indian tech professionals."
+      ]
+    }
+  },
+  {
+    "id": "3b66822e-9118-4f8f-8770-1347f591b78c",
+    "headline": "India Women Face Sri Lanka for Gold in Asian Games Cricket Final",
+    "slug": "india-women-face-sri-lanka-for-gold-in-asian-games-cricket-final",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from Indian NRIs regarding the significance of the women's cricket final, particularly how it resonates with their identity and pride as part of the Indian community abroad.",
+        "Provide context on how the Asian Games and the performance of the Indian women's cricket team are perceived by the NRI community, perhaps by including statistics or anecdotes about viewership or engagement among Indians living abroad.",
+        "Expand the context section to include historical performance of the Indian women's cricket team in international tournaments, highlighting their journey and the growing popularity of women's cricket among the diaspora, which could enhance the article's depth.",
+        "Clarify the time zone conversions for international audiences, particularly for NRIs in different regions, to ensure they can easily follow the match timing."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Asian Games or ICC account announcing the final, or a tweet from a prominent NRI sports figure expressing support for the Indian women's team."
+      ]
+    }
+  }
+]

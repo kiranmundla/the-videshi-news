@@ -1,0 +1,79 @@
+[
+  {
+    "id": "069dce7b-14a8-4784-a9e6-9d8e1f7bbaaa",
+    "headline": "Three Booked After Muslim Biryani Seller Assaulted in Lucknow Over Beef Allegati",
+    "slug": "lucknow-biryani-seller-assaulted-beef-allegation",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including perspectives or reactions from the NRI community regarding the implications of such incidents on their perception of safety and communal harmony in India. This could involve quotes from diaspora leaders or social media reactions from NRIs.",
+        "Provide additional context about the historical and social dynamics surrounding beef consumption in India, particularly how these issues resonate with the Indian diaspora, who may have different cultural perspectives on food and religion.",
+        "Clarify the timeline of events, especially regarding the police response and any subsequent developments, to provide readers with a clearer understanding of the situation and its implications.",
+        "Include a brief discussion on the broader implications of such incidents for the Muslim community in India, especially in the context of rising communal tensions, which may concern NRIs who follow these developments closely."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a prominent figure or organization commenting on the incident, such as a human rights group or a community leader, to provide additional context and show the wider reaction to the assault."
+      ]
+    }
+  },
+  {
+    "id": "7a2c0780-d094-4795-847d-233f103679ce",
+    "headline": "Parag Milk Foods to Invest \u20b9100 Crore, Quadruple Paneer Capacity to 80 Tonnes a ",
+    "slug": "parag-milk-foods-invest-100-crore-paneer-capacity",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how this expansion might affect NRIs' access to authentic Indian dairy products abroad, particularly in markets with significant Indian populations, such as the US, UK, and Canada.",
+        "Provide context on the significance of paneer in Indian cuisine and its popularity among the Indian diaspora, potentially including quotes from chefs or food bloggers who cater to NRI audiences.",
+        "Add a section discussing how this investment aligns with global trends in plant-based and dairy alternatives, which may resonate with health-conscious NRIs looking for high-protein options.",
+        "Include a brief analysis of how this expansion could impact the pricing and availability of paneer for NRIs, especially in regions where Indian grocery stores are prevalent."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Parag Milk Foods announcing this investment or a tweet from a food industry expert commenting on the implications of this expansion for the Indian diaspora."
+      ]
+    }
+  },
+  {
+    "id": "744ec756-8947-4c4c-9a00-c7c482561649",
+    "headline": "Indian American Founders Raise $24 Million to Build AI Workforce for Lenders",
+    "slug": "kastle-raises-24m-series-a-ai-workforce-lenders",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Rishi Choudhary and Nitish Poddar about their experiences as Indian Americans in the tech industry, and how their cultural background influences their approach to business.",
+        "Provide context on the significance of this funding round for Indian American entrepreneurs in the tech space, perhaps by comparing it to previous funding rounds or highlighting trends in investment in Indian-led startups.",
+        "Include a section discussing how the success of Kastle could inspire other Indian American founders or startups in the diaspora, emphasizing the potential impact on the broader NRI community.",
+        "Add a brief overview of the challenges faced by Indian American entrepreneurs in the tech sector, particularly in securing funding and navigating the startup landscape."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the founders or from a notable tech investment firm discussing the implications of this funding for the AI and banking sectors."
+      ]
+    }
+  },
+  {
+    "id": "300621c3-43a1-490a-8a17-d2ca29574fec",
+    "headline": "Trump Orders H-1B Approvals to Weigh Employer Layoffs, Extends $100,000 Fee",
+    "slug": "trump-orders-h1b-approvals-weigh-employer-layoffs",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or insights from Indian professionals currently on H-1B visas or those affected by the changes. This could provide a personal perspective on how these policies impact their lives and careers.",
+        "Provide more context about how these changes specifically affect the Indian diaspora compared to other nationalities. For example, include statistics or data that highlight the proportion of H-1B visa holders who are Indian, and discuss the implications of these changes on the Indian tech industry.",
+        "Clarify the timeline of the executive order and its implications. The article mentions a review by a Boston appeals court but does not explain what that entails or how it might affect the current situation for H-1B holders.",
+        "Discuss potential responses from the Indian government or organizations representing Indian professionals in the U.S. This could add depth to the article by showing how the diaspora community is reacting to these changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the executive order to provide readers with direct access to government communication regarding the policy changes.",
+        "Consider embedding a relevant YouTube video that explains the implications of the H-1B visa changes, possibly featuring immigration experts or legal analysts."
+      ]
+    }
+  }
+]
