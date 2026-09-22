@@ -57,6 +57,33 @@ def _safe_run(cmd, **kwargs):
     except Exception as e:
         raise RuntimeError(f"subprocess failed: {type(e).__name__}")
 
+
+def _patch_article_and_verify(filter_param, payload):
+    """PATCH p2_articles and verify at least one row was actually updated.
+
+    PostgREST returns 204 even when zero rows match the filter, so a bare
+    status-code check cannot distinguish a real write from a no-op (e.g. a
+    slug/id typo). We request return=representation and require a non-empty
+    row array before reporting success.
+    """
+    pr = _safe_run(
+        ["curl", "-s", "-w", "\n%{http_code}",
+         "-X", "PATCH",
+         f"{SUPABASE_URL}/rest/v1/p2_articles?{filter_param}&select=id",
+         "-H", f"apikey: {SUPABASE_KEY}",
+         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+         "-H", "Content-Type: application/json",
+         "-H", "Prefer: return=representation",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=30
+    )
+    body, _, code = pr.stdout.rpartition("\n")
+    try:
+        rows = json.loads(body) if body.strip() else []
+    except (json.JSONDecodeError, ValueError):
+        rows = []
+    return code.strip() in ("200", "201", "204") and isinstance(rows, list) and len(rows) > 0
+
 # ── HTTP Helpers ─────────────────────────────────────────────────────────────
 
 def verify_image_url(url, min_width=400):
@@ -1464,18 +1491,10 @@ if __name__ == "__main__":
                 if article.get("focal_x") is not None:
                     patch["focal_x"] = article["focal_x"]
                     patch["focal_y"] = article["focal_y"]
-                pr = _safe_run(
-                    ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-                     "-X", "PATCH",
-                     f"{SUPABASE_URL}/rest/v1/p2_articles?slug=eq.{args.slug}",
-                     "-H", f"apikey: {SUPABASE_KEY}",
-                     "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-                     "-H", "Content-Type: application/json",
-                     "-H", "Prefer: return=minimal",
-                     "-d", json.dumps(patch)],
-                    capture_output=True, text=True, timeout=30
-                )
-                print(f"  DB update: HTTP {pr.stdout}")
+                if _patch_article_and_verify(f"slug=eq.{args.slug}", patch):
+                    print("  DB update: ✅ confirmed (1 row updated)")
+                else:
+                    print("  DB update: ⚠ PATCH matched no rows — image NOT saved")
             else:
                 print("  (dry run — use --apply to update DB)")
         else:
@@ -1534,23 +1553,12 @@ if __name__ == "__main__":
                     if article.get("focal_x") is not None:
                         patch["focal_x"] = article["focal_x"]
                         patch["focal_y"] = article["focal_y"]
-                    pr = _safe_run(
-                        ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-                         "-X", "PATCH",
-                         f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article['id']}",
-                         "-H", f"apikey: {SUPABASE_KEY}",
-                         "-H", f"Authorization: Bearer {SUPABASE_KEY}",
-                         "-H", "Content-Type: application/json",
-                         "-H", "Prefer: return=minimal",
-                         "-d", json.dumps(patch)],
-                        capture_output=True, text=True, timeout=30
-                    )
-                    status = pr.stdout.strip()
-                    if status == "204":
+                    if _patch_article_and_verify(f"id=eq.{article['id']}", patch):
                         fixed += 1
                         print(f"    ✅ DB updated")
                     else:
-                        print(f"    ⚠ DB patch returned {status}")
+                        failed += 1
+                        print(f"    ⚠ PATCH matched no rows — image NOT saved")
                 else:
                     fixed += 1
                     print(f"    (dry run)")
