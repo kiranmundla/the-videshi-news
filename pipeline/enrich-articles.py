@@ -71,6 +71,51 @@ from urllib3.util.retry import Retry
 _session.mount("https://", HTTPAdapter(max_retries=Retry(total=3, backoff_factor=0.5)))
 
 
+# ── HTTP via curl ─────────────────────────────────────────────────────────────
+# Python requests/urllib cannot traverse this box's egress proxy (proxy auth is
+# not passed through) — direct HTTPS calls hang until timeout. All outbound
+# HTTP in this script goes through the curl subprocess instead.
+# (migration fix 2026-09-22; mirrors v3-insert-article.py)
+from urllib.parse import urlencode as _urlencode
+
+
+class _CurlResponse:
+    def __init__(self, body, code):
+        self._body = body
+        try:
+            self.status_code = int(code)
+        except (TypeError, ValueError):
+            self.status_code = 0
+
+    def json(self):
+        return json.loads(self._body) if self._body.strip() else {}
+
+    @property
+    def text(self):
+        return self._body
+
+
+def _curl_request(method, url, params=None, data=None, form=None, headers=None, timeout=30):
+    if params:
+        url = url + ("&" if "?" in url else "?") + _urlencode(params)
+    cmd = ["curl", "-sS", "--max-time", str(timeout), "-X", method, url,
+           "-w", "\n%{http_code}"]
+    for k, v in (headers or {}).items():
+        cmd += ["-H", f"{k}: {v}"]
+    if data is not None:
+        cmd += ["-H", "Content-Type: application/json", "-d", json.dumps(data)]
+    elif form is not None:
+        for k, v in form.items():
+            cmd += ["--data-urlencode", f"{k}={v}"]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 15)
+    body, _, code = r.stdout.rpartition("\n")
+    return _CurlResponse(body, code.strip())
+
+
+def _curl_get(url, params=None, headers=None, timeout=30):
+    return _curl_request("GET", url, params=params, headers=headers, timeout=timeout)
+
+
 # ═══════════════════════════════════════════
 # IMAGE ENRICHMENT — Openverse + Wikimedia
 # ═══════════════════════════════════════════
@@ -93,7 +138,7 @@ _GENERIC_TOKENS = {
 def search_openverse(query, limit=5):
     """Search Openverse for CC-licensed images."""
     try:
-        r = _session.get(
+        r = _curl_get(
             "https://api.openverse.org/v1/images/",
             params={
                 "q": query,
@@ -127,7 +172,7 @@ def search_openverse(query, limit=5):
 def search_wikimedia_commons(query, limit=5):
     """Search Wikimedia Commons for CC images."""
     try:
-        r = _session.get(
+        r = _curl_get(
             "https://commons.wikimedia.org/w/api.php",
             params={
                 "action": "query",
@@ -178,7 +223,7 @@ def fetch_wikipedia_image(subject, article_context=None, article_headline=None):
     """
     try:
         encoded = quote(subject.replace(" ", "_"))
-        r = _session.get(
+        r = _curl_get(
             f"https://en.wikipedia.org/api/rest_v1/page/summary/{encoded}",
             headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
             timeout=10,
@@ -1267,7 +1312,7 @@ def _get_youtube_access_token():
         print("  ⚠ YouTube OAuth credentials not found in .env.youtube")
         return None
     try:
-        r = requests.post("https://oauth2.googleapis.com/token", data={
+        r = _curl_request("POST", "https://oauth2.googleapis.com/token", form={
             "client_id": cid,
             "client_secret": csec,
             "refresh_token": rtok,
@@ -1296,7 +1341,7 @@ def search_youtube_data_api(query, max_results=5, published_after_days=60):
     from datetime import datetime, timedelta, timezone
     after = (datetime.now(timezone.utc) - timedelta(days=published_after_days)).strftime("%Y-%m-%dT%H:%M:%SZ")
     try:
-        r = requests.get("https://www.googleapis.com/youtube/v3/search", params={
+        r = _curl_get("https://www.googleapis.com/youtube/v3/search", params={
             "part": "snippet",
             "q": query,
             "type": "video",
@@ -1549,15 +1594,16 @@ def get_recent_articles(hours=24, category=None):
     if category:
         params["category"] = f"eq.{category}"
 
-    r = _session.get(f"{SUPABASE_URL}/rest/v1/p2_articles", params=params, headers=HEADERS, timeout=60)
+    r = _curl_get(f"{SUPABASE_URL}/rest/v1/p2_articles", params=params, headers=HEADERS, timeout=60)
     return r.json() if r.status_code == 200 else []
 
 
 def update_article(article_id, updates):
     """Patch an article in Supabase."""
-    r = _session.patch(
+    r = _curl_request(
+        "PATCH",
         f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}",
-        json=updates,
+        data=updates,
         headers=HEADERS,
         timeout=15,
     )

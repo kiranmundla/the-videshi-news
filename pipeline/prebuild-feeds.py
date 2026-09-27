@@ -16,33 +16,70 @@ import json
 import os
 import sys
 import re
+import subprocess
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from urllib.parse import urlencode
 
 import time
 import requests
 
 # ── Resilient HTTP ────────────────────────────────────────────────────
+# Python requests/urllib cannot traverse this box's proxy reliably
+# (ReadTimeout / ProxyError on Supabase), so all HTTP goes through a curl
+# subprocess shim that mimics the small slice of requests.Response the
+# callers use (status_code / json() / raise_for_status()).
 # The large Supabase fetches occasionally die mid-stream on transient proxy
-# drops (ChunkedEncodingError / ConnectionError) or brief 5xx. A single
-# hiccup must NOT silently fail the whole feed rebuild, so retry with backoff.
+# drops or brief 5xx — retry with backoff instead of failing the rebuild.
+
+
+class _CurlResponse:
+    def __init__(self, body, code):
+        self._body = body
+        try:
+            self.status_code = int(code)
+        except (TypeError, ValueError):
+            self.status_code = 0
+
+    def json(self):
+        return json.loads(self._body) if self._body.strip() else {}
+
+    @property
+    def text(self):
+        return self._body
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise RuntimeError(f"HTTP {self.status_code}: {self._body[:200]}")
+
+
+def _curl_get(get_url: str, *, headers: dict, params: dict | None = None,
+              timeout: int = 60) -> _CurlResponse:
+    if params:
+        get_url = get_url + ("&" if "?" in get_url else "?") + urlencode(params)
+    cmd = ["curl", "-sS", "--max-time", str(timeout), get_url,
+           "-w", "\n%{http_code}"]
+    for k, v in (headers or {}).items():
+        cmd += ["-H", f"{k}: {v}"]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 15)
+    body, _, code = r.stdout.rpartition("\n")
+    return _CurlResponse(body, code.strip())
 def _get_with_retry(get_url: str, *, headers: dict, params: dict | None = None,
-                    attempts: int = 5, base_delay: float = 1.5) -> requests.Response:
+                    attempts: int = 5, base_delay: float = 1.5) -> _CurlResponse:
     last_exc = None
     for attempt in range(1, attempts + 1):
         try:
-            resp = requests.get(get_url, headers=headers, params=params, timeout=60)
-            # Retry on transient server-side errors; return everything else
+            resp = _curl_get(get_url, headers=headers, params=params, timeout=60)
+            # Retry on transient server-side errors, rate limits, and
+            # curl-level failures (http_code 000); return everything else
             # (including 4xx) to the caller to handle as before.
-            if resp.status_code >= 500 or resp.status_code == 429:
+            if resp.status_code >= 500 or resp.status_code == 429 or resp.status_code == 0:
                 last_exc = RuntimeError(f"HTTP {resp.status_code}")
                 if attempt < attempts:
                     time.sleep(base_delay * attempt)
                     continue
             return resp
-        except (requests.exceptions.ChunkedEncodingError,
-                requests.exceptions.ConnectionError,
-                requests.exceptions.Timeout) as e:
+        except (subprocess.TimeoutExpired, OSError) as e:
             last_exc = e
             if attempt < attempts:
                 time.sleep(base_delay * attempt)
