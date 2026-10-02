@@ -203,11 +203,11 @@ def check_stale_publishing():
     try:
         result = subprocess.run(["pgrep", "-x", "cron"], capture_output=True)
         cron_alive = result.returncode == 0
-        if not cron_alive:
-            subprocess.run(["sudo", "service", "cron", "start"],
-                           capture_output=True, timeout=10)
-            result2 = subprocess.run(["pgrep", "-x", "cron"], capture_output=True)
-            cron_restarted = result2.returncode == 0
+        # NOTE (2026-10-02): do NOT attempt `sudo service cron start` here.
+        # In the Hatch scheduler runtime that call requires user approval and
+        # stalls the whole health run indefinitely on a detached run. The
+        # pipeline runs on the Hatch scheduler, not system cron (per the note
+        # below), so restarting it is meaningless anyway.
         # Does anything pipeline-related actually depend on system cron?
         cron_used_by_pipeline = subprocess.run(
             ["grep", "-rl", "videshi", "/etc/cron.d/", "/etc/crontab",
@@ -523,6 +523,8 @@ def check_image_health():
                                              "Range": "bytes=0-2048"})
                 last_err = None
                 break
+            except _CheckTimeout:
+                raise
             except Exception as e:
                 last_err = e
                 resp = None
@@ -564,6 +566,8 @@ def check_image_health():
                     })
             if resp is not None:
                 resp.close()
+        except _CheckTimeout:
+            raise
         except Exception as e:
             unverified.append({
                 "id": a["id"], "headline": a["headline"][:60],
@@ -696,6 +700,8 @@ def check_pulse_freshness():
     try:
         with open(path) as f:
             data = json.load(f)
+    except _CheckTimeout:
+        raise
     except Exception as e:
         return {
             "check": "pulse_freshness",
@@ -780,6 +786,8 @@ def check_tweet_embeds(fix=False):
                 resp = requests.get(f"{REST}/p2_articles", params=params,
                                     headers=hdrs, timeout=30)
                 return resp.json()
+            except _CheckTimeout:
+                raise
             except Exception as e:  # ChunkedEncodingError, ProxyError, etc.
                 last_err = e
                 time.sleep(1.5 * (attempt + 1))
@@ -831,6 +839,8 @@ def check_tweet_embeds(fix=False):
                 if out == "NOT_FOUND":
                     return "not_found", out
                 last_err = out or f"exit={result.returncode}"
+            except _CheckTimeout:
+                raise
             except Exception as e:
                 last_err = str(e)
             time.sleep(2)
@@ -867,6 +877,8 @@ def check_tweet_embeds(fix=False):
                             )
                             resp.raise_for_status()
                             body = new_body  # update for subsequent matches in same article
+                        except _CheckTimeout:
+                            raise
                         except Exception as e:
                             print(f"WARN: failed to remove dead tweet {tweet_id} "
                                   f"from {a['id']}: {e}", file=sys.stderr)
@@ -990,6 +1002,8 @@ def check_worldcup_social_embeds(fix=False):
             r = requests.head(url, timeout=10, allow_redirects=True)
             if r.status_code >= 400:
                 unreachable.append({"url": url, "status": r.status_code})
+        except _CheckTimeout:
+            raise
         except Exception as e:
             unreachable.append({"url": url, "error": str(e)})
 
