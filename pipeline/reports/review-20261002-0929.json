@@ -1,0 +1,84 @@
+[
+  {
+    "id": "a81251d2-231c-47cc-924c-853b037ec3a4",
+    "headline": "'Passportmaxxing': H-1B Uncertainty Pushes Indians in US Toward Second Residenci",
+    "slug": "h-1b-uncertainty-passportmaxxing-indians-us-second-residency",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "1c4e9eb8-8280-4a6e-b54d-ae287cf4da25",
+    "headline": "Moneyview Shares End Market Debut 59% Above Issue Price",
+    "slug": "moneyview-shares-end-market-debut-59-above-issue-price",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "10422c25-526b-40c3-ae97-4c33e418f088",
+    "headline": "US Mortgage Rates Post Biggest Weekly Jump in Four Years, Hit 7.28%",
+    "slug": "us-mortgage-rates-biggest-weekly-jump-four-years",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "a8495966-ca52-4524-b82e-caa5e3169ade",
+    "headline": "Sarvam AI's Saaras V4 Brings Speech Recognition to All 22 Indian Languages",
+    "slug": "sarvam-ai-saaras-v4-speech-recognition-22-languages",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "fdfefd99-57dc-4693-bc83-ce43a9de0d65",
+    "headline": "EaseMyTrip Gives Hero Flydubai Pilot Free Domestic Flights for Five Years",
+    "slug": "easemytrip-capt-smit-machchhar-free-flights-five-years",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "295ed417-6837-497b-a755-aeccc0c94f6d",
+    "headline": "Indian Startups Raise $397 Million Across 19 Deals in September's Strongest Fund",
+    "slug": "indian-startups-funding-roundup-september-21-26-397-million",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "ed9e8d0b-3698-463d-8b90-ed291296bbce",
+    "headline": "Inside The Oven Diner: a Kolkata caf\u00e9 styled like a 250-year-old rajbari",
+    "slug": "oven-diner-kolkata-rajbari-cafe-rajkutir",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5b04f5d2-0f5a-4a65-a423-94683f6c1d91",
+    "headline": "Civil engineer earns Rs 35 lakh from four acres of red bananas",
+    "slug": "civil-engineer-red-banana-farmer-35-lakh-abhijeet-patil",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "8f9a3943-2b48-4440-8f94-2fd5015b6347",
+    "headline": "The Vvaan Crosses Rs 50 Crore in Week One Despite Drishyam 3 Arriving",
+    "slug": "the-vvaan-box-office-day-7-50-crore-sidharth-tamannaah",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "e726bc9d-3be7-4d18-8ca0-06f7eba2ea2e",
+    "headline": "TakeMe2Space to Launch India's First Orbital Computing Satellite on SpaceX Rocke",
+    "slug": "takeme2space-orbital-computing-satellite-spacex",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
