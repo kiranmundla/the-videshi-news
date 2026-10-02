@@ -537,10 +537,23 @@ def check_image_health():
                     "reason": f"timeout/error: {str(last_err)[:40]}", "url": url[:80],
                 })
             elif resp.status_code >= 400:
-                broken.append({
-                    "id": a["id"], "headline": a["headline"][:60],
-                    "reason": f"HTTP {resp.status_code}", "url": url[:80],
-                })
+                if resp.status_code == 403:
+                    # 403 through this box's egress is ambiguous (Wikimedia WAF
+                    # 403s bursty probes; the proxy intermittently drops auth).
+                    # A 403 is NOT proof the image is dead — re-run verifies
+                    # them minutes later. Don't count as broken; don't re-source
+                    # (re-sourcing a live named-person photo would violate the
+                    # image identity rule).
+                    unverified.append({
+                        "id": a["id"], "headline": a["headline"][:60],
+                        "reason": "HTTP 403 (ambiguous via this egress)",
+                        "url": url[:80],
+                    })
+                else:
+                    broken.append({
+                        "id": a["id"], "headline": a["headline"][:60],
+                        "reason": f"HTTP {resp.status_code}", "url": url[:80],
+                    })
             else:
                 ct = resp.headers.get("content-type", "")
                 # content-length on a Range request is the chunk size, so for
