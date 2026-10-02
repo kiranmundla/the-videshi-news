@@ -84,6 +84,41 @@ def _patch_article_and_verify(filter_param, payload):
         rows = []
     return code.strip() in ("200", "201", "204") and isinstance(rows, list) and len(rows) > 0
 
+# ── Image-write overlap lock ─────────────────────────────────────────────────
+# Several writers PATCH image_url on p2_articles (image_sourcer --slug,
+# image_sourcer --backfill, source-image.py --apply, the 4h enricher).
+# The lock serializes the DB writes only — it must NOT be held during the
+# slow network sourcing phase, or parallel writers block each other for
+# minutes and the lock looks "stale". Hold time should be milliseconds.
+# flock() is kernel-managed: it is always released when the holder's fd
+# closes or the process dies, so it can never go stale by itself.
+
+def _acquire_image_lock(timeout_secs=30):
+    """Acquire the image-write lock, waiting up to timeout_secs.
+
+    Returns the open file handle (caller MUST close it to release, ideally
+    in a try/finally), or None if the lock could not be acquired in time.
+    The holder's PID is written into the lock file for debugging.
+    """
+    import fcntl
+    import time
+    _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              ".state", "image-write.lock")
+    os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
+    fh = open(_lock_path, "w")
+    deadline = time.time() + timeout_secs
+    while True:
+        try:
+            fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            fh.write(f"{os.getpid()}\n")
+            fh.flush()
+            return fh
+        except (IOError, OSError):
+            if time.time() >= deadline:
+                fh.close()
+                return None
+            time.sleep(0.2)
+
 # ── HTTP Helpers ─────────────────────────────────────────────────────────────
 
 def verify_image_url(url, min_width=400):
@@ -1444,22 +1479,8 @@ if __name__ == "__main__":
         print("IMAGE_RESULT:" + json.dumps(result))
 
     elif args.slug:
-        # ── Overlap lock: source-image.py --apply also writes image_url.
-        # Don't clobber each other — skip if the other holds the lock.
-        _lock_fh = None
-        if args.apply:
-            import fcntl
-            _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state", "image-write.lock")
-            os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
-            _lock_fh = open(_lock_path, "w")
-            try:
-                fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            except (IOError, OSError):
-                print("Another image writer holds the lock — skipping to avoid clobbering.")
-                _lock_fh.close()
-                sys.exit(0)
-            _lock_fh.write(f"{os.getpid()}\n")
-            _lock_fh.flush()
+        # NOTE: the image-write lock is taken only around the DB PATCH below,
+        # not during the (slow) network sourcing — see _acquire_image_lock.
         # Fetch article from DB and source its image
         r = _safe_run(
             ["curl", "-s",
@@ -1478,8 +1499,6 @@ if __name__ == "__main__":
         article = rows[0]
         if article.get("image_backfill_blocked"):
             print(f"SKIP: article '{args.slug}' has image_backfill_blocked=true — leaving imageless per standing decision.")
-            if _lock_fh:
-                _lock_fh.close()
             sys.exit(0)
         url, attr, caption = source_hero_image(article)
         if url:
@@ -1491,34 +1510,28 @@ if __name__ == "__main__":
                 if article.get("focal_x") is not None:
                     patch["focal_x"] = article["focal_x"]
                     patch["focal_y"] = article["focal_y"]
-                if _patch_article_and_verify(f"slug=eq.{args.slug}", patch):
-                    print("  DB update: ✅ confirmed (1 row updated)")
+                _lfh = _acquire_image_lock()
+                if _lfh is None:
+                    print("  DB update: ⚠ could not acquire image-write lock in 30s — image NOT saved")
                 else:
-                    print("  DB update: ⚠ PATCH matched no rows — image NOT saved")
+                    try:
+                        if _patch_article_and_verify(f"slug=eq.{args.slug}", patch):
+                            print("  DB update: ✅ confirmed (1 row updated)")
+                        else:
+                            print("  DB update: ⚠ PATCH matched no rows — image NOT saved")
+                    finally:
+                        _lfh.close()  # release image-write lock
             else:
                 print("  (dry run — use --apply to update DB)")
         else:
             print("  No image found across all sources.")
         result = {"image_url": url, "attribution": attr, "caption": caption}
         print("IMAGE_RESULT:" + json.dumps(result))
-        if _lock_fh:
-            _lock_fh.close()  # release image-write lock
 
     elif args.backfill:
         from datetime import datetime, timedelta, timezone
-        # ── Overlap lock: the 4h enricher also writes image_url. Don't clobber it.
-        import fcntl
-        _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state", "image-write.lock")
-        os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
-        _lock_fh = open(_lock_path, "w")
-        try:
-            fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except (IOError, OSError):
-            print("Another image writer holds the lock — skipping backfill to avoid clobbering.")
-            _lock_fh.close()
-            sys.exit(0)
-        _lock_fh.write(f"{os.getpid()}\n")
-        _lock_fh.flush()
+        # NOTE: the image-write lock is taken per-PATCH below, not for the
+        # whole backfill run — see _acquire_image_lock.
         cutoff = (datetime.now(timezone.utc) - timedelta(hours=args.hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
         print(f"Backfilling hero images for articles published since {cutoff}...")
         encoded_cutoff = urllib.parse.quote(cutoff, safe='')
@@ -1553,12 +1566,20 @@ if __name__ == "__main__":
                     if article.get("focal_x") is not None:
                         patch["focal_x"] = article["focal_x"]
                         patch["focal_y"] = article["focal_y"]
-                    if _patch_article_and_verify(f"id=eq.{article['id']}", patch):
-                        fixed += 1
-                        print(f"    ✅ DB updated")
-                    else:
+                    _lfh = _acquire_image_lock()
+                    if _lfh is None:
                         failed += 1
-                        print(f"    ⚠ PATCH matched no rows — image NOT saved")
+                        print(f"    ⚠ lock timeout — image NOT saved for {article.get('slug')}")
+                    else:
+                        try:
+                            if _patch_article_and_verify(f"id=eq.{article['id']}", patch):
+                                fixed += 1
+                                print(f"    ✅ DB updated")
+                            else:
+                                failed += 1
+                                print(f"    ⚠ PATCH matched no rows — image NOT saved")
+                        finally:
+                            _lfh.close()  # release image-write lock
                 else:
                     fixed += 1
                     print(f"    (dry run)")
@@ -1568,7 +1589,6 @@ if __name__ == "__main__":
         mode = "APPLIED" if args.apply else "DRY RUN"
         print(f"\n{'='*50}")
         print(f"Backfill complete ({mode}): {fixed} fixed, {failed} still missing out of {len(rows)}")
-        _lock_fh.close()  # release image-write lock
 
     else:
         parser.print_help()

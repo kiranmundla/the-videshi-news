@@ -42,6 +42,14 @@ import subprocess
 import requests
 from urllib.parse import quote, quote_plus
 
+# Shared image-write lock (narrow scope: held only around the DB PATCH, never
+# during network sourcing — see image_sourcer._acquire_image_lock).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    from image_sourcer import _acquire_image_lock
+except ImportError:
+    _acquire_image_lock = None
+
 PIPELINE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ── Load env ──
@@ -431,8 +439,19 @@ def process_instruction(instr, apply=False):
         blocked = article.get("image_backfill_blocked", False)
         if blocked:
             print(f"  ⚠ Article has image_backfill_blocked=true — manual override will clear the block.")
-        update_article_image(aid, image_url, caption, attribution, dry_run=not apply,
-                             clear_backfill_block=blocked and apply)
+        if apply and _acquire_image_lock:
+            _lfh = _acquire_image_lock()
+            if _lfh is None:
+                print(f"  ⚠ could not acquire image-write lock in 30s — image NOT saved")
+            else:
+                try:
+                    update_article_image(aid, image_url, caption, attribution, dry_run=not apply,
+                                         clear_backfill_block=blocked and apply)
+                finally:
+                    _lfh.close()  # release image-write lock
+        else:
+            update_article_image(aid, image_url, caption, attribution, dry_run=not apply,
+                                 clear_backfill_block=blocked and apply)
     elif sources:
         print(f"  ✗ No suitable image found from any source")
 
@@ -468,22 +487,8 @@ def main():
     parser.add_argument("--batch", action="store_true", help="Read JSON instructions from stdin")
     args = parser.parse_args()
 
-    # ── Overlap lock: image_sourcer.py --backfill also writes image_url.
-    # Don't clobber each other — skip if the other holds the lock.
-    _lock_fh = None
-    if args.apply:
-        import fcntl
-        _lock_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state", "image-write.lock")
-        os.makedirs(os.path.dirname(_lock_path), exist_ok=True)
-        _lock_fh = open(_lock_path, "w")
-        try:
-            fcntl.flock(_lock_fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except (IOError, OSError):
-            print("Another image writer holds the lock — skipping to avoid clobbering.")
-            _lock_fh.close()
-            sys.exit(0)
-        _lock_fh.write(f"{os.getpid()}\n")
-        _lock_fh.flush()
+    # NOTE: the image-write lock is taken per-PATCH inside process_instruction
+    # (see image_sourcer._acquire_image_lock) — never held during sourcing.
 
     if args.batch:
         instructions = json.loads(sys.stdin.read())
@@ -492,8 +497,6 @@ def main():
         print(f"Processing {len(instructions)} articles...")
         for instr in instructions:
             process_instruction(instr, apply=args.apply)
-        if _lock_fh:
-            _lock_fh.close()
         return
 
     if not args.article_id:
@@ -518,8 +521,6 @@ def main():
         instr["check_only"] = True
 
     process_instruction(instr, apply=args.apply)
-    if _lock_fh:
-        _lock_fh.close()  # release image-write lock
 
 
 if __name__ == "__main__":
