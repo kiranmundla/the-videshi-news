@@ -1064,6 +1064,9 @@ _HEADLINE_PREFIX_WORDS = {
     "kerala", "punjab", "tamil", "tamilnadu", "karnataka", "maharashtra",
     "gujarat", "rajasthan", "bihar", "bengal", "assam", "odisha", "goa",
     "telangana", "haryana", "kashmir", "ladakh",
+    # Rank/title words that lead headlines — never a given name
+    # ("Air Marshal Arjan Singh...", "Air India Adds...") — cf. "Dr", "Lt" above
+    "air",
 }
 # Prepositions / interrogatives / conjunctions as first word: a person's
 # given name can never be "After", "Across", "Why", "While" ...
@@ -1081,6 +1084,12 @@ _HEADLINE_NONNAME_FIRST_WORDS = {
     # Negation as first word: a person's given name can never be "No"
     # ("No Handshake, No Trophy...") — fixes false-positive person guard
     "no", "not",
+    # Number words as first word: a given name is never a number
+    # ("Five Visa Application Mistakes...", "Ten Ways to...") — a count of
+    # people, not a person's name; fixes false-positive person guard
+    "one", "two", "three", "four", "five", "six", "seven", "eight",
+    "nine", "ten", "eleven", "twelve", "dozen", "first", "second", "third",
+    "fifth",
 }
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
