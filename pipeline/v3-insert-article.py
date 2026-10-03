@@ -80,7 +80,8 @@ def main():
         'topic_id': article.get('topic_id', ''),
         'published_at': now,
         'status': 'published',
-        'article_type': article.get('article_type', 'breaking')
+        'article_type': article.get('article_type', 'breaking'),
+        'data_cards': article.get('data_cards') or None,
     }
     
     result = supabase_post('p2_articles', insert_data)

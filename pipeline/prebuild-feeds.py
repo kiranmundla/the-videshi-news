@@ -779,7 +779,7 @@ def main():
     CATEGORY_DIR.mkdir(parents=True, exist_ok=True)
     all_category_slugs = [
         "news", "nri-world", "sports", "entertainment", "technology",
-        "markets-finance", "lifestyle-health", "food",
+        "markets-finance", "lifestyle-health", "food", "immigration", "travel",
     ]
     now = datetime.now(timezone.utc)
     since_7d = (now - timedelta(days=7)).isoformat()

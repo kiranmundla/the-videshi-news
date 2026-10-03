@@ -1412,6 +1412,9 @@ def main():
         for _score, platform, embed_url, change_label in pending_embeds:
             new_body = insert_embed_in_body(new_body, embed_url, platform)
             changes.append(change_label)
+            # Keep social_embeds in sync with body inserts (was silently dropped)
+            if embed_url not in new_embeds:
+                new_embeds.append(embed_url)
 
         # ── Hero image upgrade ──
         # Try per-handle photos first (cheap), then topic search (expensive, last resort)

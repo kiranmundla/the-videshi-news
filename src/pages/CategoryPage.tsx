@@ -14,6 +14,7 @@ import NowInTheaters from "@/components/NowInTheaters";
 import StreamingPicks from "@/components/StreamingPicks";
 import LoadMoreButton from "@/components/LoadMoreButton";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
+import RemittanceTracker from "@/components/RemittanceTracker";
 import AILeaderboard from "@/components/AILeaderboard";
 import { Article, getArticlesByCategory } from "@/lib/articles";
 import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
@@ -222,6 +223,7 @@ export default function CategoryPage() {
               />
             )}
             {def.slug === "technology" && <UpcomingTechEvents />}
+            {def.slug === "markets-finance" && <RemittanceTracker />}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
               {(() => {
                 const SUBS_MAP: Record<string, string[]> = {
