@@ -2078,7 +2078,7 @@ def main():
                     try:
                         sys.path.insert(0, PIPELINE_DIR)
                         from image_sourcer import source_hero_image
-                        new_url, attribution, caption = source_hero_image(article)
+                        new_url, attribution, caption, _src = source_hero_image(article)
                         if new_url and new_url != img_url:
                             updates = {'image_url': new_url, 'image_attribution': attribution or ''}
                             if update_article(article['id'], updates):
