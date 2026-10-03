@@ -347,6 +347,20 @@ def search_city(city, state, query, cat, seen):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser(description="Expand directory via Google Places")
+    ap.add_argument("--states", help="Comma-separated 2-letter state codes to target (default: all)")
+    args = ap.parse_args()
+
+    targets = STATE_CITIES
+    if args.states:
+        want = {s.strip().upper() for s in args.states.split(",") if s.strip()}
+        targets = {s: c for s, c in STATE_CITIES.items() if s in want}
+        if not targets:
+            log.error(f"No matching states for: {args.states}")
+            return
+        log.info(f"Targeting states: {sorted(targets)}")
+
     log.info("=" * 60)
     log.info("Directory Expansion (curl-based)")
     log.info(f"{len(STATE_CITIES)} states, {len(SEARCH_QUERIES)} query types")
@@ -357,7 +371,7 @@ def main():
     total_ins = 0
     sc = {}
 
-    for state, cities in STATE_CITIES.items():
+    for state, cities in targets.items():
         buf = []
         log.info(f"\n── {state} ({len(cities)} cities) ──")
         for city in cities:
