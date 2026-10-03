@@ -278,20 +278,18 @@ function MarkdownWithEmbeds({
   }
   flush();
 
-  // Reposition YouTube embeds stuck at the very end of the article.
-  // If the last chunk is a YouTube embed and there are 4+ text chunks before it,
-  // move it to after the 3rd text chunk for better mid-article placement.
-  if (chunks.length >= 4) {
-    const last = chunks[chunks.length - 1];
-    if (last?.kind === "youtube") {
-      const textIdxs = chunks.slice(0, -1)
-        .map((c, i) => (c.kind === "md" || c.kind === "html") ? i : -1)
-        .filter(i => i >= 0);
-      if (textIdxs.length >= 3) {
-        const insertAfter = textIdxs[Math.min(2, Math.floor(textIdxs.length * 0.35))];
-        chunks.splice(chunks.length - 1, 1); // remove from end
-        chunks.splice(insertAfter + 1, 0, last); // insert mid-article
-      }
+  // Hoist the FIRST YouTube embed to the top of the article body (right after
+  // the hero). Writers place <youtube> tags at the end of the body, where
+  // almost no reader reaches them; for trailers and key videos the embed is
+  // the highest-engagement asset on the page and belongs up top.
+  // (2026-10-02: replaces the old "move to 35%" hack, which silently failed
+  // when trailing chunks kept the video last.)
+  let hoistedYouTube: any | null = null;
+  {
+    const ytIdx = chunks.findIndex((c: any) => c?.kind === "youtube");
+    if (ytIdx >= 0) {
+      hoistedYouTube = chunks[ytIdx];
+      chunks.splice(ytIdx, 1);
     }
   }
 
@@ -337,6 +335,11 @@ function MarkdownWithEmbeds({
 
   return (
     <>
+      {hoistedYouTube && (
+        <div className="mb-8">
+          <YouTubeEmbed url={hoistedYouTube.url} />
+        </div>
+      )}
       {(chunks as any[]).map((chunk, i) =>
         chunk.kind === "social-photos" ? (
           <SocialPhotoStrip key={i} images={chunk.images} via={chunk.via} platform={chunk.platform} postUrl={chunk.postUrl} />
