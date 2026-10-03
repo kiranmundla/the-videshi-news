@@ -128,25 +128,48 @@ def fetch_x_handle(handle, hours=48, max_results=20):
 
 
 def refresh_x_cache(handles, existing_cache):
-    """Fetch tweets for all X handles. Returns updated x cache dict."""
+    """Fetch tweets for X handles with self-tuning tiers.
+
+    Handles with 3+ consecutive empty fetches drop to a once-daily check;
+    active handles stay on the normal cycle. Streaks persist in the cache
+    itself, so no extra state file is needed. Errors don't advance the
+    streak — only genuinely empty results do.
+    """
     x_cache = existing_cache.get("x", {})
-    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = datetime.now(timezone.utc)
+    now_iso = now.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     total_posts = 0
     fetched = 0
+    skipped = 0
     errors = 0
 
     for i, handle in enumerate(handles):
+        entry = x_cache.get(handle, {})
+        streak = entry.get("empty_streak", 0)
+        # Quiet tier: 3+ straight empty fetches → check once daily, not every run
+        if streak >= 3:
+            last = entry.get("fetched_at")
+            try:
+                last_dt = datetime.strptime(last, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+                if now - last_dt < timedelta(hours=23):
+                    skipped += 1
+                    continue
+            except (TypeError, ValueError):
+                pass  # unparseable timestamp → fetch normally
+
         print(f"  [{i+1}/{len(handles)}] @{handle} ... ", end="", flush=True)
         posts = fetch_x_handle(handle, hours=48, max_results=20)
         if posts is not None:
+            new_streak = 0 if posts else streak + 1
             x_cache[handle] = {
                 "posts": posts,
                 "fetched_at": now_iso,
+                "empty_streak": new_streak,
             }
             total_posts += len(posts)
             fetched += 1
-            print(f"{len(posts)} tweets")
+            print(f"{len(posts)} tweets" + (f" (streak {new_streak})" if new_streak else ""))
         else:
             errors += 1
             print("error")
@@ -155,7 +178,8 @@ def refresh_x_cache(handles, existing_cache):
         if (i + 1) % 10 == 0 and i + 1 < len(handles):
             time.sleep(1)
 
-    print(f"\n  X summary: {fetched} handles fetched, {total_posts} tweets cached, {errors} errors")
+    print(f"\n  X summary: {fetched} handles fetched ({skipped} quiet-tier skipped), "
+          f"{total_posts} tweets cached, {errors} errors")
     return x_cache
 
 
