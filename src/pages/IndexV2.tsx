@@ -18,6 +18,7 @@ import VoicesSection from "@/components/homepage/VoicesSection";
 import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
+import TrailersRail from "@/components/homepage/TrailersRail";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpotlight";
 import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
@@ -741,6 +742,7 @@ export default function IndexV2() {
         <SponsoredBanner />
         <EntertainmentGrid articles={layout.entertainment} />
         <MovieReviewsRail articles={layout.entertainment} />
+        <TrailersRail />
         <NowInTheaters />
         <StreamingPicks />
         <FridayLaughs />

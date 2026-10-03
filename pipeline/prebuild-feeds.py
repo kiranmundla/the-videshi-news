@@ -584,6 +584,83 @@ def inject_hero_preload(hero_url: str) -> None:
 
 # ── Main ──────────────────────────────────────────────────────────────
 
+YOUTUBE_TAG_RE = re.compile(
+    r"<youtube>\s*(?:https?://(?:www\.|m\.)?(?:youtube\.com/watch\?v=|youtu\.be/))?"
+    r"([A-Za-z0-9_-]{11})",
+    re.IGNORECASE,
+)
+YOUTUBE_OEMBED_CACHE = REPO_ROOT / "pipeline" / ".state" / "youtube_oembed.json"
+
+
+def _oembed_title(video_id: str, cache: dict) -> str | None:
+    """Resolve a YouTube video's real title via oEmbed (no API key), cached."""
+    if video_id in cache:
+        return cache[video_id]
+    try:
+        resp = _curl_get(
+            "https://www.youtube.com/oembed",
+            headers={"User-Agent": "TheVideshi/1.0"},
+            params={"url": f"https://www.youtube.com/watch?v={video_id}", "format": "json"},
+            timeout=15,
+        )
+        if resp.status_code == 200:
+            title = resp.json().get("title")
+            if title:
+                cache[video_id] = title
+                return title
+    except Exception:
+        pass
+    return None
+
+
+def _build_trailers(recent_articles: list[dict]) -> list[dict]:
+    """Extract latest YouTube trailers from entertainment article bodies.
+
+    Dedups by video_id (newest article wins), resolves real video titles
+    via oEmbed with a persistent cache, returns max 12 sorted newest-first.
+    """
+    try:
+        cache = json.loads(YOUTUBE_OEMBED_CACHE.read_text()) if YOUTUBE_OEMBED_CACHE.exists() else {}
+    except Exception:
+        cache = {}
+
+    seen: dict[str, dict] = {}
+    for a in recent_articles:  # newest-first already
+        if (a.get("category") or "") != "entertainment":
+            continue
+        body = a.get("body") or ""
+        for m in YOUTUBE_TAG_RE.finditer(body):
+            vid = m.group(1)
+            if vid in seen:
+                continue
+            seen[vid] = {
+                "video_id": vid,
+                "title": None,  # resolved below
+                "article_slug": a.get("slug"),
+                "article_title": a.get("title"),
+                "published_at": a.get("published_at"),
+                "thumbnail": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+            }
+            if len(seen) >= 16:
+                break
+        if len(seen) >= 16:
+            break
+
+    trailers = []
+    for t in seen.values():
+        t["title"] = _oembed_title(t["video_id"], cache) or t["article_title"] or "Trailer"
+        trailers.append(t)
+        if len(trailers) >= 12:
+            break
+
+    try:
+        YOUTUBE_OEMBED_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        YOUTUBE_OEMBED_CACHE.write_text(json.dumps(cache, ensure_ascii=False))
+    except Exception:
+        pass
+    return trailers
+
+
 def main():
     print("=== Videshi Feed Pre-builder ===")
     load_env()
@@ -776,6 +853,15 @@ def main():
     ig_path = DATA_DIR / "instagram-embeds.json"
     ig_path.write_text(json.dumps(ig_embeds, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ instagram-embeds.json ({len(ig_embeds)} embeds)")
+
+    # 11. Build trailers.json (latest YouTube trailers from entertainment articles)
+    print("  Building trailers.json...")
+    trailers = _build_trailers(recent_articles)
+    trailers_path = DATA_DIR / "trailers.json"
+    trailers_path.write_text(json.dumps(
+        {"generated_at": datetime.now(timezone.utc).isoformat(), "trailers": trailers},
+        ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ trailers.json ({len(trailers)} trailers)")
 
     print("=== Done ===")
 
