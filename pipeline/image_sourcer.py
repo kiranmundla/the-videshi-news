@@ -1078,6 +1078,9 @@ _HEADLINE_NONNAME_FIRST_WORDS = {
     "above", "how", "why", "when", "what", "where", "which", "while",
     "since", "amongst", "and", "but", "or", "nor", "as", "of", "to",
     "in", "on", "at", "by", "for", "from",
+    # Negation as first word: a person's given name can never be "No"
+    # ("No Handshake, No Trophy...") — fixes false-positive person guard
+    "no", "not",
 }
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
