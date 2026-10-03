@@ -7,8 +7,8 @@ import SiteFooter from "@/components/SiteFooter";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import { fetchKidsArticles, type Article } from "@/lib/articles";
-import {
 import { categoryLabel } from "@/lib/categoryLabels";
+import {
   fetchKidsPrograms,
   fetchKidsDeadlines,
   type KidsProgram,
