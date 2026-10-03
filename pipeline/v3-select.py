@@ -341,7 +341,11 @@ _CRICKET_PATTERNS = [re.compile(p, re.IGNORECASE) for p in [
 
 
 def _has_diaspora_connection(title, signals, category):
-    """Check if an entertainment/sports topic has Indian/diaspora connection.
+    """Check if a topic has Indian/diaspora connection.
+
+    Applied as a mechanical gate to entertainment, sports, food, travel, and
+    lifestyle-health — categories where the LLM over-scores stories with zero
+    Indian connection. nri-world/immigration are diaspora by definition.
 
     For sports: also accepts cricket-specific terms (cricket is inherently
     relevant to Indian diaspora per editorial policy).
@@ -1268,11 +1272,13 @@ def main():
                 stats["duplicate"] += 1
                 topic_statuses[t["id"]] = "rejected"
                 continue
-            # ── Diaspora gate for entertainment/sports ──
+            # ── Diaspora gate for entertainment/sports/food/travel/lifestyle ──
             # LLM scoring ignores prompt instructions and gives high scores to
-            # entertainment/sports with zero Indian connection. Enforce mechanically.
+            # stories with zero Indian connection (seen in entertainment, sports,
+            # food, and lifestyle-health). Enforce mechanically: no diaspora
+            # keywords → cap at 2 → caught by the score floor below.
             _gate_cat = _CAT_NORMALIZE.get(llm.get("category", "news"), llm.get("category", "news"))
-            if _gate_cat in ("entertainment", "sports") and llm.get("score", 1) >= 3:
+            if _gate_cat in ("entertainment", "sports", "food", "travel", "lifestyle-health") and llm.get("score", 1) >= 3:
                 if not _has_diaspora_connection(t["canonical_title"], t.get("signals", []), _gate_cat):
                     _old_score = llm["score"]
                     llm["score"] = 2  # cap at 2 → caught by score floor below
@@ -1432,6 +1438,45 @@ def main():
             print(f"  ⚠ Final dedup failed: {error}")
     else:
         print(f"\n── Step 6: Final LLM dedup — skipped (≤1 candidate) ──")
+
+    # ── Step 6b: Deterministic same-day dedup (safety net) ────────────────────
+    # The LLM sometimes misses paraphrase-duplicates against today's published
+    # headlines (e.g. an "Asian Games cricket preview" topic vs the already-live
+    # "India vs Pakistan Asian Games Final: Predicted XIs"). As a final guard,
+    # drop candidates whose token overlap with any headline published in the
+    # last 24h reaches 50%+, unless the LLM classified it as an "update"
+    # (a genuine new development on a covered story is kept).
+    if balanced:
+        _cutoff_24h = (NOW - timedelta(days=1)).isoformat()
+        _pub_24h = [a.get("headline", "") for a in recent_articles
+                    if (a.get("published_at") or "") >= _cutoff_24h]
+        _pub_24h_sim = [(_sim_tokens(h), _sim_distinctive(_sim_tokens(h))) for h in _pub_24h]
+        _sameday_dropped = 0
+        _kept = []
+        for c in balanced:
+            if c.get("coverage") == "update":
+                _kept.append(c)
+                continue
+            c_toks = _sim_tokens(c.get("title", ""))
+            _dup = False
+            _c_ents = _extract_named_entities(c.get("title", ""))
+            for _h, (_p_toks, _p_dist) in zip(_pub_24h, _pub_24h_sim):
+                if not _p_toks or not c_toks:
+                    continue
+                _overlap = len(c_toks & _p_toks) / min(len(c_toks), len(_p_toks))
+                _shared_ents = _c_ents & _extract_named_entities(_h)
+                if _overlap >= 0.5 or (_shared_ents and _overlap >= 0.35):
+                    _dup = True
+                    print(f"    ⏭ Same-day dedup: '{c['title'][:80]}' ↔ '{_h[:80]}' (overlap {_overlap:.0%})")
+                    break
+            if _dup:
+                topic_statuses[c["topic_id"]] = "rejected"
+                _sameday_dropped += 1
+            else:
+                _kept.append(c)
+        if _sameday_dropped:
+            print(f"  Same-day dedup dropped {_sameday_dropped} candidate(s)")
+        balanced = _kept
 
     # ── Write candidates JSON FIRST (before DB updates, so timeout doesn't lose them) ──
     output = {

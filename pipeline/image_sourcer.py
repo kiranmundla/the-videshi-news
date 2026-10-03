@@ -1146,7 +1146,10 @@ def source_hero_image(article, used_images=None):
         used_images: Set of image URLs already used in this batch
     
     Returns:
-        (final_url, attribution, caption) or (None, None, None)
+        (final_url, attribution, caption, source_name) or (None, None, None, None)
+        source_name is one of: og:image, rss_thumbnail, person_cache,
+        youtube_thumbnail, wikipedia, commons_search, wikipedia_headline_guard,
+        pexels — or None when no image was found.
     """
     headline = article.get("headline", "")
     slug = article.get("slug", "unknown")
@@ -1335,7 +1338,7 @@ def source_hero_image(article, used_images=None):
         # ── No candidate left ───────────────────────────────────────────────
         if not img_url:
             print(f"    ✗ No image found — publishing without hero (better than broken)")
-            return None, None, None
+            return None, None, None, None
         
         # ── Download and gate on dimensions ──────────────────────────────────
         raw_bytes = download_image(img_url)
@@ -1394,7 +1397,7 @@ def source_hero_image(article, used_images=None):
         caption = entities[0]
     
     print(f"    ✅ Hero image ready: {source_name} → {final_url[-60:]}")
-    return final_url, attribution, caption
+    return final_url, attribution, caption, source_name
 
 
 # ── Extract RSS image from feed item ─────────────────────────────────────────
@@ -1471,8 +1474,8 @@ if __name__ == "__main__":
 
     elif args.article_json:
         article = json.loads(args.article_json)
-        url, attr, caption = source_hero_image(article)
-        result = {"image_url": url, "attribution": attr, "caption": caption}
+        url, attr, caption, src_name = source_hero_image(article)
+        result = {"image_url": url, "attribution": attr, "caption": caption, "image_source": src_name}
         if article.get("focal_x") is not None:
             result["focal_x"] = article["focal_x"]
             result["focal_y"] = article["focal_y"]
@@ -1503,7 +1506,7 @@ if __name__ == "__main__":
         if article.get("image_backfill_blocked"):
             print(f"SKIP: article '{args.slug}' has image_backfill_blocked=true — leaving imageless per standing decision.")
             sys.exit(0)
-        url, attr, caption = source_hero_image(article)
+        url, attr, caption, src_name = source_hero_image(article)
         if url:
             print(f"\n  Image found: {url[:80]}")
             if args.apply:
@@ -1528,7 +1531,7 @@ if __name__ == "__main__":
                 print("  (dry run — use --apply to update DB)")
         else:
             print("  No image found across all sources.")
-        result = {"image_url": url, "attribution": attr, "caption": caption}
+        result = {"image_url": url, "attribution": attr, "caption": caption, "image_source": src_name}
         print("IMAGE_RESULT:" + json.dumps(result))
 
     elif args.backfill:
@@ -1559,7 +1562,7 @@ if __name__ == "__main__":
         fixed = 0
         failed = 0
         for article in rows:
-            url, attr, caption = source_hero_image(article, used_images=used)
+            url, attr, caption, _src = source_hero_image(article, used_images=used)
             if url:
                 used.add(url)
                 if args.apply:

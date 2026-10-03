@@ -62,6 +62,7 @@ You are writing for The Videshi, a professional news publication for the Indian 
 - Use `<div class="key-takeaways">` wrapper in the HTML body — NO heading tag inside
 - Format: `<div class="key-takeaways"><ul><li>...</li></ul></div>`
 - Do NOT include a `<h3>Key Takeaways</h3>` or any heading — the styling handles it. Just the bullets.
+- **Reader-utility bullet (required where applicable):** at least one bullet must answer "what does this mean for ME?" with concrete specifics — dollar/rupee amounts, dates, deadlines, eligibility rules, or action steps. Write "H-1B renewals filed after October 1 carry a $100,000 fee per petition," not "fees are increasing significantly." For immigration, markets-finance, nri-world, travel, and lifestyle-health stories this bullet is mandatory. For pure global news with no direct reader impact, omit it — NEVER invent utility where none exists.
 
 #### ARTICLE BODY (500-800 words, HTML format)
 Structure with clear `<h2>` subheadings. Must include:
@@ -117,7 +118,15 @@ This runs the full 7-source image chain automatically:
 
 It also computes focal points for face-aware cropping and updates the DB directly.
 
-The script outputs `IMAGE_RESULT:{...}` JSON with the result. Check the output to confirm it found an image.
+The script outputs `IMAGE_RESULT:{...}` JSON with the result, including an `image_source` field naming which source provided it (`person_cache`, `wikipedia`, `wikipedia_headline_guard`, `commons_search`, `og:image`, `rss_thumbnail`, `youtube_thumbnail`, `pexels`). Check the output to confirm it found an image.
+
+**⚠️ NAMED-PERSON VERIFICATION (mandatory, before publish):**
+If the article is about a NAMED PERSON (person's name in the headline or the story's clear subject):
+1. If `image_source` is `person_cache`, `wikipedia`, or `wikipedia_headline_guard` → identity is verified by source. Keep it.
+2. Otherwise (`og:image`, `rss_thumbnail`, `youtube_thumbnail`, `commons_search`, `pexels`) → you MUST download the hero image and visually verify the person in the photo is the article's subject. Look at it with the read tool.
+3. If you cannot positively confirm the identity → set `image_url` to null via Supabase PATCH and leave the article imageless. The enricher's manual review will source a verified photo within 4 hours. A few hours imageless beats hours with the wrong face.
+
+This check is non-negotiable. Wrong-person photos that go live erode reader trust instantly.
 
 **If you need caption text for a specific article**, the sourcer uses the first entity name as a basic caption. For better captions, you can PATCH the `image_caption` field after the sourcer runs.
 

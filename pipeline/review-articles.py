@@ -231,10 +231,11 @@ Review this article critically and give 2-4 specific, actionable suggestions to 
 
 Focus on:
 1. Is the diaspora/NRI angle strong enough? (This is the site's USP)
-2. Would a specific social embed make this better? (e.g. "embed the official USCIS tweet about this policy")
-3. Is the headline compelling and specific?
-4. Any factual gaps or missing context that a reader would want?
-5. Is the content structure good? (progression, depth)
+2. Does at least one key takeaway answer "what does this mean for ME?" with concrete specifics — dollar/rupee amounts, dates, deadlines, eligibility, action steps? (Generic "fees are increasing" without numbers is a miss for immigration, markets-finance, nri-world, travel, and lifestyle-health stories.)
+3. Would a specific social embed make this better? (e.g. "embed the official USCIS tweet about this policy")
+4. Is the headline compelling and specific?
+5. Any factual gaps or missing context that a reader would want?
+6. Is the content structure good? (progression, depth)
 
 Do NOT suggest generic improvements like "add more sources" or "make it more engaging."
 Only suggest things that would concretely improve THIS specific article.
