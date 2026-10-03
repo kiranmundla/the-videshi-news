@@ -19,6 +19,7 @@ import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import TweetScroll from "@/components/homepage/TweetScroll";
 import TrailersRail from "@/components/homepage/TrailersRail";
+import StarBuzzStrip from "@/components/homepage/StarBuzzStrip";
 import InstagramPhotoScroll from "@/components/homepage/InstagramPhotoScroll";
 import WhosXSpotlight, { getSpotlightIds } from "@/components/homepage/WhosXSpotlight";
 import DailyWisdomCard from "@/components/homepage/DailyWisdomCard";
@@ -743,6 +744,7 @@ export default function IndexV2() {
         <EntertainmentGrid articles={layout.entertainment} />
         <MovieReviewsRail articles={layout.entertainment} />
         <TrailersRail />
+        <StarBuzzStrip />
         <NowInTheaters />
         <StreamingPicks />
         <FridayLaughs />

@@ -441,9 +441,12 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
     _NO_FEATURED_CATS = {"food", "travel", "lifestyle-health"}
     featured = None
 
-    # First: check for explicitly pinned featured articles (is_featured=true in DB)
+    # First: check for explicitly pinned featured articles (is_featured=true in DB).
+    # Freshness guard: a stale pin must never hijack the hero slot — only pins
+    # from the last 72h qualify; older pins fall through to score-based selection.
     _pinned = [a for a in articles if a.get("is_pinned_featured") is True
-               and a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS]
+               and a["hero_image_url"] and a.get("category") not in _NO_FEATURED_CATS
+               and a.get("published_at") and a["published_at"] >= since_72h]
     if _pinned:
         _pinned.sort(key=lambda a: a["published_at"], reverse=True)
         featured = article_without_body(_pinned[0])
@@ -661,6 +664,84 @@ def _build_trailers(recent_articles: list[dict]) -> list[dict]:
     return trailers
 
 
+STAR_BUZZ_GLAM_RE = re.compile(
+    r"spotted|snapped|looks|stun|gorgeous|fabulous|slay|radiant|photoshoot|"
+    r"red carpet|gym|airport|saree|lehenga|bikini|beach|vacation|birthday|wedding",
+    re.IGNORECASE,
+)
+EMBED_CACHE_PATH = REPO_ROOT / "pipeline" / "cache" / "embed_cache.json"
+
+
+def _build_star_buzz(url: str, key: str) -> list[dict]:
+    """Build the Star Buzz feed: recent high-oomph posts from entertainment handles.
+
+    Reads the X embed cache, keeps posts from entertainment-category handles
+    from the last 48h that have a photo/video or match glam keywords,
+    newest first, max 10.
+    """
+    # Entertainment handles from social_accounts
+    try:
+        rows = fetch_table(url, key, "social_accounts",
+                           select="handle",
+                           filters={"platform": "eq.twitter", "category": "eq.entertainment",
+                                    "enabled": "eq.true"})
+        ent_handles = {r["handle"].lower() for r in rows if r.get("handle")}
+    except Exception:
+        ent_handles = set()
+    if not ent_handles:
+        return []
+
+    try:
+        cache = json.loads(EMBED_CACHE_PATH.read_text())
+    except Exception:
+        return []
+    x = cache.get("x") or {}
+
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=48)
+    buzz = []
+    for handle, d in x.items():
+        if handle.lower() not in ent_handles:
+            continue
+        for p in (d.get("posts") or []):
+            try:
+                created = datetime.strptime(p.get("created_at", ""),
+                                            "%a %b %d %H:%M:%S %z %Y")
+            except (ValueError, TypeError):
+                continue
+            if created < cutoff:
+                continue
+            text = p.get("text") or ""
+            photos = p.get("photos") or []
+            has_media = bool(photos) or bool(p.get("has_video"))
+            if not has_media and not STAR_BUZZ_GLAM_RE.search(text):
+                continue
+            # Strip trailing t.co link for cleaner card text
+            clean = re.sub(r"https?://t\.co/\S+\s*$", "", text).strip()
+            buzz.append({
+                "id": p.get("id"),
+                "handle": p.get("handle") or handle,
+                "text": clean,
+                "photo": photos[0] if photos else None,
+                "has_video": bool(p.get("has_video")),
+                "url": p.get("url"),
+                "likes": p.get("likes") or 0,
+                "views": p.get("views") or 0,
+                "created_at": created.isoformat(),
+            })
+    buzz.sort(key=lambda b: b["created_at"], reverse=True)
+    # Light dedup: one post per handle to keep the strip varied
+    seen_handles: set[str] = set()
+    varied = []
+    for b in buzz:
+        if b["handle"].lower() in seen_handles:
+            continue
+        seen_handles.add(b["handle"].lower())
+        varied.append(b)
+        if len(varied) >= 10:
+            break
+    return varied
+
+
 def main():
     print("=== Videshi Feed Pre-builder ===")
     load_env()
@@ -862,6 +943,15 @@ def main():
         {"generated_at": datetime.now(timezone.utc).isoformat(), "trailers": trailers},
         ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ trailers.json ({len(trailers)} trailers)")
+
+    # 12. Build star-buzz.json (celebrity social buzz strip)
+    print("  Building star-buzz.json...")
+    buzz = _build_star_buzz(url, key)
+    buzz_path = DATA_DIR / "star-buzz.json"
+    buzz_path.write_text(json.dumps(
+        {"generated_at": datetime.now(timezone.utc).isoformat(), "posts": buzz},
+        ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ star-buzz.json ({len(buzz)} posts)")
 
     print("=== Done ===")
 
