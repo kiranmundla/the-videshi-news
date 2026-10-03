@@ -712,10 +712,10 @@ def _build_star_buzz(url: str, key: str) -> list[dict]:
                 continue
             text = p.get("text") or ""
             photos = p.get("photos") or []
-            has_media = bool(photos) or bool(p.get("has_video"))
-            # Star Buzz is a visual strip: photo/video posts only.
-            # Text-only posts stay in the cache for article embeds.
-            if not has_media:
+            # Star Buzz is a visual strip: real photos only. Video-only
+            # posts have no thumbnail and render as empty cards; text-only
+            # posts stay in the cache for article embeds.
+            if not photos:
                 continue
             # Strip trailing t.co link for cleaner card text
             clean = re.sub(r"https?://t\.co/\S+\s*$", "", text).strip()
