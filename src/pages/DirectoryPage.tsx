@@ -3,6 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import RecommendBusinessModal from "@/components/RecommendBusinessModal";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
+import HubStrip from "@/components/homepage/HubStrip";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import {
@@ -543,6 +544,7 @@ export default function DirectoryPage() {
       </Helmet>
 
       <Masthead />
+      <HubStrip />
       <CategoryPills />
 
       <style>{`

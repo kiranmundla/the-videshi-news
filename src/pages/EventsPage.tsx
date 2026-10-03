@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Masthead from "@/components/Masthead";
+import HubStrip from "@/components/homepage/HubStrip";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import { supabase as supabaseTyped } from "@/integrations/supabase/client";
@@ -901,6 +902,7 @@ export default function EventsPage() {
       </Helmet>
 
       <Masthead />
+      <HubStrip />
       <CategoryPills />
 
       <style>{`

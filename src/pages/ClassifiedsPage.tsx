@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Search, X, Plus, Loader2 } from "lucide-react";
 import Masthead from "@/components/Masthead";
+import HubStrip from "@/components/homepage/HubStrip";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import {
@@ -315,6 +316,7 @@ export default function ClassifiedsPage() {
       </Helmet>
 
       <Masthead />
+      <HubStrip />
       <CategoryPills />
 
       <main className="container py-6 space-y-5">

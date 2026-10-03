@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
+import HubStrip from "@/components/homepage/HubStrip";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ArticleCard from "@/components/ArticleCard";
@@ -113,6 +114,7 @@ export default function CategoryPage() {
         <link rel="canonical" href={`https://www.thevideshi.com${def.path}`} />
       </Helmet>
       <Masthead />
+      <HubStrip />
       <CategoryPills />
       <main className="container flex-1 pt-8 md:pt-10">
         <h1 className="font-serif text-3xl md:text-5xl text-foreground mb-8">{def.label}</h1>

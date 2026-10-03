@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ChevronRight, ExternalLink } from "lucide-react";
 import Masthead from "@/components/Masthead";
+import HubStrip from "@/components/homepage/HubStrip";
 import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import ArticleCard from "@/components/ArticleCard";
 import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
@@ -295,6 +296,7 @@ export default function ImmigrationPage() {
               <link rel="canonical" href="https://www.thevideshi.com/immigration" />
       </Helmet>
       <Masthead />
+      <HubStrip />
       <CategoryPills />
 
       <main className="container py-8">
