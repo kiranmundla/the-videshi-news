@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Article, formatShortDate, readingTime } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
+import { categoryLabel } from "../lib/categoryLabels";
 
 type Variant = "hero" | "featured" | "card" | "long" | "compact";
 
@@ -112,25 +113,6 @@ function MiniGallery({ images }: { images: { url: string; caption: string }[] })
   );
 }
 
-function parseImageDimensions(url: string | null | undefined): { w: number; h: number } | null {
-  if (!url) return null;
-  try {
-    const params = new URL(url).searchParams;
-    const w = parseInt(params.get('w') || '');
-    const h = parseInt(params.get('h') || '');
-    if (w > 0 && h > 0) return { w, h };
-  } catch {}
-  return null;
-}
-
-function getImageOrientation(url: string | null | undefined): 'landscape' | 'portrait' | null {
-  const dims = parseImageDimensions(url);
-  if (!dims) return null;
-  const ratio = dims.w / dims.h;
-  if (ratio > 1.2) return 'landscape';
-  return 'portrait'; // portrait and square both get side-by-side treatment
-}
-
 const ACCENT: Record<string, string> = {
   news: "hsl(var(--primary))",
   politics: "hsl(var(--primary))",
@@ -150,14 +132,7 @@ function accentFor(category?: string): string {
   return ACCENT[category.toLowerCase()] ?? "hsl(var(--primary))";
 }
 
-const DISPLAY_CATEGORY: Record<string, string> = {
-  news: "India News",
-  "nri-world": "World News",
-};
 
-function displayCategory(cat: string): string {
-  return DISPLAY_CATEGORY[cat] || cat;
-}
 
 export default function ArticleCard({
   article,
@@ -182,9 +157,7 @@ export default function ArticleCard({
   };
 
   // Runtime orientation detection for images without w/h URL params
-  const urlOrientation = getImageOrientation(article.hero_image_url);
-  const [runtimeOrientation, setRuntimeOrientation] = useState<"landscape" | "portrait" | null>(null);
-  const effectiveOrientation = urlOrientation ?? runtimeOrientation;
+  const [, setRuntimeOrientation] = useState<"landscape" | "portrait" | null>(null);
 
   // ===================== COMPACT =====================
   if (variant === "compact") {
@@ -213,7 +186,7 @@ export default function ArticleCard({
                 {featureLabel}
               </span>
             )}
-            {displayCategory(article.category)}
+            {categoryLabel(article.category)}
           </p>
           <h3 className={`font-serif font-bold text-base md:text-[1.05rem] leading-snug text-foreground group-hover:text-primary transition-colors ${isKeyUpdate ? "text-[1.08rem] md:text-[1.12rem]" : ""}`}>
             {isKeyUpdate && <span className="text-amber-400 mr-1 text-sm">⚡</span>}
@@ -234,7 +207,7 @@ export default function ArticleCard({
           style={{ borderLeftColor: accent }}
         >
           <p className="smallcaps text-primary mb-3">
-            {displayCategory(article.category)}
+            {categoryLabel(article.category)}
           </p>
           <h2 className="font-serif font-bold text-[1.75rem] md:text-[2.5rem] leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
@@ -272,7 +245,7 @@ export default function ArticleCard({
         </figure>
         <div>
           <p className="smallcaps text-primary mb-3">
-            {displayCategory(article.category)}
+            {categoryLabel(article.category)}
           </p>
           <h2 className="font-serif font-bold text-2xl md:text-4xl leading-[1.15] text-foreground group-hover:text-primary transition-colors">
             {article.title}
@@ -324,7 +297,7 @@ export default function ArticleCard({
                 {featureLabel}
               </span>
             )}
-            {displayCategory(article.category)}
+            {categoryLabel(article.category)}
           </p>
         )}
         <h2
@@ -347,46 +320,6 @@ export default function ArticleCard({
           
           {formatShortDate(article.published_at)} · {time} min read
         </p>
-      </Link>
-    );
-  }
-
-  // Portrait/square images → side-by-side layout (only for "card" variant)
-  if (effectiveOrientation === 'portrait' && variant === 'card') {
-    return (
-      <Link to={href} onClick={saveScroll} className="group flex gap-4">
-        <div className="w-[120px] md:w-[160px] flex-shrink-0">
-          <HeroImage zoomable={false}
-            src={article.hero_image_url}
-            alt={article.title}
-            focalX={article.focal_x}
-            focalY={article.focal_y}
-            loading="lazy"
-            className="w-full h-auto rounded object-cover"
-            onOrientationDetected={setRuntimeOrientation}
-          />
-        </div>
-        <div className="flex-1 min-w-0">
-          {!hideCategory && (
-            <p className="smallcaps text-primary mb-1">
-              {featureLabel && (
-                <span className="bg-primary text-primary-foreground px-1.5 py-0.5 mr-2 tracking-wider">
-                  {featureLabel}
-                </span>
-              )}
-              {displayCategory(article.category)}
-            </p>
-          )}
-          <h2
-            className={`font-serif font-bold text-foreground group-hover:text-primary transition-colors ${headlineSizeWithImage}`}
-          >
-            {article.title}
-          </h2>
-          <p className="mt-2 text-xs text-muted-foreground">
-            
-            {formatShortDate(article.published_at)} · {time} min read
-          </p>
-        </div>
       </Link>
     );
   }
@@ -431,7 +364,7 @@ export default function ArticleCard({
               {featureLabel}
             </span>
           )}
-          {displayCategory(article.category)}
+          {categoryLabel(article.category)}
         </p>
       )}
       <h2

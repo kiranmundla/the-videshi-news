@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import HeroImage from "@/components/HeroImage";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 /* ── brand palette ────────────────────────────────────────────────────── */
 const CATEGORY_COLORS: Record<string, string> = {
@@ -16,12 +17,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   travel: "#00695C",
   food: "#BF360C",
 };
-const CATEGORY_LABELS: Record<string, string> = {
-  news: "India",
-  "nri-world": "World",
-  "markets-finance": "Markets",
-  "lifestyle-health": "Lifestyle",
-};
+
 
 interface LinkedArticle {
   id: string;
@@ -149,7 +145,7 @@ export default function DevelopingStories() {
       <div className="container grid grid-cols-1 md:grid-cols-2 items-start" style={{ padding: "0 16px", gap: 12 }}>
         {stories.map((s, idx) => {
           const catColor = CATEGORY_COLORS[s.category || ""] || "#6D6D6D";
-          const catLabel = CATEGORY_LABELS[s.category || ""] || (s.category || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+          const catLabel = categoryLabel(s.category);
           const isFirst = idx === 0;
           const heroArticle = s.articles[0];
           const heroImage = isFirst && heroArticle?.image_url ? heroArticle.image_url : null;

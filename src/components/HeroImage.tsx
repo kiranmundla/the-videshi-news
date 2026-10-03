@@ -48,7 +48,25 @@ export default function HeroImage({ src, alt, className = "", loading = "lazy", 
     onOrientationDetected?.(ratio > 1.2 ? "landscape" : "portrait");
   }, [onOrientationDetected, className, hasFocal]);
 
-  if (!isValidImage(src) || failed) return null;
+  if (!isValidImage(src)) return null;
+
+  // Image URL failed to load (hotlink 403, dead CDN, etc.) — render a branded
+  // tile instead of leaving the parent's empty gray frame as a dead box.
+  // (2026-10-02: homepage grids showed blank gray slots for failed images.)
+  if (failed) {
+    return (
+      <div
+        className={className}
+        role="img"
+        aria-label={alt}
+        style={{ ...style, background: "#0B1D3A", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}
+      >
+        <svg viewBox="0 0 40 40" style={{ width: "38%", height: "38%", opacity: 0.9 }} aria-hidden="true">
+          <text x="20" y="30" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="bold" fontSize="30" fill="#D4A843">V</text>
+        </svg>
+      </div>
+    );
+  }
 
   return (
     <>

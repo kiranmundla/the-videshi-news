@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 interface ArticleCard {
   slug: string;
@@ -8,10 +9,7 @@ interface ArticleCard {
   published_at: string;
 }
 
-const CAT_LABELS: Record<string, string> = {
-  immigration: "Immigration", technology: "Technology", entertainment: "Entertainment",
-  news: "India News", "markets-finance": "Markets", sports: "Sports", "nri-world": "World News",
-};
+
 
 export default function ArticleCardDeck() {
   const [cards, setCards] = useState<ArticleCard[]>([]);
@@ -72,7 +70,7 @@ export default function ArticleCardDeck() {
                 <div className="vs-thumb-ring">
                   <img src={card.card_url} alt={card.headline} className="vs-thumb-img" loading={i < 6 ? "eager" : "lazy"} draggable={false} />
                 </div>
-                <span className="vs-thumb-cat">{CAT_LABELS[card.category] ?? card.category}</span>
+                <span className="vs-thumb-cat">{categoryLabel(card.category)}</span>
               </div>
             ))}
           </div>

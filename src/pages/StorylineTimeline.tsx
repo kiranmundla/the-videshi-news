@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Masthead from "@/components/Masthead";
 import HeroImage from "@/components/HeroImage";
+import { categoryLabel } from "../lib/categoryLabels";
 
 /* ── brand palette ────────────────────────────────────────────────────── */
 const CATEGORY_COLORS: Record<string, string> = {
@@ -17,12 +18,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   travel: "#00695C",
   food: "#BF360C",
 };
-const CATEGORY_LABELS: Record<string, string> = {
-  news: "India",
-  "nri-world": "World",
-  "markets-finance": "Markets",
-  "lifestyle-health": "Lifestyle",
-};
+
 const STATUS_STYLES: Record<string, { bg: string; color: string; label: string }> = {
   active: { bg: "#E8F5E9", color: "#2E7D32", label: "Active" },
   emerging: { bg: "#E3F2FD", color: "#1565C0", label: "Emerging" },
@@ -214,7 +210,7 @@ export default function StorylineTimeline() {
   }
 
   const catColor = CATEGORY_COLORS[storyline.category || ""] || "#6D6D6D";
-  const catLabel = CATEGORY_LABELS[storyline.category || ""] || (storyline.category || "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  const catLabel = categoryLabel(storyline.category);
   const statusInfo = STATUS_STYLES[storyline.status] || STATUS_STYLES.active;
 
   return (

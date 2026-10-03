@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ScrollWrap from "./ScrollWrap";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 interface TweetEntry {
   tweet_url: string;
@@ -175,7 +176,7 @@ export default function TweetScroll({ category, label }: TweetScrollProps) {
 
   const displayLabel =
     label ||
-    category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    categoryLabel(category);
 
   return (
     <section className="v2-social-strip">

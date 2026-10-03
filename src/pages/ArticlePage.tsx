@@ -28,6 +28,7 @@ import ArticleReactions from "@/components/ArticleReactions";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
 import ChampionsTimeline from "@/components/ChampionsTimeline";
+import { categoryLabel } from "@/lib/categoryLabels";
 
 /* ------------------------------------------------------------------ */
 /* Gemini-style compact sources pill                                  */
@@ -586,7 +587,7 @@ export default function ArticlePage() {
 
       <main className="container flex-1 pt-8 md:pt-12">
         <article className="max-w-4xl mx-auto">
-          <p className="smallcaps text-primary">{article.category}</p>
+          <p className="smallcaps text-primary">{categoryLabel(article.category)}</p>
           <h1 className="font-serif text-[2rem] md:text-5xl lg:text-[3.5rem] leading-[1.08] mt-3 font-bold">
             {article.title}
           </h1>
@@ -594,6 +595,8 @@ export default function ArticlePage() {
             {article.excerpt}
           </p>
           <div className="mt-6 flex flex-wrap gap-x-2 gap-y-1 text-xs text-muted-foreground items-center">
+            <span className="font-semibold text-foreground/80">By The Videshi</span>
+            <span>·</span>
             <span>{formatLongDate(article.published_at)}</span>
             <span>·</span>
             <span>{time} min read</span>

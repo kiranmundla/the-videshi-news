@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Article, formatShortDate } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
 import ScrollWrap from "./ScrollWrap";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 interface Props {
   title: string;
@@ -68,7 +69,7 @@ export default function NewsGrid({
                         loading="lazy"
                         focalX={a.focal_x}
                         focalY={a.focal_y}
-                        className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                       />
                     </div>
                   ) : null}
@@ -76,7 +77,7 @@ export default function NewsGrid({
                     className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                     style={{ color: borderColor }}
                   >
-                    {a.tags?.[0] ?? a.category?.replace("-", " ")}
+                    {a.tags?.[0] ?? categoryLabel(a.category)}
                   </p>
                   <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                     {a.title}
@@ -108,7 +109,7 @@ export default function NewsGrid({
                       loading="lazy"
                       focalX={a.focal_x}
                       focalY={a.focal_y}
-                      className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
                     />
                   </div>
                 ) : null}
@@ -116,7 +117,7 @@ export default function NewsGrid({
                   className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                   style={{ color: borderColor }}
                 >
-                  {a.tags?.[0] ?? a.category?.replace("-", " ")}
+                  {a.tags?.[0] ?? categoryLabel(a.category)}
                 </p>
                 <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                   {a.title}

@@ -8,6 +8,7 @@ import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import { fetchKidsArticles, type Article } from "@/lib/articles";
 import {
+import { categoryLabel } from "@/lib/categoryLabels";
   fetchKidsPrograms,
   fetchKidsDeadlines,
   type KidsProgram,
@@ -1009,7 +1010,7 @@ export default function KidsPage() {
                           {article.title}
                         </h3>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <span className="px-2 py-0.5 rounded-full bg-muted/30 font-medium capitalize">{article.category?.replace("-", " ") || "News"}</span>
+                          <span className="px-2 py-0.5 rounded-full bg-muted/30 font-medium capitalize">{categoryLabel(article.category) || "News"}</span>
                           <span>·</span>
                           <time>{new Date(article.published_at || "").toLocaleDateString("en-US", { month: "short", day: "numeric" })}</time>
                         </div>

@@ -106,6 +106,7 @@ const HOME_CATEGORIES = [
   { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
   { slug: "travel", label: "Travel", path: "/travel" },
   { slug: "food", label: "Food", path: "/food" },
+  { slug: "cars", label: "Cars", path: "/cars" },
 ];
 
 function HomeCategoryNav({ selected, onSelect }: { selected: string; onSelect: (slug: string) => void }) {

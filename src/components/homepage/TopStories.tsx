@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 /* ── constants ──────────────────────────────────────── */
 
@@ -15,23 +16,10 @@ const CATEGORY_COLORS: Record<string, string> = {
   "lifestyle-health": "#00838F",
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  immigration: "IMMIGRATION",
-  news: "INDIA NEWS",
-  sports: "SPORTS",
-  technology: "TECHNOLOGY",
-  entertainment: "ENTERTAINMENT",
-  "markets-finance": "MARKETS & FINANCE",
-  "nri-world": "WORLD NEWS",
-  "lifestyle-health": "LIFESTYLE & HEALTH",
-};
-
 function categoryColor(cat: string) {
   return CATEGORY_COLORS[cat] || "hsl(var(--primary))";
 }
-function categoryLabel(cat: string) {
-  return CATEGORY_LABELS[cat] || cat.replace(/-/g, " ").toUpperCase();
-}
+
 
 function timeAgo(iso: string | null): string {
   if (!iso) return "";

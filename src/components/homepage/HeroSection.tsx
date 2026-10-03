@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Article, formatShortDate } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 const CATEGORY_COLORS: Record<string, string> = {
   immigration: "#D4A843",
@@ -12,16 +13,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   news: "#C62828",
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  news: "India",
-  "nri-world": "World",
-  "markets-finance": "Markets",
-  immigration: "Immigration",
-  technology: "Technology",
-  entertainment: "Entertainment",
-  sports: "Sports",
-  "lifestyle-health": "Lifestyle",
-};
+
 
 function catColor(cat?: string) {
   return CATEGORY_COLORS[cat?.toLowerCase() ?? ""] ?? "#C62828";
@@ -64,7 +56,7 @@ export default function HeroSection({ lead, side }: Props) {
                   fetchPriority="high"
                   focalX={lead.focal_x}
                   focalY={lead.focal_y}
-                  className="w-full h-full object-contain group-hover:scale-[1.01] transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
                 />
               </div>
             )}
@@ -72,7 +64,7 @@ export default function HeroSection({ lead, side }: Props) {
               className="text-[11px] font-bold tracking-[1.2px] uppercase mb-1.5"
               style={{ color: catColor(lead.category) }}
             >
-              {CATEGORY_LABELS[lead.category ?? ""] ?? lead.category?.replace("-", " ")}
+              {categoryLabel(lead.category)}
             </p>
             <h1
               className="font-serif font-extrabold leading-[1.2] mb-2.5 group-hover:text-primary transition-colors"
@@ -118,7 +110,7 @@ export default function HeroSection({ lead, side }: Props) {
                       className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                       style={{ color: catColor(a.category) }}
                     >
-                      {CATEGORY_LABELS[a.category ?? ""] ?? a.category?.replace("-", " ")}
+                      {categoryLabel(a.category)}
                     </p>
                     <h3 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {a.title}

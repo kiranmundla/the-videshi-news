@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Article } from "@/lib/articles";
 import { isValidImage } from "@/components/HeroImage";
+import { categoryLabel } from "../lib/categoryLabels";
 
 /* ── helpers ────────────────────────────────────────── */
 
@@ -20,14 +21,7 @@ function categoryColor(cat: string): string {
   return CATEGORY_COLORS[cat] || "hsl(var(--primary))";
 }
 
-const CATEGORY_LABEL_MAP: Record<string, string> = {
-  news: "INDIA NEWS",
-  "nri-world": "WORLD NEWS",
-};
 
-function categoryLabel(cat: string): string {
-  return CATEGORY_LABEL_MAP[cat] || (cat || "news").replace(/-/g, " ").toUpperCase();
-}
 
 /* ── Slide (single article card) ────────────────────── */
 

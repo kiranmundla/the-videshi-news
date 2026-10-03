@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Article, formatShortDate } from "@/lib/articles";
 import HeroImage, { isValidImage } from "@/components/HeroImage";
+import { categoryLabel } from "../../lib/categoryLabels";
 
 interface Props {
   title: string;
@@ -60,7 +61,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                   loading="lazy"
                   focalX={lead.focal_x}
                   focalY={lead.focal_y}
-                  className="w-full h-full object-contain group-hover:scale-[1.01] transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
                 />
               </div>
             )}
@@ -68,7 +69,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
               className="text-[11px] font-bold tracking-[1.2px] uppercase mb-1.5"
               style={{ color: borderColor }}
             >
-              {lead.category?.replace("-", " ")}
+              {categoryLabel(lead.category)}
             </p>
             <h3 className="font-serif text-[22px] font-extrabold leading-[1.25] mb-2 group-hover:text-primary transition-colors">
               {lead.title}
@@ -111,7 +112,7 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
                       className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
                       style={{ color: borderColor }}
                     >
-                      {a.category?.replace("-", " ")}
+                      {categoryLabel(a.category)}
                     </p>
                     <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {a.title}

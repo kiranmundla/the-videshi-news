@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
+import { categoryLabel } from "@/lib/categoryLabels";
 
 interface Article {
   id: string;
@@ -218,7 +219,7 @@ export default function LinksPage() {
                           marginBottom: 3,
                         }}
                       >
-                        {a.category.replace(/-/g, " ")}
+                        {categoryLabel(a.category)}
                       </span>
                     )}
                     <p
