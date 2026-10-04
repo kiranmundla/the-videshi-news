@@ -34,6 +34,7 @@ import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import BoxOfficeStrip from "@/components/homepage/BoxOfficeStrip";
+import MovieReviewsRail from "@/components/homepage/MovieReviewsRail";
 import LazyMount from "@/components/LazyMount";
 import StreamingPicks from "@/components/StreamingPicks";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
@@ -176,69 +177,6 @@ function EntertainmentGrid({ articles }: { articles: Article[] }) {
 }
 
 /* ── Movie Reviews rail (review-tagged entertainment articles) ── */
-function MovieReviewsRail({ articles }: { articles: Article[] }) {
-  const reviews = articles.filter((a) =>
-    (a.tags ?? []).some((t) => t.toLowerCase().includes("review"))
-  );
-  if (reviews.length === 0) return null;
-
-  return (
-    <section className="mb-14">
-      <div className="container">
-        <div
-          className="flex items-center justify-between mb-5 pb-2.5"
-          style={{ borderBottom: "3px solid #D4A843" }}
-        >
-          <h2
-            className="text-[13px] font-bold tracking-[2px] uppercase"
-            style={{ color: "#0B1D3A" }}
-          >
-            Movie Reviews
-          </h2>
-        </div>
-        <div className="flex gap-5 overflow-x-auto pb-2 -mx-1 px-1">
-          {reviews.slice(0, 8).map((a) => (
-            <Link
-              key={a.id}
-              to={`/articles/${a.slug ?? a.id}`}
-              className="group shrink-0 w-40 md:w-44"
-            >
-              <div className="relative w-40 md:w-44 aspect-[2/3] rounded-lg overflow-hidden bg-muted">
-                {a.hero_image_url || (a as any).image_url ? (
-                  <img
-                    src={a.hero_image_url || (a as any).image_url}
-                    alt={a.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full flex items-center justify-center"
-                    style={{ background: "#0B1D3A" }}
-                  >
-                    <span
-                      className="font-serif font-bold text-4xl"
-                      style={{ color: "#D4A843" }}
-                    >
-                      V
-                    </span>
-                  </div>
-                )}
-                <span className="absolute top-2 left-2 text-[10px] font-bold tracking-[1px] uppercase text-white bg-black/60 rounded px-2 py-0.5">
-                  Review
-                </span>
-              </div>
-              <p className="mt-2 font-serif font-bold text-[0.95rem] leading-snug line-clamp-2 group-hover:text-primary transition-colors">
-                {a.title}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── Live Events Strip (rendered after hub icons on homepage) ── */
 const LIVE_EVENTS = [
   { slug: "world-cup", label: "FIFA World Cup", path: "/world-cup", icon: "⚽" },
@@ -763,7 +701,7 @@ export default function IndexV2() {
 <LazyMount>
         <SponsoredBanner />
         <EntertainmentGrid articles={layout.entertainment} />
-        <MovieReviewsRail articles={layout.entertainment} />
+        <MovieReviewsRail />
         <TrailersRail />
         <StarBuzzStrip />
         <NowInTheaters />

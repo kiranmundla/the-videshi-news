@@ -922,6 +922,29 @@ def main():
 
     print(f"  ✓ {cat_count} category feeds written")
 
+    # 2b. Movie reviews feed — every published entertainment review, newest
+    # first, no recency cap (the rail backfills the full review archive).
+    def is_movie_review(a: dict) -> bool:
+        if a.get("category") != "entertainment":
+            return False
+        tags = [str(t).lower() for t in (a.get("tags") or [])]
+        # Game reviews belong elsewhere, not in Movie Reviews
+        if any(t in ("gaming", "xbox", "playstation", "video game") for t in tags):
+            return False
+        if any("review" in t for t in tags):
+            return True
+        return "review" in (a.get("headline") or "").lower()
+
+    reviews = [a for a in articles if is_movie_review(a)]
+    reviews.sort(key=lambda a: a["published_at"], reverse=True)
+    reviews_path = DATA_DIR / "movie-reviews.json"
+    reviews_path.write_text(json.dumps({
+        "generated_at": now.isoformat(),
+        "count": len(reviews),
+        "articles": [article_without_body(a) for a in reviews[:60]],
+    }, ensure_ascii=False, separators=(",", ":")))
+    print(f"  ✓ movie-reviews.json ({len(reviews)} reviews)")
+
     # 3. Build individual article pages (only recent articles — older ones keep existing JSONs)
     recent_cutoff = (now - timedelta(days=7)).isoformat()
     print(f"  Fetching recent articles with body (last 7 days)...")
