@@ -34,6 +34,7 @@ import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import BoxOfficeStrip from "@/components/homepage/BoxOfficeStrip";
+import LazyMount from "@/components/LazyMount";
 import StreamingPicks from "@/components/StreamingPicks";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import AILeaderboard from "@/components/AILeaderboard";
@@ -704,32 +705,49 @@ export default function IndexV2() {
         />
 
         {/* Daily Wisdom — picture-framed spiritual quote */}
+<LazyMount>
         <DailyWisdomCard />
+        </LazyMount>
 
         {/* On This Day — daily diaspora history card */}
+<LazyMount>
         <OnThisDay />
+        </LazyMount>
 
         {/* Daily 7 Quiz */}
+<LazyMount>
         <DailyQuiz />
+        </LazyMount>
 
         {/* The Pulse — community poll */}
+<LazyMount>
         <ThePulse />
+        </LazyMount>
 
         {/* Who's X — weekly spotlight */}
+<LazyMount>
         <WhosXSpotlight />
+        </LazyMount>
 
         {/* Visual Stories */}
+<LazyMount>
         <ArticleCardDeck />
+        </LazyMount>
 
         {/* 7. Immigration Strip */}
+<LazyMount>
         <ImmigrationStrip articles={layout.immigration} />
+        </LazyMount>
 
         {/* 8. Newsletter CTA */}
+<LazyMount>
         <NewsletterCTA />
+        </LazyMount>
 
         {/* 9. (VoicesTeaser removed — VoicesSection below covers Voices) */}
 
         {/* 10. Technology (lead + list + conferences) */}
+<LazyMount>
         <LeadListSection
           title="Technology"
           borderColor="#4527A0"
@@ -739,8 +757,10 @@ export default function IndexV2() {
         />
         <UpcomingTechEvents />
         <TweetScroll category="technology" />
+        </LazyMount>
 
         {/* 11. Entertainment (vertical grid) */}
+<LazyMount>
         <SponsoredBanner />
         <EntertainmentGrid articles={layout.entertainment} />
         <MovieReviewsRail articles={layout.entertainment} />
@@ -750,14 +770,18 @@ export default function IndexV2() {
         <BoxOfficeStrip />
         <StreamingPicks />
         <FridayLaughs />
+        </LazyMount>
 
         {/* 12. India News + Trending Sidebar */}
+<LazyMount>
         <IndiaNewsGrid
           articles={layout.news}
         />
         <TweetScroll category="news" label="India News" />
+        </LazyMount>
 
         {/* 13. World News (3-col grid) */}
+<LazyMount>
         <NewsGrid
           title="World News"
           borderColor="#1565C0"
@@ -766,8 +790,10 @@ export default function IndexV2() {
           columns={3}
         />
         <TweetScroll category="world-leaders" label="World Leaders" />
+        </LazyMount>
 
         {/* 14. Markets & Finance (lead + list) */}
+<LazyMount>
         <LeadListSection
           title="Markets & Finance"
           borderColor="#E65100"
@@ -775,8 +801,10 @@ export default function IndexV2() {
           articles={layout.markets}
           listCount={6}
         />
+        </LazyMount>
 
         {/* 15. Sports (horizontal ribbon — landscape) */}
+<LazyMount>
         <RibbonSection
           title="Sports"
           borderColor="#2E7D32"
@@ -785,9 +813,11 @@ export default function IndexV2() {
           aspectRatio="landscape"
         />
         <TweetScroll category="sports" />
+        </LazyMount>
 
         {/* 16. Travel (horizontal ribbon — landscape) */}
         {layout.travel.length > 0 && (
+<LazyMount>
           <RibbonSection
             title="Travel"
             borderColor="#00695C"
@@ -795,10 +825,12 @@ export default function IndexV2() {
             articles={layout.travel}
             aspectRatio="landscape"
           />
+        </LazyMount>
         )}
 
         {/* 17. Lifestyle & Health (lead + list) */}
         {layout.lifestyle.length > 0 && (
+<LazyMount>
           <LeadListSection
             title="Lifestyle & Health"
             borderColor="#6A1B9A"
@@ -806,10 +838,12 @@ export default function IndexV2() {
             articles={layout.lifestyle}
             listCount={6}
           />
+        </LazyMount>
         )}
 
         {/* 18. Food (horizontal ribbon — landscape) */}
         {layout.food.length > 0 && (
+<LazyMount>
           <RibbonSection
             title="Food"
             borderColor="#BF360C"
@@ -817,13 +851,18 @@ export default function IndexV2() {
             articles={layout.food}
             aspectRatio="landscape"
           />
+        </LazyMount>
         )}
 
         {/* 19. Voices (full section) */}
+<LazyMount>
         <VoicesSection />
+        </LazyMount>
 
         {/* 18. Snapshots */}
+<LazyMount>
         <DiasporaPhotoStrip />
+        </LazyMount>
           </>
         )}
       </main>
