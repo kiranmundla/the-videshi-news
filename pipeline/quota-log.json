@@ -142,5 +142,12 @@
     "daily_pct_used": null,
     "source": "injected_context",
     "note": "quota block not found in context"
+  },
+  {
+    "date": "2026-10-03",
+    "monthly_pct_used": null,
+    "daily_pct_used": null,
+    "source": "injected_context",
+    "note": "quota block not found in context"
   }
 ]
