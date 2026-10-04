@@ -207,6 +207,27 @@ def check_youtube_relevance(article):
 
 # ── LLM review ──
 
+def is_trailer_brief(article):
+    """Trailer/teaser briefs (from trailer-watch.py) are ~75-word format pieces,
+    not full articles — they get their own rubric, not the long-form one."""
+    tags = [str(t).lower() for t in (article.get("tags") or [])]
+    headline = (article.get("headline") or "").lower()
+    return "trailers" in tags or bool(re.search(r"(teaser|trailer)\s+out\b", headline))
+
+
+TRAILER_BRIEF_RUBRIC = """You are an editorial QA reviewer for The Videshi, an Indian diaspora news site.
+This is a TRAILER BRIEF — a deliberately short (~75-word) format announcing a trailer/teaser drop. Do NOT penalize brevity, thin takeaways, or lack of long-form structure. Score it on whether it does its one job well.
+
+Score 8-10 when ALL of these hold:
+1. Film/show name is correct and the kind (teaser vs trailer) matches the video.
+2. Drop date and source channel are stated.
+3. A <youtube> embed is present for the trailer.
+4. Headline follows the "Film Teaser/Trailer Out" format.
+5. No fluff, no factual errors, no forced angles.
+
+Deduct only for real problems: wrong film name, wrong video embedded, missing embed, factual errors, or clickbait headline."""
+
+
 def llm_review(article, model="gpt-4o-mini"):
     """GPT-4o-mini editorial review — costs ~$0.001 per article."""
     if not OAI_KEY:
@@ -226,7 +247,18 @@ def llm_review(article, model="gpt-4o-mini"):
     has_ig = bool(re.search(r'instagram\.com/p/', body))
     embeds_summary = f"YouTube: {'yes' if has_yt else 'no'}, Tweet: {'yes' if has_tw else 'no'}, Instagram: {'yes' if has_ig else 'no'}"
     
-    prompt = f"""You are an editorial QA reviewer for The Videshi, an Indian diaspora news site for NRIs.
+    if is_trailer_brief(article):
+        prompt = f"""{TRAILER_BRIEF_RUBRIC}
+
+Article:
+Headline: {headline}
+Category: {category}
+Current embeds: {embeds_summary}
+Body (first 3000 chars): {body_text[:2000]}
+
+Respond as JSON: {{"quality_score": 1-10, "suggestions": ["specific suggestion 1", ...], "embed_opportunities": ["specific embed idea if any"]}}"""
+    else:
+        prompt = f"""You are an editorial QA reviewer for The Videshi, an Indian diaspora news site for NRIs.
 Review this article critically and give 2-4 specific, actionable suggestions to improve it.
 
 Focus on:
