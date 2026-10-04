@@ -5,6 +5,7 @@
 export function extractYouTubeId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?.*v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]{11})/,
+    /^([A-Za-z0-9_-]{11})$/, // bare video ID, e.g. <youtube>VqbrAbuQC1o</youtube>
   ];
   for (const pattern of patterns) {
     const match = url.match(pattern);

@@ -142,7 +142,7 @@ def build_brief_article(drop, channel):
     dest = "streaming" if channel.get("industry") == "streamer" else "theaters"
     body += (f"<p>For diaspora audiences tracking the film's US release, the {kind.lower()} is the first "
              f"real look at what's headed to {dest} — watch it below.</p>"
-             f"<youtube>{vid}</youtube>")
+             f"<youtube>{watch_url}</youtube>")
 
     return {
         "headline": headline,
