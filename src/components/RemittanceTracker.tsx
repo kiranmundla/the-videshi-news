@@ -52,17 +52,35 @@ function Sparkline({ points }: { points: SparkPoint[] }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Remittance tracker — USD → INR                                      */
-/* ------------------------------------------------------------------ */
+interface RateProvider {
+  provider: string;
+  rate: number;
+  fee_usd: number;
+  recipient_gets_inr: number;
+  delivery?: string;
+  source_url?: string;
+}
+
+interface ProviderRates {
+  as_of: string;
+  send_usd: number;
+  providers: RateProvider[];
+}
 export default function RemittanceTracker() {
   const [data, setData] = useState<UsdInrData | null>(null);
   const [amount, setAmount] = useState("1000");
+  const [providers, setProviders] = useState<ProviderRates | null>(null);
 
   useEffect(() => {
     fetch("/data/usdinr.json")
       .then((r) => (r.ok ? r.json() : null))
       .then(setData)
+      .catch(() => {});
+    fetch("/data/remittance-rates.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => {
+        if (j && Array.isArray(j.providers) && j.providers.length > 0) setProviders(j);
+      })
       .catch(() => {});
   }, []);
 
@@ -144,6 +162,62 @@ export default function RemittanceTracker() {
                 <Sparkline points={data.sparkline} />
               </div>
             </div>
+
+            {/* Provider comparison — who puts more rupees in hand */}
+            {providers && (
+              <div className="mt-8">
+                <div className="flex items-baseline justify-between mb-3">
+                  <h3 className="text-white font-bold text-[15px]">
+                    Who gives you more for ${providers.send_usd.toLocaleString()}?
+                  </h3>
+                  <span className="text-[11px] text-white/40">
+                    Updated {fmtDate(providers.as_of)} · bank deposit
+                  </span>
+                </div>
+                <div className="overflow-x-auto rounded-xl border border-white/10">
+                  <table className="w-full text-sm min-w-[520px]">
+                    <thead>
+                      <tr className="text-left text-[11px] uppercase tracking-wider text-white/40 border-b border-white/10">
+                        <th className="px-4 py-2.5 font-semibold">Provider</th>
+                        <th className="px-4 py-2.5 font-semibold text-right">Rate</th>
+                        <th className="px-4 py-2.5 font-semibold text-right">Fee</th>
+                        <th className="px-4 py-2.5 font-semibold text-right">They get</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...providers.providers]
+                        .sort((a, b) => b.recipient_gets_inr - a.recipient_gets_inr)
+                        .map((p, i) => (
+                          <tr
+                            key={p.provider}
+                            className={`border-b border-white/5 last:border-0 ${i === 0 ? "bg-[#D4A843]/10" : ""}`}
+                          >
+                            <td className="px-4 py-2.5 text-white font-semibold">
+                              {p.provider}
+                              {i === 0 && (
+                                <span className="ml-2 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#D4A843] text-[#0B1D3A]">
+                                  Best
+                                </span>
+                              )}
+                              {p.delivery && (
+                                <span className="block text-[11px] text-white/40 font-normal">{p.delivery}</span>
+                              )}
+                            </td>
+                            <td className="px-4 py-2.5 text-right text-white/70 tabular-nums">₹{p.rate.toFixed(2)}</td>
+                            <td className="px-4 py-2.5 text-right text-white/70 tabular-nums">${p.fee_usd.toFixed(2)}</td>
+                            <td className="px-4 py-2.5 text-right text-[#D4A843] font-bold tabular-nums">
+                              ₹{p.recipient_gets_inr.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-white/30 text-[11px] mt-2">
+                  Indicative rates and fees — providers change them through the day. Check the provider before sending.
+                </p>
+              </div>
+            )}
           </div>
           <div className="h-1" style={{ background: "linear-gradient(90deg, #D4A843, #A32D2F)" }} />
         </div>
