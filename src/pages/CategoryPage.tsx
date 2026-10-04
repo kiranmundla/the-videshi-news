@@ -90,9 +90,22 @@ export default function CategoryPage() {
       if (pool?.slug === def.slug && pool.articles.length > articles.length) {
         next = pool.articles.slice(articles.length, articles.length + PAGE_SIZE);
       } else {
-        // Static pool exhausted — fall back to Supabase
-        // Static pool exhausted — continue through the full archive (no recency cutoff)
-        next = await getCategoryArchive(def.slug, PAGE_SIZE, articles.length);
+        next = [];
+      }
+      // Pool exhausted mid-batch (or fully): continue through the full
+      // archive (no recency cutoff). De-dupe in case the archive overlaps
+      // the static pool (articles published after the last feed build).
+      if (next.length < PAGE_SIZE) {
+        const archiveNext = await getCategoryArchive(
+          def.slug,
+          PAGE_SIZE - next.length,
+          articles.length + next.length
+        );
+        const seen = new Set([
+          ...articles.map((a) => a.id),
+          ...next.map((a) => a.id),
+        ]);
+        next = next.concat(archiveNext.filter((a) => !seen.has(a.id)));
       }
       if (next.length < PAGE_SIZE) setHasMore(false);
       setFadeFrom(articles.length);
