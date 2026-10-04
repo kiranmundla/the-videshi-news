@@ -10,14 +10,11 @@ import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
-import NowInTheaters from "@/components/NowInTheaters";
-import BoxOfficeStrip from "@/components/homepage/BoxOfficeStrip";
-import StreamingPicks from "@/components/StreamingPicks";
 import LoadMoreButton from "@/components/LoadMoreButton";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import RemittanceTracker from "@/components/RemittanceTracker";
 import AILeaderboard from "@/components/AILeaderboard";
-import { Article, getArticlesByCategory } from "@/lib/articles";
+import { Article, getArticlesByCategory, getCategoryArchive } from "@/lib/articles";
 import { getKeyUpdateSlugs } from "@/lib/keyUpdates";
 import { getCategoryBySlug } from "@/lib/categories";
 import NotFound from "@/pages/NotFound";
@@ -94,7 +91,8 @@ export default function CategoryPage() {
         next = pool.articles.slice(articles.length, articles.length + PAGE_SIZE);
       } else {
         // Static pool exhausted — fall back to Supabase
-        next = await getArticlesByCategory(def.slug, PAGE_SIZE, articles.length);
+        // Static pool exhausted — continue through the full archive (no recency cutoff)
+        next = await getCategoryArchive(def.slug, PAGE_SIZE, articles.length);
       }
       if (next.length < PAGE_SIZE) setHasMore(false);
       setFadeFrom(articles.length);
@@ -126,9 +124,6 @@ export default function CategoryPage() {
         {def.slug === "technology" && <TechBuzz category="tech" />}
         {def.slug === "technology" && <AILeaderboard />}
         {/* {def.slug === "entertainment" && <CelebrityBuzz />} */}
-        {def.slug === "entertainment" && <NowInTheaters />}
-        {def.slug === "entertainment" && <BoxOfficeStrip />}
-        {def.slug === "entertainment" && <StreamingPicks />}
         {def.slug === "entertainment" && (() => {
           const SUBS = [
             { key: "all", label: "All" },

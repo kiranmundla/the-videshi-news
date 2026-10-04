@@ -35,6 +35,7 @@ import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
 import BoxOfficeStrip from "@/components/homepage/BoxOfficeStrip";
 import MovieReviewsRail from "@/components/homepage/MovieReviewsRail";
+import RemittanceTracker from "@/components/RemittanceTracker";
 import LazyMount from "@/components/LazyMount";
 import StreamingPicks from "@/components/StreamingPicks";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
@@ -739,6 +740,7 @@ export default function IndexV2() {
           articles={layout.markets}
           listCount={6}
         />
+        <RemittanceTracker />
         </LazyMount>
 
         {/* 15. Sports (horizontal ribbon — landscape) */}

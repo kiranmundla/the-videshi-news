@@ -517,6 +517,29 @@ export async function getArticlesByCategory(
   return (data as P2Row[]).map(mapRow);
 }
 
+export async function getCategoryArchive(
+  category: string,
+  limit = 18,
+  offset = 0
+): Promise<Article[]> {
+  // Full chronological archive for "view all" — no recency cutoff.
+  // Ordered newest-first so it continues seamlessly after the static
+  // pool (which holds the newest ~200 articles).
+  const { data, error } = await supabase
+    .from("p2_articles")
+    .select(P2_LIST_COLS)
+    .eq("status", "published")
+    .eq("category", category)
+    .order("published_at", { ascending: false })
+    .order("id", { ascending: true })
+    .range(offset, offset + limit - 1);
+  if (error) {
+    console.error("[articles] getCategoryArchive", error);
+    return [];
+  }
+  return (data as P2Row[]).map(mapRow);
+}
+
 export async function fetchKidsArticles(limit = 20): Promise<Article[]> {
   const { data, error } = await supabase
     .from("p2_articles")
