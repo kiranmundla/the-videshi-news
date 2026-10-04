@@ -27,6 +27,7 @@ import OnThisDay from "@/components/homepage/OnThisDay";
 import DailyQuiz from "@/components/homepage/DailyQuiz";
 import ThePulse from "@/components/homepage/ThePulse";
 import FridayLaughs from "@/components/homepage/FridayLaughs";
+import ExploreHub from "@/components/homepage/ExploreHub";
 import DevelopingStories from "@/components/homepage/DevelopingStories";
 import ArticleCardDeck from "@/components/homepage/ArticleCardDeck";
 import InterviewSpotlight from "@/components/homepage/InterviewSpotlight";
@@ -676,6 +677,11 @@ export default function IndexV2() {
         {/* 7. Immigration Strip */}
 <LazyMount>
         <ImmigrationStrip articles={layout.immigration} />
+        </LazyMount>
+
+        {/* 7b. Explore hub — destinations, visa guides, trackers */}
+<LazyMount>
+        <ExploreHub />
         </LazyMount>
 
         {/* 8. Newsletter CTA */}
