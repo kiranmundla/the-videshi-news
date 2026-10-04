@@ -595,10 +595,14 @@ YOUTUBE_TAG_RE = re.compile(
 YOUTUBE_OEMBED_CACHE = REPO_ROOT / "pipeline" / ".state" / "youtube_oembed.json"
 
 
-def _oembed_title(video_id: str, cache: dict) -> str | None:
-    """Resolve a YouTube video's real title via oEmbed (no API key), cached."""
+def _oembed_meta(video_id: str, cache: dict) -> tuple[str | None, str | None]:
+    """Resolve a YouTube video's real title + channel via oEmbed (no API key), cached."""
     if video_id in cache:
-        return cache[video_id]
+        hit = cache[video_id]
+        if isinstance(hit, dict) and hit.get("author"):
+            return hit.get("title"), hit.get("author")
+        # Legacy plain-string entry (no author) — fall through and re-fetch
+        # so the official-channel check has data to work with.
     try:
         resp = _curl_get(
             "https://www.youtube.com/oembed",
@@ -607,13 +611,57 @@ def _oembed_title(video_id: str, cache: dict) -> str | None:
             timeout=15,
         )
         if resp.status_code == 200:
-            title = resp.json().get("title")
+            data = resp.json()
+            title, author = data.get("title"), data.get("author_name")
             if title:
-                cache[video_id] = title
-                return title
+                cache[video_id] = {"title": title, "author": author}
+                return title, author
     except Exception:
         pass
-    return None
+    return None, None
+
+
+# ── Trailer quality gates ──────────────────────────────────────────
+# A video only earns the "trailer" label when it looks like an official
+# trailer/teaser for a movie, show, or series — not fan edits, box-office
+# trackers, reactions, or interviews.
+_TRAILER_TITLE_RE = re.compile(r"trailer|teaser", re.IGNORECASE)
+_TRAILER_BLOCK_RE = re.compile(
+    r"#?shorts?\b|box[\s-]?office|collection|\bvs\.?\b|comparison|reaction|"
+    r"review|interview|behind the scenes|\bbts\b|first look|mashup|tribute|"
+    r"fancast|day\s*\d+|episode\s*\d+",
+    re.IGNORECASE,
+)
+# Official channels whose uploads we trust as genuine trailers.
+# Studios, music labels (they drop trailers), and streamers.
+OFFICIAL_TRAILER_CHANNELS = {
+    # Indian studios / labels / streamers
+    "t-series", "yash raj films", "yrf", "yrf music", "dharma productions",
+    "dharma movies", "sony music india", "sony pictures entertainment",
+    "balaji motion pictures", "zee music company", "eros now", "pen movies",
+    "netflix india", "netflix", "prime video india", "prime video",
+    "disney+ hotstar", "hotstar", "jio cinema", "jio hotstar", "zee5",
+    "sonyliv", "mx player", "viacom18", "reliance entertainment", "aa films",
+    "saregama", "aditya music", "think music india", "lahari music",
+    "sun pictures", "sun tv", "lyca productions", "mythri movie makers",
+    "hombale films", "geetha arts", "sri venkateswara creations",
+    "phull stop with richa & ali",
+    # Hollywood majors
+    "warner bros. pictures", "universal pictures", "walt disney studios",
+    "marvel entertainment", "marvel", "sony pictures", "paramount pictures",
+    "20th century studios", "lionsgate", "ign",
+}
+
+
+def _is_trailer_video(title: str | None, author: str | None) -> bool:
+    """True only for official trailer/teaser uploads for a movie/show/series."""
+    if not title or not _TRAILER_TITLE_RE.search(title):
+        return False
+    if _TRAILER_BLOCK_RE.search(title):
+        return False
+    if not author:
+        return False
+    return author.strip().lower() in OFFICIAL_TRAILER_CHANNELS
 
 
 def _build_trailers(recent_articles: list[dict]) -> list[dict]:
@@ -651,7 +699,11 @@ def _build_trailers(recent_articles: list[dict]) -> list[dict]:
 
     trailers = []
     for t in seen.values():
-        t["title"] = _oembed_title(t["video_id"], cache) or t["article_title"] or "Trailer"
+        title, author = _oembed_meta(t["video_id"], cache)
+        if not _is_trailer_video(title, author):
+            continue  # not an official trailer/teaser — don't label it one
+        t["title"] = title or t["article_title"] or "Trailer"
+        t["channel"] = author
         trailers.append(t)
         if len(trailers) >= 12:
             break
