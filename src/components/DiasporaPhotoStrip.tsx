@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import Lightbox from "@/components/Lightbox";
 
 type Photo = { src: string; label: string; source?: string; added_date?: string };
 
@@ -58,10 +59,8 @@ export default function DiasporaPhotoStrip() {
   const [pool, setPool] = useState<Photo[]>(FALLBACK_PHOTOS);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const overlayScrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Fetch pool from JSON on mount
   useEffect(() => {
@@ -78,57 +77,14 @@ export default function DiasporaPhotoStrip() {
     return shuffled.slice(0, DISPLAY_COUNT);
   }, [pool]);
 
-  const closeOverlay = useCallback(() => {
-    setSelectedIndex(null);
-  }, []);
-
-  // Track which photo is visible in the lightbox via scroll position
-  const handleOverlayScroll = useCallback(() => {
-    const el = overlayScrollRef.current;
-    if (!el) return;
-    const idx = Math.round(el.scrollLeft / el.clientWidth);
-    if (idx >= 0 && idx < photos.length) {
-      setCurrentIndex(idx);
-    }
-  }, [photos.length]);
-
-  // When overlay opens, scroll to the tapped photo instantly
+  // Preload all images when the lightbox opens
   useEffect(() => {
     if (selectedIndex === null) return;
-    setCurrentIndex(selectedIndex);
-    // Preload all images when overlay opens
     photos.forEach((p) => {
       const img = new Image();
       img.src = p.src;
     });
-    // Wait for DOM, then scroll to selected
-    requestAnimationFrame(() => {
-      const el = overlayScrollRef.current;
-      if (el) {
-        el.scrollTo({ left: selectedIndex * el.clientWidth, behavior: "instant" as ScrollBehavior });
-      }
-    });
   }, [selectedIndex, photos]);
-
-  // Keyboard nav in lightbox
-  useEffect(() => {
-    if (selectedIndex === null) return;
-    const handleKey = (e: KeyboardEvent) => {
-      const el = overlayScrollRef.current;
-      if (!el) return;
-      if (e.key === "Escape") closeOverlay();
-      if (e.key === "ArrowRight") {
-        const next = Math.min(currentIndex + 1, photos.length - 1);
-        el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
-      }
-      if (e.key === "ArrowLeft") {
-        const prev = Math.max(currentIndex - 1, 0);
-        el.scrollTo({ left: prev * el.clientWidth, behavior: "smooth" });
-      }
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedIndex, currentIndex, closeOverlay, photos.length]);
 
   // Strip scroll buttons
   const updateScrollButtons = useCallback(() => {
@@ -165,60 +121,6 @@ export default function DiasporaPhotoStrip() {
     };
   }, [updateScrollButtons]);
 
-  // ── Pull-down-to-dismiss state ──
-  const [dragY, setDragY] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dismissing, setDismissing] = useState(false);
-  const touchStartY = useRef<number | null>(null);
-  const touchStartX2 = useRef<number | null>(null);
-  const isVerticalGesture = useRef(false);
-
-  const closeWithDismiss = useCallback(() => {
-    setDismissing(true);
-    setTimeout(() => {
-      setSelectedIndex(null);
-      setDragY(0);
-      setIsDragging(false);
-      setDismissing(false);
-    }, 200);
-  }, []);
-
-  const handleLightboxTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
-    touchStartX2.current = e.touches[0].clientX;
-    isVerticalGesture.current = false;
-  }, []);
-
-  const handleLightboxTouchMove = useCallback((e: React.TouchEvent) => {
-    if (touchStartY.current === null || touchStartX2.current === null) return;
-    const dy = e.touches[0].clientY - touchStartY.current;
-    const dx = Math.abs(e.touches[0].clientX - touchStartX2.current);
-    if (!isVerticalGesture.current && !isDragging) {
-      if (Math.abs(dy) > 10 && Math.abs(dy) > dx * 1.2) {
-        isVerticalGesture.current = true;
-      } else if (dx > 10) return;
-    }
-    if (!isVerticalGesture.current) return;
-    if (dy > 0) { setIsDragging(true); setDragY(dy); }
-  }, [isDragging]);
-
-  const handleLightboxTouchEnd = useCallback(() => {
-    if (isVerticalGesture.current && dragY > 120) {
-      closeWithDismiss();
-    } else {
-      setDragY(0);
-      setIsDragging(false);
-    }
-    touchStartY.current = null;
-    touchStartX2.current = null;
-    isVerticalGesture.current = false;
-  }, [dragY, closeWithDismiss]);
-
-  const dragProgress = Math.min(dragY / 300, 1);
-  const overlayOpacity = dismissing ? 0 : 1 - dragProgress * 0.6;
-  const overlayScale = dismissing ? 0.9 : 1 - dragProgress * 0.1;
-  const overlayTranslateY = dismissing ? 100 : dragY;
-
   return (
     <>
       <section style={{ margin: "2rem 0 1rem", position: "relative" }}>
@@ -241,7 +143,6 @@ export default function DiasporaPhotoStrip() {
 
         <style>{`
           .diaspora-scroll-strip::-webkit-scrollbar { display: none; }
-          .snap-lightbox::-webkit-scrollbar { display: none; }
         `}</style>
 
         {/* Container with nav arrows */}
@@ -403,125 +304,38 @@ export default function DiasporaPhotoStrip() {
         </div>
       </section>
 
-      {/* Fullscreen lightbox — scroll-snap + pull-down-to-dismiss */}
-      {selectedIndex !== null && (
-        <div
-          onTouchStart={handleLightboxTouchStart}
-          onTouchMove={handleLightboxTouchMove}
-          onTouchEnd={handleLightboxTouchEnd}
-          style={{
-            position: "fixed",
-            top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: `rgba(0,0,0,${0.95 * overlayOpacity})`,
-            zIndex: 9999,
-            display: "flex",
-            flexDirection: "column",
-            animation: dismissing ? "none" : "snapFadeIn 0.15s ease-out",
-            transition: isDragging ? "none" : "background-color 0.2s ease",
-          }}
-        >
-          <style>{`@keyframes snapFadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
-
-          {/* Close button — stays fixed */}
-          <button
-            onClick={closeOverlay}
+      {/* Fullscreen lightbox (shared) */}
+      <Lightbox
+        open={selectedIndex !== null}
+        initialIndex={selectedIndex ?? 0}
+        count={photos.length}
+        onClose={() => setSelectedIndex(null)}
+        renderSlide={(i) => (
+          <img
+            src={photos[i]?.src}
+            alt={photos[i]?.label}
+            loading={Math.abs(i - (selectedIndex ?? 0)) <= 2 ? "eager" : "lazy"}
+            draggable={false}
             style={{
-              position: "absolute", top: 12, right: 16, zIndex: 10000,
-              background: "rgba(255,255,255,0.15)", border: "none", color: "#fff",
-              width: 36, height: 36, borderRadius: "50%", cursor: "pointer",
-              fontSize: 20, display: "flex", alignItems: "center", justifyContent: "center",
-            }}
-          >×</button>
-
-          {/* Inner content — moves with vertical drag */}
-          <div style={{
-            flex: 1, display: "flex", flexDirection: "column",
-            transform: `translateY(${overlayTranslateY}px) scale(${overlayScale})`,
-            opacity: overlayOpacity,
-            transition: isDragging ? "none" : "transform 0.25s cubic-bezier(0.2,0,0,1), opacity 0.2s ease",
-            willChange: "transform, opacity",
+              maxWidth: "calc(100vw - 40px)",
+              maxHeight: "calc(100vh - 140px)",
+              objectFit: "contain",
+              borderRadius: "8px",
+              userSelect: "none",
+              WebkitUserSelect: "none",
+            } as React.CSSProperties}
+          />
+        )}
+        renderBelow={(i) => (
+          <p style={{
+            color: "#fff", fontSize: "15px", fontWeight: 600,
+            fontFamily: "var(--font-sans, sans-serif)", letterSpacing: "0.02em",
+            textAlign: "center", padding: "8px 20px 0", margin: 0,
           }}>
-            {/* Counter */}
-            <p style={{
-              color: "rgba(255,255,255,0.5)", fontSize: "13px",
-              fontFamily: "var(--font-sans, sans-serif)", textAlign: "center",
-              padding: "16px 0 8px", margin: 0, userSelect: "none",
-            }}>
-              {currentIndex + 1} / {photos.length}
-            </p>
-
-            {/* Scroll-snap container — native 60fps horizontal swiping */}
-            <div
-              ref={overlayScrollRef}
-              className="snap-lightbox"
-              onScroll={handleOverlayScroll}
-              style={{
-                flex: 1, display: "flex",
-                overflowX: "auto", overflowY: "hidden",
-                scrollSnapType: "x mandatory",
-                WebkitOverflowScrolling: "touch",
-                scrollbarWidth: "none", msOverflowStyle: "none",
-              } as React.CSSProperties}
-            >
-              {photos.map((photo, i) => (
-                <div key={photo.src} style={{
-                  minWidth: "100vw", width: "100vw", height: "100%",
-                  scrollSnapAlign: "start", display: "flex",
-                  alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, padding: "0 20px", boxSizing: "border-box",
-                }}>
-                  <img
-                    src={photo.src} alt={photo.label}
-                    loading={Math.abs(i - (selectedIndex ?? 0)) <= 2 ? "eager" : "lazy"}
-                    draggable={false}
-                    style={{
-                      maxWidth: "calc(100vw - 40px)", maxHeight: "calc(100vh - 140px)",
-                      objectFit: "contain", borderRadius: "8px",
-                      userSelect: "none", WebkitUserSelect: "none",
-                    } as React.CSSProperties}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Caption */}
-            <p style={{
-              color: "#fff", fontSize: "15px", fontWeight: 600,
-              fontFamily: "var(--font-sans, sans-serif)", letterSpacing: "0.02em",
-              textAlign: "center", padding: "8px 20px 12px", margin: 0,
-              maxWidth: "600px", alignSelf: "center",
-            }}>
-              {photos[currentIndex]?.label}
-            </p>
-
-            {/* Dot indicators */}
-            <div style={{ display: "flex", justifyContent: "center", gap: "6px", paddingBottom: "12px" }}>
-              {photos.map((_, i) => (
-                <div key={i} onClick={() => {
-                  const el = overlayScrollRef.current;
-                  if (el) el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
-                }} style={{
-                  width: i === currentIndex ? "18px" : "6px", height: "6px",
-                  borderRadius: "3px", cursor: "pointer",
-                  background: i === currentIndex ? "#c9a84c" : "rgba(255,255,255,0.3)",
-                  transition: "all 0.2s ease",
-                }} />
-              ))}
-            </div>
-
-            {/* Pull-down hint */}
-            {isDragging && (
-              <div style={{
-                textAlign: "center", paddingBottom: "8px",
-                color: dragY > 120 ? "#c9a84c" : "rgba(255,255,255,0.4)",
-                fontSize: "12px", fontFamily: "var(--font-sans, sans-serif)",
-              }}>
-                {dragY > 120 ? "Release to close" : "↓ Pull down to close"}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+            {photos[i]?.label}
+          </p>
+        )}
+      />
     </>
   );
 }
