@@ -71,7 +71,6 @@ interface ProviderRates {
 }
 export default function RemittanceTracker() {
   const [data, setData] = useState<UsdInrData | null>(null);
-  const [amount, setAmount] = useState("1000");
   const [providers, setProviders] = useState<ProviderRates | null>(null);
 
   useEffect(() => {
@@ -90,7 +89,6 @@ export default function RemittanceTracker() {
   if (!data) return null;
 
   const up = data.day_change >= 0;
-  const inr = (parseFloat(amount) || 0) * data.rate;
   const fmtDate = (iso: string) => {
     const [y, m, d] = iso.split("-").map(Number);
     return new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
@@ -133,34 +131,11 @@ export default function RemittanceTracker() {
                     {up ? "▲" : "▼"} {Math.abs(data.day_change).toFixed(2)} ({Math.abs(data.day_change_pct).toFixed(2)}%)
                   </span>
                 </div>
-                <p className="text-white/50 text-sm mt-1 mb-5">per US $1 · 30-day range ₹{data.low_30d.toFixed(2)} – ₹{data.high_30d.toFixed(2)}</p>
-
-                <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3 border border-white/10">
-                  <div className="flex-1">
-                    <label className="text-[11px] uppercase tracking-wider text-white/40 block mb-1">You send</label>
-                    <div className="flex items-center gap-1">
-                      <span className="text-white/60 font-semibold">$</span>
-                      <input
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ""))}
-                        inputMode="decimal"
-                        className="bg-transparent text-white text-xl font-bold w-full outline-none tabular-nums"
-                      />
-                    </div>
-                  </div>
-                  <div className="text-white/30 text-xl">→</div>
-                  <div className="flex-1 text-right">
-                    <label className="text-[11px] uppercase tracking-wider text-white/40 block mb-1">They get ≈</label>
-                    <p className="text-[#D4A843] text-xl font-bold tabular-nums">
-                      ₹{inr.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
-                    </p>
-                  </div>
-                </div>
-                <p className="text-white/30 text-[11px] mt-2">Indicative mid-market rate — transfer services add their own margin.</p>
+                <p className="text-white/50 text-sm mt-1">per US $1 · 30-day range ₹{data.low_30d.toFixed(2)} – ₹{data.high_30d.toFixed(2)}</p>
               </div>
 
-              {/* Chart */}
-              <div className="bg-white/[0.03] rounded-xl p-3 border border-white/10">
+              {/* Chart — desktop only; mobile stays lean */}
+              <div className="hidden md:block bg-white/[0.03] rounded-xl p-3 border border-white/10">
                 <p className="text-[11px] uppercase tracking-wider text-white/40 px-1 pb-2">Last 30 days</p>
                 <Sparkline points={data.sparkline} />
               </div>
@@ -168,8 +143,8 @@ export default function RemittanceTracker() {
 
             {/* Provider comparison — who puts more rupees in hand */}
             {providers && (
-              <div className="mt-8">
-                <div className="flex items-baseline justify-between mb-3">
+              <div className="mt-6">
+                <div className="mb-3">
                   <h3 className="text-white font-bold text-[15px]">
                     Who gives you more for ${providers.send_usd.toLocaleString()}?
                   </h3>
@@ -177,7 +152,8 @@ export default function RemittanceTracker() {
                     Updated {fmtDate(providers.as_of)} · bank deposit
                   </span>
                 </div>
-                <div className="overflow-x-auto rounded-xl border border-white/10">
+                {/* Desktop table */}
+                <div className="hidden md:block overflow-x-auto rounded-xl border border-white/10">
                   <table className="w-full text-sm min-w-[520px]">
                     <thead>
                       <tr className="text-left text-[11px] uppercase tracking-wider text-white/40 border-b border-white/10">
@@ -221,6 +197,38 @@ export default function RemittanceTracker() {
                         ))}
                     </tbody>
                   </table>
+                </div>
+                {/* Mobile: stacked provider cards, no horizontal scroll */}
+                <div className="md:hidden rounded-xl border border-white/10 divide-y divide-white/5 overflow-hidden">
+                  {[...providers.providers]
+                    .sort((a, b) => b.recipient_gets_inr - a.recipient_gets_inr)
+                    .map((p, i) => (
+                      <div key={p.provider} className={`px-4 py-3 ${i === 0 ? "bg-[#D4A843]/10" : ""}`}>
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="min-w-0">
+                            <span className="text-white font-semibold text-[15px]">{p.provider}</span>
+                            {i === 0 && (
+                              <span className="ml-2 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#D4A843] text-[#0B1D3A] align-middle">
+                                Best
+                              </span>
+                            )}
+                            <p className="text-[11px] text-white/40 truncate">
+                              {p.promo
+                                ? `${p.promo_note || "Promotional rate"} · as of ${p.as_of ? fmtDate(p.as_of) : "—"}`
+                                : [p.delivery, p.as_of ? `as of ${fmtDate(p.as_of)}` : null].filter(Boolean).join(" · ")}
+                            </p>
+                          </div>
+                          <div className="text-right shrink-0">
+                            <p className="text-[#D4A843] font-bold text-lg tabular-nums">
+                              ₹{p.recipient_gets_inr.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+                            </p>
+                            <p className="text-[11px] text-white/40 tabular-nums">
+                              ₹{p.rate.toFixed(2)} · ${p.fee_usd.toFixed(2)} fee
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                 </div>
                 <p className="text-white/30 text-[11px] mt-2">
                   Best available advertised rates for bank deposit — some are new-customer promos. Providers change rates through the day; check before sending.
