@@ -1090,6 +1090,10 @@ _HEADLINE_NONNAME_FIRST_WORDS = {
     "one", "two", "three", "four", "five", "six", "seven", "eight",
     "nine", "ten", "eleven", "twelve", "dozen", "first", "second", "third",
     "fifth",
+    # Common adjective leads that are never a given name
+    # ("New Study Finds...", "Global Markets Rally..." — fixes false-positive
+    # person guard that blocked Pexels for clearly non-person headlines)
+    "new", "global",
 }
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
@@ -1109,6 +1113,19 @@ def headline_person_name(headline):
     if not headline:
         return None
     h = headline.strip()
+    # Possessive lead with quoted next word ("Warsh's 'Dose of
+    # Accommodation'..."): the two-word regex below can't match a quoted
+    # second token, so detect the possessive subject first — it IS the named
+    # person. Without this the identity guard never ran and a generic Pexels
+    # stock photo went on a named-person article. Prefix/org possessives
+    # ("India's", "Fed's") are still excluded below.
+    mp = re.match(r"^([A-Z][A-Za-z.'-]*?['’]s)\s+(?=['\"“”‘’])", h)
+    if mp:
+        subject = re.sub(r"['’]s$", "", mp.group(1))
+        base = subject.lower().rstrip(".")
+        if base not in _HEADLINE_PREFIX_WORDS and base not in _HEADLINE_NONNAME_FIRST_WORDS:
+            return subject
+        return None
     m = re.match(r"^([A-Za-z][\w.'-]*)\s+([A-Za-z][\w.'-]*)", h)
     if not m:
         return None
@@ -1141,7 +1158,7 @@ def headline_person_name(headline):
     if first[0].isupper() and second[0].isupper() and len(first) > 1 and len(second) > 2:
         name = f"{first} {second}"
         # Strip possessive: "Ranveer Brar's" → "Ranveer Brar"
-        name = re.sub(r"'s$", "", name)
+        name = re.sub(r"['’]s$", "", name)
         return name
     return None
 
