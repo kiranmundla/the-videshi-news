@@ -33,6 +33,7 @@ import InterviewSpotlight from "@/components/homepage/InterviewSpotlight";
 import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
 import NowInTheaters from "@/components/NowInTheaters";
+import BoxOfficeStrip from "@/components/homepage/BoxOfficeStrip";
 import StreamingPicks from "@/components/StreamingPicks";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import AILeaderboard from "@/components/AILeaderboard";
@@ -746,6 +747,7 @@ export default function IndexV2() {
         <TrailersRail />
         <StarBuzzStrip />
         <NowInTheaters />
+        <BoxOfficeStrip />
         <StreamingPicks />
         <FridayLaughs />
 

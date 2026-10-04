@@ -1,0 +1,147 @@
+{
+ "generated_at": "2026-10-04T17:43:58.990823+00:00",
+ "week_of": "Sep 28 – Oct 04, 2026",
+ "as_of": "2026-10-03",
+ "films": [
+  {
+   "title": "Mirzapur: The Movie",
+   "language": "Hindi",
+   "release_date": "2026-09-04",
+   "india_net_crore": 229.5,
+   "worldwide_gross_crore": 334.1,
+   "budget_crore": 90,
+   "verdict": "Blockbuster",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Mirzapur_from_the_Ganges.JPG/500px-Mirzapur_from_the_Ganges.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+   "sources": [
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/Mirzapur_The_Movie_2026_Box_Office_Collection_Day_28"
+    },
+    {
+     "name": "Bollywood Hungama",
+     "url": "https://www.bollywoodhungama.com/movie/mirzapur-the-movie/box-office/"
+    }
+   ]
+  },
+  {
+   "title": "Bethlehem Kudumba Unit",
+   "language": "Malayalam",
+   "release_date": "2026-08-21",
+   "india_net_crore": 164.11,
+   "worldwide_gross_crore": 329.84,
+   "budget_crore": 25,
+   "verdict": "All-Time Blockbuster",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Bethlehem_Kudumba_Unit_Movie_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/Bethlehem_Kudumba_Unit_2026_Box_Office_Collection_Day_40"
+    },
+    {
+     "name": "Moviefly",
+     "url": "https://moviefly.in/bethlehem-kudumba-unit-set-for-jiohotstar-premiere-after-historic-box-office-run/"
+    }
+   ]
+  },
+  {
+   "title": "The Paradise",
+   "language": "Telugu",
+   "release_date": "2026-09-24",
+   "india_net_crore": 113.0,
+   "worldwide_gross_crore": 164.29,
+   "budget_crore": 200,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/The_Paradise_%282026_Indian_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Koimoi",
+     "url": "https://www.koimoi.com/box-office/daily-breakdown/the-paradise-day-wise-box-office-collection/"
+    },
+    {
+     "name": "Hollywood Reporter India",
+     "url": "https://www.hollywoodreporterindia.com/features/insight/the-paradise-box-office-the-nani-film-storms-past-100-crore-in-india"
+    }
+   ]
+  },
+  {
+   "title": "Mandaadi",
+   "language": "Tamil",
+   "release_date": "2026-09-10",
+   "india_net_crore": 99.92,
+   "worldwide_gross_crore": 134.18,
+   "budget_crore": null,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ea/Mandaadi.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/Mandaadi_2026_Box_Office_Collection_Day_23"
+    },
+    {
+     "name": "Cinema Express",
+     "url": "https://www.cinemaexpress.com/tamil/news/2026/Sep/30/soori-suhas-mandaadi-achieves-new-milestone-at-global-box-office"
+    }
+   ]
+  },
+  {
+   "title": "Vibe",
+   "language": "Hindi",
+   "release_date": "2026-09-18",
+   "india_net_crore": 15.76,
+   "worldwide_gross_crore": 20.8,
+   "budget_crore": 40,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/2c/Vibe_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Koimoi",
+     "url": "https://www.koimoi.com/box-office/daily-breakdown/vibe-day-wise-box-office-collection/"
+    },
+    {
+     "name": "Fastread",
+     "url": "https://fastread.in/vibe-budget-box-office-collection/"
+    }
+   ]
+  },
+  {
+   "title": "Daayra",
+   "language": "Hindi",
+   "release_date": "2026-09-18",
+   "india_net_crore": 8.22,
+   "worldwide_gross_crore": 11.9,
+   "budget_crore": 60,
+   "verdict": "Flop",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7c/Daayra_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Koimoi",
+     "url": "https://www.koimoi.com/box-office/daily-breakdown/daayra-day-wise-box-office-collection/"
+    },
+    {
+     "name": "FilmyFriday",
+     "url": "https://filmyfriday.com/daayra-box-office-closing-collection-kareena-kapoor-prithviraj-sukumarans-film-wraps-up-below-12-crore/"
+    }
+   ]
+  },
+  {
+   "title": "Hanuman Ansh",
+   "language": "Hindi",
+   "release_date": "2026-08-07",
+   "india_net_crore": 324.01,
+   "worldwide_gross_crore": null,
+   "budget_crore": 1.8,
+   "verdict": "All-Time Blockbuster",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "BoxOfficeIndia24",
+     "url": "https://www.boxofficeindia24.com/news/hanuman-ansh-day-58-box-office-20261003-live"
+    },
+    {
+     "name": "JeetWin News",
+     "url": "https://jeetwinnews.com/bollywood/hanuman-ansh-second-2026-film-cross-300-crore-india-box-office/"
+    }
+   ]
+  }
+ ]
+}
