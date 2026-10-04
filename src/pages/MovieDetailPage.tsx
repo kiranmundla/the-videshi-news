@@ -1048,7 +1048,7 @@ export default function MovieDetailPage() {
               </div>
             )}
             <Link
-              to={`/article/${reviewArticle.slug}`}
+              to={`/articles/${reviewArticle.slug}`}
               style={{
                 display: "inline-block",
                 marginTop: 14,

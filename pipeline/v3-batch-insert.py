@@ -301,10 +301,44 @@ def process_article(article):
     
     return True
 
+def load_kids_relevant_map():
+    """Build topic_id -> kids_relevant from the selector's candidate files.
+
+    Belt-and-braces: the writer should copy the flag into the article JSON
+    (see V3-WRITER-INSTRUCTIONS.md 3e), but articles staged before that
+    instruction existed lack it. Fall back to the candidate file so the
+    /kids Latest Stories feed doesn't silently go stale again.
+    """
+    import os
+    kids_map = {}
+    for path in ("/tmp/v3-candidates.json",
+                 os.path.expanduser("~/workspace/the-videshi-news/pipeline/.state/v3-candidates.json")):
+        try:
+            with open(path) as f:
+                data = json.load(f)
+            for c in data.get("candidates", []):
+                tid = c.get("topic_id")
+                if tid and tid not in kids_map:
+                    kids_map[tid] = bool(c.get("kids_relevant", False))
+        except Exception:
+            continue
+    return kids_map
+
+
+KIDS_RELEVANT_BY_TOPIC = load_kids_relevant_map()
+
+
 def main():
     with open("/tmp/v3-articles.json") as f:
         articles = json.load(f)
-    
+
+    # Backfill the kids_relevant flag from the selector's candidate file
+    # for articles whose writer didn't copy it (pre-fix staging).
+    for a in articles:
+        if "kids_relevant" not in a and a.get("topic_id") in KIDS_RELEVANT_BY_TOPIC:
+            a["kids_relevant"] = KIDS_RELEVANT_BY_TOPIC[a["topic_id"]]
+            print(f"  kids_relevant backfilled from candidates: {a['kids_relevant']} (topic {a['topic_id']})")
+
     print(f"Processing {len(articles)} articles...")
     success = 0
     for a in articles:

@@ -960,7 +960,7 @@ export default function KidsPage() {
                 </div>
                 <p className="text-sm text-muted-foreground mb-5">
                   {filteredPlaces.length} {filteredPlaces.length === 1 ? "place" : "places"} found
-                  {nearMeActive && locationLabel ? ` · ${locationLabel}` : " · Bay Area"}
+                  {nearMeActive && locationLabel ? ` · ${locationLabel}` : " · across the US"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                   {placesToShow.map((p) => (
@@ -992,16 +992,21 @@ export default function KidsPage() {
                   {kidsArticles.slice(0, 6).map((article) => (
                     <Link
                       key={article.id}
-                      to={`/article/${article.slug}`}
+                      to={`/articles/${article.slug}`}
                       className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-md transition-all duration-200"
                     >
                       {article.hero_image_url && (
-                        <div className="aspect-[16/9] overflow-hidden">
+                        <div className="aspect-[16/9] overflow-hidden bg-muted/20">
                           <img
                             src={article.hero_image_url}
                             alt=""
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             loading="lazy"
+                            onError={(e) => {
+                              // Hide the image frame entirely if the hero fails to load
+                              const frame = (e.target as HTMLImageElement).parentElement;
+                              if (frame) frame.style.display = "none";
+                            }}
                           />
                         </div>
                       )}
