@@ -59,6 +59,9 @@ interface RateProvider {
   recipient_gets_inr: number;
   delivery?: string;
   source_url?: string;
+  as_of?: string;
+  promo?: boolean;
+  promo_note?: string;
 }
 
 interface ProviderRates {
@@ -199,8 +202,14 @@ export default function RemittanceTracker() {
                                   Best
                                 </span>
                               )}
-                              {p.delivery && (
-                                <span className="block text-[11px] text-white/40 font-normal">{p.delivery}</span>
+                              {p.promo ? (
+                                <span className="block text-[11px] text-white/40 font-normal">
+                                  {p.promo_note || "Promotional rate"} · as of {p.as_of ? fmtDate(p.as_of) : "—"}
+                                </span>
+                              ) : (
+                                <span className="block text-[11px] text-white/40 font-normal">
+                                  {[p.delivery, p.as_of ? `as of ${fmtDate(p.as_of)}` : null].filter(Boolean).join(" · ")}
+                                </span>
                               )}
                             </td>
                             <td className="px-4 py-2.5 text-right text-white/70 tabular-nums">₹{p.rate.toFixed(2)}</td>
@@ -214,7 +223,7 @@ export default function RemittanceTracker() {
                   </table>
                 </div>
                 <p className="text-white/30 text-[11px] mt-2">
-                  Indicative rates and fees — providers change them through the day. Check the provider before sending.
+                  Best available advertised rates for bank deposit — some are new-customer promos. Providers change rates through the day; check before sending.
                 </p>
               </div>
             )}

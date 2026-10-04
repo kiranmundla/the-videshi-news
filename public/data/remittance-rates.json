@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-10-04T18:10:53.294242+00:00",
+ "generated_at": "2026-10-04T18:12:49.309520+00:00",
  "as_of": "2026-10-04",
  "send_usd": 1000,
- "note": "Bank deposit to India. Indicative — providers change rates through the day.",
+ "note": "Bank deposit to India. Best available advertised rates — some reflect new-customer promos. Providers change rates through the day.",
  "providers": [
   {
    "provider": "Remitly",
@@ -10,7 +10,10 @@
    "fee_usd": 0.0,
    "recipient_gets_inr": 96420.0,
    "delivery": "Express (minutes) or Economy (3–5 days)",
-   "source_url": "https://www.remitly.com/us/en/india"
+   "as_of": "2026-09-28",
+   "promo": true,
+   "promo_note": "Welcome rate, new customers",
+   "source_url": "https://www.remitly.com/blog/money-transfer/remitly-vs-wise-for-sending-300000-to-india-from-the-us/"
   },
   {
    "provider": "Wise",
@@ -18,6 +21,8 @@
    "fee_usd": 6.85,
    "recipient_gets_inr": 95491.67,
    "delivery": "Arrives in seconds",
+   "as_of": "2026-10-03",
+   "promo": false,
    "source_url": "https://wise.com/us/send-money/"
   },
   {
@@ -26,6 +31,8 @@
    "fee_usd": 0.0,
    "recipient_gets_inr": 95789.79,
    "delivery": "Typically 1–4 days",
+   "as_of": "2026-10-03",
+   "promo": false,
    "source_url": "https://www.westernunion.com/us/en/home.html"
   },
   {
@@ -34,6 +41,9 @@
    "fee_usd": 0.0,
    "recipient_gets_inr": 95761.0,
    "delivery": "Typically within minutes",
+   "as_of": "2026-09-24",
+   "promo": true,
+   "promo_note": "First-time rate, new customers",
    "source_url": "https://www.xoom.com/india"
   }
  ]
