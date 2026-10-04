@@ -1,0 +1,52 @@
+[
+  {
+    "id": "b68d6ceb-4117-48f1-81bc-17a4f8a92d29",
+    "headline": "OpenAI Takes on Microsoft With ChatGPT's Own Office Suite at DevDay",
+    "slug": "openai-chatgpt-space-pages-office-suite-devday",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "da563fd9-9efa-4b85-bfa1-7b27213c5b20",
+    "headline": "India Rebuts Pakistan at UN: J&K and Ladakh Are Integral, Says Envoy",
+    "slug": "india-rebuts-pakistan-un-kashmir-right-of-reply",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d81c710d-be63-46cf-95ce-979d11567779",
+    "headline": "Pranavi Urs Honoured at NDTV IGPL Pro-Am After Historic Asian Games Golf Gold",
+    "slug": "pranavi-urs-ndtv-igpl-pro-am-asian-games-golf-gold",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "c685a89b-35b4-4b62-9d41-b7f341ebb6a4",
+    "headline": "Chennai's Poppadum Turns Jain Food Into Playful Street-Food Adventure",
+    "slug": "poppadum-chennai-jain-menu-street-food-adventure",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "29de2dda-780c-40a1-ba40-b79c1f82c6f7",
+    "headline": "NRI Deposit Inflows Surge Seven-Fold to $36.24 Billion on RBI Swap Push",
+    "slug": "nri-deposit-inflows-surge-36-billion-rbi-swap",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "ee567ab9-ac86-49d2-96e2-bc3daad40fe8",
+    "headline": "Georgia's Sirish Subash Wins Top Young Scientist Title for AI Pesticide Detector",
+    "slug": "sirish-subash-americas-top-young-scientist-pestiscand",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "id": "0a35133b-1d39-44f9-8f0b-fa5cd3cd9fe1",
+    "headline": "DACA and TPS Holders Face Tougher Travel Rules After Immigration Appeals Board R",
+    "slug": "daca-tps-advance-parole-travel-restrictions-immigration-ruling",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by explicitly discussing how this ruling impacts Indian DACA and TPS holders, including any specific cases or statistics that highlight the Indian community's involvement in these programs.",
+        "Include specific financial implications for readers, such as the total potential costs of advance parole and reentry fees, along with a timeline for when these changes take effect, so readers can understand the urgency and financial burden.",
+        "Add a section that outlines concrete action steps for affected individuals, such as consulting with immigration attorneys or specific resources they can access for assistance, to provide a clear 'what does this mean for ME?' takeaway.",
+        "Consider revising the headline to be more specific and compelling, such as 'New Immigration Ruling Poses Travel Risks for Indian DACA and TPS Holders: What You Need to Know Now.'"
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the ruling to provide readers with direct access to the source and additional context."
+      ]
+    }
+  },
+  {
+    "id": "575ed2d1-4024-4cd2-aaf7-b73d06ca5457",
+    "headline": "Russia to Take 70,000 Indian Skilled Workers This Year, Jaishankar Tells Parliam",
+    "slug": "russia-70000-indian-skilled-workers-jaishankar-parliament-panel",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific information on how the 70,000 job opportunities in Russia will impact Indian NRIs and their families, such as potential salary ranges in rubles or dollars for skilled workers in construction and logistics.",
+        "Add concrete details about the recruitment process for Indians interested in these jobs, including any deadlines for applications, eligibility criteria, and specific registered recruitment channels that should be used to avoid fraud.",
+        "Include a section that discusses how these job opportunities align with the current economic climate in India and Russia, providing context on how this could benefit NRIs looking to work abroad.",
+        "Clarify the implications of the 140 Indians discharged from the Russian military and the ongoing actions against fraudulent recruiters, as this is critical information for NRIs considering employment in Russia."
+      ],
+      "embed_opportunities": [
+        "Embed an official tweet from the Ministry of External Affairs or a relevant government agency regarding the announcement of job opportunities in Russia to provide credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "209f4c86-d893-45cb-85a7-624f13a78844",
+    "headline": "From 23-Year-Old Trailblazer to State Senate: Indian American Nabeela Syed Launc",
+    "slug": "nabeela-syed-indian-american-trailblazer-illinois-state-senate-bid",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including quotes or insights from Indian Americans in Illinois about how Nabeela Syed's campaign impacts their community, particularly regarding healthcare and representation.",
+        "Incorporate specific details about how her healthcare policies could affect NRIs, such as potential changes in prescription drug costs or healthcare access for those traveling to or living in Illinois.",
+        "Provide a more compelling headline that emphasizes the significance of her candidacy for the Indian American community, such as 'Nabeela Syed: A New Voice for Indian Americans in Illinois Senate Race'.",
+        "Add context about the importance of representation for the Indian diaspora in U.S. politics, perhaps by comparing her candidacy to previous Indian American politicians or discussing voter turnout trends in the community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nabeela Syed's campaign that highlights her key policy proposals or a video of her discussing her vision for the Senate."
+      ]
+    }
+  }
+]

@@ -633,24 +633,71 @@ _TRAILER_BLOCK_RE = re.compile(
     re.IGNORECASE,
 )
 # Official channels whose uploads we trust as genuine trailers.
-# Studios, music labels (they drop trailers), and streamers.
-OFFICIAL_TRAILER_CHANNELS = {
-    # Indian studios / labels / streamers
-    "t-series", "yash raj films", "yrf", "yrf music", "dharma productions",
-    "dharma movies", "sony music india", "sony pictures entertainment",
-    "balaji motion pictures", "zee music company", "eros now", "pen movies",
-    "netflix india", "netflix", "prime video india", "prime video",
-    "disney+ hotstar", "hotstar", "jio cinema", "jio hotstar", "zee5",
-    "sonyliv", "mx player", "viacom18", "reliance entertainment", "aa films",
-    "saregama", "aditya music", "think music india", "lahari music",
-    "sun pictures", "sun tv", "lyca productions", "mythri movie makers",
-    "hombale films", "geetha arts", "sri venkateswara creations",
-    "phull stop with richa & ali",
-    # Hollywood majors
-    "warner bros. pictures", "universal pictures", "walt disney studios",
-    "marvel entertainment", "marvel", "sony pictures", "paramount pictures",
-    "20th century studios", "lionsgate", "ign",
-}
+# Single source of truth: pipeline/trailer-channels.json (polled by trailer-watch.py).
+# Falls back to the legacy hardcoded set if the file is missing.
+def _load_official_trailer_channels():
+    try:
+        cfg = json.loads((REPO_ROOT / "pipeline" / "trailer-channels.json").read_text())
+        names = {c["name"].strip().lower() for c in cfg.get("channels", []) if c.get("name")}
+        if names:
+            return names
+    except Exception:
+        pass
+    return {
+        "t-series", "yash raj films", "yrf", "yrf music", "dharma productions",
+        "dharma movies", "sony music india", "sony pictures entertainment",
+        "balaji motion pictures", "zee music company", "eros now", "pen movies",
+        "netflix india", "netflix", "prime video india", "prime video",
+        "disney+ hotstar", "hotstar", "jio cinema", "jio hotstar", "zee5",
+        "sonyliv", "mx player", "viacom18", "reliance entertainment", "aa films",
+        "saregama", "aditya music", "think music india", "lahari music",
+        "sun pictures", "sun tv", "lyca productions", "mythri movie makers",
+        "hombale films", "geetha arts", "sri venkateswara creations",
+        "phull stop with richa & ali",
+        "warner bros. pictures", "universal pictures", "walt disney studios",
+        "marvel entertainment", "marvel", "sony pictures", "paramount pictures",
+        "20th century studios", "lionsgate", "ign",
+    }
+
+
+OFFICIAL_TRAILER_CHANNELS = _load_official_trailer_channels()
+
+
+def _watch_feed_trailers():
+    """Trailers found by trailer-watch.py polling official channel RSS feeds.
+
+    These bypass article bodies — they land in the rail directly. Each entry is
+    re-verified against the title/allowlist gates so the rail stays clean.
+    """
+    try:
+        items = json.loads((REPO_ROOT / "pipeline" / ".state" / "trailer-watch-feed.json").read_text())
+    except Exception:
+        return []
+    out = []
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=14)).isoformat()
+    for d in items if isinstance(items, list) else []:
+        if not isinstance(d, dict) or not d.get("video_id"):
+            continue
+        if d.get("published", "") < cutoff:
+            continue
+        title = d.get("title") or ""
+        author = d.get("channel") or ""
+        if not _TRAILER_TITLE_RE.search(title):
+            continue
+        if _TRAILER_BLOCK_RE.search(title):
+            continue
+        if author.strip().lower() not in OFFICIAL_TRAILER_CHANNELS:
+            continue
+        out.append({
+            "video_id": d["video_id"],
+            "title": title,
+            "channel": author,
+            "article_slug": None,
+            "article_title": None,
+            "published_at": d.get("published"),
+            "thumbnail": d.get("thumbnail") or f"https://i.ytimg.com/vi/{d['video_id']}/hqdefault.jpg",
+        })
+    return out
 
 
 def _is_trailer_video(title: str | None, author: str | None) -> bool:
@@ -707,6 +754,18 @@ def _build_trailers(recent_articles: list[dict]) -> list[dict]:
         trailers.append(t)
         if len(trailers) >= 12:
             break
+
+    # Merge direct channel-watch finds (trailer-watch.py). These have no article;
+    # dedupe by video_id against article-sourced entries above.
+    if len(trailers) < 12:
+        have_ids = {t["video_id"] for t in trailers}
+        for w in _watch_feed_trailers():
+            if w["video_id"] in have_ids:
+                continue
+            have_ids.add(w["video_id"])
+            trailers.append(w)
+            if len(trailers) >= 12:
+                break
 
     try:
         YOUTUBE_OEMBED_CACHE.parent.mkdir(parents=True, exist_ok=True)

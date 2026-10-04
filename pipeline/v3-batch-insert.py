@@ -207,6 +207,12 @@ def process_article(article):
     image_caption = article.get("image_caption", "")
     image_attribution = article.get("image_attribution", "")
     
+    # Writer-supplied image (e.g. official YouTube thumbnail for trailer drops).
+    # Still goes through download+upload below; sourcing steps are skipped.
+    if article.get("image_url"):
+        image_url = article["image_url"]
+        print(f"  Image: pre-set by writer ({image_url[:70]})")
+
     # Try person_images first
     for person in article.get("image_search_persons", []):
         pi = search_person_image(person)
