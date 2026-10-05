@@ -13,7 +13,7 @@
 First run: videos older than 3 days are marked seen without action, so only
 recent drops surface. Subsequent runs: only genuinely new uploads.
 """
-import json, os, re, sys, subprocess, html
+import json, os, re, sys, subprocess, html, unicodedata
 from datetime import datetime, timezone, timedelta
 from xml.etree import ElementTree as ET
 
@@ -101,60 +101,110 @@ def slugify(s):
     return s[:70].strip("-")
 
 
-def build_brief_article(drop, channel):
-    vid = drop["video_id"]
-    title = drop["title"]
+_LANG_RE = r"hindi|tamil|telugu|kannada|malayalam|bengali|marathi|punjabi|gujarati|english"
+
+
+def extract_language(title):
+    """'... (Kannada) | Official Trailer' -> 'Kannada'. None if not found."""
+    m = re.search(r"\b(" + _LANG_RE + r")\b", title, re.I)
+    return m.group(1).capitalize() if m else None
+
+
+def clean_film_name(film):
+    """Strip language tags from a film name: '#418 (Kannada)' -> '#418'."""
+    film = re.sub(r"\s*\((?:" + _LANG_RE + r")\)\s*", " ", film, flags=re.I)
+    film = re.sub(r"\s*\b(" + _LANG_RE + r")\b\s*$", "", film, flags=re.I)
+    return re.sub(r"\s+", " ", film).strip()
+
+
+def film_key(title):
+    """Grouping key: same movie across language versions -> same key."""
+    t = unicodedata.normalize("NFKD", title)
+    film, _ = split_film_title(t)
+    key = re.sub(r"[^a-z0-9]+", "", clean_film_name(film).lower())
+    return key or re.sub(r"[^a-z0-9]+", "", t.lower())[:40]
+
+
+def build_brief_article(drops, channels_by_name):
+    """One article per film; every language version listed with its own embed."""
+    # Primary = most descriptive title (some channels post stub titles like
+    # "#418 - Official Trailer (Hindi)" while others include the subtitle)
+    first = max(drops, key=lambda d: len(d.get("title", "")))
+    title = unicodedata.normalize("NFKD", first["title"])
     kind = "Teaser" if re.search(r"teas", title, re.I) else "Trailer"
     film, rest = split_film_title(title)
-    hook = rest.split("|")[0].strip() if rest else ""
+    film = clean_film_name(film) or "New release"
+    hook = clean_film_name(rest.split("|")[0].strip()) if rest else ""
+    # Don't let a studio/channel name become the headline hook
+    if re.search(r"(?i)\b(makers?|films?|studios?|pictures|entertainment|media|music|series|originals)\b", hook):
+        hook = ""
     headline = f"{film} {kind} Out" + (f": {hook[:60]}" if hook else "")
-    pub = parse_dt(drop["published"])
+    pub = parse_dt(first["published"])
     pub_str = pub.strftime("%B %d, %Y") if pub else "today"
-    watch_url = f"https://www.youtube.com/watch?v={vid}"
 
-    desc = drop.get("description", "")
+    versions = []
+    for d in drops:
+        lang = extract_language(unicodedata.normalize("NFKD", d["title"]))
+        ch = channels_by_name.get(d["channel"], {})
+        lang = lang or ch.get("language") or "Original"
+        watch_url = f"https://www.youtube.com/watch?v={d['video_id']}"
+        versions.append({"lang": lang, "channel": d["channel"], "url": watch_url,
+                         "video_id": d["video_id"]})
+    # de-dupe identical uploads, keep language order stable
+    uniq, seen_urls = [], set()
+    for v in versions:
+        if v["url"] not in seen_urls:
+            uniq.append(v); seen_urls.add(v["url"])
+    versions = uniq
+    langs = sorted({v["lang"] for v in versions})
+
+    desc = first.get("description", "")
     desc_line = ""
     if desc:
-        first = desc.split("\n")[0].strip()
+        first_line = unicodedata.normalize("NFKD", desc).split("\n")[0].strip()
         # Keep it professional: plain-English sentence, no emojis/marketing fluff
-        ok_chars = not re.search(r"[^\x00-\x7F\u201c\u201d\u2018\u2019\u2014\u2013\u2026\u20b9]", first)
-        ok_lang = len(re.findall(r"[A-Za-z]", first)) >= 0.6 * max(len(first), 1)
-        if 20 < len(first) < 220 and ok_chars and ok_lang \
-                and not re.search(r"(?i)subscribe|follow us|copyright|click here", first):
-            desc_line = first
+        ok_chars = not re.search(r"[^\x00-\x7F\u201c\u201d\u2018\u2019\u2014\u2013\u2026\u20b9]", first_line)
+        ok_lang = len(re.findall(r"[A-Za-z]", first_line)) >= 0.6 * max(len(first_line), 1)
+        if 20 < len(first_line) < 220 and ok_chars and ok_lang \
+                and not re.search(r"(?i)subscribe|follow us|copyright|click here", first_line):
+            desc_line = first_line
 
+    main_ch = channels_by_name.get(first["channel"], {})
     takeaways = [
-        f"The {kind.lower()} for <b>{html.escape(film)}</b> dropped {pub_str} via {html.escape(channel['name'])}.",
+        f"The {kind.lower()} for <b>{html.escape(film)}</b> dropped {pub_str}.",
     ]
     if desc_line:
         takeaways.append(html.escape(desc_line))
-    takeaways.append(f"Watch the {kind.lower()} below — embedded from the official {html.escape(channel['name'])} channel.")
+    takeaways.append(f"Out in {', '.join(langs)} — pick your language below.")
 
     body = (
         '<div class="key-takeaways"><ul>'
         + "".join(f"<li>{t}</li>" for t in takeaways)
         + "</ul></div>"
         + f"<p>The makers of <b>{html.escape(film)}</b> have released the official {kind.lower()}, "
-        + f"unveiled {pub_str} on the {html.escape(channel['name'])} YouTube channel.</p>"
+        + f"unveiled {pub_str}.</p>"
     )
     if desc_line and len(takeaways) < 3:
         body += f"<p>{html.escape(desc_line)}</p>"
-    dest = "streaming" if channel.get("industry") == "streamer" else "theaters"
+    dest = "streaming" if main_ch.get("industry") == "streamer" else "theaters"
     body += (f"<p>For diaspora audiences tracking the film's US release, the {kind.lower()} is the first "
-             f"real look at what's headed to {dest} — watch it below.</p>"
-             f"<youtube>{watch_url}</youtube>")
+             f"real look at what's headed to {dest}.</p>")
+    for v in versions:
+        body += (f"<p><b>{html.escape(v['lang'])}</b> — {html.escape(v['channel'])}</p>"
+                 f"<youtube>{v['url']}</youtube>")
 
+    thumb_vid = versions[0]["video_id"]
     return {
         "headline": headline,
-        "subheadline": f"Official {kind.lower()} for {film} released by {channel['name']}.",
-        "slug": slugify(headline) or f"trailer-{vid}",
+        "subheadline": f"Official {kind.lower()} for {film} — out in {', '.join(langs)}.",
+        "slug": slugify(headline) or f"trailer-{thumb_vid}",
         "body": body,
         "category": "entertainment",
-        "tags": ["trailers", channel["industry"], film],
-        "sources": [{"name": channel["name"], "url": watch_url}],
-        "image_url": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+        "tags": ["trailers", main_ch.get("industry", ""), film] + [l.lower() for l in langs],
+        "sources": [{"name": v["channel"], "url": v["url"]} for v in versions],
+        "image_url": f"https://i.ytimg.com/vi/{thumb_vid}/hqdefault.jpg",
         "image_caption": f"Still from the official {kind.lower()} of {film}.",
-        "image_attribution": f"{channel['name']} / YouTube",
+        "image_attribution": f"{html.escape(versions[0]['channel'])} / YouTube",
         "diaspora_angle": "US theatrical release tracking for diaspora audiences.",
     }
 
@@ -238,15 +288,31 @@ def main():
             "v3_batch_insert", os.path.join(PIPE, "v3-batch-insert.py"))
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        for d in majors[:MAX_ARTICLES_PER_RUN]:
-            ch = next(c for c in channels if c["name"] == d["channel"])
-            art = build_brief_article(d, ch)
+        channels_by_name = {c["name"]: c for c in channels}
+        # Group by film: one article per movie, all language versions inside.
+        # Prefix-merge handles channels that post stub titles ("#418 - Official
+        # Trailer") alongside full ones ("#418 The Last Warning (Hindi) | ...").
+        groups = []  # [key, drops]
+        for d in majors:
+            k = film_key(d["title"])
+            placed = False
+            for g in groups:
+                if k and g[0] and (g[0].startswith(k) or k.startswith(g[0])):
+                    if len(k) > len(g[0]):
+                        g[0] = k
+                    g[1].append(d)
+                    placed = True
+                    break
+            if not placed:
+                groups.append([k, [d]])
+        for key, drops in groups[:MAX_ARTICLES_PER_RUN]:
+            art = build_brief_article(drops, channels_by_name)
             if sb_check_slug(art["slug"]):
                 print(f"  skip (slug exists): {art['slug']}")
                 continue
             ok = mod.process_article(art)
             articles_written += 1 if ok else 0
-        print(f"Brief articles inserted: {articles_written}/{min(len(majors), MAX_ARTICLES_PER_RUN)}")
+        print(f"Brief articles inserted: {articles_written}/{min(len(groups), MAX_ARTICLES_PER_RUN)}")
     elif majors:
         print(f"(dry run — {len(majors)} major drops would get brief articles with --write)")
     return 0
