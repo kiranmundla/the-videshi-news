@@ -1,0 +1,40 @@
+[
+  {
+    "id": "a3910c41-e50e-4fa3-979f-bf558e6036b1",
+    "headline": "Guwahati Mom, 62, Turned Her Love for Sweets Into a Rs 2.5 Lakh-a-Month Business",
+    "slug": "guwahati-mom-sunita-agarwal-kitchen-gupshup-sweets-business",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how NRIs can replicate Sunita's business model in their own communities abroad, perhaps by discussing specific markets or demographics where handmade Indian sweets are in demand.",
+        "Add concrete specifics regarding the business's financials, such as the cost of ingredients, pricing strategy, or potential profit margins, to help readers understand the financial viability of starting a similar venture.",
+        "Include a section that outlines actionable steps for NRIs interested in starting a similar business, such as necessary permits, estimated startup costs, or links to resources for home-based food businesses in their respective countries.",
+        "Provide context on the growing trend of home-based food businesses among NRIs, including statistics or examples of successful ventures in other countries, to highlight the potential for success in this space."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing Sunita's sweets or a video of her making them to visually engage readers and provide a personal touch to the story."
+      ]
+    }
+  },
+  {
+    "id": "be1bda4f-fb91-429e-99ab-083bdf3552a9",
+    "headline": "NASA Astronaut Jessica Meir Shares Dazzling Moonlit Earth View From Space",
+    "slug": "nasa-astronaut-jessica-meir-moonlit-earth-spacex-crew-dragon",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 4,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how advancements in space exploration, like the Artemis program, could inspire Indian students and professionals in STEM fields, potentially leading to increased interest in space-related careers among the NRI community.",
+        "Add specific details about the Crew-12 mission's implications for international collaboration in space research, particularly how it may affect Indian scientists or institutions involved in similar projects, including any potential partnerships or funding opportunities.",
+        "Include a section that addresses how the advancements in space technology could impact industries relevant to NRIs, such as telecommunications or satellite services, providing concrete examples of how these developments might create job opportunities or investment prospects for the diaspora.",
+        "Provide a brief overview of how the Artemis program could lead to future opportunities for Indian nationals in NASA or related space agencies, including potential eligibility criteria for internships or job openings."
+      ],
+      "embed_opportunities": [
+        "Embed the official NASA tweet or video of Jessica Meir's post to provide readers with a direct visual experience of the stunning imagery shared by the astronaut."
+      ]
+    }
+  }
+]
