@@ -101,6 +101,54 @@ def slugify(s):
     return s[:70].strip("-")
 
 
+_STUDIO_RE = re.compile(
+    r"(?i)\b(makers?|films?|studios?|pictures|entertainment|media|music|"
+    r"series|originals|video|prime|netflix|hotstar|jio|sony|zee|ott)\b")
+
+
+def extract_subtitle(title):
+    """'Drive - The Pretenders Official Teaser | Prime Video India'
+    -> 'The Pretenders' (skips studio/channel fragments)."""
+    parts = re.split(r"\s*[|\-–—:]\s*", title)
+    for p in parts[1:3]:
+        q = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", p).strip()
+        q = re.sub(r"(?i)^\s*(official\s+)?(teaser|trailer)\s*", "", q).strip()
+        if q and len(q) > 2 and not _STUDIO_RE.search(q):
+            return q
+    return ""
+
+
+def parse_description(desc):
+    """Extract (clean_line, media_type, release_date) from a video description.
+
+    e.g. '...don't lose control 🏎 #DriveThePretendersOnPrime, New Movie, Oct 28'
+    -> ('Go full throttle, ... don't lose control', 'Movie', 'Oct 28')
+    """
+    text = unicodedata.normalize("NFKD", desc or "")
+    first = text.split("\n")[0].strip()
+    media_type = None
+    m = re.search(r"(?i)\bnew\s+(movie|series)\b", text)
+    if m:
+        media_type = m.group(1).capitalize()
+    elif re.search(r"(?i)\bseason\s+\d+\b", text):
+        media_type = "Series"
+    release = None
+    m = re.search(
+        r"(?i)\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
+        r"jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|"
+        r"dec(?:ember)?)\s+(\d{1,2})\b", text)
+    if m:
+        release = f"{m.group(1)[:3].capitalize()} {m.group(2)}"
+    clean = re.sub(r"https?://\S+", "", first)
+    clean = re.sub(r"#\w+", "", clean)
+    clean = re.sub(r"[^\x00-\x7F\u201c\u201d\u2018\u2019\u2014\u2013\u2026\u20b9]", "", clean)
+    clean = re.sub(r"\s+", " ", clean).strip(" -–—|")
+    ok = (20 < len(clean) < 220
+          and len(re.findall(r"[A-Za-z]", clean)) >= 0.6 * max(len(clean), 1)
+          and not re.search(r"(?i)subscribe|follow us|copyright|click here", clean))
+    return (clean if ok else ""), media_type, release
+
+
 _LANG_RE = r"hindi|tamil|telugu|kannada|malayalam|bengali|marathi|punjabi|gujarati|english"
 
 
@@ -134,9 +182,13 @@ def build_brief_article(drops, channels_by_name):
     kind = "Teaser" if re.search(r"teas", title, re.I) else "Trailer"
     film, rest = split_film_title(title)
     film = clean_film_name(film) or "New release"
+    subtitle = extract_subtitle(title)
+    subtitle = clean_film_name(subtitle)
+    if subtitle and subtitle.lower() not in film.lower():
+        film = f"{film} \u2013 {subtitle}"
     hook = clean_film_name(rest.split("|")[0].strip()) if rest else ""
     # Don't let a studio/channel name become the headline hook
-    if re.search(r"(?i)\b(makers?|films?|studios?|pictures|entertainment|media|music|series|originals)\b", hook):
+    if _STUDIO_RE.search(hook):
         hook = ""
     headline = f"{film} {kind} Out" + (f": {hook[:60]}" if hook else "")
     pub = parse_dt(first["published"])
@@ -146,7 +198,7 @@ def build_brief_article(drops, channels_by_name):
     for d in drops:
         lang = extract_language(unicodedata.normalize("NFKD", d["title"]))
         ch = channels_by_name.get(d["channel"], {})
-        lang = lang or ch.get("language") or "Original"
+        lang = lang or ch.get("language")  # None if unknown — no fake label
         watch_url = f"https://www.youtube.com/watch?v={d['video_id']}"
         versions.append({"lang": lang, "channel": d["channel"], "url": watch_url,
                          "video_id": d["video_id"]})
@@ -156,26 +208,26 @@ def build_brief_article(drops, channels_by_name):
         if v["url"] not in seen_urls:
             uniq.append(v); seen_urls.add(v["url"])
     versions = uniq
-    langs = sorted({v["lang"] for v in versions})
+    langs = sorted({v["lang"] for v in versions if v["lang"]})
 
-    desc = first.get("description", "")
-    desc_line = ""
-    if desc:
-        first_line = unicodedata.normalize("NFKD", desc).split("\n")[0].strip()
-        # Keep it professional: plain-English sentence, no emojis/marketing fluff
-        ok_chars = not re.search(r"[^\x00-\x7F\u201c\u201d\u2018\u2019\u2014\u2013\u2026\u20b9]", first_line)
-        ok_lang = len(re.findall(r"[A-Za-z]", first_line)) >= 0.6 * max(len(first_line), 1)
-        if 20 < len(first_line) < 220 and ok_chars and ok_lang \
-                and not re.search(r"(?i)subscribe|follow us|copyright|click here", first_line):
-            desc_line = first_line
+    desc_line, media_type, release = parse_description(first.get("description", ""))
+    work = "series" if media_type == "Series" else "film"
 
     main_ch = channels_by_name.get(first["channel"], {})
     takeaways = [
         f"The {kind.lower()} for <b>{html.escape(film)}</b> dropped {pub_str}.",
     ]
+    if media_type and release:
+        takeaways.append(
+            f"New {media_type.lower()} premiering {release} on {html.escape(first['channel'])}.")
+    elif media_type:
+        takeaways.append(f"New {media_type.lower()} on {html.escape(first['channel'])}.")
+    elif release:
+        takeaways.append(f"Releasing {release}.")
     if desc_line:
         takeaways.append(html.escape(desc_line))
-    takeaways.append(f"Out in {', '.join(langs)} — pick your language below.")
+    if langs:
+        takeaways.append(f"Out in {', '.join(langs)} \u2014 pick your language below.")
 
     body = (
         '<div class="key-takeaways"><ul>'
@@ -187,16 +239,23 @@ def build_brief_article(drops, channels_by_name):
     if desc_line and len(takeaways) < 3:
         body += f"<p>{html.escape(desc_line)}</p>"
     dest = "streaming" if main_ch.get("industry") == "streamer" else "theaters"
-    body += (f"<p>For diaspora audiences tracking the film's US release, the {kind.lower()} is the first "
+    body += (f"<p>For diaspora audiences tracking the {work}'s US release, the {kind.lower()} is the first "
              f"real look at what's headed to {dest}.</p>")
     for v in versions:
-        body += (f"<p><b>{html.escape(v['lang'])}</b> — {html.escape(v['channel'])}</p>"
-                 f"<youtube>{v['url']}</youtube>")
+        label = (f"<b>{html.escape(v['lang'])}</b> \u2014 {html.escape(v['channel'])}"
+                 if v["lang"] else f"<b>{html.escape(v['channel'])}</b>")
+        body += f"<p>{label}</p><youtube>{v['url']}</youtube>"
 
     thumb_vid = versions[0]["video_id"]
+    sub = f"Official {kind.lower()} for {film}"
+    if release:
+        sub += f" \u2014 premieres {release}"
+    elif langs:
+        sub += f" \u2014 out in {', '.join(langs)}"
+    sub += "."
     return {
         "headline": headline,
-        "subheadline": f"Official {kind.lower()} for {film} — out in {', '.join(langs)}.",
+        "subheadline": sub,
         "slug": slugify(headline) or f"trailer-{thumb_vid}",
         "body": body,
         "category": "entertainment",
