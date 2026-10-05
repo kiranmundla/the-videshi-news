@@ -139,6 +139,16 @@ def check_image_url(url):
         time.sleep(RETRY_SLEEP)
         code = _probe(url)
 
+    # A single 404/410 can be a transient CDN hiccup (seen 2026-10-05: a
+    # verified hero returned 404 once, 200 before and after). Confirm with
+    # one retry before declaring broken — a lone bad sample must not nuke
+    # a good hero.
+    if code in BROKEN_CODES and not is_wikimedia:
+        time.sleep(RETRY_SLEEP)
+        confirm = _probe(url)
+        if confirm not in BROKEN_CODES:
+            code = confirm
+
     if code == 0:
         return "skip", 0          # transient network issue, don't act
     if 200 <= code < 400:

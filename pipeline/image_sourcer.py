@@ -717,7 +717,7 @@ def fetch_wikipedia_image(entity_name, article_context=None, article_headline=No
         # person (e.g., search "Devendra Nath Mahto" → file Sanjay_Seth.jpg).
         # Split camelCase too ("RanveerBrar.jpg" → ranveer + brar) so legit
         # single-token filenames aren't falsely rejected.
-        _fname_raw = os.path.basename(img).split(".")[0].replace("_", " ")
+        _fname_raw = os.path.basename(img.split("?")[0]).rsplit(".", 1)[0].replace("_", " ")
         _fname_raw = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", _fname_raw)
         _ent_parts = {w.lower() for w in entity_name.split() if len(w) > 2}
         _fname_name_parts = {w.lower() for w in _fname_raw.split()
@@ -1084,6 +1084,10 @@ _HEADLINE_NONNAME_FIRST_WORDS = {
     # Negation as first word: a person's given name can never be "No"
     # ("No Handshake, No Trophy...") — fixes false-positive person guard
     "no", "not",
+    # Adverb leads that are never a given name ("Still LA's Best Biryani...")
+    # — fixes false-positive person guard that blocked Pexels for a food
+    # headline
+    "still",
     # Number words as first word: a given name is never a number
     # ("Five Visa Application Mistakes...", "Ten Ways to...") — a count of
     # people, not a person's name; fixes false-positive person guard
@@ -1154,8 +1158,11 @@ def headline_person_name(headline):
         return None
     if second_base in _HEADLINE_TITLE_WORDS:
         return None
-    # Both words capitalized, second not a title → likely a person's name
-    if first[0].isupper() and second[0].isupper() and len(first) > 1 and len(second) > 2:
+    # Both words capitalized, second not a title → likely a person's name.
+    # Length gate runs on the possessive-stripped base: "LA's" → "la" (2
+    # chars) must not pass as a surname — "Still LA's Best Biryani..." is
+    # not a person. Checking len(second) let the 4-char "LA's" through.
+    if first[0].isupper() and second[0].isupper() and len(first) > 1 and len(second_base) > 2:
         name = f"{first} {second}"
         # Strip possessive: "Ranveer Brar's" → "Ranveer Brar"
         name = re.sub(r"['’]s$", "", name)

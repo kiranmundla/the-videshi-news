@@ -641,11 +641,15 @@ def check_article_quality():
         sources = a.get("sources") or ""
         img = a.get("image_url") or ""
 
-        # Body length
+        # Body length — trailer briefs (articles with a <youtube> embed) are
+        # ~75-word briefs by editorial design (videshi-trailer-watch), so
+        # they are exempt from the 600-word minimum; a <100w body with no
+        # embed is still flagged.
         word_count = len(body.split())
-        if word_count < 100:
+        is_trailer_brief = "<youtube" in body
+        if word_count < 100 and not is_trailer_brief:
             art_issues.append(f"body dangerously short ({word_count}w)")
-        elif word_count < 400:
+        elif word_count < 400 and not is_trailer_brief:
             art_issues.append(f"body below minimum ({word_count}w, want 600+)")
 
         # Subheadline
