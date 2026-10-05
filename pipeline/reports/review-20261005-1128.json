@@ -1,0 +1,75 @@
+[
+  {
+    "id": "4a17d75d-7c48-4665-b353-b6aac1851fb6",
+    "headline": "#418 Kannada Trailer Out: The Last Warning",
+    "slug": "418-kannada-trailer-out-the-last-warning",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Correct the headline format to 'The Last Warning Trailer Out' instead of '#418 Kannada Trailer Out' for clarity.",
+        "Ensure the trailer drop date is mentioned only once to avoid redundancy."
+      ],
+      "embed_opportunities": [
+        "Consider adding a Tweet or Instagram embed to enhance engagement with the audience."
+      ]
+    }
+  },
+  {
+    "id": "987ba188-b743-4577-96ba-1f0d37430b55",
+    "headline": "#418 Tamil Trailer Out: The Last Warning",
+    "slug": "418-tamil-trailer-out-the-last-warning",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "The film name should be formatted consistently; consider removing the '#' from the title.",
+        "Ensure the headline follows the exact format 'Film Teaser/Trailer Out' without any extra characters.",
+        "Clarify the drop date to avoid confusion; it appears twice in the body.",
+        "Remove redundant phrases to enhance clarity and brevity."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "53ef10c9-de3e-44bf-8d4c-a61e69f9bd56",
+    "headline": "#418 Hindi Trailer Out: The Last Warning",
+    "slug": "418-hindi-trailer-out-the-last-warning",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Correct the film name in the headline to match the body text, which refers to it as '#418 Hindi' instead of 'The Last Warning'.",
+        "Ensure the headline follows the correct format: 'Film Trailer Out' instead of '#418 Hindi Trailer Out'.",
+        "Remove redundancy in the body text regarding the trailer release date and source."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "b07961ff-9cc9-40e4-ae1e-aed484728821",
+    "headline": "#418 O\ufb03cial Trailer Out: The Last Warning (Hindi)",
+    "slug": "418-o-cial-trailer-out-the-last-warning-hindi",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Change the headline to follow the correct format: 'The Last Warning Official Trailer Out'.",
+        "Ensure that the film name is consistently presented as 'The Last Warning' instead of '#418 O\ufb03cial'."
+      ],
+      "embed_opportunities": []
+    }
+  }
+]
