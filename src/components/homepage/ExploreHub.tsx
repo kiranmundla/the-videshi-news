@@ -46,118 +46,120 @@ export default function ExploreHub() {
   ];
 
   return (
-    <section className="mb-10">
+    <section className="mb-14">
       <div className="container">
         <div
-          className="rounded-2xl overflow-hidden border border-[#0B1D3A]/10"
-          style={{ background: "linear-gradient(135deg, #0B1D3A 0%, #132E57 100%)" }}
+          className="flex items-center justify-between mb-5 pb-2.5"
+          style={{ borderBottom: "3px solid #D4A843" }}
         >
-          <div className="p-5 md:p-6">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-[#D4A843] font-semibold mb-1">
-              Explore
-            </p>
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
-              Plan your next move
-            </h2>
+          <h2
+            className="text-[13px] font-bold tracking-[2px] uppercase"
+            style={{ color: "#0B1D3A" }}
+          >
+            Explore
+          </h2>
+          <span className="text-[11px] text-muted-foreground">
+            Plan your next move
+          </span>
+        </div>
 
-            <div className="flex gap-2 mb-4" role="tablist" aria-label="Explore sections">
-              {tabs.map((t) => (
-                <button
-                  key={t.key}
-                  role="tab"
-                  aria-selected={tab === t.key}
-                  onClick={() => setTab(t.key)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
-                    tab === t.key
-                      ? "bg-[#D4A843] text-[#0B1D3A]"
-                      : "bg-white/10 text-white/70 hover:bg-white/15"
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </div>
+        <div className="flex gap-2 mb-5" role="tablist" aria-label="Explore sections">
+          {tabs.map((t) => (
+            <button
+              key={t.key}
+              role="tab"
+              aria-selected={tab === t.key}
+              onClick={() => setTab(t.key)}
+              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors border ${
+                tab === t.key
+                  ? "bg-[#0B1D3A] text-white border-[#0B1D3A]"
+                  : "bg-transparent text-muted-foreground border-border hover:border-[#0B1D3A]/40"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
 
-            {tab === "destinations" && (
-              <div>
-                <div className="flex gap-3 overflow-x-auto pb-1 -mx-5 px-5 md:mx-0 md:px-0" style={{ scrollbarWidth: "none" }}>
-                  {DESTINATIONS.slice(0, 12).map((d) => (
-                    <Link
-                      key={d.key}
-                      to={`/travel/${d.key}`}
-                      className="shrink-0 w-36 rounded-xl overflow-hidden bg-white/5 border border-white/10 hover:border-[#D4A843]/50 transition-colors"
-                    >
-                      <div className={`h-20 bg-gradient-to-br ${gradientFor(d.key)} flex items-end p-2`}>
-                        <span className="text-white text-xs font-bold drop-shadow">{d.label}</span>
-                      </div>
-                      <div className="p-2">
-                        <p className="text-[11px] text-white/50 truncate">{d.bestMonths} · {d.budget}</p>
-                      </div>
-                    </Link>
-                  ))}
-                  <Link
-                    to="/travel"
-                    className="shrink-0 w-36 rounded-xl overflow-hidden bg-[#D4A843]/10 border border-[#D4A843]/30 flex flex-col items-center justify-center gap-1 p-2"
-                  >
-                    <span className="text-[#D4A843] text-sm font-bold">+ {DESTINATIONS.length - 12} more</span>
-                    <span className="text-[11px] text-white/50">View all →</span>
-                  </Link>
+        {tab === "destinations" && (
+          <div className="flex gap-5 overflow-x-auto pb-2 -mx-1 px-1">
+            {DESTINATIONS.slice(0, 12).map((d) => (
+              <Link
+                key={d.key}
+                to={`/travel/${d.key}`}
+                className="group shrink-0 w-40 md:w-44"
+              >
+                <div className={`relative w-40 md:w-44 aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br ${gradientFor(d.key)}`}>
+                  <span className="absolute bottom-2 left-2 right-2 text-white text-sm font-bold drop-shadow leading-tight">
+                    {d.label}
+                  </span>
                 </div>
-              </div>
-            )}
+                <p className="text-[11px] text-muted-foreground mt-1.5">
+                  {d.bestMonths} · {d.budget}
+                </p>
+              </Link>
+            ))}
+            <Link
+              to="/travel"
+              className="group shrink-0 w-40 md:w-44 flex flex-col items-center justify-center aspect-[4/3] rounded-lg border border-dashed border-[#0B1D3A]/30 hover:border-[#D4A843] transition-colors"
+            >
+              <span className="text-sm font-bold" style={{ color: "#0B1D3A" }}>
+                + {DESTINATIONS.length - 12} more
+              </span>
+              <span className="text-[11px] text-muted-foreground">View all →</span>
+            </Link>
+          </div>
+        )}
 
-            {tab === "guides" && (
-              <div>
-                {guides.length === 0 ? (
-                  <div className="flex gap-3 overflow-x-auto pb-1">
-                    {[0, 1, 2].map((i) => (
-                      <div key={i} className="shrink-0 w-56 h-24 rounded-xl bg-white/5 border border-white/10 animate-pulse" />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex gap-3 overflow-x-auto pb-1 -mx-5 px-5 md:mx-0 md:px-0" style={{ scrollbarWidth: "none" }}>
-                    {guides.slice(0, 10).map((g) => (
-                      <Link
-                        key={g.slug}
-                        to={`/immigration/guides/${g.slug}`}
-                        className="shrink-0 w-56 rounded-xl bg-white/5 border border-white/10 p-3 hover:border-[#D4A843]/50 transition-colors"
-                      >
-                        <p className="text-[10px] uppercase tracking-wider text-[#D4A843] font-semibold truncate">{g.category}</p>
-                        <p className="text-sm font-bold text-white mt-0.5 line-clamp-2">{g.title}</p>
-                        {g.reading_time_min ? (
-                          <p className="text-[11px] text-white/40 mt-1">{g.reading_time_min} min read</p>
-                        ) : null}
-                      </Link>
-                    ))}
-                    <Link
-                      to="/immigration/guides"
-                      className="shrink-0 w-40 rounded-xl bg-[#D4A843]/10 border border-[#D4A843]/30 flex flex-col items-center justify-center gap-1 p-3"
-                    >
-                      <span className="text-[#D4A843] text-sm font-bold">All {guides.length} guides</span>
-                      <span className="text-[11px] text-white/50">View all →</span>
-                    </Link>
-                  </div>
-                )}
+        {tab === "guides" && (
+          <div>
+            {guides.length === 0 ? (
+              <div className="flex gap-5 overflow-x-auto pb-2">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="shrink-0 w-56 h-24 rounded-lg bg-muted animate-pulse" />
+                ))}
               </div>
-            )}
-
-            {tab === "trackers" && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {TRACKERS.map((t) => (
+            ) : (
+              <div className="flex gap-5 overflow-x-auto pb-2 -mx-1 px-1">
+                {guides.slice(0, 10).map((g) => (
                   <Link
-                    key={t.label}
-                    to={t.to}
-                    className="rounded-xl bg-white/5 border border-white/10 p-3 hover:border-[#D4A843]/50 transition-colors"
+                    key={g.slug}
+                    to={`/immigration/guides/${g.slug}`}
+                    className="group shrink-0 w-56 rounded-lg border border-border p-3 hover:border-[#D4A843] transition-colors bg-card"
                   >
-                    <p className="text-sm font-bold text-white">{t.label}</p>
-                    <p className="text-[11px] text-white/40 mt-0.5">{t.desc}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-[#A32D2F] font-semibold truncate">{g.category}</p>
+                    <p className="font-serif text-[0.95rem] font-bold mt-0.5 line-clamp-2 leading-snug group-hover:text-primary transition-colors">{g.title}</p>
+                    {g.reading_time_min ? (
+                      <p className="text-[11px] text-muted-foreground mt-1">{g.reading_time_min} min read</p>
+                    ) : null}
                   </Link>
                 ))}
+                <Link
+                  to="/immigration/guides"
+                  className="shrink-0 w-40 rounded-lg border border-dashed border-[#0B1D3A]/30 hover:border-[#D4A843] transition-colors flex flex-col items-center justify-center p-3"
+                >
+                  <span className="text-sm font-bold" style={{ color: "#0B1D3A" }}>All {guides.length} guides</span>
+                  <span className="text-[11px] text-muted-foreground">View all →</span>
+                </Link>
               </div>
             )}
           </div>
-          <div className="h-1" style={{ background: "linear-gradient(90deg, #D4A843, #A32D2F)" }} />
-        </div>
+        )}
+
+        {tab === "trackers" && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {TRACKERS.map((t) => (
+              <Link
+                key={t.label}
+                to={t.to}
+                className="rounded-lg border border-border p-3 hover:border-[#D4A843] transition-colors bg-card group"
+              >
+                <p className="font-serif font-bold text-[0.95rem] group-hover:text-primary transition-colors" style={{ color: "#0B1D3A" }}>{t.label}</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">{t.desc}</p>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

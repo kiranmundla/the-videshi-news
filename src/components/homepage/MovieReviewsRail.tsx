@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 interface ReviewArticle {
   id: string;
-  headline: string;
+  title: string;
   slug: string;
   published_at: string;
-  image_url?: string | null;
+  hero_image_url?: string | null;
 }
 
 function fmtDate(iso: string): string {
@@ -65,10 +65,10 @@ export default function MovieReviewsRail() {
               className="group shrink-0 w-40 md:w-44"
             >
               <div className="relative w-40 md:w-44 aspect-[2/3] rounded-lg overflow-hidden bg-muted">
-                {a.image_url ? (
+                {a.hero_image_url ? (
                   <img
-                    src={a.image_url}
-                    alt={a.headline}
+                    src={a.hero_image_url}
+                    alt={a.title}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                   />
@@ -90,7 +90,7 @@ export default function MovieReviewsRail() {
                 </span>
               </div>
               <p className="mt-2 font-serif font-bold text-[0.95rem] leading-snug line-clamp-2 group-hover:text-primary transition-colors">
-                {a.headline}
+                {a.title}
               </p>
               <p className="text-[11px] text-muted-foreground mt-0.5">
                 {fmtDate(a.published_at)}
