@@ -5,8 +5,9 @@ Reads Yahoo Finance free chart API (no key needed) and writes the file the
 frontend actually reads: public/data/market-indices.json with schema
 {last_updated, indices: [{symbol, name, flag, value, change, change_pct}]}.
 """
-import json, requests, datetime
+import json, subprocess, datetime
 from pathlib import Path
+from urllib.parse import quote
 
 DATA_DIR = Path.home() / "workspace" / "the-videshi-news" / "public" / "data"
 
@@ -23,13 +24,21 @@ INDICES = [
     ("SI=F",   "SILVER", "Silver",   "\U0001FA99"),
 ]
 
+def fetch_json_curl(url):
+    """Fetch JSON via curl subprocess (python http libs fail through this proxy)."""
+    out = subprocess.run(
+        ["curl", "-s", "-m", "15", "-A", "Mozilla/5.0", url],
+        capture_output=True, text=True, timeout=30)
+    if out.returncode != 0 or not out.stdout.strip():
+        raise RuntimeError(f"curl failed rc={out.returncode}")
+    return json.loads(out.stdout)
+
 def fetch_markets():
     results = []
     for yahoo_sym, symbol, name, flag in INDICES:
         try:
-            url = f"https://query1.finance.yahoo.com/v8/finance/chart/{yahoo_sym}?range=5d&interval=1d"
-            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
-            data = r.json()
+            url = f"https://query1.finance.yahoo.com/v8/finance/chart/{quote(yahoo_sym, safe='')}?range=5d&interval=1d"
+            data = fetch_json_curl(url)
             meta = data["chart"]["result"][0]["meta"]
             price = meta.get("regularMarketPrice", 0)
             prev = meta.get("chartPreviousClose", meta.get("previousClose", 0))
