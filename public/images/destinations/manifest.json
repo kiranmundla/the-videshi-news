@@ -1,0 +1,345 @@
+{
+  "rajasthan": {
+    "query": "Rajasthan palace India",
+    "photographer": "Suket Dedhia",
+    "photographer_url": "https://www.pexels.com/@suketdedhia",
+    "pexels_url": "https://www.pexels.com/photo/white-building-570031/",
+    "bytes": 66154
+  },
+  "kerala": {
+    "query": "Kerala backwaters houseboat",
+    "photographer": "Pritam Sengupta",
+    "photographer_url": "https://www.pexels.com/@pritam-sengupta-685216574",
+    "pexels_url": "https://www.pexels.com/photo/passenger-ship-sailing-on-tropical-river-17928231/",
+    "bytes": 95729
+  },
+  "goa": {
+    "query": "Goa beach palm",
+    "photographer": "J  Singh",
+    "photographer_url": "https://www.pexels.com/@j-singh-166004985",
+    "pexels_url": "https://www.pexels.com/photo/chairs-and-nipa-huts-10898929/",
+    "bytes": 154605
+  },
+  "himachal-pradesh": {
+    "query": "Himachal Pradesh Himalaya mountains",
+    "photographer": "Sourabh Narwade",
+    "photographer_url": "https://www.pexels.com/@daredevil",
+    "pexels_url": "https://www.pexels.com/photo/stunning-aerial-view-of-snow-capped-himalayas-30723537/",
+    "bytes": 118417
+  },
+  "uttarakhand": {
+    "query": "Uttarakhand Himalayas temple",
+    "photographer": "miheer tewari",
+    "photographer_url": "https://www.pexels.com/@miheertewari",
+    "pexels_url": "https://www.pexels.com/photo/peaceful-temple-in-binsar-uttarakhand-36737801/",
+    "bytes": 99257
+  },
+  "kashmir": {
+    "query": "Kashmir Dal Lake houseboat",
+    "photographer": "Sahil Captures",
+    "photographer_url": "https://www.pexels.com/@sahil-captures-424973882",
+    "pexels_url": "https://www.pexels.com/photo/charming-houseboats-lined-along-autumn-riverbank-29264394/",
+    "bytes": 148977
+  },
+  "tamil-nadu": {
+    "query": "Tamil Nadu Meenakshi temple",
+    "photographer": "GOWTHAM AGM",
+    "photographer_url": "https://www.pexels.com/@gowtham-agm-609630353",
+    "pexels_url": "https://www.pexels.com/photo/vibrant-ornate-temple-pavilion-in-reflection-pool-33895627/",
+    "bytes": 157488
+  },
+  "karnataka": {
+    "query": "Hampi ruins Karnataka",
+    "photographer": "Tapas S",
+    "photographer_url": "https://www.pexels.com/@tapas-s-1074352640",
+    "pexels_url": "https://www.pexels.com/photo/ancient-temple-architecture-in-hampi-india-38605003/",
+    "bytes": 120561
+  },
+  "northeast-india": {
+    "query": "Meghalaya living root bridge",
+    "photographer": "Pushkar  Sarkar",
+    "photographer_url": "https://www.pexels.com/@pushkar-sarkar-140939504",
+    "pexels_url": "https://www.pexels.com/photo/the-beauty-of-meghalaya-27820314/",
+    "bytes": 195888
+  },
+  "bali": {
+    "query": "Bali temple rice terrace",
+    "photographer": "Agung Pandit Wiguna",
+    "photographer_url": "https://www.pexels.com/@panditwiguna",
+    "pexels_url": "https://www.pexels.com/photo/an-aerial-view-of-a-rice-field-and-a-house-17716409/",
+    "bytes": 188528
+  },
+  "thailand": {
+    "query": "Thailand Phi Phi island beach",
+    "photographer": "Julito Elizalde",
+    "photographer_url": "https://www.pexels.com/@julito-elizalde-1831753719",
+    "pexels_url": "https://www.pexels.com/photo/tropical-beach-scene-in-thailand-with-clear-waters-28581877/",
+    "bytes": 74829
+  },
+  "vietnam": {
+    "query": "Ha Long Bay Vietnam",
+    "photographer": "Valeria Drozdova",
+    "photographer_url": "https://www.pexels.com/@valeria-drozdova-2148646707",
+    "pexels_url": "https://www.pexels.com/photo/scenic-view-of-cruise-boats-in-ha-long-bay-38116420/",
+    "bytes": 96814
+  },
+  "sri-lanka": {
+    "query": "Sri Lanka Sigiriya",
+    "photographer": "Stephanie Perera",
+    "photographer_url": "https://www.pexels.com/@stephanie-perera-2153460865",
+    "pexels_url": "https://www.pexels.com/photo/sigiriya-rock-fortress-in-sri-lanka-at-sunrise-34128249/",
+    "bytes": 87531
+  },
+  "maldives": {
+    "query": "Maldives overwater villa",
+    "photographer": "Asad Photo Maldives",
+    "photographer_url": "https://www.pexels.com/@asadphoto",
+    "pexels_url": "https://www.pexels.com/photo/beach-huts-on-water-9394274/",
+    "bytes": 96098
+  },
+  "singapore": {
+    "query": "Singapore Marina Bay Sands",
+    "photographer": "Cyrill",
+    "photographer_url": "https://www.pexels.com/@realcereal",
+    "pexels_url": "https://www.pexels.com/photo/illuminated-modern-city-buildings-at-water-15480459/",
+    "bytes": 81507
+  },
+  "japan": {
+    "query": "Japan Kyoto cherry blossom temple",
+    "photographer": "Balazs Simon",
+    "photographer_url": "https://www.pexels.com/@balazsimon",
+    "pexels_url": "https://www.pexels.com/photo/cherry-blossom-in-front-of-kiyomizu-dera-temple-in-kyoto-japan-16226263/",
+    "bytes": 198595
+  },
+  "cancun": {
+    "query": "Cancun beach turquoise",
+    "photographer": "Hugo Ed",
+    "photographer_url": "https://www.pexels.com/@hugo-ed-480834725",
+    "pexels_url": "https://www.pexels.com/photo/man-on-surfboard-at-sea-17244361/",
+    "bytes": 35933
+  },
+  "cabo": {
+    "query": "Cabo San Lucas arch",
+    "photographer": "Bruno Storchi Bergmann",
+    "photographer_url": "https://www.pexels.com/@bruno-storchi-bergmann-644776592",
+    "pexels_url": "https://www.pexels.com/photo/rock-formations-on-sea-shore-18903765/",
+    "bytes": 98067
+  },
+  "riviera-maya": {
+    "query": "Tulum Mexico beach ruins",
+    "photographer": "Martha Gonzalez",
+    "photographer_url": "https://www.pexels.com/@martha-gonzalez-234745985",
+    "pexels_url": "https://www.pexels.com/photo/a-gray-cliff-on-seashore-on-a-tropical-island-12174627/",
+    "bytes": 167937
+  },
+  "puerto-vallarta": {
+    "query": "Puerto Vallarta malecon",
+    "photographer": "Jeffrey Eisen",
+    "photographer_url": "https://www.pexels.com/@jeffrey-eisen-1257101",
+    "pexels_url": "https://www.pexels.com/photo/marina-vallarta-lighthouse-and-waterfront-puerto-vallarta-30991411/",
+    "bytes": 122056
+  },
+  "jamaica": {
+    "query": "Jamaica beach",
+    "photographer": "Bergen Davis",
+    "photographer_url": "https://www.pexels.com/@bergen-davis-3347921",
+    "pexels_url": "https://www.pexels.com/photo/brown-wooden-house-on-seashore-5005126/",
+    "bytes": 107058
+  },
+  "dominican-republic": {
+    "query": "Dominican Republic Punta Cana beach",
+    "photographer": "Leonardo Rossatti",
+    "photographer_url": "https://www.pexels.com/@leorossatti",
+    "pexels_url": "https://www.pexels.com/photo/seashore-under-blue-sky-2646066/",
+    "bytes": 96774
+  },
+  "bahamas": {
+    "query": "Bahamas Exuma beach",
+    "photographer": "Holiday4free.com  (Manuel)",
+    "photographer_url": "https://www.pexels.com/@holiday4free-com-manuel-459196781",
+    "pexels_url": "https://www.pexels.com/photo/floating-beach-ball-crystal-clear-water-exumas-bahamas-15766437/",
+    "bytes": 79042
+  },
+  "aruba": {
+    "query": "Aruba beach palm",
+    "photographer": "Steshka Croes",
+    "photographer_url": "https://www.pexels.com/@steshkacroes",
+    "pexels_url": "https://www.pexels.com/photo/coconut-tree-1289698/",
+    "bytes": 119898
+  },
+  "london": {
+    "query": "London Big Ben",
+    "photographer": "Jabez Cutamora",
+    "photographer_url": "https://www.pexels.com/@jabzee",
+    "pexels_url": "https://www.pexels.com/photo/big-ben-in-foggy-london-cityscape-30029654/",
+    "bytes": 47620
+  },
+  "switzerland": {
+    "query": "Swiss Alps Matterhorn",
+    "photographer": "Bran HAO",
+    "photographer_url": "https://www.pexels.com/@bran-hao-303343278",
+    "pexels_url": "https://www.pexels.com/photo/snowed-matterhorn-in-sunlit-19642432/",
+    "bytes": 117958
+  },
+  "italy": {
+    "query": "Amalfi Coast Positano Italy",
+    "photographer": "Bogdan Giurca",
+    "photographer_url": "https://www.pexels.com/@bogdan-giurca-1141359795",
+    "pexels_url": "https://www.pexels.com/photo/picturesque-view-of-positano-on-the-amalfi-coast-36366053/",
+    "bytes": 162083
+  },
+  "france": {
+    "query": "Paris Eiffel Tower",
+    "photographer": "Denisa Lesniaková",
+    "photographer_url": "https://www.pexels.com/@denisa-lesniakova-430168073",
+    "pexels_url": "https://www.pexels.com/photo/scenic-winter-view-of-paris-with-eiffel-tower-31482953/",
+    "bytes": 68492
+  },
+  "spain": {
+    "query": "Barcelona Sagrada Familia Spain",
+    "photographer": "Mehmet Turgut  Kirkgoz",
+    "photographer_url": "https://www.pexels.com/@tkirkgoz",
+    "pexels_url": "https://www.pexels.com/photo/river-by-sagrada-familia-in-barcelona-spain-16984552/",
+    "bytes": 128689
+  },
+  "greece": {
+    "query": "Santorini Greece white",
+    "photographer": "K",
+    "photographer_url": "https://www.pexels.com/@kelly",
+    "pexels_url": "https://www.pexels.com/photo/aerial-view-of-fira-santorini-s-white-structures-37844509/",
+    "bytes": 105244
+  },
+  "iceland": {
+    "query": "Iceland waterfall northern lights",
+    "photographer": "Atlantic Ambience",
+    "photographer_url": "https://www.pexels.com/@freestockpro",
+    "pexels_url": "https://www.pexels.com/photo/waterfalls-in-iceland-12932356/",
+    "bytes": 141304
+  },
+  "portugal": {
+    "query": "Lisbon Portugal tram",
+    "photographer": "Junior Diniz PHOTOGRAPHER IN LISBON",
+    "photographer_url": "https://www.pexels.com/@junior-diniz-photographer-in-lisbon-2051893",
+    "pexels_url": "https://www.pexels.com/photo/iconic-yellow-trams-in-graffiti-laden-lisbon-street-33324057/",
+    "bytes": 116230
+  },
+  "scandinavia": {
+    "query": "Norway fjord Geiranger",
+    "photographer": "Chuck Henjes",
+    "photographer_url": "https://www.pexels.com/@chuck-henjes-1956132",
+    "pexels_url": "https://www.pexels.com/photo/geirangerfjord-wasserfall-27429652/",
+    "bytes": 1045607
+  },
+  "hawaii": {
+    "query": "Hawaii Waikiki beach",
+    "photographer": "Jess Loiterton",
+    "photographer_url": "https://www.pexels.com/@jess-vide",
+    "pexels_url": "https://www.pexels.com/photo/people-on-resort-beach-4783941/",
+    "bytes": 116066
+  },
+  "national-parks": {
+    "query": "Yellowstone Grand Prismatic",
+    "photographer": "I Bautista",
+    "photographer_url": "https://www.pexels.com/@ibautista",
+    "pexels_url": "https://www.pexels.com/photo/grand-prismatic-spring-in-yellowstone-national-park-25860800/",
+    "bytes": 134684
+  },
+  "new-york-city": {
+    "query": "New York City Manhattan skyline",
+    "photographer": "Ivana Rodriguez",
+    "photographer_url": "https://www.pexels.com/@ivana-rodriguez-53736",
+    "pexels_url": "https://www.pexels.com/photo/silhouette-of-city-buildings-during-sunset-8569166/",
+    "bytes": 52091
+  },
+  "florida": {
+    "query": "Florida Miami beach",
+    "photographer": "Brendon Spring",
+    "photographer_url": "https://www.pexels.com/@lee81",
+    "pexels_url": "https://www.pexels.com/photo/aerial-view-of-city-buildings-beside-the-ocean-8574669/",
+    "bytes": 148843
+  },
+  "alaska": {
+    "query": "Alaska glacier",
+    "photographer": "Aaron Houston",
+    "photographer_url": "https://www.pexels.com/@thisishouston",
+    "pexels_url": "https://www.pexels.com/photo/stunning-alaskan-glacier-and-mountain-vista-34274948/",
+    "bytes": 129786
+  },
+  "banff": {
+    "query": "Banff Lake Louise Canada",
+    "photographer": "Ryan Beirne",
+    "photographer_url": "https://www.pexels.com/@peepsbeirne",
+    "pexels_url": "https://www.pexels.com/photo/lake-louise-brush-17709342/",
+    "bytes": 100712
+  },
+  "dubai": {
+    "query": "Dubai skyline Burj Khalifa",
+    "photographer": "Maria Charizani",
+    "photographer_url": "https://www.pexels.com/@maria-charizani-3542905",
+    "pexels_url": "https://www.pexels.com/photo/photo-of-city-during-night-time-5577693/",
+    "bytes": 95012
+  },
+  "abu-dhabi": {
+    "query": "Abu Dhabi Sheikh Zayed Grand Mosque",
+    "photographer": "Daniel Dang",
+    "photographer_url": "https://www.pexels.com/@daniel-dang-2152289714",
+    "pexels_url": "https://www.pexels.com/photo/majestic-exterior-of-sheikh-zayed-grand-mosque-32119558/",
+    "bytes": 93177
+  },
+  "oman": {
+    "query": "Oman Muscat",
+    "photographer": "Daniel P",
+    "photographer_url": "https://www.pexels.com/@daniel-p-1253730366",
+    "pexels_url": "https://www.pexels.com/photo/sultan-qaboos-grand-mosque-27222917/",
+    "bytes": 90016
+  },
+  "south-africa": {
+    "query": "Cape Town Table Mountain",
+    "photographer": "Adrien Olichon",
+    "photographer_url": "https://www.pexels.com/@adrien-olichon-1257089",
+    "pexels_url": "https://www.pexels.com/photo/majestic-view-of-table-mountain-from-the-highway-36597753/",
+    "bytes": 78683
+  },
+  "kenya": {
+    "query": "Kenya Masai Mara safari elephant",
+    "photographer": "Richard Wilson",
+    "photographer_url": "https://www.pexels.com/@richard-wilson-1717169",
+    "pexels_url": "https://www.pexels.com/photo/elephants-on-brown-grass-field-10822356/",
+    "bytes": 100139
+  },
+  "egypt": {
+    "query": "Egypt Giza pyramids",
+    "photographer": "hayriyenur .",
+    "photographer_url": "https://www.pexels.com/@hayriyenur-351892318",
+    "pexels_url": "https://www.pexels.com/photo/sunny-day-at-the-pyramids-of-giza-egypt-29390088/",
+    "bytes": 86289
+  },
+  "morocco": {
+    "query": "Morocco Marrakech medina",
+    "photographer": "Tom D'Arby",
+    "photographer_url": "https://www.pexels.com/@tom-d-arby-3904203",
+    "pexels_url": "https://www.pexels.com/photo/people-walking-on-city-market-6621125/",
+    "bytes": 137048
+  },
+  "new-zealand": {
+    "query": "New Zealand Milford Sound",
+    "photographer": "Donovan Kelly",
+    "photographer_url": "https://www.pexels.com/@donovan-kelly-110228397",
+    "pexels_url": "https://www.pexels.com/photo/a-body-of-water-surrounded-by-mountains-27623549/",
+    "bytes": 84327
+  },
+  "australia": {
+    "query": "Sydney Opera House harbour",
+    "photographer": "Khoi Pham",
+    "photographer_url": "https://www.pexels.com/@khoi-pham-2154248309",
+    "pexels_url": "https://www.pexels.com/photo/sydney-opera-house-with-harbour-view-33378301/",
+    "bytes": 73643
+  },
+  "fiji": {
+    "query": "Fiji tropical island",
+    "photographer": "Josh Withers",
+    "photographer_url": "https://www.pexels.com/@hellojoshwithers",
+    "pexels_url": "https://www.pexels.com/photo/clouds-over-ocean-26087992/",
+    "bytes": 66374
+  }
+}

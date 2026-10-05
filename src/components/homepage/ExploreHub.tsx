@@ -90,6 +90,13 @@ export default function ExploreHub() {
                 className="group shrink-0 w-40 md:w-44"
               >
                 <div className={`relative w-40 md:w-44 aspect-[4/3] rounded-lg overflow-hidden bg-gradient-to-br ${gradientFor(d.key)}`}>
+                  <img
+                    src={d.image}
+                    alt={d.label}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
                   <span className="absolute bottom-2 left-2 right-2 text-white text-sm font-bold drop-shadow leading-tight">
                     {d.label}
                   </span>
