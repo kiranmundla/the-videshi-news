@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-temple-festival-36771232.jpg",
-    "label": "Capturing a vibrant Hindu procession at Tirumala Temple, highlighting cultural and religious traditions in Tirupati, India. · 📷 Vijay Richhiya",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 36771232
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-31154802.jpg",
     "label": "Women in traditional attire participate in outdoor cooking festival. · 📷 PREM GS",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-10-04",
     "pexels_id": 18598145
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-classical-dance-bharatanatyam-20134508.jpg",
+    "label": "Portrait of a young Indian woman in traditional dance attire posing gracefully with a black background. · 📷 SKG Photography",
+    "source": "pexels",
+    "added_date": "2026-10-05",
+    "pexels_id": 20134508
   }
 ]
