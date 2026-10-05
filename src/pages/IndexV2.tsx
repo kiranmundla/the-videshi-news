@@ -679,11 +679,6 @@ export default function IndexV2() {
         <ImmigrationStrip articles={layout.immigration} />
         </LazyMount>
 
-        {/* 7b. Explore hub — destinations, visa guides, trackers */}
-<LazyMount>
-        <ExploreHub />
-        </LazyMount>
-
         {/* 8. Newsletter CTA */}
 <LazyMount>
         <NewsletterCTA />
@@ -773,6 +768,11 @@ export default function IndexV2() {
           />
         </LazyMount>
         )}
+
+        {/* 16b. Explore hub — destinations, visa guides, trackers (under Travel) */}
+<LazyMount>
+        <ExploreHub />
+        </LazyMount>
 
         {/* 17. Lifestyle & Health (lead + list) */}
         {layout.lifestyle.length > 0 && (
