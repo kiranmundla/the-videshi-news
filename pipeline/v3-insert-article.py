@@ -78,6 +78,7 @@ def main():
         'diaspora_angle': article.get('diaspora_angle', ''),
         'llm_score': article.get('llm_score', 0),
         'topic_id': article.get('topic_id', ''),
+        'kids_relevant': bool(article.get('kids_relevant', False)),
         'published_at': now,
         'status': 'published',
         'article_type': article.get('article_type', 'breaking'),
