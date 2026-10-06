@@ -133,6 +133,8 @@ def extract_subtitle(title):
         q = re.sub(r"(?i)^\s*(official\s+)?(teaser|trailer)\s*", "", q).strip()
         if re.search(r"(?i)(teaser|trailer)", q):
             continue  # trailer-announcement fragment, not a subtitle
+        if q.startswith("@"):
+            continue  # channel handle, not a subtitle (e.g. "| @TejaSajjaOffl |")
         if q and len(q) > 2 and not _STUDIO_RE.search(q):
             return q
     return ""
@@ -207,8 +209,8 @@ def build_brief_article(drops, channels_by_name):
     if subtitle and subtitle.lower() not in film.lower():
         film = f"{film} \u2013 {subtitle}"
     hook = clean_film_name(rest.split("|")[0].strip()) if rest else ""
-    # Don't let a studio/channel name become the headline hook
-    if _STUDIO_RE.search(hook):
+    # Don't let a studio/channel name or @handle become the headline hook
+    if hook.startswith("@") or _STUDIO_RE.search(hook):
         hook = ""
     headline = f"{film} {kind} Out" + (f": {hook[:60]}" if hook else "")
     pub = parse_dt(first["published"])
