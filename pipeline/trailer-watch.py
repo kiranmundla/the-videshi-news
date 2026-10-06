@@ -84,9 +84,27 @@ def parse_dt(s):
 
 
 def split_film_title(title):
-    """'Bhogi - Official Teaser | Sharwanand' -> ('Bhogi', 'Sharwanand')."""
+    """'Bhogi - Official Teaser | Sharwanand' -> ('Bhogi', 'Sharwanand').
+
+    Marketing-first titles like 'Our Story. Our History. Our Truth. |
+    Ranabaali Trailer on October 8th | ...' put a tagline in parts[0], so
+    prefer the part carrying the teaser/trailer keyword: the text before it
+    is the film name ('Ranabaali'). Falls back to parts[0]."""
     parts = re.split(r"\s*[|\-–—:]\s*", title)
-    film = parts[0] if parts else title
+    first = parts[0].strip() if parts else ""
+    # parts[0] is the film unless it looks like a marketing tagline
+    # (sentence punctuation = tagline, e.g. "Our Story. Our History. Our Truth.")
+    film_like = first and not re.search(r"[.!?]", first) and len(first) < 60
+    if not film_like:
+        for p in parts:
+            m = re.search(r"(?i)^(.+?)\s+(?:official\s+)?(?:teaser|trailer)\b", p)
+            if m:
+                cand = clean_film_name(m.group(1).strip())
+                if cand and cand.lower() not in ("official",):
+                    rest_bits = [q for q in parts[1:]
+                                 if q and not _TITLE_RE.search(q) and not re.search(r"(?i)4k|hd|official", q)]
+                    return cand, " | ".join(rest_bits[:2]).strip()
+    film = first or title
     film = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", film).strip()
     film = re.sub(r"(?i)^(official\s+)?(teaser|trailer)\s*(of|for)?\s*", "", film).strip()
     rest_bits = [p for p in parts[1:]
@@ -113,6 +131,8 @@ def extract_subtitle(title):
     for p in parts[1:3]:
         q = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", p).strip()
         q = re.sub(r"(?i)^\s*(official\s+)?(teaser|trailer)\s*", "", q).strip()
+        if re.search(r"(?i)(teaser|trailer)", q):
+            continue  # trailer-announcement fragment, not a subtitle
         if q and len(q) > 2 and not _STUDIO_RE.search(q):
             return q
     return ""
