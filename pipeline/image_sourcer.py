@@ -1032,6 +1032,7 @@ _HEADLINE_TITLE_WORDS = {
     "committees", "board", "boards", "bank", "banks",
     "company", "companies", "group", "groups", "school", "schools",
     "university", "universities", "hospital", "hospitals",
+    "institute", "institutes",
     "center", "centres", "centre", "festival", "festivals", "award", "awards",
     "cup", "cups", "league", "leagues",
     "tournament", "tournaments", "championship", "championships",
@@ -1074,6 +1075,19 @@ _HEADLINE_PREFIX_WORDS = {
     # Rank/title words that lead headlines — never a given name
     # ("Air Marshal Arjan Singh...", "Air India Adds...") — cf. "Dr", "Lt" above
     "air",
+    # Country names leading headlines ("Nepal Ends Flood Search...",
+    # "China Launches...") — a country is never a person's given name.
+    # Ambiguous ones that ARE also given names (israel, jordan, chad,
+    # georgia) are deliberately excluded — a false negative there keeps the
+    # conservative identity-safe behavior.
+    "nepal", "pakistan", "bangladesh", "china", "japan", "korea",
+    "australia", "canada", "france", "germany", "russia", "ukraine",
+    "iran", "saudi", "qatar", "singapore", "malaysia", "thailand",
+    "vietnam", "indonesia", "philippines", "afghanistan", "myanmar",
+    "bhutan", "maldives", "srilanka", "turkey", "italy", "spain",
+    "brazil", "mexico", "egypt", "kenya", "nigeria", "argentina",
+    "colombia", "netherlands", "switzerland", "sweden", "norway",
+    "peru", "cuba", "oman", "mali", "uae",
 }
 # Prepositions / interrogatives / conjunctions as first word: a person's
 # given name can never be "After", "Across", "Why", "While" ...
