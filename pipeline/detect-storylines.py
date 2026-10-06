@@ -6,6 +6,9 @@ Groups articles covering the same ongoing event/narrative (NEET protests,
 diplomatic incidents, cricket series) into storylines. Manages lifecycle:
   emerging → active (2+ articles in 72h) → cooling (5d quiet) → resolved (14d quiet)
 A single article after a quiet spell only revives to 'emerging', never 'active'.
+Since 2026-10-06: developing stories are reserved for VERY IMPORTANT developments
+only (national/international significance, major reader impact) — the classifier
+is instructed to keep the rail small by design.
 
 Usage:
   python3 pipeline/detect-storylines.py               # normal run
@@ -263,10 +266,19 @@ A STORYLINE is a specific ongoing event with a narrative arc:
 ✅ "H-1B visa fee increase implementation" — specific policy change playing out
 ✅ "Trump tariffs on Indian goods" — specific trade action with reactions and consequences
 
+IMPORTANCE BAR (2026-10-06): developing stories are reserved for VERY IMPORTANT
+developments only — events of national or international significance with major
+reader impact: major policy changes, major disasters, major geopolitical events,
+major elections, major public-safety incidents. Do NOT create storylines for:
+sports tournaments/results, entertainment/box office, routine business or market
+news, single-company stories, celebrity legal matters, local incidents, one-time
+data prints, or industry trend topics. Those are standalone articles — action "none".
+
 A storyline is NOT:
 ❌ A broad recurring topic ("tech layoffs", "Bollywood box office", "stock market")
 ❌ A one-time event that's done ("single earthquake report", "one product launch")
 ❌ A general theme ("AI advances", "immigration news")
+❌ Anything failing the importance bar above, no matter how many articles cover it
 
 For each article, decide:
 1. "match" — it clearly belongs to an existing storyline (same specific event/narrative)
@@ -282,7 +294,7 @@ Return JSON:
   ]
 }
 
-Be conservative. Only "match" when the article clearly covers the SAME specific event. Only "new" for events that are likely to have multiple developments over days."""
+Be conservative. Only "match" when the article clearly covers the SAME specific event. Only "new" for MAJOR events (per the importance bar) that are likely to have multiple developments over days. When in doubt between "new" and "none", choose "none" — the developing rail stays small by design."""
 
     user_msg = json.dumps({
         "existing_storylines": storyline_ctx,
