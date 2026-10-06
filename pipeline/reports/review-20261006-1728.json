@@ -1,0 +1,57 @@
+[
+  {
+    "id": "9b039a58-259a-470b-8388-2cf07bb3e457",
+    "headline": "The Traitors \u2013 @TejaSajjaOffl Trailer Out: @TejaSajjaOffl",
+    "slug": "the-traitors-tejasajjaoffl-trailer-out-tejasajjaoffl",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 9,
+      "suggestions": [
+        "Ensure the headline follows the correct format: 'The Traitors Trailer Out' instead of including the Twitter handle."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "0e34ff25-e20a-4e77-bc60-f335303fd25b",
+    "headline": "Epic \u2013 Anand Deverakonda Trailer Out: Anand Deverakonda",
+    "slug": "epic-anand-deverakonda-trailer-out-anand-deverakonda",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Correct the headline format to match the 'Film Teaser/Trailer Out' structure.",
+        "Ensure the film name is presented clearly without repetition.",
+        "Clarify the source channel as Netflix India in the body text.",
+        "Remove unnecessary phrases like 'First semester is totally out of syllabus' which do not add value."
+      ],
+      "embed_opportunities": [
+        "Consider adding a Tweet or Instagram embed for additional engagement."
+      ]
+    }
+  },
+  {
+    "id": "09f64471-79d5-446e-804d-a6ce8d6008bf",
+    "headline": "Hanuman Ansh \u2013 A Powerful Divine Story Trailer Out: A Powerful Divine Story",
+    "slug": "hanuman-ansh-a-powerful-divine-story-trailer-out-a-powerful-divine-sto",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "The headline should follow the 'Film Teaser/Trailer Out' format correctly. It currently includes the film name twice.",
+        "Ensure that the trailer drop date is clearly stated and matches the content.",
+        "Consider clarifying the source channel for the trailer, such as mentioning if it's from a specific YouTube channel."
+      ],
+      "embed_opportunities": []
+    }
+  }
+]

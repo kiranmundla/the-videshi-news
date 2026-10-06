@@ -1,0 +1,86 @@
+[
+  {
+    "id": "59631260-6548-4f17-8a05-82f610d755e7",
+    "headline": "Paneer Costs Seven Times More Per Gram of Protein Than Masoor Dal",
+    "slug": "paneer-pulses-protein-production-surge",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "05b0231e-328b-443e-b594-e7dcedf12224",
+    "headline": "India Funds Deep-Tech Startups Lavishly but Rarely Buys From Them",
+    "slug": "india-deep-tech-funding-first-customer-gap",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "cda4624a-fe6b-49fe-81ae-7576f7134d81",
+    "headline": "Drishyam 3 Dips on Day 4 but Crosses \u20b9300 Crore Worldwide, Among 2026's Fastest",
+    "slug": "drishyam-3-day-4-rs-300-crore-worldwide",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Drishyam: The Conclusion | Official Trailer | Ajay Devgn, Ta\" vs headline"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "1bf79d41-e35a-4563-8c25-777096b39375",
+    "headline": "Pragyan Ojha Takes Interim Charge as BCCI Chief Selector After Agarkar Exit",
+    "slug": "pragyan-ojha-interim-bcci-chief-selector-agarkar-exit",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "44a0fcae-6247-46b0-95de-214869d8bc4b",
+    "headline": "US Moves to Strip Citizenship From 40 People in Largest Denaturalization Push Ye",
+    "slug": "us-denaturalization-push-40-citizenship-largest-effort",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "38ec515c-70fa-40f3-a268-c0504b38dd62",
+    "headline": "India's Young Astronomers Shine With Four Golds and a Silver in Hanoi",
+    "slug": "india-astronomy-olympiad-2026-four-gold-silver-hanoi",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3c06a20e-c53f-42b9-9c11-ab81e7536dac",
+    "headline": "Serum Institute's Cervavac Gets WHO Prequalification, Opening Path to UN Vaccine",
+    "slug": "serum-institute-cervavac-gets-who-prequalification",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "dce886f2-ebae-4a52-be56-a38e6b74f901",
+    "headline": "Nepal Ends Flood Search With 5,285 Still Missing, Including 189 Indians",
+    "slug": "nepal-ends-flood-search-5285-missing-189-indians",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "addd04c2-ec8a-4db8-8469-17a2fcdff776",
+    "headline": "New York Declares Measles Disaster Emergency as Rural Outbreak Spreads to 18 Cou",
+    "slug": "new-york-declares-measles-disaster-emergency-rural-outbreak",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3441510e-52b2-43df-b7e2-d6de2a6dd27f",
+    "headline": "India, UAE Launch Third Mountain Guardian Exercise in Uttarakhand Hills",
+    "slug": "india-uae-mountain-guardian-2026-exercise-uttarakhand",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

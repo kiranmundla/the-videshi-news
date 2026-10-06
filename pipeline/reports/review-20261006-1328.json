@@ -1,0 +1,40 @@
+[
+  {
+    "id": "26e19e09-8940-44a9-b026-ab20321e3afa",
+    "headline": "QOSMIC's ARGUS Patent: Bengaluru Startup Wins US Patent for Laser-Communication ",
+    "slug": "qosmic-argus-us-patent-laser-ground-station",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by discussing how QOSMIC's innovation could impact NRIs in the tech sector, particularly those in the US or other countries where satellite communication is crucial. For instance, mention how advancements in satellite technology could enhance connectivity for NRIs, making it easier to stay in touch with family in India.",
+        "Include specific details about the potential financial implications of this patent. For example, mention any expected revenue growth for QOSMIC and how that could affect investors, including NRIs looking to invest in Indian tech startups. Providing figures or projections would enhance the article's relevance.",
+        "Add a section that outlines how NRIs can support or invest in such startups, including any platforms or initiatives that facilitate investment in Indian tech companies. This could provide a clear action step for readers.",
+        "Clarify the timeline of the patent process by specifying the significance of the September 8, 2026, grant date and how it positions QOSMIC in the global market against competitors."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from QOSMIC or a related tech news outlet announcing the patent grant to provide real-time context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "d4f8a4a3-ddb1-4b11-b82d-f6a0ea026da4",
+    "headline": "Gold Prices Today: 24K Gold Slips \u20b9160 to \u20b91.49 Lakh as Festive Season Buying Be",
+    "slug": "gold-silver-price-today-october-6-2026",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how gold prices in India impact NRIs looking to invest or send gifts back home during the festive season. For example, discuss how fluctuations in gold prices might affect remittances for purchasing gold in India.",
+        "Provide specific actionable takeaways for NRIs, such as the current exchange rate between the dollar and rupee, and how this impacts the purchasing power of NRIs buying gold in India. Include a comparison of gold prices in major cities in India with equivalent prices in the US to highlight potential savings or costs.",
+        "Add context about the significance of gold purchases for NRIs during the festive season, perhaps including statistics on how much gold NRIs typically send back home or purchase for family members during this time.",
+        "Include a brief section on the implications of the current gold price trend for NRIs planning to invest in gold or those considering sending gold as gifts, emphasizing the importance of timing in relation to the festive season."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial expert or a market analyst discussing the implications of current gold prices for investors, particularly focusing on NRIs."
+      ]
+    }
+  }
+]

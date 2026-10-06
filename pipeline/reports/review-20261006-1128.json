@@ -1,0 +1,40 @@
+[
+  {
+    "id": "a8c530d4-6ff9-4277-acd1-38aadd14124f",
+    "headline": "Kappi Squad \u2013 15th October Trailer Out: 15th October",
+    "slug": "kappi-squad-15th-october-trailer-out-15th-october",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Correct the headline to follow the 'Film Teaser/Trailer Out' format.",
+        "Ensure the drop date is clearly stated as October 06, 2026, in the body.",
+        "Remove redundancy in the body text to improve clarity.",
+        "Verify that the film name is consistently presented without repetition."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "cec7ce7a-a8d3-4d91-b476-6b6d39d689c3",
+    "headline": "Our Story. Our History. Our Truth. \u2013 Ranabaali Trailer on October 8th Trailer Ou",
+    "slug": "our-story-our-history-our-truth-ranabaali-trailer-on-october-8th-trail",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 4,
+      "suggestions": [
+        "Correct the headline to follow the 'Film Teaser/Trailer Out' format, such as 'Ranabaali Trailer Out'.",
+        "Ensure the film name is presented clearly and consistently throughout the brief.",
+        "Clarify the drop date; it should state when the trailer was released and when the film is releasing.",
+        "Remove redundant phrases and ensure clarity in the body text."
+      ],
+      "embed_opportunities": []
+    }
+  }
+]
