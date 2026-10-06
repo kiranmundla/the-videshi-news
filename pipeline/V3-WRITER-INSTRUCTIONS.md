@@ -126,6 +126,8 @@ If the article is about a NAMED PERSON (person's name in the headline or the sto
 2. Otherwise (`og:image`, `rss_thumbnail`, `youtube_thumbnail`, `commons_search`, `pexels`) → you MUST download the hero image and visually verify the person in the photo is the article's subject. Look at it with the read tool.
 3. If you cannot positively confirm the identity → set `image_url` to null via Supabase PATCH and leave the article imageless. The enricher's manual review will source a verified photo within 4 hours. A few hours imageless beats hours with the wrong face.
 
+**When you null a hero image on purpose, also set `image_backfill_blocked: true` on the article row.** Otherwise the image-sourcer backfill re-applies the same bad image in the next cycle (2026-10-05: the backfill re-set both an AI-generated Livemint infographic and a notthebee meme composite that writers had already nulled). PATCH: `{"image_url": null, "image_caption": "", "image_attribution": "", "image_backfill_blocked": true}`.
+
 This check is non-negotiable. Wrong-person photos that go live erode reader trust instantly.
 
 **If you need caption text for a specific article**, the sourcer uses the first entity name as a basic caption. For better captions, you can PATCH the `image_caption` field after the sourcer runs.

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "2e040390-0a4b-484e-a18a-537362abe9ca",
+    "headline": "Japanese Companies Exit China in Record Numbers as India Emerges as Alternative",
+    "slug": "japan-inc-exits-china-record-pace-india",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by explicitly discussing how the withdrawal of Japanese companies from China and their shift towards India can create job opportunities for NRIs and impact their investments. For example, mention specific sectors where NRIs might find opportunities or how they can participate in this economic shift.",
+        "Include concrete specifics regarding the financial implications for NRIs, such as potential investment amounts, projected returns, or specific industries that are expected to benefit from this shift. For instance, provide estimates on how much Japanese investment is expected to flow into India and what that could mean for NRI investors.",
+        "Add a section that outlines actionable steps for NRIs interested in capitalizing on this trend, such as how to invest in Indian stocks or funds that are likely to benefit from increased Japanese investment.",
+        "Provide context on how this trend compares to other countries' investments in India, which would help NRIs understand the broader landscape and implications for their financial decisions."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or an official source discussing the implications of Japanese companies exiting China and investing in India, which could provide additional credibility and context."
+      ]
+    }
+  },
+  {
+    "id": "5d3bbda3-282d-419a-b6b6-3830b0b070ed",
+    "headline": "Radiology Groups Join Coalition Against $103,265 H-1B Fee on Physicians",
+    "slug": "acr-joins-coalition-against-h1b-physician-fee",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific examples of how this proposed fee impacts Indian physicians seeking H-1B visas, including any statistics on the number of Indian doctors currently practicing in the U.S. and their contributions to healthcare in underserved areas.",
+        "Add concrete specifics about the financial implications for NRIs, such as how the proposed fee compares to average salaries for Indian physicians in the U.S. and how it may affect their ability to practice in the U.S. or return to India.",
+        "Include a clear call to action for NRIs, such as encouraging them to contact their representatives or participate in advocacy efforts against the fee, with specific deadlines or events related to this issue.",
+        "Provide context on the timeline for the proposed fee implementation and any upcoming deadlines for public comments or advocacy efforts that NRIs should be aware of."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the proposed fee to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]
