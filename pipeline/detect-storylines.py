@@ -61,7 +61,7 @@ def sb_post(path, data):
         tmp.write(payload)
         tmp_path = tmp.name
     try:
-        cmd = ["curl", "-sS", "--max-time", "30",
+        cmd = ["curl", "-sS", "--fail", "--max-time", "30",
                "-X", "POST", f"{SUPABASE_URL}/rest/v1/{path}",
                "-H", f"apikey: {SUPABASE_KEY}",
                "-H", f"Authorization: Bearer {SUPABASE_KEY}",
@@ -86,7 +86,7 @@ def sb_post(path, data):
 def sb_delete(path, params=""):
     """DELETE from Supabase REST API via curl."""
     url = f"{SUPABASE_URL}/rest/v1/{path}?{params}" if params else f"{SUPABASE_URL}/rest/v1/{path}"
-    cmd = ["curl", "-sS", "--max-time", "30",
+    cmd = ["curl", "-sS", "--fail", "--max-time", "30",
            "-X", "DELETE", url,
            "-H", f"apikey: {SUPABASE_KEY}",
            "-H", f"Authorization: Bearer {SUPABASE_KEY}"]
@@ -103,7 +103,7 @@ def sb_patch(path, data, params=""):
         tmp_path = tmp.name
     try:
         url = f"{SUPABASE_URL}/rest/v1/{path}?{params}" if params else f"{SUPABASE_URL}/rest/v1/{path}"
-        cmd = ["curl", "-sS", "--max-time", "30",
+        cmd = ["curl", "-sS", "--fail", "--max-time", "30",
                "-X", "PATCH", url,
                "-H", f"apikey: {SUPABASE_KEY}",
                "-H", f"Authorization: Bearer {SUPABASE_KEY}",
@@ -472,6 +472,17 @@ Return empty array if no merges needed."""},
             print(f"    🔀 [DRY RUN] Would merge '{remove['title']}' → '{keep['title']}'")
             merged += 1
             continue
+
+        # Drop duplicate links first: articles already linked to keep_id would
+        # violate the unique (storyline_id, article_id) key on reassignment
+        # (2026-10-06: this silently broke merges before --fail was added).
+        keep_ids = {r["article_id"] for r in
+                    sb_get("storyline_articles", f"storyline_id=eq.{keep_id}&select=article_id") or []}
+        remove_rows = sb_get("storyline_articles", f"storyline_id=eq.{remove_id}&select=article_id") or []
+        for r in remove_rows:
+            if r["article_id"] in keep_ids:
+                sb_delete("storyline_articles",
+                          f"storyline_id=eq.{remove_id}&article_id=eq.{r['article_id']}")
 
         # Reassign articles from remove → keep
         ok = sb_patch(
