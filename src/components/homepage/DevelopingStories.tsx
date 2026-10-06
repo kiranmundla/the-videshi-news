@@ -72,14 +72,14 @@ export default function DevelopingStories() {
         .select("id, title, slug, summary, category, status, article_count, last_article_at")
         .in("status", ["active", "emerging"])
         .order("last_article_at", { ascending: false })
-        .limit(5);
+        .limit(8);
 
       if (cancelled || !rawStorylines) return;
-      const valid: any[] = rawStorylines.filter((s: any) => s.article_count >= 5).slice(0, 2);
-      if (valid.length === 0) { setStories([]); return; }
+      const candidates: any[] = rawStorylines.filter((s: any) => s.article_count >= 5);
+      if (candidates.length === 0) { setStories([]); return; }
 
-      // 2) Fetch linked articles for all storylines in one query
-      const ids = valid.map((s: any) => s.id);
+      // 2) Fetch linked articles for all candidates in one query
+      const ids = candidates.map((s: any) => s.id);
       const { data: links } = await (supabase as any)
         .from("storyline_articles")
         .select("storyline_id, p2_articles(id, headline, slug, category, image_url, published_at)")
@@ -97,6 +97,17 @@ export default function DevelopingStories() {
         if (!articleMap[sid]) articleMap[sid] = [];
         articleMap[sid].push(art);
       }
+
+      // Velocity gate (2026-10-06): a story counts as "developing" only with
+      // 2+ linked articles published in the last 72h. One lone article after
+      // a quiet spell must not resurrect it on the rail.
+      const cutoff = Date.now() - 72 * 3600 * 1000;
+      const valid = candidates
+        .filter((s: any) => (articleMap[s.id] || []).filter(
+          (a: LinkedArticle) => a.published_at && new Date(a.published_at).getTime() >= cutoff
+        ).length >= 2)
+        .slice(0, 2);
+      if (valid.length === 0) { setStories([]); return; }
 
       // Sort each storyline's articles by published_at desc
       for (const sid of Object.keys(articleMap)) {

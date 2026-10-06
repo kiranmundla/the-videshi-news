@@ -4,7 +4,8 @@ Developing Stories — auto-detect storylines from recent articles.
 
 Groups articles covering the same ongoing event/narrative (NEET protests,
 diplomatic incidents, cricket series) into storylines. Manages lifecycle:
-  emerging (2 articles) → active (3+) → cooling (5d quiet) → resolved (14d quiet)
+  emerging → active (2+ articles in 72h) → cooling (5d quiet) → resolved (14d quiet)
+A single article after a quiet spell only revives to 'emerging', never 'active'.
 
 Usage:
   python3 pipeline/detect-storylines.py               # normal run
@@ -389,11 +390,18 @@ def link_article_to_storyline(storyline_id, article_id, article, dry_run=False):
 
     # Update storyline metadata
     pub_at = article.get("published_at", datetime.now(timezone.utc).isoformat())
+    # Reactivation rule (2026-10-06): a single article never promotes a story to
+    # 'active'. Linking only refreshes counts/dates. A cooled/resolved story
+    # revives to 'emerging' at most; promotion back to 'active' requires
+    # sustained velocity (>=2 articles in 72h) via update_lifecycle().
+    cur = sb_get("storylines", f"id=eq.{storyline_id}&select=status")
+    cur_status = cur[0].get("status") if cur else "emerging"
+    new_status = "emerging" if cur_status in ("cooling", "resolved") else cur_status
     sb_patch("storylines", {
         "article_count": None,  # will be set below
         "last_article_at": pub_at,
         "updated_at": datetime.now(timezone.utc).isoformat(),
-        "status": "active",  # any new article reactivates
+        "status": new_status,
     }, f"id=eq.{storyline_id}")
 
     # Recount articles
@@ -519,11 +527,40 @@ Return empty array if no merges needed."""},
     return merged
 
 
+def storyline_velocity(storyline_id, hours=72):
+    """Count articles linked to a storyline published within the last N hours."""
+    from urllib.parse import quote
+    cutoff = quote((datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat(), safe="")
+    rows = sb_get("storyline_articles",
+                  f"storyline_id=eq.{storyline_id}&select=article_id,p2_articles(published_at)")
+    if not isinstance(rows, list):
+        return 0
+    n = 0
+    for r in rows:
+        pa = (r.get("p2_articles") or {}).get("published_at") or ""
+        if pa >= cutoff:
+            n += 1
+    return n
+
+
 def update_lifecycle(dry_run=False):
-    """Update storyline statuses based on last_article_at."""
+    """Update storyline statuses based on last_article_at and velocity."""
     now = datetime.now(timezone.utc)
     cooling_cutoff = (now - timedelta(days=COOLING_DAYS)).isoformat()
     resolved_cutoff = (now - timedelta(days=RESOLVED_DAYS)).isoformat()
+
+    # Emerging → active on velocity: 2+ articles in the last 72h.
+    # One lone article after a quiet spell is NOT enough to call a story
+    # "developing" again (2026-10-06).
+    emerging = sb_get("storylines", "status=eq.emerging&select=id,title,last_article_at")
+    if isinstance(emerging, list):
+        for s in emerging:
+            if storyline_velocity(s["id"]) >= 2:
+                if dry_run:
+                    print(f"    🔥 [DRY RUN] Would activate (velocity): '{s['title']}'")
+                else:
+                    sb_patch("storylines", {"status": "active", "updated_at": now.isoformat()}, f"id=eq.{s['id']}")
+                    print(f"    🔥 Activating (2+ articles in 72h): '{s['title']}'")
 
     # Active/emerging → cooling (no new article for 5 days)
     active = sb_get("storylines", "status=in.(active,emerging)&select=id,title,last_article_at")
