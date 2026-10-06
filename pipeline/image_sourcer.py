@@ -1028,10 +1028,17 @@ _HEADLINE_TITLE_WORDS = {
     "expert", "experts", "vendor", "vendors", "minister", "ministers",
     "official", "officials", "doctor", "doctors", "study", "studies",
     "report", "reports", "court", "courts", "police", "army", "government",
-    "team", "teams", "party", "panel", "committee", "board", "bank",
-    "company", "group", "school", "schools", "university", "hospital",
-    "center", "centre", "festival", "award", "awards", "cup", "league",
-    "tournament", "championship",
+    "team", "teams", "party", "parties", "panel", "panels", "committee",
+    "committees", "board", "boards", "bank", "banks",
+    "company", "companies", "group", "groups", "school", "schools",
+    "university", "universities", "hospital", "hospitals",
+    "center", "centres", "centre", "festival", "festivals", "award", "awards",
+    "cup", "cups", "league", "leagues",
+    "tournament", "tournaments", "championship", "championships",
+    # Headline plurals are common org subjects ("Radiology Groups Join...",
+    # "Banks Post...", "Universities Sue...") — the singular-only list let
+    # "Radiology Groups" through as a person's name and blocked the Pexels
+    # fallback (2026-10-05; same class as the "No Handshake" fix)
     # Economy/finance nouns: two-word phrases like "Mortgage Rates", "Gas Prices",
     # "Bond Market" are never a person's name (2026-09-21 health check found
     # "Mortgage Rates" misdetected, which blocked Pexels fallback entirely)
@@ -1099,6 +1106,23 @@ _HEADLINE_NONNAME_FIRST_WORDS = {
     # person guard that blocked Pexels for clearly non-person headlines)
     "new", "global",
 }
+# Collective-noun leads that are never a person's given name
+# ("Fans Mourn...", "Students Protest...", "Workers Strike...") — a person's
+# name is never a plural collective. Applied to the headline's first word.
+_HEADLINE_COLLECTIVE_WORDS = {
+    "fans", "workers", "students", "travelers", "travellers", "passengers",
+    "voters", "residents", "customers", "employees", "nurses", "teachers",
+    "farmers", "migrants", "immigrants", "expats", "pilgrims", "devotees",
+    "tourists", "airports", "startups", "agencies", "associations",
+    "unions", "colleges", "institutions", "airlines", "retailers",
+}
+# First-word org nouns that can never be a person's given name. Reuses the
+# title-word list (minus bank/banks) because a headline starting with an
+# org/collective noun ("Universities Sue...", "Doctors Warn...", "Companies
+# Hire...") is never about a person named that. bank/banks excluded:
+# Banks is a real surname/stage name (the singer BANKS) — the one ambiguous
+# word keeps the conservative (identity-safe) behavior.
+_HEADLINE_FIRST_ORG_WORDS = _HEADLINE_TITLE_WORDS - {"bank", "banks"}
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
     "your", "my", "our", "his", "her", "their", "its",
@@ -1145,6 +1169,10 @@ def headline_person_name(headline):
     # Preposition/interrogative leads ("After Years...", "Why India..."):
     # a given name never starts with one
     if first_base in _HEADLINE_NONNAME_FIRST_WORDS:
+        return None
+    # Org/collective-noun leads ("Universities Sue...", "Doctors Warn...",
+    # "Fans Mourn..."): a given name never starts with one
+    if first_base in _HEADLINE_FIRST_ORG_WORDS or first_base in _HEADLINE_COLLECTIVE_WORDS:
         return None
     # Gerund verbs leading the headline ("Replacing Russian...", "Building New...")
     # — a given name never ends in -ing ("Singh" is a surname, handled below)
