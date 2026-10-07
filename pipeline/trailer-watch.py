@@ -94,6 +94,10 @@ def parse_dt(s):
 def split_film_title(title):
     """'Bhogi - Official Teaser | Sharwanand' -> ('Bhogi', 'Sharwanand').
 
+    Hyphenated film names keep every word up to the teaser/trailer keyword:
+    'The Eken: Kerela - e Kurukshetra Official Trailer' -> ('The Eken:
+    Kerela - e Kurukshetra', ...), not just ('The Eken', ...).
+
     Marketing-first titles like 'Our Story. Our History. Our Truth. |
     Ranabaali Trailer on October 8th | ...' put a tagline in parts[0], so
     prefer the part carrying the teaser/trailer keyword: the text before it
@@ -103,7 +107,19 @@ def split_film_title(title):
     # parts[0] is the film unless it looks like a marketing tagline
     # (sentence punctuation = tagline, e.g. "Our Story. Our History. Our Truth.")
     film_like = first and not re.search(r"[.!?]", first) and len(first) < 60
-    if not film_like:
+    if film_like:
+        # Keep hyphenated subtitles: cut the title at the teaser/trailer
+        # keyword instead of using the first hyphen-separated fragment.
+        m = re.search(r"(?i)^(.+?)\s*(?:official\s+)?(?:teaser|trailer)\b", title)
+        if m:
+            cand = clean_film_name(re.sub(r"\s*[-–—:|]\s*$", "", m.group(1)).strip())
+            if cand:
+                film = cand
+            else:
+                film = first
+        else:
+            film = first
+    elif not film_like:
         for p in parts:
             m = re.search(r"(?i)^(.+?)\s+(?:official\s+)?(?:teaser|trailer)\b", p)
             if m:
@@ -112,9 +128,10 @@ def split_film_title(title):
                     rest_bits = [q for q in parts[1:]
                                  if q and not _TITLE_RE.search(q) and not re.search(r"(?i)4k|hd|official", q)]
                     return cand, " | ".join(rest_bits[:2]).strip()
-    film = first or title
-    film = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", film).strip()
-    film = re.sub(r"(?i)^(official\s+)?(teaser|trailer)\s*(of|for)?\s*", "", film).strip()
+    if not film_like:
+        film = first or title
+        film = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", film).strip()
+        film = re.sub(r"(?i)^(official\s+)?(teaser|trailer)\s*(of|for)?\s*", "", film).strip()
     rest_bits = [p for p in parts[1:]
                  if p and not _TITLE_RE.search(p) and not re.search(r"(?i)4k|hd|official", p)]
     rest = " | ".join(rest_bits[:2]).strip()
@@ -237,9 +254,20 @@ def extract_credits(desc):
     """
     text = unicodedata.normalize("NFKD", desc or "")
     credits = {}
+    pending_cast = False  # a bare "Credits:" line -> the next names-only line is cast
     for raw in text.split("\n"):
         line = raw.strip()
         if not line or len(line) > 220:
+            continue
+        if pending_cast:
+            pending_cast = False
+            if "cast" not in credits:
+                v = _clean_names(line)
+                if v and "," in v:
+                    credits["cast"] = v
+                    continue
+        if re.match(r"(?i)^\s*credits?\s*[:\-–—]?\s*$", line):
+            pending_cast = True
             continue
         for seg in _SEG_SPLIT.split(line):
             seg = seg.strip()
@@ -306,8 +334,10 @@ def build_brief_article(drops, channels_by_name):
     if subtitle and subtitle.lower() not in film.lower():
         film = f"{film} \u2013 {subtitle}"
     hook = clean_film_name(rest.split("|")[0].strip()) if rest else ""
-    # Don't let a studio/channel name or @handle become the headline hook
-    if hook.startswith("@") or _STUDIO_RE.search(hook):
+    # Don't let a studio/channel name or @handle become the headline hook,
+    # and don't repeat a word that's already in the film name.
+    if hook.startswith("@") or _STUDIO_RE.search(hook) or \
+            (hook and hook.lower() in film.lower()):
         hook = ""
     headline = f"{film} {kind} Out" + (f": {hook[:60]}" if hook else "")
     pub = parse_dt(first["published"])
