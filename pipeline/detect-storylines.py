@@ -266,13 +266,18 @@ A STORYLINE is a specific ongoing event with a narrative arc:
 ✅ "H-1B visa fee increase implementation" — specific policy change playing out
 ✅ "Trump tariffs on Indian goods" — specific trade action with reactions and consequences
 
-IMPORTANCE BAR (2026-10-06): developing stories are reserved for VERY IMPORTANT
-developments only — events of national or international significance with major
-reader impact: major policy changes, major disasters, major geopolitical events,
+IMPORTANCE BAR (2026-10-06, tightened 2026-10-07): developing stories are reserved
+for VERY IMPORTANT developments only — events of national or international
+significance with major reader impact: major policy changes, major disasters,
 major elections, major public-safety incidents. Do NOT create storylines for:
 sports tournaments/results, entertainment/box office, routine business or market
 news, single-company stories, celebrity legal matters, local incidents, one-time
 data prints, or industry trend topics. Those are standalone articles — action "none".
+WAR AND ARMED CONFLICT (2026-10-07): never create or match storylines about wars,
+military conflicts, invasions, or armed hostilities — even when they involve India
+diplomatically (ceasefire pushes, Jaishankar statements, UN votes). A war's
+humanitarian consequences for Indians (evacuations, injured nationals) are covered
+as standalone articles, not as developing storylines. When in doubt, choose "none".
 
 A storyline is NOT:
 ❌ A broad recurring topic ("tech layoffs", "Bollywood box office", "stock market")
