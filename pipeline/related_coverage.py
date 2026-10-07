@@ -13,6 +13,7 @@ import json
 import os
 import re
 import subprocess
+import urllib.parse
 from datetime import datetime, timedelta, timezone
 
 
@@ -42,16 +43,15 @@ def _get(path, params=()):
 
 def _patch(path, params, data):
     SB, K = _sb_env()
-    flat = []
-    for k, v in params:
-        flat += ["--data-urlencode", f"{k}={v}"]
-    cmd = (["curl", "-sS", "--fail", "-X", "PATCH", f"{SB}/rest/v1/{path}"] + flat
-           + ["-H", f"apikey: {K}", "-H", f"Authorization: Bearer {K}",
-              "-H", "Content-Type: application/json",
-              "-H", "Prefer: return=representation",
-              "-d", json.dumps(data)])
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
-    return json.loads(r.stdout)
+    qs = urllib.parse.urlencode([(k, v) for k, v in params])
+    cmd = (["curl", "-sS", "--fail", "-X", "PATCH",
+            f"{SB}/rest/v1/{path}?{qs}",
+            "-H", f"apikey: {K}", "-H", f"Authorization: Bearer {K}",
+            "-H", "Content-Type: application/json",
+            "-H", "Prefer: return=minimal",
+            "-d", json.dumps(data)])
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+    return True
 
 
 def find_related(article_id, category, tags, limit=3, days=14):
