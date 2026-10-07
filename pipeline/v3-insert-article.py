@@ -35,7 +35,7 @@ def supabase_patch(path, data):
 _DOMAIN_NAMES = {
     "reuters.com": "Reuters", "bloomberg.com": "Bloomberg",
     "apnews.com": "Associated Press", "bbc.com": "BBC", "bbc.co.uk": "BBC",
-    "cnn.com": "CNN", "nytimes.com": "The New York Times",
+    "cnn.com": "CNN", "nytimes.com": "The New York Times", "usatoday.com": "USA Today",
     "washingtonpost.com": "The Washington Post", "wsj.com": "The Wall Street Journal",
     "forbes.com": "Forbes", "theguardian.com": "The Guardian",
     "economictimes.indiatimes.com": "The Economic Times",
