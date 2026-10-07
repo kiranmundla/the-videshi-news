@@ -174,6 +174,95 @@ def parse_description(desc):
 _LANG_RE = r"hindi|tamil|telugu|kannada|malayalam|bengali|marathi|punjabi|gujarati|english"
 
 
+# Labels official channels use for credits in trailer descriptions.
+# Order matters: multi-word labels must be tried before their fragments.
+_CREDIT_LABELS = [
+    ("cast", [r"star\s*cast", r"starring", r"featuring", r"starcast",
+              r"\bcast\b", r"actors?"]),
+    ("director", [r"directed\s+by", r"direction", r"\bdirector\b"]),
+    ("host", [r"hosted\s+by", r"\bhost\b"]),
+    ("producer", [r"produced\s+by", r"producers?", r"production"]),
+    ("music", [r"music\s+director", r"music\s+by", r"\bmusic\b"]),
+]
+
+_CREDIT_JUNK = re.compile(
+    r"(?i)subscribe|follow|watch now|click here|copyright|link in|"
+    r"https?://|www\.|\.com|@|#")
+
+
+def _clean_names(value):
+    """'X, Y and Z' -> 'X, Y, Z' or '' if it doesn't look like people."""
+    value = (value or "").strip().strip(" -–—|:;.,")
+    if not value or len(value) > 180:
+        return ""
+    if _CREDIT_JUNK.search(value):
+        return ""
+    value = re.sub(r"\s+", " ", value)
+    tokens = [t.strip(" .") for t in
+              re.split(r"\s*,\s*|\s+&\s+|\s+and\s+|\s+/\s+|\s*\|\s*", value)]
+    names = [t for t in tokens if t and len(t) <= 42
+             and re.search(r"[A-Z]", t)
+             and not re.search(r"\d", t)
+             and re.fullmatch(r"[A-Za-z .'\-()&]+", t)
+             and not _CREDIT_JUNK.search(t)]
+    return ", ".join(names[:6]) if names else ""
+
+
+# separators that split one line into independent "Label: value" segments
+_SEG_SPLIT = re.compile(
+    r"\s*[|;]\s*|\.\s+(?=(?:star\s*cast|starcast|starring|featuring|"
+    r"\bcast\b|\bactors?\b|directed\s+by|direction|\bdirector\b|"
+    r"hosted\s+by|\bhost\b|produced\s+by|producers?|production|"
+    r"music\s+director|music\s+by|\bmusic\b))", re.I)
+
+# "X by Name" phrasing without a colon
+_BY_PHRASE = re.compile(
+    r"(?i)^\s*(directed|hosted|produced)\s+by\s+(.+)$")
+
+
+def extract_credits(desc):
+    """Pull cast/director/host/producer/music from an official description.
+
+    e.g. 'Starring: Ranveer Singh, Deepika Padukone\\nDirected by: Rohit Shetty'
+    -> {'cast': 'Ranveer Singh, Deepika Padukone', 'director': 'Rohit Shetty'}
+    Only returns values that pass name validation; {} when nothing reliable.
+    """
+    text = unicodedata.normalize("NFKD", desc or "")
+    credits = {}
+    for raw in text.split("\n"):
+        line = raw.strip()
+        if not line or len(line) > 220:
+            continue
+        for seg in _SEG_SPLIT.split(line):
+            seg = seg.strip()
+            if not seg:
+                continue
+            for key, labels in _CREDIT_LABELS:
+                if key in credits:
+                    continue
+                lab = "|".join(labels)
+                m = re.match(rf"(?i)^\s*(?:{lab})\s*[:\-–—|]\s*(.+)$", seg)
+                v = _clean_names(m.group(1)) if m else ""
+                if not v and key in ("director", "host", "producer"):
+                    m2 = _BY_PHRASE.match(seg)
+                    if m2 and m2.group(1).lower() in (
+                            "directed" if key == "director" else
+                            "hosted" if key == "host" else "produced"):
+                        v = _clean_names(m2.group(2))
+                if v:
+                    credits[key] = v
+                    break
+            else:
+                # mid-line fallback: "... starring Teja Sajja, Manchu Manoj"
+                m = re.search(
+                    r"(?i)\bstarring\s*[:\-–—]?\s+([A-Z][^.\n|;]{1,150})", seg)
+                if m and "cast" not in credits:
+                    v = _clean_names(m.group(1))
+                    if v:
+                        credits["cast"] = v
+    return credits
+
+
 def extract_language(title):
     """'... (Kannada) | Official Trailer' -> 'Kannada'. None if not found."""
     m = re.search(r"\b(" + _LANG_RE + r")\b", title, re.I)
@@ -235,6 +324,16 @@ def build_brief_article(drops, channels_by_name):
     desc_line, media_type, release = parse_description(first.get("description", ""))
     work = "series" if media_type == "Series" else "film"
 
+    # Credits may live in any language version's description; merge, preferring
+    # the primary drop's values. (first is the longest-titled drop, not drops[0])
+    credits = extract_credits(first.get("description", ""))
+    for d in drops:
+        if d is first:
+            continue
+        more = extract_credits(d.get("description", ""))
+        for k, v in more.items():
+            credits.setdefault(k, v)
+
     main_ch = channels_by_name.get(first["channel"], {})
     takeaways = [
         f"The {kind.lower()} for <b>{html.escape(film)}</b> dropped {pub_str}.",
@@ -263,6 +362,36 @@ def build_brief_article(drops, channels_by_name):
     dest = "streaming" if main_ch.get("industry") == "streamer" else "theaters"
     body += (f"<p>For diaspora audiences tracking the {work}'s US release, the {kind.lower()} is the first "
              f"real look at what's headed to {dest}.</p>")
+    info_rows = []
+    if credits.get("cast"):
+        info_rows.append(("Cast", credits["cast"]))
+    if credits.get("director"):
+        info_rows.append(("Director", credits["director"]))
+    if credits.get("host"):
+        info_rows.append(("Host", credits["host"]))
+    if credits.get("producer"):
+        info_rows.append(("Producer", credits["producer"]))
+    if credits.get("music"):
+        info_rows.append(("Music", credits["music"]))
+    if media_type:
+        info_rows.append(("Type", media_type))
+    if release:
+        info_rows.append(("Release", release))
+    if langs:
+        info_rows.append(("Languages", ", ".join(langs)))
+    # A lone "Languages" row isn't worth a navy card — require at least one
+    # real credit, type, or release date.
+    if info_rows and (any(credits.get(k) for k in
+                          ("cast", "director", "host", "producer", "music"))
+                      or media_type or release):
+        body += ('<div class="vdc"><div class="vdc-glow"></div>'
+                 '<div class="vdc-title">Film information</div>'
+                 '<div class="vdc-grid">'
+                 + "".join(
+                     f'<div class="vdc-stat"><div class="vdc-stat-val">{html.escape(v)}</div>'
+                     f'<div class="vdc-stat-lbl">{k}</div></div>'
+                     for k, v in info_rows)
+                 + "</div></div>")
     for v in versions:
         label = (f"<b>{html.escape(v['lang'])}</b> \u2014 {html.escape(v['channel'])}"
                  if v["lang"] else f"<b>{html.escape(v['channel'])}</b>")
