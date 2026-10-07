@@ -223,14 +223,29 @@ def load_registry():
     return _lr()
 
 
+# Generic geographic words that must never surname-match on their own. Registry
+# rows like "Hockey India" / "PMO India" sit under the "persons" group, and
+# surname-only matching on "india" matched every headline mentioning India.
+GEO_GENERIC_WORDS = {
+    "india", "indian", "indias", "bharat", "bharata", "usa", "america", "american",
+    "uk", "britain", "british", "england", "uae", "dubai", "qatar",
+    "delhi", "mumbai", "bengaluru", "bangalore", "chennai", "kolkata",
+    "hyderabad", "pune", "ahmedabad", "jaipur", "lucknow",
+}
+
+
 def match_handles(headline, registry, platform):
     """Match article headline to registry handles for a platform.
     Returns list of {name, handle, category, platform}.
-    
+
     For persons: matches if the last name (last significant word) appears in the
     headline as a word. This handles headlines like "Modi Plans..." matching
     "Narendra Modi". Tweet relevance scoring (min_score=5) filters false positives.
-    
+
+    Guard: entries whose name ends in a generic geographic word ("Hockey India",
+    "Sunrisers Hyderabad") require ALL significant name parts to match, even when
+    stored under the "persons" group — otherwise every India headline matches them.
+
     For organizations: requires ALL significant name parts to match (stricter)."""
     headline_lower = headline.lower()
     matches = []
@@ -256,7 +271,18 @@ def match_handles(headline, registry, platform):
                     # found as a whole word in the headline. This handles "Modi", "Kohli",
                     # "Pichai" etc. Relevance scoring filters false positives downstream.
                     surname = significant[-1]
-                    if len(surname) >= 4 and re.search(r'\b' + re.escape(surname) + r'\b', headline_lower):
+                    if len(significant) > 1 and surname in GEO_GENERIC_WORDS:
+                        # Org-style name stored under persons ("Hockey India"): surname
+                        # alone is not distinctive — require the full name to match.
+                        if all(re.search(r'\b' + re.escape(w) + r'\b', headline_lower) for w in significant):
+                            matches.append({
+                                "name": name,
+                                "handle": handle.lower(),
+                                "category": category,
+                                "platform": platform,
+                                "group": group,
+                            })
+                    elif len(surname) >= 4 and re.search(r'\b' + re.escape(surname) + r'\b', headline_lower):
                         matches.append({
                             "name": name,
                             "handle": handle.lower(),
@@ -1096,6 +1122,23 @@ def _extract_distinctive_entities(headline):
         "million", "billion", "deal", "stake", "sells", "buys",
         "changes", "cap", "visa", "ban", "rule", "rules", "plan",
         "against", "after", "over", "into", "from", "with",
+        # Common words that are not same-story evidence (2026-10-06: a tweet
+        # mentioning "behind"/"stage" was enough to pass the entity gate)
+        "behind", "ahead", "across", "along", "among", "between", "during",
+        "stage", "stages", "travel", "market", "markets", "fair",
+        "south", "north", "east", "west", "central",
+        "takes", "take", "turns", "turn", "makes", "make", "gets", "get", "set",
+        "trio", "ancient", "modern", "story", "stories", "life", "lives",
+        "time", "times", "world", "year", "years", "day", "days", "week", "today",
+        "indian", "indias", "country", "countries", "state", "states",
+        "city", "cities", "team", "teams", "group", "groups", "show", "shows",
+        "film", "films", "movie", "movies", "series", "trailer", "teaser",
+        "song", "songs", "album", "book", "books", "centre", "center",
+        # Capitalized sentence-start words the extractor picks up; useless as
+        # same-story evidence (2026-10-06: "the" passed the gate on its own)
+        "the", "and", "for", "are", "was", "were", "has", "had", "have",
+        "his", "her", "its", "their", "our", "your", "who", "what", "when",
+        "where", "which", "how", "why", "not", "but", "out", "all", "now",
     }
     # Capitalized words (likely proper nouns)
     words = re.findall(r'\b[A-Z][a-z]{2,}\b', headline)
