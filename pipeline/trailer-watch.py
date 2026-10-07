@@ -32,10 +32,17 @@ LOOKBACK_DAYS_FIRST_RUN = 3
 MAX_ARTICLES_PER_RUN = 6
 
 _TITLE_RE = re.compile(r"trailer|teaser", re.IGNORECASE)
+# 2026-10-07: added trailer-launch event coverage block. SVF uploaded 9 "Grand
+# Trailer Launch" videos (interviews/audience reactions at the launch event, Bengali
+# titles like "Launch-এ এসে কী বলল"), which is_trailer() let through because they
+# contain "trailer" — producing a bogus "Grand Trailer Out" brief. Block the event
+# pattern, not the word.
 _BLOCK_RE = re.compile(
     r"#?shorts?\b|box[\s-]?office|collection|\bvs\.?\b|comparison|reaction|"
     r"review|interview|behind the scenes|\bbts\b|first look|mashup|tribute|"
-    r"fancast|day\s*\d+|episode\s*\d+|song|audio|lyrical",
+    r"fancast|day\s*\d+|episode\s*\d+|song|audio|lyrical|"
+    r"trailer\s*launch|launch\s*event|launch\s*coverage|"
+    r"কেমন\s*লাগল|দর্শকদের|অনুরাগীদের|পৌঁছে|পুরো\s*team|কী\s*বলল|বিশেষ\s*কথা",
     re.IGNORECASE,
 )
 # Live-event videos (trailer launches, press meets) are rail-eligible but must
