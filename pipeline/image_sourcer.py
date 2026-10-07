@@ -1168,6 +1168,15 @@ _HEADLINE_FIRST_ORG_WORDS = _HEADLINE_TITLE_WORDS - {"bank", "banks"}
 _HEADLINE_PROPER_NONPERSON_WORDS = {
     "nvidia", "pennsylvania", "google",
 }
+# Possessive place leads: "[Place]'s [Business]" ("Hoover's Kabob-Licious",
+# "Hartlepool's Seaton Tandoori") is a place's business, not a person named
+# Hoover/Hartlepool. Without this the identity guard blocks Pexels and the
+# article goes imageless (2026-10-07: two food articles). Kept tight and
+# documented per encounter — the conservative direction (imageless) is safe,
+# this just recovers the photo.
+_HEADLINE_PLACE_POSSESSIVE_WORDS = {
+    "hoover", "hartlepool",
+}
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
     "your", "my", "our", "his", "her", "their", "its",
@@ -1207,6 +1216,11 @@ def headline_person_name(headline):
     # plural possessive "Americans'" → "americans") (2026-10-07)
     first_base = re.sub(r"['’]s$|['’]$", "", first.lower()).rstrip(".")
     if first_base in _HEADLINE_PREFIX_WORDS:
+        return None
+    # Possessive place + business ("Hoover's Kabob-Licious"): the place owns
+    # the business; not a person. Only applies when the possessive is on the
+    # FIRST word — "Ranveer Brar's" (possessive on second) is still a person.
+    if re.search(r"['’]s$", first) and first_base in _HEADLINE_PLACE_POSSESSIVE_WORDS:
         return None
     # ALL-CAPS short lead words are org/acronyms (IIT, UPI, EPF, NPS, PFRDA),
     # never a person's given name
