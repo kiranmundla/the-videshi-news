@@ -1129,6 +1129,12 @@ _HEADLINE_COLLECTIVE_WORDS = {
     "farmers", "migrants", "immigrants", "expats", "pilgrims", "devotees",
     "tourists", "airports", "startups", "agencies", "associations",
     "unions", "colleges", "institutions", "airlines", "retailers",
+    # Nationality plurals — never a person's given name (2026-10-07:
+    # "Americans' One-Year Inflation..." was misread as a named person,
+    # blocking Pexels backfill on a generic markets headline)
+    "americans", "indians", "nris", "europeans", "asians", "canadians",
+    "australians", "britons", "russians", "ukrainians", "israelis",
+    "palestinians", "chinese", "japanese", "koreans", "mexicans",
 }
 # First-word org nouns that can never be a person's given name. Reuses the
 # title-word list (minus bank/banks) because a headline starting with an
@@ -1182,8 +1188,9 @@ def headline_person_name(headline):
     if not m:
         return None
     first, second = m.group(1), m.group(2)
-    # Strip possessive suffix for the word-list checks ("India's" → "india")
-    first_base = re.sub(r"['’]s$", "", first.lower()).rstrip(".")
+    # Strip possessive suffix for the word-list checks ("India's" → "india",
+    # plural possessive "Americans'" → "americans") (2026-10-07)
+    first_base = re.sub(r"['’]s$|['’]$", "", first.lower()).rstrip(".")
     if first_base in _HEADLINE_PREFIX_WORDS:
         return None
     # ALL-CAPS short lead words are org/acronyms (IIT, UPI, EPF, NPS, PFRDA),
