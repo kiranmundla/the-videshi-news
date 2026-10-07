@@ -280,3 +280,12 @@ html, body { overflow-x: hidden; }
 .ig-embed-crop iframe {
   margin-bottom: -145px !important;
 }
+
+/* ── Related coverage — internal links appended at insert time ── */
+.related-coverage { margin: 28px 0 8px; border-top: 1px solid rgba(11,29,58,0.14); padding-top: 14px; }
+.related-coverage-title { font-size: 11px; font-weight: 800; color: #0B1D3A; text-transform: uppercase; letter-spacing: 1.6px; margin-bottom: 6px; }
+.related-item { display: block; padding: 10px 0; border-bottom: 1px solid rgba(11,29,58,0.08); text-decoration: none; }
+.related-item:last-child { border-bottom: none; }
+.related-item-title { display: block; font-size: 15px; font-weight: 700; color: #0B1D3A; line-height: 1.35; }
+.related-item:active .related-item-title { color: #A32D2F; }
+.related-item-meta { display: block; font-size: 11.5px; color: rgba(11,29,58,0.55); margin-top: 3px; }

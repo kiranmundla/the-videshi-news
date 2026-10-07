@@ -16,6 +16,7 @@ Usage:
 
 import json
 import hashlib
+import html
 import os
 import re
 import sys
@@ -445,6 +446,13 @@ def process_event(card: dict, city: dict) -> dict | None:
 
     event_city = addr_city
     event_state = addr_state
+
+    # allevents serves HTML-escaped entities (&amp; &lt; &#39;) in JSON-LD/og
+    # fields — decode before storing or cards render "GARBA&amp; DANDIA".
+    title = html.unescape(title or "")
+    venue_name = html.unescape(venue_name or "")
+    description = html.unescape(description or "")
+    full_description = html.unescape(full_description or "")
 
     fp = content_fingerprint(title, date_str, event_city)
 

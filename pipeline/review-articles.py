@@ -235,6 +235,7 @@ def llm_review(article, model="gpt-4o-mini"):
     
     headline = article.get("headline", "")
     category = article.get("category", "")
+    article_type = (article.get("article_type") or "").lower()
     body = article.get("body", "") or ""
     # Truncate body for cost
     body_preview = body[:3000] if len(body) > 3000 else body
@@ -258,11 +259,27 @@ Body (first 3000 chars): {body_text[:2000]}
 
 Respond as JSON: {{"quality_score": 1-10, "suggestions": ["specific suggestion 1", ...], "embed_opportunities": ["specific embed idea if any"]}}"""
     else:
+        breaking_note = ""
+        if article_type == "breaking":
+            breaking_note = (
+                "\nIMPORTANT: This is a BREAKING news article. Score it on reporting "
+                "quality — accuracy, attribution, completeness, clarity, timeliness. "
+                "Do NOT penalize it for lacking diaspora/NRI angles, investment angles, "
+                "or lifestyle takeaways; those belong in features and analysis, not "
+                "breaking news. Never suggest adding NRI property/investment angles "
+                "to tragedy or disaster coverage.\n"
+            )
+        diaspora_focus = (
+            "1. Reporting quality only: accuracy, attribution, completeness, clarity. "
+            "Skip the diaspora-angle check for breaking news.\n"
+            if article_type == "breaking" else
+            "1. Is the diaspora/NRI angle strong enough? (This is the site's USP)\n"
+        )
         prompt = f"""You are an editorial QA reviewer for The Videshi, an Indian diaspora news site for NRIs.
 Review this article critically and give 2-4 specific, actionable suggestions to improve it.
-
+{breaking_note}
 Focus on:
-1. Is the diaspora/NRI angle strong enough? (This is the site's USP)
+{diaspora_focus}\
 2. Does at least one key takeaway answer "what does this mean for ME?" with concrete specifics — dollar/rupee amounts, dates, deadlines, eligibility, action steps? (Generic "fees are increasing" without numbers is a miss for immigration, markets-finance, nri-world, travel, and lifestyle-health stories.)
 3. Would a specific social embed make this better? (e.g. "embed the official USCIS tweet about this policy")
 4. Is the headline compelling and specific?

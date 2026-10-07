@@ -224,7 +224,19 @@ def get_image_dimensions(img_bytes):
 
 # ── Source 1: og:image from source article URL ───────────────────────────────
 
-# Known generic/placeholder og:image patterns (site logos, default social cards)
+# Generic social-card filenames served at domain root are site branding, not
+# article art (2026-10-07: 1stheadlines.com/og.jpg — a "1st HEADLINES / Breaking
+# News Headlines" logo — was accepted as the hero for a wrestlers-visa story).
+# Only treated as generic when the path is shallow (<=2 segments); an
+# article-specific path like /wp-content/uploads/2026/07/og.jpg is fine.
+_ROOT_SOCIAL_FILENAMES = {
+    "og.jpg", "og.jpeg", "og.png", "og.webp",
+    "og-image.jpg", "og-image.jpeg", "og-image.png",
+    "share.jpg", "share.jpeg", "share.png",
+    "default.jpg", "default.jpeg", "default.png",
+    "social.jpg", "social.jpeg", "social.png",
+    "preview.jpg", "thumbnail.jpg",
+}
 _OG_IMAGE_BLOCKLIST_PATTERNS = [
     "logo", "default", "placeholder", "social-card", "meta-image",
     "site-icon", "favicon", "brand-image", "og-default", "share-image",
@@ -315,6 +327,9 @@ def _is_generic_og_image(img_url):
             return True
     # Skip .gif (usually low-quality thumbnails or tracking pixels)
     if lower.endswith(".gif"):
+        return True
+    # Root-level generic social filenames are site branding, not article art
+    if len(segments) <= 2 and filename in _ROOT_SOCIAL_FILENAMES:
         return True
     return False
 
