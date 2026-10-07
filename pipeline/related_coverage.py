@@ -140,13 +140,15 @@ def render_related_block(related):
     items = []
     for r in related:
         slug = r.get("slug") or ""
-        title = r.get("headline") or ""
+        # unescape first: headlines may carry entities (&#x27;) — escaping raw
+        # would double-encode to &amp;#x27; which renders literally
+        title = html.escape(html.unescape(r.get("headline") or ""))
         cat = (r.get("category") or "").replace("-", " ").title()
         pub = (r.get("published_at") or "")[:10]
         meta = " · ".join(p for p in (cat, pub) if p)
         items.append(
             f'<a class="related-item" href="/articles/{html.escape(slug)}">'
-            f'<span class="related-item-title">{html.escape(title)}</span>'
+            f'<span class="related-item-title">{title}</span>'
             + (f'<span class="related-item-meta">{html.escape(meta)}</span>'
                if meta else "")
             + "</a>")
