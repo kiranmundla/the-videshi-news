@@ -1145,7 +1145,7 @@ _HEADLINE_FIRST_ORG_WORDS = _HEADLINE_TITLE_WORDS - {"bank", "banks"}
 # ("apple", "meta", "tesla", "georgia", "virginia") stay out, preserving
 # conservative identity-safe behavior for anything that could be a real name.
 _HEADLINE_PROPER_NONPERSON_WORDS = {
-    "nvidia", "pennsylvania",
+    "nvidia", "pennsylvania", "google",
 }
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
