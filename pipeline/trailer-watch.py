@@ -371,7 +371,10 @@ def build_brief_article(drops, channels_by_name):
     langs = sorted({v["lang"] for v in versions if v["lang"]})
 
     desc_line, media_type, release = parse_description(first.get("description", ""))
-    work = "series" if media_type == "Series" else "film"
+    # Game trailers (e.g. a channel posting a gameplay trailer) are not films —
+    # use game-appropriate language instead of "film's US release / theaters".
+    is_game = bool(re.search(r"\bgameplay\b|\bgame\b", title, re.I))
+    work = "game" if is_game else ("series" if media_type == "Series" else "film")
 
     # Credits may live in any language version's description; merge, preferring
     # the primary drop's values. (first is the longest-titled drop, not drops[0])
@@ -409,8 +412,14 @@ def build_brief_article(drops, channels_by_name):
     if desc_line and len(takeaways) < 3:
         body += f"<p>{html.escape(desc_line)}</p>"
     dest = "streaming" if main_ch.get("industry") == "streamer" else "theaters"
-    body += (f"<p>For diaspora audiences tracking the {work}'s US release, the {kind.lower()} is the first "
-             f"real look at what's headed to {dest}.</p>")
+    if is_game:
+        body += (f"<p>For diaspora gamers, the {kind.lower()} is the first "
+                 f"real look at what's ahead"
+                 + (f", with the game releasing {html.escape(release)}." if release else ".")
+                 + "</p>")
+    else:
+        body += (f"<p>For diaspora audiences tracking the {work}'s US release, the {kind.lower()} is the first "
+                 f"real look at what's headed to {dest}.</p>")
     info_rows = []
     # Cast renders as a headshot strip below the stat grid, not a flat text
     # stat — comma-joined name lists are unreadable on mobile.
@@ -440,7 +449,7 @@ def build_brief_article(drops, channels_by_name):
                           ("cast", "director", "host", "producer", "music"))
                       or media_type or release):
         body += ('<div class="vdc"><div class="vdc-glow"></div>'
-                 '<div class="vdc-title">Film information</div>'
+                 f'<div class="vdc-title">{"Game info" if is_game else "Film information"}</div>'
                  '<div class="vdc-grid">'
                  + "".join(
                      f'<div class="vdc-stat"><div class="vdc-stat-val">{html.escape(v)}</div>'
