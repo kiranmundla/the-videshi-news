@@ -21,6 +21,7 @@ Usage:
 """
 
 import json
+import re
 import sys
 import os
 import time
@@ -669,8 +670,11 @@ def check_article_quality():
             art_issues.append("slug not lowercase")
         elif " " in slug:
             art_issues.append("slug has spaces")
-        # UUID-only slugs (no human-readable content)
-        elif len(slug) == 36 and slug.count("-") == 4:
+        # UUID-only slugs (no human-readable content). Check the actual
+        # 8-4-4-4-12 hex pattern — the old len==36 heuristic false-positived
+        # on readable slugs that happen to be 36 chars with 4 hyphens
+        # (e.g. 'pooja-reddy-kentucky-country-cabaret', flagged 2026-10-07).
+        elif re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", slug):
             art_issues.append("slug is a UUID, not human-readable")
 
         # Category

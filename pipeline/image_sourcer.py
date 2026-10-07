@@ -1137,6 +1137,16 @@ _HEADLINE_COLLECTIVE_WORDS = {
 # Banks is a real surname/stage name (the singer BANKS) — the one ambiguous
 # word keeps the conservative (identity-safe) behavior.
 _HEADLINE_FIRST_ORG_WORDS = _HEADLINE_TITLE_WORDS - {"bank", "banks"}
+# Well-known proper nouns (public companies, US states) that are effectively
+# never a person's given name as a headline lead ("Nvidia Nears..." is the
+# company; "Pennsylvania Measles..." is the state — not a person named
+# Pennsylvania) — fixes false-positive person guards that blocked Pexels for
+# markets and news headlines (2026-10-07). Kept tight: ambiguous words
+# ("apple", "meta", "tesla", "georgia", "virginia") stay out, preserving
+# conservative identity-safe behavior for anything that could be a real name.
+_HEADLINE_PROPER_NONPERSON_WORDS = {
+    "nvidia", "pennsylvania",
+}
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
     "your", "my", "our", "his", "her", "their", "its",
@@ -1187,6 +1197,10 @@ def headline_person_name(headline):
     # Org/collective-noun leads ("Universities Sue...", "Doctors Warn...",
     # "Fans Mourn..."): a given name never starts with one
     if first_base in _HEADLINE_FIRST_ORG_WORDS or first_base in _HEADLINE_COLLECTIVE_WORDS:
+        return None
+    # Public-company / place leads ("Nvidia Nears...", "Pennsylvania Measles..."):
+    # a proper noun that is effectively never a person's given name
+    if first_base in _HEADLINE_PROPER_NONPERSON_WORDS:
         return None
     # Gerund verbs leading the headline ("Replacing Russian...", "Building New...")
     # — a given name never ends in -ing ("Singh" is a surname, handled below)

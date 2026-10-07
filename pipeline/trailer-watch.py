@@ -34,6 +34,14 @@ _BLOCK_RE = re.compile(
     r"fancast|day\s*\d+|episode\s*\d+|song|audio|lyrical",
     re.IGNORECASE,
 )
+# Live-event videos (trailer launches, press meets) are rail-eligible but must
+# never generate brief articles — their titles mangle film-name extraction
+# (e.g. "Ranabaali Trailer launch Event LIVE | Vijay Deverakonda ..." produced
+# a 3/10 stub on 2026-10-07).
+_LIVE_EVENT_RE = re.compile(
+    r"\blive\b|livestream|launch event|press meet|success meet|pre-release event",
+    re.IGNORECASE,
+)
 
 
 def curl_get(url, timeout=25):
@@ -485,7 +493,7 @@ def main():
         json.dump(feed, f, ensure_ascii=False, indent=1)
 
     print(f"Channels polled: {len(channels)} | new trailer/teaser drops: {len(new_drops)}")
-    majors = [d for d in new_drops if d["tier"] == 1]
+    majors = [d for d in new_drops if d["tier"] == 1 and not _LIVE_EVENT_RE.search(d["title"])]
     for d in new_drops:
         print(f"  [{'MAJOR' if d['tier']==1 else 'rail '} ] {d['channel']}: {d['title'][:80]}")
 

@@ -1,0 +1,196 @@
+[
+  {
+    "id": "7a2806b3-6b87-4238-818f-8d0c9c952bdc",
+    "headline": "Maharashtra's 'Food Safety Rock Star' Tukaram Mundhe Lands on New York Times Fro",
+    "slug": "tukaram-mundhe-nyt-front-page-food-safety",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Tukaram Mundhe's actions might impact Indian restaurants abroad, particularly in major cities with significant NRI populations, such as New York and London. Discuss any parallels in food safety regulations that NRIs might face in these locations.",
+        "Add specific takeaways for NRIs, such as potential changes in food safety standards that could affect Indian restaurants in their localities. Include concrete details like potential costs for compliance or deadlines for any new regulations that may arise from Mundhe's initiatives.",
+        "Provide context on how Mundhe's actions could influence food safety perceptions among NRIs visiting India, especially regarding their dining choices. This could include statistics on food safety violations in Indian restaurants that NRIs frequent.",
+        "Revise the headline to make it more compelling and specific for the NRI audience. For example, 'How Maharashtra's Food Safety Rock Star Tukaram Mundhe is Changing Dining Standards for NRIs' would better highlight the relevance to the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed the official New York Times article link to provide readers with direct access to the source material, enhancing credibility and context."
+      ]
+    }
+  },
+  {
+    "id": "3155cfc1-fedb-4b2c-8a25-aa91f7bd3d2b",
+    "headline": "Air India Ends Mainline International Flights From Chennai, Hands Singapore Rout",
+    "slug": "air-india-chennai-winter-schedule-express",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Enhance the diaspora angle by including insights on how this change affects NRIs traveling between Chennai and Singapore, particularly regarding fare differences, travel times, and potential impacts on business or family visits.",
+        "Provide concrete specifics such as the expected fare range for the Chennai-Singapore route on Air India Express, any potential savings compared to mainline Air India, and deadlines for booking to secure the best rates.",
+        "Include a social embed, such as an official tweet from Air India or a relevant aviation authority announcing the changes, to provide readers with direct access to official information.",
+        "Revise the headline to be more compelling and specific, such as 'Air India Transfers Chennai-Singapore Flights to Express: What NRIs Need to Know About New Low-Cost Options'."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India tweet announcing the schedule changes or a relevant news article from a reputable source covering the implications for travelers."
+      ]
+    }
+  },
+  {
+    "id": "98cc0d0f-4053-4393-9a8e-9ddef23ce2c1",
+    "headline": "Asylum Win Caps Immigrant's Two-Year Detention as Courts Weigh Third-Country Dep",
+    "slug": "celestin-dima-asylum-two-year-detention",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how Dima's case may influence asylum policies that affect Indian NRIs or those seeking asylum from India, particularly in light of recent political developments.",
+        "Provide specific details on how the Supreme Court's ruling on third-country deportations could impact NRIs or Indian immigrants, such as potential changes in eligibility for asylum or the timeline for processing applications, including any relevant dates or deadlines.",
+        "Add a concrete takeaway for NRIs by discussing how this case might affect their own immigration status or asylum applications, including any financial implications, such as legal fees or costs associated with seeking asylum.",
+        "Include a relevant social embed, such as an official USCIS tweet regarding the Supreme Court's ruling or a related policy update that could directly impact NRIs and their immigration processes."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet about the Supreme Court ruling on third-country deportations to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "d8ce422f-c5ff-4210-83f1-6df905fe67ad",
+    "headline": "Flydubai Co-Pilot Confesses Gaza Revenge Motive, Had Planned Ben Gurion Crash",
+    "slug": "flydubai-copilot-gaza-revenge-confession",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by explicitly discussing how this incident may impact Indian NRIs traveling to or working in the UAE and Israel, particularly in terms of safety concerns and travel advisories.",
+        "Include specific details about the implications for Indian NRIs, such as potential changes in flight routes, increased security measures, or any relevant updates from the Indian government regarding travel safety in the region.",
+        "Provide a clear takeaway for NRIs, such as specific actions they should consider taking, like checking travel insurance policies or staying updated on security alerts from the Indian embassy.",
+        "Add context about the broader geopolitical implications of this incident for NRIs, especially those with family ties or business interests in the Middle East."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Indian embassy regarding the health of Captain Smit Machchhar and any travel advisories they may have issued."
+      ]
+    }
+  },
+  {
+    "id": "97d94c77-9f2b-4995-8ef6-eaac78b8e876",
+    "headline": "Jaishankar Meets Ghana's Mahama as Accra Courts Indian Pharma Investment",
+    "slug": "jaishankar-ghana-mahama-africa-tour",
+    "category": "news",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/DrSJaishankar/status/2107608108440629405 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific examples of Indian NRIs who have successfully invested in Ghana or similar markets, detailing their experiences and the benefits they gained from such investments.",
+        "Add concrete specifics regarding the investment opportunities mentioned, such as potential dollar amounts for investment thresholds, specific sectors within the pharmaceutical industry that are seeking investment, and any deadlines or eligibility criteria for Indian companies looking to invest in Ghana.",
+        "Provide additional context on how the Ghanaian economy's stability and growth projections directly impact NRIs considering investment, including potential returns on investment or comparative analysis with other African markets.",
+        "Clarify the timeline of Jaishankar's visit and its significance for NRIs by including any upcoming events or forums where Indian businesses can engage with Ghanaian officials or industry leaders."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Ghana's government or the Ministry of Health regarding the Accra Reset initiative to provide readers with direct access to official information and updates."
+      ]
+    }
+  },
+  {
+    "id": "d21f7680-c41a-46b5-8d40-59c8015c92b2",
+    "headline": "GOP Congressman Calls His Own Atlanta District an H-1B Fraud 'Hotspot,' Seeks Fe",
+    "slug": "mccormick-atlanta-h1b-fraud-probe",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific examples of how H-1B visa fraud impacts Indian NRIs and their families, such as potential job losses or legal challenges faced by Indian professionals in the U.S.",
+        "Provide concrete details on what the ongoing investigations mean for H-1B holders, including specific deadlines for potential changes in policy or enforcement actions, and how these might affect their visa status or job security.",
+        "Include a section that outlines actionable steps for NRIs currently on H-1B visas, such as what to do if they suspect fraud in their own employment situations or how to seek legal advice.",
+        "Revise the headline to be more specific and compelling, such as 'GOP Congressman Calls for Federal Investigation into H-1B Visa Fraud in Atlanta: What It Means for Indian Professionals.'"
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the recent changes or investigations related to H-1B visas to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "7f81434b-1d75-4ba5-9cc8-11650aee8676",
+    "headline": "Union Cabinet Gives Modi Standing Ovation, Passes Resolution Marking 25 Years in",
+    "slug": "cabinet-resolution-modi-25-years-leadership",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific references to how Modi's policies have impacted NRIs, such as changes in taxation, investment opportunities, or benefits for Indian citizens abroad. This could help NRIs understand the relevance of the cabinet's resolution to their lives.",
+        "Include concrete specifics regarding the Rs 10,000 crore SME Growth Fund, such as eligibility criteria for NRIs looking to invest or participate in this fund, and any deadlines for applications or investments.",
+        "Provide context on how Modi's leadership has affected the Indian economy and what it means for NRIs in terms of remittances, property investments, or business opportunities. This will help readers grasp the implications of the cabinet's resolution on their financial decisions.",
+        "Revise the headline to be more compelling and specific, such as 'Modi's 25-Year Leadership Milestone: What It Means for NRIs and the Future of Indian Policies'. This would better capture the interest of the diaspora audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Union Cabinet or a relevant government account that highlights the key achievements mentioned in the resolution, as this would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "18852097-eb87-4e94-bfbd-af93c612ccc0",
+    "headline": "Smriti Mandhana Named India Women's Full-Time Captain as Harmanpreet Steps Down",
+    "slug": "smriti-mandhana-india-women-captain",
+    "category": "sports",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/TheHockeyIndia/status/2106353447574601729 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Smriti Mandhana's appointment might impact Indian women's cricket's popularity among NRIs, particularly in countries with significant Indian populations, like the USA, Canada, and the UK.",
+        "Include specific details about the upcoming series against Zimbabwe, such as ticket prices, viewing options for NRIs (e.g., streaming platforms), and how they can support the team from abroad.",
+        "Provide context on how this leadership change might affect the Indian women's cricket team's performance and visibility in international tournaments, which could resonate with NRIs who follow cricket closely.",
+        "Clarify the significance of Harmanpreet's contributions as captain and how her stepping down might influence the team's dynamics, especially for NRIs who may have followed her career closely."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Smriti Mandhana or the BCCI announcing her captaincy to provide a direct connection to the news and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "7b2ba304-50c4-4423-b89f-145a57c945ed",
+    "headline": "Shreyas Iyer's Maiden T20I Ton Powers India to Eight-Wicket Win Over West Indies",
+    "slug": "shreyas-iyer-maiden-t20i-century-india-west-indies",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Shreyas Iyer's performance might resonate with Indian communities abroad, such as mentioning fan reactions from NRIs or how this victory impacts India's standing in international cricket, which is a point of pride for the diaspora.",
+        "Add a key takeaway that answers 'what does this mean for ME?' by including specific details about upcoming matches, such as the date and location of the next T20I, and how NRIs can watch the games live or engage with their local cricket communities.",
+        "Consider embedding a relevant social media post, such as a tweet from Shreyas Iyer celebrating his century or a highlight reel of the match, to enhance reader engagement and provide a visual context to the article.",
+        "Revise the headline to make it more compelling and specific, such as 'Shreyas Iyer's Historic Century Leads India to Victory: What This Means for Indian Cricket Fans Worldwide.'"
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Shreyas Iyer celebrating his maiden T20I century or a highlight video from the match to provide readers with a visual representation of the event."
+      ]
+    }
+  },
+  {
+    "id": "0a1ffa2f-0f73-4a4f-a683-366ca073584f",
+    "headline": "Nobel Physics Prize Goes to Francis Halzen for Capturing 'Ghost Particles' From ",
+    "slug": "francis-halzen-nobel-physics-2026-icecube",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Halzen's work or the Nobel Prize itself impacts the Indian scientific community or NRIs in STEM fields. For example, mention any Indian scientists involved in similar research or how this recognition can inspire Indian students abroad.",
+        "Include a key takeaway that answers 'what does this mean for ME?' by providing specific details on how advancements in neutrino research could affect technology or scientific funding that NRIs might be involved with, such as potential investment opportunities in related fields or upcoming conferences where they can engage with this research.",
+        "Add context on the significance of the Nobel Prize for the Indian diaspora, such as previous Indian winners or how this recognition can influence funding and collaboration opportunities for Indian researchers in the field of astrophysics.",
+        "Consider restructuring the article to include a section that directly addresses the implications of Halzen's work for global scientific collaboration, particularly how NRIs can participate or benefit from advancements in astrophysics."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Nobel Prize organization announcing Halzen's win, which could provide a visual and authoritative source for readers."
+      ]
+    }
+  }
+]

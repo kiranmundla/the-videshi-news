@@ -1,0 +1,23 @@
+[
+  {
+    "id": "daf80061-5051-44cb-9e64-53f78244437d",
+    "headline": "Ranabaali Trailer launch Event LIVE \u2013 Vijay Deverakonda Trailer Out: Vijay Dever",
+    "slug": "ranabaali-trailer-launch-event-live-vijay-deverakonda-trailer-out-vija",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 3,
+      "suggestions": [
+        "Correct the headline to follow the 'Film Teaser/Trailer Out' format, e.g., 'Ranabaali Trailer Out'.",
+        "Remove redundant phrases like 'Trailer launch Event LIVE' from the body and headline.",
+        "Ensure the film name is presented clearly without repetition.",
+        "Clarify the drop date in the body to avoid confusion with the event title."
+      ],
+      "embed_opportunities": [
+        "Consider embedding the trailer directly in the article for easier access."
+      ]
+    }
+  }
+]
