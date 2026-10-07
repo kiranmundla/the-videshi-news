@@ -16,6 +16,10 @@ recent drops surface. Subsequent runs: only genuinely new uploads.
 import json, os, re, sys, subprocess, html, unicodedata
 from datetime import datetime, timezone, timedelta
 from xml.etree import ElementTree as ET
+try:
+    from cast_strip import render_cast_strip_block
+except ImportError:  # cast_strip optional; Cast falls back to flat text stat
+    render_cast_strip_block = None
 
 PIPE = os.path.expanduser("~/workspace/the-videshi-news/pipeline")
 STATE = os.path.join(PIPE, ".state")
@@ -401,8 +405,14 @@ def build_brief_article(drops, channels_by_name):
     body += (f"<p>For diaspora audiences tracking the {work}'s US release, the {kind.lower()} is the first "
              f"real look at what's headed to {dest}.</p>")
     info_rows = []
-    if credits.get("cast"):
-        info_rows.append(("Cast", credits["cast"]))
+    # Cast renders as a headshot strip below the stat grid, not a flat text
+    # stat — comma-joined name lists are unreadable on mobile.
+    cast_strip_html = ""
+    if credits.get("cast") and render_cast_strip_block:
+        try:
+            cast_strip_html = render_cast_strip_block(credits["cast"])
+        except Exception:
+            cast_strip_html = ""
     if credits.get("director"):
         info_rows.append(("Director", credits["director"]))
     if credits.get("host"):
@@ -418,8 +428,8 @@ def build_brief_article(drops, channels_by_name):
     if langs:
         info_rows.append(("Languages", ", ".join(langs)))
     # A lone "Languages" row isn't worth a navy card — require at least one
-    # real credit, type, or release date.
-    if info_rows and (any(credits.get(k) for k in
+    # real credit, type, or release date. The cast strip counts as content too.
+    if (info_rows or cast_strip_html) and (any(credits.get(k) for k in
                           ("cast", "director", "host", "producer", "music"))
                       or media_type or release):
         body += ('<div class="vdc"><div class="vdc-glow"></div>'
@@ -429,7 +439,9 @@ def build_brief_article(drops, channels_by_name):
                      f'<div class="vdc-stat"><div class="vdc-stat-val">{html.escape(v)}</div>'
                      f'<div class="vdc-stat-lbl">{k}</div></div>'
                      for k, v in info_rows)
-                 + "</div></div>")
+                 + "</div>"
+                 + cast_strip_html
+                 + "</div>")
     for v in versions:
         label = (f"<b>{html.escape(v['lang'])}</b> \u2014 {html.escape(v['channel'])}"
                  if v["lang"] else f"<b>{html.escape(v['channel'])}</b>")

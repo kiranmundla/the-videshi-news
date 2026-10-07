@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1cf433c4-4830-4301-aeea-7153959da6d5",
+    "headline": "RBI Hikes Repo Rate to 5.50% in First Increase in Nearly Four Years",
+    "slug": "rbi-hikes-repo-rate-550-first-hike-four-years",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora/NRI angle by explicitly discussing how the repo rate hike could affect NRIs in terms of remittances, investments in Indian markets, or loans taken in India. For example, include information on how the increased rates may impact the cost of home loans for NRIs or the returns on NRI investments in India.",
+        "Provide specific actionable takeaways for NRIs, such as the potential impact on home loan interest rates. For instance, if the average home loan interest rate is expected to rise from 7.5% to 8.0%, mention this explicitly along with any deadlines for refinancing or new applications that NRIs should be aware of.",
+        "Consider embedding a relevant tweet from the Reserve Bank of India or a financial analyst discussing the implications of the repo rate hike. This could provide real-time insights and enhance the article's credibility.",
+        "Revise the headline to make it more compelling and specific, such as 'RBI Raises Repo Rate to 5.50%: What This Means for NRI Investments and Loans'. This would immediately signal to readers the relevance of the article to their interests."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI statement or a tweet summarizing the repo rate decision to provide readers with direct access to authoritative information."
+      ]
+    }
+  }
+]
