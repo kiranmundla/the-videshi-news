@@ -1169,6 +1169,10 @@ _HEADLINE_PROPER_NONPERSON_WORDS = {
     "nvidia", "pennsylvania", "google", "chatgpt",
     # 2026-10-07: "ChatGPT's Teen Safety..." — AI product name treated as a
     # person's given name, blocking Pexels on a generic tech article.
+    # 2026-10-07: "Flu Arrives Early..." — disease noun treated as a person's
+    # given name ("Flu Arrives"), blocking Pexels backfill on a public-health
+    # headline. A disease name is effectively never a person's given name.
+    "flu",
 }
 # Possessive place leads: "[Place]'s [Business]" ("Hoover's Kabob-Licious",
 # "Hartlepool's Seaton Tandoori") is a place's business, not a person named
@@ -1183,6 +1187,18 @@ _HEADLINE_PLACE_POSSESSIVE_WORDS = {
 _HEADLINE_DETERMINER_WORDS = {
     "your", "my", "our", "his", "her", "their", "its",
     "this", "that", "these", "those",
+}
+# Past-tense / 3rd-person verbs: "Rat Found Swimming...", "Body Found in
+# Lake..." — a second-position verb is never a surname. A person's name +
+# verb puts the verb third ("Varun Chakravarthy Ruled Out..."). Kept tight
+# and documented per encounter (2026-10-08: the rat-in-gulab-jamun article
+# was gate-blocked as a "named person" because of the verb-second lead).
+_HEADLINE_COMMON_VERB_WORDS = {
+    "found", "dies", "die", "rises", "rise", "falls", "fall", "launches",
+    "wins", "win", "loses", "lose", "returns", "return", "quits", "quit",
+    "resigns", "reveals", "backs", "slams", "warns", "urges", "hails",
+    "swims", "swim", "breaks", "break", "drowns", "crashes", "crash",
+    "arrested", "jailed", "fined", "cleared", "clears",
 }
 
 
@@ -1246,6 +1262,15 @@ def headline_person_name(headline):
         return None
     second_base = re.sub(r"['’]s$", "", second.lower()).rstrip(".")
     if second_base in _HEADLINE_DETERMINER_WORDS:
+        return None
+    # Verb-second leads ("Rat Found Swimming...") are never a person's name.
+    if second_base in _HEADLINE_COMMON_VERB_WORDS:
+        return None
+    # Ordinal-prefixed hyphenated words ("First-Ever", "Second-Half") are
+    # never surnames: "Stanley's First-Ever Diwali Collection..." is a brand
+    # possessive, not a named person (2026-10-08).
+    if re.match(r"^(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)-",
+                second_base):
         return None
     # Names don't contain digits ("Delhi H1N1", "10m Air Rifle")
     if any(ch.isdigit() for ch in second):
