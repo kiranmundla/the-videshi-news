@@ -102,6 +102,22 @@ def parse_dt(s):
         return None
 
 
+def _film_from_hashtag(segment):
+    """'#EbhabeoPhireAshaJaye' -> 'Ebhabeo Phire Asha Jaye'.
+
+    Hoichoi-style titles lead with a tagline phrase and hide the real film
+    name in a hashtag: 'বন্ধুরা পাশে থাকলে #EbhabeoPhireAshaJaye'. The
+    hashtagged CamelCase word is the film name; the rest is marketing copy.
+    """
+    m = re.search(r"#([A-Za-z][A-Za-z0-9]*)", segment)
+    if not m:
+        return None
+    word = re.sub(
+        r"(?<=[a-z])(?=[A-Z])|(?<=[A-Za-z])(?=\d)|(?<=\d)(?=[A-Za-z])",
+        " ", m.group(1))
+    return word.strip() or None
+
+
 def split_film_title(title):
     """'Bhogi - Official Teaser | Sharwanand' -> ('Bhogi', 'Sharwanand').
 
@@ -112,42 +128,62 @@ def split_film_title(title):
     Marketing-first titles like 'Our Story. Our History. Our Truth. |
     Ranabaali Trailer on October 8th | ...' put a tagline in parts[0], so
     prefer the part carrying the teaser/trailer keyword: the text before it
-    is the film name ('Ranabaali'). Falls back to parts[0]."""
-    parts = re.split(r"\s*[|\-–—:]\s*", title)
-    first = parts[0].strip() if parts else ""
-    # parts[0] is the film unless it looks like a marketing tagline
-    # (sentence punctuation = tagline, e.g. "Our Story. Our History. Our Truth.")
-    film_like = first and not re.search(r"[.!?]", first) and len(first) < 60
-    if film_like:
-        # Keep hyphenated subtitles: cut the title at the teaser/trailer
-        # keyword instead of using the first hyphen-separated fragment.
-        m = re.search(r"(?i)^(.+?)\s*(?:official\s+)?(?:teaser|trailer)\b", title)
-        if m:
-            # For pipe-delimited titles the film name is the first segment —
-            # never the whole run-up to a trailing "Trailer" keyword.
-            cand = m.group(1).split("|")[0].strip()
-            cand = clean_film_name(re.sub(r"\s*[-–—:|]\s*$", "", cand).strip())
-            if cand:
-                film = cand
-            else:
-                film = first
-        else:
-            film = first
-    elif not film_like:
+    is the film name ('Ranabaali'). Falls back to parts[0].
+
+    Announcement-first titles ('Official Trailer - Birangana 2 | ...') and
+    tagline+hashtag titles ('... #EbhabeoPhireAshaJaye | ...') hide the film
+    name after the announcement or inside the hashtag; hyphen-joined
+    descriptors the subtitle extractor identifies are stripped back out
+    ('Hanuman Ansh - A Powerful Divine Story' -> 'Hanuman Ansh')."""
+    parts = re.split(r"\s*[|]\s*", title)
+    seg0 = parts[0].strip() if parts else ""
+
+    # Announcement-first: 'Official Trailer - Birangana 2 | Sandipta Sen'
+    m = re.match(r"(?i)^(?:official\s+)?(?:teaser|trailer)\s*[-\u2013\u2014:]\s*(.+)$", seg0)
+    if m:
+        seg0 = m.group(1).strip()
+
+    # Tagline + hashtag: the film name is the hashtagged CamelCase word
+    ht = _film_from_hashtag(seg0)
+    if ht:
+        rest_bits = [q for q in parts[1:]
+                     if q and not _TITLE_RE.search(q)
+                     and not re.search(r"(?i)4k|hd|official", q)]
+        return ht, " | ".join(rest_bits[:2]).strip()
+
+    # Tagline-first (sentence punctuation) or empty lead: prefer the part
+    # carrying the teaser/trailer keyword.
+    if not seg0 or (re.search(r"[.!?]", seg0) and len(seg0) < 200):
         for p in parts:
             m = re.search(r"(?i)^(.+?)\s+(?:official\s+)?(?:teaser|trailer)\b", p)
             if m:
                 cand = clean_film_name(m.group(1).strip())
                 if cand and cand.lower() not in ("official",):
                     rest_bits = [q for q in parts[1:]
-                                 if q and not _TITLE_RE.search(q) and not re.search(r"(?i)4k|hd|official", q)]
+                                 if q and not _TITLE_RE.search(q)
+                                 and not re.search(r"(?i)4k|hd|official", q)]
                     return cand, " | ".join(rest_bits[:2]).strip()
-    if not film_like:
-        film = first or title
-        film = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", film).strip()
-        film = re.sub(r"(?i)^(official\s+)?(teaser|trailer)\s*(of|for)?\s*", "", film).strip()
+
+    # Normal case: run-up to the teaser/trailer keyword inside the first
+    # segment (keeps hyphenated subtitles like 'Kerela - e Kurukshetra').
+    m = re.search(r"(?i)^(.+?)\s*(?:official\s+)?(?:teaser|trailer)\b", seg0)
+    if m:
+        cand = re.sub(r"\s*[-\u2013\u2014:|]\s*$", "", m.group(1)).strip()
+    else:
+        cand = re.sub(r"\s*[-\u2013\u2014:|]\s*$", "", seg0).strip()
+    film = clean_film_name(cand) or seg0
+    # Strip a hyphen-joined descriptor the subtitle extractor identifies:
+    # 'Hanuman Ansh - A Powerful Divine Story' -> 'Hanuman Ansh'.
+    sub = extract_subtitle(title)
+    if sub and len(film) > len(sub) and film.lower().endswith(sub.lower()):
+        film = re.sub(r"\s*[-\u2013\u2014:|]\s*$", "", film[: -len(sub)]).strip()
+        film = film or clean_film_name(cand)
+    if film.lower() in ("official", "trailer", "teaser",
+                        "official trailer", "official teaser"):
+        film = ""
     rest_bits = [p for p in parts[1:]
-                 if p and not _TITLE_RE.search(p) and not re.search(r"(?i)4k|hd|official", p)]
+                 if p and not _TITLE_RE.search(p)
+                 and not re.search(r"(?i)4k|hd|official", p)]
     rest = " | ".join(rest_bits[:2]).strip()
     return film or title, rest
 
@@ -168,10 +204,18 @@ def extract_subtitle(title):
     -> 'The Pretenders' (skips studio/channel fragments)."""
     parts = re.split(r"\s*[|\-–—:]\s*", title)
     for p in parts[1:3]:
-        q = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+\d+)?\)?\s*$", "", p).strip()
-        q = re.sub(r"(?i)^\s*(official\s+)?(teaser|trailer)\s*", "", q).strip()
+        q = re.sub(r"(?i)\s*\(?(official\s+)?(teaser|trailer)(\s+out)?(\s+\d+)?\)?\s*$", "", p).strip()
+        q = re.sub(r"(?i)^\s*(official\s+)?(teaser|trailer)(\s+out)?\s*", "", q).strip()
         if re.search(r"(?i)(teaser|trailer)", q):
             continue  # trailer-announcement fragment, not a subtitle
+        if q.lower() in ("official",):
+            continue  # bare announcement leftover, not a subtitle
+        if re.search(r"(?i)\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|"
+                     r"may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|"
+                     r"oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}\b|"
+                     r"\b\d{1,2}(?:st|nd|rd|th)?\s+(?:jan|feb|mar|apr|may|jun|"
+                     r"jul|aug|sep|oct|nov|dec)[a-z]*\b", q):
+            continue  # date fragment ("15th October"), not a subtitle
         if q.startswith("@"):
             continue  # channel handle, not a subtitle (e.g. "| @TejaSajjaOffl |")
         if q and len(q) > 2 and not _STUDIO_RE.search(q):
