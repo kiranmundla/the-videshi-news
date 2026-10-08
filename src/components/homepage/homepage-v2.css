@@ -65,22 +65,32 @@
   }
 }
 
-@media (max-width: 380px) {
-  .v2-hub-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 13px;
-  }
-  .v2-hub-label {
-    font-size: 10px;
-  }
+@media (max-width: 767px) {
+  /* Scrollable compact strip: 8+ tiles no longer fit side-by-side,
+     so scroll with snap + edge fade instead of squeezing. */
   .v2-hub-strip {
-    padding: 14px 8px 10px;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
+    padding: 14px 16px 12px;
+    -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 32px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 32px), transparent 100%);
+  }
+  .v2-hub-strip::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .v2-hub-tile {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    gap: 6px;
   }
   .v2-hub-icon-wrap {
-    width: 56px;
-    height: 56px;
-    border-radius: 15px;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
   }
   .v2-hub-icon-wrap svg {
     width: 24px;
@@ -88,6 +98,18 @@
   }
   .v2-hub-label {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .v2-hub-strip {
+    gap: 12px;
+    padding: 12px 12px 10px;
+  }
+  .v2-hub-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
   }
 }
 
