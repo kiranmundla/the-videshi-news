@@ -37,6 +37,44 @@ RESOLVED_DAYS       = 14      # no new article → resolved
 BATCH_SIZE          = 8       # articles per LLM call for classification
 MAX_ARTICLES        = 300     # safety cap on articles to process
 
+# ── Rolling same-event velocity consolidation (Option A, 2026-10-07) ───────
+# Certain beats (RBI monetary policy first) fragment: the LLM classifier sees
+# "RBI Hikes Repo Rate", "Sensex Jumps After RBI Hike", "Rupee Gains on RBI
+# Decision" as separate events and spawns one storyline per headline.
+# These topics are *rolling* — one live storyline per topic, with new articles
+# consolidated into it based on event similarity + velocity, instead of
+# spawning duplicates. Deterministic (no LLM cost), runs before classification.
+#
+# A topic matches when the headline contains ≥1 base keyword AND ≥1 event
+# keyword. Consolidation into an existing storyline requires:
+#   1. same consolidation_topic tag (stored in storyline metadata)
+#   2. status active/emerging (live narratives only)
+#   3. velocity: last_article_at within CONSOLIDATION_VELOCITY_DAYS
+#   4. similarity: headline word-overlap vs the storyline's recent headlines
+#      at or above CONSOLIDATION_SIMILARITY
+CONSOLIDATION_TOPICS = {
+    "rbi-rate-policy": {
+        "label": "RBI rate policy",
+        "base_keywords": ["rbi", "reserve bank of india", "reserve bank"],
+        "event_keywords": [
+            "repo rate", "rate hike", "rate cut", "rates hiked", "rates cut",
+            "monetary policy", "policy rate", "policy decision", "mpc",
+            "interest rate", "reverse repo", "standing deposit facility",
+            "shaktikanta das", "rbi governor",
+        ],
+    },
+    "rbi-forex": {
+        "label": "RBI forex action",
+        "base_keywords": ["rbi", "reserve bank of india", "reserve bank"],
+        "event_keywords": [
+            "forex", "dollar", "swap", "fcnr", "rupee", "currency",
+            "foreign exchange", "nri deposit", "intervention",
+        ],
+    },
+}
+CONSOLIDATION_VELOCITY_DAYS = 14  # storyline must have a recent article
+CONSOLIDATION_SIMILARITY    = 0.22  # min headline word-overlap to consolidate
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def sb_get(path, params=""):
@@ -233,6 +271,87 @@ def fetch_storyline_headlines(storyline_id, limit=5):
     return []
 
 
+# ── Consolidation helpers (Option A) ────────────────────────────────────────
+
+def _norm_words(text):
+    """Lowercase alphanumeric word set for overlap comparison, with light
+    stemming so 'hike'/'hikes' and 'rate'/'rates' count as the same word."""
+    words = re.sub(r"[^a-z0-9\s]", " ", (text or "").lower()).split()
+    stemmed = set()
+    for w in words:
+        # light stem: strip plural/verb 's' (keep short words and 'ss' intact)
+        if len(w) > 4 and w.endswith("s") and not w.endswith("ss"):
+            w = w[:-1]
+        stemmed.add(w)
+    return stemmed
+
+
+def topic_for_text(text):
+    """Return the consolidation topic key if text matches base+event keywords."""
+    low = (text or "").lower()
+    for key, topic in CONSOLIDATION_TOPICS.items():
+        has_base = any(kw in low for kw in topic["base_keywords"])
+        if not has_base:
+            continue
+        has_event = any(kw in low for kw in topic["event_keywords"])
+        if has_event:
+            return key
+    return None
+
+
+def headline_similarity(headline, other_headlines):
+    """Max word-overlap ratio between headline and a list of headlines."""
+    words = _norm_words(headline)
+    if not words:
+        return 0.0
+    best = 0.0
+    for other in other_headlines:
+        owords = _norm_words(other)
+        if not owords:
+            continue
+        overlap = len(words & owords) / min(len(words), len(owords))
+        best = max(best, overlap)
+    return best
+
+
+def consolidation_match(article, storylines, storyline_headlines_map):
+    """Deterministic pre-classification: consolidate into a live same-topic
+    storyline when event similarity + velocity pass. Returns storyline_id or
+    None (fall through to LLM classification)."""
+    topic = topic_for_text(article.get("headline", ""))
+    if not topic:
+        return None
+
+    now = datetime.now(timezone.utc)
+    best_id, best_score = None, 0.0
+
+    for s in storylines:
+        if s.get("status") not in ("active", "emerging"):
+            continue
+        s_topic = (s.get("metadata") or {}).get("consolidation_topic")
+        if s_topic != topic:
+            continue
+        # Velocity: the storyline must be live — a recent article means this
+        # is the same rolling event, not a new cycle.
+        last = s.get("last_article_at") or ""
+        try:
+            last_dt = datetime.fromisoformat(last.replace("Z", "+00:00"))
+            if (now - last_dt).days > CONSOLIDATION_VELOCITY_DAYS:
+                continue
+        except Exception:
+            continue
+        # Event similarity: headline must overlap the storyline's recent
+        # headlines (same event), not merely mention the same entity.
+        score = headline_similarity(
+            article.get("headline", ""),
+            storyline_headlines_map.get(s["id"], []),
+        )
+        if score >= CONSOLIDATION_SIMILARITY and score > best_score:
+            best_id, best_score = s["id"], score
+
+    return best_id
+
+
 def classify_articles(articles, storylines, storyline_headlines_map):
     """Classify a batch of articles: match to existing storyline, new storyline, or none."""
 
@@ -299,7 +418,9 @@ Return JSON:
   ]
 }
 
-Be conservative. Only "match" when the article clearly covers the SAME specific event. Only "new" for MAJOR events (per the importance bar) that are likely to have multiple developments over days. When in doubt between "new" and "none", choose "none" — the developing rail stays small by design."""
+Be conservative. Only "match" when the article clearly covers the SAME specific event. Only "new" for MAJOR events (per the importance bar) that are likely to have multiple developments over days. When in doubt between "new" and "none", choose "none" — the developing rail stays small by design.
+
+CONSOLIDATION NOTE: beats like RBI monetary-policy decisions, RBI forex/swap actions, and similar rolling institutional beats keep ONE storyline per beat. If an article is a market reaction, follow-up, or new development within such a beat and a matching storyline is listed above, prefer "match" over "new" — do not spawn a parallel storyline for the same beat."""
 
     user_msg = json.dumps({
         "existing_storylines": storyline_ctx,
@@ -374,6 +495,8 @@ def create_storyline(title, summary, category, article_ids, articles_by_id, dry_
         "article_count": count,
         "first_article_at": first_at,
         "last_article_at": last_at,
+        "metadata": {"consolidation_topic": topic_for_text(title)}
+        if topic_for_text(title) else {},
     }
 
     result = sb_post("storylines", storyline_data)
@@ -687,6 +810,26 @@ def main():
     storyline_headlines = {}
     for s in storylines:
         storyline_headlines[s["id"]] = fetch_storyline_headlines(s["id"], limit=5)
+
+    # 5b. Rolling same-event velocity consolidation (Option A): deterministically
+    # consolidate articles into live same-topic storylines BEFORE the LLM sees
+    # them, so one rolling beat (e.g. RBI rate policy) keeps one storyline.
+    still_unlinked = []
+    consolidated = 0
+    for a in unlinked:
+        target = consolidation_match(a, storylines, storyline_headlines)
+        if target:
+            link_article_to_storyline(target, a["id"], a, dry_run=args.dry_run)
+            consolidated += 1
+            print(f"    ⚡ Consolidated: '{a['headline'][:60]}' → storyline {target[:8]}")
+            # refresh the storyline's headline map so later articles in this
+            # run compare against the just-linked headline too
+            storyline_headlines[target] = [a["headline"]] + storyline_headlines.get(target, [])
+        else:
+            still_unlinked.append(a)
+    if consolidated:
+        print(f"  ⚡ {consolidated} article(s) consolidated without LLM")
+    unlinked = still_unlinked
 
     # 6. Classify articles in batches
     new_proposals = {}  # title → [article_ids]

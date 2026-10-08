@@ -24,6 +24,7 @@ import {
 import HeroMedia from "@/components/HeroMedia";
 import SocialEmbeds from "@/components/SocialEmbeds";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
+import StorySoFar from "@/components/StorySoFar";
 import ArticleReactions from "@/components/ArticleReactions";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
 import YouTubeEmbed, { extractYouTubeId } from "@/components/YouTubeEmbed";
@@ -648,6 +649,7 @@ export default function ArticlePage() {
               </button>
             </span>
           </div>
+          <StorySoFar articleId={article.id} />
         </article>
 
         {article.gallery_images && article.gallery_images.length > 0 ? (

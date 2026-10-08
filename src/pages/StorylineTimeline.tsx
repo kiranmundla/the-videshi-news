@@ -42,6 +42,7 @@ interface Storyline {
 interface LinkedArticle {
   id: string;
   headline: string;
+  subheadline: string | null;
   slug: string;
   category: string | null;
   image_url: string | null;
@@ -165,7 +166,7 @@ export default function StorylineTimeline() {
         // Fetch linked articles
         (supabase as any)
           .from("storyline_articles")
-          .select("article_id, p2_articles(id, headline, slug, category, image_url, published_at)")
+          .select("article_id, p2_articles(id, headline, subheadline, slug, category, image_url, published_at)")
           .eq("storyline_id", data.id)
           .order("added_at", { ascending: false })
           .then(({ data: links }: { data: any[] | null }) => {
@@ -173,10 +174,11 @@ export default function StorylineTimeline() {
             const arts = (links || [])
               .map((l: any) => l.p2_articles)
               .filter(Boolean)
+              // "Story so far" reads chronologically: oldest first, newest last.
               .sort((a: LinkedArticle, b: LinkedArticle) => {
                 const da = a.published_at ? new Date(a.published_at).getTime() : 0;
                 const db = b.published_at ? new Date(b.published_at).getTime() : 0;
-                return db - da; // newest first
+                return da - db;
               });
             setArticles(arts);
             setLoading(false);
@@ -281,14 +283,23 @@ export default function StorylineTimeline() {
 
         {/* Timeline */}
         <div style={{ position: "relative" }}>
+          <div style={{
+            fontSize: 12, fontWeight: 700, letterSpacing: "0.08em",
+            textTransform: "uppercase", color: "hsl(var(--muted-foreground))",
+            marginBottom: 12,
+          }}>
+            The story so far
+          </div>
           {/* Vertical line */}
           <div style={{
-            position: "absolute", left: 15, top: 8, bottom: 8,
+            position: "absolute", left: 15, top: 36, bottom: 8,
             width: 2, background: "hsl(var(--rule) / 0.3)",
             borderRadius: 1,
           }} />
 
-          {articles.map((article, i) => (
+          {articles.map((article, i) => {
+            const isLatest = i === articles.length - 1;
+            return (
             <Link
               key={article.id}
               to={`/articles/${article.slug}`}
@@ -303,9 +314,9 @@ export default function StorylineTimeline() {
               <div style={{
                 position: "absolute", left: 10, top: 22,
                 width: 12, height: 12, borderRadius: "50%",
-                background: i === 0 ? catColor : "hsl(var(--rule) / 0.5)",
-                border: `2px solid ${i === 0 ? catColor : "hsl(var(--rule) / 0.3)"}`,
-                boxShadow: i === 0 ? `0 0 0 3px ${catColor}30` : "none",
+                background: isLatest ? catColor : "hsl(var(--rule) / 0.5)",
+                border: `2px solid ${isLatest ? catColor : "hsl(var(--rule) / 0.3)"}`,
+                boxShadow: isLatest ? `0 0 0 3px ${catColor}30` : "none",
               }} />
 
               {/* Content */}
@@ -313,15 +324,33 @@ export default function StorylineTimeline() {
                 <div style={{
                   fontSize: 11, color: "hsl(var(--muted-foreground))",
                   marginBottom: 4, fontWeight: 500,
+                  display: "flex", alignItems: "center", gap: 8,
                 }}>
-                  {formatDateShort(article.published_at)}
+                  <span>{formatDateShort(article.published_at)}</span>
+                  {isLatest && (
+                    <span style={{
+                      fontSize: 10, fontWeight: 700, letterSpacing: "0.05em",
+                      textTransform: "uppercase", color: "#fff",
+                      background: catColor, borderRadius: 3, padding: "1px 6px",
+                    }}>
+                      Latest
+                    </span>
+                  )}
                 </div>
                 <h3 style={{
                   fontSize: 15, fontWeight: 600, lineHeight: 1.35,
-                  color: "hsl(var(--foreground))", margin: 0,
+                  color: "hsl(var(--foreground))", margin: "0 0 6px",
                 }}>
                   {article.headline}
                 </h3>
+                {article.subheadline && (
+                  <p style={{
+                    fontSize: 13, lineHeight: 1.5,
+                    color: "hsl(var(--muted-foreground))", margin: 0,
+                  }}>
+                    {article.subheadline}
+                  </p>
+                )}
               </div>
 
               {/* Thumbnail */}
@@ -339,7 +368,8 @@ export default function StorylineTimeline() {
                 </div>
               )}
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         {articles.length === 0 && (
