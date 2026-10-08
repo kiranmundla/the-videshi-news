@@ -247,7 +247,9 @@ def parse_address(addr):
 PLACES_SEARCH_URL = "https://places.googleapis.com/v1/places:searchText"
 PLACES_FIELD_MASK = (
     "places.id,places.displayName,places.formattedAddress,places.location,"
-    "places.rating,places.userRatingCount,places.types,places.photos,nextPageToken"
+    "places.rating,places.userRatingCount,places.types,places.photos,"
+    "places.nationalPhoneNumber,places.websiteUri,places.regularOpeningHours,"
+    "nextPageToken"
 )
 
 
@@ -266,6 +268,9 @@ def normalize_place(p):
         "geometry": {"location": {"lat": loc.get("latitude"),
                                   "lng": loc.get("longitude")}},
         "photos": p.get("photos", []),
+        "phone": p.get("nationalPhoneNumber", ""),
+        "website": p.get("websiteUri", ""),
+        "hours": p.get("regularOpeningHours", {}),
     }
 
 
@@ -384,6 +389,9 @@ def process(result, cat, seen):
         "review_count": result.get("user_ratings_total"),
         "image_url": pu[0] if pu else None,
         "photos": json.dumps(pu) if pu else None,
+        "phone": result.get("phone") or None,
+        "website": result.get("website") or None,
+        "hours": json.dumps(result.get("hours")) if result.get("hours") else None,
     }
 
     seen.add(pid)
