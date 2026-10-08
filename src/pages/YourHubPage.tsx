@@ -389,16 +389,20 @@ export default function YourHubPage() {
                   ))}
                 </div>
               )}
-              <div className="flex flex-col gap-2.5">
-                {weekendEvents.slice(0, 4).map((e) => (
-                  <EventCard
-                    key={e.id}
-                    event={e}
-                    distance={distanceFor(e, location) ?? undefined}
-                  />
+              <div
+                className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
+                style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+              >
+                {weekendEvents.slice(0, 8).map((e) => (
+                  <div key={e.id} className="flex-shrink-0 w-[300px]">
+                    <EventCard
+                      event={e}
+                      distance={distanceFor(e, location) ?? undefined}
+                    />
+                  </div>
                 ))}
               </div>
-              {weekendEvents.length > 12 && (
+              {weekendEvents.length > 8 && (
                 <Link
                   to="/events"
                   className="inline-block mt-3 text-[13px] font-semibold hover:underline"
