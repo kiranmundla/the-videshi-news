@@ -76,7 +76,7 @@ GNEWS_RSS = "https://news.google.com/rss/search"
 GNEWS_QUERY_TMPL = (
     '{city} (desi OR "Indian-American" OR "Indian American" OR Diwali '
     'OR Holi OR Navratri OR "H-1B" OR "Indian diaspora" OR '
-    '"Indian community") when:14d'
+    '"Indian community") when:{days}d'
 )
 RSS_DROP_RX = re.compile(
     r"\b(tribal|powwow|casino|reservation|tribe\b|native american|"
@@ -91,6 +91,14 @@ RSS_KEEP_RX = re.compile(
     re.IGNORECASE,
 )
 RSS_DELAY_S = 2
+
+STATE_NAMES = {
+    "NY": "New York", "CA": "California", "IL": "Illinois", "TX": "Texas",
+    "WA": "Washington", "MA": "Massachusetts", "GA": "Georgia", "DC": "Washington DC",
+    "NJ": "New Jersey", "PA": "Pennsylvania", "FL": "Florida", "CO": "Colorado",
+    "AZ": "Arizona", "MN": "Minnesota", "MI": "Michigan", "OR": "Oregon",
+    "OH": "Ohio", "NC": "North Carolina", "NV": "Nevada",
+}
 
 
 def compile_patterns():
@@ -116,9 +124,13 @@ def compile_patterns():
     return compiled
 
 
-def fetch_gnews_rss(city: str) -> list[dict]:
+def fetch_gnews_rss(city: str, days: int = 14, state: str | None = None) -> list[dict]:
     """Fetch Google News RSS for a metro, filtered for desi relevance."""
-    q = GNEWS_QUERY_TMPL.format(city=city)
+    place = f"{city} {state}" if state else city
+    q = GNEWS_QUERY_TMPL.format(city=city, days=days)
+    if state:
+        # state-level fallback: e.g. "Oregon (desi OR ...) when:30d"
+        q = GNEWS_QUERY_TMPL.format(city=state, days=days)
     params = urllib.parse.urlencode(
         {"q": q, "hl": "en-US", "gl": "US", "ceid": "US:en"}
     )
@@ -155,6 +167,8 @@ def fetch_gnews_rss(city: str) -> list[dict]:
         if not RSS_KEEP_RX.search(title):
             continue
         src_el = it.find("source")
+        src_name = (src_el.text or "").strip() if src_el is not None else ""
+        src_url = (src_el.get("url") or "").strip() if src_el is not None else ""
         pub_el = it.find("pubDate")
         pub = ""
         if pub_el is not None and pub_el.text:
@@ -167,7 +181,8 @@ def fetch_gnews_rss(city: str) -> list[dict]:
                 "kind": "rss",
                 "title": title,
                 "url": link,
-                "source": (src_el.text or "").strip() if src_el is not None else "",
+                "domain": urllib.parse.urlparse(src_url).netloc.lower() or None,
+                "source": src_name,
                 "published_at": pub,
             }
         )
@@ -230,6 +245,20 @@ def main():
                     for t in own_titles
                 )
             ]
+            # Fallback for thin metros: wider window + state-level query.
+            # "Right and complete" means no metro left empty or single-item.
+            if len(matches[label]) + len(fresh) < 3 and state in STATE_NAMES:
+                time.sleep(RSS_DELAY_S)
+                wide = fetch_gnews_rss(city, days=30, state=STATE_NAMES[state])
+                have_titles = own_titles | {r["title"].lower() for r in fresh}
+                for r in wide:
+                    tl = r["title"].lower()
+                    if tl not in have_titles and not any(
+                        tl in t or t in tl for t in have_titles
+                    ):
+                        fresh.append(r)
+                        have_titles.add(tl)
+                print(f"  [rss] {label}: fallback wide+state added", flush=True)
             matches[label].extend(fresh)
             rss_counts[label] = len(fresh)
             print(f"  [rss] {label}: {len(fresh)} kept", flush=True)

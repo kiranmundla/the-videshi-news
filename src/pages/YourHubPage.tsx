@@ -123,12 +123,18 @@ interface LocalNewsItem {
   kind: "article" | "rss";
   slug?: string;
   url?: string;
+  domain?: string | null;
   source?: string;
   title: string;
   excerpt: string;
   published_at: string;
   hero_image_url: string;
   category: string;
+}
+
+function faviconUrl(domain?: string | null): string | null {
+  if (!domain) return null;
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
 }
 
 /** Resolve which metro's news to show: exact label match, else nearest
@@ -572,6 +578,7 @@ export default function YourHubPage() {
             >
               {metroNews.items.map((n) => {
                 const isRss = n.kind === "rss";
+                const fav = isRss ? faviconUrl(n.domain) : null;
                 const card = (
                   <>
                     {!isRss && n.hero_image_url && (
@@ -586,7 +593,18 @@ export default function YourHubPage() {
                       <h3 className="text-[13px] font-semibold leading-snug line-clamp-3">
                         {n.title}
                       </h3>
-                      <p className="text-[11px] text-muted-foreground mt-1.5">
+                      <p className="text-[11px] text-muted-foreground mt-1.5 flex items-center gap-1.5">
+                        {fav && (
+                          <img
+                            src={fav}
+                            alt=""
+                            loading="lazy"
+                            className="w-4 h-4 rounded-sm flex-shrink-0"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display = "none";
+                            }}
+                          />
+                        )}
                         {isRss ? (
                           <>{n.source} →</>
                         ) : (
