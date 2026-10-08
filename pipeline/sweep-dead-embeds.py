@@ -12,6 +12,14 @@ import sys
 import time
 import urllib.parse
 
+def _load_env():
+    for _line in open(os.path.expanduser("~/workspace/.env.supabase")):
+        _line = _line.strip()
+        if _line and not _line.startswith("#") and "=" in _line:
+            _k, _v = _line.split("=", 1)
+            os.environ.setdefault(_k, _v)
+
+_load_env()
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 HEADERS_CLI = [
@@ -60,6 +68,12 @@ YT_URL_RE = re.compile(
     re.IGNORECASE
 )
 
+# Trailer-watch custom tags: <youtube>URL</youtube> or <youtube>VIDEO_ID</youtube>
+YT_TAG_RE = re.compile(
+    r'<youtube>\s*(.*?)\s*</youtube>',
+    re.IGNORECASE | re.DOTALL
+)
+
 # Full URL extraction (for stripping)
 IG_FULL_URL_RE = re.compile(
     r'https?://(?:www\.)?instagram\.com/(?:p|reel|tv)/[A-Za-z0-9_-]+/?(?:\?[^\s"<\]]*)?',
@@ -101,6 +115,20 @@ def extract_yt_urls(body):
             full_url = full_match.group(0) if full_match else m.group(0)
             canonical = f"https://www.youtube.com/watch?v={vid}"
             urls.append((canonical, full_url.rstrip(')')))
+    # Trailer-watch <youtube> tags: may hold a full URL or a bare video ID
+    for m in YT_TAG_RE.finditer(body):
+        inner = m.group(1).strip()
+        vm = YT_URL_RE.search(inner)
+        if vm:
+            vid = vm.group(1)
+        elif re.fullmatch(r'[A-Za-z0-9_-]{11}', inner):
+            vid = inner
+        else:
+            continue
+        if vid not in seen:
+            seen.add(vid)
+            canonical = f"https://www.youtube.com/watch?v={vid}"
+            urls.append((canonical, m.group(0)))  # strip the whole tag
     return urls
 
 # ── Verification ──────────────────────────────────────────────────────
@@ -172,10 +200,30 @@ def check_ig_oembed(url):
 def strip_embed_from_body(body, dead_url):
     """
     Remove an embed URL and its surrounding markup from the article body.
-    Handles: bare URLs, markdown links, blockquote embeds, iframe embeds.
+    Handles: bare URLs, markdown links, blockquote embeds, iframe embeds,
+    and trailer-watch <youtube> tags (plus their orphaned language header).
     """
     escaped_url = re.escape(dead_url)
     original_body = body
+
+    # Pattern 0: trailer-watch <youtube> tag — remove the whole tag, and if
+    # it's immediately preceded by a language/channel header paragraph
+    # (e.g. "<p><b>Hindi</b> — T-Series</p>"), remove that too since it
+    # would otherwise dangle with no video below it.
+    if dead_url.startswith('<youtube>'):
+        tag_escaped = re.escape(dead_url)
+        m = re.search(tag_escaped, body)
+        if m:
+            start = m.start()
+            # Look for orphaned header: <p><b>Lang</b> — Channel</p> or <p><b>Lang</b></p>
+            hm = re.search(
+                r'<p>(<b>)?[A-Z][A-Za-z ]{1,40}(</b>)?(\s*\u2014[^<>]{1,80})?</p>$',
+                body[:start])
+            if hm:
+                start = hm.start()
+            body = body[:start] + body[m.end():]
+            body = re.sub(r'\n{3,}', '\n\n', body)
+            return body.strip()
 
     # Pattern 1: Full blockquote Instagram embed block
     # <blockquote class="instagram-media" ...>...</blockquote><script ...></script>
@@ -376,3 +424,38 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def sweep_dead_embeds(youtube_only=True, apply=True, verbose=False):
+    """Importable entry point for periodic health checks.
+
+    Sweeps YouTube embeds (and optionally Instagram) for dead videos,
+    strips them from article bodies. Returns the summary dict.
+
+    youtube_only=True skips the slower Instagram checks — YouTube removals
+    are the common case (uploaders pull trailers).
+    """
+    global DRY_RUN, VERBOSE
+    DRY_RUN = not apply
+    VERBOSE = verbose
+    import io
+    from contextlib import redirect_stdout
+    buf = io.StringIO()
+    # main() prints a __SUMMARY__ JSON line; capture and parse it
+    with redirect_stdout(buf):
+        # Temporarily limit to YouTube by monkey-patching fetch for IG
+        if youtube_only:
+            orig_fetch = fetch_articles
+            def _yt_only(embed_type):
+                return [] if embed_type == "instagram" else orig_fetch(embed_type)
+            globals()["fetch_articles"] = _yt_only
+        try:
+            main()
+        finally:
+            if youtube_only:
+                globals()["fetch_articles"] = orig_fetch
+    out = buf.getvalue()
+    m = re.search(r"__SUMMARY__ (\{.*\})", out)
+    if m:
+        return json.loads(m.group(1))
+    return {"error": "no summary produced", "raw_tail": out[-500:]}
