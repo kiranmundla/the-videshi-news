@@ -1051,6 +1051,200 @@ import signal
 class _CheckTimeout(Exception):
     pass
 
+def check_youtube_embeds(fix=False):
+    """
+    Find dead YouTube embeds in recent articles (uploaders remove trailers)
+    and remove them in fix mode. Uses oEmbed: 200 = live, anything else = dead.
+    Also strips the orphaned "<p><b>Lang</b> — Channel</p>" header above it.
+    """
+    import re
+
+    cutoff_90d = utc_iso(datetime.now(timezone.utc) - timedelta(days=90))
+    hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
+    yt_re = re.compile(r"<youtube>(https?://[^<]+)</youtube>")
+    vid_re = re.compile(r"(?:v=|youtu\.be/|/embed/|/shorts/)([A-Za-z0-9_-]{11})")
+
+    try:
+        resp = requests.get(
+            f"{REST}/p2_articles",
+            params={
+                "select": "id,headline,slug,body",
+                "status": "eq.published",
+                "published_at": f"gte.{cutoff_90d}",
+                "body": "ilike.*<youtube>*",
+                "order": "published_at.desc",
+                "limit": "100",
+            },
+            headers=hdrs, timeout=30,
+        )
+        articles = resp.json() if isinstance(resp.json(), list) else []
+    except Exception as e:
+        return {"name": "youtube_embeds", "count": 0,
+                "status": f"fetch failed: {e}", "alert": False}
+
+    def _is_live(vid):
+        try:
+            r = requests.get(
+                "https://www.youtube.com/oembed",
+                params={"url": f"https://www.youtube.com/watch?v={vid}",
+                        "format": "json"},
+                headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+            return r.status_code == 200
+        except Exception:
+            return None  # unverified — never treat as dead
+
+    dead = []
+    fixed = []
+    for a in articles:
+        body = a.get("body", "") or ""
+        for m in yt_re.finditer(body):
+            vm = vid_re.search(m.group(1))
+            if not vm:
+                continue
+            vid = vm.group(1)
+            live = _is_live(vid)
+            if live is False:
+                dead.append({"slug": a["slug"], "video_id": vid})
+                if fix:
+                    # Remove the embed + its orphaned language/channel header
+                    hdr_re = re.compile(
+                        r"<p><b>[^<]*</b>\s*[—–-]\s*[^<]*</p>\s*"
+                        + re.escape(m.group(0)))
+                    new_body, n = hdr_re.subn("", body, count=1)
+                    if n == 0:
+                        new_body = body.replace(m.group(0), "", 1)
+                    try:
+                        sb_patch("p2_articles", f"id=eq.{a['id']}",
+                                 {"body": new_body})
+                        fixed.append(a["slug"])
+                        body = new_body
+                    except Exception as e:
+                        print(f"WARN: youtube-embed patch failed for "
+                              f"{a['slug']}: {e}", file=sys.stderr)
+
+    return {
+        "name": "youtube_embeds",
+        "articles_checked": len(articles),
+        "dead": dead,
+        "fixed": fixed,
+        "count": len(dead),
+        "alert": len(dead) > 0 and not fix,
+    }
+
+
+def check_trailer_film_info(fix=False):
+    """
+    Trailer-brief articles should carry a film-info card (cast strip,
+    director, etc.). Flags briefs missing it. Auto-backfill is handled by
+    the trailer-watch pipeline for new articles; this check surfaces the
+    backlog so it doesn't silently accumulate.
+    """
+    import re
+
+    cutoff_90d = utc_iso(datetime.now(timezone.utc) - timedelta(days=90))
+    hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
+    try:
+        resp = requests.get(
+            f"{REST}/p2_articles",
+            params={
+                "select": "id,headline,slug,body",
+                "status": "eq.published",
+                "published_at": f"gte.{cutoff_90d}",
+                "body": "ilike.*<youtube>*",
+                "order": "published_at.desc",
+                "limit": "100",
+            },
+            headers=hdrs, timeout=30,
+        )
+        articles = resp.json() if isinstance(resp.json(), list) else []
+    except Exception as e:
+        return {"name": "trailer_film_info", "count": 0,
+                "status": f"fetch failed: {e}", "alert": False}
+
+    missing = []
+    for a in articles:
+        body = a.get("body", "") or ""
+        # Only trailer-watch briefs: short body with the characteristic text
+        if len(body) > 3000:
+            continue
+        if "vdc-stat" in body or "cast-strip" in body.lower():
+            continue
+        missing.append(a["slug"])
+
+    return {
+        "name": "trailer_film_info",
+        "articles_checked": len(articles),
+        "missing_card": missing,
+        "count": len(missing),
+        "alert": len(missing) > 5,
+        "action_needed": (
+            f"{len(missing)} trailer briefs missing film-info card" if missing
+            else None),
+    }
+
+
+def check_broken_article_links(fix=False):
+    """
+    Sample external links in recent articles and flag ones that 404/timeout.
+    Flags only — never auto-removes links (a transient failure is not proof
+    a link is dead, and removing a source link is destructive).
+    """
+    import re
+
+    cutoff_48h = utc_iso(datetime.now(timezone.utc) - timedelta(hours=48))
+    hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
+    href_re = re.compile(r'href="(https?://[^"]+)"')
+    # Skip domains that always block bots — checking them produces noise
+    SKIP = ("youtube.com", "youtu.be", "x.com", "twitter.com",
+            "instagram.com", "facebook.com", "threads.com")
+
+    try:
+        resp = requests.get(
+            f"{REST}/p2_articles",
+            params={
+                "select": "id,headline,slug,body",
+                "status": "eq.published",
+                "published_at": f"gte.{cutoff_48h}",
+                "order": "published_at.desc",
+                "limit": "30",
+            },
+            headers=hdrs, timeout=30,
+        )
+        articles = resp.json() if isinstance(resp.json(), list) else []
+    except Exception as e:
+        return {"name": "broken_article_links", "count": 0,
+                "status": f"fetch failed: {e}", "alert": False}
+
+    seen_urls = set()
+    broken = []
+    for a in articles:
+        for url in href_re.findall(a.get("body", "") or ""):
+            if any(d in url for d in SKIP) or url in seen_urls:
+                continue
+            seen_urls.add(url)
+            if len(seen_urls) > 60:  # cap: keep the check fast
+                break
+            try:
+                r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"},
+                                 timeout=8, allow_redirects=True)
+                if r.status_code >= 400:
+                    broken.append({"slug": a["slug"], "url": url[:120],
+                                   "status": r.status_code})
+            except Exception:
+                pass  # transient — not proof of broken, skip silently
+        if len(seen_urls) > 60:
+            break
+
+    return {
+        "name": "broken_article_links",
+        "articles_checked": len(articles),
+        "urls_checked": len(seen_urls),
+        "broken": broken,
+        "count": len(broken),
+        "alert": len(broken) > 0,
+    }
+
+
 def _timeout_handler(signum, frame):
     raise _CheckTimeout("check timed out")
 
@@ -1091,6 +1285,9 @@ def run_all(fix=False):
         ("aged_articles", lambda: check_aged_articles(fix=fix), 15),
         ("worldcup_social_embeds", lambda: check_worldcup_social_embeds(fix=fix), 30),
         ("pulse_freshness", check_pulse_freshness, 15),
+        ("youtube_embeds", lambda: check_youtube_embeds(fix=fix), 120),
+        ("trailer_film_info", lambda: check_trailer_film_info(fix=fix), 30),
+        ("broken_article_links", lambda: check_broken_article_links(fix=fix), 120),
     ]
 
     checks = []
