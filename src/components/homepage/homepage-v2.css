@@ -72,7 +72,7 @@
     justify-content: flex-start;
     gap: 16px;
     overflow-x: auto;
-    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
     scrollbar-width: none; /* Firefox */
     -webkit-overflow-scrolling: touch;
     padding: 14px 16px 12px;
@@ -84,7 +84,6 @@
   }
   .v2-hub-tile {
     flex: 0 0 auto;
-    scroll-snap-align: start;
     gap: 6px;
   }
   .v2-hub-icon-wrap {
