@@ -110,11 +110,11 @@ def curl_get(url: str, retries: int = 3) -> str:
     for attempt in range(retries):
         out = subprocess.run(
             ["curl", "-sSL", "-A", UA, "--max-time", "60", url],
-            capture_output=True, text=True,
+            capture_output=True,
         )
         if out.returncode == 0 and out.stdout:
-            return out.stdout
-        last_err = out.stderr[:200]
+            return out.stdout.decode("utf-8", errors="replace")
+        last_err = out.stderr.decode("utf-8", errors="replace")[:200]
         time.sleep(DELAY_S * (attempt + 1))
     raise RuntimeError(f"curl failed for {url} after {retries} tries: {last_err}")
 
