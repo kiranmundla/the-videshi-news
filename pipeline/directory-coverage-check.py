@@ -135,8 +135,11 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--zips", type=int, default=250)
+    ap.add_argument("--sample", type=int, default=None, help="Alias for --zips (sample size)")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
+    if args.sample is not None:
+        args.zips = args.sample
 
     if not SUPABASE_URL or not SUPABASE_KEY:
         print("SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY not set", flush=True)

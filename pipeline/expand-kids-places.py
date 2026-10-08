@@ -309,7 +309,12 @@ def main():
     import argparse
     ap = argparse.ArgumentParser(description="Expand kids_local_places via Google Places")
     ap.add_argument("--states", help="Comma-separated 2-letter state codes to target (default: all)")
+    ap.add_argument("--auto", action="store_true", help="Progressive mode: work through uncovered state×category combos (default behavior)")
+    ap.add_argument("--daily-budget", type=int, default=200, help="Daily Places API call cap (default: 200)")
     args = ap.parse_args()
+
+    import places_budget
+    places_budget.DAILY_LIMIT = args.daily_budget
 
     targets = STATE_CITIES
     if args.states:
