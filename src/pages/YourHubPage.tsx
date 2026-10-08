@@ -132,6 +132,36 @@ interface LocalNewsItem {
   category: string;
 }
 
+interface BriefItem {
+  slug: string;
+  title: string;
+  excerpt?: string;
+  category?: string;
+  published_at?: string;
+}
+
+interface FxData {
+  rate: number;
+  date: string;
+  day_change: number;
+  day_change_pct: number;
+}
+
+interface RemitProvider {
+  provider: string;
+  rate: number;
+  fee_usd: number;
+  recipient_gets_inr: number;
+  promo?: boolean;
+  promo_note?: string | null;
+}
+
+interface RemitData {
+  as_of: string;
+  providers: RemitProvider[];
+  note?: string;
+}
+
 function faviconUrl(domain?: string | null): string | null {
   if (!domain) return null;
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
@@ -314,12 +344,35 @@ export default function YourHubPage() {
   const [catSel, setCatSel] = useState<string | null>(null);
   const [geoTried, setGeoTried] = useState(false);
   const [localNews, setLocalNews] = useState<Record<string, LocalNewsItem[]>>({});
+  const [morningBrief, setMorningBrief] = useState<BriefItem[]>([]);
+  const [fx, setFx] = useState<FxData | null>(null);
+  const [remit, setRemit] = useState<RemitData | null>(null);
 
   useEffect(() => {
     fetch("/data/local-news.json")
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (d && d.metros) setLocalNews(d.metros);
+      })
+      .catch(() => {});
+    fetch("/data/homepage-feed.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && Array.isArray(d.just_in)) {
+          setMorningBrief(d.just_in.filter((a: BriefItem) => a.slug && a.title).slice(0, 5));
+        }
+      })
+      .catch(() => {});
+    fetch("/data/usdinr.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && typeof d.rate === "number") setFx(d);
+      })
+      .catch(() => {});
+    fetch("/data/remittance-rates.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && Array.isArray(d.providers) && d.providers.length) setRemit(d);
       })
       .catch(() => {});
   }, []);
@@ -408,6 +461,35 @@ export default function YourHubPage() {
     [location, localNews],
   );
 
+  /* Desi Curator's Picks: festival/music/dance/cultural/comedy events worth
+     planning for — beyond this weekend, next 30 days. Distinct from the
+     weekend strip (which is Fri–Sun only). */
+  const PICK_CATS = useMemo(
+    () => new Set(["Festival", "Music", "Dance", "Cultural", "Comedy", "Entertainment"]),
+    [],
+  );
+  const curatorPicks = useMemo(() => {
+    const plus30 = toStr(new Date(new Date().getTime() + 30 * 86400000));
+    let list = events.filter(
+      (e) =>
+        e.date > sunStr &&
+        e.date <= plus30 &&
+        PICK_CATS.has(e.category || "") &&
+        e.ticket_url,
+    );
+    // de-dupe against weekend strip (already shown above) — different dates, so no overlap by construction
+    if (location) {
+      list = [...list].sort((a, b) => {
+        const da = distanceFor(a, location) ?? Infinity;
+        const db = distanceFor(b, location) ?? Infinity;
+        return da - db || a.date.localeCompare(b.date);
+      });
+    } else {
+      list = [...list].sort((a, b) => a.date.localeCompare(b.date));
+    }
+    return list.slice(0, 8);
+  }, [events, sunStr, PICK_CATS, location]);
+
   const weekendLabel = `${fmtDate(friStr).replace(", 2026", "")} – ${fmtDate(sunStr)}`;
 
   return (
@@ -416,7 +498,7 @@ export default function YourHubPage() {
         <title>Your Hub — The Videshi</title>
         <meta
           name="description"
-          content="Your personalized diaspora dashboard: this weekend near you, deadlines that matter, and festival season — all ranked by your location."
+          content="Your personalized diaspora dashboard: this weekend near you, deadlines that matter, the morning brief, money moves, and festival season — all ranked by your location."
         />
         <link rel="canonical" href="https://www.thevideshi.com/your-hub" />
       </Helmet>
@@ -436,7 +518,7 @@ export default function YourHubPage() {
               Your Hub
             </h1>
             <p className="text-muted-foreground text-sm mt-2">
-              Your weekend, your deadlines, your festivals — personalized for you.
+              Your weekend, your deadlines, your money, your festivals — personalized for you.
             </p>
           </div>
           {isSet && location && (
@@ -589,6 +671,51 @@ export default function YourHubPage() {
           )}
         </section>
 
+        {/* ── Your Morning Videshi ── */}
+        {morningBrief.length > 0 && (
+          <section className="mb-10">
+            <SectionHead
+              title="Your Morning Videshi"
+              sub={new Date().toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "short",
+                day: "numeric",
+              })}
+            />
+            <div className="bg-card border border-border rounded-lg divide-y divide-border overflow-hidden">
+              {morningBrief.map((a, i) => (
+                <Link
+                  key={a.slug}
+                  to={`/articles/${a.slug}`}
+                  className="flex gap-3.5 p-3.5 no-underline hover:bg-muted/30 transition-colors"
+                >
+                  <span
+                    className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[12px] font-bold text-white mt-0.5"
+                    style={{ backgroundColor: "#0B1D3A" }}
+                  >
+                    {i + 1}
+                  </span>
+                  <div className="min-w-0">
+                    {a.category && (
+                      <span className="text-[10px] font-bold tracking-[1.5px] uppercase text-muted-foreground">
+                        {a.category}
+                      </span>
+                    )}
+                    <h3 className="text-[14px] font-semibold leading-snug mt-0.5">
+                      {a.title}
+                    </h3>
+                    {a.excerpt && (
+                      <p className="text-[12px] text-muted-foreground leading-relaxed mt-1 line-clamp-2">
+                        {a.excerpt}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* ── Festival Spotlight ── */}
         {spotlight && (
           <section className="mb-10">
@@ -624,6 +751,104 @@ export default function YourHubPage() {
                 Open the Festivals hub →
               </Link>
             </div>
+          </section>
+        )}
+
+        {/* ── Money Moves ── */}
+        {fx && remit && (
+          <section className="mb-10">
+            <SectionHead title="Money Moves" sub="USD → INR" />
+            <div className="bg-card border border-border rounded-lg p-4 md:p-5">
+              <div className="flex items-end justify-between mb-4">
+                <div className="flex items-baseline gap-2.5">
+                  <span className="text-[2rem] font-black leading-none" style={{ color: "#0B1D3A" }}>
+                    ₹{fx.rate.toFixed(2)}
+                  </span>
+                  <span
+                    className={`text-[12px] font-bold px-2 py-0.5 rounded-full ${
+                      fx.day_change >= 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {fx.day_change >= 0 ? "▲" : "▼"} {Math.abs(fx.day_change_pct).toFixed(2)}%
+                  </span>
+                </div>
+                <span className="text-[11px] text-muted-foreground">
+                  Mid-market · {fmtDate(fx.date)}
+                </span>
+              </div>
+              <div className="divide-y divide-border border-y border-border">
+                {(() => {
+                  const best = Math.max(...remit.providers.map((p) => p.recipient_gets_inr));
+                  return remit.providers.slice(0, 4).map((p) => {
+                    const isBest = p.recipient_gets_inr === best;
+                    return (
+                      <div key={p.provider} className="flex items-center justify-between py-2.5 gap-2">
+                        <div className="min-w-0">
+                          <span className="text-[13px] font-semibold">{p.provider}</span>
+                          {isBest && (
+                            <span
+                              className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full text-white align-middle"
+                              style={{ backgroundColor: "#0B1D3A" }}
+                            >
+                              BEST
+                            </span>
+                          )}
+                          {p.promo && p.promo_note && (
+                            <p className="text-[10px] text-muted-foreground truncate">{p.promo_note}</p>
+                          )}
+                        </div>
+                        <div className="text-right flex-shrink-0">
+                          <div className="text-[13px] font-bold">₹{p.recipient_gets_inr.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</div>
+                          <div className="text-[10px] text-muted-foreground">
+                            ₹{p.rate.toFixed(2)}/$ · {p.fee_usd === 0 ? "no fee" : `$${p.fee_usd} fee`}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
+              <p className="text-[11px] text-muted-foreground mt-2.5">
+                For $1,000 sent · {remit.as_of ? `rates as of ${fmtDate(remit.as_of)}` : ""} · promos may apply to new customers only
+              </p>
+              <Link
+                to="/markets-finance"
+                className="inline-block mt-2.5 text-[13px] font-semibold hover:underline"
+                style={{ color: "#A32D2F" }}
+              >
+                More in Markets →
+              </Link>
+            </div>
+          </section>
+        )}
+
+        {/* ── Desi Curator's Picks ── */}
+        {curatorPicks.length > 0 && (
+          <section className="mb-10">
+            <SectionHead
+              title="Desi Curator's Picks"
+              sub={location ? `Worth planning for near ${location.label}` : "Worth planning for"}
+            />
+            <div
+              className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
+              style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+            >
+              {curatorPicks.map((e) => (
+                <div key={e.id} className="flex-shrink-0 w-[300px]">
+                  <EventCard
+                    event={e}
+                    distance={distanceFor(e, location) ?? undefined}
+                  />
+                </div>
+              ))}
+            </div>
+            <Link
+              to="/events"
+              className="inline-block mt-3 text-[13px] font-semibold hover:underline"
+              style={{ color: "#A32D2F" }}
+            >
+              Browse all events →
+            </Link>
           </section>
         )}
 
