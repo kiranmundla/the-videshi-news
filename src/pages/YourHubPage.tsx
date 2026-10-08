@@ -155,11 +155,6 @@ interface RemitData {
   note?: string;
 }
 
-function faviconUrl(domain?: string | null): string | null {
-  if (!domain) return null;
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-}
-
 /** Resolve which metro's news to show: exact label match, else nearest
     metro within 100 mi (for "Near You" geolocation). */
 function resolveMetroNews(
@@ -762,27 +757,16 @@ export default function YourHubPage() {
             <div className="bg-card border border-border rounded-lg divide-y divide-border overflow-hidden">
               {metroNews.items.map((n) => {
                 const isRss = n.kind === "rss";
-                const fav = isRss ? faviconUrl(n.domain) : null;
                 const row = (
                   <>
-                    {!isRss && n.hero_image_url ? (
+                    {!isRss && n.hero_image_url && (
                       <img
                         src={n.hero_image_url}
                         alt=""
                         loading="lazy"
                         className="w-20 h-20 object-cover rounded-md flex-shrink-0"
                       />
-                    ) : fav ? (
-                      <img
-                        src={fav}
-                        alt=""
-                        loading="lazy"
-                        className="w-8 h-8 rounded-sm flex-shrink-0 mt-0.5"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    ) : null}
+                    )}
                     <div className="min-w-0">
                       <h3 className="text-[14px] font-semibold leading-snug">
                         {n.title}
