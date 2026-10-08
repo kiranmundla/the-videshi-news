@@ -390,7 +390,7 @@ export default function YourHubPage() {
                 </div>
               )}
               <div className="flex flex-col gap-2.5">
-                {weekendEvents.slice(0, 12).map((e) => (
+                {weekendEvents.slice(0, 4).map((e) => (
                   <EventCard
                     key={e.id}
                     event={e}
