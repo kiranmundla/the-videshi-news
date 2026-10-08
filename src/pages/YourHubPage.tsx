@@ -7,7 +7,8 @@ import SiteFooter from "@/components/SiteFooter";
 import type { EventItem } from "@/lib/events";
 import EventCard from "@/components/EventCard";
 import { useHubLocation, haversineMiles, METRO_PICKER, type HubLocation } from "@/hooks/useHubLocation";
-import { DEADLINES } from "@/data/deadlines";
+import { DEADLINES, type Deadline } from "@/data/deadlines";
+import { fetchKidsDeadlines } from "@/lib/kidsPrograms";
 
 /* ── Festival spotlight data (dates verified 2026-10-06) ── */
 const FESTIVALS = [
@@ -336,6 +337,7 @@ export default function YourHubPage() {
   const [catSel, setCatSel] = useState<string | null>(null);
   const [geoTried, setGeoTried] = useState(false);
   const [localNews, setLocalNews] = useState<Record<string, LocalNewsItem[]>>({});
+  const [kidsDeadlines, setKidsDeadlines] = useState<Deadline[]>([]);
   const [fx, setFx] = useState<FxData | null>(null);
   const [remit, setRemit] = useState<RemitData | null>(null);
 
@@ -356,6 +358,22 @@ export default function YourHubPage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (d && Array.isArray(d.providers) && d.providers.length) setRemit(d);
+      })
+      .catch(() => {});
+    // Competition / program registration deadlines from Learn — same source as /kids
+    fetchKidsDeadlines(50)
+      .then((ds) => {
+        setKidsDeadlines(
+          ds.map((d) => ({
+            id: `kids-${d.id}`,
+            title: d.title,
+            date: d.deadline_date,
+            category: "education" as const,
+            blurb: d.description || d.deadline_type || "Registration deadline",
+            sourceName: "Learn",
+            sourceUrl: "/kids",
+          })),
+        );
       })
       .catch(() => {});
   }, []);
@@ -428,10 +446,13 @@ export default function YourHubPage() {
     return [...counts.entries()].sort((a, b) => b[1] - a[1]);
   }, [events, friStr, sunStr, today]);
 
-  /* Deadlines */
+  /* Deadlines — static list + Learn competition deadlines, merged */
   const upcomingDeadlines = useMemo(
-    () => DEADLINES.filter((d) => d.date >= today).sort((a, b) => a.date.localeCompare(b.date)),
-    [today],
+    () =>
+      [...DEADLINES, ...kidsDeadlines]
+        .filter((d) => d.date >= today)
+        .sort((a, b) => a.date.localeCompare(b.date)),
+    [today, kidsDeadlines],
   );
 
   /* Festival spotlight: current, else next */
