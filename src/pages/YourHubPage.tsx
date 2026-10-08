@@ -119,6 +119,38 @@ function distanceFor(e: EventItem, loc: HubLocation | null): number | null {
   return haversineMiles(loc.lat, loc.lon, e.latitude, e.longitude);
 }
 
+interface LocalNewsItem {
+  slug: string;
+  title: string;
+  excerpt: string;
+  published_at: string;
+  hero_image_url: string;
+  category: string;
+}
+
+/** Resolve which metro's news to show: exact label match, else nearest
+    metro within 100 mi (for "Near You" geolocation). */
+function resolveMetroNews(
+  location: HubLocation | null,
+  localNews: Record<string, LocalNewsItem[]>,
+): { label: string; items: LocalNewsItem[] } | null {
+  if (!location || Object.keys(localNews).length === 0) return null;
+  if (localNews[location.label]?.length) {
+    return { label: location.label, items: localNews[location.label] };
+  }
+  let best: { label: string; dist: number } | null = null;
+  for (const m of METRO_PICKER) {
+    const key = `${m.city}, ${m.state}`;
+    if (!localNews[key]?.length) continue;
+    const d = haversineMiles(location.lat, location.lon, m.lat, m.lon);
+    if (!best || d < best.dist) best = { label: key, dist: d };
+  }
+  if (best && best.dist <= 100) {
+    return { label: best.label, items: localNews[best.label] };
+  }
+  return null;
+}
+
 /* ── Location setup ── */
 function LocationSetup({
   onDone,
@@ -210,6 +242,16 @@ export default function YourHubPage() {
   const [loaded, setLoaded] = useState(false);
   const [catSel, setCatSel] = useState<string | null>(null);
   const [geoTried, setGeoTried] = useState(false);
+  const [localNews, setLocalNews] = useState<Record<string, LocalNewsItem[]>>({});
+
+  useEffect(() => {
+    fetch("/data/local-news.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d && d.metros) setLocalNews(d.metros);
+      })
+      .catch(() => {});
+  }, []);
 
   /* Auto-request geolocation on page land (like the events page).
      If the user declines, the manual setup panel below is the fallback. */
@@ -289,6 +331,11 @@ export default function YourHubPage() {
   const spotlight =
     FESTIVALS.find((f) => f.start <= today && f.end >= today) ??
     FESTIVALS.find((f) => f.start > today);
+
+  const metroNews = useMemo(
+    () => resolveMetroNews(location, localNews),
+    [location, localNews],
+  );
 
   const weekendLabel = `${fmtDate(friStr).replace(", 2026", "")} – ${fmtDate(sunStr)}`;
 
@@ -505,6 +552,46 @@ export default function YourHubPage() {
               >
                 Open the Festivals hub →
               </Link>
+            </div>
+          </section>
+        )}
+
+        {/* ── Local News ── */}
+        {metroNews && (
+          <section className="mb-10">
+            <SectionHead
+              title="Local News"
+              sub={metroNews.label}
+            />
+            <div
+              className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
+              style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+            >
+              {metroNews.items.map((n) => (
+                <Link
+                  key={n.slug}
+                  to={`/articles/${n.slug}`}
+                  className="flex-shrink-0 w-[260px] bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors no-underline"
+                >
+                  {n.hero_image_url && (
+                    <img
+                      src={n.hero_image_url}
+                      alt=""
+                      loading="lazy"
+                      className="w-full h-28 object-cover"
+                    />
+                  )}
+                  <div className="p-3">
+                    <h3 className="text-[13px] font-semibold leading-snug line-clamp-3">
+                      {n.title}
+                    </h3>
+                    <p className="text-[11px] text-muted-foreground mt-1.5">
+                      {n.published_at ? fmtDate(n.published_at.slice(0, 10)) : ""}
+                      {n.category ? ` · ${n.category}` : ""}
+                    </p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </section>
         )}
