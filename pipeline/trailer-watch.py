@@ -244,6 +244,27 @@ def _clean_names(value):
     return ", ".join(names[:6]) if names else ""
 
 
+def _cast_from_title(title):
+    """Extract cast names from a trailer video title.
+
+    e.g. "Mandaadi | Hindi Trailer | Soori, Suhas, Mahima Nambiar"
+      -> "Soori, Suhas, Mahima Nambiar"
+    Only the trailing pipe-segment is considered, and only when it looks
+    like 2+ person names (not a date, episode tag, or channel name).
+    """
+    segs = [s.strip() for s in (title or "").split("|")]
+    if len(segs) < 3:
+        return ""
+    tail = segs[-1]
+    # Skip obvious non-cast tails
+    if re.search(r"(?i)trailer|teaser|episode|part\s*\d|official|promo", tail):
+        return ""
+    names = _clean_names(tail)
+    # Require at least 2 names to avoid mistaking a single director/producer
+    # credit or show title for cast
+    return names if names and "," in names else ""
+
+
 # separators that split one line into independent "Label: value" segments
 _SEG_SPLIT = re.compile(
     r"\s*[|;]\s*|\.\s+(?=(?:star\s*cast|starcast|starring|featuring|"
@@ -379,6 +400,13 @@ def build_brief_article(drops, channels_by_name):
     # Credits may live in any language version's description; merge, preferring
     # the primary drop's values. (first is the longest-titled drop, not drops[0])
     credits = extract_credits(first.get("description", ""))
+    # Fallback: cast names often live in the video title itself, e.g.
+    # "Mandaadi | Hindi Trailer | Soori, Suhas, Mahima Nambiar" — the
+    # description may have no parseable credits at all.
+    if "cast" not in credits:
+        title_cast = _cast_from_title(first.get("title", ""))
+        if title_cast:
+            credits["cast"] = title_cast
     for d in drops:
         if d is first:
             continue
