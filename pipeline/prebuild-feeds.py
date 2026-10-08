@@ -934,16 +934,18 @@ def main():
     for e in events:
         def _norm(s):
             return "".join(c for c in (s or "").lower() if c.isalnum() or c == " ")
-        key = (_norm(e.get("title")), e.get("date") or "",
-               _norm(e.get("venue_name") or e.get("city")))
-        if key in _seen:
-            prev = _seen[key]
+        # NOTE: must not reuse the name `key` here — it shadows main()'s
+        # Supabase API key and the directory fetch below 401s (2026-10-07).
+        evt_key = (_norm(e.get("title")), e.get("date") or "",
+                   _norm(e.get("venue_name") or e.get("city")))
+        if evt_key in _seen:
+            prev = _seen[evt_key]
             rank = lambda r: _SOURCE_RANK.get(r.get("source"), 9)
             if rank(e) < rank(prev):
                 deduped[deduped.index(prev)] = e
-                _seen[key] = e
+                _seen[evt_key] = e
         else:
-            _seen[key] = e
+            _seen[evt_key] = e
             deduped.append(e)
     if len(deduped) < len(events):
         print(f"  ⚠ Removed {len(events) - len(deduped)} cross-source duplicate events")
