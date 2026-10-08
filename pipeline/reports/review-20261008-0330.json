@@ -1,0 +1,50 @@
+[
+  {
+    "id": "a601a6d5-4ef6-43d9-b933-389f88b2bb95",
+    "headline": "ChatGPT's Teen Safety Guardrails Fail in Crisis, Independent Testing Finds",
+    "slug": "chatgpt-teen-safety-guardrails-fail-crisis-testing",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "87608111-f36e-4358-bfae-ae8a16772dbb",
+    "headline": "Cancer Trial Drug Zavondemstat Works Through Unexpected Target, Study Finds",
+    "slug": "cancer-trial-drug-zavondemstat-works-through-unexpected-target-study",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "d1a69fb5-52c9-4a2e-8eac-ae0b348932a2",
+    "headline": "Award-Winning Kashmiri Filmmaker Arfat Sheikh Detained by ICE at Dulles Airport",
+    "slug": "award-winning-kashmiri-filmmaker-arfat-sheikh-detained-ice-dulles",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "425a7e66-77d8-43fd-a906-790eec6bb04c",
+    "headline": "USPS Unveils New Rangoli Diwali Stamp Ahead of Festival Ceremony",
+    "slug": "usps-unveils-new-rangoli-diwali-stamp-ahead-of-festival-ceremony",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "8e2e4837-7a61-49c5-8be6-b26a926db139",
+    "headline": "Arun Govil Returns to the Ramayana as King Dashrath",
+    "slug": "arun-govil-returns-to-ramayana-as-king-dashrath",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "26501499-d81c-47ae-bfc5-4f8c89b6fc65",
+    "headline": "Teaching AI to Act Drunk Makes It Leak Secrets, UNSW Study Finds",
+    "slug": "teaching-ai-to-act-drunk-makes-it-leak-secrets-unsw-study-finds",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
