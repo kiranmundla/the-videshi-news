@@ -925,6 +925,29 @@ def main():
     cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
     events = fetch_table(url, key, "events", order="date.asc",
                          filters={"date": f"gte.{cutoff}"})
+    # Cross-source dedupe: allevents/eventbrite/ticketmaster list the same
+    # event under different source_ids (e.g. "Dandiya ka Panchnama" Oct 9
+    # Manteca appeared twice on /festivals). Same normalized title + date +
+    # venue/city = same event; keep one, preferring the richer source.
+    _SOURCE_RANK = {"ticketmaster": 0, "eventbrite": 1, "allevents": 2}
+    _seen, deduped = {}, []
+    for e in events:
+        def _norm(s):
+            return "".join(c for c in (s or "").lower() if c.isalnum() or c == " ")
+        key = (_norm(e.get("title")), e.get("date") or "",
+               _norm(e.get("venue_name") or e.get("city")))
+        if key in _seen:
+            prev = _seen[key]
+            rank = lambda r: _SOURCE_RANK.get(r.get("source"), 9)
+            if rank(e) < rank(prev):
+                deduped[deduped.index(prev)] = e
+                _seen[key] = e
+        else:
+            _seen[key] = e
+            deduped.append(e)
+    if len(deduped) < len(events):
+        print(f"  ⚠ Removed {len(events) - len(deduped)} cross-source duplicate events")
+    events = deduped
     events_path = DATA_DIR / "events.json"
     events_path.write_text(json.dumps(events, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ events.json ({len(events)} events)")
