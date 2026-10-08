@@ -34,8 +34,6 @@ const FESTIVALS = [
   },
 ];
 
-const FESTIVAL_KEYWORDS = ["diwali", "navratri", "garba", "dandiya", "deepavali", "dussehra"];
-
 const US_STATES = new Set([
   "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA",
   "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM",
@@ -211,6 +209,30 @@ export default function YourHubPage() {
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [catSel, setCatSel] = useState<string | null>(null);
+  const [geoTried, setGeoTried] = useState(false);
+
+  /* Auto-request geolocation on page land (like the events page).
+     If the user declines, the manual setup panel below is the fallback. */
+  useEffect(() => {
+    if (isSet || geoTried || !navigator.geolocation) return;
+    setGeoTried(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocation({
+          city: "",
+          state: "",
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude,
+          label: "Near You",
+        });
+      },
+      () => {
+        /* denied — LocationSetup panel handles it */
+      },
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSet, geoTried]);
 
   useEffect(() => {
     fetch("/data/events.json")
@@ -267,23 +289,6 @@ export default function YourHubPage() {
   const spotlight =
     FESTIVALS.find((f) => f.start <= today && f.end >= today) ??
     FESTIVALS.find((f) => f.start > today);
-
-  const festivalEvents = useMemo(() => {
-    let list = events.filter((e) => {
-      const hay = `${e.title} ${e.description || ""} ${e.long_description || ""}`.toLowerCase();
-      return FESTIVAL_KEYWORDS.some((k) => hay.includes(k));
-    });
-    if (location) {
-      list = [...list].sort((a, b) => {
-        const da = distanceFor(a, location) ?? Infinity;
-        const db = distanceFor(b, location) ?? Infinity;
-        return da - db || a.date.localeCompare(b.date);
-      });
-    } else {
-      list = [...list].sort((a, b) => a.date.localeCompare(b.date));
-    }
-    return list.slice(0, 4);
-  }, [events, location]);
 
   const weekendLabel = `${fmtDate(friStr).replace(", 2026", "")} – ${fmtDate(sunStr)}`;
 
@@ -414,7 +419,10 @@ export default function YourHubPage() {
               No upcoming deadlines on the radar. Check back soon.
             </p>
           ) : (
-            <div className="flex flex-col gap-2">
+            <div
+              className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
+              style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+            >
               {upcomingDeadlines.map((d) => {
                 const du = daysUntil(d.date);
                 const urgent = du <= 7;
@@ -422,46 +430,36 @@ export default function YourHubPage() {
                 return (
                   <div
                     key={d.id}
-                    className="bg-card border border-border rounded-lg p-3 flex items-center gap-3"
+                    className="flex-shrink-0 w-[240px] bg-card border border-border rounded-lg p-3.5 flex flex-col"
                   >
-                    <div className="flex-shrink-0 w-14 text-center">
+                    <div className="flex items-center justify-between mb-2">
                       <div
-                        className="text-[10px] font-bold uppercase"
+                        className="text-[11px] font-bold uppercase tracking-wide"
                         style={{ color: urgent ? "#A32D2F" : "#64748b" }}
                       >
-                        {fmtDate(d.date).split(", ")[0]}
+                        {fmtDate(d.date)}
                       </div>
-                      <div
-                        className="text-sm font-bold"
-                        style={{ color: urgent ? "#A32D2F" : "#0B1D3A" }}
+                      <span
+                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
+                          urgent ? "text-white" : "bg-muted text-muted-foreground"
+                        }`}
+                        style={urgent ? { backgroundColor: "#A32D2F" } : undefined}
                       >
-                        {fmtDate(d.date).split(", ")[1]}
-                      </div>
+                        {badge}
+                      </span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="text-[14px] font-semibold leading-snug">{d.title}</h3>
-                        <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${
-                            urgent ? "text-white" : "bg-muted text-muted-foreground"
-                          }`}
-                          style={urgent ? { backgroundColor: "#A32D2F" } : undefined}
-                        >
-                          {badge}
-                        </span>
-                      </div>
-                      <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
-                        {d.blurb}{" "}
-                        <a
-                          href={d.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline hover:text-foreground whitespace-nowrap"
-                        >
-                          {d.sourceName} →
-                        </a>
-                      </p>
-                    </div>
+                    <h3 className="text-[14px] font-semibold leading-snug mb-1.5">{d.title}</h3>
+                    <p className="text-[12px] text-muted-foreground leading-relaxed flex-1">
+                      {d.blurb}
+                    </p>
+                    <a
+                      href={d.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[12px] underline hover:text-foreground mt-2 self-start"
+                    >
+                      {d.sourceName} →
+                    </a>
                   </div>
                 );
               })}
@@ -504,22 +502,6 @@ export default function YourHubPage() {
                 Open the Festivals hub →
               </Link>
             </div>
-            {festivalEvents.length > 0 && (
-              <>
-                <p className="text-[12px] font-semibold text-muted-foreground mb-2">
-                  Festival celebrations{location ? ` near ${location.label}` : ""}:
-                </p>
-                <div className="flex flex-col gap-2.5">
-                  {festivalEvents.map((e) => (
-                    <EventCard
-                      key={e.id}
-                      event={e}
-                      distance={distanceFor(e, location) ?? undefined}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
           </section>
         )}
 
