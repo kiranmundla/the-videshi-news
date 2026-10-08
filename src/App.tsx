@@ -45,6 +45,9 @@ const EditEventPage = React.lazy(() => import("./pages/EditEventPage.tsx"));
 // Festivals
 const FestivalsPage = React.lazy(() => import("./pages/FestivalsPage.tsx"));
 
+// Your Hub — personalized dashboard
+const YourHubPage = React.lazy(() => import("./pages/YourHubPage.tsx"));
+
 // Directory
 const DirectoryPage = React.lazy(() => import("./pages/DirectoryPage.tsx"));
 const DirectoryDetailPage = React.lazy(() => import("./pages/DirectoryDetailPage.tsx"));
@@ -177,6 +180,7 @@ const App = () => (
               <Route path="/events/:slug/edit" element={<EditEventPage />} />
               <Route path="/events/:slug" element={<EventDetailPage />} />
               <Route path="/festivals" element={<FestivalsPage />} />
+              <Route path="/your-hub" element={<YourHubPage />} />
               <Route path="/directory" element={<DirectoryPage />} />
               <Route path="/directory/submit" element={<SubmitListingPage />} />
               <Route path="/directory/:slug" element={<DirectoryDetailPage />} />

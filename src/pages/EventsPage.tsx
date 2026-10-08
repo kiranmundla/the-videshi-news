@@ -29,6 +29,7 @@ import {
 import { formatDistance } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
+import EventCard from "@/components/EventCard";
 
 const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
 
@@ -98,114 +99,7 @@ const CAT_BADGE_COLORS: Record<string, string> = {
   Other: "bg-gray-100 text-gray-700",
 };
 
-function CategoryBadge({ category }: { category: string | null }) {
-  const cat = category || "Other";
-  const color = CAT_BADGE_COLORS[cat] || CAT_BADGE_COLORS.Other;
-  const emoji = CAT_EMOJI[cat] || "📌";
-  return (
-    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${color}`}>
-      {emoji} {cat}
-    </span>
-  );
-}
-
-function categoryEmoji(category: string | null): string {
-  return CAT_EMOJI[category || "Other"] || "🎪";
-}
-
-/* ------------------------------------------------------------------ */
-/* Event Card                                                         */
-/* ------------------------------------------------------------------ */
-/** Decode common HTML entities scrapers leave behind */
-function decodeHTMLEntities(text: string): string {
-  const el = document.createElement("textarea");
-  el.innerHTML = text;
-  return el.value;
-}
-
-function EventCard({ event, distance }: { event: EventItem; distance?: number }) {
-  const dateStr = formatEventDate(event.date, event.end_date);
-  const location = [event.venue_name, event.city, event.state]
-    .filter(Boolean)
-    .join(", ");
-
-  const card = (
-    <article className="group flex flex-col sm:flex-row bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors w-full box-border" style={{ wordBreak: "break-word" }}>
-      {/* Image */}
-      {event.image_url ? (
-        <div className="w-full sm:w-56 sm:min-w-[14rem] sm:h-auto overflow-hidden flex-shrink-0">
-          <img
-            src={event.image_url}
-            alt={event.title}
-            className="w-full h-auto max-h-64 sm:max-h-none sm:h-full object-contain sm:object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-          />
-        </div>
-      ) : (
-        <div className="w-full sm:w-56 sm:min-w-[14rem] sm:h-auto overflow-hidden flex-shrink-0">
-          <img
-            src={categoryFallbackImg(event.category)}
-            alt={event.category || "Event"}
-            className="w-full h-auto max-h-64 sm:max-h-none sm:h-full object-cover bg-muted/10 group-hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-          />
-        </div>
-      )}
-
-      {/* Content */}
-      <div className="flex-1 p-4 sm:py-4 sm:pr-4 sm:pl-4 flex flex-col justify-between min-w-0 overflow-hidden">
-        <div>
-          <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <CategoryBadge category={event.category} />
-            {distance != null && distance < 9999 && (
-              <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-orange-600/20 text-orange-300">
-                📍 {formatDistance(distance)}
-              </span>
-            )}
-            {event.audience && (
-              <span className="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-700">
-                👤 {event.audience}
-              </span>
-            )}
-            {event.price_range && (
-              <span className="text-xs text-muted-foreground font-medium">
-                {event.price_range}
-              </span>
-            )}
-          </div>
-          <h3 className="font-serif text-lg font-semibold text-foreground leading-snug mb-1 line-clamp-2 group-hover:text-primary transition-colors">
-            {decodeHTMLEntities(event.title)}
-          </h3>
-          {event.description && (
-            <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-              {event.description}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mt-auto pt-2">
-          <span className="text-primary font-semibold whitespace-nowrap">
-            📅 {dateStr}
-            {event.time && ` · ${event.time}`}
-          </span>
-          {location && (
-            <span className="truncate">📍 {location}</span>
-          )}
-          {event.organizer && (
-            <span className="truncate opacity-70">by {event.organizer}</span>
-          )}
-        </div>
-      </div>
-    </article>
-  );
-
-  const eventSlug = event.slug || event.id;
-
-  return (
-    <Link to={`/events/${eventSlug}`} className="block no-underline">
-      {card}
-    </Link>
-  );
-}
+/* EventCard is shared — see src/components/EventCard.tsx */
 
 /* ------------------------------------------------------------------ */
 /* Date Quick-Filter Bar                                              */

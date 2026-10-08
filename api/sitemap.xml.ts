@@ -15,6 +15,7 @@ const STATIC_PAGES = [
   { loc: "/", priority: "1.0", changefreq: "hourly" },
   { loc: "/events", priority: "0.8", changefreq: "daily" },
   { loc: "/festivals", priority: "0.8", changefreq: "daily" },
+  { loc: "/your-hub", priority: "0.8", changefreq: "daily" },
   { loc: "/directory", priority: "0.8", changefreq: "daily" },
   { loc: "/classifieds", priority: "0.7", changefreq: "daily" },
   { loc: "/about", priority: "0.5", changefreq: "monthly" },

@@ -39,17 +39,6 @@ const HUB_TILES = [
     ),
   },
   {
-    label: "Festivals",
-    to: "/festivals",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2.5c1.6 2.1 2.6 3.7 2.6 5.2a2.6 2.6 0 01-5.2 0c0-1.5 1-3.1 2.6-5.2z"/>
-        <path d="M3.5 13.5h17c0 3.8-3.8 6.5-8.5 6.5s-8.5-2.7-8.5-6.5z"/>
-        <line x1="2" y1="13.5" x2="22" y2="13.5"/>
-      </svg>
-    ),
-  },
-  {
     label: "Classifieds",
     to: "/classifieds",
     icon: (
