@@ -290,13 +290,33 @@ def process(result, cat, subcat, seen):
     return row
 
 
+def log_sweep(state, city, category, query, results, inserted):
+    """Append one JSON line to the sweep log. Non-fatal — never breaks a run."""
+    try:
+        import datetime
+        log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".state")
+        os.makedirs(log_dir, exist_ok=True)
+        line = json.dumps({
+            "ts": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "state": state, "city": city, "category": category,
+            "query": query, "results": results, "inserted": inserted,
+        })
+        with open(os.path.join(log_dir, "sweep-log.jsonl"), "a") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
+
+
 def search_city(city, state, query, cat, subcat, seen):
     fq = f"{query} in {city}, {state}"
     out = []
+    raw_count = 0
     data = google_search(fq)
     if data.get("status") != "OK":
+        log_sweep(state, city, cat, query, 0, 0)
         return out
     for r in data.get("places", []):
+        raw_count += 1
         item = process(r, cat, subcat, seen)
         if item:
             out.append(item)
@@ -306,9 +326,11 @@ def search_city(city, state, query, cat, subcat, seen):
         data = google_search(fq, page_token=tok)
         if data.get("status") == "OK":
             for r in data.get("places", []):
+                raw_count += 1
                 item = process(r, cat, subcat, seen)
                 if item:
                     out.append(item)
+    log_sweep(state, city, cat, query, raw_count, len(out))
     return out
 
 
