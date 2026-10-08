@@ -200,12 +200,11 @@ def compose_post(article):
             break
     summary = " ".join(summary_paras[:3])
 
-    url = f"https://www.thevideshi.com/articles/{slug}"
     post = f"""{emoji} {headline}
 
 {summary}
 
-📰 {url}"""
+📰 Read the full story on The Videshi"""
 
     # Trim if over X's limit
     if len(post) > 3900:
@@ -214,7 +213,7 @@ def compose_post(article):
 
 {summary}
 
-📰 {url}"""
+📰 Read the full story on The Videshi}"""
     return post
 
 
