@@ -168,10 +168,13 @@ function LocationSetup({
 }) {
   const [geoError, setGeoError] = useState<string | null>(null);
   const [geoLoading, setGeoLoading] = useState(false);
+  const [zip, setZip] = useState("");
+  const [zipError, setZipError] = useState<string | null>(null);
+  const [zipLoading, setZipLoading] = useState(false);
 
   const useMyLocation = () => {
     if (!navigator.geolocation) {
-      setGeoError("Geolocation isn't available in this browser — pick your metro below.");
+      setGeoError("Geolocation isn't available in this browser — enter your zip below.");
       return;
     }
     setGeoLoading(true);
@@ -189,10 +192,38 @@ function LocationSetup({
       },
       () => {
         setGeoLoading(false);
-        setGeoError("Location access was denied — pick your metro below instead.");
+        setGeoError("Location access was denied — enter your zip below instead.");
       },
       { enableHighAccuracy: false, timeout: 8000 },
     );
+  };
+
+  const submitZip = async () => {
+    const clean = zip.trim();
+    if (!/^\d{5}$/.test(clean)) {
+      setZipError("Enter a 5-digit US zip code.");
+      return;
+    }
+    setZipLoading(true);
+    setZipError(null);
+    try {
+      const r = await fetch(`https://api.zippopotam.us/us/${clean}`);
+      if (!r.ok) throw new Error("not found");
+      const d = await r.json();
+      const place = d.places?.[0];
+      if (!place) throw new Error("not found");
+      onDone({
+        city: place["place name"],
+        state: place["state abbreviation"],
+        lat: parseFloat(place.latitude),
+        lon: parseFloat(place.longitude),
+        label: `${place["place name"]}, ${place["state abbreviation"]}`,
+      });
+    } catch {
+      setZipError("Couldn't find that zip — check it and try again.");
+    } finally {
+      setZipLoading(false);
+    }
   };
 
   return (
@@ -215,6 +246,37 @@ function LocationSetup({
       {geoError && (
         <p className="text-[12px] mt-2" style={{ color: "#A32D2F" }}>
           {geoError}
+        </p>
+      )}
+      <div className="flex items-center gap-3 my-4">
+        <div className="flex-1 border-t border-border" />
+        <span className="text-[11px] uppercase tracking-wider text-muted-foreground">or enter your zip</span>
+        <div className="flex-1 border-t border-border" />
+      </div>
+      <div className="flex gap-2">
+        <input
+          value={zip}
+          onChange={(e) => setZip(e.target.value.replace(/\D/g, "").slice(0, 5))}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") submitZip();
+          }}
+          inputMode="numeric"
+          placeholder="Zip code"
+          aria-label="Zip code"
+          className="flex-1 min-w-0 px-4 py-2.5 rounded-full border border-border text-sm bg-background focus:outline-none focus:ring-2 focus:ring-[#D4A843]"
+        />
+        <button
+          onClick={submitZip}
+          disabled={zipLoading}
+          className="px-5 py-2.5 rounded-full text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
+          style={{ backgroundColor: "#0B1D3A" }}
+        >
+          {zipLoading ? "Finding…" : "Set"}
+        </button>
+      </div>
+      {zipError && (
+        <p className="text-[12px] mt-2" style={{ color: "#A32D2F" }}>
+          {zipError}
         </p>
       )}
       <div className="flex items-center gap-3 my-4">
