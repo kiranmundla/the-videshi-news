@@ -7,7 +7,7 @@ export interface Deadline {
   title: string;
   /** YYYY-MM-DD */
   date: string;
-  category: "tax" | "immigration" | "health" | "festival" | "holiday";
+  category: "tax" | "immigration" | "health" | "festival" | "holiday" | "education";
   blurb: string;
   sourceName: string;
   sourceUrl: string;
@@ -147,5 +147,95 @@ export const DEADLINES: Deadline[] = [
     sourceName: "Mintz",
     sourceUrl:
       "https://www.mintz.com/insights-center/viewpoints/2806/2026-07-20-uscis-announces-fy2027-h-1b-cap-reached-no-second",
+  },
+  {
+    id: "amc10-12-reg-2026",
+    title: "AMC 10/12 school registration deadline",
+    date: "2026-10-15",
+    category: "education",
+    blurb:
+      "Schools must register by Oct 15 ($75). Late registration (Oct 28) is returning managers only — new schools hit a hard stop. Contests Nov 5 & 13.",
+    sourceName: "MAA",
+    sourceUrl: "https://maa.org/student-programs/amc/",
+  },
+  {
+    id: "sat-nov-2026-reg",
+    title: "SAT (Nov 7) registration deadline",
+    date: "2026-10-23",
+    category: "education",
+    blurb:
+      "Last SAT sitting before most Early Decision deadlines (Nov 1). Late registration Oct 27 with extra fee.",
+    sourceName: "College Board",
+    sourceUrl: "https://satsuite.collegeboard.org/sat/dates-deadlines",
+  },
+  {
+    id: "spelling-bee-early-2026",
+    title: "Spelling Bee early enrollment ends",
+    date: "2026-11-30",
+    category: "education",
+    blurb:
+      "School enrollment fee jumps from $199 to $225 on Dec 1. Final enrollment Jan 29, 2027.",
+    sourceName: "Scripps",
+    sourceUrl: "https://spellingbee.com/node/40",
+  },
+  {
+    id: "sat-dec-2026-reg",
+    title: "SAT (Dec 5) registration deadline",
+    date: "2026-11-20",
+    category: "education",
+    blurb:
+      "Final SAT of calendar 2026. Late registration Nov 24 with extra fee.",
+    sourceName: "College Board",
+    sourceUrl: "https://satsuite.collegeboard.org/sat/dates-deadlines",
+  },
+  {
+    id: "math-kangaroo-reg-2026",
+    title: "Math Kangaroo registration deadline",
+    date: "2026-12-31",
+    category: "education",
+    blurb:
+      "Grades 1–12 math competition — contest March 18, 2027. Register through mathkangaroo.org.",
+    sourceName: "Math Kangaroo",
+    sourceUrl: "https://mathkangaroo.org/mks/",
+  },
+  {
+    id: "amc8-reg-2027",
+    title: "AMC 8 regular registration deadline",
+    date: "2027-01-05",
+    category: "education",
+    blurb:
+      "Middle-school math competition, Jan 21–27, 2027. Schools register through MAA.",
+    sourceName: "MAA",
+    sourceUrl: "https://maa.org/maa-amc-registration-faq/",
+  },
+  {
+    id: "fafsa-priority-2027",
+    title: "FAFSA state priority deadlines begin",
+    date: "2027-01-15",
+    category: "education",
+    blurb:
+      "2027–28 FAFSA is open now; federal deadline is June 2028, but state/institutional aid is first-come — Texas priority Jan 15, California Mar 2. Check your state.",
+    sourceName: "The College Investor",
+    sourceUrl: "https://thecollegeinvestor.com/22730/fafsa-deadlines/",
+  },
+  {
+    id: "spelling-bee-final-2027",
+    title: "Spelling Bee final enrollment",
+    date: "2027-01-29",
+    category: "education",
+    blurb:
+      "Last day for schools to enroll for the 2027 Bee; school champions must be registered by 8am.",
+    sourceName: "Scripps",
+    sourceUrl: "https://spellingbee.com/node/40",
+  },
+  {
+    id: "sat-mar-2027-reg",
+    title: "SAT (Mar 6) registration deadline",
+    date: "2027-02-19",
+    category: "education",
+    blurb:
+      "First SAT of spring 2027. Late registration Feb 23 with extra fee.",
+    sourceName: "College Board",
+    sourceUrl: "https://satsuite.collegeboard.org/sat/dates-deadlines",
   },
 ];
