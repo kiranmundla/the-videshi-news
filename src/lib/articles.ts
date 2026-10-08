@@ -541,11 +541,15 @@ export async function getCategoryArchive(
 }
 
 export async function fetchKidsArticles(limit = 20): Promise<Article[]> {
+  // Age out stale stories — a "latest" rail showing months-old articles looks broken
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
   const { data, error } = await supabase
     .from("p2_articles")
     .select(P2_COLS)
     .eq("status", "published")
     .eq("kids_relevant", true)
+    .gte("published_at", cutoff.toISOString())
     .order("published_at", { ascending: false })
     .limit(limit);
 
