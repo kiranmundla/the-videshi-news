@@ -1,12 +1,72 @@
 #!/usr/bin/env python3
 """Post recently published Videshi articles to X as long-form posts."""
 
-import json, os, sys, time, tempfile, requests, tweepy
+import json, os, sys, time, tempfile, requests, tweepy, subprocess
 try:
     import x_spend
 except Exception:
     x_spend=None
 from datetime import datetime, timezone
+
+
+def download_image_curl(url):
+    """Download an image via curl subprocess (proxy-friendly, Wikimedia-safe UA).
+
+    requests-based fetches 429 on Wikimedia and time out elsewhere; curl with
+    an explicit UA + hard timeouts is reliable from this box (verified 2026-10-08).
+    Returns local temp path, or None on failure.
+    """
+    low = url.lower()
+    suffix = '.png' if '.png' in low else ('.webp' if '.webp' in low else '.jpg')
+    tmp = tempfile.NamedTemporaryFile(suffix=suffix, delete=False)
+    tmp_path = tmp.name
+    tmp.close()
+    try:
+        r = subprocess.run(
+            ['curl', '-sSL', '-A', 'TheVideshi/1.0 (thevideshi.com)',
+             '--max-time', '30', '--connect-timeout', '10',
+             '-f', '--retry', '2', '--retry-delay', '2',
+             '-o', tmp_path, url],
+            capture_output=True, timeout=60)
+        if r.returncode == 0 and os.path.getsize(tmp_path) > 1024:
+            return tmp_path
+        print(f"    curl download failed (rc={r.returncode}, "
+              f"{r.stderr.decode()[:120]})")
+    except Exception as e:
+        print(f"    curl download exception: {e}")
+    try:
+        os.unlink(tmp_path)
+    except Exception:
+        pass
+    return None
+
+
+def compress_for_upload(src_path):
+    """Downscale + JPEG-compress so the X upload finishes before the proxy
+    stalls it (2026-10-08: 60s read/write timeouts on upload.twitter.com).
+    Returns the compressed path (src if compression fails)."""
+    try:
+        from PIL import Image
+        im = Image.open(src_path).convert('RGB')
+        w, h = im.size
+        if max(w, h) > 1200:
+            scale = 1200 / max(w, h)
+            im = im.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+        out = tempfile.NamedTemporaryFile(suffix='.jpg', delete=False)
+        out_path = out.name
+        out.close()
+        im.save(out_path, 'JPEG', quality=82, optimize=True)
+        print(f"    compressed {os.path.getsize(src_path)//1024}KB -> "
+              f"{os.path.getsize(out_path)//1024}KB")
+        return out_path
+    except Exception as e:
+        print(f"    compression failed ({e}), uploading original")
+        return src_path
+
+
+def upload_image_file(api_v1, local_path):
+    """Upload one local image to X, returning its media_id."""
+    return api_v1.media_upload(filename=local_path).media_id
 
 # --- Config ---
 SUPABASE_URL = 'https://lboecaekpynbpyijrbfz.supabase.co'
@@ -82,7 +142,7 @@ client = tweepy.Client(
     access_token_secret=ACCESS_TOKEN_SECRET
 )
 auth = tweepy.OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
-api_v1 = tweepy.API(auth)
+api_v1 = tweepy.API(auth, timeout=60)  # explicit: upload.twitter.com stalls through the proxy; 60s then fail fast
 
 # --- Compose posts ---
 def extract_key_content(body_md):
@@ -109,103 +169,52 @@ def extract_key_content(body_md):
     return '\n'.join(lines)
 
 def compose_post(article):
-    """Compose a long-form X post from article data."""
-    cat = article.get('category', 'news')
-    emoji = CATEGORY_EMOJI.get(cat, '🇮🇳')
-    cat_label = cat.upper().replace('-', ' ')
-    headline = article['headline']
-    subheadline = article.get('subheadline', '')
-    slug = article['slug']
-    body_text = extract_key_content(article.get('body', ''))
+    """Compose a clean, X-native post from article data.
+
+    Format: hook line, headline, tight summary, link. No dividers
+    (they render as broken bars), no duplicated takeaways, no boilerplate.
+    """
+    cat = article.get("category", "news")
+    emoji = CATEGORY_EMOJI.get(cat, "🇮🇳")
+    headline = article["headline"]
+    slug = article["slug"]
+    body_text = extract_key_content(article.get("body", ""))
 
     # Extract sentences from body for summary
     sentences = []
-    for para in body_text.split('\n'):
+    for para in body_text.split("\n"):
         para = para.strip()
         if len(para) > 40:
             sentences.append(para)
 
-    # Build summary (2-3 paragraphs, 150-250 words)
+    # Tight summary: 2-3 sentences, max ~200 words
     summary_paras = []
     word_count = 0
     for s in sentences:
         words = len(s.split())
-        if word_count + words > 280:
+        if word_count + words > 200:
             break
         summary_paras.append(s)
         word_count += words
-        if word_count >= 150 and len(summary_paras) >= 2:
+        if word_count >= 80 and len(summary_paras) >= 2:
             break
+    summary = " ".join(summary_paras[:3])
 
-    summary = '\n\n'.join(summary_paras[:3])
-
-    # Extract key takeaways - shorter factual sentences
-    takeaways = []
-    for s in sentences:
-        # Look for sentences with numbers, names, or strong facts
-        if len(s.split()) <= 25 and len(s.split()) >= 5:
-            if any(c.isdigit() for c in s) or any(w[0].isupper() for w in s.split()[1:] if w):
-                takeaways.append(s)
-        if len(takeaways) >= 4:
-            break
-
-    # If we didn't find enough, just use shorter sentences
-    if len(takeaways) < 3:
-        for s in sentences:
-            if 5 <= len(s.split()) <= 30 and s not in takeaways and s not in summary_paras:
-                takeaways.append(s)
-                if len(takeaways) >= 4:
-                    break
-
-    takeaway_lines = '\n'.join(f'▸ {t}' for t in takeaways[:4])
-
-    post = f"""{emoji} {cat_label} | The Videshi
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-{headline}
+    url = f"https://www.thevideshi.com/articles/{slug}"
+    post = f"""{emoji} {headline}
 
 {summary}
 
-━━━━━━━━━━━━━━━━━━━━━━━━
+📰 {url}"""
 
-Key Takeaways:
-
-{takeaway_lines}
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-📰 Read the full story on The Videshi
-
-Your daily source for Indian diaspora news
-Follow @thevideshi for more"""
-
-    # Trim if over 4000 chars
+    # Trim if over X's limit
     if len(post) > 3900:
-        # Shorten summary
-        summary = '\n\n'.join(summary_paras[:2])
-        takeaway_lines = '\n'.join(f'▸ {t}' for t in takeaways[:3])
-        post = f"""{emoji} {cat_label} | The Videshi
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-{headline}
+        summary = " ".join(summary_paras[:2])
+        post = f"""{emoji} {headline}
 
 {summary}
 
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-Key Takeaways:
-
-{takeaway_lines}
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-📰 Read the full story on The Videshi
-
-Your daily source for Indian diaspora news
-Follow @thevideshi for more"""
-
+📰 {url}"""
     return post
 
 
@@ -252,19 +261,25 @@ for i, article in enumerate(articles):
             if chosen:
                 print(f"  📸 Found {len(all_slides)} carousel slides, posting {len(chosen)} images")
                 for ci, curl in enumerate(chosen):
+                    tmp_path = up_path = None
                     try:
-                        cr = requests.get(curl, headers={"User-Agent": "TheVideshi/1.0"}, timeout=15)
-                        cr.raise_for_status()
-                        ext = '.png' if 'png' in cr.headers.get('content-type', '') else '.jpg'
-                        with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
-                            tmp.write(cr.content)
-                            tmp_path = tmp.name
-                        media = api_v1.media_upload(filename=tmp_path)
-                        media_ids.append(media.media_id)
-                        os.unlink(tmp_path)
-                        print(f"    Slide {ci}: media_id={media.media_id}")
+                        tmp_path = download_image_curl(curl)
+                        if not tmp_path:
+                            print(f"    Slide {ci}: download failed, skipping")
+                            continue
+                        up_path = compress_for_upload(tmp_path)
+                        media_id = upload_image_file(api_v1, up_path)
+                        media_ids.append(media_id)
+                        print(f"    Slide {ci}: media_id={media_id}")
                     except Exception as e:
                         print(f"    Slide {ci} failed: {e}")
+                    finally:
+                        for p in {tmp_path, up_path}:
+                            if p:
+                                try:
+                                    os.unlink(p)
+                                except Exception:
+                                    pass
     except Exception as e:
         print(f"  Carousel check failed ({e}), falling back to hero image")
 
@@ -272,28 +287,25 @@ for i, article in enumerate(articles):
     if not media_ids:
         image_url = article.get('image_url', '')
         if image_url:
+            tmp_path = up_path = None
             try:
-                img_resp = requests.get(
-                    image_url,
-                    headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
-                    timeout=15
-                )
-                img_resp.raise_for_status()
-                ct = img_resp.headers.get('content-type', '')
-                ext = '.jpg'
-                if 'png' in ct:
-                    ext = '.png'
-                elif 'webp' in ct:
-                    ext = '.webp'
-                with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
-                    tmp.write(img_resp.content)
-                    tmp_path = tmp.name
-                media = api_v1.media_upload(filename=tmp_path)
-                media_ids.append(media.media_id)
-                os.unlink(tmp_path)
-                print(f"  Hero image uploaded: media_id={media.media_id}")
+                tmp_path = download_image_curl(image_url)
+                if not tmp_path:
+                    print("  Image failed (download), posting without image")
+                else:
+                    up_path = compress_for_upload(tmp_path)
+                    media_id = upload_image_file(api_v1, up_path)
+                    media_ids.append(media_id)
+                    print(f"  Hero image uploaded: media_id={media_id}")
             except Exception as e:
                 print(f"  Image failed ({e}), posting without image")
+            finally:
+                for p in {tmp_path, up_path}:
+                    if p:
+                        try:
+                            os.unlink(p)
+                        except Exception:
+                            pass
 
     # Post tweet
     try:
