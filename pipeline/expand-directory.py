@@ -23,7 +23,9 @@ def _budget_report():
     if u > 0: print(f"Places API budget: {u}/{l} calls used today")
 _atexit.register(_budget_report)
 
-GKEY = "AIzaSyB-KBpDQExIKfEl4J4fxUVMBviTpY7tfZ8"
+GKEY = os.environ.get("GOOGLE_PLACES_API_KEY", "")
+if not GKEY:
+    print("WARNING: GOOGLE_PLACES_API_KEY not set — Places searches will fail.", flush=True)
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 
@@ -52,6 +54,23 @@ def curl_json(url, headers=None, timeout=20):
         return json.loads(r.stdout)
     except Exception as e:
         log.error(f"curl_json error: {e}")
+        return None
+
+
+def curl_post_json(url, headers, data, timeout=30):
+    """POST with JSON body, return parsed JSON response (or None)."""
+    cmd = ["curl", "-sS", "--max-time", str(timeout), "-X", "POST", "-d", data]
+    for k, v in headers.items():
+        cmd += ["-H", f"{k}: {v}"]
+    cmd.append(url)
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 5)
+        if r.returncode != 0:
+            log.error(f"curl POST failed rc={r.returncode}")
+            return None
+        return json.loads(r.stdout)
+    except Exception as e:
+        log.error(f"curl_post_json error: {e}")
         return None
 
 
@@ -163,6 +182,18 @@ SEARCH_QUERIES = [
     # Indian Clothing & Jewelry
     ("Indian clothing store saree", "Beauty & Grooming"),
     ("Indian jewelry store", "Beauty & Grooming"),
+    # Real Estate
+    ("Indian real estate agent", "Real Estate"),
+    ("desi realtor", "Real Estate"),
+    # Home Services
+    ("Indian handyman", "Home Services"),
+    ("Indian house cleaning service", "Home Services"),
+    # Daycare & Childcare
+    ("Indian daycare", "Daycare & Childcare"),
+    ("desi childcare", "Daycare & Childcare"),
+    # Religious Services — non-Hindu additions (Hindu/gurudwara/Jain stay)
+    ("mosque", "Religious Services"),
+    ("Indian church", "Religious Services"),
 ]
 
 TYPE_TO_CATEGORY = {
@@ -211,23 +242,61 @@ def parse_address(addr):
     return {"city": city, "state": state, "zip": zip_code}
 
 
+# ── New Places API (v1) — legacy maps.googleapis.com endpoints are disabled
+# for this GCP project, so all search/photo calls go through v1. ──
+PLACES_SEARCH_URL = "https://places.googleapis.com/v1/places:searchText"
+PLACES_FIELD_MASK = (
+    "places.id,places.displayName,places.formattedAddress,places.location,"
+    "places.rating,places.userRatingCount,places.types,places.photos,nextPageToken"
+)
+
+
+def normalize_place(p):
+    """Convert a new-Places-API (v1) place to the legacy-shaped dict that
+    process() expects, so downstream logic is unchanged."""
+    loc = p.get("location") or {}
+    dn = p.get("displayName") or {}
+    return {
+        "place_id": p.get("id"),
+        "name": dn.get("text", ""),
+        "formatted_address": p.get("formattedAddress", ""),
+        "types": p.get("types", []),
+        "rating": p.get("rating"),
+        "user_ratings_total": p.get("userRatingCount"),
+        "geometry": {"location": {"lat": loc.get("latitude"),
+                                  "lng": loc.get("longitude")}},
+        "photos": p.get("photos", []),
+    }
+
+
 def google_search(query, page_token=None):
     if not check_budget():
         log.warning(f"Places API daily budget exhausted ({budget_remaining()} remaining). Skipping search.")
-        return {"status": "BUDGET_EXHAUSTED", "results": []}
-    import urllib.parse
-    params = {"query": query, "key": GKEY}
+        return {"status": "BUDGET_EXHAUSTED", "places": []}
+    body = {"textQuery": query, "maxResultCount": 20}
     if page_token:
-        params["pagetoken"] = page_token
-    url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?{urllib.parse.urlencode(params)}"
-    r = curl_json(url)
+        body["pageToken"] = page_token
+    r = curl_post_json(
+        PLACES_SEARCH_URL,
+        {"Content-Type": "application/json",
+         "X-Goog-Api-Key": GKEY,
+         "X-Goog-FieldMask": PLACES_FIELD_MASK},
+        json.dumps(body),
+    )
     record_call()
-    return r or {"status": "ERROR", "results": []}
+    if not r:
+        return {"status": "ERROR", "places": []}
+    if "error" in r:
+        log.warning(f"Places API error: {str(r['error'].get('message', '?'))[:150]}")
+        return {"status": "ERROR", "places": []}
+    return {"status": "OK",
+            "places": [normalize_place(p) for p in r.get("places", [])],
+            "next_page_token": r.get("nextPageToken")}
 
 
 def photo_urls(photos):
-    return [f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference={p['photo_reference']}&key={GKEY}"
-            for p in photos[:5] if p.get("photo_reference")]
+    return [f"https://places.googleapis.com/v1/{p['name']}/media?maxWidthPx=800&key={GKEY}"
+            for p in photos[:5] if p.get("name")]
 
 
 def categorize(types, fallback):
@@ -325,9 +394,9 @@ def search_city(city, state, query, cat, seen):
     fq = f"{query} in {city}, {state}"
     out = []
     data = google_search(fq)
-    if data.get("status") not in ("OK", "ZERO_RESULTS"):
+    if data.get("status") != "OK":
         return out
-    for r in data.get("results", []):
+    for r in data.get("places", []):
         item = process(r, cat, seen)
         if item:
             out.append(item)
@@ -339,7 +408,7 @@ def search_city(city, state, query, cat, seen):
         data = google_search(fq, page_token=tok)
         if data.get("status") != "OK":
             break
-        for r in data.get("results", []):
+        for r in data.get("places", []):
             item = process(r, cat, seen)
             if item:
                 out.append(item)

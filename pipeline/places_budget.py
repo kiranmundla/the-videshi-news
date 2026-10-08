@@ -10,9 +10,9 @@ import json, os, time
 from datetime import datetime, timezone
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "places-usage.json")
-DAILY_LIMIT = 1000  # max Places API calls per day (across all scripts)
-# Raised 2026-10-03 per Kiran ("let's do faster"): national directory + kids
-# expansion needs ~5,000 calls for a full 50-state pass (~$160 at $32/1k).
+DAILY_LIMIT = 200  # max Places API calls per day (across all scripts)
+# Lowered 2026-10-07 per Kiran: Places API is post-paid/billed, stay conservative
+# until real spend is visible. Was 1000 (raised 2026-10-03).
 
 def _load():
     if not os.path.exists(STATE_FILE):
