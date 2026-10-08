@@ -759,39 +759,35 @@ export default function YourHubPage() {
               title="Local News"
               sub={metroNews.label}
             />
-            <div
-              className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
-              style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
-            >
+            <div className="bg-card border border-border rounded-lg divide-y divide-border overflow-hidden">
               {metroNews.items.map((n) => {
                 const isRss = n.kind === "rss";
                 const fav = isRss ? faviconUrl(n.domain) : null;
-                const card = (
+                const row = (
                   <>
-                    {!isRss && n.hero_image_url && (
+                    {!isRss && n.hero_image_url ? (
                       <img
                         src={n.hero_image_url}
                         alt=""
                         loading="lazy"
-                        className="w-full h-28 object-cover"
+                        className="w-20 h-20 object-cover rounded-md flex-shrink-0"
                       />
-                    )}
-                    <div className="p-3">
-                      <h3 className="text-[13px] font-semibold leading-snug line-clamp-3">
+                    ) : fav ? (
+                      <img
+                        src={fav}
+                        alt=""
+                        loading="lazy"
+                        className="w-8 h-8 rounded-sm flex-shrink-0 mt-0.5"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    ) : null}
+                    <div className="min-w-0">
+                      <h3 className="text-[14px] font-semibold leading-snug">
                         {n.title}
                       </h3>
-                      <p className="text-[11px] text-muted-foreground mt-1.5 flex items-center gap-1.5">
-                        {fav && (
-                          <img
-                            src={fav}
-                            alt=""
-                            loading="lazy"
-                            className="w-4 h-4 rounded-sm flex-shrink-0"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = "none";
-                            }}
-                          />
-                        )}
+                      <p className="text-[12px] text-muted-foreground mt-1">
                         {isRss ? (
                           <>{n.source} →</>
                         ) : (
@@ -805,7 +801,7 @@ export default function YourHubPage() {
                   </>
                 );
                 const cls =
-                  "flex-shrink-0 w-[260px] bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors no-underline";
+                  "flex gap-3.5 p-3.5 no-underline hover:bg-muted/30 transition-colors";
                 return isRss ? (
                   <a
                     key={n.url}
@@ -814,11 +810,11 @@ export default function YourHubPage() {
                     rel="noopener noreferrer"
                     className={cls}
                   >
-                    {card}
+                    {row}
                   </a>
                 ) : (
                   <Link key={n.slug} to={`/articles/${n.slug}`} className={cls}>
-                    {card}
+                    {row}
                   </Link>
                 );
               })}
