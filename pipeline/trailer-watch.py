@@ -249,20 +249,25 @@ def _cast_from_title(title):
 
     e.g. "Mandaadi | Hindi Trailer | Soori, Suhas, Mahima Nambiar"
       -> "Soori, Suhas, Mahima Nambiar"
-    Only the trailing pipe-segment is considered, and only when it looks
-    like 2+ person names (not a date, episode tag, or channel name).
+    Scans trailing pipe-segments for one that looks like 2+ person names,
+    skipping channel names, dates, and trailer/teaser labels. The cast
+    segment is often second-to-last (channel name comes last).
     """
     segs = [s.strip() for s in (title or "").split("|")]
     if len(segs) < 3:
         return ""
-    tail = segs[-1]
-    # Skip obvious non-cast tails
-    if re.search(r"(?i)trailer|teaser|episode|part\s*\d|official|promo", tail):
-        return ""
-    names = _clean_names(tail)
-    # Require at least 2 names to avoid mistaking a single director/producer
-    # credit or show title for cast
-    return names if names and "," in names else ""
+    # Walk from the end, skipping the channel/studio tail; the cast
+    # segment is usually the last one that looks like 2+ person names.
+    for tail in reversed(segs[1:]):
+        # Skip obvious non-cast segments
+        if re.search(r"(?i)trailer|teaser|episode|part\s*\d|official|promo", tail):
+            continue
+        names = _clean_names(tail)
+        # Require at least 2 names to avoid mistaking a single director/
+        # producer credit, channel name, or date for cast
+        if names and "," in names:
+            return names
+    return ""
 
 
 def _video_is_live(video_id):
