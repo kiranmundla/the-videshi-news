@@ -120,7 +120,10 @@ function distanceFor(e: EventItem, loc: HubLocation | null): number | null {
 }
 
 interface LocalNewsItem {
-  slug: string;
+  kind: "article" | "rss";
+  slug?: string;
+  url?: string;
+  source?: string;
   title: string;
   excerpt: string;
   published_at: string;
@@ -567,31 +570,53 @@ export default function YourHubPage() {
               className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
               style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
             >
-              {metroNews.items.map((n) => (
-                <Link
-                  key={n.slug}
-                  to={`/articles/${n.slug}`}
-                  className="flex-shrink-0 w-[260px] bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors no-underline"
-                >
-                  {n.hero_image_url && (
-                    <img
-                      src={n.hero_image_url}
-                      alt=""
-                      loading="lazy"
-                      className="w-full h-28 object-cover"
-                    />
-                  )}
-                  <div className="p-3">
-                    <h3 className="text-[13px] font-semibold leading-snug line-clamp-3">
-                      {n.title}
-                    </h3>
-                    <p className="text-[11px] text-muted-foreground mt-1.5">
-                      {n.published_at ? fmtDate(n.published_at.slice(0, 10)) : ""}
-                      {n.category ? ` · ${n.category}` : ""}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+              {metroNews.items.map((n) => {
+                const isRss = n.kind === "rss";
+                const card = (
+                  <>
+                    {!isRss && n.hero_image_url && (
+                      <img
+                        src={n.hero_image_url}
+                        alt=""
+                        loading="lazy"
+                        className="w-full h-28 object-cover"
+                      />
+                    )}
+                    <div className="p-3">
+                      <h3 className="text-[13px] font-semibold leading-snug line-clamp-3">
+                        {n.title}
+                      </h3>
+                      <p className="text-[11px] text-muted-foreground mt-1.5">
+                        {isRss ? (
+                          <>{n.source} →</>
+                        ) : (
+                          <>
+                            {n.published_at ? fmtDate(n.published_at.slice(0, 10)) : ""}
+                            {n.category ? ` · ${n.category}` : ""}
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </>
+                );
+                const cls =
+                  "flex-shrink-0 w-[260px] bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-colors no-underline";
+                return isRss ? (
+                  <a
+                    key={n.url}
+                    href={n.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cls}
+                  >
+                    {card}
+                  </a>
+                ) : (
+                  <Link key={n.slug} to={`/articles/${n.slug}`} className={cls}>
+                    {card}
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}

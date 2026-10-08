@@ -1,20 +1,29 @@
 #!/usr/bin/env python3 -u
 """Build per-metro local news index for Your Hub.
 
-Scans published article JSONs for US metro mentions (city name in
-title/excerpt/body) and writes public/data/local-news.json:
-  { "metros": { "San Jose, CA": [{slug,title,excerpt,published_at,hero_image_url,category}, ...] } }
+V1: scans published article JSONs for US metro mentions (city name in
+title/excerpt/body) — our own voice, precise, thin volume.
+V2: Google News RSS per metro with a desi query + relevance filter —
+external breadth. Merged: our articles first, RSS fills up to PER_METRO.
 
-Top 5 most recent per metro. Ambiguous city names (Washington, Portland)
-require state context to avoid false positives.
+Writes public/data/local-news.json:
+  { "metros": { "San Jose, CA": [{kind,slug|url,title,...}, ...] } }
 
-Run: python3 -u pipeline/build-local-news.py
+Top PER_METRO most recent per metro. Ambiguous city names (Washington,
+Portland) require state context to avoid false positives.
+
+Run: python3 -u pipeline/build-local-news.py [--no-rss]
 """
 import json
 import os
 import re
 import sys
+import time
+import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES_DIR = os.path.join(REPO, "public", "data", "articles")
@@ -49,7 +58,39 @@ METROS = [
     ("Las Vegas", "NV", ["Vegas"]),
 ]
 
-PER_METRO = 5
+# Institutional uses of city names that are NOT local news
+# ("New York Fed" is a bank, not the city)
+EXCLUDE_RX = re.compile(
+    r"\b(new york fed|federal reserve bank of new york|new york times\b|"
+    r"\bnyt\b|new york stock exchange\b|\bnyse\b|wall street journal\b)",
+    re.IGNORECASE,
+)
+
+PER_METRO = 8
+
+# --- V2: Google News RSS ---
+# Google offers no official local-news API; the RSS search endpoint is free,
+# keyless, and stable. Query biases toward desi topics; the drop-filter below
+# removes Native American "Indian" noise (tribal, powwow, casinos...).
+GNEWS_RSS = "https://news.google.com/rss/search"
+GNEWS_QUERY_TMPL = (
+    '{city} (desi OR "Indian-American" OR "Indian American" OR Diwali '
+    'OR Holi OR Navratri OR "H-1B" OR "Indian diaspora" OR '
+    '"Indian community") when:14d'
+)
+RSS_DROP_RX = re.compile(
+    r"\b(tribal|powwow|casino|reservation|tribe\b|native american|"
+    r"indian health|chief\b|wampanoag|cherokee|navajo|sioux)\b",
+    re.IGNORECASE,
+)
+RSS_KEEP_RX = re.compile(
+    r"\b(desi|india|indian-american|indian american|diwali|holi|navratri|"
+    r"dussehra|h-1b|h1b|bollywood|cricket|dandiya|garba|bhangra|"
+    r"punjabi|gujarati|telugu|tamil|malayalam|kannada|bengali|marathi|"
+    r"rupee|rs\.?\s|nri|oci|samosa|biryani)\b",
+    re.IGNORECASE,
+)
+RSS_DELAY_S = 2
 
 
 def compile_patterns():
@@ -75,7 +116,66 @@ def compile_patterns():
     return compiled
 
 
+def fetch_gnews_rss(city: str) -> list[dict]:
+    """Fetch Google News RSS for a metro, filtered for desi relevance."""
+    q = GNEWS_QUERY_TMPL.format(city=city)
+    params = urllib.parse.urlencode(
+        {"q": q, "hl": "en-US", "gl": "US", "ceid": "US:en"}
+    )
+    url = f"{GNEWS_RSS}?{params}"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            raw = resp.read()
+    except Exception as e:
+        print(f"  [rss] {city}: fetch failed ({e})", flush=True)
+        return []
+    try:
+        root = ET.fromstring(raw)
+    except Exception:
+        print(f"  [rss] {city}: parse failed", flush=True)
+        return []
+    items = []
+    seen = set()
+    for it in root.find("channel").findall("item"):
+        title_el = it.find("title")
+        link_el = it.find("link")
+        if title_el is None or link_el is None:
+            continue
+        # Google News titles look like "Headline - SourceName"
+        full = (title_el.text or "").strip()
+        title = re.sub(r"\s+-\s+[^-]+$", "", full).strip() or full
+        link = (link_el.text or "").strip()
+        if not title or not link or link in seen:
+            continue
+        seen.add(link)
+        # relevance filter: drop Native-American noise, keep desi topics
+        if RSS_DROP_RX.search(title):
+            continue
+        if not RSS_KEEP_RX.search(title):
+            continue
+        src_el = it.find("source")
+        pub_el = it.find("pubDate")
+        pub = ""
+        if pub_el is not None and pub_el.text:
+            try:
+                pub = parsedate_to_datetime(pub_el.text).astimezone(timezone.utc).isoformat()
+            except Exception:
+                pub = ""
+        items.append(
+            {
+                "kind": "rss",
+                "title": title,
+                "url": link,
+                "source": (src_el.text or "").strip() if src_el is not None else "",
+                "published_at": pub,
+            }
+        )
+    return items
+
+
 def main():
+    no_rss = "--no-rss" in sys.argv
     patterns = compile_patterns()
     matches: dict[str, list[dict]] = {label: [] for label, _ in patterns}
 
@@ -90,15 +190,20 @@ def main():
         if a.get("status") != "published":
             continue
         scanned += 1
-        hay = " ".join(
-            str(a.get(k) or "") for k in ("title", "excerpt", "body")
-        )
-        if len(hay) < 50:
+        hay_headline = f"{a.get('title') or ''} {a.get('excerpt') or ''}"
+        if len(hay_headline) < 20:
+            continue
+        # skip institutional false positives ("New York Fed" != New York the place)
+        if EXCLUDE_RX.search(hay_headline):
             continue
         for label, rx in patterns:
-            if rx.search(hay):
+            # Only title/excerpt matches: if a story is really about the metro,
+            # the metro is in the headline or dek. Body-only mentions are
+            # overwhelmingly passing references ("NY Fed", "NYSE").
+            if rx.search(hay_headline):
                 matches[label].append(
                     {
+                        "kind": "article",
                         "slug": a.get("slug"),
                         "title": a.get("title"),
                         "excerpt": a.get("excerpt") or "",
@@ -108,15 +213,42 @@ def main():
                     }
                 )
 
-    # keep 5 most recent per metro
+    # V2: Google News RSS per metro (external breadth)
+    rss_counts: dict[str, int] = {}
+    if not no_rss:
+        for city, state, _aliases in METROS:
+            label = f"{city}, {state}"
+            rss_items = fetch_gnews_rss(city)
+            # dedup against our own titles (case-insensitive containment)
+            own_titles = {i["title"].lower() for i in matches[label]}
+            fresh = [
+                r
+                for r in rss_items
+                if r["title"].lower() not in own_titles
+                and not any(
+                    r["title"].lower() in t or t in r["title"].lower()
+                    for t in own_titles
+                )
+            ]
+            matches[label].extend(fresh)
+            rss_counts[label] = len(fresh)
+            print(f"  [rss] {label}: {len(fresh)} kept", flush=True)
+            time.sleep(RSS_DELAY_S)
+
+    # keep PER_METRO most recent per metro (our articles first on ties)
     out = {}
     total = 0
     for label, items in matches.items():
-        items.sort(key=lambda x: x["published_at"], reverse=True)
-        # drop items with no slug
-        items = [i for i in items if i["slug"]][:PER_METRO]
-        out[label] = items
-        total += len(items)
+        items = [i for i in items if i.get("slug") or i.get("url")]
+        items.sort(
+            key=lambda x: (
+                x["published_at"],
+                0 if x.get("kind") == "article" else 1,
+            ),
+            reverse=True,
+        )
+        out[label] = items[:PER_METRO]
+        total += len(out[label])
 
     payload = {
         "built_at": datetime.now(timezone.utc).isoformat(),
