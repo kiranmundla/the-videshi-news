@@ -81,13 +81,19 @@ function daysUntil(dateStr: string): number {
   return Math.round((b - a) / 86400000);
 }
 
-/** Friday–Sunday of the current week (rest of weekend if already in it). */
+/** Friday–Sunday of the *upcoming* weekend (rest of it if already in it). */
 function weekendRange(): [string, string] {
   const now = new Date();
   const day = now.getDay(); // 0=Sun … 5=Fri, 6=Sat
-  const daysSinceFri = (day + 7 - 5) % 7;
   const fri = new Date(now);
-  fri.setDate(now.getDate() - daysSinceFri);
+  if (day >= 1 && day <= 4) {
+    // Mon–Thu: jump forward to the upcoming Friday
+    fri.setDate(now.getDate() + (5 - day));
+  } else {
+    // Fri/Sat/Sun: Friday of the weekend we're in
+    const daysSinceFri = (day + 7 - 5) % 7;
+    fri.setDate(now.getDate() - daysSinceFri);
+  }
   const sun = new Date(fri);
   sun.setDate(fri.getDate() + 2);
   return [toStr(fri), toStr(sun)];
