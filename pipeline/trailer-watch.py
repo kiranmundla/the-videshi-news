@@ -265,6 +265,25 @@ def _cast_from_title(title):
     return names if names and "," in names else ""
 
 
+def _video_is_live(video_id):
+    """Check a YouTube video is still playable via oEmbed.
+
+    Returns False for removed/private/deleted videos. Uploaders do pull
+    trailers (e.g. T-Series removed the Ranabaali Hindi trailer hours after
+    posting) — embedding a dead video shows an ugly "Video unavailable" box.
+    """
+    import urllib.request
+    try:
+        req = urllib.request.Request(
+            f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={video_id}&format=json",
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+
 # separators that split one line into independent "Label: value" segments
 _SEG_SPLIT = re.compile(
     r"\s*[|;]\s*|\.\s+(?=(?:star\s*cast|starcast|starring|featuring|"
@@ -486,12 +505,14 @@ def build_brief_article(drops, channels_by_name):
                  + "</div>"
                  + cast_strip_html
                  + "</div>")
-    for v in versions:
+    # Filter out dead videos first — uploaders do remove trailers after posting
+    live_versions = [v for v in versions if _video_is_live(v["video_id"])]
+    for v in live_versions:
         label = (f"<b>{html.escape(v['lang'])}</b> \u2014 {html.escape(v['channel'])}"
                  if v["lang"] else f"<b>{html.escape(v['channel'])}</b>")
         body += f"<p>{label}</p><youtube>{v['url']}</youtube>"
 
-    thumb_vid = versions[0]["video_id"]
+    thumb_vid = live_versions[0]["video_id"] if live_versions else versions[0]["video_id"]
     sub = f"Official {kind.lower()} for {film}"
     if release:
         sub += f" \u2014 premieres {release}"
