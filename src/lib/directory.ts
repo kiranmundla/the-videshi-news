@@ -252,6 +252,38 @@ export async function getDirectoryListings(
   return ((data || []) as any[]).map(parseListing);
 }
 
+/**
+ * Fetch listings for multiple categories via Supabase directly.
+ * Unlike getDirectoryListings, this never touches the 21MB static
+ * directory.json — intended for embedding small directory blocks on
+ * other pages (e.g. Learn) without the full-dump download.
+ */
+export async function getDirectoryListingsByCategories(
+  categories: string[],
+  limitPerCategory = 100,
+): Promise<DirectoryListing[]> {
+  const out: DirectoryListing[] = [];
+  for (const category of categories) {
+    try {
+      const { data, error } = await supabase
+        .from("directory_listings")
+        .select(LISTING_COLS)
+        .eq("category", category)
+        .order("featured", { ascending: false })
+        .order("rating", { ascending: false, nullsFirst: false })
+        .range(0, limitPerCategory - 1);
+      if (error) {
+        console.error(`Directory fetch failed for ${category}:`, error);
+        continue;
+      }
+      out.push(...(((data || []) as any[]).map(parseListing)));
+    } catch (e) {
+      console.error(`Directory fetch failed for ${category}:`, e);
+    }
+  }
+  return out;
+}
+
 export async function getDirectoryListing(slug: string): Promise<DirectoryListing | null> {
   // Try static JSON first
   const cached = await loadDirectoryCache();

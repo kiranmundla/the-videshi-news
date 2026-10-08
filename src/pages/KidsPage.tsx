@@ -23,6 +23,10 @@ import {
   type KidsLocalPlace,
 } from "@/lib/kidsLocalPlaces";
 import { getGuideByTopic } from "@/lib/kidsGuides";
+import {
+  getDirectoryListingsByCategories,
+  type DirectoryListing,
+} from "@/lib/directory";
 
 /* ================================================================== */
 /* CATEGORY HIERARCHY                                                 */
@@ -284,7 +288,7 @@ function CompetitionSpotlight({ programs, deadlines }: { programs: KidsProgram[]
 
 /* ---------- Local Place Card ---------- */
 
-function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat?: number; userLng?: number }) {
+function PlaceCard({ place, userLat, userLng, detailHref }: { place: KidsLocalPlace; userLat?: number; userLng?: number; detailHref?: string }) {
   const gradient = CATEGORY_GRADIENTS[place.category] || "from-gray-400 to-gray-300";
   const catColor = LOCAL_CATEGORY_COLORS[place.category] || "bg-gray-100 text-gray-700";
   const dist = userLat && userLng && place.latitude && place.longitude
@@ -292,6 +296,8 @@ function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat
   const addr = place.address
     ? `${place.address}, ${place.city}, ${place.state}${place.zip_code ? ` ${place.zip_code}` : ""}`
     : `${place.city}, ${place.state}`;
+  // Directory categories not in the kids tree get their own icons
+  const dirIcon: Record<string, string> = { "Education & Tutoring": "📚", "Daycare & Childcare": "👶" };
 
   return (
     <div className="group rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:border-[#D4A843]/50 flex flex-col h-full">
@@ -302,7 +308,8 @@ function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat
       ) : (
         <div className={`h-28 sm:h-32 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
           <span className="text-4xl opacity-80">
-            {(CATEGORY_TREE.flatMap(t => t.subcategories).flatMap(s => s.subsubs || []).find(ss => ss.localCategory === place.category)?.icon) ||
+            {dirIcon[place.category] ||
+             (CATEGORY_TREE.flatMap(t => t.subcategories).flatMap(s => s.subsubs || []).find(ss => ss.localCategory === place.category)?.icon) ||
              CATEGORY_TREE.flatMap(t => t.subcategories).find(s => s.localCategories.includes(place.category))?.icon || "📍"}
           </span>
         </div>
@@ -331,7 +338,7 @@ function PlaceCard({ place, userLat, userLng }: { place: KidsLocalPlace; userLat
         {place.age_range && <div className="text-xs text-muted-foreground mb-2">🎒 Ages {place.age_range}</div>}
         <div className="flex-1" />
         <div className="grid grid-cols-2 gap-2 pt-3 border-t border-border/50">
-          <Link to={`/kids/places/${place.slug}`} className="text-center px-2 py-1.5 rounded-lg text-xs font-semibold text-[#A32D2F] bg-red-50 hover:bg-red-100 transition-colors no-underline">View Details →</Link>
+          <Link to={detailHref || `/kids/places/${place.slug}`} className="text-center px-2 py-1.5 rounded-lg text-xs font-semibold text-[#A32D2F] bg-red-50 hover:bg-red-100 transition-colors no-underline">View Details →</Link>
           <a href={mapsUrl(place)} target="_blank" rel="noopener noreferrer" className="text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🗺️ Directions</a>
           {place.website && <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">🌐 Website</a>}
           {place.phone && <a href={`tel:${place.phone.replace(/[^\d+]/g, "")}`} className="text-center px-2 py-1.5 rounded-lg text-xs font-medium bg-muted/30 hover:bg-muted/50 text-foreground transition-colors">📞 Call</a>}
@@ -531,6 +538,7 @@ export default function KidsPage() {
   const [programs, setPrograms] = useState<KidsProgram[]>([]);
   const [deadlines, setDeadlines] = useState<KidsDeadline[]>([]);
   const [localPlaces, setLocalPlaces] = useState<KidsLocalPlace[]>([]);
+  const [directoryListings, setDirectoryListings] = useState<DirectoryListing[]>([]);
   const [loading, setLoading] = useState(true);
 
   /* ---- URL-persisted filters ---- */
@@ -586,6 +594,7 @@ export default function KidsPage() {
   const [showAllPlaces, setShowAllPlaces] = useState(false);
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [showAllGuides, setShowAllGuides] = useState(false);
+  const [showAllDirectory, setShowAllDirectory] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [kidsArticles, setKidsArticles] = useState<Article[]>([]);
 
@@ -594,8 +603,14 @@ export default function KidsPage() {
   useEffect(() => {
     (async () => {
       try {
-        const [p, d, lp, ka] = await Promise.all([fetchKidsPrograms(), fetchKidsDeadlines(50), fetchLocalPlaces(), fetchKidsArticles()]);
-        setPrograms(p); setDeadlines(d); setLocalPlaces(lp); setKidsArticles(ka);
+        const [p, d, lp, ka, dl] = await Promise.all([
+          fetchKidsPrograms(),
+          fetchKidsDeadlines(50),
+          fetchLocalPlaces(),
+          fetchKidsArticles(),
+          getDirectoryListingsByCategories(["Education & Tutoring", "Daycare & Childcare"], 100),
+        ]);
+        setPrograms(p); setDeadlines(d); setLocalPlaces(lp); setKidsArticles(ka); setDirectoryListings(dl);
       } catch (err) { console.error("Kids data load failed:", err); }
       finally { setLoading(false); }
     })();
@@ -725,12 +740,61 @@ export default function KidsPage() {
     return counts;
   }, [activeTab, localPlaces, programs, selectedAge]);
 
+  /* ---- directory listings relevant to Learn (Education & Tutoring, Daycare & Childcare) ----
+     Mapped to the KidsLocalPlace shape so the existing PlaceCard can render them.
+     Deduped against kids_local_places by normalized name+city so the same
+     business doesn't appear twice on the page. */
+  const directoryPlaces: KidsLocalPlace[] = useMemo(() => {
+    const seen = new Set(
+      localPlaces.map((p) => `${p.name.toLowerCase().replace(/[^a-z0-9]/g, "")}|${p.city.toLowerCase()}`),
+    );
+    const mapped: KidsLocalPlace[] = [];
+    for (const d of directoryListings) {
+      const key = `${(d.name || "").toLowerCase().replace(/[^a-z0-9]/g, "")}|${(d.city || "").toLowerCase()}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      mapped.push({
+        id: d.id,
+        name: d.name,
+        slug: d.slug,
+        category: d.category,
+        subcategory: d.subcategory,
+        description: d.description,
+        address: d.address,
+        city: d.city || "",
+        state: d.state || "",
+        zip_code: d.zip,
+        phone: d.phone,
+        website: d.website,
+        latitude: d.latitude,
+        longitude: d.longitude,
+        rating: d.rating,
+        review_count: d.review_count,
+        age_range: null,
+        image_url: d.image_url,
+        is_indian_focused: false,
+        tags: [],
+        distance_miles: userCoords && d.latitude && d.longitude
+          ? distanceMiles(userCoords.lat, userCoords.lng, d.latitude, d.longitude)
+          : undefined,
+      });
+    }
+    mapped.sort((a, b) => {
+      if (a.distance_miles != null && b.distance_miles != null) return a.distance_miles - b.distance_miles;
+      if (a.distance_miles != null) return -1;
+      if (b.distance_miles != null) return 1;
+      return (b.rating || 0) - (a.rating || 0);
+    });
+    return mapped;
+  }, [directoryListings, localPlaces, userCoords]);
+
   /* ---- display slices ---- */
   const placesToShow = showAllPlaces ? filteredPlaces : filteredPlaces.slice(0, RESULTS_LIMIT);
   const programsToShow = showAllPrograms ? filteredPrograms : filteredPrograms.slice(0, RESULTS_LIMIT);
+  const directoryToShow = showAllDirectory ? directoryPlaces : directoryPlaces.slice(0, RESULTS_LIMIT);
 
   /* ---- reset show-all on filter changes ---- */
-  useEffect(() => { setShowAllPlaces(false); setShowAllPrograms(false); }, [selectedAge, selectedTab, selectedSub, selectedSubSub, searchText]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { setShowAllPlaces(false); setShowAllPrograms(false); setShowAllDirectory(false); }, [selectedAge, selectedTab, selectedSub, selectedSubSub, searchText]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* ================================================================ */
   /* RENDER                                                           */
@@ -971,6 +1035,40 @@ export default function KidsPage() {
                   <div className="text-center mt-6">
                     <button onClick={() => setShowAllPlaces(!showAllPlaces)} className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all">
                       {showAllPlaces ? "Show fewer" : `Show all ${filteredPlaces.length} places`}
+                    </button>
+                  </div>
+                )}
+              </section>
+            )}
+
+            {/* --- 3b. Learn Near You (Videshi Directory) --- */}
+            {directoryPlaces.length > 0 && (
+              <section className="mb-12">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">📚</span>
+                  <h2 className="font-serif text-lg sm:text-xl font-semibold text-foreground">Learn Near You</h2>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+                <p className="text-sm text-muted-foreground mb-5">
+                  {directoryPlaces.length} {directoryPlaces.length === 1 ? "listing" : "listings"} from the Videshi Directory
+                  {nearMeActive && locationLabel ? ` · ${locationLabel}` : " · across the US"}
+                  {" · "}<Link to="/directory" className="text-[#A32D2F] hover:underline font-medium">Browse the full directory →</Link>
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+                  {directoryToShow.map((p) => (
+                    <PlaceCard
+                      key={`dir-${p.id}`}
+                      place={p}
+                      userLat={userCoords?.lat}
+                      userLng={userCoords?.lng}
+                      detailHref={`/directory/${p.slug}`}
+                    />
+                  ))}
+                </div>
+                {directoryPlaces.length > RESULTS_LIMIT && (
+                  <div className="text-center mt-6">
+                    <button onClick={() => setShowAllDirectory(!showAllDirectory)} className="px-6 py-2.5 rounded-lg text-sm font-semibold border border-border hover:border-foreground/30 bg-card hover:shadow-sm transition-all">
+                      {showAllDirectory ? "Show fewer" : `Show all ${directoryPlaces.length} listings`}
                     </button>
                   </div>
                 )}
