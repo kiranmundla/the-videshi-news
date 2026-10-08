@@ -1166,7 +1166,9 @@ _HEADLINE_FIRST_ORG_WORDS = _HEADLINE_TITLE_WORDS - {"bank", "banks"}
 # ("apple", "meta", "tesla", "georgia", "virginia") stay out, preserving
 # conservative identity-safe behavior for anything that could be a real name.
 _HEADLINE_PROPER_NONPERSON_WORDS = {
-    "nvidia", "pennsylvania", "google",
+    "nvidia", "pennsylvania", "google", "chatgpt",
+    # 2026-10-07: "ChatGPT's Teen Safety..." — AI product name treated as a
+    # person's given name, blocking Pexels on a generic tech article.
 }
 # Possessive place leads: "[Place]'s [Business]" ("Hoover's Kabob-Licious",
 # "Hartlepool's Seaton Tandoori") is a place's business, not a person named
