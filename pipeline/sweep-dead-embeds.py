@@ -426,36 +426,88 @@ if __name__ == "__main__":
     main()
 
 
-def sweep_dead_embeds(youtube_only=True, apply=True, verbose=False):
+def sweep_dead_embeds(youtube_only=True, apply=True, verbose=False,
+                      days=90, progress_cb=None):
     """Importable entry point for periodic health checks.
 
-    Sweeps YouTube embeds (and optionally Instagram) for dead videos,
-    strips them from article bodies. Returns the summary dict.
+    Sweeps YouTube embeds for dead videos and strips them from article
+    bodies. Returns a summary dict:
+    {articles_checked, videos_checked, dead_found, articles_fixed, dead_embeds}.
 
-    youtube_only=True skips the slower Instagram checks — YouTube removals
-    are the common case (uploaders pull trailers).
+    progress_cb(msg) is called with progress updates (for logging).
     """
-    global DRY_RUN, VERBOSE
-    DRY_RUN = not apply
-    VERBOSE = verbose
-    import io
-    from contextlib import redirect_stdout
-    buf = io.StringIO()
-    # main() prints a __SUMMARY__ JSON line; capture and parse it
-    with redirect_stdout(buf):
-        # Temporarily limit to YouTube by monkey-patching fetch for IG
-        if youtube_only:
-            orig_fetch = fetch_articles
-            def _yt_only(embed_type):
-                return [] if embed_type == "instagram" else orig_fetch(embed_type)
-            globals()["fetch_articles"] = _yt_only
-        try:
-            main()
-        finally:
-            if youtube_only:
-                globals()["fetch_articles"] = orig_fetch
-    out = buf.getvalue()
-    m = re.search(r"__SUMMARY__ (\{.*\})", out)
-    if m:
-        return json.loads(m.group(1))
-    return {"error": "no summary produced", "raw_tail": out[-500:]}
+    def _log(msg):
+        if verbose:
+            print(msg, flush=True)
+        if progress_cb:
+            progress_cb(msg)
+
+    cutoff = time.strftime("%Y-%m-%dT00:00:00Z",
+                           time.gmtime(time.time() - days * 86400))
+    articles = []
+    seen_ids = set()
+    for _like in ("youtube.com", "youtu.be"):
+        offset = 0
+        while True:
+            rows = supabase_get(
+                f"p2_articles?select=id,slug,headline,body&status=eq.published"
+                f"&published_at=gte.{cutoff}&body=like.*{_like}*"
+                f"&order=created_at.desc&limit=100&offset={offset}")
+            if not rows:
+                break
+            for a in rows:
+                if a["id"] not in seen_ids:
+                    articles.append(a)
+                    seen_ids.add(a["id"])
+            offset += 100
+            if offset > 5000:
+                break
+
+    _log(f"sweep: {len(articles)} articles with YouTube embeds (last {days}d)")
+
+    vid_to_aids = {}
+    for a in articles:
+        for _canon, _orig in extract_yt_urls(a.get("body", "")):
+            _m = YT_URL_RE.search(_canon)
+            _vid = _m.group(1) if _m else None
+            if _vid:
+                vid_to_aids.setdefault(_vid, []).append(a["id"])
+
+    _log(f"sweep: checking {len(vid_to_aids)} unique videos...")
+    dead = set()
+    for i, _vid in enumerate(vid_to_aids):
+        if not check_yt_oembed(f"https://www.youtube.com/watch?v={_vid}"):
+            dead.add(_vid)
+        time.sleep(0.2)
+        if (i + 1) % 50 == 0:
+            _log(f"sweep: {i + 1}/{len(vid_to_aids)} checked, {len(dead)} dead")
+
+    _log(f"sweep: {len(dead)} dead videos found")
+    dead_embeds = []
+    articles_fixed = 0
+    for a in articles:
+        body = a.get("body", "")
+        _dead_urls = []
+        for _canon, _orig in extract_yt_urls(body):
+            _m = YT_URL_RE.search(_canon)
+            if _m and _m.group(1) in dead:
+                _dead_urls.append(_orig)
+        if not _dead_urls:
+            continue
+        new_body = body
+        for durl in _dead_urls:
+            new_body = strip_embed_from_body(new_body, durl)
+            dead_embeds.append({"article_id": a["id"], "slug": a["slug"],
+                                "url": durl[:80], "platform": "youtube"})
+        if new_body != body and apply:
+            if supabase_patch("p2_articles", a["id"], {"body": new_body}):
+                articles_fixed += 1
+                _log(f"sweep: patched {a['slug']}")
+            else:
+                _log(f"sweep: PATCH FAILED for {a['slug']}")
+
+    return {"articles_checked": len(articles),
+            "videos_checked": len(vid_to_aids),
+            "dead_found": len(dead),
+            "articles_fixed": articles_fixed,
+            "dead_embeds": dead_embeds}
