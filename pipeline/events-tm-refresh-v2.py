@@ -47,8 +47,12 @@ ARTIST_KEYWORDS = [
 ]
 
 STATE_KEYWORDS = ["bollywood", "indian", "desi", "bhangra", "garba"]
-STATES = ["CA", "TX", "NY", "NJ", "IL", "GA", "WA", "MA", "PA", "VA",
-          "MD", "NC", "FL", "OH", "MI", "CT", "AZ", "CO", "MN", "OR"]
+STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+          "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+          "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+          "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+          "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+          "DC"]
 
 FALSE_POSITIVE_PATTERNS = [
     r"\bcasino\b", r"\bslot\b", r"\bpoker\b",
