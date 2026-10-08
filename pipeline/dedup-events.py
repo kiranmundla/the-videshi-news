@@ -117,6 +117,19 @@ def titles_differ_only_in_time(t1, t2):
     return s1 == s2 and time_pat.search(t1.lower()) and time_pat.search(t2.lower())
 
 
+def titles_differ_only_in_session(t1, t2):
+    """True if titles are identical except for session/part/episode numbers.
+
+    Numbered sessions (e.g. 'BNP Paribas Open: Session 1' vs 'Session 2') are
+    distinct events, not duplicates — same rule as different showtimes.
+    """
+    sess_pat = re.compile(r'\b(session|part|episode|day)\s*\d+\b', re.I)
+    s1 = sess_pat.sub("SESSION", t1.lower().strip())
+    s2 = sess_pat.sub("SESSION", t2.lower().strip())
+    # Both must have had session markers, and replacing them makes titles equal
+    return s1 == s2 and sess_pat.search(t1.lower()) and sess_pat.search(t2.lower())
+
+
 def title_similarity(t1, t2):
     n1 = strip_title_suffix(t1)
     n2 = strip_title_suffix(t2)
@@ -226,6 +239,9 @@ def main():
                     continue
                 # Skip if titles only differ by showtime
                 if titles_differ_only_in_time(e1["title"], e2["title"]):
+                    continue
+                # Skip if titles only differ by session/part/episode number
+                if titles_differ_only_in_session(e1["title"], e2["title"]):
                     continue
                 # Fuzzy title match on stripped titles
                 sim = title_similarity(e1["title"], e2["title"])

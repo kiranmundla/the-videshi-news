@@ -49,6 +49,15 @@ const NAVRATRI_DAYS = [
 
 const EVENT_KEYWORDS = ["diwali", "navratri", "garba", "dandiya", "deepavali"];
 
+// US states + DC — the hub serves the US diaspora; filters out stray non-US
+// rows (e.g. Canadian provinces) that occasionally land in the events feed.
+const US_STATES = new Set([
+  "AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA",
+  "KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM",
+  "NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA",
+  "WV","WI","WY",
+]);
+
 type Tab = "calendar" | "navratri" | "events";
 
 /* ── Helpers ── */
@@ -108,6 +117,7 @@ export default function FestivalsPage() {
           .filter((e) => {
             if (!e.date || e.date < today) return false;
             if (!e.ticket_url) return false; // editorial rule: every listing needs a ticket link
+            if (!US_STATES.has((e.state || "").toUpperCase())) return false; // US diaspora hub
             const hay = `${e.title} ${e.description || ""} ${e.long_description || ""}`.toLowerCase();
             return EVENT_KEYWORDS.some((k) => hay.includes(k));
           })
