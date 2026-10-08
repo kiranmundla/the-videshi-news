@@ -587,11 +587,29 @@ export default function SubmitEventPage() {
       const { data: updated } = await sbRaw.from("events").select("slug").eq("id", editingEventId).single();
       setPublishedSlug(updated?.slug || editingEventId);
     } else {
-      /* Insert new event */
-      row.source = "user_submitted";
-      row.organizer = form.email.trim();
-      row.slug = slug;
-      const { error } = await sbRaw.from("events").insert([row]);
+      /* Insert new event -> moderation queue (never live without approval) */
+      const queueRow: Record<string, unknown> = {
+        type: "event",
+        status: "pending",
+        name: form.title.trim(),
+        description: [
+          form.description.trim() || null,
+          synthesized?.long_description || null,
+        ]
+          .filter(Boolean)
+          .join("\n\n") || null,
+        category: form.category || "Other",
+        venue: form.venue_name.trim() || null,
+        city: form.city.trim(),
+        state: form.state,
+        event_date: form.date,
+        event_time: form.time || null,
+        ticket_url: form.ticket_url.trim() || null,
+        submitter_email: form.email.trim(),
+        source: "web-form",
+      };
+      if (imageUrl) queueRow.image_url = imageUrl;
+      const { error } = await sbRaw.from("community_submissions").insert([queueRow]);
       if (error) {
         console.error("Submit event error:", error);
         setSubmitError("Something went wrong. Please try again.");
@@ -649,8 +667,8 @@ export default function SubmitEventPage() {
         <main className="container flex-1 pt-8 pb-16 max-w-lg mx-auto px-4">
           <div className="text-center mb-8">
             <p className="text-6xl mb-4">🎉</p>
-            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-2">{editingEventId ? "Event Updated!" : "Your Event Is Live!"}</h2>
-            <p className="text-muted-foreground text-sm">{editingEventId ? "Your changes have been saved." : <>Confirmation sent to <strong>{form.email}</strong>. You'll need this email to edit or delete your event.</>}</p>
+            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-2">{editingEventId ? "Event Updated!" : "Submitted for Review!"}</h2>
+            <p className="text-muted-foreground text-sm">{editingEventId ? "Your changes have been saved." : <>Thanks! Our team reviews every submission before it goes live — we'll email <strong>{form.email}</strong> once it's approved.</>}</p>
           </div>
 
           {/* Event preview card */}

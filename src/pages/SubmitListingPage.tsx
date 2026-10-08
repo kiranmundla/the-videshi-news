@@ -104,7 +104,6 @@ export default function SubmitListingPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [step, setStep] = useState<"form" | "preview" | "publishing" | "done">("form");
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [publishedSlug, setPublishedSlug] = useState<string | null>(null);
 
   /* Turnstile bot protection */
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
@@ -236,27 +235,28 @@ export default function SubmitListingPage() {
       imageUrl = await uploadImage(coverImage.file, slug);
     }
 
-    const row: Record<string, unknown> = {
+    /* Queue for moderation (never live without approval) */
+    const queueRow: Record<string, unknown> = {
+      type: "business",
+      status: "pending",
       name: form.name.trim(),
-      category: form.category,
-      subcategory: form.subcategory.trim() || null,
       description: form.description.trim() || null,
-      phone: form.phone.trim() || null,
-      email: form.email.trim() || null,
-      website: form.website.trim() || null,
+      category: [form.category, form.subcategory.trim() || null]
+        .filter(Boolean)
+        .join(" / "),
       address: form.address.trim() || null,
       city: form.city.trim(),
       state: form.state,
       zip: form.zip.trim() || null,
+      phone: form.phone.trim() || null,
+      website: form.website.trim() || null,
       image_url: imageUrl,
-      source: "user_submitted",
-      verified: false,
-      featured: false,
-      slug,
+      submitter_email: form.email.trim() || null,
+      source: "web-form",
     };
 
     const sbRaw = supabase as unknown as { from: (t: string) => any };
-    const { error } = await sbRaw.from("directory_listings").insert([row]);
+    const { error } = await sbRaw.from("community_submissions").insert([queueRow]);
 
     if (error) {
       console.error("Submit listing error:", error);
@@ -265,7 +265,6 @@ export default function SubmitListingPage() {
       return;
     }
 
-    setPublishedSlug(slug);
     setStep("done");
   };
 
@@ -273,7 +272,6 @@ export default function SubmitListingPage() {
   /* RENDER: Done                                                     */
   /* ================================================================ */
   if (step === "done") {
-    const fullUrl = publishedSlug ? `thevideshi.com/directory/${publishedSlug}` : "";
     return (
       <div className="min-h-screen flex flex-col">
         <Masthead />
@@ -282,40 +280,13 @@ export default function SubmitListingPage() {
           <div className="text-center py-20">
             <p className="text-5xl mb-4">✅</p>
             <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-3">
-              Your Listing Is Live!
+              Submitted for Review!
             </h2>
             <p className="text-muted-foreground text-lg mb-6">
-              Your business has been added to the directory.
+              Thanks! Our team reviews every submission before it goes live.
             </p>
 
-            {publishedSlug && (
-              <div className="flex items-center justify-center gap-2 mb-8 max-w-md mx-auto">
-                <div className="flex-1 bg-muted/60 border border-border rounded-lg px-4 py-2.5 text-sm text-foreground/80 font-mono truncate text-left">
-                  {fullUrl}
-                </div>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(`https://${fullUrl}`);
-                    const btn = document.getElementById("copy-url-btn");
-                    if (btn) { btn.textContent = "Copied!"; setTimeout(() => { btn.textContent = "Copy"; }, 2000); }
-                  }}
-                  id="copy-url-btn"
-                  className="px-4 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
-                >
-                  Copy
-                </button>
-              </div>
-            )}
-
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              {publishedSlug && (
-                <Link
-                  to={`/directory/${publishedSlug}`}
-                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                >
-                  View Your Listing →
-                </Link>
-              )}
               <Link
                 to="/directory"
                 className="px-6 py-3 border border-border rounded-lg font-medium hover:bg-muted/40 transition-colors"

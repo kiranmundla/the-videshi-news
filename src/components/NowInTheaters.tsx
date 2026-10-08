@@ -17,6 +17,7 @@ interface TheaterMovie {
   why_watch: string;
   is_indian: boolean;
   ticket_url: string;
+  fandango_url?: string;
   language: string;
 }
 

@@ -41,6 +41,7 @@ interface TheaterMovie {
   why_watch: string;
   is_indian: boolean;
   ticket_url: string;
+  fandango_url?: string;
   language: string;
   trailer_url?: string;
   review_slug?: string;
@@ -92,6 +93,7 @@ interface UnifiedMovie {
   why_watch: string;
   is_indian: boolean;
   ticket_url?: string;
+  fandango_url?: string;
   watch_url?: string;
   language: string;
   trending?: boolean;
@@ -153,6 +155,7 @@ function theaterToUnified(m: TheaterMovie): UnifiedMovie {
     why_watch: m.why_watch,
     is_indian: m.is_indian,
     ticket_url: m.ticket_url,
+    fandango_url: m.fandango_url,
     language: m.language,
     trailer_url: m.trailer_url,
     review_slug: m.review_slug,
@@ -917,9 +920,9 @@ export default function MovieDetailPage() {
 
         {/* ── CTA Button ── */}
         <div style={{ marginBottom: 32 }}>
-          {isTheater && movie.ticket_url && (
+          {isTheater && (movie.fandango_url || movie.ticket_url) && (
             <a
-              href={movie.ticket_url}
+              href={movie.fandango_url || movie.ticket_url}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -936,7 +939,7 @@ export default function MovieDetailPage() {
                 transition: "opacity 0.2s",
               }}
             >
-              🎟️ Find Showtimes
+              🎟️ {movie.fandango_url ? "Showtimes & Tickets" : "Find Showtimes"}
             </a>
           )}
           {!isTheater && movie.watch_url && (
