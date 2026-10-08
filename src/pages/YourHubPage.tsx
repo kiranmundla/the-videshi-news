@@ -132,14 +132,6 @@ interface LocalNewsItem {
   category: string;
 }
 
-interface BriefItem {
-  slug: string;
-  title: string;
-  excerpt?: string;
-  category?: string;
-  published_at?: string;
-}
-
 interface FxData {
   rate: number;
   date: string;
@@ -344,7 +336,6 @@ export default function YourHubPage() {
   const [catSel, setCatSel] = useState<string | null>(null);
   const [geoTried, setGeoTried] = useState(false);
   const [localNews, setLocalNews] = useState<Record<string, LocalNewsItem[]>>({});
-  const [morningBrief, setMorningBrief] = useState<BriefItem[]>([]);
   const [fx, setFx] = useState<FxData | null>(null);
   const [remit, setRemit] = useState<RemitData | null>(null);
 
@@ -353,14 +344,6 @@ export default function YourHubPage() {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (d && d.metros) setLocalNews(d.metros);
-      })
-      .catch(() => {});
-    fetch("/data/homepage-feed.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (d && Array.isArray(d.just_in)) {
-          setMorningBrief(d.just_in.filter((a: BriefItem) => a.slug && a.title).slice(0, 5));
-        }
       })
       .catch(() => {});
     fetch("/data/usdinr.json")
@@ -460,35 +443,6 @@ export default function YourHubPage() {
     () => resolveMetroNews(location, localNews),
     [location, localNews],
   );
-
-  /* Desi Curator's Picks: festival/music/dance/cultural/comedy events worth
-     planning for — beyond this weekend, next 30 days. Distinct from the
-     weekend strip (which is Fri–Sun only). */
-  const PICK_CATS = useMemo(
-    () => new Set(["Festival", "Music", "Dance", "Cultural", "Comedy", "Entertainment"]),
-    [],
-  );
-  const curatorPicks = useMemo(() => {
-    const plus30 = toStr(new Date(new Date().getTime() + 30 * 86400000));
-    let list = events.filter(
-      (e) =>
-        e.date > sunStr &&
-        e.date <= plus30 &&
-        PICK_CATS.has(e.category || "") &&
-        e.ticket_url,
-    );
-    // de-dupe against weekend strip (already shown above) — different dates, so no overlap by construction
-    if (location) {
-      list = [...list].sort((a, b) => {
-        const da = distanceFor(a, location) ?? Infinity;
-        const db = distanceFor(b, location) ?? Infinity;
-        return da - db || a.date.localeCompare(b.date);
-      });
-    } else {
-      list = [...list].sort((a, b) => a.date.localeCompare(b.date));
-    }
-    return list.slice(0, 8);
-  }, [events, sunStr, PICK_CATS, location]);
 
   const weekendLabel = `${fmtDate(friStr).replace(", 2026", "")} – ${fmtDate(sunStr)}`;
 
@@ -671,51 +625,6 @@ export default function YourHubPage() {
           )}
         </section>
 
-        {/* ── Your Morning Videshi ── */}
-        {morningBrief.length > 0 && (
-          <section className="mb-10">
-            <SectionHead
-              title="Your Morning Videshi"
-              sub={new Date().toLocaleDateString("en-US", {
-                weekday: "long",
-                month: "short",
-                day: "numeric",
-              })}
-            />
-            <div className="bg-card border border-border rounded-lg divide-y divide-border overflow-hidden">
-              {morningBrief.map((a, i) => (
-                <Link
-                  key={a.slug}
-                  to={`/articles/${a.slug}`}
-                  className="flex gap-3.5 p-3.5 no-underline hover:bg-muted/30 transition-colors"
-                >
-                  <span
-                    className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[12px] font-bold text-white mt-0.5"
-                    style={{ backgroundColor: "#0B1D3A" }}
-                  >
-                    {i + 1}
-                  </span>
-                  <div className="min-w-0">
-                    {a.category && (
-                      <span className="text-[10px] font-bold tracking-[1.5px] uppercase text-muted-foreground">
-                        {a.category}
-                      </span>
-                    )}
-                    <h3 className="text-[14px] font-semibold leading-snug mt-0.5">
-                      {a.title}
-                    </h3>
-                    {a.excerpt && (
-                      <p className="text-[12px] text-muted-foreground leading-relaxed mt-1 line-clamp-2">
-                        {a.excerpt}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* ── Festival Spotlight ── */}
         {spotlight && (
           <section className="mb-10">
@@ -819,36 +728,6 @@ export default function YourHubPage() {
                 More in Markets →
               </Link>
             </div>
-          </section>
-        )}
-
-        {/* ── Desi Curator's Picks ── */}
-        {curatorPicks.length > 0 && (
-          <section className="mb-10">
-            <SectionHead
-              title="Desi Curator's Picks"
-              sub={location ? `Worth planning for near ${location.label}` : "Worth planning for"}
-            />
-            <div
-              className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0"
-              style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
-            >
-              {curatorPicks.map((e) => (
-                <div key={e.id} className="flex-shrink-0 w-[300px]">
-                  <EventCard
-                    event={e}
-                    distance={distanceFor(e, location) ?? undefined}
-                  />
-                </div>
-              ))}
-            </div>
-            <Link
-              to="/events"
-              className="inline-block mt-3 text-[13px] font-semibold hover:underline"
-              style={{ color: "#A32D2F" }}
-            >
-              Browse all events →
-            </Link>
           </section>
         )}
 
