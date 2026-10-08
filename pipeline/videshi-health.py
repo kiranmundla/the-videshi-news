@@ -1053,80 +1053,34 @@ class _CheckTimeout(Exception):
 
 def check_youtube_embeds(fix=False):
     """
-    Find dead YouTube embeds in recent articles (uploaders remove trailers)
-    and remove them in fix mode. Uses oEmbed: 200 = live, anything else = dead.
-    Also strips the orphaned "<p><b>Lang</b> — Channel</p>" header above it.
+    Dead YouTube embeds in recent articles (uploaders remove trailers).
+    Delegates to pipeline/sweep-dead-embeds.py's importable sweeper, which
+    handles <youtube> tags, bare URLs, and orphaned language headers.
     """
-    import re
+    import importlib.util
 
-    cutoff_90d = utc_iso(datetime.now(timezone.utc) - timedelta(days=90))
-    hdrs = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
-    yt_re = re.compile(r"<youtube>(https?://[^<]+)</youtube>")
-    vid_re = re.compile(r"(?:v=|youtu\.be/|/embed/|/shorts/)([A-Za-z0-9_-]{11})")
+    spec = importlib.util.spec_from_file_location(
+        "sweep_dead_embeds",
+        os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     "sweep-dead-embeds.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
 
     try:
-        resp = requests.get(
-            f"{REST}/p2_articles",
-            params={
-                "select": "id,headline,slug,body",
-                "status": "eq.published",
-                "published_at": f"gte.{cutoff_90d}",
-                "body": "ilike.*<youtube>*",
-                "order": "published_at.desc",
-                "limit": "100",
-            },
-            headers=hdrs, timeout=30,
-        )
-        articles = resp.json() if isinstance(resp.json(), list) else []
+        summary = mod.sweep_dead_embeds(youtube_only=True, apply=fix,
+                                        verbose=False, days=90)
     except Exception as e:
         return {"name": "youtube_embeds", "count": 0,
-                "status": f"fetch failed: {e}", "alert": False}
+                "status": f"sweeper failed: {e}", "alert": False}
 
-    def _is_live(vid):
-        try:
-            r = requests.get(
-                "https://www.youtube.com/oembed",
-                params={"url": f"https://www.youtube.com/watch?v={vid}",
-                        "format": "json"},
-                headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
-            return r.status_code == 200
-        except Exception:
-            return None  # unverified — never treat as dead
-
-    dead = []
-    fixed = []
-    for a in articles:
-        body = a.get("body", "") or ""
-        for m in yt_re.finditer(body):
-            vm = vid_re.search(m.group(1))
-            if not vm:
-                continue
-            vid = vm.group(1)
-            live = _is_live(vid)
-            if live is False:
-                dead.append({"slug": a["slug"], "video_id": vid})
-                if fix:
-                    # Remove the embed + its orphaned language/channel header
-                    hdr_re = re.compile(
-                        r"<p><b>[^<]*</b>\s*[—–-]\s*[^<]*</p>\s*"
-                        + re.escape(m.group(0)))
-                    new_body, n = hdr_re.subn("", body, count=1)
-                    if n == 0:
-                        new_body = body.replace(m.group(0), "", 1)
-                    try:
-                        sb_patch("p2_articles", f"id=eq.{a['id']}",
-                                 {"body": new_body})
-                        fixed.append(a["slug"])
-                        body = new_body
-                    except Exception as e:
-                        print(f"WARN: youtube-embed patch failed for "
-                              f"{a['slug']}: {e}", file=sys.stderr)
-
+    dead = summary.get("dead_embeds", [])
     return {
         "name": "youtube_embeds",
-        "articles_checked": len(articles),
-        "dead": dead,
-        "fixed": fixed,
+        "articles_checked": summary.get("articles_checked", 0),
+        "videos_checked": summary.get("videos_checked", 0),
+        "dead": [{"slug": d.get("slug"), "video_id": d.get("video_id")}
+                 for d in dead],
+        "fixed": summary.get("articles_fixed", 0),
         "count": len(dead),
         "alert": len(dead) > 0 and not fix,
     }
