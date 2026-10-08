@@ -72,6 +72,10 @@ def main():
     films.sort(key=lambda x: (x["worldwide_gross_crore"] is None, -(x["worldwide_gross_crore"] or 0)))
 
     as_of = max((f.get("as_of", "") for f in figs if f.get("as_of")), default="")
+    if not as_of:
+        # Researcher figures lacked per-film as_of dates; fall back to the build
+        # date so the "Updated <date>" label never renders blank.
+        as_of = datetime.now(timezone.utc).date().isoformat()
     out = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "week_of": week_of,
