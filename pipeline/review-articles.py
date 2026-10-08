@@ -228,6 +228,38 @@ Score 8-10 when ALL of these hold:
 Deduct only for real problems: wrong film name, wrong video embedded, missing embed, factual errors, or clickbait headline."""
 
 
+def _llm_json(prompt, model="gpt-4o-mini"):
+    """One OpenAI chat-completions JSON call. Returns parsed dict or None."""
+    payload = json.dumps({
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.3,
+        "max_tokens": 500,
+        "response_format": {"type": "json_object"}
+    })
+    try:
+        r = subprocess.run(
+            ["curl", "-s", "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {OAI_KEY}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=30
+        )
+        data = json.loads(r.stdout)
+        content = data["choices"][0]["message"]["content"]
+        return json.loads(content)
+    except Exception as e:
+        print(f"     LLM error: {e}")
+        return None
+
+
+def _breaking_rubric_violation(review):
+    """True when a breaking-news review still pushes diaspora/NRI angles,
+    i.e. the model ignored the breaking-note rubric (Seemapuri/Kramatorsk pattern)."""
+    texts = (review.get("suggestions") or []) + (review.get("embed_opportunities") or [])
+    return any(re.search(r"diaspora|\bnri\b", str(t), re.I) for t in texts if t)
+
+
 def llm_review(article, model="gpt-4o-mini"):
     """GPT-4o-mini editorial review — costs ~$0.001 per article."""
     if not OAI_KEY:
@@ -267,7 +299,9 @@ Respond as JSON: {{"quality_score": 1-10, "suggestions": ["specific suggestion 1
                 "Do NOT penalize it for lacking diaspora/NRI angles, investment angles, "
                 "or lifestyle takeaways; those belong in features and analysis, not "
                 "breaking news. Never suggest adding NRI property/investment angles "
-                "to tragedy or disaster coverage.\n"
+                "to tragedy or disaster coverage. Self-check before responding: "
+                "if any of your suggestions or embed ideas mention diaspora or "
+                "NRI angles, DELETE them — they are forbidden for breaking news.\n"
             )
         diaspora_focus = (
             "1. Reporting quality only: accuracy, attribution, completeness, clarity. "
@@ -299,28 +333,33 @@ Body (first 3000 chars): {body_text[:2000]}
 
 Respond as JSON: {{"quality_score": 1-10, "suggestions": ["specific suggestion 1", ...], "embed_opportunities": ["specific embed idea if any"]}}"""
 
-    payload = json.dumps({
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.3,
-        "max_tokens": 500,
-        "response_format": {"type": "json_object"}
-    })
-    
-    try:
-        r = subprocess.run(
-            ["curl", "-s", "https://api.openai.com/v1/chat/completions",
-             "-H", f"Authorization: Bearer {OAI_KEY}",
-             "-H", "Content-Type: application/json",
-             "-d", payload],
-            capture_output=True, text=True, timeout=30
+    review = _llm_json(prompt, model)
+
+    # Breaking-news rubric enforcement: retry once if the model ignored the
+    # breaking note and still demanded diaspora/NRI angles. Flag it if the
+    # retry also violates, so a low score is never a silent rubric miss.
+    if review and article_type == "breaking" and _breaking_rubric_violation(review):
+        retry_prompt = (
+            "Your previous review of this BREAKING news article violated the rubric "
+            "by suggesting diaspora/NRI angles. Re-score it on REPORTING QUALITY "
+            "ONLY: accuracy, attribution, completeness, clarity, timeliness. "
+            "Provide only suggestions that improve reporting quality. "
+            "Never suggest diaspora or NRI angles for breaking news; never suggest "
+            "NRI property/investment angles on tragedy or disaster coverage. "
+            "A well-attributed breaking wire with no diaspora angle is a 7-9, not a 4.\n\n"
+            f"Article:\nHeadline: {headline}\nCategory: {category}\n"
+            f"Current embeds: {embeds_summary}\nBody (first 3000 chars): {body_text[:2000]}\n\n"
+            'Respond as JSON: {"quality_score": 1-10, "suggestions": ["..."], '
+            '"embed_opportunities": ["..."]}'
         )
-        data = json.loads(r.stdout)
-        content = data["choices"][0]["message"]["content"]
-        return json.loads(content)
-    except Exception as e:
-        print(f"     LLM error: {e}")
-        return None
+        retry = _llm_json(retry_prompt, model)
+        if retry:
+            review = retry
+            if _breaking_rubric_violation(review):
+                review["rubric_violation"] = True
+                print(f"     ⚠️  Breaking-rubric violation persists after retry (model ignored rubric twice)")
+
+    return review
 
 
 # ── Main ──
@@ -370,7 +409,7 @@ def main():
         for aid in ids:
             a = sb_get("p2_articles", {
                 "id": f"eq.{aid}",
-                "select": "id,headline,slug,category,body,social_embeds,image_url,published_at"
+                "select": "id,headline,slug,category,article_type,body,social_embeds,image_url,published_at"
             })
             articles.extend(a)
     else:
@@ -378,7 +417,7 @@ def main():
         articles = sb_get("p2_articles", {
             "status": "eq.published",
             "published_at": f"gte.{cutoff}",
-            "select": "id,headline,slug,category,body,social_embeds,image_url,published_at",
+            "select": "id,headline,slug,category,article_type,body,social_embeds,image_url,published_at",
             "order": "published_at.desc",
             "limit": str(args.max)
         })
