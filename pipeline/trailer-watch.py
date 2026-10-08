@@ -123,7 +123,10 @@ def split_film_title(title):
         # keyword instead of using the first hyphen-separated fragment.
         m = re.search(r"(?i)^(.+?)\s*(?:official\s+)?(?:teaser|trailer)\b", title)
         if m:
-            cand = clean_film_name(re.sub(r"\s*[-–—:|]\s*$", "", m.group(1)).strip())
+            # For pipe-delimited titles the film name is the first segment —
+            # never the whole run-up to a trailing "Trailer" keyword.
+            cand = m.group(1).split("|")[0].strip()
+            cand = clean_film_name(re.sub(r"\s*[-–—:|]\s*$", "", cand).strip())
             if cand:
                 film = cand
             else:
@@ -244,11 +247,42 @@ def _clean_names(value):
     return ", ".join(names[:6]) if names else ""
 
 
+# Words that mark a pipe-segment as a studio/label/promo, not a person
+_NON_NAME_RE = re.compile(
+    r"(?i)\b(trailer|teaser|official|promo|episode|films?|movies?|pictures?|"
+    r"studios?|entertainment|productions?|media|music|series|records?|arts|"
+    r"originals?|presents?|features?|featuring)\b")
+
+
+def _looks_like_name(seg):
+    """Single pipe-segment that looks like one person's name."""
+    seg = (seg or "").strip().strip(" -–—|:;.,")
+    if not seg or len(seg) > 42:
+        return False
+    words = seg.split()
+    if not 1 <= len(words) <= 3:
+        return False
+    if re.search(r"\d", seg):
+        return False
+    if not re.fullmatch(r"[A-Za-z .'\-()&]+", seg):
+        return False
+    if not all(w[:1].isupper() for w in words):
+        return False
+    if _CREDIT_JUNK.search(seg):
+        return False
+    if _NON_NAME_RE.search(seg):
+        return False
+    return True
+
+
 def _cast_from_title(title):
     """Extract cast names from a trailer video title.
 
     e.g. "Mandaadi | Hindi Trailer | Soori, Suhas, Mahima Nambiar"
       -> "Soori, Suhas, Mahima Nambiar"
+    e.g. "বন্ধুরা পাশে থাকলে #... | Rahul Dev Bose | Traya | 10 OCT | hoichoi"
+      -> "Rahul Dev Bose, Traya"  (cast spread across pipe segments)
+
     Scans trailing pipe-segments for one that looks like 2+ person names,
     skipping channel names, dates, and trailer/teaser labels. The cast
     segment is often second-to-last (channel name comes last).
@@ -256,8 +290,7 @@ def _cast_from_title(title):
     segs = [s.strip() for s in (title or "").split("|")]
     if len(segs) < 3:
         return ""
-    # Walk from the end, skipping the channel/studio tail; the cast
-    # segment is usually the last one that looks like 2+ person names.
+    # Format 1: comma-separated names inside one segment
     for tail in reversed(segs[1:]):
         # Skip obvious non-cast segments
         if re.search(r"(?i)trailer|teaser|episode|part\s*\d|official|promo", tail):
@@ -267,6 +300,29 @@ def _cast_from_title(title):
         # producer credit, channel name, or date for cast
         if names and "," in names:
             return names
+    # Format 2: cast as consecutive name-like pipe segments
+    # ("Film | Actor One | Actor Two | 10 OCT | channel").
+    # The run must be followed by a date-like segment — this anchors the
+    # "Film | Cast | Date | Channel" pattern and avoids mistaking crew
+    # credits (director, music) for cast, e.g. "#418 | Prashanth Neel |
+    # Kirtan | Hombale Films" has no date after the names.
+    _DATE_RE = re.compile(
+        r"(?i)\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b|"
+        r"\b(19|20)\d{2}\b")
+    segs_tail = segs[1:]
+    i = 0
+    while i < len(segs_tail):
+        if _looks_like_name(segs_tail[i]):
+            j = i
+            while j < len(segs_tail) and _looks_like_name(segs_tail[j]):
+                j += 1
+            run = [s.strip() for s in segs_tail[i:j]]
+            following = segs_tail[j] if j < len(segs_tail) else ""
+            if len(run) >= 2 and _DATE_RE.search(following):
+                return ", ".join(run)
+            i = j
+        else:
+            i += 1
     return ""
 
 
