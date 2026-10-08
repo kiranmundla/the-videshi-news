@@ -213,7 +213,7 @@ def compose_post(article):
 
 {summary}
 
-📰 Read the full story on The Videshi}"""
+📰 Read the full story on The Videshi"""
     return post
 
 
