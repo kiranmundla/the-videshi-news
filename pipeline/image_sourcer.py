@@ -1083,6 +1083,10 @@ _HEADLINE_PREFIX_WORDS = {
     "coimbatore", "jabalpur", "gwalior", "vijayawada", "jodhpur", "madurai",
     "raipur", "kota", "guwahati", "chandigarh", "mysuru", "mysore",
     "gurgaon", "gurugram", "noida",
+    # US city names leading headlines — a city is never a person's given
+    # name (2026-10-09: "Plano's Jashan Becomes..." was misread as a person
+    # named "Plano Jashan", blocking Pexels on a food headline)
+    "plano", "dallas", "houston", "austin", "seattle", "chicago", "atlanta",
     # Indian state names leading headlines — never a person's given name
     "kerala", "punjab", "tamil", "tamilnadu", "karnataka", "maharashtra",
     "gujarat", "rajasthan", "bihar", "bengal", "assam", "odisha", "goa",
@@ -1200,6 +1204,15 @@ _HEADLINE_COMMON_VERB_WORDS = {
     "swims", "swim", "breaks", "break", "drowns", "crashes", "crash",
     "arrested", "jailed", "fined", "cleared", "clears",
 }
+# Storm/weather system leads: "Hurricane Isaias Shuts...", "Tropical Storm
+# X...", "Cyclone Y..." — a storm name is not a person's name. The first word
+# is never a given name, so the Pexels guard must not engage (2026-10-09:
+# "Hurricane Isaias Shuts 72% of Gulf Oil Output" was treated as a person
+# and blocked Pexels, leaving a weather article imageless). Kept tight —
+# "storm" only as a FIRST word; a mid-headline "storm" is irrelevant.
+_HEADLINE_STORM_WORDS = {
+    "hurricane", "tropical", "cyclone", "typhoon", "storm",
+}
 
 
 def headline_person_name(headline):
@@ -1255,6 +1268,10 @@ def headline_person_name(headline):
     # Public-company / place leads ("Nvidia Nears...", "Pennsylvania Measles..."):
     # a proper noun that is effectively never a person's given name
     if first_base in _HEADLINE_PROPER_NONPERSON_WORDS:
+        return None
+    # Storm/weather-system leads ("Hurricane Isaias Shuts..."): a storm name
+    # is not a person's name — the Pexels guard must not engage (2026-10-09)
+    if first_base in _HEADLINE_STORM_WORDS:
         return None
     # Gerund verbs leading the headline ("Replacing Russian...", "Building New...")
     # — a given name never ends in -ing ("Singh" is a surname, handled below)
