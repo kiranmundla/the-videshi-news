@@ -884,6 +884,22 @@ def main():
         if slug and slug != a["id"]:
             all_slugs.add(slug)
 
+    # Also keep JSONs for archived articles — they must stay accessible
+    # (deleting them creates 404s that hurt SEO; Google reported 3.5K+).
+    # Only truly deleted articles (gone from DB) should lose their JSON.
+    try:
+        archived_rows = fetch_table(url, key, "p2_articles",
+                                    order="id.asc",
+                                    filters={"status": "eq.archived"},
+                                    select="slug")
+        for r in archived_rows:
+            slug = r.get("slug")
+            if slug:
+                all_slugs.add(slug)
+        print(f"  Keeping {len(archived_rows)} archived article slugs")
+    except Exception as e:
+        print(f"  WARN: could not fetch archived slugs: {e}")
+
     # Only write JSONs for recent articles (they have body text)
     written = 0
     skipped = 0
