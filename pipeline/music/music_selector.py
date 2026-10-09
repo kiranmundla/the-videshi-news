@@ -156,7 +156,27 @@ def select_music(category, story_mood=None, target_variant="30s",
 
     # deterministic rotation, sorted by filename for a stable ordering
     candidates = sorted(candidates, key=lambda t: t["filename"])
-    pick = candidates[_stable_index(article_id, len(candidates))]
+    # Avoid repeating the last 3 tracks used (Kiran: music feels same, 2026-10-08)
+    try:
+        recent_log = os.path.join(os.path.dirname(index_path or _DEFAULT_INDEX), "..", ".state", "recent-music.json")
+        recent = []
+        if os.path.exists(recent_log):
+            recent = json.load(open(recent_log))
+        fresh = [c for c in candidates if c["filename"] not in recent[-3:]]
+        pool = fresh if fresh else candidates
+    except Exception:
+        pool = candidates
+        recent = []
+        recent_log = None
+    pick = pool[_stable_index(article_id, len(pool))]
+    # Log this pick
+    try:
+        if recent_log:
+            os.makedirs(os.path.dirname(recent_log), exist_ok=True)
+            recent.append(pick["filename"])
+            json.dump(recent[-10:], open(recent_log, "w"))
+    except Exception:
+        pass
 
     fname = _variant_filename(pick, target_variant)
     path = os.path.join(os.path.dirname(index_path or _DEFAULT_INDEX), fname)
