@@ -1,0 +1,78 @@
+[
+  {
+    "id": "b5988184-ad7f-4108-ae70-4023abae93e0",
+    "headline": "Stanley's First-Ever Diwali Collection Pairs Festival Motifs With a 50-Year-Old ",
+    "slug": "stanley-diwali-tumbler-collection-tharangini",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "18c606bd-80a0-4a49-b484-394ee2db7ee3",
+    "headline": "Navya Naveli Nanda Launches Naveli Ventures to Back India's Deep-Tech Ambitions",
+    "slug": "navya-naveli-nanda-naveli-ventures-deeptech",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "1020fe87-91ba-4e0a-b4d4-4dac6281bf3b",
+    "headline": "Rat Found Swimming in Gulab Jamun Vessel at Bhiwandi Sweet Shop; FDA Orders Clos",
+    "slug": "rat-gulab-jamun-bhiwandi-fda-closure",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "f2bde861-b74e-4534-9b9c-81dfd4e06ded",
+    "headline": "From a Rs 2,000 Bet on Grandma's Murukku to a Rs 580-Crore Snacks Empire",
+    "slug": "sweet-karam-coffee-murukku-580-crore-brand",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "714edfb2-38da-4049-b952-0fc4b53e0f2d",
+    "headline": "India Joins US and 13 Economies in Joint Push Against Global Industrial Overcapa",
+    "slug": "india-us-13-economies-excess-capacity-statement",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "b5cfb15d-43c6-42d6-8c6f-e6595ef90219",
+    "headline": "Nifty 50 Profits Seen Growing 20% as Earnings Accelerate Despite Market Slump",
+    "slug": "nifty50-profit-growth-forecast-september-quarter",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "7d1e3d91-40ee-4bf0-8f6a-4aa60b833a15",
+    "headline": "Pakistan Calls NYT Report of Its Jets Striking Houthis 'Fake and Fabricated'",
+    "slug": "pakistan-denies-nyt-houthi-airstrikes-report",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "3643dea6-5391-458f-acdb-c5990073366d",
+    "headline": "Canada Puts $20 Million Behind Fast Track to Ontario Licences for Foreign-Traine",
+    "slug": "canada-fast-track-ontario-licensing-physicians",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "268107d4-d116-4a5f-a72a-88e58bc94e4b",
+    "headline": "Air India, IndiGo and Lufthansa Suspend Riyadh Flights After Houthi Missile Stri",
+    "slug": "riyadh-flight-suspensions-houthi-airport-attack",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

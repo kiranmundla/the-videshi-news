@@ -10,9 +10,14 @@ import json, os, time
 from datetime import datetime, timezone
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "places-usage.json")
-DAILY_LIMIT = 200  # max Places API calls per day (across all scripts)
-# Lowered 2026-10-07 per Kiran: Places API is post-paid/billed, stay conservative
-# until real spend is visible. Was 1000 (raised 2026-10-03).
+DAILY_LIMIT = 90  # max Places API calls per day (across all scripts)
+# Recalibrated 2026-10-08: the field mask requests Enterprise-tier fields
+# (photos, rating, userRatingCount), so Text Search bills ~$32-35/1000.
+# 90 calls/day -> ~2,700/month -> ~$86-95/month, stays under the $100/mo
+# auto-cap on GCP project 22758573703 all month. At the old 200/day
+# (~$192-210/mo) the expansion silently stalls around day 14-15 when the
+# cap throttles the API. Conservative per Kiran's 2026-10-07 directive;
+# raise only if he approves higher spend.
 
 def _load():
     if not os.path.exists(STATE_FILE):

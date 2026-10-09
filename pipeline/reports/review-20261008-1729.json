@@ -1,0 +1,190 @@
+[
+  {
+    "id": "c6c3a04f-5012-4e87-828e-3cba42d361a5",
+    "headline": "Cal AI's 19-Year-Old Founder Raises $10M for New AI Startup Persona",
+    "slug": "cal-ai-founder-10m-persona-startup",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the wristband's release by specifying the exact month in December 2026 when it will ship, as this detail is currently vague.",
+        "Provide additional context about the competitive landscape for AI personal assistants, including how Persona differentiates itself from existing products like Apple's Siri or Google Assistant.",
+        "Include a quote from Zach Yadegari or an investor to provide insight into the vision behind Persona and the expectations for its market impact, enhancing the article's attribution and depth.",
+        "Mention any specific use cases or examples of how Persona can improve daily tasks for users, which would help readers understand its practical applications."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Zach Yadegari announcing the funding round or the launch of Persona, which would add authenticity and a direct connection to the founder."
+      ]
+    }
+  },
+  {
+    "id": "45a8327d-7eb8-4b17-9a50-da0c8d29f98e",
+    "headline": "Google's New AI Note-Taking App Transcribes Meetings Entirely Offline",
+    "slug": "google-ai-edge-foresight-offline-notes",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the capabilities of the app regarding non-English transcription; this is a significant detail for users in multilingual environments and should be explicitly addressed.",
+        "Include a specific timeline for when the app will be available to the general public, if not already available, to provide readers with actionable information.",
+        "Add a brief comparison to existing note-taking or transcription apps to give readers context on how this app stands out in the market."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Google's official account announcing the app or showcasing its features to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "f6c7323a-66b2-4ffc-8326-2be553ebcd89",
+    "headline": "India Tells Nationals in Saudi Arabia to Stay Alert After Houthi Missile Strikes",
+    "slug": "india-advisory-saudi-arabia-houthi-attacks",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the missile strikes occurred and when the Indian advisory was issued, as this will help readers understand the urgency and context better.",
+        "Include specific details about the flight cancellations, such as the exact number of flights affected and any potential impact on travelers' plans, to provide a clearer picture of the situation.",
+        "Provide a direct quote from the Indian Embassy's advisory to enhance credibility and give readers a firsthand account of the official stance.",
+        "Add context regarding the significance of the missile strikes and their implications for safety in the region, which would help readers grasp the seriousness of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Embassy regarding the advisory for easy access to the original source."
+      ]
+    }
+  },
+  {
+    "id": "e9df7bac-6f61-4226-acb8-bf135f537ca2",
+    "headline": "US Suspends Microsoft, Adobe and Six IT Firms From Green Card Program",
+    "slug": "us-suspends-microsoft-adobe-green-card-perm",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the suspension by specifying if it is indefinite or if there is a review period expected, as this impacts the urgency for affected workers.",
+        "Provide more detailed statistics or context regarding the number of pending applications and the potential impact on workers, such as how many individuals are estimated to be affected by this suspension.",
+        "Include a direct quote from Vice President JD Vance or Labor Secretary Keith Sonderling to enhance attribution and provide a clearer understanding of the government's rationale behind this decision."
+      ],
+      "embed_opportunities": [
+        "Embed the official White House announcement or statement regarding the suspension for readers to access primary information directly."
+      ]
+    }
+  },
+  {
+    "id": "f4ed7845-7bab-4626-b808-d1c888d39e93",
+    "headline": "Para-Shooters Allege Selection Fraud, Protest at Asian Para Games Send-Off",
+    "slug": "para-shooters-protest-selection-asian-para-games",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific allegations made by the para-shooters regarding the selection process and the claimed 20% commission demand, providing more detail on how these claims were substantiated or any evidence they presented.",
+        "Include a direct quote from the Sports Ministry source regarding the finality of the squad selection to enhance attribution and provide a clearer understanding of the official stance on the allegations.",
+        "Add context about the significance of the Asian Para Games and the impact of these allegations on the athletes involved, as well as potential repercussions for the Paralympic Committee of India.",
+        "Ensure that the timeline of events is clear, particularly regarding the dates leading up to the Asian Para Games and any deadlines for appeals or grievances. This would help readers understand the urgency of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Paralympic Committee of India addressing the allegations for transparency and credibility."
+      ]
+    }
+  },
+  {
+    "id": "e6e82dd8-7371-4923-aa11-b6c058144124",
+    "headline": "Is Indian Manufacturing's Moment Finally Here? The Data Is Mixed",
+    "slug": "indian-manufacturing-moment-data-mixed",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the government's production-linked incentive scheme, including specific deadlines for future payouts and job creation targets, to provide readers with a clearer understanding of expectations.",
+        "Include a brief explanation of the significance of the HSBC Manufacturing PMI figure and what it means for the overall economic outlook, as this context can help readers better grasp the implications of the data presented.",
+        "Provide a more detailed comparison of the sectors mentioned (electronics assembly, batteries, solar, steel, textiles) to highlight why some are performing well while others are lagging, which would enhance the completeness of the analysis."
+      ],
+      "embed_opportunities": [
+        "Embed the official HSBC Manufacturing PMI report or a relevant tweet from HSBC or The Economist to provide readers with direct access to the source of the data."
+      ]
+    }
+  },
+  {
+    "id": "11b94a06-638a-4711-8f1d-06e914f45e7e",
+    "headline": "Fed's Waller Signals More Rate Hikes as 10-Year Yield Nears 24-Year High",
+    "slug": "fed-waller-signals-more-hikes-treasury-yields-surge",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the implications of the higher interest rates by providing specific examples, such as estimated increases in monthly mortgage payments or auto-loan rates based on the current yields.",
+        "Include a brief explanation of the significance of the 24-year high in the 10-year Treasury yield and its historical context to enhance reader understanding of its impact on the market.",
+        "Add a quote or data point from a financial expert or economist to provide additional context and credibility to Waller's statements."
+      ],
+      "embed_opportunities": [
+        "Embed the official Federal Reserve tweet or statement regarding Waller's remarks for direct attribution and additional context."
+      ]
+    }
+  },
+  {
+    "id": "4b859ba5-fa36-4c0b-95d1-ba8058f59983",
+    "headline": "Mandaadi | Trailer Out: Soori, Suhas, Mahima Nambiar",
+    "slug": "mandaadi-trailer-out-soori-suhas-mahima-nambiar",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Correct the headline format to follow the 'Film Teaser/Trailer Out' structure without the vertical bar.",
+        "Clarify the release date by removing redundancy; mention it only once.",
+        "Ensure the film name is consistently presented without the vertical bar."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "10203f64-5002-44c1-af8b-424ec1dc795e",
+    "headline": "Teaser \u2013 Vijaynagar'er Hirey Teaser Out",
+    "slug": "teaser-vijaynagar-er-hirey-teaser-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Correct the headline format to 'Teaser \u2013 Vijaynagar'er Hirey Teaser Out' to match the required format.",
+        "Ensure the YouTube embed is placed correctly and is the primary source for the teaser.",
+        "Remove redundancy in the body text regarding the teaser release date."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "97914518-8bad-4886-b40c-2271f1292729",
+    "headline": "Ranabaali \u2013 Vijay Deverakonda Trailer Out",
+    "slug": "ranabaali-vijay-deverakonda-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 6 embed(s) placed in the bottom 30% \u2014 move higher for engagement",
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "The headline should follow the 'Film Teaser/Trailer Out' format. It should be 'Ranabaali Trailer Out' instead of 'Ranabaali \u2013 Vijay Deverakonda Trailer Out'.",
+        "The drop date is stated, but it is repeated unnecessarily. It should be mentioned once for clarity.",
+        "The body contains multiple links to the trailer in different languages, but only one embed is needed for the main trailer. Ensure the correct embed is included."
+      ],
+      "embed_opportunities": [
+        "Consider including a single, prominent embed for the main trailer instead of multiple links to different language versions."
+      ]
+    }
+  }
+]
