@@ -84,6 +84,9 @@ def summarise(body_md, max_sentences=2):
     text = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", text)
     text = re.sub(r"#{1,6}\s*", "", text)
     text = re.sub(r"\*{1,2}([^*]+)\*{1,2}", r"\1", text)
+    # Strip HTML tags (e.g. <div class="key-takeaways"><ul><li>...)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text)
     text = re.sub(r"\n{2,}", "\n", text).strip()
     # Get sentences
     sentences = re.split(r"(?<=[.!?])\s+", text)
@@ -538,9 +541,11 @@ def build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, uns
                   <td style="padding-top: 16px; text-align: center; font-size: 13px; color: #999;">
                     <a href="{SITE_URL}/travel" target="_blank" style="color: #c9a84c; text-decoration: none; font-weight: 600;">✈️ Travel</a>
                     &nbsp;&nbsp;·&nbsp;&nbsp;
-                    <a href="{SITE_URL}/cars" target="_blank" style="color: #c9a84c; text-decoration: none; font-weight: 600;">🚗 Cars</a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
                     <a href="{SITE_URL}/immigration" target="_blank" style="color: #c9a84c; text-decoration: none; font-weight: 600;">🛂 Immigration</a>
+                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <a href="{SITE_URL}/events" target="_blank" style="color: #c9a84c; text-decoration: none; font-weight: 600;">🎉 Events</a>
+                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    <a href="{SITE_URL}/your-hub" target="_blank" style="color: #c9a84c; text-decoration: none; font-weight: 600;">📍 Your Hub</a>
                   </td>
                 </tr>
               </table>
