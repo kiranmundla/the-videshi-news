@@ -1,0 +1,41 @@
+Fetching all listings...
+  Total: 22418
+
+Pass 1: same phone number...
+Pass 2: same website...
+Pass 3: same address...
+Pass 4: fuzzy name matching...
+
+Found 209 candidate groups, merging overlaps...
+
+==================================================
+Merged duplicate groups: 167
+Rows to delete: 185
+Rate: 0.8%
+
+Sample groups:
+  KEEP: DJ 3OCTAVES ((253) 632-4556)
+  DEL:  DJ 3Octaves ((253) 632-4556)
+
+  KEEP: Alpha Montessori Schools ((214) 872-2825)
+  DEL:  Alpha Montessori School ((214) 872-2825)
+
+  KEEP: Dr. Pranit Singh ((203) 688-4242)
+  DEL:  Dr. Rohanit Singh ((203) 688-4242)
+
+  KEEP: Luna Mitchell ((908) 293-1977)
+  DEL:  Luna Mitchell ((908) 293-1977)
+
+  KEEP: Calirumba Dance Acadmey ((972) 850-8109)
+  DEL:  Calirumba Dance Acadmey ((972) 850-8109)
+
+  KEEP: Ram Konara ((469) 964-2033)
+  DEL:  Ram Konara ((469) 964-2033)
+
+  KEEP: Kamala Murti ((732) 817-0647)
+  DEL:  Kamala Murti ((732) 817-0647)
+
+  KEEP: Rangeela Fashion/CBazaar ((510) 538-1883)
+  DEL:  Rangeela Fashion/CBazaar ((510) 538-1883)
+
+Dry run — use --apply to delete
