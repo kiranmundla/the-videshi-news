@@ -368,6 +368,38 @@ def get_existing_reel_slugs():
     return set(), set()
 
 
+def shorts_virality_boost(article):
+    """Extra score for high-stakes, high-emotion stories that perform as Shorts.
+    Mirrors upload-youtube-shorts.py so generation picks the same top stories.
+    The two breakout hits (700+ views) were high-emotion, high-stakes stories."""
+    import re
+    boost = 0
+    text = ((article.get("headline") or "") + " " + (article.get("subheadline") or "")).lower()
+
+    # Breaking / urgent — highest Shorts potential
+    if re.search(r'\b(breaking|exclusive|just in|developing|alert)\b', text):
+        boost += 3
+
+    # High-emotion, high-stakes topics
+    high_stakes = ['trump', 'modi', 'deportation', 'deported', 'ban', 'banned', 'crisis',
+                   'war', 'attack', 'killed', 'arrest', 'scam', 'fraud', 'protest',
+                   'election', 'verdict', 'resigns', 'suspended', 'crash']
+    if any(w in text for w in high_stakes):
+        boost += 2
+
+    # Immigration — core audience, consistently strong
+    if re.search(r'\b(h-1b|h1b|visa|green card|uscis|immigration|opt|deportation)\b', text):
+        boost += 2
+
+    # Routine / low-emotion topics — penalize
+    routine = ['gold price', 'silver price', 'market roundup', 'weather', 'sensex today',
+               'nifty today', 'daily horoscope', 'petrol price', 'diesel price']
+    if any(w in text for w in routine):
+        boost -= 5
+
+    return boost
+
+
 def score_article(article):
     score = 0
     cat = (article.get("category") or "").lower()
@@ -394,6 +426,9 @@ def score_article(article):
         score += 2
     if len(headline) > 40:
         score += 1
+
+    # Shorts virality signals — same as the uploader uses
+    score += shorts_virality_boost(article)
 
     return score
 
