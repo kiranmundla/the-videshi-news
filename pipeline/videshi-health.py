@@ -1056,6 +1056,13 @@ def check_youtube_embeds(fix=False):
     Dead YouTube embeds in recent articles (uploaders remove trailers).
     Delegates to pipeline/sweep-dead-embeds.py's importable sweeper, which
     handles <youtube> tags, bare URLs, and orphaned language headers.
+
+    Window is 14 days, not 90: the 90-day sweep covers ~800 articles /
+    ~770 unique videos (~10 min at full speed, far longer on proxy
+    stalls) and never finishes inside the health cadence — it always hit
+    the timeout guard. A 14-day sweep (~50 articles / ~55 videos, <60s)
+    actually completes; older dead embeds are low-traffic and get caught
+    by the standalone sweep.
     """
     import importlib.util
 
@@ -1068,7 +1075,9 @@ def check_youtube_embeds(fix=False):
 
     try:
         summary = mod.sweep_dead_embeds(youtube_only=True, apply=fix,
-                                        verbose=False, days=90)
+                                        verbose=False, days=14)
+    except _CheckTimeout:
+        raise
     except Exception as e:
         return {"name": "youtube_embeds", "count": 0,
                 "status": f"sweeper failed: {e}", "alert": False}

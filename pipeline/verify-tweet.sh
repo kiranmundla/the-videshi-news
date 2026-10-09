@@ -9,7 +9,11 @@ if [ -z "$TWEET_ID" ]; then
   exit 1
 fi
 
-RESPONSE=$(curl -s "https://react-tweet.vercel.app/api/tweet/$TWEET_ID" 2>/dev/null)
+# --max-time 15: the egress proxy occasionally blackholes instead of refusing,
+# which would hang curl forever. The parent (videshi-health.py _verify) kills
+# the bash wrapper at 20s, but the orphaned curl grandchild would then run
+# forever, leaking processes. Fail fast instead; ERROR output is handled.
+RESPONSE=$(curl -s --max-time 15 "https://react-tweet.vercel.app/api/tweet/$TWEET_ID" 2>/dev/null)
 HAS_DATA=$(echo "$RESPONSE" | python3 -c "
 import json, sys
 try:
