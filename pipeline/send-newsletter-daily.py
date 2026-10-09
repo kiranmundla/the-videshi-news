@@ -607,9 +607,9 @@ def build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, uns
                 <table cellpadding="0" cellspacing="0" border="0" align="center">
                   <tr>
                     <td style="padding: 0 8px;"><a href="https://x.com/thevideshi" target="_blank"><img src="https://cdn.simpleicons.org/x/c9a84c" alt="X" width="20" height="20" style="display: block;" /></a></td>
-                    <td style="padding: 0 8px;"><a href="https://www.threads.net/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/threads/c9a84c" alt="Threads" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.threads.com/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/threads/c9a84c" alt="Threads" width="20" height="20" style="display: block;" /></a></td>
                     <td style="padding: 0 8px;"><a href="https://www.instagram.com/the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/instagram/c9a84c" alt="Instagram" width="20" height="20" style="display: block;" /></a></td>
-                    <td style="padding: 0 8px;"><a href="https://www.youtube.com/@TheVideshi" target="_blank"><img src="https://cdn.simpleicons.org/youtube/c9a84c" alt="YouTube" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://www.youtube.com/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/youtube/c9a84c" alt="YouTube" width="20" height="20" style="display: block;" /></a></td>
                   </tr>
                 </table>
               </div>
