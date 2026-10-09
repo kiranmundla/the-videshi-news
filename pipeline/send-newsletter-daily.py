@@ -4,6 +4,12 @@ The Videshi Daily Briefing
 Sends a short daily news digest to all newsletter subscribers via Resend.
 Skips Sundays — the weekly edition covers that day.
 
+Structure (revised 2026-10-08):
+  1. TOP STORY — one story with hero image + a fresh "why it matters" take
+  2. QUICK HITS — 4-5 more stories, one line each, ranked by importance
+  3. DEADLINE ALERT — deadlines from src/data/deadlines.ts due in the next
+     14 days (omitted when none)
+
 Usage:
   python3 send-newsletter-daily.py              # Send to all subscribers
   python3 send-newsletter-daily.py --test       # Send only to editor@thevideshi.com
@@ -18,7 +24,6 @@ import os
 import re
 import sys
 import time
-from collections import OrderedDict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -31,39 +36,6 @@ SUPABASE_URL = "https://lboecaekpynbpyijrbfz.supabase.co"
 FROM_ADDRESS = "The Videshi <noreply@thevideshi.com>"
 SITE_URL = "https://thevideshi.com"
 UNSUB_SECRET = "videshi-unsub-2026"
-
-CATEGORY_EMOJI = {
-    "news": "🇮🇳",
-    "immigration": "🛂",
-    "nri-world": "🌏",
-    "travel": "✈️",
-    "lifestyle-health": "🧘",
-    "markets-finance": "📈",
-    "technology": "💻",
-    "sports": "🏏",
-    "entertainment": "🎬",
-    "food": "🍛",
-}
-
-CATEGORY_LABEL = {
-    "news": "NEWS",
-    "immigration": "IMMIGRATION",
-    "nri-world": "NRI WORLD",
-    "travel": "TRAVEL",
-    "lifestyle-health": "LIFESTYLE",
-    "markets-finance": "MARKETS",
-    "technology": "TECHNOLOGY",
-    "sports": "SPORTS",
-    "entertainment": "ENTERTAINMENT",
-    "food": "FOOD",
-}
-
-# Preferred order for picking stories across categories
-CATEGORY_ORDER = [
-    "news", "sports", "entertainment", "immigration",
-    "nri-world", "markets-finance", "technology",
-    "lifestyle-health", "travel", "food",
-]
 
 
 # ── Helpers ─────────────────────────────────────────────────────────────────
@@ -118,6 +90,121 @@ def summarise(body_md, max_sentences=2):
     # Filter out very short fragments
     sentences = [s for s in sentences if len(s) > 30]
     return " ".join(sentences[:max_sentences]).strip()
+
+
+OPENAI_API_KEY = ""  # set in main()
+
+
+def write_why_it_matters(article):
+    """Generate a fresh 2-3 sentence editorial 'why it matters' take via GPT-4o-mini.
+
+    Falls back to the article subheadline when OpenAI is unavailable.
+    """
+    headline = article.get("headline", "")
+    context = summarise(article.get("body", ""), 3) or article.get("subheadline", "")
+
+    if OPENAI_API_KEY:
+        try:
+            prompt = (
+                "You are the editor of The Videshi, a daily briefing for the Indian "
+                "diaspora in the US. Write a sharp 2-3 sentence \"why it matters\" take "
+                "on this story — what it means for the reader, the practical implication "
+                "or the bigger picture.\n"
+                "Rules: Do NOT restate the headline. Do NOT summarize the article. "
+                "Be direct and specific. No cliches, no hype, no \"in today's world\". "
+                "Plain, confident editorial voice.\n\n"
+                f"Headline: {headline}\n"
+                f"Context: {context}"
+            )
+            r = requests.post(
+                "https://api.openai.com/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {OPENAI_API_KEY}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": 150,
+                    "temperature": 0.7,
+                },
+                timeout=30,
+            )
+            r.raise_for_status()
+            take = r.json()["choices"][0]["message"]["content"].strip()
+            # Strip surrounding quotes if the model wrapped it
+            take = re.sub(r'^["\u201c\u201d]+|["\u201c\u201d]+$', "", take).strip()
+            if len(take) > 40:
+                return take
+        except Exception as e:
+            print(f"  ⚠ why-it-matters generation failed ({e}) — using fallback")
+
+    # Fallback: subheadline or summary
+    return article.get("subheadline", "") or context
+
+
+def parse_deadlines(days_ahead=14):
+    """Parse DEADLINES from src/data/deadlines.ts.
+
+    Returns deadlines due within the next `days_ahead` days (inclusive),
+    sorted by date ascending. Each is a dict with title, date (YYYY-MM-DD),
+    blurb, sourceName, sourceUrl.
+    """
+    ts_path = (
+        Path(__file__).resolve().parent.parent / "src" / "data" / "deadlines.ts"
+    )
+    if not ts_path.exists():
+        print(f"  ⚠ deadlines file not found: {ts_path}")
+        return []
+
+    text = ts_path.read_text()
+    deadlines = []
+    # Entries have no nested braces, so a flat block match is safe
+    for block in re.findall(r"\{[^{}]*\}", text):
+        id_m = re.search(r'id:\s*"([^"]+)"', block)
+        title_m = re.search(r'title:\s*"([^"]+)"', block)
+        date_m = re.search(r'date:\s*"(\d{4}-\d{2}-\d{2})"', block)
+        blurb_m = re.search(r'blurb:\s*"((?:[^"\\]|\\.)*)"', block, re.DOTALL)
+        src_name_m = re.search(r'sourceName:\s*"([^"]+)"', block)
+        src_url_m = re.search(r'sourceUrl:\s*"([^"]+)"', block)
+        if id_m and title_m and date_m:
+            deadlines.append({
+                "id": id_m.group(1),
+                "title": title_m.group(1),
+                "date": date_m.group(1),
+                "blurb": (blurb_m.group(1).replace("\\n", " ").strip()
+                          if blurb_m else ""),
+                "sourceName": src_name_m.group(1) if src_name_m else "",
+                "sourceUrl": src_url_m.group(1) if src_url_m else "",
+            })
+
+    # PT "today" for the window
+    from zoneinfo import ZoneInfo
+    today = datetime.now(ZoneInfo("America/Los_Angeles")).date()
+    cutoff = today + timedelta(days=days_ahead)
+
+    upcoming = []
+    for d in deadlines:
+        try:
+            ddate = datetime.strptime(d["date"], "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if today <= ddate <= cutoff:
+            d["_date_obj"] = ddate
+            d["_days_until"] = (ddate - today).days
+            upcoming.append(d)
+
+    upcoming.sort(key=lambda d: d["_date_obj"])
+    return upcoming
+
+
+def format_deadline_when(days_until):
+    """Human-friendly 'when' label: today / tomorrow / in N days."""
+    if days_until == 0:
+        return "today"
+    if days_until == 1:
+        return "tomorrow"
+    return f"in {days_until} days"
 
 
 # ── Data fetching ───────────────────────────────────────────────────────────
@@ -217,96 +304,118 @@ def score_article(a):
     return score
 
 
-def pick_daily_stories(articles):
-    """Pick a hero + 5 stories across categories, ranked by quality score."""
-    # Sort by score (desc), then recency as tiebreaker
-    scored = sorted(articles, key=lambda a: (score_article(a), a.get("published_at", "")), reverse=True)
+def pick_stories(articles, quick_hit_count=5):
+    """Pick a top story + N quick hits, ranked by quality score.
 
-    # Hero: editorial always wins, otherwise best-scoring article with an image
-    hero = None
-    # First pass: look for an editorial
+    No category grouping — pure importance ranking.
+    Returns (top_story, quick_hits).
+    """
+    # Sort by score (desc), then recency as tiebreaker
+    scored = sorted(
+        articles,
+        key=lambda a: (score_article(a), a.get("published_at", "")),
+        reverse=True,
+    )
+
+    # Top story: editorial always wins, otherwise best-scoring with an image
+    top = None
     for a in scored:
         if a.get("is_editorial") and a.get("image_url") and a.get("slug"):
-            hero = a
+            top = a
             break
-    # Second pass: fallback to best-scoring with image
-    if not hero:
+    if not top:
         for a in scored:
             if a.get("image_url") and a.get("slug"):
-                hero = a
+                top = a
                 break
+    # Last resort: best-scoring article even without image
+    if not top and scored:
+        top = scored[0] if scored[0].get("slug") else None
 
-    hero_id = hero["id"] if hero else None
-    hero_cat = hero.get("category") if hero else None
+    top_id = top["id"] if top else None
 
-    by_cat = {}
+    quick_hits = []
     for a in scored:
-        if not a.get("slug") or a["id"] == hero_id:
+        if not a.get("slug") or a["id"] == top_id:
             continue
-        cat = a.get("category", "news")
-        if cat not in by_cat:
-            by_cat[cat] = a  # best-scoring article per category
-
-    stories = []
-    for cat in CATEGORY_ORDER:
-        if cat == hero_cat:
-            continue
-        if cat in by_cat:
-            stories.append(by_cat[cat])
-        if len(stories) >= 5:
+        quick_hits.append(a)
+        if len(quick_hits) >= quick_hit_count:
             break
 
-    return hero, stories
+    return top, quick_hits
 
 
 # ── HTML email builder ──────────────────────────────────────────────────────
 
-def build_daily_html(hero, stories, date_label, unsub_url):
-    """Build the daily briefing HTML email."""
+def esc(text):
+    """Minimal HTML escape for text content."""
+    return (
+        (text or "")
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
 
-    # Hero section
-    hero_html = ""
-    if hero:
-        hero_summary = summarise(hero.get("body", ""), 2) or hero.get("subheadline", "")
-        hero_cat = hero.get("category", "news")
-        hero_emoji = CATEGORY_EMOJI.get(hero_cat, "📰")
-        hero_label = CATEGORY_LABEL.get(hero_cat, hero_cat.upper())
 
-        # Editorial gets "EDITOR'S DESK" label instead of category
-        if hero.get("is_editorial"):
-            hero_emoji = "✍️"
-            hero_label = "EDITOR'S DESK"
+def build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, unsub_url):
+    """Build the daily briefing HTML email.
 
-        hero_url = f"{SITE_URL}/articles/{hero['slug']}"
-        hero_img = hero.get("image_url", "")
+    Blocks:
+      1. TOP STORY — hero image + headline + "why it matters" take
+      2. QUICK HITS — numbered list, one line each
+      3. DEADLINE ALERT — upcoming deadlines (omitted when none)
+    """
 
-        hero_html = f"""
+    # ── Block 1: Top story ──
+    top_html = ""
+    if top:
+        top_url = f"{SITE_URL}/articles/{top['slug']}"
+        top_img = top.get("image_url", "")
+        editorial_tag = (
+            '<span style="font-size: 11px; font-weight: 700; color: #c9a84c; '
+            'letter-spacing: 1.5px; text-transform: uppercase;">&#9997;&#65039; '
+            "Editor's Desk &mdash; Top Story</span>"
+            if top.get("is_editorial")
+            else '<span style="font-size: 11px; font-weight: 700; color: #c9a84c; '
+            'letter-spacing: 1.5px; text-transform: uppercase;">Top Story</span>'
+        )
+
+        top_html = f"""
         <tr>
-          <td style="padding: 0 24px 24px 24px;">
+          <td style="padding: 0 24px 8px 24px;">
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="padding-bottom: 12px;">
-                  <span style="font-size: 11px; font-weight: 700; color: #c9a84c; letter-spacing: 1.5px; text-transform: uppercase;">
-                    {hero_emoji} {hero_label} &mdash; TOP STORY
-                  </span>
+                  {editorial_tag}
                 </td>
               </tr>
-              {"<tr><td style='padding-bottom: 16px;'><a href='" + hero_url + "' target='_blank'><img src='" + hero_img + "' alt='' width='100%' style='display: block; border-radius: 8px; max-width: 100%; height: auto;' /></a></td></tr>" if hero_img else ""}
+              {"<tr><td style='padding-bottom: 16px;'><a href='" + top_url + "' target='_blank'><img src='" + top_img + "' alt='' width='100%' style='display: block; border-radius: 8px; max-width: 100%; height: auto;' /></a></td></tr>" if top_img else ""}
               <tr>
                 <td>
-                  <a href="{hero_url}" target="_blank" style="font-size: 20px; font-weight: 700; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
-                    {hero['headline']}
+                  <a href="{top_url}" target="_blank" style="font-size: 20px; font-weight: 700; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
+                    {esc(top['headline'])}
                   </a>
                 </td>
               </tr>
               <tr>
-                <td style="padding-top: 10px; font-size: 14px; color: #444; line-height: 1.6;">
-                  {hero_summary}
+                <td style="padding-top: 14px;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="border-left: 3px solid #c9a84c; padding: 4px 0 4px 14px;">
+                        <div style="font-size: 11px; font-weight: 700; color: #c9a84c; letter-spacing: 1.2px; text-transform: uppercase; padding-bottom: 6px;">
+                          Why it matters
+                        </div>
+                        <div style="font-size: 14px; color: #333; line-height: 1.6; font-style: italic;">
+                          {esc(why_it_matters)}
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
               <tr>
-                <td style="padding-top: 14px;">
-                  <a href="{hero_url}" target="_blank" style="display: inline-block; padding: 10px 24px; background-color: #c9a84c; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 6px;">
+                <td style="padding-top: 16px; padding-bottom: 8px;">
+                  <a href="{top_url}" target="_blank" style="display: inline-block; padding: 10px 24px; background-color: #c9a84c; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 6px;">
                     Read more &rarr;
                   </a>
                 </td>
@@ -316,93 +425,107 @@ def build_daily_html(hero, stories, date_label, unsub_url):
         </tr>
         """
 
-    # Group stories by category (preserving order)
-    grouped = OrderedDict()
-    for s in stories:
-        cat = s.get("category", "news")
-        if cat not in grouped:
-            grouped[cat] = []
-        grouped[cat].append(s)
-
-    # Build category blocks
-    category_blocks = ""
-    for cat, cat_stories in grouped.items():
-        emoji = CATEGORY_EMOJI.get(cat, "📰")
-        label = CATEGORY_LABEL.get(cat, cat.upper())
-
-        article_rows = ""
-        for s in cat_stories:
+    # ── Block 2: Quick hits ──
+    quick_hits_html = ""
+    if quick_hits:
+        rows = ""
+        for i, s in enumerate(quick_hits, 1):
             url = f"{SITE_URL}/articles/{s['slug']}"
-            body_summary = summarise(s.get("body", ""), 2) or s.get("subheadline", "")
-            if len(body_summary) > 180:
-                body_summary = body_summary[:177].rsplit(" ", 1)[0] + "…"
-            img_url = s.get("image_url", "")
-
-            # Thumbnail + text layout if image exists, text-only otherwise
-            if img_url:
-                article_rows += f"""
+            one_liner = summarise(s.get("body", ""), 1) or s.get("subheadline", "")
+            if len(one_liner) > 160:
+                one_liner = one_liner[:157].rsplit(" ", 1)[0] + "…"
+            rows += f"""
               <tr>
-                <td style="padding: 6px 0 12px 0;">
+                <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
                   <table width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
-                      <td width="80" style="vertical-align: top; padding-right: 12px;">
-                        <a href="{url}" target="_blank">
-                          <img src="{img_url}" alt="" width="80" height="80" style="display: block; border-radius: 6px; width: 80px; height: 80px; object-fit: cover;" />
-                        </a>
+                      <td width="28" style="vertical-align: top; font-size: 14px; font-weight: 700; color: #c9a84c;">
+                        {i}.
                       </td>
                       <td style="vertical-align: top;">
-                        <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
-                          {s['headline']}
+                        <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.35;">
+                          {esc(s['headline'])}
                         </a>
-                        <br />
-                        <span style="font-size: 13px; color: #666; line-height: 1.4;">
-                          {body_summary}
-                        </span>
+                        <div style="font-size: 13px; color: #666; line-height: 1.45; padding-top: 3px;">
+                          {esc(one_liner)}
+                        </div>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
-                """
-            else:
-                article_rows += f"""
-              <tr>
-                <td style="padding: 6px 0 12px 0;">
-                  <a href="{url}" target="_blank" style="font-size: 15px; font-weight: 600; color: #1a1a2e; text-decoration: none; line-height: 1.3;">
-                    {s['headline']}
-                  </a>
-                  <br />
-                  <span style="font-size: 13px; color: #666; line-height: 1.4;">
-                    {body_summary}
-                  </span>
-                </td>
-              </tr>
-                """
+            """
 
-        category_blocks += f"""
+        quick_hits_html = f"""
+          <!-- QUICK HITS -->
           <tr>
-            <td style="padding: 14px 0 4px 0;">
-              <span style="font-size: 12px; font-weight: 700; color: #c9a84c; letter-spacing: 1.5px; text-transform: uppercase;">
-                {emoji} {label}
-              </span>
-            </td>
-          </tr>
-          {article_rows}
-          <tr><td style="border-bottom: 1px solid #eee;"></td></tr>
-        """
-
-    # Stories section
-    stories_html = ""
-    if category_blocks:
-        stories_html = f"""
-          <!-- TOP STORIES -->
-          <tr>
-            <td style="padding: 0 24px 16px 24px;">
+            <td style="padding: 12px 24px 8px 24px;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {category_blocks}
+                <tr>
+                  <td style="padding-bottom: 6px;">
+                    <span style="font-size: 11px; font-weight: 700; color: #c9a84c; letter-spacing: 1.5px; text-transform: uppercase;">
+                      &#9889; Quick Hits
+                    </span>
+                  </td>
+                </tr>
+                {rows}
               </table>
             </td>
           </tr>
+        """
+
+    # ── Block 3: Deadline alert ──
+    deadline_html = ""
+    if deadlines:
+        d_rows = ""
+        for d in deadlines:
+            ddate = d["_date_obj"].strftime("%b %d")
+            when = format_deadline_when(d["_days_until"])
+            src = (
+                f' <a href="{d["sourceUrl"]}" target="_blank" '
+                f'style="color: #8a6d1f; font-size: 11px;">({esc(d["sourceName"])})</a>'
+                if d["sourceUrl"]
+                else ""
+            )
+            d_rows += f"""
+              <tr>
+                <td style="padding: 8px 0; border-bottom: 1px solid #f0e6c8;">
+                  <div style="font-size: 14px; font-weight: 700; color: #1a1a2e;">
+                    {esc(d['title'])}
+                  </div>
+                  <div style="font-size: 12px; font-weight: 700; color: #8a6d1f; padding-top: 2px;">
+                    {ddate} &middot; {when}
+                  </div>
+                  <div style="font-size: 13px; color: #555; line-height: 1.45; padding-top: 3px;">
+                    {esc(d['blurb'])}{src}
+                  </div>
+                </td>
+              </tr>
+            """
+
+        deadline_html = f"""
+          <!-- DEADLINE ALERT -->
+          <tr>
+            <td style="padding: 12px 24px 16px 24px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="background-color: #fdf6e3; border: 1px solid #f0e6c8; border-radius: 8px; padding: 14px 16px 6px 16px;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="padding-bottom: 6px;">
+                          <span style="font-size: 11px; font-weight: 700; color: #8a6d1f; letter-spacing: 1.5px; text-transform: uppercase;">
+                            &#9200; Deadlines That Matter
+                          </span>
+                        </td>
+                      </tr>
+                      {d_rows}
+                    </table>
+                  </td>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
         """
 
     # Quick links row (compact text links)
@@ -457,10 +580,12 @@ def build_daily_html(hero, stories, date_label, unsub_url):
           <!-- SPACER -->
           <tr><td style="height: 16px;"></td></tr>
 
-          <!-- HERO -->
-          {hero_html}
+          <!-- TOP STORY -->
+          {top_html}
 
-          {stories_html}
+          {quick_hits_html}
+
+          {deadline_html}
 
           {quick_links_html}
 
@@ -555,10 +680,12 @@ def main():
     # Load env
     supabase_env = load_env("~/workspace/.env.supabase")
     resend_env = load_env("~/workspace/.env.resend")
+    openai_env = load_env("~/workspace/.env.openai")
 
-    global SUPABASE_KEY
+    global SUPABASE_KEY, OPENAI_API_KEY
     SUPABASE_KEY = supabase_env.get("SUPABASE_SERVICE_ROLE_KEY", "")
     resend_key = resend_env.get("RESEND_API_KEY", "")
+    OPENAI_API_KEY = openai_env.get("OPENAI_API_KEY", "")
 
     if not SUPABASE_KEY:
         print("❌ SUPABASE_SERVICE_ROLE_KEY not found in .env.supabase")
@@ -585,14 +712,26 @@ def main():
         print("⚠ No articles in the past 24h — skipping daily briefing.")
         sys.exit(0)
 
-    # Pick hero + stories
-    hero, stories = pick_daily_stories(articles)
-    if hero:
-        print(f"   Hero: [{hero.get('category', '?')}] {hero['headline'][:65]}…")
-    print(f"   Selected {len(stories)} stories across {len(set(s.get('category') for s in stories))} categories")
-    for s in stories:
-        cat = s.get("category", "?")
-        print(f"     [{cat}] {s['headline'][:65]}…")
+    # Pick top story + quick hits (ranked by importance, no category grouping)
+    top, quick_hits = pick_stories(articles)
+    if top:
+        print(f"   Top story: [{top.get('category', '?')}] {top['headline'][:65]}…")
+    print(f"   Quick hits: {len(quick_hits)}")
+    for s in quick_hits:
+        print(f"     - {s['headline'][:70]}…")
+
+    # Generate the "why it matters" take for the top story
+    why_it_matters = ""
+    if top:
+        print("✍️  Writing 'why it matters' take…")
+        why_it_matters = write_why_it_matters(top)
+        print(f"   {why_it_matters[:90]}…")
+
+    # Upcoming deadlines (next 14 days)
+    deadlines = parse_deadlines(days_ahead=14)
+    print(f"⏰ {len(deadlines)} deadline(s) in the next 14 days")
+    for d in deadlines:
+        print(f"     {d['date']} — {d['title'][:60]}")
 
     # Build subject
     subject = f"The Videshi Daily — {now_pt.strftime('%B %d, %Y')}"
@@ -615,7 +754,7 @@ def main():
 
     # Build preview HTML
     preview_unsub = f"{SITE_URL}/unsubscribe?email=preview@example.com&token=preview"
-    preview_html = build_daily_html(hero, stories, date_label, preview_unsub)
+    preview_html = build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, preview_unsub)
 
     if args.dry_run:
         out_dir = Path(__file__).parent / "newsletter-previews"
@@ -634,7 +773,7 @@ def main():
         token = make_unsub_token(email)
         unsub_url = f"{SITE_URL}/unsubscribe?email={quote(email)}&token={token}"
         unsub_api_url = f"{SITE_URL}/api/unsubscribe?email={quote(email)}&token={token}"
-        html = build_daily_html(hero, stories, date_label, unsub_url)
+        html = build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, unsub_url)
 
         try:
             result = send_email(email, subject, html, resend_key, unsub_url, unsub_api_url)
@@ -657,8 +796,8 @@ def main():
 
     # Mark articles as newslettered so they don't repeat in future sends
     if sent > 0:
-        sent_ids = [hero["id"]] if hero else []
-        sent_ids.extend(s["id"] for s in stories)
+        sent_ids = [top["id"]] if top else []
+        sent_ids.extend(s["id"] for s in quick_hits)
         mark_newslettered(sent_ids)
         print(f"   📌 Marked {len(sent_ids)} articles as newslettered")
 
@@ -669,8 +808,9 @@ def main():
         "subscribers": len(subscribers),
         "sent": sent,
         "errors": len(errors),
-        "hero_slug": hero["slug"] if hero else None,
-        "story_count": len(stories),
+        "top_story_slug": top["slug"] if top else None,
+        "quick_hit_count": len(quick_hits),
+        "deadline_count": len(deadlines),
     })
     log_path.write_text(json.dumps(log, indent=2))
 
@@ -678,7 +818,7 @@ def main():
     archive_dir = Path(__file__).parent / "newsletter-archive"
     archive_dir.mkdir(exist_ok=True)
     archive_path = archive_dir / f"daily-{now.strftime('%Y-%m-%d')}.html"
-    archive_html = build_daily_html(hero, stories, date_label, "#")
+    archive_html = build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, "#")
     archive_path.write_text(archive_html)
     print(f"   Archived: {archive_path}")
 
