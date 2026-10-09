@@ -936,31 +936,42 @@ TASK: Extract the most impactful numbers, stats, and facts from this article.
 Every figure MUST come directly from the article — NEVER invent or inflate.
 If the article has NO meaningful numbers or concrete stats, return {{"skip": true}}.
 
+ENTITY RULE (critical): The viewer sees ONLY the on-screen text — no audio, no article. Every text line must be SELF-CONTAINED. The key entities from the headline (company names, person names, organizations, countries — e.g. Microsoft, Vance, USCIS, India) MUST appear in the reel text. The hook_line must name the main actor(s). hook_stat.sub must name who the number is about. Stats labels must name the entity they measure. diaspora_bullets must name who/what they refer to. NEVER write a line that only makes sense if you've read the article — e.g. "claims disputed" is WRONG, "Microsoft disputes Vance's H-1B claims" is RIGHT.
+
 Return JSON:
 {{
+  "key_entities": ["<main entity 1>", "<main entity 2>"],
   "hook_stat": {{
     "big": "<the SINGLE most dramatic number, e.g. $350B, 250,000, 19%>",
-    "sub": "<what that number means, 5-10 words>",
+    "sub": "<what that number means, 5-10 words — MUST name the entity, e.g. 'Microsoft employees on H-1B visas'>",
     "eyebrow": "<2-4 word kicker, e.g. BREAKING, BY THE NUMBERS, THE PRICE TAG>"
   }},
   "stats": [
-    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}},
-    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}},
-    {{"big": "<number/value>", "label": "<what it measures, 3-6 words>"}}
+    {{"big": "<number/value>", "label": "<what it measures, 3-6 words — name the entity>"}},
+    {{"big": "<number/value>", "label": "<what it measures, 3-6 words — name the entity>"}},
+    {{"big": "<number/value>", "label": "<what it measures, 3-6 words — name the entity>"}}
   ],
   "diaspora_bullets": [
-    "<NRI/diaspora impact point 1, ~10 words>",
-    "<NRI/diaspora impact point 2, ~10 words>"
+    "<NRI/diaspora impact point 1, ~10 words — name who/what>",
+    "<NRI/diaspora impact point 2, ~10 words — name who/what>"
   ],
   "story_mood": "<one of: triumphant|celebratory|somber|tense|neutral-news|uplifting|cultural|tech|chill>",
-  "hook_line": "<3-5 word ALL CAPS scroll-stopper for the opening frame>"
+  "hook_line": "<3-5 word ALL CAPS scroll-stopper for the opening frame — MUST include the main entity name, e.g. 'MICROSOFT FIRES BACK' not just 'FIRES BACK'>",
+  "news_summary": "<WHAT HAPPENED — 1-2 sentences, max 25 words. THE context frame: a viewer who missed the headline learns the actual news here. Self-contained, names entities, states the event not just numbers. e.g. 'TCS told investors the US green-card freeze will not hurt hiring, citing single-digit PERM filings for two years.'>",
+  "payoff": "<SO-WHAT takeaway — max 12 words, forward-looking, names who it affects. e.g. 'TCS still hiring 15,000 more in the US'>",
+  "versus": {{"a_label": "<side A label, e.g. 'TCS SAYS'>", "a_value": "<their claim, max 8 words>", "b_label": "<side B label, e.g. 'CRITICS SAY'>", "b_value": "<counterclaim, max 8 words>"}} — include ONLY if the story has genuine two-sided tension, else null
 }}
 
 RULES:
+- key_entities: 1-3 names pulled from the headline — companies, people, orgs, countries. These MUST appear across the reel text.
 - hook_stat.big: Short, punchy (e.g. "$2.6B" not "two point six billion dollars"). Include currency/% symbols.
-- stats: 2-3 supporting numbers. Each must be a DIFFERENT fact from the hook_stat.
-- diaspora_bullets: 2-3 points about why this matters to NRIs/Indians abroad.
-- hook_line: The provocative, thumb-stopping headline. ALL CAPS. Use power words (CRISIS, SHOCK, WIN, DODGED, EXPOSED, SLASHED) where facts support them.
+- hook_stat.sub: Self-contained — a stranger reading only this line knows WHO and WHAT. Always name the entity.
+- stats: 2-3 supporting numbers. Each must be a DIFFERENT fact from the hook_stat. Labels must name the entity they measure.
+- diaspora_bullets: 2-3 points about why this matters to NRIs/Indians abroad. Each must be self-contained with named entities. MAX 8 words each — tight enough to read in 2 seconds.
+- news_summary: REQUIRED — the single most important new field. This is the "context" frame that fixes reels with no information. Must state the actual NEWS EVENT (who did/said what), never just numbers. If the core news can't be summarized in 2 sentences, return {{"skip": true}}.
+- payoff: REQUIRED — the final frame's message (before the small brand line). Must answer "so what?" — the takeaway a viewer remembers.
+- versus: optional split-screen pair. Include ONLY when the story has genuine two-sided tension (claim vs counterclaim, company vs critics, promise vs reality). Both values max 8 words. Else null.
+- hook_line: The provocative, thumb-stopping headline. ALL CAPS. MUST name the main entity (company/person) — never a bare verb phrase. Use power words (CRISIS, SHOCK, WIN, DODGED, EXPOSED, SLASHED) where facts support them.
 - story_mood: The dominant emotional tone of the story.
 - If the article is a soft feature, opinion piece, or has fewer than 2 concrete numbers, return {{"skip": true}}.
 """
@@ -1006,8 +1017,11 @@ RULES:
     if not hook or not hook.get("big"):
         print(f"  ⚡ No hook_stat extracted — skipping pulse reel")
         return None
+    if not result.get("news_summary"):
+        print(f"  ⚡ No news_summary extracted — skipping pulse reel (context frame is required)")
+        return None
 
-    result["v"] = "pulse1"
+    result["v"] = "pulse2"  # v2: narrative arc (news_summary + payoff + versus), kinetic text
 
     # Cache
     try:
@@ -6661,88 +6675,161 @@ def build_anchor_reel_timeline(
 # SHOTSTACK TIMELINE BUILDER — Quick Pulse (no voice)
 # ═════════════════════════════════════════════════════════════════════════════
 
+# ── Kinetic typography: CSS keyframes injected into every pulse scene ──
+# Shotstack renders each HTML asset from page-load, so entrance animations
+# keyed to load time play exactly when the scene starts. Staggered delays
+# give the kinetic feel: text pops in beat by beat, never a frozen slide.
+# Base styles are the FINAL visible state, so if a renderer ever ignores
+# animations, text still renders fully visible (never stuck at opacity 0).
+_PULSE_KINETIC_CSS = """
+@keyframes vdsRise { from { opacity:0; transform:translateY(46px); } to { opacity:1; transform:translateY(0); } }
+@keyframes vdsPop { 0% { opacity:0; transform:scale(.82); } 55% { opacity:1; transform:scale(1.05); } 100% { opacity:1; transform:scale(1); } }
+@keyframes vdsFade { from { opacity:0; } to { opacity:1; } }
+@keyframes vdsSlideL { from { opacity:0; transform:translateX(-60px); } to { opacity:1; transform:translateX(0); } }
+.vds-rise { animation:vdsRise .55s cubic-bezier(.2,.7,.3,1) both; }
+.vds-pop { animation:vdsPop .5s cubic-bezier(.2,.7,.3,1) both; }
+.vds-fade { animation:vdsFade .6s ease-out both; }
+.vds-slidel { animation:vdsSlideL .55s cubic-bezier(.2,.7,.3,1) both; }
+"""
+
+def _wrap_short_lines(text, max_words=6):
+    """Break text into short kinetic lines (2-6 words each) for readability."""
+    words = (text or "").split()
+    lines, cur = [], []
+    for w in words:
+        cur.append(w)
+        if len(cur) >= max_words:
+            lines.append(" ".join(cur))
+            cur = []
+    if cur:
+        lines.append(" ".join(cur))
+    return "<br>".join(lines)
+
+
 def _pulse_safe_wrap(inner_html):
-    """Wrap scene content in a Shorts/Reels safe zone (avoids YT buttons right, channel info bottom)."""
-    return f"""<div style="display:flex;flex-direction:column;width:100%;height:100%;padding:120px 60px 300px 60px;box-sizing:border-box;">
+    """Wrap scene content in the Shorts safe zone.
+
+    Top pad 150px; bottom pad 330px (330/1920 = 17.2%) — the bottom ~17% is
+    owned by YouTube's caption/UI pill even with captions off. ALL content
+    must live in the top 83%.
+    """
+    return f"""<div style="display:flex;flex-direction:column;width:100%;height:100%;padding:150px 60px 330px 60px;box-sizing:border-box;">
   {inner_html}
 </div>"""
 
 
 def _pulse_hook_html(hook_line, category):
-    """Scene 1: Hook frame — massive text over darkened hero image (transparent bg)."""
+    """Beat 1: Hook — bold promise/stat with pop-in animation. NO branding on
+    frame one (research: moving the logo off frame one lifted completion 67%).
+    Text lands at ~20-25% canvas height (hero zone)."""
     badge = (category or "NEWS").upper().replace("-", " ")
-    inner = f"""<div style="display:flex;flex-direction:column;justify-content:flex-end;height:100%;">
-  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:50px 44px;border-left:8px solid #D4AF37;">
-    <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:24px;">{badge}</div>
-    <div style="font-family:Inter;font-size:80px;font-weight:900;color:#ffffff;line-height:1.08;letter-spacing:-1px;word-wrap:break-word;overflow-wrap:break-word;">{hook_line}</div>
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:flex-start;height:100%;margin-top:240px;">
+  <div class="vds-fade" style="font-family:Inter;font-size:34px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:28px;animation-delay:.05s;">{badge}</div>
+  <div class="vds-pop" style="font-family:Inter;font-size:88px;font-weight:900;color:#ffffff;line-height:1.06;letter-spacing:-1px;animation-delay:.25s;">{hook_line}</div>
+  <div class="vds-rise" style="margin-top:36px;width:120px;height:8px;background:#D4AF37;border-radius:4px;animation-delay:.6s;"></div>
+</div>"""
+    return _pulse_safe_wrap(inner)
+
+
+def _pulse_news_html(news_summary):
+    """Beat 2: WHAT HAPPENED — the context frame. The actual news event in
+    short kinetic lines. This beat fixes the 'no context/information' problem:
+    a viewer who missed the headline learns the story here."""
+    lines = _wrap_short_lines(news_summary, 6)
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+  <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">WHAT HAPPENED</div>
+  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:48px 40px;border-left:8px solid #4ECDC4;">
+    <div class="vds-rise" style="font-family:Inter;font-size:52px;font-weight:700;color:#ffffff;line-height:1.35;animation-delay:.25s;">{lines}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
 
 
 def _pulse_hero_stat_html(big, sub, eyebrow):
-    """Scene 2: Hero stat — massive number on solid dark card."""
+    """Beat 3: Hero stat — the striking number, animated pop-in."""
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:80px 44px;border:3px solid rgba(212,175,55,0.4);">
-    <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px;">{eyebrow}</div>
-    <div style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:32px;text-shadow:0 0 60px rgba(212,175,55,0.4);">{big}</div>
-    <div style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;">{sub}</div>
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:70px 44px;border:3px solid rgba(212,175,55,0.4);">
+    <div class="vds-fade" style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">{eyebrow}</div>
+    <div class="vds-pop" style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:28px;text-shadow:0 0 60px rgba(212,175,55,0.4);animation-delay:.25s;">{big}</div>
+    <div class="vds-rise" style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;animation-delay:.55s;">{sub}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
 
 
 def _pulse_stat_grid_html(stats):
-    """Scene 3: Stat grid — 2-3 stats in bold stacked cards."""
+    """Beat 4a: Evidence — 2-3 supporting stats in stacked cards, staggered entrances."""
     colors = ["#D4AF37", "#4ECDC4", "#FF9933"]
     tiles_html = ""
     for i, stat in enumerate(stats[:3]):
         big = stat.get("big", "")
         label = stat.get("label", "")
         color = colors[i % len(colors)]
-        tiles_html += f"""<div style="background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 36px;text-align:center;border-left:8px solid {color};">
-      <div style="font-family:Inter;font-size:90px;font-weight:900;color:{color};line-height:1.0;margin-bottom:12px;">{big}</div>
-      <div style="font-family:Inter;font-size:32px;font-weight:600;color:#ffffff;line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
+        delay = 0.2 + i * 0.3
+        tiles_html += f"""<div class="vds-rise" style="background:rgba(10,22,40,0.94);border-radius:24px;padding:36px 32px;text-align:center;border-left:8px solid {color};animation-delay:{delay}s;">
+      <div style="font-family:Inter;font-size:84px;font-weight:900;color:{color};line-height:1.0;margin-bottom:10px;">{big}</div>
+      <div style="font-family:Inter;font-size:30px;font-weight:600;color:#ffffff;line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
     </div>"""
 
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-  <div style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,0.9);">BY THE NUMBERS</div>
-  <div style="display:flex;flex-direction:column;gap:24px;">
+  <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;margin-bottom:36px;text-transform:uppercase;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,0.9);animation-delay:.05s;">BY THE NUMBERS</div>
+  <div style="display:flex;flex-direction:column;gap:22px;">
     {tiles_html}
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
 
 
+def _pulse_versus_html(versus):
+    """Beat 4b: Evidence as claim-vs-counterclaim split-screen — the modern
+    2026 news treatment for two-sided stories. Left = side A, right = side B."""
+    a_label = versus.get("a_label", "")
+    a_value = versus.get("a_value", "")
+    b_label = versus.get("b_label", "")
+    b_value = versus.get("b_value", "")
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
+  <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;text-align:center;animation-delay:.05s;">TWO SIDES</div>
+  <div style="display:flex;gap:20px;align-items:stretch;">
+    <div class="vds-slidel" style="flex:1;background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 24px;border-top:8px solid #D4AF37;text-align:center;animation-delay:.2s;">
+      <div style="font-family:Inter;font-size:25px;font-weight:800;color:#D4AF37;letter-spacing:3px;margin-bottom:20px;">{a_label}</div>
+      <div style="font-family:Inter;font-size:38px;font-weight:700;color:#ffffff;line-height:1.25;">{a_value}</div>
+    </div>
+    <div class="vds-rise" style="flex:1;background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 24px;border-top:8px solid #FF6B6B;text-align:center;animation-delay:.5s;">
+      <div style="font-family:Inter;font-size:25px;font-weight:800;color:#FF6B6B;letter-spacing:3px;margin-bottom:20px;">{b_label}</div>
+      <div style="font-family:Inter;font-size:38px;font-weight:700;color:#ffffff;line-height:1.25;">{b_value}</div>
+    </div>
+  </div>
+</div>"""
+    return _pulse_safe_wrap(inner)
+
+
 def _pulse_diaspora_html(bullets):
-    """Scene 4: Diaspora panel — NRI impact in a bold full-width card."""
+    """Beat 5: Diaspora panel — why it matters to NRIs. Tight lines (≤8 words
+    each from the prompt), staggered entrances."""
     bullets_html = ""
-    for b in bullets[:3]:
-        bullets_html += f"""<div style="display:flex;align-items:flex-start;gap:20px;margin-bottom:28px;">
-      <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:14px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
+    for i, b in enumerate(bullets[:3]):
+        delay = 0.2 + i * 0.3
+        bullets_html += f"""<div class="vds-rise" style="display:flex;align-items:flex-start;gap:20px;margin-bottom:26px;animation-delay:{delay}s;">
+      <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:16px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
+      <div style="font-family:Inter;font-size:46px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
     </div>"""
 
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:60px 44px;border-left:10px solid #FF9933;">
-    <div style="font-family:Inter;font-size:34px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:40px;text-transform:uppercase;">THE DIASPORA ANGLE</div>
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:56px 44px;border-left:10px solid #FF9933;">
+    <div class="vds-fade" style="font-family:Inter;font-size:32px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:36px;text-transform:uppercase;animation-delay:.05s;">WHY IT MATTERS TO YOU</div>
     {bullets_html}
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
 
 
-def _pulse_cta_html():
-    """Scene 5: CTA card — brand + website, clean and big."""
-    inner = """<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:80px 44px;border:3px solid rgba(212,175,55,0.4);">
-    <div style="font-family:Inter;font-size:80px;font-weight:800;color:#D4AF37;letter-spacing:4px;margin-bottom:16px;">THE VIDESHI</div>
-    <div style="font-family:Inter;font-size:30px;color:rgba(255,255,255,0.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:50px;">GLOBAL INDIAN NEWS</div>
-    <div style="width:80px;height:4px;background:#D4AF37;margin:0 auto 50px;border-radius:2px;"></div>
-    <div style="font-family:Inter;font-size:48px;font-weight:700;color:#fff;margin-bottom:24px;">thevideshi.com</div>
-    <div style="font-family:Inter;font-size:52px;font-weight:900;color:#F2C84B;margin-bottom:40px;">@the.videshi</div>
-    <div style="font-family:Inter;font-size:26px;color:rgba(255,255,255,0.6);letter-spacing:2px;">YOUTUBE · INSTAGRAM · THREADS · X</div>
-  </div>
+def _pulse_payoff_html(payoff):
+    """Beat 6: Payoff — the so-what takeaway as the final message, with only a
+    compact brand line (research: never end on pure branding; end on the story)."""
+    inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
+  <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">THE TAKEAWAY</div>
+  <div class="vds-pop" style="font-family:Inter;font-size:62px;font-weight:900;color:#ffffff;line-height:1.18;animation-delay:.25s;">{payoff}</div>
+  <div class="vds-rise" style="margin-top:72px;font-family:Inter;font-size:30px;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:4px;animation-delay:.7s;">THE VIDESHI · thevideshi.com</div>
 </div>"""
     return _pulse_safe_wrap(inner)
 
@@ -6751,135 +6838,75 @@ def build_quick_pulse_timeline(
     hero_image_url, music_url, music_volume,
     pulse_stats, category
 ):
-    """Build a Quick Pulse reel — music + bold data cards, no voice.
+    """Build a Quick Pulse v2 reel — music + kinetic typography, no voice.
 
-    5 scenes, ~18 seconds total:
-      1. Hook frame (hero image + hook_line)      3.5s
-      2. Hero stat card (one massive number)       3.5s
-      3. Stat grid (2-3 supporting numbers)        4.0s
-      4. Diaspora panel (NRI impact bullets)        3.5s
-      5. CTA card (brand + handles)                3.5s
+    6 beats, ~35 seconds, narrative arc News → Evidence → Context → Impact:
+      1. Hook     (0-4s)    — bold promise/stat. NO branding on frame one.
+      2. News     (4-10s)   — WHAT HAPPENED: the context frame.
+      3. Hero    (10-16s)   — the striking number, animated pop-in.
+      4. Evidence(16-23s)   — stat grid, or claim-vs-counterclaim split-screen.
+      5. Diaspora(23-30s)   — why it matters to NRIs.
+      6. Payoff  (30-35s)   — so-what takeaway + compact brand line.
+
+    Every text block animates in (entrance → settle), never a frozen slide.
+    All content lives in the top 83% of the canvas (bottom 17% = YouTube UI).
     """
     hook_stat = pulse_stats.get("hook_stat", {})
     stats = pulse_stats.get("stats", [])
     diaspora = pulse_stats.get("diaspora_bullets", [])
     hook_line = pulse_stats.get("hook_line", "BREAKING NEWS")
+    news_summary = pulse_stats.get("news_summary", "")
+    payoff = pulse_stats.get("payoff", "") or hook_line
+    versus = pulse_stats.get("versus") or {}
 
-    # Scene timings (default 5-scene layout)
-    S1_START, S1_LEN = 0.0, 3.5
-    S2_START, S2_LEN = 3.5, 3.5
-    S3_START, S3_LEN = 7.0, 4.0
-    S4_START, S4_LEN = 11.0, 3.5
-    S5_START, S5_LEN = 14.5, 3.5
-    total_duration = 18.0
-
+    has_versus = bool(versus.get("a_value") and versus.get("b_value"))
     has_grid = len(stats) >= 2
+    has_evidence = has_versus or has_grid
     has_diaspora = len(diaspora) >= 2
 
-    # Adjust timings if panels are missing — redistribute time
-    if not has_grid and not has_diaspora:
-        S1_LEN = 4.0
-        S2_START, S2_LEN = 4.0, 5.0
-        S5_START, S5_LEN = 9.0, 4.0
-        total_duration = 13.0
-    elif not has_grid:
-        S1_LEN = 4.0
-        S2_START, S2_LEN = 4.0, 4.0
-        S4_START, S4_LEN = 8.0, 4.0
-        S5_START, S5_LEN = 12.0, 3.5
-        total_duration = 15.5
-    elif not has_diaspora:
-        S1_LEN = 4.0
-        S2_START, S2_LEN = 4.0, 4.0
-        S3_START, S3_LEN = 8.0, 4.0
-        S5_START, S5_LEN = 12.0, 3.5
-        total_duration = 15.5
+    # Beat list: (html, transition_in, seconds) — built dynamically so missing
+    # panels collapse cleanly instead of leaving dead air.
+    beats = [(_pulse_hook_html(hook_line, category), "fade", 4.0)]
+    if news_summary:
+        beats.append((_pulse_news_html(news_summary), "slideRight", 6.0))
+    beats.append((
+        _pulse_hero_stat_html(
+            hook_stat.get("big", ""),
+            hook_stat.get("sub", ""),
+            hook_stat.get("eyebrow", "BY THE NUMBERS"),
+        ),
+        "slideUp", 6.0,
+    ))
+    if has_versus:
+        beats.append((_pulse_versus_html(versus), "slideLeft", 7.0))
+    elif has_grid:
+        beats.append((_pulse_stat_grid_html(stats), "slideLeft", 7.0))
+    if has_diaspora:
+        beats.append((_pulse_diaspora_html(diaspora), "slideRight", 7.0))
+    beats.append((_pulse_payoff_html(payoff), "fade", 5.0))
+
+    total_duration = sum(d for _, _, d in beats)
 
     # ── Build tracks ──
 
-    # Track 1 (top): HTML overlay cards
+    # Track 1 (top): HTML overlay cards with kinetic-typography CSS
     overlay_clips = []
-
-    # Scene 1: Hook text over hero image
-    overlay_clips.append({
-        "asset": {
-            "type": "html",
-            "html": _pulse_hook_html(hook_line, category),
-            "css": "",
-            "width": 1080,
-            "height": 1920,
-        },
-        "start": S1_START,
-        "length": S1_LEN,
-        "position": "center",
-        "transition": {"in": "fade"},
-    })
-
-    # Scene 2: Hero stat card (full-frame, navy bg baked into HTML)
-    overlay_clips.append({
-        "asset": {
-            "type": "html",
-            "html": _pulse_hero_stat_html(
-                hook_stat.get("big", ""),
-                hook_stat.get("sub", ""),
-                hook_stat.get("eyebrow", "BY THE NUMBERS"),
-            ),
-            "css": "",
-            "width": 1080,
-            "height": 1920,
-        },
-        "start": S2_START,
-        "length": S2_LEN,
-        "position": "center",
-        "transition": {"in": "slideRight"},
-    })
-
-    # Scene 3: Stat grid (if we have ≥2 stats)
-    if has_grid:
+    t = 0.0
+    for html, trans, dur in beats:
         overlay_clips.append({
             "asset": {
                 "type": "html",
-                "html": _pulse_stat_grid_html(stats),
-                "css": "",
+                "html": html,
+                "css": _PULSE_KINETIC_CSS,
                 "width": 1080,
                 "height": 1920,
             },
-            "start": S3_START,
-            "length": S3_LEN,
+            "start": t,
+            "length": dur,
             "position": "center",
-            "transition": {"in": "slideUp"},
+            "transition": {"in": trans},
         })
-
-    # Scene 4: Diaspora panel (if we have ≥2 bullets)
-    if has_diaspora:
-        overlay_clips.append({
-            "asset": {
-                "type": "html",
-                "html": _pulse_diaspora_html(diaspora),
-                "css": "",
-                "width": 1080,
-                "height": 1920,
-            },
-            "start": S4_START,
-            "length": S4_LEN,
-            "position": "center",
-            "transition": {"in": "slideLeft"},
-        })
-
-    # Scene 5: CTA card
-    overlay_clips.append({
-        "asset": {
-            "type": "html",
-            "html": _pulse_cta_html(),
-            "css": "",
-            "width": 1080,
-            "height": 1920,
-        },
-        "start": S5_START,
-        "length": S5_LEN,
-        "position": "center",
-        "transition": {"in": "fade"},
-    })
+        t += dur
 
     # Track 2: Background imagery — hero image runs the FULL duration
     # (darkened) so every card has a rich visual background, not flat navy.
@@ -8137,7 +8164,7 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     1. Extract stats via GPT-4o-mini (or Gemini fallback)
     2. Source hero image for the hook frame
     3. Pick mood-matched music
-    4. Build a 5-scene data-card timeline (~18s)
+    4. Build a 6-beat kinetic timeline (~35s): hook → news → hero → evidence → diaspora → payoff
     5. Render, download, upload, register
     """
     headline = article.get("headline", "Unknown")
@@ -8167,7 +8194,7 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
 
     # Step 3: Music — Quick Pulse needs HIGH ENERGY regardless of story mood.
     # Slow/brooding families (dramatic-dark, chill-lifestyle, emotional-inspiring)
-    # kill the pace of a fast 18-second data-card reel. Override to always use
+    # kill the pace of a fast 35-second kinetic reel. Override to always use
     # punchy families that match the rapid-cut visual style.
     # Also prefer Pixabay CC0 tracks (more modern) over Kevin MacLeod.
     _PULSE_MOOD_OVERRIDE = {
@@ -8196,7 +8223,7 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     json_path = BUILD_DIR / f"ss-pulse-{slug}.json"
     with open(json_path, "w") as f:
         json.dump(edit_json, f, indent=2)
-    print(f"  📋 Timeline: {total_duration:.1f}s, {len(edit_json['timeline']['tracks'][0]['clips'])} scenes")
+    print(f"  📋 Timeline: {total_duration:.1f}s, {len(edit_json['timeline']['tracks'][0]['clips'])} beats")
 
     if dry_run:
         print("🏁 DRY RUN — JSON built, not rendering")

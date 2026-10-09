@@ -68,8 +68,9 @@ def get_duration_seconds(video_path):
     except Exception:
         return None
 
-MAX_DURATION = 35   # hard skip — algorithm punishes long Shorts (8x fewer views >30s)
-PREFERRED_DURATION = 25  # prefer ≤25s; the 19s format got the breakout hits
+MAX_DURATION = 42   # hard skip — research target is 25-40s for the kinetic news format
+PREFERRED_MIN = 25   # prefer 25-40s; completion rate drives reach, not raw shortness
+PREFERRED_MAX = 40
 
 def extract_slug_fragments(filename):
     name = re.sub(r'^reel-', '', filename.replace('.mp4', ''))
@@ -210,7 +211,7 @@ for reel_path in final_unuploaded:
                          "uploaded_at": datetime.now(timezone.utc).isoformat(), "url": "skipped"}
         continue
 
-    # Duration check — prefer ≤25s, hard skip >35s
+    # Duration check — target 25-40s kinetic format, hard skip >42s
     dur = get_duration_seconds(reel_path)
     if dur is not None and dur > MAX_DURATION:
         print(f"  SKIP ({dur:.0f}s > {MAX_DURATION}s): {fname}")
@@ -225,8 +226,8 @@ for reel_path in final_unuploaded:
     else:
         score = 0
         headline = ''
-    # Prefer shorter videos with a small tiebreak bonus
-    if dur is not None and dur <= PREFERRED_DURATION:
+    # Prefer videos in the 25-40s research window with a small tiebreak bonus
+    if dur is not None and PREFERRED_MIN <= dur <= PREFERRED_MAX:
         score += 1
     candidates.append((score, reel_path, article, fname, dur))
     print(f"  score={score:3d} dur={dur:.0f}s  {fname[:60]}")
@@ -252,25 +253,60 @@ if not to_upload:
 print(f"\nUploading top {len(to_upload)} by importance:\n")
 
 def generate_hashtags(category, headline):
-    base = ['#TheVideshi', '#Shorts', '#IndianDiaspora', '#NRI']
+    """Max 3 hashtags for the description: #Shorts + 2 topic tags.
+    Research: hashtags in the title look spammy and reduce CTR; 3 max in
+    the description is the evidenced limit."""
+    base = ['#Shorts']
     cat_tags = {
-        'news': ['#IndiaNews', '#BreakingNews', '#DesiNews'],
-        'immigration': ['#H1B', '#H1BVisa', '#GreenCard', '#USImmigration'],
-        'nri-world': ['#NRILife', '#DesiAbroad', '#IndianAmerican'],
+        'news': ['#IndiaNews', '#BreakingNews'],
+        'immigration': ['#H1B', '#GreenCard'],
+        'nri-world': ['#NRILife', '#IndianAmerican'],
         'travel': ['#TravelIndia', '#IncredibleIndia'],
         'lifestyle-health': ['#DesiLifestyle', '#Wellness'],
-        'markets-finance': ['#StockMarket', '#Nifty', '#Sensex'],
+        'markets-finance': ['#StockMarket', '#Nifty'],
         'technology': ['#TechNews', '#AI'],
-        'sports': ['#Cricket', '#IPL', '#TeamIndia'],
+        'sports': ['#Cricket', '#IPL'],
         'entertainment': ['#Bollywood', '#IndianCinema'],
         'food': ['#IndianFood', '#DesiFood'],
     }
     tags = base + cat_tags.get((category or '').lower(), ['#IndiaNews'])
-    for w in re.findall(r'[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*', headline or '')[:5]:
-        tag = '#' + w.replace(' ', '')
-        if tag not in tags and len(tag) > 3:
-            tags.append(tag)
-    return ' '.join(tags[:20])
+    return ' '.join(tags[:3])
+
+def rewrite_shorts_title(headline):
+    """LLM rewrite: keyword-first, <=60 chars, curiosity/emotion.
+    Falls back to plain truncation on any failure — upload never blocks."""
+    fallback = (headline[:57] + '...') if len(headline) > 60 else headline
+    api_key = getattr(_newsletter, 'OPENAI_API_KEY', '')
+    if not api_key:
+        return fallback
+    prompt = (
+        "Rewrite this news headline as a YouTube Shorts title.\n"
+        "Rules: subject/keyword FIRST, max 60 characters, spark curiosity or "
+        "emotion, no hashtags, no emojis, never invent facts, stay faithful.\n"
+        f"Headline: {headline}\n"
+        'Return JSON only: {"title": "..."}'
+    )
+    try:
+        code, data = curl_json([
+            '-X', 'POST', 'https://api.openai.com/v1/chat/completions',
+            '-H', f'Authorization: Bearer {api_key}',
+            '-H', 'Content-Type: application/json',
+            '-d', json.dumps({
+                "model": "gpt-4o-mini",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 60,
+                "temperature": 0.7,
+                "response_format": {"type": "json_object"},
+            }),
+        ])
+        if code == 200 and isinstance(data, dict):
+            t = json.loads(data["choices"][0]["message"]["content"]).get("title", "")
+            t = t.strip().strip('"')
+            if t and len(t) <= 70:
+                return t[:60]
+    except Exception as e:
+        print(f"  Title rewrite failed ({e}) — using fallback")
+    return fallback
 
 def generate_tags(category, headline):
     tags = ["The Videshi", "Indian Diaspora", "NRI", "India News", "Shorts"]
@@ -348,8 +384,7 @@ for score, reel_path, article, fname, dur in to_upload:
         subheadline, slug, category = '', 'unknown', 'news'
         print(f"  No article match, using filename: {headline[:80]}")
 
-    title = (headline[:87] + '...') if len(headline) > 90 else headline
-    title = f"{title} #Shorts"
+    title = rewrite_shorts_title(headline)
     hashtags = generate_hashtags(category, headline)
     article_url = f"https://www.thevideshi.com/articles/{slug}" if slug != 'unknown' else "https://www.thevideshi.com"
     description = (f"{subheadline}\n\nFull story: {article_url}\n\n"
