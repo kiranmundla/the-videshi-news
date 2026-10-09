@@ -2609,10 +2609,11 @@ def _card_image_background(url, W, H):
             src = src.crop((0, y0, sw, y0 + nh))
         src = src.resize((W, H), Image.LANCZOS)
         # global darken so any image reads as a brand-dim backdrop. Lifted from
-        # 0.46 → 0.62 (Kiran flagged reels reading too dark, 2026-06-23). Text
-        # legibility is still protected by the bowl scrim below + each overlay's
-        # own dedicated dark band, so the backdrop itself can sit brighter.
-        src = ImageEnhance.Brightness(src).enhance(0.62)
+        # 0.46 → 0.62 (Kiran flagged reels reading too dark, 2026-06-23) →
+        # 0.80 (Kiran: faces look dull/dark, 2026-10-08). Text legibility is
+        # still protected by the bowl scrim below + each overlay's own
+        # dedicated dark band, so the backdrop itself can sit brighter.
+        src = ImageEnhance.Brightness(src).enhance(0.80)
         src = ImageEnhance.Color(src).enhance(0.92)
         base = src.convert("RGBA")
         # vertical scrim: darker top + bottom, slightly clearer middle, so the
@@ -6408,7 +6409,7 @@ def build_anchor_reel_timeline(
             "start": 0,
             "length": hook_duration,
             "fit": "cover",
-            "filter": "darken",
+            "filter": "none",
         })
     else:
         # STATIC hook (no zoomIn). The QA gate samples the poster frame at exactly
@@ -6423,7 +6424,7 @@ def build_anchor_reel_timeline(
             "start": 0,
             "length": hook_duration,
             "fit": "cover",
-            "filter": "darken",
+            "filter": "none",
         })
 
 
@@ -6918,7 +6919,7 @@ def build_quick_pulse_timeline(
             "length": total_duration + 0.5,
             "fit": "cover",
             "effect": "zoomInSlow",
-            "filter": "darken",
+            "filter": "none",
             "opacity": 0.5,
         })
 
