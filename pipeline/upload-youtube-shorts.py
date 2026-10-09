@@ -276,7 +276,11 @@ def rewrite_shorts_title(headline):
     """LLM rewrite: keyword-first, <=60 chars, curiosity/emotion.
     Falls back to plain truncation on any failure — upload never blocks."""
     fallback = (headline[:57] + '...') if len(headline) > 60 else headline
-    api_key = getattr(_newsletter, 'OPENAI_API_KEY', '')
+    try:
+        openai_env = load_env('~/workspace/.env.openai')
+        api_key = openai_env.get('OPENAI_API_KEY', '')
+    except Exception:
+        api_key = ''
     if not api_key:
         return fallback
     prompt = (
