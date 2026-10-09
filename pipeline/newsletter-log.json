@@ -1426,5 +1426,27 @@
     "errors": 0,
     "hero_slug": "who-is-vishal-sikka-hang-ten-ai-startup-85m",
     "story_count": 5
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-09T03:12:22.599230+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 08, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "top_story_slug": "microsoft-disputes-vance-fraud-claims-h1b-response",
+    "quick_hit_count": 5,
+    "deadline_count": 6
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-09T03:15:17.204320+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 08, 2026",
+    "subscribers": 1,
+    "sent": 1,
+    "errors": 0,
+    "top_story_slug": "delhi-deploys-26000-central-forces-cjp-october-10-protest",
+    "quick_hit_count": 5,
+    "deadline_count": 6
   }
 ]

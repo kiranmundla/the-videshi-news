@@ -1,0 +1,94 @@
+[
+  {
+    "id": "8867f016-21ce-469b-b74a-24b0dddb7fd0",
+    "headline": "Seattle Is Obsessed With Dosa: Google Maps Shows 136% Jump in Mentions",
+    "slug": "dosa-seattle-favourite-google-maps-136-percent",
+    "category": "food",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/Google/status/2108204734469324976 appears both inline and in social_embeds"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "fc1e0d70-aefe-47d4-9c09-813d2d4a7ef9",
+    "headline": "ICE Agent Shoots Man in NYC; Mamdani Calls Trump, Demands ICE Out",
+    "slug": "mamdani-condemns-ice-shooting-nyc-reaches-out-trump",
+    "category": "immigration",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=060r9GGzrI8 appears both inline and in social_embeds"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "1e46b2d8-210e-4c59-92d5-52a280680b47",
+    "headline": "Madhuri Dixit Tells KBC: Mother's Advice Carried Her Through Bollywood Struggles",
+    "slug": "madhuri-dixit-kbc-18-mother-advice-bollywood-struggles",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "1234c296-840b-49a2-aea4-3d1409f544c7",
+    "headline": "Siddharth Parab: Authenticity in Indian Food Is Respect, Not Replication",
+    "slug": "siddharth-parab-authenticity-indian-cuisine",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "842714b2-0685-41f0-9089-8df9445ecacd",
+    "headline": "Oxford Area High School Closed Friday After Measles Case Confirmed",
+    "slug": "oxford-area-high-school-closed-friday-measles-case",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "03ca3de8-1d71-4862-aa62-740bc23bd0db",
+    "headline": "Nvidia-Backed Firmus Scraps Landmark $5 Billion IPO, Blaming Market Volatility",
+    "slug": "firmus-nvidia-backed-ipo-withdrawn",
+    "category": "technology",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=RHRM6nbujO8 appears both inline and in social_embeds"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "30c45d84-331d-422b-8bb0-9953ebeecc52",
+    "headline": "Putin Tells Iran's President Russia Will \u201cDo Everything\u201d to Help End Iran War",
+    "slug": "putin-pezeshkian-iran-war-mediation-offer",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "219fee55-3209-494c-91cf-20fd0b8aa0a9",
+    "headline": "\u201cIs Ambani the Real Boss of India?\u201d Musk Escalates Fight Over Stalled Starlink L",
+    "slug": "musk-ambani-starlink-india-launch-stalls",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "a1333186-15a0-4e1e-baab-ecf18283bf1f",
+    "headline": "Entry-Level Jobs Shrink 25% as AI Reshapes Hiring for Indian Freshers",
+    "slug": "indian-students-entry-level-jobs-automation-squeeze",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "db43392e-27b8-441b-ba4b-29310c3bbf37",
+    "headline": "The Vvaan Day 14: \u20b986 Crore Worldwide, Less Than \u20b93 Crore From a Career Mileston",
+    "slug": "the-vvaan-day-14-box-office-collection",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": null
+  }
+]

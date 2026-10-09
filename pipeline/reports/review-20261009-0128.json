@@ -1,0 +1,20 @@
+[
+  {
+    "id": "c3ef4b37-92d9-4162-bd99-a94b8d58d917",
+    "headline": "Microsoft Disputes Vance's 'Foreign Indentured Servants' Claim With Its Own H-1B",
+    "slug": "microsoft-disputes-vance-fraud-claims-h1b-response",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when Microsoft released its data in relation to Vance's accusations, as well as the timeline for the Labor Department's actions regarding PERM applications.",
+        "Provide more context on the implications of the Labor Department's refusal to process new or pending PERM applications for affected companies, including potential impacts on employment and immigration status for H-1B workers.",
+        "Include a direct quote from Microsoft or a relevant official to strengthen the attribution and provide a clearer perspective on the company's stance."
+      ],
+      "embed_opportunities": [
+        "Embed the official Labor Department statement regarding the refusal to process PERM applications to provide readers with direct access to the source of this information."
+      ]
+    }
+  }
+]

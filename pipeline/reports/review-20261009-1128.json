@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bafd33c2-23d2-4344-95a2-d3f2ef020763",
+    "headline": "Doctor X \u2013 Mafia in White Trailer Out",
+    "slug": "doctor-x-mafia-in-white-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Correct the headline to follow the 'Film Teaser/Trailer Out' format by including 'Teaser' or 'Trailer' appropriately.",
+        "Ensure the drop date is clearly stated only once to avoid redundancy.",
+        "Remove unnecessary phrases like 'The diagnosis is in, only Kim Ji-won can save us now' to maintain focus.",
+        "Include a YouTube embed link for the trailer."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer from YouTube directly in the article."
+      ]
+    }
+  }
+]
