@@ -5,8 +5,88 @@ Uses curl subprocess for all HTTP (Python urllib/requests fail through the proxy
 YouTube resumable upload requires part=snippet,status in the init URL.
 """
 
-import json, os, sys, re, subprocess, time, glob
+import json, os, sys, re, subprocess, time, glob, importlib.util
 from datetime import datetime, timezone
+
+# --- Import newsletter scoring (single source of truth for importance) ---
+_newsletter_path = os.path.expanduser('~/workspace/the-videshi-news/pipeline/send-newsletter-daily.py')
+_newsletter_spec = importlib.util.spec_from_file_location("newsletter_daily", _newsletter_path)
+_newsletter = importlib.util.module_from_spec(_newsletter_spec)
+try:
+    _newsletter_spec.loader.exec_module(_newsletter)
+    score_article = _newsletter.score_article
+    _scoring_available = True
+except Exception as e:
+    print(f"WARN: could not import newsletter scoring: {e} — using fallback")
+    score_article = None
+    _scoring_available = False
+
+def shorts_virality_boost(a):
+    """Extra score for high-stakes, high-emotion stories that perform as Shorts.
+    The two breakout hits (700+ views) were high-emotion, high-stakes stories."""
+    boost = 0
+    text = ((a.get("headline") or "") + " " + (a.get("subheadline") or "")).lower()
+
+    # Breaking / urgent — highest Shorts potential
+    if re.search(r'\b(breaking|exclusive|just in|developing|alert)\b', text):
+        boost += 3
+
+    # High-emotion, high-stakes topics
+    high_stakes = ['trump', 'modi', 'deportation', 'deported', 'ban', 'banned', 'crisis',
+                   'war', 'attack', 'killed', 'arrest', 'scam', 'fraud', 'protest',
+                   'election', 'verdict', 'resigns', 'suspended', 'crash']
+    if any(w in text for w in high_stakes):
+        boost += 2
+
+    # Immigration — core audience, consistently strong
+    if re.search(r'\b(h-1b|h1b|visa|green card|uscis|immigration|opt|deportation)\b', text):
+        boost += 2
+
+    # Routine / low-emotion topics — penalize
+    routine = ['gold price', 'silver price', 'market roundup', 'weather', 'sensex today',
+               'nifty today', 'daily horoscope', 'petrol price', 'diesel price']
+    if any(w in text for w in routine):
+        boost -= 5
+
+    return boost
+
+def score_for_shorts(a):
+    """Combined score: newsletter editorial quality + Shorts virality signals."""
+    base = score_article(a) if _scoring_available and score_article else 0
+    return base + shorts_virality_boost(a)
+
+# --- Duration check ---
+def get_duration_seconds(video_path):
+    """Return video duration in seconds via ffprobe, or None on failure."""
+    try:
+        r = subprocess.run(
+            ['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+             '-of', 'default=noprint_wrappers=1:nokey=1', video_path],
+            capture_output=True, text=True, timeout=30,
+        )
+        return float(r.stdout.strip())
+    except Exception:
+        return None
+
+MAX_DURATION = 35   # hard skip — algorithm punishes long Shorts (8x fewer views >30s)
+PREFERRED_DURATION = 25  # prefer ≤25s; the 19s format got the breakout hits
+
+def extract_slug_fragments(filename):
+    name = re.sub(r'^reel-', '', filename.replace('.mp4', ''))
+    name = re.sub(r'-\d{8}$', '', name)
+    name = re.sub(r'-with-music(-v\d+)?$', '', name)
+    return name.split('-')
+
+def match_article(filename, articles):
+    fragments = set(f.lower() for f in extract_slug_fragments(filename))
+    best, best_score = None, 0
+    for a in articles:
+        slug_words = set((a.get('slug') or '').lower().split('-'))
+        overlap = len(fragments & slug_words)
+        score = overlap / max(len(fragments), 1)
+        if score > best_score and score > 0.4:
+            best, best_score = a, score
+    return best
 
 # --- Load credentials ---
 def load_env(path):
@@ -105,34 +185,71 @@ if not final_unuploaded:
         json.dump(yt_log, f, indent=2)
     sys.exit(0)
 
-print(f"\nFound {len(final_unuploaded)} unuploaded reel(s). Uploading up to 2.\n")
+print(f"\nFound {len(final_unuploaded)} unuploaded reel(s).\n")
 
-# --- Fetch recent articles ---
+# --- Fetch recent articles (full fields for importance scoring) ---
 print("Fetching recent articles from Supabase...")
 try:
-    articles = sb_get("p2_articles?status=eq.published&order=published_at.desc&limit=50"
-                      "&select=id,slug,headline,subheadline,category")
+    articles = sb_get("p2_articles?status=eq.published&order=published_at.desc&limit=100"
+                      "&select=id,slug,headline,subheadline,body,category,image_url,is_editorial,is_featured,published_at")
     print(f"  Got {len(articles)} recent articles")
 except Exception as e:
     print(f"  Failed to fetch articles: {e}")
     articles = []
 
-def extract_slug_fragments(filename):
-    name = re.sub(r'^reel-', '', filename.replace('.mp4', ''))
-    name = re.sub(r'-\d{8}$', '', name)
-    name = re.sub(r'-with-music(-v\d+)?$', '', name)
-    return name.split('-')
+# --- Score, filter, and rank reels by story importance ---
+print("Scoring reels by story importance...")
+candidates = []
+for reel_path in final_unuploaded:
+    fname = os.path.basename(reel_path)
 
-def match_article(filename, articles):
-    fragments = set(f.lower() for f in extract_slug_fragments(filename))
-    best, best_score = None, 0
-    for a in articles:
-        slug_words = set((a.get('slug') or '').lower().split('-'))
-        overlap = len(fragments & slug_words)
-        score = overlap / max(len(fragments), 1)
-        if score > best_score and score > 0.4:
-            best, best_score = a, score
-    return best
+    # Skip voiceover variants — data shows 95% fewer views (3.9 avg vs 80.4)
+    if 'voiceover' in fname.lower():
+        print(f"  SKIP (voiceover variant): {fname}")
+        yt_log[fname] = {"video_id": "skipped-voiceover", "article_slug": "skipped",
+                         "uploaded_at": datetime.now(timezone.utc).isoformat(), "url": "skipped"}
+        continue
+
+    # Duration check — prefer ≤25s, hard skip >35s
+    dur = get_duration_seconds(reel_path)
+    if dur is not None and dur > MAX_DURATION:
+        print(f"  SKIP ({dur:.0f}s > {MAX_DURATION}s): {fname}")
+        yt_log[fname] = {"video_id": "skipped-too-long", "article_slug": "skipped",
+                         "uploaded_at": datetime.now(timezone.utc).isoformat(), "url": "skipped"}
+        continue
+
+    article = match_article(fname, articles)
+    if article:
+        score = score_for_shorts(article)
+        headline = article.get('headline', '')
+    else:
+        score = 0
+        headline = ''
+    # Prefer shorter videos with a small tiebreak bonus
+    if dur is not None and dur <= PREFERRED_DURATION:
+        score += 1
+    candidates.append((score, reel_path, article, fname, dur))
+    print(f"  score={score:3d} dur={dur:.0f}s  {fname[:60]}")
+
+with open(LOG_PATH, 'w') as f:
+    json.dump(yt_log, f, indent=2)
+
+# Rank by score (desc), take top 2 — most important stories only
+candidates.sort(key=lambda x: x[0], reverse=True)
+to_upload = candidates[:2]
+
+if not to_upload:
+    print("No reels passed importance/duration filters.")
+    sys.exit(0)
+
+# Minimum bar: don't upload low-importance stories even if reels exist
+MIN_SCORE = 3
+to_upload = [c for c in to_upload if c[0] >= MIN_SCORE]
+if not to_upload:
+    print(f"No reels met minimum importance bar (score >= {MIN_SCORE}).")
+    sys.exit(0)
+
+print(f"\nUploading top {len(to_upload)} by importance:\n")
 
 def generate_hashtags(category, headline):
     base = ['#TheVideshi', '#Shorts', '#IndianDiaspora', '#NRI']
@@ -218,11 +335,8 @@ access_token = get_access_token()
 print("  Token OK")
 
 uploaded, errors = 0, []
-for reel_path in final_unuploaded[:2]:
-    fname = os.path.basename(reel_path)
-    print(f"\n{'='*60}\nProcessing: {fname}")
-
-    article = match_article(fname, articles)
+for score, reel_path, article, fname, dur in to_upload:
+    print(f"\n{'='*60}\nProcessing (score={score}): {fname}")
     if article:
         headline = article.get('headline', '')
         subheadline = article.get('subheadline', '') or ''
@@ -263,7 +377,7 @@ for reel_path in final_unuploaded[:2]:
         with open(LOG_PATH, 'w') as f:
             json.dump(yt_log, f, indent=2)
         uploaded += 1
-        if uploaded < 2 and len(final_unuploaded) > 1:
+        if uploaded < 2 and len(to_upload) > 1:
             print("  Waiting 10s...")
             time.sleep(10)
     except Exception as e:
