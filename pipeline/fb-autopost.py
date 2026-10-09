@@ -110,21 +110,31 @@ def publish(text):
 
 def _verify_recent_post(text):
     """Check the Page's recent posts for our text (handles timeout race)."""
+    import time
     first_line = text.split("\n")[0].strip()[:60]
     cmd = ["facebook-cli", "pages", "posts", "list",
            "--page-id", PAGE_ID]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-        data = json.loads(r.stdout)
-    except Exception as e:
-        print(f"ERROR: verify failed: {e}", file=sys.stderr)
-        return None
-    for post in data.get("results", []):
-        if first_line and first_line in (post.get("text") or ""):
-            print(f"Verified live post: {post.get('post_url')}")
-            return {"state": "published",
-                    "post_url": post.get("post_url"),
-                    "post_id": post.get("post_id")}
+    # A fresh post may take a few seconds to appear in the list; poll.
+    for attempt in range(4):
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            data = json.loads(r.stdout)
+        except Exception as e:
+            print(f"ERROR: verify failed (attempt {attempt + 1}): {e}",
+                  file=sys.stderr)
+            break
+        for post in data.get("results", []):
+            meta = post.get("metadata") or {}
+            post_text = (post.get("text") or meta.get("caption_excerpt")
+                         or "")
+            if first_line and first_line in post_text:
+                post_id = post.get("post_id") or post.get("object_id")
+                print(f"Verified live post: {post.get('post_url') or post_id}")
+                return {"state": "published",
+                        "post_url": post.get("post_url"),
+                        "post_id": post_id}
+        if attempt < 3:
+            time.sleep(10)
     print("ERROR: post not found in recent posts after timeout",
           file=sys.stderr)
     return None
