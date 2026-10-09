@@ -21,6 +21,7 @@ import subprocess
 import sys
 import time
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 
 # ── Env ──────────────────────────────────────────────────────────────
 def load_env(path):
@@ -176,27 +177,41 @@ def main():
         return
 
     ok = fail = 0
-    for i, row in enumerate(todo):
+    # Parallel workers: each does geocode->patch sequentially.
+    # 5 workers ~= 5x throughput, well under the 50 QPS API limit.
+    NUM_WORKERS = 5
+
+    def do_one(row):
         addr = build_address(row)
-        (latlng, err) = geocode(addr)
+        latlng, err = geocode(addr)
         if latlng:
             if patch_coords(row["id"], latlng[0], latlng[1]):
-                ok += 1
-                done.add(row["id"])
-            else:
-                fail += 1
-                state["failed"][str(row["id"])] = "PATCH_FAILED"
-        else:
-            fail += 1
-            state["failed"][str(row["id"])] = err or "UNKNOWN"
-            if err in ("OVER_QUERY_LIMIT", "REQUEST_DENIED"):
-                print(f"  FATAL geocode error: {err} — stopping", flush=True)
-                break
-        if (i + 1) % 50 == 0:
-            state["done_ids"] = sorted(done)
-            save_state(state)
-            print(f"  ...{i+1}/{len(todo)} ({ok} ok, {fail} failed)", flush=True)
-        time.sleep(RATE_DELAY)
+                return (row["id"], True, None)
+            return (row["id"], False, "PATCH_FAILED")
+        return (row["id"], False, err or "UNKNOWN")
+
+    import threading
+    lock = threading.Lock()
+    with ThreadPoolExecutor(max_workers=NUM_WORKERS) as ex:
+        futures = [ex.submit(do_one, row) for row in todo]
+        for i, fut in enumerate(futures):
+            rid, success, err = fut.result()
+            with lock:
+                if success:
+                    ok += 1
+                    done.add(rid)
+                else:
+                    fail += 1
+                    state["failed"][str(rid)] = err
+                    if err in ("OVER_QUERY_LIMIT", "REQUEST_DENIED"):
+                        print(f"  FATAL geocode error: {err} — stopping", flush=True)
+                        ex.shutdown(cancel_futures=True)
+                        break
+            if (i + 1) % 100 == 0:
+                with lock:
+                    state["done_ids"] = sorted(done)
+                    save_state(state)
+                print(f"  ...{i+1}/{len(todo)} ({ok} ok, {fail} failed)", flush=True)
 
     state["done_ids"] = sorted(done)
     save_state(state)
