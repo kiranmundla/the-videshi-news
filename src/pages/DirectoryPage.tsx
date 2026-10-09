@@ -499,16 +499,33 @@ export default function DirectoryPage() {
 
     if (nearMeActive && userCoords) {
       // Near Me mode: fetch all listings, sort by distance
-      getDirectoryListings(categoryFilter, null, searchQuery || null, 500, 0, subcategoryFilter).then((data) => {
-        const sorted = sortListingsByDistance(data, userCoords.lat, userCoords.lng);
+      // Capture filter values at fetch time to avoid stale closures
+      const cf = categoryFilter;
+      const sf = subcategoryFilter;
+      const sq = searchQuery;
+      getDirectoryListings(cf, null, sq || null, 500, 0, sf).then((data) => {
+        // Defensive: ensure displayed listings match the selected category
+        // (guards against any stale-closure or cache mismatch)
+        let filtered = data;
+        if (cf) filtered = filtered.filter((l) => l.category === cf);
+        if (sf) filtered = filtered.filter((l) => l.subcategory === sf);
+        const sorted = sortListingsByDistance(filtered, userCoords.lat, userCoords.lng);
         setListings(sorted);
         setHasMore(false);
         setLoading(false);
       });
     } else {
-      getDirectoryListings(categoryFilter, cityFilter, searchQuery || null, PAGE_SIZE, 0, subcategoryFilter).then((data) => {
-        setListings(data);
-        setHasMore(data.length === PAGE_SIZE);
+      const cf = categoryFilter;
+      const sf = subcategoryFilter;
+      const sq = searchQuery;
+      const ctf = cityFilter;
+      getDirectoryListings(cf, ctf, sq || null, PAGE_SIZE, 0, sf).then((data) => {
+        // Defensive: ensure displayed listings match the selected category
+        let filtered = data;
+        if (cf) filtered = filtered.filter((l) => l.category === cf);
+        if (sf) filtered = filtered.filter((l) => l.subcategory === sf);
+        setListings(filtered);
+        setHasMore(filtered.length === PAGE_SIZE);
         setLoading(false);
       });
     }
@@ -517,9 +534,14 @@ export default function DirectoryPage() {
   const loadMore = async () => {
     if (loadingMore || !hasMore || nearMeActive) return;
     setLoadingMore(true);
-    const next = await getDirectoryListings(categoryFilter, cityFilter, searchQuery || null, PAGE_SIZE, listings.length, subcategoryFilter);
-    setListings((prev) => [...prev, ...next]);
-    setHasMore(next.length === PAGE_SIZE);
+    const cf = categoryFilter;
+    const sf = subcategoryFilter;
+    const next = await getDirectoryListings(cf, cityFilter, searchQuery || null, PAGE_SIZE, listings.length, sf);
+    let filtered = next;
+    if (cf) filtered = filtered.filter((l) => l.category === cf);
+    if (sf) filtered = filtered.filter((l) => l.subcategory === sf);
+    setListings((prev) => [...prev, ...filtered]);
+    setHasMore(filtered.length === PAGE_SIZE);
     setLoadingMore(false);
   };
 
