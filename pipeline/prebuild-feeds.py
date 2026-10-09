@@ -982,7 +982,7 @@ def main():
     # 6. Build directory.json
     print("  Building directory.json...")
     directory = fetch_table(url, key, "directory_listings",
-                            order="featured.desc,rating.desc.nullslast")
+                            order="featured.desc,rating.desc.nullslast,id.asc")
     # Dedup by slug (safety net — DB should be clean but cache had 405 dupes)
     seen_slugs = set()
     deduped_dir = []
