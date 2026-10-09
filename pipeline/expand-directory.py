@@ -445,6 +445,67 @@ def search_city(city, state, query, cat, seen):
     return out
 
 
+def fetch_cell_coverage():
+    """Return {(state, category): count} from Supabase directory_listings.
+
+    Used by --auto mode to skip state×category cells that already have
+    sufficient listings (>2), so the Places budget goes to uncovered cells.
+    """
+    from collections import Counter
+    counts = Counter()
+    off = 0
+    while True:
+        url = (f"{SUPABASE_URL}/rest/v1/directory_listings"
+               f"?select=state,category&limit=1000&offset={off}")
+        data = curl_json(url, headers={"apikey": SUPABASE_KEY,
+                                       "Authorization": f"Bearer {SUPABASE_KEY}"})
+        if not data or not isinstance(data, list):
+            break
+        for d in data:
+            st, cat = d.get("state"), d.get("category")
+            if st and cat:
+                counts[(st, cat)] += 1
+        if len(data) < 1000:
+            break
+        off += 1000
+    log.info(f"Cell coverage: {len(counts)} state×category cells have listings")
+    return counts
+
+
+# A cell is "covered" when it has more than this many listings.
+COVERED_THRESHOLD = 2
+
+
+def plan_auto_targets(targets, coverage):
+    """Build a prioritized work list for --auto mode.
+
+    Returns [(state, cities, [(query, cat), ...]), ...] covering only
+    state×category cells with <= COVERED_THRESHOLD listings, ordered so
+    fully-unswept cells (0 listings) come before thin cells (1-2).
+    States with no uncovered cells are dropped entirely.
+    """
+    # category -> list of (query, cat) for queries needing work in that state
+    plan = []
+    for state, cities in targets.items():
+        needed = {}  # cat -> [(query, cat)]
+        for q, cat in SEARCH_QUERIES:
+            n = coverage.get((state, cat), 0)
+            if n <= COVERED_THRESHOLD:
+                needed.setdefault(cat, []).append((q, cat))
+        if not needed:
+            continue
+        # Flatten, unswept categories first
+        ordered = []
+        for cat in sorted(needed, key=lambda c: coverage.get((state, c), 0)):
+            ordered.extend(needed[cat])
+        plan.append((state, cities, ordered,
+                     min(coverage.get((state, c), 0) for c in needed)))
+    # States with the emptiest cells first; break ties by number of
+    # uncovered categories (more gaps = higher priority)
+    plan.sort(key=lambda t: (t[3], -len(set(c for _, c in t[2]))))
+    return [(s, c, q) for s, c, q, _ in plan]
+
+
 def main():
     import argparse
     ap = argparse.ArgumentParser(description="Expand directory via Google Places")
@@ -475,24 +536,58 @@ def main():
     total_ins = 0
     sc = {}
 
-    for state, cities in targets.items():
-        buf = []
-        log.info(f"\n── {state} ({len(cities)} cities) ──")
-        for city in cities:
-            cf = 0
-            for q, cat in SEARCH_QUERIES:
-                res = search_city(city, state, q, cat, seen)
-                if res:
-                    buf.extend(res)
-                    cf += len(res)
-                time.sleep(0.3)
-            if cf:
-                log.info(f"  {city}: {cf} new")
-        ins = insert_batch(buf)
-        total_found += len(buf)
-        total_ins += ins
-        sc[state] = len(buf)
-        log.info(f"  ► {state}: {len(buf)} found, {ins} inserted")
+    if args.auto:
+        log.info("Auto mode: fetching cell coverage to skip covered cells...")
+        coverage = fetch_cell_coverage()
+        work = plan_auto_targets(targets, coverage)
+        skipped_states = len(targets) - len(work)
+        log.info(f"Auto plan: {len(work)} states need work, "
+                 f"{skipped_states} fully covered (skipped)")
+        for state, cities, queries in work:
+            buf = []
+            log.info(f"\n── {state} ({len(cities)} cities, {len(queries)} queries) ──")
+            for city in cities:
+                cf = 0
+                for q, cat in queries:
+                    if not check_budget():
+                        log.warning("Budget exhausted mid-run, stopping.")
+                        break
+                    res = search_city(city, state, q, cat, seen)
+                    if res:
+                        buf.extend(res)
+                        cf += len(res)
+                    time.sleep(0.3)
+                if not check_budget():
+                    break
+                if cf:
+                    log.info(f"  {city}: {cf} new")
+            ins = insert_batch(buf)
+            total_found += len(buf)
+            total_ins += ins
+            sc[state] = len(buf)
+            log.info(f"  ► {state}: {len(buf)} found, {ins} inserted")
+            if not check_budget():
+                log.warning("Budget exhausted, ending run.")
+                break
+    else:
+        for state, cities in targets.items():
+            buf = []
+            log.info(f"\n── {state} ({len(cities)} cities) ──")
+            for city in cities:
+                cf = 0
+                for q, cat in SEARCH_QUERIES:
+                    res = search_city(city, state, q, cat, seen)
+                    if res:
+                        buf.extend(res)
+                        cf += len(res)
+                    time.sleep(0.3)
+                if cf:
+                    log.info(f"  {city}: {cf} new")
+            ins = insert_batch(buf)
+            total_found += len(buf)
+            total_ins += ins
+            sc[state] = len(buf)
+            log.info(f"  ► {state}: {len(buf)} found, {ins} inserted")
 
     log.info("\n" + "=" * 60)
     log.info(f"DONE — {total_found} found, {total_ins} inserted")
