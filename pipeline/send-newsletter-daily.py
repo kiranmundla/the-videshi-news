@@ -610,6 +610,7 @@ def build_daily_html(top, why_it_matters, quick_hits, deadlines, date_label, uns
                     <td style="padding: 0 8px;"><a href="https://www.threads.com/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/threads/c9a84c" alt="Threads" width="20" height="20" style="display: block;" /></a></td>
                     <td style="padding: 0 8px;"><a href="https://www.instagram.com/the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/instagram/c9a84c" alt="Instagram" width="20" height="20" style="display: block;" /></a></td>
                     <td style="padding: 0 8px;"><a href="https://www.youtube.com/@the.videshi" target="_blank"><img src="https://cdn.simpleicons.org/youtube/c9a84c" alt="YouTube" width="20" height="20" style="display: block;" /></a></td>
+                    <td style="padding: 0 8px;"><a href="https://whatsapp.com/channel/0029VbDgeZ384OmDKJX0hn16" target="_blank"><img src="https://cdn.simpleicons.org/whatsapp/c9a84c" alt="WhatsApp" width="20" height="20" style="display: block;" /></a></td>
                   </tr>
                 </table>
               </div>
