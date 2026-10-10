@@ -48,7 +48,7 @@ def save_posted(slugs):
 def pick_article(posted):
     # Top published articles from the last 12h, preferring key categories
     rows = sb_get(
-        "p2_articles?select=headline,subheadline,slug,category"
+        "p2_articles?select=headline,subheadline,slug,category,image_url"
         "&status=eq.published"
         "&published_at=gte." + _hours_ago(12) +
         "&order=published_at.desc&limit=30")
@@ -85,44 +85,74 @@ def build_post_text(article):
     return text[:1000]
 
 
-def publish(text, article_url):
+def download_image(url):
+    """Download article hero image to /tmp for FB attachment."""
+    if not url:
+        return None
+    import tempfile
+    ext = ".jpg"
+    if ".png" in url.lower():
+        ext = ".png"
+    path = os.path.join(tempfile.gettempdir(),
+                        f"fb-post-{os.getpid()}{ext}")
+    try:
+        r = subprocess.run(
+            ["curl", "-sL", "--max-time", "30",
+             "-A", "TheVideshi/1.0", "-o", path, url],
+            capture_output=True, timeout=35)
+        if r.returncode == 0 and os.path.getsize(path) > 1024:
+            return path
+    except Exception as e:
+        print(f"WARN: image download failed: {e}", file=sys.stderr)
+    return None
+
+
+def publish(text, article_url, image_url=None):
     cmd = ["facebook-cli", "pages", "posts", "create",
            "--page-id", PAGE_ID, "--text", text, "--privacy", "PUBLIC"]
+    img_path = download_image(image_url) if image_url else None
+    if img_path:
+        cmd.extend(["--file", img_path])
+        print(f"Attaching image: {img_path}", file=sys.stderr)
     # Retry on connector write lock ("already running") with backoff.
     # The lock is transient — a previous write hanging server-side blocks
     # the next one until it clears.
     import time
-    for attempt in range(3):
-        try:
-            r = subprocess.run(cmd, capture_output=True, text=True,
-                               timeout=120)
-        except subprocess.TimeoutExpired:
-            # The CLI can hang after the post actually goes live server-side.
-            # Don't treat timeout as failure — verify via the posts list.
-            print("WARN: publish timed out; verifying via posts list...",
-                  file=sys.stderr)
-            return _verify_recent_post(article_url)
-        output = r.stdout + r.stderr
-        if "already running" in output.lower():
-            wait = 60 * (attempt + 1)  # 60s, 120s
-            print(f"WARN: connector write lock held, "
-                  f"retrying in {wait}s (attempt {attempt + 1}/3)...",
-                  file=sys.stderr)
-            time.sleep(wait)
-            continue
-        try:
-            data = json.loads(r.stdout)
-        except json.JSONDecodeError:
-            print(f"ERROR: facebook-cli output not JSON: {r.stdout[:300]}",
-                  file=sys.stderr)
-            return _verify_recent_post(article_url)
-        if data.get("state") == "published":
-            return data
-        print(f"ERROR: publish failed: {r.stdout[:500]}", file=sys.stderr)
+    try:
+        for attempt in range(3):
+            try:
+                r = subprocess.run(cmd, capture_output=True, text=True,
+                                   timeout=180)  # longer for image upload
+            except subprocess.TimeoutExpired:
+                # The CLI can hang after the post actually goes live.
+                # Don't treat timeout as failure — verify via posts list.
+                print("WARN: publish timed out; verifying via posts list...",
+                      file=sys.stderr)
+                return _verify_recent_post(article_url)
+            output = r.stdout + r.stderr
+            if "already running" in output.lower():
+                wait = 60 * (attempt + 1)  # 60s, 120s
+                print(f"WARN: connector write lock held, "
+                      f"retrying in {wait}s (attempt {attempt + 1}/3)...",
+                      file=sys.stderr)
+                time.sleep(wait)
+                continue
+            try:
+                data = json.loads(r.stdout)
+            except json.JSONDecodeError:
+                print(f"ERROR: facebook-cli output not JSON: {r.stdout[:300]}",
+                      file=sys.stderr)
+                return _verify_recent_post(article_url)
+            if data.get("state") == "published":
+                return data
+            print(f"ERROR: publish failed: {r.stdout[:500]}", file=sys.stderr)
+            return None
+        print("ERROR: connector write lock never cleared after 3 attempts",
+              file=sys.stderr)
         return None
-    print("ERROR: connector write lock never cleared after 3 attempts",
-          file=sys.stderr)
-    return None
+    finally:
+        if img_path and os.path.exists(img_path):
+            os.unlink(img_path)
 
 
 def _verify_recent_post(article_url):
@@ -173,7 +203,7 @@ def main():
     if DRY_RUN:
         print("DRY RUN — not publishing.")
         return
-    result = publish(text, article_url)
+    result = publish(text, article_url, article.get("image_url"))
     if result:
         posted.add(article["slug"])
         save_posted(posted)
