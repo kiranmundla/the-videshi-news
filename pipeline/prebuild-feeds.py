@@ -351,6 +351,7 @@ def map_row(row: dict) -> dict:
         "focal_x": row.get("focal_x", 0.5),
         "focal_y": row.get("focal_y", 0.5),
         "social_embeds": row.get("social_embeds") or [],
+        "data_cards": row.get("data_cards"),
     }
 
 
