@@ -1,0 +1,93 @@
+[
+  {
+    "id": "376b221a-76ee-430b-ab2e-bd2868300ed1",
+    "headline": "Girl Who Chased Jets Is Now IAF's First Woman Fighter Combat Leader",
+    "slug": "bhawana-kanth-iaf-first-woman-fighter-combat-leader",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by correcting the graduation date to reflect the current year, as August 6, 2026, is in the future. This could confuse readers about the timeliness of the news.",
+        "Include a quote from an official source, such as the Indian Air Force or a military spokesperson, to enhance attribution and credibility.",
+        "Provide additional context on the significance of the Fighter Combat Leader course and its impact on the IAF's operational capabilities, which would help readers understand the broader implications of Kanth's achievement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Air Force announcing Kanth's achievement or celebrating her milestone, which would provide official recognition and engagement."
+      ]
+    }
+  },
+  {
+    "id": "8a56922f-22dd-4aa0-9710-3e3ede6e5095",
+    "headline": "Hyderabad-Born Dipika Damerla Woos Voters With Bollywood-Style Mississauga Mayor",
+    "slug": "dipika-damerla-mississauga-mayoral-race",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the October 26 election date by emphasizing its importance in the context of local governance and potential changes in leadership for Mississauga residents.",
+        "Provide more detailed polling data, including the specific percentage of undecided voters and how that might impact the election outcome.",
+        "Include a brief mention of the implications of Damerla's proposed policies, such as the potential financial impact of freezing property taxes on residents' budgets."
+      ],
+      "embed_opportunities": [
+        "Embed the official Twitter account of Dipika Damerla to provide readers with direct access to her campaign updates and announcements."
+      ]
+    }
+  },
+  {
+    "id": "98a9c757-0e33-40ac-97b6-0f361795a4e1",
+    "headline": "Dhurandhar: The Revenge Soundtrack Submitted for Grammy Consideration",
+    "slug": "dhurandhar-grammy-consideration-soundtrack",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the Grammy nomination process, including key dates for when nominations will be announced and any relevant deadlines for the voting members.",
+        "Provide more context on the significance of the Grammy Awards for Indian cinema and music, especially in relation to the previous Oscar submission snub, to enhance reader understanding.",
+        "Ensure consistency in the presentation of song titles; consider italicizing or using quotation marks for all song titles mentioned to improve clarity and readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official Grammy Awards announcement or relevant social media post about the submission process to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "3bf18e84-aa46-4688-89a5-2e4b39f3e635",
+    "headline": "Dating Apps Go Offline in India as Singles Tire of the Swipe",
+    "slug": "dating-apps-going-offline-indian-singles",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events mentioned in the article, as the dates provided (e.g., November 2025, February 2025) seem inconsistent and may confuse readers about the current state of offline dating events.",
+        "Provide more context on the significance of the YouGov survey results, such as how they compare to previous surveys or trends in dating app usage, to help readers understand the broader implications of the findings.",
+        "Include direct quotes from the survey or from experts in the dating industry to enhance credibility and provide varied perspectives on the trend of moving offline."
+      ],
+      "embed_opportunities": [
+        "Embed the official YouGov survey results or a related infographic to visually represent the data mentioned in the article."
+      ]
+    }
+  },
+  {
+    "id": "1a81b5f7-a1ea-47ac-a968-72c5555e367e",
+    "headline": "Delhi locks down for CJP's October 10 protest amid court plea, gurdwara refuge, ",
+    "slug": "cjp-protest-delhi-jantar-mantar-october-10",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the Supreme Court's hearing and the police's decision to impose restrictions. This will help readers understand the sequence and urgency of the situation.",
+        "Provide more context regarding the 'contempt plea' mentioned in the article. Explain what specific actions or decisions it is contesting and the potential implications of this legal challenge.",
+        "Include a brief statement from the Delhi Police or government officials regarding the rationale behind the lockdown measures. This would add depth and completeness to the reporting.",
+        "Verify and clarify the claim made by the Chamber of Trade and Industry about the 70% drop in business activity. If possible, include a source or context for this figure to enhance accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi Police or an official government account regarding the lockdown measures or the protest to provide authoritative context."
+      ]
+    }
+  }
+]
