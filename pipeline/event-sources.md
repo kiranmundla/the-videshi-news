@@ -1,6 +1,31 @@
 # Event Sources Database
 # Reference file for the videshi-events cron agent
-# Last updated: 2026-05-17
+# Last updated: 2026-10-09
+
+## Source Status (from coverage audit 2026-10-09)
+
+| Source | Events | Fresh (7d) | Notes |
+|--------|--------|------------|-------|
+| eventbrite | 200 | ❌ | Biggest source; expanded to 60+ keywords 2026-10-09 |
+| scrape-sulekha | 169 | ✅ | Working |
+| spiritual-scraper | 142 | ❌ | Needs refresh |
+| allevents | 139 | ❌ | Fixed proxy issue (curl) 2026-10-09 |
+| ticketmaster | 107 | ✅ | Expanded: 52 artists, 11 keywords, 50/page |
+| baps | 68 | ❌ | Working, needs refresh |
+| sulekha | 46 | ❌ | Legacy source |
+| web | 43 | ❌ | Manual additions |
+| iskcon | 42 | ❌ | Working, needs refresh |
+| meetup | 23 | ❌ | Low — needs boost |
+| eknazar | 9 | ❌ | Low — major desi site, needs boost |
+| temple | 1 | ❌ | New scraper 2026-10-09, needs temple URL fixes |
+
+## Coverage Gaps (2026-10-09)
+
+**Zero-event states:** AK, KY, MT, NE, NH, OK, RI, SD, WV
+**Zero-event priority metros:** Edison NJ, Jersey City NJ, Plano TX
+**Thin metros:** Fremont CA (3), Philadelphia PA (3), Charlotte NC (3),
+Raleigh NC (4), Irvine CA (3), Minneapolis MN (4), Portland OR (4),
+Tampa FL (4), Nashville TN (2)
 
 ## Tier 1: Structured Data (auto-scrapable)
 

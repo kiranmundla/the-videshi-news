@@ -27,11 +27,57 @@ from urllib.parse import quote
 
 sys.stdout.reconfigure(line_buffering=True)
 
-try:
-    import requests
-except ImportError:
-    print("ERROR: pip install requests")
-    sys.exit(1)
+import subprocess
+
+# ---------------------------------------------------------------------------
+# HTTP via curl (Python requests fails through the proxy — see AGENTS.md)
+# ---------------------------------------------------------------------------
+
+def curl_get(url, headers=None, timeout=25):
+    """Fetch URL via curl subprocess. Returns (status_code, text) or (0, '')."""
+    cmd = ["curl", "-sS", "-L", "--max-time", str(timeout),
+           "-A", UA, "-w", "\n%{http_code}", url]
+    if headers:
+        for k, v in headers.items():
+            cmd.extend(["-H", f"{k}: {v}"])
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=timeout + 10)
+        out = r.stdout
+        # Split body from trailing status code
+        if "\n" in out:
+            body, code_str = out.rsplit("\n", 1)
+            try:
+                return int(code_str.strip()), body
+            except ValueError:
+                pass
+        return 0, ""
+    except Exception:
+        return 0, ""
+
+
+def curl_post(url, headers=None, data=None, timeout=30):
+    """POST JSON via curl subprocess. Returns (status_code, text)."""
+    cmd = ["curl", "-sS", "--max-time", str(timeout),
+           "-X", "POST", "-w", "\n%{http_code}", url]
+    hdrs = dict(headers or {})
+    hdrs.setdefault("Content-Type", "application/json")
+    for k, v in hdrs.items():
+        cmd.extend(["-H", f"{k}: {v}"])
+    cmd.extend(["-d", json.dumps(data)])
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=timeout + 10)
+        out = r.stdout
+        if "\n" in out:
+            body, code_str = out.rsplit("\n", 1)
+            try:
+                return int(code_str.strip()), body
+            except ValueError:
+                pass
+        return 0, ""
+    except Exception:
+        return 0, ""
 
 # ---------------------------------------------------------------------------
 # Config
@@ -269,14 +315,14 @@ def scrape_listing_page(city: dict, keyword: str) -> list:
     url = f"https://allevents.in/{city['ae']}/{keyword}"
 
     try:
-        resp = requests.get(url, headers={"User-Agent": UA}, timeout=20)
-        if resp.status_code != 200:
+        status, html_text = curl_get(url, headers={"User-Agent": UA}, timeout=20)
+        if status != 200:
             return []
     except Exception as e:
         print(f"  ⚠ Request failed for {url}: {e}")
         return []
 
-    html = resp.text
+    html = html_text
 
     # Extract event cards from HTML using data attributes
     # Pattern: <li class="event-card event-card-link" data-eid="..." data-link="..." data-name="...">
@@ -317,13 +363,14 @@ def strip_html(text: str) -> str:
 def fetch_event_details(event_url: str) -> dict | None:
     """Fetch individual event page and extract JSON-LD + HTML description."""
     try:
-        resp = requests.get(event_url, headers={"User-Agent": UA}, timeout=20)
-        if resp.status_code != 200:
+        status, html_text = curl_get(event_url, headers={"User-Agent": UA},
+                                     timeout=20)
+        if status != 200:
             return None
     except Exception as e:
         return None
 
-    html = resp.text
+    html = html_text
 
     # Extract JSON-LD blocks
     blocks = re.findall(
@@ -493,7 +540,7 @@ def get_existing_events() -> tuple:
     existing_title_dates = set()
 
     try:
-        resp = requests.get(
+        status, body = curl_get(
             f"{REST}/events?select=source_id,title,date&limit=5000",
             headers={
                 "apikey": SB_KEY,
@@ -501,8 +548,8 @@ def get_existing_events() -> tuple:
             },
             timeout=15
         )
-        if resp.status_code == 200:
-            for e in resp.json():
+        if status == 200:
+            for e in json.loads(body):
                 if e.get("source_id"):
                     existing_ids.add(e["source_id"])
                 if e.get("title") and e.get("date"):
@@ -573,29 +620,29 @@ def upsert_events(events: list) -> int:
     for i in range(0, len(events), batch_size):
         batch = events[i:i + batch_size]
         try:
-            resp = requests.post(
+            status, body = curl_post(
                 f"{REST}/events",
                 headers=HEADERS,
-                json=batch,
+                data=batch,
                 timeout=30
             )
-            if resp.status_code in (200, 201):
+            if status in (200, 201):
                 total += len(batch)
             else:
-                print(f"  ⚠ Upsert failed ({resp.status_code}): {resp.text[:300]}")
+                print(f"  ⚠ Upsert failed ({status}): {body[:300]}")
                 # Try one at a time
                 for ev in batch:
                     try:
-                        r2 = requests.post(
+                        s2, b2 = curl_post(
                             f"{REST}/events",
                             headers=HEADERS,
-                            json=[ev],
+                            data=[ev],
                             timeout=15
                         )
-                        if r2.status_code in (200, 201):
+                        if s2 in (200, 201):
                             total += 1
                         else:
-                            print(f"    ⚠ Failed for '{ev['title'][:40]}': {r2.text[:200]}")
+                            print(f"    ⚠ Failed for '{ev['title'][:40]}': {b2[:200]}")
                     except:
                         pass
         except Exception as e:

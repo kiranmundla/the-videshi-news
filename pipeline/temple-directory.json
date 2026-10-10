@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "description": "Hindu temples, gurdwaras, and mosques in the US with event calendars. Built 2026-10-09 per Kiran's directive.",
+    "last_verified": "2026-10-09",
+    "usage": "temple-events-scraper.py reads this file. parser_type determines how events are extracted."
+  },
+  "parser_types": {
+    "angular_spa": "Angular/React SPA - requires API discovery, may not be scrapable via curl",
+    "google_calendar": "Embedded Google Calendar iframe - extract calendar ID from page",
+    "json_ld": "Static HTML with schema.org/Event JSON-LD blocks",
+    "rss": "RSS/Atom feed URL provided",
+    "static_html": "Server-rendered HTML with parseable event listings"
+  },
+  "temples": [
+    {
+      "city": "Cary",
+      "events_url": "https://www.svtemplenc.org/#/events",
+      "name": "Sri Venkateswara Temple of NC",
+      "notes": "Kiran's test case. Angular SPA - API not yet discovered",
+      "parser_type": "angular_spa",
+      "state": "NC",
+      "tradition": "Hindu (Venkateswara)",
+      "website": "https://www.svtemplenc.org"
+    },
+    {
+      "city": "Robbinsville",
+      "events_url": "https://www.baps.org/Global-Network/North-America/Robbinsville/Events.aspx",
+      "name": "BAPS Shri Swaminarayan Mandir, Robbinsville",
+      "notes": "Largest Hindu temple in US. Already covered via baps source (95 events)",
+      "parser_type": "static_html",
+      "state": "NJ",
+      "tradition": "Hindu (Swaminarayan)",
+      "website": "https://www.baps.org"
+    },
+    {
+      "city": "Edison",
+      "events_url": "https://www.iskconedison.org/events",
+      "name": "ISKCON Edison",
+      "notes": "Already covered via iskcon source",
+      "parser_type": "static_html",
+      "state": "NJ",
+      "tradition": "Hindu (ISKCON)",
+      "website": "https://www.iskconedison.org"
+    },
+    {
+      "city": "Flushing",
+      "events_url": "https://www.hindutemple.org/newsletters.php",
+      "name": "Hindu Temple Society of North America (Ganesh Temple)",
+      "notes": "No dedicated events page; newsletters contain event info. PHP site.",
+      "parser_type": "static_html",
+      "state": "NY",
+      "tradition": "Hindu",
+      "website": "https://www.hindutemple.org"
+    },
+    {
+      "city": "Malibu",
+      "events_url": "https://www.hindutemplemalibu.org/events",
+      "name": "Malibu Hindu Temple",
+      "notes": "Major SoCal temple",
+      "parser_type": "static_html",
+      "state": "CA",
+      "tradition": "Hindu",
+      "website": "https://www.hindutemplemalibu.org"
+    },
+    {
+      "city": "Aurora",
+      "events_url": "https://www.hindutemplechicago.org/events",
+      "name": "Hindu Temple of Greater Chicago",
+      "notes": "Major Midwest temple",
+      "parser_type": "static_html",
+      "state": "IL",
+      "tradition": "Hindu",
+      "website": "https://www.hindutemplechicago.org"
+    },
+    {
+      "city": "Stafford",
+      "events_url": "https://www.sstt.org/events",
+      "name": "Sri Meenakshi Temple (Houston)",
+      "notes": "Events page exists, returned 0 events on parse - may need custom parser",
+      "parser_type": "static_html",
+      "state": "TX",
+      "tradition": "Hindu",
+      "website": "https://www.sstt.org"
+    },
+    {
+      "city": "Irving",
+      "events_url": "https://www.dfwtemple.org/events",
+      "name": "DFW Hindu Temple",
+      "notes": "Major Dallas temple",
+      "parser_type": "static_html",
+      "state": "TX",
+      "tradition": "Hindu",
+      "website": "https://www.dfwtemple.org"
+    },
+    {
+      "city": "Atlanta",
+      "events_url": "https://www.hindutempleatlanta.org/events",
+      "name": "Hindu Temple of Atlanta",
+      "notes": "Major Southeast temple",
+      "parser_type": "static_html",
+      "state": "GA",
+      "tradition": "Hindu",
+      "website": "https://www.hindutempleatlanta.org"
+    }
+  ]
+}
