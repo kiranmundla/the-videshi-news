@@ -7047,27 +7047,51 @@ def render_reel(edit_json, use_production=False):
 
 
 def download_reel(url, output_path, retries=3):
-    """Download rendered reel from Shotstack, with retry on transient network errors."""
+    """Download rendered reel from Shotstack, with retry on transient network errors.
+
+    Uses curl first (honors the egress proxy; urllib/requests do not on this box —
+    IncompleteRead failures). curl -C - resumes partial files: full downloads from
+    Shotstack's S3 output consistently stall ~5MB short through this proxy, so the
+    first attempt writes a partial file and the retry resumes it to completion.
+    Falls back to requests on curl failure.
+    """
     last_err = None
     for attempt in range(1, retries + 1):
+        # curl attempt (proxy-safe, resumable)
+        try:
+            dl = subprocess.run(
+                ["curl", "-sS", "-L", "-C", "-", "-o", output_path,
+                 "--max-time", "240", url],
+                capture_output=True, text=True, timeout=260)
+            if dl.returncode == 0 and os.path.exists(output_path) \
+                    and os.path.getsize(output_path) > 20 * 1024:
+                size_mb = os.path.getsize(output_path) / (1024 * 1024)
+                print(f"  📥 Downloaded: {output_path} ({size_mb:.1f} MB)")
+                return True
+            last_err = f"curl rc={dl.returncode}: {dl.stderr.strip()[:200]}"
+            print(f"  ⚠️ Download attempt {attempt}/{retries} (curl) failed: {last_err}")
+        except Exception as e:
+            last_err = e
+            print(f"  ⚠️ Download attempt {attempt}/{retries} (curl) failed: {e}")
+        # requests fallback
         try:
             r = requests.get(url, timeout=180, stream=True)
             if r.status_code != 200:
-                print(f"❌ Download failed: {r.status_code}")
-                return False
-
-            with open(output_path, "wb") as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
-
-            size_mb = os.path.getsize(output_path) / (1024 * 1024)
-            print(f"  📥 Downloaded: {output_path} ({size_mb:.1f} MB)")
-            return True
+                print(f"  ❌ Download fallback: HTTP {r.status_code}")
+                last_err = f"HTTP {r.status_code}"
+            else:
+                with open(output_path, "wb") as f:
+                    for chunk in r.iter_content(chunk_size=8192):
+                        f.write(chunk)
+                if os.path.getsize(output_path) > 20 * 1024:
+                    size_mb = os.path.getsize(output_path) / (1024 * 1024)
+                    print(f"  📥 Downloaded: {output_path} ({size_mb:.1f} MB)")
+                    return True
         except Exception as e:
             last_err = e
-            print(f"  ⚠️ Download attempt {attempt}/{retries} failed: {e}")
-            if attempt < retries:
-                time.sleep(3 * attempt)
+            print(f"  ⚠️ Download attempt {attempt}/{retries} (fallback) failed: {e}")
+        if attempt < retries:
+            time.sleep(3 * attempt)
     print(f"❌ Download failed after {retries} attempts: {last_err}")
     return False
 

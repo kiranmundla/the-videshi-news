@@ -1,0 +1,48 @@
+[
+  {
+    "id": "25ee9858-1996-4516-a738-7e322c15a0d6",
+    "headline": "Plano's Jashan Becomes First D-FW Indian Restaurant With a Michelin Nod",
+    "slug": "plano-jashan-first-indian-restaurant-dfw-michelin",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/29148133/pexels-photo-29148133.jpeg?auto=compre"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "f54a08c4-8236-472c-a3e9-10d4d337c80c",
+    "headline": "Shai Hope's Century Powers Record Chase as West Indies Level T20 Series",
+    "slug": "shai-hope-century-west-indies-level-t20-series-india",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "64ac2ae8-6426-43c2-ba73-6fafee2b3544",
+    "headline": "Apple's LG Smart-Home Gear Gets Exclusive iPhone Proximity Feature",
+    "slug": "apple-second-party-lg-homekit-proximity-control",
+    "category": "technology",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Apple Is FINALLY Going All-In on the Smart Home -- & LG Is H\" vs headline"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "620332b8-c2c1-454e-8a11-bbdee2bc3754",
+    "headline": "Google Unveils Gemini Agent for Work as Enterprise AI Race Heats Up",
+    "slug": "google-cloud-gemini-agent-work-ai-race",
+    "category": "technology",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&c"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "38884b7a-4e49-4fff-adba-325b0d48f55d",
+    "headline": "Hurricane Isaias Shuts 72% of Gulf Oil Output, Threatening Refineries",
+    "slug": "hurricane-isaias-shuts-gulf-oil-production-refineries",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

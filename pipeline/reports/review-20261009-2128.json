@@ -1,0 +1,97 @@
+[
+  {
+    "id": "25ee9858-1996-4516-a738-7e322c15a0d6",
+    "headline": "Plano's Jashan Becomes First D-FW Indian Restaurant With a Michelin Nod",
+    "slug": "plano-jashan-first-indian-restaurant-dfw-michelin",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Michelin nod by providing context on what it means for the restaurant's business and potential customer interest, such as expected increases in reservations or foot traffic.",
+        "Include a quote from Chef Ramesh Thangaraj or owner Prasanna Singaraju to provide a personal touch and insight into their feelings about this recognition.",
+        "Add a brief comparison to other Michelin-recognized Indian restaurants in the U.S. to highlight Jashan's achievement and its place in the broader culinary landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official Michelin Guide tweet announcing the 2026 Texas update to provide authoritative confirmation of the recognition."
+      ]
+    }
+  },
+  {
+    "id": "f54a08c4-8236-472c-a3e9-10d4d337c80c",
+    "headline": "Shai Hope's Century Powers Record Chase as West Indies Level T20 Series",
+    "slug": "shai-hope-century-west-indies-level-t20-series-india",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the chase by including a comparison to previous record chases in T20 history, not just mentioning South Africa's record. This would provide context on how remarkable this achievement is.",
+        "Include specific statistics about the match, such as the number of overs remaining when West Indies completed the chase, to enhance the completeness of the report.",
+        "Add a quote from Shai Hope or another player to provide a personal perspective on the match and its significance, which would improve clarity and depth.",
+        "Ensure that the article maintains a consistent structure by avoiding repetition of information. For example, the details about the chase and the scores could be consolidated to improve flow."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or the West Indies cricket team celebrating the record chase or highlighting key moments from the match."
+      ]
+    }
+  },
+  {
+    "id": "64ac2ae8-6426-43c2-ba73-6fafee2b3544",
+    "headline": "Apple's LG Smart-Home Gear Gets Exclusive iPhone Proximity Feature",
+    "slug": "apple-second-party-lg-homekit-proximity-control",
+    "category": "technology",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=9uZUGudjsDg appears both inline and in social_embeds",
+      "Possibly irrelevant YouTube: \"Apple Is FINALLY Going All-In on the Smart Home -- & LG Is H\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for product availability by specifying the expected release dates for each accessory, as the phrase 'early 2027' could be misleading without context about the exact months or seasons.",
+        "Include a direct quote from a credible source or a company representative regarding the features or the development timeline to enhance attribution and credibility.",
+        "Provide more context on how the 'Proximity Control' feature compares to existing smart-home technologies, particularly for users who may not be familiar with Apple's ecosystem."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Apple's official account announcing the 'Welcome home' event or discussing the new features to provide direct communication from the company."
+      ]
+    }
+  },
+  {
+    "id": "620332b8-c2c1-454e-8a11-bbdee2bc3754",
+    "headline": "Google Unveils Gemini Agent for Work as Enterprise AI Race Heats Up",
+    "slug": "google-cloud-gemini-agent-work-ai-race",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the Gemini agent's rollout by specifying when businesses can expect to start using it, even if a precise date isn't available.",
+        "Include a brief comparison of the Gemini agent's capabilities with those of competitors like OpenAI's Dots to provide context on its unique features and advantages.",
+        "Add a direct quote from a Google representative or an industry expert to enhance attribution and provide credibility to the claims made about the Gemini agent's functionality.",
+        "Specify any potential costs or pricing models that businesses might expect when integrating the Gemini agent into their systems, even if these details are not fully disclosed."
+      ],
+      "embed_opportunities": [
+        "Embed the official Google Cloud announcement or tweet regarding the Gemini agent launch for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "38884b7a-4e49-4fff-adba-325b0d48f55d",
+    "headline": "Hurricane Isaias Shuts 72% of Gulf Oil Output, Threatening Refineries",
+    "slug": "hurricane-isaias-shuts-gulf-oil-production-refineries",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for expected price increases by providing specific estimates or ranges for gasoline and diesel prices, as well as any anticipated duration for these increases.",
+        "Include a direct quote from a relevant authority or expert to enhance attribution and provide additional context regarding the impact of the hurricane on oil production and refineries.",
+        "Add a brief explanation of how the current stockpile levels compare to historical averages, giving readers a clearer understanding of the potential implications for fuel supply and pricing."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the National Hurricane Center with the latest updates on Hurricane Isaias and its projected path."
+      ]
+    }
+  }
+]

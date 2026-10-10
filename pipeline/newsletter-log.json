@@ -1448,5 +1448,16 @@
     "top_story_slug": "delhi-deploys-26000-central-forces-cjp-october-10-protest",
     "quick_hit_count": 5,
     "deadline_count": 6
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-09T13:58:10.103263+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 09, 2026",
+    "subscribers": 8,
+    "sent": 8,
+    "errors": 0,
+    "top_story_slug": "manus-raises-500-million-funding-meta-breakup",
+    "quick_hit_count": 5,
+    "deadline_count": 7
   }
 ]

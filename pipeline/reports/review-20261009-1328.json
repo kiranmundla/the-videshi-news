@@ -1,0 +1,134 @@
+[
+  {
+    "id": "f7510a80-a64d-4ab6-aa24-835c02746e2a",
+    "headline": "A Pikachu Plush Spent 67 Days Aboard the International Space Station",
+    "slug": "pikachu-plush-international-space-station-esa",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the partnership between ESA and The Pok\u00e9mon Company International. Explain how this initiative aims to inspire children about space exploration, perhaps by including specific educational goals or metrics.",
+        "Provide more context about the \u03b5psilon mission and its objectives. Readers may want to know what the mission entailed beyond the plush toy's presence, including any scientific experiments conducted during that time.",
+        "Include a brief summary of World Space Week and its relevance to the event. This would help readers understand the broader context of the partnership and its timing."
+      ],
+      "embed_opportunities": [
+        "Embed the official ESA video showcasing the Pikachu plush's tour of the ISS to enhance reader engagement and provide visual context."
+      ]
+    }
+  },
+  {
+    "id": "ca026a40-71d9-4ffc-96f0-7fe84215be34",
+    "headline": "Indri's Diwali 2026 Collector's Edition: Ruby Port Cask, 600 Numbered Bottles",
+    "slug": "indri-diwali-collectors-edition-2026-ruby-port",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for availability by specifying the exact date in mid-October when the bottles will go on sale.",
+        "Include pricing information for the 700 ml bottles and the cask-strength variant to provide readers with concrete details on what to expect financially.",
+        "Add a brief background on Piccadily Distilleries for context, especially for readers unfamiliar with the brand's significance in the Indian whisky market."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Piccadily Distilleries announcing the launch or showcasing the product to enhance engagement and provide official confirmation."
+      ]
+    }
+  },
+  {
+    "id": "d046f21c-e6d4-4adf-869a-4acc7b93e581",
+    "headline": "Air India, Akasa Hike Fuel Surcharges Just as Diwali Travel Peaks",
+    "slug": "air-india-akasa-hike-fuel-surcharges-diwali",
+    "category": "travel",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=FVHbNOI80hg appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the fuel surcharge increases by providing specific dates for when each airline implemented their changes, as this will help readers understand the sequence of events better.",
+        "Include a brief explanation of how the rise in jet fuel prices directly impacts ticket prices, as this context will help readers grasp the reasons behind the surcharge increases more clearly.",
+        "Add a comparison of the new surcharges with previous rates, if available, to give readers a sense of how much more they are now paying compared to before."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Air India or Akasa Air regarding the fuel surcharge announcement to provide readers with direct information from the airlines."
+      ]
+    }
+  },
+  {
+    "id": "2c8b7739-a0ed-4de5-9fb3-1e66725443dd",
+    "headline": "Manus Raises Over $500 Million in First Round Since Meta Breakup",
+    "slug": "manus-raises-500-million-funding-meta-breakup",
+    "category": "technology",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=XKvibQQSyjU appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events regarding the Meta acquisition and the funding round. For example, specify the exact date when Beijing ordered Meta to unwind the acquisition and when Manus resumed independent operations.",
+        "Provide more context on the significance of the $500 million funding round. Include details on how this funding will impact Manus's operations or future plans, such as potential product launches or market expansions.",
+        "Ensure that all figures mentioned, such as the annualised revenue run rate and the original acquisition value, are consistently presented and attributed to reliable sources to enhance credibility.",
+        "Consider rephrasing the sentence about Manus's revenue run rate for clarity. Instead of saying 'has surged to about $500 million, up from $100 million when Meta bought it,' specify the time frame for this growth to give readers a clearer picture of the company's performance."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from CNBC or another credible news source that confirms the funding details or provides additional context on the implications of this funding round."
+      ]
+    }
+  },
+  {
+    "id": "e7ac8e85-7dc1-4c16-a4ed-cbf917c101b0",
+    "headline": "23-Year-Old Punjab-Origin Man Shot Dead in Targeted Attack Near Vancouver",
+    "slug": "punjab-origin-man-shot-dead-langley-vancouver",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the time of the victim's death in relation to when police arrived, as well as the time the burnt sedan was found. This will help readers understand the sequence of events more clearly.",
+        "Include a brief background on the recent trend of gang violence in the Lower Mainland, particularly focusing on how it relates to the Punjabi community, to provide context for the targeted nature of the attack.",
+        "Mention any specific actions the police are urging the public to take, such as how to submit dashcam footage or contact information for witnesses, to enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Integrated Homicide Investigation Team (IHIT) regarding the ongoing investigation or a call for witnesses, to provide readers with direct access to official updates."
+      ]
+    }
+  },
+  {
+    "id": "7c6fcde3-f506-41f3-94d3-2bc006173582",
+    "headline": "India Says US Green Card Curbs 'Do Not Advance' Shared Ambitions",
+    "slug": "india-says-us-green-card-curbs-do-not-advance-shared-ambitions",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the PERM labor certification suspension on the green card process by including specific details about how many applications are affected and any potential timelines for resolution or next steps for applicants.",
+        "Provide a direct quote from the Ministry of External Affairs statement to enhance attribution and credibility, ensuring that the reader understands the official stance clearly.",
+        "Include a brief background on the context of the US green card restrictions and their historical impact on Indian professionals to give readers a better understanding of the significance of this announcement."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the Ministry of External Affairs for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "ae561e66-3ef2-488f-9a96-76a398008b69",
+    "headline": "Navanethem 'Navi' Pillay Wins 2026 Nobel Peace Prize",
+    "slug": "navi-pillay-wins-2026-nobel-peace-prize",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the award by including a brief explanation of the Nobel Peace Prize's impact on global recognition and advocacy for human rights, which would provide context for readers unfamiliar with its importance.",
+        "Include a quote from Pillay or a representative from the Nobel Committee to add a personal touch and provide insight into her reaction or the committee's rationale behind the award.",
+        "Add a brief section on the implications of this award for international law and human rights advocacy, detailing how it may influence future policies or initiatives in these areas.",
+        "Ensure that the timeline for the award presentation is highlighted more prominently, perhaps by creating a separate subheading or bullet point for key dates, such as the announcement date and the presentation date."
+      ],
+      "embed_opportunities": [
+        "Embed the official Nobel Prize announcement tweet or a video of the announcement to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  }
+]
