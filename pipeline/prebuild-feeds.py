@@ -857,7 +857,10 @@ def main():
             return False
         if any("review" in t for t in tags):
             return True
-        return "review" in (a.get("headline") or "").lower()
+        if "review" in (a.get("headline") or "").lower():
+            return True
+        # Catch review roundups that use "Critics" language in headline
+        return "review" in (a.get("slug") or "").lower()
 
     reviews = [a for a in articles if is_movie_review(a)]
     reviews.sort(key=lambda a: a["published_at"], reverse=True)
