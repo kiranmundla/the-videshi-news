@@ -64,6 +64,7 @@ ARTIST_KEYWORDS = [
 # temple scraper (Phase 2) and Eventbrite/Sulekha instead.
 STATE_KEYWORDS = [
     "bollywood", "indian", "desi", "diwali", "holi", "yoga", "meditation",
+    "cricket", "comedy", "food festival", "film festival",
 ]
 STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
           "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",

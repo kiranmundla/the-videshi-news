@@ -123,8 +123,44 @@ STATES = [
     {"slug": "district-of-columbia", "abbr": "DC"},
 ]
 
-# Search terms — "indian" is primary, "desi" and "bollywood" catch party/cultural events
-SEARCH_TERMS = ["indian", "desi", "bollywood"]
+# Search terms — expanded 2026-10-09 per Kiran: comprehensive diaspora coverage.
+# Principle: if a desi person would plausibly search for it, we cover it.
+SEARCH_TERMS = [
+    # Core (original)
+    "indian", "desi", "bollywood",
+    # Festivals & melas
+    "diwali", "diwali-mela", "holi", "holi-festival", "navratri",
+    "garba", "dandiya", "dandiya-night", "garba-night",
+    "onam", "pongal", "ugadi", "vaisakhi", "lohri", "eid-mela",
+    # Regional culture
+    "punjabi", "tamil", "telugu", "bengali", "gujarati", "marathi",
+    "kannada", "malayalam",
+    # Music & dance
+    "bhangra", "bhangra-competition", "kathak", "bharatanatyam",
+    "carnatic", "hindustani", "qawwali", "sufi", "sufi-night",
+    "kirtan", "bhajan", "mushaira", "urdu-poetry",
+    # Nightlife
+    "desi-night", "bollywood-night", "desi-party", "desi-dj",
+    # Food
+    "indian-food-festival", "chaat-festival", "mango-festival",
+    "biryani-festival",
+    # Film
+    "indian-film-festival", "bollywood-movie",
+    # Weddings & matrimonial
+    "indian-wedding-expo", "desi-bridal", "south-asian-wedding",
+    # Sports
+    "cricket", "cricket-tournament", "tennis-ball-cricket",
+    "badminton-tournament", "kabaddi", "volleyball-tournament",
+    # Wellness
+    "yoga", "meditation", "ayurveda", "ayurveda-expo",
+    # Community & civic
+    "india-day-parade", "independence-day-india",
+    # Professional & educational
+    "immigration-workshop", "h1b-seminar", "green-card-workshop",
+    "real-estate-seminar", "investment-seminar",
+    # Literary
+    "indian-author", "jaipur-literature",
+]
 
 # ── Relevance filter ─────────────────────────────────────────────────────
 # Events matching these keywords in title are likely Indian/South Asian diaspora
@@ -145,6 +181,19 @@ RELEVANCE_KEYWORDS = {
     "arijit", "atif", "badshah", "neha kakkar", "shreya",
     "chinmaya", "isha", "art of living", "iskcon", "baps",
     "swami", "guru", "pandit", "kirtan", "bhajan",
+    # Added 2026-10-09: comprehensive diaspora coverage
+    "mushaira", "urdu", "sufi", "mela", "dandiya night", "garba night",
+    "food festival", "chaat", "mango festival",
+    "wedding expo", "bridal show", "matrimonial",
+    "film festival", "indian cinema",
+    "tennis ball cricket", "badminton", "volleyball tournament",
+    "wellness expo", "wellness festival",
+    "india day", "parade",
+    "immigration", "h-1b", "h1b", "green card", "visa workshop",
+    "investment seminar", "real estate seminar",
+    "literature festival", "book reading", "author talk",
+    "dj night", "club night", "desi party",
+    "vaisakhi", "lohri", "ugadi",
 }
 
 def is_relevant(event_name: str, event_summary: str = "") -> bool:
