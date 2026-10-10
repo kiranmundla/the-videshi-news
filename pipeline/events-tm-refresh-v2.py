@@ -107,7 +107,9 @@ def categorize(title):
     if any(kw in t for kw in ent_kw):
         return "Entertainment"
     sport_kw = ["cricket", "kabaddi", "badminton", "marathon", "run ",
-                "volleyball", "sports", "tournament"]
+                "volleyball", "sports", "tournament", "triathlon",
+                "cycling", "trail run", "charity run", "yogathon",
+                "5k", "10k", "half marathon"]
     if any(kw in t for kw in sport_kw):
         return "Sports & Fitness"
     return "Community"
