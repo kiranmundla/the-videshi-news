@@ -1721,6 +1721,12 @@ def main():
 
             # Detect content type
             ctype = media_sources.detect_content_type(headline, body)
+            # Movie reviews are always about movies — force movie type for trailer search
+            slug = article.get("slug", "")
+            tags = [str(t).lower() for t in (article.get("tags") or [])]
+            is_review = "review" in slug.lower() or any("review" in t for t in tags)
+            if is_review:
+                ctype = "movie"
             if ctype not in ("movie", "series"):
                 continue
 

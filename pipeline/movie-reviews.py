@@ -309,6 +309,7 @@ CRITICAL RULES:
 - CATEGORY RATINGS: Rate exactly these four categories out of 5 (half-star increments): Story, Direction, Climax, Performances. Base each on what critics specifically said about that aspect.
 - Tone: film-literate, opinionated but fair. Like a friend who reads a lot of reviews summarizing them for you.
 - Do NOT use generic AI phrases like "In conclusion", "Overall, this film", "It remains to be seen", "Whether you're a fan of..."
+- NEVER put the rating JSON (star_rating, category_ratings) in the body_html. Return ratings ONLY as the top-level JSON fields. The body should contain only the article prose with the bullet sections.
 - Word count: 500-700 words per article.
 - Tags should include movie title, director, lead actors, genre, and language if not English.
 
@@ -482,7 +483,22 @@ def publish_article(article_data, movie_data):
                 star_rating = blob.get("star_rating")
                 category_ratings = blob.get("category_ratings", {}) or {}
                 rating_consensus = blob.get("rating_consensus")
-                body_html = body_html[:start] + body_html[end:]
+                # Strip the JSON plus any surrounding "Rating Card Data:" label and <pre> tags
+                # so readers never see raw JSON in the article body.
+                pre_start = start
+                # Look backwards for <pre> tag and "Rating Card Data" label
+                label_match = re.search(r'<p>\s*Rating Card Data:\s*</p>\s*<pre>\s*$', body_html[:start])
+                if label_match:
+                    pre_start = label_match.start()
+                else:
+                    pre_match = re.search(r'<pre>\s*$', body_html[:start])
+                    if pre_match:
+                        pre_start = pre_match.start()
+                post_end = end
+                post_match = re.match(r'\s*</pre>', body_html[end:])
+                if post_match:
+                    post_end = end + post_match.end()
+                body_html = body_html[:pre_start] + body_html[post_end:]
                 full_body = kt_html + body_html
                 print(f"    ⚠️ Recovered embedded rating JSON from body (star_rating={star_rating})")
             except (json.JSONDecodeError, ValueError) as e:
