@@ -6684,9 +6684,9 @@ def build_anchor_reel_timeline(
 # animations, text still renders fully visible (never stuck at opacity 0).
 _PULSE_KINETIC_CSS = """
 @keyframes vdsRise { from { opacity:0; transform:translateY(46px); } to { opacity:1; transform:translateY(0); } }
-@keyframes vdsPop { 0% { opacity:0; transform:scale(.82); } 55% { opacity:1; transform:scale(1.05); } 100% { opacity:1; transform:scale(1); } }
+@keyframes vdsPop { 0% { opacity:0; transform:scale(.82); } 55% { opacity:1; transform:scale(1.02); } 100% { opacity:1; transform:scale(1); } }
 @keyframes vdsFade { from { opacity:0; } to { opacity:1; } }
-@keyframes vdsSlideL { from { opacity:0; transform:translateX(-60px); } to { opacity:1; transform:translateX(0); } }
+@keyframes vdsSlideL { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
 .vds-rise { animation:vdsRise .55s cubic-bezier(.2,.7,.3,1) both; }
 .vds-pop { animation:vdsPop .5s cubic-bezier(.2,.7,.3,1) both; }
 .vds-fade { animation:vdsFade .6s ease-out both; }
@@ -6724,9 +6724,23 @@ def _pulse_hook_html(hook_line, category):
     frame one (research: moving the logo off frame one lifted completion 67%).
     Text lands at ~20-25% canvas height (hero zone)."""
     badge = (category or "NEWS").upper().replace("-", " ")
+    # Auto-scale font size based on text length to prevent edge clipping.
+    # On a 1080px frame with 60px side padding = 960px available.
+    # Inter 900 at ~88px averages ~55px/char → safe up to ~17 chars.
+    hl_len = len(hook_line or "")
+    if hl_len <= 17:
+        hl_size = 88
+    elif hl_len <= 24:
+        hl_size = 72
+    elif hl_len <= 32:
+        hl_size = 60
+    elif hl_len <= 45:
+        hl_size = 50
+    else:
+        hl_size = 42
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:flex-start;height:100%;margin-top:240px;">
   <div class="vds-fade" style="font-family:Inter;font-size:34px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:28px;animation-delay:.05s;">{badge}</div>
-  <div class="vds-pop" style="font-family:Inter;font-size:88px;font-weight:900;color:#ffffff;line-height:1.06;letter-spacing:-1px;animation-delay:.25s;">{hook_line}</div>
+  <div class="vds-pop" style="font-family:Inter;font-size:{hl_size}px;font-weight:900;color:#ffffff;line-height:1.06;letter-spacing:-1px;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{hook_line}</div>
   <div class="vds-rise" style="margin-top:36px;width:120px;height:8px;background:#D4AF37;border-radius:4px;animation-delay:.6s;"></div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6740,7 +6754,7 @@ def _pulse_news_html(news_summary):
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
   <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">WHAT HAPPENED</div>
   <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:48px 40px;border-left:8px solid #4ECDC4;">
-    <div class="vds-rise" style="font-family:Inter;font-size:52px;font-weight:700;color:#ffffff;line-height:1.35;animation-delay:.25s;">{lines}</div>
+    <div class="vds-rise" style="font-family:Inter;font-size:52px;font-weight:700;color:#ffffff;line-height:1.35;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{lines}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6752,7 +6766,7 @@ def _pulse_hero_stat_html(big, sub, eyebrow):
   <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:70px 44px;border:3px solid rgba(212,175,55,0.4);">
     <div class="vds-fade" style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">{eyebrow}</div>
     <div class="vds-pop" style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:28px;text-shadow:0 0 60px rgba(212,175,55,0.4);animation-delay:.25s;">{big}</div>
-    <div class="vds-rise" style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;animation-delay:.55s;">{sub}</div>
+    <div class="vds-rise" style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;animation-delay:.55s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{sub}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6812,7 +6826,7 @@ def _pulse_diaspora_html(bullets):
         delay = 0.2 + i * 0.3
         bullets_html += f"""<div class="vds-rise" style="display:flex;align-items:flex-start;gap:20px;margin-bottom:26px;animation-delay:{delay}s;">
       <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:16px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:46px;font-weight:600;color:#ffffff;line-height:1.25;">{b}</div>
+      <div style="font-family:Inter;font-size:46px;font-weight:600;color:#ffffff;line-height:1.25;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{b}</div>
     </div>"""
 
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
@@ -6829,7 +6843,7 @@ def _pulse_payoff_html(payoff):
     compact brand line (research: never end on pure branding; end on the story)."""
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
   <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">THE TAKEAWAY</div>
-  <div class="vds-pop" style="font-family:Inter;font-size:62px;font-weight:900;color:#ffffff;line-height:1.18;animation-delay:.25s;">{payoff}</div>
+  <div class="vds-pop" style="font-family:Inter;font-size:62px;font-weight:900;color:#ffffff;line-height:1.18;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{payoff}</div>
   <div class="vds-rise" style="margin-top:72px;font-family:Inter;font-size:30px;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:4px;animation-delay:.7s;">THE VIDESHI · thevideshi.com</div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -8216,6 +8230,12 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
         image_urls = source_image_urls(article, [], count=1)
         if image_urls:
             hero_image_url = image_urls[0]
+
+    # Pre-crop the hero to 9:16 (1080x1920) so Shotstack's fit=cover +
+    # zoomInSlow doesn't stretch non-9:16 images. The main reel path does
+    # this; Quick Pulse was skipping it (stretched-face bug, 2026-10-09).
+    if hero_image_url:
+        hero_image_url = _precrop_hero_9x16(hero_image_url, slug)
 
     # Step 3: Music — Quick Pulse needs HIGH ENERGY regardless of story mood.
     # Slow/brooding families (dramatic-dark, chill-lifestyle, emotional-inspiring)
