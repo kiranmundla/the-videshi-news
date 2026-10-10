@@ -283,20 +283,20 @@ CRITIC REVIEWS FOUND:
 
 Today is {NOW.strftime('%B %d, %Y')}. These movies are opening in theaters this week.
 
-For EACH movie below, write a review roundup article that synthesizes what critics are saying. This is NOT your own review — it's a digest of real critic opinions.
+For EACH movie below, write a review roundup article that synthesizes what critics are saying. This is NOT your own review — it's a digest of real critic opinions. Write it like a professional film critic writing for a smart general audience: narrative flow, vivid specific details, real voice. NOT a dry spec sheet.
 
 ARTICLE FORMAT:
 Each article should be HTML with this structure:
-1. Opening paragraph: one clear sentence stating the critical consensus (positive/mixed/negative), then 2-3 sentences on what the film is about and who made it.
+1. Opening: 2-3 paragraphs that tell the STORY of this film's reception. What kind of film is this? What did the director attempt? Where does it soar and where does it stumble, according to critics? Name specific critics and outlets. Make the reader feel like they understand the film without having seen it.
 2. Rating card data (returned as JSON fields, rendered by the frontend as "THE VIDESHI RATING"):
    - star_rating: overall rating out of 5 (half-star increments like 3.5)
    - category_ratings: exactly these four keys — "Story", "Direction", "Climax", "Performances" — each out of 5 (half-star increments), based on what critics specifically said about each aspect
-   - rating_consensus: editorial paragraph summarizing the consensus (e.g. "Critics broadly praise the finale's face-off, courtroom drama and climax, docking it for a slow first half and convenient plotting — a 3.5-star consensus across 18 published reviews.")
-3. Body sections using these exact bullet headers:
-   - "The consensus:" — X published critic reviews average Y/5, range, where most land
-   - "What's praised:" — specific things critics praised
-   - "What's criticized:" — specific criticisms (even for well-reviewed films, be honest)
-   - "What this means for you:" — should the diaspora audience go see it, practical info (in cinemas now, runtime, etc.)
+   - rating_consensus: editorial paragraph summarizing the consensus
+3. Body sections (use narrative prose with specific examples, not just bullet fragments):
+   - "<h2>The consensus</h2>" — 1-2 paragraphs: X published critic reviews average Y/5. Where do most land? Is there a split (e.g. Indian critics vs Western)? What's the through-line?
+   - "<h2>What's praised</h2>" — 2-3 paragraphs with SPECIFICS: which performance, which scene, which technical achievement. Quote critics by name.
+   - "<h2>What's criticized</h2>" — 1-2 paragraphs, honest even for good films. What's the actual complaint — pacing in the second half? A climax that doesn't land? Be concrete.
+   - "<h2>What this means for you</h2>" — 1 paragraph: should the diaspora audience go see it? Practical info (in cinemas now, runtime, subtitles).
 
 For Indian films, add a note on the diaspora angle — is it available dubbed/subtitled, does it require cultural context, how does it compare to the director's/star's previous work.
 
@@ -307,10 +307,10 @@ CRITICAL RULES:
 - Include the Rotten Tomatoes or Metacritic score ONLY if found in search results. NEVER invent a score.
 - STAR RATING: Provide your own overall star_rating (out of 5, half-star increments like 3.5) based on the critic consensus you found. This is The Videshi's editorial rating synthesized from the reviews — not copied from any single source.
 - CATEGORY RATINGS: Rate exactly these four categories out of 5 (half-star increments): Story, Direction, Climax, Performances. Base each on what critics specifically said about that aspect.
-- Tone: film-literate, opinionated but fair. Like a friend who reads a lot of reviews summarizing them for you.
+- Tone: professional film critic — narrative, specific, vivid. Write full paragraphs that tell the story of the film and its reception. Name critics and outlets. A reader should finish feeling they understand the movie. NEVER write in dry bullet-fragment style.
 - Do NOT use generic AI phrases like "In conclusion", "Overall, this film", "It remains to be seen", "Whether you're a fan of..."
-- NEVER put the rating JSON (star_rating, category_ratings) in the body_html. Return ratings ONLY as the top-level JSON fields. The body should contain only the article prose with the bullet sections.
-- Word count: 500-700 words per article.
+- NEVER put the rating JSON (star_rating, category_ratings) in the body_html. Return ratings ONLY as the top-level JSON fields. The body should contain only the article prose.
+- Word count: 700-900 words per article. These are full reviews, not summaries.
 - Tags should include movie title, director, lead actors, genre, and language if not English.
 
 Return JSON:
