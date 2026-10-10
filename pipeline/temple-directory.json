@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "description": "Hindu temples, gurdwaras, and mosques in the US with event calendars. Built 2026-10-09 per Kiran's directive.",
-    "last_verified": "2026-10-09",
+    "description": "Hindu temples, gurdwaras, and mosques in the US with event calendars. Expanded 2026-10-10 to 41 hindutemples.info cities (261 temples) per Kiran's directive.",
+    "last_verified": "2026-10-10",
     "usage": "temple-events-scraper.py reads this file. parser_type determines how events are extracted."
   },
   "parser_types": {
@@ -132,6 +132,2566 @@
       "state": "CA",
       "tradition": "Hindu",
       "website": ""
+    },
+    {
+      "events_url": "https://hindutemples.info/ambaji-usa-shree-shakti-mandir",
+      "name": "Ambaji USA - Shree Shakti Mandir of Atlanta",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/ananda-mandir-somerset-nj",
+      "name": "Ananda Mandir - Somerset, New Jersey",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/asamai-hindu-temple-maryland",
+      "name": "AsaMai Hindu Temple of Washington Metropolitan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/austin-hindu-temple",
+      "name": "Austin Hindu Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/bangladesh-hindu-mandir",
+      "name": "Bangladesh Hindu Mandir - New York",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-atlanta",
+      "name": "BAPS Shri Swaminarayan Mandir, Atlanta",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-austin",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Austin",
+      "state": "TX",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-birmingham",
+      "name": "BAPS Shri Swaminarayan Mandir, Birmingham, AL",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-boynton-beach",
+      "name": "BAPS Shri Swaminarayan Mandir, Boynton Beach",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-canton",
+      "name": "BAPS Shri Swaminarayan Mandir - Detroit, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-charlotte",
+      "name": "BAPS Shri Swaminarayan Mandir - Charlotte, NC",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-cherry-hill-nj",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Cherry Hill",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-chicago",
+      "name": "BAPS Shri Swaminarayan Mandir, Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-columbus",
+      "name": "BAPS Shri Swaminarayan Mandir, Columbus",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-dc",
+      "name": "BAPS Shri Swaminarayan Mandir, Washington, D.C.",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-flushing-ny",
+      "name": "BAPS Shri Swaminarayan Mandir - Flushing, New York",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-fresno",
+      "name": "BAPS Shri Swaminarayan Mandir, Fresno",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-greenwood-in",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Greenwood",
+      "state": "IN",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-griffith-in",
+      "name": "BAPS Shri Swaminarayan Mandir - Griffith, Indiana",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-houston",
+      "name": "BAPS Shri Swaminarayan Mandir, Houston",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-jackson-mississippi",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Jackson",
+      "state": "MS",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-melbourne",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Melbourne",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-memphis",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Memphis",
+      "state": "TN",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-milwaukee",
+      "name": "BAPS Shri Swaminarayan Mandir - Milwaukee, Wisconsin",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-nashville",
+      "name": "BAPS Shri Swaminarayan Mandir - Nashville, Tennessee",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-northern-virginia",
+      "name": "BAPS Shri Swaminarayan Mandir, Northern Virginia",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-orlando",
+      "name": "BAPS Shri Swaminarayan",
+      "city": "Mandir",
+      "state": "Orlando",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-philadelphia",
+      "name": "BAPS Shri Swaminarayan Mandir - Philadelphia, Pennsylvania",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-phoenix",
+      "name": "BAPS Shri Swaminarayan Mandir, Phoenix",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-raleigh",
+      "name": "BAPS Shri Swaminarayan Mandir - Raleigh, North Carolina",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-robbinsville",
+      "name": "BAPS Shri Swaminarayan Mandir",
+      "city": "Robbinsville",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-seattle",
+      "name": "BAPS Shri Swaminarayan Mandir, Seattle",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-sharon",
+      "name": "BAPS Shri Swaminarayan Mandir - South Boston, MA",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-tucson",
+      "name": "BAPS Shri Swaminarayan Mandir in Tucson",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-tx",
+      "name": "BAPS Shri Swaminarayan Mandir - Dallas, Texas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminarayan-mandir-virginia-beach",
+      "name": "BAPS Shri Swaminarayan Mandir, Virginia Beach",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminaryan-mandir-portland",
+      "name": "BAPS Shri Swaminarayan Mandir, Portland",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/baps-shri-swaminaryan-mandir-san-jose",
+      "name": "BAPS Shri Swaminaryan Mandir, San Jose",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/bellevue-hindu-temple-and-cultural-center",
+      "name": "Bellevue Hindu Temple And Cultural Center",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/bharatiya-ekta-mandir-az",
+      "name": "Bharatiya Ekta Mandir - Phoenix, Arizona",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/bharatiya-hindu-temple-powell",
+      "name": "Bharatiya Hindu Temple",
+      "city": "Powell",
+      "state": "OH",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/bharatiya-temple-detroit",
+      "name": "Bharatiya Temple of Metropolitan Detroit",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/boston-sri-kalikambal-shiva-temple",
+      "name": "Boston Sri Kalikambal Shiva Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/brahmma-premananda-ashram-and-temple",
+      "name": "Brahma Premananda Ashram and Temple in Portland",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/chicago-kali-bari",
+      "name": "Chicago Kali Bari",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/chinmaya-mission-san-diego",
+      "name": "Chinmaya Mission San Diego",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/chinmaya-mission-san-jose",
+      "name": "Chinmaya Mission San Jose",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/devi-parashakthi-temple-mi",
+      "name": "Devi Parashakthi Matha Temple - Pontiac, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/durga-mandir-princeton-nj",
+      "name": "Durga Mandir",
+      "city": "Princeton",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/durga-mata-mandir-of-fresno",
+      "name": "Durga Mata Mandir of Fresno",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/durga-temple-detroit-michigan",
+      "name": "Durga Temple - Detroit, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/durga-temple-of-virginia",
+      "name": "Durga Temple of Virginia",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/ganesh-temple-atlanta",
+      "name": "Ganesh Temple of Atlanta",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/gauri-siddhivinayak-temple-houston",
+      "name": "Gauri Siddhivinayak Temple of Houston",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/gayatri-temple-in-albuquerque-nm",
+      "name": "Gayatri Temple",
+      "city": "Albuquerque",
+      "state": "NM",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/gitacharya-sri-sai-temple-tulsa",
+      "name": "Gitacharya Sri Sai Temple",
+      "city": "Tulsa",
+      "state": "OK",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hanuman-temple-chicago",
+      "name": "Hanuman Temple of Greater Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hare-krishna-kc",
+      "name": "Hare Krishna KC - Rupanuga Vedic College",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hari-om-mandir-chicago",
+      "name": "Hari Om Mandir - Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/harsiddhi-shakti-temple-in-maryland",
+      "name": "Harsiddhi Shakti Temple",
+      "city": "Adelphi",
+      "state": "MD",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-and-jain-temple-of-las-vegas",
+      "name": "Hindu and Jain Temple of Las Vegas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-center-kissimmee",
+      "name": "Hindu Center",
+      "city": "Kissimmee",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-center-of-charlotte",
+      "name": "Hindu Center of Charlotte",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-center-of-virginia",
+      "name": "Hindu Center of Virginia",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-culture-center-of-north-alabama",
+      "name": "Hindu Culture Center of North Alabama",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-mandir-of-daytona-beach",
+      "name": "Hindu Mandir of Daytona Beach",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-samaj-mandir-mahwah-nj",
+      "name": "Hindu Samaj Mandir",
+      "city": "Mahwah",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-society-central-florida",
+      "name": "Hindu Society of Central Florida - Casselberry",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-and-community-center",
+      "name": "Hindu Temple and Community Center",
+      "city": "Sunnyvale",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-and-cultural-center-of-tucson",
+      "name": "Hindu Temple and Cultural Center of Tucson",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-canton",
+      "name": "Hindu Temple of Canton, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-central-indiana",
+      "name": "Hindu Temple of Central Indiana",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-chicago",
+      "name": "Hindu Temple of Greater Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-cultural-center-washington",
+      "name": "Hindu Temple &amp; Cultural Center of Bothell, Washington",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-florida",
+      "name": "Hindu Temple of Florida in Tampa",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-in-omahane",
+      "name": "Hindu Temple",
+      "city": "Omaha",
+      "state": "NE",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-mississippi",
+      "name": "Hindu Temple Society of Mississippi",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-arizona",
+      "name": "Hindu Temple of Arizona (Scottsdale)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-atlanta",
+      "name": "Hindu Temple of Atlanta",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-birmingham",
+      "name": "Hindu Temple of Birmingham, Alabama",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-central-arkansas",
+      "name": "Hindu Temple of Central Arkansas, Little Rock",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-delaware",
+      "name": "Hindu Temple of Delaware",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-fresno",
+      "name": "Hindu Temple of Fresno",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-greater-tulsa",
+      "name": "Hindu Temple of Greater Tulsa",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-hampton-roads",
+      "name": "Hindu Temple of Hampton Roads (Virginia)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-kentucky",
+      "name": "Hindu Temple of Kentucky",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-metropolitan-washington",
+      "name": "Hindu Temple of Metropolitan Washington",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-montgomery",
+      "name": "Hindu Temple of Montgomery, Alabama",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-oklahoma",
+      "name": "Hindu Temple of Oklahoma",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-siouxland",
+      "name": "Hindu Temple of Siouxland",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-southwest-florida",
+      "name": "Hindu Temple of Southwest Florida (Fort Myers)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-the-rockies",
+      "name": "Hindu Temple of The Rockies",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-of-virginia",
+      "name": "Hindu Temple of Virginia (Balaji Temple)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-society-of-new-mexico",
+      "name": "Hindu Temple Society",
+      "city": "Albuquerque",
+      "state": "NM",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/hindu-temple-wisconsin",
+      "name": "Hindu Temple of Wisconsin",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/india-cultural-center-and-temple-tn",
+      "name": "India Cultural Center and Temple - Memphis, Tennessee",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/indo-american-hindu-temple-michigan",
+      "name": "Indo American Cultural Center and Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-alachua-hare-krishna-temple",
+      "name": "ISKCON Alachua Hare Krishna Temple - Florida",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-atlanta",
+      "name": "ISKCON - Atlanta, Georgia",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-boston",
+      "name": "ISKCON - Boston, Massachusetts",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-chicago",
+      "name": "ISKCON - Chicago, Illinois",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-columbus-ohio",
+      "name": "ISKCON Columbus, Ohio",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-denver-colorado",
+      "name": "ISKCON - Denver, Colorado",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-detroit",
+      "name": "ISKCON - Detroit, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-indianapolis",
+      "name": "ISKCON - Indianapolis, Indiana",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-las-vegas",
+      "name": "ISKCON Las Vegas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-los-angeles",
+      "name": "ISKCON - Los Angeles, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-of-dc",
+      "name": "ISKCON of Washington, D.C.",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-of-houston",
+      "name": "ISKCON of Houston",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-orlando",
+      "name": "ISKCON Orlando, Florida",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-philadelphia",
+      "name": "ISKCON - Philadelphia, Pennsylvania",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-temple-miami",
+      "name": "ISKCON Temple Miami",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/iskcon-tucson",
+      "name": "ISKCON Tucson, Arizona",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/jacksonville-hindu-temple",
+      "name": "Jacksonville Hindu Temple - HSNEF",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/jalaram-saibaba-temple",
+      "name": "Jalaram Saibaba Temple",
+      "city": "Houston",
+      "state": "TX",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/jaya-hanuman-temple-and-cultural-center",
+      "name": "Jaya Hanuman Temple and Cultural Center",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/jyoti-mandir",
+      "name": "Jyoti Mandir",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/kailasa-ohio-temple",
+      "name": "Kailasa Ohio Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/kaival-gyan-mandir-chicago",
+      "name": "Kaival Gyan Mandir Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/kasi-sri-vishwanath-temple-michigan",
+      "name": "Kasi Sri Vishwanath Temple, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/kent-hindu-temple",
+      "name": "Kent Hindu Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/lakshmi-venkateswara-temple-seattle",
+      "name": "Lakshmi Venkateswara Temple, Seattle",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/ma-durga-temple-pasadena-ca",
+      "name": "Ma Durga Temple - Pasadena, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/maa-durga-sri-sai-baba-temple",
+      "name": "Maa Durga Sri Sai Baba Temple",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/maa-durga-temple-of-connecticut",
+      "name": "Maa Durga Temple of Stratford, Connecticut",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/maha-ganapati-temple-of-arizona",
+      "name": "Maha Ganapati Temple of Arizona",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/mahamaya-mandir-ny",
+      "name": "Mahamaya Mandir - Jamaica, New York",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/maine-hindu-temple",
+      "name": "Maine Hindu Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/malibu-hindu-temple-la",
+      "name": "Malibu Hindu Temple - Los Angeles County, CA",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/manav-mandir-melbourne-fl",
+      "name": "Manav Mandir",
+      "city": "Melbourne",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/manav-seva-mandir-bensenville",
+      "name": "Manav Seva Mandir - Bensenville, Illinois",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/maryland-hindu-milan-mandir",
+      "name": "Maryland Hindu Milan Mandir in Silver Spring",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/murugan-temple-of-north-america",
+      "name": "Murugan Temple of North America (Lanham, Maryland)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/new-england-shirdi-sai-temple",
+      "name": "New England Shirdi Sai Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/nithyanandeshwara-hindu-temple",
+      "name": "Nithyanandeshwara Hindu Temple - San Jose, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/nithyanandeshwara-paramashiva-hindu-temple-houston",
+      "name": "Nithyanandeshwara Paramashiva Hindu Temple, Houston",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/nithyanandeshwara-vedic-temple-of-oklahoma",
+      "name": "Nithyanandeshwara Vedic Temple of Oklahoma",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/om-shakti-temple-ny",
+      "name": "Om Shakti Temple Woodside, NY",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/palm-beach-hindu-mandir",
+      "name": "Palm Beach Hindu Mandir",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/pasadena-shiva-temple",
+      "name": "Pasadena Shiva Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/portland-balaji-temple",
+      "name": "Portland Balaji Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/portland-jaya-hanuman-temple",
+      "name": "Portland Jaya Hanuman Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-govind-dham-dallas",
+      "name": "Radha Govind Dham - Dallas, Texas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-govind-dham-los-angeles",
+      "name": "Radha Govind Dham Los Angeles",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-kalachandji-temple",
+      "name": "Radha Kalachandji Temple in Dallas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-krishna-temple-dallas",
+      "name": "Radha Krishna Temple of Dallas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-krishna-temple-nj",
+      "name": "Radha Krishna Temple",
+      "city": "Lawrenceville",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-krishna-temple-of-bay-area",
+      "name": "Radha Krishna Temple of Bay Area",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-madhav-dham",
+      "name": "Radha Madhav Dham",
+      "city": "Austin",
+      "state": "TX",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/radha-madhav-temple-arkansas",
+      "name": "Radha Madhav Temple",
+      "city": "Little Rock",
+      "state": "AR",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/rajdhani-mandir-virginia",
+      "name": "Rajdhani Mandir (Chantilly, Virginia)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sai-dhyan-mandir-az",
+      "name": "Sai Dhyan Mandir - Gilbert, Arizona",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/samarpan-temple-bensalem-pa",
+      "name": "Samarpan Hindu Temple",
+      "city": "Bensalem",
+      "state": "PA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sanatan-mandir-florida",
+      "name": "Sanatan Mandir of Florida",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sanatan-mandir-san-bruno-california",
+      "name": "Sanatan Mandir - San Bruno, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sanatan-mandir-tampa",
+      "name": "Sanatan Mandir Tampa - Florida",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sanatan-shiv-shakti-mandir-houston",
+      "name": "Sanatan Shiv Shakti Mandir of Houston",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/santoshi-ma-temple-windermere-florida",
+      "name": "Santoshi Mata Temple",
+      "city": "Windermere",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/saraswati-devi-mandir",
+      "name": "Saraswati Devi Mandir",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/satya-narayan-mandir-jackson-heights-ny",
+      "name": "Satya Narayan Mandir - Jackson Heights, New York",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-baba-sansthan-los-angeles",
+      "name": "Shirdi Sai Baba Sansthan, Los Angeles",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-baba-spiritual-center-san-diego-ca",
+      "name": "Shirdi Sai Baba Spiritual Center - San Diego, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-baba-temple-seattle",
+      "name": "Shirdi Sai Baba Temple, Seattle",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-baba-temple-south-florida",
+      "name": "Shirdi Sai Baba Temple Lake Worth Florida",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-parivaar",
+      "name": "Shirdi Sai Parivaar",
+      "city": "Milpitas",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-temple-of-charlotte",
+      "name": "Shirdi Sai Temple of Charlotte",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-sai-temple-of-okc",
+      "name": "Shirdi Sai Temple of Oklahoma City",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shirdi-saibaba-temple-phoenix-az",
+      "name": "Shirdi Saibaba Temple",
+      "city": "Phoenix",
+      "state": "AZ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shiv-mandir-atlanta",
+      "name": "Shiv Mandir of Atlanta",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shiva-vishnu-temple-of-little-rock-arkansas",
+      "name": "Shiva Vishnu Temple of Little Rock, Arkansas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shiva-vishnu-temple-south-florida",
+      "name": "Shiva Vishnu Temple of South Florida",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shivalaya-temple-boston",
+      "name": "Shivalaya Temple of Greater Boston",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-ganesh-temple-of-chicago",
+      "name": "Shree Ganesh Temple of Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-hanuman-mandir",
+      "name": "Shree Hanuman Mandir",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-haridham-temple",
+      "name": "Shree Haridham Temple",
+      "city": "Norwood",
+      "state": "MA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-jalaram-mandir",
+      "name": "Shree Jalaram Mandir",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-radhey-shyam-temple-il",
+      "name": "Shree Radhey Shyam Temple",
+      "city": "Bloomingdale",
+      "state": "IL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-sai-gurdev-datta-mandir",
+      "name": "Shree Sai Gurdev Datta Mandir",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-swaminarayan-hindu-temple-nj",
+      "name": "Shree Swaminarayan Hindu Temple - New Jersey",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-swaminarayan-mandir-louisville-isso",
+      "name": "Shree Swaminarayan Mandir Louisville (ISSO)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-swaminarayan-temple-de",
+      "name": "Shree Swaminarayan Temple in Delaware",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shree-swaminarayan-temple-isso-nashville",
+      "name": "Shree Swaminarayan Hindu Temple (ISSO of Nashville)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shreemaya-krishnadham-san-jose-ca",
+      "name": "Shreemaya Krishnadham",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-bhaktha-anjaneya-temple-san-diego",
+      "name": "Shri Bhaktha Anjaneya Temple, San Diego",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-gajanan-maharaj-temple-san-jose-ca",
+      "name": "Shri Gajanan Maharaj Temple",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-hanuman-temple-of-north-america",
+      "name": "Shri Hanuman Temple of North America (Lanham, Maryland)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-krishna-pranami-mandir-christiana-tn",
+      "name": "Shri Krishna Pranami Mandir",
+      "city": "Christiana",
+      "state": "TN",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-krishna-vrundavana-nc",
+      "name": "Shri Krishna Vrundavana, North Carolina",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-krishna-vrundavana-temple-san-jose-ca",
+      "name": "Shri Krishna Vrundavana Temple",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-lakshmi-narayan-mandir",
+      "name": "Shri Lakshmi Narayan Mandir",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-mandir-san-diego-ca",
+      "name": "Shri Mandir",
+      "city": "San Diego",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-radha-krishna-temple",
+      "name": "Shri Radha Krishna Temple",
+      "city": "Houston",
+      "state": "TX",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-sai-chavadi-mandir",
+      "name": "Shri Sai Chavadi Mandir",
+      "city": "Canton",
+      "state": "MA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-shirdi-saibaba-temple-of-rockies",
+      "name": "Shri Shirdi SaiBaba Temple of Rockies",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-shiv-dham-hindu-temple",
+      "name": "Shri Shiv Dham Hindu Temple",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-siddhivinayak-temple-usa",
+      "name": "Shri Siddhivinayak Temple USA",
+      "city": "Toms River",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-surya-narayan-mandir",
+      "name": "Shri Surya Narayan Mandir",
+      "city": "Orlando",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-surya-narayan-mandir-jamaica-ny",
+      "name": "Shri Surya Narayan Mandir",
+      "city": "Jamaica",
+      "state": "NY",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shri-swaminarayan-mandir-chicago",
+      "name": "Shri Swaminarayan Mandir, Chicago (Wheeling)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/shrinath-dham-haveli",
+      "name": "Shrinath Dham Haveli",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sita-ram-hindu-temple-mississippi",
+      "name": "Sita Ram Hindu Temple",
+      "city": "Jackson",
+      "state": "MS",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/south-florida-hindu-temple",
+      "name": "South Florida Hindu Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-ashta-lakshmi-temple",
+      "name": "Sri Ashta Lakshmi Temple - Houston, Texas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-ashta-lakshmi-temple-la",
+      "name": "Sri Ashta Lakshmi Temple - Los Angeles, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-balaji-temple-of-great-lakes",
+      "name": "Sri Balaji Temple of Great Lakes (Michigan)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-bhaktha-hanuman-temple-michigan",
+      "name": "Sri Bhaktha Hanuman Temple, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-ganesha-temple-nashville",
+      "name": "Sri Ganesha Temple - Nashville, Tennessee",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-guruvayurappan-temple",
+      "name": "Sri Guruvayurappan Temple",
+      "city": "Houston",
+      "state": "TX",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-guruvayurappan-temple-dallas",
+      "name": "Sri Guruvayurappan Temple in Dallas",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-kamakshi-community-center-santa-clara-ca",
+      "name": "Sri Kamakshi Community Center",
+      "city": "Santa Clara",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-krishna-balaram-mandir",
+      "name": "Sri Krishna Balaram Mandir",
+      "city": "Milpitas",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-lakshmi-ganapathi-temple-columbus",
+      "name": "Sri Lakshmi Ganapathi Temple Columbus",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-lakshmi-ganapathi-temple-plano",
+      "name": "Sri Lakshmi Ganapathi Temple",
+      "city": "Plano",
+      "state": "TX",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-lakshmi-ganapathi-temple-san-jose",
+      "name": "Sri Lakshmi Ganapathi Temple",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-lakshmi-temple-ashland-ma",
+      "name": "Sri Lakshmi Temple - Ashland, Massachusetts",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-lakshmi-venkateswara-temple-san-diego-ca",
+      "name": "Sri Lakshmi Venkateswara Temple",
+      "city": "San Diego",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-laxmi-narayan-mandir-tampa",
+      "name": "Sri Laxmi Narayan Mandir",
+      "city": "Tampa",
+      "state": "FL",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-maha-kaleshwar-mandir-santa-clara-ca",
+      "name": "Sri Maha Kaleshwar Mandir",
+      "city": "Santa Clara",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-panchamukha-hanuman-temple",
+      "name": "Sri Panchamukha Hanuman Temple - Los Angeles, CA",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-prasanna-ganapathi-temple-san-jose-ca",
+      "name": "Sri Prasanna Ganapathi Temple",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-raja-ganapathi-temple-swedesboro-nj",
+      "name": "Sri Raja Ganapathi Temple",
+      "city": "Swedesboro",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-rajarajeshwari-temple-san-jose-ca",
+      "name": "Sri Rajarajeshwari Temple",
+      "city": "San Jose",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-sai-baba-temple-nashville",
+      "name": "Sri Sai Baba Temple - Nashville, Tennessee",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-saibaba-temple-society-of-ohio",
+      "name": "Sri Saibaba Temple Society of Ohio",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-satya-narayana-swamy-devasthanam",
+      "name": "Sri Satya Narayana Swamy Devasthanam",
+      "city": "Milpitas",
+      "state": "CA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-sharadamba-temple-michigan",
+      "name": "Sri Sharadamba Temple, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-shirdi-sai-baba-temple-of-dfw",
+      "name": "Sri Shirdi Sai Baba Temple of DFW",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-shirdi-saibaba-mandir-nc",
+      "name": "Sri Shirdi SaiBaba Mandir of North Carolina",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-shirdi-saibaba-temple-michigan",
+      "name": "Sri Shirdi Saibaba Temple, Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-shiva-ganesha-sai-temple-in-delaware",
+      "name": "Sri Shiva Ganesha Sai Temple in Delaware",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-siva-vishnu-temple-maryland",
+      "name": "Sri Siva Vishnu Temple, Maryland",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-siva-vishnu-temple-of-maryland",
+      "name": "Sri Siva Vishnu Temple of Maryland",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-venkata-krishna-kshetra-temple-az",
+      "name": "Sri Venkata Krishna Kshetra Temple",
+      "city": "Tempe",
+      "state": "AZ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-venkata-krishna-vrundavana-temple-seattle",
+      "name": "Sri Venkata Krishna Vrundavana Temple, Seattle",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-venkateswara-swamy-temple-of-colorado",
+      "name": "Sri Venkateswara Swamy Temple of Colorado",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-venkateswara-temple-michigan",
+      "name": "Sri Venkateswara Temple Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sri-venkateswara-temple-of-central-ohio",
+      "name": "Sri Venkateswara Temple of Central Ohio",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/sv-lotus-temple-va",
+      "name": "Sri Venkateswara Lotus Temple",
+      "city": "Fairfax",
+      "state": "VA",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/swaminarayan-shubh-sanskar-sanstha-chicago",
+      "name": "Swaminarayan Shubh Sanskar Sanstha - Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/tri-city-hindu-temple-michigan",
+      "name": "Tri-City Hindu Temple,  Michigan",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/tri-state-hindu-temple",
+      "name": "Tri State Hindu Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/trimurti-temple-devasthanam-charlotte",
+      "name": "Trimurti Temple Devasthanam, Charlotte",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/umiya-mataji-temple-chicago",
+      "name": "Umiya Mataji Temple in Chicago",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/valley-hindu-temple",
+      "name": "Valley Hindu Temple - Los Angeles, California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/ved-mandir-milltown-nj",
+      "name": "Ved Mandir",
+      "city": "Milltown",
+      "state": "NJ",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/veda-sri-venkateswara-temple-seattle",
+      "name": "VEDA Sri Venkateswara Temple, Seattle",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedanta-center-of-dc",
+      "name": "Vedanta Center of Greater Washington, D.C.",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedanta-society-of-kansas-city",
+      "name": "Vedanta Society of Kansas City",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedanta-society-of-northern-california",
+      "name": "Vedanta Society of Northern California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedanta-society-of-portland",
+      "name": "Vedanta Society of Portland&#x200B;",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedanta-society-of-southern-california",
+      "name": "Vedanta Society of Southern California",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedanta-society-of-western-washington",
+      "name": "Vedanta Society of Western Washington",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vedic-cultural-and-spiritual-center-of-san-diego",
+      "name": "Vedic Cultural and Spiritual Center of San Diego",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/vrat-gadhpurdham-charlotte",
+      "name": "Vrat Gadhpurdham Charlotte",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/washington-kali-temple",
+      "name": "Washington Kali Temple (Burtonsville, Maryland)",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
+    },
+    {
+      "events_url": "https://hindutemples.info/west-michigan-hindu-temple",
+      "name": "West Michigan Hindu Temple",
+      "city": "",
+      "state": "",
+      "parser_type": "hindutemples_info",
+      "tradition": "Hindu",
+      "website": "",
+      "notes": "Added via 41-city expansion 2026-10-10"
     }
   ]
 }
