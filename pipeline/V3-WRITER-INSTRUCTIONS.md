@@ -220,4 +220,16 @@ cd ~/workspace/the-videshi-news && git add -A && git commit -m "V3 pipeline arti
 - Image captions are factual plain style — two sentences, no flowery language.
 - Images and video enrichment (inline body images, data cards, embeds) are handled by a SEPARATE enrichment pipeline after publish — the writer does NOT add those. The writer only handles the hero image.
 
+## Movie Review Format (when writing a movie review article)
+All movie reviews MUST follow The Videshi Rating format:
+1. **Rating data** (stored as article fields, rendered as "THE VIDESHI RATING" card):
+   - `star_rating`: overall rating out of 5 (half-star increments, e.g. 3.5)
+   - `category_ratings`: exactly these four keys — "Story", "Direction", "Climax", "Performances" — each out of 5
+   - `rating_consensus`: editorial paragraph (e.g. "Critics broadly praise the finale's face-off, docking it for a slow first half — a 3.5-star consensus across 18 published reviews.")
+2. **Body structure** using these exact bullet headers:
+   - "The consensus:" — X published critic reviews average Y/5, range, where most land
+   - "What's praised:" — specific things critics praised
+   - "What's criticized:" — specific criticisms (even for well-reviewed films)
+   - "What this means for you:" — should the diaspora audience watch it, practical info
+
 Report a brief summary: headlines, categories, and total articles published.

@@ -288,10 +288,15 @@ For EACH movie below, write a review roundup article that synthesizes what criti
 ARTICLE FORMAT:
 Each article should be HTML with this structure:
 1. Opening paragraph: one clear sentence stating the critical consensus (positive/mixed/negative), then 2-3 sentences on what the film is about and who made it.
-2. "<h2>What Critics Are Saying</h2>" section: 4-5 real critic quotes, each as a blockquote with the reviewer name and outlet. Format: <blockquote>"Actual quote from the review."<cite>— Reviewer Name, Outlet Name</cite></blockquote>
-3. "<h2>What Works</h2>" section: 2-3 specific things critics praised (acting, direction, visuals, music, etc.)
-4. "<h2>What Doesn't</h2>" section: 1-2 specific criticisms (even for well-reviewed films, be honest)
-5. "<h2>The Verdict</h2>" section: 2-3 sentence final summary — should the diaspora audience go see it this weekend?
+2. Rating card data (returned as JSON fields, rendered by the frontend as "THE VIDESHI RATING"):
+   - star_rating: overall rating out of 5 (half-star increments like 3.5)
+   - category_ratings: exactly these four keys — "Story", "Direction", "Climax", "Performances" — each out of 5 (half-star increments), based on what critics specifically said about each aspect
+   - rating_consensus: editorial paragraph summarizing the consensus (e.g. "Critics broadly praise the finale's face-off, courtroom drama and climax, docking it for a slow first half and convenient plotting — a 3.5-star consensus across 18 published reviews.")
+3. Body sections using these exact bullet headers:
+   - "The consensus:" — X published critic reviews average Y/5, range, where most land
+   - "What's praised:" — specific things critics praised
+   - "What's criticized:" — specific criticisms (even for well-reviewed films, be honest)
+   - "What this means for you:" — should the diaspora audience go see it, practical info (in cinemas now, runtime, etc.)
 
 For Indian films, add a note on the diaspora angle — is it available dubbed/subtitled, does it require cultural context, how does it compare to the director's/star's previous work.
 
@@ -301,7 +306,7 @@ CRITICAL RULES:
 - If you can't find enough real quotes, use indirect summaries: "Critics at Variety praised..." rather than fake direct quotes.
 - Include the Rotten Tomatoes or Metacritic score ONLY if found in search results. NEVER invent a score.
 - STAR RATING: Provide your own overall star_rating (out of 5, half-star increments like 3.5) based on the critic consensus you found. This is The Videshi's editorial rating synthesized from the reviews — not copied from any single source.
-- CATEGORY RATINGS: Rate each of these categories out of 5 (half-star increments) based on what critics specifically said about each aspect: acting, direction, story, music, visuals. If critics didn't mention a category (e.g. music in an action film), give your best inference or omit that category.
+- CATEGORY RATINGS: Rate exactly these four categories out of 5 (half-star increments): Story, Direction, Climax, Performances. Base each on what critics specifically said about that aspect.
 - Tone: film-literate, opinionated but fair. Like a friend who reads a lot of reviews summarizing them for you.
 - Do NOT use generic AI phrases like "In conclusion", "Overall, this film", "It remains to be seen", "Whether you're a fan of..."
 - Word count: 500-700 words per article.
@@ -315,12 +320,12 @@ Return JSON:
       "headline": "Engaging headline (e.g. 'Mirzapur: The Movie — Critics Say Ali Fazal's Swan Song Packs a Punch')",
       "subheadline": "One sentence summary of critical consensus",
       "slug": "movie-title-review-roundup-critics",
-      "body_html": "Full article HTML as described above",
+      "body_html": "Full article HTML using the bullet structure described above",
       "key_takeaways": ["3-5 bullet points summarizing the key critical consensus points"],
       "sources": [{{"name": "Outlet Name", "url": "https://actual-url-from-search-results"}}],
       "star_rating": 3.5,
-      "category_ratings": {{"acting": 4.0, "direction": 3.5, "story": 3.0, "music": 3.5, "visuals": 4.0}},
-      "rating_consensus": "Brief score summary if available (e.g. '85% on Rotten Tomatoes, 72 on Metacritic') or null if no scores found",
+      "category_ratings": {{"Story": 3.5, "Direction": 3.5, "Climax": 4.0, "Performances": 4.0}},
+      "rating_consensus": "Editorial paragraph (e.g. 'Critics broadly praise the finale's face-off, courtroom drama and climax, docking it for a slow first half — a 3.5-star consensus across 18 published reviews.')",
       "tags": ["tag1", "tag2", "tag3"],
       "is_indian": true/false,
       "cast": ["Actor 1", "Actor 2"],
