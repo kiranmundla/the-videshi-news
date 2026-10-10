@@ -92,7 +92,8 @@
           "name": "Rakie Ayola",
           "photo_url": ""
         }
-      ]
+      ],
+      "review_slug": "bad-apples-review-roundup-critics"
     },
     {
       "cast": [
@@ -134,7 +135,8 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/daayra-2026-247367/movie-overview"
+      "fandango_url": "https://www.fandango.com/daayra-2026-247367/movie-overview",
+      "review_slug": "daayra-review-roundup-critics"
     },
     {
       "cast": [
@@ -181,7 +183,8 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/CRZY7296.jpg/300px-CRZY7296.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "fandango_url": "https://www.fandango.com/vibe-2026-247384/movie-overview"
+      "fandango_url": "https://www.fandango.com/vibe-2026-247384/movie-overview",
+      "review_slug": "vibe-review-roundup-critics"
     },
     {
       "cast": [
