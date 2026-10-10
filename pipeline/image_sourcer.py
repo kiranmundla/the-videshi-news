@@ -1255,6 +1255,11 @@ _HEADLINE_PROPER_NONPERSON_WORDS = {
     # given name ("Flu Arrives"), blocking Pexels backfill on a public-health
     # headline. A disease name is effectively never a person's given name.
     "flu",
+    # 2026-10-10: "East Bay Upscale Indian Dining Wave Gains Momentum" — the
+    # Bay Area region read as a person's name ("East Bay"), blocking Pexels
+    # and leaving a food article imageless. "East" is effectively never a
+    # person's given name as a headline lead.
+    "east",
 }
 # Possessive place leads: "[Place]'s [Business]" ("Hoover's Kabob-Licious",
 # "Hartlepool's Seaton Tandoori") is a place's business, not a person named
@@ -1280,7 +1285,8 @@ _HEADLINE_COMMON_VERB_WORDS = {
     "wins", "win", "loses", "lose", "returns", "return", "quits", "quit",
     "resigns", "reveals", "backs", "slams", "warns", "urges", "hails",
     "swims", "swim", "breaks", "break", "drowns", "crashes", "crash",
-    "arrested", "jailed", "fined", "cleared", "clears",
+    "arrested", "jailed", "fined", "cleared", "clears", "suspends",
+    "suspend",
 }
 # Storm/weather system leads: "Hurricane Isaias Shuts...", "Tropical Storm
 # X...", "Cyclone Y..." — a storm name is not a person's name. The first word
