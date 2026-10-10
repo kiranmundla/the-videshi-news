@@ -269,14 +269,21 @@ def apply_polish(article, result, dry_run=False):
         updates["key_takeaways"] = takeaways
         changes.append(f"{len(takeaways)} takeaways")
 
-    # Data cards
+    # Data cards — preserve any pre-existing non-polish cards (e.g. the
+    # movie_review_ratings card from the review pipeline) alongside the
+    # polish-generated stat/comparison/timeline cards.
     cards = result.get("data_cards", [])
+    existing = article.get("data_cards") or []
+    keep = [c for c in existing
+            if isinstance(c, dict) and c.get("type") not in (None, "")
+            and not (c.get("card_title") and c.get("card_type") and c.get("items"))]
     if cards and isinstance(cards, list):
         valid = [c for c in cards
                  if isinstance(c, dict) and c.get("card_title") and c.get("card_type") and c.get("items")]
-        if valid:
-            updates["data_cards"] = valid
-            changes.append(f"{len(valid)} cards ({', '.join(c['card_type'] for c in valid)})")
+        if valid or keep:
+            updates["data_cards"] = keep + valid
+            changes.append(f"{len(valid)} cards ({', '.join(c['card_type'] for c in valid)})"
+                           + (f" + kept {len(keep)} existing" if keep else ""))
 
     # Proofread — apply to body
     proofread = result.get("proofread", {})
