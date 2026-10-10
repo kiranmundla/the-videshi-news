@@ -85,33 +85,53 @@ def build_post_text(article):
     return text[:1000]
 
 
-def publish(text):
+def publish(text, article_url):
     cmd = ["facebook-cli", "pages", "posts", "create",
            "--page-id", PAGE_ID, "--text", text, "--privacy", "PUBLIC"]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
-    except subprocess.TimeoutExpired:
-        # The CLI can hang after the post actually goes live server-side.
-        # Don't treat timeout as failure — verify via the posts list instead.
-        print("WARN: publish timed out; verifying via posts list...",
-              file=sys.stderr)
-        return _verify_recent_post(text)
-    try:
-        data = json.loads(r.stdout)
-    except json.JSONDecodeError:
-        print(f"ERROR: facebook-cli output not JSON: {r.stdout[:300]}",
-              file=sys.stderr)
-        return _verify_recent_post(text)
-    if data.get("state") == "published":
-        return data
-    print(f"ERROR: publish failed: {r.stdout[:500]}", file=sys.stderr)
+    # Retry on connector write lock ("already running") with backoff.
+    # The lock is transient — a previous write hanging server-side blocks
+    # the next one until it clears.
+    import time
+    for attempt in range(3):
+        try:
+            r = subprocess.run(cmd, capture_output=True, text=True,
+                               timeout=120)
+        except subprocess.TimeoutExpired:
+            # The CLI can hang after the post actually goes live server-side.
+            # Don't treat timeout as failure — verify via the posts list.
+            print("WARN: publish timed out; verifying via posts list...",
+                  file=sys.stderr)
+            return _verify_recent_post(article_url)
+        output = r.stdout + r.stderr
+        if "already running" in output.lower():
+            wait = 60 * (attempt + 1)  # 60s, 120s
+            print(f"WARN: connector write lock held, "
+                  f"retrying in {wait}s (attempt {attempt + 1}/3)...",
+                  file=sys.stderr)
+            time.sleep(wait)
+            continue
+        try:
+            data = json.loads(r.stdout)
+        except json.JSONDecodeError:
+            print(f"ERROR: facebook-cli output not JSON: {r.stdout[:300]}",
+                  file=sys.stderr)
+            return _verify_recent_post(article_url)
+        if data.get("state") == "published":
+            return data
+        print(f"ERROR: publish failed: {r.stdout[:500]}", file=sys.stderr)
+        return None
+    print("ERROR: connector write lock never cleared after 3 attempts",
+          file=sys.stderr)
     return None
 
 
-def _verify_recent_post(text):
-    """Check the Page's recent posts for our text (handles timeout race)."""
+def _verify_recent_post(article_url):
+    """Check the Page's recent posts for our article URL.
+
+    Matches on the full article URL (unique per article) instead of
+    headline fragments, which caused false positives.
+    """
     import time
-    first_line = text.split("\n")[0].strip()[:60]
     cmd = ["facebook-cli", "pages", "posts", "list",
            "--page-id", PAGE_ID]
     # A fresh post may take a few seconds to appear in the list; poll.
@@ -127,7 +147,7 @@ def _verify_recent_post(text):
             meta = post.get("metadata") or {}
             post_text = (post.get("text") or meta.get("caption_excerpt")
                          or "")
-            if first_line and first_line in post_text:
+            if article_url in post_text:
                 post_id = post.get("post_id") or post.get("object_id")
                 print(f"Verified live post: {post.get('post_url') or post_id}")
                 return {"state": "published",
@@ -147,12 +167,13 @@ def main():
         print("No fresh article to post (all recent ones already posted).")
         return
     text = build_post_text(article)
+    article_url = f"https://www.thevideshi.com/news/{article['slug']}"
     print(f"Picked: {article['headline'][:80]}")
     print(f"Text preview: {text[:150]}...")
     if DRY_RUN:
         print("DRY RUN — not publishing.")
         return
-    result = publish(text)
+    result = publish(text, article_url)
     if result:
         posted.add(article["slug"])
         save_posted(posted)
