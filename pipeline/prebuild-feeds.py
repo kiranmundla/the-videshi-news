@@ -103,7 +103,7 @@ P2_COLS = (
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,social_embeds,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
-    "google_cluster_size,signal_count,focal_x,focal_y,llm_score"
+    "google_cluster_size,signal_count,focal_x,focal_y,llm_score,data_cards"
 )
 # Lightweight version without body (for homepage/category feeds where body is stripped anyway)
 P2_COLS_NO_BODY = (

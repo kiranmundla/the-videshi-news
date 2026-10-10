@@ -454,14 +454,52 @@ def publish_article(article_data, movie_data):
     star_rating = article_data.get("star_rating")
     category_ratings = article_data.get("category_ratings", {})
     rating_consensus = article_data.get("rating_consensus")
-    review_ratings = None
-    if star_rating:
-        review_ratings = [{
-            "type": "movie_review_ratings",
-            "star_rating": star_rating,
-            "category_ratings": category_ratings,
-            "rating_consensus": rating_consensus,
-        }]
+
+    # Fallback: the LLM sometimes embeds the rating JSON inside body_html
+    # instead of returning top-level fields (seen 2026-10-09: Daayra/Bad Apples/Vibe).
+    # Extract it, and strip the raw JSON from the body so readers never see it.
+    # NOTE: the finder must not cross nested braces (category_ratings is a nested
+    # object), so it only matches up to the "star_rating" key; braces are then
+    # balanced outward from the match start.
+    if not star_rating and body_html:
+        emb = re.search(r'\{[^{}]*"star_rating"\s*:', body_html)
+        if emb:
+            try:
+                # Reconstruct a parseable object from the matched blob by
+                # balancing braces outward from the match start.
+                start = emb.start()
+                depth = 0
+                end = start
+                for i, ch in enumerate(body_html[start:]):
+                    if ch == "{":
+                        depth += 1
+                    elif ch == "}":
+                        depth -= 1
+                        if depth == 0:
+                            end = start + i + 1
+                            break
+                blob = json.loads(body_html[start:end])
+                star_rating = blob.get("star_rating")
+                category_ratings = blob.get("category_ratings", {}) or {}
+                rating_consensus = blob.get("rating_consensus")
+                body_html = body_html[:start] + body_html[end:]
+                full_body = kt_html + body_html
+                print(f"    ⚠️ Recovered embedded rating JSON from body (star_rating={star_rating})")
+            except (json.JSONDecodeError, ValueError) as e:
+                print(f"    ⚠️ Found embedded rating-like JSON but failed to parse: {e}")
+
+    if not star_rating:
+        raise RuntimeError(
+            f"REFUSING to publish review '{headline}': no star_rating from LLM "
+            "(neither top-level nor embedded in body). Fix the prompt/parsing instead of "
+            "publishing a review without its rating card."
+        )
+    review_ratings = [{
+        "type": "movie_review_ratings",
+        "star_rating": star_rating,
+        "category_ratings": category_ratings,
+        "rating_consensus": rating_consensus,
+    }]
 
     row = {
         "headline": headline,
