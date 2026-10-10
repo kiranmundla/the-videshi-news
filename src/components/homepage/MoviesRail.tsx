@@ -80,9 +80,9 @@ function MovieCard({ movie }: { movie: Movie }) {
   return (
     <div
       onClick={go}
-      className="group shrink-0 w-40 md:w-44 cursor-pointer"
+      className="group shrink-0 w-[140px] cursor-pointer"
     >
-      <div className="relative w-40 md:w-44 aspect-[2/3] rounded-lg overflow-hidden bg-muted">
+      <div className="relative w-[140px] aspect-[2/3] rounded-lg overflow-hidden bg-muted">
         {movie.poster_url && !imgError ? (
           <img
             src={movie.poster_url}
