@@ -705,8 +705,8 @@ export default function IndexV2() {
         <SponsoredBanner />
         <EntertainmentGrid articles={layout.entertainment} />
         <MoviesRail />
-        <TrailersRail />
         <StreamingPicks />
+        <TrailersRail />
         <FridayLaughs />
         </LazyMount>
 
