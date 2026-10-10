@@ -6750,11 +6750,19 @@ def _pulse_news_html(news_summary):
     """Beat 2: WHAT HAPPENED — the context frame. The actual news event in
     short kinetic lines. This beat fixes the 'no context/information' problem:
     a viewer who missed the headline learns the story here."""
-    lines = _wrap_short_lines(news_summary, 6)
+    lines = _wrap_short_lines(news_summary, 5)
+    # Scale font based on longest line to prevent edge clipping
+    max_line_len = max((len(l) for l in lines.split("<br>")), default=0)
+    if max_line_len > 35:
+        wh_size = 42
+    elif max_line_len > 28:
+        wh_size = 46
+    else:
+        wh_size = 52
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
   <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">WHAT HAPPENED</div>
-  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:48px 40px;border-left:8px solid #4ECDC4;">
-    <div class="vds-rise" style="font-family:Inter;font-size:52px;font-weight:700;color:#ffffff;line-height:1.35;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{lines}</div>
+  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:48px 40px;border-left:8px solid #4ECDC4;max-width:100%;box-sizing:border-box;">
+    <div class="vds-rise" style="font-family:Inter;font-size:{wh_size}px;font-weight:700;color:#ffffff;line-height:1.35;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{lines}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6824,9 +6832,17 @@ def _pulse_diaspora_html(bullets):
     bullets_html = ""
     for i, b in enumerate(bullets[:3]):
         delay = 0.2 + i * 0.3
-        bullets_html += f"""<div class="vds-rise" style="display:flex;align-items:flex-start;gap:20px;margin-bottom:26px;animation-delay:{delay}s;">
+        # Scale font down for longer bullets to prevent edge clipping
+        b_len = len(b or "")
+        if b_len > 60:
+            b_size = 36
+        elif b_len > 45:
+            b_size = 40
+        else:
+            b_size = 46
+        bullets_html += f"""<div class="vds-rise" style="display:flex;align-items:flex-start;gap:20px;margin-bottom:26px;animation-delay:{delay}s;max-width:100%;">
       <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:16px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:46px;font-weight:600;color:#ffffff;line-height:1.25;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{b}</div>
+      <div style="font-family:Inter;font-size:{b_size}px;font-weight:600;color:#ffffff;line-height:1.25;flex:1;min-width:0;overflow-wrap:break-word;word-break:break-word;">{b}</div>
     </div>"""
 
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
