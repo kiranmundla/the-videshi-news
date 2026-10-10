@@ -33,9 +33,7 @@ import InterviewSpotlight from "@/components/homepage/InterviewSpotlight";
 import JustInStrip from "@/components/homepage/JustInStrip";
 import HubStrip from "@/components/homepage/HubStrip";
 import YourHubBanner from "@/components/homepage/YourHubBanner";
-import NowInTheaters from "@/components/NowInTheaters";
-import BoxOfficeStrip from "@/components/homepage/BoxOfficeStrip";
-import MovieReviewsRail from "@/components/homepage/MovieReviewsRail";
+import MoviesRail from "@/components/homepage/MoviesRail";
 import RemittanceTracker from "@/components/RemittanceTracker";
 import LazyMount from "@/components/LazyMount";
 import StreamingPicks from "@/components/StreamingPicks";
@@ -706,10 +704,8 @@ export default function IndexV2() {
 <LazyMount>
         <SponsoredBanner />
         <EntertainmentGrid articles={layout.entertainment} />
-        <MovieReviewsRail />
+        <MoviesRail />
         <TrailersRail />
-        <NowInTheaters />
-        <BoxOfficeStrip />
         <StreamingPicks />
         <FridayLaughs />
         </LazyMount>

@@ -111,7 +111,7 @@ P2_COLS_NO_BODY = (
     "is_featured,published_at,event_at,created_at,sources,diaspora_angle,tags,"
     "image_url,image_attribution,image_caption,gallery_images,social_embeds,score_total,"
     "newsworthiness,diaspora_impact,prominence,article_type,"
-    "google_cluster_size,signal_count,focal_x,focal_y,llm_score"
+    "google_cluster_size,signal_count,focal_x,focal_y,llm_score,data_cards"
 )
 
 # Homepage section config (mirrors Index.tsx constants)
@@ -871,6 +871,20 @@ def main():
         "articles": [article_without_body(a) for a in reviews[:60]],
     }, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ movie-reviews.json ({len(reviews)} reviews)")
+
+    # 2c. Unified movies feed — merge theaters + reviews + box office
+    print(f"  Building movies.json (unified)...")
+    try:
+        import subprocess as _sp
+        _r = _sp.run([sys.executable, str(REPO_ROOT / "pipeline" / "build-movies.py")],
+                     capture_output=True, text=True, timeout=60)
+        if _r.returncode != 0:
+            print(f"  WARN: build-movies.py failed: {_r.stderr[:300]}")
+        else:
+            for line in _r.stdout.strip().split("\n"):
+                print(f"    {line}")
+    except Exception as e:
+        print(f"  WARN: build-movies.py error: {e}")
 
     # 3. Build individual article pages (only recent articles — older ones keep existing JSONs)
     recent_cutoff = (now - timedelta(days=7)).isoformat()
