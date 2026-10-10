@@ -722,9 +722,18 @@ def fetch_wikipedia_image(entity_name, article_context=None, article_headline=No
             capture_output=True, text=True, timeout=12
         )
         data = json.loads(result.stdout)
-        img = (data.get("originalimage") or {}).get("source") or \
-              (data.get("thumbnail") or {}).get("source")
+        img_info = data.get("originalimage") or data.get("thumbnail") or {}
+        img = img_info.get("source")
         if not img:
+            return None
+
+        # ── Minimum resolution guard ──
+        # Reject tiny thumbnails (e.g., 283px fair-use posters) — they'd look
+        # pixelated as hero images. 600px wide is the minimum for decent display.
+        _w = img_info.get("width") or 0
+        if _w and _w < 600:
+            print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — "
+                  f"too small ({_w}px wide, minimum 600px)")
             return None
 
         # ── Filename-vs-entity cross-check ──
