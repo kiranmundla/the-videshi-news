@@ -39,14 +39,32 @@ HEADERS = {
 }
 
 ARTIST_KEYWORDS = [
+    # Bollywood playback / mainstream
     "Diljit Dosanjh", "Shreya Ghoshal", "Sonu Nigam", "Arijit Singh",
     "AR Rahman", "Atif Aslam", "Neha Kakkar", "Badshah", "AP Dhillon",
     "Karan Aujla", "Armaan Malik", "Amit Trivedi", "Sunidhi Chauhan",
     "Jubin Nautiyal", "Darshan Raval", "Nucleya", "Pritam",
     "Vishal Shekhar", "Kumar Sanu", "Lucky Ali",
+    # Added 2026-10-09: broader diaspora coverage
+    "Shankar Ehsaan Loy", "Salim Sulaiman", "Anirudh Ravichander",
+    "Devi Sri Prasad", "Anupam Roy", "Sid Sriram", "Anuv Jain",
+    "Prateek Kuhad", "Ritviz", "Divine", "Raja Kumari",
+    "Zakir Hussain", "Ravi Shankar", "Anoushka Shankar",
+    "Ali Sethi", "Coke Studio", "Indian Ocean", "Agnee",
+    "Kailash Kher", "Sukhwinder Singh", "Mika Singh",
+    "Guru Randhawa", "Honey Singh", "B Praak", "Shubh",
+    "Aditya Rikhari", "Sidhu Moose Wala",
+    "Zakir Khan", "Vir Das", "Kenny Sebastian", "Anubhav Singh Bassi",
+    "Biswas Kalyan Rath",
 ]
 
-STATE_KEYWORDS = ["bollywood", "indian", "desi", "bhangra", "garba"]
+# 2026-10-09: Tested each keyword against Ticketmaster API. Only these
+# return results — TM matches literal event titles, so niche cultural terms
+# (kathak, qawwali, navratri, etc.) return 0. Those are covered by the
+# temple scraper (Phase 2) and Eventbrite/Sulekha instead.
+STATE_KEYWORDS = [
+    "bollywood", "indian", "desi", "diwali", "holi", "yoga", "meditation",
+]
 STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
           "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
           "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
@@ -307,11 +325,11 @@ def main():
             print(f"  {kw}: {new} events")
         time.sleep(0.15)
 
-    # State keyword searches
+    # State keyword searches (diaspora terms, 50 results each)
     print("\n--- State keyword searches ---")
     for state in STATES:
         for kw in STATE_KEYWORDS:
-            events = fetch_tm(kw, state_code=state, size=20)
+            events = fetch_tm(kw, state_code=state, size=50)
             new = 0
             for evt in events:
                 title = evt.get("name", "")
