@@ -700,6 +700,75 @@ def fetch_youtube_thumbnail(entity_name, headline):
         print(f"    ⚠ YouTube thumbnail search error: {e}")
         return None, None, None
 
+
+# ── Source 3.7: PR Newswire India ─────────────────────────────────────────────
+def fetch_prnewswire_image(query):
+    """Search PR Newswire India for press releases matching the query and
+    return the highest-res press-approved image (mma.prnewswire.com).
+
+    PR Newswire images are distributed for media use, making them copyright-safe
+    for news articles. Prefers ?p=original for full resolution.
+
+    Returns image URL or None.
+    """
+    if not query or len(query) < 3:
+        return None
+    try:
+        import urllib.parse
+        encoded = urllib.parse.quote(query)
+        search_url = f"https://www.prnewswire.com/in/search/news/?keyword={encoded}"
+        result = _safe_run(
+            ["curl", "-sSL", "--max-time", "15", "-A", UA, search_url],
+            capture_output=True, text=True, timeout=20
+        )
+        html = result.stdout
+        # Find press release links: /in/news-releases/<slug>-<id>.html
+        links = re.findall(r'href="(/in/news-releases/[a-z0-9\-]+\-\d+\.html)"', html)
+        # Relevance: query words should appear in the release URL slug
+        # (prevents e.g. "Bollywood" matching a gym opening that mentions it once)
+        _qwords = {w.lower() for w in re.findall(r'[a-zA-Z]{3,}', query)}
+        seen = set()
+        for link in links:
+            if link in seen:
+                continue
+            seen.add(link)
+            slug = link.split("/")[-1].rsplit("-", 1)[0].lower().replace("-", " ")
+            if _qwords and not (_qwords & set(slug.split())):
+                continue  # query not in release title — skip
+            release_url = f"https://www.prnewswire.com{link}"
+            r2 = _safe_run(
+                ["curl", "-sSL", "--max-time", "15", "-A", UA, release_url],
+                capture_output=True, text=True, timeout=20
+            )
+            # Extract mma.prnewswire.com images, prefer ?p=original
+            imgs = re.findall(r'https?://mma\.prnewswire\.com/media/\d+/[^"\'\s\)<>]+', r2.stdout)
+            # Dedupe by base URL (strip ?p= params)
+            by_base = {}
+            for img in imgs:
+                base = img.split("?")[0]
+                # Skip tiny thumbnails and logos
+                if any(x in base.lower() for x in ("logo", "icon", "thumb")):
+                    continue
+                if base not in by_base:
+                    by_base[base] = img
+            if by_base:
+                # Prefer the ?p=original variant if available, else first found
+                for base, img in by_base.items():
+                    if "?p=original" in img or img == base:
+                        # Use ?p=original for full resolution
+                        full = base + "?p=original" if "?" not in img else img
+                        print(f"    ✓ PR Newswire image for '{query}'")
+                        return full
+                # Fallback to first image found
+                first = next(iter(by_base.values()))
+                print(f"    ✓ PR Newswire image for '{query}'")
+                return first
+        return None
+    except Exception as e:
+        print(f"    ⚠ PR Newswire search error: {e}")
+        return None
+
+
 def fetch_wikipedia_image(entity_name, article_context=None, article_headline=None):
     """Fetch image from Wikipedia REST API for a person/entity.
     Returns image URL or None.
@@ -1446,6 +1515,24 @@ def source_hero_image(article, used_images=None):
                     attribution = f"YouTube / {yt_channel}" if yt_channel else "YouTube"
                     source_name = "youtube_thumbnail"
                     print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
+    
+        # ── Source 3.7: PR Newswire India (press-approved images) ──────────────
+        # PR Newswire hosts press-approved images on mma.prnewswire.com, meant for
+        # media use. Good for entertainment (movie posters, event photos) and
+        # corporate news. Tried after YouTube, before Wikipedia.
+        if not img_url:
+            prn_query = search_query or (entities[0] if entities else None) or headline[:40]
+            if prn_query and isinstance(prn_query, str):
+                prn_img = fetch_prnewswire_image(prn_query)
+                if prn_img and prn_img not in used:
+                    ok, ctype, _ = verify_image_url(prn_img)
+                    if ok:
+                        img_url = prn_img
+                        attribution = "PR Newswire"
+                        source_name = "prnewswire"
+                        print(f"    ✓ PR Newswire image")
+                    else:
+                        print(f"    ✗ PR Newswire image FAILED verification")
     
         # ── Source 4: Wikipedia person image ─────────────────────────────────
         if not img_url and entities:
