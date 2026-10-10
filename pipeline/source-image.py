@@ -30,6 +30,11 @@ Usage:
   # YouTube trailer
   python3 source-image.py --article-id UUID --trailer "Drishyam 3 Hindi official trailer" --apply
 
+  # YouTube hero (official interview thumbnails — the practical source for
+  # entertainment personalities with no verified Commons/Wikipedia photo)
+  python3 source-image.py --article-id UUID --youtube "Shakun Batra" \
+    --caption "Filmmaker Shakun Batra." --apply
+
   # Just check what the current image is
   python3 source-image.py --article-id UUID --check
 
@@ -237,6 +242,62 @@ def fetch_youtube_trailer(query):
     return None
 
 
+def fetch_youtube_hero(query):
+    """Search YouTube for a video about the entity and return its high-res
+    thumbnail (1280x720) as a hero image. This is the practical source for
+    entertainment personalities with no verified Commons/Wikipedia photo
+    (official interview thumbnails are copyright-safe for editorial use).
+
+    Specificity gate: every significant query word must appear in the video
+    title, so a "Shakun Batra" query can never return a video about someone
+    else (e.g. a co-star). Interview/official videos are preferred.
+
+    Returns (thumb_url, attribution) or (None, None).
+    """
+    try:
+        url = f"https://www.youtube.com/results?search_query={quote_plus(query)}"
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+        r = requests.get(url, headers=headers, timeout=15)
+        if r.status_code != 200:
+            print(f"  ✗ YouTube hero [{query}]: search returned HTTP {r.status_code}")
+            return None, None
+        video_ids = re.findall(r'"videoId":"([A-Za-z0-9_-]{11})"', r.text)
+        titles = re.findall(r'"title":\{"runs":\[{"text":"([^"]+)"\}', r.text)
+        channels = re.findall(r'"longBylineText":\{"runs":\[{"text":"([^"]+)"', r.text)
+        qwords = [w.lower() for w in re.findall(r"[A-Za-z]{3,}", query)]
+        seen = set()
+        cands = []
+        for i, vid in enumerate(video_ids):
+            if vid in seen:
+                continue
+            seen.add(vid)
+            title = titles[i] if i < len(titles) else ""
+            tl = title.lower()
+            if qwords and not all(w in tl for w in qwords):
+                continue  # specificity gate: entity must be in the title
+            channel = channels[i] if i < len(channels) else ""
+            score = 0
+            for kw in ("interview", "official"):
+                if kw in tl:
+                    score += 2
+            cands.append((score, vid, title, channel))
+            if len(cands) >= 8:
+                break
+        cands.sort(key=lambda c: -c[0])
+        for _score, vid, title, channel in cands:
+            for quality in ("maxresdefault", "sddefault", "hqdefault"):
+                thumb = f"https://img.youtube.com/vi/{vid}/{quality}.jpg"
+                if validate_image_url(thumb):
+                    attr = f"YouTube / {channel}" if channel else "YouTube"
+                    print(f"  ✓ YouTube hero [{query}]: {thumb} ({title[:60]})")
+                    return thumb, attr
+        print(f"  ✗ YouTube hero [{query}]: no suitable video found")
+        return None, None
+    except Exception as e:
+        print(f"  ⚠ YouTube hero error [{query}]: {e}")
+        return None, None
+
+
 # ═══════════════════════════════════════════
 # VALIDATION
 # ═══════════════════════════════════════════
@@ -385,10 +446,12 @@ def process_instruction(instr, apply=False):
       commons: Wikimedia Commons search query
       openverse: Openverse search query
       google: Google CSE search query
+      youtube: YouTube hero search query (official interview thumbnails —
+               practical source for personalities with no verified Commons photo)
       caption: desired caption text
       attribution: image attribution (default: "Wikimedia Commons")
       trailer: YouTube trailer search query
-    Sources are tried in the order: wikipedia → commons → openverse → google
+    Sources are tried in the order: youtube → wikipedia → commons → openverse → google
     """
     aid = instr.get("article_id", "")
     if not aid:
@@ -409,6 +472,8 @@ def process_instruction(instr, apply=False):
     attribution = instr.get("attribution", "Wikimedia Commons")
 
     sources = []
+    if instr.get("youtube"):
+        sources.append(("youtube", instr["youtube"]))
     if instr.get("wikipedia"):
         sources.append(("wikipedia", instr["wikipedia"]))
     if instr.get("commons"):
@@ -419,7 +484,9 @@ def process_instruction(instr, apply=False):
         sources.append(("google", instr["google"]))
 
     for source_type, query in sources:
-        if source_type == "wikipedia":
+        if source_type == "youtube":
+            image_url, attr = fetch_youtube_hero(query)
+        elif source_type == "wikipedia":
             image_url, attr = fetch_wikipedia(query)
         elif source_type == "commons":
             image_url, attr = fetch_commons(query)
@@ -482,6 +549,7 @@ def main():
     parser.add_argument("--caption", help="Image caption text")
     parser.add_argument("--attribution", default="Wikimedia Commons", help="Image attribution")
     parser.add_argument("--trailer", help="YouTube trailer search query")
+    parser.add_argument("--youtube", help="YouTube hero search query (official interview thumbnails)")
     parser.add_argument("--check", action="store_true", help="Just show current image info")
     parser.add_argument("--apply", action="store_true", help="Apply changes (default: dry run)")
     parser.add_argument("--batch", action="store_true", help="Read JSON instructions from stdin")
@@ -511,6 +579,8 @@ def main():
         instr["openverse"] = args.openverse
     if args.google:
         instr["google"] = args.google
+    if args.youtube:
+        instr["youtube"] = args.youtube
     if args.caption:
         instr["caption"] = args.caption
     if args.attribution:
