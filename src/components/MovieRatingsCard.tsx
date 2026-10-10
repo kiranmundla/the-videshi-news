@@ -11,6 +11,11 @@ interface MovieRatingsCardProps {
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
+  Story: "Story",
+  Direction: "Direction",
+  Climax: "Climax",
+  Performances: "Performances",
+  // Legacy fallback for old-format reviews
   acting: "Acting",
   direction: "Direction",
   story: "Story",
