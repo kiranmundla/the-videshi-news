@@ -1,0 +1,196 @@
+[
+  {
+    "id": "3d057d92-383a-4f51-abf6-efa58de33a1c",
+    "headline": "India Mobile Congress 2026 Closes With Agri-AI, 5G Automation and Rural Push",
+    "slug": "india-mobile-congress-2026-concludes",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the themes discussed, such as how AI in agriculture could impact productivity or specific examples of problems it aims to solve for farmers.",
+        "Include direct quotes from key speakers or participants to enhance attribution and provide a more personal touch to the reporting.",
+        "Provide specific statistics or data points related to the outcomes of the event, such as the number of participants or specific initiatives launched, to give readers a clearer picture of the event's scale and impact.",
+        "Add context about previous India Mobile Congress events or how this year's themes compare to past discussions to help readers understand the evolution of the event."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official India Mobile Congress account summarizing key takeaways or highlights from the event."
+      ]
+    }
+  },
+  {
+    "id": "284f2ade-e920-4156-89ee-ca2ed4af2462",
+    "headline": "Will O'Rourke Ruled Out of India Series, Targets Australia Test Comeback",
+    "slug": "will-orourke-ruled-out-india-series",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific dates for the series against India, including the start date of the T20Is on October 22, to enhance clarity and completeness.",
+        "Include a quote or statement from New Zealand Cricket or a medical professional regarding the nature of O'Rourke's injuries to improve attribution and provide context.",
+        "Clarify the implications of O'Rourke's absence on the New Zealand team's strategy or performance against India, which would add depth to the article.",
+        "Reorganize the content to avoid redundancy; the information about O'Rourke being ruled out is repeated and could be streamlined for better clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from New Zealand Cricket confirming O'Rourke's injury status and the team's adjustments for the series."
+      ]
+    }
+  },
+  {
+    "id": "4ae78959-b989-402a-8eb7-94c6eda53d01",
+    "headline": "'Can I Do It Again': Harshal Patel Eyes New Ball in Ranji Reboot With Gujarat",
+    "slug": "harshal-patel-ranji-gujarat-new-ball",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for the Ranji Trophy 2026 season and when Patel's first game with Gujarat will take place.",
+        "Provide more context about Harshal Patel's career transition, such as his statistics or achievements with Haryana, to give readers a clearer picture of his journey and significance in the sport.",
+        "Include a quote or statement from a coach or teammate to add depth to Patel's perspective on his new role and the challenges he anticipates.",
+        "Enhance the article's structure by breaking it into clear sections, such as 'Career Transition', 'Philosophy on Cricket', and 'Expectations for the Future', to improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Harshal Patel or a relevant cricket authority discussing his move to Gujarat or his views on red-ball cricket."
+      ]
+    }
+  },
+  {
+    "id": "5b220879-f09f-457e-9f5f-20f615f6f8cf",
+    "headline": "Shakun Batra: Bollywood Romances Fail Gen Z Because They Are 'Far From Reality'",
+    "slug": "shakun-batra-bollywood-romance-gen-z",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide a direct quote from HT City or link to the original interview for attribution and context.",
+        "Include specific examples of Bollywood films that exemplify the disconnect Batra describes, which would enhance completeness and clarity.",
+        "Add a brief background on Shakun Batra's previous works or successes to give readers context about his perspective.",
+        "Clarify the implications of Batra's statements for the future of Bollywood romances, potentially including any upcoming projects or trends he anticipates."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant clip from Netflix's Lust Stories 3 to provide readers with a direct example of Batra's work."
+      ]
+    }
+  },
+  {
+    "id": "a35a4a96-98a6-44d5-9486-5553dda7f31c",
+    "headline": "India's Space Startups Go Global as Defence Demand Surges Past ISRO's Shadow",
+    "slug": "india-space-startups-global-defence-push",
+    "category": "technology",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=d6H4rLXuj6g appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the $618.5 million private investment projection. Specify whether this is a cumulative amount expected by March 2026 or if it reflects current investments.",
+        "Include specific examples of the contracts won by Digantara in Singapore and Thailand, such as the nature of the contracts or the value, to provide readers with a clearer understanding of the significance of these deals.",
+        "Provide more context on the competition with China by including specific examples of how Chinese space startups or initiatives are currently positioned in the global market, which would help readers understand the stakes involved.",
+        "Ensure that the article maintains a consistent structure by clearly separating sections discussing the growth of the startups, the technology showcased, and the implications for India's position in the global space economy."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or statement from Prime Minister Narendra Modi regarding his meeting with the space-tech startup founders to enhance credibility and provide direct access to official commentary."
+      ]
+    }
+  },
+  {
+    "id": "c41a5128-6f0c-42fd-a7ce-a8526d75f330",
+    "headline": "Indian-American Congressman Calls Livestreamed Execution 'Blatantly Un-American'",
+    "slug": "suhas-subramanyam-execution-broadcast-hegseth",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including the exact date of the Pentagon's announcement regarding the livestream, as well as any relevant deadlines for public feedback or legislative actions related to this decision.",
+        "Provide more context about the implications of the execution being livestreamed, such as public reactions, legal considerations, or historical precedents, to enhance the completeness of the article.",
+        "Include direct quotes from the Vice President and President Trump regarding their positions on the livestreaming to add depth and attribution to the bipartisan backlash mentioned.",
+        "Ensure that the article maintains a clear structure by separating the Congressman\u2019s statements and the reactions from other political figures into distinct paragraphs for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official Pentagon announcement regarding the execution to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "5bc80285-508b-40c3-a0a5-c5536b47a2be",
+    "headline": "Panama Declares 'Major Disaster' After 7.7 Quake as Aftershocks Rattle Country",
+    "slug": "panama-earthquake-major-disaster-declaration",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the earthquake and the time zone for the reported times, as this is crucial for readers trying to understand the sequence of events.",
+        "Include a quote or statement from a local authority or emergency services to enhance attribution and provide a more personal perspective on the disaster response efforts.",
+        "Add specific details about the impact on infrastructure, such as the number of buildings reported damaged or destroyed, to give readers a clearer picture of the disaster's scale.",
+        "Mention any ongoing emergency response measures or aid being mobilized, as this information is vital for understanding the immediate aftermath of the disaster."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the US Geological Survey regarding the earthquake's magnitude and aftershocks to provide authoritative context and updates."
+      ]
+    }
+  },
+  {
+    "id": "3a72f82e-5bfb-4a62-9394-309f3aa81041",
+    "headline": "CJP Leaders Detained Inside Plane After Landing in Delhi for Jantar Mantar Prote",
+    "slug": "cjp-leaders-detained-inside-plane-delhi",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the plane's landing and the detentions, as well as the timing of the protest that was planned for Jantar Mantar. This will help readers understand the urgency and context of the situation.",
+        "Provide more context on the significance of the protest and the allegations against Chief Election Commissioner Gyanesh Kumar. This could include a brief background on the electoral roll issues mentioned, which would help readers grasp the stakes involved.",
+        "Include direct quotes from the police or official statements regarding the detentions to enhance attribution and provide a balanced view of the situation. This would also clarify the legal basis for the detentions.",
+        "Reorganize the structure to lead with the most impactful information, such as the detentions and the protest's significance, before delving into the details of the police actions and responses from the detained leaders."
+      ],
+      "embed_opportunities": [
+        "Embed video footage of the police boarding the aircraft, if available, to provide visual context to the story.",
+        "Embed a tweet or statement from the Cockroach Janta Party or a related political figure to provide their perspective on the detentions and the protest."
+      ]
+    }
+  },
+  {
+    "id": "c432295f-43dc-4761-83f4-596ad7f6afd1",
+    "headline": "Supreme Court Holds Rare Sunday Sitting on Metro Curbs, Protest Detentions",
+    "slug": "supreme-court-sunday-sitting-metro-contempt-plea",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the protests and the Supreme Court's orders in a more structured manner. For example, clearly outline the sequence: the October 9 order, the October 10 protest, and the October 11 special sitting.",
+        "Provide specific details about the implications of the Supreme Court's October 9 order. For instance, include what 'regulated and proportionate' transport restrictions mean in practical terms for commuters in Delhi.",
+        "Include quotes or statements from the petitioners or legal experts to enhance the article's attribution and provide a more rounded perspective on the implications of the court's actions.",
+        "Ensure that the headline reflects the urgency and significance of the situation more effectively. Consider rephrasing it to something like 'Supreme Court's Rare Sunday Sitting to Address Contempt Over Metro Shutdown During Protest' for clarity and impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court's order or a relevant tweet from the Supreme Court's official account regarding the October 9 ruling to provide readers direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "35ad48e4-ac7f-43b7-81f9-83b0c140c79d",
+    "headline": "Missile Strikes Riyadh Airport Terminal, Wounding Many as Flights Divert",
+    "slug": "riyadh-airport-missile-strike-wounded-oct10",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the number of injuries reported; instead of 'wounding many,' provide a specific number if available to enhance accuracy and completeness.",
+        "Include a brief statement from Saudi authorities or an official source regarding the incident to improve attribution and credibility.",
+        "Add context about the ongoing conflict between Saudi Arabia and the Houthis, including the implications of repeated attacks on civilian infrastructure, to provide readers with a deeper understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Saudi Arabian government or a credible news source providing updates on the situation or safety instructions for travelers."
+      ]
+    }
+  }
+]

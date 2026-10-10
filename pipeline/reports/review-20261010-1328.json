@@ -1,0 +1,84 @@
+[
+  {
+    "id": "776136fc-bbeb-40fb-8930-bb91d9c27e6f",
+    "headline": "HPV Vaccine Before Pregnancy Linked to Lower Preterm Birth Risk",
+    "slug": "hpv-vaccine-before-pregnancy-lower-preterm-birth-risk",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "9c7546a6-3346-4c14-9904-35cc264cf5ec",
+    "headline": "Mediterranean and MIND Diets Linked to Better Cognitive Performance",
+    "slug": "mediterranean-mind-diets-linked-better-cognitive-performance",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "3f65ec27-64ba-4a51-8ed4-e7cac01a4621",
+    "headline": "Weta CTO: AI Tools Bring Efficiency, But Tech Must Partner With Creatives",
+    "slug": "weta-cto-kimball-thurston-ai-tools-creatives",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "95249fc5-aa6d-4024-a6db-e58fb472843c",
+    "headline": "Air India Offers Students 10% Off Domestic Fares; Book by October 20",
+    "slug": "air-india-student-discount-domestic-fares",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "b547e2cf-2d4a-47bf-a6b2-2c8bbc11dda6",
+    "headline": "NASSCOM Chief: Green Card Curbs Will Push More Work to India's Talent Base",
+    "slug": "nasscom-chief-green-card-curbs-work-india-talent-base-20261010",
+    "category": "immigration",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/nasscom/status/2108230769084887206 appears both inline and in social_embeds"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "4d6010e5-1d73-46c2-ac75-743439115694",
+    "headline": "Glasgow's Green Gates Named Fourth-Best Casual Dining Spot in UK",
+    "slug": "glasgows-green-gates-named-fourth-best-casual-dining-uk",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "90d6e5f9-3fd3-4bf2-ad56-1fa4a8e3224e",
+    "headline": "US Lifts Russian Diesel Sanctions Until April 2027 in Trump-Putin Deal",
+    "slug": "us-lifts-russian-diesel-sanctions-trump-putin-deal",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "14447cba-cde4-451b-b900-a9df75abef62",
+    "headline": "'Hold the Line': Detained Student Leader Neha Bora Rallies Protesters From Custo",
+    "slug": "neha-bora-detained-hold-the-line-delhi-protest-20261010",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "b2763cfe-1546-403b-a463-4bba07aef2bd",
+    "headline": "Tahir Hussain Convicted of Abetting Rioting in 2020 Delhi Riots Case",
+    "slug": "tahir-hussain-convicted-delhi-riots-dayalpur",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "51d0a36d-ca33-46d6-a796-525a297a3149",
+    "headline": "$400K to Live Comfortably on H-1B? What 10 US Cities Actually Cost in 2026",
+    "slug": "h-1b-salary-10-us-cities-comfortable-living-2026-20261010",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

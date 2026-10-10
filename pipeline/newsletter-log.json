@@ -1459,5 +1459,16 @@
     "top_story_slug": "manus-raises-500-million-funding-meta-breakup",
     "quick_hit_count": 5,
     "deadline_count": 7
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-10T13:58:14.801029+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 10, 2026",
+    "subscribers": 8,
+    "sent": 8,
+    "errors": 0,
+    "top_story_slug": "hanuman-ansh-review-roundup-critics",
+    "quick_hit_count": 5,
+    "deadline_count": 7
   }
 ]

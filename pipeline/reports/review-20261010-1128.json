@@ -1,0 +1,21 @@
+[
+  {
+    "id": "2c96a027-89a2-4063-9564-cb1918992950",
+    "headline": "The Exorcist \u2013 Martyrs Trailer Out",
+    "slug": "the-exorcist-martyrs-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Correct the headline to follow the 'Film Teaser/Trailer Out' format, e.g., 'The Exorcist \u2013 Martyrs Trailer Out' is acceptable but should clearly indicate it's a trailer, not a teaser.",
+        "Ensure the drop date is clearly stated as October 09, 2026, and that the release date is also mentioned clearly in the context of the trailer."
+      ],
+      "embed_opportunities": [
+        "Consider adding a Tweet or Instagram embed to enhance engagement, although the YouTube embed is present."
+      ]
+    }
+  }
+]
