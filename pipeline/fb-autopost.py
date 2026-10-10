@@ -75,7 +75,7 @@ def _hours_ago(h):
 def build_post_text(article):
     headline = article["headline"].strip()
     sub = (article.get("subheadline") or "").strip()
-    url = f"https://www.thevideshi.com/news/{article['slug']}"
+    url = f"https://www.thevideshi.com/articles/{article['slug']}"
     # Keep it tight: headline + one-line summary + link
     summary = sub.split(".")[0].strip() + "." if sub else ""
     text = headline
@@ -197,7 +197,7 @@ def main():
         print("No fresh article to post (all recent ones already posted).")
         return
     text = build_post_text(article)
-    article_url = f"https://www.thevideshi.com/news/{article['slug']}"
+    article_url = f"https://www.thevideshi.com/articles/{article['slug']}"
     print(f"Picked: {article['headline'][:80]}")
     print(f"Text preview: {text[:150]}...")
     if DRY_RUN:
