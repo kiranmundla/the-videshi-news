@@ -8,7 +8,11 @@ Photo sourcing is verified-only — a wrong photo is worse than no photo:
   1. person_images table (exact name match) — already identity-verified
   2. Wikipedia page-summary API — page title must match the name;
      disambiguation pages rejected
-  3. Wikimedia Commons file search — filename must contain a name token
+  3. Wikimedia Commons file search — filename must contain a name token;
+     for AMBIGUOUS names (single-token, or Wikipedia says the name is a
+     disambiguation page) the filename must match the name EXACTLY —
+     "Atul_Kumar_MD" and "Mathew_Brady_1875" are different people and
+     must fall back to initials, not headshots
 Otherwise the member renders as an initials circle. Never a guessed photo.
 
 All HTTP goes through curl (urllib/requests fail through this host's proxy).
@@ -109,11 +113,34 @@ def _person_images_lookup(name):
     return None
 
 
+_wiki_summary_cache = {}
+
+
+def _wiki_summary(name):
+    """Cached Wikipedia page-summary dict for a person name (or None)."""
+    key = name.lower()
+    if key not in _wiki_summary_cache:
+        title = name.replace(" ", "_")
+        url = ("https://en.wikipedia.org/api/rest_v1/page/summary/"
+               + urllib.parse.quote(title))
+        _wiki_summary_cache[key] = _curl_json(url)
+    return _wiki_summary_cache[key]
+
+
+def _is_ambiguous(name):
+    """True when the name could belong to several people.
+
+    Single-token names (e.g. 'Mathew') and names whose Wikipedia page is
+    a disambiguation page (e.g. 'Atul Kumar') both qualify.
+    """
+    if len(name.split()) < 2:
+        return True
+    d = _wiki_summary(name)
+    return bool(d and isinstance(d, dict) and d.get("type") == "disambiguation")
+
+
 def _wikipedia_lookup(name):
-    title = name.replace(" ", "_")
-    url = ("https://en.wikipedia.org/api/rest_v1/page/summary/"
-           + urllib.parse.quote(title))
-    d = _curl_json(url)
+    d = _wiki_summary(name)
     if not d or not isinstance(d, dict):
         return None
     if d.get("type") == "disambiguation":
@@ -129,7 +156,7 @@ def _wikipedia_lookup(name):
     return thumb or orig
 
 
-def _commons_lookup(name):
+def _commons_lookup(name, ambiguous=False):
     q = urllib.parse.quote(name)
     url = ("https://commons.wikimedia.org/w/api.php?action=query&format=json"
            f"&list=search&srsearch={q}&srnamespace=6&srlimit=5")
@@ -149,7 +176,14 @@ def _commons_lookup(name):
         base = re.sub(r"\.\w+$", "", ft[5:])  # strip File: + extension
         base = re.sub(r"\s*\(cropped\)\s*", " ", base)
         base = re.sub(r"[\s_\-]+", " ", base).strip()
-        if not base.startswith(want):
+        if ambiguous:
+            # Ambiguous name: filename must BE the name, nothing else.
+            # "Atul_Kumar_MD" (ophthalmologist) and "Mathew_Brady_1875"
+            # (19th-century photographer) are different people — the
+            # extra tokens prove a wrong identity, so reject outright.
+            if base != want:
+                continue
+        elif not base.startswith(want):
             continue
         if any(t in ft for t in tokens):
             # resolve to a direct file URL
@@ -172,7 +206,7 @@ def resolve_headshot(display_name):
     name = _lookup_name(display_name)
     return (_person_images_lookup(name)
             or _wikipedia_lookup(name)
-            or _commons_lookup(name))
+            or _commons_lookup(name, ambiguous=_is_ambiguous(name)))
 
 
 def _initials(display_name):
