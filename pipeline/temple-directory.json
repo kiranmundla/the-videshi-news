@@ -9,15 +9,16 @@
     "google_calendar": "Embedded Google Calendar iframe - extract calendar ID from page",
     "json_ld": "Static HTML with schema.org/Event JSON-LD blocks",
     "rss": "RSS/Atom feed URL provided",
-    "static_html": "Server-rendered HTML with parseable event listings"
+    "static_html": "Server-rendered HTML with parseable event listings",
+    "hindutemples_info": "Scrape Upcoming Festivals from hindutemples.info temple page (festivals only, no weekly pujas)"
   },
   "temples": [
     {
       "city": "Cary",
-      "events_url": "https://www.svtemplenc.org/#/events",
+      "events_url": "https://hindutemples.info/sri-venkateswara-temple-nc",
       "name": "Sri Venkateswara Temple of NC",
-      "notes": "Kiran's test case. Angular SPA - API not yet discovered",
-      "parser_type": "angular_spa",
+      "notes": "Kiran's test case. CHAKRA API is auth-gated; using hindutemples.info festivals instead (2026-10-10)",
+      "parser_type": "hindutemples_info",
       "state": "NC",
       "tradition": "Hindu (Venkateswara)",
       "website": "https://www.svtemplenc.org"
@@ -101,6 +102,36 @@
       "state": "GA",
       "tradition": "Hindu",
       "website": "https://www.hindutempleatlanta.org"
+    },
+    {
+      "city": "Plano",
+      "events_url": "https://hindutemples.info/kapardi-shirdi-sai-temple-plano",
+      "name": "Kapardi Shirdi Sai Temple Plano",
+      "notes": "Plano gap coverage",
+      "parser_type": "hindutemples_info",
+      "state": "TX",
+      "tradition": "Hindu (Sai Baba)",
+      "website": ""
+    },
+    {
+      "city": "San Jose",
+      "events_url": "https://hindutemples.info/balaji-temple-san-jose-ca",
+      "name": "Balaji Temple San Jose",
+      "notes": "Fremont/Bay Area gap coverage",
+      "parser_type": "hindutemples_info",
+      "state": "CA",
+      "tradition": "Hindu (Venkateswara)",
+      "website": ""
+    },
+    {
+      "city": "Santa Clara",
+      "events_url": "https://hindutemples.info/shiv-durga-temple-of-bayarea-santa-clara-ca",
+      "name": "Shiv Durga Temple of Bay Area",
+      "notes": "Fremont/Bay Area gap coverage",
+      "parser_type": "hindutemples_info",
+      "state": "CA",
+      "tradition": "Hindu",
+      "website": ""
     }
   ]
 }

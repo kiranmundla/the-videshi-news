@@ -9,6 +9,7 @@ parser_type that determines the extraction strategy:
 - google_calendar: extract embedded Google Calendar
 - angular_spa: JS-rendered, API discovery needed (currently skipped)
 - rss: parse RSS/Atom feed
+- hindutemples_info: scrape Upcoming Festivals from hindutemples.info temple page
 
 Usage:
     python3 pipeline/temple-events-scraper.py              # Full scrape
@@ -29,7 +30,7 @@ sys.stdout.reconfigure(line_buffering=True)
 
 UA = "TheVideshi/1.0 (thevideshi.com; events)"
 
-ENV_FILE = os.path.expanduser("~/.env.supabase")
+ENV_FILE = os.path.expanduser("~/workspace/.env.supabase")
 if os.path.exists(ENV_FILE):
     for line in open(ENV_FILE):
         line = line.strip()
@@ -185,6 +186,75 @@ def parse_static_html_events(html, temple):
     return events
 
 
+def parse_hindutemples_info_events(html, temple):
+    """Extract Upcoming Festivals from hindutemples.info temple page.
+
+    Each festival is in <li class="list-group-item"> with:
+    - <strong>Festival Name</strong>
+    - optional <div class="small text-muted">description</div>
+    - <div class="text-end">Date or Start – End</div>
+    Only major festivals/homams/cultural events — this source lists
+    festivals only, no weekly pujas, matching Kiran's bar.
+    """
+    events = []
+    idx = html.find("Upcoming Festivals")
+    if idx < 0:
+        return events
+    section = html[idx:idx + 12000]
+    items = re.findall(
+        r'<li class="list-group-item[^"]*">(.*?)</li>',
+        section, re.DOTALL
+    )
+    for item in items:
+        nm = re.search(r"<strong>([^<]+)</strong>", item)
+        if not nm:
+            continue
+        name = nm.group(1).strip()
+        if not name or len(name) < 2:
+            continue
+        dm = re.search(
+            r'<div class="small text-muted[^"]*">(.*?)</div>',
+            item, re.DOTALL
+        )
+        desc = re.sub(r"\s+", " ", dm.group(1)).strip() if dm else ""
+        dtm = re.search(
+            r'<div class="text-end[^"]*">(.*?)</div>', item, re.DOTALL
+        )
+        if not dtm:
+            continue
+        date_raw = re.sub(r"\s+", " ", dtm.group(1)).strip()
+        dates = [d.strip() for d in re.split(r"\s*[–-]\s*", date_raw)]
+        start_date = ""
+        for fmt in ("%b %d, %Y", "%B %d, %Y"):
+            try:
+                start_date = datetime.strptime(dates[0], fmt).strftime("%Y-%m-%d")
+                break
+            except ValueError:
+                continue
+        if not start_date:
+            continue
+        # Skip past events
+        if start_date < datetime.now(timezone.utc).strftime("%Y-%m-%d"):
+            continue
+        sid = hashlib.md5(
+            f"hindutemples_{name}_{start_date}_{temple['city']}".encode()
+        ).hexdigest()[:16]
+        events.append({
+            "title": f"{name} at {temple['name']}",
+            "date": start_date,
+            "venue_name": temple["name"],
+            "city": temple["city"],
+            "state": temple["state"],
+            "ticket_url": temple.get("website") or temple.get("events_url"),
+            "source": "temple",
+            "source_id": f"temple_{sid}",
+            "slug": slugify(f"{name}-{temple['city']}-{start_date}"),
+            "category": "Spiritual",
+            "description": desc,
+        })
+    return events
+
+
 def scrape_temple(temple):
     """Scrape a single temple's events page."""
     parser = temple.get("parser_type", "static_html")
@@ -193,6 +263,15 @@ def scrape_temple(temple):
     if parser == "angular_spa":
         print(f"  ⏭ {temple['name']}: SPA - needs API discovery, skipping")
         return []
+
+    if parser == "hindutemples_info":
+        status, html = curl_get(url)
+        if status != 200 or not html:
+            print(f"  ⚠ {temple['name']}: fetch failed ({status})")
+            return []
+        events = parse_hindutemples_info_events(html, temple)
+        print(f"  ✓ {temple['name']}: {len(events)} festivals")
+        return events
 
     if not url:
         print(f"  ⏭ {temple['name']}: no events URL")
