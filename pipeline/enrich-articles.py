@@ -1740,15 +1740,22 @@ def main():
 
             print(f"     → Trailer: {trailer_url}")
             if apply:
-                # Insert <youtube> tag after the first paragraph
+                # Insert <youtube> tag: for review articles, place before
+                # "What's criticized" (~middle); otherwise after 2nd paragraph
                 embed_tag = f"\n\n<youtube>{trailer_url}</youtube>\n"
-                paras = body.split("\n\n", 2)
-                if len(paras) >= 3:
-                    new_body = paras[0] + "\n\n" + paras[1] + embed_tag + "\n\n" + paras[2]
-                elif len(paras) == 2:
-                    new_body = paras[0] + "\n\n" + paras[1] + embed_tag
+                is_review = "review" in (article.get("slug") or "").lower()
+                review_marker = re.search(r"<h2[^>]*>\s*What['\u2019]s criticized", body, re.IGNORECASE)
+                if is_review and review_marker:
+                    idx = review_marker.start()
+                    new_body = body[:idx].rstrip() + embed_tag + "\n" + body[idx:].lstrip()
                 else:
-                    new_body = body + embed_tag
+                    paras = body.split("\n\n", 2)
+                    if len(paras) >= 3:
+                        new_body = paras[0] + "\n\n" + paras[1] + embed_tag + "\n\n" + paras[2]
+                    elif len(paras) == 2:
+                        new_body = paras[0] + "\n\n" + paras[1] + embed_tag
+                    else:
+                        new_body = body + embed_tag
 
                 if update_article(article["id"], {"body": new_body}):
                     print(f"     ✅ Trailer embedded!")

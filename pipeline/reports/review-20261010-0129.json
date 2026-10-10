@@ -1,0 +1,188 @@
+[
+  {
+    "id": "18459eea-ebb2-47e4-9a7a-7e064c596888",
+    "headline": "Daayra: A Gritty Exploration of Justice \u2014 Critics Divided on Its Execution",
+    "slug": "daayra-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the film's release date and box office performance to provide context on its current standing in cinemas.",
+        "Include specific quotes or insights from critics to enhance the attribution and provide a more nuanced view of the divided opinions.",
+        "Add a brief summary of the film's plot to give readers a clearer understanding of the narrative before diving into the critiques."
+      ],
+      "embed_opportunities": [
+        "Embed a trailer of Daayra from YouTube to give readers a visual preview of the film."
+      ]
+    }
+  },
+  {
+    "id": "c1b81c3f-fb2c-46e8-865f-11823c516eac",
+    "headline": "Vibe: A Chaotic Spy Comedy \u2014 Critics Enjoy the Laughs but Note Flaws",
+    "slug": "vibe-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the film's release date and any relevant box office information to provide context on its current performance in cinemas.",
+        "Include specific quotes or insights from critics to enhance attribution and provide a more nuanced view of the film's strengths and weaknesses.",
+        "Consider restructuring the content to separate positive and negative critiques more distinctly, allowing readers to easily digest the pros and cons of the film."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent film critic or publication that summarizes their review of the film for additional context."
+      ]
+    }
+  },
+  {
+    "id": "63559dbe-aea6-4abf-ae6e-35d02bef61c5",
+    "headline": "Bad Apples: A Darkly Comic Take on the School System \u2014 Critics Applaud Saoirse R",
+    "slug": "bad-apples-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the film's release date and any relevant screening information, as this is crucial for readers who want to see it in theaters.",
+        "Provide more context about the director Jonatan Etzler and his previous works to help readers understand his style and relevance in the industry.",
+        "Include specific quotes from critics to enhance the credibility of the review and provide a more nuanced view of the film's reception."
+      ],
+      "embed_opportunities": [
+        "Embed a trailer for 'Bad Apples' to give readers a visual preview of the film."
+      ]
+    }
+  },
+  {
+    "id": "a81c20e3-fbe5-4945-a0d6-940798d9703d",
+    "headline": "NASA's New Moon Missions Will Hunt Lunar Caves, Ice, and Hidden Hazards",
+    "slug": "nasa-prism-moon-base-investigations",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the missions by providing any available launch windows or expected dates for the investigations, as this information is crucial for readers interested in NASA's lunar exploration plans.",
+        "Include a brief explanation of the significance of each mission's findings for future lunar exploration, particularly how they might impact the establishment of a permanent lunar base.",
+        "Add attribution for the sources of information regarding the missions, particularly any quotes or data that are not common knowledge, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official NASA tweet announcing these new missions to provide readers with direct access to the source and additional context."
+      ]
+    }
+  },
+  {
+    "id": "bac58781-6143-4216-af7f-cda7c6e12f30",
+    "headline": "No, That Viral Turmeric Drink Will Not Melt 3 kg in a Week",
+    "slug": "turmeric-drink-weight-loss-fact-check",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the video claim in the introduction to emphasize its recency and relevance. For example, specify that the video was uploaded on October 5, 2026, to highlight the timeliness of the misinformation.",
+        "Provide more specific details about the studies referenced, such as the number of studies included in the meta-analyses and their sample sizes, to enhance the completeness and credibility of the evidence presented.",
+        "Include a clear statement about the potential risks of consuming high doses of turmeric, such as specific digestive side effects or interactions with medications, to improve clarity and completeness.",
+        "Consider adding a brief section on alternative, evidence-based weight loss strategies to provide readers with actionable takeaways beyond just debunking the claim."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a reputable health organization or a nutrition expert that discusses the importance of skepticism regarding viral health claims."
+      ]
+    }
+  },
+  {
+    "id": "aca0e19d-e5c1-4a7f-8d83-144097b2433e",
+    "headline": "GST Council Axes Arrest Powers, Halves Penalties in Sweeping Compliance Overhaul",
+    "slug": "gst-council-57th-meeting-compliance-overhaul",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the timeline for implementation by specifying that the recommendations are expected to be enacted through notifications and rule amendments starting April 1, 2027, and emphasize that these changes are not yet law.",
+        "Include a brief explanation of what the implications of the raised prosecution threshold from \u20b91 crore to \u20b95 crore mean for small businesses, particularly in terms of potential legal exposure and compliance costs.",
+        "Add a quote from Finance Minister Nirmala Sitharaman or another key official to provide authoritative attribution and insight into the rationale behind these changes, enhancing the article's credibility.",
+        "Explain the significance of the removal of arrest powers in more detail, perhaps by providing a statistic or anecdote about how this change may impact small businesses' operations or perceptions of tax compliance."
+      ],
+      "embed_opportunities": [
+        "Embed the official GST Council tweet summarizing the key recommendations from the meeting to provide readers with direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "87300112-a1c9-4acb-beb6-e77ac537e36e",
+    "headline": "Sensex Surges 879 Points as IT Stocks Lead Broad-Based Market Rebound",
+    "slug": "sensex-rebounds-879-points-october-9",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the US green-card program suspension on the market, as it is mentioned but not explained. Providing context on how this suspension typically affects investor sentiment or specific sectors could enhance completeness.",
+        "Include specific data on the upcoming domestic CPI data release, such as the expected figures or previous results, to give readers a clearer understanding of what to watch for and its potential impact on the market.",
+        "Consider breaking down the performance of the IT stocks mentioned (TCS, Infosys, HCL Technologies) with specific percentage gains or losses to provide a clearer picture of their contributions to the market rebound."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a financial analyst or a reputable financial news source discussing the market rebound for real-time insights."
+      ]
+    }
+  },
+  {
+    "id": "f27bb0de-be1b-4de0-813e-32e92b2aa053",
+    "headline": "Ukraine's Operation Vivaldi Blunts Russia's Drive to Enclose the Donbas",
+    "slug": "ukraine-operation-vivaldi-donbas",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates of significant developments within Operation Vivaldi, such as key battles or territorial changes, to provide readers with a clearer understanding of the operation's progression.",
+        "Include a brief explanation of the significance of the Donbas region and why its control is critical for both Ukraine and Russia, which would provide readers with important context for the ongoing conflict.",
+        "Add a direct quote from a military analyst or an official statement from the Ukrainian government regarding the implications of Operation Vivaldi for future operations or the overall war effort, enhancing the article's attribution and depth.",
+        "Correct the phrasing regarding the Russian territorial claims; clarify that the 1,301 sq km figure is disputed and provide context on how this compares to independent assessments to avoid misleading readers."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ukrainian military or an official source that provides real-time updates or additional context on Operation Vivaldi."
+      ]
+    }
+  },
+  {
+    "id": "cbe5574f-9802-4e97-83e5-93dc8939cda9",
+    "headline": "7.7-Magnitude Panama Earthquake Triggers Tsunami Alerts Across Nine Countries",
+    "slug": "panama-earthquake-7-7-tsunami-alert",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the earthquake in both local time and UTC to enhance clarity for international readers.",
+        "Include specific details about the injuries reported, such as the severity and locations of the injured, to provide a more complete picture of the impact.",
+        "Add a brief statement regarding the preparedness and response measures being taken by local authorities, which would provide context on the government's actions following the earthquake.",
+        "Mention any ongoing assessments or updates from the National Civil Protection Service regarding aftershocks or further risks, as this information is crucial for readers concerned about safety."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the US National Weather Service regarding the tsunami warning for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "834a828d-dd9d-4ecf-bd50-b964943af130",
+    "headline": "JD Vance Casts Doubt on Livestreamed Execution, Says He Will Not Watch It",
+    "slug": "vance-firing-squad-execution-livestream",
+    "category": "news",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=pqQUGpAjKjQ appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating when the execution was announced and when it is scheduled to occur, as well as the significance of the dates mentioned (e.g., the last military firing squad execution in 1945).",
+        "Provide more context on the reactions from various stakeholders, such as the Catholic bishops and Republican lawmakers, to give readers a clearer understanding of the public sentiment surrounding the execution.",
+        "Include a direct quote from Defense Secretary Pete Hegseth regarding the execution and its implications to enhance attribution and provide a more comprehensive view of the Pentagon's stance."
+      ],
+      "embed_opportunities": [
+        "Embed the official Pentagon announcement or tweet regarding the execution to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]
