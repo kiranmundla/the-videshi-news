@@ -9,6 +9,11 @@ Sources:
   3. Earnings: Nasdaq free earnings calendar API
   4. US Markets: Deterministic weekday/holiday check
   5. Indian festivals & US holidays: Static calendar
+  6. Happening briefs: GPT-4o-mini generates a concise info article for any
+     entry with no matching Videshi article, so every entry links somewhere.
+
+Env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (required); OPENAI_API_KEY
+(required for brief generation — entries stay unlinked without it).
 
 Usage:
     python3 pipeline/daily-happenings-v2.py --dry-run
@@ -240,6 +245,17 @@ def get_movie_releases(date: str) -> list[dict]:
                 "start_time_utc": None,
                 "link": link,
                 "search_terms": [title.lower()],
+                "movie": {
+                    "title": title,
+                    "language": lang,
+                    "genre": m.get("genre", ""),
+                    "director": m.get("director", ""),
+                    "cast": (m.get("cast") or [])[:4],
+                    "release_date": rel_date,
+                    "slug": m.get("slug"),
+                    "poster_url": m.get("poster_url"),
+                    "ticket_url": m.get("ticket_url"),
+                },
             })
     
     print(f"  Movies: {len(items)} releasing today")
@@ -372,44 +388,45 @@ def get_market_status(date: str) -> list[dict]:
 # ── 5. FESTIVALS & HOLIDAYS ─────────────────────────────────────────────────
 
 FESTIVALS_2026 = {
+    # (emoji, label, event-search keyword)
     # Indian festivals (dates for 2026)
-    "2026-01-14": ("🪁", "Makar Sankranti / Pongal"),
-    "2026-01-26": ("🇮🇳", "India Republic Day"),
-    "2026-03-04": ("🎨", "Holi — Festival of Colors"),
-    "2026-03-19": ("🛕", "Ugadi / Gudi Padwa"),
-    "2026-03-26": ("🕉️", "Ram Navami"),
-    "2026-04-14": ("🪔", "Baisakhi / Tamil New Year"),
-    "2026-05-01": ("🙏", "Buddha Purnima"),
-    "2026-05-26": ("☪️", "Eid al-Adha"),
-    "2026-06-16": ("☪️", "Muharram"),
-    "2026-08-15": ("🇮🇳", "India Independence Day"),
-    "2026-08-28": ("🪢", "Raksha Bandhan"),
-    "2026-09-04": ("🕉️", "Janmashtami"),
-    "2026-09-05": ("📚", "Teachers' Day (India)"),
-    "2026-09-14": ("🐘", "Ganesh Chaturthi"),
-    "2026-08-26": ("☪️", "Milad un-Nabi"),
-    "2026-10-11": ("🔱", "Navratri Begins"),
-    "2026-10-20": ("🏹", "Dussehra / Vijayadashami"),
-    "2026-11-08": ("🪔", "Diwali — Festival of Lights"),
-    "2026-11-10": ("🎊", "Bhai Dooj"),
-    "2026-11-24": ("🕯️", "Guru Nanak Jayanti"),
-    "2026-12-25": ("🎄", "Christmas"),
+    "2026-01-14": ("🪁", "Makar Sankranti / Pongal", "pongal"),
+    "2026-01-26": ("🇮🇳", "India Republic Day", "republic day"),
+    "2026-03-04": ("🎨", "Holi — Festival of Colors", "holi"),
+    "2026-03-19": ("🛕", "Ugadi / Gudi Padwa", "ugadi"),
+    "2026-03-26": ("🕉️", "Ram Navami", "ram navami"),
+    "2026-04-14": ("🪔", "Baisakhi / Tamil New Year", "baisakhi"),
+    "2026-05-01": ("🙏", "Buddha Purnima", "buddha purnima"),
+    "2026-05-26": ("☪️", "Eid al-Adha", "eid"),
+    "2026-06-16": ("☪️", "Muharram", "muharram"),
+    "2026-08-15": ("🇮🇳", "India Independence Day", "independence day"),
+    "2026-08-28": ("🪢", "Raksha Bandhan", "raksha bandhan"),
+    "2026-09-04": ("🕉️", "Janmashtami", "janmashtami"),
+    "2026-09-05": ("📚", "Teachers' Day (India)", "teachers day"),
+    "2026-09-14": ("🐘", "Ganesh Chaturthi", "ganesh"),
+    "2026-08-26": ("☪️", "Milad un-Nabi", "milad"),
+    "2026-10-11": ("🔱", "Navratri Begins", "navratri"),
+    "2026-10-20": ("🏹", "Dussehra / Vijayadashami", "dussehra"),
+    "2026-11-08": ("🪔", "Diwali — Festival of Lights", "diwali"),
+    "2026-11-10": ("🎊", "Bhai Dooj", "bhai dooj"),
+    "2026-11-24": ("🕯️", "Guru Nanak Jayanti", "guru nanak"),
+    "2026-12-25": ("🎄", "Christmas", "christmas"),
     # US holidays
-    "2026-01-01": ("🎆", "New Year's Day"),
-    "2026-01-19": ("✊", "Martin Luther King Jr. Day"),
-    "2026-02-16": ("🇺🇸", "Presidents' Day"),
-    "2026-05-25": ("🎖️", "Memorial Day"),
-    "2026-06-19": ("✊", "Juneteenth"),
-    "2026-07-04": ("🇺🇸", "Independence Day (USA)"),
-    "2026-09-07": ("⚙️", "Labor Day"),
-    "2026-11-26": ("🦃", "Thanksgiving"),
+    "2026-01-01": ("🎆", "New Year's Day", "new year"),
+    "2026-01-19": ("✊", "Martin Luther King Jr. Day", "martin luther king"),
+    "2026-02-16": ("🇺🇸", "Presidents' Day", "presidents day"),
+    "2026-05-25": ("🎖️", "Memorial Day", "memorial day"),
+    "2026-06-19": ("✊", "Juneteenth", "juneteenth"),
+    "2026-07-04": ("🇺🇸", "Independence Day (USA)", "july 4th"),
+    "2026-09-07": ("⚙️", "Labor Day", "labor day"),
+    "2026-11-26": ("🦃", "Thanksgiving", "thanksgiving"),
 }
 
 def get_festivals(date: str) -> list[dict]:
     """Check if today is a festival or holiday."""
     items = []
     if date in FESTIVALS_2026:
-        emoji, label = FESTIVALS_2026[date]
+        emoji, label, keyword = FESTIVALS_2026[date]
         items.append({
             "emoji": emoji,
             "label": label,
@@ -417,6 +434,7 @@ def get_festivals(date: str) -> list[dict]:
             "category": "news",
             "start_time_utc": None,
             "search_terms": [],
+            "festival_key": keyword,
         })
     print(f"  Festivals: {len(items)}")
     return items
@@ -475,11 +493,8 @@ def match_articles(items: list[dict]) -> list[dict]:
 
         category = item.get("category", "")
 
-        # Festivals → link to our festivals hub page
-        if category == "news":
-            item["link"] = "/festivals"
-            matched += 1
-            continue
+        # Festivals now get rich brief hub pages (context + nearby events)
+        # via ensure_happening_briefs — no shortcut link here.
 
         terms = item.get("search_terms", [])
         terms = [t for t in terms if t and len(t) >= 3]
@@ -513,6 +528,424 @@ def match_articles(items: list[dict]) -> list[dict]:
             matched += 1
 
     print(f"  Article matching: {matched}/{len(items)} linked")
+    return items
+
+
+# ── 6. HAPPENING BRIEFS (generate info pages for unlinked entries) ─────────
+# Kiran's rule: every Happening Today entry must link to something useful.
+# If no existing Videshi article matches, generate a concise brief article
+# (200-300 words) so the entry links to a real internal page.
+
+BRIEF_CATEGORY_MAP = {
+    "sports": "sports",
+    "entertainment": "entertainment",
+    "markets": "markets-finance",
+    "news": "news",
+}
+
+def _brief_slug(item: dict, date: str) -> str:
+    base = re.sub(r"[^a-z0-9]+", "-", (item.get("label") or "").lower()).strip("-")
+    return f"happening-{date}-{base}"[:120]
+
+def _brief_exists(slug: str) -> bool:
+    """Dedup: don't regenerate a brief that already exists."""
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        return False
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "10",
+         f"{sb_url}/rest/v1/p2_articles?select=id&slug=eq.{slug}&limit=1",
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
+        capture_output=True, text=True, timeout=15,
+    )
+    try:
+        rows = json.loads(r.stdout)
+        return isinstance(rows, list) and len(rows) > 0
+    except (json.JSONDecodeError, KeyError, IndexError):
+        return False
+
+def _format_pt(utc_iso: str) -> str:
+    """Format a UTC timestamp as PT for the brief, e.g. 'Oct 9, 7:00 PM PT'."""
+    try:
+        dt = datetime.fromisoformat(str(utc_iso).replace("Z", "+00:00")).astimezone(PT)
+        return dt.strftime("%b %-d, %-I:%M %p PT")
+    except (ValueError, TypeError):
+        return ""
+
+def _brief_prompt(item: dict) -> str:
+    label = item.get("label", "")
+    detail = item.get("detail") or ""
+    terms = ", ".join(item.get("search_terms", []))
+    when = _format_pt(item.get("start_time_utc") or "")
+    when_line = f"Event time: {when}." if when else ""
+
+    sports_spec = f"""Write a concise match preview (200-300 words) for this sports event happening today.
+Event: {label}
+Venue/location: {detail}
+{when_line}
+Include: the matchup and format, venue, start time, and what's at stake (series context, standings implications — only if inferable from the event name/league).
+Mention star players ONLY if they are globally famous and obviously relevant (e.g. an India match). NEVER invent quotes, scores, predictions, or broadcast details. If you don't know the broadcaster, omit it."""
+
+    earnings_spec = f"""Write a concise earnings preview (200-300 words) for this company reporting today.
+Company: {label}
+Detail: {detail}
+Include: what the company does (one sentence), what to watch in the report (revenue trends, guidance, key business segments), and why it matters to investors.
+NEVER invent EPS estimates, revenue figures, or analyst price targets. If expectations are unknown, say "analysts will be watching" without numbers."""
+
+    markets_spec = f"""Write a short market notice (150-200 words).
+Event: {label}
+Detail: {detail}
+Include: which markets are affected, why (the holiday), when regular trading resumes, and one line on what to watch when markets reopen."""
+
+    entertainment_spec = f"""Write a short release-day brief (200-300 words) for this movie releasing today.
+Film: {label}
+Detail: {detail}
+Include: what the film is (language/genre from the label), who's in it / who directed (only if widely known — otherwise omit names), and where it's playing.
+NEVER invent reviews, ratings, or box office numbers."""
+
+    specs = {
+        "sports": sports_spec,
+        "markets": markets_spec,
+        "entertainment": entertainment_spec,
+    }
+    # Earnings entries are category "markets" with an "Earnings" label — use earnings spec
+    spec = specs.get(item.get("category", ""), sports_spec)
+    if "earnings" in label.lower():
+        spec = earnings_spec
+
+    return f"""You are writing a brief info article for The Videshi, a news site for the Indian diaspora.
+Today is {datetime.now(PT).strftime('%B %d, %Y')}.
+
+{spec}
+
+FACT RULES (non-negotiable):
+- Use ONLY facts given above or universally known facts (e.g. what a company does, what a tournament is).
+- NEVER fabricate quotes, statistics, scores, estimates, or schedules.
+- If a fact is unknown, omit it or say "details to be confirmed".
+
+Write in a professional, concise news tone. No flowery language.
+
+Return JSON only:
+{{
+  "headline": "Clear headline (under 90 chars)",
+  "subheadline": "One-sentence summary",
+  "body_html": "2-4 short <p> paragraphs of HTML",
+  "key_takeaways": ["2-3 bullet strings"]
+}}"""
+
+def _gpt_brief(item: dict, api_key: str) -> dict | None:
+    payload = {
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": _brief_prompt(item)}],
+        "response_format": {"type": "json_object"},
+        "max_tokens": 1200,
+        "temperature": 0.3,
+    }
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "60",
+         "https://api.openai.com/v1/chat/completions",
+         "-H", f"Authorization: Bearer {api_key}",
+         "-H", "Content-Type: application/json",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=70,
+    )
+    try:
+        data = json.loads(r.stdout)
+        content = data["choices"][0]["message"]["content"]
+        return json.loads(content)
+    except (json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
+        print(f"  ⚠️  GPT brief failed for '{item.get('label')}': {e}")
+        return None
+
+def _related_events(keyword: str, date: str, limit: int = 6) -> list[dict]:
+    """Find upcoming events matching a festival keyword (for brief hub pages)."""
+    import urllib.parse
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key or not keyword:
+        return []
+    kw = urllib.parse.quote(f"*{keyword}*")
+    url = (f"{sb_url}/rest/v1/events?select=slug,title,date,venue_name,city"
+           f"&or=(title.ilike.{kw},description.ilike.{kw})"
+           f"&date=gte.{date}&order=date.asc&limit={limit}")
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "10", url,
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
+        capture_output=True, text=True, timeout=15,
+    )
+    try:
+        rows = json.loads(r.stdout)
+        return rows if isinstance(rows, list) else []
+    except (json.JSONDecodeError, KeyError, IndexError):
+        return []
+
+def _events_section_html(events: list[dict], keyword: str) -> str:
+    """Deterministic 'celebrate near you' section with exact event links."""
+    if not events:
+        return (f"<h2>Find celebrations near you</h2>"
+                f"<p>Looking for {keyword} events? "
+                f'<a href="/events">Browse all events on The Videshi</a>.</p>')
+    rows = []
+    for e in events:
+        d = e.get("date", "")
+        try:
+            d = datetime.strptime(d, "%Y-%m-%d").strftime("%b %-d")
+        except (ValueError, TypeError):
+            pass
+        where = ", ".join(p for p in [e.get("venue_name"), e.get("city")] if p)
+        rows.append(
+            f'<li><a href="/events/{e["slug"]}">{e["title"]}</a>'
+            f" — {d}{', ' + where if where else ''}</li>"
+        )
+    return ("<h2>Celebrate near you</h2>"
+            f"<p>Upcoming {keyword} celebrations listed on The Videshi:</p>"
+            "<ul>" + "".join(rows) + "</ul>"
+            '<p><a href="/events">Find more events near you →</a> · '
+            '<a href="/festivals">All festivals</a></p>')
+
+def _festival_prompt(item: dict) -> str:
+    label = item.get("label", "")
+    return f"""You are writing a festival guide for The Videshi, a news site for the Indian diaspora.
+Today is {datetime.now(PT).strftime('%B %d, %Y')}.
+
+Write a warm, informative guide (200-300 words) about: {label}
+Cover in short <p> paragraphs:
+1. What the festival is and its cultural/religious significance.
+2. How it is traditionally celebrated (rituals, food, gatherings).
+3. One paragraph on how diaspora families typically mark it abroad.
+
+FACT RULES: use only widely known facts. Do NOT invent dates, rituals, or event listings — event listings are added separately.
+Tone: warm, inclusive, knowledgeable. No flowery language.
+
+Return JSON only:
+{{
+  "headline": "Clear headline naming the festival (under 90 chars)",
+  "subheadline": "One-sentence summary",
+  "body_html": "3-5 short <p> paragraphs of HTML",
+  "key_takeaways": ["2-3 bullet strings"]
+}}"""
+
+def _generate_festival_brief(item: dict, date: str, api_key: str) -> dict | None:
+    """Festival hub brief: GPT context + related events section."""
+    payload = {
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": _festival_prompt(item)}],
+        "response_format": {"type": "json_object"},
+        "max_tokens": 1200,
+        "temperature": 0.3,
+    }
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "60",
+         "https://api.openai.com/v1/chat/completions",
+         "-H", f"Authorization: Bearer {api_key}",
+         "-H", "Content-Type: application/json",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=70,
+    )
+    try:
+        data = json.loads(r.stdout)
+        art = json.loads(data["choices"][0]["message"]["content"])
+    except (json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
+        print(f"  ⚠️  GPT festival brief failed for '{item.get('label')}': {e}")
+        return None
+
+    keyword = item.get("festival_key", "")
+    events = _related_events(keyword, date)
+    body = art.get("body_html", "") + _events_section_html(events, keyword or "festival")
+
+    keyword_tag = re.sub(r"[^a-z0-9]+", "-", keyword.lower()).strip("-")
+    return {
+        "headline": art.get("headline", item.get("label", ""))[:150],
+        "subheadline": art.get("subheadline", ""),
+        "body_html": body,
+        "key_takeaways": art.get("key_takeaways", [])[:3],
+        "tags": ["happening-brief", "festival"] + ([keyword_tag] if keyword_tag else []),
+    }
+
+def _find_trailer(title: str) -> str | None:
+    """Match a movie title to a trailer video_id in trailers.json."""
+    try:
+        with open(os.path.join(os.path.dirname(__file__), "..", "public", "data", "trailers.json")) as f:
+            data = json.load(f)
+        trailers = data.get("trailers", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
+    t = (title or "").lower().strip()
+    if not t:
+        return None
+    for tr in trailers:
+        if t in (tr.get("title") or "").lower():
+            return tr.get("video_id")
+    words = [w for w in re.sub(r"[^a-z0-9 ]", " ", t).split() if len(w) > 3]
+    for tr in trailers:
+        tt = (tr.get("title") or "").lower()
+        if words and all(w in tt for w in words[:3]):
+            return tr.get("video_id")
+    return None
+
+def _movie_prompt(item: dict) -> str:
+    m = item.get("movie") or {}
+    title = m.get("title") or item.get("label", "")
+    bits = [f'Film: "{title}" releasing today.']
+    if m.get("language"):
+        bits.append(f"Language: {m['language']}.")
+    if m.get("genre"):
+        bits.append(f"Genre: {m['genre']}.")
+    if m.get("director"):
+        bits.append(f"Director: {m['director']}.")
+    if m.get("cast"):
+        bits.append(f"Cast: {', '.join(m['cast'])}.")
+    facts = " ".join(bits)
+
+    return f"""You are writing an anticipation brief for The Videshi, a news site for the Indian diaspora.
+Today is {datetime.now(PT).strftime('%B %d, %Y')}.
+
+{facts}
+
+Write 200-300 words on what to expect from this release: what kind of film it is, who's behind it, and why diaspora audiences might care.
+This film has NOT been reviewed yet — frame everything as anticipation ("what to expect"), NEVER as a review.
+FACT RULES: use only the facts given above plus widely known facts about the people named. NEVER invent reviews, ratings, box office numbers, plot details, or quotes.
+End with: "The Videshi's critic review roundup will publish once reviews are in."
+Tone: professional, enthusiastic but honest. No flowery language.
+
+Return JSON only:
+{{
+  "headline": "Clear headline naming the film (under 90 chars)",
+  "subheadline": "One-sentence summary",
+  "body_html": "2-4 short <p> paragraphs of HTML",
+  "key_takeaways": ["2-3 bullet strings"]
+}}"""
+
+def _generate_movie_brief(item: dict, date: str, api_key: str) -> dict | None:
+    """Anticipation brief for a movie with no review yet: what to expect + trailer."""
+    m = item.get("movie") or {}
+    payload = {
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "user", "content": _movie_prompt(item)}],
+        "response_format": {"type": "json_object"},
+        "max_tokens": 1200,
+        "temperature": 0.3,
+    }
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "60",
+         "https://api.openai.com/v1/chat/completions",
+         "-H", f"Authorization: Bearer {api_key}",
+         "-H", "Content-Type: application/json",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=70,
+    )
+    try:
+        data = json.loads(r.stdout)
+        art = json.loads(data["choices"][0]["message"]["content"])
+    except (json.JSONDecodeError, KeyError, IndexError, TypeError) as e:
+        print(f"  ⚠️  GPT movie brief failed for '{item.get('label')}': {e}")
+        return None
+
+    body = art.get("body_html", "")
+    trailer_id = _find_trailer(m.get("title", ""))
+    if trailer_id:
+        body += (f"<p>Watch the trailer:</p>"
+                 f"<youtube>https://www.youtube.com/watch?v={trailer_id}</youtube>")
+    if m.get("slug"):
+        body += (f'<p><a href="/movies/{m["slug"]}">More about this film →</a></p>')
+
+    title_tag = re.sub(r"[^a-z0-9]+", "-", (m.get("title") or "").lower()).strip("-")
+    return {
+        "headline": art.get("headline", item.get("label", ""))[:150],
+        "subheadline": art.get("subheadline", ""),
+        "body_html": body,
+        "key_takeaways": art.get("key_takeaways", [])[:3],
+        "tags": ["happening-brief", "movies"] + ([title_tag] if title_tag else []),
+    }
+
+def _insert_brief(article: dict) -> bool:
+    sb_url = os.environ["SUPABASE_URL"]
+    sb_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+    r = subprocess.run(
+        ["curl", "-s", "-X", "POST",
+         f"{sb_url}/rest/v1/p2_articles",
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}",
+         "-H", "Content-Type: application/json",
+         "-H", "Prefer: return=representation",
+         "-d", json.dumps(article)],
+        capture_output=True, text=True, timeout=20,
+    )
+    try:
+        rows = json.loads(r.stdout)
+        return isinstance(rows, list) and len(rows) > 0
+    except json.JSONDecodeError:
+        print(f"  ⚠️  brief insert failed: {r.stdout[:200]}")
+        return False
+
+def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False) -> list[dict]:
+    """Give every unlinked happening an internal brief article to link to."""
+    api_key = os.environ.get("OPENAI_API_KEY", "")
+    made = 0
+    reused = 0
+
+    for item in items:
+        if item.get("link"):
+            continue
+
+        slug = _brief_slug(item, date)
+        if _brief_exists(slug):
+            item["link"] = f"/articles/{slug}"
+            reused += 1
+            continue
+
+        if dry_run:
+            kind = {"news": "festival hub", "entertainment": "movie anticipation"}.get(
+                item.get("category", ""), "info")
+            print(f"  📝 would generate {kind} brief: {slug}")
+            item["link"] = f"/articles/{slug}"
+            continue
+
+        if not api_key:
+            print(f"  ⚠️  no OPENAI_API_KEY — '{item.get('label')}' left unlinked")
+            continue
+
+        category = item.get("category", "")
+        if category == "news":
+            art = _generate_festival_brief(item, date, api_key)
+        elif category == "entertainment":
+            art = _generate_movie_brief(item, date, api_key)
+        else:
+            art = _gpt_brief(item, api_key)
+        if not art:
+            print(f"  ⚠️  brief generation failed for '{item.get('label')}' — left unlinked")
+            continue
+
+        category = BRIEF_CATEGORY_MAP.get(item.get("category", ""), "news")
+        now = datetime.now(timezone.utc).isoformat()
+        base_tags = art.get("tags") or (
+            ["happening-brief"] + [t for t in item.get("search_terms", []) if t][:4]
+        )
+        row = {
+            "headline": art.get("headline", item.get("label", ""))[:150],
+            "slug": slug,
+            "body": art.get("body_html", ""),
+            "subheadline": art.get("subheadline", ""),
+            "category": category,
+            "vertical": category,
+            "status": "published",
+            "tags": base_tags[:5],
+            "is_editorial": False,
+            "article_type": "brief",
+            "score_total": 0,
+            "key_takeaways": art.get("key_takeaways", [])[:3],
+            "diaspora_angle": "",
+            "published_at": now,
+            "created_at": now,
+        }
+        if _insert_brief(row):
+            item["link"] = f"/articles/{slug}"
+            made += 1
+            print(f"  ✅ brief published: {slug}")
+        else:
+            print(f"  ⚠️  brief insert failed for '{item.get('label')}' — left unlinked")
+
+    print(f"  Happening briefs: {made} generated, {reused} reused")
     return items
 
 
@@ -619,6 +1052,11 @@ def main():
     if os.environ.get("SUPABASE_URL") and os.environ.get("SUPABASE_SERVICE_ROLE_KEY"):
         print("  Matching to recent articles...")
         all_items = match_articles(all_items)
+
+    # Generate brief info pages for anything still unlinked (Kiran's rule:
+    # every entry must link to something useful)
+    print("  Generating briefs for unlinked entries...")
+    all_items = ensure_happening_briefs(all_items, date, dry_run=args.dry_run)
 
     if args.dry_run:
         print("\n🏁 Dry run — no changes made.")
