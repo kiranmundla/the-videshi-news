@@ -83,12 +83,13 @@ def curl_json(url, headers=None, timeout=20):
 
 def curl_post_json(url, headers, data, timeout=30):
     """POST with JSON body, return parsed JSON response (or None)."""
-    cmd = ["curl", "-sS", "--max-time", str(timeout), "-X", "POST", "-d", data]
+    # Body goes via stdin (@-) so large batches never hit the OS argv length limit.
+    cmd = ["curl", "-sS", "--max-time", str(timeout), "-X", "POST", "--data-binary", "@-"]
     for k, v in headers.items():
         cmd += ["-H", f"{k}: {v}"]
     cmd.append(url)
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 5)
+        r = subprocess.run(cmd, input=data, capture_output=True, text=True, timeout=timeout + 5)
         if r.returncode != 0:
             log.error(f"curl POST failed rc={r.returncode}")
             return None
@@ -99,13 +100,14 @@ def curl_post_json(url, headers, data, timeout=30):
 
 
 def curl_post(url, headers, data, timeout=30):
+    # Body goes via stdin (@-) so large batches never hit the OS argv length limit.
     cmd = ["curl", "-sS", "-w", "\nHTTP_CODE:%{http_code}",
-           "--max-time", str(timeout), "-X", "POST", "-d", data]
+           "--max-time", str(timeout), "-X", "POST", "--data-binary", "@-"]
     for k, v in headers.items():
         cmd += ["-H", f"{k}: {v}"]
     cmd.append(url)
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 5)
+        r = subprocess.run(cmd, input=data, capture_output=True, text=True, timeout=timeout + 5)
         parts = r.stdout.rsplit("HTTP_CODE:", 1)
         code = int(parts[-1].strip()) if len(parts) > 1 else 0
         if code >= 400:
