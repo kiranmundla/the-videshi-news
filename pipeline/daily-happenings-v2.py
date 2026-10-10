@@ -110,6 +110,15 @@ def _is_relevant_tennis(event: dict) -> bool:
     text = f"{event.get('strEvent', '')} {event.get('strLeague', '')}".lower()
     return any(kw in text for kw in TENNIS_KEYWORDS)
 
+def _clean_team_name(name: str) -> str:
+    """Strip sport suffixes from team names for better article matching.
+    e.g. 'West Indies Cricket' → 'west indies', 'India Cricket' → 'india'."""
+    name = (name or "").lower().strip()
+    for suffix in [" cricket", " football", " soccer", " tennis"]:
+        if name.endswith(suffix):
+            name = name[: -len(suffix)].strip()
+    return name
+
 def _format_sport_label(event: dict) -> str:
     """Build a clean label like 'Zimbabwe vs India 1st T20I'."""
     label = event.get("strEvent", "")
@@ -146,8 +155,8 @@ def get_sports(date: str) -> list[dict]:
                     "category": "sports",
                     "start_time_utc": e.get("strTimestamp"),
                     "search_terms": [
-                        (e.get("strHomeTeam") or "").lower(),
-                        (e.get("strAwayTeam") or "").lower(),
+                        _clean_team_name(e.get("strHomeTeam")),
+                        _clean_team_name(e.get("strAwayTeam")),
                     ],
                 })
     
@@ -163,8 +172,8 @@ def get_sports(date: str) -> list[dict]:
                     "category": "sports",
                     "start_time_utc": e.get("strTimestamp"),
                     "search_terms": [
-                        (e.get("strHomeTeam") or "").lower(),
-                        (e.get("strAwayTeam") or "").lower(),
+                        _clean_team_name(e.get("strHomeTeam")),
+                        _clean_team_name(e.get("strAwayTeam")),
                     ],
                 })
     
@@ -415,8 +424,37 @@ def get_festivals(date: str) -> list[dict]:
 
 # ── Article matching (reused from v1) ────────────────────────────────────────
 
+def _supabase_search(pattern: str, cutoff: str) -> list[dict]:
+    """Search published articles by headline ILIKE pattern."""
+    import urllib.parse
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        return []
+    encoded_pattern = urllib.parse.quote(pattern, safe="*")
+    query_url = (
+        f"{sb_url}/rest/v1/p2_articles"
+        f"?select=slug,headline"
+        f"&status=eq.published"
+        f"&headline=ilike.{encoded_pattern}"
+        f"&published_at=gte.{cutoff}"
+        f"&order=published_at.desc"
+        f"&limit=3"
+    )
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "10", query_url,
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
+        capture_output=True, text=True, timeout=15,
+    )
+    try:
+        rows = json.loads(r.stdout)
+        return rows if isinstance(rows, list) else []
+    except (json.JSONDecodeError, KeyError, IndexError):
+        return []
+
+
 def match_articles(items: list[dict]) -> list[dict]:
-    """Match happenings to recent Videshi articles."""
+    """Match happenings to recent Videshi articles or internal pages."""
     sb_url = os.environ.get("SUPABASE_URL", "")
     sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
     if not sb_url or not sb_key:
@@ -425,47 +463,54 @@ def match_articles(items: list[dict]) -> list[dict]:
     cutoff = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%Y-%m-%dT%H:%M:%S")
     matched = 0
 
+    # Stop words for generic matching (team names like "india" are KEPT for sports)
+    STOP = {"indian", "world", "cup", "cricket", "open", "league",
+            "major", "the", "men", "women", "match", "final", "test",
+            "odi", "t20i", "t20"}
+
     for item in items:
         if item.get("link"):  # Already has a link (e.g. movie slug)
             matched += 1
             continue
 
+        category = item.get("category", "")
+
+        # Festivals → link to our festivals hub page
+        if category == "news":
+            item["link"] = "/festivals"
+            matched += 1
+            continue
+
         terms = item.get("search_terms", [])
         terms = [t for t in terms if t and len(t) >= 3]
-        if len(terms) < 2:
+        if not terms:
             continue
 
-        # Build ILIKE patterns from pairs of terms
-        STOP = {"india", "indian", "world", "cup", "cricket", "open", "league",
-                "major", "the", "men", "women", "match", "final", "test"}
-        words = [t for t in terms if t not in STOP]
-        if len(words) < 2:
+        # For sports: team names are specific — don't filter "india"
+        # For others: apply stop-word filter
+        if category == "sports":
+            words = [t for t in terms if t not in STOP]
+        else:
+            words = [t for t in terms if t not in STOP]
+
+        if not words:
             continue
 
-        # Try first pair
-        pattern = f"*{words[0]}*{words[1]}*"
-        query_url = (
-            f"{sb_url}/rest/v1/p2_articles"
-            f"?select=slug,headline"
-            f"&status=eq.published"
-            f"&headline=ilike.{pattern}"
-            f"&published_at=gte.{cutoff}"
-            f"&order=published_at.desc"
-            f"&limit=3"
-        )
-        r = subprocess.run(
-            ["curl", "-s", "--max-time", "10", query_url,
-             "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
-            capture_output=True, text=True, timeout=15,
-        )
-        try:
-            rows = json.loads(r.stdout)
-            if isinstance(rows, list) and rows:
-                item["link"] = f"/articles/{rows[0]['slug']}"
-                matched += 1
-                continue
-        except (json.JSONDecodeError, KeyError, IndexError):
-            pass
+        rows = []
+        # Try two-word pattern first (most specific)
+        if len(words) >= 2:
+            pattern = f"*{words[0]}*{words[1]}*"
+            rows = _supabase_search(pattern, cutoff)
+        # Fallback: single strong term (e.g. "west indies" for cricket)
+        if not rows and words:
+            # Pick the longest/most specific word
+            best = max(words, key=len)
+            if len(best) >= 5:
+                rows = _supabase_search(f"*{best}*", cutoff)
+
+        if rows:
+            item["link"] = f"/articles/{rows[0]['slug']}"
+            matched += 1
 
     print(f"  Article matching: {matched}/{len(items)} linked")
     return items
