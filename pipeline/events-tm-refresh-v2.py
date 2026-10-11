@@ -55,6 +55,8 @@ ARTIST_KEYWORDS = [
     "Guru Randhawa", "Honey Singh", "B Praak", "Shubh",
     "Aditya Rikhari", "Sidhu Moose Wala",
     "Zakir Khan", "Vir Das", "Kenny Sebastian", "Anubhav Singh Bassi",
+    # Added 2026-10-11: US-based Indian-origin comedians (missed Zarna Garg SF shows)
+    "Zarna Garg", "Hasan Minhaj", "Aziz Ansari",
     "Biswas Kalyan Rath",
 ]
 
