@@ -95,6 +95,16 @@ Structure with clear `<h2>` subheadings. Must include:
 - For markets-finance: US/global-first tone, straight financial journalism. No forced NRI framing on FAANG earnings or Fed decisions.
 - For food: Indian-specific focus, recipes and cultural context
 - For entertainment: Cover both Bollywood and Hollywood with equal depth
+- **EXTERNAL LINKS (mandatory):** Include real, clickable `<a href="...">` links in the article body. Minimums by category:
+  - Immigration: link to the USCIS page, Federal Register notice, or court filing — at least 2 links
+  - Travel: link to the booking site, airline page, or visa/ETA portal — at least 2 links
+  - Finance: link to the data source (Fed, RBI, brokerage) or account page — at least 1 link
+  - Health: link to CDC, WHO, or study page — at least 1 link
+  - Technology: link to the company announcement or product page — at least 1 link
+  - All categories: link to our own related articles where relevant (use `/articles/{slug}` format)
+  - **NEVER invent URLs.** Only link to pages you actually saw in your source material. If you don't have a real URL, omit the link — a missing link beats a hallucinated one.
+  - Place links naturally in the text: `Apply through the <a href="https://www.uscis.gov/...">USCIS portal</a>` not a "Links:" list at the bottom.
+  - Use `target="_blank" rel="noopener"` on all external links.
 
 ### 3d. Hero Image — Use image_sourcer.py (DO NOT source manually)
 
@@ -167,6 +177,11 @@ Insert with `status="published"`. Required fields:
 - `published_at` (NOW), `article_type` (default 'breaking')
 
 > **Note:** stage article JSON files in `pipeline/.state/` (e.g. `.state/v3-article-<topicid>.json`), never `/tmp` — this server's tmpfs is wiped mid-run. Insert with `python3 -u v3-insert-article.py <json>` (curl-based; urllib fails through the proxy).
+
+**Pre-insert link check (mandatory):** Before inserting, verify:
+1. Count your external `<a href="https://...">` links — do you meet the category minimum?
+2. Every external URL must be a page you actually saw in your sources — no invented URLs
+3. Internal links use `/articles/{slug}` format (the related-coverage system adds more automatically, but include obvious ones yourself)
 
 ### 3e2. Match scorecard (sports match-result articles only)
 If the article reports the RESULT of a completed sports match (cricket, football, etc.) — not a preview, not a tournament announcement, not a transfer story — include a `match_scorecard` entry in the article's `data_cards` array. The frontend renders this as a professional scorecard card at the top of the article.
