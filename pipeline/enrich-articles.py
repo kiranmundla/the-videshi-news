@@ -196,11 +196,16 @@ def search_wikimedia_commons(query, limit=5):
                 mime = ii.get("mime", "")
                 if not mime.startswith("image/") or mime == "image/svg+xml":
                     continue
+                # Skip non-web-safe formats (TIFF, BMP) unless a converted
+                # thumbnail is available — browsers can't render them inline
+                thumburl = ii.get("thumburl") or ""
+                if mime in ("image/tiff", "image/bmp", "image/x-ms-bmp") and not thumburl:
+                    continue
                 w = ii.get("width", 0)
                 if w < 400:
                     continue
                 results.append({
-                    "url": ii.get("thumburl") or ii.get("url", ""),
+                    "url": thumburl or ii.get("url", ""),
                     "title": page.get("title", ""),
                     "source": "wikimedia",
                     "width": w,
@@ -970,103 +975,213 @@ def extract_visual_subjects(headline, body, category):
     return []
 
 
+def _extract_inline_visual_topics(headline, body, category):
+    """Use GPT-4o-mini to extract 1-2 concrete visual sub-topics for inline images.
+
+    Unlike the old regex entity extractor (which caused 17 wrong images in a
+    day via Wikipedia disambiguation errors), this asks for concrete,
+    photographable things the article discusses — objects, places, phenomena,
+    food, architecture. Explicitly excludes people (identity risk) and generic
+    concepts.
+
+    Returns list of topic strings, most visually distinctive first.
+    """
+    body_text = re.sub(r'<[^>]+>', ' ', body)
+    body_text = re.sub(r'\s+', ' ', body_text).strip()[:1500]
+
+    prompt_system = (
+        "You identify concrete visual subjects in articles for inline photo illustration. "
+        "Return ONLY a JSON array of 1-2 strings. Each string must be a specific, "
+        "photographable thing the article discusses in detail: a natural phenomenon "
+        "(bioluminescence, eclipse), a specific object (rocket, temple, dish), "
+        "a place or landmark, a food item, or architecture. "
+        "CRITICAL RULES: "
+        "1. NEVER include people's names — no persons, ever. "
+        "2. NEVER include generic concepts (economy, policy, celebration, festival). "
+        "3. Only include things the article specifically describes — not passing mentions. "
+        "4. Use CONCRETE, searchable terms — prefer the scientific or common name over "
+        "poetic descriptions. 'bioluminescence' not 'electric blue waves', "
+        "'Crew Dragon capsule' not 'shining spacecraft', 'aloo paratha' not "
+        "'golden flatbread'. The term must work as a Wikimedia Commons search query. "
+        "5. If the article has no concrete visual subject, return an empty array []. "
+        "6. Maximum 2 items."
+    )
+    prompt_user = f"Category: {category}\nHeadline: {headline}\n\nArticle excerpt:\n{body_text}"
+
+    openai_key = os.environ.get("OPENAI_API_KEY", "")
+    if not openai_key:
+        print("    ⚠ No OPENAI_API_KEY — skipping inline visual topic extraction")
+        return []
+
+    try:
+        import subprocess as _sp
+        payload = json.dumps({
+            "model": "gpt-4o-mini",
+            "messages": [
+                {"role": "system", "content": prompt_system},
+                {"role": "user", "content": prompt_user},
+            ],
+            "temperature": 0.2,
+            "max_tokens": 150,
+        })
+        result = _sp.run(
+            ["curl", "-s", "-X", "POST", "https://api.openai.com/v1/chat/completions",
+             "-H", f"Authorization: Bearer {openai_key}",
+             "-H", "Content-Type: application/json",
+             "-d", payload],
+            capture_output=True, text=True, timeout=30,
+        )
+        if result.returncode != 0:
+            return []
+
+        resp = json.loads(result.stdout)
+        content = resp.get("choices", [{}])[0].get("message", {}).get("content", "")
+        content = content.strip()
+        if content.startswith("```"):
+            content = re.sub(r'^```(?:json)?\s*', '', content)
+            content = re.sub(r'\s*```$', '', content)
+        topics = json.loads(content)
+        if isinstance(topics, list):
+            topics = [t for t in topics if isinstance(t, str) and len(t) > 2]
+            print(f"    🎨 Inline visual topics: {topics}")
+            return topics[:2]
+    except Exception as e:
+        print(f"    ⚠ Inline topic extraction error: {e}")
+
+    return []
+
+
+def _inline_topic_match_ok(topic, title, headline):
+    """Strict relevance check for inline images (stricter than is_relevant_image).
+
+    Requires either:
+    - The full topic phrase in the title, OR
+    - At least 2 distinctive topic words in the title
+
+    This prevents single-word false positives like "electric" matching
+    "Apparatus and methods for measuring electric waves" for a
+    bioluminescence article.
+    """
+    topic_lower = topic.lower()
+    title_lower = title.lower()
+
+    # Full phrase match — strongest signal
+    if topic_lower in title_lower:
+        return True
+
+    # Count distinctive topic words in title (exclude generic tokens)
+    topic_words = [w for w in topic_lower.split()
+                   if len(w) > 3 and w not in _GENERIC_TOKENS]
+    if not topic_words:
+        return False
+
+    matches = sum(1 for w in topic_words if w in title_lower)
+    # Need at least 2 distinctive words, or all words if topic is short
+    if len(topic_words) <= 2:
+        return matches == len(topic_words)
+    return matches >= 2
+
+
 def find_inline_images(headline, body, hero_url="", category=None):
-    """Find inline Wikipedia images for entities in the article.
+    """Find inline images for visual sub-topics in the article.
     Returns list of (entity, image_url, caption) tuples.
 
-    Only visual categories (food, travel, entertainment, lifestyle-health) get
-    body images — they use GPT to extract specific places/landmarks/venues.
-    Non-visual categories (news, immigration, technology, markets-finance,
-    sports, nri-world) skip body images entirely because the regex entity
-    extractor produces too many irrelevant Wikipedia images (wrong person
-    photos, institutional logos, geographic maps, landmark filler).
-    Pull quotes remain the primary body enrichment for non-visual articles.
+    Safe approach (rebuilt 2026-10-11): GPT extracts 1-2 concrete visual
+    sub-topics (NOT people, NOT generic concepts) → Wikimedia Commons search
+    → hardened relevance check (distinctive word overlap). This replaces the
+    old regex-entity→Wikipedia approach that produced 17 wrong images in a
+    day via disambiguation errors and wrong-person photos.
+
+    Guards: skips if same as hero, skips person-related results, max 2 images.
     """
-    # DISABLED: Wikipedia body images produce too many wrong results across
-    # ALL categories — 17 wrong images caught in a single day (Aug 12 2026).
-    # Even GPT-based subject extraction for visual categories hits disambiguation
-    # issues (TV show names → military units, person name mismatches, generic
-    # phrases → unrelated diagrams). Pull quotes + social embeds are the body
-    # enrichment now. Hero images are unaffected.
-    return []
     results = []
     hero_norm = (hero_url or "").split("?")[0].lower()
-    # Extract hero filename for cross-host comparison (Supabase vs Wikimedia)
     hero_fname = _wikimedia_filename(hero_url) if hero_url else ""
-    # Build a slugified version of hero URL path for entity-name matching
     hero_slug = re.sub(r'[^a-z0-9]', '', hero_norm)
 
-    # Strip HTML for sentence extraction
+    # Strip HTML for text analysis
     body_text = re.sub(r'<[^>]+>', ' ', body)
     body_text = re.sub(r'\s+', ' ', body_text).strip()
 
-    for entity in entities:
-        if len(results) >= max_images:
+    # GPT extracts concrete visual sub-topics (not people, not generic)
+    topics = _extract_inline_visual_topics(headline, body, category)
+    if not topics:
+        return []
+
+    for topic in topics:
+        if len(results) >= 2:
             break
 
-        img_url = fetch_wikipedia_image(entity, article_context=headline + " " + body_text[:500], article_headline=headline)
+        # Search Commons for this visual topic
+        commons_results = search_wikimedia_commons(topic, limit=5)
+        if not commons_results:
+            print(f"    ⊘ No Commons results for inline topic '{topic}'")
+            continue
 
-        # For visual categories, fall back to Wikimedia Commons search if
-        # Wikipedia page summary has no image (e.g. lesser-known venues)
-        if not img_url and category and category in _VISUAL_CATEGORIES:
-            commons = search_wikimedia_commons(entity, limit=5)
-            entity_lower = entity.lower()
-            entity_words = [w.lower() for w in entity.split() if len(w) > 2]
-            for c in commons:
-                title = (c.get("title") or "").lower()
-                # Require at least 2 entity words in the title, or the full
-                # entity name, to avoid false matches like "Adaa Khan" for "Adaa"
-                matching_words = sum(1 for w in entity_words if w in title)
-                full_match = entity_lower in title
-                if full_match or (len(entity_words) > 1 and matching_words >= 2) or (len(entity_words) == 1 and matching_words == 1 and len(entity_lower) >= 5):
-                    # Extra guard: reject obvious person photos (portrait, award, headshot)
-                    _person_hints = {"award", "portrait", "headshot", "actor", "actress", "khan,", "singer", "politician"}
-                    if any(h in title for h in _person_hints):
-                        continue
-                    img_url = c.get("url")
-                    print(f"    📷 Commons fallback for '{entity}': {title[:60]}")
+        found = False
+        for c in commons_results:
+            img_url = c.get("url", "")
+            title = c.get("title", "")
+            title_lower = title.lower()
+
+            # Person guard: skip anything that looks like a person photo
+            _person_hints = {"portrait", "headshot", "actor", "actress", "singer",
+                           "politician", "award", "cricketer", "minister"}
+            if any(h in title_lower for h in _person_hints):
+                continue
+
+            # Hardened relevance check: distinctive word overlap required
+            # Plus strict inline check: full phrase or 2+ distinctive words
+            # (prevents single-word false positives like "electric" matching
+            # a scientific apparatus for a bioluminescence article)
+            if not is_relevant_image(c, topic, headline):
+                continue
+            if not _inline_topic_match_ok(topic, title, headline):
+                print(f"    ⊘ Inline topic '{topic}' failed strict match: {title[:50]}")
+                continue
+
+            # Skip if same as hero (exact URL)
+            if hero_norm and img_url.split("?")[0].lower() == hero_norm:
+                continue
+
+            # Skip if same Wikimedia file as hero (cross-host dedup)
+            candidate_fname = _wikimedia_filename(img_url)
+            if hero_fname and candidate_fname and candidate_fname == hero_fname:
+                print(f"    ⊘ Skipping inline for '{topic}' — same image file as hero")
+                continue
+
+            # Skip if topic words appear in hero URL (hero already covers it)
+            topic_slug = re.sub(r'[^a-z0-9]', '', topic.lower())
+            if hero_slug and len(topic_slug) >= 6 and topic_slug in hero_slug:
+                print(f"    ⊘ Skipping inline for '{topic}' — topic covered by hero")
+                continue
+
+            # Build factual two-sentence caption
+            sentences = re.split(r'(?<=[.!?])\s+', body_text)
+            context = ""
+            topic_words = [w.lower() for w in topic.split() if len(w) > 3]
+            for s in sentences:
+                s_lower = s.lower()
+                if any(w in s_lower for w in topic_words) and 20 < len(s) < 250:
+                    context = s.strip()
                     break
+            # Clean topic name for caption (title case)
+            topic_clean = topic.strip()
+            if context:
+                caption = f"{topic_clean}. {context}"
+            else:
+                caption = f"{topic_clean}. Photo: Wikimedia Commons"
+            # Cap caption at two sentences
+            caption_sentences = re.split(r'(?<=[.!?])\s+', caption)
+            caption = ' '.join(caption_sentences[:2])
 
-        if not img_url:
-            continue
+            results.append((topic, img_url, caption))
+            print(f"    ✓ Inline image for '{topic}': {title[:60]}")
+            found = True
+            break
 
-        # Skip if same as hero image (exact URL match)
-        if hero_norm and img_url.split("?")[0].lower() == hero_norm:
-            continue
-
-        # Skip if Wikimedia filename matches hero filename (cross-host dedup)
-        candidate_fname = _wikimedia_filename(img_url)
-        if hero_fname and candidate_fname and candidate_fname == hero_fname:
-            print(f"    ⊘ Skipping inline for '{entity}' — same image file as hero")
-            continue
-
-        # Skip if entity name appears in the hero URL slug (hero was sourced
-        # from Wikipedia for this same person, then re-uploaded to Supabase
-        # with the entity name in the storage path)
-        entity_slug = re.sub(r'[^a-z0-9]', '', entity.lower())
-        if hero_slug and len(entity_slug) >= 6 and entity_slug in hero_slug:
-            print(f"    ⊘ Skipping inline for '{entity}' — entity name found in hero URL")
-            continue
-
-        # Skip SVGs and tiny images
-        if img_url.endswith(".svg") or img_url.endswith(".png"):
-            continue
-
-        # Build two-sentence caption: what image shows + article context
-        # Extract a body sentence mentioning the entity for context
-        sentences = re.split(r'(?<=[.!?])\s+', body_text)
-        context = ""
-        entity_lower = entity.lower()
-        for s in sentences:
-            if entity_lower in s.lower() and 20 < len(s) < 250:
-                context = s.strip()
-                break
-        if context:
-            caption = f"{entity}. {context}"
-        else:
-            caption = f"{entity}. Photo: Wikimedia Commons"
-        results.append((entity, img_url, caption))
-        print(f"    ✓ Inline image for '{entity}'")
+        if not found:
+            print(f"    ⊘ No relevant inline image for '{topic}'")
 
     return results
 
