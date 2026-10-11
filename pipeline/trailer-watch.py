@@ -235,13 +235,15 @@ def parse_description(desc):
     m = re.search(r"(?i)\bnew\s+(movie|series)\b", text)
     if m:
         media_type = m.group(1).capitalize()
+    elif re.search(r"(?i)\blimited\s+series\b", text):
+        media_type = "Series"
     elif re.search(r"(?i)\bseason\s+\d+\b", text):
         media_type = "Series"
     release = None
     m = re.search(
         r"(?i)\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
         r"jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|"
-        r"dec(?:ember)?)\s+(\d{1,2})\b", text)
+        r"dec(?:ember)?)\s+(\d{1,2})(?:st|nd|rd|th)?\b", text)
     if m:
         release = f"{m.group(1)[:3].capitalize()} {m.group(2)}"
     clean = re.sub(r"https?://\S+", "", first)

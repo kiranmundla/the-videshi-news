@@ -1353,6 +1353,12 @@ _HEADLINE_COMMON_VERB_WORDS = {
     "swims", "swim", "breaks", "break", "drowns", "crashes", "crash",
     "arrested", "jailed", "fined", "cleared", "clears", "suspends",
     "suspend",
+    # 3rd-person-singular headline verbs (\"Navratri Begins\", \"Expo Opens\"):
+    # a surname never reads like one of these (2026-10-11).
+    "begins", "ends", "opens", "closes", "starts", "hits", "tops",
+    "faces", "sees", "beats", "celebrates", "debuts", "unveils",
+    "announces", "confirms", "extends", "expands", "enters", "crosses",
+    "hosts", "eyes", "mulls", "slashes", "hikes", "rolls", "kicks",
 }
 # Storm/weather system leads: "Hurricane Isaias Shuts...", "Tropical Storm
 # X...", "Cyclone Y..." — a storm name is not a person's name. The first word
@@ -1664,12 +1670,25 @@ def source_hero_image(article, used_images=None):
                 if not img_url:
                     print(f"    ⊘ Named-person article ('{person}') — skipping Pexels, staying imageless")
         if not img_url and not headline_person_name(headline):
-            # Pexels query: prefer the article's first tag (a topical entity
-            # phrase like "Federal Reserve") over the raw headline, whose
-            # leading verbs ("Delivers", "Hikes") never match stock alt text.
+            # Pexels query: prefer the article's most topical tag (a topical
+            # entity phrase like "Federal Reserve") over the raw headline,
+            # whose leading verbs ("Delivers", "Hikes") never match stock alt
+            # text. Skip junk pipeline slug-tags: "Navratri Begins" queried
+            # "happening-brief" and missed a perfect Pexels Navratri photo
+            # (2026-10-11). Score tags by content-word overlap with the
+            # headline; fall back to the first tag, then the headline.
             tags = article.get("tags") or []
             first_tag = tags[0] if tags else ""
-            query = search_query or must_show or first_tag or headline[:40]
+            h_words = {w for w in re.findall(r"[a-z]+", (headline or "").lower())
+                       if len(w) > 3}
+            topic_tag, best = "", 0
+            for t in tags:
+                toks = {w for w in re.findall(r"[a-z]+", str(t).lower())
+                        if len(w) > 3}
+                s = len(toks & h_words)
+                if s > best:
+                    best, topic_tag = s, t
+            query = search_query or must_show or topic_tag or first_tag or headline[:40]
             pexels_img, pexels_alt = fetch_pexels_image(query)
             if pexels_img and pexels_img not in used:
                 ok, ctype, _ = verify_image_url(pexels_img)
