@@ -137,6 +137,8 @@ This skips all search and pulls the official image straight from the source. It'
 
 It also computes focal points for face-aware cropping and updates the DB directly.
 
+**HERO IMAGE QUALITY BAR (2026-10-11):** All hero images must be at least 800px wide. The sourcer enforces this automatically — it downloads and measures every candidate. Never use video frames, screenshots, or blurry stills as hero images unless absolutely no alternative exists. A blurry hero is worse than no hero.
+
 The script outputs `IMAGE_RESULT:{...}` JSON with the result, including an `image_source` field naming which source provided it (`person_cache`, `wikipedia`, `wikipedia_headline_guard`, `commons_search`, `og:image`, `rss_thumbnail`, `youtube_thumbnail`, `pexels`). Check the output to confirm it found an image.
 
 **⚠️ NAMED-PERSON VERIFICATION (mandatory, before publish):**
@@ -465,6 +467,8 @@ Every article should end with the reader able to DO something they couldn't do b
 10. **Deep-link our own explainers.** When an article touches a topic we've covered (TDS, visa types, codeshares), link to our own article in-body. Free engagement — do it at write time.
 
 11. **Flag highly visual stories.** When the story is about something readers need to SEE to understand — a natural phenomenon (bioluminescence, eclipses), a new product, architecture, fashion, food, a place — set `is_visual_story: true` on the article. The image becomes non-negotiable for these, not best-effort. The enricher prioritizes backfilling visual stories first. A visual story without a picture is an incomplete article.
+
+12. **Trailer embed placement.** When an article includes a `<youtube>` trailer embed, place it after the SECOND paragraph — never at the bottom. The trailer is the reason many readers opened the article; burying it at the end kills engagement.
 
 ## Movie Review Format (when writing a movie review article)
 All movie reviews MUST follow The Videshi Rating format:

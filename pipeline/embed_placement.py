@@ -68,3 +68,48 @@ def insert_embed_high(body, embed_line):
         insert_pos = e
 
     return body[:insert_pos] + embed_line + body[insert_pos:]
+
+
+def reposition_bottom_trailer(body):
+    """Move a <youtube> trailer from the bottom 20% of the article to after the 2nd paragraph.
+
+    Returns (new_body, moved: bool). Only moves if the trailer is in the
+    bottom 20% by character position — mid-article trailers are left alone.
+    """
+    m = re.search(r'<youtube>.*?</youtube>', body, re.IGNORECASE | re.DOTALL)
+    if not m:
+        return body, False
+
+    pos = m.start()
+    total = len(body)
+    if pos / total < 0.80:
+        return body, False  # not at the bottom, leave it
+
+    trailer_tag = m.group(0)
+    # Remove from current position
+    body_without = body[:m.start()] + body[m.end():]
+    # Clean up leftover empty lines
+    body_without = re.sub(r'\n{3,}', '\n\n', body_without)
+
+    # Insert after 2nd </p> (skip key-takeaways div if present)
+    # Find paragraphs outside the key-takeaways block
+    kt_end = 0
+    kt_match = re.search(r'<div class="key-takeaways".*?</div>', body_without,
+                         re.IGNORECASE | re.DOTALL)
+    if kt_match:
+        kt_end = kt_match.end()
+
+    search_from = kt_end
+    p_ends = [me.end() for me in re.finditer(r'</p>', body_without[search_from:],
+                                             re.IGNORECASE)]
+    if len(p_ends) >= 2:
+        insert_pos = search_from + p_ends[1]
+    elif p_ends:
+        insert_pos = search_from + p_ends[0]
+    else:
+        insert_pos = search_from
+
+    new_body = (body_without[:insert_pos]
+                + f"\n\n{trailer_tag}\n"
+                + body_without[insert_pos:])
+    return new_body, True

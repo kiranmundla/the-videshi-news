@@ -124,13 +124,18 @@ def _acquire_image_lock(timeout_secs=30):
 
 # ── HTTP Helpers ─────────────────────────────────────────────────────────────
 
-def verify_image_url(url, min_width=400):
+def verify_image_url(url, min_width=800):
     """Verify an image URL is reachable and returns actual image data.
     Downloads the full image and validates bytes with PIL — a range-request
     pre-check alone is not enough (misconfigured CDNs can return 200/206 with
     an image content-type for the first bytes while the full file 404s; seen
     2026-09-19 with a Healthline og:image that passed twice).
     Returns (ok, content_type, width) or (False, None, 0) on failure.
+
+    HERO QUALITY BAR (2026-10-11): min_width defaults to 800px. Hero images
+    below 800px wide look pixelated on modern displays. All sources in the
+    hero chain (og:image, RSS, cache, YouTube, official, PRN, Wikipedia,
+    Commons, Pexels) must meet this bar.
 
     NEVER use HEAD requests to Wikimedia — they return 400 from this env.
     """
@@ -701,13 +706,14 @@ def fetch_youtube_thumbnail(entity_name, headline):
         title = best["snippet"]["title"]
         channel = best["snippet"]["channelTitle"]
         
-        # Try maxresdefault first (1280x720), fall back to hqdefault (480x360)
-        for quality in ["maxresdefault", "sddefault", "hqdefault"]:
-            thumb_url = f"https://img.youtube.com/vi/{vid_id}/{quality}.jpg"
-            ok, ctype, _ = verify_image_url(thumb_url, min_width=400)
-            if ok:
-                return thumb_url, title, channel
-        
+        # YouTube thumbnail quality (2026-10-11): maxresdefault (1280x720) only.
+        # Lower qualities (sddefault 640x480, hqdefault 480x360) fail the 800px
+        # hero bar. Never use default.jpg (120x90) or mqdefault.jpg (320x180).
+        thumb_url = f"https://img.youtube.com/vi/{vid_id}/maxresdefault.jpg"
+        ok, ctype, _ = verify_image_url(thumb_url)  # min_width=800 default
+        if ok:
+            return thumb_url, title, channel
+
         return None, None, None
         
     except Exception as e:
@@ -1190,9 +1196,9 @@ def fetch_wikipedia_image(entity_name, article_context=None, article_headline=No
 
         # ── Minimum resolution guard ──
         # Reject tiny thumbnails (e.g., 283px fair-use posters) — they'd look
-        # pixelated as hero images. 600px wide is the minimum for decent display.
+        # pixelated as hero images. 800px wide is the minimum (2026-10-11 bar).
         _w = img_info.get("width") or 0
-        if _w and _w < 600:
+        if _w and _w < 800:
             print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — "
                   f"too small ({_w}px wide, minimum 600px)")
             return None
