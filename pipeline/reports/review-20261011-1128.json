@@ -1,0 +1,40 @@
+[
+  {
+    "id": "cad9fdcc-f231-45d5-9aeb-10f20fc3eaf6",
+    "headline": "Blade Runner 2099 \u2013 NYCC Trailer Out",
+    "slug": "blade-runner-2099-nycc-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 9,
+      "suggestions": [
+        "Ensure the headline follows the exact 'Film Teaser/Trailer Out' format; consider changing it to 'Blade Runner 2099 Trailer Out'.",
+        "Verify that the trailer is indeed from the NYCC event as mentioned."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "0bf4cd5b-a612-4b79-8abc-8b89cd9b7f7d",
+    "headline": "Navratri Begins: Celebrating Nine Nights of Devotion and Joy",
+    "slug": "happening-2026-10-11-navratri-begins",
+    "category": "news",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/17264037/pexels-photo-17264037.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or anecdotes from NRIs who celebrate Navratri abroad, highlighting how they maintain their cultural practices and the significance of these traditions in their lives.",
+        "Add specific details about the costs associated with participating in local Navratri events, such as entry fees for Garba nights or costs for traditional attire, to provide a concrete takeaway for readers.",
+        "Include a section on how NRIs can participate virtually in Navratri celebrations in India, such as live-streamed events or online prayer sessions, to enhance the relevance for those unable to attend in person.",
+        "Consider adding a brief overview of how the festival is celebrated differently in various regions of India, which could provide context for NRIs from diverse backgrounds."
+      ],
+      "embed_opportunities": [
+        "Embed a social media post from a popular Indian cultural organization or temple that shares information about Navratri celebrations, which could enhance community engagement."
+      ]
+    }
+  }
+]

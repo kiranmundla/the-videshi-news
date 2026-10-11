@@ -14,6 +14,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import ArticleCard from "@/components/ArticleCard";
 import SectionRule from "@/components/SectionRule";
 import MovieRatingsCard from "@/components/MovieRatingsCard";
+import MatchScorecard from "@/components/MatchScorecard";
 import {
   Article,
   formatLongDate,
@@ -696,6 +697,14 @@ export default function ArticlePage() {
                 ratingConsensus={rc.rating_consensus}
               />
             );
+          })()}
+          {/* Match scorecard (cricket etc.) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "match_scorecard"
+            );
+            if (!sc) return null;
+            return <MatchScorecard card={sc} />;
           })()}
           {(() => {
             const blocks = tryParseBlocks(article.body);

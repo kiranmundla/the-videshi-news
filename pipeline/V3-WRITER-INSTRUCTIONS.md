@@ -159,6 +159,40 @@ Insert with `status="published"`. Required fields:
 
 > **Note:** stage article JSON files in `pipeline/.state/` (e.g. `.state/v3-article-<topicid>.json`), never `/tmp` — this server's tmpfs is wiped mid-run. Insert with `python3 -u v3-insert-article.py <json>` (curl-based; urllib fails through the proxy).
 
+### 3e2. Match scorecard (sports match-result articles only)
+If the article reports the RESULT of a completed sports match (cricket, football, etc.) — not a preview, not a tournament announcement, not a transfer story — include a `match_scorecard` entry in the article's `data_cards` array. The frontend renders this as a professional scorecard card at the top of the article.
+
+Add to `data_cards`:
+```json
+{
+  "type": "match_scorecard",
+  "sport": "cricket",
+  "format": "T20I",
+  "venue": "JSCA International Stadium, Ranchi",
+  "date": "2026-10-10",
+  "teams": [
+    {"name": "West Indies", "short": "WI", "score": "252/4", "overs": "18.3"},
+    {"name": "India", "short": "IND", "score": "249/5", "overs": "20"}
+  ],
+  "result": "West Indies won by 6 wickets",
+  "series_status": "Series leveled 1-1",
+  "top_performers": [
+    {"name": "Shai Hope", "team": "WI", "stat": "102* (45)"},
+    {"name": "Sherfane Rutherford", "team": "WI", "stat": "84 (37)"},
+    {"name": "Mayank Yadav", "team": "IND", "stat": "3/38"}
+  ],
+  "scorecard_url": "https://www.espncricinfo.com/series/.../full-scorecard"
+}
+```
+
+Rules:
+- **Only for completed matches.** Previews, squad announcements, and tournament news do NOT get a scorecard.
+- **Scores from source material only** — never invent or estimate. If the exact score isn't in your sources, omit the scorecard.
+- **Top performers: max 3**, the genuine standouts (centuries, 5-wicket hauls, match-winning knocks). Include team short code.
+- **`scorecard_url`**: link to the ESPNcricinfo full scorecard when you can find it; omit if you can't verify the URL.
+- **Team order**: winning team first, then the loser (or batting order for draws).
+- For non-cricket sports, adapt: football uses `score: "2-1"` without `overs`; `format` becomes the competition (e.g. "Premier League").
+
 ### 3f. Update topic status
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`

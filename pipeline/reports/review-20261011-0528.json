@@ -1,0 +1,186 @@
+[
+  {
+    "id": "55360f63-712d-48dc-88ea-9de6786c7081",
+    "headline": "Labor Watchdog: H-1B Was Meant to Be Temporary, Fraud Probe Now Criminal",
+    "slug": "dol-ig-h1b-temporary-fraud-crackdown",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the investigation: The article mentions that the investigation was launched in July 2026, which is in the future. This needs to be corrected to ensure accuracy and clarity for readers.",
+        "Provide specific examples of what constitutes 'fake jobs' or 'sham employers' to enhance understanding of the issues being investigated. This would help readers grasp the severity and implications of the fraud probe.",
+        "Include a direct quote from D'Esposito or another official to strengthen attribution and provide a more authoritative voice on the matter."
+      ],
+      "embed_opportunities": [
+        "Embed the official Labor Department's announcement or a relevant tweet from the Labor Department regarding the investigation for credibility and context."
+      ]
+    }
+  },
+  {
+    "id": "deae4f06-52d7-481d-a1eb-d7bf771222c6",
+    "headline": "Green Cards Reflect Cases Started Years Ago: Attorney's Five-Point Rebuttal",
+    "slug": "attorney-five-points-green-card-layoff-narrative",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events: Provide specific dates or timeframes for when the layoffs occurred at Microsoft and when the green card applications were filed to enhance the reader's understanding of the context.",
+        "Add a direct quote from Gnanamookan Senthurjothi regarding the implications of the PERM displacement safeguard to strengthen the argument and provide more authoritative attribution.",
+        "Include a brief explanation of AC21 rules for readers who may not be familiar with immigration terminology, ensuring clarity for a broader audience."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Trump administration regarding the green card numbers and tech firms to provide direct context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "fae9e1a6-ab7d-4290-97a0-d35c51a1afcf",
+    "headline": "'H-1B Is a Business Model': Trump Official Defends Green-Card Suspensions",
+    "slug": "h1b-business-model-trump-official-defends-suspensions",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the suspension by providing specific details on how long the investigations may take beyond the initial 180 days, and what workers should expect during this period.",
+        "Include a quote or statement from Microsoft to provide a direct response to the accusations made by D'Esposito, enhancing the article's balance and completeness.",
+        "Add statistics or context regarding the overall number of H-1B visas issued and how this suspension might affect the broader labor market, which would provide readers with a clearer understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official video of Anthony D'Esposito's remarks shared on X to provide readers with direct access to the source of the statements."
+      ]
+    }
+  },
+  {
+    "id": "dc0cf413-34c1-4f9d-add7-414aeef48a49",
+    "headline": "New Zealand Recall Allen, Ferguson and Seifert for India ODI Series",
+    "slug": "new-zealand-recall-finn-allen-lockie-ferguson-tim-seifert-india-odis",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the recalls for Allen, Ferguson, and Seifert by providing specific statistics or recent performances that highlight their impact on the team.",
+        "Include quotes from New Zealand Cricket officials or the players themselves regarding the strategy behind the squad rotation and what it means for the team's preparation for the World Cup.",
+        "Add a brief explanation of the implications of this series for New Zealand's ODI World Cup preparations, such as how this rotation might affect team chemistry or performance in upcoming matches."
+      ],
+      "embed_opportunities": [
+        "Embed the official New Zealand Cricket announcement or tweet regarding the squad changes to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "a19216a9-61cd-4f2c-8a0f-f1179b1bb9b8",
+    "headline": "Man Killed by Tiger After Entering Enclosure at Yorkshire Wildlife Park",
+    "slug": "man-killed-tiger-enclosure-yorkshire-wildlife-park",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the attack and the time police were called, as well as when the man was pronounced dead. This will help provide a clearer sequence of events.",
+        "Include a statement from the Yorkshire Wildlife Park management regarding safety protocols or any previous incidents to provide context on the park's safety measures.",
+        "Add more details about the man's identity, if available, such as age or background, to humanize the story and provide context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from South Yorkshire Police with their official statement on the incident for direct attribution and credibility."
+      ]
+    }
+  },
+  {
+    "id": "6759207c-1d10-4b97-bab9-8b7b5be7779f",
+    "headline": "Three Indians Rescued From Attacked Black Sea Ship Fly Home From Romania",
+    "slug": "three-indians-rescued-black-sea-vessel-fly-home-romania",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific dates for when the attack occurred, when the rescue took place, and when the seafarers were repatriated. This will help readers understand the sequence of events more clearly.",
+        "Include more details about the attack itself, such as the nature of the attack (e.g., was it a missile strike, piracy, etc.) and any information about the perpetrators if available. This context is essential for readers to grasp the seriousness of the situation.",
+        "Add a quote from a relevant official, such as a representative from the Indian Embassy or Romanian authorities, to provide authoritative attribution and enhance the article's credibility.",
+        "Ensure that the article maintains a consistent structure by grouping related information together, such as all details about the rescue operation and the embassy's assistance, to improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Indian Embassy in Bucharest regarding the rescue and repatriation of the seafarers to provide direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "82c0f66b-e6e7-4bf9-9a72-0430ed1e155f",
+    "headline": "Ashwin Slams Hope's Tactics: Hosein Spell Like Feeding Goat to Hungry Lion",
+    "slug": "ravichandran-ashwin-blasts-west-indies-skipper-hungry-lion",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the match and the series context earlier in the article. This will help readers understand the significance of the match in relation to the series.",
+        "Include a brief background on Akeal Hosein's performance leading up to this match to provide context for Ashwin's criticism. This will enhance the completeness of the analysis.",
+        "Add a direct quote from Shai Hope or a West Indies team official to provide balance and attribution to the article. This will enhance the reporting quality by presenting multiple perspectives on the tactical decisions made during the match."
+      ],
+      "embed_opportunities": [
+        "Embed Ashwin's YouTube video where he discusses the match tactics for readers to access his full analysis directly."
+      ]
+    }
+  },
+  {
+    "id": "d40cdd70-5587-4c71-87ab-124dcdd914a8",
+    "headline": "Banana Leaves Are India's Ancient Answer to Aluminium Foil and Plastic Wrap",
+    "slug": "banana-leaves-ancient-answer-aluminium-foil-plastic-wrap",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including specific examples of how NRIs are using banana leaves in their cooking or cultural practices abroad. For instance, mention any Indian restaurants in the US or UK that have adopted banana leaves in their menus or how NRIs are sourcing them for traditional celebrations.",
+        "Add concrete details about the cost of banana leaves in different regions, both in India and in major diaspora markets (like the US, UK, Canada). This could help readers understand the affordability and accessibility of this alternative to plastic wrap.",
+        "Include a section that discusses the environmental impact of switching to banana leaves versus plastic wrap, with specific statistics on waste reduction or carbon footprint, which would resonate with environmentally conscious NRIs.",
+        "Consider adding a step-by-step video tutorial or a recipe that features banana leaves, which could be embedded from YouTube. This would provide practical, visual guidance for readers looking to incorporate this practice into their cooking."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from a popular Indian chef or food influencer showcasing the use of banana leaves in modern cooking, which could inspire readers and provide a contemporary context."
+      ]
+    }
+  },
+  {
+    "id": "d9cdd423-8990-431c-bf82-d960e87a3ec0",
+    "headline": "Trump Weighs Joining Saudi Strikes as World Condemns Houthi Airport Attack",
+    "slug": "world-condemns-houthi-riyadh-airport-attack",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the missile strike occurred and when the responses from various leaders were made. This will help readers understand the sequence of reactions more clearly.",
+        "Include specific details about the nature of the Houthi missile strike, such as the type of missile used or the intended target, to provide more context about the attack's severity.",
+        "Add a direct quote from a Saudi official or military spokesperson regarding the incident to provide additional attribution and perspective on the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official account of the Saudi General Authority of Civil Aviation regarding the flight cancellations and safety measures in response to the attack."
+      ]
+    }
+  },
+  {
+    "id": "68d302ca-9ae0-4009-b3fd-39f2842ff14c",
+    "headline": "Curiosity Captures Martian Sunrise Mirroring Arizona's Monument Valley",
+    "slug": "nasa-curiosity-mars-sunrise-monument-valley",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the image release to provide context for readers regarding the timeliness of the news. For example, specify when the image was released relative to the date it was taken (August 11) and when the article was published.",
+        "Include a brief explanation of the significance of the 'yardang' formations and why they are important to the study of Mars, which would enhance completeness and provide readers with a better understanding of the scientific context.",
+        "Add a quote from a NASA spokesperson or another scientist to provide attribution and enhance the credibility of the article. This could also help to illustrate the impact of the findings on future Mars exploration."
+      ],
+      "embed_opportunities": [
+        "Embed the official NASA tweet or announcement regarding the image release to provide readers with direct access to the source and additional visuals."
+      ]
+    }
+  }
+]

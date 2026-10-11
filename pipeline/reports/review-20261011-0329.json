@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ca79a868-cc0b-447d-b63d-68da83422ca8",
+    "headline": "NRI University Team Beats 65,000 to Win Global Quantum Challenge",
+    "slug": "nri-students-win-quantum-challenge",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "a5fb0eb2-773f-4693-bf4f-64cc6d52a0a2",
+    "headline": "Trump Honors Immigrant Tech CEOs Hours After Vance Suspends Microsoft Green-Card",
+    "slug": "trump-immigrant-tech-ceos-h1b-crackdown",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "19e93a7f-500e-4522-b5ff-8424cfa989ea",
+    "headline": "Jayapal Condemns Suspension of Microsoft From Green Card Programme",
+    "slug": "jayapal-microsoft-green-card-programme",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "dd5527f9-cc01-441c-92df-641e2c895028",
+    "headline": "Sonu Nigam Packs Melbourne's Rod Laver Arena as 10,000 Fans Sing Along",
+    "slug": "sonu-nigam-melbourne-concert-2026",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "1fa1cc2e-01d0-48e7-9aa9-9870cfd53d03",
+    "headline": "Flu Season Hits Washington Early as Health Officials Report First Deaths",
+    "slug": "early-flu-season-washington-deaths",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "ac2c01df-889e-4fe3-87d1-e47a17541162",
+    "headline": "IAF chief tells US general: no official F-35 offer, India still waiting",
+    "slug": "iaf-chief-f35-no-official-offer",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]
