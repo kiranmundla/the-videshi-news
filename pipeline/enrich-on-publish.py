@@ -1390,15 +1390,23 @@ def fetch_articles(article_ids=None, hours=3):
         # write time, so that filter would exclude every polished article and make
         # this step a permanent no-op. Per-article logic already skips existing embeds.
         params = {
-            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url,is_visual_story",
+            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
             "status": "eq.published",
             "published_at": f"gte.{since}",
-            # Visual stories first — a visual story without a picture is incomplete
-            "order": "is_visual_story.desc,published_at.desc",
+            "order": "published_at.desc",
             "limit": "50",
         }
+        articles = sb_get("p2_articles", params)
 
-    return sb_get("p2_articles", params)
+        # Visual-story priority (activates once Kiran runs add-is-visual-story.sql):
+        # if the column exists, sort visual stories first — a visual story
+        # without a picture is incomplete.
+        if articles and "is_visual_story" in articles[0]:
+            articles.sort(key=lambda a: (not a.get("is_visual_story"),
+                                          a.get("published_at", "")),
+                          reverse=False)
+
+        return articles
 
 
 def main():
