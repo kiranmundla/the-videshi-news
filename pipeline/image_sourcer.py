@@ -488,15 +488,26 @@ def fetch_source_urls(topic_id):
 def _decode_gnews_url(url):
     """Decode a Google News redirect URL to the actual source article URL.
     Returns decoded URL or None if not a Google News URL or decoding fails.
+
+    Uses pipeline/gnews-decode.py (curl-based; the `googlenewsdecoder` PyPI
+    package is unreliable on this box — its API surface moved and its httpx
+    client chokes on the box's bracketed IPv6 no_proxy entries).
     """
     if not url or "news.google.com" not in url:
         return url  # Not a Google News URL, return as-is
-    
+
     try:
-        from googlenewsdecoder import new_decoderv1
-        result = new_decoderv1(url, interval=1)
-        if result.get("status") and result.get("decoded_url"):
-            return result["decoded_url"]
+        import subprocess
+        import sys as _sys
+        script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gnews-decode.py")
+        proc = subprocess.run(
+            [_sys.executable, script, url],
+            capture_output=True, text=True, timeout=90,
+        )
+        for line in proc.stdout.splitlines():
+            parts = line.split("\t", 1)
+            if len(parts) == 2 and parts[1] and parts[1] != "ERROR" and parts[1].startswith("http"):
+                return parts[1]
         return None
     except Exception:
         return None

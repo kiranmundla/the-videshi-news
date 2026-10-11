@@ -1,0 +1,132 @@
+[
+  {
+    "id": "d80d93ad-82f2-44c2-8019-e6110f69e81a",
+    "headline": "East Bay Upscale Indian Dining Wave Gains Momentum",
+    "slug": "east-bay-indian-food-scene-exciting-era",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the dining wave by specifying when the trend began and how quickly it has gained momentum. This would provide readers with a clearer context of the transformation in the East Bay's Indian dining scene.",
+        "Include specific details about the tasting menus at Pippal and other restaurants mentioned, such as price ranges or unique dishes that stand out. This would enhance the completeness of the article by giving readers a better idea of what to expect.",
+        "Provide quotes or testimonials from patrons or food critics regarding the new dining experiences. This would add depth and credibility to the claims about the transformation of the Indian dining scene."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Diablo Magazine that highlights their coverage of the upscale Indian dining trend in the East Bay."
+      ]
+    }
+  },
+  {
+    "id": "04880969-19db-4518-b882-2305973d965b",
+    "headline": "Infosys Sees No Material Impact From US Suspension of PERM Program",
+    "slug": "infosys-no-material-impact-us-perm-suspension",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the suspension of the PERM program. Specify if there is an expected duration for the suspension or if it is indefinite, as this information is crucial for affected workers.",
+        "Provide more context about the implications of the suspension for the companies involved, particularly Infosys. For instance, include how many employees are currently affected or what percentage of their workforce relies on PERM filings.",
+        "Include a direct quote from a representative of Infosys or a relevant expert to enhance attribution and provide a clearer perspective on the company's stance regarding the suspension.",
+        "Add a brief explanation of the Anti-Fraud Task Force initiative mentioned, as it would help readers understand the broader context of the suspension and its potential implications for the tech industry."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from the U.S. Department of Labor regarding the suspension of the PERM program to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "14d2a3b0-41e4-4998-ad35-10f6d24a0be7",
+    "headline": "Federal Court Postpones Rule Ending Duration of Status for Student Visas",
+    "slug": "federal-court-postpones-duration-of-status-rule",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including specific dates for when the rule was proposed, when the injunction was issued, and when the appeal is expected to be heard. This will help readers understand the urgency and implications of the situation.",
+        "Include a brief explanation of what 'duration of status' means for those unfamiliar with immigration terminology. This will enhance clarity and ensure that all readers can grasp the significance of the ruling.",
+        "Add a quote from the judge or a legal expert to provide authoritative insight into the implications of the ruling and the appeal process. This would enhance attribution and depth of reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS statement or tweet regarding the rule and the injunction to provide readers with direct access to the government's perspective on the issue."
+      ]
+    }
+  },
+  {
+    "id": "d0c67335-cb21-4aaa-b791-696d7da28ec7",
+    "headline": "RBI Could Raise Repo Rate by 75\u2013100 bps This Cycle, SBI Capital Says",
+    "slug": "rbi-repo-rate-75-100-bps-sbi-capital-markets",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Duplicate embed: https://youtube.com/watch?v=lWJGSIZEFPo appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the expected repo rate hikes by specifying the dates of the upcoming Monetary Policy Committee meetings, particularly the December meeting, to give readers a clearer understanding of when these changes might occur.",
+        "Include specific figures for how much floating-rate home and auto loans might increase as a result of the repo rate hike, as well as potential new fixed deposit rates, to provide concrete financial implications for borrowers and savers.",
+        "Add a brief explanation of how the RBI's shift from 'Neutral' to 'Calibrated Tightening' impacts monetary policy, as this context may help readers understand the significance of the change."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI announcement or tweet regarding the recent repo rate hike for direct attribution and additional context."
+      ]
+    }
+  },
+  {
+    "id": "fdc9f93d-5e89-4da7-a75d-6cb746cecccb",
+    "headline": "Portugal Suspends Cristiano Ronaldo Pending Disciplinary Probe After Camp Walkou",
+    "slug": "portugal-suspends-ronaldo-disciplinary-proceedings-walkout",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including specific dates for Ronaldo's walkout and the subsequent disciplinary actions taken by the Portuguese Football Federation. This will help readers understand the sequence of events more clearly.",
+        "Provide more context about the potential consequences of the suspension, such as the specific duration of the suspension (1 to 6 months) and the possible financial implications (the fine amount) to give readers a clearer understanding of the stakes involved.",
+        "Include a quote from the Portuguese Football Federation's statement or a relevant official source to enhance the attribution and credibility of the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the Portuguese Football Federation regarding the suspension and disciplinary proceedings to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "5915215e-37af-437b-b9e2-96fc5c8bd88d",
+    "headline": "Former Envoy Warns Trump's Green Card Curbs May Rupture India-US Ties",
+    "slug": "ex-envoy-rupturing-social-bridge-green-card-curbs",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when the freeze was implemented and if there are any expected timelines for resolution or review of the freeze.",
+        "Include a direct quote or statement from a representative of one of the affected companies to provide a more balanced perspective on the impact of the freeze.",
+        "Add context about the historical relationship between the US and India regarding immigration policies to help readers understand the significance of this development."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the US Department of Labor regarding the freeze on PERM applications to provide readers with authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "9342304a-4931-4aea-baf1-1641f19f70d6",
+    "headline": "Six Months Back in India, NRI Says 'I Don't Belong Here Anymore'",
+    "slug": "nri-return-india-i-dont-belong-here-anymore",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the returnee's experience by including specific dates or timeframes related to their return and feelings of adjustment. For example, mention when they returned to India and how long they have been feeling this way.",
+        "Provide more context about the returnee's background, such as how long they lived in the U.S. and what their life was like there, to help readers understand the contrast they are experiencing.",
+        "Include quotes or insights from experts on reverse culture shock or the challenges faced by NRIs returning to India, which would add depth and authority to the narrative.",
+        "Ensure that the article includes a clear takeaway for readers considering a similar move, such as specific steps they can take to prepare for potential feelings of isolation or strategies for rebuilding their social network."
+      ],
+      "embed_opportunities": [
+        "Embed the original Reddit post to provide readers with direct access to the source of the story and additional comments from others who may relate."
+      ]
+    }
+  }
+]
