@@ -505,8 +505,11 @@ def check_image_health():
             })
             continue  # skip HTTP check, we know these expire
 
-        # Detect generic flag images
-        if "flag" in url.lower() and ("wikipedia" in url.lower() or "wikimedia" in url.lower()):
+        # Detect generic flag images. Match real flag filenames (Flag_of_X.svg,
+        # flags/Flag_of..., *_flag_*) — NOT substrings like "dinoflag" in
+        # "dinoflagellates", which caused a false positive 2026-10-11.
+        if re.search(r"(?i)/(flag_of|flags?_|_flag_)", url) and \
+                ("wikipedia" in url.lower() or "wikimedia" in url.lower()):
             flag_imgs.append({"id": a["id"], "headline": a["headline"][:60], "url": url[:80]})
             continue
 
@@ -1160,6 +1163,12 @@ def check_broken_article_links(fix=False):
     # Skip domains that always block bots — checking them produces noise
     SKIP = ("youtube.com", "youtu.be", "x.com", "twitter.com",
             "instagram.com", "facebook.com", "threads.com")
+    # 403-to-bots domains (2026-10-11): these return 403 to our server egress
+    # even with a Mozilla UA, but load fine in a real browser (verified all
+    # three live via browser_open 2026-10-11). Treating their 403s as "broken"
+    # produced false alarms, so skip them.
+    BOTBLOCK_403 = ("fastcompany.com", "cricinfo.com", "espncricinfo.com",
+                    "dol.gov")
 
     try:
         resp = requests.get(
@@ -1182,7 +1191,8 @@ def check_broken_article_links(fix=False):
     broken = []
     for a in articles:
         for url in href_re.findall(a.get("body", "") or ""):
-            if any(d in url for d in SKIP) or url in seen_urls:
+            if any(d in url for d in SKIP) or any(d in url for d in BOTBLOCK_403) \
+                    or url in seen_urls:
                 continue
             seen_urls.add(url)
             if len(seen_urls) > 60:  # cap: keep the check fast

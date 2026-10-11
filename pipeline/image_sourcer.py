@@ -1832,6 +1832,11 @@ _HEADLINE_COMMON_VERB_WORDS = {
     "faces", "sees", "beats", "celebrates", "debuts", "unveils",
     "announces", "confirms", "extends", "expands", "enters", "crosses",
     "hosts", "eyes", "mulls", "slashes", "hikes", "rolls", "kicks",
+    "strikes", "strike",
+    # Modal/auxiliary verbs ("Automation Could Shrink...", "Drone Strikes
+    # Tanker..." misread as person names 2026-10-11 — left two tech/news
+    # articles imageless): no surname reads like one of these.
+    "could", "would", "should", "might", "can", "will", "shall",
 }
 # Storm/weather system leads: "Hurricane Isaias Shuts...", "Tropical Storm
 # X...", "Cyclone Y..." — a storm name is not a person's name. The first word
