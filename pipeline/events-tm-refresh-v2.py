@@ -58,6 +58,9 @@ ARTIST_KEYWORDS = [
     # Added 2026-10-11: US-based Indian-origin comedians (missed Zarna Garg SF shows)
     "Zarna Garg", "Hasan Minhaj", "Aziz Ansari",
     "Biswas Kalyan Rath",
+    # Added 2026-10-11: more Indian-origin comedians (Kiran's directive)
+    "Russell Peters", "Anuvab Pal", "Papa CJ", "Atul Khatri",
+    "Kanan Gill", "Abish Mathew",
 ]
 
 # 2026-10-09: Tested each keyword against Ticketmaster API. Only these
