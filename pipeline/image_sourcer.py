@@ -1743,6 +1743,9 @@ _HEADLINE_NONNAME_FIRST_WORDS = {
     # ("New Study Finds...", "Global Markets Rally..." — fixes false-positive
     # person guard that blocked Pexels for clearly non-person headlines)
     "new", "global",
+    # Descriptive adjectives that are never given names ("Electric Blue Waves..."
+    # was misread as person "Electric Blue", blocking image sourcing)
+    "electric", "blue", "red", "green", "golden", "dark", "bright",
 }
 # Collective-noun leads that are never a person's given name
 # ("Fans Mourn...", "Students Protest...", "Workers Strike...") — a person's
@@ -1938,6 +1941,369 @@ def headline_person_name(headline):
     return None
 
 
+# ── Image Quality Scoring (2026-10-11) ────────────────────────────────────
+# Kiran's directive: "pick the best, not the first." Instead of taking the
+# first image that passes validation, collect candidates from multiple
+# sources, score each, and use the highest-scoring one.
+
+import math
+import datetime
+import concurrent.futures
+
+# Source reputation: professional/curated sources outrank amateur uploads.
+# Higher = more trustworthy, professionally produced, copyright-safe.
+_SOURCE_REPUTATION = {
+    "brand_official": 100,   # Brand's own site — professional product photography
+    "official_source": 95,   # Government/company press — professional, copyright-safe
+    "person_cache": 90,      # Curated media library — human-verified
+    "prnewswire": 85,        # Press-approved wire images — professional
+    "wikipedia": 75,         # Identity-verified, variable recency
+    "wikipedia_headline_guard": 75,
+    "og:image": 70,          # Publisher og:image — topical but variable quality
+    "youtube_thumbnail": 65, # HD thumbnails — good but capped at 1280x720
+    "commons_search": 55,    # Commons — variable quality and age
+    "rss_thumbnail": 40,     # RSS feed images — variable
+    "pexels": 25,            # Stock photos — last resort
+}
+
+
+def _parse_upload_date(date_str):
+    """Parse a Commons/Wikipedia timestamp like '2020-05-15T10:30:00Z'."""
+    if not date_str:
+        return None
+    try:
+        # Handle ISO format with Z suffix
+        s = date_str.replace("Z", "+00:00")
+        dt = datetime.datetime.fromisoformat(s)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=datetime.timezone.utc)
+        return dt
+    except Exception:
+        return None
+
+
+def score_image_candidate(url, source_name, width, height, upload_date=None):
+    """Score an image candidate for hero selection. Higher = better.
+
+    Factors:
+    - Source reputation (0-100): professional sources outrank amateur uploads
+    - Resolution (0-50): log scale — 800px≈20, 1600px≈35, 3200px≈50
+    - Aspect ratio (0-20): heroes display at 16:9, prefer 1.3-2.0 landscape
+    - Freshness (0-15): prefer recent, mild penalty for >5 years old
+
+    Returns a float score. Typical range: 30 (poor) to 185 (excellent).
+    """
+    score = 0.0
+
+    # 1. Source reputation
+    score += _SOURCE_REPUTATION.get(source_name, 30)
+
+    # 2. Resolution — log scale so 4K isn't 4x better than 1080p
+    if width > 0 and height > 0:
+        mp = (width * height) / 1_000_000  # megapixels
+        # 0.64MP (800x800) ≈ 18, 2MP (1600x1200) ≈ 30, 8MP ≈ 44
+        score += min(50, 15 * math.log10(max(mp, 0.1)) + 25)
+
+    # 3. Aspect ratio — heroes display at ~16:9 (1.78)
+    if width > 0 and height > 0:
+        aspect = width / height
+        if 1.3 <= aspect <= 2.0:
+            score += 20  # Ideal hero range
+        elif 1.0 <= aspect < 1.3 or 2.0 < aspect <= 2.5:
+            score += 10  # Acceptable
+        elif 0.7 <= aspect < 1.0 or 2.5 < aspect <= 3.0:
+            score += 0   # Usable but will crop awkwardly
+        else:
+            score -= 20  # Extreme portrait or panoramic — crops badly
+
+    # 4. Freshness — prefer recent images (the 2010 Himesh Reshammiya problem)
+    if upload_date:
+        try:
+            now = datetime.datetime.now(datetime.timezone.utc)
+            age_days = (now - upload_date).days
+            if age_days < 0:
+                pass  # Future date? Ignore.
+            elif age_days < 365:
+                score += 15  # <1 year: fresh
+            elif age_days < 1825:
+                score += 10  # <5 years: good
+            elif age_days < 3650:
+                score += 5   # <10 years: acceptable
+            # >10 years: no bonus, but no penalty either (better old than nothing)
+        except Exception:
+            pass
+
+    return round(score, 1)
+
+
+def _fetch_commons_with_date(search_query, headline="", max_results=5):
+    """Search Commons and return candidates with upload dates.
+    Returns list of {url, title, upload_date} dicts.
+    """
+    if not search_query:
+        return []
+    params = urllib.parse.urlencode({
+        "action": "query",
+        "format": "json",
+        "generator": "search",
+        "gsrsearch": search_query,
+        "gsrlimit": str(max_results),
+        "prop": "imageinfo",
+        "iiprop": "url|mime|size|timestamp",  # timestamp added for freshness scoring
+        "iiurlwidth": "1200",
+    })
+    url = f"https://commons.wikimedia.org/w/api.php?{params}"
+    candidates = []
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", "--max-time", "10", "-A", UA, url],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(result.stdout)
+        pages = (data.get("query") or {}).get("pages") or {}
+        for page_id, page in sorted(pages.items(), key=lambda x: x[1].get("index", 999)):
+            title = page.get("title", "")
+            ii = (page.get("imageinfo") or [{}])[0]
+            mime = ii.get("mime", "")
+            if not mime.startswith("image/") or mime == "image/svg+xml":
+                continue
+            if not commons_relevance_ok(title, headline, search_query):
+                continue
+            img_url = ii.get("thumburl") or ii.get("url")
+            if img_url:
+                candidates.append({
+                    "url": img_url,
+                    "title": title,
+                    "upload_date": _parse_upload_date(ii.get("timestamp")),
+                })
+    except Exception:
+        pass
+    return candidates
+
+
+def _collect_hero_candidates(article, used_images=None):
+    """Collect image candidates from fast sources in parallel.
+
+    Returns list of dicts: {img_url, attribution, source_name, upload_date, extra}
+    Up to ~10 candidates; the scorer picks the best 5 to download and rank.
+
+    Slow sources (official_source Bing search, PR Newswire) are NOT included
+    here — they run as fallback if fast sources yield nothing.
+    """
+    headline = article.get("headline", "")
+    topic_id = article.get("topic_id")
+    search_query = article.get("image_search_query", "")
+    entities = article.get("image_entities", [])
+    must_show = article.get("image_must_show", "")
+    used = used_images or set()
+
+    candidates = []
+
+    def _try_og():
+        """og:image from source articles — collect multiple, not just best."""
+        results = []
+        all_source_urls = []
+        article_sources = article.get("sources", [])
+        if isinstance(article_sources, str):
+            try:
+                article_sources = json.loads(article_sources)
+            except:
+                article_sources = []
+        if isinstance(article_sources, list):
+            for src in article_sources:
+                if isinstance(src, str) and src.startswith("http"):
+                    all_source_urls.append(src)
+                elif isinstance(src, dict) and src.get("url", "").startswith("http"):
+                    all_source_urls.append(src["url"])
+        if topic_id:
+            try:
+                signal_urls = fetch_source_urls(topic_id)
+                for u in signal_urls:
+                    if u not in all_source_urls:
+                        all_source_urls.append(u)
+            except:
+                pass
+        for src_url in all_source_urls[:6]:
+            try:
+                og_img = fetch_og_image(src_url)
+                if og_img and og_img not in used:
+                    if not _og_image_topical_ok(og_img, headline, search_query):
+                        continue
+                    try:
+                        domain = urllib.parse.urlparse(src_url).netloc.replace("www.", "")
+                    except:
+                        domain = "Source Article"
+                    results.append({
+                        "img_url": og_img,
+                        "attribution": domain,
+                        "source_name": "og:image",
+                        "upload_date": None,
+                    })
+            except:
+                continue
+        return results
+
+    def _try_person_cache():
+        results = []
+        for entity in (entities or [])[:3]:
+            if isinstance(entity, str) and len(entity) > 2:
+                try:
+                    cached = fetch_cached_person_image(entity)
+                    if cached and cached not in used:
+                        results.append({
+                            "img_url": cached,
+                            "attribution": "Media Library",
+                            "source_name": "person_cache",
+                            "upload_date": None,
+                        })
+                except:
+                    continue
+        return results
+
+    def _try_youtube():
+        results = []
+        main_entity = next((e for e in (entities or [])[:2]
+                           if isinstance(e, str) and len(e) > 2), None)
+        if main_entity:
+            try:
+                yt_thumb, yt_title, yt_channel = fetch_youtube_thumbnail(main_entity, headline)
+                if yt_thumb and yt_thumb not in used:
+                    results.append({
+                        "img_url": yt_thumb,
+                        "attribution": f"YouTube / {yt_channel}" if yt_channel else "YouTube",
+                        "source_name": "youtube_thumbnail",
+                        "upload_date": None,
+                    })
+            except:
+                pass
+        return results
+
+    def _try_brand():
+        results = []
+        try:
+            brand_img, brand_attr = fetch_brand_image(headline, entities)
+            if brand_img and brand_img not in used:
+                results.append({
+                    "img_url": brand_img,
+                    "attribution": brand_attr or "Official Brand Site",
+                    "source_name": "brand_official",
+                    "upload_date": None,
+                })
+        except:
+            pass
+        return results
+
+    def _try_wikipedia():
+        results = []
+        for entity in (entities or [])[:3]:
+            if isinstance(entity, str) and len(entity) > 2:
+                try:
+                    wp_img = fetch_wikipedia_image(entity, article_context=headline)
+                    if wp_img and wp_img not in used:
+                        results.append({
+                            "img_url": wp_img,
+                            "attribution": "Wikimedia Commons",
+                            "source_name": "wikipedia",
+                            "upload_date": None,  # Wikipedia REST API doesn't return dates
+                        })
+                except:
+                    continue
+        return results
+
+    def _try_commons():
+        results = []
+        query = search_query or must_show or headline[:60]
+        try:
+            for c in _fetch_commons_with_date(query, headline, max_results=5):
+                if c["url"] not in used:
+                    results.append({
+                        "img_url": c["url"],
+                        "attribution": "Wikimedia Commons",
+                        "source_name": "commons_search",
+                        "upload_date": c["upload_date"],
+                    })
+        except:
+            pass
+        return results
+
+    # Run fast sources in parallel (I/O-bound curl subprocesses)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
+        future_map = {
+            ex.submit(_try_og): "og",
+            ex.submit(_try_person_cache): "cache",
+            ex.submit(_try_youtube): "youtube",
+            ex.submit(_try_brand): "brand",
+            ex.submit(_try_wikipedia): "wikipedia",
+            ex.submit(_try_commons): "commons",
+        }
+        for fut in concurrent.futures.as_completed(future_map):
+            try:
+                result = fut.result()
+                if result:
+                    candidates.extend(result)
+            except Exception as e:
+                print(f"    ⚠ candidate source '{future_map[fut]}' failed: {e}")
+
+    # Dedup by URL
+    seen = set()
+    unique = []
+    for c in candidates:
+        if c["img_url"] not in seen:
+            seen.add(c["img_url"])
+            unique.append(c)
+
+    print(f"    📊 Collected {len(unique)} candidates from fast sources")
+    return unique
+
+
+def _score_and_rank_candidates(candidates, headline=""):
+    """Download candidates in parallel, score each, return ranked list.
+
+    Returns list of (candidate_dict, score, width, height, img_bytes) sorted
+    by score descending. Candidates that fail download or the 800px bar are
+    excluded.
+    """
+    if not candidates:
+        return []
+
+    def _download_and_measure(cand):
+        try:
+            img_bytes = download_image(cand["img_url"], timeout=12)
+            if not img_bytes:
+                return None
+            w, h = get_image_dimensions(img_bytes)
+            if w < 800:  # Hero quality bar
+                return None
+            score = score_image_candidate(
+                cand["img_url"], cand["source_name"], w, h,
+                cand.get("upload_date"))
+            return (cand, score, w, h, img_bytes)
+        except Exception:
+            return None
+
+    ranked = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
+        futures = [ex.submit(_download_and_measure, c) for c in candidates[:10]]
+        for fut in concurrent.futures.as_completed(futures):
+            try:
+                result = fut.result()
+                if result:
+                    ranked.append(result)
+            except Exception:
+                continue
+
+    ranked.sort(key=lambda x: x[1], reverse=True)
+
+    # Log all candidates and winner for debugging
+    for cand, score, w, h, _ in ranked:
+        print(f"      [{score:6.1f}] {cand['source_name']:20s} {w}x{h}  {cand['img_url'][:60]}")
+    if ranked:
+        winner = ranked[0]
+        print(f"    🏆 Winner: {winner[0]['source_name']} (score {winner[1]})")
+
+    return ranked
+
+
 def source_hero_image(article, used_images=None):
     """Multi-source image sourcing with HTTP verification at every step.
     
@@ -1961,225 +2327,107 @@ def source_hero_image(article, used_images=None):
     must_show = article.get("image_must_show", "")
     category = article.get("category", "")
     
-    # Candidates that fail the download or the minimum-size gate are skipped so
-    # the cascade continues to the next source - a too-small og:image must not
-    # block the Wikipedia/Commons/Pexels fallbacks.
-    tried = set()
-    
+    # ── NEW: Collect → Score → Pick (2026-10-11) ──────────────────────────
+    # Kiran's directive: "pick the best, not the first." Collect candidates
+    # from fast sources in parallel, score each by quality, use the winner.
+    # Slow sources (official_source, PR Newswire, Pexels) remain as fallback.
     print(f"  🖼  Sourcing image: {headline[:55]}...")
-    
-    while True:
-        img_url = None
-        attribution = "The Videshi"
-        source_name = None
-        pexels_alt = None
-        used = (used_images or set()) | tried
-        
-        # ── Source 1: og:image from source articles (ranked by quality) ──────
-        if not img_url:
-            # Gather source URLs: prefer article's own sources (already decoded),
-            # then fall back to signal URLs (may need Google News decoding)
-            all_source_urls = []
-        
-            # Article's sources field (already real URLs, no decoding needed)
-            article_sources = article.get("sources", [])
-            if isinstance(article_sources, str):
-                try:
-                    article_sources = json.loads(article_sources)
-                except:
-                    article_sources = []
-            if isinstance(article_sources, list):
-                for src in article_sources:
-                    if isinstance(src, str) and src.startswith("http"):
-                        all_source_urls.append(src)
-                    elif isinstance(src, dict) and src.get("url", "").startswith("http"):
-                        all_source_urls.append(src["url"])
-        
-            # Signal URLs (from p2_signals, may need Google News decoding)
-            if topic_id:
-                signal_urls = fetch_source_urls(topic_id)
-                for u in signal_urls:
-                    if u not in all_source_urls:
-                        all_source_urls.append(u)
-        
-            # Collect all valid og:images with domain quality scores
-            og_candidates = []
-            for src_url in all_source_urls[:6]:
-                og_img = fetch_og_image(src_url)
-                if og_img and og_img not in used:
-                    if not _og_image_topical_ok(og_img, headline, search_query):
-                        print(f"    ⊘ og:image failed topical gate, skipping")
-                        continue
-                    ok, ctype, _ = verify_image_url(og_img)
-                    if ok:
-                        domain_score = _og_image_domain_score(src_url)
-                        try:
-                            domain = urllib.parse.urlparse(src_url).netloc.replace("www.", "")
-                        except:
-                            domain = "Source Article"
-                        og_candidates.append({
-                            "img_url": og_img,
-                            "domain": domain,
-                            "score": domain_score,
-                        })
-        
-            if og_candidates:
-                # Pick the best: prefer higher domain score
-                og_candidates.sort(key=lambda c: c["score"], reverse=True)
-                best = og_candidates[0]
-                img_url = best["img_url"]
-                attribution = best["domain"]
-                source_name = "og:image"
-                print(f"    ✓ og:image from {attribution} (score {best['score']}, {len(og_candidates)} candidates)")
-    
-        # ── Source 2: RSS feed images (stored in p2_signals) ─────────────────
-        if not img_url and topic_id:
-            signal_images = fetch_signal_images(topic_id)
-            for sig_img in signal_images:
-                if sig_img not in used:
-                    ok, ctype, _ = verify_image_url(sig_img)
-                    if ok:
-                        img_url = sig_img
-                        attribution = "Feed Source"
-                        source_name = "rss_thumbnail"
-                        print(f"    ✓ RSS thumbnail")
-                        break
-    
-        # ── Source 3: Media library cache (person_images) ────────────────────
-        if not img_url and entities:
-            for entity in entities[:3]:
-                if isinstance(entity, str) and len(entity) > 2:
-                    cached = fetch_cached_person_image(entity)
-                    if cached and cached not in used:
-                        ok, ctype, _ = verify_image_url(cached)
-                        if ok:
-                            img_url = cached
-                            attribution = "Media Library"
-                            source_name = "person_cache"
-                            print(f"    ✓ Cached image for '{entity}'")
-                            break
-    
-        # ── Source 3.5: YouTube thumbnail (specific, recent) ─────────────────
-        # For named entities, a relevant YouTube video's thumbnail is often the
-        # best image — it shows the actual person/event, not a generic stock photo.
-        if not img_url and entities:
-            main_entity = next((e for e in entities[:2] if isinstance(e, str) and len(e) > 2), None)
-            if main_entity:
-                yt_thumb, yt_title, yt_channel = fetch_youtube_thumbnail(main_entity, headline)
-                if yt_thumb and yt_thumb not in used:
-                    img_url = yt_thumb
-                    attribution = f"YouTube / {yt_channel}" if yt_channel else "YouTube"
-                    source_name = "youtube_thumbnail"
-                    print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
-    
-        # ── Source 3.55: Brand-first (company/brand official sites) ─────────────
-        # For brand/company stories, the brand's own website has professional
-        # product photography that's on-brand and copyright-safe. This beats
-        # amateur Commons uploads every time. (2026-10-11, Kiran's directive)
-        if not img_url:
-            brand_img, brand_attr = fetch_brand_image(headline, entities)
-            if brand_img and brand_img not in used:
-                img_url = brand_img
-                attribution = brand_attr or "Official Brand Site"
-                source_name = "brand_official"
-                print(f"    ✓ Brand-official image ({attribution})")
 
-        # ── Source 3.6: Official source (government / company press pages) ─────
-        # For institutional stories (space missions, policy announcements,
-        # company launches), the official source has the most topically
-        # accurate and copyright-safe images: US federal works are public
-        # domain, PIB images are free for news use, company press images are
-        # distributed for media use. Curated domain allowlist only; never
-        # fires for person-led headlines.
-        # Writer-provided official URL (via --official-url) takes priority —
-        # it's the reliable path: no search, just fetch and validate.
-        if not img_url:
-            _writer_official_url = globals().get("_WRITER_OFFICIAL_URL")
-            off_img, off_attr = fetch_official_source_image(
-                headline, entities, search_query,
-                official_url=_writer_official_url)
-            if off_img and off_img not in used:
-                img_url = off_img
-                attribution = off_attr or "Official Source"
-                source_name = "official_source"
-                print(f"    ✓ Official-source image ({attribution})")
+    used = used_images or set()
+    pexels_alt = None
 
-        # ── Source 3.7: PR Newswire India (press-approved images) ──────────────
-        # PR Newswire hosts press-approved images on mma.prnewswire.com, meant for
-        # media use. Good for entertainment (movie posters, event photos) and
-        # corporate news. Tried after YouTube, before Wikipedia.
+    # ── Phase 1: Collect candidates from fast sources (parallel) ──────────
+    candidates = _collect_hero_candidates(article, used)
+
+    # ── Phase 2: Named-person identity filter ─────────────────────────────
+    # "Wrong photo is worse than no photo." For named-person articles, only
+    # identity-verified sources are eligible. Commons and Pexels are NOT
+    # identity-verified and are excluded here (Pexels was already skipped;
+    # Commons relevance check is not an identity check).
+    person = headline_person_name(headline)
+    _IDENTITY_SAFE = {
+        "person_cache", "wikipedia", "wikipedia_headline_guard",
+        "youtube_thumbnail", "og:image", "brand_official", "official_source",
+    }
+    if person:
+        before = len(candidates)
+        candidates = [c for c in candidates if c["source_name"] in _IDENTITY_SAFE]
+        dropped = before - len(candidates)
+        if dropped:
+            print(f"    🛡  Named-person filter: dropped {dropped} non-identity-verified candidates")
+
+    # ── Phase 3: Score, rank, and try winners ─────────────────────────────
+    ranked = _score_and_rank_candidates(candidates, headline)
+
+    img_url = None
+    attribution = "The Videshi"
+    source_name = None
+    raw_bytes = None
+    w, h = 0, 0
+
+    for cand, score, cw, ch, cbytes in ranked:
+        # Near-square gate for publisher images (likely logos/placeholders)
+        if cand["source_name"] in ("og:image", "rss_thumbnail") and cw > 0 and ch > 0:
+            aspect = cw / ch
+            if 0.85 <= aspect <= 1.18:
+                print(f"    ✗ Near-square publisher image ({cw}x{ch}, likely logo), trying next")
+                continue
+        img_url = cand["img_url"]
+        attribution = cand["attribution"]
+        source_name = cand["source_name"]
+        raw_bytes = cbytes
+        w, h = cw, ch
+        print(f"    ✓ Selected: {source_name} (score {score}) → {img_url[:60]}")
+        break
+
+    # ── Phase 4: Fallback to slow sources if fast sources yielded nothing ──
+    # (official_source with Bing search, PR Newswire, Pexels)
+    tried = set()
+    if not img_url:
+        print(f"    ⏳ Fast sources yielded nothing, trying slow sources...")
+        _writer_official_url = globals().get("_WRITER_OFFICIAL_URL")
+
+        # Slow source A: Official source (government/company)
+        if not person:  # Never fires for person-led headlines anyway
+            try:
+                off_img, off_attr = fetch_official_source_image(
+                    headline, entities, search_query,
+                    official_url=_writer_official_url)
+                if off_img and off_img not in used:
+                    ok, ctype, vw = verify_image_url(off_img)
+                    if ok:
+                        img_url = off_img
+                        attribution = off_attr or "Official Source"
+                        source_name = "official_source"
+                        print(f"    ✓ Official-source image ({attribution})")
+            except Exception as e:
+                print(f"    ⚠ official-source failed: {e}")
+
+        # Slow source B: PR Newswire
         if not img_url:
             prn_query = search_query or (entities[0] if entities else None) or headline[:40]
             if prn_query and isinstance(prn_query, str):
-                prn_img = fetch_prnewswire_image(prn_query)
-                if prn_img and prn_img not in used:
-                    ok, ctype, _ = verify_image_url(prn_img)
-                    if ok:
-                        img_url = prn_img
-                        attribution = "PR Newswire"
-                        source_name = "prnewswire"
-                        print(f"    ✓ PR Newswire image")
-                    else:
-                        print(f"    ✗ PR Newswire image FAILED verification")
-    
-        # ── Source 4: Wikipedia person image ─────────────────────────────────
-        if not img_url and entities:
-            for entity in entities[:3]:
-                if isinstance(entity, str) and len(entity) > 2:
-                    wp_img = fetch_wikipedia_image(entity, article_context=headline)
-                    if wp_img and wp_img not in used:
-                        ok, ctype, _ = verify_image_url(wp_img)
+                try:
+                    prn_img = fetch_prnewswire_image(prn_query)
+                    if prn_img and prn_img not in used:
+                        ok, ctype, vw = verify_image_url(prn_img)
                         if ok:
-                            img_url = wp_img
-                            attribution = "Wikimedia Commons"
-                            source_name = "wikipedia"
-                            print(f"    ✓ Wikipedia image for '{entity}'")
-                            break
-                        else:
-                            print(f"    ✗ Wikipedia image FAILED verification for '{entity}'")
-    
-        # ── Source 5: Wikimedia Commons search ───────────────────────────────
-        if not img_url:
-            query = search_query or must_show or headline[:60]
-            commons_img = fetch_wikimedia_commons_image(query, headline)
-            if commons_img and commons_img not in used:
-                ok, ctype, _ = verify_image_url(commons_img)
-                if ok:
-                    img_url = commons_img
-                    attribution = "Wikimedia Commons"
-                    source_name = "commons_search"
-                    print(f"    ✓ Commons search result")
-                else:
-                    print(f"    ✗ Commons image FAILED verification")
-    
-        # ── Source 6: Pexels fallback ────────────────────────────────────────
-        # IDENTITY GUARD: a named-person article must never get a generic
-        # stock photo. If the headline names a verifiable person, use their
-        # Wikipedia/Commons photo (verified by page identity + filename
-        # cross-check); if no verified photo exists, stay imageless.
-        if not img_url:
-            person = headline_person_name(headline)
-            if person:
-                wp_img = fetch_wikipedia_image(person, article_context=headline)
-                if wp_img and wp_img not in used:
-                    ok, ctype, _ = verify_image_url(wp_img)
-                    if ok:
-                        img_url = wp_img
-                        attribution = "Wikimedia Commons"
-                        source_name = "wikipedia_headline_guard"
-                        print(f"    ✓ Wikipedia image for headline person '{person}' (identity guard)")
-                    else:
-                        print(f"    ✗ Wikipedia image FAILED verification for '{person}'")
-                if not img_url:
-                    print(f"    ⊘ Named-person article ('{person}') — skipping Pexels, staying imageless")
-        if not img_url and not headline_person_name(headline):
-            # Pexels query: prefer the article's most topical tag (a topical
-            # entity phrase like "Federal Reserve") over the raw headline,
-            # whose leading verbs ("Delivers", "Hikes") never match stock alt
-            # text. Skip junk pipeline slug-tags: "Navratri Begins" queried
-            # "happening-brief" and missed a perfect Pexels Navratri photo
-            # (2026-10-11). Score tags by content-word overlap with the
-            # headline; fall back to the first tag, then the headline.
+                            # Download to score
+                            pb = download_image(prn_img)
+                            if pb:
+                                pw, ph = get_image_dimensions(pb)
+                                if pw >= 800:
+                                    img_url = prn_img
+                                    attribution = "PR Newswire"
+                                    source_name = "prnewswire"
+                                    raw_bytes = pb
+                                    w, h = pw, ph
+                                    print(f"    ✓ PR Newswire image")
+                except Exception as e:
+                    print(f"    ⚠ prnewswire failed: {e}")
+
+        # Slow source C: Pexels (never for named persons)
+        if not img_url and not person:
             tags = article.get("tags") or []
             first_tag = tags[0] if tags else ""
             h_words = {w for w in re.findall(r"[a-z]+", (headline or "").lower())
@@ -2192,48 +2440,60 @@ def source_hero_image(article, used_images=None):
                 if s > best:
                     best, topic_tag = s, t
             query = search_query or must_show or topic_tag or first_tag or headline[:40]
-            pexels_img, pexels_alt = fetch_pexels_image(query)
-            if pexels_img and pexels_img not in used:
-                ok, ctype, _ = verify_image_url(pexels_img)
-                if ok:
-                    img_url = pexels_img
-                    attribution = "Pexels"
-                    source_name = "pexels"
-                    print(f"    ✓ Pexels fallback")
-    
-        # ── No candidate left ───────────────────────────────────────────────
-        if not img_url:
-            print(f"    ✗ No image found — publishing without hero (better than broken)")
-            return None, None, None, None
-        
-        # ── Download and gate on dimensions ──────────────────────────────────
+            try:
+                pexels_img, p_alt = fetch_pexels_image(query)
+                if pexels_img and pexels_img not in used:
+                    ok, ctype, vw = verify_image_url(pexels_img)
+                    if ok:
+                        pb = download_image(pexels_img)
+                        if pb:
+                            pw, ph = get_image_dimensions(pb)
+                            if pw >= 800:
+                                img_url = pexels_img
+                                attribution = "Pexels"
+                                source_name = "pexels"
+                                pexels_alt = p_alt
+                                raw_bytes = pb
+                                w, h = pw, ph
+                                print(f"    ✓ Pexels fallback")
+            except Exception as e:
+                print(f"    ⚠ pexels failed: {e}")
+
+        # Named-person headline guard: try Wikipedia once more before giving up
+        if not img_url and person:
+            try:
+                wp_img = fetch_wikipedia_image(person, article_context=headline)
+                if wp_img and wp_img not in used:
+                    ok, ctype, vw = verify_image_url(wp_img)
+                    if ok:
+                        pb = download_image(wp_img)
+                        if pb:
+                            pw, ph = get_image_dimensions(pb)
+                            if pw >= 800:
+                                img_url = wp_img
+                                attribution = "Wikimedia Commons"
+                                source_name = "wikipedia_headline_guard"
+                                raw_bytes = pb
+                                w, h = pw, ph
+                                print(f"    ✓ Wikipedia headline guard for '{person}'")
+            except Exception:
+                pass
+            if not img_url:
+                print(f"    ⊘ Named-person article ('{person}') — staying imageless")
+
+    # ── No candidate left ───────────────────────────────────────────────
+    if not img_url:
+        print(f"    ✗ No image found — publishing without hero (better than broken)")
+        return None, None, None, None
+
+    # Ensure we have bytes and dimensions (slow-source path may not have them)
+    if raw_bytes is None:
         raw_bytes = download_image(img_url)
         if not raw_bytes:
-            print(f"    ✗ Download failed: {img_url[:60]}, trying next source")
-            tried.add(img_url)
-            continue
-        
+            print(f"    ✗ Download failed: {img_url[:60]}")
+            return None, None, None, None
         w, h = get_image_dimensions(raw_bytes)
-        if w > 0 and w < 400:
-            print(f"    ✗ Image too small ({w}x{h}), trying next source")
-            tried.add(img_url)
-            continue
-        # Near-square images from publisher og:image / RSS thumbnails are
-        # almost always site logos or placeholder avatars, not editorial
-        # photos (real og:images are landscape social-card crops ~1.91:1).
-        # 2026-09-16: a reflector.com logo placeholder was selected as a
-        # hero because nothing checked aspect ratio. Wikipedia/Commons/
-        # person_cache portraits are exempt — people photos are often
-        # portrait-oriented and identity-verified by other gates.
-        if source_name in ("og:image", "rss_thumbnail") and w > 0 and h > 0:
-            aspect = w / h
-            if 0.85 <= aspect <= 1.18:
-                print(f"    ✗ Near-square publisher image ({w}x{h}, likely logo/placeholder), trying next source")
-                tried.add(img_url)
-                continue
-        
-        break
-    
+
     # Compute focal point if available
     fx, fy = 0.5, 0.5
     try:
