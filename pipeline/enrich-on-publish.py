@@ -1240,6 +1240,14 @@ def try_hero_upgrade(article, all_tweets):
     headline = article.get("headline", "")
     slug = article.get("slug", "unknown")
     entities = _extract_distinctive_entities(headline)
+    # Strong entities: all-caps acronyms from the headline (NRI, WISER, NASA...).
+    # 2026-10-10 fix: the old any-entity gate let a tweet mentioning only a weak
+    # common noun (e.g. "challenge") pass, promoting a subject-wrong photo
+    # (a Microsoft building as hero for an NRI-student win story). When the
+    # headline has acronyms, the tweet must mention at least one of them;
+    # otherwise it must match at least two distinct entities.
+    strong_entities = {a.lower() for a in re.findall(r'\b[A-Z]{2,}\b', headline)
+                       if len(a) >= 2}
 
     # Find best photo tweet by authority + followers, with entity match
     photo_candidates = []
@@ -1250,11 +1258,19 @@ def try_hero_upgrade(article, all_tweets):
         auth = source_authority(tweet)
         if auth < 2:
             continue
-        # Entity gate: tweet must mention at least one distinctive entity
+        # Entity gate: tweet must mention a subject-specific entity.
+        # Headlines with acronyms require an acronym match (kills weak
+        # common-noun matches like "challenge" on a building photo); otherwise
+        # require at least two distinct entity matches.
         if entities:
             tweet_lower = tweet.get("text", "").lower()
-            if not any(e in tweet_lower for e in entities):
-                continue
+            if strong_entities:
+                if not any(e in tweet_lower for e in strong_entities):
+                    continue
+            else:
+                hits = {e for e in entities if e in tweet_lower}
+                if len(hits) < 2:
+                    continue
         photo_candidates.append((auth, tweet.get("followers", 0) or 0, photos[0], tweet))
 
     if not photo_candidates:
