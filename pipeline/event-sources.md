@@ -1,6 +1,9 @@
 # Event Sources Database
 # Reference file for the videshi-events cron agent
-# Last updated: 2026-10-09
+# Last updated: 2026-10-11
+
+## Scope (Kiran's directive 2026-10-11)
+Commercial entertainment is IN SCOPE: Indian-origin comedians (Zarna Garg, Hasan Minhaj, Aziz Ansari, etc.), Bollywood concerts, Indian music tours. These are high-demand diaspora events — missing Zarna Garg's SF shows (Oct 9-10, 2026) was the trigger. The Ticketmaster performer list (`events-tm-refresh-v2.py` ARTIST_KEYWORDS) is the mechanism; keep it current.
 
 ## Source Status (from coverage audit 2026-10-09)
 
