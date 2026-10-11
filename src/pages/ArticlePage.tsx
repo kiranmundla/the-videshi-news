@@ -19,6 +19,8 @@ import KeyDatesBox from "@/components/KeyDatesBox";
 import HowToBox from "@/components/HowToBox";
 import ChecklistCard from "@/components/ChecklistCard";
 import PriceCompareTable from "@/components/PriceCompareTable";
+import RecipeCard from "@/components/RecipeCard";
+import CriticTable from "@/components/CriticTable";
 import {
   Article,
   formatLongDate,
@@ -741,6 +743,22 @@ export default function ArticlePage() {
             );
             if (!sc) return null;
             return <PriceCompareTable card={sc} />;
+          })()}
+          {/* Recipe card (food articles) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "recipe"
+            );
+            if (!sc) return null;
+            return <RecipeCard card={sc} />;
+          })()}
+          {/* Critic table (movie reviews) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "critic_table"
+            );
+            if (!sc) return null;
+            return <CriticTable card={sc} />;
           })()}
           {(() => {
             const blocks = tryParseBlocks(article.body);

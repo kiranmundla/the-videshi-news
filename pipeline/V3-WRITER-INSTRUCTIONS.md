@@ -298,6 +298,71 @@ Rules:
 - **`highlight_row` optional** — 0-based index of the row to highlight as the best option. Use sparingly: only when one option is genuinely the best deal.
 - **Only for real comparisons.** Don't manufacture a table from a single price mentioned in passing.
 
+### 3e7. Recipe card (food articles only)
+If the article includes a recipe, diet plan, or dish — include a `recipe` entry in the article's `data_cards` array. The frontend renders this as a clean card with ingredients, numbered method steps, time/servings, and optional nutrition.
+
+Add to `data_cards`:
+```json
+{
+  "type": "recipe",
+  "title": "Shahi Paneer",
+  "ingredients": ["250g paneer, cubed", "2 onions, finely chopped", "1 cup tomato puree"],
+  "steps": ["Heat ghee in a pan over medium heat.", "Add onions and sauté until golden brown.", "Stir in tomato puree and spices; simmer 10 minutes."],
+  "prep_time": "15 min",
+  "cook_time": "25 min",
+  "servings": "4",
+  "nutrition": [
+    { "label": "Calories", "value": "320 kcal" },
+    { "label": "Protein", "value": "14g" }
+  ]
+}
+```
+
+Rules:
+- **Everything must come from your sources** — never invent ingredients, quantities, times, or nutrition values.
+- **`ingredients` and `steps` are both required** — the card won't render without them.
+- **`prep_time`, `cook_time`, `servings`, `nutrition` are optional** — include when the source provides them, omit when it doesn't.
+- **Use for real recipes only** — not for restaurant reviews or food news without a dish to make.
+
+### 3e8. Story so far (developing stories — AUTOMATIC, no data card needed)
+The "Story So Far" block is generated automatically from the article's linked developing storylines (the `storyline_articles` table). You do NOT need to add a `story_so_far` data card — the frontend's `StorySoFar` component fetches the storyline's recent articles and renders the timeline itself.
+
+Your job: link the article to its storyline correctly (see the storyline-linking step). The block appears automatically when the article belongs to an active or emerging storyline.
+
+### 3e9. Critic table (movie reviews only)
+If the article is a movie review that synthesizes multiple named critics — include a `critic_table` entry in the article's `data_cards` array. The frontend renders this as a critic-by-critic breakdown with name, publication, rating, key verdict quote, and link.
+
+Add to `data_cards`:
+```json
+{
+  "type": "critic_table",
+  "title": "What Critics Are Saying",
+  "critics": [
+    {
+      "name": "Anupama Chopra",
+      "publication": "Film Companion",
+      "rating": "4/5",
+      "verdict": "A stunning achievement that announces a major new voice.",
+      "url": "https://www.filmcompanion.in/reviews/..."
+    },
+    {
+      "name": "Rajeev Masand",
+      "publication": "News18",
+      "rating": "3.5/5",
+      "verdict": "Flawed but impossible to look away from.",
+      "url": "https://www.news18.com/movies/..."
+    }
+  ]
+}
+```
+
+Rules:
+- **Every critic, rating, and quote must come from your sources** — never invent a critic or paraphrase a verdict you didn't read.
+- **`name` and `verdict` are required** for each entry; `publication`, `rating`, and `url` are optional but strongly preferred.
+- **`verdict`** should be the critic's key takeaway in their own words (a short quote or faithful paraphrase), not your summary.
+- **Include 3–6 critics** for a proper consensus picture. Fewer than 3 isn't a table — just mention them in the body.
+- **Link to the full review** whenever the URL is available.
+
 ### 3f. Update topic status
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`
