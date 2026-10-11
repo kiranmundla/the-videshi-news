@@ -1,0 +1,134 @@
+{
+  "generated_at": "2026-10-11T06:07:44Z",
+  "as_of": "2026-10-11",
+  "weeks": 3,
+  "routes": {
+    "SFO-DEL": {
+      "origin": "SFO",
+      "destination": "DEL",
+      "origin_metro": "Bay Area",
+      "dest_metro": "Delhi",
+      "weeks": 3,
+      "calendar": [
+        {
+          "date_range": "2026-10-22 \u2192 2026-11-12",
+          "dep_date": "2026-10-22",
+          "ret_date": "2026-11-12",
+          "price_min": 1522,
+          "price_max": 1732,
+          "cheapest_airline": "Cathay Pacific",
+          "num_samples": 2,
+          "year": 2026,
+          "month": 10,
+          "weeks": 3
+        },
+        {
+          "date_range": "2026-11-22 \u2192 2026-12-13",
+          "dep_date": "2026-11-22",
+          "ret_date": "2026-12-13",
+          "price_min": 1633,
+          "price_max": 2229,
+          "cheapest_airline": "Virgin Atlantic",
+          "num_samples": 4,
+          "year": 2026,
+          "month": 11,
+          "weeks": 3
+        }
+      ]
+    },
+    "JFK-DEL": {
+      "origin": "JFK",
+      "destination": "DEL",
+      "origin_metro": "New York",
+      "dest_metro": "Delhi",
+      "weeks": 3,
+      "calendar": [
+        {
+          "date_range": "2026-10-22 \u2192 2026-11-12",
+          "dep_date": "2026-10-22",
+          "ret_date": "2026-11-12",
+          "price_min": 1079,
+          "price_max": 1409,
+          "cheapest_airline": "Air India",
+          "num_samples": 2,
+          "year": 2026,
+          "month": 10,
+          "weeks": 3
+        },
+        {
+          "date_range": "2026-11-01 \u2192 2026-11-22",
+          "dep_date": "2026-11-01",
+          "ret_date": "2026-11-22",
+          "price_min": 1225,
+          "price_max": 2016,
+          "cheapest_airline": "Air India",
+          "num_samples": 4,
+          "year": 2026,
+          "month": 11,
+          "weeks": 3
+        }
+      ]
+    }
+  },
+  "festival_seasons": [
+    {
+      "id": "diwali-2026",
+      "name": "Diwali",
+      "emoji": "\ud83e\ude94",
+      "start": [
+        2026,
+        11,
+        6
+      ],
+      "end": [
+        2026,
+        11,
+        10
+      ],
+      "book_by_months": 4,
+      "note": "5-day festival"
+    },
+    {
+      "id": "christmas-2026",
+      "name": "Christmas & New Year",
+      "emoji": "\ud83c\udf84",
+      "start": [
+        2026,
+        12,
+        20
+      ],
+      "end": [
+        2027,
+        1,
+        5
+      ],
+      "book_by_months": 5,
+      "note": "Peak holiday season"
+    },
+    {
+      "id": "diwali-2027",
+      "name": "Diwali",
+      "emoji": "\ud83e\ude94",
+      "start": [
+        2027,
+        10,
+        29
+      ],
+      "end": [
+        2027,
+        11,
+        2
+      ],
+      "book_by_months": 4,
+      "note": "5-day festival"
+    }
+  ],
+  "spec": {
+    "max_stops": 1,
+    "trip_type": "round-trip",
+    "pricing": "per-person",
+    "cabin": "economy",
+    "min_checked_bags": 2,
+    "note": "Excludes basic economy. Prices are snapshots, not live."
+  }
+}

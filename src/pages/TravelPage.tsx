@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
+import FlightDeals from "@/components/FlightDeals";
 import {
   REGIONS,
   DESTINATIONS,
@@ -263,6 +264,9 @@ export default function TravelPage() {
           </div>
         ) : (
           <>
+            {/* ── Flight Deals ───────────────────────────────── */}
+            <FlightDeals />
+
             {/* ── Travel News Strip ──────────────────────────── */}
             <TravelNewsStrip news={news} />
 
