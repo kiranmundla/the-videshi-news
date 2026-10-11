@@ -137,6 +137,7 @@ This check is non-negotiable. Wrong-person photos that go live erode reader trus
 - Factual, plain style. Describe what is literally in the image.
 - NO flowery bridging: "symbolizing," "reflects," "illustrating," "representing"
 - NO speculation about what's not visible in the image
+- **If `image_url` is null at publish time, leave `image_caption` null too — never write a caption for an image you haven't seen.** A caption describing an imagined image survives the backfill and goes live mismatched with the actual sourced photo (2026-10-11: caption described a 'restaurant dining room' while the sourced Pexels photo was a Hong Kong skyline). The sourcer writes a factual caption from the photo's own metadata when the image arrives.
 - Person identity must match — exact name, recent/current photo
 - Example: "Indian Prime Minister Narendra Modi addresses Parliament during the Budget session. The government announced new tax incentives for returning NRIs."
 

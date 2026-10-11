@@ -1075,14 +1075,20 @@ def _pexels_alt_matches(query, alt):
 
 
 def fetch_pexels_image(query):
-    """Search Pexels for a topical image. Returns URL or None.
+    """Search Pexels for a topical image. Returns (url, alt) or (None, None).
 
     Only returns a photo whose alt text passes the relevance gate
     (_pexels_alt_matches); irrelevant fuzzy matches are rejected so the
     article falls through to hero-less rather than a wrong image.
+
+    The alt text is returned alongside the URL because it describes what the
+    photo ACTUALLY shows — the hero caption is built from it, never from a
+    description written before the image was sourced (2026-10-11: a caption
+    for an imagined 'restaurant dining room' survived a backfill that
+    sourced a Hong Kong skyline, and the mismatch went live).
     """
     if not PEXELS_KEY or not query:
-        return None
+        return None, None
 
     encoded = urllib.parse.quote(query)
     url = f"https://api.pexels.com/v1/search?query={encoded}&per_page=5&orientation=landscape"
@@ -1099,10 +1105,10 @@ def fetch_pexels_image(query):
             src = photo.get("src", {})
             img_url = src.get("large2x") or src.get("large") or src.get("original")
             if img_url and _pexels_alt_matches(query, photo.get("alt", "")):
-                return img_url
-        return None
+                return img_url, photo.get("alt", "")
+        return None, None
     except:
-        return None
+        return None, None
 
 
 # ── Upload ───────────────────────────────────────────────────────────────────
@@ -1321,6 +1327,15 @@ _HEADLINE_PROPER_NONPERSON_WORDS = {
 _HEADLINE_PLACE_POSSESSIVE_WORDS = {
     "hoover", "hartlepool",
 }
+# Multi-word place phrases that must not be read as a person's name.
+# "Sai Kung's Top Indian Restaurant..." is a Hong Kong district, not a person
+# named "Sai Kung" (2026-10-11: the guard blocked Pexels and left a food
+# article imageless). Checked as a two-word phrase so "Sai" alone is still
+# treated as a given name ("Sai Pallavi's Wedding..." stays guarded). Kept
+# tight and documented per encounter.
+_HEADLINE_PLACE_PHRASE_WORDS = {
+    "sai kung",
+}
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
     "your", "my", "our", "his", "her", "their", "its",
@@ -1429,6 +1444,12 @@ def headline_person_name(headline):
         return None
     if second_base in _HEADLINE_TITLE_WORDS:
         return None
+    # Multi-word place phrases ("Sai Kung's ..."): the district is not a person.
+    # Checked on the two-word phrase so "Sai" alone still passes as a given
+    # name ("Sai Pallavi's Wedding..."). Kept tight and documented per
+    # encounter.
+    if f"{first_base} {second_base}" in _HEADLINE_PLACE_PHRASE_WORDS:
+        return None
     # Both words capitalized, second not a title → likely a person's name.
     # Length gate runs on the possessive-stripped base: "LA's" → "la" (2
     # chars) must not pass as a surname — "Still LA's Best Biryani..." is
@@ -1474,6 +1495,7 @@ def source_hero_image(article, used_images=None):
         img_url = None
         attribution = "The Videshi"
         source_name = None
+        pexels_alt = None
         used = (used_images or set()) | tried
         
         # ── Source 1: og:image from source articles (ranked by quality) ──────
@@ -1648,7 +1670,7 @@ def source_hero_image(article, used_images=None):
             tags = article.get("tags") or []
             first_tag = tags[0] if tags else ""
             query = search_query or must_show or first_tag or headline[:40]
-            pexels_img = fetch_pexels_image(query)
+            pexels_img, pexels_alt = fetch_pexels_image(query)
             if pexels_img and pexels_img not in used:
                 ok, ctype, _ = verify_image_url(pexels_img)
                 if ok:
@@ -1715,7 +1737,15 @@ def source_hero_image(article, used_images=None):
     
     # Caption — keep factual, only use first entity name if confident
     caption = None
-    if entities and len(entities) > 0 and isinstance(entities[0], str):
+    if source_name == "pexels" and pexels_alt and len(pexels_alt.strip()) >= 4:
+        # The photo's own alt text describes what it ACTUALLY shows. Build
+        # the caption from that — never from a description written before
+        # the image was sourced (2026-10-11: a writer's caption for an
+        # imagined 'restaurant dining room' survived a backfill that
+        # sourced a city skyline, and the mismatch went live).
+        alt = pexels_alt.strip().rstrip(".")
+        caption = alt[0].upper() + alt[1:] + " (file photo)"
+    elif entities and len(entities) > 0 and isinstance(entities[0], str):
         caption = entities[0]
     
     print(f"    ✅ Hero image ready: {source_name} → {final_url[-60:]}")
