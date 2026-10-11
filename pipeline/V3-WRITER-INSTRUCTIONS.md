@@ -193,6 +193,102 @@ Rules:
 - **Team order**: winning team first, then the loser (or batting order for draws).
 - For non-cricket sports, adapt: football uses `score: "2-1"` without `overs`; `format` becomes the competition (e.g. "Premier League").
 
+### 3e3. Key dates box (deadline-driven stories only)
+If the article centers on a sequence of dates the reader must track — court injunction timelines, IPO date sequences, festival calendars, visa bulletin windows — include a `key_dates` entry in the article's `data_cards` array. The frontend renders this as a date-badge timeline card.
+
+Add to `data_cards`:
+```json
+{
+  "type": "key_dates",
+  "title": "Key Dates",
+  "dates": [
+    {"date": "2026-10-19", "event": "Anchor investor allocation", "source_url": "https://..."},
+    {"date": "2026-10-21", "event": "Public issue opens for subscription"},
+    {"date": "2026-10-28", "event": "Expected listing date"}
+  ]
+}
+```
+
+Rules:
+- **Dates must be real and sourced** — never estimate. Every date should come from your sources.
+- **Chronological order**, earliest first.
+- **Event text is one line** — concise, no paragraphs.
+- **`source_url` optional** — link to the authoritative source for that date when available.
+- **`title` optional** — defaults to "Key Dates". Use a specific title when it helps ("IPO Timeline", "Court Battle Timeline").
+- **Only when dates are the story.** Don't add a dates box for articles that merely mention a date or two in passing.
+
+### 3e4. How-to box (NRI/actionable how-to content only)
+If the article explains HOW to do something actionable — apply for an IPO as an NRI, check visa status, open an account — include a `how_to` entry in the article's `data_cards` array. The frontend renders this as a numbered step-by-step card.
+
+Add to `data_cards`:
+```json
+{
+  "type": "how_to",
+  "title": "How NRIs Can Apply for the Jio IPO",
+  "steps": [
+    {"step": "Open an NRE/NRO demat account", "detail": "Required for IPO bidding; link your PAN.", "link": "https://...", "link_text": "SEBI guide"},
+    {"step": "Apply via ASBA through your bank", "detail": "Block the bid amount; no money leaves until allotment."},
+    {"step": "Check allotment on the registrar's site", "link": "https://..."}
+  ]
+}
+```
+
+Rules:
+- **Steps must be genuinely actionable** — the reader should be able to follow them. No vague steps like "Do your research."
+- **`detail` optional** — one clarifying sentence per step max.
+- **`link`/`link_text` optional** — link to the authoritative page for that step (government site, bank page, application portal).
+- **Max 6 steps.** If the process is longer, group or link out.
+- **Only for real how-to content.** News articles that mention a process in passing do NOT get a how-to box.
+
+### 3e5. Checklist card (eligibility/requirements only)
+If the article lists eligibility criteria, required documents, or program requirements — include a `checklist` entry in the article's `data_cards` array. The frontend renders this as a checkbox-style list with an optional "catch" callout.
+
+Add to `data_cards`:
+```json
+{
+  "type": "checklist",
+  "title": "Eligibility Checklist",
+  "items": [
+    {"text": "Canadian PR or citizenship", "note": "Required — work permits don't qualify"},
+    {"text": "Complete the Touchstone assessment"},
+    {"text": "Pass the certification exam"}
+  ],
+  "catch_text": "Must commit to a 3-year return-of-service in an underserved area."
+}
+```
+
+Rules:
+- **Every item must be a real requirement** from your sources. Never invent criteria.
+- **`note` optional** — one clarifying note per item max.
+- **`catch_text` optional** — use it for the hidden gotcha, the fine print, the thing people miss. Keep it to one sentence.
+- **Max 8 items.** Longer lists belong in the body.
+- **Only for genuine checklists.** Don't force eligibility framing onto articles that don't have requirements.
+
+### 3e6. Price comparison table (cost comparisons only)
+If the article compares costs — savings breakdowns, service pricing, fare comparisons — include a `price_compare` entry in the article's `data_cards` array. The frontend renders this as a clean comparison table with an optional highlighted "best" row.
+
+Add to `data_cards`:
+```json
+{
+  "type": "price_compare",
+  "title": "Savings Breakdown",
+  "headers": ["Item", "Regular Fare", "Student Fare"],
+  "rows": [
+    ["Base fare", "$1,200", "$1,080"],
+    ["Change fee", "$150", "Free"],
+    ["Total", "$1,350", "$1,080"]
+  ],
+  "highlight_row": 2
+}
+```
+
+Rules:
+- **Numbers must come from your sources** — never estimate prices.
+- **`headers`**: first column is the label, the rest are the options being compared. Keep to 2–4 columns.
+- **`rows`**: each row is an array of strings matching the header count. Keep to 3–6 rows.
+- **`highlight_row` optional** — 0-based index of the row to highlight as the best option. Use sparingly: only when one option is genuinely the best deal.
+- **Only for real comparisons.** Don't manufacture a table from a single price mentioned in passing.
+
 ### 3f. Update topic status
 After successful article insert, PATCH the p2_topics row:
 `PATCH /rest/v1/p2_topics?id=eq.<topic_id>` with `{"status": "published", "last_article_id": "<new_article_id>"}`

@@ -15,6 +15,10 @@ import ArticleCard from "@/components/ArticleCard";
 import SectionRule from "@/components/SectionRule";
 import MovieRatingsCard from "@/components/MovieRatingsCard";
 import MatchScorecard from "@/components/MatchScorecard";
+import KeyDatesBox from "@/components/KeyDatesBox";
+import HowToBox from "@/components/HowToBox";
+import ChecklistCard from "@/components/ChecklistCard";
+import PriceCompareTable from "@/components/PriceCompareTable";
 import {
   Article,
   formatLongDate,
@@ -705,6 +709,38 @@ export default function ArticlePage() {
             );
             if (!sc) return null;
             return <MatchScorecard card={sc} />;
+          })()}
+          {/* Key dates box (deadline-driven stories) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "key_dates"
+            );
+            if (!sc) return null;
+            return <KeyDatesBox card={sc} />;
+          })()}
+          {/* How-to box (NRI how-to content) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "how_to"
+            );
+            if (!sc) return null;
+            return <HowToBox card={sc} />;
+          })()}
+          {/* Checklist card (eligibility/requirements) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "checklist"
+            );
+            if (!sc) return null;
+            return <ChecklistCard card={sc} />;
+          })()}
+          {/* Price comparison table (cost comparisons) */}
+          {article.data_cards && (() => {
+            const sc = (article.data_cards as any[]).find(
+              (c: any) => c?.type === "price_compare"
+            );
+            if (!sc) return null;
+            return <PriceCompareTable card={sc} />;
           })()}
           {(() => {
             const blocks = tryParseBlocks(article.body);
