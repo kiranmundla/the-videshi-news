@@ -369,6 +369,23 @@ def main():
     inserted = insert_events(new)
     print(f"✅ Inserted {inserted} temple events")
 
+    # Feed rebuild so new events reach the site's static feeds (festivals hub,
+    # Your Hub read /data/events.json). Guarded: skip when nothing was inserted.
+    if inserted > 0:
+        try:
+            prebuild = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    "prebuild-feeds.py")
+            r = subprocess.run([sys.executable, "-u", prebuild],
+                               capture_output=True, text=True, timeout=900)
+            print(r.stdout[-1500:] if r.stdout else "")
+            if r.returncode != 0:
+                print(f"⚠ prebuild-feeds.py failed (rc={r.returncode}): "
+                      f"{(r.stderr or '')[-500:]}")
+            else:
+                print("✅ Feeds rebuilt — new temple events will go out with the next push")
+        except Exception as e:
+            print(f"⚠ Feed rebuild skipped: {e}")
+
 
 if __name__ == "__main__":
     main()
