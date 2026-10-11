@@ -515,6 +515,59 @@ def call_gpt(messages, max_tokens=4000, retries=2):
     finally:
         os.unlink(tmp_path)
 
+# ── Topic-assignment guardrail ────────────────────────────────────────────────
+# GPT-4o-mini occasionally mis-numbers signals/topics in the matching prompt
+# (observed 2026-10-10: an ESPN soccer story assigned to a food topic, a
+# Rashmika photo gallery to an NRI story, an Al Jazeera Ukraine item to a
+# Duration-of-Status topic, a Kejriwal-detention URL on a Modi-Melbourne
+# topic). The veto below rejects any assignment where the signal title shares
+# zero significant tokens with the topic title, falling back to an individual
+# topic — the same fallback used for unmatched signals. This errs toward
+# fragmentation (tolerable, already the accepted failure mode) over
+# misassignment (corrupts candidates' source URLs and writer research).
+
+_MATCH_STOPWORDS = frozenset(
+    "a an the and or of to in on for with as at by from is are was were be been "
+    "being it its this that these those s t d ll ve re m vs v than then so such "
+    "no not only also just over under more most very can will would could should "
+    "has have had do does did who whom whose what when where why how".split()
+)
+
+def _match_tokens(text):
+    return {t for t in re.findall(r"[a-z0-9]+", (text or "").lower())
+            if len(t) >= 2 and t not in _MATCH_STOPWORDS}
+
+def _titles_overlap(sig_title, topic_title):
+    """True if the two titles share at least one significant token, or a 6+
+    char token of one appears inside the other (catches compounds like
+    'JPMorgan' vs 'JP Morgan'). Returns True when either side has no
+    comparable (latin) tokens, so non-English headlines are never vetoed
+    on script grounds."""
+    st, tt = _match_tokens(sig_title), _match_tokens(topic_title)
+    if not st or not tt:
+        return True
+    if st & tt:
+        return True
+    sig_l, top_l = (sig_title or "").lower(), (topic_title or "").lower()
+    for t in st:
+        if len(t) >= 6 and t in top_l:
+            return True
+    for t in tt:
+        if len(t) >= 6 and t in sig_l:
+            return True
+    return False
+
+def _new_individual_topic(chunk_title, all_new_topics, match_topics):
+    tid = str(uuid.uuid4())
+    new_topic = {
+        "id": tid,
+        "canonical_title": chunk_title[:500],
+        "signal_count": 0,
+    }
+    all_new_topics.append(new_topic)
+    match_topics.append(new_topic)
+    return tid
+
 def match_signals_to_topics(new_signals, existing_topics, chunk_size=250):
     """
     Use GPT to match new signals to existing topics or group them into new topics.
@@ -595,43 +648,65 @@ Output JSON:
 
         # Process GPT results
         new_topic_groups = {}
+        group_name_titles = {}  # group key -> first signal's title (for the veto)
+        topic_title_by_id = {t["id"]: t["canonical_title"] for t in prompt_topics}
+        vetoes = 0
 
         for m in result["matches"]:
-            sig_idx = m.get("signal", 0) - 1  # 1-indexed → 0-indexed
+            sig_raw = m.get("signal", 0)
+            # Guardrail: non-integer signal refs (bool/float/str) can't index
+            # the chunk reliably — skip to the individual-topic fallback.
+            sig_idx = sig_raw - 1 if isinstance(sig_raw, int) and not isinstance(sig_raw, bool) else -1
             if sig_idx < 0 or sig_idx >= len(chunk):
                 continue
 
             global_idx = chunk_start + sig_idx
             topic_ref = m.get("topic")
+            sig_title = chunk[sig_idx]["title"]
+            assigned = None
 
             if isinstance(topic_ref, int) and topic_ref in topic_id_map:
-                all_signal_topic_map[global_idx] = topic_id_map[topic_ref]
+                tid = topic_id_map[topic_ref]
+                # Guardrail: veto assignments with zero topical overlap —
+                # GPT mis-numbers items in long prompts (see header note).
+                if _titles_overlap(sig_title, topic_title_by_id.get(tid, "")):
+                    assigned = tid
+                else:
+                    vetoes += 1
+                    print(f"  veto: signal {sig_idx+1} {sig_title[:60]!r} -> "
+                          f"topic {topic_ref} {topic_title_by_id.get(tid, '')[:60]!r} (no overlap)")
             elif topic_ref == "new":
                 group = m.get("group", sig_idx)
-                if group not in new_topic_groups:
-                    tid = str(uuid.uuid4())
-                    new_topic_groups[group] = tid
-                    new_topic = {
-                        "id": tid,
-                        "canonical_title": chunk[sig_idx]["title"][:500],
-                        "signal_count": 0,
-                    }
-                    all_new_topics.append(new_topic)
-                    # Add to match_topics so future chunks can match against it
-                    match_topics.append(new_topic)
-                    topic_id_map[len(match_topics)] = tid
-                all_signal_topic_map[global_idx] = new_topic_groups[group]
-            else:
-                tid = str(uuid.uuid4())
-                all_signal_topic_map[global_idx] = tid
-                new_topic = {
-                    "id": tid,
-                    "canonical_title": chunk[sig_idx]["title"][:500],
-                    "signal_count": 0,
-                }
-                all_new_topics.append(new_topic)
-                match_topics.append(new_topic)
+                # Guardrail: unhashable/bool group refs can't key the group map —
+                # give the signal its own group instead of crashing.
+                if isinstance(group, bool) or not isinstance(group, (str, int, float, tuple)):
+                    group = ("group", sig_idx)
+                if group in new_topic_groups:
+                    # Guardrail: a signal joining an existing group must overlap
+                    # the group's name-signal title, else split it out.
+                    if _titles_overlap(sig_title, group_name_titles[group]):
+                        assigned = new_topic_groups[group]
+                    else:
+                        vetoes += 1
+                        print(f"  veto: signal {sig_idx+1} {sig_title[:60]!r} split "
+                              f"from group {group!r} (no overlap with {group_name_titles[group][:60]!r})")
+                        group = (group, sig_idx)  # force a fresh group below
+                if assigned is None:
+                    if group not in new_topic_groups:
+                        tid = _new_individual_topic(sig_title, all_new_topics, match_topics)
+                        new_topic_groups[group] = tid
+                        group_name_titles[group] = sig_title
+                        topic_id_map[len(match_topics)] = tid
+                        topic_title_by_id[tid] = sig_title
+                    assigned = new_topic_groups[group]
+
+            if assigned is None:
+                # Unparseable ref, or vetoed above: individual topic fallback.
+                tid = _new_individual_topic(sig_title, all_new_topics, match_topics)
                 topic_id_map[len(match_topics)] = tid
+                topic_title_by_id[tid] = sig_title
+                assigned = tid
+            all_signal_topic_map[global_idx] = assigned
 
         # Handle signals not in GPT output
         for i in range(len(chunk)):
@@ -647,7 +722,7 @@ Output JSON:
                 all_new_topics.append(new_topic)
                 match_topics.append(new_topic)
 
-        print(f"  Chunk {chunk_start+1}-{chunk_start+len(chunk)}: matched ({len(chunk)} signals, ${cost:.4f})")
+        print(f"  Chunk {chunk_start+1}-{chunk_start+len(chunk)}: matched ({len(chunk)} signals, ${cost:.4f}, {vetoes} vetoed)")
 
     return all_signal_topic_map, all_new_topics, total_cost
 
