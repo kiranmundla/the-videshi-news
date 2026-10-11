@@ -107,14 +107,23 @@ python3 -u image_sourcer.py --slug <article-slug> --apply
 
 > **image_backfill_blocked:** some articles carry `image_backfill_blocked=true` (standing intentional-null decisions, e.g. no verified photo exists for the named person). The sourcer skips these automatically — never force an image onto them. If you later verify a real photo, apply it with `source-image.py`, which clears the block.
 
-This runs the full 7-source image chain automatically:
+This runs the full image chain automatically:
 1. og:image from source articles (decodes Google News URLs, ranks by domain quality; AI-generated og:images rejected by filename markers like `Gemini_`, `midjourney`, `dall-e`)
 2. RSS feed thumbnails from p2_signals
 3. Media library cache (person_images table)
 4. YouTube thumbnails (entity-specific, with title match gate)
-5. Wikipedia person images
-6. Wikimedia Commons search
-7. Pexels fallback (last resort; photo alt text must share a content word with the query or it is rejected as irrelevant)
+5. **Official source (writer-provided URL)** — if you pass `--official-url`, the sourcer fetches that page's image directly, no search needed
+6. Official source auto-discovery (government/company domains via keyword matching)
+7. PR Newswire press images
+8. Wikipedia person images
+9. Wikimedia Commons search
+10. Pexels fallback (last resort; photo alt text must share a content word with the query or it is rejected as irrelevant)
+
+**Official source URL (recommended for institutional stories):** When the story is about a government agency, company announcement, or official program — and you know the official page (e.g., the NASA press release, the ISRO announcement, the company's press page) — pass it directly:
+```bash
+python3 -u image_sourcer.py --slug <article-slug> --official-url "https://www.nasa.gov/news-release/..." --apply
+```
+This skips all search and pulls the official image straight from the source. It's the most reliable path — official images are topically perfect and copyright-safe (US government = public domain, Indian government = free for news use, company press = provided for media). The sourcer validates it's not a logo and checks topical relevance.
 
 It also computes focal points for face-aware cropping and updates the DB directly.
 

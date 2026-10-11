@@ -880,6 +880,11 @@ _OFFICIAL_SOURCE_MAP = [
 _OFFICIAL_CACHE_PATH = os.path.join(SCRIPT_DIR, ".state", "official-image-cache.json")
 _OFFICIAL_CACHE_TTL_SECS = 7 * 24 * 3600
 
+# Domain → display name for writer-provided URLs (derived from _OFFICIAL_SOURCE_MAP)
+_OFFICIAL_DOMAIN_NAMES = {}
+for _kw, _dom, _disp in _OFFICIAL_SOURCE_MAP:
+    _OFFICIAL_DOMAIN_NAMES.setdefault(_dom, _disp)
+
 
 def _official_cache_load():
     try:
@@ -1035,16 +1040,40 @@ def _fetch_nasa_image_api(query):
     return None, None
 
 
-def fetch_official_source_image(headline, entities=None, topic=""):
+def fetch_official_source_image(headline, entities=None, topic="", official_url=None):
     """Fetch a press/official image from a government or company website.
 
-    Flow: match institutional entity → site:-restricted search on the
-    official domain → extract og:image from top results → validate
-    (logo guard, topical gate, HTTP verification).
+    Two modes:
+    1. Writer-provided URL (official_url): fetch og:image directly from that
+       page — no search needed. This is the reliable path.
+    2. Auto-discovery: match institutional entity → site:-restricted search
+       on the official domain → extract og:image → validate.
 
     Returns (image_url, attribution_display_name) or (None, None).
     Results (including misses) are cached for 7 days.
     """
+    # ── Mode 1: Writer provided the official URL directly ──
+    # This is the reliable path — no search, just fetch and validate.
+    if official_url:
+        print(f"    🔗 official-source: writer-provided URL {official_url[:60]}")
+        img_url = fetch_og_image(official_url)
+        if img_url:
+            if _is_generic_og_image(img_url):
+                print(f"    ⊘ official og:image is generic/logo, skipping")
+            elif not _og_image_topical_ok(img_url, headline, topic):
+                print(f"    ⊘ official og:image failed topical gate, skipping")
+            else:
+                ok, ctype, _ = verify_image_url(img_url)
+                if ok:
+                    # Derive attribution from domain
+                    domain = urllib.parse.urlparse(official_url).netloc.replace("www.", "")
+                    display = _OFFICIAL_DOMAIN_NAMES.get(domain, domain)
+                    print(f"    ✓ official-source image from {display}")
+                    return img_url, display
+                print(f"    ✗ official-source image FAILED verification")
+        # Writer URL didn't yield — fall through to auto-discovery
+        print(f"    ⊘ writer URL yielded nothing, trying auto-discovery")
+
     if not headline:
         return None, None
     match = _match_official_entity(headline, entities, topic)
@@ -1961,9 +1990,13 @@ def source_hero_image(article, used_images=None):
         # domain, PIB images are free for news use, company press images are
         # distributed for media use. Curated domain allowlist only; never
         # fires for person-led headlines.
+        # Writer-provided official URL (via --official-url) takes priority —
+        # it's the reliable path: no search, just fetch and validate.
         if not img_url:
+            _writer_official_url = globals().get("_WRITER_OFFICIAL_URL")
             off_img, off_attr = fetch_official_source_image(
-                headline, entities, search_query)
+                headline, entities, search_query,
+                official_url=_writer_official_url)
             if off_img and off_img not in used:
                 img_url = off_img
                 attribution = off_attr or "Official Source"
@@ -2202,7 +2235,14 @@ if __name__ == "__main__":
     parser.add_argument("--apply", action="store_true",
                         help="Actually update the DB (default: dry run)")
     parser.add_argument("--test-url", help="Test og:image fetch for a URL")
+    parser.add_argument("--official-url",
+                        help="Writer-provided official source URL (government/company page) — fetches its image directly, skipping search")
     args = parser.parse_args()
+
+    # Writer-provided official URL → global for the sourcing chain
+    # (fetch_official_source_image checks this before auto-discovery)
+    global _WRITER_OFFICIAL_URL
+    _WRITER_OFFICIAL_URL = args.official_url or None
 
     if args.test_url:
         print(f"Testing og:image fetch for: {args.test_url}")
