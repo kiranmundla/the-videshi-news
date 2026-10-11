@@ -1164,11 +1164,11 @@ def check_broken_article_links(fix=False):
     SKIP = ("youtube.com", "youtu.be", "x.com", "twitter.com",
             "instagram.com", "facebook.com", "threads.com")
     # 403-to-bots domains (2026-10-11): these return 403 to our server egress
-    # even with a Mozilla UA, but load fine in a real browser (verified all
-    # three live via browser_open 2026-10-11). Treating their 403s as "broken"
-    # produced false alarms, so skip them.
+    # via python-requests even though they load fine in a real browser
+    # (curlytales.com verified 301->200 with a browser UA same day).
+    # Treating their 403s as "broken" produced false alarms, so skip them.
     BOTBLOCK_403 = ("fastcompany.com", "cricinfo.com", "espncricinfo.com",
-                    "dol.gov")
+                    "dol.gov", "curlytales.com")
 
     try:
         resp = requests.get(
