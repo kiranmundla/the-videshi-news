@@ -912,6 +912,35 @@ _COMMONS_STOP = {
     "news", "social", "media", "photo", "image", "file", "commons",
 }
 
+# Venue kinds that make a Commons photo depict a specific identifiable business.
+# A photo titled e.g. "Indian Taj restaurant" shows THAT restaurant — it must not
+# illustrate an article about a different venue/location.
+_VENUE_KINDS = {
+    "restaurant", "restaurants", "cafe", "café", "cafes", "dhaba", "eatery",
+    "hotel", "hotels", "bar", "bars", "pub", "pubs", "mall", "malls",
+    "market", "markets", "stadium", "stadiums", "arena", "museum",
+    "theatre", "theater", "temple", "airport", "station", "school",
+    "college", "hospital", "resort", "cinema", "gallery", "club",
+}
+
+def _commons_venue_name(commons_title):
+    """Extract the proper-noun venue name preceding a venue word.
+
+    "Eksteriør Indian Taj restaurant" -> "Indian Taj". Returns None when the
+    title has no venue word with a preceding proper noun (e.g. generic
+    "Restaurant interior" or non-venue photos like "Newlands2").
+    """
+    # All words (any case) for venue-word detection; proper-noun name is taken
+    # from capitalized words preceding the venue word.
+    words = re.findall(r"[A-Za-zÀ-Þà-öø-ÿ]+", commons_title or "")
+    for i, w in enumerate(words):
+        if w.lower() in _VENUE_KINDS and i > 0:
+            name = [x for x in words[max(0, i - 2):i] if x[0].isupper()]
+            if name:
+                return " ".join(name)
+    return None
+
+
 def commons_relevance_ok(commons_title, headline, topic=""):
     """Check if a Commons file title is relevant to the headline."""
     title_l = (commons_title or "").lower()
@@ -925,6 +954,17 @@ def commons_relevance_ok(commons_title, headline, topic=""):
                 if neg in title_l:
                     return False
     
+    # Venue-specificity guard (2026-10-11): a Commons photo of a specific named
+    # venue (e.g. "Eksteriør Indian Taj restaurant", a Danish restaurant) must
+    # not illustrate an article about a different venue/location (e.g.
+    # "Sai Kung's Top Indian Restaurant ..."). If the title names a venue whose
+    # proper nouns don't appear in the headline, reject outright.
+    venue_name = _commons_venue_name(commons_title)
+    if venue_name:
+        name_words = set(re.findall(r"[a-zà-öø-ÿ]{3,}", venue_name.lower())) - _COMMONS_STOP
+        if name_words and not any(w in headline_l for w in name_words):
+            return False
+
     # Require at least 1 distinctive keyword match
     headline_words = set(re.findall(r'[a-z]{4,}', headline_l + " " + topic_l))
     distinctive = headline_words - _COMMONS_STOP
@@ -934,7 +974,7 @@ def commons_relevance_ok(commons_title, headline, topic=""):
     for word in distinctive:
         if word in title_l:
             return True
-    
+
     return False
 
 
