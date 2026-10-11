@@ -38,6 +38,7 @@ Tampa FL (4), Nashville TN (2)
 - Data: 20 events/page, includes title, date, venue, image, ticket URL
 - Cities to scrape:
   - `ca--san-jose`, `ca--san-francisco`, `ca--fremont`
+- **allevents.in city pages** (the live city-level mechanism, `scrape-allevents.py`): `dublin-ca`, `san-ramon-ca`, `pleasanton-ca`, `livermore-ca` added 2026-10-11 — closes the San Ramon/Dublin coverage gap the user flagged (bare `dublin` resolves to Ireland — use `-ca` suffixed slugs)
   - `ny--new-york`, `nj--edison`, `nj--jersey-city`
   - `tx--dallas`, `tx--houston`, `tx--plano`
   - `il--chicago`, `il--schaumburg`
