@@ -10,6 +10,8 @@ Respectful scraping:
 - 2s delay between sites
 - 15s timeout per page
 - Skips sites that fail/timeout
+- Skips aggregator/directory domains (muslimguide.com etc.) — those pages
+  are not the business's own site, so their emails are not outreach targets
 
 Usage:
   python3 scrape-listing-emails.py --limit 5          # dry-run test (5 sites)
@@ -43,6 +45,23 @@ IMAGE_EXT = re.compile(r'\.(png|jpe?g|gif|webp|svg|ico|bmp)$', re.IGNORECASE)
 # Preferred generic inboxes, in order
 PREFERRED = ['info@', 'contact@', 'hello@', 'support@', 'office@',
              'admin@', 'mail@', 'enquiry@', 'inquiries@']
+
+# Directory/aggregator domains whose pages are NOT the business's own site.
+# Any email scraped there belongs to the aggregator, not the listing —
+# writing it into the listing's email column pollutes outreach data
+# (e.g. 2,798 listings point at muslimguide.com aggregator pages).
+AGGREGATOR_DOMAINS = {
+    'muslimguide.com',
+    'yelp.com', 'yellowpages.com', 'yp.com', 'foursquare.com',
+    'tripadvisor.com', 'opentable.com', 'zocdoc.com', 'healthgrades.com',
+    'vitals.com', 'webmd.com', 'manta.com', 'chamberofcommerce.com',
+    'bbb.org', 'mapquest.com', 'citysearch.com', 'dexknows.com',
+    'superpages.com', 'merchantcircle.com', 'hotfrog.com', 'yext.com',
+    'groupon.com', 'doordash.com', 'grubhub.com', 'ubereats.com',
+    'seamless.com', 'postmates.com', 'thumbtack.com', 'angi.com',
+    'homeadvisor.com', 'houzz.com', 'zillow.com', 'trulia.com',
+    'realtor.com', 'apartments.com', 'glassdoor.com', 'indeed.com',
+}
 
 
 def db_get(path):
@@ -143,6 +162,9 @@ def scrape_site(site):
     base = normalize_url(site)
     if not base:
         return None, "no-url"
+    host = urlparse(base).netloc.lower().lstrip('www.')
+    if host in AGGREGATOR_DOMAINS:
+        return None, "aggregator"  # not the business's own site; skip
     pages = [base, urljoin(base + '/', 'contact'),
              urljoin(base + '/', 'contact-us'),
              urljoin(base + '/', 'about')]
@@ -213,10 +235,18 @@ def main():
     print(f"Processing {len(todo)} sites (dry run={not args.apply})...", flush=True)
     run_found = 0
     run_failed = 0
+    run_skipped = 0
+    progress.setdefault("skipped", 0)
     for i, row in enumerate(todo):
         email, status = scrape_site(row.get("website"))
         progress["processed"] += 1
-        if email:
+        if status == "aggregator":
+            run_skipped += 1
+            progress["skipped"] += 1
+            print(f"  [{i+1}/{len(todo)}] skip: aggregator site "
+                  f"{row.get('name','?')[:40]} ({row.get('website','?')[:40]})",
+                  flush=True)
+        elif email:
             run_found += 1
             progress["found"] += 1
             tag = "APPLY " if args.apply else "WOULD "
@@ -242,7 +272,8 @@ def main():
 
     save_progress(progress)
     print(f"\n{'='*50}")
-    print(f"Run complete: {run_found} emails found, {run_failed} no-email/failed")
+    print(f"Run complete: {run_found} emails found, {run_failed} no-email/failed, "
+          f"{run_skipped} aggregator-skipped")
     print(f"Totals: processed={progress['processed']}, found={progress['found']}, "
           f"failed={progress['failed']}")
     if not args.apply:
