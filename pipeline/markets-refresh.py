@@ -13,15 +13,17 @@ DATA_DIR = Path.home() / "workspace" / "the-videshi-news" / "public" / "data"
 
 # (yahoo symbol, display symbol, display name, flag emoji)
 INDICES = [
+    # Diaspora-first order (2026-10-11, Kiran's call): gold, silver, USD/INR
+    # lead — these drive real diaspora decisions. US indices follow for context.
+    ("GC=F",   "GOLD",   "Gold",     "✨"),
+    ("SI=F",   "SILVER", "Silver",   "\U0001FA99"),
+    ("USDINR=X", "USDINR", "USD/INR","\U0001F4B1"),
+    ("^BSESN", "SENSEX", "Sensex",   "\U0001F1EE\U0001F1F3"),
+    ("^NSEI",  "NIFTY",  "Nifty 50", "\U0001F1EE\U0001F1F3"),
     ("^GSPC",  "SPX",    "S&P 500",  "\U0001F1FA\U0001F1F8"),
     ("^IXIC",  "NASDAQ", "Nasdaq",   "\U0001F1FA\U0001F1F8"),
     ("^DJI",   "DJI",    "Dow Jones","\U0001F1FA\U0001F1F8"),
-    ("^BSESN", "SENSEX", "Sensex",   "\U0001F1EE\U0001F1F3"),
-    ("^NSEI",  "NIFTY",  "Nifty 50", "\U0001F1EE\U0001F1F3"),
     ("^FTSE",  "FTSE",   "FTSE 100", "\U0001F1EC\U0001F1E7"),
-    ("USDINR=X", "USDINR", "USD/INR","\U0001F4B1"),
-    ("GC=F",   "GOLD",   "Gold",     "✨"),
-    ("SI=F",   "SILVER", "Silver",   "\U0001FA99"),
 ]
 
 def fetch_json_curl(url):
