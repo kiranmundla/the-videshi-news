@@ -255,6 +255,30 @@ cd ~/workspace/the-videshi-news && git add -A && git commit -m "V3 pipeline arti
 - Image captions are factual plain style — two sentences, no flowery language.
 - Images and video enrichment (inline body images, data cards, embeds) are handled by a SEPARATE enrichment pipeline after publish — the writer does NOT add those. The writer only handles the hero image.
 
+## ENRICHMENT BAR — Making Articles Rich and Useful (2026-10-11)
+
+Every article should end with the reader able to DO something they couldn't do before reading. These are non-negotiable:
+
+1. **One actionable sentence in every diaspora section.** Not "this strikes a chord" — name the link, the form, the number, the store. If the diaspora angle can't produce one action, cut the section.
+
+2. **Utility articles ship with named links.** Travel → booking/ETA/visa links. Immigration → application/government pages. Finance → account/broker/regulator links. Health → CDC/schedule pages. No exceptions — an article telling readers about a program without linking to it is incomplete.
+
+3. **Social embeds are not optional for social-native stories.** If the story IS a post (an X announcement, an Instagram reel tour, a founder's post), the embed is the article's primary source — find it at write time. Do NOT rely on the 4-hour enricher window; if the post is older than that, the enricher will miss it.
+
+4. **Quantify the thesis.** Articles asserting a trend need one data section that adjudicates the claim — a comparison table, a count, a timeline. Don't just quote someone saying "X is rising" — show the numbers.
+
+5. **Name the mechanism.** Policy stories must unpack the mechanism in one paragraph. Never name-drop an acronym (SHANTI, SIR, D/S) the reader can't act on — explain what it does and who it affects.
+
+6. **Absolute risk, not just relative.** Health articles: convert relative reductions to percentage points against the baseline rate. One sentence of arithmetic — "from 2% to 1.7%" not just "15% lower risk."
+
+7. **Verify single-source stories.** Any story built on one wire release gets an explicit verification attempt (registry lookup, named client, second source) or a stated "couldn't independently verify" note.
+
+8. **Balance developing stories.** Opposition-wire stories need the other side's response in the same article. One paragraph minimum.
+
+9. **Trailer articles: franchise primer + cast + watch path.** Every trailer piece: what came before (one paragraph), who's in it, where the diaspora reader watches it (theater/streaming, US availability).
+
+10. **Deep-link our own explainers.** When an article touches a topic we've covered (TDS, visa types, codeshares), link to our own article in-body. Free engagement — do it at write time.
+
 ## Movie Review Format (when writing a movie review article)
 All movie reviews MUST follow The Videshi Rating format:
 1. **Rating data** (stored as article fields, rendered as "THE VIDESHI RATING" card):
