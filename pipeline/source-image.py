@@ -100,6 +100,24 @@ def _is_logo_like(url):
     ))
 
 
+def fetch_official(query, headline=""):
+    """Fetch an official government/company press image via image_sourcer.
+
+    query: entity hint (e.g. "NASA", "ISRO") — also matched against the
+    article headline. Returns (image_url, attribution) or (None, None).
+    """
+    try:
+        from image_sourcer import fetch_official_source_image
+        img, attr = fetch_official_source_image(headline or query, entities=[query] if query else None)
+        if img:
+            print(f"  ✓ Official source [{query}]: {img[:100]}")
+            return img, attr or "Official Source"
+    except Exception as e:
+        print(f"  ⚠ Official source error [{query}]: {e}")
+    print(f"  ✗ Official source [{query}]: no image found")
+    return None, None
+
+
 def fetch_wikipedia(page_name):
     """Fetch main image from a Wikipedia page by exact page name."""
     encoded = quote(page_name.replace(" ", "_"))
@@ -448,6 +466,8 @@ def process_instruction(instr, apply=False):
       google: Google CSE search query
       youtube: YouTube hero search query (official interview thumbnails —
                practical source for personalities with no verified Commons photo)
+      official: government/company entity hint for official press-page images
+                (e.g. "NASA", "ISRO", "Apple") — curated domain allowlist only
       caption: desired caption text
       attribution: image attribution (default: "Wikimedia Commons")
       trailer: YouTube trailer search query
@@ -474,6 +494,8 @@ def process_instruction(instr, apply=False):
     sources = []
     if instr.get("youtube"):
         sources.append(("youtube", instr["youtube"]))
+    if instr.get("official"):
+        sources.append(("official", instr["official"]))
     if instr.get("wikipedia"):
         sources.append(("wikipedia", instr["wikipedia"]))
     if instr.get("commons"):
@@ -486,6 +508,8 @@ def process_instruction(instr, apply=False):
     for source_type, query in sources:
         if source_type == "youtube":
             image_url, attr = fetch_youtube_hero(query)
+        elif source_type == "official":
+            image_url, attr = fetch_official(query, article.get("headline", ""))
         elif source_type == "wikipedia":
             image_url, attr = fetch_wikipedia(query)
         elif source_type == "commons":
@@ -550,6 +574,7 @@ def main():
     parser.add_argument("--attribution", default="Wikimedia Commons", help="Image attribution")
     parser.add_argument("--trailer", help="YouTube trailer search query")
     parser.add_argument("--youtube", help="YouTube hero search query (official interview thumbnails)")
+    parser.add_argument("--official", help="Official government/company press image (entity hint, e.g. 'NASA', 'ISRO', 'Apple')")
     parser.add_argument("--check", action="store_true", help="Just show current image info")
     parser.add_argument("--apply", action="store_true", help="Apply changes (default: dry run)")
     parser.add_argument("--batch", action="store_true", help="Read JSON instructions from stdin")
@@ -581,6 +606,8 @@ def main():
         instr["google"] = args.google
     if args.youtube:
         instr["youtube"] = args.youtube
+    if args.official:
+        instr["official"] = args.official
     if args.caption:
         instr["caption"] = args.caption
     if args.attribution:

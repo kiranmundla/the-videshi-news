@@ -9,6 +9,9 @@ Priority order:
   1. Source article og:image (from original URL)
   2. RSS feed image (media:thumbnail stored in p2_signals)
   3. Media library cache (person_images table)
+  3.5. YouTube thumbnail (specific, recent)
+  3.6. Official source (government / company press pages — curated allowlist)
+  3.7. PR Newswire India (press-approved images)
   4. Wikipedia person image
   5. Wikimedia Commons search
   6. Pexels fallback
@@ -780,6 +783,355 @@ def fetch_prnewswire_image(query):
         return None
 
 
+# ── Official-source images (government & company press pages) ────────────────
+# Kiran's directive (2026-10-11): "Any government website or company website
+# are all public information." For institutional stories (space missions,
+# policy announcements, company launches), the official source has the most
+# topically accurate and copyright-safe images: US federal government works
+# are public domain, PIB images are free for news use, and company press
+# images are distributed for media use.
+#
+# Conservative by design: ONLY domains on the curated allowlist below are
+# ever fetched or trusted. Better to miss an image than to pull from a
+# sketchy domain. Never used for celebrity/person stories — the entity match
+# itself is the gate (person-led headlines match no institutional entity),
+# plus an explicit person-headline guard below.
+
+# (keyword, official domain, attribution display name).
+# Keyword matched case-insensitively on word boundaries against the
+# headline + entities + topic. Longest keyword wins when several match.
+_OFFICIAL_SOURCE_MAP = [
+    # — US government —
+    ("james webb", "nasa.gov", "NASA"),
+    ("artemis", "nasa.gov", "NASA"),
+    ("nasa", "nasa.gov", "NASA"),
+    ("white house", "whitehouse.gov", "The White House"),
+    ("whitehouse", "whitehouse.gov", "The White House"),
+    ("state department", "state.gov", "U.S. Department of State"),
+    ("homeland security", "dhs.gov", "U.S. Department of Homeland Security"),
+    ("uscis", "uscis.gov", "USCIS"),
+    ("department of housing", "hud.gov", "HUD"),
+    ("federal reserve", "federalreserve.gov", "Federal Reserve"),
+    ("supreme court", "supremecourt.gov", "U.S. Supreme Court"),
+    ("justice department", "justice.gov", "U.S. Department of Justice"),
+    ("department of energy", "energy.gov", "U.S. Department of Energy"),
+    ("treasury department", "treasury.gov", "U.S. Treasury"),
+    ("social security administration", "ssa.gov", "Social Security Administration"),
+    ("internal revenue service", "irs.gov", "IRS"),
+    # — Indian government —
+    ("press information bureau", "pib.gov.in", "PIB"),
+    ("gaganyaan", "isro.gov.in", "ISRO"),
+    ("chandrayaan", "isro.gov.in", "ISRO"),
+    ("isro", "isro.gov.in", "ISRO"),
+    ("prime minister's office", "pmindia.gov.in", "PMO India"),
+    ("reserve bank of india", "rbi.org.in", "RBI"),
+    ("securities and exchange board", "sebi.gov.in", "SEBI"),
+    ("ministry of electronics", "meity.gov.in", "MeitY"),
+    ("meity", "meity.gov.in", "MeitY"),
+    ("income tax department", "incometax.gov.in", "Income Tax Department"),
+    ("election commission", "eci.gov.in", "Election Commission of India"),
+    ("niti aayog", "niti.gov.in", "NITI Aayog"),
+    ("uidai", "uidai.gov.in", "UIDAI"),
+    ("aadhaar", "uidai.gov.in", "UIDAI"),
+    # — Companies (official press/newsroom pages) —
+    ("reliance industries", "relianceindustries.com", "Reliance Industries"),
+    ("reliance", "relianceindustries.com", "Reliance Industries"),
+    ("tata consultancy", "tcs.com", "TCS"),
+    ("infosys", "infosys.com", "Infosys"),
+    ("wipro", "wipro.com", "Wipro"),
+    ("hcltech", "hcltech.com", "HCLTech"),
+    ("adani", "adani.com", "Adani Group"),
+    ("air india", "airindia.com", "Air India"),
+    ("indigo", "goindigo.in", "IndiGo"),
+    ("tata", "tata.com", "Tata"),
+    ("jio", "jio.com", "Jio"),
+    ("apple", "apple.com", "Apple"),
+    ("google", "blog.google", "Google"),
+    ("alphabet", "blog.google", "Google"),
+    ("microsoft", "microsoft.com", "Microsoft"),
+    ("openai", "openai.com", "OpenAI"),
+    ("nvidia", "nvidia.com", "NVIDIA"),
+    ("tesla", "tesla.com", "Tesla"),
+    ("spacex", "spacex.com", "SpaceX"),
+    ("samsung", "samsung.com", "Samsung"),
+    ("amazon", "aboutamazon.com", "Amazon"),
+    ("meta", "about.fb.com", "Meta"),
+    ("zomato", "zomato.com", "Zomato"),
+    # — short acronyms last (word-boundary matched, lowest priority) —
+    ("pib", "pib.gov.in", "PIB"),
+    ("rbi", "rbi.org.in", "RBI"),
+    ("sebi", "sebi.gov.in", "SEBI"),
+    ("pmo", "pmindia.gov.in", "PMO India"),
+    ("irs", "irs.gov", "IRS"),
+    ("hud", "hud.gov", "HUD"),
+    ("doj", "justice.gov", "U.S. Department of Justice"),
+    ("dhs", "dhs.gov", "U.S. Department of Homeland Security"),
+    ("cdc", "cdc.gov", "CDC"),
+    ("nih", "nih.gov", "NIH"),
+    ("fda", "fda.gov", "FDA"),
+    ("faa", "faa.gov", "FAA"),
+    ("fcc", "fcc.gov", "FCC"),
+    ("epa", "epa.gov", "EPA"),
+    ("noaa", "noaa.gov", "NOAA"),
+    ("usgs", "usgs.gov", "USGS"),
+    ("tcs", "tcs.com", "TCS"),
+]
+
+_OFFICIAL_CACHE_PATH = os.path.join(SCRIPT_DIR, ".state", "official-image-cache.json")
+_OFFICIAL_CACHE_TTL_SECS = 7 * 24 * 3600
+
+
+def _official_cache_load():
+    try:
+        with open(_OFFICIAL_CACHE_PATH) as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _official_cache_save(cache):
+    try:
+        os.makedirs(os.path.dirname(_OFFICIAL_CACHE_PATH), exist_ok=True)
+        with open(_OFFICIAL_CACHE_PATH, "w") as f:
+            json.dump(cache, f)
+    except Exception as e:
+        print(f"    ⚠ official-image cache write failed: {e}")
+
+
+def _match_official_entity(headline, entities, topic=""):
+    """Match an institutional entity (agency/company/program) in the article.
+
+    Returns (domain, display_name) or None. Longest keyword wins.
+    Person-led headlines ("Shai Hope's century...") match no institutional
+    entity and are naturally excluded; an explicit guard below also skips
+    when the headline names a person but the institution appears only in
+    the entities list (likely a person-centric story).
+    """
+    combined = " ".join([
+        headline or "",
+        topic or "",
+        " ".join(e for e in (entities or []) if isinstance(e, str)),
+    ]).lower()
+    headline_l = (headline or "").lower()
+    best = None
+    best_len = 0
+    for keyword, domain, display in _OFFICIAL_SOURCE_MAP:
+        if re.search(r"\b" + re.escape(keyword) + r"\b", combined):
+            if len(keyword) > best_len:
+                best = (domain, display, keyword)
+                best_len = len(keyword)
+    if not best:
+        return None
+    domain, display, keyword = best
+    # Person-headline guard: if the headline leads with a named person and the
+    # institutional keyword does NOT appear in the headline itself, this is a
+    # person-centric story — do not source an institutional image for it.
+    person = headline_person_name(headline)
+    if person and not re.search(r"\b" + re.escape(keyword) + r"\b", headline_l):
+        print(f"    ⊘ official-source skipped: person-led headline ('{person}')")
+        return None
+    return domain, display
+
+
+def _bing_site_search(domain, query, max_results=8):
+    """Site-restricted web search via Bing RSS (no API key, works via curl).
+
+    Returns official-domain article URLs only — anything off-domain is
+    dropped, as are generic section fronts (domain root, bare query URLs).
+    """
+    # Generic section-front paths that never carry a story-specific og:image
+    _SKIP_PATHS = {"/", "/index.html", "/index.htm", "/home", ""}
+    try:
+        q = urllib.parse.quote(f"site:{domain} {query}")
+        url = f"https://www.bing.com/search?q={q}&format=rss"
+        result = _safe_run(
+            ["curl", "-sSL", "--max-time", "15",
+             "-A", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+             url],
+            capture_output=True, text=True, timeout=20,
+        )
+        html = result.stdout or ""
+        links = re.findall(r"<link>(https?://[^<]+)</link>", html)
+        out = []
+        for link in links:
+            try:
+                parsed = urllib.parse.urlparse(link)
+                netloc = parsed.netloc.lower().replace("www.", "")
+            except Exception:
+                continue
+            # Strict domain allowlist: exact domain or its subdomain only
+            if not (netloc == domain or netloc.endswith("." + domain)):
+                continue
+            # Skip generic fronts — we want story-specific pages. A query
+            # string on the homepage (?m=0 etc.) doesn't make it a story.
+            if parsed.path.rstrip("/") in _SKIP_PATHS:
+                continue
+            if link not in out:
+                out.append(link)
+            if len(out) >= max_results:
+                break
+        return out
+    except Exception as e:
+        print(f"    ⚠ official-source search error: {e}")
+        return []
+
+
+_NASA_IMAGE_API_LOGOS = ("logo", "patch", "emblem", "insignia", "seal", "flag")
+
+
+def _fetch_nasa_image_api(query):
+    """Search NASA's public image library API (images-api.nasa.gov).
+
+    No API key needed. US federal works are public domain — always
+    copyright-safe. Skips logos/patches/emblems; returns the ~large.jpg
+    variant (hero-appropriate size; ~orig is often 20MB+).
+
+    The API AND-matches every query term, so news verbs ("delays",
+    "announces") yield zero hits. Retry with progressively shorter
+    queries (dropping leading words) until something hits.
+    Returns (image_url, "NASA") or (None, None).
+    """
+    if not query:
+        return None, None
+    words = query.split()
+    # Try full query, then progressively shorter (drop leading words first —
+    # the entity name and news verbs sit at the front)
+    attempts = [" ".join(words[i:]) for i in range(len(words))]
+    # Dedupe, keep order, require at least 1 word
+    seen, queries = set(), []
+    for a in attempts:
+        if a and a not in seen:
+            seen.add(a)
+            queries.append(a)
+    for q in queries[:4]:
+        try:
+            encoded = urllib.parse.quote(q)
+            url = (f"https://images-api.nasa.gov/search?q={encoded}"
+                   f"&media_type=image&page_size=20")
+            result = _safe_run(
+                ["curl", "-sSL", "--max-time", "15", "-A", UA, url],
+                capture_output=True, text=True, timeout=20,
+            )
+            data = json.loads(result.stdout or "{}")
+            items = data.get("collection", {}).get("items", [])
+            for it in items:
+                meta = (it.get("data") or [{}])[0]
+                title = (meta.get("title") or "").lower()
+                nasa_id = meta.get("nasa_id", "")
+                if not nasa_id:
+                    continue
+                if any(x in title for x in _NASA_IMAGE_API_LOGOS):
+                    continue
+                img_url = (f"https://images-assets.nasa.gov/image/"
+                           f"{nasa_id}/{nasa_id}~large.jpg")
+                ok, ctype, _ = verify_image_url(img_url)
+                if ok:
+                    print(f"    ✓ NASA image library: \"{meta.get('title', '')[:55]}\"")
+                    return img_url, "NASA"
+            # No usable image in this attempt's results — try shorter query
+        except Exception as e:
+            print(f"    ⚠ NASA image API error: {e}")
+            return None, None
+    return None, None
+
+
+def fetch_official_source_image(headline, entities=None, topic=""):
+    """Fetch a press/official image from a government or company website.
+
+    Flow: match institutional entity → site:-restricted search on the
+    official domain → extract og:image from top results → validate
+    (logo guard, topical gate, HTTP verification).
+
+    Returns (image_url, attribution_display_name) or (None, None).
+    Results (including misses) are cached for 7 days.
+    """
+    if not headline:
+        return None, None
+    match = _match_official_entity(headline, entities, topic)
+    if not match:
+        return None, None
+    domain, display = match
+
+    # Distinctive query words from the headline (entity keyword kept in —
+    # it focuses the site: search on the right announcement). Take up to 10
+    # so topical nouns late in long headlines ("...for NASA Telescope That
+    # Will Hunt for Life" → "telescope") are not cut off.
+    words = re.findall(r"[a-z]{4,}", (headline or "").lower())
+    seen_q, qwords = set(), []
+    for w in words:
+        if w not in _COMMONS_STOP and w not in seen_q:
+            seen_q.add(w)
+            qwords.append(w)
+        if len(qwords) >= 10:
+            break
+    query = " ".join(qwords) if qwords else (topic or headline)[:60]
+    cache_key = f"{domain}::{query}"
+
+    cache = _official_cache_load()
+    now = time.time()
+    if cache_key in cache:
+        entry = cache[cache_key]
+        if now - entry.get("ts", 0) < _OFFICIAL_CACHE_TTL_SECS:
+            print(f"    ✓ official-source cache hit ({display})")
+            return entry.get("url"), entry.get("attribution")
+
+    print(f"    🔎 official-source: searching {domain} for '{query[:50]}'")
+    # NASA gets its dedicated public image API first — far more reliable
+    # than web search for space imagery (public domain, always safe).
+    # The API AND-matches every term, so feed it specific nouns, not news
+    # verbs: use the longest distinctive words (specific nouns like
+    # "telescope", "artemis" beat leading verbs like "delays").
+    if domain == "nasa.gov":
+        by_len = sorted(qwords, key=len, reverse=True)
+        # Exclude the entity keyword itself when it's the longest (e.g.
+        # "nasa") — it adds no specificity to a nasa.gov-scoped query.
+        api_words = [w for w in by_len if w != qwords[0]][:3] or qwords[:3]
+        nasa_query = " ".join(api_words)
+        nasa_url, _ = _fetch_nasa_image_api(nasa_query)
+        if nasa_url:
+            cache[cache_key] = {"url": nasa_url, "attribution": display,
+                                "ts": now}
+            _official_cache_save(cache)
+            return nasa_url, display
+        print(f"    ⊘ NASA image API found nothing, falling back to site search")
+    # Two passes: (1) news angle with full distinctive keywords,
+    # (2) program angle with just the entity + main topic noun — official
+    # program/mission pages carry the best topical images and Bing ranks
+    # them reliably, while specific press releases come and go.
+    seen_pages = set()
+    page_urls = []
+    topic_noun = qwords[1] if len(qwords) > 1 else ""
+    queries = [query]
+    if topic_noun and topic_noun != qwords[0]:
+        queries.append(f"{qwords[0]} {topic_noun}")
+    for q in queries:
+        for page_url in _bing_site_search(domain, q):
+            if page_url not in seen_pages:
+                seen_pages.add(page_url)
+                page_urls.append(page_url)
+    for page_url in page_urls[:8]:
+        img_url = fetch_og_image(page_url)
+        if not img_url:
+            continue
+        if _is_generic_og_image(img_url):
+            print(f"    ⊘ official og:image is generic/logo, skipping")
+            continue
+        if not _og_image_topical_ok(img_url, headline, topic):
+            print(f"    ⊘ official og:image failed topical gate, skipping")
+            continue
+        ok, ctype, _ = verify_image_url(img_url)
+        if ok:
+            print(f"    ✓ official-source image from {display} ({page_url[:60]})")
+            cache[cache_key] = {"url": img_url, "attribution": display, "ts": now}
+            _official_cache_save(cache)
+            return img_url, display
+        print(f"    ✗ official-source image FAILED verification")
+    # Cache the miss so we don't re-search every run
+    cache[cache_key] = {"url": None, "attribution": None, "ts": now}
+    _official_cache_save(cache)
+    return None, None
+
+
 def fetch_wikipedia_image(entity_name, article_context=None, article_headline=None):
     """Fetch image from Wikipedia REST API for a person/entity.
     Returns image URL or None.
@@ -1479,8 +1831,9 @@ def source_hero_image(article, used_images=None):
     Returns:
         (final_url, attribution, caption, source_name) or (None, None, None, None)
         source_name is one of: og:image, rss_thumbnail, person_cache,
-        youtube_thumbnail, wikipedia, commons_search, wikipedia_headline_guard,
-        pexels — or None when no image was found.
+        youtube_thumbnail, official_source, prnewswire, wikipedia,
+        commons_search, wikipedia_headline_guard, pexels — or None when no
+        image was found.
     """
     headline = article.get("headline", "")
     slug = article.get("slug", "unknown")
@@ -1601,6 +1954,22 @@ def source_hero_image(article, used_images=None):
                     source_name = "youtube_thumbnail"
                     print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
     
+        # ── Source 3.6: Official source (government / company press pages) ─────
+        # For institutional stories (space missions, policy announcements,
+        # company launches), the official source has the most topically
+        # accurate and copyright-safe images: US federal works are public
+        # domain, PIB images are free for news use, company press images are
+        # distributed for media use. Curated domain allowlist only; never
+        # fires for person-led headlines.
+        if not img_url:
+            off_img, off_attr = fetch_official_source_image(
+                headline, entities, search_query)
+            if off_img and off_img not in used:
+                img_url = off_img
+                attribution = off_attr or "Official Source"
+                source_name = "official_source"
+                print(f"    ✓ Official-source image ({attribution})")
+
         # ── Source 3.7: PR Newswire India (press-approved images) ──────────────
         # PR Newswire hosts press-approved images on mma.prnewswire.com, meant for
         # media use. Good for entertainment (movie posters, event photos) and
