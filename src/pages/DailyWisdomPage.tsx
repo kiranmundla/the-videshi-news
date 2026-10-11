@@ -92,7 +92,10 @@ function formatDate(dateStr: string): string {
 
 function formatEventDate(dateStr: string): string {
   const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  const opts: Intl.DateTimeFormatOptions = { weekday: "short", month: "short", day: "numeric" };
+  // Show year when event is not in the current year (avoids "May 1" looking stale when it's May 2027)
+  if (d.getFullYear() !== new Date().getFullYear()) opts.year = "numeric";
+  return d.toLocaleDateString("en-US", opts);
 }
 
 export default function DailyWisdomPage() {
