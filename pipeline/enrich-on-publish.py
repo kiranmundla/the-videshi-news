@@ -1374,6 +1374,24 @@ def try_hero_upgrade(article, all_tweets):
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
+_BASE_SELECT = "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url"
+
+
+def _visual_story_supported():
+    """True once Kiran has run add-is-visual-story.sql in the Supabase SQL editor.
+
+    Probes with a limit=1 select on the column. Column present → PostgREST
+    returns a list; column missing → PostgREST returns an error object (dict).
+    Network failure also returns [] (a list), which only risks one failed main
+    query — harmless, the next cycle retries.
+    """
+    try:
+        probe = sb_get("p2_articles", {"select": "is_visual_story", "limit": "1"})
+        return isinstance(probe, list)
+    except Exception:
+        return False
+
+
 def fetch_articles(article_ids=None, hours=3):
     """Fetch articles to enrich — either by IDs or recent window."""
     if article_ids:
@@ -1389,8 +1407,13 @@ def fetch_articles(article_ids=None, hours=3):
         # NOTE: do NOT filter on enriched_at — article-polish.py sets enriched_at at
         # write time, so that filter would exclude every polished article and make
         # this step a permanent no-op. Per-article logic already skips existing embeds.
+        select = _BASE_SELECT
+        if _visual_story_supported():
+            # add-is-visual-story.sql has been applied — select the flag so the
+            # priority sort below actually engages.
+            select += ",is_visual_story"
         params = {
-            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
+            "select": select,
             "status": "eq.published",
             "published_at": f"gte.{since}",
             "order": "published_at.desc",
@@ -1398,10 +1421,9 @@ def fetch_articles(article_ids=None, hours=3):
         }
         articles = sb_get("p2_articles", params)
 
-        # Visual-story priority (activates once Kiran runs add-is-visual-story.sql):
-        # if the column exists, sort visual stories first — a visual story
-        # without a picture is incomplete.
-        if articles and "is_visual_story" in articles[0]:
+        # Visual-story priority: if the column exists, sort visual stories first —
+        # a visual story without a picture is incomplete.
+        if articles and isinstance(articles, list) and "is_visual_story" in articles[0]:
             articles.sort(key=lambda a: (not a.get("is_visual_story"),
                                           a.get("published_at", "")),
                           reverse=False)
