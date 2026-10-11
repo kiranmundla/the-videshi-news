@@ -891,6 +891,89 @@ _OFFICIAL_DOMAIN_NAMES = {}
 for _kw, _dom, _disp in _OFFICIAL_SOURCE_MAP:
     _OFFICIAL_DOMAIN_NAMES.setdefault(_dom, _disp)
 
+# ── Brand-first image sourcing (2026-10-11, Kiran's directive) ──────────────
+# When an article is about a COMPANY or BRAND (not a person), the brand's own
+# website has professional product/brand photography that's on-brand and
+# copyright-safe for news use. This beats amateur Commons uploads every time.
+# (brand keyword, official domain, attribution display name)
+_BRAND_DOMAIN_MAP = [
+    ("mother's recipe", "mothersrecipe.com", "Mother's Recipe"),
+    ("mothers recipe", "mothersrecipe.com", "Mother's Recipe"),
+    ("tata", "tata.com", "Tata"),
+    ("reliance", "ril.com", "Reliance Industries"),
+    ("jio", "jio.com", "Jio"),
+    ("infosys", "infosys.com", "Infosys"),
+    ("tcs", "tcs.com", "TCS"),
+    ("wipro", "wipro.com", "Wipro"),
+    ("hcl", "hcltech.com", "HCLTech"),
+    ("zomato", "zomato.com", "Zomato"),
+    ("swiggy", "swiggy.com", "Swiggy"),
+    ("flipkart", "flipkart.com", "Flipkart"),
+    ("ola", "olacabs.com", "Ola"),
+    ("paytm", "paytm.com", "Paytm"),
+    ("phonepe", "phonepe.com", "PhonePe"),
+    ("byju", "byjus.com", "BYJU'S"),
+    ("boat", "boat-lifestyle.com", "boAt"),
+    ("noise", "gonoise.com", "Noise"),
+    ("titan", "titan.co.in", "Titan"),
+    ("asian paints", "asianpaints.com", "Asian Paints"),
+    ("dabur", "dabur.com", "Dabur"),
+    ("patanjali", "patanjaliayurved.net", "Patanjali"),
+    ("haldiram", "haldirams.com", "Haldiram's"),
+    ("amul", "amul.com", "Amul"),
+    ("britannia", "britannia.co.in", "Britannia"),
+    ("parle", "parleproducts.com", "Parle"),
+    ("marico", "marico.com", "Marico"),
+    ("godrej", "godrej.com", "Godrej"),
+    ("mahindra", "mahindra.com", "Mahindra"),
+    ("bajaj", "bajajauto.com", "Bajaj"),
+    ("hero motocorp", "heromotocorp.com", "Hero MotoCorp"),
+    ("air india", "airindia.com", "Air India"),
+    ("indigo", "goindigo.in", "IndiGo"),
+]
+
+
+def _match_brand(headline, entities=None):
+    """Match a brand/company name in headline/entities to its official domain.
+    Returns (domain, display_name) or (None, None).
+    Skips person-led headlines — brands only, never people."""
+    text = (headline or "").lower()
+    if entities:
+        text += " " + " ".join(str(e).lower() for e in entities if e)
+    best = None
+    best_len = 0
+    for keyword, domain, display in _BRAND_DOMAIN_MAP:
+        # Word-boundary match
+        if re.search(r"\b" + re.escape(keyword) + r"\b", text):
+            if len(keyword) > best_len:
+                best = (domain, display)
+                best_len = len(keyword)
+    return best or (None, None)
+
+
+def fetch_brand_image(headline, entities=None):
+    """Fetch a professional brand/product image from the company's official site.
+
+    For brand/company stories, the official site has professional photography
+    that's on-brand and copyright-safe. Tries the brand's homepage and product
+    pages for og:image, with logo rejection via the existing guard.
+
+    Returns (image_url, attribution) or (None, None)."""
+    domain, display = _match_brand(headline, entities)
+    if not domain:
+        return None, None
+    print(f"    🏷️ brand-first: trying {domain} for '{display}'")
+    # Try homepage og:image first, then fall back to a site search
+    for url in (f"https://www.{domain}/", f"https://{domain}/"):
+        img = fetch_og_image(url)
+        if img and not _is_generic_og_image(img):
+            ok, _, _ = verify_image_url(img)
+            if ok:
+                print(f"    ✓ brand image from {display}")
+                return img, display
+    print(f"    ⊘ brand site yielded no usable image")
+    return None, None
+
 
 def _official_cache_load():
     try:
@@ -1989,6 +2072,18 @@ def source_hero_image(article, used_images=None):
                     source_name = "youtube_thumbnail"
                     print(f"    ✓ YouTube thumbnail for '{main_entity}' → \"{yt_title[:50]}\"")
     
+        # ── Source 3.55: Brand-first (company/brand official sites) ─────────────
+        # For brand/company stories, the brand's own website has professional
+        # product photography that's on-brand and copyright-safe. This beats
+        # amateur Commons uploads every time. (2026-10-11, Kiran's directive)
+        if not img_url:
+            brand_img, brand_attr = fetch_brand_image(headline, entities)
+            if brand_img and brand_img not in used:
+                img_url = brand_img
+                attribution = brand_attr or "Official Brand Site"
+                source_name = "brand_official"
+                print(f"    ✓ Brand-official image ({attribution})")
+
         # ── Source 3.6: Official source (government / company press pages) ─────
         # For institutional stories (space missions, policy announcements,
         # company launches), the official source has the most topically
