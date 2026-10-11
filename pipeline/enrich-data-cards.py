@@ -57,6 +57,18 @@ RULES:
 - Each card should pack 4-6 distinct data points, not just one number.
 - For comparison, always provide numeric_value as a plain number for bar scaling.
 - Card titles should be punchy — "India's Semiconductor Moment", not "About Semiconductors".
+- TIMELINE DATES (CRITICAL): The article was published on {published_date}. Every timeline
+  date MUST use the correct year — events described in the article happened in the same
+  year as publication unless the article explicitly states otherwise. NEVER default to a
+  past year (e.g. 2023) for current events. If the article says "October 9" and was
+  published October 2026, the timeline date is "October 9, 2026".
+- STAT VALUES: Never use bare integers 1-5 as stat values without a unit or context
+  (e.g. "1" or "2" alone is meaningless). Every stat needs a label that makes it
+  self-explanatory.
+- COMPARISON CARDS: Only use comparison type when there are 2+ genuinely comparable
+  items. Never use comparison for lists, biographies, or single entities.
+- SINGLE-ITEM CARDS: Never create a card with only one data point — merge that fact
+  into the article body instead.
 
 Return ONLY valid JSON. No markdown wrapping, no commentary.
 
@@ -75,7 +87,7 @@ def fetch_articles(since_hours=24, limit=20, force_id=None):
             f"{SUPABASE_URL}/rest/v1/p2_articles",
             headers={**HEADERS_SB, "Prefer": ""},
             params={
-                "select": "id,headline,subheadline,category,body,slug",
+                "select": "id,headline,subheadline,category,body,slug,published_at",
                 "id": f"eq.{force_id}"
             }
         )
@@ -85,7 +97,7 @@ def fetch_articles(since_hours=24, limit=20, force_id=None):
             f"{SUPABASE_URL}/rest/v1/p2_articles",
             headers={**HEADERS_SB, "Prefer": ""},
             params={
-                "select": "id,headline,subheadline,category,body,slug",
+                "select": "id,headline,subheadline,category,body,slug,published_at",
                 "status": "eq.published",
                 "enriched_at": "is.null",
                 "published_at": f"gte.{since}",
@@ -105,9 +117,14 @@ def extract_cards(article):
     if len(body) > 8000:
         body = body[:8000] + "\n...[truncated]"
 
+    # Published date for timeline year anchoring (Fix 1: prevent year hallucination)
+    pub = article.get("published_at", "") or ""
+    pub_date = pub[:10] if len(pub) >= 10 else "unknown"
+
     prompt = ENRICHMENT_PROMPT.replace("{headline}", article.get("headline", "")) \
         .replace("{subheadline}", article.get("subheadline", "") or "") \
         .replace("{category}", article.get("category", "") or "") \
+        .replace("{published_date}", pub_date) \
         .replace("{body}", body)
 
     resp = requests.post(
@@ -134,8 +151,16 @@ def extract_cards(article):
         return None
 
 
-def validate(data):
-    """Validate extracted card data."""
+def validate(data, article=None):
+    """Validate extracted card data.
+
+    Guardrails (2026-10-11):
+    - Fix 1: Timeline dates must be within ±18 months of article's published_at.
+      Prevents year hallucination (e.g. 2023 dates on 2026 articles).
+    - Fix 3: Reject junk cards — bare integers 1-5 as stats, comparison cards
+      with <2 rows, single-item cards.
+    """
+    import re
     if not isinstance(data, dict):
         return False
     kt = data.get("key_takeaways")
@@ -144,14 +169,101 @@ def validate(data):
     cards = data.get("data_cards", [])
     if not isinstance(cards, list):
         return False
+
+    # Parse article published date for timeline anchoring
+    pub_date = None
+    if article:
+        pub_str = article.get("published_at", "") or ""
+        try:
+            pub_date = datetime.fromisoformat(pub_str.replace("Z", "+00:00"))
+            if pub_date.tzinfo is None:
+                pub_date = pub_date.replace(tzinfo=timezone.utc)
+        except (ValueError, TypeError):
+            pub_date = None
+
     for card in cards:
         if not card.get("card_title") or not card.get("card_type"):
             return False
         if card["card_type"] not in ("stat_grid", "comparison", "timeline", "highlights"):
             return False
-        if not card.get("items") or not isinstance(card["items"], list):
+        items = card.get("items")
+        if not items or not isinstance(items, list):
             return False
+
+        # Fix 3: Reject single-item cards
+        if len(items) < 2:
+            print(f"  ⚠️  Rejecting card '{card.get('card_title')}': only {len(items)} item(s)")
+            return False
+
+        # Fix 3: Reject comparison cards with fewer than 2 comparable rows
+        if card["card_type"] == "comparison" and len(items) < 2:
+            print(f"  ⚠️  Rejecting comparison card '{card.get('card_title')}': <2 rows")
+            return False
+
+        # Fix 3: Reject bare integers 1-5 as stat values (no unit/context)
+        if card["card_type"] == "stat_grid":
+            for item in items:
+                val = str(item.get("value", "")).strip()
+                if re.fullmatch(r"[1-5]", val):
+                    print(f"  ⚠️  Rejecting card '{card.get('card_title')}': bare integer stat '{val}'")
+                    return False
+            hero = card.get("hero_stat") or {}
+            hval = str(hero.get("value", "")).strip()
+            if re.fullmatch(r"[1-5]", hval):
+                print(f"  ⚠️  Rejecting card '{card.get('card_title')}': bare integer hero stat '{hval}'")
+                return False
+
+        # Fix 1: Timeline date guardrail — must be within ±18 months of published_at
+        if card["card_type"] == "timeline" and pub_date:
+            for item in items:
+                date_str = str(item.get("date", "")).strip()
+                parsed = _parse_timeline_date(date_str, pub_date)
+                if parsed is None:
+                    # Could not parse — let it through (don't block on unparseable dates)
+                    continue
+                delta = abs((parsed - pub_date).days)
+                if delta > 548:  # ~18 months
+                    print(f"  ⚠️  Rejecting timeline card '{card.get('card_title')}': "
+                          f"date '{date_str}' is {delta} days from published_at")
+                    return False
     return True
+
+
+def _parse_timeline_date(date_str, pub_date):
+    """Parse a timeline date string, defaulting missing year to published year.
+    Returns a timezone-aware datetime or None if unparseable."""
+    import re
+    s = date_str.strip()
+    # Try common formats
+    fmts = [
+        "%B %d, %Y", "%b %d, %Y",           # October 9, 2026 / Oct 9, 2026
+        "%Y-%m-%d",                          # 2026-10-09
+        "%d %B %Y", "%d %b %Y",              # 9 October 2026
+        "%B %Y", "%b %Y",                    # October 2026
+        "%Y",                                # 2026
+    ]
+    for fmt in fmts:
+        try:
+            dt = datetime.strptime(s, fmt)
+            return dt.replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+    # Handle "Month D" without year — assume published year
+    m = re.fullmatch(r"(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})", s, re.I)
+    if m:
+        try:
+            dt = datetime.strptime(f"{m.group(1)} {m.group(2)} {pub_date.year}", "%B %d %Y")
+            return dt.replace(tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    # Handle bare year references like "2023 ODI World Cup" — extract year
+    m = re.search(r"\b(19|20)\d{2}\b", s)
+    if m:
+        try:
+            return datetime(int(m.group(0)), 6, 15, tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    return None
 
 
 def save(article_id, data):
@@ -230,7 +342,7 @@ def main():
             errors += 1
             continue
 
-        if not validate(data):
+        if not validate(data, art):
             print(f"  ⚠️  Validation failed")
             skipped += 1
             continue

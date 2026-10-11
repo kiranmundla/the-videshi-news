@@ -1090,6 +1090,82 @@ def has_embed(body, platform):
     return False
 
 
+def promote_inline_social_urls(body, existing_embeds):
+    """Fix 2 (2026-10-11): Promote bare social URLs pasted inline in the body
+    to structured social_embeds.
+
+    The writer often pastes x.com/youtube.com URLs as dead text links instead of
+    structured embeds. This scans the body HTML for:
+      - x.com/<user>/status/<id> and twitter.com/<user>/status/<id>
+      - youtube.com/watch?v=<id> and youtu.be/<id>
+      - <youtube>VIDEO_ID</youtube> tags
+    and registers them in social_embeds so the frontend can render them.
+
+    Returns (new_embeds_list, count_added).
+    """
+    embeds = list(existing_embeds or [])
+    # Normalize existing URLs for dedup
+    seen = set()
+    for e in embeds:
+        u = e.get("url", "") if isinstance(e, dict) else str(e)
+        # Extract canonical ID for comparison
+        m = re.search(r'status/(\d+)', u)
+        if m:
+            seen.add(f"x:{m.group(1)}")
+        m = re.search(r'(?:v=|youtu\.be/|youtube>|/embed/)([A-Za-z0-9_-]{11})', u)
+        if m:
+            seen.add(f"yt:{m.group(1)}")
+        seen.add(u)
+
+    added = 0
+
+    # X / Twitter status URLs
+    for m in re.finditer(r'https?://(?:www\.)?(?:twitter|x)\.com/(\w+)/status/(\d+)', body or ""):
+        user, tid = m.group(1), m.group(2)
+        if f"x:{tid}" in seen:
+            continue
+        url = f"https://x.com/{user}/status/{tid}"
+        embeds.append({"type": "x", "url": url, "author": user})
+        seen.add(f"x:{tid}")
+        seen.add(url)
+        added += 1
+
+    # YouTube watch URLs
+    for m in re.finditer(r'https?://(?:www\.)?youtube\.com/watch\?[^"\s<>]*v=([A-Za-z0-9_-]{11})', body or ""):
+        vid = m.group(1)
+        if f"yt:{vid}" in seen:
+            continue
+        url = f"https://www.youtube.com/watch?v={vid}"
+        embeds.append({"type": "youtube", "url": url, "video_id": vid})
+        seen.add(f"yt:{vid}")
+        seen.add(url)
+        added += 1
+
+    # YouTube short URLs
+    for m in re.finditer(r'https?://youtu\.be/([A-Za-z0-9_-]{11})', body or ""):
+        vid = m.group(1)
+        if f"yt:{vid}" in seen:
+            continue
+        url = f"https://www.youtube.com/watch?v={vid}"
+        embeds.append({"type": "youtube", "url": url, "video_id": vid})
+        seen.add(f"yt:{vid}")
+        seen.add(url)
+        added += 1
+
+    # <youtube>VIDEO_ID</youtube> tags
+    for m in re.finditer(r'<youtube>([A-Za-z0-9_-]{11})</youtube>', body or ""):
+        vid = m.group(1)
+        if f"yt:{vid}" in seen:
+            continue
+        url = f"https://www.youtube.com/watch?v={vid}"
+        embeds.append({"type": "youtube", "url": url, "video_id": vid})
+        seen.add(f"yt:{vid}")
+        seen.add(url)
+        added += 1
+
+    return embeds, added
+
+
 # ─── Hero image upgrade ──────────────────────────────────────────────────────
 
 STOCK_DOMAINS = {"images.pexels.com", "images.unsplash.com", "pixabay.com",
@@ -1404,6 +1480,15 @@ def main():
             new_body = re.sub(r'\n{3,}', '\n\n', deduped_body)
             changes.append(f"dedup {removed_count} pull quote(s) ({orig_count}→{final_count})")
             print(f"     🔄 Removed {removed_count} pull quote(s) ({orig_count}→{final_count})")
+
+        # ── Fix 2 (2026-10-11): Promote inline social URLs to social_embeds ──
+        # The writer pastes bare x.com/youtube.com URLs as dead text. Extract
+        # them into structured embeds so the frontend can render them.
+        promoted_embeds, n_promoted = promote_inline_social_urls(new_body, new_embeds)
+        if n_promoted > 0:
+            new_embeds = promoted_embeds
+            changes.append(f"promoted {n_promoted} inline URL(s) to embeds")
+            print(f"     🔗 Promoted {n_promoted} inline social URL(s) to social_embeds")
 
         # ── Key Takeaways — skip, handled by article-polish.py at write time ──
         # Legacy: generate_key_takeaways() was a separate GPT call here.
