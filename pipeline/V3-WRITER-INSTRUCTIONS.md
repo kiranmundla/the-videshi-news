@@ -384,6 +384,8 @@ Every article should end with the reader able to DO something they couldn't do b
 
 10. **Deep-link our own explainers.** When an article touches a topic we've covered (TDS, visa types, codeshares), link to our own article in-body. Free engagement — do it at write time.
 
+11. **Flag highly visual stories.** When the story is about something readers need to SEE to understand — a natural phenomenon (bioluminescence, eclipses), a new product, architecture, fashion, food, a place — set `is_visual_story: true` on the article. The image becomes non-negotiable for these, not best-effort. The enricher prioritizes backfilling visual stories first. A visual story without a picture is an incomplete article.
+
 ## Movie Review Format (when writing a movie review article)
 All movie reviews MUST follow The Videshi Rating format:
 1. **Rating data** (stored as article fields, rendered as "THE VIDESHI RATING" card):

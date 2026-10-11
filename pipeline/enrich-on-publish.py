@@ -1390,10 +1390,11 @@ def fetch_articles(article_ids=None, hours=3):
         # write time, so that filter would exclude every polished article and make
         # this step a permanent no-op. Per-article logic already skips existing embeds.
         params = {
-            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
+            "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url,is_visual_story",
             "status": "eq.published",
             "published_at": f"gte.{since}",
-            "order": "published_at.desc",
+            # Visual stories first — a visual story without a picture is incomplete
+            "order": "is_visual_story.desc,published_at.desc",
             "limit": "50",
         }
 
