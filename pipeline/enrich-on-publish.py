@@ -1152,16 +1152,11 @@ def promote_inline_social_urls(body, existing_embeds):
         seen.add(url)
         added += 1
 
-    # <youtube>VIDEO_ID</youtube> tags
-    for m in re.finditer(r'<youtube>([A-Za-z0-9_-]{11})</youtube>', body or ""):
-        vid = m.group(1)
-        if f"yt:{vid}" in seen:
-            continue
-        url = f"https://www.youtube.com/watch?v={vid}"
-        embeds.append({"type": "youtube", "url": url, "video_id": vid})
-        seen.add(f"yt:{vid}")
-        seen.add(url)
-        added += 1
+    # <youtube>VIDEO_ID</youtube> tags — NOT promoted (2026-10-11): these already
+    # render inline via MarkdownWithEmbeds, so adding them to social_embeds
+    # would render a second copy at the bottom of the article.
+    #
+    # (previously promoted here; removed after reviewer found duplicates)
 
     return embeds, added
 
@@ -1613,6 +1608,31 @@ def main():
                     print(f"     🖼 Hero: stock, but no valid photo tweet found")
             else:
                 print(f"     🖼 Hero: stock, but no tweets found")
+
+        # ── Fix 3 (2026-10-11): Drop social_embeds whose URL already renders inline
+        # in the body — the frontend renders inline embeds AND the social_embeds
+        # block at the bottom, so a URL in both places shows twice on the page.
+        # This catches writer-set duplicates, promote_inline_social_urls output,
+        # and the "keep social_embeds in sync" body inserts above.
+        # IMPORTANT: only drop when the inline copy actually renders — a bare
+        # URL on its own line (detectSocialUrl) or a <youtube>ID</youtube> tag.
+        # A URL buried inside an <a href> or blockquote is dead text, NOT a
+        # rendered embed, so its social_embeds copy must stay.
+        body_yt_ids = set(re.findall(r'<youtube>([A-Za-z0-9_-]{11})</youtube>', new_body or ""))
+        deduped_embeds = []
+        n_deduped = 0
+        for e in new_embeds:
+            eurl = e.get("url", "") if isinstance(e, dict) else str(e)
+            bare_line = bool(re.search(r'(?m)^\s*' + re.escape(eurl) + r'\s*$', new_body or "")) if eurl else False
+            m = re.search(r'(?:v=|youtu\.be/|/embed/)([A-Za-z0-9_-]{11})', eurl or "")
+            if bare_line or (m and m.group(1) in body_yt_ids):
+                n_deduped += 1
+                continue
+            deduped_embeds.append(e)
+        if n_deduped > 0:
+            new_embeds = deduped_embeds
+            changes.append(f"deduped {n_deduped} embed(s) from social_embeds (already inline)")
+            print(f"     🔄 Removed {n_deduped} duplicate embed(s) from social_embeds (already inline in body)")
 
         # ── Apply changes ──
         now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")

@@ -98,7 +98,14 @@ def sb_get(endpoint, params=None):
 # ── Structural checks (no LLM) ──
 
 def check_duplicate_embeds(article):
-    """Check if embeds exist in both inline tags and social_embeds array."""
+    """Check if embeds exist in both inline tags and social_embeds array.
+
+    Only flag when the inline copy actually renders as an embed: a bare URL on
+    its own line (frontend detectSocialUrl) or a <youtube>ID</youtube> tag.
+    A URL buried inside <a href> or blockquote text is dead text, not a
+    rendered embed, so its social_embeds copy is the only render — no dup.
+    (aligned with Fix 3 in enrich-on-publish.py, 2026-10-11)
+    """
     issues = []
     body = article.get("body", "") or ""
     embeds = article.get("social_embeds") or []
@@ -107,10 +114,15 @@ def check_duplicate_embeds(article):
             embeds = json.loads(embeds)
         except:
             embeds = []
-    
+    body_yt_ids = set(re.findall(r'<youtube>([A-Za-z0-9_-]{11})</youtube>', body))
+
     for e in embeds:
         eurl = e.get("url", "") if isinstance(e, dict) else str(e)
-        if eurl and eurl in body:
+        if not eurl:
+            continue
+        bare_line = bool(re.search(r'(?m)^\s*' + re.escape(eurl) + r'\s*$', body))
+        m = re.search(r'(?:v=|youtu\.be/|/embed/)([A-Za-z0-9_-]{11})', eurl)
+        if bare_line or (m and m.group(1) in body_yt_ids):
             issues.append(f"Duplicate embed: {eurl[:60]} appears both inline and in social_embeds")
     return issues
 
