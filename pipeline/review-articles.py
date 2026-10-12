@@ -10,6 +10,8 @@ Catches what Kiran catches manually:
      - Missing key takeaways
      - Duplicate pull quotes
      - Irrelevant YouTube embeds (title mismatch)
+     - Caption grounding (venue claims vs Commons filename)
+     - Hero party mismatch (wrong-party person on candidate story)
   2. LLM editorial review (GPT-4o-mini, cheap):
      - Diaspora angle strength
      - Headline quality
@@ -32,7 +34,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 # ── Env ──
 def _load_env(path):
@@ -219,6 +221,71 @@ def check_youtube_relevance(article):
 
 # ── LLM review ──
 
+def check_caption_grounding(article):
+    """Flag hero captions that assert venue facts not supported by the image's
+    own source metadata (Wikimedia Commons filename).
+
+    Catches invented venue claims — e.g. a c.1940s photo whose Commons title
+    says "Hyderabad Public School" being captioned as "Wankhede Stadium".
+    The caption bar is: describe what the image ACTUALLY shows, per its source.
+    """
+    issues = []
+    img = article.get("image_url") or ""
+    caption = article.get("image_caption") or ""
+    if not img or not caption:
+        return issues
+    if "wikimedia.org" not in img.lower():
+        return issues
+    m = re.search(r'/([^/?#]+\.(?:jpe?g|png|webp|gif))', img, re.I)
+    if not m:
+        return issues
+    fname = unquote(m.group(1)).lower()
+    fname_words = set(re.findall(r'[a-z]{4,}', fname))
+    first = re.split(r'(?<=[.!?])\s+', caption.strip())[0]
+    venue_kinds = (r'Stadium|Arena|Ground|School|Temple|Station|Airport|Bridge|'
+                   r'Museum|Park|Hall|College|University|Fort|Palace|Gardens?')
+    for vm in re.finditer(
+            r'\b([A-Z][\w&.\'-]*(?:\s+[A-Z][\w&.\'-]*)*)\s+(' + venue_kinds + r')\b',
+            first):
+        venue_words = set(re.findall(r'[a-z]{4,}', vm.group(0).lower()))
+        if venue_words and not (venue_words & fname_words):
+            issues.append(
+                f"Caption names venue '{vm.group(0)}' not supported by the image "
+                f"file name ({m.group(1)[:60]}…) — verify the venue or reword")
+    return issues
+
+
+def check_hero_party_mismatch(article):
+    """Flag when the headline is about one party's candidates on the ballot and
+    the hero caption identifies the pictured person with the opposing party
+    (e.g. a Democrat pictured on a "Republicans on the ballot" story).
+
+    Narrow on purpose: only fires for candidate/ballot/election headlines, so
+    reaction stories ("GOP reacts to Democratic proposal") don't false-positive.
+    """
+    issues = []
+    headline = (article.get("headline") or "").lower()
+    caption = (article.get("image_caption") or "").lower()
+    if not headline or not caption:
+        return issues
+    if not re.search(r'\b(ballot|candidates?|nominees?|elections?|running for|contesting)\b', headline):
+        return issues
+    headline_party = None
+    if re.search(r'\brepublicans?\b|\bgop\b', headline):
+        headline_party = "republican"
+    elif re.search(r'\bdemocrats?\b', headline):
+        headline_party = "democrat"
+    if not headline_party:
+        return issues
+    other = "democrat" if headline_party == "republican" else "republican"
+    if re.search(r'\b' + other + r's?\b', caption):
+        issues.append(
+            f"Headline is about {headline_party} candidates but the hero caption "
+            f"identifies a {other} — verify the pictured person belongs to the "
+            f"story's subject")
+    return issues
+
+
 def is_trailer_brief(article):
     """Trailer/teaser briefs (from trailer-watch.py) are ~75-word format pieces,
     not full articles — they get their own rubric, not the long-form one."""
@@ -394,7 +461,9 @@ def review_article(article, run_llm=True):
     result["structural_issues"].extend(check_key_takeaways(article))
     result["structural_issues"].extend(check_duplicate_pull_quotes(article))
     result["structural_issues"].extend(check_youtube_relevance(article))
-    
+    result["structural_issues"].extend(check_caption_grounding(article))
+    result["structural_issues"].extend(check_hero_party_mismatch(article))
+
     # LLM review
     if run_llm:
         result["llm_review"] = llm_review(article)
