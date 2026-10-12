@@ -58,7 +58,11 @@ def get_all_fingerprints() -> set:
 
     fps = set()
     offset = 0
-    batch = 5000
+    # NB: PostgREST clamps `limit` to its max-rows setting (1000 here), so the
+    # requested batch must not exceed the effective page size or pagination
+    # silently stops after the first page (2026-10-12: only 987 of 2342
+    # fingerprints were ever loaded, breaking dedup across 8 scrapers).
+    batch = 1000
 
     while True:
         url = f"{sb_url}/rest/v1/events?select=content_fingerprint&content_fingerprint=not.is.null&limit={batch}&offset={offset}"
@@ -78,7 +82,7 @@ def get_all_fingerprints() -> set:
                     fps.add(fp)
             if len(rows) < batch:
                 break
-            offset += batch
+            offset += len(rows)
         except subprocess.TimeoutExpired:
             print(f"  ⚠ Timeout fetching fingerprints (offset {offset}); key redacted from log")
             break

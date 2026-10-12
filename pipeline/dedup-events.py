@@ -2,9 +2,16 @@
 """
 Deduplicate events in the Videshi events table.
 
-Groups future events by (date, normalized_venue, city, state) and uses fuzzy title
-matching to identify duplicates within each group. Keeps the event with
-the most complete data and deletes the rest.
+Groups future events by (date, normalized_venue, city, state) and identifies
+duplicates within each group by exact title match (after suffix normalization)
+or exact content-fingerprint match. Keeps the event with the most complete
+data and deletes the rest.
+
+Deliberately NOT fuzzy title matching: same-venue + same-date pairs are
+frequently distinct shows (comedy clubs, cinemas, festivals), and fuzzy
+matching deleted real events (2026-10-12: Josh Wolf vs Luenell at the same
+club on the same night, Screening #3 vs #4, 2pm vs 6pm shows, Skanda Sashti
+vs Soorasamharam, In-Person vs Online sessions).
 
 Usage:
     python3 -u pipeline/dedup-events.py              # live run
@@ -18,7 +25,7 @@ from difflib import SequenceMatcher
 
 # ── Config ───────────────────────────────────────────────────────────────
 DRY_RUN = "--dry-run" in sys.argv
-TITLE_SIMILARITY_THRESHOLD = 0.70
+# Title matching is exact-only (after suffix normalization) — see module docstring.
 SB_URL = os.environ["SUPABASE_URL"]
 SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -130,6 +137,17 @@ def titles_differ_only_in_session(t1, t2):
     return s1 == s2 and sess_pat.search(t1.lower()) and sess_pat.search(t2.lower())
 
 
+def stripped_titles_equal(t1, t2):
+    """True if titles are identical after suffix normalization — same event.
+
+    Same date + same venue + same (normalized) title is the only safe
+    duplicate signal; anything fuzzier risks merging distinct shows that
+    happen to share a venue and a date.
+    """
+    n1, n2 = strip_title_suffix(t1), strip_title_suffix(t2)
+    return bool(n1) and bool(n2) and n1 == n2
+
+
 def title_similarity(t1, t2):
     n1 = strip_title_suffix(t1)
     n2 = strip_title_suffix(t2)
@@ -166,7 +184,7 @@ def main():
     print(f"Event Deduplication — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print(f"  Mode: {'DRY RUN' if DRY_RUN else 'LIVE'}")
     print(f"  Date filter: >= {TODAY}")
-    print(f"  Title similarity threshold: {TITLE_SIMILARITY_THRESHOLD}")
+    print(f"  Title match: exact (normalized)")
     print(f"{'='*60}\n")
 
     # 1) Load all future events
@@ -243,9 +261,10 @@ def main():
                 # Skip if titles only differ by session/part/episode number
                 if titles_differ_only_in_session(e1["title"], e2["title"]):
                     continue
-                # Fuzzy title match on stripped titles
-                sim = title_similarity(e1["title"], e2["title"])
-                if sim >= TITLE_SIMILARITY_THRESHOLD:
+                # Exact title match (after suffix normalization) = same event.
+                # No fuzzy matching: distinct shows at the same venue on the
+                # same date must never be merged.
+                if stripped_titles_equal(e1["title"], e2["title"]):
                     cluster.append(e2)
                     used.add(j)
 

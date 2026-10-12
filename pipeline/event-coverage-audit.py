@@ -83,11 +83,21 @@ def main():
     print(f"   {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
 
-    # Fetch all events
-    events = sb_get("events?select=id,city,state,source,created_at,date&limit=10000")
-    if not isinstance(events, list):
-        print("❌ Failed to fetch events")
-        sys.exit(2)
+    # Fetch all events (paginated: PostgREST clamps `limit` to 1000 rows, so a
+    # single limit=10000 request silently truncated the audit to the first
+    # 1000 rows — producing false stale-source / zero-coverage alarms,
+    # 2026-10-12)
+    events = []
+    offset = 0
+    while True:
+        page = sb_get(f"events?select=id,city,state,source,created_at,date&limit=1000&offset={offset}")
+        if not isinstance(page, list):
+            print("❌ Failed to fetch events")
+            sys.exit(2)
+        events.extend(page)
+        if len(page) < 1000:
+            break
+        offset += len(page)
 
     print(f"\nTotal events: {len(events)}")
 
