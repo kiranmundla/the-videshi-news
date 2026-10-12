@@ -182,6 +182,19 @@ def validate(data, article=None):
             pub_date = None
 
     for card in cards:
+        # Writer-produced component cards (how_to, key_dates, checklist, price_compare)
+        # use 'type'/'title' schema — accept them via their own validation
+        card_type = card.get("card_type") or card.get("type")
+        if card_type in ("how_to", "key_dates", "checklist", "price_compare"):
+            if not card.get("title"):
+                return False
+            # how_to needs steps, key_dates needs dates, checklist needs items, price_compare needs rows
+            content_key = {"how_to": "steps", "key_dates": "dates", "checklist": "items", "price_compare": "rows"}[card_type]
+            content = card.get(content_key)
+            if not content or not isinstance(content, list) or len(content) < 1:
+                print(f"  ⚠️  Rejecting {card_type} card '{card.get('title')}': missing/empty {content_key}")
+                return False
+            continue
         if not card.get("card_title") or not card.get("card_type"):
             return False
         if card["card_type"] not in ("stat_grid", "comparison", "timeline", "highlights"):
@@ -269,10 +282,38 @@ def _parse_timeline_date(date_str, pub_date):
 def save(article_id, data):
     """Save enrichment to Supabase. Also strips writer's key-takeaways div
     from body to prevent duplicate rendering (frontend renders from the
-    key_takeaways jsonb column as vdc-takeaways)."""
+    key_takeaways jsonb column as vdc-takeaways).
+
+    MERGE (not overwrite) data_cards: preserves writer-produced component
+    cards (how_to, key_dates, checklist, price_compare) that enrich doesn't
+    generate. Without this, the writer's cards are silently dropped.
+    """
     now = datetime.now(timezone.utc).isoformat()
+    enrich_cards = data.get("data_cards", [])
+    # Fetch existing cards so we can merge, not overwrite
+    existing_cards = []
+    try:
+        gr = requests.get(
+            f"{SUPABASE_URL}/rest/v1/p2_articles",
+            headers=HEADERS_SB,
+            params={"id": f"eq.{article_id}", "select": "data_cards"}
+        )
+        if gr.status_code == 200 and gr.json():
+            existing_cards = gr.json()[0].get("data_cards") or []
+    except Exception as e:
+        print(f"  ⚠ Could not fetch existing data_cards for merge: {e}")
+    # Keep writer's component cards (new types enrich doesn't produce)
+    WRITER_TYPES = ("how_to", "key_dates", "checklist", "price_compare")
+    kept = [c for c in existing_cards
+            if isinstance(c, dict) and (c.get("type") in WRITER_TYPES)]
+    # Avoid duplicating if enrich somehow produced the same type
+    enrich_types = {(c.get("card_type") or c.get("type")) for c in enrich_cards if isinstance(c, dict)}
+    kept = [c for c in kept if c.get("type") not in enrich_types]
+    merged_cards = kept + enrich_cards
+    if kept:
+        print(f"  🔀 Merged {len(kept)} writer card(s) with {len(enrich_cards)} enrich card(s)")
     patch_data = {
-        "data_cards": data.get("data_cards", []),
+        "data_cards": merged_cards,
         "key_takeaways": data.get("key_takeaways", []),
         "enriched_at": now
     }
