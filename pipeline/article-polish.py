@@ -345,7 +345,7 @@ def main():
     if args.article_id:
         articles = sb_get("p2_articles", {
             "id": f"eq.{args.article_id}",
-            "select": "id,headline,slug,category,body,published_at"
+            "select": "id,headline,slug,category,body,published_at,data_cards"
         })
     else:
         cutoff = quote((datetime.now(timezone.utc) - timedelta(hours=args.hours)).isoformat(), safe='')
@@ -353,7 +353,7 @@ def main():
             "status": "eq.published",
             "published_at": f"gte.{cutoff}",
             "enriched_at": "is.null",
-            "select": "id,headline,slug,category,body,published_at",
+            "select": "id,headline,slug,category,body,published_at,data_cards",
             "order": "published_at.desc",
             "limit": str(args.max)
         })
