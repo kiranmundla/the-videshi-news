@@ -1169,6 +1169,13 @@ def check_broken_article_links(fix=False):
     # Treating their error codes as "broken" produced false alarms, so skip them.
     BOTBLOCKED = ("fastcompany.com", "cricinfo.com", "espncricinfo.com",
                   "dol.gov", "curlytales.com",
+                  # zoomtventertainment.com: 403 to our server egress (python
+                  # requests + browser UA + browser fetch all blocked);
+                  # canonical article URL verified live via search 2026-10-12
+                  "zoomtventertainment.com",
+                  # whatjobs.com: 403 to our server egress; canonical URL
+                  # verified live via search 2026-10-12
+                  "whatjobs.com",
                   # lotusleaders.org verified 403-via-requests -> 200-with-browser-UA on 2026-10-11
                   "lotusleaders.org",
                   # reuters.com: 401 to all requests from our egress; the TCS
@@ -1209,7 +1216,7 @@ def check_broken_article_links(fix=False):
                 r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"},
                                  timeout=8, allow_redirects=True)
                 if r.status_code >= 400:
-                    broken.append({"slug": a["slug"], "url": url[:120],
+                    broken.append({"slug": a["slug"], "url": url,
                                    "status": r.status_code})
             except Exception:
                 pass  # transient — not proof of broken, skip silently
