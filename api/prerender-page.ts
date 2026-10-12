@@ -652,6 +652,31 @@ function renderStaticPage(path: string): string | null {
       description: "Real stories from the Indian diaspora: immigration journeys, career pivots, cultural experiences, and community voices.",
       body: "<h1>Community Stories</h1><p>Real stories from Indians abroad — share yours or read others.</p>",
     },
+    "/your-hub": {
+      title: "Your Hub",
+      description: "Your personalized diaspora dashboard: this weekend near you, deadlines that matter, the morning brief, money moves, and festival season — all ranked by your location.",
+      body: "<h1>Your Hub</h1><p>Your personalized diaspora dashboard — this weekend near you, deadlines that matter, and festival season, all ranked by your location.</p>",
+    },
+    "/festivals": {
+      title: "Festivals",
+      description: "Festival dates, the 9-day Navratri color guide, and Diwali and Navratri celebrations near you across the US.",
+      body: "<h1>Festivals</h1><p>Festival dates, color guides, and Diwali and Navratri celebrations near you across the US.</p>",
+    },
+    "/privacy": {
+      title: "Privacy Policy",
+      description: "Privacy Policy for The Videshi — how we collect, use, and protect your information.",
+      body: "<h1>Privacy Policy</h1><p>How The Videshi collects, uses, and protects your information.</p>",
+    },
+    "/terms": {
+      title: "Terms of Service",
+      description: "Terms of Service for The Videshi — rules and guidelines for using our website.",
+      body: "<h1>Terms of Service</h1><p>Rules and guidelines for using The Videshi website.</p>",
+    },
+    "/kids": {
+      title: "Learn",
+      description: "Activities, classes, programs & competitions for K-12 students. Find what's right for your child.",
+      body: "<h1>Learn</h1><p>Activities, classes, programs and competitions for K-12 students.</p>",
+    },
   };
 
   const page = pages[path];
@@ -780,26 +805,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           return;
         }
       }
-    } else if (["/about", "/contact", "/travel", "/immigration", "/stories"].includes(path)) {
+    } else if (["/about", "/contact", "/travel", "/immigration", "/stories", "/your-hub", "/festivals", "/privacy", "/terms", "/kids"].includes(path)) {
       html = renderStaticPage(path);
     } else if (path.startsWith("/immigration/")) {
       // Immigration sub-pages: /immigration/green-card, /immigration/h1b, etc.
       const subPage = path.replace("/immigration/", "");
-      const immigrationPages: Record<string, { title: string; description: string }> = {
-        "green-card": { title: "Green Card Tracker", description: "Track green card processing times, visa bulletin dates, and EB category wait times for Indian immigrants." },
-        "h1b": { title: "H-1B Visa Hub", description: "H-1B visa news, lottery results, transfer guides, and cap-exempt strategies for Indian tech workers." },
-        "consulate-wait-times": { title: "US Consulate Wait Times in India", description: "Current visa interview wait times at US consulates in India — Mumbai, Delhi, Chennai, Hyderabad, Kolkata." },
-        "processing-times": { title: "USCIS Processing Times", description: "Latest USCIS processing times for green cards, H-1B, EAD, and other immigration forms." },
-        "visas": { title: "Visa Tracker", description: "Track US visa bulletin dates, priority dates, and processing times for Indian immigrants." },
-        "guides": { title: "Immigration Guides", description: "Step-by-step immigration guides for Indian immigrants: H-1B, green card, OPT, and more." },
+      const immigrationPages: Record<string, { title: string; description: string; heading: string }> = {
+        "green-card": { title: "Green Card Tracker — The Videshi", description: "Track green card processing times, visa bulletin dates, and EB category wait times for Indian immigrants.", heading: "Green Card Tracker" },
+        "h1b": { title: "H-1B Visa Hub — The Videshi", description: "H-1B visa news, lottery results, transfer guides, and cap-exempt strategies for Indian tech workers.", heading: "H-1B Visa Hub" },
+        "consulate-wait-times": { title: "US Consulate Wait Times in India — The Videshi", description: "Current visa interview wait times at US consulates in India — Mumbai, Delhi, Chennai, Hyderabad, Kolkata.", heading: "US Consulate Wait Times in India" },
+        "processing-times": { title: "USCIS Processing Times — The Videshi", description: "Latest USCIS processing times for green cards, H-1B, EAD, and other immigration forms.", heading: "USCIS Processing Times" },
+        "visas": { title: "Visa Tracker — The Videshi", description: "Track US visa bulletin dates, priority dates, and processing times for Indian immigrants.", heading: "Visa Tracker" },
+        "guides": { title: "Immigration Guides — The Videshi", description: "Step-by-step immigration guides for Indian immigrants: H-1B, green card, OPT, and more.", heading: "Immigration Guides" },
+        "policy": { title: "Immigration Policy & Enforcement News — The Videshi", description: "USCIS policy updates, enforcement actions, congressional legislation, Supreme Court rulings, and immigration reform news affecting the Indian diaspora.", heading: "Policy & Enforcement" },
+        "students": { title: "Student Visa & OPT News — The Videshi", description: "F-1 visa, OPT, STEM OPT news — policy changes, duration of status, Indian student trends, and what affects studying in the US.", heading: "Students & OPT" },
+        "consular": { title: "Visa Processing & Consular News — The Videshi", description: "Consular processing updates, visa stamping wait times, EB-5 investor visas, State Department policies, and embassy news for Indian applicants.", heading: "Visa Processing & Consular" },
       };
       const pg = immigrationPages[subPage];
       if (pg) {
         html = pageShell({
-          title: `${pg.title} — The Videshi`,
+          title: pg.title,
           description: pg.description,
           url: `${SITE}${path}`,
-          body: `<main><h1>${esc(pg.title)}</h1><p>${esc(pg.description)}</p></main>`,
+          body: `<main><h1>${esc(pg.heading)}</h1><p>${esc(pg.description)}</p></main>`,
+        });
+      }
+    } else if (path.startsWith("/technology/")) {
+      // Technology sub-topic pages: /technology/ai, /technology/big-tech, etc.
+      const sub = path.replace("/technology/", "");
+      const techPages: Record<string, { title: string; description: string; heading: string }> = {
+        "ai": { title: "AI & Machine Learning News for NRIs — The Videshi", description: "Latest artificial intelligence, OpenAI, Anthropic, and machine learning news with diaspora impact — jobs, leadership, and what it means for Indians in tech.", heading: "Artificial Intelligence" },
+        "big-tech": { title: "Big Tech News — Google, Apple, Meta, Microsoft, Nvidia — The Videshi", description: "Breaking news from Google, Apple, Meta, Microsoft, Amazon, Nvidia, Tesla, and SpaceX — company announcements, leadership, layoffs, and diaspora impact.", heading: "Big Tech" },
+        "semiconductors": { title: "Semiconductor & Chip Industry News for NRIs — The Videshi", description: "Semiconductor industry news — Intel, TSMC, Nvidia, Qualcomm, Micron, India's chip ambitions, and what it means for Indian engineers and investors.", heading: "Semiconductors" },
+        "startups": { title: "Indian Startups, Unicorns & VC News — The Videshi", description: "Indian startup ecosystem news — unicorns, IPOs, venture capital, fintech, NRI founders in Silicon Valley, and funding rounds that matter.", heading: "Startups & Unicorns" },
+        "indian-it": { title: "Indian IT & Services News — TCS, Infosys, Wipro, HCL — The Videshi", description: "Indian IT industry news — TCS, Infosys, Wipro, HCLTech, GCCs, outsourcing trends, hiring, and what it means for the diaspora workforce.", heading: "Indian IT & Services" },
+      };
+      const pg = techPages[sub];
+      if (pg) {
+        html = pageShell({
+          title: pg.title,
+          description: pg.description,
+          url: `${SITE}${path}`,
+          body: `<main><h1>${esc(pg.heading)}</h1><p>${esc(pg.description)}</p></main>`,
         });
       }
     } else if (path.startsWith("/stories/") && !path.includes("submit")) {
