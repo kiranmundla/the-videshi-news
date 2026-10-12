@@ -1,0 +1,163 @@
+[
+  {
+    "id": "29314115-14b2-4afe-9ea6-fea53540f10c",
+    "headline": "CPI(M) MP John Brittas Dragged and Assaulted by Delhi Police, Then Dumped Roadsi",
+    "slug": "john-brittas-mp-assaulted-delhi-police-crpf-sir-protest",
+    "category": "news",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/cpimspeak/status/2109208597704138855 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the incident in the headline to avoid confusion, as October 11 is a future date. It should specify that the incident occurred on October 8, 2023, to enhance accuracy and timeliness.",
+        "Provide more context about the protest and its significance, including details on the demands of the protesters and any relevant background on Chief Election Commissioner Gyanesh Kumar, which would help readers understand the broader implications of the incident.",
+        "Include direct quotes from John Brittas or eyewitnesses to enhance attribution and provide a personal perspective on the incident, which could improve clarity and depth."
+      ],
+      "embed_opportunities": [
+        "Embed video footage of the incident if available, as this would provide visual context and enhance the article's completeness."
+      ]
+    }
+  },
+  {
+    "id": "e3f34f5c-66ab-48e2-b774-ce7617b12820",
+    "headline": "Amritsar-Born Diplomat Tells Pakistan at UN: India Will Not Bow to Nuclear Black",
+    "slug": "amritsar-born-diplomat-bedi-pakistan-un-nuclear-blackmail",
+    "category": "news",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/AdityaRajKaul/status/2109035136704757858 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the UN General Assembly meeting by including the date and specific details about the session to enhance timeliness and completeness.",
+        "Provide a brief background on the historical context of the Jammu and Kashmir issue to give readers a better understanding of why this exchange is significant.",
+        "Include direct quotes from Anmol Sher Singh Bedi to enhance clarity and attribution, ensuring readers can see the exact language used in his statements.",
+        "Mention any immediate reactions or responses from Pakistan or other countries present at the UN to provide a more complete picture of the diplomatic exchange."
+      ],
+      "embed_opportunities": [
+        "Embed the official UN General Assembly's Twitter account tweet regarding the session for real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "23562fdd-cfce-4d0b-a11d-aff138131b40",
+    "headline": "Kolkata-Style Kathi Rolls at Home: A Five-Step Street-Food Classic",
+    "slug": "kolkata-kathi-rolls-recipe-home",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the cooking times and temperatures for each step, especially for frying the parathas and cooking the chicken filling, to ensure readers can replicate the recipe accurately.",
+        "Provide specific measurements for the ingredients (e.g., how much all-purpose flour, chicken, spices) instead of general descriptions to enhance completeness and clarity.",
+        "Include a brief note about the nutritional information or serving size to help readers understand the meal's health aspects.",
+        "Add a concluding sentence that summarizes the appeal of the kathi roll, such as its versatility or popularity, to enhance the article's depth."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "ff66b6c7-9351-46ec-8084-04d867a3933b",
+    "headline": "Muslim Artisans Weave Durga's Hair: West Bengal's Story of Harmony",
+    "slug": "muslim-artisans-durga-hair-howrah-harmony",
+    "category": "nri-world",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/thebetterindia/status/2109139429981896806 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of rising jute prices on the artisans' business by providing specific examples of how this affects their profit margins or pricing strategies for the wigs.",
+        "Include a quote or statement from a local idol maker to provide context on the artisans' challenges and the importance of their work in the Durga Puja celebrations.",
+        "Expand on the implications of strained India-Bangladesh trade on the artisans, possibly by including statistics or expert opinions on how this affects their supply chain."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from The Hindu or another reputable news source that discusses the significance of the artisans' work in the context of Durga Puja."
+      ]
+    }
+  },
+  {
+    "id": "7e13dad0-265b-495b-ab6f-d0565ccac4d0",
+    "headline": "India-Taiwan Action-Comedy 'Demon Hunters' Sets October 29 Netherlands Release",
+    "slug": "demon-hunters-india-taiwan-netherlands-release",
+    "category": "entertainment",
+    "structural_issues": [
+      "Duplicate embed: https://www.youtube.com/watch?v=rLcBFGk_IsY appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the release date in Taiwan as 'December 31, 2023' instead of 'December 31, 2025' to avoid confusion regarding the timeline.",
+        "Include a brief summary of the film's plot to provide context for readers unfamiliar with the storyline, enhancing completeness.",
+        "Add quotes from the director or producers about the significance of this co-production to enrich the article's depth and provide more context."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer from YouTube to provide immediate access for readers interested in viewing it."
+      ]
+    }
+  },
+  {
+    "id": "9466c737-6069-4507-a3f7-a1c782ac9f7e",
+    "headline": "Kamini Ramani's 'Lotus Leadership' Asks: Where Are the Indian American Women?",
+    "slug": "kamini-ramani-lotus-leadership-indian-american-women",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the book launch and any relevant upcoming events related to the book discussion at Kepler's Literary Foundation. This will provide readers with actionable information.",
+        "Include direct quotes or insights from Kamini Ramani or the women interviewed to enhance the article's depth and provide a more personal connection to the subject matter.",
+        "Provide context on the significance of the 'Five Petals' framework and how it can be applied in practical business scenarios, which would help readers understand its relevance.",
+        "Ensure the article maintains a clear focus on the book and its themes without veering into unrelated topics, which may confuse readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Kamini Ramani or Kepler's Literary Foundation announcing the book launch or the upcoming discussion event."
+      ]
+    }
+  },
+  {
+    "id": "d9b473df-64dc-4fb2-8e3d-b5e2b898490c",
+    "headline": "India Condemns 'Deeply Concerning' Attacks on Two Indian-Crewed Tankers in Gulf ",
+    "slug": "india-condemns-deeply-concerning-attacks-two-indian-crewed-tankers-gulf-oman",
+    "category": "news",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/pati_marins64/status/2109125063844733380 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by correcting the date of the attacks mentioned in the article. The date 'October 11' is stated, but it should be verified whether it is indeed the correct date for the events described, as the article also mentions '11 October 2026' which appears to be a typographical error.",
+        "Provide more context about the geopolitical situation in the Gulf of Oman, particularly regarding the US-Iran conflict, to help readers understand why these attacks are significant and what implications they may have for international shipping and security.",
+        "Include a direct quote from the Ministry of External Affairs or a relevant official to enhance the attribution and provide a more authoritative voice on the matter.",
+        "Add specific details about the ongoing search-and-rescue operations, such as the resources being deployed or the expected timeline for the search, to give readers a clearer picture of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ministry of External Affairs or a reputable news source that provides updates on the situation or the official condemnation."
+      ]
+    }
+  },
+  {
+    "id": "ea2e7b16-f96f-4916-bc6b-468bbe6025d1",
+    "headline": "One Indian Dead, Three in ICU After Riyadh Airport Attack; Embassy Issues Stay-I",
+    "slug": "one-indian-dead-three-icu-riyadh-airport-attack-embassy-advisory",
+    "category": "news",
+    "structural_issues": [
+      "Duplicate embed: https://x.com/theinformant_x/status/2108927540999987597 appears both inline and in social_embeds"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events regarding the attack. Include specific details about when the attack occurred and when the embassy issued the advisory to provide readers with a clearer understanding of the sequence of events.",
+        "Provide more context about the attack itself. Include information about the nature of the attack, such as the type of explosives used or the method of attack, to give readers a better understanding of the situation.",
+        "Include a direct quote from the Indian Embassy or local authorities regarding the situation to enhance the attribution and provide an official perspective on the incident.",
+        "Mention any specific actions that Indian nationals in Saudi Arabia should take beyond staying indoors, such as emergency contact numbers or resources available through the embassy."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Embassy regarding the advisory and support for affected families to provide readers with direct access to the source."
+      ]
+    }
+  }
+]
