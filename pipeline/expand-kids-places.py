@@ -366,16 +366,23 @@ def main():
     sc = {}
 
     for state, cities in targets.items():
+        if not check_budget():
+            log.warning("Budget exhausted, ending run.")
+            break
         buf = []
         log.info(f"\n── {state} ({len(cities)} cities) ──")
         for city in cities:
             cf = 0
             for q, cat, subcat in SEARCH_QUERIES:
+                if not check_budget():
+                    break
                 res = search_city(city, state, q, cat, subcat, seen)
                 if res:
                     buf.extend(res)
                     cf += len(res)
                 time.sleep(0.3)
+            if not check_budget():
+                break
             if cf:
                 log.info(f"  {city}: {cf} new")
         ins = insert_batch(buf)
