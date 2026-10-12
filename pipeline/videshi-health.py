@@ -1163,14 +1163,20 @@ def check_broken_article_links(fix=False):
     # Skip domains that always block bots — checking them produces noise
     SKIP = ("youtube.com", "youtu.be", "x.com", "twitter.com",
             "instagram.com", "facebook.com", "threads.com")
-    # 403-to-bots domains (2026-10-11): these return 403 to our server egress
+    # 403/401-to-bots domains (2026-10-11): these return 4xx to our server egress
     # via python-requests even though they load fine in a real browser
     # (curlytales.com verified 301->200 with a browser UA same day).
-    # Treating their 403s as "broken" produced false alarms, so skip them.
-    BOTBLOCK_403 = ("fastcompany.com", "cricinfo.com", "espncricinfo.com",
-                    "dol.gov", "curlytales.com",
-                    # lotusleaders.org verified 403-via-requests -> 200-with-browser-UA on 2026-10-11
-                    "lotusleaders.org")
+    # Treating their error codes as "broken" produced false alarms, so skip them.
+    BOTBLOCKED = ("fastcompany.com", "cricinfo.com", "espncricinfo.com",
+                  "dol.gov", "curlytales.com",
+                  # lotusleaders.org verified 403-via-requests -> 200-with-browser-UA on 2026-10-11
+                  "lotusleaders.org",
+                  # reuters.com: 401 to all requests from our egress; the TCS
+                  # variable-pay story is real (canonical URL verified via
+                  # search 2026-10-11) — pure bot-block, not a broken link
+                  "reuters.com",
+                  # gulte.com verified 403-via-requests -> 200-with-browser-UA on 2026-10-11
+                  "gulte.com")
 
     try:
         resp = requests.get(
@@ -1193,7 +1199,7 @@ def check_broken_article_links(fix=False):
     broken = []
     for a in articles:
         for url in href_re.findall(a.get("body", "") or ""):
-            if any(d in url for d in SKIP) or any(d in url for d in BOTBLOCK_403) \
+            if any(d in url for d in SKIP) or any(d in url for d in BOTBLOCKED) \
                     or url in seen_urls:
                 continue
             seen_urls.add(url)
