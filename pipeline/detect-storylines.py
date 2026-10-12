@@ -250,11 +250,21 @@ def fetch_storylines(statuses=("emerging", "active", "cooling")):
 
 def fetch_storyline_article_ids():
     """Fetch all article IDs that are already linked to any storyline."""
-    params = "select=article_id"
-    result = sb_get("storyline_articles", params)
-    if isinstance(result, list):
-        return {r["article_id"] for r in result}
-    return set()
+    # 2026-10-12: PostgREST caps responses at 1000 rows by default; paginate so
+    # already-linked articles are never missed (misses caused duplicate-link
+    # 409s and wasted re-classification once the table passed 1000 rows).
+    ids = set()
+    offset = 0
+    page = 1000
+    while True:
+        result = sb_get("storyline_articles", f"select=article_id&limit={page}&offset={offset}")
+        if not isinstance(result, list) or not result:
+            break
+        ids.update(r["article_id"] for r in result)
+        if len(result) < page:
+            break
+        offset += page
+    return ids
 
 
 def fetch_storyline_headlines(storyline_id, limit=5):
