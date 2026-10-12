@@ -1183,7 +1183,13 @@ def check_broken_article_links(fix=False):
                   # search 2026-10-11) — pure bot-block, not a broken link
                   "reuters.com",
                   # gulte.com verified 403-via-requests -> 200-with-browser-UA on 2026-10-11
-                  "gulte.com")
+                  "gulte.com",
+                  # 2026-10-12 health run: all 403 to our server egress (python
+                  # requests + curl with browser UA both blocked); each canonical
+                  # article URL verified live via search the same day — pure
+                  # bot-block, not broken links
+                  "miningweekly.com", "ftnnews.com", "watchdoq.com",
+                  "healthandfamily.in", "computerweekly.com")
 
     try:
         resp = requests.get(

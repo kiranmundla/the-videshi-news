@@ -1762,6 +1762,10 @@ _HEADLINE_COLLECTIVE_WORDS = {
     "americans", "indians", "nris", "europeans", "asians", "canadians",
     "australians", "britons", "russians", "ukrainians", "israelis",
     "palestinians", "chinese", "japanese", "koreans", "mexicans",
+    # 2026-10-12: "Witnesses Say Tiger Victim Posed for Photos..." was read as
+    # a person named "Witnesses Say", blocking Pexels on a generic news
+    # headline. A witness is a collective/plural noun, never a given name.
+    "witnesses",
 }
 # First-word org nouns that can never be a person's given name. Reuses the
 # title-word list (minus bank/banks) because a headline starting with an
@@ -1799,6 +1803,12 @@ _HEADLINE_PROPER_NONPERSON_WORDS = {
 # this just recovers the photo.
 _HEADLINE_PLACE_POSSESSIVE_WORDS = {
     "hoover", "hartlepool",
+    # 2026-10-12: "King's Lynn Tandoori named England's best curry restaurant
+    # ..." was read as a person named "King's Lynn", blocking Pexels on a
+    # generic food headline. King's Lynn is an English town — the place owns
+    # the business. Only possessive leads are affected; "King Charles ..."
+    # (non-possessive) still engages the person guard correctly.
+    "king",
 }
 # Multi-word place phrases that must not be read as a person's name.
 # "Sai Kung's Top Indian Restaurant..." is a Hong Kong district, not a person
@@ -1808,6 +1818,11 @@ _HEADLINE_PLACE_POSSESSIVE_WORDS = {
 # tight and documented per encounter.
 _HEADLINE_PLACE_PHRASE_WORDS = {
     "sai kung",
+    # 2026-10-12: "West Indies' Plan B Against Abhishek Sharma Revealed..."
+    # was read as a person named "West Indies'", blocking Pexels on a sports
+    # headline. The West Indies is the Caribbean region (and cricket team),
+    # not a person.
+    "west indies",
 }
 # Determiners / possessives: "Raise Your Sum..." is never a person's name
 _HEADLINE_DETERMINER_WORDS = {
@@ -1837,6 +1852,10 @@ _HEADLINE_COMMON_VERB_WORDS = {
     # Tanker..." misread as person names 2026-10-11 — left two tech/news
     # articles imageless): no surname reads like one of these.
     "could", "would", "should", "might", "can", "will", "shall",
+    # 2026-10-12: "Panama Declares Emergency as 200+ Aftershocks..." was read
+    # as a person named "Panama Declares", blocking Pexels on a news headline.
+    # Same family as the "announces"/"confirms" 3rd-person verbs above.
+    "declares",
 }
 # Storm/weather system leads: "Hurricane Isaias Shuts...", "Tropical Storm
 # X...", "Cyclone Y..." — a storm name is not a person's name. The first word
@@ -1938,8 +1957,9 @@ def headline_person_name(headline):
     # Multi-word place phrases ("Sai Kung's ..."): the district is not a person.
     # Checked on the two-word phrase so "Sai" alone still passes as a given
     # name ("Sai Pallavi's Wedding..."). Kept tight and documented per
-    # encounter.
-    if f"{first_base} {second_base}" in _HEADLINE_PLACE_PHRASE_WORDS:
+    # encounter. Trailing bare possessive ("West Indies'") is normalized so
+    # the phrase lookup hits (2026-10-12).
+    if f"{first_base} {second_base}".rstrip("’'") in _HEADLINE_PLACE_PHRASE_WORDS:
         return None
     # Both words capitalized, second not a title → likely a person's name.
     # Length gate runs on the possessive-stripped base: "LA's" → "la" (2
