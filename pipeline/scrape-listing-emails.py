@@ -37,6 +37,19 @@ GARBAGE_DOMAINS = {
     'example.com', 'example.org', 'example.net', 'test.com',
     'sentry.io', 'sentry.wixpress.com', 'schema.org',
 }
+
+
+def is_garbage_domain(domain):
+    """True for known garbage domains, incl. Wix Sentry DSN trap addresses.
+
+    Wix sites embed error-reporting addresses like
+    <hex>@sentry-next.wixpress.com in their JS — never a real inbox.
+    """
+    if domain in GARBAGE_DOMAINS:
+        return True
+    if domain.endswith('.wixpress.com') and domain.split('.')[0].startswith('sentry'):
+        return True
+    return False
 GARBAGE_LOCAL = re.compile(
     r'^(noreply|no-reply|donotreply|do-not-reply|mailer-daemon|postmaster|abuse|spam)'
     r'(@|$)', re.IGNORECASE)
@@ -116,7 +129,7 @@ def extract_emails(html):
         domain = domain.lower()
         if not local or not domain:
             continue
-        if domain in GARBAGE_DOMAINS:
+        if is_garbage_domain(domain):
             continue
         if GARBAGE_LOCAL.match(email):
             continue
@@ -208,7 +221,12 @@ def main():
           f"(processed={progress['processed']}, found={progress['found']})",
           flush=True)
 
-    # Fetch listings with websites but no email, ordered by id
+    # Fetch listings with websites but no email, ordered by id.
+    # Resume past the checkpoint in the query itself (id=gt.last_id):
+    # filtering in memory after offset paging breaks the "short page =
+    # end of list" check, because the first page after a resume is mostly
+    # already-visited rows and looks short even when thousands of
+    # unvisited rows remain at later offsets.
     batch_size = 100
     todo = []
     offset = 0
@@ -216,12 +234,11 @@ def main():
         q = ("/rest/v1/directory_listings?"
              "select=id,name,website&website=not.is.null&email=is.null"
              f"&order=id&limit={batch_size}&offset={offset}")
+        if progress["last_id"]:
+            q += f"&id=gt.{progress['last_id']}"
         batch = db_get(q)
         if not batch:
             break
-        # Resume past checkpoint
-        if progress["last_id"]:
-            batch = [r for r in batch if r["id"] > progress["last_id"]]
         todo.extend(batch)
         if len(batch) < batch_size:
             break
@@ -267,8 +284,10 @@ def main():
         # Checkpoint every 10
         if (i + 1) % 10 == 0:
             save_progress(progress)
-        # Rate limit
-        time.sleep(2)
+        # Rate limit between sites we actually fetched; aggregator skips
+        # make no HTTP requests, so there is nothing to be polite about
+        if status != "aggregator":
+            time.sleep(2)
 
     save_progress(progress)
     print(f"\n{'='*50}")
