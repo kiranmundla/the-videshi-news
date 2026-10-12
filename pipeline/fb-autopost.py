@@ -34,15 +34,18 @@ def sb_get(path):
 def load_posted():
     try:
         with open(STATE_FILE) as f:
-            return set(json.load(f).get("posted_slugs", []))
+            data = json.load(f)
+            return (set(data.get("posted_slugs", [])),
+                    set(data.get("pending_slugs", [])))
     except (FileNotFoundError, json.JSONDecodeError):
-        return set()
+        return set(), set()
 
 
-def save_posted(slugs):
+def save_posted(slugs, pending):
     os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
     with open(STATE_FILE, "w") as f:
-        json.dump({"posted_slugs": sorted(slugs)}, f)
+        json.dump({"posted_slugs": sorted(slugs),
+                   "pending_slugs": sorted(pending)}, f)
 
 
 def pick_article(posted):
@@ -165,7 +168,9 @@ def _verify_recent_post(article_url):
     cmd = ["facebook-cli", "pages", "posts", "list",
            "--page-id", PAGE_ID]
     # A fresh post may take a few seconds to appear in the list; poll.
-    for attempt in range(4):
+    # Post-timeout publishes can land minutes later (approval lag), so keep
+    # the window generous: 12 polls x 30s (~6 min).
+    for attempt in range(12):
         try:
             r = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
             data = json.loads(r.stdout)
@@ -183,15 +188,28 @@ def _verify_recent_post(article_url):
                 return {"state": "published",
                         "post_url": post.get("post_url"),
                         "post_id": post_id}
-        if attempt < 3:
-            time.sleep(10)
+        if attempt < 11:
+            time.sleep(30)
     print("ERROR: post not found in recent posts after timeout",
           file=sys.stderr)
     return None
 
 
 def main():
-    posted = load_posted()
+    posted, pending = load_posted()
+    # Re-check anything left pending from a previous timed-out run: if it's
+    # live now, record it; otherwise don't risk a duplicate — bail out.
+    for slug in sorted(pending):
+        url = f"https://www.thevideshi.com/articles/{slug}"
+        if _verify_recent_post(url):
+            pending.discard(slug)
+            posted.add(slug)
+            print(f"Pending post confirmed live: {slug}")
+        else:
+            print(f"ERROR: pending post still unverifiable: {slug}; "
+                  f"not posting a duplicate.", file=sys.stderr)
+            save_posted(posted, pending)
+            sys.exit(1)
     article = pick_article(posted)
     if not article:
         print("No fresh article to post (all recent ones already posted).")
@@ -206,10 +224,16 @@ def main():
     result = publish(text, article_url, article.get("image_url"))
     if result:
         posted.add(article["slug"])
-        save_posted(posted)
+        save_posted(posted, pending)
         print(f"Published: {result.get('post_url')}")
     else:
-        print("Publish failed.", file=sys.stderr)
+        # Could be a late-approval post that went live after the CLI timed
+        # out — mark pending so the next run re-verifies instead of
+        # double-posting.
+        pending.add(article["slug"])
+        save_posted(posted, pending)
+        print("Publish failed; slug marked pending for re-verification.",
+              file=sys.stderr)
         sys.exit(1)
 
 
