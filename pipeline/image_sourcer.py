@@ -1907,6 +1907,13 @@ def headline_person_name(headline):
     # is not a person's name — the Pexels guard must not engage (2026-10-09)
     if first_base in _HEADLINE_STORM_WORDS:
         return None
+    # Style/descriptor adjectives ("Kolkata-Style Kathi Rolls...", "Delhi-Style
+    # Chaat..."): a hyphenated -style/-inspired first word is a cuisine or
+    # product descriptor, never a given name — "Kolkata-Style" is not a person.
+    # Without this, generic food headlines were gate-blocked as "named person"
+    # and stayed imageless (2026-10-11).
+    if re.search(r"-(style|inspired|fusion)$", first_base):
+        return None
     # Gerund verbs leading the headline ("Replacing Russian...", "Building New...")
     # — a given name never ends in -ing ("Singh" is a surname, handled below)
     if first_base.endswith("ing") and first_base != "singh" and len(first_base) > 4:

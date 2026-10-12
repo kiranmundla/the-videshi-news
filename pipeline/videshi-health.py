@@ -1168,7 +1168,9 @@ def check_broken_article_links(fix=False):
     # (curlytales.com verified 301->200 with a browser UA same day).
     # Treating their 403s as "broken" produced false alarms, so skip them.
     BOTBLOCK_403 = ("fastcompany.com", "cricinfo.com", "espncricinfo.com",
-                    "dol.gov", "curlytales.com")
+                    "dol.gov", "curlytales.com",
+                    # lotusleaders.org verified 403-via-requests -> 200-with-browser-UA on 2026-10-11
+                    "lotusleaders.org")
 
     try:
         resp = requests.get(
