@@ -1489,6 +1489,9 @@ _YT_SKIP_TITLE_WORDS = {
     "compilation", "top 10", "top 5", "top 20", "meme", "memes", "funny",
     "prank", "reaction video", "fan edit", "whatsapp status",
     "#shorts", "tiktok", "roast", "exposed", "scam",
+    # Pirate-bait (2026-10-12) — hard gate also lives in
+    # embed_placement.youtube_embed_reject_reason; these are belt-and-braces.
+    "full movie", "full film", "watch online", "free download",
 }
 
 def _extract_yt_search_keywords(headline, entity_name):
@@ -1667,6 +1670,21 @@ def find_best_youtube_embed(entity_name, headline, max_results=5):
     video_ids = [r["videoId"] for r in results]
     lang_map = _check_yt_video_language_api(video_ids)
     results = [r for r in results if not lang_map.get(r["videoId"], "").startswith(("hi", "te", "ta", "bn", "kn", "ml", "mr", "gu", "pa", "ur", "ar", "zh", "ja", "ko", "th"))]
+    if not results:
+        return None
+
+    # Step 3: Official-source / pirate-bait gate (2026-10-12) — reject
+    # pirate-bait titles outright; trailer/teaser videos must come from an
+    # official channel on the trailer-channels.json allowlist.
+    from embed_placement import youtube_embed_reject_reason
+    gated = []
+    for r in results:
+        reason = youtube_embed_reject_reason(r["title"], r["channelTitle"])
+        if reason:
+            print(f"     YT rejected: \"{r['title'][:60]}\" — {reason}")
+        else:
+            gated.append(r)
+    results = gated
     if not results:
         return None
 
@@ -1872,6 +1890,9 @@ def main():
                     else:
                         new_body = body + embed_tag
 
+                # Normalize placement: never leave a trailer in the bottom 20%
+                from embed_placement import reposition_bottom_trailer
+                new_body, _tmoved = reposition_bottom_trailer(new_body)
                 if update_article(article["id"], {"body": new_body}):
                     print(f"     ✅ Trailer embedded!")
                     trailer_enriched += 1
@@ -2092,6 +2113,9 @@ def main():
                     else:
                         new_body = body + embed_tag
 
+                # Normalize placement: never leave a trailer in the bottom 20%
+                from embed_placement import reposition_bottom_trailer
+                new_body, _ymoved = reposition_bottom_trailer(new_body)
                 if update_article(article["id"], {"body": new_body}):
                     print(f"     ✅ Embedded!")
                     yt_enriched += 1

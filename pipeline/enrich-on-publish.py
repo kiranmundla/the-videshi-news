@@ -868,6 +868,9 @@ _YT_SKIP_TITLE_WORDS = {
     # Other irrelevant content types
     "unboxing", "haul", "asmr", "mukbang", "gameplay", "walkthrough",
     "let's play", "speedrun", "tutorial makeup",
+    # Pirate-bait (2026-10-12) — hard gate also lives in
+    # embed_placement.youtube_embed_reject_reason; these are belt-and-braces.
+    "full movie", "full film", "watch online", "free download",
 }
 
 # Non-Latin script ranges (Devanagari, Telugu, Tamil, Bengali, Kannada, Malayalam,
@@ -1011,6 +1014,21 @@ def enrich_youtube(article, registry):
         query = f"{name} {' '.join(keywords[:3])}"
 
         results = search_youtube(query, max_results=5, published_after_days=60)
+        if not results:
+            continue
+
+        # ── Official-source / pirate-bait gate (2026-10-12) ──
+        # Reject pirate-bait titles outright, and require trailer/teaser
+        # videos to come from an official channel (trailer-channels.json).
+        from embed_placement import youtube_embed_reject_reason
+        gated = []
+        for r in results:
+            reason = youtube_embed_reject_reason(r["title"], r["channelTitle"])
+            if reason:
+                print(f"     YT rejected: \"{r['title'][:60]}\" — {reason}")
+            else:
+                gated.append(r)
+        results = gated
         if not results:
             continue
 
@@ -1633,6 +1651,18 @@ def main():
             new_embeds = deduped_embeds
             changes.append(f"deduped {n_deduped} embed(s) from social_embeds (already inline)")
             print(f"     🔄 Removed {n_deduped} duplicate embed(s) from social_embeds (already inline in body)")
+
+        # ── Trailer placement normalization (2026-10-12) ──
+        # reposition_bottom_trailer() has existed in embed_placement.py since
+        # the 2026-10-11 Blade Runner fix, but nothing ever called it — the
+        # Blade Runner instance was fixed by hand and bottom-placed trailers
+        # kept shipping (e.g. The Vvaan, tag at 99.5% past Related Coverage).
+        # Run it on every enriched body so the fix is systemic, not per-article.
+        from embed_placement import reposition_bottom_trailer
+        new_body, _trailer_moved = reposition_bottom_trailer(new_body)
+        if _trailer_moved:
+            changes.append("trailer repositioned to after 2nd paragraph")
+            print(f"     🎬 Moved bottom-placed trailer to mid-article")
 
         # ── Apply changes ──
         now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")

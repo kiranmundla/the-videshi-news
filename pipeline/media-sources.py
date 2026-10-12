@@ -213,6 +213,38 @@ def _looks_like_trailer(title):
     return "trailer" in t or "teaser" in t
 
 
+def _verify_official_trailer(vid_id):
+    """Verify a trailer candidate's real title + channel via oEmbed and run
+    the shared embed guard (embed_placement.youtube_embed_reject_reason).
+
+    Returns the watch URL if the video passes, else None. Fails CLOSED:
+    this function's only job is finding OFFICIAL trailers, so an
+    unverifiable candidate is not embeddable. Added 2026-10-12 after a
+    pirate-bait "full movie" upload was embedded as an official trailer.
+    """
+    try:
+        r = requests.get(
+            "https://www.youtube.com/oembed",
+            params={"url": f"https://www.youtube.com/watch?v={vid_id}", "format": "json"},
+            timeout=10,
+        )
+        if r.status_code != 200:
+            return None
+        data = r.json()
+        title, author = data.get("title", ""), data.get("author_name", "")
+    except Exception:
+        return None
+    try:
+        from embed_placement import youtube_embed_reject_reason
+        reason = youtube_embed_reject_reason(title, author)
+    except Exception:
+        reason = None
+    if reason:
+        print(f"  ✗ Trailer candidate rejected: {vid_id} — {reason}")
+        return None
+    return f"https://youtube.com/watch?v={vid_id}"
+
+
 def search_youtube_via_google_cse(query):
     """Search YouTube via Google CSE API."""
     try:
@@ -236,11 +268,12 @@ def search_youtube_via_google_cse(query):
             vid_id = _extract_youtube_id(link)
             if vid_id:
                 title_lower = item.get("title", "").lower()
-                # Prefer official trailers
+                # Prefer official trailers — verified via oEmbed + shared guard
                 if "trailer" in title_lower or "official" in title_lower:
-                    url = f"https://youtube.com/watch?v={vid_id}"
-                    print(f"  ✓ YouTube trailer (Google CSE): {url}")
-                    return url
+                    url = _verify_official_trailer(vid_id)
+                    if url:
+                        print(f"  ✓ YouTube trailer (Google CSE): {url}")
+                        return url
         # Fallback: first YouTube result that actually looks like a trailer.
         # Never embed a random video or Short — returning None is safer.
         for item in data.get("items", []):
@@ -251,9 +284,10 @@ def search_youtube_via_google_cse(query):
                 continue
             vid_id = _extract_youtube_id(link)
             if vid_id:
-                url = f"https://youtube.com/watch?v={vid_id}"
-                print(f"  ✓ YouTube video (Google CSE): {url}")
-                return url
+                url = _verify_official_trailer(vid_id)
+                if url:
+                    print(f"  ✓ YouTube video (Google CSE): {url}")
+                    return url
     except Exception as e:
         print(f"  ⚠ Google CSE YouTube search error: {e}")
     return None
@@ -285,19 +319,23 @@ def search_youtube_via_ytdlp(query, max_results=3):
             if len(results) >= max_results:
                 break
 
-        # Prefer results with "trailer" or "official" in title
+        # Prefer results with "trailer" or "official" in title — each
+        # candidate verified via oEmbed + shared official-channel guard.
         for r_item in results:
             title_lower = r_item["title"].lower()
             if "trailer" in title_lower or "official" in title_lower:
-                url = f"https://youtube.com/watch?v={r_item['id']}"
-                print(f"  ✓ YouTube trailer (scrape): {url}")
-                return url
+                url = _verify_official_trailer(r_item['id'])
+                if url:
+                    print(f"  ✓ YouTube trailer (scrape): {url}")
+                    return url
 
         # Fallback: first result that actually looks like a trailer.
         # Never embed a random video — returning None is safer.
         for r_item in results:
             if _looks_like_trailer(r_item["title"]):
-                url = f"https://youtube.com/watch?v={r_item['id']}"
+                url = _verify_official_trailer(r_item['id'])
+                if not url:
+                    continue
                 print(f"  ✓ YouTube video (scrape): {url}")
                 return url
 

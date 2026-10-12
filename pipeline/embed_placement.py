@@ -1,5 +1,7 @@
 """Shared embed placement logic — place embeds high but never cluster media."""
 
+import json
+import os
 import re
 
 # Media patterns to detect existing embeds/images in a section
@@ -113,3 +115,54 @@ def reposition_bottom_trailer(body):
                 + f"\n\n{trailer_tag}\n"
                 + body_without[insert_pos:])
     return new_body, True
+
+
+# ── YouTube embed quality guard (shared) ─────────────────────────────
+# Added 2026-10-12 after a pirate-bait upload ("Movies RYS" — title stuffed
+# with "full movie" + a song name) was embedded as the "official trailer"
+# on a box-office article. Rules:
+#   1. Pirate-bait titles are ALWAYS rejected ("full movie", "watch online",
+#      "free download", ...).
+#   2. A video whose title says trailer/teaser must come from an official
+#      channel on the trailer-channels.json allowlist — the same single
+#      source of truth trailer-watch.py polls and prebuild-feeds.py gates
+#      the trailers rail on. A missing trailer beats a fake one.
+
+_PIRATE_BAIT_RE = re.compile(
+    r"full\s+movie|full\s+film|watch\s+online|free\s+download|download\s+link",
+    re.IGNORECASE,
+)
+_TRAILERISH_RE = re.compile(r"\b(?:trailer|teaser)\b", re.IGNORECASE)
+
+_OFFICIAL_CHANNELS_CACHE = None
+
+
+def official_trailer_channels():
+    """Lowercased official channel names from pipeline/trailer-channels.json."""
+    global _OFFICIAL_CHANNELS_CACHE
+    if _OFFICIAL_CHANNELS_CACHE is None:
+        names = set()
+        try:
+            path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "trailer-channels.json")
+            with open(path) as f:
+                cfg = json.load(f)
+            names = {c["name"].strip().lower()
+                     for c in cfg.get("channels", []) if c.get("name")}
+        except Exception:
+            names = set()
+        _OFFICIAL_CHANNELS_CACHE = names
+    return _OFFICIAL_CHANNELS_CACHE
+
+
+def youtube_embed_reject_reason(title, channel):
+    """Return a short reason if a YouTube result must NOT be embedded, else None."""
+    t = (title or "").lower()
+    if _PIRATE_BAIT_RE.search(t):
+        return "pirate-bait title"
+    if _TRAILERISH_RE.search(t):
+        officials = official_trailer_channels()
+        ch = (channel or "").strip().lower()
+        if officials and ch not in officials:
+            return f"trailer from non-official channel '{channel}'"
+    return None
