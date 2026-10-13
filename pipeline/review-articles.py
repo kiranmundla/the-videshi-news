@@ -221,17 +221,16 @@ def check_youtube_relevance(article):
 
 # ── LLM review ──
 
-def check_caption_grounding(article):
-    """Flag hero captions that assert venue facts not supported by the image's
-    own source metadata (Wikimedia Commons filename).
+def _venue_grounding_issues(caption, img, label):
+    """Flag one caption/image pair where the caption names a venue that the
+    image's own Wikimedia filename does not fully support.
 
-    Catches invented venue claims — e.g. a c.1940s photo whose Commons title
-    says "Hyderabad Public School" being captioned as "Wankhede Stadium".
-    The caption bar is: describe what the image ACTUALLY shows, per its source.
+    Full-support (subset) test, not any-overlap: "Salt Lake Stadium" captioned
+    on a file named "Salt_Lake_City, Utah" shares 'salt'/'lake' yet is a
+    different place entirely (University of Utah stadium tower, caught live
+    2026-10-13) — partial overlap is exactly how wrong-venue photos pass.
     """
     issues = []
-    img = article.get("image_url") or ""
-    caption = article.get("image_caption") or ""
     if not img or not caption:
         return issues
     if "wikimedia.org" not in img.lower():
@@ -248,10 +247,45 @@ def check_caption_grounding(article):
             r'\b([A-Z][\w&.\'-]*(?:\s+[A-Z][\w&.\'-]*)*)\s+(' + venue_kinds + r')\b',
             first):
         venue_words = set(re.findall(r'[a-z]{4,}', vm.group(0).lower()))
-        if venue_words and not (venue_words & fname_words):
+        if venue_words and not venue_words.issubset(fname_words):
             issues.append(
-                f"Caption names venue '{vm.group(0)}' not supported by the image "
-                f"file name ({m.group(1)[:60]}…) — verify the venue or reword")
+                f"{label} names venue '{vm.group(0)}' not supported by the "
+                f"image file name ({m.group(1)[:60]}…) — verify the venue "
+                f"or reword")
+    return issues
+
+
+def check_caption_grounding(article):
+    """Flag captions (hero AND inline body figures) that assert venue facts
+    not supported by the image's own source metadata (Wikimedia Commons
+    filename).
+
+    Catches invented venue claims — e.g. a c.1940s photo whose Commons title
+    says "Hyderabad Public School" being captioned as "Wankhede Stadium",
+    and a Salt Lake City, Utah photo captioned as Kolkata's Salt Lake
+    Stadium (2026-10-13: the inline-figure case was invisible to the old
+    hero-only check, and the article query never selected image_caption,
+    so the hero check never ran either).
+    The caption bar is: describe what the image ACTUALLY shows, per its source.
+    """
+    issues = []
+    issues.extend(_venue_grounding_issues(
+        article.get("image_caption") or "", article.get("image_url") or "",
+        "Caption"))
+    body = article.get("body") or ""
+    for fig in re.findall(r'<figure[^>]*>(.*?)</figure>', body, re.S | re.I):
+        src_m = re.search(r'<img[^>]+src="([^"]+)"', fig, re.I)
+        cap_m = re.search(r'<figcaption[^>]*>(.*?)</figcaption>', fig, re.S | re.I)
+        if not src_m:
+            continue
+        caption = ""
+        if cap_m:
+            caption = re.sub(r'<[^>]+>', '', cap_m.group(1)).strip()
+        if not caption:
+            alt_m = re.search(r'<img[^>]+alt="([^"]*)"', fig, re.I)
+            caption = alt_m.group(1).strip() if alt_m else ""
+        issues.extend(_venue_grounding_issues(caption, src_m.group(1),
+                                              "Inline caption"))
     return issues
 
 
@@ -490,7 +524,7 @@ def main():
         for aid in ids:
             a = sb_get("p2_articles", {
                 "id": f"eq.{aid}",
-                "select": "id,headline,slug,category,article_type,body,social_embeds,image_url,published_at"
+                "select": "id,headline,slug,category,article_type,body,social_embeds,image_url,image_caption,published_at"
             })
             articles.extend(a)
     else:
@@ -498,7 +532,7 @@ def main():
         articles = sb_get("p2_articles", {
             "status": "eq.published",
             "published_at": f"gte.{cutoff}",
-            "select": "id,headline,slug,category,article_type,body,social_embeds,image_url,published_at",
+            "select": "id,headline,slug,category,article_type,body,social_embeds,image_url,image_caption,published_at",
             "order": "published_at.desc",
             "limit": str(args.max)
         })
