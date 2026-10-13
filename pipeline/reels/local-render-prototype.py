@@ -21,7 +21,7 @@ Usage:
 """
 import argparse, json, subprocess, sys, time
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 # ── Canvas / design standard (strategy §4.1–4.2) ────────────────────────────
 W, H = 1080, 1920
@@ -191,9 +191,36 @@ def eyebrow_pill(base, cx, y, text):
     return ph
 
 
-def load_background(hero_path):
-    """Cover-fill 1080x1920 (crop, never stretch) + navy legibility grade."""
-    img = Image.open(hero_path).convert("RGB")
+# ── Hero enhancement (v3) ───────────────────────────────────────────────────
+# v2's background looked dull/dark for two reasons: (1) the navy grade
+# composited up to 59% navy over the bottom of the frame, and (2) the
+# reel-broll hero was itself an upscale of a small thumbnail (face-region
+# Laplacian variance 6.3 vs 126.9 for the article's full-res original).
+# v3: feed the best legitimate source (the article image_url at full size),
+# enhance deterministically, and let the translucent panels + text shadow
+# carry legibility — the grade drops to ~15% of its old strength.
+ENH = {
+    "upscale": 2,            # 2x Lanczos supersample before crop/resize
+    "denoise_blur": 0.6,     # Gaussian radius on the upscaled image
+    "unsharp": (2.0, 55, 3),  # radius, percent, threshold — mild
+    "gamma": 1.08,           # midtone lift
+    "brightness": 1.08,
+    "contrast": 1.10,
+    "saturation": 1.25,
+    "warmth": (1.03, 1.00, 0.96),  # per-channel R/G/B multipliers
+    "grade_scale": 0.15,     # navy grade at 15% of v2 strength
+}
+
+
+def enhance_hero(img):
+    """Deterministic bright/vivid lift. All values recorded in ENH."""
+    img = img.resize((img.width * ENH["upscale"],
+                      img.height * ENH["upscale"]), Image.LANCZOS)
+    img = img.filter(ImageFilter.GaussianBlur(ENH["denoise_blur"]))
+    r, p, t = ENH["unsharp"]
+    img = img.filter(ImageFilter.UnsharpMask(radius=r, percent=p,
+                                             threshold=t))
+    # Cover-fill 1080x1920 (crop, never stretch) from the enhanced image.
     scale = max(W / img.width, H / img.height)
     img = img.resize((round(img.width * scale), round(img.height * scale)),
                      Image.LANCZOS)
@@ -202,11 +229,30 @@ def load_background(hero_path):
     x0 = min(max(fx - W // 2, 0), img.width - W)
     y0 = min(max(fy - int(H * 0.32), 0), img.height - H)
     img = img.crop((x0, y0, x0 + W, y0 + H))
-    # Grade: light overall navy wash, deepening toward the bottom stage.
+    # Exposure / color lift.
+    g = ENH["gamma"]
+    img = img.point(lambda v: min(255, int(255 * (v / 255) ** (1 / g))))
+    img = ImageEnhance.Brightness(img).enhance(ENH["brightness"])
+    img = ImageEnhance.Contrast(img).enhance(ENH["contrast"])
+    img = ImageEnhance.Color(img).enhance(ENH["saturation"])
+    wr, wg, wb = ENH["warmth"]
+    chans = img.split()
+    img = Image.merge("RGB", (
+        chans[0].point(lambda v: min(255, int(v * wr))),
+        chans[1].point(lambda v: min(255, int(v * wg))),
+        chans[2].point(lambda v: min(255, int(v * wb)))))
+    return img
+
+
+def load_background(hero_path):
+    """Enhanced hero + a whisper of the old navy grade (15% strength)."""
+    img = enhance_hero(Image.open(hero_path).convert("RGB"))
+    gs = ENH["grade_scale"]
     grade = Image.new("L", (1, H))
     for yy in range(H):
         t = yy / H
-        grade.putpixel((0, yy), int(46 + 105 * max(0.0, (t - 0.30) / 0.70) ** 1.4))
+        grade.putpixel((0, yy), int(
+            (46 + 105 * max(0.0, (t - 0.30) / 0.70) ** 1.4) * gs))
     grade = grade.resize((W, H))
     navy = Image.new("RGB", (W, H), NAVY)
     return Image.composite(navy, img, grade)
