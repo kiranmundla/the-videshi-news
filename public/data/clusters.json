@@ -1,0 +1,8759 @@
+{
+ "version": 1,
+ "generated": "2026-10-13",
+ "source": "ACS 2024 5-year B02015_021E via Census Reporter; clusters: research/diaspora-suburb-clusters-plan-2026-10-13.md (research/data/clusters.json)",
+ "clusters": [
+  {
+   "id": "new-york-ny",
+   "label": "New York, NY",
+   "state": "NY",
+   "center": {
+    "lat": 40.7128,
+    "lon": -74.006
+   },
+   "anchor": "New York",
+   "query_cities": [
+    "New York",
+    "Jersey City"
+   ],
+   "aliases": [
+    "New York",
+    "NYC",
+    "New York City",
+    "Jersey City",
+    "Hoboken",
+    "Secaucus",
+    "Newark",
+    "Clifton",
+    "Passaic",
+    "Hackensack"
+   ],
+   "members": [
+    {
+     "name": "New York",
+     "state": "NY",
+     "lat": 40.6643,
+     "lon": -73.9385
+    },
+    {
+     "name": "Jersey City",
+     "state": "NJ",
+     "lat": 40.7114,
+     "lon": -74.0648
+    },
+    {
+     "name": "Secaucus",
+     "state": "NJ",
+     "lat": 40.782,
+     "lon": -74.0676
+    },
+    {
+     "name": "Carteret",
+     "state": "NJ",
+     "lat": 40.5838,
+     "lon": -74.2275
+    },
+    {
+     "name": "Clifton",
+     "state": "NJ",
+     "lat": 40.8621,
+     "lon": -74.1604
+    },
+    {
+     "name": "Hoboken",
+     "state": "NJ",
+     "lat": 40.7453,
+     "lon": -74.0279
+    },
+    {
+     "name": "Passaic",
+     "state": "NJ",
+     "lat": 40.8564,
+     "lon": -74.1269
+    },
+    {
+     "name": "Hackensack",
+     "state": "NJ",
+     "lat": 40.8894,
+     "lon": -74.0457
+    },
+    {
+     "name": "Newark",
+     "state": "NJ",
+     "lat": 40.7242,
+     "lon": -74.1726
+    },
+    {
+     "name": "Harrison",
+     "state": "NJ",
+     "lat": 40.743,
+     "lon": -74.1529
+    },
+    {
+     "name": "Bayonne",
+     "state": "NJ",
+     "lat": 40.6624,
+     "lon": -74.1102
+    },
+    {
+     "name": "North Valley Stream",
+     "state": "NY",
+     "lat": 40.6843,
+     "lon": -73.708
+    },
+    {
+     "name": "New Hyde Park",
+     "state": "NY",
+     "lat": 40.7324,
+     "lon": -73.6857
+    },
+    {
+     "name": "Rutherford",
+     "state": "NJ",
+     "lat": 40.8203,
+     "lon": -74.106
+    },
+    {
+     "name": "Roselle Park",
+     "state": "NJ",
+     "lat": 40.6653,
+     "lon": -74.2667
+    },
+    {
+     "name": "Searingtown",
+     "state": "NY",
+     "lat": 40.7704,
+     "lon": -73.6603
+    },
+    {
+     "name": "Fort Lee",
+     "state": "NJ",
+     "lat": 40.8506,
+     "lon": -73.971
+    },
+    {
+     "name": "West New York",
+     "state": "NJ",
+     "lat": 40.786,
+     "lon": -74.0095
+    },
+    {
+     "name": "Tenafly",
+     "state": "NJ",
+     "lat": 40.9183,
+     "lon": -73.9505
+    },
+    {
+     "name": "Herricks",
+     "state": "NY",
+     "lat": 40.7567,
+     "lon": -73.6635
+    },
+    {
+     "name": "Manhasset Hills",
+     "state": "NY",
+     "lat": 40.7591,
+     "lon": -73.6809
+    },
+    {
+     "name": "Maywood",
+     "state": "NJ",
+     "lat": 40.9029,
+     "lon": -74.0635
+    },
+    {
+     "name": "Wood-Ridge",
+     "state": "NJ",
+     "lat": 40.8502,
+     "lon": -74.0871
+    },
+    {
+     "name": "West Hempstead",
+     "state": "NY",
+     "lat": 40.6958,
+     "lon": -73.6505
+    },
+    {
+     "name": "Edgewater",
+     "state": "NJ",
+     "lat": 40.8238,
+     "lon": -73.9742
+    },
+    {
+     "name": "Englewood",
+     "state": "NJ",
+     "lat": 40.8912,
+     "lon": -73.9725
+    },
+    {
+     "name": "Hempstead",
+     "state": "NY",
+     "lat": 40.7044,
+     "lon": -73.6194
+    },
+    {
+     "name": "Mineola",
+     "state": "NY",
+     "lat": 40.747,
+     "lon": -73.6392
+    },
+    {
+     "name": "East Rutherford",
+     "state": "NJ",
+     "lat": 40.8171,
+     "lon": -74.085
+    },
+    {
+     "name": "Union City",
+     "state": "NJ",
+     "lat": 40.7675,
+     "lon": -74.0323
+    },
+    {
+     "name": "Elizabeth",
+     "state": "NJ",
+     "lat": 40.6663,
+     "lon": -74.1935
+    },
+    {
+     "name": "Roslyn Heights",
+     "state": "NY",
+     "lat": 40.7788,
+     "lon": -73.6396
+    },
+    {
+     "name": "Floral Park",
+     "state": "NY",
+     "lat": 40.722,
+     "lon": -73.7028
+    },
+    {
+     "name": "Cliffside Park",
+     "state": "NJ",
+     "lat": 40.8221,
+     "lon": -73.9878
+    },
+    {
+     "name": "Kearny",
+     "state": "NJ",
+     "lat": 40.7537,
+     "lon": -74.1209
+    },
+    {
+     "name": "Garfield",
+     "state": "NJ",
+     "lat": 40.8798,
+     "lon": -74.1082
+    },
+    {
+     "name": "Manorhaven",
+     "state": "NY",
+     "lat": 40.8394,
+     "lon": -73.7111
+    },
+    {
+     "name": "Brookdale",
+     "state": "NJ",
+     "lat": 40.8349,
+     "lon": -74.1798
+    },
+    {
+     "name": "Rockville Centre",
+     "state": "NY",
+     "lat": 40.664,
+     "lon": -73.638
+    },
+    {
+     "name": "Lodi",
+     "state": "NJ",
+     "lat": 40.8779,
+     "lon": -74.0825
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    1
+   ]
+  },
+  {
+   "id": "san-jose-ca",
+   "label": "San Jose, CA",
+   "state": "CA",
+   "center": {
+    "lat": 37.3382,
+    "lon": -121.8863
+   },
+   "anchor": "San Jose",
+   "query_cities": [
+    "San Jose",
+    "Sunnyvale",
+    "Santa Clara",
+    "Milpitas",
+    "Cupertino"
+   ],
+   "aliases": [
+    "San Jose",
+    "Sunnyvale",
+    "Santa Clara",
+    "Milpitas",
+    "Cupertino",
+    "Mountain View",
+    "Silicon Valley",
+    "South Bay"
+   ],
+   "members": [
+    {
+     "name": "San Jose",
+     "state": "CA",
+     "lat": 37.2969,
+     "lon": -121.8193
+    },
+    {
+     "name": "Sunnyvale",
+     "state": "CA",
+     "lat": 37.3858,
+     "lon": -122.0263
+    },
+    {
+     "name": "Santa Clara",
+     "state": "CA",
+     "lat": 37.3646,
+     "lon": -121.9679
+    },
+    {
+     "name": "Milpitas",
+     "state": "CA",
+     "lat": 37.4366,
+     "lon": -121.8913
+    },
+    {
+     "name": "Cupertino",
+     "state": "CA",
+     "lat": 37.3194,
+     "lon": -122.045
+    },
+    {
+     "name": "Mountain View",
+     "state": "CA",
+     "lat": 37.3994,
+     "lon": -122.0795
+    },
+    {
+     "name": "Saratoga",
+     "state": "CA",
+     "lat": 37.2685,
+     "lon": -122.0251
+    },
+    {
+     "name": "Los Altos",
+     "state": "CA",
+     "lat": 37.3685,
+     "lon": -122.0966
+    },
+    {
+     "name": "Los Gatos",
+     "state": "CA",
+     "lat": 37.233,
+     "lon": -121.9511
+    },
+    {
+     "name": "Campbell",
+     "state": "CA",
+     "lat": 37.2802,
+     "lon": -121.9544
+    },
+    {
+     "name": "Morgan Hill",
+     "state": "CA",
+     "lat": 37.1324,
+     "lon": -121.6413
+    },
+    {
+     "name": "East Foothills",
+     "state": "CA",
+     "lat": 37.3832,
+     "lon": -121.8156
+    },
+    {
+     "name": "Loyola",
+     "state": "CA",
+     "lat": 37.3499,
+     "lon": -122.0982
+    },
+    {
+     "name": "Alum Rock",
+     "state": "CA",
+     "lat": 37.3676,
+     "lon": -121.8261
+    },
+    {
+     "name": "Cambrian Park",
+     "state": "CA",
+     "lat": 37.2563,
+     "lon": -121.9289
+    },
+    {
+     "name": "Monte Sereno",
+     "state": "CA",
+     "lat": 37.2404,
+     "lon": -121.9881
+    },
+    {
+     "name": "Burbank",
+     "state": "CA",
+     "lat": 37.3211,
+     "lon": -121.9305
+    },
+    {
+     "name": "Lexington Hills",
+     "state": "CA",
+     "lat": 37.1575,
+     "lon": -121.9907
+    }
+   ],
+   "block": [
+    "costa rica"
+   ],
+   "context_guard": "san_jose",
+   "source_ranks": [
+    2
+   ]
+  },
+  {
+   "id": "fremont-ca",
+   "label": "Fremont, CA",
+   "state": "CA",
+   "center": {
+    "lat": 37.5485,
+    "lon": -121.9886
+   },
+   "anchor": "Fremont",
+   "query_cities": [
+    "Fremont"
+   ],
+   "aliases": [
+    "Fremont"
+   ],
+   "members": [
+    {
+     "name": "Fremont",
+     "state": "CA",
+     "lat": 37.4944,
+     "lon": -121.9411
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": []
+  },
+  {
+   "id": "frisco-plano-tx",
+   "label": "Frisco / Plano, TX",
+   "state": "TX",
+   "center": {
+    "lat": 33.1507,
+    "lon": -96.8236
+   },
+   "anchor": "Frisco",
+   "query_cities": [
+    "Frisco",
+    "Plano",
+    "McKinney",
+    "Allen",
+    "Richardson"
+   ],
+   "aliases": [
+    "Frisco",
+    "Plano",
+    "Richardson",
+    "Coppell",
+    "Collin County"
+   ],
+   "members": [
+    {
+     "name": "Frisco",
+     "state": "TX",
+     "lat": 33.151,
+     "lon": -96.8193
+    },
+    {
+     "name": "Plano",
+     "state": "TX",
+     "lat": 33.0508,
+     "lon": -96.7479
+    },
+    {
+     "name": "McKinney",
+     "state": "TX",
+     "lat": 33.2012,
+     "lon": -96.668
+    },
+    {
+     "name": "Allen",
+     "state": "TX",
+     "lat": 33.1072,
+     "lon": -96.6747
+    },
+    {
+     "name": "Coppell",
+     "state": "TX",
+     "lat": 32.9633,
+     "lon": -96.9906
+    },
+    {
+     "name": "Richardson",
+     "state": "TX",
+     "lat": 32.9723,
+     "lon": -96.7081
+    },
+    {
+     "name": "Lewisville",
+     "state": "TX",
+     "lat": 33.0466,
+     "lon": -96.9818
+    },
+    {
+     "name": "Carrollton",
+     "state": "TX",
+     "lat": 32.9884,
+     "lon": -96.8998
+    },
+    {
+     "name": "Murphy",
+     "state": "TX",
+     "lat": 33.0168,
+     "lon": -96.6085
+    },
+    {
+     "name": "Little Elm",
+     "state": "TX",
+     "lat": 33.1767,
+     "lon": -96.929
+    },
+    {
+     "name": "Celina",
+     "state": "TX",
+     "lat": 33.3172,
+     "lon": -96.7874
+    },
+    {
+     "name": "Prosper",
+     "state": "TX",
+     "lat": 33.2392,
+     "lon": -96.8047
+    },
+    {
+     "name": "Farmers Branch",
+     "state": "TX",
+     "lat": 32.9278,
+     "lon": -96.8785
+    },
+    {
+     "name": "The Colony",
+     "state": "TX",
+     "lat": 33.0896,
+     "lon": -96.9033
+    },
+    {
+     "name": "Melissa",
+     "state": "TX",
+     "lat": 33.2897,
+     "lon": -96.5559
+    },
+    {
+     "name": "Parker",
+     "state": "TX",
+     "lat": 33.0633,
+     "lon": -96.6257
+    },
+    {
+     "name": "Lantana",
+     "state": "TX",
+     "lat": 33.0921,
+     "lon": -97.1195
+    },
+    {
+     "name": "Addison",
+     "state": "TX",
+     "lat": 32.9585,
+     "lon": -96.837
+    },
+    {
+     "name": "Hackberry",
+     "state": "TX",
+     "lat": 33.1493,
+     "lon": -96.9183
+    },
+    {
+     "name": "Corinth",
+     "state": "TX",
+     "lat": 33.1438,
+     "lon": -97.0725
+    },
+    {
+     "name": "Oak Point",
+     "state": "TX",
+     "lat": 33.1738,
+     "lon": -96.9859
+    },
+    {
+     "name": "Highland Village",
+     "state": "TX",
+     "lat": 33.0902,
+     "lon": -97.0626
+    },
+    {
+     "name": "Paloma Creek South",
+     "state": "TX",
+     "lat": 33.2108,
+     "lon": -96.9367
+    },
+    {
+     "name": "Lucas",
+     "state": "TX",
+     "lat": 33.1013,
+     "lon": -96.5801
+    },
+    {
+     "name": "Copper Canyon",
+     "state": "TX",
+     "lat": 33.0967,
+     "lon": -97.0971
+    },
+    {
+     "name": "Paloma Creek",
+     "state": "TX",
+     "lat": 33.2256,
+     "lon": -96.9371
+    },
+    {
+     "name": "Aubrey",
+     "state": "TX",
+     "lat": 33.302,
+     "lon": -96.9826
+    },
+    {
+     "name": "Savannah",
+     "state": "TX",
+     "lat": 33.2259,
+     "lon": -96.9079
+    },
+    {
+     "name": "Lake Dallas",
+     "state": "TX",
+     "lat": 33.1278,
+     "lon": -97.0228
+    },
+    {
+     "name": "Shady Shores",
+     "state": "TX",
+     "lat": 33.1621,
+     "lon": -97.035
+    },
+    {
+     "name": "Fairview",
+     "state": "TX",
+     "lat": 33.1407,
+     "lon": -96.6135
+    },
+    {
+     "name": "Hickory Creek",
+     "state": "TX",
+     "lat": 33.1093,
+     "lon": -97.0295
+    },
+    {
+     "name": "Double Oak",
+     "state": "TX",
+     "lat": 33.0625,
+     "lon": -97.1074
+    },
+    {
+     "name": "Lakewood Village",
+     "state": "TX",
+     "lat": 33.1361,
+     "lon": -96.9764
+    },
+    {
+     "name": "Lowry Crossing",
+     "state": "TX",
+     "lat": 33.1692,
+     "lon": -96.5448
+    },
+    {
+     "name": "St. Paul",
+     "state": "TX",
+     "lat": 33.0475,
+     "lon": -96.5534
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    3
+   ]
+  },
+  {
+   "id": "seattle-wa",
+   "label": "Seattle, WA",
+   "state": "WA",
+   "center": {
+    "lat": 47.6062,
+    "lon": -122.3321
+   },
+   "anchor": "Seattle",
+   "query_cities": [
+    "Seattle",
+    "Bellevue",
+    "Redmond",
+    "Sammamish",
+    "Kent"
+   ],
+   "aliases": [
+    "Seattle",
+    "Bellevue",
+    "Redmond",
+    "Sammamish",
+    "Kent",
+    "Kirkland",
+    "Eastside"
+   ],
+   "members": [
+    {
+     "name": "Seattle",
+     "state": "WA",
+     "lat": 47.6205,
+     "lon": -122.3509
+    },
+    {
+     "name": "Bellevue",
+     "state": "WA",
+     "lat": 47.5978,
+     "lon": -122.1565
+    },
+    {
+     "name": "Redmond",
+     "state": "WA",
+     "lat": 47.6757,
+     "lon": -122.1172
+    },
+    {
+     "name": "Sammamish",
+     "state": "WA",
+     "lat": 47.6043,
+     "lon": -122.0383
+    },
+    {
+     "name": "Mill Creek East",
+     "state": "WA",
+     "lat": 47.836,
+     "lon": -122.1877
+    },
+    {
+     "name": "Kent",
+     "state": "WA",
+     "lat": 47.3853,
+     "lon": -122.2169
+    },
+    {
+     "name": "Kirkland",
+     "state": "WA",
+     "lat": 47.6847,
+     "lon": -122.1915
+    },
+    {
+     "name": "Union Hill-Novelty Hill",
+     "state": "WA",
+     "lat": 47.6821,
+     "lon": -122.0236
+    },
+    {
+     "name": "Bothell East",
+     "state": "WA",
+     "lat": 47.8065,
+     "lon": -122.1843
+    },
+    {
+     "name": "Issaquah",
+     "state": "WA",
+     "lat": 47.5404,
+     "lon": -122.0421
+    },
+    {
+     "name": "Bothell",
+     "state": "WA",
+     "lat": 47.7769,
+     "lon": -122.205
+    },
+    {
+     "name": "Renton",
+     "state": "WA",
+     "lat": 47.4761,
+     "lon": -122.192
+    },
+    {
+     "name": "Bothell West",
+     "state": "WA",
+     "lat": 47.8052,
+     "lon": -122.2407
+    },
+    {
+     "name": "Martha Lake",
+     "state": "WA",
+     "lat": 47.8447,
+     "lon": -122.2331
+    },
+    {
+     "name": "Lake Stickney",
+     "state": "WA",
+     "lat": 47.8714,
+     "lon": -122.2572
+    },
+    {
+     "name": "Mercer Island",
+     "state": "WA",
+     "lat": 47.5677,
+     "lon": -122.2328
+    },
+    {
+     "name": "Shoreline",
+     "state": "WA",
+     "lat": 47.7569,
+     "lon": -122.3424
+    },
+    {
+     "name": "Cottage Lake",
+     "state": "WA",
+     "lat": 47.7465,
+     "lon": -122.076
+    },
+    {
+     "name": "SeaTac",
+     "state": "WA",
+     "lat": 47.4433,
+     "lon": -122.2988
+    },
+    {
+     "name": "Newcastle",
+     "state": "WA",
+     "lat": 47.5319,
+     "lon": -122.1656
+    },
+    {
+     "name": "Woodinville",
+     "state": "WA",
+     "lat": 47.7577,
+     "lon": -122.1468
+    },
+    {
+     "name": "Fairwood",
+     "state": "WA",
+     "lat": 47.4471,
+     "lon": -122.1436
+    },
+    {
+     "name": "Kenmore",
+     "state": "WA",
+     "lat": 47.7526,
+     "lon": -122.2461
+    },
+    {
+     "name": "North Lynnwood",
+     "state": "WA",
+     "lat": 47.8533,
+     "lon": -122.2763
+    },
+    {
+     "name": "Lynnwood",
+     "state": "WA",
+     "lat": 47.829,
+     "lon": -122.3007
+    },
+    {
+     "name": "Burien",
+     "state": "WA",
+     "lat": 47.4692,
+     "lon": -122.3643
+    },
+    {
+     "name": "Des Moines",
+     "state": "WA",
+     "lat": 47.3911,
+     "lon": -122.3155
+    },
+    {
+     "name": "Edmonds",
+     "state": "WA",
+     "lat": 47.8275,
+     "lon": -122.366
+    },
+    {
+     "name": "Bainbridge Island",
+     "state": "WA",
+     "lat": 47.6493,
+     "lon": -122.5148
+    },
+    {
+     "name": "Larch Way",
+     "state": "WA",
+     "lat": 47.8429,
+     "lon": -122.2527
+    },
+    {
+     "name": "Tukwila",
+     "state": "WA",
+     "lat": 47.4757,
+     "lon": -122.2757
+    },
+    {
+     "name": "East Renton Highlands",
+     "state": "WA",
+     "lat": 47.4715,
+     "lon": -122.0886
+    },
+    {
+     "name": "Mountlake Terrace",
+     "state": "WA",
+     "lat": 47.7943,
+     "lon": -122.3026
+    },
+    {
+     "name": "Clyde Hill",
+     "state": "WA",
+     "lat": 47.6304,
+     "lon": -122.218
+    },
+    {
+     "name": "Picnic Point",
+     "state": "WA",
+     "lat": 47.8765,
+     "lon": -122.3083
+    },
+    {
+     "name": "Clearview",
+     "state": "WA",
+     "lat": 47.8292,
+     "lon": -122.1451
+    },
+    {
+     "name": "Bryn Mawr-Skyway",
+     "state": "WA",
+     "lat": 47.494,
+     "lon": -122.2443
+    },
+    {
+     "name": "Maple Heights-Lake Desire",
+     "state": "WA",
+     "lat": 47.4362,
+     "lon": -122.0943
+    },
+    {
+     "name": "Lake Forest Park",
+     "state": "WA",
+     "lat": 47.7597,
+     "lon": -122.2895
+    },
+    {
+     "name": "Maltby",
+     "state": "WA",
+     "lat": 47.8021,
+     "lon": -122.1062
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    4
+   ]
+  },
+  {
+   "id": "dublin-ca",
+   "label": "Dublin, CA",
+   "state": "CA",
+   "center": {
+    "lat": 37.7022,
+    "lon": -121.9358
+   },
+   "anchor": "Dublin",
+   "query_cities": [
+    "Dublin California",
+    "San Ramon",
+    "Pleasanton",
+    "Livermore",
+    "Union City",
+    "Hayward"
+   ],
+   "aliases": [
+    "San Ramon",
+    "Pleasanton",
+    "Livermore",
+    "Tri-Valley",
+    "Union City",
+    "Hayward"
+   ],
+   "members": [
+    {
+     "name": "Dublin",
+     "state": "CA",
+     "lat": 37.7143,
+     "lon": -121.9013
+    },
+    {
+     "name": "San Ramon",
+     "state": "CA",
+     "lat": 37.7615,
+     "lon": -121.9377
+    },
+    {
+     "name": "Pleasanton",
+     "state": "CA",
+     "lat": 37.6662,
+     "lon": -121.8783
+    },
+    {
+     "name": "Union City",
+     "state": "CA",
+     "lat": 37.6028,
+     "lon": -122.019
+    },
+    {
+     "name": "Hayward",
+     "state": "CA",
+     "lat": 37.6281,
+     "lon": -122.1063
+    },
+    {
+     "name": "Newark",
+     "state": "CA",
+     "lat": 37.5041,
+     "lon": -122.0324
+    },
+    {
+     "name": "Livermore",
+     "state": "CA",
+     "lat": 37.6868,
+     "lon": -121.7626
+    },
+    {
+     "name": "Danville",
+     "state": "CA",
+     "lat": 37.8122,
+     "lon": -121.97
+    },
+    {
+     "name": "Castro Valley",
+     "state": "CA",
+     "lat": 37.7097,
+     "lon": -122.0623
+    },
+    {
+     "name": "Walnut Creek",
+     "state": "CA",
+     "lat": 37.9027,
+     "lon": -122.0405
+    },
+    {
+     "name": "Camino Tassajara",
+     "state": "CA",
+     "lat": 37.791,
+     "lon": -121.885
+    },
+    {
+     "name": "San Leandro",
+     "state": "CA",
+     "lat": 37.7046,
+     "lon": -122.1616
+    },
+    {
+     "name": "Fairview",
+     "state": "CA",
+     "lat": 37.6777,
+     "lon": -122.0444
+    },
+    {
+     "name": "Lafayette",
+     "state": "CA",
+     "lat": 37.891,
+     "lon": -122.1195
+    },
+    {
+     "name": "Blackhawk",
+     "state": "CA",
+     "lat": 37.8094,
+     "lon": -121.9129
+    },
+    {
+     "name": "Ashland",
+     "state": "CA",
+     "lat": 37.6942,
+     "lon": -122.1159
+    },
+    {
+     "name": "Norris Canyon",
+     "state": "CA",
+     "lat": 37.746,
+     "lon": -121.9888
+    },
+    {
+     "name": "Alamo",
+     "state": "CA",
+     "lat": 37.8546,
+     "lon": -122.013
+    },
+    {
+     "name": "Moraga",
+     "state": "CA",
+     "lat": 37.8457,
+     "lon": -122.1232
+    },
+    {
+     "name": "Clayton",
+     "state": "CA",
+     "lat": 37.9403,
+     "lon": -121.9301
+    },
+    {
+     "name": "San Lorenzo",
+     "state": "CA",
+     "lat": 37.6744,
+     "lon": -122.1351
+    },
+    {
+     "name": "Cherryland",
+     "state": "CA",
+     "lat": 37.6792,
+     "lon": -122.1038
+    },
+    {
+     "name": "Castle Hill",
+     "state": "CA",
+     "lat": 37.873,
+     "lon": -122.0573
+    },
+    {
+     "name": "San Miguel",
+     "state": "CA",
+     "lat": 37.8867,
+     "lon": -122.0368
+    },
+    {
+     "name": "Sunol",
+     "state": "CA",
+     "lat": 37.5859,
+     "lon": -121.8804
+    }
+   ],
+   "block": [
+    "ireland",
+    "dáil",
+    "tánaiste",
+    "garda"
+   ],
+   "context_guard": "dublin_ca",
+   "source_ranks": [
+    5
+   ]
+  },
+  {
+   "id": "chicago-il",
+   "label": "Chicago, IL",
+   "state": "IL",
+   "center": {
+    "lat": 41.8781,
+    "lon": -87.6298
+   },
+   "anchor": "Chicago",
+   "query_cities": [
+    "Chicago",
+    "Des Plaines",
+    "Skokie",
+    "Lombard"
+   ],
+   "aliases": [
+    "Chicago",
+    "Des Plaines",
+    "Skokie",
+    "Morton Grove",
+    "Lombard",
+    "Niles"
+   ],
+   "members": [
+    {
+     "name": "Chicago",
+     "state": "IL",
+     "lat": 41.8376,
+     "lon": -87.6818
+    },
+    {
+     "name": "Des Plaines",
+     "state": "IL",
+     "lat": 42.0351,
+     "lon": -87.9011
+    },
+    {
+     "name": "Skokie",
+     "state": "IL",
+     "lat": 42.036,
+     "lon": -87.74
+    },
+    {
+     "name": "Morton Grove",
+     "state": "IL",
+     "lat": 42.0423,
+     "lon": -87.789
+    },
+    {
+     "name": "Lombard",
+     "state": "IL",
+     "lat": 41.8738,
+     "lon": -88.0155
+    },
+    {
+     "name": "Niles",
+     "state": "IL",
+     "lat": 42.0279,
+     "lon": -87.81
+    },
+    {
+     "name": "Elmhurst",
+     "state": "IL",
+     "lat": 41.896,
+     "lon": -87.9437
+    },
+    {
+     "name": "Westmont",
+     "state": "IL",
+     "lat": 41.7944,
+     "lon": -87.9729
+    },
+    {
+     "name": "Oak Brook",
+     "state": "IL",
+     "lat": 41.8366,
+     "lon": -87.9535
+    },
+    {
+     "name": "Evanston",
+     "state": "IL",
+     "lat": 42.0464,
+     "lon": -87.6944
+    },
+    {
+     "name": "Lincolnwood",
+     "state": "IL",
+     "lat": 42.0054,
+     "lon": -87.733
+    },
+    {
+     "name": "Downers Grove",
+     "state": "IL",
+     "lat": 41.795,
+     "lon": -88.0212
+    },
+    {
+     "name": "Burr Ridge",
+     "state": "IL",
+     "lat": 41.7479,
+     "lon": -87.9201
+    },
+    {
+     "name": "Hinsdale",
+     "state": "IL",
+     "lat": 41.8007,
+     "lon": -87.9282
+    },
+    {
+     "name": "Oak Forest",
+     "state": "IL",
+     "lat": 41.6057,
+     "lon": -87.7536
+    },
+    {
+     "name": "Oak Park",
+     "state": "IL",
+     "lat": 41.8872,
+     "lon": -87.7899
+    },
+    {
+     "name": "Willowbrook",
+     "state": "IL",
+     "lat": 41.7619,
+     "lon": -87.9458
+    },
+    {
+     "name": "Wilmette",
+     "state": "IL",
+     "lat": 42.0773,
+     "lon": -87.7286
+    },
+    {
+     "name": "Forest Park",
+     "state": "IL",
+     "lat": 41.8684,
+     "lon": -87.8157
+    },
+    {
+     "name": "Darien",
+     "state": "IL",
+     "lat": 41.7457,
+     "lon": -87.9815
+    },
+    {
+     "name": "Park Ridge",
+     "state": "IL",
+     "lat": 42.0118,
+     "lon": -87.8434
+    },
+    {
+     "name": "Clarendon Hills",
+     "state": "IL",
+     "lat": 41.7984,
+     "lon": -87.9572
+    },
+    {
+     "name": "Harvey",
+     "state": "IL",
+     "lat": 41.6074,
+     "lon": -87.6523
+    },
+    {
+     "name": "Wood Dale",
+     "state": "IL",
+     "lat": 41.9663,
+     "lon": -87.9809
+    },
+    {
+     "name": "Villa Park",
+     "state": "IL",
+     "lat": 41.8856,
+     "lon": -87.9782
+    },
+    {
+     "name": "Burbank",
+     "state": "IL",
+     "lat": 41.7444,
+     "lon": -87.7685
+    },
+    {
+     "name": "Hickory Hills",
+     "state": "IL",
+     "lat": 41.7248,
+     "lon": -87.8281
+    },
+    {
+     "name": "Hammond",
+     "state": "IN",
+     "lat": 41.6217,
+     "lon": -87.4946
+    },
+    {
+     "name": "Evergreen Park",
+     "state": "IL",
+     "lat": 41.7213,
+     "lon": -87.7013
+    },
+    {
+     "name": "Maywood",
+     "state": "IL",
+     "lat": 41.8798,
+     "lon": -87.8442
+    },
+    {
+     "name": "Bridgeview",
+     "state": "IL",
+     "lat": 41.7402,
+     "lon": -87.8066
+    },
+    {
+     "name": "Summit",
+     "state": "IL",
+     "lat": 41.7885,
+     "lon": -87.8139
+    },
+    {
+     "name": "Bensenville",
+     "state": "IL",
+     "lat": 41.9597,
+     "lon": -87.9435
+    },
+    {
+     "name": "Oakbrook Terrace",
+     "state": "IL",
+     "lat": 41.8534,
+     "lon": -87.9692
+    },
+    {
+     "name": "Elmwood Park",
+     "state": "IL",
+     "lat": 41.9225,
+     "lon": -87.8163
+    },
+    {
+     "name": "River Forest",
+     "state": "IL",
+     "lat": 41.8949,
+     "lon": -87.8191
+    },
+    {
+     "name": "Midlothian",
+     "state": "IL",
+     "lat": 41.6254,
+     "lon": -87.7242
+    },
+    {
+     "name": "Bellwood",
+     "state": "IL",
+     "lat": 41.8829,
+     "lon": -87.8762
+    },
+    {
+     "name": "Berwyn",
+     "state": "IL",
+     "lat": 41.8433,
+     "lon": -87.7909
+    },
+    {
+     "name": "Western Springs",
+     "state": "IL",
+     "lat": 41.8022,
+     "lon": -87.9006
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    6
+   ]
+  },
+  {
+   "id": "irving-tx",
+   "label": "Irving, TX",
+   "state": "TX",
+   "center": {
+    "lat": 32.8141,
+    "lon": -96.9489
+   },
+   "anchor": "Irving",
+   "query_cities": [
+    "Irving",
+    "Dallas",
+    "Arlington",
+    "Flower Mound"
+   ],
+   "aliases": [
+    "Irving",
+    "Dallas",
+    "Arlington",
+    "Flower Mound",
+    "Southlake",
+    "Euless",
+    "DFW"
+   ],
+   "members": [
+    {
+     "name": "Irving",
+     "state": "TX",
+     "lat": 32.8577,
+     "lon": -96.97
+    },
+    {
+     "name": "Dallas",
+     "state": "TX",
+     "lat": 32.7942,
+     "lon": -96.7655
+    },
+    {
+     "name": "Flower Mound",
+     "state": "TX",
+     "lat": 33.0378,
+     "lon": -97.113
+    },
+    {
+     "name": "Arlington",
+     "state": "TX",
+     "lat": 32.7007,
+     "lon": -97.1247
+    },
+    {
+     "name": "Southlake",
+     "state": "TX",
+     "lat": 32.9545,
+     "lon": -97.1488
+    },
+    {
+     "name": "Euless",
+     "state": "TX",
+     "lat": 32.8494,
+     "lon": -97.0786
+    },
+    {
+     "name": "Grand Prairie",
+     "state": "TX",
+     "lat": 32.6842,
+     "lon": -97.021
+    },
+    {
+     "name": "Colleyville",
+     "state": "TX",
+     "lat": 32.8918,
+     "lon": -97.1496
+    },
+    {
+     "name": "Keller",
+     "state": "TX",
+     "lat": 32.9329,
+     "lon": -97.2245
+    },
+    {
+     "name": "Grapevine",
+     "state": "TX",
+     "lat": 32.9341,
+     "lon": -97.0765
+    },
+    {
+     "name": "Bedford",
+     "state": "TX",
+     "lat": 32.8458,
+     "lon": -97.1351
+    },
+    {
+     "name": "Trophy Club",
+     "state": "TX",
+     "lat": 33.0013,
+     "lon": -97.1954
+    },
+    {
+     "name": "North Richland Hills",
+     "state": "TX",
+     "lat": 32.862,
+     "lon": -97.2148
+    },
+    {
+     "name": "Hurst",
+     "state": "TX",
+     "lat": 32.8366,
+     "lon": -97.1806
+    },
+    {
+     "name": "Westlake",
+     "state": "TX",
+     "lat": 32.9829,
+     "lon": -97.2044
+    },
+    {
+     "name": "Dalworthington Gardens",
+     "state": "TX",
+     "lat": 32.6863,
+     "lon": -97.1551
+    },
+    {
+     "name": "University Park",
+     "state": "TX",
+     "lat": 32.8486,
+     "lon": -96.7952
+    },
+    {
+     "name": "Duncanville",
+     "state": "TX",
+     "lat": 32.6459,
+     "lon": -96.9139
+    },
+    {
+     "name": "Haltom City",
+     "state": "TX",
+     "lat": 32.8177,
+     "lon": -97.2712
+    },
+    {
+     "name": "Watauga",
+     "state": "TX",
+     "lat": 32.8718,
+     "lon": -97.2515
+    },
+    {
+     "name": "Richland Hills",
+     "state": "TX",
+     "lat": 32.8102,
+     "lon": -97.2265
+    },
+    {
+     "name": "Highland Park",
+     "state": "TX",
+     "lat": 32.8311,
+     "lon": -96.8012
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    7
+   ]
+  },
+  {
+   "id": "edison-nj",
+   "label": "Edison, NJ",
+   "state": "NJ",
+   "center": {
+    "lat": 40.5187,
+    "lon": -74.4121
+   },
+   "anchor": "Edison",
+   "query_cities": [
+    "Edison New Jersey",
+    "Iselin",
+    "Sayreville",
+    "Monmouth Junction"
+   ],
+   "aliases": [
+    "Edison",
+    "Iselin",
+    "Sayreville",
+    "Monmouth Junction",
+    "Franklin Park",
+    "Short Hills"
+   ],
+   "members": [
+    {
+     "name": "Iselin",
+     "state": "NJ",
+     "lat": 40.5693,
+     "lon": -74.3211
+    },
+    {
+     "name": "Sayreville",
+     "state": "NJ",
+     "lat": 40.4674,
+     "lon": -74.3194
+    },
+    {
+     "name": "Monmouth Junction",
+     "state": "NJ",
+     "lat": 40.3803,
+     "lon": -74.5432
+    },
+    {
+     "name": "Franklin Park",
+     "state": "NJ",
+     "lat": 40.4445,
+     "lon": -74.5426
+    },
+    {
+     "name": "Bradley Gardens",
+     "state": "NJ",
+     "lat": 40.5721,
+     "lon": -74.6634
+    },
+    {
+     "name": "Short Hills",
+     "state": "NJ",
+     "lat": 40.7392,
+     "lon": -74.3274
+    },
+    {
+     "name": "Somerset",
+     "state": "NJ",
+     "lat": 40.5085,
+     "lon": -74.5002
+    },
+    {
+     "name": "Dayton",
+     "state": "NJ",
+     "lat": 40.381,
+     "lon": -74.5134
+    },
+    {
+     "name": "Woodbridge",
+     "state": "NJ",
+     "lat": 40.555,
+     "lon": -74.285
+    },
+    {
+     "name": "South Plainfield",
+     "state": "NJ",
+     "lat": 40.5744,
+     "lon": -74.4148
+    },
+    {
+     "name": "Kendall Park",
+     "state": "NJ",
+     "lat": 40.4134,
+     "lon": -74.5625
+    },
+    {
+     "name": "Blackwells Mills",
+     "state": "NJ",
+     "lat": 40.4836,
+     "lon": -74.5678
+    },
+    {
+     "name": "Colonia",
+     "state": "NJ",
+     "lat": 40.5941,
+     "lon": -74.3138
+    },
+    {
+     "name": "New Brunswick",
+     "state": "NJ",
+     "lat": 40.4867,
+     "lon": -74.4444
+    },
+    {
+     "name": "Old Bridge",
+     "state": "NJ",
+     "lat": 40.3966,
+     "lon": -74.3343
+    },
+    {
+     "name": "Ten Mile Run",
+     "state": "NJ",
+     "lat": 40.4241,
+     "lon": -74.5863
+    },
+    {
+     "name": "Avenel",
+     "state": "NJ",
+     "lat": 40.5843,
+     "lon": -74.2716
+    },
+    {
+     "name": "Middlesex",
+     "state": "NJ",
+     "lat": 40.5746,
+     "lon": -74.4983
+    },
+    {
+     "name": "Madison Park",
+     "state": "NJ",
+     "lat": 40.4457,
+     "lon": -74.2962
+    },
+    {
+     "name": "Metuchen",
+     "state": "NJ",
+     "lat": 40.5424,
+     "lon": -74.3628
+    },
+    {
+     "name": "Franklin Center",
+     "state": "NJ",
+     "lat": 40.5315,
+     "lon": -74.5414
+    },
+    {
+     "name": "Martinsville",
+     "state": "NJ",
+     "lat": 40.6029,
+     "lon": -74.5758
+    },
+    {
+     "name": "Highland Park",
+     "state": "NJ",
+     "lat": 40.5008,
+     "lon": -74.4279
+    },
+    {
+     "name": "Fords",
+     "state": "NJ",
+     "lat": 40.5438,
+     "lon": -74.3129
+    },
+    {
+     "name": "Westfield",
+     "state": "NJ",
+     "lat": 40.6516,
+     "lon": -74.3434
+    },
+    {
+     "name": "Six Mile Run",
+     "state": "NJ",
+     "lat": 40.4699,
+     "lon": -74.5322
+    },
+    {
+     "name": "Finderne",
+     "state": "NJ",
+     "lat": 40.5613,
+     "lon": -74.5742
+    },
+    {
+     "name": "Green Knoll",
+     "state": "NJ",
+     "lat": 40.6047,
+     "lon": -74.6145
+    },
+    {
+     "name": "Rahway",
+     "state": "NJ",
+     "lat": 40.6072,
+     "lon": -74.2805
+    },
+    {
+     "name": "Florham Park",
+     "state": "NJ",
+     "lat": 40.7758,
+     "lon": -74.3941
+    },
+    {
+     "name": "Morganville",
+     "state": "NJ",
+     "lat": 40.3753,
+     "lon": -74.2328
+    },
+    {
+     "name": "New Providence",
+     "state": "NJ",
+     "lat": 40.6989,
+     "lon": -74.4066
+    },
+    {
+     "name": "Raritan",
+     "state": "NJ",
+     "lat": 40.5721,
+     "lon": -74.6465
+    },
+    {
+     "name": "Somerville",
+     "state": "NJ",
+     "lat": 40.5697,
+     "lon": -74.6077
+    },
+    {
+     "name": "Weston",
+     "state": "NJ",
+     "lat": 40.527,
+     "lon": -74.5672
+    },
+    {
+     "name": "Robertsville",
+     "state": "NJ",
+     "lat": 40.3388,
+     "lon": -74.2944
+    },
+    {
+     "name": "Watchung",
+     "state": "NJ",
+     "lat": 40.6428,
+     "lon": -74.4362
+    },
+    {
+     "name": "Voorhees",
+     "state": "NJ",
+     "lat": 40.4822,
+     "lon": -74.4925
+    },
+    {
+     "name": "Summit",
+     "state": "NJ",
+     "lat": 40.7156,
+     "lon": -74.3647
+    },
+    {
+     "name": "Madison",
+     "state": "NJ",
+     "lat": 40.758,
+     "lon": -74.4178
+    }
+   ],
+   "block": [
+    "thomas edison"
+   ],
+   "context_guard": null,
+   "source_ranks": [
+    8
+   ]
+  },
+  {
+   "id": "naperville-il",
+   "label": "Naperville, IL",
+   "state": "IL",
+   "center": {
+    "lat": 41.7508,
+    "lon": -88.1535
+   },
+   "anchor": "Naperville",
+   "query_cities": [
+    "Naperville",
+    "Bolingbrook",
+    "Carol Stream",
+    "Bartlett"
+   ],
+   "aliases": [
+    "Naperville",
+    "Aurora",
+    "Bolingbrook",
+    "Carol Stream",
+    "Bartlett",
+    "Hanover Park"
+   ],
+   "members": [
+    {
+     "name": "Naperville",
+     "state": "IL",
+     "lat": 41.7492,
+     "lon": -88.162
+    },
+    {
+     "name": "Aurora",
+     "state": "IL",
+     "lat": 41.7635,
+     "lon": -88.2901
+    },
+    {
+     "name": "Bolingbrook",
+     "state": "IL",
+     "lat": 41.6911,
+     "lon": -88.1016
+    },
+    {
+     "name": "Carol Stream",
+     "state": "IL",
+     "lat": 41.9199,
+     "lon": -88.1333
+    },
+    {
+     "name": "Bartlett",
+     "state": "IL",
+     "lat": 41.9608,
+     "lon": -88.177
+    },
+    {
+     "name": "Hanover Park",
+     "state": "IL",
+     "lat": 41.9814,
+     "lon": -88.1425
+    },
+    {
+     "name": "Plainfield",
+     "state": "IL",
+     "lat": 41.6305,
+     "lon": -88.245
+    },
+    {
+     "name": "Glendale Heights",
+     "state": "IL",
+     "lat": 41.9189,
+     "lon": -88.0781
+    },
+    {
+     "name": "Lisle",
+     "state": "IL",
+     "lat": 41.7921,
+     "lon": -88.0877
+    },
+    {
+     "name": "Bloomingdale",
+     "state": "IL",
+     "lat": 41.9515,
+     "lon": -88.0891
+    },
+    {
+     "name": "Woodridge",
+     "state": "IL",
+     "lat": 41.7375,
+     "lon": -88.0446
+    },
+    {
+     "name": "Glen Ellyn",
+     "state": "IL",
+     "lat": 41.8667,
+     "lon": -88.0627
+    },
+    {
+     "name": "Addison",
+     "state": "IL",
+     "lat": 41.9314,
+     "lon": -88.0088
+    },
+    {
+     "name": "Roselle",
+     "state": "IL",
+     "lat": 41.9803,
+     "lon": -88.0856
+    },
+    {
+     "name": "West Chicago",
+     "state": "IL",
+     "lat": 41.9144,
+     "lon": -88.2483
+    },
+    {
+     "name": "Joliet",
+     "state": "IL",
+     "lat": 41.5181,
+     "lon": -88.1584
+    },
+    {
+     "name": "Oswego",
+     "state": "IL",
+     "lat": 41.6832,
+     "lon": -88.3388
+    },
+    {
+     "name": "St. Charles",
+     "state": "IL",
+     "lat": 41.9189,
+     "lon": -88.3114
+    },
+    {
+     "name": "Yorkville",
+     "state": "IL",
+     "lat": 41.6567,
+     "lon": -88.4364
+    },
+    {
+     "name": "Itasca",
+     "state": "IL",
+     "lat": 41.9766,
+     "lon": -88.0188
+    },
+    {
+     "name": "Wheaton",
+     "state": "IL",
+     "lat": 41.8561,
+     "lon": -88.1075
+    },
+    {
+     "name": "Wayne",
+     "state": "IL",
+     "lat": 41.9473,
+     "lon": -88.2532
+    },
+    {
+     "name": "Winfield",
+     "state": "IL",
+     "lat": 41.8774,
+     "lon": -88.1511
+    },
+    {
+     "name": "Lemont",
+     "state": "IL",
+     "lat": 41.6673,
+     "lon": -87.9844
+    },
+    {
+     "name": "Romeoville",
+     "state": "IL",
+     "lat": 41.6367,
+     "lon": -88.0991
+    },
+    {
+     "name": "Geneva",
+     "state": "IL",
+     "lat": 41.8821,
+     "lon": -88.3293
+    },
+    {
+     "name": "Shorewood",
+     "state": "IL",
+     "lat": 41.5175,
+     "lon": -88.2152
+    },
+    {
+     "name": "Warrenville",
+     "state": "IL",
+     "lat": 41.8209,
+     "lon": -88.1875
+    },
+    {
+     "name": "Homer Glen",
+     "state": "IL",
+     "lat": 41.6052,
+     "lon": -87.9524
+    },
+    {
+     "name": "Montgomery",
+     "state": "IL",
+     "lat": 41.721,
+     "lon": -88.3585
+    },
+    {
+     "name": "Batavia",
+     "state": "IL",
+     "lat": 41.8482,
+     "lon": -88.3086
+    },
+    {
+     "name": "Lockport",
+     "state": "IL",
+     "lat": 41.5897,
+     "lon": -88.0291
+    },
+    {
+     "name": "North Aurora",
+     "state": "IL",
+     "lat": 41.8087,
+     "lon": -88.342
+    },
+    {
+     "name": "Sugar Grove",
+     "state": "IL",
+     "lat": 41.7684,
+     "lon": -88.4507
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    9
+   ]
+  },
+  {
+   "id": "washington-dc",
+   "label": "Washington, DC",
+   "state": "DC",
+   "center": {
+    "lat": 38.9072,
+    "lon": -77.0369
+   },
+   "anchor": "Washington",
+   "query_cities": [
+    "Washington"
+   ],
+   "aliases": [
+    "Arlington",
+    "Bethesda",
+    "Rockville",
+    "Potomac"
+   ],
+   "members": [
+    {
+     "name": "Washington",
+     "state": "DC",
+     "lat": 38.9041,
+     "lon": -77.0171
+    },
+    {
+     "name": "Arlington",
+     "state": "VA",
+     "lat": 38.8783,
+     "lon": -77.1007
+    },
+    {
+     "name": "Rockville",
+     "state": "MD",
+     "lat": 39.0836,
+     "lon": -77.1556
+    },
+    {
+     "name": "Bethesda",
+     "state": "MD",
+     "lat": 38.9873,
+     "lon": -77.1186
+    },
+    {
+     "name": "North Potomac",
+     "state": "MD",
+     "lat": 39.0968,
+     "lon": -77.2385
+    },
+    {
+     "name": "Potomac",
+     "state": "MD",
+     "lat": 39.0133,
+     "lon": -77.1936
+    },
+    {
+     "name": "Reston",
+     "state": "VA",
+     "lat": 38.9484,
+     "lon": -77.3422
+    },
+    {
+     "name": "College Park",
+     "state": "MD",
+     "lat": 38.9946,
+     "lon": -76.936
+    },
+    {
+     "name": "Silver Spring",
+     "state": "MD",
+     "lat": 39.0024,
+     "lon": -77.0208
+    },
+    {
+     "name": "Alexandria",
+     "state": "VA",
+     "lat": 38.8183,
+     "lon": -77.082
+    },
+    {
+     "name": "McLean",
+     "state": "VA",
+     "lat": 38.9435,
+     "lon": -77.1929
+    },
+    {
+     "name": "Merrifield",
+     "state": "VA",
+     "lat": 38.872,
+     "lon": -77.2397
+    },
+    {
+     "name": "North Bethesda",
+     "state": "MD",
+     "lat": 39.0367,
+     "lon": -77.1202
+    },
+    {
+     "name": "Lorton",
+     "state": "VA",
+     "lat": 38.6982,
+     "lon": -77.2164
+    },
+    {
+     "name": "Oakton",
+     "state": "VA",
+     "lat": 38.8894,
+     "lon": -77.3022
+    },
+    {
+     "name": "Idylwood",
+     "state": "VA",
+     "lat": 38.8892,
+     "lon": -77.2029
+    },
+    {
+     "name": "Great Falls",
+     "state": "VA",
+     "lat": 39.012,
+     "lon": -77.3026
+    },
+    {
+     "name": "Travilah",
+     "state": "MD",
+     "lat": 39.0469,
+     "lon": -77.256
+    },
+    {
+     "name": "Burke",
+     "state": "VA",
+     "lat": 38.777,
+     "lon": -77.2636
+    },
+    {
+     "name": "Wolf Trap",
+     "state": "VA",
+     "lat": 38.9373,
+     "lon": -77.2829
+    },
+    {
+     "name": "Pimmit Hills",
+     "state": "VA",
+     "lat": 38.9106,
+     "lon": -77.1991
+    },
+    {
+     "name": "Springfield",
+     "state": "VA",
+     "lat": 38.7816,
+     "lon": -77.1839
+    },
+    {
+     "name": "Glenn Dale",
+     "state": "MD",
+     "lat": 38.9844,
+     "lon": -76.8003
+    },
+    {
+     "name": "Adelphi",
+     "state": "MD",
+     "lat": 38.9966,
+     "lon": -76.9661
+    },
+    {
+     "name": "Annandale",
+     "state": "VA",
+     "lat": 38.8328,
+     "lon": -77.1962
+    },
+    {
+     "name": "Newington",
+     "state": "VA",
+     "lat": 38.7345,
+     "lon": -77.1978
+    },
+    {
+     "name": "Greenbelt",
+     "state": "MD",
+     "lat": 38.9947,
+     "lon": -76.8854
+    },
+    {
+     "name": "Burke Centre",
+     "state": "VA",
+     "lat": 38.791,
+     "lon": -77.3005
+    },
+    {
+     "name": "Fairfax",
+     "state": "VA",
+     "lat": 38.8532,
+     "lon": -77.299
+    },
+    {
+     "name": "Dunn Loring",
+     "state": "VA",
+     "lat": 38.8942,
+     "lon": -77.2293
+    },
+    {
+     "name": "Vienna",
+     "state": "VA",
+     "lat": 38.8992,
+     "lon": -77.2605
+    },
+    {
+     "name": "Redland",
+     "state": "MD",
+     "lat": 39.1338,
+     "lon": -77.1451
+    },
+    {
+     "name": "Lincolnia",
+     "state": "VA",
+     "lat": 38.8158,
+     "lon": -77.1543
+    },
+    {
+     "name": "Seabrook",
+     "state": "MD",
+     "lat": 38.9821,
+     "lon": -76.8511
+    },
+    {
+     "name": "Franconia",
+     "state": "VA",
+     "lat": 38.7679,
+     "lon": -77.1583
+    },
+    {
+     "name": "Aspen Hill",
+     "state": "MD",
+     "lat": 39.0936,
+     "lon": -77.082
+    },
+    {
+     "name": "Bailey's Crossroads",
+     "state": "VA",
+     "lat": 38.8483,
+     "lon": -77.132
+    },
+    {
+     "name": "Lake Barcroft",
+     "state": "VA",
+     "lat": 38.8516,
+     "lon": -77.1587
+    },
+    {
+     "name": "George Mason",
+     "state": "VA",
+     "lat": 38.8316,
+     "lon": -77.3023
+    },
+    {
+     "name": "Kingstowne",
+     "state": "VA",
+     "lat": 38.7623,
+     "lon": -77.1444
+    }
+   ],
+   "block": [],
+   "context_guard": "washington_dc",
+   "source_ranks": [
+    10
+   ]
+  },
+  {
+   "id": "schaumburg-il",
+   "label": "Schaumburg, IL",
+   "state": "IL",
+   "center": {
+    "lat": 42.0334,
+    "lon": -88.0834
+   },
+   "anchor": "Schaumburg",
+   "query_cities": [
+    "Schaumburg",
+    "Buffalo Grove",
+    "Hoffman Estates",
+    "Palatine"
+   ],
+   "aliases": [
+    "Schaumburg",
+    "Buffalo Grove",
+    "Hoffman Estates",
+    "Palatine",
+    "Mount Prospect",
+    "Vernon Hills"
+   ],
+   "members": [
+    {
+     "name": "Schaumburg",
+     "state": "IL",
+     "lat": 42.0294,
+     "lon": -88.0836
+    },
+    {
+     "name": "Buffalo Grove",
+     "state": "IL",
+     "lat": 42.166,
+     "lon": -87.9618
+    },
+    {
+     "name": "Hoffman Estates",
+     "state": "IL",
+     "lat": 42.0652,
+     "lon": -88.153
+    },
+    {
+     "name": "Mount Prospect",
+     "state": "IL",
+     "lat": 42.0654,
+     "lon": -87.9375
+    },
+    {
+     "name": "Palatine",
+     "state": "IL",
+     "lat": 42.118,
+     "lon": -88.0428
+    },
+    {
+     "name": "Vernon Hills",
+     "state": "IL",
+     "lat": 42.2344,
+     "lon": -87.9611
+    },
+    {
+     "name": "Arlington Heights",
+     "state": "IL",
+     "lat": 42.0974,
+     "lon": -87.9817
+    },
+    {
+     "name": "Elgin",
+     "state": "IL",
+     "lat": 42.0396,
+     "lon": -88.3217
+    },
+    {
+     "name": "Wheeling",
+     "state": "IL",
+     "lat": 42.1308,
+     "lon": -87.9239
+    },
+    {
+     "name": "Streamwood",
+     "state": "IL",
+     "lat": 42.0206,
+     "lon": -88.1778
+    },
+    {
+     "name": "Glenview",
+     "state": "IL",
+     "lat": 42.0849,
+     "lon": -87.8268
+    },
+    {
+     "name": "South Barrington",
+     "state": "IL",
+     "lat": 42.0912,
+     "lon": -88.1569
+    },
+    {
+     "name": "Northbrook",
+     "state": "IL",
+     "lat": 42.1296,
+     "lon": -87.8351
+    },
+    {
+     "name": "Mundelein",
+     "state": "IL",
+     "lat": 42.2691,
+     "lon": -88.0115
+    },
+    {
+     "name": "Elk Grove Village",
+     "state": "IL",
+     "lat": 42.0058,
+     "lon": -87.993
+    },
+    {
+     "name": "Hawthorn Woods",
+     "state": "IL",
+     "lat": 42.2441,
+     "lon": -88.0657
+    },
+    {
+     "name": "Rolling Meadows",
+     "state": "IL",
+     "lat": 42.0749,
+     "lon": -88.0254
+    },
+    {
+     "name": "South Elgin",
+     "state": "IL",
+     "lat": 41.9895,
+     "lon": -88.3126
+    },
+    {
+     "name": "Prospect Heights",
+     "state": "IL",
+     "lat": 42.1032,
+     "lon": -87.9248
+    },
+    {
+     "name": "Lake in the Hills",
+     "state": "IL",
+     "lat": 42.1795,
+     "lon": -88.3157
+    },
+    {
+     "name": "Lake Zurich",
+     "state": "IL",
+     "lat": 42.1949,
+     "lon": -88.0878
+    },
+    {
+     "name": "Carpentersville",
+     "state": "IL",
+     "lat": 42.1236,
+     "lon": -88.2933
+    },
+    {
+     "name": "Lincolnshire",
+     "state": "IL",
+     "lat": 42.1965,
+     "lon": -87.9177
+    },
+    {
+     "name": "Inverness",
+     "state": "IL",
+     "lat": 42.1151,
+     "lon": -88.1009
+    },
+    {
+     "name": "Long Grove",
+     "state": "IL",
+     "lat": 42.1949,
+     "lon": -88.0103
+    },
+    {
+     "name": "Barrington",
+     "state": "IL",
+     "lat": 42.1526,
+     "lon": -88.1276
+    },
+    {
+     "name": "Kildeer",
+     "state": "IL",
+     "lat": 42.1893,
+     "lon": -88.0485
+    },
+    {
+     "name": "Algonquin",
+     "state": "IL",
+     "lat": 42.1624,
+     "lon": -88.3156
+    },
+    {
+     "name": "Deerfield",
+     "state": "IL",
+     "lat": 42.1661,
+     "lon": -87.8525
+    },
+    {
+     "name": "Gilberts",
+     "state": "IL",
+     "lat": 42.1092,
+     "lon": -88.3722
+    },
+    {
+     "name": "Lake Barrington",
+     "state": "IL",
+     "lat": 42.2102,
+     "lon": -88.1695
+    },
+    {
+     "name": "West Dundee",
+     "state": "IL",
+     "lat": 42.1109,
+     "lon": -88.3446
+    },
+    {
+     "name": "Northfield",
+     "state": "IL",
+     "lat": 42.1026,
+     "lon": -87.7792
+    },
+    {
+     "name": "Highland Park",
+     "state": "IL",
+     "lat": 42.1826,
+     "lon": -87.8096
+    },
+    {
+     "name": "Indian Creek",
+     "state": "IL",
+     "lat": 42.2271,
+     "lon": -87.9779
+    },
+    {
+     "name": "Deer Park",
+     "state": "IL",
+     "lat": 42.1663,
+     "lon": -88.0862
+    },
+    {
+     "name": "Cary",
+     "state": "IL",
+     "lat": 42.2121,
+     "lon": -88.2496
+    },
+    {
+     "name": "Wauconda",
+     "state": "IL",
+     "lat": 42.277,
+     "lon": -88.1353
+    },
+    {
+     "name": "Barrington Hills",
+     "state": "IL",
+     "lat": 42.1386,
+     "lon": -88.203
+    },
+    {
+     "name": "North Barrington",
+     "state": "IL",
+     "lat": 42.2078,
+     "lon": -88.1317
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    11
+   ]
+  },
+  {
+   "id": "los-angeles-ca",
+   "label": "Los Angeles, CA",
+   "state": "CA",
+   "center": {
+    "lat": 34.0522,
+    "lon": -118.2437
+   },
+   "anchor": "Los Angeles",
+   "query_cities": [
+    "Los Angeles",
+    "Torrance",
+    "Glendale",
+    "Burbank"
+   ],
+   "aliases": [
+    "Los Angeles",
+    "LA",
+    "Torrance",
+    "Glendale",
+    "Burbank",
+    "Redondo Beach",
+    "Santa Monica"
+   ],
+   "members": [
+    {
+     "name": "Los Angeles",
+     "state": "CA",
+     "lat": 34.0194,
+     "lon": -118.4108
+    },
+    {
+     "name": "Torrance",
+     "state": "CA",
+     "lat": 33.835,
+     "lon": -118.3414
+    },
+    {
+     "name": "Glendale",
+     "state": "CA",
+     "lat": 34.1814,
+     "lon": -118.2458
+    },
+    {
+     "name": "Burbank",
+     "state": "CA",
+     "lat": 34.189,
+     "lon": -118.3249
+    },
+    {
+     "name": "Redondo Beach",
+     "state": "CA",
+     "lat": 33.8568,
+     "lon": -118.3771
+    },
+    {
+     "name": "Santa Monica",
+     "state": "CA",
+     "lat": 34.0234,
+     "lon": -118.4817
+    },
+    {
+     "name": "Culver City",
+     "state": "CA",
+     "lat": 34.0058,
+     "lon": -118.3968
+    },
+    {
+     "name": "Carson",
+     "state": "CA",
+     "lat": 33.8404,
+     "lon": -118.2496
+    },
+    {
+     "name": "Downey",
+     "state": "CA",
+     "lat": 33.9382,
+     "lon": -118.1309
+    },
+    {
+     "name": "Hawthorne",
+     "state": "CA",
+     "lat": 33.9148,
+     "lon": -118.3481
+    },
+    {
+     "name": "Montebello",
+     "state": "CA",
+     "lat": 34.0154,
+     "lon": -118.111
+    },
+    {
+     "name": "South Pasadena",
+     "state": "CA",
+     "lat": 34.109,
+     "lon": -118.1566
+    },
+    {
+     "name": "Inglewood",
+     "state": "CA",
+     "lat": 33.9561,
+     "lon": -118.3443
+    },
+    {
+     "name": "Paramount",
+     "state": "CA",
+     "lat": 33.8989,
+     "lon": -118.1666
+    },
+    {
+     "name": "La Cañada Flintridge",
+     "state": "CA",
+     "lat": 34.2105,
+     "lon": -118.2001
+    },
+    {
+     "name": "Manhattan Beach",
+     "state": "CA",
+     "lat": 33.8896,
+     "lon": -118.3974
+    },
+    {
+     "name": "Calabasas",
+     "state": "CA",
+     "lat": 34.1338,
+     "lon": -118.6689
+    },
+    {
+     "name": "Del Aire",
+     "state": "CA",
+     "lat": 33.9167,
+     "lon": -118.3693
+    },
+    {
+     "name": "El Segundo",
+     "state": "CA",
+     "lat": 33.9171,
+     "lon": -118.4016
+    },
+    {
+     "name": "Rolling Hills Estates",
+     "state": "CA",
+     "lat": 33.781,
+     "lon": -118.3253
+    },
+    {
+     "name": "Monterey Park",
+     "state": "CA",
+     "lat": 34.0483,
+     "lon": -118.1332
+    },
+    {
+     "name": "La Crescenta-Montrose",
+     "state": "CA",
+     "lat": 34.233,
+     "lon": -118.2358
+    },
+    {
+     "name": "Alhambra",
+     "state": "CA",
+     "lat": 34.0836,
+     "lon": -118.1364
+    },
+    {
+     "name": "Gardena",
+     "state": "CA",
+     "lat": 33.8944,
+     "lon": -118.3075
+    },
+    {
+     "name": "West Hollywood",
+     "state": "CA",
+     "lat": 34.0883,
+     "lon": -118.3718
+    },
+    {
+     "name": "Lawndale",
+     "state": "CA",
+     "lat": 33.8884,
+     "lon": -118.3531
+    },
+    {
+     "name": "Beverly Hills",
+     "state": "CA",
+     "lat": 34.0792,
+     "lon": -118.4024
+    },
+    {
+     "name": "Lomita",
+     "state": "CA",
+     "lat": 33.7933,
+     "lon": -118.3174
+    },
+    {
+     "name": "Palos Verdes Estates",
+     "state": "CA",
+     "lat": 33.7865,
+     "lon": -118.3949
+    },
+    {
+     "name": "Hermosa Beach",
+     "state": "CA",
+     "lat": 33.8653,
+     "lon": -118.3963
+    },
+    {
+     "name": "West Carson",
+     "state": "CA",
+     "lat": 33.8231,
+     "lon": -118.2937
+    },
+    {
+     "name": "West Rancho Dominguez",
+     "state": "CA",
+     "lat": 33.8945,
+     "lon": -118.2697
+    },
+    {
+     "name": "East Los Angeles",
+     "state": "CA",
+     "lat": 34.0315,
+     "lon": -118.1686
+    },
+    {
+     "name": "South Gate",
+     "state": "CA",
+     "lat": 33.9442,
+     "lon": -118.1928
+    },
+    {
+     "name": "Marina del Rey",
+     "state": "CA",
+     "lat": 33.9815,
+     "lon": -118.4532
+    },
+    {
+     "name": "Lynwood",
+     "state": "CA",
+     "lat": 33.924,
+     "lon": -118.2016
+    },
+    {
+     "name": "Topanga",
+     "state": "CA",
+     "lat": 34.0968,
+     "lon": -118.606
+    },
+    {
+     "name": "View Park-Windsor Hills",
+     "state": "CA",
+     "lat": 33.9945,
+     "lon": -118.3478
+    },
+    {
+     "name": "Lennox",
+     "state": "CA",
+     "lat": 33.9381,
+     "lon": -118.3585
+    },
+    {
+     "name": "Florence-Graham",
+     "state": "CA",
+     "lat": 33.9677,
+     "lon": -118.2444
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    12
+   ]
+  },
+  {
+   "id": "loudoun-county-va",
+   "label": "Loudoun County, VA",
+   "state": "VA",
+   "center": {
+    "lat": 39.0438,
+    "lon": -77.4874
+   },
+   "anchor": "Ashburn",
+   "query_cities": [
+    "Loudoun County",
+    "Ashburn",
+    "Leesburg",
+    "Sterling",
+    "Centreville"
+   ],
+   "aliases": [
+    "Loudoun County",
+    "Ashburn",
+    "Brambleton",
+    "South Riding",
+    "Leesburg",
+    "Sterling",
+    "Centreville",
+    "McNair"
+   ],
+   "members": [
+    {
+     "name": "Brambleton",
+     "state": "VA",
+     "lat": 38.9802,
+     "lon": -77.5328
+    },
+    {
+     "name": "South Riding",
+     "state": "VA",
+     "lat": 38.9124,
+     "lon": -77.5133
+    },
+    {
+     "name": "McNair",
+     "state": "VA",
+     "lat": 38.9521,
+     "lon": -77.414
+    },
+    {
+     "name": "Ashburn",
+     "state": "VA",
+     "lat": 39.0306,
+     "lon": -77.47
+    },
+    {
+     "name": "Loudoun Valley Estates",
+     "state": "VA",
+     "lat": 38.9808,
+     "lon": -77.5079
+    },
+    {
+     "name": "Centreville",
+     "state": "VA",
+     "lat": 38.8394,
+     "lon": -77.4384
+    },
+    {
+     "name": "Chantilly",
+     "state": "VA",
+     "lat": 38.8868,
+     "lon": -77.445
+    },
+    {
+     "name": "Stone Ridge",
+     "state": "VA",
+     "lat": 38.9283,
+     "lon": -77.56
+    },
+    {
+     "name": "Leesburg",
+     "state": "VA",
+     "lat": 39.1065,
+     "lon": -77.5556
+    },
+    {
+     "name": "Franklin Farm",
+     "state": "VA",
+     "lat": 38.9117,
+     "lon": -77.3954
+    },
+    {
+     "name": "Broadlands",
+     "state": "VA",
+     "lat": 39.0136,
+     "lon": -77.517
+    },
+    {
+     "name": "Floris",
+     "state": "VA",
+     "lat": 38.9294,
+     "lon": -77.4084
+    },
+    {
+     "name": "Fair Oaks",
+     "state": "VA",
+     "lat": 38.8659,
+     "lon": -77.3592
+    },
+    {
+     "name": "Belmont",
+     "state": "VA",
+     "lat": 39.0662,
+     "lon": -77.4984
+    },
+    {
+     "name": "Herndon",
+     "state": "VA",
+     "lat": 38.9704,
+     "lon": -77.3871
+    },
+    {
+     "name": "Fair Lakes",
+     "state": "VA",
+     "lat": 38.8531,
+     "lon": -77.3893
+    },
+    {
+     "name": "Linton Hall",
+     "state": "VA",
+     "lat": 38.7549,
+     "lon": -77.5753
+    },
+    {
+     "name": "Gainesville",
+     "state": "VA",
+     "lat": 38.7932,
+     "lon": -77.6424
+    },
+    {
+     "name": "Greenbriar",
+     "state": "VA",
+     "lat": 38.8716,
+     "lon": -77.3991
+    },
+    {
+     "name": "Arcola",
+     "state": "VA",
+     "lat": 38.9408,
+     "lon": -77.5289
+    },
+    {
+     "name": "Cascades",
+     "state": "VA",
+     "lat": 39.0475,
+     "lon": -77.3868
+    },
+    {
+     "name": "Sterling",
+     "state": "VA",
+     "lat": 39.0047,
+     "lon": -77.4054
+    },
+    {
+     "name": "Lansdowne",
+     "state": "VA",
+     "lat": 39.0853,
+     "lon": -77.4837
+    },
+    {
+     "name": "Dranesville",
+     "state": "VA",
+     "lat": 38.9956,
+     "lon": -77.3725
+    },
+    {
+     "name": "Lowes Island",
+     "state": "VA",
+     "lat": 39.0517,
+     "lon": -77.3555
+    },
+    {
+     "name": "Darnestown",
+     "state": "MD",
+     "lat": 39.0966,
+     "lon": -77.3024
+    },
+    {
+     "name": "Sugarland Run",
+     "state": "VA",
+     "lat": 39.0329,
+     "lon": -77.3666
+    },
+    {
+     "name": "Bull Run",
+     "state": "VA",
+     "lat": 38.7798,
+     "lon": -77.5203
+    },
+    {
+     "name": "Dulles Town Center",
+     "state": "VA",
+     "lat": 39.0242,
+     "lon": -77.4154
+    },
+    {
+     "name": "Fairfax Station",
+     "state": "VA",
+     "lat": 38.7944,
+     "lon": -77.3384
+    },
+    {
+     "name": "Sudley",
+     "state": "VA",
+     "lat": 38.7866,
+     "lon": -77.4991
+    },
+    {
+     "name": "Poolesville",
+     "state": "MD",
+     "lat": 39.1419,
+     "lon": -77.4104
+    },
+    {
+     "name": "Oak Grove",
+     "state": "VA",
+     "lat": 38.9833,
+     "lon": -77.4153
+    },
+    {
+     "name": "Manassas",
+     "state": "VA",
+     "lat": 38.7476,
+     "lon": -77.4847
+    },
+    {
+     "name": "Manassas Park",
+     "state": "VA",
+     "lat": 38.769,
+     "lon": -77.4487
+    },
+    {
+     "name": "Countryside",
+     "state": "VA",
+     "lat": 39.0519,
+     "lon": -77.4126
+    },
+    {
+     "name": "University Center",
+     "state": "VA",
+     "lat": 39.0624,
+     "lon": -77.4476
+    },
+    {
+     "name": "Haymarket",
+     "state": "VA",
+     "lat": 38.8123,
+     "lon": -77.6364
+    },
+    {
+     "name": "Purcellville",
+     "state": "VA",
+     "lat": 39.1375,
+     "lon": -77.7114
+    },
+    {
+     "name": "Yorkshire",
+     "state": "VA",
+     "lat": 38.789,
+     "lon": -77.4499
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    13
+   ]
+  },
+  {
+   "id": "raleigh-nc",
+   "label": "Raleigh, NC",
+   "state": "NC",
+   "center": {
+    "lat": 35.7796,
+    "lon": -78.6382
+   },
+   "anchor": "Raleigh",
+   "query_cities": [
+    "Raleigh",
+    "Cary",
+    "Morrisville",
+    "Apex",
+    "Durham"
+   ],
+   "aliases": [
+    "Raleigh",
+    "Cary",
+    "Morrisville",
+    "Apex",
+    "Durham",
+    "Holly Springs",
+    "Research Triangle"
+   ],
+   "members": [
+    {
+     "name": "Cary",
+     "state": "NC",
+     "lat": 35.7821,
+     "lon": -78.8141
+    },
+    {
+     "name": "Morrisville",
+     "state": "NC",
+     "lat": 35.8344,
+     "lon": -78.8408
+    },
+    {
+     "name": "Apex",
+     "state": "NC",
+     "lat": 35.7282,
+     "lon": -78.8625
+    },
+    {
+     "name": "Raleigh",
+     "state": "NC",
+     "lat": 35.8302,
+     "lon": -78.6414
+    },
+    {
+     "name": "Durham",
+     "state": "NC",
+     "lat": 35.981,
+     "lon": -78.9056
+    },
+    {
+     "name": "Holly Springs",
+     "state": "NC",
+     "lat": 35.6541,
+     "lon": -78.8385
+    },
+    {
+     "name": "Chapel Hill",
+     "state": "NC",
+     "lat": 35.9259,
+     "lon": -79.0383
+    },
+    {
+     "name": "Garner",
+     "state": "NC",
+     "lat": 35.6946,
+     "lon": -78.6227
+    },
+    {
+     "name": "Fuquay-Varina",
+     "state": "NC",
+     "lat": 35.5942,
+     "lon": -78.7824
+    },
+    {
+     "name": "Knightdale",
+     "state": "NC",
+     "lat": 35.7917,
+     "lon": -78.4965
+    },
+    {
+     "name": "Fearrington Village",
+     "state": "NC",
+     "lat": 35.7986,
+     "lon": -79.078
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    14
+   ]
+  },
+  {
+   "id": "boston-ma",
+   "label": "Boston, MA",
+   "state": "MA",
+   "center": {
+    "lat": 42.3601,
+    "lon": -71.0589
+   },
+   "anchor": "Boston",
+   "query_cities": [
+    "Boston",
+    "Cambridge",
+    "Lexington",
+    "Quincy"
+   ],
+   "aliases": [
+    "Boston",
+    "Cambridge",
+    "Quincy",
+    "Lexington",
+    "Malden",
+    "Newton"
+   ],
+   "members": [
+    {
+     "name": "Boston",
+     "state": "MA",
+     "lat": 42.332,
+     "lon": -71.0202
+    },
+    {
+     "name": "Cambridge",
+     "state": "MA",
+     "lat": 42.376,
+     "lon": -71.1183
+    },
+    {
+     "name": "Quincy",
+     "state": "MA",
+     "lat": 42.2609,
+     "lon": -71.0094
+    },
+    {
+     "name": "Lexington",
+     "state": "MA",
+     "lat": 42.4457,
+     "lon": -71.2309
+    },
+    {
+     "name": "Malden",
+     "state": "MA",
+     "lat": 42.4301,
+     "lon": -71.0577
+    },
+    {
+     "name": "Newton",
+     "state": "MA",
+     "lat": 42.3319,
+     "lon": -71.2084
+    },
+    {
+     "name": "Somerville",
+     "state": "MA",
+     "lat": 42.3906,
+     "lon": -71.1013
+    },
+    {
+     "name": "Burlington",
+     "state": "MA",
+     "lat": 42.5032,
+     "lon": -71.2017
+    },
+    {
+     "name": "Brookline",
+     "state": "MA",
+     "lat": 42.3239,
+     "lon": -71.142
+    },
+    {
+     "name": "Medford",
+     "state": "MA",
+     "lat": 42.4238,
+     "lon": -71.1092
+    },
+    {
+     "name": "Waltham",
+     "state": "MA",
+     "lat": 42.3889,
+     "lon": -71.2423
+    },
+    {
+     "name": "Arlington",
+     "state": "MA",
+     "lat": 42.4187,
+     "lon": -71.1639
+    },
+    {
+     "name": "Woburn",
+     "state": "MA",
+     "lat": 42.4887,
+     "lon": -71.1544
+    },
+    {
+     "name": "Weymouth Town",
+     "state": "MA",
+     "lat": 42.2067,
+     "lon": -70.9458
+    },
+    {
+     "name": "Needham",
+     "state": "MA",
+     "lat": 42.2818,
+     "lon": -71.2415
+    },
+    {
+     "name": "Norwood",
+     "state": "MA",
+     "lat": 42.1874,
+     "lon": -71.196
+    },
+    {
+     "name": "Belmont",
+     "state": "MA",
+     "lat": 42.3953,
+     "lon": -71.1803
+    },
+    {
+     "name": "Wellesley",
+     "state": "MA",
+     "lat": 42.3054,
+     "lon": -71.2837
+    },
+    {
+     "name": "Winchester",
+     "state": "MA",
+     "lat": 42.4528,
+     "lon": -71.1443
+    },
+    {
+     "name": "Braintree Town",
+     "state": "MA",
+     "lat": 42.2054,
+     "lon": -71.0022
+    },
+    {
+     "name": "Wakefield",
+     "state": "MA",
+     "lat": 42.5044,
+     "lon": -71.0641
+    },
+    {
+     "name": "Pinehurst",
+     "state": "MA",
+     "lat": 42.5312,
+     "lon": -71.2334
+    },
+    {
+     "name": "Revere",
+     "state": "MA",
+     "lat": 42.421,
+     "lon": -70.9904
+    },
+    {
+     "name": "Lynn",
+     "state": "MA",
+     "lat": 42.4749,
+     "lon": -70.9622
+    },
+    {
+     "name": "Everett",
+     "state": "MA",
+     "lat": 42.4059,
+     "lon": -71.0546
+    },
+    {
+     "name": "Sharon",
+     "state": "MA",
+     "lat": 42.1175,
+     "lon": -71.186
+    },
+    {
+     "name": "Melrose",
+     "state": "MA",
+     "lat": 42.4557,
+     "lon": -71.059
+    },
+    {
+     "name": "Stoneham",
+     "state": "MA",
+     "lat": 42.4742,
+     "lon": -71.0977
+    },
+    {
+     "name": "Lynnfield",
+     "state": "MA",
+     "lat": 42.5341,
+     "lon": -71.0386
+    },
+    {
+     "name": "Reading",
+     "state": "MA",
+     "lat": 42.5352,
+     "lon": -71.1054
+    },
+    {
+     "name": "Salem",
+     "state": "MA",
+     "lat": 42.5013,
+     "lon": -70.8975
+    },
+    {
+     "name": "Wilmington",
+     "state": "MA",
+     "lat": 42.5646,
+     "lon": -71.1645
+    },
+    {
+     "name": "Cochituate",
+     "state": "MA",
+     "lat": 42.3277,
+     "lon": -71.3523
+    },
+    {
+     "name": "North Scituate",
+     "state": "MA",
+     "lat": 42.2128,
+     "lon": -70.7663
+    },
+    {
+     "name": "Dedham",
+     "state": "MA",
+     "lat": 42.2469,
+     "lon": -71.1795
+    },
+    {
+     "name": "Milton",
+     "state": "MA",
+     "lat": 42.2416,
+     "lon": -71.0827
+    },
+    {
+     "name": "Chelsea",
+     "state": "MA",
+     "lat": 42.3968,
+     "lon": -71.0313
+    },
+    {
+     "name": "Brockton",
+     "state": "MA",
+     "lat": 42.0825,
+     "lon": -71.0246
+    },
+    {
+     "name": "Walpole",
+     "state": "MA",
+     "lat": 42.1339,
+     "lon": -71.2403
+    },
+    {
+     "name": "Holbrook",
+     "state": "MA",
+     "lat": 42.1489,
+     "lon": -71.0037
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    15
+   ]
+  },
+  {
+   "id": "orange-county-ca",
+   "label": "Orange County, CA",
+   "state": "CA",
+   "center": {
+    "lat": 33.6846,
+    "lon": -117.8265
+   },
+   "anchor": "Irvine",
+   "query_cities": [
+    "Irvine",
+    "Anaheim",
+    "Tustin",
+    "Fullerton",
+    "Yorba Linda",
+    "Orange County"
+   ],
+   "aliases": [
+    "Orange County",
+    "Irvine",
+    "Anaheim",
+    "Tustin",
+    "Fullerton",
+    "Yorba Linda",
+    "Corona"
+   ],
+   "members": [
+    {
+     "name": "Irvine",
+     "state": "CA",
+     "lat": 33.6784,
+     "lon": -117.7713
+    },
+    {
+     "name": "Anaheim",
+     "state": "CA",
+     "lat": 33.8555,
+     "lon": -117.7601
+    },
+    {
+     "name": "Tustin",
+     "state": "CA",
+     "lat": 33.7308,
+     "lon": -117.8107
+    },
+    {
+     "name": "Corona",
+     "state": "CA",
+     "lat": 33.8624,
+     "lon": -117.5639
+    },
+    {
+     "name": "Yorba Linda",
+     "state": "CA",
+     "lat": 33.887,
+     "lon": -117.7726
+    },
+    {
+     "name": "Fullerton",
+     "state": "CA",
+     "lat": 33.8857,
+     "lon": -117.928
+    },
+    {
+     "name": "Lake Forest",
+     "state": "CA",
+     "lat": 33.6672,
+     "lon": -117.6686
+    },
+    {
+     "name": "Placentia",
+     "state": "CA",
+     "lat": 33.8812,
+     "lon": -117.8548
+    },
+    {
+     "name": "Orange",
+     "state": "CA",
+     "lat": 33.8048,
+     "lon": -117.8249
+    },
+    {
+     "name": "Santa Ana",
+     "state": "CA",
+     "lat": 33.7365,
+     "lon": -117.8826
+    },
+    {
+     "name": "Aliso Viejo",
+     "state": "CA",
+     "lat": 33.5779,
+     "lon": -117.73
+    },
+    {
+     "name": "Brea",
+     "state": "CA",
+     "lat": 33.9245,
+     "lon": -117.8652
+    },
+    {
+     "name": "Huntington Beach",
+     "state": "CA",
+     "lat": 33.6906,
+     "lon": -118.0093
+    },
+    {
+     "name": "Mission Viejo",
+     "state": "CA",
+     "lat": 33.6093,
+     "lon": -117.6565
+    },
+    {
+     "name": "Newport Beach",
+     "state": "CA",
+     "lat": 33.5966,
+     "lon": -117.8878
+    },
+    {
+     "name": "Costa Mesa",
+     "state": "CA",
+     "lat": 33.6659,
+     "lon": -117.9123
+    },
+    {
+     "name": "Laguna Niguel",
+     "state": "CA",
+     "lat": 33.529,
+     "lon": -117.7012
+    },
+    {
+     "name": "Fountain Valley",
+     "state": "CA",
+     "lat": 33.7106,
+     "lon": -117.9511
+    },
+    {
+     "name": "Garden Grove",
+     "state": "CA",
+     "lat": 33.7788,
+     "lon": -117.9605
+    },
+    {
+     "name": "Rancho Santa Margarita",
+     "state": "CA",
+     "lat": 33.6324,
+     "lon": -117.599
+    },
+    {
+     "name": "Ladera Ranch",
+     "state": "CA",
+     "lat": 33.5496,
+     "lon": -117.6416
+    },
+    {
+     "name": "Villa Park",
+     "state": "CA",
+     "lat": 33.8181,
+     "lon": -117.8102
+    },
+    {
+     "name": "Westminster",
+     "state": "CA",
+     "lat": 33.7522,
+     "lon": -117.9938
+    },
+    {
+     "name": "San Juan Capistrano",
+     "state": "CA",
+     "lat": 33.5006,
+     "lon": -117.6544
+    },
+    {
+     "name": "Laguna Hills",
+     "state": "CA",
+     "lat": 33.5915,
+     "lon": -117.6994
+    },
+    {
+     "name": "North Tustin",
+     "state": "CA",
+     "lat": 33.7646,
+     "lon": -117.7943
+    },
+    {
+     "name": "Stanton",
+     "state": "CA",
+     "lat": 33.8002,
+     "lon": -117.9934
+    },
+    {
+     "name": "Las Flores",
+     "state": "CA",
+     "lat": 33.5826,
+     "lon": -117.6241
+    },
+    {
+     "name": "Coto de Caza",
+     "state": "CA",
+     "lat": 33.597,
+     "lon": -117.5865
+    },
+    {
+     "name": "Laguna Woods",
+     "state": "CA",
+     "lat": 33.608,
+     "lon": -117.7299
+    },
+    {
+     "name": "Laguna Beach",
+     "state": "CA",
+     "lat": 33.5429,
+     "lon": -117.7625
+    },
+    {
+     "name": "Dana Point",
+     "state": "CA",
+     "lat": 33.4605,
+     "lon": -117.7139
+    }
+   ],
+   "block": [],
+   "context_guard": "orange_county",
+   "source_ranks": [
+    16
+   ]
+  },
+  {
+   "id": "houston-tx",
+   "label": "Houston, TX",
+   "state": "TX",
+   "center": {
+    "lat": 29.7604,
+    "lon": -95.3698
+   },
+   "anchor": "Houston",
+   "query_cities": [
+    "Houston",
+    "Missouri City",
+    "Pearland"
+   ],
+   "aliases": [
+    "Houston",
+    "Missouri City",
+    "Pearland",
+    "Stafford"
+   ],
+   "members": [
+    {
+     "name": "Houston",
+     "state": "TX",
+     "lat": 29.7805,
+     "lon": -95.3863
+    },
+    {
+     "name": "Missouri City",
+     "state": "TX",
+     "lat": 29.5652,
+     "lon": -95.5382
+    },
+    {
+     "name": "Pearland",
+     "state": "TX",
+     "lat": 29.5558,
+     "lon": -95.3231
+    },
+    {
+     "name": "Stafford",
+     "state": "TX",
+     "lat": 29.6257,
+     "lon": -95.5657
+    },
+    {
+     "name": "Bellaire",
+     "state": "TX",
+     "lat": 29.704,
+     "lon": -95.4633
+    },
+    {
+     "name": "Atascocita",
+     "state": "TX",
+     "lat": 29.9759,
+     "lon": -95.1946
+    },
+    {
+     "name": "Pasadena",
+     "state": "TX",
+     "lat": 29.6583,
+     "lon": -95.1505
+    },
+    {
+     "name": "Channelview",
+     "state": "TX",
+     "lat": 29.793,
+     "lon": -95.1145
+    },
+    {
+     "name": "West University Place",
+     "state": "TX",
+     "lat": 29.7154,
+     "lon": -95.4316
+    },
+    {
+     "name": "Mission Bend",
+     "state": "TX",
+     "lat": 29.6937,
+     "lon": -95.6663
+    },
+    {
+     "name": "Meadows Place",
+     "state": "TX",
+     "lat": 29.6509,
+     "lon": -95.5869
+    },
+    {
+     "name": "Jersey Village",
+     "state": "TX",
+     "lat": 29.892,
+     "lon": -95.5675
+    },
+    {
+     "name": "Hunters Creek Village",
+     "state": "TX",
+     "lat": 29.7727,
+     "lon": -95.4981
+    },
+    {
+     "name": "Southside Place",
+     "state": "TX",
+     "lat": 29.7087,
+     "lon": -95.4355
+    },
+    {
+     "name": "Fresno",
+     "state": "TX",
+     "lat": 29.5374,
+     "lon": -95.4715
+    },
+    {
+     "name": "Piney Point Village",
+     "state": "TX",
+     "lat": 29.7564,
+     "lon": -95.5154
+    },
+    {
+     "name": "Hedwig Village",
+     "state": "TX",
+     "lat": 29.7797,
+     "lon": -95.5196
+    },
+    {
+     "name": "Hilshire Village",
+     "state": "TX",
+     "lat": 29.7908,
+     "lon": -95.4885
+    },
+    {
+     "name": "Bunker Hill Village",
+     "state": "TX",
+     "lat": 29.7648,
+     "lon": -95.5318
+    },
+    {
+     "name": "Cloverleaf",
+     "state": "TX",
+     "lat": 29.7878,
+     "lon": -95.1731
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    17
+   ]
+  },
+  {
+   "id": "detroit-mi",
+   "label": "Detroit, MI",
+   "state": "MI",
+   "center": {
+    "lat": 42.6064,
+    "lon": -83.1498
+   },
+   "anchor": "Troy",
+   "query_cities": [
+    "Troy Michigan",
+    "Farmington Hills",
+    "Rochester Hills",
+    "Warren Michigan",
+    "Sterling Heights"
+   ],
+   "aliases": [
+    "Detroit",
+    "Troy",
+    "Farmington Hills",
+    "Warren",
+    "Rochester Hills",
+    "Sterling Heights"
+   ],
+   "members": [
+    {
+     "name": "Troy",
+     "state": "MI",
+     "lat": 42.5839,
+     "lon": -83.1455
+    },
+    {
+     "name": "Farmington Hills",
+     "state": "MI",
+     "lat": 42.4856,
+     "lon": -83.376
+    },
+    {
+     "name": "Warren",
+     "state": "MI",
+     "lat": 42.4929,
+     "lon": -83.025
+    },
+    {
+     "name": "Rochester Hills",
+     "state": "MI",
+     "lat": 42.6635,
+     "lon": -83.1592
+    },
+    {
+     "name": "Sterling Heights",
+     "state": "MI",
+     "lat": 42.5812,
+     "lon": -83.0303
+    },
+    {
+     "name": "Detroit",
+     "state": "MI",
+     "lat": 42.383,
+     "lon": -83.1022
+    },
+    {
+     "name": "Auburn Hills",
+     "state": "MI",
+     "lat": 42.6747,
+     "lon": -83.2436
+    },
+    {
+     "name": "Farmington",
+     "state": "MI",
+     "lat": 42.4614,
+     "lon": -83.3784
+    },
+    {
+     "name": "Hamtramck",
+     "state": "MI",
+     "lat": 42.3954,
+     "lon": -83.056
+    },
+    {
+     "name": "Livonia",
+     "state": "MI",
+     "lat": 42.3972,
+     "lon": -83.3723
+    },
+    {
+     "name": "Royal Oak",
+     "state": "MI",
+     "lat": 42.5078,
+     "lon": -83.1539
+    },
+    {
+     "name": "Birmingham",
+     "state": "MI",
+     "lat": 42.5448,
+     "lon": -83.2166
+    },
+    {
+     "name": "Southfield",
+     "state": "MI",
+     "lat": 42.4746,
+     "lon": -83.2595
+    },
+    {
+     "name": "Rochester",
+     "state": "MI",
+     "lat": 42.6867,
+     "lon": -83.1197
+    },
+    {
+     "name": "Ferndale",
+     "state": "MI",
+     "lat": 42.4592,
+     "lon": -83.1313
+    },
+    {
+     "name": "Roseville",
+     "state": "MI",
+     "lat": 42.5076,
+     "lon": -82.9366
+    },
+    {
+     "name": "St. Clair Shores",
+     "state": "MI",
+     "lat": 42.493,
+     "lon": -82.8909
+    },
+    {
+     "name": "Madison Heights",
+     "state": "MI",
+     "lat": 42.5073,
+     "lon": -83.1034
+    },
+    {
+     "name": "Orchard Lake Village",
+     "state": "MI",
+     "lat": 42.5894,
+     "lon": -83.3713
+    },
+    {
+     "name": "Bloomfield Hills",
+     "state": "MI",
+     "lat": 42.5753,
+     "lon": -83.2544
+    },
+    {
+     "name": "Grosse Pointe Woods",
+     "state": "MI",
+     "lat": 42.4393,
+     "lon": -82.899
+    },
+    {
+     "name": "Pontiac",
+     "state": "MI",
+     "lat": 42.6492,
+     "lon": -83.2874
+    },
+    {
+     "name": "Walled Lake",
+     "state": "MI",
+     "lat": 42.5371,
+     "lon": -83.4739
+    },
+    {
+     "name": "Fraser",
+     "state": "MI",
+     "lat": 42.5376,
+     "lon": -82.9467
+    },
+    {
+     "name": "Oak Park",
+     "state": "MI",
+     "lat": 42.465,
+     "lon": -83.1823
+    },
+    {
+     "name": "Utica",
+     "state": "MI",
+     "lat": 42.6287,
+     "lon": -83.0233
+    },
+    {
+     "name": "Center Line",
+     "state": "MI",
+     "lat": 42.4806,
+     "lon": -83.0273
+    },
+    {
+     "name": "Village of Grosse Pointe Shores",
+     "state": "MI",
+     "lat": 42.4511,
+     "lon": -82.8703
+    },
+    {
+     "name": "Lake Orion",
+     "state": "MI",
+     "lat": 42.7885,
+     "lon": -83.2518
+    },
+    {
+     "name": "Franklin",
+     "state": "MI",
+     "lat": 42.5188,
+     "lon": -83.303
+    },
+    {
+     "name": "Hazel Park",
+     "state": "MI",
+     "lat": 42.4619,
+     "lon": -83.0977
+    },
+    {
+     "name": "Bingham Farms",
+     "state": "MI",
+     "lat": 42.5177,
+     "lon": -83.278
+    },
+    {
+     "name": "Clawson",
+     "state": "MI",
+     "lat": 42.5367,
+     "lon": -83.1504
+    },
+    {
+     "name": "Beverly Hills",
+     "state": "MI",
+     "lat": 42.5225,
+     "lon": -83.2403
+    },
+    {
+     "name": "Huntington Woods",
+     "state": "MI",
+     "lat": 42.4819,
+     "lon": -83.1681
+    },
+    {
+     "name": "Oxford",
+     "state": "MI",
+     "lat": 42.8232,
+     "lon": -83.2542
+    },
+    {
+     "name": "Highland Park",
+     "state": "MI",
+     "lat": 42.4052,
+     "lon": -83.0976
+    },
+    {
+     "name": "Pleasant Ridge",
+     "state": "MI",
+     "lat": 42.4715,
+     "lon": -83.1446
+    },
+    {
+     "name": "Harper Woods",
+     "state": "MI",
+     "lat": 42.439,
+     "lon": -82.9294
+    },
+    {
+     "name": "Romeo",
+     "state": "MI",
+     "lat": 42.8046,
+     "lon": -83.0026
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    18
+   ]
+  },
+  {
+   "id": "austin-tx",
+   "label": "Austin, TX",
+   "state": "TX",
+   "center": {
+    "lat": 30.2672,
+    "lon": -97.7431
+   },
+   "anchor": "Austin",
+   "query_cities": [
+    "Austin",
+    "Round Rock",
+    "Cedar Park"
+   ],
+   "aliases": [
+    "Austin",
+    "Round Rock",
+    "Cedar Park",
+    "Pflugerville"
+   ],
+   "members": [
+    {
+     "name": "Austin",
+     "state": "TX",
+     "lat": 30.3072,
+     "lon": -97.756
+    },
+    {
+     "name": "Cedar Park",
+     "state": "TX",
+     "lat": 30.5147,
+     "lon": -97.8174
+    },
+    {
+     "name": "Round Rock",
+     "state": "TX",
+     "lat": 30.5237,
+     "lon": -97.6674
+    },
+    {
+     "name": "Pflugerville",
+     "state": "TX",
+     "lat": 30.4543,
+     "lon": -97.6059
+    },
+    {
+     "name": "Brushy Creek",
+     "state": "TX",
+     "lat": 30.5126,
+     "lon": -97.7377
+    },
+    {
+     "name": "Lakeway",
+     "state": "TX",
+     "lat": 30.3548,
+     "lon": -97.9798
+    },
+    {
+     "name": "Hudson Bend",
+     "state": "TX",
+     "lat": 30.4144,
+     "lon": -97.927
+    },
+    {
+     "name": "Wells Branch",
+     "state": "TX",
+     "lat": 30.4447,
+     "lon": -97.6788
+    },
+    {
+     "name": "Bee Cave",
+     "state": "TX",
+     "lat": 30.3096,
+     "lon": -97.9624
+    },
+    {
+     "name": "Manor",
+     "state": "TX",
+     "lat": 30.3544,
+     "lon": -97.5269
+    },
+    {
+     "name": "Barton Creek",
+     "state": "TX",
+     "lat": 30.282,
+     "lon": -97.8675
+    },
+    {
+     "name": "Hornsby Bend",
+     "state": "TX",
+     "lat": 30.245,
+     "lon": -97.5833
+    },
+    {
+     "name": "Sunset Valley",
+     "state": "TX",
+     "lat": 30.226,
+     "lon": -97.8159
+    },
+    {
+     "name": "Manchaca",
+     "state": "TX",
+     "lat": 30.1353,
+     "lon": -97.8363
+    },
+    {
+     "name": "Rollingwood",
+     "state": "TX",
+     "lat": 30.2738,
+     "lon": -97.7865
+    },
+    {
+     "name": "West Lake Hills",
+     "state": "TX",
+     "lat": 30.2921,
+     "lon": -97.8084
+    },
+    {
+     "name": "The Hills",
+     "state": "TX",
+     "lat": 30.3464,
+     "lon": -97.9864
+    },
+    {
+     "name": "Jonestown",
+     "state": "TX",
+     "lat": 30.4831,
+     "lon": -97.9312
+    },
+    {
+     "name": "San Leanna",
+     "state": "TX",
+     "lat": 30.1434,
+     "lon": -97.8196
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    19
+   ]
+  },
+  {
+   "id": "johns-creek-ga",
+   "label": "Johns Creek, GA",
+   "state": "GA",
+   "center": {
+    "lat": 34.0289,
+    "lon": -84.1984
+   },
+   "anchor": "Johns Creek",
+   "query_cities": [
+    "Johns Creek",
+    "Alpharetta",
+    "Dunwoody",
+    "Sandy Springs",
+    "Duluth Georgia"
+   ],
+   "aliases": [
+    "Johns Creek",
+    "Alpharetta",
+    "Milton",
+    "Dunwoody",
+    "Sandy Springs"
+   ],
+   "members": [
+    {
+     "name": "Johns Creek",
+     "state": "GA",
+     "lat": 34.0327,
+     "lon": -84.2038
+    },
+    {
+     "name": "Alpharetta",
+     "state": "GA",
+     "lat": 34.0706,
+     "lon": -84.2759
+    },
+    {
+     "name": "Milton",
+     "state": "GA",
+     "lat": 34.1441,
+     "lon": -84.3145
+    },
+    {
+     "name": "Dunwoody",
+     "state": "GA",
+     "lat": 33.9414,
+     "lon": -84.3127
+    },
+    {
+     "name": "Sandy Springs",
+     "state": "GA",
+     "lat": 33.9315,
+     "lon": -84.3687
+    },
+    {
+     "name": "Duluth",
+     "state": "GA",
+     "lat": 34.0015,
+     "lon": -84.1505
+    },
+    {
+     "name": "Roswell",
+     "state": "GA",
+     "lat": 34.0395,
+     "lon": -84.3509
+    },
+    {
+     "name": "Mountain Park",
+     "state": "GA",
+     "lat": 33.8467,
+     "lon": -84.1322
+    },
+    {
+     "name": "Scottdale",
+     "state": "GA",
+     "lat": 33.7975,
+     "lon": -84.2627
+    },
+    {
+     "name": "Sugar Hill",
+     "state": "GA",
+     "lat": 34.0976,
+     "lon": -84.0423
+    },
+    {
+     "name": "Suwanee",
+     "state": "GA",
+     "lat": 34.0486,
+     "lon": -84.0664
+    },
+    {
+     "name": "Cumming",
+     "state": "GA",
+     "lat": 34.2076,
+     "lon": -84.1336
+    },
+    {
+     "name": "Lilburn",
+     "state": "GA",
+     "lat": 33.8906,
+     "lon": -84.1369
+    },
+    {
+     "name": "Snellville",
+     "state": "GA",
+     "lat": 33.8576,
+     "lon": -84.0048
+    },
+    {
+     "name": "North Druid Hills",
+     "state": "GA",
+     "lat": 33.8197,
+     "lon": -84.3274
+    },
+    {
+     "name": "Tucker",
+     "state": "GA",
+     "lat": 33.853,
+     "lon": -84.2211
+    },
+    {
+     "name": "Chamblee",
+     "state": "GA",
+     "lat": 33.8887,
+     "lon": -84.3036
+    },
+    {
+     "name": "North Decatur",
+     "state": "GA",
+     "lat": 33.807,
+     "lon": -84.2887
+    },
+    {
+     "name": "Doraville",
+     "state": "GA",
+     "lat": 33.9067,
+     "lon": -84.2749
+    },
+    {
+     "name": "Lawrenceville",
+     "state": "GA",
+     "lat": 33.9529,
+     "lon": -83.9922
+    },
+    {
+     "name": "Norcross",
+     "state": "GA",
+     "lat": 33.9401,
+     "lon": -84.2106
+    },
+    {
+     "name": "Berkeley Lake",
+     "state": "GA",
+     "lat": 33.9863,
+     "lon": -84.1838
+    },
+    {
+     "name": "Clarkston",
+     "state": "GA",
+     "lat": 33.8108,
+     "lon": -84.2409
+    },
+    {
+     "name": "Buford",
+     "state": "GA",
+     "lat": 34.12,
+     "lon": -83.9918
+    },
+    {
+     "name": "Stone Mountain",
+     "state": "GA",
+     "lat": 33.8042,
+     "lon": -84.1714
+    },
+    {
+     "name": "Grayson",
+     "state": "GA",
+     "lat": 33.8907,
+     "lon": -83.9567
+    },
+    {
+     "name": "Pine Lake",
+     "state": "GA",
+     "lat": 33.7907,
+     "lon": -84.2058
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    20
+   ]
+  },
+  {
+   "id": "atlanta-ga",
+   "label": "Atlanta, GA",
+   "state": "GA",
+   "center": {
+    "lat": 33.749,
+    "lon": -84.388
+   },
+   "anchor": "Atlanta",
+   "query_cities": [
+    "Atlanta",
+    "Marietta",
+    "Smyrna",
+    "Decatur"
+   ],
+   "aliases": [
+    "Atlanta",
+    "Marietta",
+    "Smyrna",
+    "Decatur",
+    "Stockbridge"
+   ],
+   "members": [
+    {
+     "name": "Atlanta",
+     "state": "GA",
+     "lat": 33.7629,
+     "lon": -84.4227
+    },
+    {
+     "name": "Smyrna",
+     "state": "GA",
+     "lat": 33.8644,
+     "lon": -84.5153
+    },
+    {
+     "name": "Stockbridge",
+     "state": "GA",
+     "lat": 33.5432,
+     "lon": -84.2575
+    },
+    {
+     "name": "Mableton",
+     "state": "GA",
+     "lat": 33.8145,
+     "lon": -84.5657
+    },
+    {
+     "name": "Marietta",
+     "state": "GA",
+     "lat": 33.9536,
+     "lon": -84.5425
+    },
+    {
+     "name": "Vinings",
+     "state": "GA",
+     "lat": 33.8606,
+     "lon": -84.4687
+    },
+    {
+     "name": "Decatur",
+     "state": "GA",
+     "lat": 33.7715,
+     "lon": -84.2979
+    },
+    {
+     "name": "Douglasville",
+     "state": "GA",
+     "lat": 33.7383,
+     "lon": -84.7072
+    },
+    {
+     "name": "Redan",
+     "state": "GA",
+     "lat": 33.7376,
+     "lon": -84.16
+    },
+    {
+     "name": "Druid Hills",
+     "state": "GA",
+     "lat": 33.7874,
+     "lon": -84.326
+    },
+    {
+     "name": "East Point",
+     "state": "GA",
+     "lat": 33.6695,
+     "lon": -84.4704
+    },
+    {
+     "name": "Lithia Springs",
+     "state": "GA",
+     "lat": 33.7825,
+     "lon": -84.6485
+    },
+    {
+     "name": "Belvedere Park",
+     "state": "GA",
+     "lat": 33.7489,
+     "lon": -84.2598
+    },
+    {
+     "name": "Hapeville",
+     "state": "GA",
+     "lat": 33.6609,
+     "lon": -84.4093
+    },
+    {
+     "name": "Candler-McAfee",
+     "state": "GA",
+     "lat": 33.7262,
+     "lon": -84.2709
+    },
+    {
+     "name": "Powder Springs",
+     "state": "GA",
+     "lat": 33.8657,
+     "lon": -84.684
+    },
+    {
+     "name": "Morrow",
+     "state": "GA",
+     "lat": 33.5788,
+     "lon": -84.3361
+    },
+    {
+     "name": "College Park",
+     "state": "GA",
+     "lat": 33.6381,
+     "lon": -84.4601
+    },
+    {
+     "name": "Avondale Estates",
+     "state": "GA",
+     "lat": 33.7687,
+     "lon": -84.2647
+    },
+    {
+     "name": "Lake City",
+     "state": "GA",
+     "lat": 33.6065,
+     "lon": -84.3411
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    52
+   ]
+  },
+  {
+   "id": "philadelphia-pa",
+   "label": "Philadelphia, PA",
+   "state": "PA",
+   "center": {
+    "lat": 39.9526,
+    "lon": -75.1652
+   },
+   "anchor": "Philadelphia",
+   "query_cities": [
+    "Philadelphia",
+    "King of Prussia",
+    "Lansdale"
+   ],
+   "aliases": [
+    "Philadelphia",
+    "Philly",
+    "King of Prussia",
+    "Lansdale",
+    "Montgomeryville",
+    "Audubon"
+   ],
+   "members": [
+    {
+     "name": "Philadelphia",
+     "state": "PA",
+     "lat": 40.0094,
+     "lon": -75.1333
+    },
+    {
+     "name": "King of Prussia",
+     "state": "PA",
+     "lat": 40.096,
+     "lon": -75.3791
+    },
+    {
+     "name": "Echelon",
+     "state": "NJ",
+     "lat": 39.8478,
+     "lon": -74.9972
+    },
+    {
+     "name": "Montgomeryville",
+     "state": "PA",
+     "lat": 40.2502,
+     "lon": -75.2405
+    },
+    {
+     "name": "Audubon",
+     "state": "PA",
+     "lat": 40.1303,
+     "lon": -75.428
+    },
+    {
+     "name": "Lansdale",
+     "state": "PA",
+     "lat": 40.2417,
+     "lon": -75.2812
+    },
+    {
+     "name": "Chesterbrook",
+     "state": "PA",
+     "lat": 40.0706,
+     "lon": -75.455
+    },
+    {
+     "name": "Springdale",
+     "state": "NJ",
+     "lat": 39.8762,
+     "lon": -74.9721
+    },
+    {
+     "name": "Millbourne",
+     "state": "PA",
+     "lat": 39.9637,
+     "lon": -75.2526
+    },
+    {
+     "name": "Greentree",
+     "state": "NJ",
+     "lat": 39.8987,
+     "lon": -74.9617
+    },
+    {
+     "name": "Ardmore",
+     "state": "PA",
+     "lat": 40.0033,
+     "lon": -75.2948
+    },
+    {
+     "name": "Broomall",
+     "state": "PA",
+     "lat": 39.9695,
+     "lon": -75.3529
+    },
+    {
+     "name": "Moorestown-Lenola",
+     "state": "NJ",
+     "lat": 39.9665,
+     "lon": -74.9625
+    },
+    {
+     "name": "Levittown",
+     "state": "PA",
+     "lat": 40.1538,
+     "lon": -74.8533
+    },
+    {
+     "name": "Plymouth Meeting",
+     "state": "PA",
+     "lat": 40.1099,
+     "lon": -75.2798
+    },
+    {
+     "name": "Spring House",
+     "state": "PA",
+     "lat": 40.1772,
+     "lon": -75.2195
+    },
+    {
+     "name": "Marlton",
+     "state": "NJ",
+     "lat": 39.9019,
+     "lon": -74.9293
+    },
+    {
+     "name": "Kingston Estates",
+     "state": "NJ",
+     "lat": 39.9181,
+     "lon": -74.9902
+    },
+    {
+     "name": "Horsham",
+     "state": "PA",
+     "lat": 40.1825,
+     "lon": -75.1387
+    },
+    {
+     "name": "Gloucester City",
+     "state": "NJ",
+     "lat": 39.8916,
+     "lon": -75.1167
+    },
+    {
+     "name": "Drexel Hill",
+     "state": "PA",
+     "lat": 39.9495,
+     "lon": -75.3039
+    },
+    {
+     "name": "Ellisburg",
+     "state": "NJ",
+     "lat": 39.9199,
+     "lon": -75.0093
+    },
+    {
+     "name": "Richboro",
+     "state": "PA",
+     "lat": 40.2255,
+     "lon": -74.993
+    },
+    {
+     "name": "Barrington",
+     "state": "NJ",
+     "lat": 39.8689,
+     "lon": -75.0514
+    },
+    {
+     "name": "Lindenwold",
+     "state": "NJ",
+     "lat": 39.8172,
+     "lon": -74.9889
+    },
+    {
+     "name": "Bellmawr",
+     "state": "NJ",
+     "lat": 39.8664,
+     "lon": -75.0947
+    },
+    {
+     "name": "North Wales",
+     "state": "PA",
+     "lat": 40.2112,
+     "lon": -75.2744
+    },
+    {
+     "name": "Trooper",
+     "state": "PA",
+     "lat": 40.1489,
+     "lon": -75.3995
+    },
+    {
+     "name": "Morton",
+     "state": "PA",
+     "lat": 39.9116,
+     "lon": -75.3268
+    },
+    {
+     "name": "Penn Wynne",
+     "state": "PA",
+     "lat": 39.9867,
+     "lon": -75.2715
+    },
+    {
+     "name": "Media",
+     "state": "PA",
+     "lat": 39.92,
+     "lon": -75.388
+    },
+    {
+     "name": "Berwyn",
+     "state": "PA",
+     "lat": 40.0388,
+     "lon": -75.4421
+    },
+    {
+     "name": "Gibbsboro",
+     "state": "NJ",
+     "lat": 39.8331,
+     "lon": -74.9657
+    },
+    {
+     "name": "Norristown",
+     "state": "PA",
+     "lat": 40.1221,
+     "lon": -75.3399
+    },
+    {
+     "name": "Eagleville",
+     "state": "PA",
+     "lat": 40.1604,
+     "lon": -75.409
+    },
+    {
+     "name": "Maple Glen",
+     "state": "PA",
+     "lat": 40.1778,
+     "lon": -75.1792
+    },
+    {
+     "name": "Pine Hill",
+     "state": "NJ",
+     "lat": 39.7868,
+     "lon": -74.9847
+    },
+    {
+     "name": "Clifton Heights",
+     "state": "PA",
+     "lat": 39.9301,
+     "lon": -75.2958
+    },
+    {
+     "name": "East Lansdowne",
+     "state": "PA",
+     "lat": 39.944,
+     "lon": -75.2608
+    },
+    {
+     "name": "Cherry Hill Mall",
+     "state": "NJ",
+     "lat": 39.9389,
+     "lon": -75.0118
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    21
+   ]
+  },
+  {
+   "id": "sacramento-ca",
+   "label": "Sacramento, CA",
+   "state": "CA",
+   "center": {
+    "lat": 38.5816,
+    "lon": -121.4944
+   },
+   "anchor": "Sacramento",
+   "query_cities": [
+    "Sacramento",
+    "Elk Grove",
+    "Roseville",
+    "Rancho Cordova",
+    "Davis"
+   ],
+   "aliases": [
+    "Sacramento",
+    "Elk Grove",
+    "Roseville",
+    "Rancho Cordova",
+    "Davis",
+    "Vineyard"
+   ],
+   "members": [
+    {
+     "name": "Sacramento",
+     "state": "CA",
+     "lat": 38.5666,
+     "lon": -121.4686
+    },
+    {
+     "name": "Elk Grove",
+     "state": "CA",
+     "lat": 38.4144,
+     "lon": -121.3849
+    },
+    {
+     "name": "Roseville",
+     "state": "CA",
+     "lat": 38.7657,
+     "lon": -121.3032
+    },
+    {
+     "name": "Vineyard",
+     "state": "CA",
+     "lat": 38.4745,
+     "lon": -121.319
+    },
+    {
+     "name": "Rancho Cordova",
+     "state": "CA",
+     "lat": 38.5762,
+     "lon": -121.2467
+    },
+    {
+     "name": "Davis",
+     "state": "CA",
+     "lat": 38.5561,
+     "lon": -121.7378
+    },
+    {
+     "name": "West Sacramento",
+     "state": "CA",
+     "lat": 38.5545,
+     "lon": -121.5488
+    },
+    {
+     "name": "Florin",
+     "state": "CA",
+     "lat": 38.4832,
+     "lon": -121.4042
+    },
+    {
+     "name": "Woodland",
+     "state": "CA",
+     "lat": 38.6712,
+     "lon": -121.75
+    },
+    {
+     "name": "Antelope",
+     "state": "CA",
+     "lat": 38.7153,
+     "lon": -121.361
+    },
+    {
+     "name": "Arden-Arcade",
+     "state": "CA",
+     "lat": 38.6034,
+     "lon": -121.3801
+    },
+    {
+     "name": "Foothill Farms",
+     "state": "CA",
+     "lat": 38.6867,
+     "lon": -121.3475
+    },
+    {
+     "name": "University of California Davis",
+     "state": "CA",
+     "lat": 38.5374,
+     "lon": -121.7576
+    },
+    {
+     "name": "Carmichael",
+     "state": "CA",
+     "lat": 38.6349,
+     "lon": -121.3242
+    },
+    {
+     "name": "Parkway",
+     "state": "CA",
+     "lat": 38.4994,
+     "lon": -121.4518
+    },
+    {
+     "name": "Gold River",
+     "state": "CA",
+     "lat": 38.6268,
+     "lon": -121.2492
+    },
+    {
+     "name": "Wilton",
+     "state": "CA",
+     "lat": 38.413,
+     "lon": -121.2127
+    },
+    {
+     "name": "Citrus Heights",
+     "state": "CA",
+     "lat": 38.6948,
+     "lon": -121.288
+    },
+    {
+     "name": "Rosemont",
+     "state": "CA",
+     "lat": 38.5477,
+     "lon": -121.3551
+    },
+    {
+     "name": "Mather",
+     "state": "CA",
+     "lat": 38.5484,
+     "lon": -121.2838
+    },
+    {
+     "name": "Orangevale",
+     "state": "CA",
+     "lat": 38.6894,
+     "lon": -121.2231
+    },
+    {
+     "name": "Lemon Hill",
+     "state": "CA",
+     "lat": 38.5172,
+     "lon": -121.4574
+    },
+    {
+     "name": "Fair Oaks",
+     "state": "CA",
+     "lat": 38.6502,
+     "lon": -121.251
+    },
+    {
+     "name": "La Riviera",
+     "state": "CA",
+     "lat": 38.5681,
+     "lon": -121.3541
+    },
+    {
+     "name": "Elverta",
+     "state": "CA",
+     "lat": 38.7185,
+     "lon": -121.4455
+    },
+    {
+     "name": "Fruitridge Pocket",
+     "state": "CA",
+     "lat": 38.5326,
+     "lon": -121.4558
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    22
+   ]
+  },
+  {
+   "id": "charlotte-nc",
+   "label": "Charlotte, NC",
+   "state": "NC",
+   "center": {
+    "lat": 35.2271,
+    "lon": -80.8431
+   },
+   "anchor": "Charlotte",
+   "query_cities": [
+    "Charlotte",
+    "Concord",
+    "Huntersville",
+    "Fort Mill"
+   ],
+   "aliases": [
+    "Charlotte",
+    "Concord",
+    "Huntersville",
+    "Harrisburg",
+    "Fort Mill",
+    "Tega Cay"
+   ],
+   "members": [
+    {
+     "name": "Charlotte",
+     "state": "NC",
+     "lat": 35.2087,
+     "lon": -80.8307
+    },
+    {
+     "name": "Concord",
+     "state": "NC",
+     "lat": 35.392,
+     "lon": -80.6355
+    },
+    {
+     "name": "Huntersville",
+     "state": "NC",
+     "lat": 35.4045,
+     "lon": -80.877
+    },
+    {
+     "name": "Harrisburg",
+     "state": "NC",
+     "lat": 35.3166,
+     "lon": -80.651
+    },
+    {
+     "name": "Tega Cay",
+     "state": "SC",
+     "lat": 35.0392,
+     "lon": -81.015
+    },
+    {
+     "name": "Fort Mill",
+     "state": "SC",
+     "lat": 35.0087,
+     "lon": -80.9364
+    },
+    {
+     "name": "Weddington",
+     "state": "NC",
+     "lat": 35.0215,
+     "lon": -80.7363
+    },
+    {
+     "name": "Marvin",
+     "state": "NC",
+     "lat": 35.0043,
+     "lon": -80.8176
+    },
+    {
+     "name": "Matthews",
+     "state": "NC",
+     "lat": 35.1197,
+     "lon": -80.7133
+    },
+    {
+     "name": "Indian Trail",
+     "state": "NC",
+     "lat": 35.0664,
+     "lon": -80.6475
+    },
+    {
+     "name": "Wesley Chapel",
+     "state": "NC",
+     "lat": 35.0059,
+     "lon": -80.6934
+    },
+    {
+     "name": "Stallings",
+     "state": "NC",
+     "lat": 35.1103,
+     "lon": -80.6601
+    },
+    {
+     "name": "Lake Wylie",
+     "state": "SC",
+     "lat": 35.0998,
+     "lon": -81.0653
+    },
+    {
+     "name": "Belmont",
+     "state": "NC",
+     "lat": 35.2311,
+     "lon": -81.038
+    },
+    {
+     "name": "Pineville",
+     "state": "NC",
+     "lat": 35.0924,
+     "lon": -80.8922
+    },
+    {
+     "name": "Mount Holly",
+     "state": "NC",
+     "lat": 35.3113,
+     "lon": -81.0153
+    },
+    {
+     "name": "Mint Hill",
+     "state": "NC",
+     "lat": 35.1785,
+     "lon": -80.6554
+    },
+    {
+     "name": "McAdenville",
+     "state": "NC",
+     "lat": 35.2654,
+     "lon": -81.0799
+    },
+    {
+     "name": "Riverview",
+     "state": "SC",
+     "lat": 35.0131,
+     "lon": -80.9886
+    }
+   ],
+   "block": [
+    "charlotte county"
+   ],
+   "context_guard": null,
+   "source_ranks": [
+    23
+   ]
+  },
+  {
+   "id": "howard-county-md",
+   "label": "Howard County, MD",
+   "state": "MD",
+   "center": {
+    "lat": 39.2673,
+    "lon": -76.7983
+   },
+   "anchor": "Ellicott City",
+   "query_cities": [
+    "Ellicott City",
+    "Columbia Maryland",
+    "Elkridge",
+    "Howard County"
+   ],
+   "aliases": [
+    "Howard County",
+    "Ellicott City",
+    "Elkridge",
+    "Ilchester",
+    "Woodlawn"
+   ],
+   "members": [
+    {
+     "name": "Ellicott City",
+     "state": "MD",
+     "lat": 39.2767,
+     "lon": -76.834
+    },
+    {
+     "name": "Baltimore",
+     "state": "MD",
+     "lat": 39.3002,
+     "lon": -76.6105
+    },
+    {
+     "name": "Columbia",
+     "state": "MD",
+     "lat": 39.2011,
+     "lon": -76.859
+    },
+    {
+     "name": "Ilchester",
+     "state": "MD",
+     "lat": 39.2162,
+     "lon": -76.7619
+    },
+    {
+     "name": "Elkridge",
+     "state": "MD",
+     "lat": 39.1953,
+     "lon": -76.7416
+    },
+    {
+     "name": "Woodlawn",
+     "state": "MD",
+     "lat": 39.3055,
+     "lon": -76.7478
+    },
+    {
+     "name": "North Laurel",
+     "state": "MD",
+     "lat": 39.1373,
+     "lon": -76.838
+    },
+    {
+     "name": "Cloverly",
+     "state": "MD",
+     "lat": 39.104,
+     "lon": -76.9941
+    },
+    {
+     "name": "Severn",
+     "state": "MD",
+     "lat": 39.1356,
+     "lon": -76.694
+    },
+    {
+     "name": "Reisterstown",
+     "state": "MD",
+     "lat": 39.4541,
+     "lon": -76.816
+    },
+    {
+     "name": "Colesville",
+     "state": "MD",
+     "lat": 39.0728,
+     "lon": -77.0006
+    },
+    {
+     "name": "Olney",
+     "state": "MD",
+     "lat": 39.1443,
+     "lon": -77.0714
+    },
+    {
+     "name": "Cockeysville",
+     "state": "MD",
+     "lat": 39.478,
+     "lon": -76.6305
+    },
+    {
+     "name": "Fairland",
+     "state": "MD",
+     "lat": 39.0805,
+     "lon": -76.9517
+    },
+    {
+     "name": "Catonsville",
+     "state": "MD",
+     "lat": 39.2645,
+     "lon": -76.7417
+    },
+    {
+     "name": "Laurel",
+     "state": "MD",
+     "lat": 39.0958,
+     "lon": -76.8623
+    },
+    {
+     "name": "South Laurel",
+     "state": "MD",
+     "lat": 39.0615,
+     "lon": -76.8462
+    },
+    {
+     "name": "Towson",
+     "state": "MD",
+     "lat": 39.3924,
+     "lon": -76.6215
+    },
+    {
+     "name": "Owings Mills",
+     "state": "MD",
+     "lat": 39.4105,
+     "lon": -76.7895
+    },
+    {
+     "name": "Burtonsville",
+     "state": "MD",
+     "lat": 39.121,
+     "lon": -76.9366
+    },
+    {
+     "name": "Calverton",
+     "state": "MD",
+     "lat": 39.059,
+     "lon": -76.9504
+    },
+    {
+     "name": "Ferndale",
+     "state": "MD",
+     "lat": 39.187,
+     "lon": -76.633
+    },
+    {
+     "name": "Jessup",
+     "state": "MD",
+     "lat": 39.1454,
+     "lon": -76.7723
+    },
+    {
+     "name": "Mays Chapel",
+     "state": "MD",
+     "lat": 39.433,
+     "lon": -76.6498
+    },
+    {
+     "name": "Randallstown",
+     "state": "MD",
+     "lat": 39.3719,
+     "lon": -76.8019
+    },
+    {
+     "name": "Arbutus",
+     "state": "MD",
+     "lat": 39.2427,
+     "lon": -76.6921
+    },
+    {
+     "name": "Timonium",
+     "state": "MD",
+     "lat": 39.4441,
+     "lon": -76.6076
+    },
+    {
+     "name": "Odenton",
+     "state": "MD",
+     "lat": 39.0661,
+     "lon": -76.6938
+    },
+    {
+     "name": "Rosedale",
+     "state": "MD",
+     "lat": 39.3272,
+     "lon": -76.5084
+    },
+    {
+     "name": "Beltsville",
+     "state": "MD",
+     "lat": 39.0399,
+     "lon": -76.9204
+    },
+    {
+     "name": "Glen Burnie",
+     "state": "MD",
+     "lat": 39.1563,
+     "lon": -76.607
+    },
+    {
+     "name": "Eldersburg",
+     "state": "MD",
+     "lat": 39.4029,
+     "lon": -76.9546
+    },
+    {
+     "name": "Brooklyn Park",
+     "state": "MD",
+     "lat": 39.2174,
+     "lon": -76.6168
+    },
+    {
+     "name": "Konterra",
+     "state": "MD",
+     "lat": 39.0702,
+     "lon": -76.8986
+    },
+    {
+     "name": "Pikesville",
+     "state": "MD",
+     "lat": 39.3914,
+     "lon": -76.701
+    },
+    {
+     "name": "Maryland City",
+     "state": "MD",
+     "lat": 39.1016,
+     "lon": -76.8051
+    },
+    {
+     "name": "Milford Mill",
+     "state": "MD",
+     "lat": 39.3473,
+     "lon": -76.769
+    },
+    {
+     "name": "Fulton",
+     "state": "MD",
+     "lat": 39.1527,
+     "lon": -76.911
+    },
+    {
+     "name": "West Laurel",
+     "state": "MD",
+     "lat": 39.1158,
+     "lon": -76.893
+    },
+    {
+     "name": "Leisure World",
+     "state": "MD",
+     "lat": 39.1041,
+     "lon": -77.0689
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    24
+   ]
+  },
+  {
+   "id": "long-island-ny",
+   "label": "Long Island, NY",
+   "state": "NY",
+   "center": {
+    "lat": 40.7682,
+    "lon": -73.5249
+   },
+   "anchor": "Hicksville",
+   "query_cities": [
+    "Hicksville",
+    "Levittown",
+    "Jericho",
+    "East Meadow",
+    "Plainview",
+    "Long Island"
+   ],
+   "aliases": [
+    "Long Island",
+    "Nassau County",
+    "Hicksville",
+    "East Meadow",
+    "Jericho",
+    "Levittown",
+    "Dix Hills",
+    "Plainview",
+    "Bethpage",
+    "Syosset",
+    "Westbury",
+    "Commack",
+    "Valley Stream",
+    "North New Hyde Park",
+    "Elmont",
+    "Franklin Square",
+    "Garden City Park"
+   ],
+   "members": [
+    {
+     "name": "Hicksville",
+     "state": "NY",
+     "lat": 40.7641,
+     "lon": -73.5248
+    },
+    {
+     "name": "East Meadow",
+     "state": "NY",
+     "lat": 40.7201,
+     "lon": -73.5589
+    },
+    {
+     "name": "Jericho",
+     "state": "NY",
+     "lat": 40.786,
+     "lon": -73.5413
+    },
+    {
+     "name": "Levittown",
+     "state": "NY",
+     "lat": 40.724,
+     "lon": -73.5127
+    },
+    {
+     "name": "Dix Hills",
+     "state": "NY",
+     "lat": 40.8035,
+     "lon": -73.3371
+    },
+    {
+     "name": "Plainview",
+     "state": "NY",
+     "lat": 40.7817,
+     "lon": -73.473
+    },
+    {
+     "name": "Bethpage",
+     "state": "NY",
+     "lat": 40.7495,
+     "lon": -73.4855
+    },
+    {
+     "name": "Syosset",
+     "state": "NY",
+     "lat": 40.8157,
+     "lon": -73.502
+    },
+    {
+     "name": "New Rochelle",
+     "state": "NY",
+     "lat": 40.9232,
+     "lon": -73.7793
+    },
+    {
+     "name": "Salisbury",
+     "state": "NY",
+     "lat": 40.7458,
+     "lon": -73.5603
+    },
+    {
+     "name": "Deer Park",
+     "state": "NY",
+     "lat": 40.7614,
+     "lon": -73.3217
+    },
+    {
+     "name": "Westbury",
+     "state": "NY",
+     "lat": 40.76,
+     "lon": -73.5891
+    },
+    {
+     "name": "Hauppauge",
+     "state": "NY",
+     "lat": 40.8222,
+     "lon": -73.2105
+    },
+    {
+     "name": "Bay Shore",
+     "state": "NY",
+     "lat": 40.7303,
+     "lon": -73.2493
+    },
+    {
+     "name": "Commack",
+     "state": "NY",
+     "lat": 40.8442,
+     "lon": -73.2834
+    },
+    {
+     "name": "Melville",
+     "state": "NY",
+     "lat": 40.783,
+     "lon": -73.4056
+    },
+    {
+     "name": "Plainedge",
+     "state": "NY",
+     "lat": 40.724,
+     "lon": -73.477
+    },
+    {
+     "name": "North Amityville",
+     "state": "NY",
+     "lat": 40.7004,
+     "lon": -73.4118
+    },
+    {
+     "name": "Muttontown",
+     "state": "NY",
+     "lat": 40.8254,
+     "lon": -73.5363
+    },
+    {
+     "name": "Glen Cove",
+     "state": "NY",
+     "lat": 40.8833,
+     "lon": -73.6449
+    },
+    {
+     "name": "North Bay Shore",
+     "state": "NY",
+     "lat": 40.76,
+     "lon": -73.2618
+    },
+    {
+     "name": "Islip",
+     "state": "NY",
+     "lat": 40.7355,
+     "lon": -73.2164
+    },
+    {
+     "name": "Old Bethpage",
+     "state": "NY",
+     "lat": 40.7508,
+     "lon": -73.4584
+    },
+    {
+     "name": "North Bellmore",
+     "state": "NY",
+     "lat": 40.6903,
+     "lon": -73.539
+    },
+    {
+     "name": "Lindenhurst",
+     "state": "NY",
+     "lat": 40.6858,
+     "lon": -73.3716
+    },
+    {
+     "name": "Freeport",
+     "state": "NY",
+     "lat": 40.6524,
+     "lon": -73.585
+    },
+    {
+     "name": "Central Islip",
+     "state": "NY",
+     "lat": 40.7838,
+     "lon": -73.1945
+    },
+    {
+     "name": "Wantagh",
+     "state": "NY",
+     "lat": 40.6694,
+     "lon": -73.5103
+    },
+    {
+     "name": "East Northport",
+     "state": "NY",
+     "lat": 40.8792,
+     "lon": -73.3232
+    },
+    {
+     "name": "Roosevelt",
+     "state": "NY",
+     "lat": 40.6794,
+     "lon": -73.5834
+    },
+    {
+     "name": "West Babylon",
+     "state": "NY",
+     "lat": 40.7109,
+     "lon": -73.3584
+    },
+    {
+     "name": "North Babylon",
+     "state": "NY",
+     "lat": 40.73,
+     "lon": -73.3262
+    },
+    {
+     "name": "Amityville",
+     "state": "NY",
+     "lat": 40.6698,
+     "lon": -73.4158
+    },
+    {
+     "name": "West Hills",
+     "state": "NY",
+     "lat": 40.8199,
+     "lon": -73.4339
+    },
+    {
+     "name": "South Huntington",
+     "state": "NY",
+     "lat": 40.8225,
+     "lon": -73.3922
+    },
+    {
+     "name": "Woodbury",
+     "state": "NY",
+     "lat": 40.8203,
+     "lon": -73.4721
+    },
+    {
+     "name": "Uniondale",
+     "state": "NY",
+     "lat": 40.7019,
+     "lon": -73.5909
+    },
+    {
+     "name": "Old Westbury",
+     "state": "NY",
+     "lat": 40.7866,
+     "lon": -73.5976
+    },
+    {
+     "name": "South Farmingdale",
+     "state": "NY",
+     "lat": 40.7166,
+     "lon": -73.4479
+    },
+    {
+     "name": "Brookville",
+     "state": "NY",
+     "lat": 40.8105,
+     "lon": -73.5738
+    },
+    {
+     "name": "Valley Stream",
+     "state": "NY",
+     "lat": 40.6647,
+     "lon": -73.7049
+    },
+    {
+     "name": "North New Hyde Park",
+     "state": "NY",
+     "lat": 40.7458,
+     "lon": -73.6878
+    },
+    {
+     "name": "Elmont",
+     "state": "NY",
+     "lat": 40.6992,
+     "lon": -73.7062
+    },
+    {
+     "name": "Franklin Square",
+     "state": "NY",
+     "lat": 40.7002,
+     "lon": -73.6775
+    },
+    {
+     "name": "Garden City Park",
+     "state": "NY",
+     "lat": 40.7429,
+     "lon": -73.6633
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    25
+   ]
+  },
+  {
+   "id": "san-francisco-ca",
+   "label": "San Francisco, CA",
+   "state": "CA",
+   "center": {
+    "lat": 37.7749,
+    "lon": -122.4194
+   },
+   "anchor": "San Francisco",
+   "query_cities": [
+    "San Francisco",
+    "Oakland",
+    "Berkeley",
+    "San Mateo",
+    "Daly City",
+    "Redwood City"
+   ],
+   "aliases": [
+    "San Francisco",
+    "SF",
+    "Bay Area",
+    "Oakland",
+    "Berkeley",
+    "San Mateo",
+    "Daly City",
+    "Redwood City",
+    "Foster City",
+    "Alameda",
+    "Richmond"
+   ],
+   "members": [
+    {
+     "name": "Oakland",
+     "state": "CA",
+     "lat": 37.7699,
+     "lon": -122.2256
+    },
+    {
+     "name": "Berkeley",
+     "state": "CA",
+     "lat": 37.8667,
+     "lon": -122.2991
+    },
+    {
+     "name": "Foster City",
+     "state": "CA",
+     "lat": 37.5648,
+     "lon": -122.2508
+    },
+    {
+     "name": "San Mateo",
+     "state": "CA",
+     "lat": 37.5603,
+     "lon": -122.3106
+    },
+    {
+     "name": "Redwood City",
+     "state": "CA",
+     "lat": 37.5153,
+     "lon": -122.2137
+    },
+    {
+     "name": "Alameda",
+     "state": "CA",
+     "lat": 37.7645,
+     "lon": -122.2833
+    },
+    {
+     "name": "Burlingame",
+     "state": "CA",
+     "lat": 37.59,
+     "lon": -122.3633
+    },
+    {
+     "name": "Richmond",
+     "state": "CA",
+     "lat": 37.953,
+     "lon": -122.3594
+    },
+    {
+     "name": "Hercules",
+     "state": "CA",
+     "lat": 38.0214,
+     "lon": -122.2889
+    },
+    {
+     "name": "San Bruno",
+     "state": "CA",
+     "lat": 37.6254,
+     "lon": -122.4314
+    },
+    {
+     "name": "Pleasant Hill",
+     "state": "CA",
+     "lat": 37.954,
+     "lon": -122.0759
+    },
+    {
+     "name": "Emeryville",
+     "state": "CA",
+     "lat": 37.8389,
+     "lon": -122.2979
+    },
+    {
+     "name": "Daly City",
+     "state": "CA",
+     "lat": 37.7009,
+     "lon": -122.465
+    },
+    {
+     "name": "Albany",
+     "state": "CA",
+     "lat": 37.8886,
+     "lon": -122.3257
+    },
+    {
+     "name": "El Sobrante",
+     "state": "CA",
+     "lat": 37.9801,
+     "lon": -122.3068
+    },
+    {
+     "name": "South San Francisco",
+     "state": "CA",
+     "lat": 37.6551,
+     "lon": -122.3762
+    },
+    {
+     "name": "Millbrae",
+     "state": "CA",
+     "lat": 37.599,
+     "lon": -122.402
+    },
+    {
+     "name": "Pacifica",
+     "state": "CA",
+     "lat": 37.6066,
+     "lon": -122.4772
+    },
+    {
+     "name": "Martinez",
+     "state": "CA",
+     "lat": 37.9996,
+     "lon": -122.1139
+    },
+    {
+     "name": "El Cerrito",
+     "state": "CA",
+     "lat": 37.9196,
+     "lon": -122.3024
+    },
+    {
+     "name": "Marin City",
+     "state": "CA",
+     "lat": 37.8712,
+     "lon": -122.5137
+    },
+    {
+     "name": "Piedmont",
+     "state": "CA",
+     "lat": 37.8226,
+     "lon": -122.2301
+    },
+    {
+     "name": "Orinda",
+     "state": "CA",
+     "lat": 37.8828,
+     "lon": -122.1745
+    },
+    {
+     "name": "Pinole",
+     "state": "CA",
+     "lat": 38.0017,
+     "lon": -122.3185
+    },
+    {
+     "name": "Hillsborough",
+     "state": "CA",
+     "lat": 37.5572,
+     "lon": -122.3587
+    },
+    {
+     "name": "San Pablo",
+     "state": "CA",
+     "lat": 37.9627,
+     "lon": -122.3425
+    },
+    {
+     "name": "Reliez Valley",
+     "state": "CA",
+     "lat": 37.9399,
+     "lon": -122.1027
+    },
+    {
+     "name": "Brisbane",
+     "state": "CA",
+     "lat": 37.6758,
+     "lon": -122.3833
+    },
+    {
+     "name": "Sausalito",
+     "state": "CA",
+     "lat": 37.8584,
+     "lon": -122.4918
+    },
+    {
+     "name": "Kensington",
+     "state": "CA",
+     "lat": 37.9103,
+     "lon": -122.2827
+    },
+    {
+     "name": "North Richmond",
+     "state": "CA",
+     "lat": 37.9653,
+     "lon": -122.3707
+    },
+    {
+     "name": "Bayview",
+     "state": "CA",
+     "lat": 38.0062,
+     "lon": -122.3202
+    },
+    {
+     "name": "Colma",
+     "state": "CA",
+     "lat": 37.6766,
+     "lon": -122.4526
+    },
+    {
+     "name": "Rollingwood",
+     "state": "CA",
+     "lat": 37.9654,
+     "lon": -122.3306
+    },
+    {
+     "name": "Strawberry",
+     "state": "CA",
+     "lat": 37.8948,
+     "lon": -122.5084
+    },
+    {
+     "name": "East Richmond Heights",
+     "state": "CA",
+     "lat": 37.9451,
+     "lon": -122.3139
+    },
+    {
+     "name": "Tiburon",
+     "state": "CA",
+     "lat": 37.8872,
+     "lon": -122.4583
+    },
+    {
+     "name": "San Francisco",
+     "state": "CA",
+     "lat": 37.7272,
+     "lon": -123.0322
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    26,
+    38
+   ]
+  },
+  {
+   "id": "phoenix-az",
+   "label": "Phoenix, AZ",
+   "state": "AZ",
+   "center": {
+    "lat": 33.4484,
+    "lon": -112.074
+   },
+   "anchor": "Phoenix",
+   "query_cities": [
+    "Phoenix",
+    "Tempe",
+    "Scottsdale"
+   ],
+   "aliases": [
+    "Phoenix",
+    "Tempe",
+    "Scottsdale",
+    "Glendale"
+   ],
+   "members": [
+    {
+     "name": "Phoenix",
+     "state": "AZ",
+     "lat": 33.5722,
+     "lon": -112.088
+    },
+    {
+     "name": "Tempe",
+     "state": "AZ",
+     "lat": 33.3884,
+     "lon": -111.9318
+    },
+    {
+     "name": "Scottsdale",
+     "state": "AZ",
+     "lat": 33.6687,
+     "lon": -111.8237
+    },
+    {
+     "name": "Glendale",
+     "state": "AZ",
+     "lat": 33.5331,
+     "lon": -112.1899
+    },
+    {
+     "name": "Paradise Valley",
+     "state": "AZ",
+     "lat": 33.5522,
+     "lon": -111.9608
+    },
+    {
+     "name": "Litchfield Park",
+     "state": "AZ",
+     "lat": 33.5018,
+     "lon": -112.3595
+    },
+    {
+     "name": "El Mirage",
+     "state": "AZ",
+     "lat": 33.5902,
+     "lon": -112.3271
+    },
+    {
+     "name": "Sun City West",
+     "state": "AZ",
+     "lat": 33.6714,
+     "lon": -112.3572
+    },
+    {
+     "name": "Sun City",
+     "state": "AZ",
+     "lat": 33.6155,
+     "lon": -112.2831
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    27
+   ]
+  },
+  {
+   "id": "san-diego-ca",
+   "label": "San Diego, CA",
+   "state": "CA",
+   "center": {
+    "lat": 32.7157,
+    "lon": -117.1611
+   },
+   "anchor": "San Diego",
+   "query_cities": [
+    "San Diego",
+    "Chula Vista",
+    "Poway"
+   ],
+   "aliases": [
+    "San Diego",
+    "Chula Vista",
+    "Poway",
+    "Encinitas"
+   ],
+   "members": [
+    {
+     "name": "San Diego",
+     "state": "CA",
+     "lat": 32.8153,
+     "lon": -117.135
+    },
+    {
+     "name": "Chula Vista",
+     "state": "CA",
+     "lat": 32.6277,
+     "lon": -117.0152
+    },
+    {
+     "name": "Poway",
+     "state": "CA",
+     "lat": 32.9877,
+     "lon": -117.0218
+    },
+    {
+     "name": "Encinitas",
+     "state": "CA",
+     "lat": 33.0506,
+     "lon": -117.2636
+    },
+    {
+     "name": "El Cajon",
+     "state": "CA",
+     "lat": 32.8017,
+     "lon": -116.9605
+    },
+    {
+     "name": "La Mesa",
+     "state": "CA",
+     "lat": 32.7695,
+     "lon": -117.0219
+    },
+    {
+     "name": "Jamul",
+     "state": "CA",
+     "lat": 32.7182,
+     "lon": -116.8654
+    },
+    {
+     "name": "Rancho San Diego",
+     "state": "CA",
+     "lat": 32.7624,
+     "lon": -116.9197
+    },
+    {
+     "name": "Fairbanks Ranch",
+     "state": "CA",
+     "lat": 32.9916,
+     "lon": -117.1866
+    },
+    {
+     "name": "Solana Beach",
+     "state": "CA",
+     "lat": 32.9915,
+     "lon": -117.258
+    },
+    {
+     "name": "Lemon Grove",
+     "state": "CA",
+     "lat": 32.7331,
+     "lon": -117.0344
+    },
+    {
+     "name": "Santee",
+     "state": "CA",
+     "lat": 32.855,
+     "lon": -116.9861
+    },
+    {
+     "name": "Del Mar",
+     "state": "CA",
+     "lat": 32.9628,
+     "lon": -117.2624
+    },
+    {
+     "name": "Coronado",
+     "state": "CA",
+     "lat": 32.6572,
+     "lon": -117.1561
+    },
+    {
+     "name": "Imperial Beach",
+     "state": "CA",
+     "lat": 32.5654,
+     "lon": -117.1146
+    },
+    {
+     "name": "La Presa",
+     "state": "CA",
+     "lat": 32.7123,
+     "lon": -117.0037
+    },
+    {
+     "name": "Spring Valley",
+     "state": "CA",
+     "lat": 32.7299,
+     "lon": -116.9764
+    },
+    {
+     "name": "Bonita",
+     "state": "CA",
+     "lat": 32.6732,
+     "lon": -117.0061
+    },
+    {
+     "name": "National City",
+     "state": "CA",
+     "lat": 32.6659,
+     "lon": -117.0974
+    },
+    {
+     "name": "Winter Gardens",
+     "state": "CA",
+     "lat": 32.8375,
+     "lon": -116.9266
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    28
+   ]
+  },
+  {
+   "id": "tampa-fl",
+   "label": "Tampa, FL",
+   "state": "FL",
+   "center": {
+    "lat": 27.9506,
+    "lon": -82.4572
+   },
+   "anchor": "Tampa",
+   "query_cities": [
+    "Tampa",
+    "Brandon",
+    "Riverview",
+    "St. Petersburg"
+   ],
+   "aliases": [
+    "Tampa",
+    "Brandon",
+    "Riverview",
+    "St. Petersburg",
+    "Pebble Creek"
+   ],
+   "members": [
+    {
+     "name": "Tampa",
+     "state": "FL",
+     "lat": 27.9701,
+     "lon": -82.4797
+    },
+    {
+     "name": "Brandon",
+     "state": "FL",
+     "lat": 27.936,
+     "lon": -82.2993
+    },
+    {
+     "name": "Riverview",
+     "state": "FL",
+     "lat": 27.8252,
+     "lon": -82.3046
+    },
+    {
+     "name": "St. Petersburg",
+     "state": "FL",
+     "lat": 27.762,
+     "lon": -82.6441
+    },
+    {
+     "name": "Pebble Creek",
+     "state": "FL",
+     "lat": 28.1587,
+     "lon": -82.342
+    },
+    {
+     "name": "Town 'n' Country",
+     "state": "FL",
+     "lat": 28.0102,
+     "lon": -82.5772
+    },
+    {
+     "name": "Valrico",
+     "state": "FL",
+     "lat": 27.9192,
+     "lon": -82.2313
+    },
+    {
+     "name": "Westchase",
+     "state": "FL",
+     "lat": 28.0613,
+     "lon": -82.6057
+    },
+    {
+     "name": "Keystone",
+     "state": "FL",
+     "lat": 28.1276,
+     "lon": -82.6081
+    },
+    {
+     "name": "Cheval",
+     "state": "FL",
+     "lat": 28.1481,
+     "lon": -82.5173
+    },
+    {
+     "name": "East Lake-Orient Park",
+     "state": "FL",
+     "lat": 28.0044,
+     "lon": -82.3647
+    },
+    {
+     "name": "Citrus Park",
+     "state": "FL",
+     "lat": 28.071,
+     "lon": -82.5622
+    },
+    {
+     "name": "Clearwater",
+     "state": "FL",
+     "lat": 27.9795,
+     "lon": -82.7663
+    },
+    {
+     "name": "Lutz",
+     "state": "FL",
+     "lat": 28.1398,
+     "lon": -82.4444
+    },
+    {
+     "name": "East Lake",
+     "state": "FL",
+     "lat": 28.1111,
+     "lon": -82.6798
+    },
+    {
+     "name": "Northdale",
+     "state": "FL",
+     "lat": 28.1046,
+     "lon": -82.5281
+    },
+    {
+     "name": "University",
+     "state": "FL",
+     "lat": 28.0769,
+     "lon": -82.4333
+    },
+    {
+     "name": "Mango",
+     "state": "FL",
+     "lat": 27.9901,
+     "lon": -82.3083
+    },
+    {
+     "name": "Temple Terrace",
+     "state": "FL",
+     "lat": 28.0452,
+     "lon": -82.3779
+    },
+    {
+     "name": "Oldsmar",
+     "state": "FL",
+     "lat": 28.0484,
+     "lon": -82.6713
+    },
+    {
+     "name": "Pinellas Park",
+     "state": "FL",
+     "lat": 27.8589,
+     "lon": -82.7082
+    },
+    {
+     "name": "Egypt Lake-Leto",
+     "state": "FL",
+     "lat": 28.0173,
+     "lon": -82.5061
+    },
+    {
+     "name": "Lake Magdalene",
+     "state": "FL",
+     "lat": 28.0817,
+     "lon": -82.4842
+    },
+    {
+     "name": "Palm River-Clair Mel",
+     "state": "FL",
+     "lat": 27.9245,
+     "lon": -82.3794
+    },
+    {
+     "name": "Odessa",
+     "state": "FL",
+     "lat": 28.1793,
+     "lon": -82.5519
+    },
+    {
+     "name": "Land O' Lakes",
+     "state": "FL",
+     "lat": 28.2083,
+     "lon": -82.4458
+    },
+    {
+     "name": "Carrollwood",
+     "state": "FL",
+     "lat": 28.0582,
+     "lon": -82.5158
+    },
+    {
+     "name": "Thonotosassa",
+     "state": "FL",
+     "lat": 28.0423,
+     "lon": -82.2962
+    },
+    {
+     "name": "Safety Harbor",
+     "state": "FL",
+     "lat": 28.0067,
+     "lon": -82.698
+    },
+    {
+     "name": "Bloomingdale",
+     "state": "FL",
+     "lat": 27.8767,
+     "lon": -82.2614
+    },
+    {
+     "name": "Apollo Beach",
+     "state": "FL",
+     "lat": 27.763,
+     "lon": -82.4033
+    },
+    {
+     "name": "Seffner",
+     "state": "FL",
+     "lat": 27.9971,
+     "lon": -82.2732
+    },
+    {
+     "name": "Progress Village",
+     "state": "FL",
+     "lat": 27.8856,
+     "lon": -82.3643
+    },
+    {
+     "name": "Feather Sound",
+     "state": "FL",
+     "lat": 27.9103,
+     "lon": -82.6877
+    },
+    {
+     "name": "Lealman",
+     "state": "FL",
+     "lat": 27.8197,
+     "lon": -82.6846
+    },
+    {
+     "name": "Gibsonton",
+     "state": "FL",
+     "lat": 27.8287,
+     "lon": -82.3807
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    30
+   ]
+  },
+  {
+   "id": "broward-county-fl",
+   "label": "Broward County, FL",
+   "state": "FL",
+   "center": {
+    "lat": 26.0078,
+    "lon": -80.296
+   },
+   "anchor": "Pembroke Pines",
+   "query_cities": [
+    "Pembroke Pines",
+    "Coral Springs",
+    "Weston",
+    "Plantation Florida",
+    "Miramar",
+    "Fort Lauderdale"
+   ],
+   "aliases": [
+    "Broward County",
+    "Pembroke Pines",
+    "Coral Springs",
+    "Weston",
+    "Plantation",
+    "Miramar",
+    "Davie",
+    "Fort Lauderdale"
+   ],
+   "members": [
+    {
+     "name": "Pembroke Pines",
+     "state": "FL",
+     "lat": 26.0212,
+     "lon": -80.3404
+    },
+    {
+     "name": "Coral Springs",
+     "state": "FL",
+     "lat": 26.2708,
+     "lon": -80.2593
+    },
+    {
+     "name": "Weston",
+     "state": "FL",
+     "lat": 26.1004,
+     "lon": -80.4022
+    },
+    {
+     "name": "Plantation",
+     "state": "FL",
+     "lat": 26.1256,
+     "lon": -80.2618
+    },
+    {
+     "name": "Miramar",
+     "state": "FL",
+     "lat": 25.977,
+     "lon": -80.3358
+    },
+    {
+     "name": "Davie",
+     "state": "FL",
+     "lat": 26.0791,
+     "lon": -80.285
+    },
+    {
+     "name": "Sunrise",
+     "state": "FL",
+     "lat": 26.1701,
+     "lon": -80.2595
+    },
+    {
+     "name": "Hollywood",
+     "state": "FL",
+     "lat": 26.0311,
+     "lon": -80.1646
+    },
+    {
+     "name": "Fort Lauderdale",
+     "state": "FL",
+     "lat": 26.1413,
+     "lon": -80.1439
+    },
+    {
+     "name": "Fountainebleau",
+     "state": "FL",
+     "lat": 25.7743,
+     "lon": -80.3494
+    },
+    {
+     "name": "North Lauderdale",
+     "state": "FL",
+     "lat": 26.2122,
+     "lon": -80.2209
+    },
+    {
+     "name": "Tamarac",
+     "state": "FL",
+     "lat": 26.2039,
+     "lon": -80.2553
+    },
+    {
+     "name": "Margate",
+     "state": "FL",
+     "lat": 26.248,
+     "lon": -80.2112
+    },
+    {
+     "name": "Oakland Park",
+     "state": "FL",
+     "lat": 26.1779,
+     "lon": -80.1527
+    },
+    {
+     "name": "Doral",
+     "state": "FL",
+     "lat": 25.8152,
+     "lon": -80.358
+    },
+    {
+     "name": "Cooper City",
+     "state": "FL",
+     "lat": 26.0478,
+     "lon": -80.2859
+    },
+    {
+     "name": "Lauderhill",
+     "state": "FL",
+     "lat": 26.1611,
+     "lon": -80.2237
+    },
+    {
+     "name": "Sunny Isles Beach",
+     "state": "FL",
+     "lat": 25.9389,
+     "lon": -80.1236
+    },
+    {
+     "name": "Miami Lakes",
+     "state": "FL",
+     "lat": 25.9168,
+     "lon": -80.3205
+    },
+    {
+     "name": "North Miami Beach",
+     "state": "FL",
+     "lat": 25.93,
+     "lon": -80.1652
+    },
+    {
+     "name": "Hallandale Beach",
+     "state": "FL",
+     "lat": 25.9833,
+     "lon": -80.1404
+    },
+    {
+     "name": "Wilton Manors",
+     "state": "FL",
+     "lat": 26.1593,
+     "lon": -80.1393
+    },
+    {
+     "name": "Aventura",
+     "state": "FL",
+     "lat": 25.9601,
+     "lon": -80.1331
+    },
+    {
+     "name": "Southwest Ranches",
+     "state": "FL",
+     "lat": 26.0501,
+     "lon": -80.3738
+    },
+    {
+     "name": "Lauderdale Lakes",
+     "state": "FL",
+     "lat": 26.1671,
+     "lon": -80.2006
+    },
+    {
+     "name": "Miami Gardens",
+     "state": "FL",
+     "lat": 25.9489,
+     "lon": -80.2436
+    },
+    {
+     "name": "North Bay Village",
+     "state": "FL",
+     "lat": 25.849,
+     "lon": -80.1502
+    },
+    {
+     "name": "Miami Shores",
+     "state": "FL",
+     "lat": 25.867,
+     "lon": -80.1783
+    },
+    {
+     "name": "Hialeah",
+     "state": "FL",
+     "lat": 25.8699,
+     "lon": -80.3029
+    },
+    {
+     "name": "North Miami",
+     "state": "FL",
+     "lat": 25.9011,
+     "lon": -80.1685
+    },
+    {
+     "name": "Country Club",
+     "state": "FL",
+     "lat": 25.941,
+     "lon": -80.3109
+    },
+    {
+     "name": "Pembroke Park",
+     "state": "FL",
+     "lat": 25.9907,
+     "lon": -80.1772
+    },
+    {
+     "name": "Dania Beach",
+     "state": "FL",
+     "lat": 26.0572,
+     "lon": -80.1646
+    },
+    {
+     "name": "Ojus",
+     "state": "FL",
+     "lat": 25.9561,
+     "lon": -80.1669
+    },
+    {
+     "name": "Biscayne Park",
+     "state": "FL",
+     "lat": 25.8818,
+     "lon": -80.1812
+    },
+    {
+     "name": "Ives Estates",
+     "state": "FL",
+     "lat": 25.9634,
+     "lon": -80.1829
+    },
+    {
+     "name": "Hialeah Gardens",
+     "state": "FL",
+     "lat": 25.8881,
+     "lon": -80.36
+    },
+    {
+     "name": "West Little River",
+     "state": "FL",
+     "lat": 25.8569,
+     "lon": -80.237
+    },
+    {
+     "name": "Indian Creek",
+     "state": "FL",
+     "lat": 25.8782,
+     "lon": -80.1372
+    },
+    {
+     "name": "El Portal",
+     "state": "FL",
+     "lat": 25.8554,
+     "lon": -80.1941
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    31
+   ]
+  },
+  {
+   "id": "tracy-ca",
+   "label": "Tracy, CA",
+   "state": "CA",
+   "center": {
+    "lat": 37.7397,
+    "lon": -121.4252
+   },
+   "anchor": "Tracy",
+   "query_cities": [
+    "Tracy",
+    "Mountain House",
+    "Manteca",
+    "Lathrop"
+   ],
+   "aliases": [
+    "Tracy",
+    "Mountain House",
+    "Manteca",
+    "Lathrop"
+   ],
+   "members": [
+    {
+     "name": "Tracy",
+     "state": "CA",
+     "lat": 37.7246,
+     "lon": -121.4455
+    },
+    {
+     "name": "Mountain House",
+     "state": "CA",
+     "lat": 37.774,
+     "lon": -121.5453
+    },
+    {
+     "name": "Manteca",
+     "state": "CA",
+     "lat": 37.7968,
+     "lon": -121.231
+    },
+    {
+     "name": "Lathrop",
+     "state": "CA",
+     "lat": 37.8153,
+     "lon": -121.3125
+    },
+    {
+     "name": "Ripon",
+     "state": "CA",
+     "lat": 37.7423,
+     "lon": -121.1322
+    },
+    {
+     "name": "Byron",
+     "state": "CA",
+     "lat": 37.8755,
+     "lon": -121.6418
+    },
+    {
+     "name": "Country Club",
+     "state": "CA",
+     "lat": 37.9683,
+     "lon": -121.3401
+    },
+    {
+     "name": "French Camp",
+     "state": "CA",
+     "lat": 37.8681,
+     "lon": -121.2714
+    },
+    {
+     "name": "Discovery Bay",
+     "state": "CA",
+     "lat": 37.9077,
+     "lon": -121.598
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    32
+   ]
+  },
+  {
+   "id": "minneapolis-mn",
+   "label": "Minneapolis, MN",
+   "state": "MN",
+   "center": {
+    "lat": 44.9778,
+    "lon": -93.265
+   },
+   "anchor": "Minneapolis",
+   "query_cities": [
+    "Minneapolis",
+    "Plymouth Minnesota",
+    "Eden Prairie",
+    "Maple Grove"
+   ],
+   "aliases": [
+    "Minneapolis",
+    "Eden Prairie",
+    "Maple Grove",
+    "Shakopee",
+    "Minnetonka",
+    "Edina",
+    "Twin Cities"
+   ],
+   "members": [
+    {
+     "name": "Plymouth",
+     "state": "MN",
+     "lat": 45.022,
+     "lon": -93.4626
+    },
+    {
+     "name": "Eden Prairie",
+     "state": "MN",
+     "lat": 44.8479,
+     "lon": -93.4586
+    },
+    {
+     "name": "Minneapolis",
+     "state": "MN",
+     "lat": 44.9633,
+     "lon": -93.2683
+    },
+    {
+     "name": "Maple Grove",
+     "state": "MN",
+     "lat": 45.1128,
+     "lon": -93.463
+    },
+    {
+     "name": "Shakopee",
+     "state": "MN",
+     "lat": 44.7701,
+     "lon": -93.4749
+    },
+    {
+     "name": "Minnetonka",
+     "state": "MN",
+     "lat": 44.9326,
+     "lon": -93.4565
+    },
+    {
+     "name": "Blaine",
+     "state": "MN",
+     "lat": 45.1705,
+     "lon": -93.2061
+    },
+    {
+     "name": "Edina",
+     "state": "MN",
+     "lat": 44.8911,
+     "lon": -93.3598
+    },
+    {
+     "name": "Richfield",
+     "state": "MN",
+     "lat": 44.8745,
+     "lon": -93.2825
+    },
+    {
+     "name": "Shoreview",
+     "state": "MN",
+     "lat": 45.0846,
+     "lon": -93.1343
+    },
+    {
+     "name": "Brooklyn Park",
+     "state": "MN",
+     "lat": 45.1109,
+     "lon": -93.3491
+    },
+    {
+     "name": "Chanhassen",
+     "state": "MN",
+     "lat": 44.8543,
+     "lon": -93.5624
+    },
+    {
+     "name": "St. Louis Park",
+     "state": "MN",
+     "lat": 44.9487,
+     "lon": -93.365
+    },
+    {
+     "name": "Corcoran",
+     "state": "MN",
+     "lat": 45.1068,
+     "lon": -93.5779
+    },
+    {
+     "name": "Medina",
+     "state": "MN",
+     "lat": 45.0343,
+     "lon": -93.5756
+    },
+    {
+     "name": "Bloomington",
+     "state": "MN",
+     "lat": 44.8297,
+     "lon": -93.3152
+    },
+    {
+     "name": "Hopkins",
+     "state": "MN",
+     "lat": 44.9251,
+     "lon": -93.4048
+    },
+    {
+     "name": "Roseville",
+     "state": "MN",
+     "lat": 45.0154,
+     "lon": -93.155
+    },
+    {
+     "name": "Victoria",
+     "state": "MN",
+     "lat": 44.8638,
+     "lon": -93.6562
+    },
+    {
+     "name": "Brooklyn Center",
+     "state": "MN",
+     "lat": 45.0692,
+     "lon": -93.3146
+    },
+    {
+     "name": "Chaska",
+     "state": "MN",
+     "lat": 44.8137,
+     "lon": -93.6094
+    },
+    {
+     "name": "Mounds View",
+     "state": "MN",
+     "lat": 45.1067,
+     "lon": -93.2068
+    },
+    {
+     "name": "Ramsey",
+     "state": "MN",
+     "lat": 45.2627,
+     "lon": -93.4484
+    },
+    {
+     "name": "Falcon Heights",
+     "state": "MN",
+     "lat": 44.988,
+     "lon": -93.1747
+    },
+    {
+     "name": "Fridley",
+     "state": "MN",
+     "lat": 45.0842,
+     "lon": -93.2601
+    },
+    {
+     "name": "St. Anthony",
+     "state": "MN",
+     "lat": 45.0273,
+     "lon": -93.2155
+    },
+    {
+     "name": "Columbia Heights",
+     "state": "MN",
+     "lat": 45.0491,
+     "lon": -93.2467
+    },
+    {
+     "name": "Coon Rapids",
+     "state": "MN",
+     "lat": 45.1764,
+     "lon": -93.3115
+    },
+    {
+     "name": "Champlin",
+     "state": "MN",
+     "lat": 45.1726,
+     "lon": -93.3872
+    },
+    {
+     "name": "Wayzata",
+     "state": "MN",
+     "lat": 44.9713,
+     "lon": -93.5137
+    },
+    {
+     "name": "Golden Valley",
+     "state": "MN",
+     "lat": 44.9902,
+     "lon": -93.3587
+    },
+    {
+     "name": "New Brighton",
+     "state": "MN",
+     "lat": 45.0649,
+     "lon": -93.2093
+    },
+    {
+     "name": "Dayton",
+     "state": "MN",
+     "lat": 45.1891,
+     "lon": -93.4716
+    },
+    {
+     "name": "St. Michael",
+     "state": "MN",
+     "lat": 45.1992,
+     "lon": -93.6895
+    },
+    {
+     "name": "New Hope",
+     "state": "MN",
+     "lat": 45.0365,
+     "lon": -93.3869
+    },
+    {
+     "name": "Arden Hills",
+     "state": "MN",
+     "lat": 45.0712,
+     "lon": -93.1655
+    },
+    {
+     "name": "Greenwood",
+     "state": "MN",
+     "lat": 44.9053,
+     "lon": -93.5503
+    },
+    {
+     "name": "Hanover",
+     "state": "MN",
+     "lat": 45.158,
+     "lon": -93.6629
+    },
+    {
+     "name": "Osseo",
+     "state": "MN",
+     "lat": 45.1178,
+     "lon": -93.3995
+    },
+    {
+     "name": "Minnetrista",
+     "state": "MN",
+     "lat": 44.9384,
+     "lon": -93.712
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    33
+   ]
+  },
+  {
+   "id": "columbus-oh",
+   "label": "Columbus, OH",
+   "state": "OH",
+   "center": {
+    "lat": 39.9612,
+    "lon": -82.9988
+   },
+   "anchor": "Columbus",
+   "query_cities": [
+    "Columbus",
+    "Dublin Ohio",
+    "Hilliard",
+    "Powell"
+   ],
+   "aliases": [
+    "Columbus",
+    "Hilliard",
+    "Powell",
+    "Upper Arlington",
+    "Reynoldsburg"
+   ],
+   "members": [
+    {
+     "name": "Columbus",
+     "state": "OH",
+     "lat": 39.9848,
+     "lon": -82.985
+    },
+    {
+     "name": "Dublin",
+     "state": "OH",
+     "lat": 40.1113,
+     "lon": -83.1443
+    },
+    {
+     "name": "Powell",
+     "state": "OH",
+     "lat": 40.1687,
+     "lon": -83.0788
+    },
+    {
+     "name": "Hilliard",
+     "state": "OH",
+     "lat": 40.0376,
+     "lon": -83.1497
+    },
+    {
+     "name": "Reynoldsburg",
+     "state": "OH",
+     "lat": 39.9596,
+     "lon": -82.7956
+    },
+    {
+     "name": "Upper Arlington",
+     "state": "OH",
+     "lat": 40.0276,
+     "lon": -83.0707
+    },
+    {
+     "name": "New Albany",
+     "state": "OH",
+     "lat": 40.0831,
+     "lon": -82.7989
+    },
+    {
+     "name": "Pataskala",
+     "state": "OH",
+     "lat": 40.0104,
+     "lon": -82.7147
+    },
+    {
+     "name": "Pickerington",
+     "state": "OH",
+     "lat": 39.891,
+     "lon": -82.7717
+    },
+    {
+     "name": "New California",
+     "state": "OH",
+     "lat": 40.1466,
+     "lon": -83.2367
+    },
+    {
+     "name": "Grove City",
+     "state": "OH",
+     "lat": 39.8665,
+     "lon": -83.0664
+    },
+    {
+     "name": "Westerville",
+     "state": "OH",
+     "lat": 40.1234,
+     "lon": -82.9133
+    },
+    {
+     "name": "Worthington",
+     "state": "OH",
+     "lat": 40.0968,
+     "lon": -83.0202
+    },
+    {
+     "name": "Grandview Heights",
+     "state": "OH",
+     "lat": 39.9793,
+     "lon": -83.0401
+    },
+    {
+     "name": "Gahanna",
+     "state": "OH",
+     "lat": 40.0367,
+     "lon": -82.8799
+    },
+    {
+     "name": "Lake Darby",
+     "state": "OH",
+     "lat": 39.9622,
+     "lon": -83.2196
+    },
+    {
+     "name": "Lincoln Village",
+     "state": "OH",
+     "lat": 39.953,
+     "lon": -83.132
+    },
+    {
+     "name": "Minerva Park",
+     "state": "OH",
+     "lat": 40.0792,
+     "lon": -82.9451
+    },
+    {
+     "name": "Canal Winchester",
+     "state": "OH",
+     "lat": 39.8399,
+     "lon": -82.8161
+    },
+    {
+     "name": "Bexley",
+     "state": "OH",
+     "lat": 39.9654,
+     "lon": -82.9345
+    },
+    {
+     "name": "Shawnee Hills",
+     "state": "OH",
+     "lat": 40.1601,
+     "lon": -83.1356
+    },
+    {
+     "name": "Plain City",
+     "state": "OH",
+     "lat": 40.1071,
+     "lon": -83.2699
+    },
+    {
+     "name": "Groveport",
+     "state": "OH",
+     "lat": 39.8571,
+     "lon": -82.8903
+    },
+    {
+     "name": "Huber Ridge",
+     "state": "OH",
+     "lat": 40.0919,
+     "lon": -82.9172
+    },
+    {
+     "name": "Harrisburg",
+     "state": "OH",
+     "lat": 39.8107,
+     "lon": -83.1684
+    },
+    {
+     "name": "Lithopolis",
+     "state": "OH",
+     "lat": 39.8156,
+     "lon": -82.8156
+    },
+    {
+     "name": "Galena",
+     "state": "OH",
+     "lat": 40.2268,
+     "lon": -82.8789
+    }
+   ],
+   "block": [],
+   "context_guard": "dublin_oh",
+   "source_ranks": [
+    34
+   ]
+  },
+  {
+   "id": "indianapolis-in",
+   "label": "Indianapolis, IN",
+   "state": "IN",
+   "center": {
+    "lat": 39.7684,
+    "lon": -86.1581
+   },
+   "anchor": "Indianapolis",
+   "query_cities": [
+    "Indianapolis",
+    "Carmel",
+    "Fishers",
+    "Greenwood",
+    "Westfield"
+   ],
+   "aliases": [
+    "Indianapolis",
+    "Carmel",
+    "Greenwood",
+    "Westfield",
+    "Plainfield"
+   ],
+   "members": [
+    {
+     "name": "Indianapolis",
+     "state": "IN",
+     "lat": 39.7767,
+     "lon": -86.1459
+    },
+    {
+     "name": "Carmel",
+     "state": "IN",
+     "lat": 39.9655,
+     "lon": -86.1484
+    },
+    {
+     "name": "Fishers",
+     "state": "IN",
+     "lat": 39.9599,
+     "lon": -85.9703
+    },
+    {
+     "name": "Greenwood",
+     "state": "IN",
+     "lat": 39.6095,
+     "lon": -86.1072
+    },
+    {
+     "name": "Plainfield",
+     "state": "IN",
+     "lat": 39.7015,
+     "lon": -86.3729
+    },
+    {
+     "name": "Westfield",
+     "state": "IN",
+     "lat": 40.0285,
+     "lon": -86.1566
+    },
+    {
+     "name": "Avon",
+     "state": "IN",
+     "lat": 39.7653,
+     "lon": -86.3826
+    },
+    {
+     "name": "Whitestown",
+     "state": "IN",
+     "lat": 39.9631,
+     "lon": -86.3664
+    },
+    {
+     "name": "Zionsville",
+     "state": "IN",
+     "lat": 39.9592,
+     "lon": -86.2711
+    },
+    {
+     "name": "Speedway",
+     "state": "IN",
+     "lat": 39.7937,
+     "lon": -86.2475
+    },
+    {
+     "name": "Lawrence",
+     "state": "IN",
+     "lat": 39.866,
+     "lon": -85.9896
+    },
+    {
+     "name": "Bargersville",
+     "state": "IN",
+     "lat": 39.5434,
+     "lon": -86.1615
+    },
+    {
+     "name": "Brownsburg",
+     "state": "IN",
+     "lat": 39.8396,
+     "lon": -86.3928
+    },
+    {
+     "name": "New Palestine",
+     "state": "IN",
+     "lat": 39.7254,
+     "lon": -85.8908
+    },
+    {
+     "name": "Whiteland",
+     "state": "IN",
+     "lat": 39.5506,
+     "lon": -86.0825
+    },
+    {
+     "name": "Beech Grove",
+     "state": "IN",
+     "lat": 39.7153,
+     "lon": -86.087
+    },
+    {
+     "name": "Meridian Hills",
+     "state": "IN",
+     "lat": 39.8874,
+     "lon": -86.1567
+    },
+    {
+     "name": "Southport",
+     "state": "IN",
+     "lat": 39.66,
+     "lon": -86.1171
+    },
+    {
+     "name": "Cumberland",
+     "state": "IN",
+     "lat": 39.7864,
+     "lon": -85.9501
+    },
+    {
+     "name": "Spring Hill",
+     "state": "IN",
+     "lat": 39.8346,
+     "lon": -86.1926
+    }
+   ],
+   "block": [],
+   "context_guard": "fishers_in",
+   "source_ranks": [
+    35
+   ]
+  },
+  {
+   "id": "cerritos-ca",
+   "label": "Cerritos, CA",
+   "state": "CA",
+   "center": {
+    "lat": 33.8583,
+    "lon": -118.0648
+   },
+   "anchor": "Cerritos",
+   "query_cities": [
+    "Cerritos",
+    "Cypress",
+    "Buena Park",
+    "Artesia",
+    "Diamond Bar"
+   ],
+   "aliases": [
+    "Cerritos",
+    "Cypress",
+    "Buena Park",
+    "Artesia",
+    "Diamond Bar",
+    "La Palma",
+    "Lakewood",
+    "Norwalk",
+    "Long Beach"
+   ],
+   "members": [
+    {
+     "name": "Cerritos",
+     "state": "CA",
+     "lat": 33.868,
+     "lon": -118.0692
+    },
+    {
+     "name": "Cypress",
+     "state": "CA",
+     "lat": 33.8185,
+     "lon": -118.0383
+    },
+    {
+     "name": "Long Beach",
+     "state": "CA",
+     "lat": 33.8091,
+     "lon": -118.1553
+    },
+    {
+     "name": "Buena Park",
+     "state": "CA",
+     "lat": 33.8568,
+     "lon": -118.0046
+    },
+    {
+     "name": "Diamond Bar",
+     "state": "CA",
+     "lat": 34.0016,
+     "lon": -117.8176
+    },
+    {
+     "name": "Artesia",
+     "state": "CA",
+     "lat": 33.8676,
+     "lon": -118.0806
+    },
+    {
+     "name": "La Palma",
+     "state": "CA",
+     "lat": 33.8505,
+     "lon": -118.0399
+    },
+    {
+     "name": "Walnut",
+     "state": "CA",
+     "lat": 34.0372,
+     "lon": -117.8556
+    },
+    {
+     "name": "West Covina",
+     "state": "CA",
+     "lat": 34.0559,
+     "lon": -117.9099
+    },
+    {
+     "name": "Norwalk",
+     "state": "CA",
+     "lat": 33.9069,
+     "lon": -118.0834
+    },
+    {
+     "name": "Whittier",
+     "state": "CA",
+     "lat": 33.9668,
+     "lon": -118.0201
+    },
+    {
+     "name": "La Mirada",
+     "state": "CA",
+     "lat": 33.902,
+     "lon": -118.009
+    },
+    {
+     "name": "East San Gabriel",
+     "state": "CA",
+     "lat": 34.1196,
+     "lon": -118.0802
+    },
+    {
+     "name": "Lakewood",
+     "state": "CA",
+     "lat": 33.8471,
+     "lon": -118.1219
+    },
+    {
+     "name": "Temple City",
+     "state": "CA",
+     "lat": 34.1022,
+     "lon": -118.058
+    },
+    {
+     "name": "Rowland Heights",
+     "state": "CA",
+     "lat": 33.9703,
+     "lon": -117.8906
+    },
+    {
+     "name": "Bellflower",
+     "state": "CA",
+     "lat": 33.8878,
+     "lon": -118.1273
+    },
+    {
+     "name": "Rosemead",
+     "state": "CA",
+     "lat": 34.0689,
+     "lon": -118.0827
+    },
+    {
+     "name": "La Habra",
+     "state": "CA",
+     "lat": 33.9279,
+     "lon": -117.9516
+    },
+    {
+     "name": "Mayflower Village",
+     "state": "CA",
+     "lat": 34.1159,
+     "lon": -118.0096
+    },
+    {
+     "name": "San Gabriel",
+     "state": "CA",
+     "lat": 34.0946,
+     "lon": -118.0985
+    },
+    {
+     "name": "Los Alamitos",
+     "state": "CA",
+     "lat": 33.797,
+     "lon": -118.0611
+    },
+    {
+     "name": "Seal Beach",
+     "state": "CA",
+     "lat": 33.7519,
+     "lon": -118.0733
+    },
+    {
+     "name": "La Habra Heights",
+     "state": "CA",
+     "lat": 33.959,
+     "lon": -117.949
+    },
+    {
+     "name": "South Whittier",
+     "state": "CA",
+     "lat": 33.9331,
+     "lon": -118.0308
+    },
+    {
+     "name": "El Monte",
+     "state": "CA",
+     "lat": 34.0746,
+     "lon": -118.0291
+    },
+    {
+     "name": "Hacienda Heights",
+     "state": "CA",
+     "lat": 33.9959,
+     "lon": -117.973
+    },
+    {
+     "name": "Santa Fe Springs",
+     "state": "CA",
+     "lat": 33.9336,
+     "lon": -118.0626
+    },
+    {
+     "name": "Baldwin Park",
+     "state": "CA",
+     "lat": 34.0828,
+     "lon": -117.9713
+    },
+    {
+     "name": "San Marino",
+     "state": "CA",
+     "lat": 34.1227,
+     "lon": -118.1129
+    },
+    {
+     "name": "West Whittier-Los Nietos",
+     "state": "CA",
+     "lat": 33.976,
+     "lon": -118.0689
+    },
+    {
+     "name": "Valinda",
+     "state": "CA",
+     "lat": 34.04,
+     "lon": -117.9301
+    },
+    {
+     "name": "Hawaiian Gardens",
+     "state": "CA",
+     "lat": 33.83,
+     "lon": -118.0725
+    },
+    {
+     "name": "North El Monte",
+     "state": "CA",
+     "lat": 34.1029,
+     "lon": -118.0238
+    },
+    {
+     "name": "Avocado Heights",
+     "state": "CA",
+     "lat": 34.0368,
+     "lon": -118.0018
+    },
+    {
+     "name": "Rolling Hills",
+     "state": "CA",
+     "lat": 33.76,
+     "lon": -118.3472
+    },
+    {
+     "name": "South San Jose Hills",
+     "state": "CA",
+     "lat": 34.0123,
+     "lon": -117.9042
+    },
+    {
+     "name": "Rossmoor",
+     "state": "CA",
+     "lat": 33.7886,
+     "lon": -118.0804
+    },
+    {
+     "name": "Signal Hill",
+     "state": "CA",
+     "lat": 33.8034,
+     "lon": -118.1681
+    },
+    {
+     "name": "West Puente Valley",
+     "state": "CA",
+     "lat": 34.0506,
+     "lon": -117.9686
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    36
+   ]
+  },
+  {
+   "id": "portland-or",
+   "label": "Portland, OR",
+   "state": "OR",
+   "center": {
+    "lat": 45.5152,
+    "lon": -122.6784
+   },
+   "anchor": "Portland",
+   "query_cities": [
+    "Portland",
+    "Beaverton",
+    "Hillsboro",
+    "Bethany Oregon"
+   ],
+   "aliases": [
+    "Bethany",
+    "Beaverton",
+    "Hillsboro",
+    "Tigard",
+    "Lake Oswego",
+    "Aloha",
+    "Cedar Mill"
+   ],
+   "members": [
+    {
+     "name": "Bethany",
+     "state": "OR",
+     "lat": 45.5618,
+     "lon": -122.8389
+    },
+    {
+     "name": "Hillsboro",
+     "state": "OR",
+     "lat": 45.5308,
+     "lon": -122.9371
+    },
+    {
+     "name": "Portland",
+     "state": "OR",
+     "lat": 45.537,
+     "lon": -122.65
+    },
+    {
+     "name": "Beaverton",
+     "state": "OR",
+     "lat": 45.4796,
+     "lon": -122.815
+    },
+    {
+     "name": "Cedar Mill",
+     "state": "OR",
+     "lat": 45.5355,
+     "lon": -122.8007
+    },
+    {
+     "name": "Oak Hills",
+     "state": "OR",
+     "lat": 45.5404,
+     "lon": -122.8413
+    },
+    {
+     "name": "Vancouver",
+     "state": "WA",
+     "lat": 45.6372,
+     "lon": -122.5965
+    },
+    {
+     "name": "Aloha",
+     "state": "OR",
+     "lat": 45.492,
+     "lon": -122.8726
+    },
+    {
+     "name": "Lake Oswego",
+     "state": "OR",
+     "lat": 45.4123,
+     "lon": -122.6992
+    },
+    {
+     "name": "Tigard",
+     "state": "OR",
+     "lat": 45.4236,
+     "lon": -122.7786
+    },
+    {
+     "name": "Rockcreek",
+     "state": "OR",
+     "lat": 45.5524,
+     "lon": -122.8757
+    },
+    {
+     "name": "West Linn",
+     "state": "OR",
+     "lat": 45.3671,
+     "lon": -122.6397
+    },
+    {
+     "name": "Happy Valley",
+     "state": "OR",
+     "lat": 45.4386,
+     "lon": -122.5128
+    },
+    {
+     "name": "Five Corners",
+     "state": "WA",
+     "lat": 45.689,
+     "lon": -122.5706
+    },
+    {
+     "name": "North Plains",
+     "state": "OR",
+     "lat": 45.597,
+     "lon": -122.9956
+    },
+    {
+     "name": "Orchards",
+     "state": "WA",
+     "lat": 45.6888,
+     "lon": -122.5305
+    },
+    {
+     "name": "Wilsonville",
+     "state": "OR",
+     "lat": 45.3113,
+     "lon": -122.7709
+    },
+    {
+     "name": "Mount Vista",
+     "state": "WA",
+     "lat": 45.7373,
+     "lon": -122.6316
+    },
+    {
+     "name": "Tualatin",
+     "state": "OR",
+     "lat": 45.3767,
+     "lon": -122.7704
+    },
+    {
+     "name": "Sherwood",
+     "state": "OR",
+     "lat": 45.3598,
+     "lon": -122.843
+    },
+    {
+     "name": "West Haven-Sylvan",
+     "state": "OR",
+     "lat": 45.5163,
+     "lon": -122.7659
+    },
+    {
+     "name": "Felida",
+     "state": "WA",
+     "lat": 45.7143,
+     "lon": -122.7127
+    },
+    {
+     "name": "Barberton",
+     "state": "WA",
+     "lat": 45.7136,
+     "lon": -122.6114
+    },
+    {
+     "name": "Bull Mountain",
+     "state": "OR",
+     "lat": 45.4132,
+     "lon": -122.8369
+    },
+    {
+     "name": "Forest Grove",
+     "state": "OR",
+     "lat": 45.5244,
+     "lon": -123.1106
+    },
+    {
+     "name": "Jennings Lodge",
+     "state": "OR",
+     "lat": 45.3928,
+     "lon": -122.6168
+    },
+    {
+     "name": "Salmon Creek",
+     "state": "WA",
+     "lat": 45.7099,
+     "lon": -122.6632
+    },
+    {
+     "name": "West Slope",
+     "state": "OR",
+     "lat": 45.4961,
+     "lon": -122.7731
+    },
+    {
+     "name": "Oak Grove",
+     "state": "OR",
+     "lat": 45.4127,
+     "lon": -122.6344
+    },
+    {
+     "name": "Metzger",
+     "state": "OR",
+     "lat": 45.4492,
+     "lon": -122.7623
+    },
+    {
+     "name": "Garden Home-Whitford",
+     "state": "OR",
+     "lat": 45.4632,
+     "lon": -122.7612
+    },
+    {
+     "name": "Hazel Dell",
+     "state": "WA",
+     "lat": 45.6819,
+     "lon": -122.6528
+    },
+    {
+     "name": "Durham",
+     "state": "OR",
+     "lat": 45.3945,
+     "lon": -122.758
+    },
+    {
+     "name": "Milwaukie",
+     "state": "OR",
+     "lat": 45.4441,
+     "lon": -122.6209
+    },
+    {
+     "name": "Raleigh Hills",
+     "state": "OR",
+     "lat": 45.4851,
+     "lon": -122.7566
+    },
+    {
+     "name": "Cornelius",
+     "state": "OR",
+     "lat": 45.5198,
+     "lon": -123.053
+    },
+    {
+     "name": "King City",
+     "state": "OR",
+     "lat": 45.4005,
+     "lon": -122.8061
+    },
+    {
+     "name": "Maywood Park",
+     "state": "OR",
+     "lat": 45.5525,
+     "lon": -122.5618
+    }
+   ],
+   "block": [],
+   "context_guard": "portland_or",
+   "source_ranks": [
+    37
+   ]
+  },
+  {
+   "id": "sugar-land-tx",
+   "label": "Sugar Land, TX",
+   "state": "TX",
+   "center": {
+    "lat": 29.6197,
+    "lon": -95.6349
+   },
+   "anchor": "Sugar Land",
+   "query_cities": [
+    "Sugar Land",
+    "Katy",
+    "Fulshear",
+    "Richmond Texas"
+   ],
+   "aliases": [
+    "Sugar Land",
+    "Katy",
+    "Fulshear",
+    "Cinco Ranch",
+    "Pecan Grove"
+   ],
+   "members": [
+    {
+     "name": "Sugar Land",
+     "state": "TX",
+     "lat": 29.5969,
+     "lon": -95.6294
+    },
+    {
+     "name": "Fulshear",
+     "state": "TX",
+     "lat": 29.6895,
+     "lon": -95.8824
+    },
+    {
+     "name": "Pecan Grove",
+     "state": "TX",
+     "lat": 29.6237,
+     "lon": -95.7319
+    },
+    {
+     "name": "Cinco Ranch",
+     "state": "TX",
+     "lat": 29.7399,
+     "lon": -95.7607
+    },
+    {
+     "name": "Katy",
+     "state": "TX",
+     "lat": 29.7913,
+     "lon": -95.827
+    },
+    {
+     "name": "Four Corners",
+     "state": "TX",
+     "lat": 29.6703,
+     "lon": -95.66
+    },
+    {
+     "name": "Rosenberg",
+     "state": "TX",
+     "lat": 29.5399,
+     "lon": -95.8112
+    },
+    {
+     "name": "Richmond",
+     "state": "TX",
+     "lat": 29.5816,
+     "lon": -95.7617
+    },
+    {
+     "name": "Manvel",
+     "state": "TX",
+     "lat": 29.4815,
+     "lon": -95.3614
+    },
+    {
+     "name": "Iowa Colony",
+     "state": "TX",
+     "lat": 29.4411,
+     "lon": -95.4177
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    39
+   ]
+  },
+  {
+   "id": "denver-co",
+   "label": "Denver, CO",
+   "state": "CO",
+   "center": {
+    "lat": 39.7392,
+    "lon": -104.9903
+   },
+   "anchor": "Denver",
+   "query_cities": [
+    "Denver",
+    "Aurora Colorado",
+    "Highlands Ranch",
+    "Centennial Colorado"
+   ],
+   "aliases": [
+    "Denver",
+    "Highlands Ranch",
+    "Lakewood",
+    "Littleton",
+    "Thornton",
+    "Westminster",
+    "Arvada",
+    "Centennial"
+   ],
+   "members": [
+    {
+     "name": "Denver",
+     "state": "CO",
+     "lat": 39.7618,
+     "lon": -104.8806
+    },
+    {
+     "name": "Aurora",
+     "state": "CO",
+     "lat": 39.688,
+     "lon": -104.6897
+    },
+    {
+     "name": "Highlands Ranch",
+     "state": "CO",
+     "lat": 39.5408,
+     "lon": -104.971
+    },
+    {
+     "name": "Centennial",
+     "state": "CO",
+     "lat": 39.5906,
+     "lon": -104.8691
+    },
+    {
+     "name": "Broomfield",
+     "state": "CO",
+     "lat": 39.9534,
+     "lon": -105.0521
+    },
+    {
+     "name": "Lone Tree",
+     "state": "CO",
+     "lat": 39.5306,
+     "lon": -104.871
+    },
+    {
+     "name": "Lakewood",
+     "state": "CO",
+     "lat": 39.6989,
+     "lon": -105.1176
+    },
+    {
+     "name": "Thornton",
+     "state": "CO",
+     "lat": 39.918,
+     "lon": -104.9454
+    },
+    {
+     "name": "Greenwood Village",
+     "state": "CO",
+     "lat": 39.6159,
+     "lon": -104.9117
+    },
+    {
+     "name": "Arvada",
+     "state": "CO",
+     "lat": 39.8097,
+     "lon": -105.1066
+    },
+    {
+     "name": "Meridian",
+     "state": "CO",
+     "lat": 39.5388,
+     "lon": -104.8475
+    },
+    {
+     "name": "Inverness",
+     "state": "CO",
+     "lat": 39.5798,
+     "lon": -104.8623
+    },
+    {
+     "name": "Westminster",
+     "state": "CO",
+     "lat": 39.8822,
+     "lon": -105.0644
+    },
+    {
+     "name": "Stonegate",
+     "state": "CO",
+     "lat": 39.5366,
+     "lon": -104.803
+    },
+    {
+     "name": "Commerce City",
+     "state": "CO",
+     "lat": 39.8835,
+     "lon": -104.7919
+    },
+    {
+     "name": "Brighton",
+     "state": "CO",
+     "lat": 39.9685,
+     "lon": -104.7951
+    },
+    {
+     "name": "Englewood",
+     "state": "CO",
+     "lat": 39.6469,
+     "lon": -104.9941
+    },
+    {
+     "name": "Cherry Creek",
+     "state": "CO",
+     "lat": 39.6094,
+     "lon": -104.8644
+    },
+    {
+     "name": "Ken Caryl",
+     "state": "CO",
+     "lat": 39.5767,
+     "lon": -105.1137
+    },
+    {
+     "name": "Littleton",
+     "state": "CO",
+     "lat": 39.5904,
+     "lon": -105.0201
+    },
+    {
+     "name": "Dove Valley",
+     "state": "CO",
+     "lat": 39.5748,
+     "lon": -104.8277
+    },
+    {
+     "name": "Edgewater",
+     "state": "CO",
+     "lat": 39.7508,
+     "lon": -105.0626
+    },
+    {
+     "name": "Federal Heights",
+     "state": "CO",
+     "lat": 39.8645,
+     "lon": -105.0162
+    },
+    {
+     "name": "Cherry Hills Village",
+     "state": "CO",
+     "lat": 39.6374,
+     "lon": -104.9475
+    },
+    {
+     "name": "Northglenn",
+     "state": "CO",
+     "lat": 39.9112,
+     "lon": -104.9788
+    },
+    {
+     "name": "Bow Mar",
+     "state": "CO",
+     "lat": 39.6266,
+     "lon": -105.0509
+    },
+    {
+     "name": "Golden",
+     "state": "CO",
+     "lat": 39.7425,
+     "lon": -105.2105
+    },
+    {
+     "name": "Dakota Ridge",
+     "state": "CO",
+     "lat": 39.6193,
+     "lon": -105.1339
+    },
+    {
+     "name": "Applewood",
+     "state": "CO",
+     "lat": 39.7507,
+     "lon": -105.1627
+    },
+    {
+     "name": "Fairmount",
+     "state": "CO",
+     "lat": 39.7926,
+     "lon": -105.1712
+    },
+    {
+     "name": "Twin Lakes",
+     "state": "CO",
+     "lat": 39.8227,
+     "lon": -105.004
+    },
+    {
+     "name": "Holly Hills",
+     "state": "CO",
+     "lat": 39.6678,
+     "lon": -104.9218
+    },
+    {
+     "name": "Wheat Ridge",
+     "state": "CO",
+     "lat": 39.7723,
+     "lon": -105.103
+    },
+    {
+     "name": "Welby",
+     "state": "CO",
+     "lat": 39.8402,
+     "lon": -104.9653
+    },
+    {
+     "name": "Glendale",
+     "state": "CO",
+     "lat": 39.7027,
+     "lon": -104.9354
+    },
+    {
+     "name": "Foxfield",
+     "state": "CO",
+     "lat": 39.5884,
+     "lon": -104.7858
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    43
+   ]
+  },
+  {
+   "id": "las-vegas-nv",
+   "label": "Las Vegas, NV",
+   "state": "NV",
+   "center": {
+    "lat": 36.1699,
+    "lon": -115.1398
+   },
+   "anchor": "Las Vegas",
+   "query_cities": [
+    "Las Vegas",
+    "Henderson"
+   ],
+   "aliases": [
+    "Las Vegas",
+    "Vegas",
+    "Henderson",
+    "North Las Vegas"
+   ],
+   "members": [
+    {
+     "name": "Henderson",
+     "state": "NV",
+     "lat": 36.0122,
+     "lon": -115.0375
+    },
+    {
+     "name": "Enterprise",
+     "state": "NV",
+     "lat": 36.0182,
+     "lon": -115.2154
+    },
+    {
+     "name": "Paradise",
+     "state": "NV",
+     "lat": 36.0807,
+     "lon": -115.1368
+    },
+    {
+     "name": "Spring Valley",
+     "state": "NV",
+     "lat": 36.0987,
+     "lon": -115.2619
+    },
+    {
+     "name": "Sunrise Manor",
+     "state": "NV",
+     "lat": 36.1785,
+     "lon": -115.049
+    },
+    {
+     "name": "Winchester",
+     "state": "NV",
+     "lat": 36.1367,
+     "lon": -115.13
+    },
+    {
+     "name": "Whitney",
+     "state": "NV",
+     "lat": 36.1004,
+     "lon": -115.0381
+    },
+    {
+     "name": "Boulder City",
+     "state": "NV",
+     "lat": 35.8438,
+     "lon": -114.9116
+    },
+    {
+     "name": "Las Vegas",
+     "state": "NV",
+     "lat": 36.2277,
+     "lon": -115.264
+    },
+    {
+     "name": "North Las Vegas",
+     "state": "NV",
+     "lat": 36.283,
+     "lon": -115.0893
+    },
+    {
+     "name": "Summerlin South",
+     "state": "NV",
+     "lat": 36.1243,
+     "lon": -115.3324
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    63,
+    116
+   ]
+  },
+  {
+   "id": "miami-fl",
+   "label": "Miami, FL",
+   "state": "FL",
+   "center": {
+    "lat": 25.7617,
+    "lon": -80.1918
+   },
+   "anchor": "Miami",
+   "query_cities": [
+    "Miami",
+    "Kendall",
+    "Coral Gables",
+    "Cutler Bay"
+   ],
+   "aliases": [
+    "Miami",
+    "Kendall",
+    "Coral Gables",
+    "Cutler Bay",
+    "Pinecrest",
+    "Palmetto Bay",
+    "Miami Beach"
+   ],
+   "members": [
+    {
+     "name": "Miami",
+     "state": "FL",
+     "lat": 25.7752,
+     "lon": -80.2086
+    },
+    {
+     "name": "Miami Beach",
+     "state": "FL",
+     "lat": 25.8153,
+     "lon": -80.1397
+    },
+    {
+     "name": "Kendall",
+     "state": "FL",
+     "lat": 25.6695,
+     "lon": -80.3547
+    },
+    {
+     "name": "The Hammocks",
+     "state": "FL",
+     "lat": 25.6704,
+     "lon": -80.4488
+    },
+    {
+     "name": "South Miami Heights",
+     "state": "FL",
+     "lat": 25.5882,
+     "lon": -80.3858
+    },
+    {
+     "name": "Cutler Bay",
+     "state": "FL",
+     "lat": 25.5762,
+     "lon": -80.334
+    },
+    {
+     "name": "Kendale Lakes",
+     "state": "FL",
+     "lat": 25.7076,
+     "lon": -80.4093
+    },
+    {
+     "name": "Palmetto Bay",
+     "state": "FL",
+     "lat": 25.6217,
+     "lon": -80.3189
+    },
+    {
+     "name": "Coral Gables",
+     "state": "FL",
+     "lat": 25.6786,
+     "lon": -80.2573
+    },
+    {
+     "name": "Three Lakes",
+     "state": "FL",
+     "lat": 25.6428,
+     "lon": -80.4
+    },
+    {
+     "name": "Richmond West",
+     "state": "FL",
+     "lat": 25.6093,
+     "lon": -80.4296
+    },
+    {
+     "name": "Pinecrest",
+     "state": "FL",
+     "lat": 25.6652,
+     "lon": -80.3049
+    },
+    {
+     "name": "Westchester",
+     "state": "FL",
+     "lat": 25.747,
+     "lon": -80.3367
+    },
+    {
+     "name": "South Miami",
+     "state": "FL",
+     "lat": 25.7085,
+     "lon": -80.2951
+    },
+    {
+     "name": "Kendall West",
+     "state": "FL",
+     "lat": 25.7068,
+     "lon": -80.4407
+    },
+    {
+     "name": "Country Walk",
+     "state": "FL",
+     "lat": 25.6338,
+     "lon": -80.4348
+    },
+    {
+     "name": "Glenvar Heights",
+     "state": "FL",
+     "lat": 25.7094,
+     "lon": -80.3159
+    },
+    {
+     "name": "The Crossings",
+     "state": "FL",
+     "lat": 25.6706,
+     "lon": -80.4008
+    },
+    {
+     "name": "Palmetto Estates",
+     "state": "FL",
+     "lat": 25.6227,
+     "lon": -80.3606
+    },
+    {
+     "name": "Richmond Heights",
+     "state": "FL",
+     "lat": 25.6333,
+     "lon": -80.3712
+    },
+    {
+     "name": "Sunset",
+     "state": "FL",
+     "lat": 25.7061,
+     "lon": -80.3524
+    },
+    {
+     "name": "West Miami",
+     "state": "FL",
+     "lat": 25.7578,
+     "lon": -80.2969
+    },
+    {
+     "name": "Tamiami",
+     "state": "FL",
+     "lat": 25.7563,
+     "lon": -80.4026
+    },
+    {
+     "name": "Fisher Island",
+     "state": "FL",
+     "lat": 25.761,
+     "lon": -80.1421
+    },
+    {
+     "name": "West Perrine",
+     "state": "FL",
+     "lat": 25.6061,
+     "lon": -80.3639
+    },
+    {
+     "name": "Key Biscayne",
+     "state": "FL",
+     "lat": 25.6907,
+     "lon": -80.1645
+    },
+    {
+     "name": "Olympia Heights",
+     "state": "FL",
+     "lat": 25.7279,
+     "lon": -80.339
+    },
+    {
+     "name": "Coral Terrace",
+     "state": "FL",
+     "lat": 25.7462,
+     "lon": -80.3045
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    81
+   ]
+  }
+ ]
+}

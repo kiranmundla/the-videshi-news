@@ -23,37 +23,128 @@ function readStored(): HubLocation | null {
   }
 }
 
-/* Top US metros by Indian-diaspora presence (coordinates are metro centers).
-   Used for the manual picker fallback when geolocation is denied. */
-export const METRO_PICKER: { city: string; state: string; lat: number; lon: number }[] = [
-  { city: "New York", state: "NY", lat: 40.7128, lon: -74.006 },
-  { city: "San Jose", state: "CA", lat: 37.3382, lon: -121.8863 },
-  { city: "San Francisco", state: "CA", lat: 37.7749, lon: -122.4194 },
-  { city: "Fremont", state: "CA", lat: 37.5485, lon: -121.9886 },
-  { city: "Dublin", state: "CA", lat: 37.7022, lon: -121.9358 },
-  { city: "Los Angeles", state: "CA", lat: 34.0522, lon: -118.2437 },
-  { city: "Chicago", state: "IL", lat: 41.8781, lon: -87.6298 },
-  { city: "Houston", state: "TX", lat: 29.7604, lon: -95.3698 },
-  { city: "Dallas", state: "TX", lat: 32.7767, lon: -96.797 },
-  { city: "Austin", state: "TX", lat: 30.2672, lon: -97.7431 },
-  { city: "Seattle", state: "WA", lat: 47.6062, lon: -122.3321 },
-  { city: "Boston", state: "MA", lat: 42.3601, lon: -71.0589 },
-  { city: "Atlanta", state: "GA", lat: 33.749, lon: -84.388 },
-  { city: "Washington", state: "DC", lat: 38.9072, lon: -77.0369 },
-  { city: "Edison", state: "NJ", lat: 40.5187, lon: -74.4121 },
-  { city: "Philadelphia", state: "PA", lat: 39.9526, lon: -75.1652 },
-  { city: "Miami", state: "FL", lat: 25.7617, lon: -80.1918 },
-  { city: "Denver", state: "CO", lat: 39.7392, lon: -104.9903 },
-  { city: "Phoenix", state: "AZ", lat: 33.4484, lon: -112.074 },
-  { city: "San Diego", state: "CA", lat: 32.7157, lon: -117.1611 },
-  { city: "Minneapolis", state: "MN", lat: 44.9778, lon: -93.265 },
-  { city: "Detroit", state: "MI", lat: 42.3314, lon: -83.0458 },
-  { city: "Portland", state: "OR", lat: 45.5152, lon: -122.6784 },
-  { city: "Columbus", state: "OH", lat: 39.9612, lon: -82.9988 },
-  { city: "Raleigh", state: "NC", lat: 35.7796, lon: -78.6382 },
-  { city: "Tampa", state: "FL", lat: 27.9506, lon: -82.4572 },
-  { city: "Las Vegas", state: "NV", lat: 36.1699, lon: -115.1398 },
+/* ------------------------------------------------------------------ */
+/* Diaspora clusters — the picker and local-news resolution read the  */
+/* SAME canonical table the local-news builder consumes:              */
+/* /data/clusters.json (ACS 2024 suburb clusters, Phase 1). The       */
+/* built-in fallback below covers the top clusters if the fetch       */
+/* fails, so the hub never breaks.                                    */
+/* ------------------------------------------------------------------ */
+
+export interface ClusterMember {
+  name: string;
+  state: string;
+  lat: number;
+  lon: number;
+}
+
+export interface Cluster {
+  id: string;
+  label: string;
+  state: string;
+  center: { lat: number; lon: number };
+  anchor: string;
+  query_cities: string[];
+  aliases: string[];
+  members: ClusterMember[];
+  block: string[];
+  context_guard: string | null;
+}
+
+const m = (name: string, state: string, lat: number, lon: number): ClusterMember => ({ name, state, lat, lon });
+const c = (
+  id: string,
+  label: string,
+  state: string,
+  lat: number,
+  lon: number,
+  anchor: string,
+  members: ClusterMember[],
+): Cluster => ({
+  id, label, state, center: { lat, lon }, anchor, members,
+  query_cities: [], aliases: [], block: [], context_guard: null,
+});
+
+export const FALLBACK_CLUSTERS: Cluster[] = [
+  c("new-york-ny", "New York, NY", "NY", 40.7128, -74.006, "New York", [
+    m("New York", "NY", 40.7128, -74.006), m("Jersey City", "NJ", 40.7178, -74.0431),
+    m("Edison", "NJ", 40.5187, -74.4121),
+  ]),
+  c("san-jose-ca", "San Jose, CA", "CA", 37.3382, -121.8863, "San Jose", [
+    m("San Jose", "CA", 37.3382, -121.8863), m("Sunnyvale", "CA", 37.3688, -122.0363),
+    m("Santa Clara", "CA", 37.3541, -121.9552), m("Milpitas", "CA", 37.4323, -121.8996),
+  ]),
+  c("fremont-ca", "Fremont, CA", "CA", 37.5485, -121.9886, "Fremont", [
+    m("Fremont", "CA", 37.5485, -121.9886),
+  ]),
+  c("frisco-plano-tx", "Frisco / Plano, TX", "TX", 33.1507, -96.8236, "Frisco", [
+    m("Frisco", "TX", 33.1507, -96.8236), m("Plano", "TX", 33.0198, -96.6989),
+  ]),
+  c("seattle-wa", "Seattle, WA", "WA", 47.6062, -122.3321, "Seattle", [
+    m("Seattle", "WA", 47.6062, -122.3321), m("Bellevue", "WA", 47.6101, -122.2015),
+    m("Redmond", "WA", 47.674, -122.1215),
+  ]),
+  c("dublin-ca", "Dublin, CA", "CA", 37.7022, -121.9358, "Dublin", [
+    m("Dublin", "CA", 37.7022, -121.9358), m("San Ramon", "CA", 37.7799, -121.978),
+    m("Pleasanton", "CA", 37.6624, -121.8747), m("Livermore", "CA", 37.6819, -121.768),
+  ]),
+  c("chicago-il", "Chicago, IL", "IL", 41.8781, -87.6298, "Chicago", [
+    m("Chicago", "IL", 41.8781, -87.6298), m("Naperville", "IL", 41.7508, -88.1535),
+    m("Schaumburg", "IL", 42.0334, -88.0834),
+  ]),
+  c("irving-tx", "Irving, TX", "TX", 32.8141, -96.9489, "Irving", [
+    m("Irving", "TX", 32.8141, -96.9489), m("Dallas", "TX", 32.7767, -96.797),
+    m("Arlington", "TX", 32.7357, -97.1081),
+  ]),
+  c("edison-nj", "Edison, NJ", "NJ", 40.5187, -74.4121, "Edison", [
+    m("Edison", "NJ", 40.5187, -74.4121), m("Iselin", "NJ", 40.5751, -74.3224),
+  ]),
+  c("washington-dc", "Washington, DC", "DC", 38.9072, -77.0369, "Washington", [
+    m("Washington", "DC", 38.9072, -77.0369), m("Arlington", "VA", 38.8816, -77.091),
+    m("Bethesda", "MD", 38.9847, -77.0947),
+  ]),
+  c("los-angeles-ca", "Los Angeles, CA", "CA", 34.0522, -118.2437, "Los Angeles", [
+    m("Los Angeles", "CA", 34.0522, -118.2437), m("Irvine", "CA", 33.6846, -117.8265),
+    m("Cerritos", "CA", 33.8583, -118.0648),
+  ]),
+  c("houston-tx", "Houston, TX", "TX", 29.7604, -95.3698, "Houston", [
+    m("Houston", "TX", 29.7604, -95.3698), m("Sugar Land", "TX", 29.6197, -95.6349),
+    m("Katy", "TX", 29.7858, -95.8245),
+  ]),
 ];
+
+let clustersCache: Cluster[] | null = null;
+let clustersPromise: Promise<Cluster[]> | null = null;
+
+/** Load the canonical cluster table (module-cached; falls back to the
+ * built-in top-clusters list so the hub never breaks). */
+export async function loadClusters(): Promise<Cluster[]> {
+  if (clustersCache) return clustersCache;
+  if (clustersPromise) return clustersPromise;
+  clustersPromise = fetch("/data/clusters.json")
+    .then((r) => {
+      if (!r.ok) throw new Error(`clusters fetch ${r.status}`);
+      return r.json();
+    })
+    .then((data: { clusters: Cluster[] }) => {
+      clustersCache =
+        Array.isArray(data?.clusters) && data.clusters.length
+          ? data.clusters
+          : FALLBACK_CLUSTERS;
+      return clustersCache;
+    })
+    .catch(() => {
+      clustersCache = FALLBACK_CLUSTERS;
+      return clustersCache;
+    });
+  return clustersPromise;
+}
+
+/** Synchronous view: loaded clusters, or the built-in fallback until the
+ * fetch lands. */
+export function getCachedClusters(): Cluster[] {
+  return clustersCache ?? FALLBACK_CLUSTERS;
+}
 
 /**
  * User-chosen hub location, persisted in localStorage.

@@ -6,7 +6,16 @@ import HubStrip from "@/components/homepage/HubStrip";
 import SiteFooter from "@/components/SiteFooter";
 import type { EventItem } from "@/lib/events";
 import EventCard from "@/components/EventCard";
-import { useHubLocation, haversineMiles, METRO_PICKER, type HubLocation } from "@/hooks/useHubLocation";
+import {
+  useHubLocation,
+  haversineMiles,
+  loadClusters,
+  getCachedClusters,
+  type Cluster,
+  type ClusterMember,
+  type HubLocation,
+} from "@/hooks/useHubLocation";
+import { lookupZip } from "@/lib/geo";
 import { DEADLINES, type Deadline } from "@/data/deadlines";
 import { fetchKidsDeadlines } from "@/lib/kidsPrograms";
 
@@ -155,22 +164,28 @@ interface RemitData {
   note?: string;
 }
 
-/** Resolve which metro's news to show: exact label match, else nearest
-    metro within 100 mi (for "Near You" geolocation). */
+/** Resolve which cluster's news to show: exact label match, else the
+    nearest cluster within 100 mi — distance measured to the closest of
+    the cluster center and its member cities, so a reader in Frisco
+    lands in the Frisco / Plano bucket, not Irving's. */
 function resolveMetroNews(
   location: HubLocation | null,
   localNews: Record<string, LocalNewsItem[]>,
+  clusters: Cluster[],
 ): { label: string; items: LocalNewsItem[] } | null {
   if (!location || Object.keys(localNews).length === 0) return null;
   if (localNews[location.label]?.length) {
     return { label: location.label, items: localNews[location.label] };
   }
   let best: { label: string; dist: number } | null = null;
-  for (const m of METRO_PICKER) {
-    const key = `${m.city}, ${m.state}`;
-    if (!localNews[key]?.length) continue;
-    const d = haversineMiles(location.lat, location.lon, m.lat, m.lon);
-    if (!best || d < best.dist) best = { label: key, dist: d };
+  for (const cl of clusters) {
+    if (!localNews[cl.label]?.length) continue;
+    let d = haversineMiles(location.lat, location.lon, cl.center.lat, cl.center.lon);
+    for (const mb of cl.members) {
+      const dm = haversineMiles(location.lat, location.lon, mb.lat, mb.lon);
+      if (dm < d) d = dm;
+    }
+    if (!best || d < best.dist) best = { label: cl.label, dist: d };
   }
   if (best && best.dist <= 100) {
     return { label: best.label, items: localNews[best.label] };
@@ -181,14 +196,47 @@ function resolveMetroNews(
 /* ── Location setup ── */
 function LocationSetup({
   onDone,
+  clusters,
 }: {
   onDone: (loc: HubLocation) => void;
+  clusters: Cluster[];
 }) {
   const [geoError, setGeoError] = useState<string | null>(null);
   const [geoLoading, setGeoLoading] = useState(false);
   const [zip, setZip] = useState("");
   const [zipError, setZipError] = useState<string | null>(null);
   const [zipLoading, setZipLoading] = useState(false);
+  const [cityQuery, setCityQuery] = useState("");
+
+  /** Picker results: clusters whose label or any member city matches
+   * the search text. Each row remembers the member the user matched, so
+   * picking "Hicksville" stores Hicksville's own coordinates. */
+  const pickerMatches = useMemo(() => {
+    const q = cityQuery.trim().toLowerCase();
+    const rows: { cluster: Cluster; member: ClusterMember | null }[] = [];
+    for (const cl of clusters) {
+      if (!q) {
+        rows.push({ cluster: cl, member: null });
+        continue;
+      }
+      const member =
+        cl.members.find((mb) => mb.name.toLowerCase().includes(q)) ?? null;
+      if (member || cl.label.toLowerCase().includes(q)) {
+        rows.push({ cluster: cl, member });
+      }
+    }
+    return q ? rows.slice(0, 16) : rows;
+  }, [clusters, cityQuery]);
+
+  const pickCluster = (cl: Cluster, member: ClusterMember | null) => {
+    onDone({
+      city: member?.name ?? cl.anchor,
+      state: member?.state ?? cl.state,
+      lat: member?.lat ?? cl.center.lat,
+      lon: member?.lon ?? cl.center.lon,
+      label: cl.label,
+    });
+  };
 
   const useMyLocation = () => {
     if (!navigator.geolocation) {
@@ -225,6 +273,19 @@ function LocationSetup({
     setZipLoading(true);
     setZipError(null);
     try {
+      // Local zip database first (src/lib/geo.ts → /data/zipcodes.json);
+      // the location then resolves to the nearest cluster with news.
+      const info = await lookupZip(clean).catch(() => null);
+      if (info) {
+        onDone({
+          city: info.city,
+          state: info.state,
+          lat: info.lat,
+          lon: info.lng,
+          label: `${info.city}, ${info.state}`,
+        });
+        return;
+      }
       const r = await fetch(`https://api.zippopotam.us/us/${clean}`);
       if (!r.ok) throw new Error("not found");
       const d = await r.json();
@@ -299,28 +360,55 @@ function LocationSetup({
       )}
       <div className="flex items-center gap-3 my-4">
         <div className="flex-1 border-t border-border" />
-        <span className="text-[11px] uppercase tracking-wider text-muted-foreground">or pick your metro</span>
+        <span className="text-[11px] uppercase tracking-wider text-muted-foreground">or search your city</span>
         <div className="flex-1 border-t border-border" />
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-        {METRO_PICKER.map((m) => (
-          <button
-            key={`${m.city},${m.state}`}
-            onClick={() =>
-              onDone({
-                city: m.city,
-                state: m.state,
-                lat: m.lat,
-                lon: m.lon,
-                label: `${m.city}, ${m.state}`,
-              })
-            }
-            className="px-3 py-2 rounded-lg border border-border text-[13px] font-medium text-left hover:border-[#0B1D3A]/50 hover:bg-muted/40 transition-colors"
-          >
-            {m.city}, {m.state}
-          </button>
-        ))}
-      </div>
+      <input
+        value={cityQuery}
+        onChange={(e) => setCityQuery(e.target.value)}
+        placeholder="Start typing your city — e.g. Hicksville, Carmel, Frisco…"
+        aria-label="Search your city"
+        className="w-full px-4 py-2.5 rounded-full border border-border text-sm bg-background focus:outline-none focus:ring-2 focus:ring-[#D4A843] mb-3"
+      />
+      {cityQuery.trim() ? (
+        <div className="flex flex-col gap-1.5">
+          {pickerMatches.length === 0 && (
+            <p className="text-[13px] text-muted-foreground px-1">
+              No match yet — try the nearest big suburb, or use your zip above.
+            </p>
+          )}
+          {pickerMatches.map(({ cluster: cl, member }) => (
+            <button
+              key={cl.id + (member?.name ?? "")}
+              onClick={() => pickCluster(cl, member)}
+              className="px-3 py-2 rounded-lg border border-border text-[13px] font-medium text-left hover:border-[#0B1D3A]/50 hover:bg-muted/40 transition-colors"
+            >
+              {member ? (
+                <>
+                  {member.name}, {member.state}
+                  <span className="text-muted-foreground font-normal">
+                    {" "}— {cl.label} area
+                  </span>
+                </>
+              ) : (
+                cl.label
+              )}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 max-h-64 overflow-y-auto pr-1">
+          {pickerMatches.map(({ cluster: cl }) => (
+            <button
+              key={cl.id}
+              onClick={() => pickCluster(cl, null)}
+              className="px-3 py-2 rounded-lg border border-border text-[13px] font-medium text-left hover:border-[#0B1D3A]/50 hover:bg-muted/40 transition-colors"
+            >
+              {cl.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -332,6 +420,13 @@ export default function YourHubPage() {
   const [catSel, setCatSel] = useState<string | null>(null);
   const [geoTried, setGeoTried] = useState(false);
   const [localNews, setLocalNews] = useState<Record<string, LocalNewsItem[]>>({});
+  const [clusters, setClusters] = useState<Cluster[]>(() => getCachedClusters());
+
+  useEffect(() => {
+    loadClusters()
+      .then(setClusters)
+      .catch(() => {});
+  }, []);
   const [kidsDeadlines, setKidsDeadlines] = useState<Deadline[]>([]);
   const [fx, setFx] = useState<FxData | null>(null);
   const [remit, setRemit] = useState<RemitData | null>(null);
@@ -456,8 +551,8 @@ export default function YourHubPage() {
     FESTIVALS.find((f) => f.start > today);
 
   const metroNews = useMemo(
-    () => resolveMetroNews(location, localNews),
-    [location, localNews],
+    () => resolveMetroNews(location, localNews, clusters),
+    [location, localNews, clusters],
   );
 
   const weekendLabel = `${fmtDate(friStr).replace(", 2026", "")} – ${fmtDate(sunStr)}`;
@@ -502,7 +597,7 @@ export default function YourHubPage() {
           )}
         </div>
 
-        {!isSet && <LocationSetup onDone={setLocation} />}
+        {!isSet && <LocationSetup onDone={setLocation} clusters={clusters} />}
 
         {/* ── This Weekend ── */}
         <section className="mb-10">

@@ -1,20 +1,27 @@
 #!/usr/bin/env python3 -u
-"""Build per-metro local news index for Your Hub.
+"""Build per-cluster local news index for Your Hub.
 
-V1: scans published article JSONs for US metro mentions (city name in
-title/excerpt/body) — our own voice, precise, thin volume.
-V2: Google News RSS per metro with a desi query + relevance filter —
+V1: scans published article JSONs for cluster mentions (city name in
+title/excerpt) — our own voice, precise, thin volume.
+V2: Google News RSS per cluster with a desi query + relevance filter —
 external breadth. Merged: our articles first, RSS fills up to PER_METRO.
+
+Clusters come from public/data/clusters.json — the ONE canonical table
+(ACS 2024 diaspora clusters; see research/diaspora-suburb-clusters-plan-
+2026-10-13.md). The frontend fetches the same file for its picker; there
+is no second hand list to drift. Each cluster declares its query cities,
+title-match aliases, blocklist regexes, and an optional context-guard
+profile for same-name places (San Jose vs Costa Rica, Dublin CA vs
+Ireland vs Dublin OH, Portland OR vs ME, Washington DC, Fishers IN).
 
 Writes public/data/local-news.json:
   { "metros": { "San Jose, CA": [{kind,slug|url,title,...}, ...] } }
+(key stays "metros" — the frontend's LocalNewsItem contract.)
 
-Top PER_METRO most recent per metro. Ambiguous city names (Washington,
-Portland) require state context to avoid false positives; San Jose is
-guarded against San José, Costa Rica (metro_blocked). Both layers must
-match the metro name in the TITLE — a Google query hit alone is not
-proof a story is about the metro — and near-identical headlines across
-outlets are deduped to one slot.
+Top PER_METRO most recent per cluster. Both layers must match a cluster
+name in the TITLE — a Google query hit alone is not proof a story is
+about the place — and near-identical headlines across outlets are
+deduped to one slot.
 
 Run: python3 -u pipeline/build-local-news.py [--no-rss]
 """
@@ -32,40 +39,7 @@ from email.utils import parsedate_to_datetime
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES_DIR = os.path.join(REPO, "public", "data", "articles")
 OUT_PATH = os.path.join(REPO, "public", "data", "local-news.json")
-
-# (city, state, [extra aliases]) — mirrors the frontend METRO_PICKER
-METROS = [
-    ("New York", "NY", ["NYC", "New York City"]),
-    ("San Jose", "CA", []),
-    ("San Francisco", "CA", ["SF", "Bay Area"]),
-    ("Fremont", "CA", []),
-    # Tri-Valley pooled under Dublin: Dublin CA alone returns zero desi
-    # headline news from Google (Ireland swamps it) — its community news
-    # lives in San Ramon / Pleasanton / Livermore headlines.
-    ("Dublin", "CA", ["San Ramon", "Pleasanton", "Livermore", "Tri-Valley"]),
-    ("Los Angeles", "CA", ["LA"]),
-    ("Chicago", "IL", []),
-    ("Houston", "TX", []),
-    ("Dallas", "TX", ["DFW"]),
-    ("Austin", "TX", []),
-    ("Seattle", "WA", []),
-    ("Boston", "MA", []),
-    ("Atlanta", "GA", []),
-    ("Washington", "DC", []),   # requires DC context (see below)
-    ("Edison", "NJ", []),
-    ("Philadelphia", "PA", ["Philly"]),
-    ("Miami", "FL", []),
-    ("Denver", "CO", []),
-    ("Phoenix", "AZ", []),
-    ("San Diego", "CA", []),
-    ("Minneapolis", "MN", ["Twin Cities"]),
-    ("Detroit", "MI", []),
-    ("Portland", "OR", []),     # requires Oregon context (see below)
-    ("Columbus", "OH", []),
-    ("Raleigh", "NC", ["Research Triangle"]),
-    ("Tampa", "FL", []),
-    ("Las Vegas", "NV", ["Vegas"]),
-]
+CLUSTERS_PATH = os.path.join(REPO, "public", "data", "clusters.json")
 
 # Institutional uses of city names that are NOT local news
 # ("New York Fed" is a bank, not the city)
@@ -77,17 +51,86 @@ EXCLUDE_RX = re.compile(
 
 PER_METRO = 8
 
+# ---------------------------------------------------------------------------
+# Context-guard profiles: title patterns for names that are ambiguous on
+# their own. The cluster's plain aliases always match freely; the profile
+# adds the guarded name with its required context.
+# ---------------------------------------------------------------------------
 
-def metro_blocked(label: str, title: str) -> bool:
-    """Per-metro false-positive guard: the title names a DIFFERENT place
-    that shares the metro's name. San Jose, CA vs San José, Costa Rica —
-    on 2026-10-13 five Costa Rica embassy stories flooded the San Jose
-    bucket because "San Jose" matched with no disambiguation (Washington
-    and Portland already had context guards; San Jose was missed)."""
-    if label == "San Jose, CA":
-        t = title.lower()
-        if "costa rica" in t:
+# "Washington" alone is ambiguous (DC vs state) — require DC context
+_WASHINGTON_RX = (
+    r"\bWashington(?:,?\s+D\.?C\.?|\s+DC\b)|\bD\.?C\.?\b.*\bWashington\b"
+)
+# Portland OR vs ME — require Oregon context
+_PORTLAND_RX = (
+    r"\bPortland\b(?=.{0,60}\b(?:Oregon|\bOR\b))|(?:Oregon|\bOR\b).{0,60}\bPortland\b"
+)
+_CA_CONTEXT = r"(?:California|Bay Area|East Bay|Tri-Valley|Alameda|Contra Costa)"
+# Dublin CA vs Dublin, Ireland (and Dublin, OH): bare "Dublin" requires
+# California context nearby (2026-10-13: a United Europe-routes article,
+# a Trinity College Dublin study, and a "London, Dublin" protest line all
+# matched Ireland's capital).
+_DUBLIN_CA_RX = (
+    r"\bDublin,\s*CA\b"
+    r"|\bDublin\b(?=.{0,80}\b" + _CA_CONTEXT + r"\b)"
+    r"|\b" + _CA_CONTEXT + r"\b.{0,80}\bDublin\b"
+)
+# Dublin OH (Columbus bucket): mirror image — bare "Dublin" requires Ohio
+# context. The two Dublins can therefore never cross-match: each demands
+# its own state's context, and cluster_blocked() rejects the other's.
+_DUBLIN_OH_RX = (
+    r"\bDublin,\s*OH\b"
+    r"|\bDublin\b(?=.{0,80}\b(?:Ohio|Columbus|\bOH\b))"
+    r"|\b(?:Ohio|Columbus)\b.{0,80}\bDublin\b"
+)
+# Fishers, IN vs "fishers" the occupation: the town matches at title
+# start, after in/at/near, or with Indiana context nearby. The occupation
+# ("What Changes for Fishers") is blocked in cluster_blocked().
+_FISHERS_RX = (
+    r"^\s*Fishers\b"
+    r"|\b(?:in|at|near)\s+Fishers\b"
+    r"|\bFishers\b(?=.{0,60}\b(?:Indiana|Indianapolis|Carmel|Hamilton County|\bIN\b))"
+    r"|\b(?:Indiana|Indianapolis|Carmel|Hamilton County)\b.{0,60}\bFishers\b"
+)
+
+_PROFILE_RX = {
+    "washington_dc": _WASHINGTON_RX,
+    "portland_or": _PORTLAND_RX,
+    "dublin_ca": _DUBLIN_CA_RX,
+    "dublin_oh": _DUBLIN_OH_RX,
+    "fishers_in": _FISHERS_RX,
+    # san_jose / orange_county profiles affect blocking only (below);
+    # their names match plainly.
+}
+
+
+def load_clusters() -> list[dict]:
+    with open(CLUSTERS_PATH, encoding="utf-8") as fh:
+        return json.load(fh)["clusters"]
+
+
+def compile_cluster_pattern(cluster: dict) -> re.Pattern:
+    """Title-match pattern: plain aliases + the guard profile's pattern."""
+    parts = []
+    aliases = cluster.get("aliases") or []
+    if aliases:
+        alt = "|".join(re.escape(a) for a in aliases)
+        parts.append(r"\b(?:" + alt + r")\b")
+    profile = cluster.get("context_guard")
+    if profile in _PROFILE_RX:
+        parts.append(_PROFILE_RX[profile])
+    return re.compile("|".join(parts), re.IGNORECASE)
+
+
+def cluster_blocked(cluster: dict, text: str) -> bool:
+    """False-positive guard: the text names a DIFFERENT place that shares
+    the cluster's name, or a namesake trap declared in the table."""
+    t = text.lower()
+    for pat in cluster.get("block") or []:
+        if re.search(pat, text, re.IGNORECASE):
             return True
+    profile = cluster.get("context_guard")
+    if profile == "san_jose":
         # Costa Rica's capital is spelled "San José" (accented); the
         # California city is written unaccented in US outlets. Allow the
         # accented form only with explicit California context.
@@ -95,28 +138,38 @@ def metro_blocked(label: str, title: str) -> bool:
             k in t for k in ("california", "silicon valley", "bay area")
         ):
             return True
-    if label == "Edison, NJ":
-        # "Thomas Edison" is the inventor, not the township — Musk
-        # headlines ("the Thomas Edison of our time") match \bEdison\b.
-        if "thomas edison" in title.lower():
+    elif profile == "dublin_ca":
+        # A "Dublin" story with Ohio context belongs to Columbus's Dublin.
+        if re.search(r"\bdublin\b", t) and ("ohio" in t or "columbus" in t):
             return True
-    if label == "Dublin, CA":
-        # Dublin, Ireland is the far bigger "Dublin" in news. Hard
-        # Ireland markers block it; bare "Irish" is allowed (Dublin CA
-        # trades on Irish heritage). RSS queries use "Dublin California"
-        # to bias Google the same way.
-        t = title.lower()
-        if any(k in t for k in ("ireland", "dáil", "tánaiste", "garda")):
+    elif profile == "dublin_oh":
+        # Mirror: a "Dublin" story with California context is Dublin, CA.
+        if re.search(r"\bdublin\b", t) and any(
+            k in t
+            for k in ("california", "bay area", "tri-valley", "san ramon",
+                      "pleasanton", "livermore", "silicon valley")
+        ):
+            return True
+    elif profile == "orange_county":
+        # "Orange County" also names counties in FL (Orlando) and NC
+        # (Chapel Hill). Only blocks when the match is the county name
+        # itself — an Irvine story mentioning Florida is unaffected
+        # unless it also says "Orange County".
+        if "orange county" in t and any(
+            k in t for k in ("florida", "orlando", "chapel hill",
+                              "north carolina")
+        ):
+            return True
+    elif profile == "fishers_in":
+        # "fishers" the occupation: preceded by "for", or in a
+        # fishing-industry context. Scoped to titles naming Fishers.
+        if "fishers" in t and (
+            re.search(r"\bfor fishers\b", t)
+            or any(k in t for k in ("fishing", "fishermen", "fisheries",
+                                    "deep-sea", "deep sea"))
+        ):
             return True
     return False
-
-
-# Metros whose RSS coverage needs more than one query city. Dublin pools
-# the whole Tri-Valley; each returned item must still name one of the
-# pooled cities in its title (the label's pattern includes the aliases).
-METRO_QUERY_CITIES = {
-    "Dublin, CA": ["Dublin California", "San Ramon", "Pleasanton", "Livermore"],
-}
 
 
 _TITLE_STOPWORDS = {
@@ -162,7 +215,7 @@ RSS_KEEP_RX = re.compile(
     # Core diaspora vocabulary the original list missed — "green card"
     # stories are local-news staples (e.g. Patch's Edison IT-firms story
     # was dropped for having no keep keyword, 2026-10-13). Safe to widen
-    # because every item must ALSO name the metro in its title.
+    # because every item must ALSO name the cluster in its title.
     r"green card|perm\b|visa|immigration|temple|mandir|gurdwara)\b",
     re.IGNORECASE,
 )
@@ -174,54 +227,19 @@ STATE_NAMES = {
     "NJ": "New Jersey", "PA": "Pennsylvania", "FL": "Florida", "CO": "Colorado",
     "AZ": "Arizona", "MN": "Minnesota", "MI": "Michigan", "OR": "Oregon",
     "OH": "Ohio", "NC": "North Carolina", "NV": "Nevada",
+    "VA": "Virginia", "MD": "Maryland", "IN": "Indiana",
 }
-
-
-def compile_patterns():
-    compiled = []
-    for city, state, aliases in METROS:
-        pats = [city] + aliases
-        if city == "Washington":
-            # "Washington" alone is ambiguous (DC vs state) — require DC context
-            rx = re.compile(
-                r"\bWashington(?:,?\s+D\.?C\.?|\s+DC\b)|\bD\.?C\.?\b.*\bWashington\b",
-                re.IGNORECASE,
-            )
-        elif city == "Portland":
-            # Portland OR vs ME — require Oregon context
-            rx = re.compile(
-                r"\bPortland\b(?=.{0,60}\b(?:Oregon|\bOR\b))|(?:Oregon|\bOR\b).{0,60}\bPortland\b",
-                re.IGNORECASE,
-            )
-        elif city == "Dublin":
-            # Dublin CA vs Dublin, Ireland: the pooled Tri-Valley city
-            # names are unambiguous and match freely; bare "Dublin"
-            # requires California context nearby (2026-10-13: a United
-            # Europe-routes article, a Trinity College Dublin study, and
-            # a "London, Dublin" protest line all matched Ireland's).
-            rx = re.compile(
-                r"\b(?:San Ramon|Pleasanton|Livermore|Tri-Valley)\b"
-                r"|\bDublin,\s*CA\b"
-                r"|\bDublin\b(?=.{0,80}\b(?:California|Bay Area|East Bay|Tri-Valley|Alameda|Contra Costa)\b)"
-                r"|\b(?:California|Bay Area|East Bay|Tri-Valley|Alameda|Contra Costa)\b.{0,80}\bDublin\b",
-                re.IGNORECASE,
-            )
-        else:
-            alt = "|".join(re.escape(p) for p in pats)
-            rx = re.compile(r"\b(?:" + alt + r")\b", re.IGNORECASE)
-        compiled.append((f"{city}, {state}", rx))
-    return compiled
 
 
 def fetch_gnews_rss(
     city: str,
     days: int = 14,
     state: str | None = None,
-    label: str | None = None,
+    cluster: dict | None = None,
     rx: re.Pattern | None = None,
 ) -> list[dict]:
-    """Fetch Google News RSS for a metro, filtered for desi relevance."""
-    place = f"{city} {state}" if state else city
+    """Fetch Google News RSS for one query city, filtered for desi
+    relevance and gated on the cluster's title pattern + blocklist."""
     q = GNEWS_QUERY_TMPL.format(city=city, days=days)
     if state:
         # state-level fallback: e.g. "Oregon (desi OR ...) when:30d"
@@ -261,13 +279,13 @@ def fetch_gnews_rss(
             continue
         if not RSS_KEEP_RX.search(title):
             continue
-        # The query alone is NOT proof the story is about this metro —
+        # The query alone is NOT proof the story is about this cluster —
         # Google matched Costa Rica's San José to San Jose, CA. Require
         # the same title match (+ same-name-place guard) as own articles:
-        # if a story is really about the metro, the metro is in the title.
+        # if a story is really about the place, the place is in the title.
         if rx is not None and not rx.search(title):
             continue
-        if label and metro_blocked(label, title):
+        if cluster is not None and cluster_blocked(cluster, title):
             continue
         src_el = it.find("source")
         src_name = (src_el.text or "").strip() if src_el is not None else ""
@@ -294,8 +312,9 @@ def fetch_gnews_rss(
 
 def main():
     no_rss = "--no-rss" in sys.argv
-    patterns = compile_patterns()
-    matches: dict[str, list[dict]] = {label: [] for label, _ in patterns}
+    clusters = load_clusters()
+    compiled = [(c, compile_cluster_pattern(c)) for c in clusters]
+    matches: dict[str, list[dict]] = {c["label"]: [] for c in clusters}
 
     files = [f for f in os.listdir(ARTICLES_DIR) if f.endswith(".json")]
     scanned = 0
@@ -314,12 +333,12 @@ def main():
         # skip institutional false positives ("New York Fed" != New York the place)
         if EXCLUDE_RX.search(hay_headline):
             continue
-        for label, rx in patterns:
-            # Only title/excerpt matches: if a story is really about the metro,
-            # the metro is in the headline or dek. Body-only mentions are
-            # overwhelmingly passing references ("NY Fed", "NYSE").
-            if rx.search(hay_headline) and not metro_blocked(label, hay_headline):
-                matches[label].append(
+        for cluster, rx in compiled:
+            # Only title/excerpt matches: if a story is really about the
+            # place, the place is in the headline or dek. Body-only
+            # mentions are overwhelmingly passing references ("NY Fed").
+            if rx.search(hay_headline) and not cluster_blocked(cluster, hay_headline):
+                matches[cluster["label"]].append(
                     {
                         "kind": "article",
                         "slug": a.get("slug"),
@@ -331,19 +350,19 @@ def main():
                     }
                 )
 
-    # V2: Google News RSS per metro (external breadth)
+    # V2: Google News RSS per cluster (external breadth), pooling the
+    # cluster's query cities. Each item must still name the cluster in
+    # its title (the pattern includes every pooled city + aliases).
     rss_counts: dict[str, int] = {}
-    rx_by_label = dict(patterns)
     if not no_rss:
-        for city, state, _aliases in METROS:
-            label = f"{city}, {state}"
-            query_cities = METRO_QUERY_CITIES.get(label, [city])
+        for cluster, rx in compiled:
+            label = cluster["label"]
             rss_items: list[dict] = []
             seen_links: set = set()
-            for qi, qcity in enumerate(query_cities):
+            for qi, qcity in enumerate(cluster["query_cities"]):
                 if qi:
                     time.sleep(RSS_DELAY_S)
-                for r in fetch_gnews_rss(qcity, label=label, rx=rx_by_label[label]):
+                for r in fetch_gnews_rss(qcity, cluster=cluster, rx=rx):
                     if r["url"] not in seen_links:
                         seen_links.add(r["url"])
                         rss_items.append(r)
@@ -358,13 +377,14 @@ def main():
                     for t in own_titles
                 )
             ]
-            # Fallback for thin metros: wider window + state-level query.
-            # "Right and complete" means no metro left empty or single-item.
+            # Fallback for thin clusters: wider window + state-level query.
+            # "Right and complete" means no cluster left empty or single-item.
+            state = cluster["state"]
             if len(matches[label]) + len(fresh) < 3 and state in STATE_NAMES:
                 time.sleep(RSS_DELAY_S)
                 wide = fetch_gnews_rss(
-                    city, days=30, state=STATE_NAMES[state],
-                    label=label, rx=rx_by_label[label],
+                    cluster["anchor"], days=30, state=STATE_NAMES[state],
+                    cluster=cluster, rx=rx,
                 )
                 have_titles = own_titles | {r["title"].lower() for r in fresh}
                 for r in wide:
@@ -380,7 +400,7 @@ def main():
             print(f"  [rss] {label}: {len(fresh)} kept", flush=True)
             time.sleep(RSS_DELAY_S)
 
-    # keep PER_METRO most recent per metro (our articles first on ties)
+    # keep PER_METRO most recent per cluster (our articles first on ties)
     out = {}
     total = 0
     for label, items in matches.items():
@@ -411,11 +431,11 @@ def main():
     }
     with open(OUT_PATH, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, ensure_ascii=False)
-    print(f"scanned={scanned} metros={len(out)} total_matches={total} -> {OUT_PATH}")
+    print(f"scanned={scanned} clusters={len(out)} total_matches={total} -> {OUT_PATH}")
 
     # coverage summary
     empty = [label for label, items in out.items() if not items]
-    print(f"metros_with_news={len(out) - len(empty)}/{len(out)}")
+    print(f"clusters_with_news={len(out) - len(empty)}/{len(out)}")
     if empty:
         print("empty: " + ", ".join(empty))
 
