@@ -1,0 +1,188 @@
+[
+  {
+    "id": "e0a09fd8-465e-4303-9824-7986c0dae9e1",
+    "headline": "Blackouts Hit Indian Factories as Coal Crunch Squeezes the Economy",
+    "slug": "india-coal-crunch-factory-blackouts-economy",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the coal supply issues by specifying when the government expects the situation to improve, as this would provide readers with a clearer understanding of the crisis duration.",
+        "Include specific statistics on the economic impact of these blackouts, such as estimated losses in production or revenue for affected industries, to give readers a concrete sense of the situation's severity.",
+        "Provide context on the government's response to the crisis, including any proposed measures or policies to address the coal shortage and power outages, which would enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of Coal or relevant government agency regarding the current coal supply situation or measures being taken to alleviate the crisis."
+      ]
+    }
+  },
+  {
+    "id": "58feee21-65e0-43a8-b3be-edf51574bb7f",
+    "headline": "Indian Airlines Extend Saudi Flight Cancellations Through October 15",
+    "slug": "indian-airlines-extend-saudi-flight-cancellations-october-15",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific reasons for the flight cancellations and the nature of the attacks on King Khalid International Airport to provide readers with a better understanding of the situation's severity.",
+        "Include specific details about the refund and rebooking policies for each airline mentioned, such as deadlines for requesting refunds or changes, to help affected travelers navigate their options more effectively.",
+        "Add a brief statement about the potential impact on travelers' plans, such as how many passengers are affected or the typical frequency of flights to these destinations, to give readers a clearer picture of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Air India account regarding the flight cancellations or a statement from the Indian Ministry of External Affairs for authoritative updates."
+      ]
+    }
+  },
+  {
+    "id": "99488e4e-124d-45f4-9641-bd380599241d",
+    "headline": "PERM vs H-1B: What the Green-Card Freeze Means for Indian Tech Workers",
+    "slug": "perm-vs-h1b-green-card-freeze-indian-tech-workers",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the PERM suspension by including specific dates for when the suspension takes effect and how long it is expected to last, if known.",
+        "Provide additional context on the implications of the freeze for tech workers, such as how it may affect their job security or future employment opportunities, especially for those currently in the green card process.",
+        "Include a direct quote from a representative of one of the affected companies or an immigration expert to provide additional perspectives and enhance attribution."
+      ],
+      "embed_opportunities": [
+        "Embed the official Department of Labor announcement regarding the PERM suspension to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "5f0c92db-a1bc-469d-b1f3-1a9e3bc81cd5",
+    "headline": "Normal Cholesterol, Hidden Heart Risk: The Tests Your Lipid Panel Misses",
+    "slug": "normal-cholesterol-hidden-heart-risk-apob-lpa-tests",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the findings by specifying what actions readers should take based on the study, such as getting specific tests done and when to do them.",
+        "Include a brief explanation of what ApoB and Lp(a) are for readers who may not be familiar with these terms, enhancing clarity and understanding.",
+        "Add a direct quote from Dr. Mohit Dayal Gupta or another expert to provide authoritative attribution and enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from a health organization or expert discussing the importance of these tests for heart health."
+      ]
+    }
+  },
+  {
+    "id": "927436f5-3001-45f3-b8af-329924bad66d",
+    "headline": "Normal BMI, Hidden Diabetes: Why Young Indians Need Metabolic Screening",
+    "slug": "normal-bmi-hidden-diabetes-metabolic-risk-young-indians",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the statistics by providing a breakdown of the data sources and methodologies used in the ICMR-INDIAB analysis and the Apollo Hospitals report to enhance credibility and allow readers to understand the context better.",
+        "Include a specific timeline for when readers should consider getting metabolic screening or follow-up tests, as well as any relevant guidelines or recommendations from health authorities regarding the frequency of these tests.",
+        "Provide a clearer definition of terms like 'metabolically obese non-obese' and 'HOMA-IR' for readers who may not be familiar with medical jargon, ensuring the article is accessible to a broader audience.",
+        "Add a concluding section that summarizes the key takeaways and actionable steps readers can take to monitor their metabolic health, reinforcing the urgency of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the International Diabetes Federation or a health authority that highlights the importance of metabolic screening or recent statistics on diabetes in India."
+      ]
+    }
+  },
+  {
+    "id": "9e75b80e-7593-4dd8-98ce-be96af3d9052",
+    "headline": "Drone Scare Shuts Amritsar Airspace, Diverting Three Incoming Flights",
+    "slug": "amritsar-airport-drone-scare-flights-diverted-ai855-6e5028",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing exact times for when the airspace was closed and reopened, as well as when each flight was diverted. This will enhance the completeness and clarity of the reporting.",
+        "Include a quote from an official source, such as a representative from the airport or the CISF, to provide authoritative attribution and enhance the credibility of the information presented.",
+        "Add more context about the implications of drone sightings near airports, such as potential legal consequences for the drone operators or the impact on flight safety protocols, to give readers a better understanding of the situation.",
+        "Ensure that the section titled 'What this means for you' includes specific advice on how to check flight statuses, such as mentioning the airline's website or app, to improve clarity and provide actionable steps for affected travelers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official airport or CISF account regarding the incident to provide real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "448324ba-e751-4ca7-9a78-1f6c20c4b757",
+    "headline": "He Left a $200,000 Microsoft Job for an AI Startup. Revenue So Far: $6,000.",
+    "slug": "junead-khan-microsoft-200k-ai-startup-treasury",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events. The article mentions Khan's resignation in August 2025, but it also states he earned a salary in 2024. This creates confusion about the timeline and should be corrected for accuracy.",
+        "Provide more context about the AI startup landscape. Readers may benefit from understanding why Khan's decision to leave a high-paying job for a startup is significant, especially in the current economic climate.",
+        "Include specific details about what the $6,000 revenue means in terms of business viability. For instance, how does this revenue compare to industry standards for startups at this stage?",
+        "Ensure consistent attribution. The article references India Today and Business Insider but does not clearly delineate which information comes from which source, potentially leading to confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Junead Khan discussing his journey or the challenges of starting a business, which could provide additional context and engagement."
+      ]
+    }
+  },
+  {
+    "id": "2c693590-71cb-4e25-86e6-16b9f87759c2",
+    "headline": "Jailer 2 Hindi Release On Track for October 15, Makers Deny Date Change",
+    "slug": "jailer-2-hindi-release-october-15-makers-deny-change",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the October 15, 2026 release date by mentioning any major competing films or events that might impact its box office performance.",
+        "Include a quote from a representative of Pen Marudhar Entertainment to strengthen attribution and provide additional context about the distribution strategy in North India.",
+        "Expand on the implications of the four-week OTT window for audiences and theaters, such as how it might affect ticket sales or viewer expectations for the film.",
+        "Provide more context on the popularity of Rajinikanth and the Jailer franchise to enhance reader understanding of why this release is significant."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the Jailer 2 team or a relevant tweet from a verified account to enhance credibility and provide direct access to the source of the clarification."
+      ]
+    }
+  },
+  {
+    "id": "21a5f1c6-61ff-4cf1-ab16-5e6c7ec37d74",
+    "headline": "King's Lynn Tandoori named England's best curry restaurant at national awards",
+    "slug": "kings-lynn-tandoori-england-best-curry-restaurant-2026",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the award ceremony by correcting the year from '2026' to '2023' to ensure accuracy and timeliness.",
+        "Provide a direct quote from the restaurant manager or a judge from the awards to enhance attribution and credibility.",
+        "Include more details about the judging criteria or the selection process for the Curry Life Awards to give readers a better understanding of what made King's Lynn Tandoori stand out.",
+        "Add a brief section on the significance of this award for the restaurant and the local community, which would provide context and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Curry Life Awards or BBC Breakfast announcing the winners to enhance the article's credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "8dc80e60-16fc-4ad0-873f-47490d304c74",
+    "headline": "Witnesses Say Tiger Victim Posed for Photos, Danced Before Entering Enclosure",
+    "slug": "tiger-victim-posed-photos-witnesses-yorkshire-update",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide more context about the Yorkshire Wildlife Park's safety measures and regulations regarding visitor interactions with animals to help readers understand how this incident occurred.",
+        "Include a statement from the South Yorkshire Police or park officials regarding the ongoing investigation to add authority and completeness to the report.",
+        "Clarify the timeline of events by specifying the exact time the man entered the enclosure and when he was pronounced dead, as well as any details about the emergency response efforts.",
+        "Mention any previous incidents at the park or similar attractions to give readers a broader understanding of the risks associated with animal enclosures."
+      ],
+      "embed_opportunities": [
+        "Embed the audio clip of the exchange between the man and Del Taylor, if available, to provide direct evidence of the events leading up to the incident."
+      ]
+    }
+  }
+]

@@ -1470,5 +1470,16 @@
     "top_story_slug": "hanuman-ansh-review-roundup-critics",
     "quick_hit_count": 5,
     "deadline_count": 7
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-12T13:58:26.995147+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 12, 2026",
+    "subscribers": 8,
+    "sent": 8,
+    "errors": 0,
+    "top_story_slug": "junead-khan-microsoft-200k-ai-startup-treasury",
+    "quick_hit_count": 5,
+    "deadline_count": 7
   }
 ]

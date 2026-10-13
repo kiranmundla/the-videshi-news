@@ -1,0 +1,84 @@
+[
+  {
+    "id": "e0a09fd8-465e-4303-9824-7986c0dae9e1",
+    "headline": "Blackouts Hit Indian Factories as Coal Crunch Squeezes the Economy",
+    "slug": "india-coal-crunch-factory-blackouts-economy",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "58feee21-65e0-43a8-b3be-edf51574bb7f",
+    "headline": "Indian Airlines Extend Saudi Flight Cancellations Through October 15",
+    "slug": "indian-airlines-extend-saudi-flight-cancellations-october-15",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "99488e4e-124d-45f4-9641-bd380599241d",
+    "headline": "PERM vs H-1B: What the Green-Card Freeze Means for Indian Tech Workers",
+    "slug": "perm-vs-h1b-green-card-freeze-indian-tech-workers",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "5f0c92db-a1bc-469d-b1f3-1a9e3bc81cd5",
+    "headline": "Normal Cholesterol, Hidden Heart Risk: The Tests Your Lipid Panel Misses",
+    "slug": "normal-cholesterol-hidden-heart-risk-apob-lpa-tests",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "927436f5-3001-45f3-b8af-329924bad66d",
+    "headline": "Normal BMI, Hidden Diabetes: Why Young Indians Need Metabolic Screening",
+    "slug": "normal-bmi-hidden-diabetes-metabolic-risk-young-indians",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "9e75b80e-7593-4dd8-98ce-be96af3d9052",
+    "headline": "Drone Scare Shuts Amritsar Airspace, Diverting Three Incoming Flights",
+    "slug": "amritsar-airport-drone-scare-flights-diverted-ai855-6e5028",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "448324ba-e751-4ca7-9a78-1f6c20c4b757",
+    "headline": "He Left a $200,000 Microsoft Job for an AI Startup. Revenue So Far: $6,000.",
+    "slug": "junead-khan-microsoft-200k-ai-startup-treasury",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "2c693590-71cb-4e25-86e6-16b9f87759c2",
+    "headline": "Jailer 2 Hindi Release On Track for October 15, Makers Deny Date Change",
+    "slug": "jailer-2-hindi-release-october-15-makers-deny-change",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "21a5f1c6-61ff-4cf1-ab16-5e6c7ec37d74",
+    "headline": "King's Lynn Tandoori named England's best curry restaurant at national awards",
+    "slug": "kings-lynn-tandoori-england-best-curry-restaurant-2026",
+    "category": "food",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/33643313/pexels-photo-33643313.jpeg?auto=compre"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "8dc80e60-16fc-4ad0-873f-47490d304c74",
+    "headline": "Witnesses Say Tiger Victim Posed for Photos, Danced Before Entering Enclosure",
+    "slug": "tiger-victim-posed-photos-witnesses-yorkshire-update",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": null
+  }
+]

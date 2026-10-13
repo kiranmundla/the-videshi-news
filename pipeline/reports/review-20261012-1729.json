@@ -1,0 +1,190 @@
+[
+  {
+    "id": "1ba6b309-2591-4a03-baca-0e21f682654b",
+    "headline": "Cadbury Celebrations Turns Diwali Gifting Toward the Neighbour You Bicker With",
+    "slug": "cadbury-celebrations-diwali-campaign-neighbours-milky-mithai",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact launch date of the campaign and when consumers can expect to see the new products in stores. This would provide readers with actionable information.",
+        "Include specific details about the new pack formats and designs for the festive gifting range to give readers a clearer understanding of what to expect from the product offerings.",
+        "Add a quote or statistic about the significance of gifting during Diwali to provide context on why this campaign is relevant and timely."
+      ],
+      "embed_opportunities": [
+        "Embed the official Cadbury Celebrations campaign video to enhance engagement and provide visual context for the article."
+      ]
+    }
+  },
+  {
+    "id": "e7316963-0cca-4d5e-97a6-8461c25d449a",
+    "headline": "A 'Pinch Me Moment': Kyle Clark Lands His Dream Netflix Lead in 'How to Ruin Diw",
+    "slug": "kyle-clark-netflix-how-to-ruin-diwali-lead",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the significance of the premiere date by including specific details about the show's release strategy, such as whether all episodes will be available at once or if they will be released weekly.",
+        "Provide more context about the How to Ruin franchise for readers who may not be familiar with it, including a brief summary of previous installments and their reception.",
+        "Include quotes or reactions from the show's creators or producers to add depth to the article and provide insights into the show's development and themes.",
+        "Ensure that the article maintains a consistent focus on the lead character Varshen and his relationship dynamics, as the current structure occasionally shifts focus without clear transitions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Netflix trailer for How to Ruin Diwali: Meet the Parents to give readers a visual preview of the show."
+      ]
+    }
+  },
+  {
+    "id": "c9219333-73b4-40ed-a255-a5172b2f0c42",
+    "headline": "Indian Shares Lifted as Oil Eases and RBI's Rupee Defence Kicks In",
+    "slug": "indian-shares-oil-eases-rbi-rupee-support",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the RBI's measures on the rupee and oil companies. For example, specify how much dollar demand is expected to be reduced from the spot market due to the new measures.",
+        "Provide more context on the significance of the Brent crude price drop. Include a comparison to previous prices or a brief explanation of how this affects the Indian economy or consumers.",
+        "Include a direct quote from a financial analyst or a spokesperson from the RBI to enhance attribution and provide expert insight into the situation.",
+        "Explain what the term 'relief rally' means in this context for readers who may not be familiar with market terminology."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI announcement regarding the currency measures to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "77d3a434-2329-4681-a6a5-4cd5d3cf1629",
+    "headline": "Bommai Kolu: A Diaspora Guide to South India's Navratri Doll Display",
+    "slug": "bommai-kolu-navratri-guide-south-india-doll-display",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the Bommai Kolu tradition by specifying the exact dates for Mahalaya and Vijayadashami in 2023 to provide readers with context on when to participate or observe the tradition this year.",
+        "Include a brief explanation of the significance of the marapachi wooden couple and how it is traditionally used in the display, as this could enhance understanding for readers unfamiliar with the tradition.",
+        "Add a quote or attribution from a cultural expert or community member about the importance of Bommai Kolu, which would lend authority and depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant YouTube video showcasing a Bommai Kolu display or a tutorial on setting up a kolu, which could provide visual context for readers."
+      ]
+    }
+  },
+  {
+    "id": "b9e105d1-47ec-4e2e-9a28-c0edd6f5379a",
+    "headline": "Deshpande Hat-Trick Bowls Chandigarh Out for 78 as Mumbai Take Command at Wankhe",
+    "slug": "deshpande-hat-trick-mumbai-chandigarh-ranji-trophy",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Deshpande's performance by including a brief comparison of his achievement with historical context or notable records in the Ranji Trophy, which would enhance the reader's understanding of its importance.",
+        "Include a quote from Deshpande or a coach/analyst to provide a personal perspective on the hat-trick and its impact on the match, adding depth to the reporting.",
+        "Add a brief summary of the current standings or implications for the tournament following this match, which would give readers context on what this means for the teams involved."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Deshpande's hat-trick to provide visual context and engagement for readers."
+      ]
+    }
+  },
+  {
+    "id": "20129f61-9ff1-48f2-9f82-17b0adcd84cc",
+    "headline": "Jailer 2's Hindi Version Caught in Multiplex Row Over Four-Week OTT Window",
+    "slug": "jailer-2-hindi-version-multiplex-row-ott-window",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the four-week OTT window for potential box office revenue, including estimated figures for Jailer 2's performance compared to films that adhered to the eight-week window.",
+        "Provide a direct quote from the official statement by the Jailer 2 team to enhance attribution and credibility, as the current mention is incomplete.",
+        "Include a brief background on the significance of the eight-week window policy in the context of the Indian film industry to provide readers with necessary context."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Jailer 2 account or a relevant industry expert discussing the multiplex situation to enhance credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "d67d45ec-e176-4196-9ac9-45fe38c87260",
+    "headline": "Jailer 2 Advance Bookings Near Rs 40 Crore Worldwide Ahead of October 15 Release",
+    "slug": "jailer-2-advance-booking-nears-40-crore-worldwide",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the advance booking figure by specifying the exact number reported (e.g., 'Rs 37 crore' instead of 'more than Rs 37 crore') for accuracy.",
+        "Include a brief explanation of how advance bookings typically correlate with opening-day performance, as this context would help readers understand the significance of the reported figures.",
+        "Add a quote from a relevant industry expert or a representative from the production company to provide authoritative insight into the film's anticipated performance.",
+        "Ensure consistency in the use of terms; for example, clarify whether 'pre-sales' and 'advance bookings' are being used interchangeably or if they have distinct meanings in this context."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a box office analyst or film critic discussing the significance of the advance bookings to provide additional context for readers."
+      ]
+    }
+  },
+  {
+    "id": "25ccb0cb-780a-42a8-84c6-2729a6602bc4",
+    "headline": "Riyadh Airport Hit Again as US and Allies Warn Travellers Away From Saudi Airpor",
+    "slug": "riyadh-airport-hit-again-us-warning-saudi-airports",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including specific information about how these attacks might affect Indian NRIs traveling to or living in Saudi Arabia. For example, mention any travel advisories issued by the Indian government or how these incidents could impact the safety of Indian expatriates.",
+        "Provide concrete details regarding the implications of these attacks for NRIs, such as potential changes in flight availability, increased travel insurance costs, or specific dates by which travelers should reconsider their plans. Include any relevant statistics on the number of Indian NRIs in Saudi Arabia to contextualize the impact.",
+        "Add a section that outlines the steps NRIs should take if they are currently in Saudi Arabia or planning to travel there, such as registering with the Indian embassy, checking for updates on travel advisories, or contacting airlines for flight changes.",
+        "Enhance the headline to make it more compelling and specific, such as 'Riyadh Airport Attacks Raise Alarms for Indian NRIs: What You Need to Know Before Traveling to Saudi Arabia'."
+      ],
+      "embed_opportunities": [
+        "Embed the official travel advisory tweet from the Indian government or the Ministry of External Affairs regarding safety in Saudi Arabia to provide readers with direct access to important updates."
+      ]
+    }
+  },
+  {
+    "id": "b285f457-08e1-4e7c-b0bc-1ee618abfc00",
+    "headline": "Family of Hyderabad Man Killed in Riyadh Airport Attack Will Hold Funeral in Sau",
+    "slug": "hyderabad-man-riyadh-airport-attack-funeral-saudi",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or reactions from the Indian community in Saudi Arabia, particularly NRIs who may feel impacted by the incident. This could highlight the emotional and social ramifications for the diaspora.",
+        "Include specific details such as the estimated costs associated with repatriating the body, any financial assistance available from the Indian government for bereaved families, and potential timelines for the funeral arrangements. This would help answer the 'what does this mean for ME?' question for NRIs concerned about similar situations.",
+        "Add a specific social embed, such as an official tweet from the Indian Embassy in Saudi Arabia regarding their support for the victims' families or updates on the situation. This would provide readers with direct access to official information.",
+        "Revise the headline to make it more compelling and specific. For example, 'Hyderabad Family to Hold Funeral for IT Professional Killed in Riyadh Airport Attack Amid Ongoing Support from Indian Embassy' would provide more context and urgency."
+      ],
+      "embed_opportunities": [
+        "Embed the official Indian Embassy's tweet or statement regarding their assistance to the families of the victims, which would provide credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "42dc2108-9e3c-4970-8c8e-f3fd21bff7bc",
+    "headline": "HCLTech Signs Anthropic Pact, Will Build Dedicated Agentic AI Business Unit",
+    "slug": "hcltech-anthropic-pact-agentic-ai-business-unit",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the partnership announcement by explicitly stating 'on October 12, 2023' instead of just 'October 12' to ensure timeliness is clear.",
+        "Include specific details about the expected timeline for the establishment of the dedicated business unit and the rollout of the AI solutions to provide readers with actionable information.",
+        "Add a brief explanation of what 'agentic AI' means for readers who may not be familiar with the term, enhancing clarity and completeness.",
+        "Provide a quote from a company representative or an industry expert to add depth and attribution to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant video or tweet from HCLTech or Anthropic that highlights the partnership announcement or discusses the implications of the collaboration."
+      ]
+    }
+  }
+]
