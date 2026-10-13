@@ -289,6 +289,88 @@ EARNINGS_WATCHLIST = {
     "BRK.B", "NEE", "HCA", "CHTR", "BKNG", "MMM",
 }
 
+NASDAQ_EARNINGS_CALENDAR_URL = "https://www.nasdaq.com/market-activity/earnings?date={date}"
+
+# Investor-relations pages for watchlist companies. Every URL verified live on
+# 2026-10-13 (HTTP 200 via curl, or rendered in a real browser where the site
+# bot-blocks curl). ABBV, CAT and CMCSA are intentionally ABSENT: their IR URLs
+# could not be verified, so the source gate in ensure_happening_briefs()
+# suppresses their earnings briefs rather than publishing with an unverified
+# or missing second source. Add new entries only after verifying the URL.
+EARNINGS_IR_URLS = {
+    "AAPL": "https://investor.apple.com/",
+    "GOOGL": "https://abc.xyz/investor/",
+    "GOOG": "https://abc.xyz/investor/",
+    "AMZN": "https://ir.aboutamazon.com/",
+    "META": "https://investor.atmeta.com/",
+    "NFLX": "https://ir.netflix.net/",
+    "MSFT": "https://www.microsoft.com/en-us/investor",
+    "NVDA": "https://investor.nvidia.com/",
+    "TSLA": "https://ir.tesla.com/",
+    "ADBE": "https://www.adobe.com/investor-relations.html",
+    "IBM": "https://www.ibm.com/investor",
+    "JPM": "https://www.jpmorganchase.com/ir",
+    "BAC": "https://investor.bankofamerica.com/",
+    "GS": "https://www.goldmansachs.com/investor-relations",
+    "MS": "https://www.morganstanley.com/about-us-ir",
+    "C": "https://www.citigroup.com/global/investors",
+    "WFC": "https://www.wellsfargo.com/about/investor-relations/",
+    "AXP": "https://ir.americanexpress.com/",
+    "CRM": "https://investor.salesforce.com/",
+    "ORCL": "https://investor.oracle.com/",
+    "INTC": "https://www.intc.com/",
+    "AMD": "https://ir.amd.com/",
+    "QCOM": "https://investor.qualcomm.com/",
+    "AVGO": "https://investors.broadcom.com/",
+    "MU": "https://investors.micron.com/",
+    "NOW": "https://investors.servicenow.com/",
+    "SNOW": "https://investors.snowflake.com/",
+    "UBER": "https://investor.uber.com/",
+    "ABNB": "https://investors.airbnb.com/",
+    "COIN": "https://investor.coinbase.com/",
+    "SQ": "https://investors.block.xyz/",
+    "PYPL": "https://investor.pypl.com/",
+    "SHOP": "https://investors.shopify.com/",
+    "KO": "https://investors.coca-colacompany.com/",
+    "PEP": "https://www.pepsico.com/investors",
+    "PG": "https://www.pginvestor.com/",
+    "NKE": "https://investors.nike.com/",
+    "DIS": "https://thewaltdisneycompany.com/investor-relations/",
+    "SBUX": "https://investor.starbucks.com/",
+    "MCD": "https://corporate.mcdonalds.com/corpmcd/investors.html",
+    "WMT": "https://stock.walmart.com/",
+    "TGT": "https://corporate.target.com/investors",
+    "COST": "https://investor.costco.com/",
+    "JNJ": "https://www.investor.jnj.com/",
+    "UNH": "https://www.unitedhealthgroup.com/investors.html",
+    "PFE": "https://www.pfizer.com/about/investors",
+    "LLY": "https://investor.lilly.com/",
+    "MRK": "https://www.merck.com/investor-relations/",
+    "V": "https://investor.visa.com/",
+    "MA": "https://investor.mastercard.com/",
+    "XOM": "https://investor.exxonmobil.com/",
+    "CVX": "https://www.chevron.com/investors",
+    "BA": "https://investors.boeing.com/",
+    "HON": "https://investor.honeywell.com/",
+    "GE": "https://www.geaerospace.com/investor-relations",
+    "T": "https://investors.att.com/",
+    "VZ": "https://www.verizon.com/about/investors/",
+    "TMUS": "https://investor.t-mobile.com/",
+    "BRK.B": "https://www.berkshirehathaway.com/",
+    "NEE": "https://www.investor.nexteraenergy.com/",
+    "HCA": "https://investor.hcahealthcare.com/",
+    "CHTR": "https://ir.charter.com/",
+    "BKNG": "https://ir.bookingholdings.com/",
+    "MMM": "https://investors.3m.com/",
+}
+
+# Source + length gate for generated earnings briefs (2026-10-13): earnings
+# briefs previously published with sources=[] and ~110-word bodies against a
+# 200-300 word spec. An earnings brief now needs >= EARNINGS_MIN_SOURCES
+# attached sources and >= EARNINGS_BRIEF_MIN_WORDS words, or it is suppressed.
+EARNINGS_MIN_SOURCES = 2
+EARNINGS_BRIEF_MIN_WORDS = 200
+
 def get_earnings(date: str) -> list[dict]:
     """Fetch earnings from Nasdaq calendar API, filtered to watchlist."""
     items = []
@@ -341,12 +423,26 @@ def get_earnings(date: str) -> list[dict]:
             timing = ""
         
         detail = f"{symbol}" + (f" · {timing}" if timing else "")
-        
+
+        # Sources for the generated brief: the Nasdaq calendar (this data's
+        # origin) plus the company's verified investor-relations page when we
+        # have one. The brief gate in ensure_happening_briefs() requires >= 2.
+        sources = [{
+            "name": "Nasdaq Earnings Calendar",
+            "url": NASDAQ_EARNINGS_CALENDAR_URL.format(date=date),
+        }]
+        ir_url = EARNINGS_IR_URLS.get(symbol)
+        if ir_url:
+            sources.append({"name": f"{name} Investor Relations", "url": ir_url})
+
         items.append({
             "emoji": "📊",
             "label": f"{name} Earnings",
             "detail": detail,
             "category": "markets",
+            "kind": "earnings",
+            "symbol": symbol,
+            "sources": sources,
             "start_time_utc": None,
             "search_terms": [symbol.lower(), name.lower().split()[0]],
         })
@@ -587,10 +683,15 @@ Venue/location: {detail}
 Include: the matchup and format, venue, start time, and what's at stake (series context, standings implications — only if inferable from the event name/league).
 Mention star players ONLY if they are globally famous and obviously relevant (e.g. an India match). NEVER invent quotes, scores, predictions, or broadcast details. If you don't know the broadcaster, omit it."""
 
-    earnings_spec = f"""Write a concise earnings preview (200-300 words) for this company reporting today.
+    earnings_spec = f"""Write a concise earnings preview (220-300 words) for this company reporting today.
 Company: {label}
 Detail: {detail}
-Include: what the company does (one sentence), what to watch in the report (revenue trends, guidance, key business segments), and why it matters to investors.
+Structure the brief in short paragraphs covering:
+1. What the company does and its main business segments.
+2. When it reports (from the detail line) and what is at stake this quarter.
+3. What investors will watch, segment by segment: revenue trends, margin and cost pressures, guidance, and capital returns (dividends/buybacks) — qualitative only.
+4. Why this report matters beyond the company (sector read-through, index weight, consumer or business signal).
+The body MUST be at least 220 words. Do not pad with filler — add substantive preview detail instead.
 NEVER invent EPS estimates, revenue figures, or analyst price targets. If expectations are unknown, say "analysts will be watching" without numbers."""
 
     markets_spec = f"""Write a short market notice (150-200 words).
@@ -614,10 +715,19 @@ NEVER invent reviews, ratings, or box office numbers."""
     if "earnings" in label.lower():
         spec = earnings_spec
 
+    # Expansion retry (earnings word-floor gate): a previous draft was too
+    # short — demand a fuller brief, never filler.
+    expand_note = ""
+    if item.get("expand_brief"):
+        expand_note = (f"\n\nIMPORTANT: A previous draft of this brief came to only "
+                       f"~{item.get('prev_words', 0)} words. Write a fuller brief of at least "
+                       f"220 words with more substantive segment-by-segment preview detail "
+                       f"and context. Never pad with filler and never invent figures.")
+
     return f"""You are writing a brief info article for The Videshi, a news site for the Indian diaspora.
 Today is {datetime.now(PT).strftime('%B %d, %Y')}.
 
-{spec}
+{spec}{expand_note}
 
 FACT RULES (non-negotiable):
 - Use ONLY facts given above or universally known facts (e.g. what a company does, what a tournament is).
@@ -859,6 +969,10 @@ def _generate_movie_brief(item: dict, date: str, api_key: str) -> dict | None:
         "tags": ["happening-brief", "movies"] + ([title_tag] if title_tag else []),
     }
 
+def _word_count(html: str) -> int:
+    """Word count of an HTML body with tags stripped."""
+    return len(re.sub(r"<[^>]+>", " ", html or "").split())
+
 def _insert_brief(article: dict) -> bool:
     sb_url = os.environ["SUPABASE_URL"]
     sb_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
@@ -916,6 +1030,34 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
             print(f"  ⚠️  brief generation failed for '{item.get('label')}' — left unlinked")
             continue
 
+        # ── Earnings gate (2026-10-13) ──────────────────────────────────
+        # Earnings briefs must meet the same standard as writer articles:
+        # >= 2 attached sources and the 200-word floor from the brief spec.
+        # If either can't be met honestly, suppress the brief (leave the
+        # happening unlinked) rather than publishing a source-less stub.
+        is_earnings = item.get("kind") == "earnings"
+        brief_sources = []
+        brief_words = 0
+        if is_earnings:
+            brief_sources = [s for s in item.get("sources", [])
+                             if isinstance(s, dict) and s.get("url")]
+            if len(brief_sources) < EARNINGS_MIN_SOURCES:
+                print(f"  🚫 earnings brief suppressed for '{item.get('label')}': "
+                      f"{len(brief_sources)} verified source(s), need {EARNINGS_MIN_SOURCES}")
+                continue
+            brief_words = _word_count(art.get("body_html", ""))
+            if brief_words < EARNINGS_BRIEF_MIN_WORDS:
+                retry = dict(item, expand_brief=True, prev_words=brief_words)
+                art2 = _gpt_brief(retry, api_key)
+                if art2 and _word_count(art2.get("body_html", "")) > brief_words:
+                    art = art2
+                    brief_words = _word_count(art.get("body_html", ""))
+                if brief_words < EARNINGS_BRIEF_MIN_WORDS:
+                    print(f"  🚫 earnings brief suppressed for '{item.get('label')}': "
+                          f"{brief_words} words < {EARNINGS_BRIEF_MIN_WORDS}-word floor "
+                          f"after expansion retry")
+                    continue
+
         category = BRIEF_CATEGORY_MAP.get(item.get("category", ""), "news")
         now = datetime.now(timezone.utc).isoformat()
         base_tags = art.get("tags") or (
@@ -938,6 +1080,9 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
             "published_at": now,
             "created_at": now,
         }
+        if is_earnings:
+            row["sources"] = brief_sources
+            row["word_count"] = brief_words
         if _insert_brief(row):
             item["link"] = f"/articles/{slug}"
             made += 1
