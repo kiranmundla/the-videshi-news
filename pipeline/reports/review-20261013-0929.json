@@ -1,0 +1,188 @@
+[
+  {
+    "id": "5a9e07ff-cbf0-41df-8cbb-d9d3c651d583",
+    "headline": "San Francisco's Outer Sunset Hosts Fourth Diwali Festival With Chai and Chutney",
+    "slug": "san-francisco-outer-sunset-diwali-festival-chai-chutney-nov-8",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the festival, as it currently states 'Sunday, Nov. 8', which is incorrect for 2023. The correct date should be 'Sunday, November 5, 2023'.",
+        "Include a brief background on the significance of Diwali for readers who may not be familiar with the festival, enhancing the article's completeness.",
+        "Provide more specific details about the activities, such as the time slots for each demonstration or performance, to improve clarity and help attendees plan their visit.",
+        "Mention any COVID-19 safety protocols or guidelines that might be in place for the festival to inform attendees about health measures."
+      ],
+      "embed_opportunities": [
+        "Embed the official social media posts or event page from Sunset Mercantile to provide readers with direct access to updates and additional information."
+      ]
+    }
+  },
+  {
+    "id": "22611514-b41c-422c-b634-bee8ecbc6f06",
+    "headline": "Government Tells Supreme Court Detention Response Ready, Needs Fine-Tuning",
+    "slug": "government-supreme-court-detention-response-fine-tuning-delhi-protests",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the alleged illegal detentions and transport shutdowns in the first paragraph for better context.",
+        "Include specific details about the nature of the allegations against the government, such as the number of individuals reportedly detained or any notable incidents of violence, to enhance completeness.",
+        "Ensure consistent use of dates throughout the article; for example, the date of the Supreme Court's session should be clearly linked to the events being discussed to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court statement or a relevant tweet from the Supreme Court's official account to provide direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "3ad59675-48cf-450c-8f1f-aa54a133466c",
+    "headline": "Harvard Law Bars International Students From Externship Clinics Under New Guidan",
+    "slug": "harvard-law-international-students-externship-clinics-cpt",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the new guidance by including specific examples of how this change affects international students' career prospects, such as potential job loss or limited opportunities in specific sectors.",
+        "Provide a direct quote from a Harvard Law official or an immigration expert to enhance attribution and credibility regarding the impact of the new guidance on international students.",
+        "Include a timeline for when students should expect to receive confirmation from the international office regarding work authorization, as well as any deadlines for registration for in-house clinics or pre-completion OPT."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Student and Exchange Visitor Program regarding the new CPT guidance for better context."
+      ]
+    }
+  },
+  {
+    "id": "4ac1e69e-9433-436f-bc7f-95f222ec6efa",
+    "headline": "From IIT Kanpur to Chief Election Commissioner, Gyanesh Kumar Faces Resignation ",
+    "slug": "gyanesh-kumar-cec-iit-kanpur-resignation-demands-sir",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific allegations made against Gyanesh Kumar regarding the irregularities and voter deletions to provide readers with a better understanding of the situation. For example, include details about the nature of these alleged irregularities and how they impact the electoral process.",
+        "Include a direct quote from Gyanesh Kumar or a representative from the Election Commission to provide a clearer perspective on the allegations and the Commission's stance. This would enhance the article's attribution and completeness.",
+        "Provide a timeline of events leading up to the current situation, including key dates for the Special Intensive Revision and the Supreme Court petition. This will help readers understand the context and urgency of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court notice or statement regarding the petition filed by opposition leaders to provide readers with direct access to the legal context of the situation."
+      ]
+    }
+  },
+  {
+    "id": "a784f0e7-fa5a-4485-af75-52ad9d0f8a0b",
+    "headline": "TCS Says Eighty Percent of New Hires Will Bring AI Skills",
+    "slug": "tcs-eighty-percent-new-hires-ai-digital-skills",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the hiring strategy by specifying when TCS plans to implement this shift in hiring practices. For example, will this be effective immediately, or is there a specific date when this will take effect?",
+        "Provide more context on the significance of AI-led work accounting for 10% of revenue. What does this mean for TCS's overall financial health and future growth?",
+        "Include a quote from a financial analyst or industry expert to provide an external perspective on the implications of TCS's hiring strategy and AI revenue growth.",
+        "Ensure that the statistics mentioned (e.g., 80% new-age hires, 25-30% pure AI hires) are clearly attributed to the correct source to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official TCS press release regarding their hiring strategy and financial results for direct reference."
+      ]
+    }
+  },
+  {
+    "id": "73819351-5988-479e-8547-8890ff6cf67b",
+    "headline": "HCLTech Surges Seven Percent as Strong Results Lift Indian IT Stocks",
+    "slug": "hcltech-surges-tcs-rises-it-stocks-rally-october-13",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when HCLTech released its quarterly results, as it currently mentions they were released after market hours on Monday without a specific date.",
+        "Provide more context on the significance of the 23% year-to-date decline in the Nifty IT index, including potential implications for investors or the broader market.",
+        "Include specific figures or percentages regarding the impact of inflation and Brent crude prices on the IT sector, as these factors are mentioned but not elaborated upon.",
+        "Ensure that all sources are clearly attributed, particularly when referencing data from The Times of India and DSIJ, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official HCLTech announcement or earnings report for readers to access detailed financial information directly."
+      ]
+    }
+  },
+  {
+    "id": "7b5d9f91-1dba-4ea3-9b5b-a1da6108329e",
+    "headline": "Diwali 2026 in Singapore: Ten Indian Restaurants for Festive Feasts",
+    "slug": "diwali-2026-singapore-ten-indian-restaurants-festive-feasts",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the information regarding the dates and restaurant offerings by including a direct attribution to the Yahoo Lifestyle Singapore guide, rather than stating it generically. This will enhance credibility and transparency.",
+        "Ensure consistency in the presentation of prices by using a uniform format (e.g., S$XX++ or S$XX) throughout the article to avoid confusion for readers.",
+        "Add a brief introduction that explains the significance of Diwali for readers who may not be familiar with the festival, providing context for why these restaurant offerings are relevant.",
+        "Consider including a concluding section that summarizes the key details about the restaurants and their offerings, making it easier for readers to digest the information quickly."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from one of the featured restaurants promoting their Diwali offerings, which would provide a visual element and direct engagement with the audience."
+      ]
+    }
+  },
+  {
+    "id": "5954cfa5-0cc1-4466-ab70-a55a23853188",
+    "headline": "Balisto's Electric Farm Machine Targets India's Labour Shortage for Small Farmer",
+    "slug": "balisto-electric-farm-machine-india-labour-shortage-130-pro",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the sales target by specifying how many machines Balisto aims to sell each year leading up to March 2027, as this would provide readers with a clearer understanding of the company's growth expectations.",
+        "Include a brief comparison of the Balisto 130 Pro's features with traditional diesel machines or manual labor to highlight its advantages, which would help readers understand its significance in addressing the labor shortage.",
+        "Provide more context on the current state of labor shortages in Indian agriculture, including statistics or quotes from experts, to enhance the article's completeness and depth.",
+        "Consider adding a quote from a Balisto Agritech representative or a satisfied customer to provide a human element and validate the company's claims about the machine's effectiveness."
+      ],
+      "embed_opportunities": [
+        "Embed a video demonstration of the Balisto 130 Pro in action, if available, to visually illustrate its capabilities and benefits."
+      ]
+    }
+  },
+  {
+    "id": "05bcc2ce-0114-468e-a970-be3e1ec86723",
+    "headline": "Shubman Gill Wins Record Fifth ICC Award as Shafali Verma Completes Double",
+    "slug": "shubman-gill-record-fifth-icc-player-of-month-shafali-verma-double",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the awards by specifying the exact date when the ICC announced the winners, as this would enhance the timeliness and context of the article.",
+        "Include direct quotes from Shubman Gill and Shafali Verma regarding their feelings about the awards and their performances, which would add depth and personal insight to the coverage.",
+        "Provide additional context on the significance of these awards in the broader landscape of international cricket, such as how they impact player rankings or national pride, to enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICC announcement tweet about the awards to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "b18a00e3-fbb4-400f-8801-36bfdcdec679",
+    "headline": "Modi Pitches India as Trusted Partner at Bloomberg Forum in Delhi",
+    "slug": "modi-pitches-india-trusted-partner-bloomberg-forum-delhi",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include a specific quote from Modi's speech to enhance attribution and provide a direct insight into his message.",
+        "Add context about the significance of the economic figures cited (7.8% growth, $700 billion reserves, 0.61% current account deficit) to help readers understand their implications for India's economy.",
+        "Clarify what specific actions or policies are being implemented as part of the reforms mentioned, such as timelines or expected outcomes, to provide completeness.",
+        "Ensure that the article maintains a consistent structure by clearly separating the sections discussing economic figures, reforms, and Modi's broader message."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or video clip of Modi's speech from the official Bloomberg Forum account to provide readers with direct access to the source material."
+      ]
+    }
+  }
+]

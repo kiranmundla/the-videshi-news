@@ -1,0 +1,189 @@
+[
+  {
+    "id": "b3da8925-db1c-4aeb-9803-b5f2c716ae49",
+    "headline": "Apple's Diwali AirPods 5 Brings a Rangoli-Engraved Case to India at Rs 17,900",
+    "slug": "apple-diwali-special-edition-airpods-5-rangoli-india",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the availability of the special edition AirPods 5 by specifying the exact date they will be available for purchase and the end date of the promotion. This will help readers understand the urgency and timeframe for purchasing.",
+        "Include a brief comparison of the features of the special edition AirPods 5 versus the standard model, highlighting any differences beyond the engraving. This will provide readers with a clearer understanding of what they are purchasing.",
+        "Add a note about the return policy or warranty for the special edition AirPods 5, as readers may want to know their options if they are unsatisfied with the product.",
+        "Ensure that the information regarding the free rangoli workshops is clearly separated from the product details, as it currently feels like an afterthought. This could enhance clarity and help readers focus on the main product announcement."
+      ],
+      "embed_opportunities": [
+        "Embed a link to Apple's official page for the special edition AirPods 5 to provide readers with direct access to more detailed product information."
+      ]
+    }
+  },
+  {
+    "id": "9c8dc123-bd53-43a6-b9f0-05268329193c",
+    "headline": "Maaya Rajeshwaran, 17, Wins First Pro Title and Breaks Sania Mirza's 22-Year Rec",
+    "slug": "maaya-rajeshwaran-first-pro-title-breaks-sania-mirza-record",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the significance of the W35 title by providing context about the tournament's level and its importance in the professional tennis circuit.",
+        "Include a quote from Maaya Rajeshwaran Revathi about her feelings on breaking Sania Mirza's record to add a personal touch and emotional depth to the article.",
+        "Add statistics or details about her journey in the tournament, such as her match scores leading up to the final, to enhance the completeness of her achievement.",
+        "Provide a brief background on Sania Mirza's career and her impact on Indian tennis to give readers a better understanding of the significance of this record-breaking moment."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Maaya's final match to give readers a visual representation of her achievement."
+      ]
+    }
+  },
+  {
+    "id": "a3a5c92d-a32f-4a9f-9e62-00f83f6e7234",
+    "headline": "India's Direct Selling Industry Hits Rs 23,522 Crore With 91 Lakh Sellers",
+    "slug": "india-direct-selling-industry-rs-23522-crore-adsei",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the financial year mentioned. The article states FY25 but does not specify the exact dates, which could lead to confusion about the reporting period.",
+        "Provide more context on the significance of the Rs 23,522 crore figure. For example, how does this compare to previous years? Including a year-over-year comparison would enhance completeness.",
+        "Include a quote or statement from a credible source or expert in the industry to strengthen attribution and provide additional insights into the implications of the report's findings.",
+        "Explain the implications of the projected growth to Rs 25,000 crore in FY26. What factors are driving this growth, and what challenges might the industry face?"
+      ],
+      "embed_opportunities": [
+        "Embed the official ADSEI report or a relevant tweet from ADSEI to provide readers with direct access to the source of the data."
+      ]
+    }
+  },
+  {
+    "id": "87007154-a8ab-4c29-8312-5364d1a5845b",
+    "headline": "Nithya Raman Takes 11-Point Lead Over Karen Bass Into Only LA Mayoral Debate",
+    "slug": "nithya-raman-leads-karen-bass-la-mayoral-debate",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the undecided voters by providing context on how their decisions could impact the final election outcome, especially given the high percentage of undecided voters.",
+        "Include a brief background on the candidates' previous political experiences and stances on key issues to give readers a clearer understanding of their platforms and how they may influence voter decisions.",
+        "Add a direct quote from Nithya Raman or Karen Bass regarding their strategies for the debate or their views on the poll results to enhance attribution and provide more depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official poll results from UC Berkeley IGS or a relevant graphic showing the polling data for better visual representation."
+      ]
+    }
+  },
+  {
+    "id": "652dd9f3-b234-4940-ab89-3ca2c7b215c8",
+    "headline": "Ranjeev Puri Could Become the First Indian American State House Speaker in the U",
+    "slug": "ranjeev-puri-michigan-house-speaker-first-indian-american",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the date of the elections (November 3) earlier in the article to emphasize the urgency of the situation.",
+        "Provide more context on the significance of Puri potentially becoming the first Indian American Speaker, such as the implications for representation and political influence within Michigan and the broader U.S. political landscape.",
+        "Include specific statistics or historical context about the Indian American voting demographic in Michigan to enhance the reader's understanding of why both parties are courting this community.",
+        "Ensure that the attribution for the statement about Democrats flipping the state house is clear; specify if this is a direct quote or paraphrased from the Democratic campaign."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from Ranjeev Puri or the Michigan Democratic Party regarding their campaign efforts or the significance of the upcoming election."
+      ]
+    }
+  },
+  {
+    "id": "ff7a4133-61b6-4ffa-8a52-9ea99272622f",
+    "headline": "Trump Says Putin Wants a Deal More Than Zelenskyy, Presses Kyiv to Settle",
+    "slug": "trump-putin-wants-deal-more-than-zelenskyy",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the source of Trump's casualty figure of 32,000 people lost 'this month' by providing context or attribution to verify this claim, as it appears unsupported and could mislead readers.",
+        "Include a brief explanation of the significance of the alleged energy ceasefire and its potential impact on the conflict, as well as any reactions from international leaders or organizations that could provide context for the claims made by Trump.",
+        "Reorganize the article to improve the flow of information, starting with the most critical updates (e.g., Trump's statements, followed by the lack of confirmation from both sides, and then the context of the conflict). This will help readers grasp the key points more effectively."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Ukrainian government regarding the alleged ceasefire to provide readers with direct information from the source."
+      ]
+    }
+  },
+  {
+    "id": "97164e02-4120-44d7-86d0-461db95160a8",
+    "headline": "IMF Warns an AI Share Crash Could Test the Limits of Global Resilience",
+    "slug": "imf-ai-share-crash-global-financial-stability-warning",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the IMF's report by specifying the date it was released to enhance timeliness and context for readers.",
+        "Include specific figures related to the potential impact of an AI share crash on global markets, such as estimated percentage drops in major indices or projected financial losses, to provide a clearer understanding of the stakes involved.",
+        "Add a brief explanation of what 'hyperscalers' are for readers who may not be familiar with the term, ensuring clarity and completeness.",
+        "Provide a more detailed explanation of the 'circular financing arrangements' mentioned, as this is a critical concept that could help readers understand the risks involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMF tweet or statement regarding the Global Financial Stability Report to provide direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "65c8da64-6fa5-4174-8663-392bf42ab414",
+    "headline": "Zoho Skips Annual Pay Hikes as AI Costs Surge, Vembu Warns on Software Jobs",
+    "slug": "zoho-skips-pay-hikes-vembu-ai-costs-software-jobs",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific impact on employees by including any potential salary figures or percentages that were typically expected for annual raises, which would provide context for the decision.",
+        "Provide more context on the 'grim' outlook for software jobs mentioned by Vembu. Include any statistics or expert opinions that could substantiate this claim and give readers a clearer understanding of the job market.",
+        "Include a quote or data point from an industry expert or analyst to enhance the credibility of Vembu's claims about rising AI costs and their impact on the industry."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Sridhar Vembu's post on X to provide direct access to his statement and enhance the article's authenticity."
+      ]
+    }
+  },
+  {
+    "id": "ae802861-5b3b-43c1-af63-267d021d405b",
+    "headline": "IMF Raises India Growth Forecast to 7% as Global Outlook Fragments",
+    "slug": "imf-raises-india-growth-forecast-7-percent-fy27",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the growth forecast by specifying the fiscal year (FY27) in the context of the current year, as this may confuse readers unfamiliar with fiscal reporting periods.",
+        "Include specific figures regarding the expected inflation rate and its implications for monetary policy, such as potential interest rate changes by the RBI, to provide readers with actionable insights.",
+        "Add a direct quote from a relevant IMF official or economist to enhance attribution and authority, which would strengthen the credibility of the reported information."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMF statement or tweet regarding the growth forecast to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "9d499684-4e95-4c53-8c44-4598ee60c6fd",
+    "headline": "Netanyahu Sought Saudi Approval to Join Houthi Strikes; Riyadh Said No",
+    "slug": "netanyahu-saudi-approval-houthi-strikes-rejected",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly regarding the recent Houthi attacks and their impact on Saudi-Israeli relations, to provide readers with a clearer context of the situation.",
+        "Include specific details about the implications of the rejected bid for both Israel and Saudi Arabia, such as potential shifts in military strategy or diplomatic relations, to enhance the article's completeness.",
+        "Add a quote from a relevant official or expert to provide authoritative attribution and enhance the article's credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a credible news source or official account regarding the Houthi attacks or Saudi-Israeli relations to provide real-time updates and context."
+      ]
+    }
+  }
+]

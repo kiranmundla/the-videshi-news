@@ -1,0 +1,65 @@
+[
+  {
+    "id": "73a605f4-e58d-4c22-988e-9f1340442c05",
+    "headline": "Johnson & Johnson Earnings Report Due Today: Key Insights to Watch",
+    "slug": "happening-2026-10-13-johnson-johnson-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Include specific financial metrics such as expected earnings per share (EPS) and revenue projections for Johnson & Johnson's upcoming report. For example, mention if analysts expect an EPS of $2.50 and revenue of $23 billion, and how these figures compare to previous quarters.",
+        "Add a section that discusses how Johnson & Johnson's performance could impact NRI investors, particularly those holding shares or mutual funds that include the company. Provide actionable steps for NRIs, such as reviewing their investment portfolios or considering the implications for their investments in healthcare stocks.",
+        "Incorporate a brief analysis of how fluctuations in the dollar-rupee exchange rate could affect NRIs investing in U.S. stocks like Johnson & Johnson, especially if the earnings report indicates strong performance.",
+        "Revise the headline to make it more compelling and specific, such as 'What Johnson & Johnson's Earnings Report Could Mean for NRI Investors: Key Insights and Action Steps'."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Johnson & Johnson or a financial analyst discussing the earnings report to provide real-time insights and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "41a48583-6b53-43e7-95c3-d06dbb57f26e",
+    "headline": "JPMorgan Chase Set to Report Earnings: Key Insights Ahead",
+    "slug": "happening-2026-10-13-j-p-morgan-chase-co-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Enhance the diaspora/NRI angle by explicitly discussing how JPMorgan Chase's earnings report may impact NRIs, particularly in terms of investment opportunities or currency exchange rates that could affect their financial decisions.",
+        "Include specific financial figures such as projected earnings per share, revenue estimates, and any changes in interest rates that could directly affect NRIs' investments or loans, along with actionable steps they can take in response to these insights.",
+        "Add a section that addresses how the earnings report might influence the Indian economy or stock market, providing context for NRIs who may have investments in Indian companies or are considering investing.",
+        "Consider embedding a relevant tweet from JPMorgan Chase or a financial analyst discussing the earnings report to provide real-time insights and enhance the article's credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from JPMorgan Chase announcing their earnings report or a tweet from a financial analyst providing insights on the implications for investors."
+      ]
+    }
+  },
+  {
+    "id": "17d2a4ee-0b7c-4fc5-b4cd-317fdb161a5c",
+    "headline": "Citigroup Set to Report Earnings: Key Insights Ahead of Market Open",
+    "slug": "happening-2026-10-13-citigroup-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Citigroup's earnings report might affect NRIs and their investments, particularly in terms of currency exchange rates or potential impacts on remittances.",
+        "Provide concrete specifics on what the earnings report could mean for NRIs, such as potential changes in interest rates for loans or savings accounts, and how these might affect their financial planning. Include any relevant dollar/rupee amounts or timelines for expected changes.",
+        "Add a section that discusses how Citigroup's performance might influence the broader market trends that NRIs should be aware of, particularly in sectors they are likely to invest in.",
+        "Consider a more compelling headline that reflects the implications for NRIs, such as 'Citigroup Earnings Report: What NRIs Should Know About Their Investments and Financial Future'."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Citigroup or a financial analyst discussing the earnings report to provide real-time insights and enhance credibility."
+      ]
+    }
+  }
+]
