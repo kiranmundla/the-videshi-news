@@ -31,21 +31,37 @@ def sb_get(path):
     return json.loads(r.stdout)
 
 
+# A pending slug means a publish timed out and the post MIGHT still land
+# via a late approval. Observed late landing: 2026-10-11 Chennai Metro post
+# was live within ~11 minutes, and publish() itself already polls ~6 min
+# before a slug is ever marked pending. 3 hours is a generous window; past
+# it the approval is dead, so the slug is abandoned (never re-attempted,
+# so no duplicate risk) instead of bricking every later run forever.
+PENDING_TTL_SECS = 3 * 3600
+
+
 def load_posted():
     try:
         with open(STATE_FILE) as f:
             data = json.load(f)
             return (set(data.get("posted_slugs", [])),
-                    set(data.get("pending_slugs", [])))
+                    set(data.get("pending_slugs", [])),
+                    set(data.get("abandoned_slugs", [])),
+                    dict(data.get("pending_since", {})))
     except (FileNotFoundError, json.JSONDecodeError):
-        return set(), set()
+        return set(), set(), set(), {}
 
 
-def save_posted(slugs, pending):
+def save_posted(slugs, pending, abandoned=None, pending_since=None):
+    abandoned = abandoned or set()
+    pending_since = {s: t for s, t in (pending_since or {}).items()
+                     if s in pending}
     os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
     with open(STATE_FILE, "w") as f:
         json.dump({"posted_slugs": sorted(slugs),
-                   "pending_slugs": sorted(pending)}, f)
+                   "pending_slugs": sorted(pending),
+                   "abandoned_slugs": sorted(abandoned),
+                   "pending_since": pending_since}, f)
 
 
 def pick_article(posted):
@@ -196,21 +212,39 @@ def _verify_recent_post(article_url):
 
 
 def main():
-    posted, pending = load_posted()
+    import time
+    posted, pending, abandoned, pending_since = load_posted()
     # Re-check anything left pending from a previous timed-out run: if it's
-    # live now, record it; otherwise don't risk a duplicate — bail out.
+    # live now, record it. If it is still not live past PENDING_TTL_SECS,
+    # the approval is dead — abandon the slug (it is never re-attempted,
+    # so there is no duplicate risk) and let the queue move on instead of
+    # bailing out forever. Inside the window, bail out as before.
     for slug in sorted(pending):
         url = f"https://www.thevideshi.com/articles/{slug}"
         if _verify_recent_post(url):
             pending.discard(slug)
+            pending_since.pop(slug, None)
             posted.add(slug)
             print(f"Pending post confirmed live: {slug}")
-        else:
-            print(f"ERROR: pending post still unverifiable: {slug}; "
-                  f"not posting a duplicate.", file=sys.stderr)
-            save_posted(posted, pending)
-            sys.exit(1)
-    article = pick_article(posted)
+            continue
+        since = pending_since.get(slug)
+        if since is not None and time.time() - since > PENDING_TTL_SECS:
+            pending.discard(slug)
+            pending_since.pop(slug, None)
+            abandoned.add(slug)
+            save_posted(posted, pending, abandoned, pending_since)
+            print(f"Pending post expired unverified after "
+                  f"{PENDING_TTL_SECS // 3600}h; slug abandoned "
+                  f"(never re-attempted): {slug}")
+            continue
+        if since is None:
+            # Legacy pending entry with no timestamp: start its clock now.
+            pending_since[slug] = time.time()
+        print(f"ERROR: pending post still unverifiable: {slug}; "
+              f"not posting a duplicate.", file=sys.stderr)
+        save_posted(posted, pending, abandoned, pending_since)
+        sys.exit(1)
+    article = pick_article(posted | pending | abandoned)
     if not article:
         print("No fresh article to post (all recent ones already posted).")
         return
@@ -224,14 +258,16 @@ def main():
     result = publish(text, article_url, article.get("image_url"))
     if result:
         posted.add(article["slug"])
-        save_posted(posted, pending)
+        save_posted(posted, pending, abandoned, pending_since)
         print(f"Published: {result.get('post_url')}")
     else:
         # Could be a late-approval post that went live after the CLI timed
-        # out — mark pending so the next run re-verifies instead of
-        # double-posting.
+        # out — mark pending (with a timestamp) so the next run re-verifies
+        # instead of double-posting. After PENDING_TTL_SECS unverified it
+        # is abandoned, not retried forever.
         pending.add(article["slug"])
-        save_posted(posted, pending)
+        pending_since[article["slug"]] = time.time()
+        save_posted(posted, pending, abandoned, pending_since)
         print("Publish failed; slug marked pending for re-verification.",
               file=sys.stderr)
         sys.exit(1)
