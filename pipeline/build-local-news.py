@@ -228,6 +228,7 @@ STATE_NAMES = {
     "AZ": "Arizona", "MN": "Minnesota", "MI": "Michigan", "OR": "Oregon",
     "OH": "Ohio", "NC": "North Carolina", "NV": "Nevada",
     "VA": "Virginia", "MD": "Maryland", "IN": "Indiana",
+    "WI": "Wisconsin", "MO": "Missouri",
 }
 
 

@@ -134,6 +134,14 @@ CITIES = [
     {"ae": "san-ramon-ca", "display": "San Ramon", "state": "CA", "batch": "a"},
     {"ae": "pleasanton-ca", "display": "Pleasanton", "state": "CA", "batch": "a"},
     {"ae": "livermore-ca", "display": "Livermore", "state": "CA", "batch": "a"},
+    # Phase 2 ingestion queue (2026-10-13): thin/empty local-news clusters.
+    # Slugs verified against allevents.in (bare "corona" is Corona, NY —
+    # corona-ca is California; "tracy-ca" 404s, bare "tracy" is CA).
+    {"ae": "fresno", "display": "Fresno", "state": "CA", "batch": "a"},
+    {"ae": "tracy", "display": "Tracy", "state": "CA", "batch": "a"},
+    {"ae": "eastvale", "display": "Eastvale", "state": "CA", "batch": "a"},
+    {"ae": "corona-ca", "display": "Corona", "state": "CA", "batch": "a"},
+    {"ae": "riverside", "display": "Riverside", "state": "CA", "batch": "a"},
     {"ae": "los-angeles", "display": "Los Angeles", "state": "CA", "batch": "a"},
     {"ae": "seattle", "display": "Seattle", "state": "WA", "batch": "a"},
     {"ae": "new-york", "display": "New York", "state": "NY", "batch": "a"},
@@ -179,6 +187,16 @@ CITIES = [
     {"ae": "cincinnati", "display": "Cincinnati", "state": "OH", "batch": "d"},
     {"ae": "cleveland", "display": "Cleveland", "state": "OH", "batch": "d"},
     {"ae": "kansas-city", "display": "Kansas City", "state": "MO", "batch": "d"},
+    # Phase 2 ingestion queue (2026-10-13): Overland Park pairs with
+    # Kansas City; Germantown MD is the canonical "germantown" page on
+    # allevents (DMV events — verified, not the Tennessee namesake);
+    # Loudoun VA additions (leesburg/chantilly need the -va slug, bare
+    # slugs 404; bare "sterling" resolves to Sterling, VA).
+    {"ae": "overland-park", "display": "Overland Park", "state": "KS", "batch": "d"},
+    {"ae": "germantown", "display": "Germantown", "state": "MD", "batch": "d"},
+    {"ae": "leesburg-va", "display": "Leesburg", "state": "VA", "batch": "d"},
+    {"ae": "sterling", "display": "Sterling", "state": "VA", "batch": "d"},
+    {"ae": "chantilly-va", "display": "Chantilly", "state": "VA", "batch": "d"},
     {"ae": "st-louis", "display": "St Louis", "state": "MO", "batch": "d"},
     {"ae": "las-vegas", "display": "Las Vegas", "state": "NV", "batch": "d"},
     {"ae": "richmond", "display": "Richmond", "state": "VA", "batch": "d"},

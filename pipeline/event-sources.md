@@ -39,6 +39,7 @@ Tampa FL (4), Nashville TN (2)
 - Cities to scrape:
   - `ca--san-jose`, `ca--san-francisco`, `ca--fremont`
 - **allevents.in city pages** (the live city-level mechanism, `scrape-allevents.py`): `dublin-ca`, `san-ramon-ca`, `pleasanton-ca`, `livermore-ca` added 2026-10-11 — closes the San Ramon/Dublin coverage gap the user flagged (bare `dublin` resolves to Ireland — use `-ca` suffixed slugs)
+- **Phase 2 ingestion queue** added 2026-10-13 (`scrape-allevents.py`): `fresno`, `tracy`, `eastvale`, `corona-ca`, `riverside` (CA — Fresno/Tracy/Inland Empire clusters are events-thin), `overland-park` (KS, pairs with `kansas-city`), `germantown` (MD — allevents' canonical page is the Maryland one, verified via DMV event links), `leesburg-va`, `sterling`, `chantilly-va` (Loudoun County, VA). Slug traps verified live: bare `corona` is Corona, NY; `tracy-ca`/`leesburg`/`chantilly`/`sterling-va` 404 — the listed slugs are the ones that resolve to the right cities. Picked up automatically by the weekly `videshi-events-refresh` sweep (Mondays).
   - `ny--new-york`, `nj--edison`, `nj--jersey-city`
   - `tx--dallas`, `tx--houston`, `tx--plano`
   - `il--chicago`, `il--schaumburg`
