@@ -1021,6 +1021,22 @@ RULES:
         print(f"  ⚡ No news_summary extracted — skipping pulse reel (context frame is required)")
         return None
 
+    # Eyebrow year guard (2026-10-12): the LLM once produced "ELECTIONS 2023"
+    # for a story about the 2026 November ballot — a factual error burned
+    # into the video. If the eyebrow carries a 4-digit year that appears
+    # nowhere in the headline/slug while the story's own year differs, swap
+    # the eyebrow year for the story year.
+    try:
+        _eb = str(hook.get("eyebrow") or "")
+        _eb_years = re.findall(r"\b(20\d{2})\b", _eb)
+        _story_years = set(re.findall(r"\b(20\d{2})\b", f"{headline} {slug}"))
+        if _eb_years and _story_years and _eb_years[0] not in _story_years:
+            _fixed = _eb.replace(_eb_years[0], max(_story_years), 1)
+            print(f"  📅 Eyebrow year corrected: {_eb!r} → {_fixed!r}")
+            hook["eyebrow"] = _fixed
+    except Exception as _e:
+        print(f"  ⚠️ Eyebrow year guard skipped: {_e}")
+
     result["v"] = "pulse2"  # v2: narrative arc (news_summary + payoff + versus), kinetic text
 
     # Cache
@@ -6677,6 +6693,230 @@ def build_anchor_reel_timeline(
 # SHOTSTACK TIMELINE BUILDER — Quick Pulse (no voice)
 # ═════════════════════════════════════════════════════════════════════════════
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# TEXT FIT — shared pre-render measurement for EVERY Quick Pulse text element
+# ═══════════════════════════════════════════════════════════════════════════════
+# 2026-10-12 defect (Kiran's catch): the hero-stat label "Indian-American
+# Republicans on November ballot" rendered as ONE unwrapped line spanning the
+# full 1080px frame, clipped at both edges. Root cause: centered scenes used
+# align-items:center + a card with no width constraint, so the card shrink-
+# wrapped to the label's max-content (single-line) width — measured with the
+# real Inter-Bold metrics, that line is 1065px at 44px font vs a 960px safe
+# content width. It could NEVER fit on one line, and nothing measured it.
+#
+# Rule from now on: NO text element is sent to Shotstack unless fit_text()
+# has measured it (real Inter-Bold metrics via PIL; deterministic per-char
+# fallback) and wrapped/shrunk it so every line fits its box. If text cannot
+# fit even at the minimum size, fit_text raises TextFitError and the build
+# HARD-FAILS before any render credits are spent. After rendering,
+# run_edge_overflow_qa() extracts a settled frame per scene and hard-fails
+# the reel if text-like pixels touch the frame edges — run_quick_pulse does
+# not upload/register unless it passes. There is no warnings-only path.
+
+import html as _html
+
+FRAME_W = 1080
+SAFE_SIDE_PAD = 60                              # _pulse_safe_wrap side padding
+SAFE_CONTENT_W = FRAME_W - 2 * SAFE_SIDE_PAD    # 960px usable content width
+EDGE_GUARD_PX = 12                              # post-render edge exclusion zone
+
+_FIT_FONT_CACHE = {}
+_FIT_REPORT = []   # per-build log lines, reset by build_quick_pulse_timeline
+
+
+class TextFitError(Exception):
+    """Raised when a text element cannot fit its box at any allowed size."""
+
+
+def _fit_font(size_px):
+    """Inter-Bold at an exact pixel size (the one face Shotstack loads, and
+    the widest Inter cut — conservative for 600/700-weight text)."""
+    if size_px in _FIT_FONT_CACHE:
+        return _FIT_FONT_CACHE[size_px]
+    font = None
+    try:
+        from PIL import ImageFont
+        candidates = [
+            PIPELINE_DIR / "reels" / "fonts" / "Inter-Bold.ttf",
+            BUILD_DIR / "fonts" / "Inter-Bold.ttf",
+            Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+        ]
+        if not any(c.exists() for c in candidates):
+            # Self-heal: fetch the exact face Shotstack loads, cache it.
+            try:
+                cache_path = BUILD_DIR / "fonts" / "Inter-Bold.ttf"
+                cache_path.parent.mkdir(parents=True, exist_ok=True)
+                resp = requests.get(FONT_URL, timeout=20)
+                if resp.status_code == 200 and len(resp.content) > 10000:
+                    cache_path.write_bytes(resp.content)
+            except Exception:
+                pass
+        for cand in candidates:
+            if cand.exists():
+                font = ImageFont.truetype(str(cand), int(size_px))
+                break
+    except Exception:
+        font = None
+    _FIT_FONT_CACHE[size_px] = font
+    return font
+
+
+# Per-character advance widths (em fractions) — deterministic fallback when
+# PIL/font is unavailable. Calibrated slightly WIDE vs Inter so the fallback
+# errs toward smaller fonts, never toward overflow.
+_EM_W = {
+    " ": 0.30, "i": 0.26, "l": 0.26, "j": 0.28, "t": 0.36, "f": 0.32,
+    "r": 0.38, "I": 0.30, ".": 0.28, ",": 0.28, ":": 0.28, ";": 0.28,
+    "!": 0.30, "'": 0.24, "’": 0.24, "-": 0.38, "–": 0.55, "—": 0.95,
+    "(": 0.36, ")": 0.36, "/": 0.32, "$": 0.58, "%": 0.92, "&": 0.70,
+    "M": 0.88, "W": 0.96, "m": 0.86, "w": 0.80, "@": 0.95, "₹": 0.58,
+    "·": 0.28, "•": 0.32, "+": 0.58, "=": 0.58, "?": 0.52, '"': 0.36,
+}
+
+
+def _em_width(ch):
+    if ch in _EM_W:
+        return _EM_W[ch]
+    if ch.isdigit():
+        return 0.58
+    if ch.isupper():
+        return 0.70
+    return 0.54
+
+
+def measure_text_px(text, size_px, letter_spacing=0):
+    """Deterministic pixel width of a single line of Inter text."""
+    if not text:
+        return 0.0
+    font = _fit_font(size_px)
+    if font is not None:
+        w = float(font.getlength(text))
+    else:
+        w = sum(_em_width(c) for c in text) * float(size_px)
+    if letter_spacing:
+        w += letter_spacing * max(0, len(text) - 1)
+    return w
+
+
+def fit_text(text, base_size, max_width, weight=700, letter_spacing=0,
+             uppercase=False, min_size=22, max_lines=None, label="text"):
+    """Wrap + shrink `text` until EVERY line measures <= max_width.
+
+    Returns (html_with_br, font_size_px). Greedy word-wrap starting at
+    base_size, shrinking 2px at a time down to min_size. Raises TextFitError
+    if it still cannot fit — the build must fail rather than ship text that
+    can touch the frame edges.
+    """
+    raw = " ".join(str(text or "").split())
+    if not raw:
+        return "", base_size
+    disp = raw.upper() if uppercase else raw
+    words = disp.split(" ")
+    size = int(base_size)
+    while size >= min_size:
+        lines, cur, ok = [], "", True
+        for w in words:
+            trial = f"{cur} {w}".strip()
+            if measure_text_px(trial, size, letter_spacing) <= max_width:
+                cur = trial
+                continue
+            if cur:
+                lines.append(cur)
+            if measure_text_px(w, size, letter_spacing) > max_width:
+                ok = False
+                break
+            cur = w
+        if ok:
+            if cur:
+                lines.append(cur)
+            if max_lines is None or len(lines) <= max_lines:
+                _FIT_REPORT.append(
+                    f"{label}: {size}px, {len(lines)} line(s), "
+                    f"widest {max(measure_text_px(l, size, letter_spacing) for l in lines):.0f}px "
+                    f"<= {max_width}px — {raw[:48]!r}")
+                return "<br>".join(_html.escape(l) for l in lines), size
+        size -= 2
+    raise TextFitError(
+        f"TEXT FIT FAIL [{label}]: {raw[:80]!r} cannot fit {max_width}px "
+        f"even at {min_size}px (max_lines={max_lines}) — refusing to render")
+
+
+def run_edge_overflow_qa(video_path, edit_json):
+    """Post-render HARD gate: extract one settled frame per overlay scene and
+    fail if text-like pixels appear within EDGE_GUARD_PX of the left/right
+    frame edges inside the text band.
+
+    Why the thresholds are safe: scene text renders at FULL opacity (white /
+    brand gold / teal / orange), while the background photo sits at 0.5
+    opacity over navy #0a1628, so no background pixel can exceed ~150 in any
+    channel. Text colors clear that bar by a wide margin.
+
+    Returns (passed: bool, details: list[str]). Any failure = reel must NOT
+    be uploaded or registered.
+    """
+    details = []
+    try:
+        clips = edit_json["timeline"]["tracks"][0]["clips"]
+    except Exception:
+        return False, ["edge QA: no overlay track in edit JSON"]
+    qa_dir = BUILD_DIR / "qa-edge"
+    qa_dir.mkdir(parents=True, exist_ok=True)
+
+    def _text_like(r, g, b):
+        if min(r, g, b) > 185:                                   # white
+            return True
+        if r > 175 and g > 135 and b < 115 and (r - b) > 85:     # gold
+            return True
+        if r < 120 and g > 150 and b > 140:                      # teal
+            return True
+        if r > 200 and g > 120 and b < 80:                       # orange
+            return True
+        return False
+
+    all_ok = True
+    for idx, clip in enumerate(clips):
+        start = float(clip.get("start", 0))
+        length = float(clip.get("length", 0))
+        t = start + max(1.0, min(2.0, length - 0.3))
+        frame_path = qa_dir / f"edge-scene-{idx}.png"
+        r = subprocess.run(
+            ["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}", "-i", str(video_path),
+             "-vframes", "1", str(frame_path)],
+            capture_output=True, timeout=30)
+        if r.returncode != 0 or not frame_path.exists():
+            all_ok = False
+            details.append(f"scene {idx}: frame extraction failed at {t:.1f}s")
+            continue
+        try:
+            from PIL import Image
+            im = Image.open(frame_path).convert("RGB")
+        except Exception as e:
+            all_ok = False
+            details.append(f"scene {idx}: frame unreadable ({e})")
+            continue
+        w, h = im.size
+        px = im.load()
+        worst = {}
+        for side, cols in (("left", range(0, EDGE_GUARD_PX)),
+                           ("right", range(w - EDGE_GUARD_PX, w))):
+            count = 0
+            for x in cols:
+                for y in range(100, min(1620, h)):
+                    if _text_like(*px[x, y]):
+                        count += 1
+            worst[side] = count
+        bad = {s: c for s, c in worst.items() if c > 24}
+        if bad:
+            all_ok = False
+            details.append(
+                f"scene {idx} (@{t:.1f}s): TEXT TOUCHES FRAME EDGE {bad} — FAIL")
+        else:
+            details.append(
+                f"scene {idx} (@{t:.1f}s): edges clear "
+                f"(left {worst['left']}, right {worst['right']} text-like px)")
+    return all_ok, details
+
+
 # ── Kinetic typography: CSS keyframes injected into every pulse scene ──
 # Shotstack renders each HTML asset from page-load, so entrance animations
 # keyed to load time play exactly when the scene starts. Staggered delays
@@ -6724,24 +6964,29 @@ def _pulse_hook_html(hook_line, category):
     """Beat 1: Hook — bold promise/stat with pop-in animation. NO branding on
     frame one (research: moving the logo off frame one lifted completion 67%).
     Text lands at ~20-25% canvas height (hero zone)."""
-    badge = (category or "NEWS").upper().replace("-", " ")
-    # Auto-scale font size based on text length to prevent edge clipping.
-    # On a 1080px frame with 60px side padding = 960px available.
-    # Inter 900 at ~88px averages ~55px/char → safe up to ~17 chars.
+    badge_raw = (category or "NEWS").upper().replace("-", " ")
+    badge_html, badge_size = fit_text(
+        badge_raw, 34, SAFE_CONTENT_W, weight=800, letter_spacing=8,
+        uppercase=True, max_lines=1, label="hook badge")
+    # Starting size by length (as before), then fit_text guarantees every
+    # wrapped line measures inside the 960px safe width — measured, not hoped.
     hl_len = len(hook_line or "")
     if hl_len <= 17:
-        hl_size = 88
+        hl_base = 88
     elif hl_len <= 24:
-        hl_size = 72
+        hl_base = 72
     elif hl_len <= 32:
-        hl_size = 60
+        hl_base = 60
     elif hl_len <= 45:
-        hl_size = 50
+        hl_base = 50
     else:
-        hl_size = 42
+        hl_base = 42
+    hook_html, hl_size = fit_text(
+        hook_line, hl_base, SAFE_CONTENT_W, weight=900, letter_spacing=-1,
+        max_lines=4, label="hook headline")
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:flex-start;height:100%;margin-top:240px;">
-  <div class="vds-fade" style="font-family:Inter;font-size:34px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:28px;animation-delay:.05s;">{badge}</div>
-  <div class="vds-pop" style="font-family:Inter;font-size:{hl_size}px;font-weight:900;color:#ffffff;line-height:1.06;letter-spacing:-1px;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{hook_line}</div>
+  <div class="vds-fade" style="font-family:Inter;font-size:{badge_size}px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:28px;animation-delay:.05s;">{badge_html}</div>
+  <div class="vds-pop" style="font-family:Inter;font-size:{hl_size}px;font-weight:900;color:#ffffff;line-height:1.06;letter-spacing:-1px;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{hook_html}</div>
   <div class="vds-rise" style="margin-top:36px;width:120px;height:8px;background:#D4AF37;border-radius:4px;animation-delay:.6s;"></div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6751,18 +6996,14 @@ def _pulse_news_html(news_summary):
     """Beat 2: WHAT HAPPENED — the context frame. The actual news event in
     short kinetic lines. This beat fixes the 'no context/information' problem:
     a viewer who missed the headline learns the story here."""
-    lines = _wrap_short_lines(news_summary, 5)
-    # Scale font based on longest line to prevent edge clipping
-    max_line_len = max((len(l) for l in lines.split("<br>")), default=0)
-    if max_line_len > 35:
-        wh_size = 42
-    elif max_line_len > 28:
-        wh_size = 46
-    else:
-        wh_size = 52
+    # Card inner width: 960 safe − 2×40 card padding = 880. fit_text wraps the
+    # raw summary by MEASURED width (replaces the old char-count guessing).
+    lines, wh_size = fit_text(
+        news_summary, 52, SAFE_CONTENT_W - 80, weight=700,
+        max_lines=6, label="news body")
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
   <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">WHAT HAPPENED</div>
-  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:48px 40px;border-left:8px solid #4ECDC4;max-width:100%;box-sizing:border-box;">
+  <div style="background:rgba(10,22,40,0.92);border-radius:24px;padding:48px 40px;border-left:8px solid #4ECDC4;width:100%;max-width:100%;box-sizing:border-box;">
     <div class="vds-rise" style="font-family:Inter;font-size:{wh_size}px;font-weight:700;color:#ffffff;line-height:1.35;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{lines}</div>
   </div>
 </div>"""
@@ -6770,12 +7011,29 @@ def _pulse_news_html(news_summary):
 
 
 def _pulse_hero_stat_html(big, sub, eyebrow):
-    """Beat 3: Hero stat — the striking number, animated pop-in."""
+    """Beat 3: Hero stat — the striking number, animated pop-in.
+
+    2026-10-12 fix: the card previously had NO width constraint inside an
+    align-items:center column, so it shrink-wrapped to the label's unwrapped
+    single-line width (1065px for a 44px label) and spilled past both frame
+    edges. Now the card is pinned to the safe width and every element is
+    measured + wrapped/shrunk by fit_text (card inner = 960 − 2×44 = 872px).
+    """
+    inner_w = SAFE_CONTENT_W - 88
+    eyebrow_html, eb_size = fit_text(
+        eyebrow, 32, inner_w, weight=800, letter_spacing=6,
+        uppercase=True, max_lines=1, label="hero eyebrow")
+    big_html, big_size = fit_text(
+        big, 180, inner_w, weight=900, min_size=56,
+        max_lines=1, label="hero big number")
+    sub_html, sub_size = fit_text(
+        sub, 44, inner_w, weight=600,
+        max_lines=3, label="hero stat label")
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:70px 44px;border:3px solid rgba(212,175,55,0.4);">
-    <div class="vds-fade" style="font-family:Inter;font-size:32px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">{eyebrow}</div>
-    <div class="vds-pop" style="font-family:Inter;font-size:180px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:28px;text-shadow:0 0 60px rgba(212,175,55,0.4);animation-delay:.25s;">{big}</div>
-    <div class="vds-rise" style="font-family:Inter;font-size:44px;font-weight:600;color:#ffffff;line-height:1.3;animation-delay:.55s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{sub}</div>
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:70px 44px;border:3px solid rgba(212,175,55,0.4);width:100%;box-sizing:border-box;">
+    <div class="vds-fade" style="font-family:Inter;font-size:{eb_size}px;font-weight:800;color:#D4AF37;letter-spacing:6px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">{eyebrow_html}</div>
+    <div class="vds-pop" style="font-family:Inter;font-size:{big_size}px;font-weight:900;color:#D4AF37;line-height:1.0;margin-bottom:28px;text-shadow:0 0 60px rgba(212,175,55,0.4);animation-delay:.25s;">{big_html}</div>
+    <div class="vds-rise" style="font-family:Inter;font-size:{sub_size}px;font-weight:600;color:#ffffff;line-height:1.3;animation-delay:.55s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{sub_html}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6784,19 +7042,28 @@ def _pulse_hero_stat_html(big, sub, eyebrow):
 def _pulse_stat_grid_html(stats):
     """Beat 4a: Evidence — 2-3 supporting stats in stacked cards, staggered entrances."""
     colors = ["#D4AF37", "#4ECDC4", "#FF9933"]
+    tile_inner_w = SAFE_CONTENT_W - 64  # tile padding 32px each side
     tiles_html = ""
     for i, stat in enumerate(stats[:3]):
-        big = stat.get("big", "")
-        label = stat.get("label", "")
         color = colors[i % len(colors)]
         delay = 0.2 + i * 0.3
-        tiles_html += f"""<div class="vds-rise" style="background:rgba(10,22,40,0.94);border-radius:24px;padding:36px 32px;text-align:center;border-left:8px solid {color};animation-delay:{delay}s;">
-      <div style="font-family:Inter;font-size:84px;font-weight:900;color:{color};line-height:1.0;margin-bottom:10px;">{big}</div>
-      <div style="font-family:Inter;font-size:30px;font-weight:600;color:#ffffff;line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label}</div>
+        big_html, big_size = fit_text(
+            stat.get("big", ""), 84, tile_inner_w, weight=900, min_size=34,
+            max_lines=1, label=f"grid value {i}")
+        label_html, label_size = fit_text(
+            stat.get("label", ""), 30, tile_inner_w, weight=600,
+            letter_spacing=1, uppercase=True, max_lines=3,
+            label=f"grid label {i}")
+        tiles_html += f"""<div class="vds-rise" style="background:rgba(10,22,40,0.94);border-radius:24px;padding:36px 32px;text-align:center;border-left:8px solid {color};animation-delay:{delay}s;box-sizing:border-box;">
+      <div style="font-family:Inter;font-size:{big_size}px;font-weight:900;color:{color};line-height:1.0;margin-bottom:10px;">{big_html}</div>
+      <div style="font-family:Inter;font-size:{label_size}px;font-weight:600;color:#ffffff;line-height:1.2;text-transform:uppercase;letter-spacing:1px;">{label_html}</div>
     </div>"""
 
+    grid_header_html, grid_header_size = fit_text(
+        "BY THE NUMBERS", 30, SAFE_CONTENT_W, weight=800, letter_spacing=8,
+        uppercase=True, max_lines=1, label="grid header")
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-  <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;margin-bottom:36px;text-transform:uppercase;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,0.9);animation-delay:.05s;">BY THE NUMBERS</div>
+  <div class="vds-fade" style="font-family:Inter;font-size:{grid_header_size}px;font-weight:800;color:#D4AF37;letter-spacing:8px;margin-bottom:36px;text-transform:uppercase;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,0.9);animation-delay:.05s;">{grid_header_html}</div>
   <div style="display:flex;flex-direction:column;gap:22px;">
     {tiles_html}
   </div>
@@ -6807,21 +7074,33 @@ def _pulse_stat_grid_html(stats):
 def _pulse_versus_html(versus):
     """Beat 4b: Evidence as claim-vs-counterclaim split-screen — the modern
     2026 news treatment for two-sided stories. Left = side A, right = side B."""
-    a_label = versus.get("a_label", "")
-    a_value = versus.get("a_value", "")
-    b_label = versus.get("b_label", "")
-    b_value = versus.get("b_value", "")
+    # Layout note (2026-10-12): formerly a side-by-side flex ROW. Shotstack's
+    # HTML renderer mishandles flex-row children (it painted full-width
+    # accent bars behind the diaspora flex rows), so versus is now two
+    # STACKED block panels — the block pattern every other scene proves
+    # renders correctly. Panel inner width: 960 − 2×40 padding = 880.
+    panel_inner_w = SAFE_CONTENT_W - 80
+    a_label_html, a_label_size = fit_text(
+        versus.get("a_label", ""), 25, panel_inner_w, weight=800,
+        letter_spacing=3, uppercase=True, max_lines=1, label="versus A label")
+    a_value_html, a_value_size = fit_text(
+        versus.get("a_value", ""), 38, panel_inner_w, weight=700,
+        max_lines=3, label="versus A value")
+    b_label_html, b_label_size = fit_text(
+        versus.get("b_label", ""), 25, panel_inner_w, weight=800,
+        letter_spacing=3, uppercase=True, max_lines=1, label="versus B label")
+    b_value_html, b_value_size = fit_text(
+        versus.get("b_value", ""), 38, panel_inner_w, weight=700,
+        max_lines=3, label="versus B value")
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
   <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;text-align:center;animation-delay:.05s;">TWO SIDES</div>
-  <div style="display:flex;gap:20px;align-items:stretch;">
-    <div class="vds-slidel" style="flex:1;background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 24px;border-top:8px solid #D4AF37;text-align:center;animation-delay:.2s;">
-      <div style="font-family:Inter;font-size:25px;font-weight:800;color:#D4AF37;letter-spacing:3px;margin-bottom:20px;">{a_label}</div>
-      <div style="font-family:Inter;font-size:38px;font-weight:700;color:#ffffff;line-height:1.25;">{a_value}</div>
-    </div>
-    <div class="vds-rise" style="flex:1;background:rgba(10,22,40,0.94);border-radius:24px;padding:40px 24px;border-top:8px solid #FF6B6B;text-align:center;animation-delay:.5s;">
-      <div style="font-family:Inter;font-size:25px;font-weight:800;color:#FF6B6B;letter-spacing:3px;margin-bottom:20px;">{b_label}</div>
-      <div style="font-family:Inter;font-size:38px;font-weight:700;color:#ffffff;line-height:1.25;">{b_value}</div>
-    </div>
+  <div class="vds-rise" style="background:rgba(10,22,40,0.94);border-radius:24px;padding:36px 40px;border-top:8px solid #D4AF37;text-align:center;animation-delay:.2s;box-sizing:border-box;margin-bottom:22px;">
+    <div style="font-family:Inter;font-size:{a_label_size}px;font-weight:800;color:#D4AF37;letter-spacing:3px;margin-bottom:16px;">{a_label_html}</div>
+    <div style="font-family:Inter;font-size:{a_value_size}px;font-weight:700;color:#ffffff;line-height:1.25;">{a_value_html}</div>
+  </div>
+  <div class="vds-rise" style="background:rgba(10,22,40,0.94);border-radius:24px;padding:36px 40px;border-top:8px solid #FF6B6B;text-align:center;animation-delay:.5s;box-sizing:border-box;">
+    <div style="font-family:Inter;font-size:{b_label_size}px;font-weight:800;color:#FF6B6B;letter-spacing:3px;margin-bottom:16px;">{b_label_html}</div>
+    <div style="font-family:Inter;font-size:{b_value_size}px;font-weight:700;color:#ffffff;line-height:1.25;">{b_value_html}</div>
   </div>
 </div>"""
     return _pulse_safe_wrap(inner)
@@ -6830,25 +7109,35 @@ def _pulse_versus_html(versus):
 def _pulse_diaspora_html(bullets):
     """Beat 5: Diaspora panel — why it matters to NRIs. Tight lines (≤8 words
     each from the prompt), staggered entrances."""
+    # Bullet text width: card inner 872 (960 − 2×44) − border 8 − padding 28 = 836.
+    bullet_w = SAFE_CONTENT_W - 88 - 36
+    header_html, header_size = fit_text(
+        "WHY IT MATTERS TO YOU", 32, SAFE_CONTENT_W - 88, weight=800,
+        letter_spacing=6, uppercase=True, max_lines=1, label="diaspora header")
     bullets_html = ""
     for i, b in enumerate(bullets[:3]):
         delay = 0.2 + i * 0.3
-        # Scale font down for longer bullets to prevent edge clipping
+        # Starting size by length (as before); fit_text then guarantees fit.
         b_len = len(b or "")
         if b_len > 60:
-            b_size = 36
+            b_base = 36
         elif b_len > 45:
-            b_size = 40
+            b_base = 40
         else:
-            b_size = 46
-        bullets_html += f"""<div class="vds-rise" style="display:flex;align-items:flex-start;gap:20px;margin-bottom:26px;animation-delay:{delay}s;max-width:100%;">
-      <div style="width:16px;height:16px;min-width:16px;border-radius:50%;background:#FF9933;margin-top:16px;box-shadow:0 0 12px rgba(255,153,51,0.5);"></div>
-      <div style="font-family:Inter;font-size:{b_size}px;font-weight:600;color:#ffffff;line-height:1.25;flex:1;min-width:0;overflow-wrap:break-word;word-break:break-word;">{b}</div>
+            b_base = 46
+        b_html, b_size = fit_text(
+            b, b_base, bullet_w, weight=600, max_lines=3,
+            label=f"diaspora bullet {i}")
+        # Block layout with an accent left border — NOT a flex row with a
+        # dot div: Shotstack's renderer painted full-width orange bars
+        # behind the old flex-row bullets (seen in shipped renders).
+        bullets_html += f"""<div class="vds-rise" style="margin-bottom:26px;animation-delay:{delay}s;max-width:100%;border-left:8px solid #FF9933;padding-left:28px;box-sizing:border-box;">
+      <div style="font-family:Inter;font-size:{b_size}px;font-weight:600;color:#ffffff;line-height:1.25;overflow-wrap:break-word;word-break:break-word;">{b_html}</div>
     </div>"""
 
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;height:100%;">
-  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:56px 44px;border-left:10px solid #FF9933;">
-    <div class="vds-fade" style="font-family:Inter;font-size:32px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:36px;text-transform:uppercase;animation-delay:.05s;">WHY IT MATTERS TO YOU</div>
+  <div style="background:rgba(10,22,40,0.94);border-radius:32px;padding:56px 44px;border-left:10px solid #FF9933;width:100%;box-sizing:border-box;">
+    <div class="vds-fade" style="font-family:Inter;font-size:{header_size}px;font-weight:800;color:#FF9933;letter-spacing:6px;margin-bottom:36px;text-transform:uppercase;animation-delay:.05s;">{header_html}</div>
     {bullets_html}
   </div>
 </div>"""
@@ -6858,10 +7147,15 @@ def _pulse_diaspora_html(bullets):
 def _pulse_payoff_html(payoff):
     """Beat 6: Payoff — the so-what takeaway as the final message, with only a
     compact brand line (research: never end on pure branding; end on the story)."""
+    payoff_html, payoff_size = fit_text(
+        payoff, 62, SAFE_CONTENT_W, weight=900, max_lines=4, label="payoff")
+    brand_html, brand_size = fit_text(
+        "THE VIDESHI · thevideshi.com", 30, SAFE_CONTENT_W, weight=700,
+        letter_spacing=4, max_lines=1, label="payoff brand line")
     inner = f"""<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100%;">
   <div class="vds-fade" style="font-family:Inter;font-size:30px;font-weight:800;color:#D4AF37;letter-spacing:8px;text-transform:uppercase;margin-bottom:36px;animation-delay:.05s;">THE TAKEAWAY</div>
-  <div class="vds-pop" style="font-family:Inter;font-size:62px;font-weight:900;color:#ffffff;line-height:1.18;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{payoff}</div>
-  <div class="vds-rise" style="margin-top:72px;font-family:Inter;font-size:30px;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:4px;animation-delay:.7s;">THE VIDESHI · thevideshi.com</div>
+  <div class="vds-pop" style="font-family:Inter;font-size:{payoff_size}px;font-weight:900;color:#ffffff;line-height:1.18;animation-delay:.25s;max-width:100%;overflow-wrap:break-word;word-break:break-word;">{payoff_html}</div>
+  <div class="vds-rise" style="margin-top:72px;font-family:Inter;font-size:{brand_size}px;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:4px;animation-delay:.7s;">{brand_html}</div>
 </div>"""
     return _pulse_safe_wrap(inner)
 
@@ -6883,6 +7177,7 @@ def build_quick_pulse_timeline(
     Every text block animates in (entrance → settle), never a frozen slide.
     All content lives in the top 83% of the canvas (bottom 17% = YouTube UI).
     """
+    _FIT_REPORT.clear()
     hook_stat = pulse_stats.get("hook_stat", {})
     stats = pulse_stats.get("stats", [])
     diaspora = pulse_stats.get("diaspora_bullets", [])
@@ -6994,6 +7289,12 @@ def build_quick_pulse_timeline(
     # Remove None soundtrack (defensive)
     if edit["timeline"].get("soundtrack") is None:
         edit["timeline"].pop("soundtrack", None)
+
+    # Pre-render text-fit proof: every element above was measured by fit_text
+    # (a failure would already have raised TextFitError). Log the evidence.
+    print(f"  📐 Text-fit: {len(_FIT_REPORT)} elements verified inside safe width")
+    for line in _FIT_REPORT:
+        print(f"     ✓ {line}")
 
     return edit, total_duration
 
@@ -8273,14 +8574,24 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
         prefer_source="pixabay", min_energy=4,
     )
 
-    # Step 4: Build timeline
-    edit_json, total_duration = build_quick_pulse_timeline(
-        hero_image_url=hero_image_url,
-        music_url=music_url,
-        music_volume=music_volume,
-        pulse_stats=pulse_stats,
-        category=category,
-    )
+    # Step 4: Build timeline — fit_text inside the builders HARD-FAILS the
+    # build (TextFitError) if any text element cannot fit the safe width.
+    # No render credits are spent on a reel whose text could overflow.
+    try:
+        edit_json, total_duration = build_quick_pulse_timeline(
+            hero_image_url=hero_image_url,
+            music_url=music_url,
+            music_volume=music_volume,
+            pulse_stats=pulse_stats,
+            category=category,
+        )
+    except TextFitError as e:
+        print(f"  🚫 {e}")
+        log_qa_feedback(article, score=0, passed=False,
+                        issues=[f"Pre-render text-fit failure: {e}"],
+                        severity="CRITICAL",
+                        notes="Build aborted before render — text cannot fit safe width")
+        return False
 
     json_path = BUILD_DIR / f"ss-pulse-{slug}.json"
     with open(json_path, "w") as f:
@@ -8302,6 +8613,21 @@ def run_quick_pulse(article, dry_run=False, use_production=False):
     final_path = REELS_DIR / final_name
     if not download_reel(output_url, str(final_path)):
         return False
+
+    # HARD QA GATE (2026-10-12): scan one settled frame per scene for text
+    # touching the frame edges. A failing reel is NEVER uploaded or
+    # registered — there is no warnings-only path past this gate.
+    edge_ok, edge_details = run_edge_overflow_qa(str(final_path), edit_json)
+    for d in edge_details:
+        print(f"  🔍 {d}")
+    if not edge_ok:
+        print("  🚫 EDGE-OVERFLOW QA FAILED — reel NOT uploaded/registered")
+        log_qa_feedback(article, score=0, passed=False,
+                        issues=[d for d in edge_details if "FAIL" in d],
+                        severity="CRITICAL",
+                        notes="Post-render edge-overflow QA failed; reel withheld")
+        return False
+    print("  ✅ Edge-overflow QA passed — no text touches the frame edges")
 
     # Upload & register
     video_url, uploaded_video_path = upload_final_reel(str(final_path), final_name)
