@@ -29,6 +29,8 @@ export const METRO_PICKER: { city: string; state: string; lat: number; lon: numb
   { city: "New York", state: "NY", lat: 40.7128, lon: -74.006 },
   { city: "San Jose", state: "CA", lat: 37.3382, lon: -121.8863 },
   { city: "San Francisco", state: "CA", lat: 37.7749, lon: -122.4194 },
+  { city: "Fremont", state: "CA", lat: 37.5485, lon: -121.9886 },
+  { city: "Dublin", state: "CA", lat: 37.7022, lon: -121.9358 },
   { city: "Los Angeles", state: "CA", lat: 34.0522, lon: -118.2437 },
   { city: "Chicago", state: "IL", lat: 41.8781, lon: -87.6298 },
   { city: "Houston", state: "TX", lat: 29.7604, lon: -95.3698 },

@@ -38,6 +38,11 @@ METROS = [
     ("New York", "NY", ["NYC", "New York City"]),
     ("San Jose", "CA", []),
     ("San Francisco", "CA", ["SF", "Bay Area"]),
+    ("Fremont", "CA", []),
+    # Tri-Valley pooled under Dublin: Dublin CA alone returns zero desi
+    # headline news from Google (Ireland swamps it) — its community news
+    # lives in San Ramon / Pleasanton / Livermore headlines.
+    ("Dublin", "CA", ["San Ramon", "Pleasanton", "Livermore", "Tri-Valley"]),
     ("Los Angeles", "CA", ["LA"]),
     ("Chicago", "IL", []),
     ("Houston", "TX", []),
@@ -95,7 +100,23 @@ def metro_blocked(label: str, title: str) -> bool:
         # headlines ("the Thomas Edison of our time") match \bEdison\b.
         if "thomas edison" in title.lower():
             return True
+    if label == "Dublin, CA":
+        # Dublin, Ireland is the far bigger "Dublin" in news. Hard
+        # Ireland markers block it; bare "Irish" is allowed (Dublin CA
+        # trades on Irish heritage). RSS queries use "Dublin California"
+        # to bias Google the same way.
+        t = title.lower()
+        if any(k in t for k in ("ireland", "dáil", "tánaiste", "garda")):
+            return True
     return False
+
+
+# Metros whose RSS coverage needs more than one query city. Dublin pools
+# the whole Tri-Valley; each returned item must still name one of the
+# pooled cities in its title (the label's pattern includes the aliases).
+METRO_QUERY_CITIES = {
+    "Dublin, CA": ["Dublin California", "San Ramon", "Pleasanton", "Livermore"],
+}
 
 
 _TITLE_STOPWORDS = {
@@ -170,6 +191,19 @@ def compile_patterns():
             # Portland OR vs ME — require Oregon context
             rx = re.compile(
                 r"\bPortland\b(?=.{0,60}\b(?:Oregon|\bOR\b))|(?:Oregon|\bOR\b).{0,60}\bPortland\b",
+                re.IGNORECASE,
+            )
+        elif city == "Dublin":
+            # Dublin CA vs Dublin, Ireland: the pooled Tri-Valley city
+            # names are unambiguous and match freely; bare "Dublin"
+            # requires California context nearby (2026-10-13: a United
+            # Europe-routes article, a Trinity College Dublin study, and
+            # a "London, Dublin" protest line all matched Ireland's).
+            rx = re.compile(
+                r"\b(?:San Ramon|Pleasanton|Livermore|Tri-Valley)\b"
+                r"|\bDublin,\s*CA\b"
+                r"|\bDublin\b(?=.{0,80}\b(?:California|Bay Area|East Bay|Tri-Valley|Alameda|Contra Costa)\b)"
+                r"|\b(?:California|Bay Area|East Bay|Tri-Valley|Alameda|Contra Costa)\b.{0,80}\bDublin\b",
                 re.IGNORECASE,
             )
         else:
@@ -303,7 +337,16 @@ def main():
     if not no_rss:
         for city, state, _aliases in METROS:
             label = f"{city}, {state}"
-            rss_items = fetch_gnews_rss(city, label=label, rx=rx_by_label[label])
+            query_cities = METRO_QUERY_CITIES.get(label, [city])
+            rss_items: list[dict] = []
+            seen_links: set = set()
+            for qi, qcity in enumerate(query_cities):
+                if qi:
+                    time.sleep(RSS_DELAY_S)
+                for r in fetch_gnews_rss(qcity, label=label, rx=rx_by_label[label]):
+                    if r["url"] not in seen_links:
+                        seen_links.add(r["url"])
+                        rss_items.append(r)
             # dedup against our own titles (case-insensitive containment)
             own_titles = {i["title"].lower() for i in matches[label]}
             fresh = [
