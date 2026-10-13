@@ -10,7 +10,11 @@ Writes public/data/local-news.json:
   { "metros": { "San Jose, CA": [{kind,slug|url,title,...}, ...] } }
 
 Top PER_METRO most recent per metro. Ambiguous city names (Washington,
-Portland) require state context to avoid false positives.
+Portland) require state context to avoid false positives; San Jose is
+guarded against San José, Costa Rica (metro_blocked). Both layers must
+match the metro name in the TITLE — a Google query hit alone is not
+proof a story is about the metro — and near-identical headlines across
+outlets are deduped to one slot.
 
 Run: python3 -u pipeline/build-local-news.py [--no-rss]
 """
@@ -68,6 +72,52 @@ EXCLUDE_RX = re.compile(
 
 PER_METRO = 8
 
+
+def metro_blocked(label: str, title: str) -> bool:
+    """Per-metro false-positive guard: the title names a DIFFERENT place
+    that shares the metro's name. San Jose, CA vs San José, Costa Rica —
+    on 2026-10-13 five Costa Rica embassy stories flooded the San Jose
+    bucket because "San Jose" matched with no disambiguation (Washington
+    and Portland already had context guards; San Jose was missed)."""
+    if label == "San Jose, CA":
+        t = title.lower()
+        if "costa rica" in t:
+            return True
+        # Costa Rica's capital is spelled "San José" (accented); the
+        # California city is written unaccented in US outlets. Allow the
+        # accented form only with explicit California context.
+        if "san josé" in t and not any(
+            k in t for k in ("california", "silicon valley", "bay area")
+        ):
+            return True
+    if label == "Edison, NJ":
+        # "Thomas Edison" is the inventor, not the township — Musk
+        # headlines ("the Thomas Edison of our time") match \bEdison\b.
+        if "thomas edison" in title.lower():
+            return True
+    return False
+
+
+_TITLE_STOPWORDS = {
+    "the", "a", "an", "of", "in", "on", "to", "for", "and", "or", "as",
+    "at", "by", "with", "from", "is", "are", "was", "were", "it", "its",
+}
+
+
+def _title_tokens(t: str) -> set:
+    return set(re.findall(r"[a-z0-9]+", (t or "").lower())) - _TITLE_STOPWORDS
+
+
+def titles_too_similar(a: str, b: str) -> bool:
+    """Near-duplicate headline check (same wire story, different outlets).
+    Jaccard on significant tokens; 0.55 catches reworded variants like
+    '...strengthen bilateral ties' vs '...strengthen Central American ties'
+    while leaving distinct stories alone."""
+    ta, tb = _title_tokens(a), _title_tokens(b)
+    if len(ta) < 4 or len(tb) < 4:
+        return False
+    return len(ta & tb) / len(ta | tb) >= 0.55
+
 # --- V2: Google News RSS ---
 # Google offers no official local-news API; the RSS search endpoint is free,
 # keyless, and stable. Query biases toward desi topics; the drop-filter below
@@ -87,7 +137,12 @@ RSS_KEEP_RX = re.compile(
     r"\b(desi|india|indian-american|indian american|diwali|holi|navratri|"
     r"dussehra|h-1b|h1b|bollywood|cricket|dandiya|garba|bhangra|"
     r"punjabi|gujarati|telugu|tamil|malayalam|kannada|bengali|marathi|"
-    r"rupee|rs\.?\s|nri|oci|samosa|biryani)\b",
+    r"rupee|rs\.?\s|nri|oci|samosa|biryani|"
+    # Core diaspora vocabulary the original list missed — "green card"
+    # stories are local-news staples (e.g. Patch's Edison IT-firms story
+    # was dropped for having no keep keyword, 2026-10-13). Safe to widen
+    # because every item must ALSO name the metro in its title.
+    r"green card|perm\b|visa|immigration|temple|mandir|gurdwara)\b",
     re.IGNORECASE,
 )
 RSS_DELAY_S = 2
@@ -124,7 +179,13 @@ def compile_patterns():
     return compiled
 
 
-def fetch_gnews_rss(city: str, days: int = 14, state: str | None = None) -> list[dict]:
+def fetch_gnews_rss(
+    city: str,
+    days: int = 14,
+    state: str | None = None,
+    label: str | None = None,
+    rx: re.Pattern | None = None,
+) -> list[dict]:
     """Fetch Google News RSS for a metro, filtered for desi relevance."""
     place = f"{city} {state}" if state else city
     q = GNEWS_QUERY_TMPL.format(city=city, days=days)
@@ -165,6 +226,14 @@ def fetch_gnews_rss(city: str, days: int = 14, state: str | None = None) -> list
         if RSS_DROP_RX.search(title):
             continue
         if not RSS_KEEP_RX.search(title):
+            continue
+        # The query alone is NOT proof the story is about this metro —
+        # Google matched Costa Rica's San José to San Jose, CA. Require
+        # the same title match (+ same-name-place guard) as own articles:
+        # if a story is really about the metro, the metro is in the title.
+        if rx is not None and not rx.search(title):
+            continue
+        if label and metro_blocked(label, title):
             continue
         src_el = it.find("source")
         src_name = (src_el.text or "").strip() if src_el is not None else ""
@@ -215,7 +284,7 @@ def main():
             # Only title/excerpt matches: if a story is really about the metro,
             # the metro is in the headline or dek. Body-only mentions are
             # overwhelmingly passing references ("NY Fed", "NYSE").
-            if rx.search(hay_headline):
+            if rx.search(hay_headline) and not metro_blocked(label, hay_headline):
                 matches[label].append(
                     {
                         "kind": "article",
@@ -230,10 +299,11 @@ def main():
 
     # V2: Google News RSS per metro (external breadth)
     rss_counts: dict[str, int] = {}
+    rx_by_label = dict(patterns)
     if not no_rss:
         for city, state, _aliases in METROS:
             label = f"{city}, {state}"
-            rss_items = fetch_gnews_rss(city)
+            rss_items = fetch_gnews_rss(city, label=label, rx=rx_by_label[label])
             # dedup against our own titles (case-insensitive containment)
             own_titles = {i["title"].lower() for i in matches[label]}
             fresh = [
@@ -249,7 +319,10 @@ def main():
             # "Right and complete" means no metro left empty or single-item.
             if len(matches[label]) + len(fresh) < 3 and state in STATE_NAMES:
                 time.sleep(RSS_DELAY_S)
-                wide = fetch_gnews_rss(city, days=30, state=STATE_NAMES[state])
+                wide = fetch_gnews_rss(
+                    city, days=30, state=STATE_NAMES[state],
+                    label=label, rx=rx_by_label[label],
+                )
                 have_titles = own_titles | {r["title"].lower() for r in fresh}
                 for r in wide:
                     tl = r["title"].lower()
@@ -276,7 +349,17 @@ def main():
             ),
             reverse=True,
         )
-        out[label] = items[:PER_METRO]
+        # Cross-source near-dedup: the same wire story from 4 outlets is
+        # ONE local story, not 4 slots (2026-10-13 Costa Rica flood).
+        deduped: list[dict] = []
+        for it in items:
+            if any(
+                titles_too_similar(it.get("title") or "", k.get("title") or "")
+                for k in deduped
+            ):
+                continue
+            deduped.append(it)
+        out[label] = deduped[:PER_METRO]
         total += len(out[label])
 
     payload = {
