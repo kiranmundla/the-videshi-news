@@ -1082,6 +1082,262 @@ def _inline_topic_match_ok(topic, title, headline):
     return matches >= 2
 
 
+# ═══════════════════════════════════════════
+# ENTITY-TYPE AGREEMENT GATE — inline images (2026-10-13)
+# ═══════════════════════════════════════════
+# Incident (2026-10-13): the inline topic "Chelsea 3" — a VESSEL in a
+# drone-attack story — matched Commons' top hit "File:Chelsea Clinton.jpg",
+# a PERSON. The old guards only compared name tokens ("chelsea" appears in
+# both) and scanned the file title for role words ("portrait", "politician",
+# ...) — none of which occur in a bare personal-name filename — so the photo
+# passed every check and was captioned as the ship.
+#
+# Rule enforced here: a photo of a PERSON may only illustrate a person
+# entity, and only that same person. More generally, when the entity a file
+# depicts can be typed, its type must agree with the topic's type. Types are
+# derived from the same signal fetch_wikipedia_image already trusts: the
+# Wikidata short description on the Wikipedia summary ("American writer
+# (born 1980)" → person; "British ocean liner" → vessel). When a candidate
+# presents a proper-name subject that cannot be resolved to a verified
+# non-person, we SKIP it — no image beats a wrong image.
+
+_WIKI_SUMMARY_CACHE = {}
+
+
+def _wiki_summary(name):
+    """Wikipedia REST summary for an exact name (cached per run), or None.
+    Same endpoint fetch_wikipedia_image uses; kept separate so the type
+    gate can resolve arbitrary depicted names, not just article subjects."""
+    key = re.sub(r"\s+", " ", (name or "").strip().lower())
+    if not key:
+        return None
+    if key in _WIKI_SUMMARY_CACHE:
+        return _WIKI_SUMMARY_CACHE[key]
+    data = None
+    try:
+        r = _curl_get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{quote(name.replace(' ', '_'))}",
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=10,
+        )
+        if r.status_code == 200:
+            data = r.json()
+    except Exception:
+        data = None
+    _WIKI_SUMMARY_CACHE[key] = data
+    return data
+
+
+_PERSON_DESC_TOKENS = {
+    "actor", "actress", "singer", "songwriter", "rapper", "musician",
+    "politician", "writer", "author", "novelist", "poet", "journalist",
+    "cricketer", "footballer", "athlete", "player", "swimmer", "boxer",
+    "wrestler", "gymnast", "cyclist", "golfer", "businessman",
+    "businesswoman", "entrepreneur", "billionaire", "director", "producer",
+    "comedian", "model", "artist", "painter", "sculptor", "scientist",
+    "physicist", "chemist", "biologist", "mathematician", "economist",
+    "historian", "philosopher", "lawyer", "judge", "general", "admiral",
+    "officer", "soldier", "pilot", "astronaut", "chef", "activist",
+    "engineer", "architect", "designer", "photographer", "surgeon",
+    "physician", "professor", "diplomat", "monarch", "prince", "princess",
+    "king", "queen", "emperor", "saint", "bishop", "pope",
+    "choreographer", "dancer", "violinist", "pianist", "guitarist",
+    "anchor", "presenter", "cartoonist", "playwright", "screenwriter",
+}
+_VESSEL_DESC_PHRASES = (
+    "ship", "vessel", "tanker", "ferry", "yacht", "liner", "steamer",
+    "warship", "destroyer", "frigate", "corvette", "submarine", "boat",
+    "bulk carrier", "container ship", "cargo ship", "passenger ship",
+    "dredger", "trawler", "barge", "schooner",
+)
+_PLACE_DESC_PHRASES = (
+    "monument", "landmark", "tower", "fort", "palace", "temple", "mosque",
+    "church", "cathedral", "mausoleum", "bridge", "dam", "statue",
+    "building", "skyscraper", "stadium", "arena", "museum", "library",
+    "lighthouse", "tomb", "city", "town", "village", "district",
+    "municipality", "province", "island", "mountain", "river", "lake",
+    "ocean", "sea", "waterfall", "national park", "beach", "valley",
+    "glacier", "volcano", "arch", "gate", "memorial", "desert", "forest",
+    "peninsula", "bay", "gulf", "strait", "reef", "lagoon", "delta",
+    "peak", "summit", "cliff", "cave",
+)
+_ORG_DESC_PHRASES = (
+    "company", "corporation", "organisation", "organization", "agency",
+    "bank", "airline", "conglomerate", "multinational", "university",
+    "college", "institute", "foundation", "association", "federation",
+    "political party", "record label", "film studio", "production company",
+)
+
+
+def _desc_has_phrase(desc, phrases):
+    return any(re.search(r"\b" + re.escape(p) + r"\b", desc) for p in phrases)
+
+
+def _classify_wiki_type(summary):
+    """Classify an entity from its Wikipedia summary → 'person' | 'vessel' |
+    'place' | 'org' | 'other' | None (no page / disambiguation)."""
+    if not summary or summary.get("type") == "disambiguation":
+        return None
+    desc = (summary.get("description") or "").lower()
+    extract = summary.get("extract") or ""
+    if not desc and not extract:
+        return None
+    # A "(born …)" marker in the Wikidata description, or in the extract's
+    # opening lines ("Chelsea Victoria Clinton (born February 27, 1980)…"),
+    # is definitive for a biography.
+    if "(born" in desc or re.search(r"\((?:born|née)\b", extract[:250]):
+        return "person"
+    if set(re.findall(r"[a-z]+", desc)) & _PERSON_DESC_TOKENS:
+        return "person"
+    if _desc_has_phrase(desc, _VESSEL_DESC_PHRASES):
+        return "vessel"
+    if _desc_has_phrase(desc, _PLACE_DESC_PHRASES):
+        return "place"
+    if _desc_has_phrase(desc, _ORG_DESC_PHRASES):
+        return "org"
+    return "other"
+
+
+def _topic_entity_type(topic):
+    """Type of an inline topic from its Wikipedia summary. None when the
+    topic has no page (e.g. an obscure vessel like 'Chelsea 3') — the gate
+    treats None as 'not a verified person', which is all it needs."""
+    return _classify_wiki_type(_wiki_summary(topic))
+
+
+def _commons_file_categories(file_title):
+    """Non-hidden Commons category names for a File: page ([] on failure)."""
+    try:
+        r = _curl_get(
+            "https://commons.wikimedia.org/w/api.php",
+            params={"action": "query", "titles": file_title,
+                    "prop": "categories", "clshow": "!hidden",
+                    "cllimit": "50", "format": "json"},
+            headers={"User-Agent": "TheVideshi/1.0 (thevideshi.com)"},
+            timeout=15,
+        )
+        if r.status_code == 200:
+            for page in r.json().get("query", {}).get("pages", {}).values():
+                return [c.get("title", "").replace("Category:", "")
+                        for c in page.get("categories", [])]
+    except Exception:
+        pass
+    return []
+
+
+_NAME_PARTICLES = {"of", "the", "de", "van", "von", "der", "di", "le",
+                   "la", "bin", "al", "del"}
+
+
+def _proper_name_prefix(text, max_words=3):
+    """Leading proper-name span of a title: consecutive Capitalized words
+    (linking particles allowed inside). 'Chelsea Clinton in 2008' →
+    'Chelsea Clinton'; 'Gateway of India Mumbai' → 'Gateway of India
+    Mumbai'. Returns '' unless the span has ≥2 capitalized words — a
+    sentence-style title ('Sunset over the bay') yields ''."""
+    span = []
+    caps = 0
+    for w in (text or "").split():
+        core = w.strip(".,'\"()")
+        if not core:
+            break
+        if core[0].isupper():
+            span.append(core)
+            caps += 1
+            if caps >= max_words:
+                break
+        elif core.lower() in _NAME_PARTICLES and span:
+            span.append(core)
+        else:
+            break
+    while span and span[-1].lower() in _NAME_PARTICLES:
+        span.pop()
+    caps = sum(1 for s in span if s.lower() not in _NAME_PARTICLES)
+    return " ".join(span) if caps >= 2 else ""
+
+
+def _clean_file_title(file_title):
+    """'File:Chelsea Clinton (2008).jpg' → 'Chelsea Clinton'."""
+    t = file_title or ""
+    t = re.sub(r"^File:", "", t)
+    t = re.sub(r"\.[A-Za-z0-9]{3,4}$", "", t)
+    t = re.sub(r"\s*\([^)]*\)", "", t)  # "(2008)", "(cropped)", flickr ids
+    t = t.replace("_", " ")
+    t = re.sub(r"\s+", " ", t)
+    t = re.sub(r"\s+\d{4}$", "", t)  # trailing year
+    return t.strip(" -,")
+
+
+def _depicted_entity(candidate):
+    """Best-effort identification of the entity a Commons file depicts.
+
+    Returns (name, type): type is _classify_wiki_type's vocabulary, or None
+    when the name resolves to no Wikipedia page. name is '' when the file
+    carries no proper-name subject at all (a purely descriptive photo such
+    as 'Bioluminescent waves at night.jpg')."""
+    names = []
+    prefix = _proper_name_prefix(_clean_file_title(candidate.get("title", "")))
+    if prefix:
+        names.append(prefix)
+    for cat in _commons_file_categories(candidate.get("title", "")):
+        p = _proper_name_prefix(cat)
+        if p and p not in names:
+            names.append(p)
+    tried = set()
+    for name in names:
+        words = name.split()
+        # Try the full span, then shorten word by word until it resolves:
+        # 'Gateway of India Mumbai' → 'Gateway of India'.
+        while sum(1 for w in words if w.lower() not in _NAME_PARTICLES) >= 2:
+            cand = " ".join(words)
+            if cand.lower() not in tried:
+                tried.add(cand.lower())
+                t = _classify_wiki_type(_wiki_summary(cand))
+                if t is not None:
+                    return cand, t
+            words = words[:-1]
+    return (names[0] if names else ""), None
+
+
+def _inline_type_gate(topic, topic_type, candidate):
+    """Entity-type agreement gate for one inline-image candidate.
+    Returns (ok, reason_if_rejected).
+
+    - Depicted PERSON → allowed only when the topic is that same person.
+    - Depicted entity of another established type → types must agree
+      ('other' is compatible with anything).
+    - Depicted proper name that cannot be resolved/typed and is not the
+      topic itself → rejected: we cannot establish it is NOT a person,
+      and a wrong image is worse than none.
+    - No depicted name (descriptive photo) → passes to relevance checks.
+    """
+    name, dtype = _depicted_entity(candidate)
+    if not name:
+        return True, ""
+    if dtype == "person":
+        if topic_type == "person" and name.lower() == (topic or "").lower():
+            return True, ""
+        return False, (f"depicts person '{name}' but topic '{topic}' "
+                       f"is type={topic_type or 'unknown'}")
+    if dtype is None:
+        if name.lower() == (topic or "").lower():
+            return True, ""
+        return False, f"depicted entity '{name}' could not be type-verified"
+    if topic_type is None and name.lower() != (topic or "").lower():
+        # The topic itself couldn't be typed (no Wikipedia page — e.g. the
+        # vessel "Chelsea 3"), so agreement with a *different* named entity
+        # (here: the London development "Chelsea Waterfront") can never be
+        # established. Skip: only descriptive photos or the topic itself may
+        # illustrate an unverifiable topic.
+        return False, (f"topic '{topic}' could not be type-verified and "
+                       f"image depicts a different entity '{name}' ({dtype})")
+    if (topic_type and topic_type != "other" and dtype != "other"
+            and topic_type != dtype):
+        return False, (f"type mismatch — topic '{topic}' is {topic_type}, "
+                       f"image depicts {dtype} '{name}'")
+    return True, ""
+
+
 def find_inline_images(headline, body, hero_url="", category=None):
     """Find inline images for visual sub-topics in the article.
     Returns list of (entity, image_url, caption) tuples.
@@ -1092,7 +1348,10 @@ def find_inline_images(headline, body, hero_url="", category=None):
     old regex-entity→Wikipedia approach that produced 17 wrong images in a
     day via disambiguation errors and wrong-person photos.
 
-    Guards: skips if same as hero, skips person-related results, max 2 images.
+    Guards: skips if same as hero, skips person-related results, max 2 images,
+    plus the entity-type agreement gate (_inline_type_gate): the depicted
+    entity's type must match the topic's type — a person photo may only
+    illustrate that same person; unverifiable depicted names are skipped.
     """
     results = []
     hero_norm = (hero_url or "").split("?")[0].lower()
@@ -1117,6 +1376,9 @@ def find_inline_images(headline, body, hero_url="", category=None):
         if not commons_results:
             print(f"    ⊘ No Commons results for inline topic '{topic}'")
             continue
+
+        # Entity type of the topic itself (for the type-agreement gate)
+        topic_type = _topic_entity_type(topic)
 
         found = False
         for c in commons_results:
@@ -1154,6 +1416,16 @@ def find_inline_images(headline, body, hero_url="", category=None):
             topic_slug = re.sub(r'[^a-z0-9]', '', topic.lower())
             if hero_slug and len(topic_slug) >= 6 and topic_slug in hero_slug:
                 print(f"    ⊘ Skipping inline for '{topic}' — topic covered by hero")
+                continue
+
+            # Entity-type agreement gate (2026-10-13): the depicted entity's
+            # type must agree with the topic's type — a person photo may
+            # only illustrate that same person, and a depicted proper name
+            # that can't be type-verified is skipped. This is what stops
+            # name collisions like vessel "Chelsea 3" → Chelsea Clinton.
+            type_ok, type_why = _inline_type_gate(topic, topic_type, c)
+            if not type_ok:
+                print(f"    ⊘ Skipping inline for '{topic}' — type gate: {type_why}")
                 continue
 
             # Build factual two-sentence caption
