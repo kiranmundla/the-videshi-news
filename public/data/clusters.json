@@ -25,8 +25,7 @@
     "Secaucus",
     "Newark",
     "Clifton",
-    "Passaic",
-    "Hackensack"
+    "Passaic"
    ],
    "members": [
     {
@@ -72,12 +71,6 @@
      "lon": -74.1269
     },
     {
-     "name": "Hackensack",
-     "state": "NJ",
-     "lat": 40.8894,
-     "lon": -74.0457
-    },
-    {
      "name": "Newark",
      "state": "NJ",
      "lat": 40.7242,
@@ -108,12 +101,6 @@
      "lon": -73.6857
     },
     {
-     "name": "Rutherford",
-     "state": "NJ",
-     "lat": 40.8203,
-     "lon": -74.106
-    },
-    {
      "name": "Roselle Park",
      "state": "NJ",
      "lat": 40.6653,
@@ -126,22 +113,10 @@
      "lon": -73.6603
     },
     {
-     "name": "Fort Lee",
-     "state": "NJ",
-     "lat": 40.8506,
-     "lon": -73.971
-    },
-    {
      "name": "West New York",
      "state": "NJ",
      "lat": 40.786,
      "lon": -74.0095
-    },
-    {
-     "name": "Tenafly",
-     "state": "NJ",
-     "lat": 40.9183,
-     "lon": -73.9505
     },
     {
      "name": "Herricks",
@@ -156,34 +131,10 @@
      "lon": -73.6809
     },
     {
-     "name": "Maywood",
-     "state": "NJ",
-     "lat": 40.9029,
-     "lon": -74.0635
-    },
-    {
-     "name": "Wood-Ridge",
-     "state": "NJ",
-     "lat": 40.8502,
-     "lon": -74.0871
-    },
-    {
      "name": "West Hempstead",
      "state": "NY",
      "lat": 40.6958,
      "lon": -73.6505
-    },
-    {
-     "name": "Edgewater",
-     "state": "NJ",
-     "lat": 40.8238,
-     "lon": -73.9742
-    },
-    {
-     "name": "Englewood",
-     "state": "NJ",
-     "lat": 40.8912,
-     "lon": -73.9725
     },
     {
      "name": "Hempstead",
@@ -196,12 +147,6 @@
      "state": "NY",
      "lat": 40.747,
      "lon": -73.6392
-    },
-    {
-     "name": "East Rutherford",
-     "state": "NJ",
-     "lat": 40.8171,
-     "lon": -74.085
     },
     {
      "name": "Union City",
@@ -228,22 +173,10 @@
      "lon": -73.7028
     },
     {
-     "name": "Cliffside Park",
-     "state": "NJ",
-     "lat": 40.8221,
-     "lon": -73.9878
-    },
-    {
      "name": "Kearny",
      "state": "NJ",
      "lat": 40.7537,
      "lon": -74.1209
-    },
-    {
-     "name": "Garfield",
-     "state": "NJ",
-     "lat": 40.8798,
-     "lon": -74.1082
     },
     {
      "name": "Manorhaven",
@@ -262,12 +195,6 @@
      "state": "NY",
      "lat": 40.664,
      "lon": -73.638
-    },
-    {
-     "name": "Lodi",
-     "state": "NJ",
-     "lat": 40.8779,
-     "lon": -74.0825
     }
    ],
    "block": [],
@@ -4533,156 +4460,6 @@
    ]
   },
   {
-   "id": "atlanta-ga",
-   "label": "Atlanta, GA",
-   "state": "GA",
-   "center": {
-    "lat": 33.749,
-    "lon": -84.388
-   },
-   "anchor": "Atlanta",
-   "query_cities": [
-    "Atlanta",
-    "Marietta",
-    "Smyrna",
-    "Decatur"
-   ],
-   "aliases": [
-    "Atlanta",
-    "Marietta",
-    "Smyrna",
-    "Decatur",
-    "Stockbridge"
-   ],
-   "members": [
-    {
-     "name": "Atlanta",
-     "state": "GA",
-     "lat": 33.7629,
-     "lon": -84.4227
-    },
-    {
-     "name": "Smyrna",
-     "state": "GA",
-     "lat": 33.8644,
-     "lon": -84.5153
-    },
-    {
-     "name": "Stockbridge",
-     "state": "GA",
-     "lat": 33.5432,
-     "lon": -84.2575
-    },
-    {
-     "name": "Mableton",
-     "state": "GA",
-     "lat": 33.8145,
-     "lon": -84.5657
-    },
-    {
-     "name": "Marietta",
-     "state": "GA",
-     "lat": 33.9536,
-     "lon": -84.5425
-    },
-    {
-     "name": "Vinings",
-     "state": "GA",
-     "lat": 33.8606,
-     "lon": -84.4687
-    },
-    {
-     "name": "Decatur",
-     "state": "GA",
-     "lat": 33.7715,
-     "lon": -84.2979
-    },
-    {
-     "name": "Douglasville",
-     "state": "GA",
-     "lat": 33.7383,
-     "lon": -84.7072
-    },
-    {
-     "name": "Redan",
-     "state": "GA",
-     "lat": 33.7376,
-     "lon": -84.16
-    },
-    {
-     "name": "Druid Hills",
-     "state": "GA",
-     "lat": 33.7874,
-     "lon": -84.326
-    },
-    {
-     "name": "East Point",
-     "state": "GA",
-     "lat": 33.6695,
-     "lon": -84.4704
-    },
-    {
-     "name": "Lithia Springs",
-     "state": "GA",
-     "lat": 33.7825,
-     "lon": -84.6485
-    },
-    {
-     "name": "Belvedere Park",
-     "state": "GA",
-     "lat": 33.7489,
-     "lon": -84.2598
-    },
-    {
-     "name": "Hapeville",
-     "state": "GA",
-     "lat": 33.6609,
-     "lon": -84.4093
-    },
-    {
-     "name": "Candler-McAfee",
-     "state": "GA",
-     "lat": 33.7262,
-     "lon": -84.2709
-    },
-    {
-     "name": "Powder Springs",
-     "state": "GA",
-     "lat": 33.8657,
-     "lon": -84.684
-    },
-    {
-     "name": "Morrow",
-     "state": "GA",
-     "lat": 33.5788,
-     "lon": -84.3361
-    },
-    {
-     "name": "College Park",
-     "state": "GA",
-     "lat": 33.6381,
-     "lon": -84.4601
-    },
-    {
-     "name": "Avondale Estates",
-     "state": "GA",
-     "lat": 33.7687,
-     "lon": -84.2647
-    },
-    {
-     "name": "Lake City",
-     "state": "GA",
-     "lat": 33.6065,
-     "lon": -84.3411
-    }
-   ],
-   "block": [],
-   "context_guard": null,
-   "source_ranks": [
-    52
-   ]
-  },
-  {
    "id": "philadelphia-pa",
    "label": "Philadelphia, PA",
    "state": "PA",
@@ -6366,6 +6143,305 @@
    "context_guard": null,
    "source_ranks": [
     28
+   ]
+  },
+  {
+   "id": "yonkers-bergen-ny-nj",
+   "label": "Yonkers / Bergen, NY-NJ",
+   "state": "NY",
+   "center": {
+    "lat": 40.9459,
+    "lon": -73.8674
+   },
+   "anchor": "Yonkers",
+   "query_cities": [
+    "Yonkers",
+    "Paramus",
+    "Paterson",
+    "Bergen County",
+    "Fort Lee",
+    "Fair Lawn"
+   ],
+   "aliases": [
+    "Yonkers",
+    "Bergen County",
+    "Rockland County",
+    "Paramus",
+    "Paterson",
+    "Fair Lawn",
+    "Hackensack",
+    "Fort Lee",
+    "Bergenfield",
+    "Tenafly",
+    "Cliffside Park",
+    "Nanuet",
+    "Palisades Park",
+    "Leonia"
+   ],
+   "members": [
+    {
+     "name": "Yonkers",
+     "state": "NY",
+     "lat": 40.9459,
+     "lon": -73.8674
+    },
+    {
+     "name": "Paterson",
+     "state": "NJ",
+     "lat": 40.9147,
+     "lon": -74.1628
+    },
+    {
+     "name": "Paramus",
+     "state": "NJ",
+     "lat": 40.9473,
+     "lon": -74.071
+    },
+    {
+     "name": "New City",
+     "state": "NY",
+     "lat": 41.1531,
+     "lon": -73.9903
+    },
+    {
+     "name": "Fair Lawn",
+     "state": "NJ",
+     "lat": 40.9358,
+     "lon": -74.1175
+    },
+    {
+     "name": "Hackensack",
+     "state": "NJ",
+     "lat": 40.8894,
+     "lon": -74.0457
+    },
+    {
+     "name": "Nanuet",
+     "state": "NY",
+     "lat": 41.0956,
+     "lon": -74.0154
+    },
+    {
+     "name": "Bergenfield",
+     "state": "NJ",
+     "lat": 40.9223,
+     "lon": -73.998
+    },
+    {
+     "name": "New Milford",
+     "state": "NJ",
+     "lat": 40.9342,
+     "lon": -74.0195
+    },
+    {
+     "name": "Rutherford",
+     "state": "NJ",
+     "lat": 40.8203,
+     "lon": -74.106
+    },
+    {
+     "name": "Fort Lee",
+     "state": "NJ",
+     "lat": 40.8506,
+     "lon": -73.971
+    },
+    {
+     "name": "Elmwood Park",
+     "state": "NJ",
+     "lat": 40.9045,
+     "lon": -74.1195
+    },
+    {
+     "name": "Ridgewood",
+     "state": "NJ",
+     "lat": 40.9816,
+     "lon": -74.1135
+    },
+    {
+     "name": "Tenafly",
+     "state": "NJ",
+     "lat": 40.9183,
+     "lon": -73.9505
+    },
+    {
+     "name": "River Edge",
+     "state": "NJ",
+     "lat": 40.9268,
+     "lon": -74.0375
+    },
+    {
+     "name": "Maywood",
+     "state": "NJ",
+     "lat": 40.9029,
+     "lon": -74.0635
+    },
+    {
+     "name": "Wood-Ridge",
+     "state": "NJ",
+     "lat": 40.8502,
+     "lon": -74.0871
+    },
+    {
+     "name": "Dumont",
+     "state": "NJ",
+     "lat": 40.9452,
+     "lon": -73.9924
+    },
+    {
+     "name": "Edgewater",
+     "state": "NJ",
+     "lat": 40.8238,
+     "lon": -73.9742
+    },
+    {
+     "name": "Englewood",
+     "state": "NJ",
+     "lat": 40.8912,
+     "lon": -73.9725
+    },
+    {
+     "name": "East Rutherford",
+     "state": "NJ",
+     "lat": 40.8171,
+     "lon": -74.085
+    },
+    {
+     "name": "Mount Vernon",
+     "state": "NY",
+     "lat": 40.9131,
+     "lon": -73.8293
+    },
+    {
+     "name": "Cliffside Park",
+     "state": "NJ",
+     "lat": 40.8221,
+     "lon": -73.9878
+    },
+    {
+     "name": "Allendale",
+     "state": "NJ",
+     "lat": 41.0327,
+     "lon": -74.1338
+    },
+    {
+     "name": "Montvale",
+     "state": "NJ",
+     "lat": 41.0546,
+     "lon": -74.0473
+    },
+    {
+     "name": "Glen Rock",
+     "state": "NJ",
+     "lat": 40.9595,
+     "lon": -74.1252
+    },
+    {
+     "name": "Garfield",
+     "state": "NJ",
+     "lat": 40.8798,
+     "lon": -74.1082
+    },
+    {
+     "name": "Congers",
+     "state": "NY",
+     "lat": 41.1496,
+     "lon": -73.9448
+    },
+    {
+     "name": "Lodi",
+     "state": "NJ",
+     "lat": 40.8779,
+     "lon": -74.0825
+    },
+    {
+     "name": "North Arlington",
+     "state": "NJ",
+     "lat": 40.7863,
+     "lon": -74.1262
+    },
+    {
+     "name": "Tappan",
+     "state": "NY",
+     "lat": 41.0255,
+     "lon": -73.9514
+    },
+    {
+     "name": "Englewood Cliffs",
+     "state": "NJ",
+     "lat": 40.8897,
+     "lon": -73.942
+    },
+    {
+     "name": "Bardonia",
+     "state": "NY",
+     "lat": 41.114,
+     "lon": -73.9793
+    },
+    {
+     "name": "Closter",
+     "state": "NJ",
+     "lat": 40.9729,
+     "lon": -73.9603
+    },
+    {
+     "name": "Spring Valley",
+     "state": "NY",
+     "lat": 41.1146,
+     "lon": -74.0487
+    },
+    {
+     "name": "New Hempstead",
+     "state": "NY",
+     "lat": 41.1457,
+     "lon": -74.051
+    },
+    {
+     "name": "Bogota",
+     "state": "NJ",
+     "lat": 40.8743,
+     "lon": -74.0297
+    },
+    {
+     "name": "Hillsdale",
+     "state": "NJ",
+     "lat": 41.0071,
+     "lon": -74.0451
+    },
+    {
+     "name": "Waldwick",
+     "state": "NJ",
+     "lat": 41.0136,
+     "lon": -74.1259
+    },
+    {
+     "name": "Carlstadt",
+     "state": "NJ",
+     "lat": 40.8264,
+     "lon": -74.0623
+    },
+    {
+     "name": "Leonia",
+     "state": "NJ",
+     "lat": 40.8634,
+     "lon": -73.9885
+    },
+    {
+     "name": "Palisades Park",
+     "state": "NJ",
+     "lat": 40.847,
+     "lon": -73.9971
+    },
+    {
+     "name": "Ridgefield",
+     "state": "NJ",
+     "lat": 40.8323,
+     "lon": -74.0151
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    29
    ]
   },
   {
@@ -8213,6 +8289,282 @@
    ]
   },
   {
+   "id": "st-louis-mo",
+   "label": "St. Louis, MO",
+   "state": "MO",
+   "center": {
+    "lat": 38.7169,
+    "lon": -90.4718
+   },
+   "anchor": "St. Louis",
+   "query_cities": [
+    "St. Louis",
+    "Chesterfield",
+    "Maryland Heights",
+    "Ballwin"
+   ],
+   "aliases": [
+    "St. Louis",
+    "Saint Louis",
+    "Chesterfield",
+    "Maryland Heights",
+    "Ballwin",
+    "Creve Coeur",
+    "Florissant",
+    "Lake St. Louis",
+    "St. Charles County"
+   ],
+   "members": [
+    {
+     "name": "Maryland Heights",
+     "state": "MO",
+     "lat": 38.7169,
+     "lon": -90.4718
+    },
+    {
+     "name": "Chesterfield",
+     "state": "MO",
+     "lat": 38.6578,
+     "lon": -90.581
+    },
+    {
+     "name": "O'Fallon",
+     "state": "MO",
+     "lat": 38.7835,
+     "lon": -90.7154
+    },
+    {
+     "name": "St. Louis",
+     "state": "MO",
+     "lat": 38.6357,
+     "lon": -90.2446
+    },
+    {
+     "name": "Wildwood",
+     "state": "MO",
+     "lat": 38.577,
+     "lon": -90.6678
+    },
+    {
+     "name": "Ballwin",
+     "state": "MO",
+     "lat": 38.595,
+     "lon": -90.55
+    },
+    {
+     "name": "Creve Coeur",
+     "state": "MO",
+     "lat": 38.6622,
+     "lon": -90.4431
+    },
+    {
+     "name": "St. Charles",
+     "state": "MO",
+     "lat": 38.7957,
+     "lon": -90.5154
+    },
+    {
+     "name": "Manchester",
+     "state": "MO",
+     "lat": 38.5832,
+     "lon": -90.5064
+    },
+    {
+     "name": "Town and Country",
+     "state": "MO",
+     "lat": 38.6317,
+     "lon": -90.479
+    },
+    {
+     "name": "Clayton",
+     "state": "MO",
+     "lat": 38.6443,
+     "lon": -90.3301
+    },
+    {
+     "name": "University City",
+     "state": "MO",
+     "lat": 38.6657,
+     "lon": -90.3315
+    },
+    {
+     "name": "Dardenne Prairie",
+     "state": "MO",
+     "lat": 38.755,
+     "lon": -90.7308
+    },
+    {
+     "name": "Olivette",
+     "state": "MO",
+     "lat": 38.6725,
+     "lon": -90.3784
+    },
+    {
+     "name": "St. Peters",
+     "state": "MO",
+     "lat": 38.7835,
+     "lon": -90.6051
+    },
+    {
+     "name": "Ladue",
+     "state": "MO",
+     "lat": 38.6378,
+     "lon": -90.3815
+    },
+    {
+     "name": "Lake St. Louis",
+     "state": "MO",
+     "lat": 38.7822,
+     "lon": -90.7866
+    },
+    {
+     "name": "Eureka",
+     "state": "MO",
+     "lat": 38.4992,
+     "lon": -90.6479
+    },
+    {
+     "name": "Webster Groves",
+     "state": "MO",
+     "lat": 38.5866,
+     "lon": -90.3544
+    },
+    {
+     "name": "Weldon Spring",
+     "state": "MO",
+     "lat": 38.7094,
+     "lon": -90.6525
+    },
+    {
+     "name": "Normandy",
+     "state": "MO",
+     "lat": 38.707,
+     "lon": -90.3009
+    },
+    {
+     "name": "Des Peres",
+     "state": "MO",
+     "lat": 38.5972,
+     "lon": -90.4481
+    },
+    {
+     "name": "Shrewsbury",
+     "state": "MO",
+     "lat": 38.5866,
+     "lon": -90.3281
+    },
+    {
+     "name": "Brentwood",
+     "state": "MO",
+     "lat": 38.6194,
+     "lon": -90.3476
+    },
+    {
+     "name": "Kirkwood",
+     "state": "MO",
+     "lat": 38.5794,
+     "lon": -90.4209
+    },
+    {
+     "name": "Clarkson Valley",
+     "state": "MO",
+     "lat": 38.625,
+     "lon": -90.5929
+    },
+    {
+     "name": "Cottleville",
+     "state": "MO",
+     "lat": 38.7512,
+     "lon": -90.6583
+    },
+    {
+     "name": "Ellisville",
+     "state": "MO",
+     "lat": 38.5895,
+     "lon": -90.5883
+    },
+    {
+     "name": "Sunset Hills",
+     "state": "MO",
+     "lat": 38.5312,
+     "lon": -90.4093
+    },
+    {
+     "name": "Maplewood",
+     "state": "MO",
+     "lat": 38.6121,
+     "lon": -90.324
+    },
+    {
+     "name": "Mehlville",
+     "state": "MO",
+     "lat": 38.5023,
+     "lon": -90.3144
+    },
+    {
+     "name": "Richmond Heights",
+     "state": "MO",
+     "lat": 38.6309,
+     "lon": -90.333
+    },
+    {
+     "name": "St. Ann",
+     "state": "MO",
+     "lat": 38.7266,
+     "lon": -90.3871
+    },
+    {
+     "name": "Fenton",
+     "state": "MO",
+     "lat": 38.5286,
+     "lon": -90.4505
+    },
+    {
+     "name": "Valley Park",
+     "state": "MO",
+     "lat": 38.5507,
+     "lon": -90.493
+    },
+    {
+     "name": "Rock Hill",
+     "state": "MO",
+     "lat": 38.609,
+     "lon": -90.3673
+    },
+    {
+     "name": "Frontenac",
+     "state": "MO",
+     "lat": 38.6299,
+     "lon": -90.4189
+    },
+    {
+     "name": "Green Park",
+     "state": "MO",
+     "lat": 38.5244,
+     "lon": -90.3365
+    },
+    {
+     "name": "Warson Woods",
+     "state": "MO",
+     "lat": 38.6069,
+     "lon": -90.3912
+    },
+    {
+     "name": "Florissant",
+     "state": "MO",
+     "lat": 38.7997,
+     "lon": -90.3271
+    }
+   ],
+   "block": [
+    "east st. louis"
+   ],
+   "context_guard": null,
+   "source_ranks": [
+    40
+   ]
+  },
+  {
    "id": "denver-co",
    "label": "Denver, CO",
    "state": "CO",
@@ -8459,6 +8811,897 @@
    "context_guard": null,
    "source_ranks": [
     43
+   ]
+  },
+  {
+   "id": "cleveland-oh",
+   "label": "Cleveland, OH",
+   "state": "OH",
+   "center": {
+    "lat": 41.4993,
+    "lon": -81.6944
+   },
+   "anchor": "Cleveland",
+   "query_cities": [
+    "Cleveland",
+    "Solon",
+    "Strongsville",
+    "Westlake",
+    "Beachwood"
+   ],
+   "aliases": [
+    "Cleveland",
+    "Solon",
+    "Strongsville",
+    "Westlake",
+    "Beachwood",
+    "Shaker Heights",
+    "Cleveland Heights",
+    "Twinsburg",
+    "Mayfield Heights",
+    "North Olmsted",
+    "Avon Lake"
+   ],
+   "members": [
+    {
+     "name": "Cleveland",
+     "state": "OH",
+     "lat": 41.4781,
+     "lon": -81.6795
+    },
+    {
+     "name": "Solon",
+     "state": "OH",
+     "lat": 41.386,
+     "lon": -81.4408
+    },
+    {
+     "name": "Strongsville",
+     "state": "OH",
+     "lat": 41.3129,
+     "lon": -81.8317
+    },
+    {
+     "name": "Cleveland Heights",
+     "state": "OH",
+     "lat": 41.5111,
+     "lon": -81.5618
+    },
+    {
+     "name": "Westlake",
+     "state": "OH",
+     "lat": 41.4495,
+     "lon": -81.9302
+    },
+    {
+     "name": "Middleburg Heights",
+     "state": "OH",
+     "lat": 41.3699,
+     "lon": -81.8135
+    },
+    {
+     "name": "Mayfield Heights",
+     "state": "OH",
+     "lat": 41.5173,
+     "lon": -81.4539
+    },
+    {
+     "name": "Twinsburg",
+     "state": "OH",
+     "lat": 41.3226,
+     "lon": -81.4431
+    },
+    {
+     "name": "Avon",
+     "state": "OH",
+     "lat": 41.4452,
+     "lon": -82.0051
+    },
+    {
+     "name": "North Royalton",
+     "state": "OH",
+     "lat": 41.3137,
+     "lon": -81.7452
+    },
+    {
+     "name": "Parma",
+     "state": "OH",
+     "lat": 41.3835,
+     "lon": -81.7285
+    },
+    {
+     "name": "Reminderville",
+     "state": "OH",
+     "lat": 41.3275,
+     "lon": -81.397
+    },
+    {
+     "name": "Beachwood",
+     "state": "OH",
+     "lat": 41.4763,
+     "lon": -81.5033
+    },
+    {
+     "name": "Willoughby Hills",
+     "state": "OH",
+     "lat": 41.5847,
+     "lon": -81.4326
+    },
+    {
+     "name": "Avon Lake",
+     "state": "OH",
+     "lat": 41.4945,
+     "lon": -82.0161
+    },
+    {
+     "name": "Broadview Heights",
+     "state": "OH",
+     "lat": 41.3182,
+     "lon": -81.6793
+    },
+    {
+     "name": "Brecksville",
+     "state": "OH",
+     "lat": 41.3072,
+     "lon": -81.62
+    },
+    {
+     "name": "Shaker Heights",
+     "state": "OH",
+     "lat": 41.4761,
+     "lon": -81.5492
+    },
+    {
+     "name": "Highland Heights",
+     "state": "OH",
+     "lat": 41.5518,
+     "lon": -81.4691
+    },
+    {
+     "name": "Macedonia",
+     "state": "OH",
+     "lat": 41.3149,
+     "lon": -81.5016
+    },
+    {
+     "name": "North Olmsted",
+     "state": "OH",
+     "lat": 41.415,
+     "lon": -81.919
+    },
+    {
+     "name": "Rocky River",
+     "state": "OH",
+     "lat": 41.473,
+     "lon": -81.8538
+    },
+    {
+     "name": "Pepper Pike",
+     "state": "OH",
+     "lat": 41.4794,
+     "lon": -81.4602
+    },
+    {
+     "name": "Lakewood",
+     "state": "OH",
+     "lat": 41.4839,
+     "lon": -81.8017
+    },
+    {
+     "name": "Northfield",
+     "state": "OH",
+     "lat": 41.3425,
+     "lon": -81.5285
+    },
+    {
+     "name": "Orange",
+     "state": "OH",
+     "lat": 41.4429,
+     "lon": -81.4737
+    },
+    {
+     "name": "South Euclid",
+     "state": "OH",
+     "lat": 41.5239,
+     "lon": -81.5245
+    },
+    {
+     "name": "University Heights",
+     "state": "OH",
+     "lat": 41.4948,
+     "lon": -81.5348
+    },
+    {
+     "name": "Glenwillow",
+     "state": "OH",
+     "lat": 41.3612,
+     "lon": -81.471
+    },
+    {
+     "name": "Moreland Hills",
+     "state": "OH",
+     "lat": 41.4424,
+     "lon": -81.4371
+    },
+    {
+     "name": "Maple Heights",
+     "state": "OH",
+     "lat": 41.409,
+     "lon": -81.5629
+    },
+    {
+     "name": "Parma Heights",
+     "state": "OH",
+     "lat": 41.3834,
+     "lon": -81.7613
+    },
+    {
+     "name": "Berea",
+     "state": "OH",
+     "lat": 41.3705,
+     "lon": -81.8618
+    },
+    {
+     "name": "Seven Hills",
+     "state": "OH",
+     "lat": 41.3798,
+     "lon": -81.6758
+    },
+    {
+     "name": "Chesterland",
+     "state": "OH",
+     "lat": 41.5198,
+     "lon": -81.3365
+    },
+    {
+     "name": "Fairview Park",
+     "state": "OH",
+     "lat": 41.442,
+     "lon": -81.853
+    },
+    {
+     "name": "Richmond Heights",
+     "state": "OH",
+     "lat": 41.5606,
+     "lon": -81.5077
+    },
+    {
+     "name": "Brunswick",
+     "state": "OH",
+     "lat": 41.2483,
+     "lon": -81.8166
+    },
+    {
+     "name": "Lyndhurst",
+     "state": "OH",
+     "lat": 41.5169,
+     "lon": -81.4948
+    },
+    {
+     "name": "Brook Park",
+     "state": "OH",
+     "lat": 41.4042,
+     "lon": -81.8204
+    }
+   ],
+   "block": [
+    "cleveland, mississippi",
+    "cleveland, tennessee",
+    "cleveland, georgia",
+    "cleveland, texas",
+    "cleveland, oklahoma",
+    "cleveland county"
+   ],
+   "context_guard": null,
+   "source_ranks": [
+    47
+   ]
+  },
+  {
+   "id": "orlando-fl",
+   "label": "Orlando, FL",
+   "state": "FL",
+   "center": {
+    "lat": 28.5383,
+    "lon": -81.3792
+   },
+   "anchor": "Orlando",
+   "query_cities": [
+    "Orlando",
+    "Winter Park",
+    "Kissimmee",
+    "Altamonte Springs"
+   ],
+   "aliases": [
+    "Orlando",
+    "Winter Park",
+    "Kissimmee",
+    "Altamonte Springs",
+    "Casselberry",
+    "Maitland"
+   ],
+   "members": [
+    {
+     "name": "Orlando",
+     "state": "FL",
+     "lat": 28.4159,
+     "lon": -81.2987
+    },
+    {
+     "name": "Alafaya",
+     "state": "FL",
+     "lat": 28.518,
+     "lon": -81.1786
+    },
+    {
+     "name": "Lake Butler",
+     "state": "FL",
+     "lat": 28.4794,
+     "lon": -81.5425
+    },
+    {
+     "name": "Hunters Creek",
+     "state": "FL",
+     "lat": 28.3584,
+     "lon": -81.4257
+    },
+    {
+     "name": "Pine Hills",
+     "state": "FL",
+     "lat": 28.5818,
+     "lon": -81.4695
+    },
+    {
+     "name": "Doctor Phillips",
+     "state": "FL",
+     "lat": 28.4448,
+     "lon": -81.4802
+    },
+    {
+     "name": "Winter Park",
+     "state": "FL",
+     "lat": 28.5991,
+     "lon": -81.3478
+    },
+    {
+     "name": "Meadow Woods",
+     "state": "FL",
+     "lat": 28.3752,
+     "lon": -81.3462
+    },
+    {
+     "name": "Casselberry",
+     "state": "FL",
+     "lat": 28.6612,
+     "lon": -81.3219
+    },
+    {
+     "name": "University",
+     "state": "FL",
+     "lat": 28.59,
+     "lon": -81.2045
+    },
+    {
+     "name": "Southchase",
+     "state": "FL",
+     "lat": 28.379,
+     "lon": -81.3901
+    },
+    {
+     "name": "Goldenrod",
+     "state": "FL",
+     "lat": 28.6119,
+     "lon": -81.2912
+    },
+    {
+     "name": "Rio Pinar",
+     "state": "FL",
+     "lat": 28.5206,
+     "lon": -81.2625
+    },
+    {
+     "name": "Sky Lake",
+     "state": "FL",
+     "lat": 28.4605,
+     "lon": -81.3901
+    },
+    {
+     "name": "St. Cloud",
+     "state": "FL",
+     "lat": 28.2306,
+     "lon": -81.2852
+    },
+    {
+     "name": "Buenaventura Lakes",
+     "state": "FL",
+     "lat": 28.3334,
+     "lon": -81.3522
+    },
+    {
+     "name": "Maitland",
+     "state": "FL",
+     "lat": 28.6238,
+     "lon": -81.3839
+    },
+    {
+     "name": "Kissimmee",
+     "state": "FL",
+     "lat": 28.3029,
+     "lon": -81.4179
+    },
+    {
+     "name": "Bithlo",
+     "state": "FL",
+     "lat": 28.5649,
+     "lon": -81.1081
+    },
+    {
+     "name": "Orlovista",
+     "state": "FL",
+     "lat": 28.5441,
+     "lon": -81.4629
+    },
+    {
+     "name": "Oak Ridge",
+     "state": "FL",
+     "lat": 28.4729,
+     "lon": -81.4158
+    },
+    {
+     "name": "Altamonte Springs",
+     "state": "FL",
+     "lat": 28.6609,
+     "lon": -81.3956
+    },
+    {
+     "name": "Lockhart",
+     "state": "FL",
+     "lat": 28.6245,
+     "lon": -81.4372
+    },
+    {
+     "name": "Wedgefield",
+     "state": "FL",
+     "lat": 28.486,
+     "lon": -81.0818
+    },
+    {
+     "name": "Windermere",
+     "state": "FL",
+     "lat": 28.5001,
+     "lon": -81.536
+    },
+    {
+     "name": "Gotha",
+     "state": "FL",
+     "lat": 28.5308,
+     "lon": -81.5171
+    },
+    {
+     "name": "Celebration",
+     "state": "FL",
+     "lat": 28.3088,
+     "lon": -81.5491
+    },
+    {
+     "name": "Lake Mary Jane",
+     "state": "FL",
+     "lat": 28.369,
+     "lon": -81.1601
+    },
+    {
+     "name": "Conway",
+     "state": "FL",
+     "lat": 28.4965,
+     "lon": -81.3332
+    },
+    {
+     "name": "Bay Hill",
+     "state": "FL",
+     "lat": 28.454,
+     "lon": -81.5066
+    },
+    {
+     "name": "Holden Heights",
+     "state": "FL",
+     "lat": 28.498,
+     "lon": -81.386
+    },
+    {
+     "name": "Azalea Park",
+     "state": "FL",
+     "lat": 28.5546,
+     "lon": -81.2997
+    },
+    {
+     "name": "Fairview Shores",
+     "state": "FL",
+     "lat": 28.6025,
+     "lon": -81.3957
+    },
+    {
+     "name": "Union Park",
+     "state": "FL",
+     "lat": 28.5672,
+     "lon": -81.2372
+    },
+    {
+     "name": "Pine Castle",
+     "state": "FL",
+     "lat": 28.4638,
+     "lon": -81.3746
+    }
+   ],
+   "block": [
+    "orlando bloom",
+    "orlando brown"
+   ],
+   "context_guard": null,
+   "source_ranks": [
+    49
+   ]
+  },
+  {
+   "id": "milwaukee-wi",
+   "label": "Milwaukee, WI",
+   "state": "WI",
+   "center": {
+    "lat": 43.0389,
+    "lon": -87.9065
+   },
+   "anchor": "Milwaukee",
+   "query_cities": [
+    "Milwaukee",
+    "Waukesha",
+    "Brookfield",
+    "Menomonee Falls"
+   ],
+   "aliases": [
+    "Milwaukee",
+    "Waukesha",
+    "Brookfield",
+    "Menomonee Falls",
+    "New Berlin",
+    "Wauwatosa",
+    "Mequon",
+    "Oak Creek"
+   ],
+   "members": [
+    {
+     "name": "Milwaukee",
+     "state": "WI",
+     "lat": 43.0633,
+     "lon": -87.9667
+    },
+    {
+     "name": "Brookfield",
+     "state": "WI",
+     "lat": 43.0643,
+     "lon": -88.1178
+    },
+    {
+     "name": "New Berlin",
+     "state": "WI",
+     "lat": 42.972,
+     "lon": -88.1292
+    },
+    {
+     "name": "Oak Creek",
+     "state": "WI",
+     "lat": 42.8802,
+     "lon": -87.9008
+    },
+    {
+     "name": "Franklin",
+     "state": "WI",
+     "lat": 42.8839,
+     "lon": -88.0115
+    },
+    {
+     "name": "Menomonee Falls",
+     "state": "WI",
+     "lat": 43.1594,
+     "lon": -88.1215
+    },
+    {
+     "name": "Waukesha",
+     "state": "WI",
+     "lat": 43.0091,
+     "lon": -88.2451
+    },
+    {
+     "name": "Greenfield",
+     "state": "WI",
+     "lat": 42.9606,
+     "lon": -88.0057
+    },
+    {
+     "name": "Sussex",
+     "state": "WI",
+     "lat": 43.1362,
+     "lon": -88.2231
+    },
+    {
+     "name": "Germantown",
+     "state": "WI",
+     "lat": 43.2345,
+     "lon": -88.125
+    },
+    {
+     "name": "Mequon",
+     "state": "WI",
+     "lat": 43.2131,
+     "lon": -88.0137
+    },
+    {
+     "name": "Pewaukee",
+     "state": "WI",
+     "lat": 43.0663,
+     "lon": -88.2444
+    },
+    {
+     "name": "Wauwatosa",
+     "state": "WI",
+     "lat": 43.0631,
+     "lon": -88.0356
+    },
+    {
+     "name": "West Allis",
+     "state": "WI",
+     "lat": 43.0072,
+     "lon": -88.029
+    },
+    {
+     "name": "Fox Point",
+     "state": "WI",
+     "lat": 43.1582,
+     "lon": -87.9014
+    },
+    {
+     "name": "Whitefish Bay",
+     "state": "WI",
+     "lat": 43.1133,
+     "lon": -87.9006
+    },
+    {
+     "name": "Glendale",
+     "state": "WI",
+     "lat": 43.1261,
+     "lon": -87.9272
+    },
+    {
+     "name": "Brown Deer",
+     "state": "WI",
+     "lat": 43.1743,
+     "lon": -87.975
+    },
+    {
+     "name": "South Milwaukee",
+     "state": "WI",
+     "lat": 42.9126,
+     "lon": -87.8623
+    },
+    {
+     "name": "Butler",
+     "state": "WI",
+     "lat": 43.1084,
+     "lon": -88.0722
+    },
+    {
+     "name": "Lannon",
+     "state": "WI",
+     "lat": 43.1547,
+     "lon": -88.1532
+    },
+    {
+     "name": "River Hills",
+     "state": "WI",
+     "lat": 43.1735,
+     "lon": -87.9338
+    },
+    {
+     "name": "Shorewood",
+     "state": "WI",
+     "lat": 43.0913,
+     "lon": -87.8866
+    },
+    {
+     "name": "St. Francis",
+     "state": "WI",
+     "lat": 42.9716,
+     "lon": -87.8731
+    },
+    {
+     "name": "Thiensville",
+     "state": "WI",
+     "lat": 43.2367,
+     "lon": -87.9759
+    },
+    {
+     "name": "Elm Grove",
+     "state": "WI",
+     "lat": 43.0475,
+     "lon": -88.087
+    },
+    {
+     "name": "Cudahy",
+     "state": "WI",
+     "lat": 42.9467,
+     "lon": -87.8639
+    },
+    {
+     "name": "Grafton",
+     "state": "WI",
+     "lat": 43.3207,
+     "lon": -87.9476
+    },
+    {
+     "name": "Bayside",
+     "state": "WI",
+     "lat": 43.1826,
+     "lon": -87.9015
+    },
+    {
+     "name": "Muskego",
+     "state": "WI",
+     "lat": 42.8714,
+     "lon": -88.1343
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    50
+   ]
+  },
+  {
+   "id": "atlanta-ga",
+   "label": "Atlanta, GA",
+   "state": "GA",
+   "center": {
+    "lat": 33.749,
+    "lon": -84.388
+   },
+   "anchor": "Atlanta",
+   "query_cities": [
+    "Atlanta",
+    "Marietta",
+    "Smyrna",
+    "Decatur"
+   ],
+   "aliases": [
+    "Atlanta",
+    "Marietta",
+    "Smyrna",
+    "Decatur",
+    "Stockbridge"
+   ],
+   "members": [
+    {
+     "name": "Atlanta",
+     "state": "GA",
+     "lat": 33.7629,
+     "lon": -84.4227
+    },
+    {
+     "name": "Smyrna",
+     "state": "GA",
+     "lat": 33.8644,
+     "lon": -84.5153
+    },
+    {
+     "name": "Stockbridge",
+     "state": "GA",
+     "lat": 33.5432,
+     "lon": -84.2575
+    },
+    {
+     "name": "Mableton",
+     "state": "GA",
+     "lat": 33.8145,
+     "lon": -84.5657
+    },
+    {
+     "name": "Marietta",
+     "state": "GA",
+     "lat": 33.9536,
+     "lon": -84.5425
+    },
+    {
+     "name": "Vinings",
+     "state": "GA",
+     "lat": 33.8606,
+     "lon": -84.4687
+    },
+    {
+     "name": "Decatur",
+     "state": "GA",
+     "lat": 33.7715,
+     "lon": -84.2979
+    },
+    {
+     "name": "Douglasville",
+     "state": "GA",
+     "lat": 33.7383,
+     "lon": -84.7072
+    },
+    {
+     "name": "Redan",
+     "state": "GA",
+     "lat": 33.7376,
+     "lon": -84.16
+    },
+    {
+     "name": "Druid Hills",
+     "state": "GA",
+     "lat": 33.7874,
+     "lon": -84.326
+    },
+    {
+     "name": "East Point",
+     "state": "GA",
+     "lat": 33.6695,
+     "lon": -84.4704
+    },
+    {
+     "name": "Lithia Springs",
+     "state": "GA",
+     "lat": 33.7825,
+     "lon": -84.6485
+    },
+    {
+     "name": "Belvedere Park",
+     "state": "GA",
+     "lat": 33.7489,
+     "lon": -84.2598
+    },
+    {
+     "name": "Hapeville",
+     "state": "GA",
+     "lat": 33.6609,
+     "lon": -84.4093
+    },
+    {
+     "name": "Candler-McAfee",
+     "state": "GA",
+     "lat": 33.7262,
+     "lon": -84.2709
+    },
+    {
+     "name": "Powder Springs",
+     "state": "GA",
+     "lat": 33.8657,
+     "lon": -84.684
+    },
+    {
+     "name": "Morrow",
+     "state": "GA",
+     "lat": 33.5788,
+     "lon": -84.3361
+    },
+    {
+     "name": "College Park",
+     "state": "GA",
+     "lat": 33.6381,
+     "lon": -84.4601
+    },
+    {
+     "name": "Avondale Estates",
+     "state": "GA",
+     "lat": 33.7687,
+     "lon": -84.2647
+    },
+    {
+     "name": "Lake City",
+     "state": "GA",
+     "lat": 33.6065,
+     "lon": -84.3411
+    }
+   ],
+   "block": [],
+   "context_guard": null,
+   "source_ranks": [
+    52
    ]
   },
   {
